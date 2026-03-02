@@ -149,12 +149,12 @@ export function _php_cast_float(value) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
 
-// php/_helpers/_php_cast_int
+// php/_helpers/_php_cast_int (Locutus helper dependency)
 type CastIntValue = PhpInput
 
 function _php_cast_int(value: CastIntValue): number {
@@ -206,7 +206,7 @@ function _php_cast_int(value: CastIntValue): number {
   return +!!value
 }
 
-// php/_helpers/_php_cast_float
+// php/_helpers/_php_cast_float (target function module)
 const __php_cast_int = _php_cast_int;
 
 type CastFloatValue = PhpInput
@@ -255,7 +255,7 @@ function _php_cast_float(value: CastFloatValue): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_php_cast_int
+{% codeblock lang:javascript %}// php/_helpers/_php_cast_int (Locutus helper dependency)
 function _php_cast_int(value) {
   // original by: Rafał Kukawski
   //   example 1: _php_cast_int(false)
@@ -302,7 +302,7 @@ function _php_cast_int(value) {
   return +!!value
 }
 
-// php/_helpers/_php_cast_float
+// php/_helpers/_php_cast_float (target function module)
 const __php_cast_int = _php_cast_int
 
 function _php_cast_float(value) {

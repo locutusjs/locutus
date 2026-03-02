@@ -94,7 +94,7 @@ export function vprintf(format, ...restArgs) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -113,7 +113,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/strings/echo
+// php/strings/echo (Locutus dependency module)
 type EchoValue = PhpRuntimeValue
 
 function echo(...args: EchoValue[]): void {
@@ -146,7 +146,7 @@ function echo(...args: EchoValue[]): void {
   return console.log(args.join(' '))
 }
 
-// php/strings/sprintf
+// php/strings/sprintf (Locutus dependency module)
 type SprintfValue = PhpRuntimeValue
 
 function sprintf(format: string, ...args: SprintfValue[]): string | false {
@@ -380,7 +380,7 @@ function sprintf(format: string, ...args: SprintfValue[]): string | false {
   }
 }
 
-// php/strings/vprintf
+// php/strings/vprintf (target function module)
 type PrintfValue = PhpRuntimeValue
 
 function vprintf(format: string, args: PrintfValue[]): number
@@ -411,7 +411,7 @@ function vprintf(format: string, ...restArgs: [PrintfValue[]] | PrintfValue[]): 
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/echo
+{% codeblock lang:javascript %}// php/strings/echo (Locutus dependency module)
 function echo(...args) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
@@ -441,7 +441,7 @@ function echo(...args) {
   return console.log(args.join(' '))
 }
 
-// php/strings/sprintf
+// php/strings/sprintf (Locutus dependency module)
 function sprintf(format, ...args) {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
@@ -629,7 +629,7 @@ function sprintf(format, ...args) {
   }
 }
 
-// php/strings/vprintf
+// php/strings/vprintf (target function module)
 function vprintf(format, ...restArgs) {
   //       discuss at: https://locutus.io/php/vprintf/
   //      original by: Ash Searle (https://hexmen.com/blog/)

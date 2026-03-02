@@ -58,7 +58,7 @@ export function join(glue, pieces) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -79,7 +79,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/strings/implode
+// php/strings/implode (Locutus dependency module)
 type ImplodeValue = PhpRuntimeValue
 
 type KeyedValues = PhpAssoc<ImplodeValue>
@@ -122,7 +122,7 @@ function implode(...args: Array<ImplodeValue[] | KeyedValues | string | undefine
   return String(actualPieces)
 }
 
-// php/strings/join
+// php/strings/join (target function module)
 type JoinValue = PhpRuntimeValue
 
 function join(glue: string, pieces: JoinValue[]): string {
@@ -136,7 +136,7 @@ function join(glue: string, pieces: JoinValue[]): string {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/implode
+{% codeblock lang:javascript %}// php/strings/implode (Locutus dependency module)
 function implode(...args) {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
@@ -171,7 +171,7 @@ function implode(...args) {
   return String(actualPieces)
 }
 
-// php/strings/join
+// php/strings/join (target function module)
 function join(glue, pieces) {
   //      discuss at: https://locutus.io/php/join/
   // parity verified: PHP 8.3

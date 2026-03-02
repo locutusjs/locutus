@@ -76,7 +76,7 @@ export function printf(format, ...args) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -95,7 +95,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/strings/echo
+// php/strings/echo (Locutus dependency module)
 type EchoValue = PhpRuntimeValue
 
 function echo(...args: EchoValue[]): void {
@@ -128,7 +128,7 @@ function echo(...args: EchoValue[]): void {
   return console.log(args.join(' '))
 }
 
-// php/strings/sprintf
+// php/strings/sprintf (Locutus dependency module)
 type SprintfValue = PhpRuntimeValue
 
 function sprintf(format: string, ...args: SprintfValue[]): string | false {
@@ -362,7 +362,7 @@ function sprintf(format: string, ...args: SprintfValue[]): string | false {
   }
 }
 
-// php/strings/printf
+// php/strings/printf (target function module)
 type PrintfValue = PhpRuntimeValue
 
 function printf(format: string, ...args: PrintfValue[]): number {
@@ -382,7 +382,7 @@ function printf(format: string, ...args: PrintfValue[]): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/echo
+{% codeblock lang:javascript %}// php/strings/echo (Locutus dependency module)
 function echo(...args) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
@@ -412,7 +412,7 @@ function echo(...args) {
   return console.log(args.join(' '))
 }
 
-// php/strings/sprintf
+// php/strings/sprintf (Locutus dependency module)
 function sprintf(format, ...args) {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
@@ -600,7 +600,7 @@ function sprintf(format, ...args) {
   }
 }
 
-// php/strings/printf
+// php/strings/printf (target function module)
 function printf(format, ...args) {
   //  discuss at: https://locutus.io/php/printf/
   // original by: Ash Searle (https://hexmen.com/blog/)

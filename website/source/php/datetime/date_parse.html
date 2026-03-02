@@ -111,7 +111,7 @@ export function date_parse(date) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/datetime/strtotime
+{% codeblock lang:typescript %}// php/datetime/strtotime (Locutus dependency module)
 const reSpace = '[ \\t]+'
 
 const reSpaceOpt = '[ \\t]*'
@@ -1616,7 +1616,7 @@ function strtotime(str: string, now?: number): false | number {
   return Math.floor(result.toDate(new Date(nowSeconds * 1000)).getTime() / 1000)
 }
 
-// php/datetime/date_parse
+// php/datetime/date_parse (target function module)
 type DateParseResult = {
   year: number
   month: number
@@ -1663,7 +1663,7 @@ function date_parse(date: string): DateParseResult | false {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/datetime/strtotime
+{% codeblock lang:javascript %}// php/datetime/strtotime (Locutus dependency module)
 const reSpace = '[ \\t]+'
 const reSpaceOpt = '[ \\t]*'
 const reMeridian = '(?:([ap])\\.?m\\.?([\\t ]|$))'
@@ -2952,7 +2952,7 @@ function strtotime(str, now) {
   return Math.floor(result.toDate(new Date(nowSeconds * 1000)).getTime() / 1000)
 }
 
-// php/datetime/date_parse
+// php/datetime/date_parse (target function module)
 function date_parse(date) {
   //  discuss at: https://locutus.io/php/date_parse/
   // original by: Brett Zamir (https://brett-zamir.me)

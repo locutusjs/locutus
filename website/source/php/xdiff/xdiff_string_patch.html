@@ -545,7 +545,7 @@ export function xdiff_string_patch(originalStr, patch, flags, errorObj) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -556,7 +556,7 @@ type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpI
   ...args: TArgs
 ) => TResult
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 type PhpObjectEntryContainer = object | PhpCallable
 
 function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
@@ -618,7 +618,7 @@ function setPhpObjectEntry(value: PhpInput, key: string, entry: PhpInput): boole
   return true
 }
 
-// php/xdiff/xdiff_string_patch
+// php/xdiff/xdiff_string_patch (target function module)
 type XRegExpMeta = {
   source: string
   captureNames?: string[] | null
@@ -886,7 +886,7 @@ function xdiff_string_patch(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
@@ -941,7 +941,7 @@ function setPhpObjectEntry(value, key, entry) {
   return true
 }
 
-// php/xdiff/xdiff_string_patch
+// php/xdiff/xdiff_string_patch (target function module)
 function xdiff_string_patch(originalStr, patch, flags, errorObj) {
   //      discuss at: https://locutus.io/php/xdiff_string_patch/
   // parity verified: PHP 8.3

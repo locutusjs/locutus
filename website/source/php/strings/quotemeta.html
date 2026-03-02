@@ -51,26 +51,3 @@ alias:
   return (str + '').replace(/([.\\+*?[^\]$()])/g, '\\$1')
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/strings/quotemeta
-function quotemeta(str: string): string {
-  //      discuss at: https://locutus.io/php/quotemeta/
-  // parity verified: PHP 8.3
-  //     original by: Paulo Freitas
-  //       example 1: quotemeta(". + * ? ^ ( $ )")
-  //       returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
-
-  return (str + '').replace(/([.\\+*?[^\]$()])/g, '\\$1')
-}{% endcodeblock %}
-</div>
-<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/quotemeta
-function quotemeta(str) {
-  //      discuss at: https://locutus.io/php/quotemeta/
-  // parity verified: PHP 8.3
-  //     original by: Paulo Freitas
-  //       example 1: quotemeta(". + * ? ^ ( $ )")
-  //       returns 1: '\\. \\+ \\* \\? \\^ \\( \\$ \\)'
-  return (str + '').replace(/([.\\+*?[^\]$()])/g, '\\$1')
-}{% endcodeblock %}
-</div>

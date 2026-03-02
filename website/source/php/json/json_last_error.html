@@ -75,7 +75,7 @@ export function json_last_error() {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -84,7 +84,7 @@ type PhpList<T = PhpInput> = T[]
 
 type PhpAssoc<T = PhpInput> = { [key: string]: T }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -161,7 +161,7 @@ function getPhpRuntimeNumber(key: string, fallback: number): number {
   return typeof value === 'number' ? value : fallback
 }
 
-// php/json/json_last_error
+// php/json/json_last_error (target function module)
 function json_last_error(): number {
   //      discuss at: https://phpjs.org/functions/json_last_error/
   // parity verified: PHP 8.3
@@ -183,7 +183,7 @@ function json_last_error(): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 const ensurePhpRuntimeObject = () => {
@@ -209,7 +209,7 @@ function getPhpRuntimeNumber(key, fallback) {
   return typeof value === 'number' ? value : fallback
 }
 
-// php/json/json_last_error
+// php/json/json_last_error (target function module)
 function json_last_error() {
   //      discuss at: https://phpjs.org/functions/json_last_error/
   // parity verified: PHP 8.3

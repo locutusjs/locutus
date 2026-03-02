@@ -157,7 +157,7 @@ export function array_walk(array, funcname, userdata) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -202,7 +202,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/array/array_walk
+// php/array/array_walk (target function module)
 type ArrayWalkCallback<TKey extends number | string, TValue, TUserdata> = (
   value: TValue,
   key: TKey,
@@ -275,7 +275,7 @@ function array_walk<
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -290,7 +290,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/array/array_walk
+// php/array/array_walk (target function module)
 function array_walk(array, funcname, userdata) {
   //  discuss at: https://locutus.io/php/array_walk/
   // original by: Johnny Mast (https://www.phpvrouwen.nl)

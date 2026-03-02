@@ -208,7 +208,7 @@ export function gettype(mixedVar) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -227,7 +227,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
@@ -250,7 +250,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/var/is_float
+// php/var/is_float (Locutus dependency module)
 function is_float(mixedVar: number): boolean {
   //      discuss at: https://locutus.io/php/is_float/
   // parity verified: PHP 8.3
@@ -266,7 +266,7 @@ function is_float(mixedVar: number): boolean {
   return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }
 
-// php/var/gettype
+// php/var/gettype (target function module)
 const isFloat = is_float;
 
 type TypeInput = PhpRuntimeValue
@@ -346,7 +346,7 @@ function gettype(mixedVar: TypeInput): string {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
@@ -367,7 +367,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/var/is_float
+// php/var/is_float (Locutus dependency module)
 function is_float(mixedVar) {
   //      discuss at: https://locutus.io/php/is_float/
   // parity verified: PHP 8.3
@@ -382,7 +382,7 @@ function is_float(mixedVar) {
   return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }
 
-// php/var/gettype
+// php/var/gettype (target function module)
 const isFloat = is_float
 
 function gettype(mixedVar) {

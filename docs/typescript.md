@@ -2182,3 +2182,45 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Users copy what they see; preserving rendered line structure is as important as code correctness.
   - Wrapper collapse quality improves materially when we can safely rename declarations instead of introducing alias lines.
+
+## Iteration 80
+
+- Plans
+  - Make standalone module path comments self-explanatory while preserving compactness.
+- Progress
+  - Updated standalone chunk headers in `src/_util/util.ts`:
+    - format now appends contextual role labels.
+    - examples:
+      - `// php/_helpers/_phpTypes (Locutus helper dependency)`
+      - `// php/array/array_flip (target function module)`
+    - introduced `_describeStandaloneDependencyRole(...)` for helper-vs-module wording.
+  - Regenerated website snapshots with `yarn injectweb`.
+- Validation
+  - `yarn test:util`
+  - `yarn lint:ts`
+  - `yarn injectweb`
+  - Spot-check: `website/source/php/array/array_flip.html` standalone headers render with new explanatory labels.
+- Key learnings
+  - Keeping the exact module path while adding a short role label gives better copy-paste context with minimal visual overhead.
+
+## Iteration 81
+
+- Plans
+  - Simplify the tab model for zero-dependency functions to avoid standalone/module noise.
+- Progress
+  - Updated `src/_util/util.ts` (`injectweb` generation):
+    - standalone panels are now emitted only when `params.codeDependencies` is non-empty.
+    - zero-dependency functions now generate only `ts` + `js` panels.
+  - Updated `website/themes/icarus/layout/function.ejs`:
+    - module tab labels now auto-switch:
+      - with standalone tabs: `Module TS` / `Module JS`
+      - without standalone tabs: `TypeScript` / `JavaScript`
+- Validation
+  - `yarn lint:ts`
+  - `yarn test:util`
+  - `yarn injectweb`
+  - MCP browser check on `http://sunchaser:4000/perl/POSIX/floor/` confirms:
+    - exactly two tabs are shown (`TypeScript`, `JavaScript`)
+    - no standalone tabs rendered.
+- Key learnings
+  - Dependency-aware panel generation keeps advanced options where needed and removes UI noise where they add no value.

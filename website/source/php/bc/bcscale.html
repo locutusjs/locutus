@@ -73,12 +73,12 @@ export function bcscale(scale) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
 
-// php/_helpers/_bc
+// php/_helpers/_bc (Locutus helper dependency)
 // SPDX-License-Identifier: LGPL-2.1-or-later
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
 // See LICENSE file for details.
@@ -1431,7 +1431,7 @@ function _bc(): ReturnType<typeof createBcLibrary> {
   return createBcLibrary()
 }
 
-// php/bc/bcscale
+// php/bc/bcscale (target function module)
 function bcscale(scale: number | string): boolean {
   //  discuss at: https://locutus.io/php/bcscale/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
@@ -1453,7 +1453,7 @@ function bcscale(scale: number | string): boolean {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_bc
+{% codeblock lang:javascript %}// php/_helpers/_bc (Locutus helper dependency)
 // SPDX-License-Identifier: LGPL-2.1-or-later
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
 // See LICENSE file for details.
@@ -2644,7 +2644,7 @@ function _bc() {
   return createBcLibrary()
 }
 
-// php/bc/bcscale
+// php/bc/bcscale (target function module)
 function bcscale(scale) {
   //  discuss at: https://locutus.io/php/bcscale/
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)

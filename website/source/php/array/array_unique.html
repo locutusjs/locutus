@@ -129,7 +129,7 @@ export function array_unique(inputArr) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -164,7 +164,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/array/array_unique
+// php/array/array_unique (target function module)
 function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false {
   //  discuss at: https://locutus.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
@@ -207,7 +207,7 @@ function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
@@ -225,7 +225,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/array/array_unique
+// php/array/array_unique (target function module)
 function array_unique(inputArr) {
   //  discuss at: https://locutus.io/php/array_unique/
   // original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)

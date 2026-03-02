@@ -518,7 +518,7 @@ export function md5(str) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/xml/utf8_encode
+{% codeblock lang:javascript %}// php/xml/utf8_encode (Locutus dependency module)
 function utf8_encode(argString) {
   //      discuss at: https://locutus.io/php/utf8_encode/
   // parity verified: PHP 8.3
@@ -581,7 +581,7 @@ function utf8_encode(argString) {
   return utftext
 }
 
-// php/strings/md5
+// php/strings/md5 (target function module)
 const utf8Encode = utf8_encode
 
 function md5(str) {

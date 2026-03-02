@@ -185,7 +185,7 @@ export function convert_uuencode(str) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -208,7 +208,7 @@ function isPhpScalar(value: PhpInput): value is PhpScalar {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
 }
 
-// php/var/is_scalar
+// php/var/is_scalar (Locutus dependency module)
 type ScalarCheckValue = PhpRuntimeValue
 
 function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
@@ -222,7 +222,7 @@ function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
   return isPhpScalar(mixedVar)
 }
 
-// php/strings/convert_uuencode
+// php/strings/convert_uuencode (target function module)
 const isScalar = is_scalar;
 
 type UUEncodeInput = PhpRuntimeValue
@@ -304,12 +304,12 @@ function convert_uuencode(str: UUEncodeInput): string | false {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpScalar(value) {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
 }
 
-// php/var/is_scalar
+// php/var/is_scalar (Locutus dependency module)
 function is_scalar(mixedVar) {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas
@@ -320,7 +320,7 @@ function is_scalar(mixedVar) {
   return isPhpScalar(mixedVar)
 }
 
-// php/strings/convert_uuencode
+// php/strings/convert_uuencode (target function module)
 const isScalar = is_scalar
 
 function convert_uuencode(str) {

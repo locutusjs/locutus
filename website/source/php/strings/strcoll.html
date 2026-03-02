@@ -84,7 +84,7 @@ export function strcoll(str1, str2) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -115,7 +115,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -326,7 +326,7 @@ function getPhpLocaleGroup(category: string, groupKey: string): PhpAssoc<PhpInpu
   return isPhpAssocObject(group) ? group : undefined
 }
 
-// php/info/getenv
+// php/info/getenv (Locutus dependency module)
 function getenv(varname: string): string | false {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
@@ -353,7 +353,7 @@ function getenv(varname: string): string | false {
   return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }
 
-// php/strings/setlocale
+// php/strings/setlocale (Locutus dependency module)
 type LocaleDefinition = {
   LC_COLLATE: (str1: string, str2: string) => number
   LC_CTYPE: Record<string, RegExp | string>
@@ -789,7 +789,7 @@ function setlocale(category: string, locale: LocaleInput): string | false {
   return requestedLocale
 }
 
-// php/strings/strcoll
+// php/strings/strcoll (target function module)
 function strcoll(str1: string, str2: string): number {
   //      discuss at: https://locutus.io/php/strcoll/
   // parity verified: PHP 8.3
@@ -814,7 +814,7 @@ function strcoll(str1: string, str2: string): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -833,7 +833,7 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -942,7 +942,7 @@ function getPhpLocaleGroup(category, groupKey) {
   return isPhpAssocObject(group) ? group : undefined
 }
 
-// php/info/getenv
+// php/info/getenv (Locutus dependency module)
 function getenv(varname) {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
@@ -965,7 +965,7 @@ function getenv(varname) {
   return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }
 
-// php/strings/setlocale
+// php/strings/setlocale (Locutus dependency module)
 const hasOwn = Object.prototype.hasOwnProperty
 const isLocaleDefinitionMap = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
 const isLocaleCategoryMap = (value) =>
@@ -1365,7 +1365,7 @@ function setlocale(category, locale) {
   return requestedLocale
 }
 
-// php/strings/strcoll
+// php/strings/strcoll (target function module)
 function strcoll(str1, str2) {
   //      discuss at: https://locutus.io/php/strcoll/
   // parity verified: PHP 8.3

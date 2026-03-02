@@ -542,16 +542,19 @@ class Util {
     let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
 
     if (isTS) {
+      const hasStandaloneDependencies = (params.codeDependencies || []).length > 0
       const jsCode = this._formatWebsiteJavascript(this._toWebsiteJs(params.code), params.filepath.replace(/\.ts$/, '.js'))
-      const standaloneCode = await this._buildStandaloneJs(params)
-      const standaloneTsCode = await this._buildStandaloneTs(params)
+      const standaloneCode = hasStandaloneDependencies ? await this._buildStandaloneJs(params) : ''
+      const standaloneTsCode = hasStandaloneDependencies ? await this._buildStandaloneTs(params) : null
 
       buf += `<div class="code-tab-panel" data-lang="ts">\n{% codeblock lang:typescript %}${params.code}{% endcodeblock %}\n</div>\n`
       buf += `<div class="code-tab-panel" data-lang="js" style="display:none">\n{% codeblock lang:javascript %}${jsCode}{% endcodeblock %}\n</div>\n`
-      if (standaloneTsCode) {
+      if (hasStandaloneDependencies && standaloneTsCode) {
         buf += `<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">\n{% codeblock lang:typescript %}${standaloneTsCode}{% endcodeblock %}\n</div>\n`
       }
-      buf += `<div class="code-tab-panel" data-lang="standalone-js" style="display:none">\n{% codeblock lang:javascript %}${standaloneCode}{% endcodeblock %}\n</div>`
+      if (hasStandaloneDependencies && standaloneCode.trim().length > 0) {
+        buf += `<div class="code-tab-panel" data-lang="standalone-js" style="display:none">\n{% codeblock lang:javascript %}${standaloneCode}{% endcodeblock %}\n</div>`
+      }
     } else {
       buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
     }
@@ -883,7 +886,9 @@ class Util {
 
       const aliasLines = [...selection.runtimeAliases, ...selection.typeAliases]
       const wrapperAliasLines = [...selection.wrapperAliases]
-      let chunk = `// ${info.modulePath}\n`
+      const moduleLabel =
+        moduleKey === rootKey ? 'target function module' : this._describeStandaloneDependencyRole(info.modulePath)
+      let chunk = `// ${info.modulePath} (${moduleLabel})\n`
       if (aliasLines.length > 0) {
         chunk += aliasLines.join('\n') + '\n\n'
       }
@@ -1443,6 +1448,13 @@ class Util {
         }
       }
     }
+  }
+
+  _describeStandaloneDependencyRole(modulePath: string): string {
+    if (modulePath.includes('/_helpers/')) {
+      return 'Locutus helper dependency'
+    }
+    return 'Locutus dependency module'
   }
 
   _collectStatementExportedNames(statement: ts.Statement, declaredNames: Set<string>): Map<string, string> {

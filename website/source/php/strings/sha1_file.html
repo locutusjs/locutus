@@ -87,7 +87,7 @@ export function sha1_file(str_filename) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/filesystem/file_get_contents
+{% codeblock lang:javascript %}// php/filesystem/file_get_contents (Locutus dependency module)
 function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
@@ -108,7 +108,7 @@ function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   return fs.readFileSync(url, 'utf-8')
 }
 
-// php/strings/sha1
+// php/strings/sha1 (Locutus dependency module)
 function sha1(str) {
   //      discuss at: https://locutus.io/php/sha1/
   // parity verified: PHP 8.3
@@ -246,7 +246,7 @@ function sha1(str) {
   return hashHex.toLowerCase()
 }
 
-// php/strings/sha1_file
+// php/strings/sha1_file (target function module)
 const fileGetContents = file_get_contents
 
 function sha1_file(str_filename) {

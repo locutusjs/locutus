@@ -59,7 +59,7 @@ export function sizeof(mixedVar, mode) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -78,7 +78,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/array/count
+// php/array/count (Locutus dependency module)
 type CountValue = PhpRuntimeValue
 
 type CountableList = CountValue[]
@@ -155,7 +155,7 @@ function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): num
   return cnt
 }
 
-// php/array/sizeof
+// php/array/sizeof (target function module)
 function sizeof(mixedVar: Countable, mode?: CountMode): number {
   //  discuss at: https://locutus.io/php/sizeof/
   // original by: Philip Peterson
@@ -168,7 +168,7 @@ function sizeof(mixedVar: Countable, mode?: CountMode): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/array/count
+{% codeblock lang:javascript %}// php/array/count (Locutus dependency module)
 const isCountable = (value) => {
   if (!value || typeof value !== 'object') {
     return false
@@ -222,7 +222,7 @@ function count(mixedVar, mode = 0) {
   return cnt
 }
 
-// php/array/sizeof
+// php/array/sizeof (target function module)
 function sizeof(mixedVar, mode) {
   //  discuss at: https://locutus.io/php/sizeof/
   // original by: Philip Peterson

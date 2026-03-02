@@ -154,7 +154,7 @@ export function array_map(callback, ...inputArrays) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -211,7 +211,7 @@ function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult 
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -270,7 +270,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 type CallbackValue = PhpInput
 
 interface CallbackResolverOptions {
@@ -332,7 +332,7 @@ function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TRe
   throw new Error(options.invalidMessage)
 }
 
-// php/array/array_map
+// php/array/array_map (target function module)
 type ArrayMapValue = PhpRuntimeValue
 
 type ArrayMapInputs = [firstArray: PhpList<ArrayMapValue>, ...restArrays: Array<PhpList<ArrayMapValue>>]
@@ -405,7 +405,7 @@ function array_map<TResult = ArrayMapValue>(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -417,7 +417,7 @@ function isPhpCallable(value) {
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalEntry(key) {
@@ -444,7 +444,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 function resolvePhpCallable(callback, options) {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
@@ -485,7 +485,7 @@ function resolvePhpCallable(callback, options) {
   throw new Error(options.invalidMessage)
 }
 
-// php/array/array_map
+// php/array/array_map (target function module)
 function array_map(callback, ...inputArrays) {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)

@@ -104,7 +104,7 @@ export function strtok(str, tokens) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -113,7 +113,7 @@ type PhpList<T = PhpInput> = T[]
 
 type PhpAssoc<T = PhpInput> = { [key: string]: T }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -202,7 +202,7 @@ function getPhpRuntimeString(key: string, fallback: string): string {
   return typeof value === 'string' ? value : fallback
 }
 
-// php/strings/strtok
+// php/strings/strtok (target function module)
 function strtok(str: string, tokens?: string): string | false {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -236,7 +236,7 @@ function strtok(str: string, tokens?: string): string | false {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 const ensurePhpRuntimeObject = () => {
@@ -266,7 +266,7 @@ function getPhpRuntimeString(key, fallback) {
   return typeof value === 'string' ? value : fallback
 }
 
-// php/strings/strtok
+// php/strings/strtok (target function module)
 function strtok(str, tokens) {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)

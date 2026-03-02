@@ -163,7 +163,7 @@ export function resolveNumericComparator(callback, invalidMessage) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -206,7 +206,7 @@ function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult 
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -265,7 +265,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (target function module)
 type CallbackValue = PhpInput
 
 interface CallbackResolverOptions {
@@ -328,7 +328,7 @@ function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TRe
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -340,7 +340,7 @@ function isPhpCallable(value) {
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalEntry(key) {
@@ -367,7 +367,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (target function module)
 function resolvePhpCallable(callback, options) {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].

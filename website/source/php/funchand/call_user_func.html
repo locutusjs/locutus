@@ -87,7 +87,7 @@ export function call_user_func(cb, ...parameters) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -144,7 +144,7 @@ function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult 
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -203,7 +203,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 type CallbackValue = PhpInput
 
 interface CallbackResolverOptions {
@@ -265,7 +265,7 @@ function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TRe
   throw new Error(options.invalidMessage)
 }
 
-// php/funchand/call_user_func_array
+// php/funchand/call_user_func_array (Locutus dependency module)
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
 type FunctionValue = PhpRuntimeValue
@@ -351,7 +351,7 @@ function call_user_func_array<TResult = FunctionValue, TArgs extends PhpCallable
   return func.apply(scope, parameters)
 }
 
-// php/funchand/call_user_func
+// php/funchand/call_user_func (target function module)
 const callUserFuncArray = call_user_func_array;
 
 type FunctionArg = PhpRuntimeValue
@@ -376,7 +376,7 @@ function call_user_func<TResult = FunctionArg, TArgs extends PhpCallableArgs = P
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -388,7 +388,7 @@ function isPhpCallable(value) {
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalEntry(key) {
@@ -415,7 +415,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 function resolvePhpCallable(callback, options) {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
@@ -456,7 +456,7 @@ function resolvePhpCallable(callback, options) {
   throw new Error(options.invalidMessage)
 }
 
-// php/funchand/call_user_func_array
+// php/funchand/call_user_func_array (Locutus dependency module)
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 function call_user_func_array(cb, parameters) {
   //  discuss at: https://locutus.io/php/call_user_func_array/
@@ -528,7 +528,7 @@ function call_user_func_array(cb, parameters) {
   return func.apply(scope, parameters)
 }
 
-// php/funchand/call_user_func
+// php/funchand/call_user_func (target function module)
 const callUserFuncArray = call_user_func_array
 
 function call_user_func(cb, ...parameters) {

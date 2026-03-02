@@ -603,7 +603,7 @@ export function crc32(str) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/xml/utf8_encode
+{% codeblock lang:typescript %}// php/xml/utf8_encode (Locutus dependency module)
 function utf8_encode(argString: string | null | undefined): string {
   //      discuss at: https://locutus.io/php/utf8_encode/
   // parity verified: PHP 8.3
@@ -672,7 +672,7 @@ function utf8_encode(argString: string | null | undefined): string {
   return utftext
 }
 
-// php/strings/crc32
+// php/strings/crc32 (target function module)
 const utf8Encode = utf8_encode;
 
 function crc32(str: string): number {
@@ -960,7 +960,7 @@ function crc32(str: string): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/xml/utf8_encode
+{% codeblock lang:javascript %}// php/xml/utf8_encode (Locutus dependency module)
 function utf8_encode(argString) {
   //      discuss at: https://locutus.io/php/utf8_encode/
   // parity verified: PHP 8.3
@@ -1023,7 +1023,7 @@ function utf8_encode(argString) {
   return utftext
 }
 
-// php/strings/crc32
+// php/strings/crc32 (target function module)
 const utf8Encode = utf8_encode
 
 function crc32(str) {

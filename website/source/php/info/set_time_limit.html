@@ -65,7 +65,7 @@ export function set_time_limit(seconds) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -74,7 +74,7 @@ type PhpList<T = PhpInput> = T[]
 
 type PhpAssoc<T = PhpInput> = { [key: string]: T }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -163,7 +163,7 @@ function getPhpRuntimeBoolean(key: string, fallback: boolean): boolean {
   return typeof value === 'boolean' ? value : fallback
 }
 
-// php/info/set_time_limit
+// php/info/set_time_limit (target function module)
 function set_time_limit(seconds: number): void {
   //  discuss at: https://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -180,7 +180,7 @@ function set_time_limit(seconds: number): void {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 const ensurePhpRuntimeObject = () => {
@@ -210,7 +210,7 @@ function getPhpRuntimeBoolean(key, fallback) {
   return typeof value === 'boolean' ? value : fallback
 }
 
-// php/info/set_time_limit
+// php/info/set_time_limit (target function module)
 function set_time_limit(seconds) {
   //  discuss at: https://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (https://brett-zamir.me)

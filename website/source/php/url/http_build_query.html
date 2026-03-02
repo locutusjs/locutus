@@ -290,7 +290,7 @@ export function http_build_query(formdata, numericPrefix, argSeparator, encType)
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/url/rawurlencode
+{% codeblock lang:typescript %}// php/url/rawurlencode (Locutus dependency module)
 function rawurlencode(str: string): string {
   //       discuss at: https://locutus.io/php/rawurlencode/
   //  parity verified: PHP 8.3
@@ -328,7 +328,7 @@ function rawurlencode(str: string): string {
     .replace(/\*/g, '%2A')
 }
 
-// php/url/urlencode
+// php/url/urlencode (Locutus dependency module)
 function urlencode(str: string): string {
   //       discuss at: https://locutus.io/php/urlencode/
   //  parity verified: PHP 8.3
@@ -370,7 +370,7 @@ function urlencode(str: string): string {
     .replace(/%20/g, '+')
 }
 
-// php/url/http_build_query
+// php/url/http_build_query (target function module)
 const _rawurlencode = rawurlencode;
 const _urlencode = urlencode;
 
@@ -499,7 +499,7 @@ function http_build_query(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/url/rawurlencode
+{% codeblock lang:javascript %}// php/url/rawurlencode (Locutus dependency module)
 function rawurlencode(str) {
   //       discuss at: https://locutus.io/php/rawurlencode/
   //  parity verified: PHP 8.3
@@ -535,7 +535,7 @@ function rawurlencode(str) {
     .replace(/\*/g, '%2A')
 }
 
-// php/url/urlencode
+// php/url/urlencode (Locutus dependency module)
 function urlencode(str) {
   //       discuss at: https://locutus.io/php/urlencode/
   //  parity verified: PHP 8.3
@@ -575,7 +575,7 @@ function urlencode(str) {
     .replace(/%20/g, '+')
 }
 
-// php/url/http_build_query
+// php/url/http_build_query (target function module)
 const _rawurlencode = rawurlencode
 const _urlencode = urlencode
 

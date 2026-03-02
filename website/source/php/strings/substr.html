@@ -185,7 +185,7 @@ export function substr(input, start, len) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -216,7 +216,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpCastString
+// php/_helpers/_phpCastString (Locutus helper dependency)
 type CastStringValue = PhpInput
 
 function _phpCastString(value: CastStringValue): string {
@@ -283,7 +283,7 @@ function _phpCastString(value: CastStringValue): string {
   throw new Error('Unsupported value type')
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -379,7 +379,7 @@ function ensurePhpRuntimeState(): PhpRuntimeState {
   }
 }
 
-// php/info/ini_get
+// php/info/ini_get (Locutus dependency module)
 function ini_get(varname: string): string {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -401,7 +401,7 @@ function ini_get(varname: string): string {
   return ''
 }
 
-// php/strings/substr
+// php/strings/substr (target function module)
 const _php_cast_string = _phpCastString;
 
 function substr(input: string | number, start: number, len?: number): string | false {
@@ -466,7 +466,7 @@ function substr(input: string | number, start: number, len?: number): string | f
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpCastString
+{% codeblock lang:javascript %}// php/_helpers/_phpCastString (Locutus helper dependency)
 function _phpCastString(value) {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
@@ -525,7 +525,7 @@ function _phpCastString(value) {
   throw new Error('Unsupported value type')
 }
 
-// php/_helpers/_phpTypes
+// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -544,7 +544,7 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -600,7 +600,7 @@ function ensurePhpRuntimeState() {
   }
 }
 
-// php/info/ini_get
+// php/info/ini_get (Locutus dependency module)
 function ini_get(varname) {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -619,7 +619,7 @@ function ini_get(varname) {
   return ''
 }
 
-// php/strings/substr
+// php/strings/substr (target function module)
 const _php_cast_string = _phpCastString
 
 function substr(input, start, len) {

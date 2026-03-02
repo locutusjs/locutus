@@ -470,7 +470,7 @@ export function var_dump(...args) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -515,7 +515,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
@@ -538,7 +538,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/strings/echo
+// php/strings/echo (Locutus dependency module)
 type EchoValue = PhpRuntimeValue
 
 function echo(...args: EchoValue[]): void {
@@ -571,7 +571,7 @@ function echo(...args: EchoValue[]): void {
   return console.log(args.join(' '))
 }
 
-// php/var/var_dump
+// php/var/var_dump (target function module)
 const visitedObjects = new Map<object, true>()
 
 type DumpValue = PhpRuntimeValue
@@ -797,7 +797,7 @@ function var_dump(...args: DumpValue[]): string {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -812,7 +812,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
@@ -833,7 +833,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/strings/echo
+// php/strings/echo (Locutus dependency module)
 function echo(...args) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
@@ -863,7 +863,7 @@ function echo(...args) {
   return console.log(args.join(' '))
 }
 
-// php/var/var_dump
+// php/var/var_dump (target function module)
 const visitedObjects = new Map()
 const hasNodeName = (value) => {
   return typeof value === 'object' && value !== null && 'nodeName' in value

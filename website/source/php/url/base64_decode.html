@@ -255,7 +255,7 @@ export function base64_decode(encodedData) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -286,7 +286,7 @@ function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult 
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -352,7 +352,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/url/base64_decode
+// php/url/base64_decode (target function module)
 function base64_decode(encodedData: string | null | undefined): string | null | undefined {
   //  discuss at: https://locutus.io/php/base64_decode/
   // original by: Tyler Akins (https://rumkin.com)
@@ -460,7 +460,7 @@ function base64_decode(encodedData: string | null | undefined): string | null | 
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -472,7 +472,7 @@ function isPhpCallable(value) {
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalEntry(key) {
@@ -503,7 +503,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/url/base64_decode
+// php/url/base64_decode (target function module)
 function base64_decode(encodedData) {
   //  discuss at: https://locutus.io/php/base64_decode/
   // original by: Tyler Akins (https://rumkin.com)

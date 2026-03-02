@@ -63,7 +63,7 @@ export function split(delimiter, string) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -84,7 +84,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/strings/explode
+// php/strings/explode (Locutus dependency module)
 type ExplodeValue = PhpRuntimeValue
 
 type KeyedValues = PhpAssoc<ExplodeValue>
@@ -154,7 +154,7 @@ function explode(
   return s
 }
 
-// php/strings/split
+// php/strings/split (target function module)
 type SplitValue = PhpRuntimeValue
 
 type KeyedValues = PhpAssoc<SplitValue>
@@ -173,7 +173,7 @@ function split(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/explode
+{% codeblock lang:javascript %}// php/strings/explode (Locutus dependency module)
 function explode(...args) {
   //      discuss at: https://locutus.io/php/explode/
   // parity verified: PHP 8.3
@@ -228,7 +228,7 @@ function explode(...args) {
   return s
 }
 
-// php/strings/split
+// php/strings/split (target function module)
 function split(delimiter, string) {
   //      discuss at: https://locutus.io/php/split/
   // parity verified: PHP 8.3

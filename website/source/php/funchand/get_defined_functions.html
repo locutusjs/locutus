@@ -129,7 +129,7 @@ export function get_defined_functions() {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -172,7 +172,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -272,7 +272,7 @@ function getPhpGlobalScope(): PhpAssoc<PhpInput> {
   return globalContext
 }
 
-// php/funchand/get_defined_functions
+// php/funchand/get_defined_functions (target function module)
 function get_defined_functions(): string[] {
   //      discuss at: https://locutus.io/php/get_defined_functions/
   // parity verified: PHP 8.3
@@ -317,7 +317,7 @@ function get_defined_functions(): string[] {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -344,7 +344,7 @@ function toPhpArrayObject(value) {
 
 const isPhpArrayObject = isObjectLike
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -403,7 +403,7 @@ function getPhpGlobalScope() {
   return globalContext
 }
 
-// php/funchand/get_defined_functions
+// php/funchand/get_defined_functions (target function module)
 function get_defined_functions() {
   //      discuss at: https://locutus.io/php/get_defined_functions/
   // parity verified: PHP 8.3

@@ -429,7 +429,7 @@ export function json_encode(mixedVal) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -452,7 +452,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -516,7 +516,7 @@ function setPhpRuntimeEntry(key: string, value: PhpInput): void {
   php[key] = value
 }
 
-// php/json/json_encode
+// php/json/json_encode (target function module)
 type JsonPrimitive = string | number | boolean | null
 
 type JsonObject = { [key: string]: JsonValue }
@@ -727,7 +727,7 @@ function json_encode(mixedVal: JsonEncodeInput): string | null {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 const ensurePhpRuntimeObject = () => {
@@ -748,7 +748,7 @@ function setPhpRuntimeEntry(key, value) {
   php[key] = value
 }
 
-// php/json/json_encode
+// php/json/json_encode (target function module)
 const hasOwn = Object.prototype.hasOwnProperty
 const isJsonObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
 function json_encode(mixedVal) {

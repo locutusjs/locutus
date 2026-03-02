@@ -153,7 +153,7 @@ export function html_entity_decode(string, quoteStyle) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -184,7 +184,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/strings/get_html_translation_table
+// php/strings/get_html_translation_table (Locutus dependency module)
 function get_html_translation_table(
   table: string | number = 'HTML_SPECIALCHARS',
   quoteStyle: string | number = 'ENT_COMPAT',
@@ -358,7 +358,7 @@ function get_html_translation_table(
   return hashMap
 }
 
-// php/strings/html_entity_decode
+// php/strings/html_entity_decode (target function module)
 const getHtmlTranslationTable = get_html_translation_table;
 
 function html_entity_decode(string: string, quoteStyle?: string | number): string | false {
@@ -413,7 +413,7 @@ function html_entity_decode(string: string, quoteStyle?: string | number): strin
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -428,7 +428,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/strings/get_html_translation_table
+// php/strings/get_html_translation_table (Locutus dependency module)
 function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'ENT_COMPAT') {
   //  discuss at: https://locutus.io/php/get_html_translation_table/
   // original by: Philip Peterson
@@ -591,7 +591,7 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   return hashMap
 }
 
-// php/strings/html_entity_decode
+// php/strings/html_entity_decode (target function module)
 const getHtmlTranslationTable = get_html_translation_table
 
 function html_entity_decode(string, quoteStyle) {

@@ -183,7 +183,7 @@ export function print_r(array, returnVal) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -228,7 +228,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/strings/echo
+// php/strings/echo (Locutus dependency module)
 type EchoValue = PhpRuntimeValue
 
 function echo(...args: EchoValue[]): void {
@@ -261,7 +261,7 @@ function echo(...args: EchoValue[]): void {
   return console.log(args.join(' '))
 }
 
-// php/var/print_r
+// php/var/print_r (target function module)
 type PrintValue = PhpRuntimeValue
 
 function print_r(array: PrintValue, returnVal?: boolean): string | true {
@@ -336,7 +336,7 @@ function print_r(array: PrintValue, returnVal?: boolean): string | true {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -351,7 +351,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/strings/echo
+// php/strings/echo (Locutus dependency module)
 function echo(...args) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
@@ -381,7 +381,7 @@ function echo(...args) {
   return console.log(args.join(' '))
 }
 
-// php/var/print_r
+// php/var/print_r (target function module)
 function print_r(array, returnVal) {
   //      discuss at: https://locutus.io/php/print_r/
   // parity verified: PHP 8.3

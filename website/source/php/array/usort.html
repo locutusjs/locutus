@@ -216,7 +216,7 @@ export function usort(inputArr, sorter) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -289,7 +289,7 @@ function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult 
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -431,7 +431,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 type CallbackValue = PhpInput
 
 interface CallbackResolverOptions {
@@ -493,7 +493,7 @@ function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TRe
   throw new Error(options.invalidMessage)
 }
 
-// php/array/usort
+// php/array/usort (target function module)
 type SortContextValue = PhpRuntimeValue
 
 function usort<T>(
@@ -574,7 +574,7 @@ function usort<T>(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -596,7 +596,7 @@ function isPhpCallable(value) {
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -675,7 +675,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 function resolvePhpCallable(callback, options) {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
@@ -716,7 +716,7 @@ function resolvePhpCallable(callback, options) {
   throw new Error(options.invalidMessage)
 }
 
-// php/array/usort
+// php/array/usort (target function module)
 function usort(inputArr, sorter) {
   //  discuss at: https://locutus.io/php/usort/
   // original by: Brett Zamir (https://brett-zamir.me)

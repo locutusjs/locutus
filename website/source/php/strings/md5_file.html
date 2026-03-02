@@ -95,7 +95,7 @@ export function md5_file(str_filename) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/filesystem/file_get_contents
+{% codeblock lang:javascript %}// php/filesystem/file_get_contents (Locutus dependency module)
 function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
@@ -116,7 +116,7 @@ function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   return fs.readFileSync(url, 'utf-8')
 }
 
-// php/xml/utf8_encode
+// php/xml/utf8_encode (Locutus dependency module)
 function utf8_encode(argString) {
   //      discuss at: https://locutus.io/php/utf8_encode/
   // parity verified: PHP 8.3
@@ -179,7 +179,7 @@ function utf8_encode(argString) {
   return utftext
 }
 
-// php/strings/md5
+// php/strings/md5 (Locutus dependency module)
 const utf8Encode = utf8_encode
 
 function md5(str) {
@@ -405,7 +405,7 @@ function md5(str) {
   return temp.toLowerCase()
 }
 
-// php/strings/md5_file
+// php/strings/md5_file (target function module)
 const fileGetContents = file_get_contents
 
 function md5_file(str_filename) {

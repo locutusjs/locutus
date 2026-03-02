@@ -61,7 +61,7 @@ export function is_scalar(mixedVar) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -84,7 +84,7 @@ function isPhpScalar(value: PhpInput): value is PhpScalar {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
 }
 
-// php/var/is_scalar
+// php/var/is_scalar (target function module)
 type ScalarCheckValue = PhpRuntimeValue
 
 function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
@@ -99,12 +99,12 @@ function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpScalar(value) {
   return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
 }
 
-// php/var/is_scalar
+// php/var/is_scalar (target function module)
 function is_scalar(mixedVar) {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas

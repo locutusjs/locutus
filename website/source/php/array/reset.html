@@ -85,7 +85,7 @@ export function reset(arr) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -120,7 +120,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -216,7 +216,7 @@ function ensurePhpRuntimeState(): PhpRuntimeState {
   }
 }
 
-// php/_helpers/_arrayPointers
+// php/_helpers/_arrayPointers (Locutus helper dependency)
 interface PointerState {
   cursor: number
   setCursor: (nextCursor: number) => void
@@ -289,7 +289,7 @@ function getEntryAtCursor<T>(target: PhpArrayLike<T>, cursor: number): [string |
   return null
 }
 
-// php/array/reset
+// php/array/reset (target function module)
 function reset<T>(arr: PhpArrayLike<T>): T | false {
   //  discuss at: https://locutus.io/php/reset/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -314,7 +314,7 @@ function reset<T>(arr: PhpArrayLike<T>): T | false {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
@@ -336,7 +336,7 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -392,7 +392,7 @@ function ensurePhpRuntimeState() {
   }
 }
 
-// php/_helpers/_arrayPointers
+// php/_helpers/_arrayPointers (Locutus helper dependency)
 const findPointerIndex = (pointers, target) => {
   for (let index = 0; index < pointers.length; index += 1) {
     if (pointers[index] === target) {
@@ -450,7 +450,7 @@ function getEntryAtCursor(target, cursor) {
   return null
 }
 
-// php/array/reset
+// php/array/reset (target function module)
 function reset(arr) {
   //  discuss at: https://locutus.io/php/reset/
   // original by: Kevin van Zonneveld (https://kvz.io)

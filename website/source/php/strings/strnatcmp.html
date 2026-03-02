@@ -282,7 +282,7 @@ export function strnatcmp(left, right) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -301,7 +301,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/_helpers/_phpCastString
+// php/_helpers/_phpCastString (Locutus helper dependency)
 type CastStringValue = PhpInput
 
 function _phpCastString(value: CastStringValue): string {
@@ -368,7 +368,7 @@ function _phpCastString(value: CastStringValue): string {
   throw new Error('Unsupported value type')
 }
 
-// php/strings/strnatcmp
+// php/strings/strnatcmp (target function module)
 type NatCmpValue = PhpRuntimeValue
 
 function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
@@ -493,7 +493,7 @@ function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpCastString
+{% codeblock lang:javascript %}// php/_helpers/_phpCastString (Locutus helper dependency)
 function _phpCastString(value) {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
@@ -552,7 +552,7 @@ function _phpCastString(value) {
   throw new Error('Unsupported value type')
 }
 
-// php/strings/strnatcmp
+// php/strings/strnatcmp (target function module)
 function strnatcmp(left, right) {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3

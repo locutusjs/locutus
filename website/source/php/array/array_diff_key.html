@@ -105,7 +105,7 @@ export function array_diff_key(arr1, ...arrays) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -140,7 +140,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/array/array_diff_key
+// php/array/array_diff_key (target function module)
 function array_diff_key<TValue>(
   arr1: PhpArrayLike<TValue>,
   ...arrays: Array<PhpArrayLike<TValue>>
@@ -177,7 +177,7 @@ function array_diff_key<TValue>(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
@@ -195,7 +195,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/array/array_diff_key
+// php/array/array_diff_key (target function module)
 function array_diff_key(arr1, ...arrays) {
   //  discuss at: https://locutus.io/php/array_diff_key/
   // original by: Ates Goral (https://magnetiq.com)

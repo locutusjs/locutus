@@ -56,30 +56,3 @@ alias:
   return Math.min(...args)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// lua/math/min
-function min(...args: number[]): number {
-  //      discuss at: https://locutus.io/lua/min/
-  // parity verified: Lua 5.4
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //       example 1: min(1, 5, 3)
-  //       returns 1: 1
-  //       example 2: min(-1, -5)
-  //       returns 2: -5
-
-  return Math.min(...args)
-}{% endcodeblock %}
-</div>
-<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// lua/math/min
-function min(...args) {
-  //      discuss at: https://locutus.io/lua/min/
-  // parity verified: Lua 5.4
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //       example 1: min(1, 5, 3)
-  //       returns 1: 1
-  //       example 2: min(-1, -5)
-  //       returns 2: -5
-  return Math.min(...args)
-}{% endcodeblock %}
-</div>

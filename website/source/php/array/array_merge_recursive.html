@@ -173,7 +173,7 @@ export function array_merge_recursive(arr1, arr2) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -206,7 +206,7 @@ function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   return typeof value === 'object' && value !== null
 }
 
-// php/array/array_merge_recursive
+// php/array/array_merge_recursive (target function module)
 interface MergeObject extends PhpAssoc<MergeValue> {}
 
 type MergeValue = PhpRuntimeValue | MergeValue[] | MergeObject
@@ -277,7 +277,7 @@ function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObjec
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -286,7 +286,7 @@ function isObjectLike(value) {
   return typeof value === 'object' && value !== null
 }
 
-// php/array/array_merge_recursive
+// php/array/array_merge_recursive (target function module)
 function array_merge_recursive(arr1, arr2) {
   //       discuss at: https://locutus.io/php/array_merge_recursive/
   //      original by: Subhasis Deb

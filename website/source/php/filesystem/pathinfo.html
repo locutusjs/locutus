@@ -331,7 +331,7 @@ export function pathinfo(path, options) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/filesystem/basename
+{% codeblock lang:typescript %}// php/filesystem/basename (Locutus dependency module)
 function basename(path: string, suffix?: string): string {
   //      discuss at: https://locutus.io/php/basename/
   // parity verified: PHP 8.3
@@ -365,7 +365,7 @@ function basename(path: string, suffix?: string): string {
   return b
 }
 
-// php/filesystem/pathinfo
+// php/filesystem/pathinfo (target function module)
 type PathInfoOptionName =
   | 'PATHINFO_DIRNAME'
   | 'PATHINFO_BASENAME'
@@ -511,7 +511,7 @@ function pathinfo(path: string, options?: PathInfoOptions): PathInfoMap | string
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/filesystem/basename
+{% codeblock lang:javascript %}// php/filesystem/basename (Locutus dependency module)
 function basename(path, suffix) {
   //      discuss at: https://locutus.io/php/basename/
   // parity verified: PHP 8.3
@@ -540,7 +540,7 @@ function basename(path, suffix) {
   return b
 }
 
-// php/filesystem/pathinfo
+// php/filesystem/pathinfo (target function module)
 function pathinfo(path, options) {
   //  discuss at: https://locutus.io/php/pathinfo/
   // original by: Nate

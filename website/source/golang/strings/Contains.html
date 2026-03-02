@@ -50,26 +50,3 @@ alias:
   return (s + '').indexOf(substr) !== -1
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// golang/strings/Contains
-function Contains(s: string, substr: string): boolean {
-  //      discuss at: https://locutus.io/golang/strings/Contains
-  // parity verified: Go 1.23
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //       example 1: Contains('Kevin', 'K')
-  //       returns 1: true
-
-  return (s + '').indexOf(substr) !== -1
-}{% endcodeblock %}
-</div>
-<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// golang/strings/Contains
-function Contains(s, substr) {
-  //      discuss at: https://locutus.io/golang/strings/Contains
-  // parity verified: Go 1.23
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //       example 1: Contains('Kevin', 'K')
-  //       returns 1: true
-  return (s + '').indexOf(substr) !== -1
-}{% endcodeblock %}
-</div>

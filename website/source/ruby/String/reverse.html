@@ -59,32 +59,3 @@ alias:
   return (str + '').split('').reverse().join('')
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// ruby/String/reverse
-function reverse(str: string): string {
-  // parity verified: Ruby 3.3
-  //      discuss at: https://locutus.io/ruby/String/reverse/
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //          note 1: Returns a new string with the characters from str in reverse order.
-  //       example 1: reverse('stressed')
-  //       returns 1: 'desserts'
-  //       example 2: reverse('a')
-  //       returns 2: 'a'
-
-  return (str + '').split('').reverse().join('')
-}{% endcodeblock %}
-</div>
-<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// ruby/String/reverse
-function reverse(str) {
-  // parity verified: Ruby 3.3
-  //      discuss at: https://locutus.io/ruby/String/reverse/
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //          note 1: Returns a new string with the characters from str in reverse order.
-  //       example 1: reverse('stressed')
-  //       returns 1: 'desserts'
-  //       example 2: reverse('a')
-  //       returns 2: 'a'
-  return (str + '').split('').reverse().join('')
-}{% endcodeblock %}
-</div>

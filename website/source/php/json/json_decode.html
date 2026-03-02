@@ -238,7 +238,7 @@ export function json_decode(strJson) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -247,7 +247,7 @@ type PhpList<T = PhpInput> = T[]
 
 type PhpAssoc<T = PhpInput> = { [key: string]: T }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -311,7 +311,7 @@ function setPhpRuntimeEntry(key: string, value: PhpInput): void {
   php[key] = value
 }
 
-// php/json/json_decode
+// php/json/json_decode (target function module)
 type JsonPrimitive = string | number | boolean | null
 
 type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue }
@@ -416,7 +416,7 @@ function json_decode<T = JsonValue>(strJson: string): T | null {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 const ensurePhpRuntimeObject = () => {
@@ -437,7 +437,7 @@ function setPhpRuntimeEntry(key, value) {
   php[key] = value
 }
 
-// php/json/json_decode
+// php/json/json_decode (target function module)
 function json_decode(strJson) {
   //       discuss at: https://phpjs.org/functions/json_decode/
   //  parity verified: PHP 8.3

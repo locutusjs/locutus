@@ -59,7 +59,7 @@ export function vsprintf(format, args) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -78,7 +78,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/strings/sprintf
+// php/strings/sprintf (Locutus dependency module)
 type SprintfValue = PhpRuntimeValue
 
 function sprintf(format: string, ...args: SprintfValue[]): string | false {
@@ -312,7 +312,7 @@ function sprintf(format: string, ...args: SprintfValue[]): string | false {
   }
 }
 
-// php/strings/vsprintf
+// php/strings/vsprintf (target function module)
 type VsprintfValue = PhpRuntimeValue
 
 function vsprintf(format: string, args: VsprintfValue[]): string | false {
@@ -326,7 +326,7 @@ function vsprintf(format: string, args: VsprintfValue[]): string | false {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/sprintf
+{% codeblock lang:javascript %}// php/strings/sprintf (Locutus dependency module)
 function sprintf(format, ...args) {
   //      discuss at: https://locutus.io/php/sprintf/
   // parity verified: PHP 8.3
@@ -514,7 +514,7 @@ function sprintf(format, ...args) {
   }
 }
 
-// php/strings/vsprintf
+// php/strings/vsprintf (target function module)
 function vsprintf(format, args) {
   //      discuss at: https://locutus.io/php/vsprintf/
   // parity verified: PHP 8.3

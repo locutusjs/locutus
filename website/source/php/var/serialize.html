@@ -335,7 +335,7 @@ export function serialize(mixedValue) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -380,7 +380,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
@@ -403,7 +403,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/var/serialize
+// php/var/serialize (target function module)
 type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
 
 type SerializeValue = PhpRuntimeValue
@@ -548,7 +548,7 @@ function serialize(mixedValue: SerializeValue): string {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -563,7 +563,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 function getPhpObjectEntry(value, key) {
   if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
     return undefined
@@ -584,7 +584,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/var/serialize
+// php/var/serialize (target function module)
 function serialize(mixedValue) {
   //  discuss at: https://locutus.io/php/serialize/
   // original by: Arpad Ray (mailto:arpad@php.net)

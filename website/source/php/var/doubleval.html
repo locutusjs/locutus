@@ -63,12 +63,12 @@ export function doubleval(mixedVar) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type NumericLike = number | bigint | string
 
-// php/var/floatval
+// php/var/floatval (Locutus dependency module)
 type FloatvalInput = NumericLike | boolean | PhpNullish
 
 function floatval(mixedVar: FloatvalInput): number {
@@ -87,7 +87,7 @@ function floatval(mixedVar: FloatvalInput): number {
   return parseFloat(String(mixedVar ?? '')) || 0
 }
 
-// php/var/doubleval
+// php/var/doubleval (target function module)
 function doubleval(mixedVar: FloatvalInput): number {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3
@@ -101,7 +101,7 @@ function doubleval(mixedVar: FloatvalInput): number {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/var/floatval
+{% codeblock lang:javascript %}// php/var/floatval (Locutus dependency module)
 function floatval(mixedVar) {
   //      discuss at: https://locutus.io/php/floatval/
   // parity verified: PHP 8.3
@@ -117,7 +117,7 @@ function floatval(mixedVar) {
   return parseFloat(String(mixedVar ?? '')) || 0
 }
 
-// php/var/doubleval
+// php/var/doubleval (target function module)
 function doubleval(mixedVar) {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3

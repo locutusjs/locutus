@@ -85,14 +85,14 @@ export function getenv(varname) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
 
 type PhpAssoc<T = PhpInput> = { [key: string]: T }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -151,7 +151,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/info/getenv
+// php/info/getenv (target function module)
 function getenv(varname: string): string | false {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
@@ -179,7 +179,7 @@ function getenv(varname: string): string | false {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalEntry(key) {
@@ -206,7 +206,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/info/getenv
+// php/info/getenv (target function module)
 function getenv(varname) {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3

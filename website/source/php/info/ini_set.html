@@ -162,7 +162,7 @@ export function ini_set(varname, newvalue) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -207,7 +207,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -303,7 +303,7 @@ function ensurePhpRuntimeState(): PhpRuntimeState {
   }
 }
 
-// php/info/ini_set
+// php/info/ini_set (target function module)
 type IniScalar = string | number | boolean | null
 
 type IniEntryValue = IniScalar | IniObject | IniEntryValue[]
@@ -380,7 +380,7 @@ function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -399,7 +399,7 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -455,7 +455,7 @@ function ensurePhpRuntimeState() {
   }
 }
 
-// php/info/ini_set
+// php/info/ini_set (target function module)
 const isIniScalar = (value) =>
   typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
 const isIniObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)

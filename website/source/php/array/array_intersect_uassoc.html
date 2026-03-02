@@ -133,7 +133,7 @@ export function array_intersect_uassoc(arr1, ...arraysAndCallback) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -215,7 +215,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -274,7 +274,7 @@ function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 type CallbackValue = PhpInput
 
 interface CallbackResolverOptions {
@@ -348,7 +348,7 @@ function resolveNumericComparator<
   return (left: TLeft, right: TRight): number => Number(resolved.fn.apply(resolved.scope, [left, right]))
 }
 
-// php/array/array_intersect_uassoc
+// php/array/array_intersect_uassoc (target function module)
 type IntersectArray<T> = PhpAssoc<T> | T[]
 
 function array_intersect_uassoc<T>(
@@ -396,7 +396,7 @@ function array_intersect_uassoc<T>(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
 }
@@ -430,7 +430,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalEntry(key) {
@@ -457,7 +457,7 @@ function getPhpObjectEntry(value, key) {
   return undefined
 }
 
-// php/_helpers/_callbackResolver
+// php/_helpers/_callbackResolver (Locutus helper dependency)
 function resolvePhpCallable(callback, options) {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
@@ -502,7 +502,7 @@ function resolveNumericComparator(callback, invalidMessage) {
   return (left, right) => Number(resolved.fn.apply(resolved.scope, [left, right]))
 }
 
-// php/array/array_intersect_uassoc
+// php/array/array_intersect_uassoc (target function module)
 function array_intersect_uassoc(arr1, ...arraysAndCallback) {
   //  discuss at: https://locutus.io/php/array_intersect_uassoc/
   // original by: Brett Zamir (https://brett-zamir.me)

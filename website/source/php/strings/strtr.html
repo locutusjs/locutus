@@ -261,7 +261,7 @@ export function strtr(str, trFrom, trTo) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -306,7 +306,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -402,7 +402,7 @@ function ensurePhpRuntimeState(): PhpRuntimeState {
   }
 }
 
-// php/i18n/i18n_loc_get_default
+// php/i18n/i18n_loc_get_default (Locutus dependency module)
 function i18n_loc_get_default(): string {
   //  discuss at: https://locutus.io/php/i18n_loc_get_default/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -420,7 +420,7 @@ function i18n_loc_get_default(): string {
   return runtime.locale_default ?? 'en_US_POSIX'
 }
 
-// php/_helpers/_phpCastString
+// php/_helpers/_phpCastString (Locutus helper dependency)
 type CastStringValue = PhpInput
 
 function _phpCastString(value: CastStringValue): string {
@@ -487,7 +487,7 @@ function _phpCastString(value: CastStringValue): string {
   throw new Error('Unsupported value type')
 }
 
-// php/strings/strnatcmp
+// php/strings/strnatcmp (Locutus dependency module)
 type NatCmpValue = PhpRuntimeValue
 
 function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
@@ -611,7 +611,7 @@ function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
   return 0
 }
 
-// php/array/krsort
+// php/array/krsort (Locutus dependency module)
 const i18nlgd = i18n_loc_get_default;
 
 type SortFlag = 'SORT_REGULAR' | 'SORT_NUMERIC' | 'SORT_STRING' | 'SORT_LOCALE_STRING'
@@ -740,7 +740,7 @@ function krsort<T>(inputArr: Record<string, T>, sortFlags?: SortFlag): boolean |
   return sortByReference || populateArr
 }
 
-// php/info/ini_set
+// php/info/ini_set (Locutus dependency module)
 type IniScalar = string | number | boolean | null
 
 type IniEntryValue = IniScalar | IniObject | IniEntryValue[]
@@ -816,7 +816,7 @@ function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
   return oldval
 }
 
-// php/strings/strtr
+// php/strings/strtr (target function module)
 const iniSet = ini_set;
 
 type StrtrValue = PhpRuntimeValue
@@ -925,7 +925,7 @@ function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: s
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -944,7 +944,7 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -1000,7 +1000,7 @@ function ensurePhpRuntimeState() {
   }
 }
 
-// php/i18n/i18n_loc_get_default
+// php/i18n/i18n_loc_get_default (Locutus dependency module)
 function i18n_loc_get_default() {
   //  discuss at: https://locutus.io/php/i18n_loc_get_default/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -1017,7 +1017,7 @@ function i18n_loc_get_default() {
   return runtime.locale_default ?? 'en_US_POSIX'
 }
 
-// php/_helpers/_phpCastString
+// php/_helpers/_phpCastString (Locutus helper dependency)
 function _phpCastString(value) {
   // original by: Rafał Kukawski
   //   example 1: _phpCastString(true)
@@ -1076,7 +1076,7 @@ function _phpCastString(value) {
   throw new Error('Unsupported value type')
 }
 
-// php/strings/strnatcmp
+// php/strings/strnatcmp (Locutus dependency module)
 function strnatcmp(left, right) {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
@@ -1179,7 +1179,7 @@ function strnatcmp(left, right) {
   return 0
 }
 
-// php/array/krsort
+// php/array/krsort (Locutus dependency module)
 const i18nlgd = i18n_loc_get_default
 
 function krsort(inputArr, sortFlags) {
@@ -1299,7 +1299,7 @@ function krsort(inputArr, sortFlags) {
   return sortByReference || populateArr
 }
 
-// php/info/ini_set
+// php/info/ini_set (Locutus dependency module)
 const isIniScalar = (value) =>
   typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
 const isIniObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -1349,7 +1349,7 @@ function ini_set(varname, newvalue) {
   return oldval
 }
 
-// php/strings/strtr
+// php/strings/strtr (target function module)
 const iniSet = ini_set
 
 function strtr(str, trFrom, trTo) {

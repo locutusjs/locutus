@@ -327,27 +327,3 @@ export function toPhpArrayObject(value) {
   return {}
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
-type PhpNullish = null | undefined
-
-type PhpInput = {} | PhpNullish
-
-function isPhpNullish(value: PhpInput): value is PhpNullish {
-  // discuss at: https://locutus.io/php/_helpers/isPhpNullish/
-  //     note 1: Shared helper guard to narrow null/undefined unions.
-  //  example 1: isPhpNullish(null)
-  //  returns 1: true
-  return typeof value === 'undefined' || value === null
-}{% endcodeblock %}
-</div>
-<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
-function isPhpNullish(value) {
-  // discuss at: https://locutus.io/php/_helpers/isPhpNullish/
-  //     note 1: Shared helper guard to narrow null/undefined unions.
-  //  example 1: isPhpNullish(null)
-  //  returns 1: true
-  return typeof value === 'undefined' || value === null
-}{% endcodeblock %}
-</div>

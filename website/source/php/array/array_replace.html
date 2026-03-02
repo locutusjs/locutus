@@ -96,7 +96,7 @@ export function array_replace(arr, firstReplacement, ...additionalReplacements) 
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -127,7 +127,7 @@ function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
   return {}
 }
 
-// php/array/array_replace
+// php/array/array_replace (target function module)
 function array_replace<TValue>(
   arr: PhpArrayLike<TValue>,
   firstReplacement: PhpArrayLike<TValue> | null | undefined,
@@ -162,7 +162,7 @@ function array_replace<TValue>(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpArrayObject(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
@@ -177,7 +177,7 @@ function toPhpArrayObject(value) {
   return {}
 }
 
-// php/array/array_replace
+// php/array/array_replace (target function module)
 function array_replace(arr, firstReplacement, ...additionalReplacements) {
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)

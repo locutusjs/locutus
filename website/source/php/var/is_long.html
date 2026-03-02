@@ -60,7 +60,7 @@ export function is_long(mixedVar) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/var/is_float
+{% codeblock lang:typescript %}// php/var/is_float (Locutus dependency module)
 function is_float(mixedVar: number): boolean {
   //      discuss at: https://locutus.io/php/is_float/
   // parity verified: PHP 8.3
@@ -76,7 +76,7 @@ function is_float(mixedVar: number): boolean {
   return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }
 
-// php/var/is_long
+// php/var/is_long (target function module)
 const _isFloat = is_float;
 
 function is_long(mixedVar: number): boolean {
@@ -91,7 +91,7 @@ function is_long(mixedVar: number): boolean {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/var/is_float
+{% codeblock lang:javascript %}// php/var/is_float (Locutus dependency module)
 function is_float(mixedVar) {
   //      discuss at: https://locutus.io/php/is_float/
   // parity verified: PHP 8.3
@@ -106,7 +106,7 @@ function is_float(mixedVar) {
   return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
 }
 
-// php/var/is_long
+// php/var/is_long (target function module)
 const _isFloat = is_float
 
 function is_long(mixedVar) {

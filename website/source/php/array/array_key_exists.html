@@ -54,37 +54,3 @@ export function array_key_exists<TValue>(key: string | number, search: PhpArrayL
   return String(key) in search
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
-type PhpNullish = null | undefined
-
-type PhpInput = {} | PhpNullish
-
-type PhpList<T = PhpInput> = T[]
-
-type PhpAssoc<T = PhpInput> = { [key: string]: T }
-
-type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
-
-// php/array/array_key_exists
-function array_key_exists<TValue>(key: string | number, search: PhpArrayLike<TValue>): boolean {
-  //  discuss at: https://locutus.io/php/array_key_exists/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
-  //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
-  //   returns 1: true
-
-  return String(key) in search
-}{% endcodeblock %}
-</div>
-<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/array/array_key_exists
-function array_key_exists(key, search) {
-  //  discuss at: https://locutus.io/php/array_key_exists/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
-  //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
-  //   returns 1: true
-  return String(key) in search
-}{% endcodeblock %}
-</div>

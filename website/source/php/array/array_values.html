@@ -57,35 +57,3 @@ export function array_values<T>(input: T[] | PhpAssoc<T>): T[] {
   return Object.values(input)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
-type PhpNullish = null | undefined
-
-type PhpInput = {} | PhpNullish
-
-type PhpAssoc<T = PhpInput> = { [key: string]: T }
-
-// php/array/array_values
-function array_values<T>(input: T[] | PhpAssoc<T>): T[] {
-  //      discuss at: https://locutus.io/php/array_values/
-  // parity verified: PHP 8.3
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //     improved by: Brett Zamir (https://brett-zamir.me)
-  //       example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} )
-  //       returns 1: [ 'Kevin', 'van Zonneveld' ]
-
-  return Object.values(input)
-}{% endcodeblock %}
-</div>
-<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/array/array_values
-function array_values(input) {
-  //      discuss at: https://locutus.io/php/array_values/
-  // parity verified: PHP 8.3
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //     improved by: Brett Zamir (https://brett-zamir.me)
-  //       example 1: array_values( {firstname: 'Kevin', surname: 'van Zonneveld'} )
-  //       returns 1: [ 'Kevin', 'van Zonneveld' ]
-  return Object.values(input)
-}{% endcodeblock %}
-</div>

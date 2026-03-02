@@ -147,7 +147,7 @@ export function htmlentities(string, quoteStyle, charset, doubleEncode) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/strings/get_html_translation_table
+{% codeblock lang:typescript %}// php/strings/get_html_translation_table (Locutus dependency module)
 function get_html_translation_table(
   table: string | number = 'HTML_SPECIALCHARS',
   quoteStyle: string | number = 'ENT_COMPAT',
@@ -321,7 +321,7 @@ function get_html_translation_table(
   return hashMap
 }
 
-// php/strings/htmlentities
+// php/strings/htmlentities (target function module)
 const getHtmlTranslationTable = get_html_translation_table;
 
 function htmlentities(
@@ -378,7 +378,7 @@ function htmlentities(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/get_html_translation_table
+{% codeblock lang:javascript %}// php/strings/get_html_translation_table (Locutus dependency module)
 function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'ENT_COMPAT') {
   //  discuss at: https://locutus.io/php/get_html_translation_table/
   // original by: Philip Peterson
@@ -541,7 +541,7 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   return hashMap
 }
 
-// php/strings/htmlentities
+// php/strings/htmlentities (target function module)
 const getHtmlTranslationTable = get_html_translation_table
 
 function htmlentities(string, quoteStyle, charset, doubleEncode) {

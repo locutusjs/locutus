@@ -386,7 +386,7 @@ export function parse_str(str, array) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -417,7 +417,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -434,7 +434,7 @@ function getPhpGlobalScope(): PhpAssoc<PhpInput> {
   return globalContext
 }
 
-// php/strings/parse_str
+// php/strings/parse_str (target function module)
 type ParseObject = PhpAssoc<PhpInput>
 
 function parse_str(str: string, array?: ParseObject): void {
@@ -599,7 +599,7 @@ function parse_str(str: string, array?: ParseObject): void {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -618,14 +618,14 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalScope() {
   return globalContext
 }
 
-// php/strings/parse_str
+// php/strings/parse_str (target function module)
 function parse_str(str, array) {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin

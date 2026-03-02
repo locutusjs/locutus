@@ -69,7 +69,7 @@ export function is_integer(mixedVar) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -88,7 +88,7 @@ interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 
 type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 
-// php/var/is_int
+// php/var/is_int (Locutus dependency module)
 type IntValue = PhpRuntimeValue
 
 function is_int(mixedVar: IntValue): mixedVar is number {
@@ -115,7 +115,7 @@ function is_int(mixedVar: IntValue): mixedVar is number {
   return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
 }
 
-// php/var/is_integer
+// php/var/is_integer (target function module)
 const _isInt = is_int;
 
 function is_integer(mixedVar: number): boolean {
@@ -133,7 +133,7 @@ function is_integer(mixedVar: number): boolean {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/var/is_int
+{% codeblock lang:javascript %}// php/var/is_int (Locutus dependency module)
 function is_int(mixedVar) {
   //      discuss at: https://locutus.io/php/is_int/
   // parity verified: PHP 8.3
@@ -157,7 +157,7 @@ function is_int(mixedVar) {
   return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
 }
 
-// php/var/is_integer
+// php/var/is_integer (target function module)
 const _isInt = is_int
 
 function is_integer(mixedVar) {

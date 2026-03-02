@@ -416,10 +416,10 @@
           <div class="code-tabs-header">
             <div class="code-tabs-left">
               <button class="code-tab-btn active" data-tab="ts" type="button">
-                <span class="tab-icon">TS</span>Module TS
+                <span class="tab-icon">TS</span><span class="tab-label">TypeScript</span>
               </button>
               <button class="code-tab-btn" data-tab="js" type="button">
-                <span class="tab-icon">JS</span>Module JS
+                <span class="tab-icon">JS</span><span class="tab-label">JavaScript</span>
               </button>
               <button class="code-tab-btn" data-tab="standalone-ts" type="button">
                 <span class="tab-icon">TS</span>Standalone TS
@@ -520,6 +520,17 @@
               }
               validTabs.push(tab);
             });
+
+            var hasStandaloneTabs =
+              validTabs.indexOf('standalone-ts') !== -1 || validTabs.indexOf('standalone-js') !== -1;
+            var tsLabel = group.querySelector('.code-tab-btn[data-tab=\"ts\"] .tab-label');
+            var jsLabel = group.querySelector('.code-tab-btn[data-tab=\"js\"] .tab-label');
+            if (tsLabel) {
+              tsLabel.textContent = hasStandaloneTabs ? 'Module TS' : 'TypeScript';
+            }
+            if (jsLabel) {
+              jsLabel.textContent = hasStandaloneTabs ? 'Module JS' : 'JavaScript';
+            }
 
             function switchTab(lang) {
               if (validTabs.indexOf(lang) === -1) {

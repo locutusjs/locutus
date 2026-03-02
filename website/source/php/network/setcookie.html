@@ -74,7 +74,7 @@ export function setcookie(name, value, expires, path, domain, secure) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/network/setrawcookie
+{% codeblock lang:typescript %}// php/network/setrawcookie (Locutus dependency module)
 type CookieExpires = string | number | Date | null | undefined
 
 function setrawcookie(
@@ -131,7 +131,7 @@ function setrawcookie(
   return true
 }
 
-// php/network/setcookie
+// php/network/setcookie (target function module)
 function setcookie(
   name: string,
   value: string,
@@ -153,7 +153,7 @@ function setcookie(
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/network/setrawcookie
+{% codeblock lang:javascript %}// php/network/setrawcookie (Locutus dependency module)
 function setrawcookie(name, value, expires, path, domain, secure) {
   //  discuss at: https://locutus.io/php/setrawcookie/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -193,7 +193,7 @@ function setrawcookie(name, value, expires, path, domain, secure) {
   return true
 }
 
-// php/network/setcookie
+// php/network/setcookie (target function module)
 function setcookie(name, value, expires, path, domain, secure) {
   //      discuss at: https://locutus.io/php/setcookie/
   // parity verified: PHP 8.3

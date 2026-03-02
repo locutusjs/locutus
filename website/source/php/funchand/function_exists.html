@@ -63,7 +63,7 @@ export function function_exists(funcName) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -82,7 +82,7 @@ function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult 
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface LocutusRuntimeContainer {
   php?: PhpAssoc<PhpInput>
 }
@@ -126,7 +126,7 @@ function getPhpGlobalCallable<TArgs extends PhpInput[] = PhpInput[], TResult = P
   return isPhpCallable<TArgs, TResult>(value) ? value : undefined
 }
 
-// php/funchand/function_exists
+// php/funchand/function_exists (target function module)
 function function_exists(funcName: string): boolean {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -140,12 +140,12 @@ function function_exists(funcName: string): boolean {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpCallable(value) {
   return typeof value === 'function'
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 function getPhpGlobalEntry(key) {
@@ -157,7 +157,7 @@ function getPhpGlobalCallable(key) {
   return isPhpCallable(value) ? value : undefined
 }
 
-// php/funchand/function_exists
+// php/funchand/function_exists (target function module)
 function function_exists(funcName) {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)

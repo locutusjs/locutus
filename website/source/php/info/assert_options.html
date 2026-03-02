@@ -119,7 +119,7 @@ export function assert_options(what, _value) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -164,7 +164,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -260,7 +260,7 @@ function ensurePhpRuntimeState(): PhpRuntimeState {
   }
 }
 
-// php/info/ini_get
+// php/info/ini_get (Locutus dependency module)
 function ini_get(varname: string): string {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -282,7 +282,7 @@ function ini_get(varname: string): string {
   return ''
 }
 
-// php/info/assert_options
+// php/info/assert_options (target function module)
 type AssertOptionValue = PhpRuntimeValue
 
 function assert_options(what: string, _value?: AssertOptionValue): string | number | null {
@@ -327,7 +327,7 @@ function assert_options(what: string, _value?: AssertOptionValue): string | numb
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -346,7 +346,7 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -402,7 +402,7 @@ function ensurePhpRuntimeState() {
   }
 }
 
-// php/info/ini_get
+// php/info/ini_get (Locutus dependency module)
 function ini_get(varname) {
   //  discuss at: https://locutus.io/php/ini_get/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -421,7 +421,7 @@ function ini_get(varname) {
   return ''
 }
 
-// php/info/assert_options
+// php/info/assert_options (target function module)
 function assert_options(what, _value) {
   //  discuss at: https://locutus.io/php/assert_options/
   // original by: Brett Zamir (https://brett-zamir.me)

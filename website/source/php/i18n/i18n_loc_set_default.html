@@ -93,7 +93,7 @@ export function i18n_loc_set_default(name) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
@@ -124,7 +124,7 @@ function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 interface IniEntry {
   local_value?: PhpInput
 }
@@ -225,7 +225,7 @@ function setPhpLocaleDefault(localeDefault: string): void {
   php.locale_default = localeDefault
 }
 
-// php/i18n/i18n_loc_set_default
+// php/i18n/i18n_loc_set_default (target function module)
 function i18n_loc_set_default(name: string): boolean {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -253,7 +253,7 @@ function i18n_loc_set_default(name: string): boolean {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 function isPhpList(value) {
   // discuss at: https://locutus.io/php/_helpers/isPhpList/
   //     note 1: Shared helper guard for PHP list-like array values.
@@ -272,7 +272,7 @@ function isPhpAssocObject(value) {
   return isObjectLike(value) && !isPhpList(value)
 }
 
-// php/_helpers/_phpRuntimeState
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const isIniBag = (value) => isPhpAssocObject(value)
 const isLocaleBag = (value) => isPhpAssocObject(value)
 const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
@@ -332,7 +332,7 @@ function setPhpLocaleDefault(localeDefault) {
   php.locale_default = localeDefault
 }
 
-// php/i18n/i18n_loc_set_default
+// php/i18n/i18n_loc_set_default (target function module)
 function i18n_loc_set_default(name) {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
   // original by: Brett Zamir (https://brett-zamir.me)

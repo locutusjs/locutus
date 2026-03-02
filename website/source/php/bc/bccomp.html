@@ -96,12 +96,12 @@ export function bccomp(leftOperand, rightOperand, scale) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 type PhpNullish = null | undefined
 
 type PhpInput = {} | PhpNullish
 
-// php/_helpers/_bc
+// php/_helpers/_bc (Locutus helper dependency)
 // SPDX-License-Identifier: LGPL-2.1-or-later
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
 // See LICENSE file for details.
@@ -1454,7 +1454,7 @@ function _bc(): ReturnType<typeof createBcLibrary> {
   return createBcLibrary()
 }
 
-// php/bc/bccomp
+// php/bc/bccomp (target function module)
 const bc = _bc;
 
 function bccomp(leftOperand: string | number, rightOperand: string | number, scale?: number): number {
@@ -1487,7 +1487,7 @@ function bccomp(leftOperand: string | number, rightOperand: string | number, sca
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_bc
+{% codeblock lang:javascript %}// php/_helpers/_bc (Locutus helper dependency)
 // SPDX-License-Identifier: LGPL-2.1-or-later
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
 // See LICENSE file for details.
@@ -2678,7 +2678,7 @@ function _bc() {
   return createBcLibrary()
 }
 
-// php/bc/bccomp
+// php/bc/bccomp (target function module)
 const bc = _bc
 
 function bccomp(leftOperand, rightOperand, scale) {

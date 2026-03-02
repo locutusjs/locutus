@@ -55,7 +55,7 @@ export function chop(str, charlist) {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
-{% codeblock lang:typescript %}// php/strings/rtrim
+{% codeblock lang:typescript %}// php/strings/rtrim (Locutus dependency module)
 function rtrim(str: string, charlist: string): string {
   //      discuss at: https://locutus.io/php/rtrim/
   // parity verified: PHP 8.3
@@ -75,7 +75,7 @@ function rtrim(str: string, charlist: string): string {
   return (str + '').replace(re, '')
 }
 
-// php/strings/chop
+// php/strings/chop (target function module)
 function chop(str: string, charlist: string): string {
   //      discuss at: https://locutus.io/php/chop/
   // parity verified: PHP 8.3
@@ -87,7 +87,7 @@ function chop(str: string, charlist: string): string {
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
-{% codeblock lang:javascript %}// php/strings/rtrim
+{% codeblock lang:javascript %}// php/strings/rtrim (Locutus dependency module)
 function rtrim(str, charlist) {
   //      discuss at: https://locutus.io/php/rtrim/
   // parity verified: PHP 8.3
@@ -104,7 +104,7 @@ function rtrim(str, charlist) {
   return (str + '').replace(re, '')
 }
 
-// php/strings/chop
+// php/strings/chop (target function module)
 function chop(str, charlist) {
   //      discuss at: https://locutus.io/php/chop/
   // parity verified: PHP 8.3
