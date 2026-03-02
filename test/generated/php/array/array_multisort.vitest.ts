@@ -20,7 +20,7 @@ const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) =>
   return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown
 }
 const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {
-  const module = { exports: {} as Record<string, unknown> }
+  const module = { exports: {} as { [key: string]: unknown } }
   const exports = module.exports
   const evaluator = new Function('exports', 'module', 'require', compiledCode)
   evaluator(exports, module, __locutus_source_require)
@@ -43,6 +43,7 @@ describe('src/php/array/array_multisort.ts (tested in test/generated/php/array/a
       return array_multisort([1, 2, 1, 2, 1, 2], [1, 2, 3, 4, 5, 6])
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -61,6 +62,7 @@ describe('src/php/array/array_multisort.ts (tested in test/generated/php/array/a
       return array_multisort($characters, 'SORT_DESC', 'SORT_STRING', $jobs, 'SORT_ASC', 'SORT_STRING')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -80,6 +82,7 @@ describe('src/php/array/array_multisort.ts (tested in test/generated/php/array/a
       return array_multisort($firstnames, 'SORT_DESC', 'SORT_STRING', $lastnames, 'SORT_ASC', 'SORT_STRING', $president, 'SORT_NUMERIC')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -96,6 +99,7 @@ describe('src/php/array/array_multisort.ts (tested in test/generated/php/array/a
       return array_multisort(["productIds[]", "_"], 'SORT_ASC', ["productIds[]=977385529", "_=1502965788347"])
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }

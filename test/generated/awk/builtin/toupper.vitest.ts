@@ -18,7 +18,7 @@ const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) =>
   return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown
 }
 const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {
-  const module = { exports: {} as Record<string, unknown> }
+  const module = { exports: {} as { [key: string]: unknown } }
   const exports = module.exports
   const evaluator = new Function('exports', 'module', 'require', compiledCode)
   evaluator(exports, module, __locutus_source_require)

@@ -20,7 +20,7 @@ const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) =>
   return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown
 }
 const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {
-  const module = { exports: {} as Record<string, unknown> }
+  const module = { exports: {} as { [key: string]: unknown } }
   const exports = module.exports
   const evaluator = new Function('exports', 'module', 'require', compiledCode)
   evaluator(exports, module, __locutus_source_require)
@@ -43,6 +43,7 @@ describe('src/php/info/version_compare.ts (tested in test/generated/php/info/ver
       return version_compare('8.2.5rc', '8.2.5a')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -59,6 +60,7 @@ describe('src/php/info/version_compare.ts (tested in test/generated/php/info/ver
       return version_compare('8.2.50', '8.2.52', '<')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -75,6 +77,7 @@ describe('src/php/info/version_compare.ts (tested in test/generated/php/info/ver
       return version_compare('5.3.0-dev', '5.3.0')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -91,6 +94,7 @@ describe('src/php/info/version_compare.ts (tested in test/generated/php/info/ver
       return version_compare('4.1.0.52','4.01.0.51')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }

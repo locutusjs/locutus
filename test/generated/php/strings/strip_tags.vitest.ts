@@ -20,7 +20,7 @@ const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) =>
   return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown
 }
 const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {
-  const module = { exports: {} as Record<string, unknown> }
+  const module = { exports: {} as { [key: string]: unknown } }
   const exports = module.exports
   const evaluator = new Function('exports', 'module', 'require', compiledCode)
   evaluator(exports, module, __locutus_source_require)
@@ -43,6 +43,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -59,6 +60,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -75,6 +77,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags("<a href='https://kvz.io'>Kevin van Zonneveld</a>", "<a>")
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -91,6 +94,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags('1 < 5 5 > 1')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -107,6 +111,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags('1 <br/> 1')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -123,6 +128,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags('1 <br/> 1', '<br>')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -139,6 +145,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags('1 <br/> 1', '<br><br/>')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -155,6 +162,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags('<i>hello</i> <<foo>script>world<</foo>/script>')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -171,6 +179,7 @@ describe('src/php/strings/strip_tags.ts (tested in test/generated/php/strings/st
       return strip_tags(4)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }

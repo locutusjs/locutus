@@ -20,7 +20,7 @@ const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) =>
   return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown
 }
 const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {
-  const module = { exports: {} as Record<string, unknown> }
+  const module = { exports: {} as { [key: string]: unknown } }
   const exports = module.exports
   const evaluator = new Function('exports', 'module', 'require', compiledCode)
   evaluator(exports, module, __locutus_source_require)
@@ -43,6 +43,7 @@ describe('src/php/array/array_udiff_assoc.ts (tested in test/generated/php/array
       return array_udiff_assoc({0: 'kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'}, function (f_string1, f_string2){var string1 = (f_string1+'').toLowerCase(); var string2 = (f_string2+'').toLowerCase(); if (string1 > string2) return 1; if (string1 === string2) return 0; return -1;})
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }

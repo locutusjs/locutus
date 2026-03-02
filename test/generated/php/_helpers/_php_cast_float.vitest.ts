@@ -20,7 +20,7 @@ const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) =>
   return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown
 }
 const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {
-  const module = { exports: {} as Record<string, unknown> }
+  const module = { exports: {} as { [key: string]: unknown } }
   const exports = module.exports
   const evaluator = new Function('exports', 'module', 'require', compiledCode)
   evaluator(exports, module, __locutus_source_require)
@@ -43,6 +43,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(false)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -59,6 +60,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(true)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -75,6 +77,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(0)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -91,6 +94,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(1)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -107,6 +111,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(3.14)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -123,6 +128,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float('')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -139,6 +145,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float('0')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -155,6 +162,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float('abc')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -171,6 +179,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(null)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -187,6 +196,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(undefined)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -203,6 +213,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float('123abc')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -219,6 +230,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float('123e4')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -235,6 +247,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float(0x200000001)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -251,6 +264,7 @@ describe('src/php/_helpers/_php_cast_float.ts (tested in test/generated/php/_hel
       return _php_cast_float('3.14abc')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }

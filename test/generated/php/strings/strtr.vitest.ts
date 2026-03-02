@@ -20,7 +20,7 @@ const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) =>
   return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown
 }
 const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {
-  const module = { exports: {} as Record<string, unknown> }
+  const module = { exports: {} as { [key: string]: unknown } }
   const exports = module.exports
   const evaluator = new Function('exports', 'module', 'require', compiledCode)
   evaluator(exports, module, __locutus_source_require)
@@ -44,6 +44,7 @@ describe('src/php/strings/strtr.ts (tested in test/generated/php/strings/strtr.v
       return strtr('hi all, I said hello', $trans)
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -60,6 +61,7 @@ describe('src/php/strings/strtr.ts (tested in test/generated/php/strings/strtr.v
       return strtr('äaabaåccasdeöoo', 'äåö','aao')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -76,6 +78,7 @@ describe('src/php/strings/strtr.ts (tested in test/generated/php/strings/strtr.v
       return strtr('ääääääää', 'ä', 'a')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -92,6 +95,7 @@ describe('src/php/strings/strtr.ts (tested in test/generated/php/strings/strtr.v
       return strtr('http', 'pthxyz','xyzpth')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -108,6 +112,7 @@ describe('src/php/strings/strtr.ts (tested in test/generated/php/strings/strtr.v
       return strtr('zyyx', 'pthxyz','xyzpth')
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }
@@ -124,6 +129,7 @@ describe('src/php/strings/strtr.ts (tested in test/generated/php/strings/strtr.v
       return strtr('aa', {'a':1,'aa':2})
     }
     for (const __locutus_variant of __locutus_variants) {
+      ;(globalThis as { $locutus?: unknown }).$locutus = undefined
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
       expect(result).toEqual(expected)
     }

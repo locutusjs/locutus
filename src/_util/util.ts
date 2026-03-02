@@ -1462,6 +1462,9 @@ class Util {
 
       body.push('}')
       body.push('for (const __locutus_variant of __locutus_variants) {')
+      if (params.language === 'php') {
+        body.push('  ;(globalThis as { $locutus?: unknown }).$locutus = undefined')
+      }
       body.push(`  const result = __locutus_run_example(__locutus_variant.fn as typeof ${sourceFuncBindingName})`)
       body.push('  expect(result).toEqual(expected)')
       body.push('}')
