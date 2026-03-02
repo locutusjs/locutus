@@ -6,12 +6,13 @@ import {
   type PhpCallable,
   type PhpCallableArgs,
   type PhpCallableDescriptor,
-  type PhpInput,
+  type PhpRuntimeValue,
 } from '../_helpers/_phpTypes.ts'
 
 const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
-type FunctionValue = PhpInput | never
+type FunctionValue = PhpRuntimeValue
+type FunctionScope = FunctionValue | object
 
 export function call_user_func_array<TResult = FunctionValue, TArgs extends PhpCallableArgs = PhpCallableArgs>(
   cb: PhpCallableDescriptor<TArgs, TResult>,
@@ -34,7 +35,7 @@ export function call_user_func_array<TResult = FunctionValue, TArgs extends PhpC
   //   returns 2: false
 
   let func: PhpCallable<TArgs, TResult> | undefined
-  let scope: FunctionValue = null
+  let scope: FunctionScope = null
 
   try {
     const resolved = resolvePhpCallable<TArgs, TResult>(cb, { invalidMessage: 'invalid' })

@@ -1,7 +1,7 @@
 import { _phpCastString } from '../_helpers/_phpCastString.ts'
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type NatCmpValue = PhpInput
+type NatCmpValue = PhpRuntimeValue
 
 export function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
   //       discuss at: https://locutus.io/php/strnatcmp/

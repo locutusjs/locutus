@@ -1,6 +1,6 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type SprintfValue = PhpInput
+type SprintfValue = PhpRuntimeValue
 
 export function sprintf(format: string, ...args: SprintfValue[]): string | false {
   //      discuss at: https://locutus.io/php/sprintf/
@@ -36,7 +36,7 @@ export function sprintf(format: string, ...args: SprintfValue[]): string | false
   //       returns 9: '% 2'
 
   const regex = /%%|%(?:(\d+)\$)?((?:[-+#0 ]|'[\s\S])*)(\d+)?(?:\.(\d*))?([\s\S])/g
-  const callArgs: PhpInput[] = [format, ...args]
+  const callArgs: SprintfValue[] = [format, ...args]
   let i = 1
 
   const _pad = function (str: string, len: number, chr: string, leftJustify: boolean): string {
@@ -69,7 +69,7 @@ export function sprintf(format: string, ...args: SprintfValue[]): string | false
   }
 
   const _formatBaseX = function (
-    value: PhpInput,
+    value: SprintfValue,
     base: number,
     leftJustify: boolean,
     minWidth: number,
@@ -107,7 +107,7 @@ export function sprintf(format: string, ...args: SprintfValue[]): string | false
   ): string {
     let number = 0
     let prefix = ''
-    let value: PhpInput
+    let value: SprintfValue
 
     if (substring === '%%') {
       return '%'

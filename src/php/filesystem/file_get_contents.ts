@@ -1,7 +1,7 @@
 import fs from 'fs'
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type FileGetContentsInput = PhpInput
+type FileGetContentsInput = PhpRuntimeValue
 
 export function file_get_contents(
   url: string,

@@ -1,7 +1,7 @@
 import { getPhpGlobalScope, getPhpObjectEntry, setPhpGlobalEntry } from '../_helpers/_phpRuntimeState.ts'
-import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type CallableValue = PhpInput
+type CallableValue = PhpRuntimeValue
 
 export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, callableName?: string): boolean {
   //  discuss at: https://locutus.io/php/is_callable/
@@ -42,7 +42,7 @@ export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, calla
   let method = ''
   let validFunctionName = false
 
-  const getFuncName = function (fn: PhpInput): string {
+  const getFuncName = function (fn: { toString: () => string }): string {
     const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!funcNameMatch) {
       return '(Anonymous)'

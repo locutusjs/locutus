@@ -1,10 +1,10 @@
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpArrayLike, PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type CountableObject = PhpAssoc<PhpInput>
-type Countable = PhpInput[] | CountableObject
+type CountableObject = PhpAssoc<PhpRuntimeValue>
+type Countable = PhpArrayLike<PhpRuntimeValue> | CountableObject
 export type CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'
 
-const isCountable = (value: PhpInput): value is Countable => {
+const isCountable = (value: PhpRuntimeValue): value is Countable => {
   if (!value || typeof value !== 'object') {
     return false
   }

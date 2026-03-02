@@ -1,7 +1,7 @@
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type ImplodeValue = PhpInput
-type KeyedValues = PhpAssoc<PhpInput>
+type ImplodeValue = PhpRuntimeValue
+type KeyedValues = PhpAssoc<ImplodeValue>
 
 export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | undefined>): string {
   //      discuss at: https://locutus.io/php/implode/
@@ -18,7 +18,7 @@ export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | u
   let retVal = ''
   let tGlue = ''
   let actualGlue = ''
-  let actualPieces: PhpInput[] | KeyedValues | string | undefined
+  let actualPieces: ImplodeValue[] | KeyedValues | string | undefined
 
   if (args.length === 1) {
     actualPieces = args[0]

@@ -1,6 +1,6 @@
-import { type PhpArrayLike, type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpArrayLike, type PhpAssoc, type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ChangeValue = PhpInput
+type ChangeValue = PhpRuntimeValue
 type ArrayChangeInput<TValue extends ChangeValue> = number | PhpArrayLike<TValue> | null
 type ChangeKeyCaseMode = 0 | 1 | 2 | 'CASE_LOWER' | 'CASE_UPPER'
 

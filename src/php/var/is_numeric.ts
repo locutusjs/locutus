@@ -1,6 +1,6 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type NumericValue = PhpInput
+type NumericValue = PhpRuntimeValue
 
 export function is_numeric(mixedVar: NumericValue): mixedVar is number | string {
   //  discuss at: https://locutus.io/php/is_numeric/

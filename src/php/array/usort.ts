@@ -1,8 +1,13 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
 import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { type NumericLike, type PhpAssoc, type PhpComparatorDescriptor, type PhpInput } from '../_helpers/_phpTypes.ts'
+import {
+  type NumericLike,
+  type PhpAssoc,
+  type PhpComparatorDescriptor,
+  type PhpRuntimeValue,
+} from '../_helpers/_phpTypes.ts'
 
-type SortContextValue = PhpInput
+type SortContextValue = PhpRuntimeValue
 
 export function usort<T>(
   this: PhpAssoc<SortContextValue>,

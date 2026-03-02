@@ -1,6 +1,6 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type IntValue = PhpInput
+type IntValue = PhpRuntimeValue
 
 export function is_int(mixedVar: IntValue): mixedVar is number {
   //      discuss at: https://locutus.io/php/is_int/

@@ -1,7 +1,7 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { is_scalar as isScalar } from '../var/is_scalar.ts'
 
-type UUEncodeInput = PhpInput
+type UUEncodeInput = PhpRuntimeValue
 
 export function convert_uuencode(str: UUEncodeInput): string | false {
   //       discuss at: https://locutus.io/php/convert_uuencode/

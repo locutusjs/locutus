@@ -1,6 +1,6 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type EchoValue = PhpInput
+type EchoValue = PhpRuntimeValue
 
 export function echo(...args: EchoValue[]): void {
   //      discuss at: https://locutus.io/php/echo/

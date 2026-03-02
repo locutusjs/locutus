@@ -1,7 +1,7 @@
 import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
-import type { PhpCallableDescriptor, PhpInput, PhpList } from '../_helpers/_phpTypes.ts'
+import type { PhpCallableDescriptor, PhpList, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type ArrayMapValue = PhpInput
+type ArrayMapValue = PhpRuntimeValue
 type ArrayMapInputs = [firstArray: PhpList<ArrayMapValue>, ...restArrays: Array<PhpList<ArrayMapValue>>]
 type ArrayMapTupleArgs<TInputs extends readonly PhpList<ArrayMapValue>[]> = [
   ...{

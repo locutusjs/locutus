@@ -1,6 +1,6 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type IssetValue = PhpInput
+type IssetValue = PhpRuntimeValue
 
 export function isset(...values: IssetValue[]): boolean {
   //  discuss at: https://locutus.io/php/isset/

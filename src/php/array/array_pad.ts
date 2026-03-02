@@ -1,9 +1,18 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeList, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type PadValue = PhpInput
+type PadValue = PhpRuntimeValue
+type NonArrayPadInput = Exclude<PadValue, PhpRuntimeList>
 
-export function array_pad<TInput extends PadValue = PadValue, TPad extends PadValue = PadValue>(
-  input: TInput[] | PadValue,
+export function array_pad<TInput extends PadValue, TPad extends PadValue>(
+  input: TInput[],
+  padSize: number,
+  padValue: TPad,
+): Array<TInput | TPad>
+
+export function array_pad<TPad extends PadValue>(input: NonArrayPadInput, padSize: number, padValue: TPad): TPad[]
+
+export function array_pad<TInput extends PadValue, TPad extends PadValue>(
+  input: TInput[] | NonArrayPadInput,
   padSize: number,
   padValue: TPad,
 ): Array<TInput | TPad> {

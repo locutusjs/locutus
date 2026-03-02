@@ -1808,3 +1808,54 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Compile-time contract generation is viable at repo scale if kept out of runtime test discovery (`.d.ts` artifact + explicit Vitest/Biome exclusions).
   - Narrow overloads are easiest to land safely when they preserve existing runtime behavior and only strengthen input-output relations.
+
+## Iteration 69
+
+- Plans
+  - Continue fearless `5 -> 1 -> 2 -> 3` follow-up while CI runs:
+    1. Burn down `type X = PhpInput` aliases in `src/php/var/**` first (highest leverage for runtime coercion helpers).
+    2. Burn down the same alias pattern in `src/php/strings/**` with string-focused value lattice narrowing.
+    3. Attack cast hotspots (`as` expressions in executable code, excluding imports/comments) in the next highest-signal files.
+  - Ratchet immediately after landing reductions:
+    - lower `MAX_SRC_PHP_LOCAL_PHPINPUT_ALIAS_OUTSIDE_HELPERS` to new floor.
+  - Keep changes behavior-preserving and copy-paste friendly for website snippets.
+- Progress
+  - Baseline before attack:
+    - exact `type X = PhpInput` in `src/php/**`: `59`
+    - exact `type X = PhpInput` outside `_helpers`: `55`
+  - Target files queued for this pass:
+    - `src/php/var/**`: `boolval`, `empty`, `isset`, `gettype`, `is_numeric`, `is_unicode`, `strval`, `is_int`, `is_array`, `is_callable`, `serialize`, `unserialize`, `print_r`, `var_dump`, `var_export`
+    - `src/php/strings/**`: `echo`, `sprintf`, `printf`, `vprintf`, `vsprintf`, `metaphone`, `soundex`, `strnatcmp`, `implode`, `join`, `explode`, `split`, `strtr`, `convert_uuencode`
+  - Completed additional alias burn-down across remaining hotspots:
+    - `src/php/array/**`:
+      - `array_slice`, `array_search`, `array_rand`, `array_product`, `array_change_key_case`, `array_unshift`, `in_array`, `count`, `sort`, `asort`, `arsort`, `rsort`, `usort`, `uasort`, `uksort`, `array_map`, `array_multisort`, `array_splice`, `array_pad`, `array_merge_recursive`, `array_replace_recursive`, `array_reverse`, `array_count_values`, `array_walk`, `array_walk_recursive`
+    - `src/php/math/**`: `hypot`, `is_nan`, `is_finite`, `is_infinite`
+    - `src/php/funchand/**`: `call_user_func`, `call_user_func_array`
+    - `src/php/json/json_encode.ts`
+    - `src/php/filesystem/file_get_contents.ts`
+    - `src/php/info/assert_options.ts`, `src/php/info/ini_set.ts`
+    - `src/php/var/is_scalar.ts`, `src/php/var/is_object.ts`
+    - `src/php/xdiff/xdiff_string_diff.ts`
+  - Follow-up fixes after strict compile surfaced regressions:
+    - `array_pad` overloads restored precise inference for typed arrays while preserving non-array acceptance.
+    - `array_walk_recursive` generic leaf bound updated to avoid recursive-list widening.
+    - `array_multisort` comparable primitive guard aligned with runtime lattice (removed `Date` from predicate target type).
+    - `count`/`sizeof` generic boundaries aligned with `PhpRuntimeValue` lattice.
+    - `call_user_func_array` callback scope type widened safely to include dynamic object/function scopes without `Function` type usage.
+  - Ratchet tightened:
+    - `scripts/check-ts-debt-policy.ts`
+    - `MAX_SRC_PHP_LOCAL_PHPINPUT_ALIAS_OUTSIDE_HELPERS`: `26 -> 0`
+  - Snapshot updated:
+    - `docs/php-api-signatures.snapshot`
+- Measured reduction
+  - exact `type X = PhpInput` in `src/php/**`: `59 -> 0`
+  - exact `type X = PhpInput` outside `_helpers`: `55 -> 0`
+- Validation
+  - `corepack yarn lint:ts`
+  - `corepack yarn lint:ts:strict-next`
+  - `corepack yarn lint:ts:debt:policy`
+  - `corepack yarn fix:api:snapshot:php`
+  - `corepack yarn check`
+- Key learnings
+  - Replacing legacy `PhpInput` local aliases with `PhpRuntimeValue` is viable repo-wide when paired with quick signature-focused follow-up fixes on generic-heavy helpers.
+  - Debt-ratchet-to-zero is sustainable once compile-time contract checks and API snapshots are already in place; the guardrail stack caught all accidental widening during the pass.

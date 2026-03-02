@@ -46,6 +46,8 @@ src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpInput): v
 src/php/_helpers/_phpTypes.ts :: export function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export interface PhpRecursiveAssoc { [key: string]: PhpRecursiveValue }
 src/php/_helpers/_phpTypes.ts :: export interface PhpRecursiveList extends Array<PhpRecursiveValue> {}
+src/php/_helpers/_phpTypes.ts :: export interface PhpRuntimeAssoc { [key: string]: PhpRuntimeValue }
+src/php/_helpers/_phpTypes.ts :: export interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
 src/php/_helpers/_phpTypes.ts :: export type NumericLike = number | bigint | string
 src/php/_helpers/_phpTypes.ts :: export type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export type PhpAssoc<T = PhpInput> = { [key: string]: T }
@@ -56,6 +58,7 @@ src/php/_helpers/_phpTypes.ts :: export type PhpCallableScope = PhpInput
 src/php/_helpers/_phpTypes.ts :: export type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = readonly [ PhpCallableScope, string | PhpCallable<TArgs, TResult>, ]
 src/php/_helpers/_phpTypes.ts :: export type PhpComparatorDescriptor<T> = PhpCallableDescriptor<[T, T], NumericLike>
 src/php/_helpers/_phpTypes.ts :: export type PhpContainer<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+src/php/_helpers/_phpTypes.ts :: export type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
 src/php/_helpers/_phpTypes.ts :: export type PhpInput = {} | PhpNullish
 src/php/_helpers/_phpTypes.ts :: export type PhpKey = string | number
 src/php/_helpers/_phpTypes.ts :: export type PhpKeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
@@ -67,7 +70,9 @@ src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyArrayLike<T = PhpInput> 
 src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyAssoc<T = PhpInput> = Readonly<PhpAssoc<T>>
 src/php/_helpers/_phpTypes.ts :: export type PhpReadonlyList<T = PhpInput> = readonly T[]
 src/php/_helpers/_phpTypes.ts :: export type PhpRecursiveValue = PhpPrimitive | PhpNullish | PhpRecursiveList | PhpRecursiveAssoc
+src/php/_helpers/_phpTypes.ts :: export type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 src/php/_helpers/_phpTypes.ts :: export type PhpScalar = string | number | boolean
+src/php/_helpers/_phpTypes.ts :: export type PhpStringish = StringLike | PhpNullish
 src/php/_helpers/_phpTypes.ts :: export type PhpValue = PhpInput
 src/php/_helpers/_phpTypes.ts :: export type StringLike = string | number | boolean | bigint
 src/php/_helpers/_php_cast_float.ts :: export function _php_cast_float(value: CastFloatValue): number
@@ -107,7 +112,9 @@ src/php/array/array_merge.ts :: export function array_merge<T>(...args: [first: 
 src/php/array/array_merge.ts :: export function array_merge<T>(...args: [first: PhpList<T>, ...rest: Array<PhpList<T>>]): PhpList<T>
 src/php/array/array_merge_recursive.ts :: export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject
 src/php/array/array_multisort.ts :: export function array_multisort(arr: SortValue[] | SortableObject, ...rest: SortArg[]): boolean
-src/php/array/array_pad.ts :: export function array_pad<TInput extends PadValue = PadValue, TPad extends PadValue = PadValue>( input: TInput[] | PadValue, padSize: number, padValue: TPad, ): Array<TInput | TPad>
+src/php/array/array_pad.ts :: export function array_pad<TInput extends PadValue, TPad extends PadValue>( input: TInput[] | NonArrayPadInput, padSize: number, padValue: TPad, ): Array<TInput | TPad>
+src/php/array/array_pad.ts :: export function array_pad<TInput extends PadValue, TPad extends PadValue>( input: TInput[], padSize: number, padValue: TPad, ): Array<TInput | TPad>
+src/php/array/array_pad.ts :: export function array_pad<TPad extends PadValue>(input: NonArrayPadInput, padSize: number, padValue: TPad): TPad[]
 src/php/array/array_pop.ts :: export function array_pop<T>(inputArr: Record<string, T> | T[]): T | null
 src/php/array/array_product.ts :: export function array_product(input: PhpList<ProductValue> | ProductInput): number | null
 src/php/array/array_product.ts :: export function array_product(input: PhpList<ProductValue>): number
@@ -166,7 +173,7 @@ src/php/array/range.ts :: export function range(low: string | number, high: stri
 src/php/array/reset.ts :: export function reset<T>(arr: PhpArrayLike<T>): T | false
 src/php/array/rsort.ts :: export function rsort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/shuffle.ts :: export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[]
-src/php/array/sizeof.ts :: export function sizeof<TValue>(mixedVar: PhpArrayLike<TValue>, mode?: CountMode): number
+src/php/array/sizeof.ts :: export function sizeof<TValue extends PhpRuntimeValue>(mixedVar: PhpArrayLike<TValue>, mode?: CountMode): number
 src/php/array/sort.ts :: export function sort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<SortContextValue>, inputArr: Record<string, T>, sorter: PhpComparatorDescriptor<T>, ): boolean | Record<string, T>
 src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> }, inputArr: Record<string, T>, sorter: PhpKeyComparatorDescriptor, ): boolean | Record<string, T>

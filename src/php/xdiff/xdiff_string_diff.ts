@@ -1,9 +1,9 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
 type BasicType = 'number' | 'boolean' | 'string' | 'function' | 'object' | 'undefined'
 type TypeConstructor = abstract new (...args: never[]) => object
 type TypeDescriptor = BasicType | TypeConstructor
-type UnknownValue = PhpInput
+type UnknownValue = PhpRuntimeValue
 
 export function xdiff_string_diff(
   oldData: string,

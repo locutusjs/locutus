@@ -1,7 +1,7 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { implode } from '../strings/implode.ts'
 
-type JoinValue = PhpInput
+type JoinValue = PhpRuntimeValue
 
 export function join(glue: string, pieces: JoinValue[]): string {
   //      discuss at: https://locutus.io/php/join/

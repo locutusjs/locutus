@@ -8,6 +8,7 @@ export type PhpPrimitive = PhpScalar | bigint
 export type PhpKey = string | number
 export type NumericLike = number | bigint | string
 export type StringLike = string | number | boolean | bigint
+export type PhpStringish = StringLike | PhpNullish
 
 export type PhpList<T = PhpInput> = T[]
 export type PhpAssoc<T = PhpInput> = { [key: string]: T }
@@ -18,6 +19,12 @@ export interface PhpRecursiveAssoc {
 }
 export interface PhpRecursiveList extends Array<PhpRecursiveValue> {}
 export type PhpRecursiveValue = PhpPrimitive | PhpNullish | PhpRecursiveList | PhpRecursiveAssoc
+export type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+export interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+export interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+export type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
 export type PhpReadonlyList<T = PhpInput> = readonly T[]
 export type PhpReadonlyAssoc<T = PhpInput> = Readonly<PhpAssoc<T>>
 export type PhpReadonlyArrayLike<T = PhpInput> = PhpReadonlyList<T> | PhpReadonlyAssoc<T>

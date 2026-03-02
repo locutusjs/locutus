@@ -1,10 +1,16 @@
-import { isObjectLike, type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import {
+  isObjectLike,
+  type PhpAssoc,
+  type PhpRuntimeList,
+  type PhpRuntimeValue,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
 
 type RecursiveWalkNode<TValue> = TValue | RecursiveWalkList<TValue>
 type RecursiveWalkList<TValue> = RecursiveWalkNode<TValue>[]
 type RecursiveWalkAssoc<TValue> = PhpAssoc<RecursiveWalkNode<TValue>>
 type RecursiveWalkCollection<TValue> = RecursiveWalkList<TValue> | RecursiveWalkAssoc<TValue>
-type RecursiveWalkInput = PhpInput | never
+type RecursiveWalkInput = Exclude<PhpRuntimeValue, PhpRuntimeList>
 type ArrayWalkRecursiveCallback<TKey extends number | string, TValue, TUserdata> = (
   value: TValue,
   key: TKey,

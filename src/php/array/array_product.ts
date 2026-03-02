@@ -1,7 +1,7 @@
-import type { NumericLike, PhpInput, PhpList, PhpNullish } from '../_helpers/_phpTypes.ts'
+import type { NumericLike, PhpList, PhpNullish, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
 type ProductValue = NumericLike | boolean | PhpNullish
-type ProductInput = PhpInput
+type ProductInput = PhpRuntimeValue
 
 export function array_product(input: PhpList<ProductValue>): number
 

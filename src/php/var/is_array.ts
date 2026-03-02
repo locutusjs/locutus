@@ -1,11 +1,11 @@
 import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { ini_get } from '../info/ini_get.ts'
 
-type IsArrayValue = PhpInput
-type ArrayLikeAssoc = PhpAssoc<PhpInput> & { length: number }
+type IsArrayValue = PhpRuntimeValue
+type ArrayLikeAssoc = PhpAssoc<IsArrayValue> & { length: number }
 
-const hasNumericLength = (value: PhpInput): value is ArrayLikeAssoc =>
+const hasNumericLength = (value: IsArrayValue): value is ArrayLikeAssoc =>
   value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
 
 export function is_array(mixedVar: IsArrayValue): boolean {
@@ -38,14 +38,14 @@ export function is_array(mixedVar: IsArrayValue): boolean {
   //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
   //   returns 5: false
 
-  const _getFuncName = function (fn: PhpInput): string {
+  const _getFuncName = function (fn: IsArrayValue): string {
     const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!name) {
       return '(Anonymous)'
     }
     return name[1] ?? '(Anonymous)'
   }
-  const _isArray = function (mixedVar: PhpInput): boolean {
+  const _isArray = function (mixedVar: IsArrayValue): boolean {
     // return Array.isArray(mixedVar);
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)

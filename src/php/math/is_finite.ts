@@ -1,6 +1,6 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type NumberCheckValue = PhpInput
+type NumberCheckValue = PhpRuntimeValue
 
 export function is_finite(val: NumberCheckValue): boolean {
   //  discuss at: https://locutus.io/php/is_finite/

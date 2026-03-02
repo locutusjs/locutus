@@ -1,7 +1,7 @@
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type ExplodeValue = PhpInput
-type KeyedValues = PhpAssoc<PhpInput>
+type ExplodeValue = PhpRuntimeValue
+type KeyedValues = PhpAssoc<ExplodeValue>
 
 export function explode(
   ...args: [string | boolean | null | undefined, string | KeyedValues | (() => ExplodeValue) | undefined, number?]

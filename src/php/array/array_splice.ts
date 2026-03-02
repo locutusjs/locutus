@@ -1,7 +1,7 @@
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { is_int as isInt } from '../var/is_int.ts'
 
-type SpliceValue = PhpInput
+type SpliceValue = PhpRuntimeValue
 type AssocArray<T> = PhpAssoc<T | undefined>
 type ReplacementValue<T> = Array<T | undefined> | AssocArray<T> | T
 

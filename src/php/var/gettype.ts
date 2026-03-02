@@ -1,8 +1,8 @@
 import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { is_float as isFloat } from '../var/is_float.ts'
 
-type TypeInput = PhpInput
+type TypeInput = PhpRuntimeValue
 
 export function gettype(mixedVar: TypeInput): string {
   //  discuss at: https://locutus.io/php/gettype/

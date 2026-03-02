@@ -1,7 +1,7 @@
-import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type PrintValue = PhpInput
+type PrintValue = PhpRuntimeValue
 
 export function print_r(array: PrintValue, returnVal?: boolean): string | true {
   //      discuss at: https://locutus.io/php/print_r/

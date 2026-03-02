@@ -1,7 +1,7 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { gettype } from '../var/gettype.ts'
 
-type StringValue = PhpInput
+type StringValue = PhpRuntimeValue
 
 export function strval(str: StringValue): string {
   //  discuss at: https://locutus.io/php/strval/

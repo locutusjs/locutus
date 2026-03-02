@@ -3,11 +3,11 @@ import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 import {
   type NumericLike,
   type PhpAssoc,
-  type PhpInput,
   type PhpKeyComparatorDescriptor,
+  type PhpRuntimeValue,
 } from '../_helpers/_phpTypes.ts'
 
-type SortContextValue = PhpInput
+type SortContextValue = PhpRuntimeValue
 
 export function uksort<T>(
   this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> },

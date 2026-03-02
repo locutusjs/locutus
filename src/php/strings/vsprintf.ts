@@ -1,7 +1,7 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { sprintf } from '../strings/sprintf.ts'
 
-type VsprintfValue = PhpInput
+type VsprintfValue = PhpRuntimeValue
 
 export function vsprintf(format: string, args: VsprintfValue[]): string | false {
   //      discuss at: https://locutus.io/php/vsprintf/

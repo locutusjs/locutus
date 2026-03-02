@@ -1,8 +1,8 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 import { sprintf } from '../strings/sprintf.ts'
 
-type PrintfValue = PhpInput
+type PrintfValue = PhpRuntimeValue
 
 export function vprintf(format: string, args: PrintfValue[]): number
 
@@ -16,7 +16,12 @@ export function vprintf(format: string, ...restArgs: [PrintfValue[]] | PrintfVal
   //        example 1: vprintf("%01.2f", 123.1)
   //        returns 1: 6
 
-  const values: PrintfValue[] = Array.isArray(restArgs[0]) && restArgs.length === 1 ? restArgs[0] : restArgs
+  let values: PrintfValue[] = []
+  if (restArgs.length === 1 && Array.isArray(restArgs[0])) {
+    values = restArgs[0]
+  } else {
+    values = restArgs
+  }
   const ret = sprintf(format, ...values)
   if (ret === false) {
     return 0

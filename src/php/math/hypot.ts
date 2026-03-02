@@ -1,6 +1,6 @@
-import type { PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type HypotInput = PhpInput
+type HypotInput = PhpRuntimeValue
 
 export function hypot(x: HypotInput, y: HypotInput): number | null {
   //  discuss at: https://locutus.io/php/hypot/

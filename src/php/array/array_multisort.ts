@@ -1,9 +1,9 @@
-import type { PhpAssoc, PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type SortValue = PhpInput
+type SortValue = PhpRuntimeValue
 type SortableObject = PhpAssoc<SortValue>
 type SortComparator = (a: SortValue, b: SortValue) => number
-type ComparablePrimitive = string | number | bigint | boolean | Date
+type ComparablePrimitive = string | number | bigint | boolean
 type SortArg = SortValue[] | SortableObject | SortFlag
 
 const hasOwn = Object.prototype.hasOwnProperty

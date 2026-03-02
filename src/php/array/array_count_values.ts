@@ -2,11 +2,11 @@ import {
   isObjectLike,
   type PhpArrayLike,
   type PhpAssoc,
-  type PhpInput,
+  type PhpRuntimeValue,
   toPhpArrayObject,
 } from '../_helpers/_phpTypes.ts'
 
-type CountValue = PhpInput
+type CountValue = PhpRuntimeValue
 
 export function array_count_values(array: PhpArrayLike<CountValue>): PhpAssoc<number> {
   //      discuss at: https://locutus.io/php/array_count_values/

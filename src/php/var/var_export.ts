@@ -1,8 +1,8 @@
 import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
-import { type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type VarExportInput = PhpInput
+type VarExportInput = PhpRuntimeValue
 
 type VarExportType =
   | 'resource'

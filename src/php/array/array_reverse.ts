@@ -1,6 +1,6 @@
-import { type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type ReverseValue = PhpInput
+type ReverseValue = PhpRuntimeValue
 
 export function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys?: false | undefined): TValue[]
 export function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys: true): PhpAssoc<TValue>

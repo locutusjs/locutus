@@ -1,7 +1,7 @@
-import type { PhpCallableArgs, PhpCallableDescriptor, PhpInput } from '../_helpers/_phpTypes.ts'
+import type { PhpCallableArgs, PhpCallableDescriptor, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
 
-type FunctionArg = PhpInput | never
+type FunctionArg = PhpRuntimeValue
 
 export function call_user_func<TResult = FunctionArg, TArgs extends PhpCallableArgs = PhpCallableArgs>(
   cb: PhpCallableDescriptor<TArgs, TResult>,

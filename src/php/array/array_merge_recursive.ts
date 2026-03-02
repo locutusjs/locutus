@@ -1,7 +1,7 @@
-import { isObjectLike, type PhpAssoc, type PhpInput } from '../_helpers/_phpTypes.ts'
+import { isObjectLike, type PhpAssoc, type PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
 interface MergeObject extends PhpAssoc<MergeValue> {}
-type MergeValue = PhpInput | MergeValue[] | MergeObject
+type MergeValue = PhpRuntimeValue | MergeValue[] | MergeObject
 
 export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject {
   //       discuss at: https://locutus.io/php/array_merge_recursive/
@@ -24,7 +24,7 @@ export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): Mer
   }
 
   // Helper to check if value is a plain object (not array)
-  const isPlainObject = function (val: PhpInput): val is MergeObject {
+  const isPlainObject = function (val: PhpRuntimeValue): val is MergeObject {
     return isObjectLike(val) && !Array.isArray(val)
   }
 

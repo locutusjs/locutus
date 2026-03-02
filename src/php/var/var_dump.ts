@@ -1,23 +1,23 @@
 const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
 import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
-import { type PhpAssoc, type PhpInput, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { type PhpAssoc, type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type DumpValue = PhpInput
+type DumpValue = PhpRuntimeValue
 type DomLikeNode = {
   nodeName: string
   nodeType?: number
   namespaceURI?: string
-  nodeValue?: PhpInput
+  nodeValue?: DumpValue
 }
 
-const hasNodeName = (value: PhpInput): value is DomLikeNode => {
+const hasNodeName = (value: DumpValue): value is DomLikeNode => {
   return typeof value === 'object' && value !== null && 'nodeName' in value
 }
 
 const isLocutusResource = (
-  value: PhpInput,
+  value: DumpValue,
   getFuncName: (fn: { toString: () => string }) => string,
 ): value is { var_dump: () => string } => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
@@ -64,7 +64,7 @@ export function var_dump(...args: DumpValue[]): string {
     }
     return str
   }
-  const _getInnerVal = function (val: PhpInput, thickPad: string): string {
+  const _getInnerVal = function (val: DumpValue, thickPad: string): string {
     let ret = ''
     if (val === null) {
       ret = 'NULL'
@@ -143,7 +143,7 @@ export function var_dump(...args: DumpValue[]): string {
   }
 
   const _formatArray = function (
-    obj: PhpInput,
+    obj: DumpValue,
     curDepth: number,
     padVal: number,
     padChar: string,
@@ -171,7 +171,7 @@ export function var_dump(...args: DumpValue[]): string {
         return obj.var_dump()
       }
       let lgth = 0
-      const objRecord = toPhpArrayObject<PhpInput>(obj)
+      const objRecord = toPhpArrayObject<DumpValue>(obj)
       for (const someProp in objRecord) {
         if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
           lgth++
