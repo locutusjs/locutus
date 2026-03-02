@@ -1,10 +1,14 @@
-import type { PhpArrayLike, PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type CountableObject = PhpAssoc<PhpRuntimeValue>
-type Countable = PhpArrayLike<PhpRuntimeValue> | CountableObject
+type CountValue = PhpRuntimeValue
+type CountableList = CountValue[]
+interface CountableAssoc {
+  [key: string]: CountValue
+}
+export type Countable = CountableList | CountableAssoc
 export type CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'
 
-const isCountable = (value: PhpRuntimeValue): value is Countable => {
+const isCountable = (value: CountValue): value is Countable => {
   if (!value || typeof value !== 'object') {
     return false
   }
@@ -12,6 +16,8 @@ const isCountable = (value: PhpRuntimeValue): value is Countable => {
   return valuePrototype === Array.prototype || valuePrototype === Object.prototype
 }
 
+export function count(mixedVar: null | undefined, mode?: CountMode): 0
+export function count(mixedVar: Countable, mode?: CountMode): number
 export function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): number {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)

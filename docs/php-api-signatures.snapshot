@@ -124,7 +124,9 @@ src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomV
 src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>( array: PhpArrayLike<TValue>, num?: number | null, ): string | string[] | null
 src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>(array: PhpArrayLike<TValue>): string | null
 src/php/array/array_rand.ts :: export function array_rand<TValue extends RandomValue>(array: PhpArrayLike<TValue>, num: 1): string | null
-src/php/array/array_reduce.ts :: export function array_reduce<T>(aInput: T[], callback: (left: T | 0, right: T | 0) => number): number
+src/php/array/array_reduce.ts :: export function array_reduce( aInput: readonly PhpRuntimeValue[], callback: (carry: PhpRuntimeValue | null, value: PhpRuntimeValue) => PhpRuntimeValue, initial?: PhpRuntimeValue, ): PhpRuntimeValue | null
+src/php/array/array_reduce.ts :: export function array_reduce<TValue, TCarry>( aInput: readonly TValue[], callback: (carry: TCarry, value: TValue) => TCarry, initial: TCarry, ): TCarry
+src/php/array/array_reduce.ts :: export function array_reduce<TValue>( aInput: readonly TValue[], callback: (carry: TValue | null, value: TValue) => TValue, ): TValue | null
 src/php/array/array_replace.ts :: export function array_replace<TValue>( arr: PhpArrayLike<TValue>, firstReplacement: PhpArrayLike<TValue> | null | undefined, ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined> ): PhpAssoc<TValue | undefined>
 src/php/array/array_replace_recursive.ts :: export function array_replace_recursive( arr: RecursiveReplaceTarget, ...replacements: [replacement: RecursiveReplaceTarget, ...additionalReplacements: RecursiveReplaceTarget[]] ): RecursiveReplaceTarget
 src/php/array/array_reverse.ts :: export function array_reverse( array: ReverseValue[] | PhpAssoc<ReverseValue>, preserveKeys?: boolean, ): ReverseValue[] | PhpAssoc<ReverseValue>
@@ -160,7 +162,10 @@ src/php/array/array_walk_recursive.ts :: export function array_walk_recursive< T
 src/php/array/arsort.ts :: export function arsort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/asort.ts :: export function asort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/count.ts :: export function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): number
+src/php/array/count.ts :: export function count(mixedVar: Countable, mode?: CountMode): number
+src/php/array/count.ts :: export function count(mixedVar: null | undefined, mode?: CountMode): 0
 src/php/array/count.ts :: export type CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'
+src/php/array/count.ts :: export type Countable = CountableList | CountableAssoc
 src/php/array/current.ts :: export function current<T>(arr: PhpArrayLike<T>): T | false
 src/php/array/each.ts :: export function each<T>(arr: PhpArrayLike<T>): EachResult<T>
 src/php/array/end.ts :: export function end<T>(arr: PhpArrayLike<T>): T | false
@@ -178,7 +183,7 @@ src/php/array/range.ts :: export function range(low: string | number, high: stri
 src/php/array/reset.ts :: export function reset<T>(arr: PhpArrayLike<T>): T | false
 src/php/array/rsort.ts :: export function rsort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/shuffle.ts :: export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[]
-src/php/array/sizeof.ts :: export function sizeof<TValue extends PhpRuntimeValue>(mixedVar: PhpArrayLike<TValue>, mode?: CountMode): number
+src/php/array/sizeof.ts :: export function sizeof(mixedVar: Countable, mode?: CountMode): number
 src/php/array/sort.ts :: export function sort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
 src/php/array/uasort.ts :: export function uasort<T>( this: PhpAssoc<SortContextValue>, inputArr: Record<string, T>, sorter: PhpComparatorDescriptor<T>, ): boolean | Record<string, T>
 src/php/array/uksort.ts :: export function uksort<T>( this: PhpAssoc<SortContextValue> & { window?: PhpAssoc<SortContextValue> }, inputArr: Record<string, T>, sorter: PhpKeyComparatorDescriptor, ): boolean | Record<string, T>

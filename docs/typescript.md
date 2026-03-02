@@ -1924,3 +1924,45 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Negative type contracts can be encoded with pure type-level assertions, avoiding `@ts-expect-error` debt while still failing hard on widening.
   - Relation overloads remain the highest-leverage strictness tool for user-facing API ergonomics without tsconfig changes.
+
+## Iteration 72
+
+- Plans
+  - Execute fearless `1 -> 3 -> 5` sequence:
+    - 1: rewrite `array_reduce` typing to encode accumulator/input relation with optional initial value.
+    - 3: tighten `count/sizeof` to explicit countable lattice boundaries.
+    - 5: upgrade generated type-contract checks with additional relation assertions.
+- Progress
+  - Reworked `src/php/array/array_reduce.ts` to relation-aware overloads:
+    - overload with `initial` now maps `(carry: TCarry, value: TValue) => TCarry` and returns `TCarry`.
+    - overload without `initial` maps `(carry: TValue | null, value: TValue) => TValue` and returns `TValue | null`.
+    - implementation now performs PHP-style accumulation with null carry when initial is omitted.
+  - Tightened countable boundaries:
+    - `src/php/array/count.ts`
+      - introduced explicit `Countable` export (`CountableList | CountableAssoc`).
+      - added overloads: `count(null|undefined) -> 0`, `count(Countable) -> number`.
+    - `src/php/array/sizeof.ts`
+      - narrowed parameter to `Countable` instead of generic `PhpArrayLike<T>`.
+  - Strengthened relation compile-checks in `test/util/type-signatures.vitest.ts`:
+    - updated `array_reduce` typed usage to initial-value overload.
+    - added `count`/`sizeof` parameter-shape assertions (reject function/date/scalar, accept assoc).
+  - Upgraded generated type-contract script:
+    - `scripts/check-type-contracts-snapshot.ts`
+      - added optional-parameter relation checks (`undefined` assignability for optional params).
+      - added primitive-boundary rejection checks (e.g. number-only params reject string, etc.).
+    - refreshed generated artifact:
+      - `test/util/type-contracts.generated.d.ts`
+  - Snapshot updates:
+    - `docs/php-api-signatures.snapshot`
+- Validation
+  - `corepack yarn lint:ts`
+  - `corepack yarn lint:ts:strict-next`
+  - `corepack yarn lint:ts:debt:policy`
+  - `corepack yarn fix:type:contracts`
+  - `corepack yarn lint:type:contracts`
+  - `corepack yarn fix:api:snapshot:php`
+  - `corepack yarn check`
+- Key learnings
+  - Relation overloads for reducers produce immediate ergonomic gains and remove implicit-cast pressure in consumers.
+  - Countable boundary types work best as exported shared contracts; they tighten callsites and enable direct compile-time rejection checks.
+  - Primitive-boundary contract generation catches subtle parameter widening that literal-only checks miss.

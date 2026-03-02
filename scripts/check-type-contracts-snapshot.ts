@@ -7,6 +7,12 @@ type LiteralParamContract = {
   validLiteral: number | string
 }
 
+type PrimitiveBoundaryContract = {
+  rejectBoolean: boolean
+  rejectNumber: boolean
+  rejectString: boolean
+}
+
 const cwd = process.cwd()
 const shouldUpdate = process.argv.includes('--update')
 const outputPath = path.join(cwd, 'test', 'util', 'type-contracts.generated.d.ts')
@@ -67,6 +73,39 @@ const getTypeLiteralContract = (parameterType: ts.Type): LiteralParamContract | 
   }
 
   return null
+}
+
+const getPrimitiveBoundaryContract = (parameterType: ts.Type): PrimitiveBoundaryContract | null => {
+  const typeMembers = parameterType.isUnion() ? parameterType.types : [parameterType]
+  let hasBroadBoolean = false
+  let hasBroadNumber = false
+  let hasBroadString = false
+
+  for (const member of typeMembers) {
+    if (member.flags & ts.TypeFlags.Boolean) {
+      hasBroadBoolean = true
+      continue
+    }
+    if (member.flags & ts.TypeFlags.Number) {
+      hasBroadNumber = true
+      continue
+    }
+    if (member.flags & ts.TypeFlags.String) {
+      hasBroadString = true
+    }
+  }
+
+  const contract: PrimitiveBoundaryContract = {
+    rejectBoolean: !hasBroadBoolean && (hasBroadNumber || hasBroadString),
+    rejectNumber: !hasBroadNumber && (hasBroadBoolean || hasBroadString),
+    rejectString: !hasBroadString && (hasBroadBoolean || hasBroadNumber),
+  }
+
+  if (!contract.rejectBoolean && !contract.rejectNumber && !contract.rejectString) {
+    return null
+  }
+
+  return contract
 }
 
 const configPath = getConfigPath()
@@ -164,27 +203,56 @@ for (const sourceFile of sourceFiles) {
       const paramRef = `Parameters<typeof ${functionRef}>[${parameterIndex}]`
       contractLines.push(`type ${contractPrefix}_Param${parameterIndex}_NotAny = ExpectFalse<IsAny<${paramRef}>>`)
 
+      const declaration = parameterSymbol.valueDeclaration
+      if (declaration && ts.isParameter(declaration) && !declaration.dotDotDotToken) {
+        const isOptionalParam = Boolean(declaration.questionToken || declaration.initializer)
+        if (isOptionalParam) {
+          contractLines.push(
+            `type ${contractPrefix}_Param${parameterIndex}_OptionalAcceptsUndefined = ExpectTrue<IsAssignable<undefined, ${paramRef}>>`,
+          )
+        }
+      }
+
       const parameterType = checker.getTypeOfSymbolAtLocation(parameterSymbol, node.name)
       const literalContract = getTypeLiteralContract(parameterType)
-      if (!literalContract) {
+      if (literalContract) {
+        const validLiteralText =
+          typeof literalContract.validLiteral === 'string'
+            ? `'${literalContract.validLiteral.replaceAll("'", "\\'")}'`
+            : `${literalContract.validLiteral}`
+        const invalidLiteralText =
+          typeof literalContract.invalidLiteral === 'string'
+            ? `'${literalContract.invalidLiteral.replaceAll("'", "\\'")}'`
+            : `${literalContract.invalidLiteral}`
+
+        contractLines.push(
+          `type ${contractPrefix}_Param${parameterIndex}_AcceptsKnownLiteral = ExpectTrue<IsAssignable<${validLiteralText}, ${paramRef}>>`,
+        )
+        contractLines.push(
+          `type ${contractPrefix}_Param${parameterIndex}_RejectsInvalidLiteral = ExpectFalse<IsAssignable<${invalidLiteralText}, ${paramRef}>>`,
+        )
+      }
+
+      const primitiveContract = getPrimitiveBoundaryContract(parameterType)
+      if (!primitiveContract) {
         return
       }
 
-      const validLiteralText =
-        typeof literalContract.validLiteral === 'string'
-          ? `'${literalContract.validLiteral.replaceAll("'", "\\'")}'`
-          : `${literalContract.validLiteral}`
-      const invalidLiteralText =
-        typeof literalContract.invalidLiteral === 'string'
-          ? `'${literalContract.invalidLiteral.replaceAll("'", "\\'")}'`
-          : `${literalContract.invalidLiteral}`
-
-      contractLines.push(
-        `type ${contractPrefix}_Param${parameterIndex}_AcceptsKnownLiteral = ExpectTrue<IsAssignable<${validLiteralText}, ${paramRef}>>`,
-      )
-      contractLines.push(
-        `type ${contractPrefix}_Param${parameterIndex}_RejectsInvalidLiteral = ExpectFalse<IsAssignable<${invalidLiteralText}, ${paramRef}>>`,
-      )
+      if (primitiveContract.rejectString) {
+        contractLines.push(
+          `type ${contractPrefix}_Param${parameterIndex}_RejectsString = ExpectFalse<IsAssignable<'__LOCUTUS_INVALID_STRING__', ${paramRef}>>`,
+        )
+      }
+      if (primitiveContract.rejectNumber) {
+        contractLines.push(
+          `type ${contractPrefix}_Param${parameterIndex}_RejectsNumber = ExpectFalse<IsAssignable<123456789, ${paramRef}>>`,
+        )
+      }
+      if (primitiveContract.rejectBoolean) {
+        contractLines.push(
+          `type ${contractPrefix}_Param${parameterIndex}_RejectsBoolean = ExpectFalse<IsAssignable<true, ${paramRef}>>`,
+        )
+      }
     })
   }
 }

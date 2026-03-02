@@ -129,6 +129,13 @@ type _ArraySpliceListReturnRejectsAssoc = ExpectFalse<
   IsAssignable<typeof splicedFromListTyped, { [key: string]: string | undefined }>
 >
 const sumTyped: number | null = array_sum({ a: 1, b: '2.5', c: true })
+type CountParam = Parameters<typeof count>[0]
+type SizeofParam = Parameters<typeof sizeof>[0]
+type _CountRejectsFunction = ExpectFalse<IsAssignable<() => void, CountParam>>
+type _CountRejectsDate = ExpectFalse<IsAssignable<Date, CountParam>>
+type _CountAcceptsAssoc = ExpectTrue<IsAssignable<{ one: number }, CountParam>>
+type _SizeofRejectsScalar = ExpectFalse<IsAssignable<number, SizeofParam>>
+type _SizeofAcceptsAssoc = ExpectTrue<IsAssignable<{ one: number }, SizeofParam>>
 const countTyped: number = count({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
 const sizeofTyped: number = sizeof({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
 const searchTyped: string | false = array_search('zonneveld', { firstname: 'kevin', surname: 'zonneveld' })
@@ -153,7 +160,7 @@ const walked: number[] = []
 const walkTyped: boolean = array_walk([1, 2], (value: number) => walked.push(value))
 const walkedRecursive: number[] = []
 const walkRecursiveTyped: boolean = array_walk_recursive([1, [2]], (value: number) => walkedRecursive.push(value))
-const arrayReduceTyped: number = array_reduce([1, 2, 3, 4], (left, right) => Number(left) + Number(right))
+const arrayReduceTyped: number = array_reduce([1, 2, 3, 4], (carry, value) => Number(carry) + Number(value), 0)
 const arrayKeysTyped: string[] = array_keys({ one: 1, two: 2 })
 const arrayFillKeysTyped: { [key: string]: string } = array_fill_keys({ first: 'a', second: 'b' }, 'x')
 const arrayCombineTyped: { [key: string]: string } | false = array_combine([1, 2], ['a', 'b'])
