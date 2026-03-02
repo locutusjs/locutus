@@ -2830,12 +2830,6 @@ function createBcLibrary() {
   return Libbcmath;
 }
 
-function _bc() {
-  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  return createBcLibrary();
-}
-
 // php/bc/bcsub (target function module)
 function bcsub(leftOperand, rightOperand, scale) {
   //  discuss at: https://locutus.io/php/bcsub/
@@ -2847,7 +2841,7 @@ function bcsub(leftOperand, rightOperand, scale) {
   //   example 3: bcsub('8728932001983192837219398127471', '1928372132132819737213', 2)
   //   returns 3: '8728932000054820705086578390258.00'
 
-  const libbcmath = _bc();
+  const libbcmath = createBcLibrary();
 
   let first;
   let second;

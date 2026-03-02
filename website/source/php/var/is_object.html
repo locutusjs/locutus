@@ -133,16 +133,13 @@ function is_object(mixedVar: ObjectValue): mixedVar is PhpAssoc<ObjectValue> {
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-function isPhpList(value) {
-  return Array.isArray(value)
-}
 
 function isObjectLike(value) {
   return typeof value === 'object' && value !== null
 }
 
 function isPhpAssocObject(value) {
-  return isObjectLike(value) && !isPhpList(value)
+  return isObjectLike(value) && !Array.isArray(value)
 }
 
 // php/var/is_object (target function module)

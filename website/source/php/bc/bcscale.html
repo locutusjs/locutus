@@ -2772,12 +2772,6 @@ function createBcLibrary() {
   return Libbcmath;
 }
 
-function _bc() {
-  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  return createBcLibrary();
-}
-
 // php/bc/bcscale (target function module)
 function bcscale(scale) {
   //  discuss at: https://locutus.io/php/bcscale/
@@ -2785,7 +2779,7 @@ function bcscale(scale) {
   //   example 1: bcscale(1)
   //   returns 1: true
 
-  const libbcmath = _bc();
+  const libbcmath = createBcLibrary();
 
   const parsedScale = Number.parseInt(String(scale), 10);
   if (Number.isNaN(parsedScale)) {

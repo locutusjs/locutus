@@ -209,9 +209,6 @@ function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | false {
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-const entriesOfPhpAssoc = (value) => {
-  return Object.entries(value)
-}
 
 function isPhpArrayObject(value) {
   return typeof value === 'object' && value !== null
@@ -258,7 +255,7 @@ function array_unique(inputArr) {
     return false
   }
 
-  for (const [key, val] of entriesOfPhpAssoc(inputObj)) {
+  for (const [key, val] of Object.entries(inputObj)) {
     if (_arraySearch(val, tmpArr2) === false) {
       tmpArr2[key] = val
     }

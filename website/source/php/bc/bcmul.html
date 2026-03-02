@@ -2835,12 +2835,6 @@ function createBcLibrary() {
   return Libbcmath;
 }
 
-function _bc() {
-  // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
-  // improved by: Brett Zamir (https://brett-zamir.me)
-  return createBcLibrary();
-}
-
 // php/bc/bcmul (target function module)
 function bcmul(leftOperand, rightOperand, scale) {
   //  discuss at: https://locutus.io/php/bcmul/
@@ -2854,7 +2848,7 @@ function bcmul(leftOperand, rightOperand, scale) {
   //   example 4: bcmul('2.5', '1.5', 2)
   //   returns 4: '3.75'
 
-  const libbcmath = _bc();
+  const libbcmath = createBcLibrary();
 
   let first;
   let second;

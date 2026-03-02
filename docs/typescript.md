@@ -2269,3 +2269,24 @@ To fix a `@ts-nocheck` file:
   - Spot-check: `website/source/php/array/array_diff.html` helper sections no longer show `discuss at`, `note`, `example`, or `returns`.
 - Key learnings
   - Helper utilities should remain implementation-focused; header metadata belongs in user-facing function docs, not internal helper snippets.
+
+## Iteration 84
+
+- Plans
+  - Reduce standalone JS noise by removing trivial passthrough wrapper declarations and rewriting call-sites directly to the underlying callee.
+- Progress
+  - Updated standalone JS post-processing in `src/_util/util.ts`:
+    - added `_collapseStandaloneJsPassthroughWrappers(...)` AST-guided rewrite pass.
+    - removes wrappers like `const x = (v) => Object.entries(v)` when safe.
+    - rewrites usages (`x(value)`) to direct calls (`Object.entries(value)`).
+    - keeps cleanup conservative: only wrappers with call-only references and no nested shadow declarations are removed.
+  - Added regression coverage in `test/util/test-util.ts`:
+    - standalone `array_diff` now asserts wrapper removal and direct `Object.entries(...)` call-sites.
+  - Regenerated website snapshots with `yarn injectweb`.
+- Validation
+  - `yarn lint:ts`
+  - `yarn test:util`
+  - `yarn injectweb`
+  - Spot-check: `website/source/php/array/array_diff.html` standalone JS no longer declares `entriesOfPhpAssoc`; loops use `Object.entries(...)`.
+- Key learnings
+  - AST-guided textual rewrites preserve existing snippet comments/structure while still allowing robust wrapper elimination.

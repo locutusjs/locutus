@@ -112,5 +112,19 @@ describe('util', function () {
       expect(standaloneCode).not.toContain('function isObjectLike(')
       expect(standaloneCode).not.toContain('const isPhpArrayObject = isObjectLike')
     })
+
+    it('should remove passthrough wrappers and rewrite call-sites in standalone JS snippets', async function () {
+      const util = new Util()
+      const params = await util._load('php/array/array_diff.ts', {})
+      expect(params).not.toBeNull()
+      if (!params) {
+        return
+      }
+
+      const standaloneCode = await util._buildStandaloneJs(params)
+
+      expect(standaloneCode).not.toContain('const entriesOfPhpAssoc =')
+      expect(standaloneCode).toContain('Object.entries(arr1Object)')
+    })
   })
 })

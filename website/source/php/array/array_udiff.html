@@ -367,9 +367,6 @@ function array_udiff<T>(
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-const entriesOfPhpAssoc = (value) => {
-  return Object.entries(value)
-}
 
 function isPhpArrayObject(value) {
   return typeof value === 'object' && value !== null
@@ -501,9 +498,9 @@ function array_udiff(arr1, ...arraysAndCallback) {
   const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject(value))
   const cb = resolveNumericComparator(callback, 'array_udiff(): Invalid callback')
 
-  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
+  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1)) {
     for (const arr of arrays) {
-      for (const [, arrValue] of entriesOfPhpAssoc(arr)) {
+      for (const [, arrValue] of Object.entries(arr)) {
         if (cb(arrValue, arr1Value) === 0) {
           // If it reaches here, it was found in at least one array, so try next value
           continue arr1keys

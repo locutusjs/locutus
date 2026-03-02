@@ -195,9 +195,6 @@ function array_intersect<TValue>(
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-const entriesOfPhpAssoc = (value) => {
-  return Object.entries(value)
-}
 
 function isPhpArrayObject(value) {
   return typeof value === 'object' && value !== null
@@ -229,11 +226,11 @@ function array_intersect(arr1, ...arrays) {
   }
 
   const arr1Object = toPhpArrayObject(arr1)
-  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1Object)) {
     for (const nextArray of arrays) {
       const arr = toPhpArrayObject(nextArray)
       let found = false
-      for (const [, value] of entriesOfPhpAssoc(arr)) {
+      for (const [, value] of Object.entries(arr)) {
         if (value === arr1Value) {
           found = true
           break

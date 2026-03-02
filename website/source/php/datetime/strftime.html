@@ -1481,24 +1481,16 @@ function strftime(fmt: string, timestamp?: Date | number | string): string {
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-function isPhpList(value) {
-  return Array.isArray(value)
-}
 
 function isObjectLike(value) {
   return typeof value === 'object' && value !== null
 }
 
 function isPhpAssocObject(value) {
-  return isObjectLike(value) && !isPhpList(value)
+  return isObjectLike(value) && !Array.isArray(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
-const isIniBag = (value) => isPhpAssocObject(value)
-
-const isLocaleBag = (value) => isPhpAssocObject(value)
-
-const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
 
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
@@ -1526,9 +1518,9 @@ function ensurePhpRuntimeState() {
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
 
-  const ini = isIniBag(iniValue) ? iniValue : {}
-  const locales = isLocaleBag(localesValue) ? localesValue : {}
-  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
 
   if (iniValue !== ini) {

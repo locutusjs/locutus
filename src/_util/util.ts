@@ -937,8 +937,9 @@ class Util {
       chunks.push(chunk.trim())
     }
 
-    const output = chunks.join('\n\n').trimEnd()
+    let output = chunks.join('\n\n').trimEnd()
     if (mode === 'js') {
+      output = this._collapseStandaloneJsPassthroughWrappers(output, params.func_name)
       return this._formatWebsiteJavascript(output, `${params.filepath}.standalone.js`, {
         restorePreservedBlankLines: true,
       })
@@ -1392,6 +1393,321 @@ class Util {
     }
 
     ts.forEachChild(statement, visit)
+    return found
+  }
+
+  _collapseStandaloneJsPassthroughWrappers(code: string, rootFunctionName: string): string {
+    let nextCode = code
+    const maxPasses = 4
+
+    for (let pass = 0; pass < maxPasses; pass++) {
+      const sourceFile = ts.createSourceFile('standalone.js', nextCode, ts.ScriptTarget.ES2022, true, ts.ScriptKind.JS)
+      const topLevelDeclarationCounts = new Map<string, number>()
+      for (const statement of sourceFile.statements) {
+        const declaredNames = this._collectStatementDeclaredNames(statement)
+        for (const declaredName of declaredNames) {
+          topLevelDeclarationCounts.set(declaredName, (topLevelDeclarationCounts.get(declaredName) || 0) + 1)
+        }
+      }
+
+      const wrapperCandidates = new Map<
+        string,
+        { name: string; statementIndex: number; calleeText: string; declarationName: ts.Identifier }
+      >()
+      for (let statementIndex = 0; statementIndex < sourceFile.statements.length; statementIndex++) {
+        const statement = sourceFile.statements[statementIndex]
+        if (!statement) {
+          continue
+        }
+        const wrapper = this._extractStandaloneJsPassthroughWrapper(statement)
+        if (!wrapper) {
+          continue
+        }
+        if (wrapper.name === rootFunctionName) {
+          continue
+        }
+        if ((topLevelDeclarationCounts.get(wrapper.name) || 0) !== 1) {
+          continue
+        }
+        wrapperCandidates.set(wrapper.name, {
+          name: wrapper.name,
+          statementIndex,
+          calleeText: wrapper.callee.getText(sourceFile),
+          declarationName: wrapper.declarationName,
+        })
+      }
+
+      if (wrapperCandidates.size === 0) {
+        break
+      }
+
+      const removableWrappers = new Map<
+        string,
+        { statementIndex: number; calleeText: string; callCalleeIdentifiers: ts.Identifier[] }
+      >()
+
+      for (const [wrapperName, wrapper] of wrapperCandidates.entries()) {
+        let hasNonCallReference = false
+        let hasNestedDeclaration = false
+        const callCalleeIdentifiers: ts.Identifier[] = []
+
+        const visit = (node: ts.Node): void => {
+          if (hasNonCallReference || hasNestedDeclaration) {
+            return
+          }
+
+          if (ts.isIdentifier(node) && node.text === wrapperName) {
+            if (node === wrapper.declarationName) {
+              return
+            }
+
+            if (this._isDeclarationNameIdentifier(node)) {
+              hasNestedDeclaration = true
+              return
+            }
+
+            if (ts.isCallExpression(node.parent) && node.parent.expression === node) {
+              callCalleeIdentifiers.push(node)
+              return
+            }
+
+            hasNonCallReference = true
+            return
+          }
+
+          ts.forEachChild(node, visit)
+        }
+
+        ts.forEachChild(sourceFile, visit)
+        if (!hasNonCallReference && !hasNestedDeclaration) {
+          removableWrappers.set(wrapperName, {
+            statementIndex: wrapper.statementIndex,
+            calleeText: wrapper.calleeText,
+            callCalleeIdentifiers,
+          })
+        }
+      }
+
+      if (removableWrappers.size === 0) {
+        break
+      }
+
+      const edits: Array<{ start: number; end: number; text: string }> = []
+      for (const removableWrapper of removableWrappers.values()) {
+        const statement = sourceFile.statements[removableWrapper.statementIndex]
+        if (statement) {
+          edits.push({
+            start: statement.getStart(sourceFile),
+            end: statement.getEnd(),
+            text: '',
+          })
+        }
+
+        for (const callIdentifier of removableWrapper.callCalleeIdentifiers) {
+          edits.push({
+            start: callIdentifier.getStart(sourceFile),
+            end: callIdentifier.getEnd(),
+            text: removableWrapper.calleeText,
+          })
+        }
+      }
+
+      if (edits.length === 0) {
+        break
+      }
+
+      edits.sort((a, b) => b.start - a.start)
+      let updatedCode = nextCode
+      for (const edit of edits) {
+        updatedCode = updatedCode.slice(0, edit.start) + edit.text + updatedCode.slice(edit.end)
+      }
+
+      if (updatedCode === nextCode) {
+        break
+      }
+      nextCode = updatedCode
+    }
+
+    return nextCode
+  }
+
+  _isDeclarationNameIdentifier(node: ts.Identifier): boolean {
+    if (
+      (ts.isFunctionDeclaration(node.parent) ||
+        ts.isFunctionExpression(node.parent) ||
+        ts.isClassDeclaration(node.parent) ||
+        ts.isClassExpression(node.parent) ||
+        ts.isTypeAliasDeclaration(node.parent) ||
+        ts.isInterfaceDeclaration(node.parent) ||
+        ts.isEnumDeclaration(node.parent) ||
+        ts.isVariableDeclaration(node.parent) ||
+        ts.isParameter(node.parent) ||
+        ts.isImportClause(node.parent) ||
+        ts.isImportSpecifier(node.parent) ||
+        ts.isNamespaceImport(node.parent) ||
+        ts.isImportEqualsDeclaration(node.parent) ||
+        ts.isBindingElement(node.parent)) &&
+      node.parent.name === node
+    ) {
+      return true
+    }
+
+    return false
+  }
+
+  _extractStandaloneJsPassthroughWrapper(
+    statement: ts.Statement,
+  ): { name: string; callee: ts.Expression; declarationName: ts.Identifier } | null {
+    if (ts.isFunctionDeclaration(statement) && statement.name && statement.body) {
+      const passthroughCall = this._extractPassthroughCallFromBody(statement.parameters, statement.body)
+      if (!passthroughCall) {
+        return null
+      }
+      return {
+        name: statement.name.text,
+        callee: passthroughCall.expression,
+        declarationName: statement.name,
+      }
+    }
+
+    if (!ts.isVariableStatement(statement)) {
+      return null
+    }
+
+    if ((statement.declarationList.flags & ts.NodeFlags.Const) === 0) {
+      return null
+    }
+
+    if (statement.declarationList.declarations.length !== 1) {
+      return null
+    }
+
+    const declaration = statement.declarationList.declarations[0]
+    if (!declaration || !ts.isIdentifier(declaration.name) || !declaration.initializer) {
+      return null
+    }
+
+    const initializer = declaration.initializer
+    if (!ts.isArrowFunction(initializer) && !ts.isFunctionExpression(initializer)) {
+      return null
+    }
+
+    const passthroughCall = this._extractPassthroughCallFromBody(initializer.parameters, initializer.body)
+    if (!passthroughCall) {
+      return null
+    }
+
+    return {
+      name: declaration.name.text,
+      callee: passthroughCall.expression,
+      declarationName: declaration.name,
+    }
+  }
+
+  _extractPassthroughCallFromBody(
+    parameters: readonly ts.ParameterDeclaration[],
+    body: ts.ConciseBody,
+  ): ts.CallExpression | null {
+    let callExpression: ts.CallExpression | null = null
+    if (ts.isBlock(body)) {
+      if (body.statements.length !== 1) {
+        return null
+      }
+      const statement = body.statements[0]
+      if (!statement || !ts.isReturnStatement(statement) || !statement.expression) {
+        return null
+      }
+      if (!ts.isCallExpression(statement.expression)) {
+        return null
+      }
+      callExpression = statement.expression
+    } else if (ts.isCallExpression(body)) {
+      callExpression = body
+    } else {
+      return null
+    }
+
+    if (callExpression.typeArguments && callExpression.typeArguments.length > 0) {
+      return null
+    }
+
+    if (
+      !ts.isIdentifier(callExpression.expression) &&
+      !ts.isPropertyAccessExpression(callExpression.expression) &&
+      !ts.isElementAccessExpression(callExpression.expression)
+    ) {
+      return null
+    }
+
+    const isRest = (parameter: ts.ParameterDeclaration): boolean => Boolean(parameter.dotDotDotToken)
+    const restParams = parameters.filter((parameter) => isRest(parameter))
+    if (restParams.length > 1) {
+      return null
+    }
+    if (restParams.length === 1 && !parameters[parameters.length - 1]?.dotDotDotToken) {
+      return null
+    }
+
+    if (callExpression.arguments.length !== parameters.length) {
+      return null
+    }
+
+    for (let index = 0; index < parameters.length; index++) {
+      const parameter = parameters[index]
+      const argument = callExpression.arguments[index]
+      if (
+        !parameter ||
+        !argument ||
+        !ts.isIdentifier(parameter.name) ||
+        parameter.initializer ||
+        parameter.questionToken
+      ) {
+        return null
+      }
+
+      if (parameter.dotDotDotToken) {
+        if (!ts.isSpreadElement(argument) || !ts.isIdentifier(argument.expression)) {
+          return null
+        }
+        if (argument.expression.text !== parameter.name.text) {
+          return null
+        }
+        continue
+      }
+
+      if (!ts.isIdentifier(argument) || argument.text !== parameter.name.text) {
+        return null
+      }
+    }
+
+    if (this._expressionContainsIdentifier(callExpression.expression, parameters.map((parameter) => parameter.name))) {
+      return null
+    }
+
+    return callExpression
+  }
+
+  _expressionContainsIdentifier(expression: ts.Expression, identifiers: ts.BindingName[]): boolean {
+    const identifierNames = new Set<string>()
+    for (const identifier of identifiers) {
+      if (ts.isIdentifier(identifier)) {
+        identifierNames.add(identifier.text)
+      }
+    }
+
+    let found = false
+    const visit = (node: ts.Node): void => {
+      if (found) {
+        return
+      }
+      if (ts.isIdentifier(node) && identifierNames.has(node.text)) {
+        found = true
+        return
+      }
+      ts.forEachChild(node, visit)
+    }
+
+    visit(expression)
     return found
   }
 

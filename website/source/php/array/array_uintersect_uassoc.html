@@ -434,9 +434,6 @@ function array_uintersect_uassoc<T>(
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-const entriesOfPhpAssoc = (value) => {
-  return Object.entries(value)
-}
 
 function isPhpArrayObject(value) {
   return typeof value === 'object' && value !== null
@@ -576,9 +573,9 @@ function array_uintersect_uassoc(arr1, ...arraysAndComparators) {
   const keyComparator = resolveNumericComparator(keyCallback, 'array_uintersect_uassoc(): Invalid key callback')
   const valueComparator = resolveNumericComparator(valueCallback, 'array_uintersect_uassoc(): Invalid value callback')
 
-  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
+  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1)) {
     arrs: for (const [i, arr] of arrays.entries()) {
-      for (const [k, arrValue] of entriesOfPhpAssoc(arr)) {
+      for (const [k, arrValue] of Object.entries(arr)) {
         if (valueComparator(arrValue, arr1Value) === 0 && keyComparator(k, k1) === 0) {
           if (i === lastArrayIndex) {
             retArr[k1] = arr1Value

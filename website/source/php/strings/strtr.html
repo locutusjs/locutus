@@ -896,24 +896,16 @@ function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: s
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-function isPhpList(value) {
-  return Array.isArray(value)
-}
 
 function isObjectLike(value) {
   return typeof value === 'object' && value !== null
 }
 
 function isPhpAssocObject(value) {
-  return isObjectLike(value) && !isPhpList(value)
+  return isObjectLike(value) && !Array.isArray(value)
 }
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
-const isIniBag = (value) => isPhpAssocObject(value)
-
-const isLocaleBag = (value) => isPhpAssocObject(value)
-
-const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
 
 const globalContext =
   typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
@@ -941,9 +933,9 @@ function ensurePhpRuntimeState() {
   const localeCategoriesValue = php.localeCategories
   const pointersValue = php.pointers
 
-  const ini = isIniBag(iniValue) ? iniValue : {}
-  const locales = isLocaleBag(localesValue) ? localesValue : {}
-  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
   const pointers = Array.isArray(pointersValue) ? pointersValue : []
 
   if (iniValue !== ini) {
@@ -1287,8 +1279,6 @@ const isIniArray = (value) => Array.isArray(value) && value.every((item) => isIn
 
 const isIniEntryValue = (value) => isIniScalar(value) || isIniObject(value) || isIniArray(value)
 
-const isIniValue = (value) => isIniEntryValue(value)
-
 function ini_set(varname, newvalue) {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
@@ -1301,7 +1291,8 @@ function ini_set(varname, newvalue) {
   const runtime = ensurePhpRuntimeState()
   const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
   const currentValue = entry.local_value
-  const oldval = typeof currentValue === 'undefined' ? undefined : isIniValue(currentValue) ? currentValue : undefined
+  const oldval =
+    typeof currentValue === 'undefined' ? undefined : isIniEntryValue(currentValue) ? currentValue : undefined
 
   let normalizedValue = newvalue
   const lowerStr = String(newvalue).toLowerCase().trim()
