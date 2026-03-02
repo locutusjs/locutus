@@ -668,7 +668,10 @@ class Util {
     return jsCode
       .replace(/^\s*import[\s\S]*?from\s+['"](?:\.\.?\/)[^'"]+['"];\s*$/gm, '')
       .replace(/^\s*export\s+\{[^}]+\};?\s*$/gm, '')
-      .replace(/^(\s*)export\s+(?=(?:async\s+)?function\b|const\b|let\b|var\b|class\b|type\b|interface\b|enum\b)/gm, '$1')
+      .replace(
+        /^(\s*)export\s+(?=(?:async\s+)?function\b|const\b|let\b|var\b|class\b|type\b|interface\b|enum\b)/gm,
+        '$1',
+      )
       .replace(/^(\s*)export\s+default\s+/gm, '$1')
       .trim()
   }
@@ -739,7 +742,7 @@ class Util {
     return (await this._buildStandalone(params, 'js')) || ''
   }
 
-  async _buildStandaloneTs(params: ParsedParams): Promise<string | null> {
+  _buildStandaloneTs(params: ParsedParams): Promise<string | null> {
     return this._buildStandalone(params, 'ts')
   }
 
@@ -818,7 +821,8 @@ class Util {
       }
 
       const selection =
-        selectionByModule.get(moduleKey) || this._selectStandaloneModuleSymbols(info, runtimeRequired, typeRequired, mode)
+        selectionByModule.get(moduleKey) ||
+        this._selectStandaloneModuleSymbols(info, runtimeRequired, typeRequired, mode)
 
       const selectedModuleCode = this._renderStandaloneModule(info, selection.includedStatementIndexes)
       if (!selectedModuleCode.trim()) {
@@ -883,7 +887,11 @@ class Util {
         exportToLocalName.set(exportedName, localName)
       }
 
-      if (!ts.isImportDeclaration(statement) || !statement.moduleSpecifier || !ts.isStringLiteral(statement.moduleSpecifier)) {
+      if (
+        !ts.isImportDeclaration(statement) ||
+        !statement.moduleSpecifier ||
+        !ts.isStringLiteral(statement.moduleSpecifier)
+      ) {
         continue
       }
 
@@ -1379,7 +1387,9 @@ class Util {
     codez.push('  return module.exports[exportName] as (...args: unknown[]) => unknown')
     codez.push('}')
     if (moduleJsRuntimeCode) {
-      codez.push('const __locutus_module_js_fn = __locutus_eval_module_export(__locutus_module_js_code, __locutus_func_name)')
+      codez.push(
+        'const __locutus_module_js_fn = __locutus_eval_module_export(__locutus_module_js_code, __locutus_func_name)',
+      )
     }
     if (standaloneTsRuntimeCode) {
       codez.push('const __locutus_standalone_ts_fn = __locutus_eval_function(__locutus_standalone_ts_code)')
