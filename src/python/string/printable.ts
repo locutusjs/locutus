@@ -1,4 +1,4 @@
-export function printable() {
+export function printable(): string {
   //  discuss at: https://locutus.io/python/printable/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Combination of digits, ascii_letters, punctuation, and whitespace

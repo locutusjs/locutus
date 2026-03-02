@@ -1,4 +1,4 @@
-export function octdigits() {
+export function octdigits(): string {
   //      discuss at: https://locutus.io/python/octdigits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

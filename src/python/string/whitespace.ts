@@ -1,4 +1,4 @@
-export function whitespace() {
+export function whitespace(): string {
   //      discuss at: https://locutus.io/python/whitespace/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -1,4 +1,4 @@
-export function punctuation() {
+export function punctuation(): string {
   // parity verified: Python 3.12
   // Original by: Clari (https://github.com/Clari-7744)
   //       example 1: punctuation()

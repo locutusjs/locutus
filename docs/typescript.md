@@ -1661,3 +1661,29 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - For callback-heavy ports, narrowing varargs to explicit array-like generics gives better inference with limited behavioral risk.
   - A direct alias-ratchet (`type X = PhpInput`) creates a clear, incremental burn-down path for broad local type debt.
+
+## Iteration 65
+
+- Plans
+  - Expand strictness gains beyond PHP by eliminating remaining non-PHP exported functions without explicit return types.
+  - Add a CI ratchet so non-PHP exported missing return types cannot regress.
+- Progress
+  - Added explicit `: string` return types to all previously untyped Python-string exports:
+    - `src/python/string/ascii_lowercase.ts`
+    - `src/python/string/ascii_letters.ts`
+    - `src/python/string/ascii_uppercase.ts`
+    - `src/python/string/digits.ts`
+    - `src/python/string/hexdigits.ts`
+    - `src/python/string/octdigits.ts`
+    - `src/python/string/printable.ts`
+    - `src/python/string/punctuation.ts`
+    - `src/python/string/whitespace.ts`
+  - Extended debt policy in `scripts/check-ts-debt-policy.ts` with:
+    - `MAX_SRC_NON_PHP_EXPORTED_FUNCTION_WITHOUT_RETURN_TYPE = 0`
+    - non-PHP exported-function-without-return-type tracking/failure output.
+- Measured reduction
+  - Non-PHP exported functions without explicit return type: `9 -> 0`.
+- Validation
+  - `corepack yarn check`
+- Key learnings
+  - Non-PHP modules are already comparatively clean; targeted “missing annotation” sweeps plus ratchets are high signal and low blast radius.

@@ -1,4 +1,4 @@
-export function ascii_lowercase() {
+export function ascii_lowercase(): string {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_lowercase()
