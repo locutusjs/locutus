@@ -3,7 +3,14 @@ import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 type ImplodeValue = PhpRuntimeValue
 type KeyedValues = PhpAssoc<ImplodeValue>
 
-export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | undefined>): string {
+export function implode(pieces: ImplodeValue[] | KeyedValues | string | undefined): string
+
+export function implode(glue: string, pieces: ImplodeValue[] | KeyedValues | string | undefined): string
+
+export function implode(
+  glueOrPieces?: ImplodeValue[] | KeyedValues | string,
+  pieces?: ImplodeValue[] | KeyedValues | string | undefined,
+): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -20,11 +27,11 @@ export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | u
   let actualGlue = ''
   let actualPieces: ImplodeValue[] | KeyedValues | string | undefined
 
-  if (args.length === 1) {
-    actualPieces = args[0]
+  if (arguments.length === 1) {
+    actualPieces = glueOrPieces
   } else {
-    actualGlue = String(args[0] ?? '')
-    actualPieces = args[1]
+    actualGlue = String(glueOrPieces ?? '')
+    actualPieces = pieces
   }
 
   if (typeof actualPieces === 'object' && actualPieces !== null) {

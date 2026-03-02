@@ -1,4 +1,8 @@
-export function mt_rand(...args: [min?: number | string, max?: number | string]): number {
+export function mt_rand(): number
+
+export function mt_rand(min: number | string, max: number | string): number
+
+export function mt_rand(min?: number | string, max?: number | string): number {
   //      discuss at: https://locutus.io/php/mt_rand/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -9,12 +13,10 @@ export function mt_rand(...args: [min?: number | string, max?: number | string])
 
   let minValue: number
   let maxValue: number
-  const argc = args.length
-  const [min, max] = args
-  if (argc === 0) {
+  if (arguments.length === 0) {
     minValue = 0
     maxValue = 2147483647
-  } else if (argc === 1) {
+  } else if (arguments.length === 1) {
     throw new Error('Warning: mt_rand() expects exactly 2 parameters, 1 given')
   } else {
     minValue = Number.parseInt(String(min), 10)

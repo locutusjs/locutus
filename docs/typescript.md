@@ -2343,3 +2343,36 @@ To fix a `@ts-nocheck` file:
     - desktop layout remains logo/search row + full-width nav row.
 - Key learnings
   - Keeping search in a single consistent header zone reduces duplicated controls and preserves navigation width across breakpoints.
+
+## Iteration 87
+
+- Plans
+  - Tighten fixed-arity migrated signatures that still used broad `...args` wrappers.
+  - Add a repeatable script to compare Locutus v3 signatures against DefinitelyTyped and surface actionable deltas.
+- Progress
+  - Narrowed fixed-arity exports while preserving runtime behavior:
+    - `src/php/strings/strnatcasecmp.ts`
+    - `src/php/strings/str_shuffle.ts`
+    - `src/php/math/rand.ts`
+    - `src/php/math/mt_rand.ts`
+    - `src/php/strings/implode.ts`
+  - Updated type safety snapshots after signature changes:
+    - `docs/php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Added `scripts/compare-definitelytyped-signatures.ts`:
+    - loads local signatures from `src/**` via TypeScript checker.
+    - loads `@types/locutus` signatures (local install or fetches latest from npm/unpkg).
+    - compares deep-module export signatures and classifies differences (`ours-stricter`, `dt-stricter`, `inconclusive`).
+    - supports `--max`, `--dt-index`, and optional `--report`.
+  - Wired package script:
+    - `compare:dt:signatures`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn lint:ts`
+  - `corepack yarn lint:ts:strict-next`
+  - `corepack yarn lint:api:snapshot`
+  - `corepack yarn lint:type:contracts`
+  - `corepack yarn compare:dt:signatures --max=10`
+- Key learnings
+  - DefinitelyTyped coverage is materially behind current source breadth, so strictness comparisons are only meaningful on the shared deep-module subset.
+  - Fixed-arity overloads give better consumer ergonomics than rest-arg runtime emulation while still preserving PHP-style runtime checks.
