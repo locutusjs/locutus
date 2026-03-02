@@ -9,7 +9,7 @@ alias:
 - /about/
 ---
 
-> All your standard libraries will be assimilated into our ~~JavaScript~~ [TypeScript](/2026/03/locutus-4-0/) collective. Resistance is futile.
+> All your standard libraries will be assimilated into our ~~JavaScript~~ [TypeScript](/2026/03/locutus-3-0/) collective. Resistance is futile.
 
 Locutus is {% locutus_func_count %} TypeScript implementations of standard library functions from {% locutus_lang_count %} programming languages: {% locutus_lang_list %}. The project has been running since 2008 and has had [137 contributors](https://github.com/locutusjs/locutus/graphs/contributors).
 

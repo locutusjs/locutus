@@ -15,7 +15,7 @@ customize:
     avatar: css/images/locutus-alpha.png
     gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
     author: Locutus
-    author_title: All your standard libraries will be assimilated into our <del>JavaScript</del> <a href="/2026/03/locutus-4-0/">TypeScript</a> collective. Resistance is futile.
+    author_title: All your standard libraries will be assimilated into our <del>JavaScript</del> <a href="/2026/03/locutus-3-0/">TypeScript</a> collective. Resistance is futile.
     location: GitHub
     follow: https://github.com/locutusjs/locutus/stargazers
   highlight: monokai
