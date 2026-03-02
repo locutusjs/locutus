@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Locutus 4.0 TypeScript</title>
+  <desc id="desc">Blue gradient thumbnail with TypeScript motif for the Locutus 4.0 release post.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081627" />
+      <stop offset="100%" stop-color="#134580" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2f74c0" />
+      <stop offset="100%" stop-color="#1a4f92" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="1010" cy="120" r="190" fill="#ffffff" opacity="0.06" />
+  <circle cx="150" cy="540" r="250" fill="#ffffff" opacity="0.05" />
+
+  <rect x="130" y="120" width="940" height="390" rx="28" fill="#0b2544" opacity="0.8" />
+  <rect x="160" y="150" width="270" height="270" rx="24" fill="url(#panel)" />
+
+  <text x="214" y="320" fill="#ffffff" font-size="132" font-family="Arial, Helvetica, sans-serif" font-weight="700">TS</text>
+
+  <text x="470" y="248" fill="#8ebcf4" font-size="52" font-family="Arial, Helvetica, sans-serif" font-weight="600">Locutus</text>
+  <text x="470" y="342" fill="#ffffff" font-size="112" font-family="Arial, Helvetica, sans-serif" font-weight="700">4.0</text>
+  <text x="470" y="404" fill="#b6d2f7" font-size="42" font-family="Arial, Helvetica, sans-serif" font-weight="500">TypeScript Migration Release</text>
+</svg>

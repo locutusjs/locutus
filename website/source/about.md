@@ -9,7 +9,7 @@ alias:
 - /about/
 ---
 
-> All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.
+> All your standard libraries will be assimilated into our ~~JavaScript~~ TypeScript collective. Resistance is futile.
 
 Welcome to Locutus, where the boundaries of coding languages blur. We're a dedicated collective developers on a mission
 to explore the possibilities of porting standard libraries from various programming language (Go, Ruby, PHP, C) to
