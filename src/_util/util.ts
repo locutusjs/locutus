@@ -1,6 +1,6 @@
+import { spawnSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
-import { spawnSync } from 'node:child_process'
 import Debug from 'debug'
 import globby from 'globby'
 import indentStringModule from 'indent-string'
@@ -1377,11 +1377,7 @@ class Util {
       }
 
       if (ts.isIdentifier(node) && node.text === identifierName) {
-        if (
-          ignoreFunctionDeclarationName &&
-          ts.isFunctionDeclaration(node.parent) &&
-          node.parent.name === node
-        ) {
+        if (ignoreFunctionDeclarationName && ts.isFunctionDeclaration(node.parent) && node.parent.name === node) {
           // Declaration name can be renamed safely.
         } else {
           found = true
@@ -1680,7 +1676,12 @@ class Util {
       }
     }
 
-    if (this._expressionContainsIdentifier(callExpression.expression, parameters.map((parameter) => parameter.name))) {
+    if (
+      this._expressionContainsIdentifier(
+        callExpression.expression,
+        parameters.map((parameter) => parameter.name),
+      )
+    ) {
       return null
     }
 
