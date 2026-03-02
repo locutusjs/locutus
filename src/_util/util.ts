@@ -601,12 +601,45 @@ class Util {
   }
 
   _markWebsiteBlankLines(code: string): string {
-    return code
-      .split('\n')
+    const lines = code.split('\n')
+    let inBlockComment = false
+
+    const updateBlockCommentState = (line: string): void => {
+      let cursor = 0
+      while (cursor < line.length) {
+        if (!inBlockComment) {
+          const lineCommentIndex = line.indexOf('//', cursor)
+          const blockStartIndex = line.indexOf('/*', cursor)
+          if (blockStartIndex === -1) {
+            return
+          }
+          if (lineCommentIndex !== -1 && lineCommentIndex < blockStartIndex) {
+            return
+          }
+          const blockEndIndex = line.indexOf('*/', blockStartIndex + 2)
+          if (blockEndIndex === -1) {
+            inBlockComment = true
+            return
+          }
+          cursor = blockEndIndex + 2
+          continue
+        }
+
+        const blockEndIndex = line.indexOf('*/', cursor)
+        if (blockEndIndex === -1) {
+          return
+        }
+        inBlockComment = false
+        cursor = blockEndIndex + 2
+      }
+    }
+
+    return lines
       .map((line) => {
-        if (line.trim().length === 0) {
+        if (line.trim().length === 0 && !inBlockComment) {
           return WEBSITE_BLANK_LINE_MARKER_COMMENT
         }
+        updateBlockCommentState(line)
         return line
       })
       .join('\n')
@@ -1210,6 +1243,7 @@ class Util {
       includedStatementIndexes,
       wrapperAliases,
       wrapperRenameByStatementIndex,
+      runtimeRequiredNames,
       mode,
     )
 
@@ -1229,6 +1263,7 @@ class Util {
     includedStatementIndexes: Set<number>,
     wrapperAliases: Set<string>,
     wrapperRenameByStatementIndex: Map<number, string>,
+    runtimeRequiredNames: Set<string>,
     mode: StandaloneMode,
   ): void {
     if (mode !== 'js') {
@@ -1243,7 +1278,15 @@ class Util {
       }
 
       includedStatementIndexes.delete(statementIndex)
-      if (this._canRenameStandaloneWrapperTarget(info, aliasSpec, includedStatementIndexes, statementIndex)) {
+      if (
+        this._canRenameStandaloneWrapperTarget(
+          info,
+          aliasSpec,
+          includedStatementIndexes,
+          statementIndex,
+          runtimeRequiredNames,
+        )
+      ) {
         wrapperRenameByStatementIndex.set(aliasSpec.targetDeclarationIndex, aliasSpec.wrapperName)
         continue
       }
@@ -1335,7 +1378,12 @@ class Util {
     aliasSpec: { wrapperName: string; targetName: string; targetDeclarationIndex: number },
     includedStatementIndexes: Set<number>,
     wrapperStatementIndex: number,
+    runtimeRequiredNames: Set<string>,
   ): boolean {
+    if (runtimeRequiredNames.has(aliasSpec.targetName)) {
+      return false
+    }
+
     const otherWrapperDeclarations = info.declarationsByName.get(aliasSpec.wrapperName)
     if (otherWrapperDeclarations) {
       for (const declarationIndex of otherWrapperDeclarations) {
