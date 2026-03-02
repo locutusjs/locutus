@@ -3,7 +3,7 @@ import { strnatcmp } from '../strings/strnatcmp.ts'
 
 export function strnatcasecmp(a: string | number, b: string | number): number
 
-export function strnatcasecmp(a?: string | number, b?: string | number): number | null {
+export function strnatcasecmp(...providedArgs: [a?: string | number, b?: string | number]): number | null {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
   //      original by: Martin Pool
@@ -19,9 +19,10 @@ export function strnatcasecmp(a?: string | number, b?: string | number): number 
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
 
-  if (arguments.length !== 2 || typeof a === 'undefined' || typeof b === 'undefined') {
+  if (providedArgs.length !== 2) {
     return null
   }
 
+  const [a, b] = providedArgs
   return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }

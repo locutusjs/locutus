@@ -8,8 +8,10 @@ export function implode(pieces: ImplodeValue[] | KeyedValues | string | undefine
 export function implode(glue: string, pieces: ImplodeValue[] | KeyedValues | string | undefined): string
 
 export function implode(
-  glueOrPieces?: ImplodeValue[] | KeyedValues | string,
-  pieces?: ImplodeValue[] | KeyedValues | string | undefined,
+  ...providedArgs: [
+    glueOrPieces?: ImplodeValue[] | KeyedValues | string,
+    pieces?: ImplodeValue[] | KeyedValues | string | undefined,
+  ]
 ): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
@@ -27,9 +29,11 @@ export function implode(
   let actualGlue = ''
   let actualPieces: ImplodeValue[] | KeyedValues | string | undefined
 
-  if (arguments.length === 1) {
+  if (providedArgs.length === 1) {
+    const [glueOrPieces] = providedArgs
     actualPieces = glueOrPieces
   } else {
+    const [glueOrPieces, pieces] = providedArgs
     actualGlue = String(glueOrPieces ?? '')
     actualPieces = pieces
   }
