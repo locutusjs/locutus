@@ -35,9 +35,28 @@ alias:
 ---
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
 type IniScalar = string | number | boolean | null
-export type IniValue = IniScalar | {} | Array<IniScalar | {}> | undefined
+type IniEntryValue = IniScalar | IniObject | IniEntryValue[]
+type IniObject = { [key: string]: IniEntryValue }
+export type IniValue = IniEntryValue | undefined
+
+type IniCandidate = PhpRuntimeValue | undefined
+
+const isIniScalar = (value: IniCandidate): value is IniScalar =>
+  typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
+
+const isIniObject = (value: IniCandidate): value is IniObject =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const isIniArray = (value: IniCandidate): value is IniEntryValue[] =>
+  Array.isArray(value) && value.every((item: IniCandidate) => isIniEntryValue(item))
+
+const isIniEntryValue = (value: IniCandidate): value is IniEntryValue =>
+  isIniScalar(value) || isIniObject(value) || isIniArray(value)
+
+const isIniValue = (value: IniCandidate): value is Exclude<IniValue, undefined> => isIniEntryValue(value)
 
 export function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
   //      discuss at: https://locutus.io/php/ini_set/
@@ -50,7 +69,9 @@ export function ini_set(varname: string, newvalue: IniValue): IniValue | undefin
 
   const runtime = ensurePhpRuntimeState()
   const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
-  const oldval = entry.local_value as IniValue | undefined
+  const currentValue = entry.local_value
+  const oldval: IniValue | undefined =
+    typeof currentValue === 'undefined' ? undefined : isIniValue(currentValue) ? currentValue : undefined
 
   let normalizedValue = newvalue
   const lowerStr = String(newvalue).toLowerCase().trim()
@@ -90,7 +111,13 @@ export function ini_set(varname: string, newvalue: IniValue): IniValue | undefin
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts';
+{% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+const isIniScalar = (value) =>
+  typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
+const isIniObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+const isIniArray = (value) => Array.isArray(value) && value.every((item) => isIniEntryValue(item))
+const isIniEntryValue = (value) => isIniScalar(value) || isIniObject(value) || isIniArray(value)
+const isIniValue = (value) => isIniEntryValue(value)
 export function ini_set(varname, newvalue) {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
@@ -99,69 +126,342 @@ export function ini_set(varname, newvalue) {
   //       example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //       example 1: ini_set('date.timezone', 'America/Chicago')
   //       returns 1: 'Asia/Hong_Kong'
-  const runtime = ensurePhpRuntimeState();
-  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {});
-  const oldval = entry.local_value;
-  let normalizedValue = newvalue;
-  const lowerStr = String(newvalue).toLowerCase().trim();
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
+  const currentValue = entry.local_value
+  const oldval = typeof currentValue === 'undefined' ? undefined : isIniValue(currentValue) ? currentValue : undefined
+  let normalizedValue = newvalue
+  const lowerStr = String(newvalue).toLowerCase().trim()
   if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
-    normalizedValue = 'on';
+    normalizedValue = 'on'
   }
   if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
-    normalizedValue = 'off';
+    normalizedValue = 'off'
   }
   const setArrayValue = () => {
     // Although these are set individually, they are all accumulated.
     if (typeof entry.local_value === 'undefined') {
-      entry.local_value = [normalizedValue];
-      return;
+      entry.local_value = [normalizedValue]
+      return
     }
     if (Array.isArray(entry.local_value)) {
-      entry.local_value.push(normalizedValue);
-      return;
+      entry.local_value.push(normalizedValue)
+      return
     }
-    entry.local_value = [entry.local_value, normalizedValue];
-  };
+    entry.local_value = [entry.local_value, normalizedValue]
+  }
   switch (varname) {
     case 'extension':
-      setArrayValue();
-      break;
+      setArrayValue()
+      break
     default:
-      entry.local_value = normalizedValue;
-      break;
+      entry.local_value = normalizedValue
+      break
   }
-  return oldval;
+  return oldval
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
-function ensurePhpRuntimeState() {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
   //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
   //  returns 1: true
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus || {};
-  globalContext.$locutus.php = globalContext.$locutus.php || {};
-  const php = globalContext.$locutus.php;
-  php.ini = php.ini || {};
-  php.locales = php.locales || {};
-  php.pointers = php.pointers || [];
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
-    ini: php.ini,
-    locales: php.locales,
-    pointers: php.pointers,
-    locale_default: php.locale_default,
-  };
-}
-function setPhpLocaleDefault(localeDefault) {
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus || {};
-  globalContext.$locutus.php = globalContext.$locutus.php || {};
-  globalContext.$locutus.php.locale_default = localeDefault;
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
 }
 
 // php/info/ini_set
+type IniScalar = string | number | boolean | null
+
+type IniEntryValue = IniScalar | IniObject | IniEntryValue[]
+
+type IniObject = { [key: string]: IniEntryValue }
+
+type IniValue = IniEntryValue | undefined
+
+type IniCandidate = PhpRuntimeValue | undefined
+
+const isIniScalar = (value: IniCandidate): value is IniScalar =>
+  typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
+
+const isIniObject = (value: IniCandidate): value is IniObject =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const isIniArray = (value: IniCandidate): value is IniEntryValue[] =>
+  Array.isArray(value) && value.every((item: IniCandidate) => isIniEntryValue(item))
+
+const isIniEntryValue = (value: IniCandidate): value is IniEntryValue =>
+  isIniScalar(value) || isIniObject(value) || isIniArray(value)
+
+const isIniValue = (value: IniCandidate): value is Exclude<IniValue, undefined> => isIniEntryValue(value)
+
+function ini_set(varname: string, newvalue: IniValue): IniValue | undefined {
+  //      discuss at: https://locutus.io/php/ini_set/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: This will not set a global_value or access level for the ini item
+  //       example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //       example 1: ini_set('date.timezone', 'America/Chicago')
+  //       returns 1: 'Asia/Hong_Kong'
+
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
+  const currentValue = entry.local_value
+  const oldval: IniValue | undefined =
+    typeof currentValue === 'undefined' ? undefined : isIniValue(currentValue) ? currentValue : undefined
+
+  let normalizedValue = newvalue
+  const lowerStr = String(newvalue).toLowerCase().trim()
+  if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
+    normalizedValue = 'on'
+  }
+  if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
+    normalizedValue = 'off'
+  }
+
+  const setArrayValue = () => {
+    // Although these are set individually, they are all accumulated.
+    if (typeof entry.local_value === 'undefined') {
+      entry.local_value = [normalizedValue]
+      return
+    }
+
+    if (Array.isArray(entry.local_value)) {
+      entry.local_value.push(normalizedValue)
+      return
+    }
+
+    entry.local_value = [entry.local_value, normalizedValue]
+  }
+
+  switch (varname) {
+    case 'extension':
+      setArrayValue()
+      break
+    default:
+      entry.local_value = normalizedValue
+      break
+  }
+
+  return oldval
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpList(value) {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+const isIniBag = (value) => isPhpAssocObject(value)
+const isLocaleBag = (value) => isPhpAssocObject(value)
+const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/info/ini_set
+const isIniScalar = (value) =>
+  typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean' || value === null
+const isIniObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+const isIniArray = (value) => Array.isArray(value) && value.every((item) => isIniEntryValue(item))
+const isIniEntryValue = (value) => isIniScalar(value) || isIniObject(value) || isIniArray(value)
+const isIniValue = (value) => isIniEntryValue(value)
 function ini_set(varname, newvalue) {
   //      discuss at: https://locutus.io/php/ini_set/
   // parity verified: PHP 8.3
@@ -170,37 +470,38 @@ function ini_set(varname, newvalue) {
   //       example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
   //       example 1: ini_set('date.timezone', 'America/Chicago')
   //       returns 1: 'Asia/Hong_Kong'
-  const runtime = ensurePhpRuntimeState();
-  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {});
-  const oldval = entry.local_value;
-  let normalizedValue = newvalue;
-  const lowerStr = String(newvalue).toLowerCase().trim();
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname] ?? (runtime.ini[varname] = {})
+  const currentValue = entry.local_value
+  const oldval = typeof currentValue === 'undefined' ? undefined : isIniValue(currentValue) ? currentValue : undefined
+  let normalizedValue = newvalue
+  const lowerStr = String(newvalue).toLowerCase().trim()
   if (newvalue === true || lowerStr === 'on' || lowerStr === '1') {
-    normalizedValue = 'on';
+    normalizedValue = 'on'
   }
   if (newvalue === false || lowerStr === 'off' || lowerStr === '0') {
-    normalizedValue = 'off';
+    normalizedValue = 'off'
   }
   const setArrayValue = () => {
     // Although these are set individually, they are all accumulated.
     if (typeof entry.local_value === 'undefined') {
-      entry.local_value = [normalizedValue];
-      return;
+      entry.local_value = [normalizedValue]
+      return
     }
     if (Array.isArray(entry.local_value)) {
-      entry.local_value.push(normalizedValue);
-      return;
+      entry.local_value.push(normalizedValue)
+      return
     }
-    entry.local_value = [entry.local_value, normalizedValue];
-  };
+    entry.local_value = [entry.local_value, normalizedValue]
+  }
   switch (varname) {
     case 'extension':
-      setArrayValue();
-      break;
+      setArrayValue()
+      break
     default:
-      entry.local_value = normalizedValue;
-      break;
+      entry.local_value = normalizedValue
+      break
   }
-  return oldval;
+  return oldval
 }{% endcodeblock %}
 </div>

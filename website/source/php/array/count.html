@@ -39,13 +39,27 @@ alias:
   - /functions/count/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
-type CountableObject = PhpAssoc<PhpValue>
-type Countable = PhpValue[] | CountableObject
+type CountValue = PhpRuntimeValue
+type CountableList = CountValue[]
+interface CountableAssoc {
+  [key: string]: CountValue
+}
+export type Countable = CountableList | CountableAssoc
+export type CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'
 
-export function count(mixedVar: Countable | null | undefined, mode: string | number = 0): number {
+const isCountable = (value: CountValue): value is Countable => {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+  const valuePrototype = Object.getPrototypeOf(value)
+  return valuePrototype === Array.prototype || valuePrototype === Object.prototype
+}
+
+export function count(mixedVar: null | undefined, mode?: CountMode): 0
+export function count(mixedVar: Countable, mode?: CountMode): number
+export function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): number {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -73,17 +87,23 @@ export function count(mixedVar: Countable | null | undefined, mode: string | num
 
   const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
 
-  const entries = mixedVar as CountableObject
-  for (const key in entries) {
-    if (Object.prototype.hasOwnProperty.call(entries, key)) {
+  if (Array.isArray(mixedVar)) {
+    for (const key of Object.keys(mixedVar)) {
       cnt++
-      const value = entries[key]
-      if (!recursiveMode || !value || typeof value !== 'object') {
-        continue
+      const value = mixedVar[Number(key)]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
       }
-      const valuePrototype = Object.getPrototypeOf(value)
-      if (valuePrototype === Array.prototype || valuePrototype === Object.prototype) {
-        cnt += count(value as Countable, 1)
+    }
+    return cnt
+  }
+
+  for (const key in mixedVar) {
+    if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
+      cnt++
+      const value = mixedVar[key]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
       }
     }
   }
@@ -93,7 +113,14 @@ export function count(mixedVar: Countable | null | undefined, mode: string | num
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function count(mixedVar, mode = 0) {
+{% codeblock lang:javascript %}const isCountable = (value) => {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+  const valuePrototype = Object.getPrototypeOf(value)
+  return valuePrototype === Array.prototype || valuePrototype === Object.prototype
+}
+export function count(mixedVar, mode = 0) {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //    input by: Waldo Malqui Silva (https://waldo.malqui.info)
@@ -105,37 +132,146 @@ export function count(mixedVar: Countable | null | undefined, mode: string | num
   //   returns 1: 6
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
-  let cnt = 0;
+  let cnt = 0
   if (mixedVar === null || typeof mixedVar === 'undefined') {
-    return 0;
+    return 0
   }
   if (typeof mixedVar !== 'object') {
-    return 1;
+    return 1
   }
-  const prototype = Object.getPrototypeOf(mixedVar);
+  const prototype = Object.getPrototypeOf(mixedVar)
   if (prototype !== Array.prototype && prototype !== Object.prototype) {
-    return 1;
+    return 1
   }
-  const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1;
-  const entries = mixedVar;
-  for (const key in entries) {
-    if (Object.prototype.hasOwnProperty.call(entries, key)) {
-      cnt++;
-      const value = entries[key];
-      if (!recursiveMode || !value || typeof value !== 'object') {
-        continue;
+  const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
+  if (Array.isArray(mixedVar)) {
+    for (const key of Object.keys(mixedVar)) {
+      cnt++
+      const value = mixedVar[Number(key)]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
       }
-      const valuePrototype = Object.getPrototypeOf(value);
-      if (valuePrototype === Array.prototype || valuePrototype === Object.prototype) {
-        cnt += count(value, 1);
+    }
+    return cnt
+  }
+  for (const key in mixedVar) {
+    if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
+      cnt++
+      const value = mixedVar[key]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
       }
     }
   }
-  return cnt;
+  return cnt
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/array/count
+type CountValue = PhpRuntimeValue
+
+type CountableList = CountValue[]
+
+interface CountableAssoc {
+  [key: string]: CountValue
+}
+
+type Countable = CountableList | CountableAssoc
+
+type CountMode = 0 | 1 | 'COUNT_NORMAL' | 'COUNT_RECURSIVE'
+
+const isCountable = (value: CountValue): value is Countable => {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+  const valuePrototype = Object.getPrototypeOf(value)
+  return valuePrototype === Array.prototype || valuePrototype === Object.prototype
+}
+
+function count(mixedVar: null | undefined, mode?: CountMode): 0
+
+function count(mixedVar: Countable, mode?: CountMode): number
+
+function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): number {
+  //  discuss at: https://locutus.io/php/count/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Waldo Malqui Silva (https://waldo.malqui.info)
+  //    input by: merabi
+  // bugfixed by: Soren Hansen
+  // bugfixed by: Olivier Louvignes (https://mg-crea.com/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE')
+  //   returns 1: 6
+  //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
+  //   returns 2: 6
+
+  let cnt = 0
+
+  if (mixedVar === null || typeof mixedVar === 'undefined') {
+    return 0
+  }
+  if (typeof mixedVar !== 'object') {
+    return 1
+  }
+  const prototype = Object.getPrototypeOf(mixedVar)
+  if (prototype !== Array.prototype && prototype !== Object.prototype) {
+    return 1
+  }
+
+  const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
+
+  if (Array.isArray(mixedVar)) {
+    for (const key of Object.keys(mixedVar)) {
+      cnt++
+      const value = mixedVar[Number(key)]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
+      }
+    }
+    return cnt
+  }
+
+  for (const key in mixedVar) {
+    if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
+      cnt++
+      const value = mixedVar[key]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
+      }
+    }
+  }
+
+  return cnt
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/array/count
+const isCountable = (value) => {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+  const valuePrototype = Object.getPrototypeOf(value)
+  return valuePrototype === Array.prototype || valuePrototype === Object.prototype
+}
 function count(mixedVar, mode = 0) {
   //  discuss at: https://locutus.io/php/count/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -148,32 +284,37 @@ function count(mixedVar, mode = 0) {
   //   returns 1: 6
   //   example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE')
   //   returns 2: 6
-  let cnt = 0;
+  let cnt = 0
   if (mixedVar === null || typeof mixedVar === 'undefined') {
-    return 0;
+    return 0
   }
   if (typeof mixedVar !== 'object') {
-    return 1;
+    return 1
   }
-  const prototype = Object.getPrototypeOf(mixedVar);
+  const prototype = Object.getPrototypeOf(mixedVar)
   if (prototype !== Array.prototype && prototype !== Object.prototype) {
-    return 1;
+    return 1
   }
-  const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1;
-  const entries = mixedVar;
-  for (const key in entries) {
-    if (Object.prototype.hasOwnProperty.call(entries, key)) {
-      cnt++;
-      const value = entries[key];
-      if (!recursiveMode || !value || typeof value !== 'object') {
-        continue;
+  const recursiveMode = mode === 'COUNT_RECURSIVE' || mode === 1
+  if (Array.isArray(mixedVar)) {
+    for (const key of Object.keys(mixedVar)) {
+      cnt++
+      const value = mixedVar[Number(key)]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
       }
-      const valuePrototype = Object.getPrototypeOf(value);
-      if (valuePrototype === Array.prototype || valuePrototype === Object.prototype) {
-        cnt += count(value, 1);
+    }
+    return cnt
+  }
+  for (const key in mixedVar) {
+    if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
+      cnt++
+      const value = mixedVar[key]
+      if (recursiveMode && isCountable(value)) {
+        cnt += count(value, 1)
       }
     }
   }
-  return cnt;
+  return cnt
 }{% endcodeblock %}
 </div>

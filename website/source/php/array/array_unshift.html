@@ -33,9 +33,11 @@ alias:
   - /functions/array_unshift/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-export function array_unshift(array: PhpMixed[], ...values: PhpMixed[]): number {
+type UnshiftValue = PhpRuntimeValue
+
+export function array_unshift<TValue extends UnshiftValue>(array: TValue[], ...values: TValue[]): number {
   //  discuss at: https://locutus.io/php/array_unshift/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Martijn Wieringa
@@ -44,8 +46,9 @@ export function array_unshift(array: PhpMixed[], ...values: PhpMixed[]): number 
   //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
   //   returns 1: 3
 
-  for (let i = values.length - 1; i >= 0; i--) {
-    array.unshift(values[i])
+  const reversedValues = values.slice().reverse()
+  for (const value of reversedValues) {
+    array.unshift(value)
   }
 
   return array.length
@@ -61,13 +64,54 @@ export function array_unshift(array: PhpMixed[], ...values: PhpMixed[]): number 
   //      note 1: Currently does not handle objects
   //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
   //   returns 1: 3
-  for (let i = values.length - 1; i >= 0; i--) {
-    array.unshift(values[i]);
+  const reversedValues = values.slice().reverse()
+  for (const value of reversedValues) {
+    array.unshift(value)
   }
-  return array.length;
+  return array.length
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/array/array_unshift
+type UnshiftValue = PhpRuntimeValue
+
+function array_unshift<TValue extends UnshiftValue>(array: TValue[], ...values: TValue[]): number {
+  //  discuss at: https://locutus.io/php/array_unshift/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Martijn Wieringa
+  // improved by: jmweb
+  //      note 1: Currently does not handle objects
+  //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
+  //   returns 1: 3
+
+  const reversedValues = values.slice().reverse()
+  for (const value of reversedValues) {
+    array.unshift(value)
+  }
+
+  return array.length
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/array/array_unshift
 function array_unshift(array, ...values) {
   //  discuss at: https://locutus.io/php/array_unshift/
@@ -77,9 +121,10 @@ function array_unshift(array, ...values) {
   //      note 1: Currently does not handle objects
   //   example 1: array_unshift(['van', 'Zonneveld'], 'Kevin')
   //   returns 1: 3
-  for (let i = values.length - 1; i >= 0; i--) {
-    array.unshift(values[i]);
+  const reversedValues = values.slice().reverse()
+  for (const value of reversedValues) {
+    array.unshift(value)
   }
-  return array.length;
+  return array.length
 }{% endcodeblock %}
 </div>

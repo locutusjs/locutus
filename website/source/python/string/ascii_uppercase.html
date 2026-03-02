@@ -29,18 +29,13 @@ alias:
   - /python/ascii_uppercase/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function ascii_uppercase() {
+{% codeblock lang:typescript %}export function ascii_uppercase(): 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_uppercase()
   //       returns 1: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-  const length = 26
-  let i = 65
-
-  return [...new Array(length)].reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++)
-  }, '')
+  return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 }
 {% endcodeblock %}
 </div>
@@ -50,24 +45,27 @@ alias:
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_uppercase()
   //       returns 1: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const length = 26;
-  let i = 65;
-  return [...new Array(length)].reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++);
-  }, '');
+  return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// python/string/ascii_uppercase
+function ascii_uppercase(): 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' {
+  // parity verified: Python 3.12
+  //     original by: Yury Shapkarin (https://shapkarin.me)
+  //       example 1: ascii_uppercase()
+  //       returns 1: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+  return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// python/string/ascii_uppercase
 function ascii_uppercase() {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_uppercase()
   //       returns 1: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const length = 26;
-  let i = 65;
-  return [...new Array(length)].reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++);
-  }, '');
+  return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 }{% endcodeblock %}
 </div>

@@ -89,41 +89,98 @@ export function array_combine<TKey extends string | number, TValue>(
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])
   //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
-  const newArray = {};
-  let i = 0;
+  const newArray = {}
+  let i = 0
   // input sanitation
   // Only accept arrays or array-like objects
   // Require arrays to have a count
   if (typeof keys !== 'object') {
-    return false;
+    return false
   }
   if (typeof values !== 'object') {
-    return false;
+    return false
   }
   if (typeof keys.length !== 'number') {
-    return false;
+    return false
   }
   if (typeof values.length !== 'number') {
-    return false;
+    return false
   }
   if (!keys.length) {
-    return false;
+    return false
   }
   // number of elements does not match
   if (keys.length !== values.length) {
-    return false;
+    return false
   }
   for (i = 0; i < keys.length; i++) {
-    const value = values[i];
+    const value = values[i]
     if (typeof value === 'undefined') {
-      return false;
+      return false
     }
-    newArray[String(keys[i])] = value;
+    newArray[String(keys[i])] = value
   }
-  return newArray;
+  return newArray
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+// php/array/array_combine
+function array_combine<TKey extends string | number, TValue>(
+  keys: TKey[],
+  values: TValue[],
+): PhpAssoc<TValue> | false {
+  //  discuss at: https://locutus.io/php/array_combine/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])
+  //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
+
+  const newArray: PhpAssoc<TValue> = {}
+  let i = 0
+
+  // input sanitation
+  // Only accept arrays or array-like objects
+  // Require arrays to have a count
+  if (typeof keys !== 'object') {
+    return false
+  }
+  if (typeof values !== 'object') {
+    return false
+  }
+  if (typeof keys.length !== 'number') {
+    return false
+  }
+  if (typeof values.length !== 'number') {
+    return false
+  }
+  if (!keys.length) {
+    return false
+  }
+
+  // number of elements does not match
+  if (keys.length !== values.length) {
+    return false
+  }
+
+  for (i = 0; i < keys.length; i++) {
+    const value = values[i]
+    if (typeof value === 'undefined') {
+      return false
+    }
+    newArray[String(keys[i])] = value
+  }
+
+  return newArray
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/array/array_combine
 function array_combine(keys, values) {
   //  discuss at: https://locutus.io/php/array_combine/
@@ -131,37 +188,37 @@ function array_combine(keys, values) {
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_combine([0,1,2], ['kevin','van','zonneveld'])
   //   returns 1: {0: 'kevin', 1: 'van', 2: 'zonneveld'}
-  const newArray = {};
-  let i = 0;
+  const newArray = {}
+  let i = 0
   // input sanitation
   // Only accept arrays or array-like objects
   // Require arrays to have a count
   if (typeof keys !== 'object') {
-    return false;
+    return false
   }
   if (typeof values !== 'object') {
-    return false;
+    return false
   }
   if (typeof keys.length !== 'number') {
-    return false;
+    return false
   }
   if (typeof values.length !== 'number') {
-    return false;
+    return false
   }
   if (!keys.length) {
-    return false;
+    return false
   }
   // number of elements does not match
   if (keys.length !== values.length) {
-    return false;
+    return false
   }
   for (i = 0; i < keys.length; i++) {
-    const value = values[i];
+    const value = values[i]
     if (typeof value === 'undefined') {
-      return false;
+      return false
     }
-    newArray[String(keys[i])] = value;
+    newArray[String(keys[i])] = value
   }
-  return newArray;
+  return newArray
 }{% endcodeblock %}
 </div>

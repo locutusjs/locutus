@@ -8,7 +8,8 @@ examples:
 returns:
   - '19'
   - '3'
-dependencies: []
+dependencies:
+  - php/info/ini_get
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -51,7 +52,7 @@ alias:
   - /functions/strlen/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { ini_get } from '../info/ini_get.ts'
 
 export function strlen(string: string): number {
   //  discuss at: https://locutus.io/php/strlen/
@@ -72,12 +73,7 @@ export function strlen(string: string): number {
 
   const str = string + ''
 
-  const $loc = (
-    globalThis as {
-      $locutus?: { php?: { ini?: { [key: string]: { local_value?: PhpMixed } | undefined } } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') || 'off'
+  const iniVal = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
     return str.length
   }
@@ -132,7 +128,8 @@ export function strlen(string: string): number {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function strlen(string) {
+{% codeblock lang:javascript %}import { ini_get } from '../info/ini_get.ts'
+export function strlen(string) {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sakimori
@@ -148,60 +145,375 @@ export function strlen(string: string): number {
   //   example 2: ini_set('unicode.semantics', 'on')
   //   example 2: strlen('A\ud87e\udc04Z')
   //   returns 2: 3
-  const str = string + '';
-  const $loc = globalThis.$locutus;
-  const iniVal = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') || 'off';
+  const str = string + ''
+  const iniVal = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
-    return str.length;
+    return str.length
   }
-  let i = 0;
-  let lgth = 0;
+  let i = 0
+  let lgth = 0
   const getWholeChar = function (str, i) {
-    const code = str.charCodeAt(i);
+    const code = str.charCodeAt(i)
     if (code >= 0xd800 && code <= 0xdbff) {
       // High surrogate (could change last hex to 0xDB7F to
       // treat high private surrogates as single characters)
       if (str.length <= i + 1) {
-        throw new Error('High surrogate without following low surrogate');
+        throw new Error('High surrogate without following low surrogate')
       }
-      const next = str.charCodeAt(i + 1);
+      const next = str.charCodeAt(i + 1)
       if (next < 0xdc00 || next > 0xdfff) {
-        throw new Error('High surrogate without following low surrogate');
+        throw new Error('High surrogate without following low surrogate')
       }
-      return str.charAt(i) + str.charAt(i + 1);
-    }
-    else if (code >= 0xdc00 && code <= 0xdfff) {
+      return str.charAt(i) + str.charAt(i + 1)
+    } else if (code >= 0xdc00 && code <= 0xdfff) {
       // Low surrogate
       if (i === 0) {
-        throw new Error('Low surrogate without preceding high surrogate');
+        throw new Error('Low surrogate without preceding high surrogate')
       }
-      const prev = str.charCodeAt(i - 1);
+      const prev = str.charCodeAt(i - 1)
       if (prev < 0xd800 || prev > 0xdbff) {
         // (could change last hex to 0xDB7F to treat high private surrogates
         // as single characters)
-        throw new Error('Low surrogate without preceding high surrogate');
+        throw new Error('Low surrogate without preceding high surrogate')
       }
       // We can pass over low surrogates now as the second
       // component in a pair which we have already processed
-      return false;
+      return false
     }
-    return str.charAt(i);
-  };
+    return str.charAt(i)
+  }
   for (i = 0, lgth = 0; i < str.length; i++) {
     if (getWholeChar(str, i) === false) {
-      continue;
+      continue
     }
     // Adapt this line at the top of any loop, passing in the whole string and
     // the current iteration and returning a variable to represent the individual character;
     // purpose is to treat the first part of a surrogate pair as the whole character and then
     // ignore the second part
-    lgth++;
+    lgth++
   }
-  return lgth;
+  return lgth
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/strings/strlen
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/info/ini_get
+function ini_get(varname: string): string {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+
+  return ''
+}
+
+// php/strings/strlen
+function strlen(string: string): number {
+  //  discuss at: https://locutus.io/php/strlen/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Sakimori
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Kirk Strobeck
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: May look like overkill, but in order to be truly faithful to handling all Unicode
+  //      note 1: characters and to this function in PHP which does not count the number of bytes
+  //      note 1: but counts the number of characters, something like this is really necessary.
+  //   example 1: strlen('Kevin van Zonneveld')
+  //   returns 1: 19
+  //   example 2: ini_set('unicode.semantics', 'on')
+  //   example 2: strlen('A\ud87e\udc04Z')
+  //   returns 2: 3
+
+  const str = string + ''
+
+  const iniVal = ini_get('unicode.semantics') || 'off'
+  if (iniVal === 'off') {
+    return str.length
+  }
+
+  let i = 0
+  let lgth = 0
+
+  const getWholeChar = function (str: string, i: number): string | false {
+    const code = str.charCodeAt(i)
+    if (code >= 0xd800 && code <= 0xdbff) {
+      // High surrogate (could change last hex to 0xDB7F to
+      // treat high private surrogates as single characters)
+      if (str.length <= i + 1) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      const next = str.charCodeAt(i + 1)
+      if (next < 0xdc00 || next > 0xdfff) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      return str.charAt(i) + str.charAt(i + 1)
+    } else if (code >= 0xdc00 && code <= 0xdfff) {
+      // Low surrogate
+      if (i === 0) {
+        throw new Error('Low surrogate without preceding high surrogate')
+      }
+      const prev = str.charCodeAt(i - 1)
+      if (prev < 0xd800 || prev > 0xdbff) {
+        // (could change last hex to 0xDB7F to treat high private surrogates
+        // as single characters)
+        throw new Error('Low surrogate without preceding high surrogate')
+      }
+      // We can pass over low surrogates now as the second
+      // component in a pair which we have already processed
+      return false
+    }
+    return str.charAt(i)
+  }
+
+  for (i = 0, lgth = 0; i < str.length; i++) {
+    if (getWholeChar(str, i) === false) {
+      continue
+    }
+    // Adapt this line at the top of any loop, passing in the whole string and
+    // the current iteration and returning a variable to represent the individual character;
+    // purpose is to treat the first part of a surrogate pair as the whole character and then
+    // ignore the second part
+    lgth++
+  }
+
+  return lgth
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpList(value) {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+const isIniBag = (value) => isPhpAssocObject(value)
+const isLocaleBag = (value) => isPhpAssocObject(value)
+const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/info/ini_get
+function ini_get(varname) {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+  return ''
+}
+
+// php/strings/strlen
 function strlen(string) {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -218,55 +530,53 @@ function strlen(string) {
   //   example 2: ini_set('unicode.semantics', 'on')
   //   example 2: strlen('A\ud87e\udc04Z')
   //   returns 2: 3
-  const str = string + '';
-  const $loc = globalThis.$locutus;
-  const iniVal = String($loc?.php?.ini?.['unicode.semantics']?.local_value ?? '') || 'off';
+  const str = string + ''
+  const iniVal = ini_get('unicode.semantics') || 'off'
   if (iniVal === 'off') {
-    return str.length;
+    return str.length
   }
-  let i = 0;
-  let lgth = 0;
+  let i = 0
+  let lgth = 0
   const getWholeChar = function (str, i) {
-    const code = str.charCodeAt(i);
+    const code = str.charCodeAt(i)
     if (code >= 0xd800 && code <= 0xdbff) {
       // High surrogate (could change last hex to 0xDB7F to
       // treat high private surrogates as single characters)
       if (str.length <= i + 1) {
-        throw new Error('High surrogate without following low surrogate');
+        throw new Error('High surrogate without following low surrogate')
       }
-      const next = str.charCodeAt(i + 1);
+      const next = str.charCodeAt(i + 1)
       if (next < 0xdc00 || next > 0xdfff) {
-        throw new Error('High surrogate without following low surrogate');
+        throw new Error('High surrogate without following low surrogate')
       }
-      return str.charAt(i) + str.charAt(i + 1);
-    }
-    else if (code >= 0xdc00 && code <= 0xdfff) {
+      return str.charAt(i) + str.charAt(i + 1)
+    } else if (code >= 0xdc00 && code <= 0xdfff) {
       // Low surrogate
       if (i === 0) {
-        throw new Error('Low surrogate without preceding high surrogate');
+        throw new Error('Low surrogate without preceding high surrogate')
       }
-      const prev = str.charCodeAt(i - 1);
+      const prev = str.charCodeAt(i - 1)
       if (prev < 0xd800 || prev > 0xdbff) {
         // (could change last hex to 0xDB7F to treat high private surrogates
         // as single characters)
-        throw new Error('Low surrogate without preceding high surrogate');
+        throw new Error('Low surrogate without preceding high surrogate')
       }
       // We can pass over low surrogates now as the second
       // component in a pair which we have already processed
-      return false;
+      return false
     }
-    return str.charAt(i);
-  };
+    return str.charAt(i)
+  }
   for (i = 0, lgth = 0; i < str.length; i++) {
     if (getWholeChar(str, i) === false) {
-      continue;
+      continue
     }
     // Adapt this line at the top of any loop, passing in the whole string and
     // the current iteration and returning a variable to represent the individual character;
     // purpose is to treat the first part of a surrogate pair as the whole character and then
     // ignore the second part
-    lgth++;
+    lgth++
   }
-  return lgth;
+  return lgth
 }{% endcodeblock %}
 </div>

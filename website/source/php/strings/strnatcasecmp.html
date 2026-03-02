@@ -74,8 +74,8 @@ export function strnatcasecmp(...args: Array<string | number>): number | null {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts';
-import { strnatcmp } from '../strings/strnatcmp.ts';
+{% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
+import { strnatcmp } from '../strings/strnatcmp.ts'
 export function strnatcasecmp(...args) {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
@@ -92,13 +92,249 @@ export function strnatcasecmp(...args) {
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
   if (args.length !== 2) {
-    return null;
+    return null
   }
-  const [a, b] = args;
-  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase());
+  const [a, b] = args
+  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/_helpers/_phpCastString
+type CastStringValue = PhpInput
+
+function _phpCastString(value: CastStringValue): string {
+  // original by: Rafał Kukawski
+  //   example 1: _phpCastString(true)
+  //   returns 1: '1'
+  //   example 2: _phpCastString(false)
+  //   returns 2: ''
+  //   example 3: _phpCastString('foo')
+  //   returns 3: 'foo'
+  //   example 4: _phpCastString(0/0)
+  //   returns 4: 'NAN'
+  //   example 5: _phpCastString(1/0)
+  //   returns 5: 'INF'
+  //   example 6: _phpCastString(-1/0)
+  //   returns 6: '-INF'
+  //   example 7: _phpCastString(null)
+  //   returns 7: ''
+  //   example 8: _phpCastString(undefined)
+  //   returns 8: ''
+  //   example 9: _phpCastString([])
+  //   returns 9: 'Array'
+  //  example 10: _phpCastString({})
+  //  returns 10: 'Object'
+  //  example 11: _phpCastString(0)
+  //  returns 11: '0'
+  //  example 12: _phpCastString(1)
+  //  returns 12: '1'
+  //  example 13: _phpCastString(3.14)
+  //  returns 13: '3.14'
+
+  if (typeof value === 'boolean') {
+    return value ? '1' : ''
+  }
+  if (typeof value === 'string') {
+    return value
+  }
+  if (typeof value === 'number') {
+    if (isNaN(value)) {
+      return 'NAN'
+    }
+
+    if (!isFinite(value)) {
+      return (value < 0 ? '-' : '') + 'INF'
+    }
+
+    return value + ''
+  }
+  if (typeof value === 'undefined') {
+    return ''
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return 'Array'
+    }
+
+    if (value !== null) {
+      return 'Object'
+    }
+
+    return ''
+  }
+
+  throw new Error('Unsupported value type')
+}
+
+// php/strings/strnatcmp
+type NatCmpValue = PhpRuntimeValue
+
+function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
+  //       discuss at: https://locutus.io/php/strnatcmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martijn Wieringa
+  //      improved by: Michael White (https://getsprink.com)
+  //      improved by: Jack
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcmp('abc', 'abc')
+  //        returns 1: 0
+  //        example 2: strnatcmp('a', 'b')
+  //        returns 2: -1
+  //        example 3: strnatcmp('10', '1')
+  //        returns 3: 1
+  //        example 4: strnatcmp('0000abc', '0abc')
+  //        returns 4: 0
+  //        example 5: strnatcmp('1239', '12345')
+  //        returns 5: -1
+  //        example 6: strnatcmp('t01239', 't012345')
+  //        returns 6: 1
+  //        example 7: strnatcmp('0A', '5N')
+  //        returns 7: -1
+
+  const leadingZeros = /^0+(?=\d)/
+  const whitespace = /^\s/
+  const digit = /^\d/
+
+  let leftValue = _phpCastString(left)
+  let rightValue = _phpCastString(right)
+
+  if (!leftValue.length || !rightValue.length) {
+    return leftValue.length - rightValue.length
+  }
+
+  let i = 0
+  let j = 0
+
+  leftValue = leftValue.replace(leadingZeros, '')
+  rightValue = rightValue.replace(leadingZeros, '')
+
+  while (i < leftValue.length && j < rightValue.length) {
+    // skip consecutive whitespace
+    while (whitespace.test(leftValue.charAt(i))) {
+      i++
+    }
+    while (whitespace.test(rightValue.charAt(j))) {
+      j++
+    }
+
+    let ac = leftValue.charAt(i)
+    let bc = rightValue.charAt(j)
+    let aIsDigit = digit.test(ac)
+    let bIsDigit = digit.test(bc)
+
+    if (aIsDigit && bIsDigit) {
+      let bias = 0
+      const fractional = ac === '0' || bc === '0'
+
+      do {
+        if (!aIsDigit) {
+          return -1
+        } else if (!bIsDigit) {
+          return 1
+        } else if (ac < bc) {
+          if (!bias) {
+            bias = -1
+          }
+
+          if (fractional) {
+            return -1
+          }
+        } else if (ac > bc) {
+          if (!bias) {
+            bias = 1
+          }
+
+          if (fractional) {
+            return 1
+          }
+        }
+
+        ac = leftValue.charAt(++i)
+        bc = rightValue.charAt(++j)
+
+        aIsDigit = digit.test(ac)
+        bIsDigit = digit.test(bc)
+      } while (aIsDigit || bIsDigit)
+
+      if (!fractional && bias) {
+        return bias
+      }
+
+      continue
+    }
+
+    if (!ac || !bc) {
+      continue
+    } else if (ac < bc) {
+      return -1
+    } else if (ac > bc) {
+      return 1
+    }
+
+    i++
+    j++
+  }
+
+  const iBeforeStrEnd = i < leftValue.length
+  const jBeforeStrEnd = j < rightValue.length
+
+  // Check which string ended first
+  // return -1 if a, 1 if b, 0 otherwise
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1
+  }
+  return 0
+}
+
+// php/strings/strnatcasecmp
+function strnatcasecmp(...args: Array<string | number>): number | null {
+  //       discuss at: https://locutus.io/php/strnatcasecmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martin Pool
+  // reimplemented by: Pierre-Luc Paour
+  // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //         input by: Devan Penner-Woelk
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcasecmp(10, 1)
+  //        returns 1: 1
+  //        example 2: strnatcasecmp('1', '10')
+  //        returns 2: -1
+
+  if (args.length !== 2) {
+    return null
+  }
+
+  const [a, b] = args
+  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpCastString
 function _phpCastString(value) {
   // original by: Rafał Kukawski
@@ -129,37 +365,37 @@ function _phpCastString(value) {
   //  example 13: _phpCastString(3.14)
   //  returns 13: '3.14'
   if (typeof value === 'boolean') {
-    return value ? '1' : '';
+    return value ? '1' : ''
   }
   if (typeof value === 'string') {
-    return value;
+    return value
   }
   if (typeof value === 'number') {
     if (isNaN(value)) {
-      return 'NAN';
+      return 'NAN'
     }
     if (!isFinite(value)) {
-      return (value < 0 ? '-' : '') + 'INF';
+      return (value < 0 ? '-' : '') + 'INF'
     }
-    return value + '';
+    return value + ''
   }
   if (typeof value === 'undefined') {
-    return '';
+    return ''
   }
   if (typeof value === 'object') {
     if (Array.isArray(value)) {
-      return 'Array';
+      return 'Array'
     }
     if (value !== null) {
-      return 'Object';
+      return 'Object'
     }
-    return '';
+    return ''
   }
-  throw new Error('Unsupported value type');
+  throw new Error('Unsupported value type')
 }
 
 // php/strings/strnatcmp
-function strnatcmp(...args) {
+function strnatcmp(left, right) {
   //       discuss at: https://locutus.io/php/strnatcmp/
   //  parity verified: PHP 8.3
   //      original by: Martijn Wieringa
@@ -181,93 +417,84 @@ function strnatcmp(...args) {
   //        returns 6: 1
   //        example 7: strnatcmp('0A', '5N')
   //        returns 7: -1
-  const leadingZeros = /^0+(?=\d)/;
-  const whitespace = /^\s/;
-  const digit = /^\d/;
-  if (args.length !== 2) {
-    return null;
+  const leadingZeros = /^0+(?=\d)/
+  const whitespace = /^\s/
+  const digit = /^\d/
+  let leftValue = _phpCastString(left)
+  let rightValue = _phpCastString(right)
+  if (!leftValue.length || !rightValue.length) {
+    return leftValue.length - rightValue.length
   }
-  const [a, b] = args;
-  let left = _phpCastString(a);
-  let right = _phpCastString(b);
-  if (!left.length || !right.length) {
-    return left.length - right.length;
-  }
-  let i = 0;
-  let j = 0;
-  left = left.replace(leadingZeros, '');
-  right = right.replace(leadingZeros, '');
-  while (i < left.length && j < right.length) {
+  let i = 0
+  let j = 0
+  leftValue = leftValue.replace(leadingZeros, '')
+  rightValue = rightValue.replace(leadingZeros, '')
+  while (i < leftValue.length && j < rightValue.length) {
     // skip consecutive whitespace
-    while (whitespace.test(left.charAt(i))) {
-      i++;
+    while (whitespace.test(leftValue.charAt(i))) {
+      i++
     }
-    while (whitespace.test(right.charAt(j))) {
-      j++;
+    while (whitespace.test(rightValue.charAt(j))) {
+      j++
     }
-    let ac = left.charAt(i);
-    let bc = right.charAt(j);
-    let aIsDigit = digit.test(ac);
-    let bIsDigit = digit.test(bc);
+    let ac = leftValue.charAt(i)
+    let bc = rightValue.charAt(j)
+    let aIsDigit = digit.test(ac)
+    let bIsDigit = digit.test(bc)
     if (aIsDigit && bIsDigit) {
-      let bias = 0;
-      const fractional = ac === '0' || bc === '0';
+      let bias = 0
+      const fractional = ac === '0' || bc === '0'
       do {
         if (!aIsDigit) {
-          return -1;
-        }
-        else if (!bIsDigit) {
-          return 1;
-        }
-        else if (ac < bc) {
+          return -1
+        } else if (!bIsDigit) {
+          return 1
+        } else if (ac < bc) {
           if (!bias) {
-            bias = -1;
+            bias = -1
           }
           if (fractional) {
-            return -1;
+            return -1
           }
-        }
-        else if (ac > bc) {
+        } else if (ac > bc) {
           if (!bias) {
-            bias = 1;
+            bias = 1
           }
           if (fractional) {
-            return 1;
+            return 1
           }
         }
-        ac = left.charAt(++i);
-        bc = right.charAt(++j);
-        aIsDigit = digit.test(ac);
-        bIsDigit = digit.test(bc);
-      } while (aIsDigit || bIsDigit);
+        ac = leftValue.charAt(++i)
+        bc = rightValue.charAt(++j)
+        aIsDigit = digit.test(ac)
+        bIsDigit = digit.test(bc)
+      } while (aIsDigit || bIsDigit)
       if (!fractional && bias) {
-        return bias;
+        return bias
       }
-      continue;
+      continue
     }
     if (!ac || !bc) {
-      continue;
+      continue
+    } else if (ac < bc) {
+      return -1
+    } else if (ac > bc) {
+      return 1
     }
-    else if (ac < bc) {
-      return -1;
-    }
-    else if (ac > bc) {
-      return 1;
-    }
-    i++;
-    j++;
+    i++
+    j++
   }
-  const iBeforeStrEnd = i < left.length;
-  const jBeforeStrEnd = j < right.length;
+  const iBeforeStrEnd = i < leftValue.length
+  const jBeforeStrEnd = j < rightValue.length
   // Check which string ended first
   // return -1 if a, 1 if b, 0 otherwise
   if (iBeforeStrEnd && !jBeforeStrEnd) {
-    return 1;
+    return 1
   }
   if (!iBeforeStrEnd && jBeforeStrEnd) {
-    return -1;
+    return -1
   }
-  return 0;
+  return 0
 }
 
 // php/strings/strnatcasecmp
@@ -287,9 +514,9 @@ function strnatcasecmp(...args) {
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
   if (args.length !== 2) {
-    return null;
+    return null
   }
-  const [a, b] = args;
-  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase());
+  const [a, b] = args
+  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }{% endcodeblock %}
 </div>

@@ -72,10 +72,30 @@ alias:
   //   returns 3: 5
   //   example 4: abs('_argos')
   //   returns 4: 0
-  return Math.abs(Number(mixedNumber)) || 0;
+  return Math.abs(Number(mixedNumber)) || 0
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/math/abs
+function abs(mixedNumber: string | number): number {
+  //  discuss at: https://locutus.io/php/abs/
+  // original by: Waldo Malqui Silva (https://waldo.malqui.info)
+  // improved by: Karol Kowalski
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //   example 1: abs(4.2)
+  //   returns 1: 4.2
+  //   example 2: abs(-4.2)
+  //   returns 2: 4.2
+  //   example 3: abs(-5)
+  //   returns 3: 5
+  //   example 4: abs('_argos')
+  //   returns 4: 0
+
+  return Math.abs(Number(mixedNumber)) || 0
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/abs
 function abs(mixedNumber) {
   //  discuss at: https://locutus.io/php/abs/
@@ -91,6 +111,6 @@ function abs(mixedNumber) {
   //   returns 3: 5
   //   example 4: abs('_argos')
   //   returns 4: 0
-  return Math.abs(Number(mixedNumber)) || 0;
+  return Math.abs(Number(mixedNumber)) || 0
 }{% endcodeblock %}
 </div>

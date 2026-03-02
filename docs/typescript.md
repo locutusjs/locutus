@@ -2093,3 +2093,92 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - The existing TypeScript compiler API is enough for robust structural rewrites; no `ts-morph` dependency is needed for this class of transformation.
   - Limiting wrapper collapse to JS standalone gives immediate snippet simplification while avoiding TS predicate/signature drift risk.
+
+## Iteration 77
+
+- Plans
+  - Reduce “raised eyebrow” standalone output shape after wrapper collapse.
+  - Improve website snippet UX with explicit copy affordance and clearer standalone tab language markers.
+  - Re-verify behavior on a live function page (`array_flip`) before pushing.
+- Progress
+  - Refined standalone wrapper alias emission in `src/_util/util.ts`:
+    - split wrapper aliases from import/type aliases in `StandaloneModuleSelection`.
+    - keep import/type aliases at module header.
+    - append wrapper aliases after rendered module declarations for better readability (`function isObjectLike` appears before `const isPhpArrayObject = isObjectLike`).
+  - Added regression assertion in `test/util/test-util.ts`:
+    - verifies wrapper alias appears after target function declaration in standalone JS output.
+  - Updated code tab UI in `website/themes/icarus/layout/function.ejs`:
+    - replaced `1F` standalone tab badges with `TS` and `JS`.
+    - added `Copy` button with clipboard API + fallback (`execCommand`) and transient `Copied`/`Failed` states.
+    - scoped tab/copy behavior per `.code-tabs` container.
+  - Regenerated website snapshots:
+    - `yarn injectweb`.
+- Validation
+  - `yarn test:util`
+  - `yarn lint:ts`
+  - `yarn injectweb`
+  - MCP browser checks on `http://sunchaser:4000/php/array/array_flip/`:
+    - tabs show `TS`, `JS`, `Standalone TS`, `Standalone JS` with matching `TS/JS` badges.
+    - `Copy` button appears and transitions to `Copied` after click.
+- Key learnings
+  - Keeping wrapper aliasing but moving aliases below declarations improves snippet readability without changing standalone size.
+  - A small UX affordance (copy button + stable labels) materially improves copy-paste confidence for website users.
+
+## Iteration 78
+
+- Plans
+  - Remove semicolon-heavy feel from generated JS snippets by formatting with Biome during generation.
+  - Move copy affordance into the top-right of the code pane and keep tab chrome compact.
+  - Clarify tab taxonomy as `Module` vs `Standalone` while keeping TS/JS color semantics consistent.
+- Progress
+  - Added Biome-backed JS snippet formatting in `src/_util/util.ts`:
+    - new helpers `_resolveBiomeBinPath()` and `_formatWebsiteJavascript(...)`.
+    - formats generated module JS and standalone JS snippets once per final snippet (not per dependency chunk), with safe fallback on formatter failure.
+  - Updated standalone and module snippet generation paths:
+    - `injectweb` now applies Biome formatting to JS tab code.
+    - standalone JS output is formatted after assembly.
+  - Updated code tab UI in `website/themes/icarus/layout/function.ejs`:
+    - renamed tabs to `Module TS`, `Module JS`, `Standalone TS`, `Standalone JS`.
+    - aligned TS tabs to one TS color family and JS tabs to one JS color family.
+    - tightened tab typography/padding and enforced non-wrapping tab labels.
+    - moved copy control into the code pane top-right as an icon button with `Copied`/`Failed` states.
+  - Updated/kept tests in `test/util/test-util.ts`:
+    - assertions now match semicolon-free alias output while retaining alias-order checks.
+- Validation
+  - `yarn test:util`
+  - `yarn lint:ts`
+  - `yarn injectweb`
+  - MCP browser checks on `http://sunchaser:4000/php/array/array_flip/`:
+    - labels show `Module` vs `Standalone`.
+    - copy icon button appears inside code pane and transitions to copied state on click.
+    - module and standalone JS snippets render without trailing semicolons.
+- Key learnings
+  - Formatting once per final snippet keeps generation robust without exploding complexity or dependency fan-out.
+  - `Module` vs `Standalone` naming reads clearer for copy-paste users while preserving TS/JS mental model.
+
+## Iteration 79
+
+- Plans
+  - Fix copy-to-clipboard output flattening (missing line breaks) reported from standalone snippet copy.
+  - Remove alias-style helper naming artifacts in standalone output where safe (`const a = b` wrappers).
+- Progress
+  - Updated copy extraction in `website/themes/icarus/layout/function.ejs`:
+    - prefer `pre.innerText` for clipboard text to preserve visual line breaks.
+    - normalize non-breaking spaces and trim trailing whitespace.
+  - Added safe wrapper-target renaming in `src/_util/util.ts`:
+    - when a collapsed forwarding wrapper can be proven isolated, rename target declaration to wrapper name and drop alias line.
+    - added conservative identifier-reference checks to avoid unsafe renames.
+    - standalone example now emits `function isPhpArrayObject(...)` directly instead of `function isObjectLike(...)` + `const isPhpArrayObject = isObjectLike`.
+  - Updated util test expectation in `test/util/test-util.ts` to assert direct renamed helper output for `array_flip`.
+  - Regenerated website snapshots (`yarn injectweb`).
+- Validation
+  - `yarn test:util`
+  - `yarn lint:ts`
+  - `yarn injectweb`
+  - MCP browser check on `http://sunchaser:4000/php/array/array_flip/` confirms:
+    - standalone helper name is now `isPhpArrayObject`.
+    - alias line is gone.
+    - copy button still works and now uses preserved line-break extraction.
+- Key learnings
+  - Users copy what they see; preserving rendered line structure is as important as code correctness.
+  - Wrapper collapse quality improves materially when we can safely rename declarations instead of introducing alias lines.

@@ -47,10 +47,22 @@ alias:
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: Math.ceil(sin(8723321.4) * 10000000)
   //       returns 1: -9834330
-  return Math.sin(arg);
+  return Math.sin(arg)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/math/sin
+function sin(arg: number): number {
+  //      discuss at: https://locutus.io/php/sin/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: Math.ceil(sin(8723321.4) * 10000000)
+  //       returns 1: -9834330
+
+  return Math.sin(arg)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/sin
 function sin(arg) {
   //      discuss at: https://locutus.io/php/sin/
@@ -58,6 +70,6 @@ function sin(arg) {
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: Math.ceil(sin(8723321.4) * 10000000)
   //       returns 1: -9834330
-  return Math.sin(arg);
+  return Math.sin(arg)
 }{% endcodeblock %}
 </div>

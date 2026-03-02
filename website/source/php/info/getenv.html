@@ -4,7 +4,8 @@ examples:
   - getenv('LC_ALL')
 returns:
   - 'false'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -30,7 +31,7 @@ alias:
   - /functions/getenv/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}type ProcessLike = { env?: { [key: string]: string | undefined } }
+{% codeblock lang:typescript %}import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
 
 export function getenv(varname: string): string | false {
   //      discuss at: https://locutus.io/php/getenv/
@@ -39,56 +40,192 @@ export function getenv(varname: string): string | false {
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
 
-  const globalContext = globalThis as typeof globalThis & { process?: ProcessLike }
-  const processLike = globalContext.process
-  const hasProcessLike = typeof globalContext.process !== 'undefined'
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
     return false
   }
-  if (!processLike?.env || !processLike.env[varname]) {
+
+  if (typeof processValue !== 'object' || processValue === null) {
     return false
   }
 
-  return processLike.env[varname] ?? false
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function getenv(varname) {
+{% codeblock lang:javascript %}import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+export function getenv(varname) {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
-  const globalContext = globalThis;
-  const processLike = globalContext.process;
-  const hasProcessLike = typeof globalContext.process !== 'undefined';
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
-    return false;
+    return false
   }
-  if (!processLike?.env || !processLike.env[varname]) {
-    return false;
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
   }
-  return processLike.env[varname] ?? false;
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/info/getenv
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+// php/_helpers/_phpRuntimeState
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/info/getenv
+function getenv(varname: string): string | false {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
+    return false
+  }
+
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+  return undefined
+}
+
+// php/info/getenv
 function getenv(varname) {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
-  const globalContext = globalThis;
-  const processLike = globalContext.process;
-  const hasProcessLike = typeof globalContext.process !== 'undefined';
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
-    return false;
+    return false
   }
-  if (!processLike?.env || !processLike.env[varname]) {
-    return false;
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
   }
-  return processLike.env[varname] ?? false;
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }{% endcodeblock %}
 </div>

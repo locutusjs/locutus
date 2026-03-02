@@ -33,9 +33,11 @@ alias:
   - /functions/hypot/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-export function hypot(x: PhpMixed, y: PhpMixed): number | null {
+type HypotInput = PhpRuntimeValue
+
+export function hypot(x: HypotInput, y: HypotInput): number | null {
   //  discuss at: https://locutus.io/php/hypot/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Robert Eisele (https://www.xarg.org/)
@@ -64,15 +66,57 @@ export function hypot(x: PhpMixed, y: PhpMixed): number | null {
   //   returns 1: 5
   //   example 2: hypot([], 'a')
   //   returns 2: null
-  const left = Math.abs(Number(x));
-  const right = Math.abs(Number(y));
-  let t = Math.min(left, right);
-  const max = Math.max(left, right);
-  t = t / max;
-  return max * Math.sqrt(1 + t * t) || null;
+  const left = Math.abs(Number(x))
+  const right = Math.abs(Number(y))
+  let t = Math.min(left, right)
+  const max = Math.max(left, right)
+  t = t / max
+  return max * Math.sqrt(1 + t * t) || null
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/math/hypot
+type HypotInput = PhpRuntimeValue
+
+function hypot(x: HypotInput, y: HypotInput): number | null {
+  //  discuss at: https://locutus.io/php/hypot/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: Robert Eisele (https://www.xarg.org/)
+  //   example 1: hypot(3, 4)
+  //   returns 1: 5
+  //   example 2: hypot([], 'a')
+  //   returns 2: null
+
+  const left = Math.abs(Number(x))
+  const right = Math.abs(Number(y))
+
+  let t = Math.min(left, right)
+  const max = Math.max(left, right)
+  t = t / max
+
+  return max * Math.sqrt(1 + t * t) || null
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/hypot
 function hypot(x, y) {
   //  discuss at: https://locutus.io/php/hypot/
@@ -82,11 +126,11 @@ function hypot(x, y) {
   //   returns 1: 5
   //   example 2: hypot([], 'a')
   //   returns 2: null
-  const left = Math.abs(Number(x));
-  const right = Math.abs(Number(y));
-  let t = Math.min(left, right);
-  const max = Math.max(left, right);
-  t = t / max;
-  return max * Math.sqrt(1 + t * t) || null;
+  const left = Math.abs(Number(x))
+  const right = Math.abs(Number(y))
+  let t = Math.min(left, right)
+  const max = Math.max(left, right)
+  t = t / max
+  return max * Math.sqrt(1 + t * t) || null
 }{% endcodeblock %}
 </div>

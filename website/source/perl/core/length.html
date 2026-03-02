@@ -62,12 +62,31 @@ alias:
   //       example 3: length('hello world')
   //       returns 3: 11
   if (str === undefined || str === null) {
-    return undefined;
+    return undefined
   }
-  return String(str).length;
+  return String(str).length
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// perl/core/length
+function length(str: string | null | undefined): number | undefined {
+  //      discuss at: https://locutus.io/perl/length/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: length('hello')
+  //       returns 1: 5
+  //       example 2: length('')
+  //       returns 2: 0
+  //       example 3: length('hello world')
+  //       returns 3: 11
+
+  if (str === undefined || str === null) {
+    return undefined
+  }
+  return String(str).length
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// perl/core/length
 function length(str) {
   //      discuss at: https://locutus.io/perl/length/
@@ -80,8 +99,8 @@ function length(str) {
   //       example 3: length('hello world')
   //       returns 3: 11
   if (str === undefined || str === null) {
-    return undefined;
+    return undefined
   }
-  return String(str).length;
+  return String(str).length
 }{% endcodeblock %}
 </div>

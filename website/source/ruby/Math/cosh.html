@@ -53,10 +53,24 @@ alias:
   //       returns 1: 1
   //       example 2: cosh(1)
   //       returns 2: 1.5430806348152437
-  return Math.cosh(x);
+  return Math.cosh(x)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// ruby/Math/cosh
+function cosh(x: number): number {
+  //      discuss at: https://locutus.io/ruby/Math/cosh/
+  // parity verified: Ruby 3.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: cosh(0)
+  //       returns 1: 1
+  //       example 2: cosh(1)
+  //       returns 2: 1.5430806348152437
+
+  return Math.cosh(x)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// ruby/Math/cosh
 function cosh(x) {
   //      discuss at: https://locutus.io/ruby/Math/cosh/
@@ -66,6 +80,6 @@ function cosh(x) {
   //       returns 1: 1
   //       example 2: cosh(1)
   //       returns 2: 1.5430806348152437
-  return Math.cosh(x);
+  return Math.cosh(x)
 }{% endcodeblock %}
 </div>

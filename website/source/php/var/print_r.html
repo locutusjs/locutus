@@ -38,10 +38,12 @@ alias:
   - /functions/print_r/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-export function print_r(array: PhpMixed, returnVal?: boolean): string | true {
+type PrintValue = PhpRuntimeValue
+
+export function print_r(array: PrintValue, returnVal?: boolean): string | true {
   //      discuss at: https://locutus.io/php/print_r/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)
@@ -63,7 +65,7 @@ export function print_r(array: PhpMixed, returnVal?: boolean): string | true {
     }
     return str
   }
-  const _formatArray = function (obj: PhpMixed, curDepth: number, padVal: number, padChar: string): string {
+  const _formatArray = function (obj: PrintValue, curDepth: number, padVal: number, padChar: string): string {
     if (curDepth > 0) {
       curDepth++
     }
@@ -114,8 +116,8 @@ export function print_r(array: PhpMixed, returnVal?: boolean): string | true {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts';
-import { echo } from '../strings/echo.ts';
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { echo } from '../strings/echo.ts'
 export function print_r(array, returnVal) {
   //      discuss at: https://locutus.io/php/print_r/
   // parity verified: PHP 8.3
@@ -126,80 +128,227 @@ export function print_r(array, returnVal) {
   //        input by: Brett Zamir (https://brett-zamir.me)
   //       example 1: print_r(1, true)
   //       returns 1: '1'
-  let output = '';
-  const padChar = ' ';
-  const padVal = 4;
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
   const _repeatChar = function (len, padChar) {
-    let str = '';
+    let str = ''
     for (let i = 0; i < len; i++) {
-      str += padChar;
+      str += padChar
     }
-    return str;
-  };
+    return str
+  }
   const _formatArray = function (obj, curDepth, padVal, padChar) {
     if (curDepth > 0) {
-      curDepth++;
+      curDepth++
     }
-    const basePad = _repeatChar(padVal * curDepth, padChar);
-    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar);
-    let str = '';
+    const basePad = _repeatChar(padVal * curDepth, padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
     if (typeof obj === 'object' && obj !== null && obj.constructor) {
-      const objectValue = toPhpArrayObject(obj);
-      str += 'Array\n' + basePad + '(\n';
+      const objectValue = toPhpArrayObject(obj)
+      str += 'Array\n' + basePad + '(\n'
       for (const key in objectValue) {
-        const value = objectValue[key];
+        const value = objectValue[key]
         if (Array.isArray(value)) {
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] => ';
-          str += _formatArray(value, curDepth + 1, padVal, padChar);
-        }
-        else {
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] => ';
-          str += value;
-          str += '\n';
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += _formatArray(value, curDepth + 1, padVal, padChar)
+        } else {
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += value
+          str += '\n'
         }
       }
-      str += basePad + ')\n';
-    }
-    else if (obj === null || obj === undefined) {
-      str = '';
-    }
-    else {
+      str += basePad + ')\n'
+    } else if (obj === null || obj === undefined) {
+      str = ''
+    } else {
       // for our "resource" class
-      str = String(obj);
+      str = String(obj)
     }
-    return str;
-  };
-  output = _formatArray(array, 0, padVal, padChar);
-  if (returnVal !== true) {
-    echo(output);
-    return true;
+    return str
   }
-  return output;
+  output = _formatArray(array, 0, padVal, padChar)
+  if (returnVal !== true) {
+    echo(output)
+    return true
+  }
+  return output
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
-function isObjectLike(value) {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
   //  returns 1: true
-  return typeof value === 'object' && value !== null;
+  return typeof value === 'object' && value !== null
 }
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/strings/echo
+type EchoValue = PhpRuntimeValue
+
+function echo(...args: EchoValue[]): void {
+  //      discuss at: https://locutus.io/php/echo/
+  // parity verified: PHP 8.3
+  //     original by: Philip Peterson
+  //     improved by: echo is bad
+  //     improved by: Nate
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //      revised by: Der Simon (https://innerdom.sourceforge.net/)
+  //     bugfixed by: Eugene Bulkin (https://doubleaw.com/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: EdorFaus
+  //          note 1: In 1.3.2 and earlier, this function wrote to the body of the document when it
+  //          note 1: was called in webbrowsers, in addition to supporting XUL.
+  //          note 1: This involved >100 lines of boilerplate to do this in a safe way.
+  //          note 1: Since I can't imageine a complelling use-case for this, and XUL is deprecated
+  //          note 1: I have removed this behavior in favor of just calling `console.log`
+  //          note 2: You'll see functions depends on `echo` instead of `console.log` as we'll want
+  //          note 2: to have 1 contact point to interface with the outside world, so that it's easy
+  //          note 2: to support other ways of printing output.
+  //      revised by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: JB
+  //       example 1: echo('Hello world')
+  //       returns 1: undefined
+
+  return console.log(args.join(' '))
+}
+
+// php/var/print_r
+type PrintValue = PhpRuntimeValue
+
+function print_r(array: PrintValue, returnVal?: boolean): string | true {
+  //      discuss at: https://locutus.io/php/print_r/
+  // parity verified: PHP 8.3
+  //     original by: Michael White (https://getsprink.com)
+  //     improved by: Ben Bryan
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: print_r(1, true)
+  //       returns 1: '1'
+
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
+
+  const _repeatChar = function (len: number, padChar: string): string {
+    let str = ''
+    for (let i = 0; i < len; i++) {
+      str += padChar
+    }
+    return str
+  }
+  const _formatArray = function (obj: PrintValue, curDepth: number, padVal: number, padChar: string): string {
+    if (curDepth > 0) {
+      curDepth++
+    }
+
+    const basePad = _repeatChar(padVal * curDepth, padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
+
+    if (typeof obj === 'object' && obj !== null && obj.constructor) {
+      const objectValue = toPhpArrayObject(obj)
+      str += 'Array\n' + basePad + '(\n'
+      for (const key in objectValue) {
+        const value = objectValue[key]
+        if (Array.isArray(value)) {
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += _formatArray(value, curDepth + 1, padVal, padChar)
+        } else {
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += value
+          str += '\n'
+        }
+      }
+      str += basePad + ')\n'
+    } else if (obj === null || obj === undefined) {
+      str = ''
+    } else {
+      // for our "resource" class
+      str = String(obj)
+    }
+
+    return str
+  }
+
+  output = _formatArray(array, 0, padVal, padChar)
+
+  if (returnVal !== true) {
+    echo(output)
+    return true
+  }
+  return output
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
 function isPhpArrayObject(value) {
-  return isObjectLike(value);
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
 }
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
-    return value;
+    return value
   }
-  return {};
+  return {}
 }
 
 // php/strings/echo
@@ -229,7 +378,7 @@ function echo(...args) {
   //        input by: JB
   //       example 1: echo('Hello world')
   //       returns 1: undefined
-  return console.log(args.join(' '));
+  return console.log(args.join(' '))
 }
 
 // php/var/print_r
@@ -243,60 +392,57 @@ function print_r(array, returnVal) {
   //        input by: Brett Zamir (https://brett-zamir.me)
   //       example 1: print_r(1, true)
   //       returns 1: '1'
-  let output = '';
-  const padChar = ' ';
-  const padVal = 4;
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
   const _repeatChar = function (len, padChar) {
-    let str = '';
+    let str = ''
     for (let i = 0; i < len; i++) {
-      str += padChar;
+      str += padChar
     }
-    return str;
-  };
+    return str
+  }
   const _formatArray = function (obj, curDepth, padVal, padChar) {
     if (curDepth > 0) {
-      curDepth++;
+      curDepth++
     }
-    const basePad = _repeatChar(padVal * curDepth, padChar);
-    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar);
-    let str = '';
+    const basePad = _repeatChar(padVal * curDepth, padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
     if (typeof obj === 'object' && obj !== null && obj.constructor) {
-      const objectValue = toPhpArrayObject(obj);
-      str += 'Array\n' + basePad + '(\n';
+      const objectValue = toPhpArrayObject(obj)
+      str += 'Array\n' + basePad + '(\n'
       for (const key in objectValue) {
-        const value = objectValue[key];
+        const value = objectValue[key]
         if (Array.isArray(value)) {
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] => ';
-          str += _formatArray(value, curDepth + 1, padVal, padChar);
-        }
-        else {
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] => ';
-          str += value;
-          str += '\n';
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += _formatArray(value, curDepth + 1, padVal, padChar)
+        } else {
+          str += thickPad
+          str += '['
+          str += key
+          str += '] => '
+          str += value
+          str += '\n'
         }
       }
-      str += basePad + ')\n';
-    }
-    else if (obj === null || obj === undefined) {
-      str = '';
-    }
-    else {
+      str += basePad + ')\n'
+    } else if (obj === null || obj === undefined) {
+      str = ''
+    } else {
       // for our "resource" class
-      str = String(obj);
+      str = String(obj)
     }
-    return str;
-  };
-  output = _formatArray(array, 0, padVal, padChar);
-  if (returnVal !== true) {
-    echo(output);
-    return true;
+    return str
   }
-  return output;
+  output = _formatArray(array, 0, padVal, padChar)
+  if (returnVal !== true) {
+    echo(output)
+    return true
+  }
+  return output
 }{% endcodeblock %}
 </div>

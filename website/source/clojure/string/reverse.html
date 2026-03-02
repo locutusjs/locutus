@@ -53,10 +53,24 @@ alias:
   //       returns 1: 'olleh'
   //       example 2: reverse('abc')
   //       returns 2: 'cba'
-  return String(s).split('').reverse().join('');
+  return String(s).split('').reverse().join('')
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// clojure/string/reverse
+function reverse(s: string): string {
+  //      discuss at: https://locutus.io/clojure/reverse/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: reverse('hello')
+  //       returns 1: 'olleh'
+  //       example 2: reverse('abc')
+  //       returns 2: 'cba'
+
+  return String(s).split('').reverse().join('')
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// clojure/string/reverse
 function reverse(s) {
   //      discuss at: https://locutus.io/clojure/reverse/
@@ -66,6 +80,6 @@ function reverse(s) {
   //       returns 1: 'olleh'
   //       example 2: reverse('abc')
   //       returns 2: 'cba'
-  return String(s).split('').reverse().join('');
+  return String(s).split('').reverse().join('')
 }{% endcodeblock %}
 </div>

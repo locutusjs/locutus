@@ -8,8 +8,8 @@ examples:
 returns:
   - '{0: ''1'', 1: ''3'', 2: ''4'', 3: ''11''}'
 dependencies:
+  - php/_helpers/_callbackResolver
   - php/_helpers/_phpRuntimeState
-  - php/_helpers/_phpTypes
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -55,13 +55,21 @@ alias:
   - /functions/usort/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
-import { isObjectLike, type PhpAssoc, type PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+import {
+  type NumericLike,
+  type PhpAssoc,
+  type PhpComparatorDescriptor,
+  type PhpRuntimeValue,
+} from '../_helpers/_phpTypes.ts'
+
+type SortContextValue = PhpRuntimeValue
 
 export function usort<T>(
-  this: PhpAssoc<PhpMixed>,
+  this: PhpAssoc<SortContextValue>,
   inputArr: Record<string, T>,
-  sorter: ((a: T, b: T) => number) | string | string[],
+  sorter: PhpComparatorDescriptor<T>,
 ): boolean | Record<string, T> {
   //  discuss at: https://locutus.io/php/usort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -86,31 +94,15 @@ export function usort<T>(
   let sortByReference = false
   let populateArr: Record<string, T> = {}
 
-  let sortFn: ((a: T, b: T) => number) | undefined
-  if (typeof sorter === 'string') {
-    const method = this[sorter]
-    if (typeof method !== 'function') {
-      return false
-    }
-    sortFn = method as (a: T, b: T) => number
-  } else if (Array.isArray(sorter)) {
-    const [objectKey, methodKey] = sorter
-    if (objectKey === undefined || methodKey === undefined) {
-      return false
-    }
-    const objectValue = this[objectKey]
-    if (!isObjectLike(objectValue) && typeof objectValue !== 'function') {
-      return false
-    }
-    const method = Reflect.get(objectValue, methodKey)
-    if (typeof method !== 'function') {
-      return false
-    }
-    sortFn = method as (a: T, b: T) => number
-  } else {
-    sortFn = sorter
-  }
-  if (typeof sortFn !== 'function') {
+  const normalizedSorter: PhpComparatorDescriptor<T> = typeof sorter === 'string' ? [this, sorter] : sorter
+  let comparator: ((a: T, b: T) => number) | undefined
+  try {
+    const resolved = resolvePhpCallable<[T, T], NumericLike>(normalizedSorter, {
+      invalidMessage: 'usort(): Invalid callback',
+      missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
+    })
+    comparator = (a: T, b: T): number => Number(resolved.fn.apply(resolved.scope, [a, b]))
+  } catch (_error) {
     return false
   }
 
@@ -132,7 +124,10 @@ export function usort<T>(
     }
   }
   try {
-    valArr.sort(sortFn)
+    if (typeof comparator !== 'function') {
+      return false
+    }
+    valArr.sort(comparator)
   } catch (_e) {
     return false
   }
@@ -150,8 +145,8 @@ export function usort<T>(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts';
-import { isObjectLike } from '../_helpers/_phpTypes.ts';
+{% codeblock lang:javascript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
 export function usort(inputArr, sorter) {
   //  discuss at: https://locutus.io/php/usort/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -169,117 +164,556 @@ export function usort(inputArr, sorter) {
   //   example 1: usort($stuff, function (a, b) { return (a - b) })
   //   example 1: var $result = $stuff
   //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'}
-  const valArr = [];
-  let k = '';
-  let i = 0;
-  let sortByReference = false;
-  let populateArr = {};
-  let sortFn;
-  if (typeof sorter === 'string') {
-    const method = this[sorter];
-    if (typeof method !== 'function') {
-      return false;
-    }
-    sortFn = method;
+  const valArr = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr = {}
+  const normalizedSorter = typeof sorter === 'string' ? [this, sorter] : sorter
+  let comparator
+  try {
+    const resolved = resolvePhpCallable(normalizedSorter, {
+      invalidMessage: 'usort(): Invalid callback',
+      missingScopeMessage: (scopeName) => 'Object not found: ' + scopeName,
+    })
+    comparator = (a, b) => Number(resolved.fn.apply(resolved.scope, [a, b]))
+  } catch (_error) {
+    return false
   }
-  else if (Array.isArray(sorter)) {
-    const [objectKey, methodKey] = sorter;
-    if (objectKey === undefined || methodKey === undefined) {
-      return false;
-    }
-    const objectValue = this[objectKey];
-    if (!isObjectLike(objectValue) && typeof objectValue !== 'function') {
-      return false;
-    }
-    const method = Reflect.get(objectValue, methodKey);
-    if (typeof method !== 'function') {
-      return false;
-    }
-    sortFn = method;
-  }
-  else {
-    sortFn = sorter;
-  }
-  if (typeof sortFn !== 'function') {
-    return false;
-  }
-  const runtime = ensurePhpRuntimeState();
-  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on';
-  sortByReference = iniVal === 'on';
-  populateArr = sortByReference ? inputArr : populateArr;
+  const runtime = ensurePhpRuntimeState()
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      const value = inputArr[k];
+      const value = inputArr[k]
       if (typeof value !== 'undefined') {
-        valArr.push(value);
+        valArr.push(value)
       }
       if (sortByReference) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
   try {
-    valArr.sort(sortFn);
-  }
-  catch (_e) {
-    return false;
+    if (typeof comparator !== 'function') {
+      return false
+    }
+    valArr.sort(comparator)
+  } catch (_e) {
+    return false
   }
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    const value = valArr[i];
+    const value = valArr[i]
     if (typeof value === 'undefined') {
-      continue;
+      continue
     }
-    populateArr[i] = value;
+    populateArr[i] = value
   }
-  return sortByReference || populateArr;
+  return sortByReference || populateArr
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
-function ensurePhpRuntimeState() {
-  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
-  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
-  //  returns 1: true
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus || {};
-  globalContext.$locutus.php = globalContext.$locutus.php || {};
-  const php = globalContext.$locutus.php;
-  php.ini = php.ini || {};
-  php.locales = php.locales || {};
-  php.pointers = php.pointers || [];
-  return {
-    ini: php.ini,
-    locales: php.locales,
-    pointers: php.pointers,
-    locale_default: php.locale_default,
-  };
-}
-function setPhpLocaleDefault(localeDefault) {
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus || {};
-  globalContext.$locutus.php = globalContext.$locutus.php || {};
-  globalContext.$locutus.php.locale_default = localeDefault;
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type NumericLike = number | bigint | string
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
 }
 
-// php/_helpers/_phpTypes
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+type PhpCallableArgs = PhpInput[]
+
+type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
+  ...args: TArgs
+) => TResult
+
+type PhpCallableScope = PhpInput
+
+type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = readonly [
+  PhpCallableScope,
+  string | PhpCallable<TArgs, TResult>,
+]
+
+type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> =
+  | string
+  | PhpCallable<TArgs, TResult>
+  | PhpCallableTuple<TArgs, TResult>
+
+type PhpComparatorDescriptor<T> = PhpCallableDescriptor<[T, T], NumericLike>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
+): value is PhpCallable<TArgs, TResult> {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/_helpers/_callbackResolver
+type CallbackValue = PhpInput
+
+interface CallbackResolverOptions {
+  invalidMessage: string
+  missingScopeMessage?: (scopeName: string) => string
+}
+
+interface ResolvedCallback<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue> {
+  fn: PhpCallable<TArgs, TResult>
+  scope: CallbackValue
+}
+
+function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue>(
+  callback: PhpCallableDescriptor<TArgs, TResult>,
+  options: CallbackResolverOptions,
+): ResolvedCallback<TArgs, TResult> {
+  // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
+  //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
+  //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
+  //  returns 1: 'function'
+  if (isPhpCallable<TArgs, TResult>(callback)) {
+    return { fn: callback, scope: null }
+  }
+
+  if (typeof callback === 'string') {
+    const candidate = getPhpGlobalEntry(callback)
+    if (isPhpCallable<TArgs, TResult>(candidate)) {
+      return { fn: candidate, scope: null }
+    }
+    throw new Error(options.invalidMessage)
+  }
+
+  if (Array.isArray(callback) && callback.length >= 2) {
+    const scopeDescriptor = callback[0]
+    const callableDescriptor = callback[1]
+
+    let scope: CallbackValue
+    if (typeof scopeDescriptor === 'string') {
+      scope = getPhpGlobalEntry(scopeDescriptor)
+      if (typeof scope === 'undefined' && options.missingScopeMessage) {
+        throw new Error(options.missingScopeMessage(scopeDescriptor))
+      }
+    } else {
+      scope = scopeDescriptor
+    }
+
+    if (isPhpCallable<TArgs, TResult>(callableDescriptor)) {
+      return { fn: callableDescriptor, scope }
+    }
+
+    if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
+      const candidate = getPhpObjectEntry(scope, callableDescriptor)
+      if (isPhpCallable<TArgs, TResult>(candidate)) {
+        return { fn: candidate, scope }
+      }
+    }
+  }
+
+  throw new Error(options.invalidMessage)
+}
+
+// php/array/usort
+type SortContextValue = PhpRuntimeValue
+
+function usort<T>(
+  this: PhpAssoc<SortContextValue>,
+  inputArr: Record<string, T>,
+  sorter: PhpComparatorDescriptor<T>,
+): boolean | Record<string, T> {
+  //  discuss at: https://locutus.io/php/usort/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: This function deviates from PHP in returning a copy of the array instead
+  //      note 1: of acting by reference and returning true; this was necessary because
+  //      note 1: IE does not allow deleting and re-adding of properties without caching
+  //      note 1: of property position; you can set the ini of "locutus.sortByReference" to true to
+  //      note 1: get the PHP behavior, but use this only if you are in an environment
+  //      note 1: such as Firefox extensions where for-in iteration order is fixed and true
+  //      note 1: property deletion is supported. Note that we intend to implement the PHP
+  //      note 1: behavior by default if IE ever does allow it; only gives shallow copy since
+  //      note 1: is by reference in PHP anyways
+  //   example 1: var $stuff = {d: '3', a: '1', b: '11', c: '4'}
+  //   example 1: usort($stuff, function (a, b) { return (a - b) })
+  //   example 1: var $result = $stuff
+  //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'}
+
+  const valArr: T[] = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr: Record<string, T> = {}
+
+  const normalizedSorter: PhpComparatorDescriptor<T> = typeof sorter === 'string' ? [this, sorter] : sorter
+  let comparator: ((a: T, b: T) => number) | undefined
+  try {
+    const resolved = resolvePhpCallable<[T, T], NumericLike>(normalizedSorter, {
+      invalidMessage: 'usort(): Invalid callback',
+      missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
+    })
+    comparator = (a: T, b: T): number => Number(resolved.fn.apply(resolved.scope, [a, b]))
+  } catch (_error) {
+    return false
+  }
+
+  const runtime = ensurePhpRuntimeState()
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
+
+  for (k in inputArr) {
+    // Get key and value arrays
+    if (inputArr.hasOwnProperty(k)) {
+      const value = inputArr[k]
+      if (typeof value !== 'undefined') {
+        valArr.push(value)
+      }
+      if (sortByReference) {
+        delete inputArr[k]
+      }
+    }
+  }
+  try {
+    if (typeof comparator !== 'function') {
+      return false
+    }
+    valArr.sort(comparator)
+  } catch (_e) {
+    return false
+  }
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
+    const value = valArr[i]
+    if (typeof value === 'undefined') {
+      continue
+    }
+    populateArr[i] = value
+  }
+
+  return sortByReference || populateArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpList(value) {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
   //  returns 1: true
-  return typeof value === 'object' && value !== null;
+  return typeof value === 'object' && value !== null
 }
-function isPhpArrayObject(value) {
-  return isObjectLike(value);
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !isPhpList(value)
 }
-function toPhpArrayObject(value) {
-  if (isPhpArrayObject(value)) {
-    return value;
+function isPhpCallable(value) {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState
+const isIniBag = (value) => isPhpAssocObject(value)
+const isLocaleBag = (value) => isPhpAssocObject(value)
+const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
   }
-  return {};
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+  return undefined
+}
+
+// php/_helpers/_callbackResolver
+function resolvePhpCallable(callback, options) {
+  // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
+  //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
+  //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
+  //  returns 1: 'function'
+  if (isPhpCallable(callback)) {
+    return { fn: callback, scope: null }
+  }
+  if (typeof callback === 'string') {
+    const candidate = getPhpGlobalEntry(callback)
+    if (isPhpCallable(candidate)) {
+      return { fn: candidate, scope: null }
+    }
+    throw new Error(options.invalidMessage)
+  }
+  if (Array.isArray(callback) && callback.length >= 2) {
+    const scopeDescriptor = callback[0]
+    const callableDescriptor = callback[1]
+    let scope
+    if (typeof scopeDescriptor === 'string') {
+      scope = getPhpGlobalEntry(scopeDescriptor)
+      if (typeof scope === 'undefined' && options.missingScopeMessage) {
+        throw new Error(options.missingScopeMessage(scopeDescriptor))
+      }
+    } else {
+      scope = scopeDescriptor
+    }
+    if (isPhpCallable(callableDescriptor)) {
+      return { fn: callableDescriptor, scope }
+    }
+    if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
+      const candidate = getPhpObjectEntry(scope, callableDescriptor)
+      if (isPhpCallable(candidate)) {
+        return { fn: candidate, scope }
+      }
+    }
+  }
+  throw new Error(options.invalidMessage)
 }
 
 // php/array/usort
@@ -300,70 +734,54 @@ function usort(inputArr, sorter) {
   //   example 1: usort($stuff, function (a, b) { return (a - b) })
   //   example 1: var $result = $stuff
   //   returns 1: {0: '1', 1: '3', 2: '4', 3: '11'}
-  const valArr = [];
-  let k = '';
-  let i = 0;
-  let sortByReference = false;
-  let populateArr = {};
-  let sortFn;
-  if (typeof sorter === 'string') {
-    const method = this[sorter];
-    if (typeof method !== 'function') {
-      return false;
-    }
-    sortFn = method;
+  const valArr = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr = {}
+  const normalizedSorter = typeof sorter === 'string' ? [this, sorter] : sorter
+  let comparator
+  try {
+    const resolved = resolvePhpCallable(normalizedSorter, {
+      invalidMessage: 'usort(): Invalid callback',
+      missingScopeMessage: (scopeName) => 'Object not found: ' + scopeName,
+    })
+    comparator = (a, b) => Number(resolved.fn.apply(resolved.scope, [a, b]))
+  } catch (_error) {
+    return false
   }
-  else if (Array.isArray(sorter)) {
-    const [objectKey, methodKey] = sorter;
-    if (objectKey === undefined || methodKey === undefined) {
-      return false;
-    }
-    const objectValue = this[objectKey];
-    if (!isObjectLike(objectValue) && typeof objectValue !== 'function') {
-      return false;
-    }
-    const method = Reflect.get(objectValue, methodKey);
-    if (typeof method !== 'function') {
-      return false;
-    }
-    sortFn = method;
-  }
-  else {
-    sortFn = sorter;
-  }
-  if (typeof sortFn !== 'function') {
-    return false;
-  }
-  const runtime = ensurePhpRuntimeState();
-  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on';
-  sortByReference = iniVal === 'on';
-  populateArr = sortByReference ? inputArr : populateArr;
+  const runtime = ensurePhpRuntimeState()
+  const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      const value = inputArr[k];
+      const value = inputArr[k]
       if (typeof value !== 'undefined') {
-        valArr.push(value);
+        valArr.push(value)
       }
       if (sortByReference) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
   try {
-    valArr.sort(sortFn);
-  }
-  catch (_e) {
-    return false;
+    if (typeof comparator !== 'function') {
+      return false
+    }
+    valArr.sort(comparator)
+  } catch (_e) {
+    return false
   }
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
-    const value = valArr[i];
+    const value = valArr[i]
     if (typeof value === 'undefined') {
-      continue;
+      continue
     }
-    populateArr[i] = value;
+    populateArr[i] = value
   }
-  return sortByReference || populateArr;
+  return sortByReference || populateArr
 }{% endcodeblock %}
 </div>

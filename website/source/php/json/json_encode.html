@@ -4,7 +4,8 @@ examples:
   - json_encode('Kevin')
 returns:
   - '''"Kevin"'''
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Public Domain (https://www.json.org/json2.js)
@@ -38,22 +39,19 @@ alias:
   - /functions/json_encode/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 type JsonPrimitive = string | number | boolean | null
 type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
-type JsonGlobal = typeof globalThis & {
-  $locutus?: { php?: PhpAssoc<PhpValue> }
-  JSON?: typeof JSON
-}
+type JsonEncodeInput = PhpRuntimeValue
 
 const hasOwn = Object.prototype.hasOwnProperty
-const isJsonObject = (value: PhpValue): value is JsonObject =>
+const isJsonObject = (value: PhpRuntimeValue): value is JsonObject =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-export function json_encode(mixedVal: PhpValue): string | null {
+export function json_encode(mixedVal: JsonEncodeInput): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
   //      original by: Public Domain (https://www.json.org/json2.js)
@@ -72,21 +70,19 @@ export function json_encode(mixedVal: PhpValue): string | null {
     See https://www.JSON.org/js.html
   */
 
-  const $global = (typeof window !== 'undefined' ? window : global) as JsonGlobal
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-
-  const json = $global.JSON
+  const json = typeof JSON === 'object' && JSON !== null ? JSON : null
   let retVal
   try {
-    if (typeof json === 'object' && typeof json.stringify === 'function') {
-      // Errors will not be caught here if our own equivalent to resource
-      retVal = json.stringify(mixedVal)
-      if (retVal === undefined) {
-        throw new SyntaxError('json_encode')
+    if (typeof json === 'object' && json !== null) {
+      const stringify = json.stringify
+      if (typeof stringify === 'function') {
+        // Errors will not be caught here if our own equivalent to resource
+        retVal = stringify.call(json, mixedVal)
+        if (retVal === undefined) {
+          throw new SyntaxError('json_encode')
+        }
+        return retVal
       }
-      return retVal
     }
 
     const value = mixedVal
@@ -129,7 +125,10 @@ export function json_encode(mixedVal: PhpValue): string | null {
         : '"' + string + '"'
     }
 
-    const _str = function (key: string | number, holder: PhpAssoc<PhpValue> | PhpValue[]): string | undefined {
+    const _str = function (
+      key: string | number,
+      holder: PhpAssoc<PhpRuntimeValue> | PhpRuntimeValue[],
+    ): string | undefined {
       let gap = ''
       const indent = '    '
       // The loop counter.
@@ -145,9 +144,8 @@ export function json_encode(mixedVal: PhpValue): string | null {
 
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (typeof value === 'object' && value !== null) {
-        const toJSON = Reflect.get(value, 'toJSON')
-        if (typeof toJSON === 'function') {
-          value = toJSON.call(value, key)
+        if ('toJSON' in value && typeof value.toJSON === 'function') {
+          value = value.toJSON.call(value, key)
         }
       }
 
@@ -244,15 +242,16 @@ export function json_encode(mixedVal: PhpValue): string | null {
       throw new Error('Unexpected error type in json_encode()')
     }
     // usable by json_last_error()
-    $locutus.php.last_error_json = 4
+    setPhpRuntimeEntry('last_error_json', 4)
     return null
   }
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const hasOwn = Object.prototype.hasOwnProperty;
-const isJsonObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value);
+{% codeblock lang:javascript %}import { setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+const hasOwn = Object.prototype.hasOwnProperty
+const isJsonObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
 export function json_encode(mixedVal) {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
@@ -270,22 +269,21 @@ export function json_encode(mixedVal) {
    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
    See https://www.JSON.org/js.html
   */
-  const $global = (typeof window !== 'undefined' ? window : global);
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  const json = $global.JSON;
-  let retVal;
+  const json = typeof JSON === 'object' && JSON !== null ? JSON : null
+  let retVal
   try {
-    if (typeof json === 'object' && typeof json.stringify === 'function') {
-      // Errors will not be caught here if our own equivalent to resource
-      retVal = json.stringify(mixedVal);
-      if (retVal === undefined) {
-        throw new SyntaxError('json_encode');
+    if (typeof json === 'object' && json !== null) {
+      const stringify = json.stringify
+      if (typeof stringify === 'function') {
+        // Errors will not be caught here if our own equivalent to resource
+        retVal = stringify.call(json, mixedVal)
+        if (retVal === undefined) {
+          throw new SyntaxError('json_encode')
+        }
+        return retVal
       }
-      return retVal;
     }
-    const value = mixedVal;
+    const value = mixedVal
     const quote = function (string) {
       const escapeChars = [
         '\u0000-\u001f',
@@ -300,8 +298,8 @@ export function json_encode(mixedVal) {
         '\u2060-\u206f',
         '\ufeff',
         '\ufff0-\uffff',
-      ].join('');
-      const escapable = new RegExp('[\\"' + escapeChars + ']', 'g');
+      ].join('')
+      const escapable = new RegExp('[\\"' + escapeChars + ']', 'g')
       const meta = {
         // table of character substitutions
         '\b': '\\b',
@@ -311,65 +309,64 @@ export function json_encode(mixedVal) {
         '\r': '\\r',
         '"': '\\"',
         '\\': '\\\\',
-      };
-      escapable.lastIndex = 0;
+      }
+      escapable.lastIndex = 0
       return escapable.test(string)
         ? '"' +
-          string.replace(escapable, function (a) {
-            const c = meta[a];
-            return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-          }) +
-          '"'
-        : '"' + string + '"';
-    };
+            string.replace(escapable, function (a) {
+              const c = meta[a]
+              return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
+            }) +
+            '"'
+        : '"' + string + '"'
+    }
     const _str = function (key, holder) {
-      let gap = '';
-      const indent = '    ';
+      let gap = ''
+      const indent = '    '
       // The loop counter.
-      let i = 0;
+      let i = 0
       // The member key.
-      let k = '';
+      let k = ''
       // The member value.
-      let v = '';
-      let length = 0;
-      const mind = gap;
-      let partial = [];
-      let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)];
+      let v = ''
+      let length = 0
+      const mind = gap
+      let partial = []
+      let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (typeof value === 'object' && value !== null) {
-        const toJSON = Reflect.get(value, 'toJSON');
-        if (typeof toJSON === 'function') {
-          value = toJSON.call(value, key);
+        if ('toJSON' in value && typeof value.toJSON === 'function') {
+          value = value.toJSON.call(value, key)
         }
       }
       // What happens next depends on the value's type.
       switch (typeof value) {
         case 'string':
-          return quote(value);
+          return quote(value)
         case 'number':
           // JSON numbers must be finite. Encode non-finite numbers as null.
-          return isFinite(value) ? String(value) : 'null';
+          return isFinite(value) ? String(value) : 'null'
         case 'boolean':
           // If the value is a boolean or null, convert it to a string.
-          return String(value);
+          return String(value)
         case 'object':
           // If the type is 'object', we might be dealing with an object or an array or
           // null.
           // Due to a specification blunder in ECMAScript, typeof null is 'object',
           // so watch out for that case.
           if (!value) {
-            return 'null';
+            return 'null'
           }
           // Make an array to hold the partial results of stringifying this object value.
-          gap += indent;
-          partial = [];
+          gap += indent
+          partial = []
           // Is the value an array?
           if (Array.isArray(value)) {
             // The value is an array. Stringify every element. Use null as a placeholder
             // for non-JSON values.
-            length = value.length;
+            length = value.length
             for (i = 0; i < length; i += 1) {
-              partial[i] = _str(i, value) || 'null';
+              partial[i] = _str(i, value) || 'null'
             }
             // Join all of the elements together, separated with commas, and wrap them in
             // brackets.
@@ -378,19 +375,19 @@ export function json_encode(mixedVal) {
                 ? '[]'
                 : gap
                   ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
-                  : '[' + partial.join(',') + ']';
+                  : '[' + partial.join(',') + ']'
             // gap = mind // not used
-            return v;
+            return v
           }
           // Iterate through all of the keys in the object.
           if (!isJsonObject(value)) {
-            throw new SyntaxError('json_encode');
+            throw new SyntaxError('json_encode')
           }
           for (k in value) {
             if (hasOwn.call(value, k)) {
-              v = _str(k, value) || '';
+              v = _str(k, value) || ''
               if (v) {
-                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                partial.push(quote(k) + (gap ? ': ' : ':') + v)
               }
             }
           }
@@ -401,41 +398,359 @@ export function json_encode(mixedVal) {
               ? '{}'
               : gap
                 ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
-                : '{' + partial.join(',') + '}';
+                : '{' + partial.join(',') + '}'
           // gap = mind // Not used
-          return v;
+          return v
         case 'undefined':
         case 'function':
         default:
-          throw new SyntaxError('json_encode');
+          throw new SyntaxError('json_encode')
       }
-    };
+    }
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
     const encoded = _str('', {
       '': value,
-    });
+    })
     if (typeof encoded !== 'string') {
-      throw new SyntaxError('json_encode');
+      throw new SyntaxError('json_encode')
     }
-    return encoded;
-  }
-  catch (err) {
+    return encoded
+  } catch (err) {
     // @todo: ensure error handling above throws a SyntaxError in all cases where it could
     // (i.e., when the JSON global is not available and there is an error)
     if (!(err instanceof SyntaxError)) {
-      throw new Error('Unexpected error type in json_encode()');
+      throw new Error('Unexpected error type in json_encode()')
     }
     // usable by json_last_error()
-    $locutus.php.last_error_json = 4;
-    return null;
+    setPhpRuntimeEntry('last_error_json', 4)
+    return null
   }
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/json/json_encode
-const hasOwn = Object.prototype.hasOwnProperty;
-const isJsonObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value);
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function setPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+  value: PhpRuntimeKnownEntryMap[TKey],
+): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+// php/json/json_encode
+type JsonPrimitive = string | number | boolean | null
+
+type JsonObject = { [key: string]: JsonValue }
+
+type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
+
+type JsonEncodeInput = PhpRuntimeValue
+
+const hasOwn = Object.prototype.hasOwnProperty
+
+const isJsonObject = (value: PhpRuntimeValue): value is JsonObject =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+function json_encode(mixedVal: JsonEncodeInput): string | null {
+  //       discuss at: https://phpjs.org/functions/json_encode/
+  //  parity verified: PHP 8.3
+  //      original by: Public Domain (https://www.json.org/json2.js)
+  // reimplemented by: Kevin van Zonneveld (https://kevin.vanzonneveld.net)
+  //      improved by: Michael White
+  //         input by: felix
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //        example 1: json_encode('Kevin')
+  //        returns 1: '"Kevin"'
+
+  /*
+    https://www.JSON.org/json2.js
+    2008-11-19
+    Public Domain.
+    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+    See https://www.JSON.org/js.html
+  */
+
+  const json = typeof JSON === 'object' && JSON !== null ? JSON : null
+  let retVal
+  try {
+    if (typeof json === 'object' && json !== null) {
+      const stringify = json.stringify
+      if (typeof stringify === 'function') {
+        // Errors will not be caught here if our own equivalent to resource
+        retVal = stringify.call(json, mixedVal)
+        if (retVal === undefined) {
+          throw new SyntaxError('json_encode')
+        }
+        return retVal
+      }
+    }
+
+    const value = mixedVal
+
+    const quote = function (string: string): string {
+      const escapeChars = [
+        '\u0000-\u001f',
+        '\u007f-\u009f',
+        '\u00ad',
+        '\u0600-\u0604',
+        '\u070f',
+        '\u17b4',
+        '\u17b5',
+        '\u200c-\u200f',
+        '\u2028-\u202f',
+        '\u2060-\u206f',
+        '\ufeff',
+        '\ufff0-\uffff',
+      ].join('')
+      const escapable = new RegExp('[\\"' + escapeChars + ']', 'g')
+      const meta: Record<string, string> = {
+        // table of character substitutions
+        '\b': '\\b',
+        '\t': '\\t',
+        '\n': '\\n',
+        '\f': '\\f',
+        '\r': '\\r',
+        '"': '\\"',
+        '\\': '\\\\',
+      }
+
+      escapable.lastIndex = 0
+      return escapable.test(string)
+        ? '"' +
+            string.replace(escapable, function (a) {
+              const c = meta[a]
+              return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
+            }) +
+            '"'
+        : '"' + string + '"'
+    }
+
+    const _str = function (
+      key: string | number,
+      holder: PhpAssoc<PhpRuntimeValue> | PhpRuntimeValue[],
+    ): string | undefined {
+      let gap = ''
+      const indent = '    '
+      // The loop counter.
+      let i = 0
+      // The member key.
+      let k = ''
+      // The member value.
+      let v = ''
+      let length = 0
+      const mind = gap
+      let partial: string[] = []
+      let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
+
+      // If the value has a toJSON method, call it to obtain a replacement value.
+      if (typeof value === 'object' && value !== null) {
+        if ('toJSON' in value && typeof value.toJSON === 'function') {
+          value = value.toJSON.call(value, key)
+        }
+      }
+
+      // What happens next depends on the value's type.
+      switch (typeof value) {
+        case 'string':
+          return quote(value)
+
+        case 'number':
+          // JSON numbers must be finite. Encode non-finite numbers as null.
+          return isFinite(value) ? String(value) : 'null'
+
+        case 'boolean':
+          // If the value is a boolean or null, convert it to a string.
+          return String(value)
+
+        case 'object':
+          // If the type is 'object', we might be dealing with an object or an array or
+          // null.
+          // Due to a specification blunder in ECMAScript, typeof null is 'object',
+          // so watch out for that case.
+          if (!value) {
+            return 'null'
+          }
+
+          // Make an array to hold the partial results of stringifying this object value.
+          gap += indent
+          partial = []
+
+          // Is the value an array?
+          if (Array.isArray(value)) {
+            // The value is an array. Stringify every element. Use null as a placeholder
+            // for non-JSON values.
+            length = value.length
+            for (i = 0; i < length; i += 1) {
+              partial[i] = _str(i, value) || 'null'
+            }
+
+            // Join all of the elements together, separated with commas, and wrap them in
+            // brackets.
+            v =
+              partial.length === 0
+                ? '[]'
+                : gap
+                  ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+                  : '[' + partial.join(',') + ']'
+            // gap = mind // not used
+            return v
+          }
+
+          // Iterate through all of the keys in the object.
+          if (!isJsonObject(value)) {
+            throw new SyntaxError('json_encode')
+          }
+          for (k in value) {
+            if (hasOwn.call(value, k)) {
+              v = _str(k, value) || ''
+              if (v) {
+                partial.push(quote(k) + (gap ? ': ' : ':') + v)
+              }
+            }
+          }
+
+          // Join all of the member texts together, separated with commas,
+          // and wrap them in braces.
+          v =
+            partial.length === 0
+              ? '{}'
+              : gap
+                ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+                : '{' + partial.join(',') + '}'
+          // gap = mind // Not used
+          return v
+        case 'undefined':
+        case 'function':
+        default:
+          throw new SyntaxError('json_encode')
+      }
+    }
+
+    // Make a fake root object containing our value under the key of ''.
+    // Return the result of stringifying the value.
+    const encoded = _str('', {
+      '': value,
+    })
+    if (typeof encoded !== 'string') {
+      throw new SyntaxError('json_encode')
+    }
+    return encoded
+  } catch (err) {
+    // @todo: ensure error handling above throws a SyntaxError in all cases where it could
+    // (i.e., when the JSON global is not available and there is an error)
+    if (!(err instanceof SyntaxError)) {
+      throw new Error('Unexpected error type in json_encode()')
+    }
+    // usable by json_last_error()
+    setPhpRuntimeEntry('last_error_json', 4)
+    return null
+  }
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function setPhpRuntimeEntry(key, value) {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+// php/json/json_encode
+const hasOwn = Object.prototype.hasOwnProperty
+const isJsonObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
 function json_encode(mixedVal) {
   //       discuss at: https://phpjs.org/functions/json_encode/
   //  parity verified: PHP 8.3
@@ -453,22 +768,21 @@ function json_encode(mixedVal) {
    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
    See https://www.JSON.org/js.html
   */
-  const $global = (typeof window !== 'undefined' ? window : global);
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  const json = $global.JSON;
-  let retVal;
+  const json = typeof JSON === 'object' && JSON !== null ? JSON : null
+  let retVal
   try {
-    if (typeof json === 'object' && typeof json.stringify === 'function') {
-      // Errors will not be caught here if our own equivalent to resource
-      retVal = json.stringify(mixedVal);
-      if (retVal === undefined) {
-        throw new SyntaxError('json_encode');
+    if (typeof json === 'object' && json !== null) {
+      const stringify = json.stringify
+      if (typeof stringify === 'function') {
+        // Errors will not be caught here if our own equivalent to resource
+        retVal = stringify.call(json, mixedVal)
+        if (retVal === undefined) {
+          throw new SyntaxError('json_encode')
+        }
+        return retVal
       }
-      return retVal;
     }
-    const value = mixedVal;
+    const value = mixedVal
     const quote = function (string) {
       const escapeChars = [
         '\u0000-\u001f',
@@ -483,8 +797,8 @@ function json_encode(mixedVal) {
         '\u2060-\u206f',
         '\ufeff',
         '\ufff0-\uffff',
-      ].join('');
-      const escapable = new RegExp('[\\"' + escapeChars + ']', 'g');
+      ].join('')
+      const escapable = new RegExp('[\\"' + escapeChars + ']', 'g')
       const meta = {
         // table of character substitutions
         '\b': '\\b',
@@ -494,65 +808,64 @@ function json_encode(mixedVal) {
         '\r': '\\r',
         '"': '\\"',
         '\\': '\\\\',
-      };
-      escapable.lastIndex = 0;
+      }
+      escapable.lastIndex = 0
       return escapable.test(string)
         ? '"' +
-          string.replace(escapable, function (a) {
-            const c = meta[a];
-            return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-          }) +
-          '"'
-        : '"' + string + '"';
-    };
+            string.replace(escapable, function (a) {
+              const c = meta[a]
+              return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4)
+            }) +
+            '"'
+        : '"' + string + '"'
+    }
     const _str = function (key, holder) {
-      let gap = '';
-      const indent = '    ';
+      let gap = ''
+      const indent = '    '
       // The loop counter.
-      let i = 0;
+      let i = 0
       // The member key.
-      let k = '';
+      let k = ''
       // The member value.
-      let v = '';
-      let length = 0;
-      const mind = gap;
-      let partial = [];
-      let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)];
+      let v = ''
+      let length = 0
+      const mind = gap
+      let partial = []
+      let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (typeof value === 'object' && value !== null) {
-        const toJSON = Reflect.get(value, 'toJSON');
-        if (typeof toJSON === 'function') {
-          value = toJSON.call(value, key);
+        if ('toJSON' in value && typeof value.toJSON === 'function') {
+          value = value.toJSON.call(value, key)
         }
       }
       // What happens next depends on the value's type.
       switch (typeof value) {
         case 'string':
-          return quote(value);
+          return quote(value)
         case 'number':
           // JSON numbers must be finite. Encode non-finite numbers as null.
-          return isFinite(value) ? String(value) : 'null';
+          return isFinite(value) ? String(value) : 'null'
         case 'boolean':
           // If the value is a boolean or null, convert it to a string.
-          return String(value);
+          return String(value)
         case 'object':
           // If the type is 'object', we might be dealing with an object or an array or
           // null.
           // Due to a specification blunder in ECMAScript, typeof null is 'object',
           // so watch out for that case.
           if (!value) {
-            return 'null';
+            return 'null'
           }
           // Make an array to hold the partial results of stringifying this object value.
-          gap += indent;
-          partial = [];
+          gap += indent
+          partial = []
           // Is the value an array?
           if (Array.isArray(value)) {
             // The value is an array. Stringify every element. Use null as a placeholder
             // for non-JSON values.
-            length = value.length;
+            length = value.length
             for (i = 0; i < length; i += 1) {
-              partial[i] = _str(i, value) || 'null';
+              partial[i] = _str(i, value) || 'null'
             }
             // Join all of the elements together, separated with commas, and wrap them in
             // brackets.
@@ -561,19 +874,19 @@ function json_encode(mixedVal) {
                 ? '[]'
                 : gap
                   ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
-                  : '[' + partial.join(',') + ']';
+                  : '[' + partial.join(',') + ']'
             // gap = mind // not used
-            return v;
+            return v
           }
           // Iterate through all of the keys in the object.
           if (!isJsonObject(value)) {
-            throw new SyntaxError('json_encode');
+            throw new SyntaxError('json_encode')
           }
           for (k in value) {
             if (hasOwn.call(value, k)) {
-              v = _str(k, value) || '';
+              v = _str(k, value) || ''
               if (v) {
-                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                partial.push(quote(k) + (gap ? ': ' : ':') + v)
               }
             }
           }
@@ -584,34 +897,33 @@ function json_encode(mixedVal) {
               ? '{}'
               : gap
                 ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
-                : '{' + partial.join(',') + '}';
+                : '{' + partial.join(',') + '}'
           // gap = mind // Not used
-          return v;
+          return v
         case 'undefined':
         case 'function':
         default:
-          throw new SyntaxError('json_encode');
+          throw new SyntaxError('json_encode')
       }
-    };
+    }
     // Make a fake root object containing our value under the key of ''.
     // Return the result of stringifying the value.
     const encoded = _str('', {
       '': value,
-    });
+    })
     if (typeof encoded !== 'string') {
-      throw new SyntaxError('json_encode');
+      throw new SyntaxError('json_encode')
     }
-    return encoded;
-  }
-  catch (err) {
+    return encoded
+  } catch (err) {
     // @todo: ensure error handling above throws a SyntaxError in all cases where it could
     // (i.e., when the JSON global is not available and there is an error)
     if (!(err instanceof SyntaxError)) {
-      throw new Error('Unexpected error type in json_encode()');
+      throw new Error('Unexpected error type in json_encode()')
     }
     // usable by json_last_error()
-    $locutus.php.last_error_json = 4;
-    return null;
+    setPhpRuntimeEntry('last_error_json', 4)
+    return null
   }
 }{% endcodeblock %}
 </div>

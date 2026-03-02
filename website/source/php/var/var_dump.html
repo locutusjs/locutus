@@ -10,6 +10,8 @@ returns:
   - '''int(1)'''
   - '''array(1) {\n    [self] =>\n    Circular Reference Detected\n}\n'''
 dependencies:
+  - php/_helpers/_phpRuntimeState
+  - php/_helpers/_phpTypes
   - php/strings/echo
 authors:
   original by:
@@ -43,43 +45,40 @@ alias:
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}const visitedObjects = new Map<object, true>() // Initialize a map to track visited objects
 
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import { type PhpAssoc, type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 import { echo } from '../strings/echo.ts'
 
-type PhpValue = {} | null | undefined
-
-type DumpableObject = {
-  constructor?: { toString: () => string }
-  [key: string]: PhpValue
-}
-
+type DumpValue = PhpRuntimeValue
 type DomLikeNode = {
   nodeName: string
   nodeType?: number
   namespaceURI?: string
-  nodeValue?: PhpValue
+  nodeValue?: DumpValue
 }
 
-const hasNodeName = (value: PhpValue): value is DomLikeNode => {
+const hasNodeName = (value: DumpValue): value is DomLikeNode => {
   return typeof value === 'object' && value !== null && 'nodeName' in value
 }
 
 const isLocutusResource = (
-  value: PhpValue,
+  value: DumpValue,
   getFuncName: (fn: { toString: () => string }) => string,
 ): value is { var_dump: () => string } => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
     return false
   }
-  const maybeResource = value as { constructor?: { toString: () => string }; var_dump?: PhpValue }
+  const maybeResource = value
+  const varDump = getPhpObjectEntry(maybeResource, 'var_dump')
+  const constructorValue = getPhpObjectEntry(maybeResource, 'constructor')
   return (
-    typeof maybeResource.var_dump === 'function' &&
-    !!maybeResource.constructor &&
-    getFuncName(maybeResource.constructor) === 'LOCUTUS_Resource'
+    typeof varDump === 'function' &&
+    typeof constructorValue === 'function' &&
+    getFuncName(constructorValue) === 'LOCUTUS_Resource'
   )
 }
 
-export function var_dump(...args: PhpValue[]): string {
+export function var_dump(...args: DumpValue[]): string {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Zahlii
@@ -110,7 +109,7 @@ export function var_dump(...args: PhpValue[]): string {
     }
     return str
   }
-  const _getInnerVal = function (val: PhpValue, thickPad: string): string {
+  const _getInnerVal = function (val: DumpValue, thickPad: string): string {
     let ret = ''
     if (val === null) {
       ret = 'NULL'
@@ -189,7 +188,7 @@ export function var_dump(...args: PhpValue[]): string {
   }
 
   const _formatArray = function (
-    obj: PhpValue,
+    obj: DumpValue,
     curDepth: number,
     padVal: number,
     padChar: string,
@@ -217,7 +216,7 @@ export function var_dump(...args: PhpValue[]): string {
         return obj.var_dump()
       }
       let lgth = 0
-      const objRecord = obj as DumpableObject & PhpAssoc<PhpValue>
+      const objRecord = toPhpArrayObject<DumpValue>(obj)
       for (const someProp in objRecord) {
         if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
           lgth++
@@ -273,20 +272,26 @@ export function var_dump(...args: PhpValue[]): string {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const visitedObjects = new Map(); // Initialize a map to track visited objects
-import { echo } from '../strings/echo.ts';
+{% codeblock lang:javascript %}const visitedObjects = new Map() // Initialize a map to track visited objects
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import { echo } from '../strings/echo.ts'
 const hasNodeName = (value) => {
-  return typeof value === 'object' && value !== null && 'nodeName' in value;
-};
+  return typeof value === 'object' && value !== null && 'nodeName' in value
+}
 const isLocutusResource = (value, getFuncName) => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
-    return false;
+    return false
   }
-  const maybeResource = value;
-  return (typeof maybeResource.var_dump === 'function' &&
-    !!maybeResource.constructor &&
-    getFuncName(maybeResource.constructor) === 'LOCUTUS_Resource');
-};
+  const maybeResource = value
+  const varDump = getPhpObjectEntry(maybeResource, 'var_dump')
+  const constructorValue = getPhpObjectEntry(maybeResource, 'constructor')
+  return (
+    typeof varDump === 'function' &&
+    typeof constructorValue === 'function' &&
+    getFuncName(constructorValue) === 'LOCUTUS_Resource'
+  )
+}
 export function var_dump(...args) {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -299,184 +304,536 @@ export function var_dump(...args) {
   //   example 2: simpleCircular.self = simpleCircular
   //   example 2: var_dump(simpleCircular)
   //   returns 2: 'array(1) {\n    [self] =>\n    Circular Reference Detected\n}\n'
-  let output = '';
-  const padChar = ' ';
-  const padVal = 4;
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
   const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn.toString());
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn.toString())
     if (!name) {
-      return '(Anonymous)';
+      return '(Anonymous)'
     }
-    return name[1] ?? '(Anonymous)';
-  };
+    return name[1] ?? '(Anonymous)'
+  }
   const _repeatChar = function (len, padCharacter) {
-    let str = '';
+    let str = ''
     for (let i = 0; i < len; i++) {
-      str += padCharacter;
+      str += padCharacter
     }
-    return str;
-  };
+    return str
+  }
   const _getInnerVal = function (val, thickPad) {
-    let ret = '';
+    let ret = ''
     if (val === null) {
-      ret = 'NULL';
-    }
-    else if (typeof val === 'boolean') {
-      ret = 'bool(' + val + ')';
-    }
-    else if (typeof val === 'string') {
-      ret = 'string(' + val.length + ') "' + val + '"';
-    }
-    else if (typeof val === 'number') {
+      ret = 'NULL'
+    } else if (typeof val === 'boolean') {
+      ret = 'bool(' + val + ')'
+    } else if (typeof val === 'string') {
+      ret = 'string(' + val.length + ') "' + val + '"'
+    } else if (typeof val === 'number') {
       if (Number.isInteger(val)) {
-        ret = 'int(' + val + ')';
+        ret = 'int(' + val + ')'
+      } else {
+        ret = 'float(' + val + ')'
       }
-      else {
-        ret = 'float(' + val + ')';
-      }
-    }
-    else if (typeof val === 'undefined') {
+    } else if (typeof val === 'undefined') {
       // The remaining are not PHP behavior because these values
       // only exist in this exact form in JavaScript
-      ret = 'undefined';
-    }
-    else if (typeof val === 'function') {
-      const funcLines = val.toString().split('\n');
-      ret = '';
+      ret = 'undefined'
+    } else if (typeof val === 'function') {
+      const funcLines = val.toString().split('\n')
+      ret = ''
       for (let i = 0, fll = funcLines.length; i < fll; i++) {
-        const line = funcLines[i] ?? '';
-        ret += (i !== 0 ? '\n' + thickPad : '') + line;
+        const line = funcLines[i] ?? ''
+        ret += (i !== 0 ? '\n' + thickPad : '') + line
       }
-    }
-    else if (val instanceof Date) {
-      ret = 'Date(' + val + ')';
-    }
-    else if (val instanceof RegExp) {
-      ret = 'RegExp(' + val + ')';
-    }
-    else if (hasNodeName(val)) {
+    } else if (val instanceof Date) {
+      ret = 'Date(' + val + ')'
+    } else if (val instanceof RegExp) {
+      ret = 'RegExp(' + val + ')'
+    } else if (hasNodeName(val)) {
       // Different than PHP's DOMElement
       switch (val.nodeType) {
         case 1:
           if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'https://www.w3.org/1999/xhtml') {
             // Undefined namespace could be plain XML, but namespaceURI not widely supported
-            ret = 'HTMLElement("' + val.nodeName + '")';
+            ret = 'HTMLElement("' + val.nodeName + '")'
+          } else {
+            ret = 'XML Element("' + val.nodeName + '")'
           }
-          else {
-            ret = 'XML Element("' + val.nodeName + '")';
-          }
-          break;
+          break
         case 2:
-          ret = 'ATTRIBUTE_NODE(' + val.nodeName + ')';
-          break;
+          ret = 'ATTRIBUTE_NODE(' + val.nodeName + ')'
+          break
         case 3:
-          ret = 'TEXT_NODE(' + val.nodeValue + ')';
-          break;
+          ret = 'TEXT_NODE(' + val.nodeValue + ')'
+          break
         case 4:
-          ret = 'CDATA_SECTION_NODE(' + val.nodeValue + ')';
-          break;
+          ret = 'CDATA_SECTION_NODE(' + val.nodeValue + ')'
+          break
         case 5:
-          ret = 'ENTITY_REFERENCE_NODE';
-          break;
+          ret = 'ENTITY_REFERENCE_NODE'
+          break
         case 6:
-          ret = 'ENTITY_NODE';
-          break;
+          ret = 'ENTITY_NODE'
+          break
         case 7:
-          ret = 'PROCESSING_INSTRUCTION_NODE(' + val.nodeName + ':' + val.nodeValue + ')';
-          break;
+          ret = 'PROCESSING_INSTRUCTION_NODE(' + val.nodeName + ':' + val.nodeValue + ')'
+          break
         case 8:
-          ret = 'COMMENT_NODE(' + val.nodeValue + ')';
-          break;
+          ret = 'COMMENT_NODE(' + val.nodeValue + ')'
+          break
         case 9:
-          ret = 'DOCUMENT_NODE';
-          break;
+          ret = 'DOCUMENT_NODE'
+          break
         case 10:
-          ret = 'DOCUMENT_TYPE_NODE';
-          break;
+          ret = 'DOCUMENT_TYPE_NODE'
+          break
         case 11:
-          ret = 'DOCUMENT_FRAGMENT_NODE';
-          break;
+          ret = 'DOCUMENT_FRAGMENT_NODE'
+          break
         case 12:
-          ret = 'NOTATION_NODE';
-          break;
+          ret = 'NOTATION_NODE'
+          break
       }
     }
-    return ret;
-  };
+    return ret
+  }
   const _formatArray = function (obj, curDepth, padVal, padChar, visitedObjectMap) {
     if (curDepth > 0) {
-      curDepth++;
+      curDepth++
     }
-    const basePad = _repeatChar(padVal * (curDepth - 1), padChar);
-    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar);
-    let str = '';
-    let val = '';
+    const basePad = _repeatChar(padVal * (curDepth - 1), padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
+    let val = ''
     if (typeof obj === 'object' && obj !== null) {
       if (visitedObjectMap.has(obj)) {
         // Circular reference detected, return a placeholder or a message
-        return 'Circular Reference Detected\n';
-      }
-      else {
+        return 'Circular Reference Detected\n'
+      } else {
         // Mark this object as visited by adding it to the map
-        visitedObjectMap.set(obj, true);
+        visitedObjectMap.set(obj, true)
       }
       if (isLocutusResource(obj, _getFuncName)) {
-        return obj.var_dump();
+        return obj.var_dump()
       }
-      let lgth = 0;
-      const objRecord = obj;
+      let lgth = 0
+      const objRecord = toPhpArrayObject(obj)
       for (const someProp in objRecord) {
         if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
-          lgth++;
+          lgth++
         }
       }
-      str += 'array(' + lgth + ') {\n';
+      str += 'array(' + lgth + ') {\n'
       for (const key in objRecord) {
         if (!Object.prototype.hasOwnProperty.call(objRecord, key)) {
-          continue;
+          continue
         }
-        const objVal = objRecord[key];
-        if (typeof objVal === 'object' &&
+        const objVal = objRecord[key]
+        if (
+          typeof objVal === 'object' &&
           objVal !== null &&
           !(objVal instanceof Date) &&
           !(objVal instanceof RegExp) &&
-          !hasNodeName(objVal)) {
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] =>\n';
-          str += thickPad;
-          str += _formatArray(objVal, curDepth + 1, padVal, padChar, visitedObjectMap);
-        }
-        else {
-          val = _getInnerVal(objVal, thickPad);
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] =>\n';
-          str += thickPad;
-          str += val;
-          str += '\n';
+          !hasNodeName(objVal)
+        ) {
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += _formatArray(objVal, curDepth + 1, padVal, padChar, visitedObjectMap)
+        } else {
+          val = _getInnerVal(objVal, thickPad)
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += val
+          str += '\n'
         }
       }
-      str += basePad + '}\n';
+      str += basePad + '}\n'
+    } else {
+      str = _getInnerVal(obj, thickPad)
     }
-    else {
-      str = _getInnerVal(obj, thickPad);
-    }
-    return str;
-  };
-  output = _formatArray(args[0], 0, padVal, padChar, visitedObjects);
-  for (let i = 1; i < args.length; i++) {
-    output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects);
+    return str
   }
-  echo(output);
+  output = _formatArray(args[0], 0, padVal, padChar, visitedObjects)
+  for (let i = 1; i < args.length; i++) {
+    output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects)
+  }
+  echo(output)
   // Not how PHP does it, but helps us test:
-  return output;
+  return output
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/strings/echo
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/_helpers/_phpRuntimeState
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/strings/echo
+type EchoValue = PhpRuntimeValue
+
+function echo(...args: EchoValue[]): void {
+  //      discuss at: https://locutus.io/php/echo/
+  // parity verified: PHP 8.3
+  //     original by: Philip Peterson
+  //     improved by: echo is bad
+  //     improved by: Nate
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //      revised by: Der Simon (https://innerdom.sourceforge.net/)
+  //     bugfixed by: Eugene Bulkin (https://doubleaw.com/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: EdorFaus
+  //          note 1: In 1.3.2 and earlier, this function wrote to the body of the document when it
+  //          note 1: was called in webbrowsers, in addition to supporting XUL.
+  //          note 1: This involved >100 lines of boilerplate to do this in a safe way.
+  //          note 1: Since I can't imageine a complelling use-case for this, and XUL is deprecated
+  //          note 1: I have removed this behavior in favor of just calling `console.log`
+  //          note 2: You'll see functions depends on `echo` instead of `console.log` as we'll want
+  //          note 2: to have 1 contact point to interface with the outside world, so that it's easy
+  //          note 2: to support other ways of printing output.
+  //      revised by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: JB
+  //       example 1: echo('Hello world')
+  //       returns 1: undefined
+
+  return console.log(args.join(' '))
+}
+
+// php/var/var_dump
+const visitedObjects = new Map<object, true>()
+
+type DumpValue = PhpRuntimeValue
+
+type DomLikeNode = {
+  nodeName: string
+  nodeType?: number
+  namespaceURI?: string
+  nodeValue?: DumpValue
+}
+
+const hasNodeName = (value: DumpValue): value is DomLikeNode => {
+  return typeof value === 'object' && value !== null && 'nodeName' in value
+}
+
+const isLocutusResource = (
+  value: DumpValue,
+  getFuncName: (fn: { toString: () => string }) => string,
+): value is { var_dump: () => string } => {
+  if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
+    return false
+  }
+  const maybeResource = value
+  const varDump = getPhpObjectEntry(maybeResource, 'var_dump')
+  const constructorValue = getPhpObjectEntry(maybeResource, 'constructor')
+  return (
+    typeof varDump === 'function' &&
+    typeof constructorValue === 'function' &&
+    getFuncName(constructorValue) === 'LOCUTUS_Resource'
+  )
+}
+
+function var_dump(...args: DumpValue[]): string {
+  //  discuss at: https://locutus.io/php/var_dump/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Zahlii
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: For returning a string, use var_export() with the second argument set to true
+  //   example 1: var_dump(1)
+  //   returns 1: 'int(1)'
+  //   example 2: const simpleCircular = {}
+  //   example 2: simpleCircular.self = simpleCircular
+  //   example 2: var_dump(simpleCircular)
+  //   returns 2: 'array(1) {\n    [self] =>\n    Circular Reference Detected\n}\n'
+
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
+  const _getFuncName = function (fn: { toString: () => string }): string {
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn.toString())
+    if (!name) {
+      return '(Anonymous)'
+    }
+    return name[1] ?? '(Anonymous)'
+  }
+
+  const _repeatChar = function (len: number, padCharacter: string): string {
+    let str = ''
+    for (let i = 0; i < len; i++) {
+      str += padCharacter
+    }
+    return str
+  }
+  const _getInnerVal = function (val: DumpValue, thickPad: string): string {
+    let ret = ''
+    if (val === null) {
+      ret = 'NULL'
+    } else if (typeof val === 'boolean') {
+      ret = 'bool(' + val + ')'
+    } else if (typeof val === 'string') {
+      ret = 'string(' + val.length + ') "' + val + '"'
+    } else if (typeof val === 'number') {
+      if (Number.isInteger(val)) {
+        ret = 'int(' + val + ')'
+      } else {
+        ret = 'float(' + val + ')'
+      }
+    } else if (typeof val === 'undefined') {
+      // The remaining are not PHP behavior because these values
+      // only exist in this exact form in JavaScript
+      ret = 'undefined'
+    } else if (typeof val === 'function') {
+      const funcLines = val.toString().split('\n')
+      ret = ''
+      for (let i = 0, fll = funcLines.length; i < fll; i++) {
+        const line = funcLines[i] ?? ''
+        ret += (i !== 0 ? '\n' + thickPad : '') + line
+      }
+    } else if (val instanceof Date) {
+      ret = 'Date(' + val + ')'
+    } else if (val instanceof RegExp) {
+      ret = 'RegExp(' + val + ')'
+    } else if (hasNodeName(val)) {
+      // Different than PHP's DOMElement
+      switch (val.nodeType) {
+        case 1:
+          if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'https://www.w3.org/1999/xhtml') {
+            // Undefined namespace could be plain XML, but namespaceURI not widely supported
+            ret = 'HTMLElement("' + val.nodeName + '")'
+          } else {
+            ret = 'XML Element("' + val.nodeName + '")'
+          }
+          break
+        case 2:
+          ret = 'ATTRIBUTE_NODE(' + val.nodeName + ')'
+          break
+        case 3:
+          ret = 'TEXT_NODE(' + val.nodeValue + ')'
+          break
+        case 4:
+          ret = 'CDATA_SECTION_NODE(' + val.nodeValue + ')'
+          break
+        case 5:
+          ret = 'ENTITY_REFERENCE_NODE'
+          break
+        case 6:
+          ret = 'ENTITY_NODE'
+          break
+        case 7:
+          ret = 'PROCESSING_INSTRUCTION_NODE(' + val.nodeName + ':' + val.nodeValue + ')'
+          break
+        case 8:
+          ret = 'COMMENT_NODE(' + val.nodeValue + ')'
+          break
+        case 9:
+          ret = 'DOCUMENT_NODE'
+          break
+        case 10:
+          ret = 'DOCUMENT_TYPE_NODE'
+          break
+        case 11:
+          ret = 'DOCUMENT_FRAGMENT_NODE'
+          break
+        case 12:
+          ret = 'NOTATION_NODE'
+          break
+      }
+    }
+    return ret
+  }
+
+  const _formatArray = function (
+    obj: DumpValue,
+    curDepth: number,
+    padVal: number,
+    padChar: string,
+    visitedObjectMap: Map<object, true>,
+  ): string {
+    if (curDepth > 0) {
+      curDepth++
+    }
+
+    const basePad = _repeatChar(padVal * (curDepth - 1), padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
+    let val = ''
+
+    if (typeof obj === 'object' && obj !== null) {
+      if (visitedObjectMap.has(obj)) {
+        // Circular reference detected, return a placeholder or a message
+        return 'Circular Reference Detected\n'
+      } else {
+        // Mark this object as visited by adding it to the map
+        visitedObjectMap.set(obj, true)
+      }
+
+      if (isLocutusResource(obj, _getFuncName)) {
+        return obj.var_dump()
+      }
+      let lgth = 0
+      const objRecord = toPhpArrayObject<DumpValue>(obj)
+      for (const someProp in objRecord) {
+        if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
+          lgth++
+        }
+      }
+      str += 'array(' + lgth + ') {\n'
+      for (const key in objRecord) {
+        if (!Object.prototype.hasOwnProperty.call(objRecord, key)) {
+          continue
+        }
+        const objVal = objRecord[key]
+        if (
+          typeof objVal === 'object' &&
+          objVal !== null &&
+          !(objVal instanceof Date) &&
+          !(objVal instanceof RegExp) &&
+          !hasNodeName(objVal)
+        ) {
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += _formatArray(objVal, curDepth + 1, padVal, padChar, visitedObjectMap)
+        } else {
+          val = _getInnerVal(objVal, thickPad)
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += val
+          str += '\n'
+        }
+      }
+      str += basePad + '}\n'
+    } else {
+      str = _getInnerVal(obj, thickPad)
+    }
+    return str
+  }
+
+  output = _formatArray(args[0], 0, padVal, padChar, visitedObjects)
+  for (let i = 1; i < args.length; i++) {
+    output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects)
+  }
+
+  echo(output)
+
+  // Not how PHP does it, but helps us test:
+  return output
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpArrayObject(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+  return {}
+}
+
+// php/_helpers/_phpRuntimeState
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+  return undefined
+}
+
+// php/strings/echo
 function echo(...args) {
   //      discuss at: https://locutus.io/php/echo/
   // parity verified: PHP 8.3
@@ -503,24 +860,27 @@ function echo(...args) {
   //        input by: JB
   //       example 1: echo('Hello world')
   //       returns 1: undefined
-  return console.log(args.join(' '));
+  return console.log(args.join(' '))
 }
 
 // php/var/var_dump
-const visitedObjects = new Map(); // Initialize a map to track visited objects
-
+const visitedObjects = new Map()
 const hasNodeName = (value) => {
-  return typeof value === 'object' && value !== null && 'nodeName' in value;
-};
+  return typeof value === 'object' && value !== null && 'nodeName' in value
+}
 const isLocutusResource = (value, getFuncName) => {
   if (typeof value !== 'object' || value === null || !('var_dump' in value) || !('constructor' in value)) {
-    return false;
+    return false
   }
-  const maybeResource = value;
-  return (typeof maybeResource.var_dump === 'function' &&
-    !!maybeResource.constructor &&
-    getFuncName(maybeResource.constructor) === 'LOCUTUS_Resource');
-};
+  const maybeResource = value
+  const varDump = getPhpObjectEntry(maybeResource, 'var_dump')
+  const constructorValue = getPhpObjectEntry(maybeResource, 'constructor')
+  return (
+    typeof varDump === 'function' &&
+    typeof constructorValue === 'function' &&
+    getFuncName(constructorValue) === 'LOCUTUS_Resource'
+  )
+}
 function var_dump(...args) {
   //  discuss at: https://locutus.io/php/var_dump/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -533,179 +893,168 @@ function var_dump(...args) {
   //   example 2: simpleCircular.self = simpleCircular
   //   example 2: var_dump(simpleCircular)
   //   returns 2: 'array(1) {\n    [self] =>\n    Circular Reference Detected\n}\n'
-  let output = '';
-  const padChar = ' ';
-  const padVal = 4;
+  let output = ''
+  const padChar = ' '
+  const padVal = 4
   const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn.toString());
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn.toString())
     if (!name) {
-      return '(Anonymous)';
+      return '(Anonymous)'
     }
-    return name[1] ?? '(Anonymous)';
-  };
+    return name[1] ?? '(Anonymous)'
+  }
   const _repeatChar = function (len, padCharacter) {
-    let str = '';
+    let str = ''
     for (let i = 0; i < len; i++) {
-      str += padCharacter;
+      str += padCharacter
     }
-    return str;
-  };
+    return str
+  }
   const _getInnerVal = function (val, thickPad) {
-    let ret = '';
+    let ret = ''
     if (val === null) {
-      ret = 'NULL';
-    }
-    else if (typeof val === 'boolean') {
-      ret = 'bool(' + val + ')';
-    }
-    else if (typeof val === 'string') {
-      ret = 'string(' + val.length + ') "' + val + '"';
-    }
-    else if (typeof val === 'number') {
+      ret = 'NULL'
+    } else if (typeof val === 'boolean') {
+      ret = 'bool(' + val + ')'
+    } else if (typeof val === 'string') {
+      ret = 'string(' + val.length + ') "' + val + '"'
+    } else if (typeof val === 'number') {
       if (Number.isInteger(val)) {
-        ret = 'int(' + val + ')';
+        ret = 'int(' + val + ')'
+      } else {
+        ret = 'float(' + val + ')'
       }
-      else {
-        ret = 'float(' + val + ')';
-      }
-    }
-    else if (typeof val === 'undefined') {
+    } else if (typeof val === 'undefined') {
       // The remaining are not PHP behavior because these values
       // only exist in this exact form in JavaScript
-      ret = 'undefined';
-    }
-    else if (typeof val === 'function') {
-      const funcLines = val.toString().split('\n');
-      ret = '';
+      ret = 'undefined'
+    } else if (typeof val === 'function') {
+      const funcLines = val.toString().split('\n')
+      ret = ''
       for (let i = 0, fll = funcLines.length; i < fll; i++) {
-        const line = funcLines[i] ?? '';
-        ret += (i !== 0 ? '\n' + thickPad : '') + line;
+        const line = funcLines[i] ?? ''
+        ret += (i !== 0 ? '\n' + thickPad : '') + line
       }
-    }
-    else if (val instanceof Date) {
-      ret = 'Date(' + val + ')';
-    }
-    else if (val instanceof RegExp) {
-      ret = 'RegExp(' + val + ')';
-    }
-    else if (hasNodeName(val)) {
+    } else if (val instanceof Date) {
+      ret = 'Date(' + val + ')'
+    } else if (val instanceof RegExp) {
+      ret = 'RegExp(' + val + ')'
+    } else if (hasNodeName(val)) {
       // Different than PHP's DOMElement
       switch (val.nodeType) {
         case 1:
           if (typeof val.namespaceURI === 'undefined' || val.namespaceURI === 'https://www.w3.org/1999/xhtml') {
             // Undefined namespace could be plain XML, but namespaceURI not widely supported
-            ret = 'HTMLElement("' + val.nodeName + '")';
+            ret = 'HTMLElement("' + val.nodeName + '")'
+          } else {
+            ret = 'XML Element("' + val.nodeName + '")'
           }
-          else {
-            ret = 'XML Element("' + val.nodeName + '")';
-          }
-          break;
+          break
         case 2:
-          ret = 'ATTRIBUTE_NODE(' + val.nodeName + ')';
-          break;
+          ret = 'ATTRIBUTE_NODE(' + val.nodeName + ')'
+          break
         case 3:
-          ret = 'TEXT_NODE(' + val.nodeValue + ')';
-          break;
+          ret = 'TEXT_NODE(' + val.nodeValue + ')'
+          break
         case 4:
-          ret = 'CDATA_SECTION_NODE(' + val.nodeValue + ')';
-          break;
+          ret = 'CDATA_SECTION_NODE(' + val.nodeValue + ')'
+          break
         case 5:
-          ret = 'ENTITY_REFERENCE_NODE';
-          break;
+          ret = 'ENTITY_REFERENCE_NODE'
+          break
         case 6:
-          ret = 'ENTITY_NODE';
-          break;
+          ret = 'ENTITY_NODE'
+          break
         case 7:
-          ret = 'PROCESSING_INSTRUCTION_NODE(' + val.nodeName + ':' + val.nodeValue + ')';
-          break;
+          ret = 'PROCESSING_INSTRUCTION_NODE(' + val.nodeName + ':' + val.nodeValue + ')'
+          break
         case 8:
-          ret = 'COMMENT_NODE(' + val.nodeValue + ')';
-          break;
+          ret = 'COMMENT_NODE(' + val.nodeValue + ')'
+          break
         case 9:
-          ret = 'DOCUMENT_NODE';
-          break;
+          ret = 'DOCUMENT_NODE'
+          break
         case 10:
-          ret = 'DOCUMENT_TYPE_NODE';
-          break;
+          ret = 'DOCUMENT_TYPE_NODE'
+          break
         case 11:
-          ret = 'DOCUMENT_FRAGMENT_NODE';
-          break;
+          ret = 'DOCUMENT_FRAGMENT_NODE'
+          break
         case 12:
-          ret = 'NOTATION_NODE';
-          break;
+          ret = 'NOTATION_NODE'
+          break
       }
     }
-    return ret;
-  };
+    return ret
+  }
   const _formatArray = function (obj, curDepth, padVal, padChar, visitedObjectMap) {
     if (curDepth > 0) {
-      curDepth++;
+      curDepth++
     }
-    const basePad = _repeatChar(padVal * (curDepth - 1), padChar);
-    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar);
-    let str = '';
-    let val = '';
+    const basePad = _repeatChar(padVal * (curDepth - 1), padChar)
+    const thickPad = _repeatChar(padVal * (curDepth + 1), padChar)
+    let str = ''
+    let val = ''
     if (typeof obj === 'object' && obj !== null) {
       if (visitedObjectMap.has(obj)) {
         // Circular reference detected, return a placeholder or a message
-        return 'Circular Reference Detected\n';
-      }
-      else {
+        return 'Circular Reference Detected\n'
+      } else {
         // Mark this object as visited by adding it to the map
-        visitedObjectMap.set(obj, true);
+        visitedObjectMap.set(obj, true)
       }
       if (isLocutusResource(obj, _getFuncName)) {
-        return obj.var_dump();
+        return obj.var_dump()
       }
-      let lgth = 0;
-      const objRecord = obj;
+      let lgth = 0
+      const objRecord = toPhpArrayObject(obj)
       for (const someProp in objRecord) {
         if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
-          lgth++;
+          lgth++
         }
       }
-      str += 'array(' + lgth + ') {\n';
+      str += 'array(' + lgth + ') {\n'
       for (const key in objRecord) {
         if (!Object.prototype.hasOwnProperty.call(objRecord, key)) {
-          continue;
+          continue
         }
-        const objVal = objRecord[key];
-        if (typeof objVal === 'object' &&
+        const objVal = objRecord[key]
+        if (
+          typeof objVal === 'object' &&
           objVal !== null &&
           !(objVal instanceof Date) &&
           !(objVal instanceof RegExp) &&
-          !hasNodeName(objVal)) {
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] =>\n';
-          str += thickPad;
-          str += _formatArray(objVal, curDepth + 1, padVal, padChar, visitedObjectMap);
-        }
-        else {
-          val = _getInnerVal(objVal, thickPad);
-          str += thickPad;
-          str += '[';
-          str += key;
-          str += '] =>\n';
-          str += thickPad;
-          str += val;
-          str += '\n';
+          !hasNodeName(objVal)
+        ) {
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += _formatArray(objVal, curDepth + 1, padVal, padChar, visitedObjectMap)
+        } else {
+          val = _getInnerVal(objVal, thickPad)
+          str += thickPad
+          str += '['
+          str += key
+          str += '] =>\n'
+          str += thickPad
+          str += val
+          str += '\n'
         }
       }
-      str += basePad + '}\n';
+      str += basePad + '}\n'
+    } else {
+      str = _getInnerVal(obj, thickPad)
     }
-    else {
-      str = _getInnerVal(obj, thickPad);
-    }
-    return str;
-  };
-  output = _formatArray(args[0], 0, padVal, padChar, visitedObjects);
-  for (let i = 1; i < args.length; i++) {
-    output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects);
+    return str
   }
-  echo(output);
+  output = _formatArray(args[0], 0, padVal, padChar, visitedObjects)
+  for (let i = 1; i < args.length; i++) {
+    output += '\n' + _formatArray(args[i], 0, padVal, padChar, visitedObjects)
+  }
+  echo(output)
   // Not how PHP does it, but helps us test:
-  return output;
+  return output
 }{% endcodeblock %}
 </div>

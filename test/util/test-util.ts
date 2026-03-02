@@ -93,12 +93,12 @@ describe('util', function () {
 
       expect(standaloneCode).toContain('// php/var/is_float')
       expect(standaloneCode).toContain('function is_float(')
-      expect(standaloneCode).toContain('const _isFloat = is_float;')
+      expect(standaloneCode).toContain('const _isFloat = is_float')
       expect(standaloneCode).toContain('function is_long(')
       expect(standaloneCode).not.toContain("from '../var/is_float.ts'")
     })
 
-    it('should collapse trivial forwarding wrappers to aliases in standalone JS snippets', async function () {
+    it('should collapse trivial forwarding wrappers into direct helper names in standalone JS snippets', async function () {
       const util = new Util()
       const params = await util._load('php/array/array_flip.ts', {})
       expect(params).not.toBeNull()
@@ -108,8 +108,9 @@ describe('util', function () {
 
       const standaloneCode = await util._buildStandaloneJs(params)
 
-      expect(standaloneCode).toContain('const isPhpArrayObject = isObjectLike;')
-      expect(standaloneCode).not.toContain('function isPhpArrayObject(')
+      expect(standaloneCode).toContain('function isPhpArrayObject(')
+      expect(standaloneCode).not.toContain('function isObjectLike(')
+      expect(standaloneCode).not.toContain('const isPhpArrayObject = isObjectLike')
     })
   })
 })

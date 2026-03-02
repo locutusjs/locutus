@@ -63,11 +63,29 @@ alias:
   //       returns 2: 'a'
   //       example 3: tolower('5')
   //       returns 3: '5'
-  c = (c + '').charAt(0);
-  return c.toLowerCase();
+  c = (c + '').charAt(0)
+  return c.toLowerCase()
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// c/ctype/tolower
+function tolower(c: string): string {
+  //      discuss at: https://locutus.io/c/ctype/tolower/
+  // parity verified: C 23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Converts an uppercase letter to lowercase.
+  //       example 1: tolower('A')
+  //       returns 1: 'a'
+  //       example 2: tolower('a')
+  //       returns 2: 'a'
+  //       example 3: tolower('5')
+  //       returns 3: '5'
+
+  c = (c + '').charAt(0)
+  return c.toLowerCase()
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// c/ctype/tolower
 function tolower(c) {
   //      discuss at: https://locutus.io/c/ctype/tolower/
@@ -80,7 +98,7 @@ function tolower(c) {
   //       returns 2: 'a'
   //       example 3: tolower('5')
   //       returns 3: '5'
-  c = (c + '').charAt(0);
-  return c.toLowerCase();
+  c = (c + '').charAt(0)
+  return c.toLowerCase()
 }{% endcodeblock %}
 </div>

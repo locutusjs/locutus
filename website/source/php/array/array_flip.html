@@ -4,7 +4,8 @@ examples:
   - 'array_flip( {a: 1, b: 1, c: 2} )'
 returns:
   - '{1: ''b'', 2: ''c''}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -33,9 +34,15 @@ alias:
   - /functions/array_flip/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import {
+  type PhpArrayLike,
+  type PhpAssoc,
+  type PhpKey,
+  type StringLike,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
 
-export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
+export function array_flip<TValue extends PhpKey | StringLike>(trans: PhpArrayLike<TValue>): PhpAssoc<string> {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -45,12 +52,13 @@ export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
   //       returns 1: {1: 'b', 2: 'c'}
 
   const tmpArr: PhpAssoc<string> = {}
+  const values = toPhpArrayObject<TValue>(trans)
   const hasOwn = Object.prototype.hasOwnProperty
-  for (const key in trans) {
-    if (!hasOwn.call(trans, key)) {
+  for (const key in values) {
+    if (!hasOwn.call(values, key)) {
       continue
     }
-    tmpArr[String(trans[key])] = key
+    tmpArr[String(values[key])] = key
   }
 
   return tmpArr
@@ -58,7 +66,8 @@ export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function array_flip(trans) {
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+export function array_flip(trans) {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -66,19 +75,94 @@ export function array_flip(trans: PhpAssoc<PhpMixed>): PhpAssoc<string> {
   //     improved by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_flip( {a: 1, b: 1, c: 2} )
   //       returns 1: {1: 'b', 2: 'c'}
-  const tmpArr = {};
-  const hasOwn = Object.prototype.hasOwnProperty;
-  for (const key in trans) {
-    if (!hasOwn.call(trans, key)) {
-      continue;
+  const tmpArr = {}
+  const values = toPhpArrayObject(trans)
+  const hasOwn = Object.prototype.hasOwnProperty
+  for (const key in values) {
+    if (!hasOwn.call(values, key)) {
+      continue
     }
-    tmpArr[String(trans[key])] = key;
+    tmpArr[String(values[key])] = key
   }
-  return tmpArr;
+  return tmpArr
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/array/array_flip
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpKey = string | number
+
+type StringLike = string | number | boolean | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_flip
+function array_flip<TValue extends PhpKey | StringLike>(trans: PhpArrayLike<TValue>): PhpAssoc<string> {
+  //      discuss at: https://locutus.io/php/array_flip/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Pier Paolo Ramon (https://www.mastersoup.com/)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_flip( {a: 1, b: 1, c: 2} )
+  //       returns 1: {1: 'b', 2: 'c'}
+
+  const tmpArr: PhpAssoc<string> = {}
+  const values = toPhpArrayObject<TValue>(trans)
+  const hasOwn = Object.prototype.hasOwnProperty
+  for (const key in values) {
+    if (!hasOwn.call(values, key)) {
+      continue
+    }
+    tmpArr[String(values[key])] = key
+  }
+
+  return tmpArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpArrayObject(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+  return {}
+}
+
+// php/array/array_flip
 function array_flip(trans) {
   //      discuss at: https://locutus.io/php/array_flip/
   // parity verified: PHP 8.3
@@ -87,14 +171,15 @@ function array_flip(trans) {
   //     improved by: Brett Zamir (https://brett-zamir.me)
   //       example 1: array_flip( {a: 1, b: 1, c: 2} )
   //       returns 1: {1: 'b', 2: 'c'}
-  const tmpArr = {};
-  const hasOwn = Object.prototype.hasOwnProperty;
-  for (const key in trans) {
-    if (!hasOwn.call(trans, key)) {
-      continue;
+  const tmpArr = {}
+  const values = toPhpArrayObject(trans)
+  const hasOwn = Object.prototype.hasOwnProperty
+  for (const key in values) {
+    if (!hasOwn.call(values, key)) {
+      continue
     }
-    tmpArr[String(trans[key])] = key;
+    tmpArr[String(values[key])] = key
   }
-  return tmpArr;
+  return tmpArr
 }{% endcodeblock %}
 </div>

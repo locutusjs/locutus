@@ -29,18 +29,13 @@ alias:
   - /python/ascii_lowercase/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function ascii_lowercase() {
+{% codeblock lang:typescript %}export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz' {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_lowercase()
   //       returns 1: 'abcdefghijklmnopqrstuvwxyz'
 
-  const length = 26
-  let i = 65 + length + 6
-
-  return [...new Array(length)].reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++)
-  }, '')
+  return 'abcdefghijklmnopqrstuvwxyz'
 }
 {% endcodeblock %}
 </div>
@@ -50,24 +45,27 @@ alias:
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_lowercase()
   //       returns 1: 'abcdefghijklmnopqrstuvwxyz'
-  const length = 26;
-  let i = 65 + length + 6;
-  return [...new Array(length)].reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++);
-  }, '');
+  return 'abcdefghijklmnopqrstuvwxyz'
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// python/string/ascii_lowercase
+function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz' {
+  // parity verified: Python 3.12
+  //     original by: Yury Shapkarin (https://shapkarin.me)
+  //       example 1: ascii_lowercase()
+  //       returns 1: 'abcdefghijklmnopqrstuvwxyz'
+
+  return 'abcdefghijklmnopqrstuvwxyz'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// python/string/ascii_lowercase
 function ascii_lowercase() {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_lowercase()
   //       returns 1: 'abcdefghijklmnopqrstuvwxyz'
-  const length = 26;
-  let i = 65 + length + 6;
-  return [...new Array(length)].reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++);
-  }, '');
+  return 'abcdefghijklmnopqrstuvwxyz'
 }{% endcodeblock %}
 </div>

@@ -53,10 +53,24 @@ alias:
   //       returns 1: 'olleh'
   //       example 2: reverse('abc')
   //       returns 2: 'cba'
-  return String(string).split('').reverse().join('');
+  return String(string).split('').reverse().join('')
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// elixir/String/reverse
+function reverse(string: string): string {
+  //      discuss at: https://locutus.io/elixir/reverse/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: reverse('hello')
+  //       returns 1: 'olleh'
+  //       example 2: reverse('abc')
+  //       returns 2: 'cba'
+
+  return String(string).split('').reverse().join('')
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// elixir/String/reverse
 function reverse(string) {
   //      discuss at: https://locutus.io/elixir/reverse/
@@ -66,6 +80,6 @@ function reverse(string) {
   //       returns 1: 'olleh'
   //       example 2: reverse('abc')
   //       returns 2: 'cba'
-  return String(string).split('').reverse().join('');
+  return String(string).split('').reverse().join('')
 }{% endcodeblock %}
 </div>

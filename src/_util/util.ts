@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { spawnSync } from 'node:child_process'
 import Debug from 'debug'
 import globby from 'globby'
 import indentStringModule from 'indent-string'
@@ -79,6 +80,8 @@ interface StandaloneModuleSelection {
   depRuntimeNames: Map<string, Set<string>>
   depTypeNames: Map<string, Set<string>>
   runtimeAliases: Set<string>
+  wrapperAliases: Set<string>
+  wrapperRenameByStatementIndex: Map<number, string>
   typeAliases: Set<string>
 }
 
@@ -539,7 +542,7 @@ class Util {
     let buf = '---' + '\n' + YAML.dump(funcData).trim() + '\n' + '---' + '\n'
 
     if (isTS) {
-      const jsCode = this._toWebsiteJs(params.code)
+      const jsCode = this._formatWebsiteJavascript(this._toWebsiteJs(params.code), params.filepath.replace(/\.ts$/, '.js'))
       const standaloneCode = await this._buildStandaloneJs(params)
       const standaloneTsCode = await this._buildStandaloneTs(params)
 
@@ -606,6 +609,44 @@ class Util {
       })
       .join('\n')
       .trimEnd()
+  }
+
+  _resolveBiomeBinPath(): string | null {
+    const biomeBinName = process.platform === 'win32' ? 'biome.cmd' : 'biome'
+    const localBiomeBin = path.join(this.__root, 'node_modules', '.bin', biomeBinName)
+    if (fs.existsSync(localBiomeBin)) {
+      return localBiomeBin
+    }
+    return null
+  }
+
+  _formatWebsiteJavascript(code: string, sourcePath: string): string {
+    const input = code.trimEnd()
+    if (!input) {
+      return ''
+    }
+
+    const biomeBin = this._resolveBiomeBinPath()
+    if (!biomeBin) {
+      return input
+    }
+
+    const result = spawnSync(biomeBin, ['format', '--stdin-file-path', sourcePath], {
+      encoding: 'utf8',
+      input,
+      maxBuffer: 16 * 1024 * 1024,
+    })
+
+    if (result.error || result.status !== 0 || typeof result.stdout !== 'string') {
+      const stderr = typeof result.stderr === 'string' ? result.stderr.trim() : ''
+      if (stderr) {
+        debug(`biome format failed for ${sourcePath}: ${stderr}`)
+      }
+      return input
+    }
+
+    const output = result.stdout.trimEnd()
+    return output || input
   }
 
   _toCommonJsRuntimeCode(code: string, options: { sourcePath: string }): string {
@@ -824,7 +865,11 @@ class Util {
         selectionByModule.get(moduleKey) ||
         this._selectStandaloneModuleSymbols(info, runtimeRequired, typeRequired, mode)
 
-      const selectedModuleCode = this._renderStandaloneModule(info, selection.includedStatementIndexes)
+      const selectedModuleCode = this._renderStandaloneModule(
+        info,
+        selection.includedStatementIndexes,
+        selection.wrapperRenameByStatementIndex,
+      )
       if (!selectedModuleCode.trim()) {
         continue
       }
@@ -837,15 +882,23 @@ class Util {
       }
 
       const aliasLines = [...selection.runtimeAliases, ...selection.typeAliases]
+      const wrapperAliasLines = [...selection.wrapperAliases]
       let chunk = `// ${info.modulePath}\n`
       if (aliasLines.length > 0) {
         chunk += aliasLines.join('\n') + '\n\n'
       }
       chunk += renderedModuleCode
+      if (wrapperAliasLines.length > 0) {
+        chunk += `\n\n${wrapperAliasLines.join('\n')}`
+      }
       chunks.push(chunk.trim())
     }
 
-    return chunks.join('\n\n').trimEnd()
+    const output = chunks.join('\n\n').trimEnd()
+    if (mode === 'js') {
+      return this._formatWebsiteJavascript(output, `${params.filepath}.standalone.js`)
+    }
+    return output
   }
 
   _createStandaloneModuleInfo(moduleParams: ParsedParams): StandaloneModuleInfo {
@@ -1066,6 +1119,8 @@ class Util {
     const depRuntimeNames = new Map<string, Set<string>>()
     const depTypeNames = new Map<string, Set<string>>()
     const runtimeAliases = new Set<string>()
+    const wrapperAliases = new Set<string>()
+    const wrapperRenameByStatementIndex = new Map<number, string>()
     const typeAliases = new Set<string>()
 
     for (const statementIndex of includedStatementIndexes) {
@@ -1102,13 +1157,21 @@ class Util {
       }
     }
 
-    this._collapseStandaloneForwardingWrappers(info, includedStatementIndexes, runtimeAliases, mode)
+    this._collapseStandaloneForwardingWrappers(
+      info,
+      includedStatementIndexes,
+      wrapperAliases,
+      wrapperRenameByStatementIndex,
+      mode,
+    )
 
     return {
       includedStatementIndexes,
       depRuntimeNames,
       depTypeNames,
       runtimeAliases,
+      wrapperAliases,
+      wrapperRenameByStatementIndex,
       typeAliases,
     }
   }
@@ -1116,7 +1179,8 @@ class Util {
   _collapseStandaloneForwardingWrappers(
     info: StandaloneModuleInfo,
     includedStatementIndexes: Set<number>,
-    runtimeAliases: Set<string>,
+    wrapperAliases: Set<string>,
+    wrapperRenameByStatementIndex: Map<number, string>,
     mode: StandaloneMode,
   ): void {
     if (mode !== 'js') {
@@ -1131,7 +1195,11 @@ class Util {
       }
 
       includedStatementIndexes.delete(statementIndex)
-      runtimeAliases.add(`const ${aliasSpec.wrapperName} = ${aliasSpec.targetName};`)
+      if (this._canRenameStandaloneWrapperTarget(info, aliasSpec, includedStatementIndexes, statementIndex)) {
+        wrapperRenameByStatementIndex.set(aliasSpec.targetDeclarationIndex, aliasSpec.wrapperName)
+        continue
+      }
+      wrapperAliases.add(`const ${aliasSpec.wrapperName} = ${aliasSpec.targetName};`)
     }
   }
 
@@ -1139,7 +1207,7 @@ class Util {
     info: StandaloneModuleInfo,
     statementIndex: number,
     includedStatementIndexes: Set<number>,
-  ): { wrapperName: string; targetName: string } | null {
+  ): { wrapperName: string; targetName: string; targetDeclarationIndex: number } | null {
     const statement = info.statements[statementIndex]
     if (!statement || !ts.isFunctionDeclaration(statement) || !statement.name || !statement.body) {
       return null
@@ -1207,14 +1275,86 @@ class Util {
         targetStatement.name &&
         targetStatement.name.text === targetName
       ) {
-        return { wrapperName, targetName }
+        return { wrapperName, targetName, targetDeclarationIndex }
       }
     }
 
     return null
   }
 
-  _renderStandaloneModule(info: StandaloneModuleInfo, includedStatementIndexes: Set<number>): string {
+  _canRenameStandaloneWrapperTarget(
+    info: StandaloneModuleInfo,
+    aliasSpec: { wrapperName: string; targetName: string; targetDeclarationIndex: number },
+    includedStatementIndexes: Set<number>,
+    wrapperStatementIndex: number,
+  ): boolean {
+    const otherWrapperDeclarations = info.declarationsByName.get(aliasSpec.wrapperName)
+    if (otherWrapperDeclarations) {
+      for (const declarationIndex of otherWrapperDeclarations) {
+        if (declarationIndex !== wrapperStatementIndex) {
+          return false
+        }
+      }
+    }
+
+    for (const statementIndex of includedStatementIndexes) {
+      const statement = info.statements[statementIndex]
+      if (!statement) {
+        continue
+      }
+
+      if (statementIndex === aliasSpec.targetDeclarationIndex) {
+        if (this._statementContainsIdentifierReference(statement, aliasSpec.targetName, true)) {
+          return false
+        }
+        continue
+      }
+
+      if (this._statementContainsIdentifierReference(statement, aliasSpec.targetName, false)) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  _statementContainsIdentifierReference(
+    statement: ts.Statement,
+    identifierName: string,
+    ignoreFunctionDeclarationName: boolean,
+  ): boolean {
+    let found = false
+
+    const visit = (node: ts.Node): void => {
+      if (found) {
+        return
+      }
+
+      if (ts.isIdentifier(node) && node.text === identifierName) {
+        if (
+          ignoreFunctionDeclarationName &&
+          ts.isFunctionDeclaration(node.parent) &&
+          node.parent.name === node
+        ) {
+          // Declaration name can be renamed safely.
+        } else {
+          found = true
+          return
+        }
+      }
+
+      ts.forEachChild(node, visit)
+    }
+
+    ts.forEachChild(statement, visit)
+    return found
+  }
+
+  _renderStandaloneModule(
+    info: StandaloneModuleInfo,
+    includedStatementIndexes: Set<number>,
+    wrapperRenameByStatementIndex: Map<number, string>,
+  ): string {
     const statementTexts: string[] = []
     const sortedIndexes = [...includedStatementIndexes].sort((a, b) => a - b)
 
@@ -1223,10 +1363,20 @@ class Util {
       if (!statement) {
         continue
       }
-      const statementText = info.params.code.slice(statement.getFullStart(), statement.getEnd()).trim()
+      let statementText = info.params.code.slice(statement.getFullStart(), statement.getEnd()).trim()
       if (!statementText) {
         continue
       }
+
+      const renamedName = wrapperRenameByStatementIndex.get(statementIndex)
+      if (renamedName && ts.isFunctionDeclaration(statement) && statement.name) {
+        const originalName = statement.name.text
+        statementText = statementText.replace(
+          new RegExp(`\\bfunction\\s+${originalName}\\b`),
+          `function ${renamedName}`,
+        )
+      }
+
       statementTexts.push(statementText)
     }
 

@@ -42,11 +42,17 @@ alias:
   - /functions/array_merge/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpArrayLike, PhpAssoc, PhpInput, PhpList } from '../_helpers/_phpTypes.ts'
 
-type AssociativeArray<T = PhpMixed> = PhpAssoc<T>
+type AssociativeArray<T = PhpInput> = PhpAssoc<T>
 
-export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] | AssociativeArray<T> {
+export function array_merge<T>(...args: [first: PhpList<T>, ...rest: Array<PhpList<T>>]): PhpList<T>
+
+export function array_merge<T>(...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>]): AssociativeArray<T>
+
+export function array_merge<T>(
+  ...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>]
+): PhpList<T> | AssociativeArray<T> {
   //  discuss at: https://locutus.io/php/array_merge/
   // original by: Brett Zamir (https://brett-zamir.me)
   // bugfixed by: Nate
@@ -72,7 +78,7 @@ export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] |
   }
 
   if (retArr) {
-    let merged: T[] = []
+    let merged: PhpList<T> = []
     for (const arg of args) {
       if (Array.isArray(arg)) {
         merged = merged.concat(arg)
@@ -126,54 +132,137 @@ export function array_merge<T>(...args: Array<T[] | AssociativeArray<T>>): T[] |
   //   example 2: var $arr2 = {1: "data"}
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
-  const retObj = {};
-  let retArr = true;
+  const retObj = {}
+  let retArr = true
   for (const arg of args) {
     if (!Array.isArray(arg)) {
-      retArr = false;
-      break;
+      retArr = false
+      break
     }
   }
   if (retArr) {
-    let merged = [];
+    let merged = []
     for (const arg of args) {
       if (Array.isArray(arg)) {
-        merged = merged.concat(arg);
+        merged = merged.concat(arg)
       }
     }
-    return merged;
+    return merged
   }
   for (let i = 0, ct = 0; i < args.length; i++) {
-    const arg = args[i];
+    const arg = args[i]
     if (Array.isArray(arg)) {
       for (let j = 0, argil = arg.length; j < argil; j++) {
-        const value = arg[j];
+        const value = arg[j]
         if (typeof value !== 'undefined') {
-          retObj[ct++] = value;
+          retObj[ct++] = value
         }
       }
-    }
-    else {
+    } else {
       for (const k in arg) {
         if (Object.prototype.hasOwnProperty.call(arg, k)) {
-          const value = arg[k];
+          const value = arg[k]
           if (typeof value === 'undefined') {
-            continue;
+            continue
           }
           if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = value;
-          }
-          else {
-            retObj[k] = value;
+            retObj[ct++] = value
+          } else {
+            retObj[k] = value
           }
         }
       }
     }
   }
-  return retObj;
+  return retObj
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+// php/array/array_merge
+type AssociativeArray<T = PhpInput> = PhpAssoc<T>
+
+function array_merge<T>(...args: [first: PhpList<T>, ...rest: Array<PhpList<T>>]): PhpList<T>
+
+function array_merge<T>(...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>]): AssociativeArray<T>
+
+function array_merge<T>(
+  ...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>]
+): PhpList<T> | AssociativeArray<T> {
+  //  discuss at: https://locutus.io/php/array_merge/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Nate
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //    input by: josh
+  //   example 1: var $arr1 = {"color": "red", 0: 2, 1: 4}
+  //   example 1: var $arr2 = {0: "a", 1: "b", "color": "green", "shape": "trapezoid", 2: 4}
+  //   example 1: array_merge($arr1, $arr2)
+  //   returns 1: {"color": "green", 0: 2, 1: 4, 2: "a", 3: "b", "shape": "trapezoid", 4: 4}
+  //   example 2: var $arr1 = []
+  //   example 2: var $arr2 = {1: "data"}
+  //   example 2: array_merge($arr1, $arr2)
+  //   returns 2: {0: "data"}
+
+  const retObj: AssociativeArray<T> = {}
+  let retArr = true
+
+  for (const arg of args) {
+    if (!Array.isArray(arg)) {
+      retArr = false
+      break
+    }
+  }
+
+  if (retArr) {
+    let merged: PhpList<T> = []
+    for (const arg of args) {
+      if (Array.isArray(arg)) {
+        merged = merged.concat(arg)
+      }
+    }
+    return merged
+  }
+
+  for (let i = 0, ct = 0; i < args.length; i++) {
+    const arg = args[i]
+    if (Array.isArray(arg)) {
+      for (let j = 0, argil = arg.length; j < argil; j++) {
+        const value = arg[j]
+        if (typeof value !== 'undefined') {
+          retObj[ct++] = value
+        }
+      }
+    } else {
+      for (const k in arg) {
+        if (Object.prototype.hasOwnProperty.call(arg, k)) {
+          const value = arg[k]
+          if (typeof value === 'undefined') {
+            continue
+          }
+          if (parseInt(k, 10) + '' === k) {
+            retObj[ct++] = value
+          } else {
+            retObj[k] = value
+          }
+        }
+      }
+    }
+  }
+
+  return retObj
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/array/array_merge
 function array_merge(...args) {
   //  discuss at: https://locutus.io/php/array_merge/
@@ -189,50 +278,48 @@ function array_merge(...args) {
   //   example 2: var $arr2 = {1: "data"}
   //   example 2: array_merge($arr1, $arr2)
   //   returns 2: {0: "data"}
-  const retObj = {};
-  let retArr = true;
+  const retObj = {}
+  let retArr = true
   for (const arg of args) {
     if (!Array.isArray(arg)) {
-      retArr = false;
-      break;
+      retArr = false
+      break
     }
   }
   if (retArr) {
-    let merged = [];
+    let merged = []
     for (const arg of args) {
       if (Array.isArray(arg)) {
-        merged = merged.concat(arg);
+        merged = merged.concat(arg)
       }
     }
-    return merged;
+    return merged
   }
   for (let i = 0, ct = 0; i < args.length; i++) {
-    const arg = args[i];
+    const arg = args[i]
     if (Array.isArray(arg)) {
       for (let j = 0, argil = arg.length; j < argil; j++) {
-        const value = arg[j];
+        const value = arg[j]
         if (typeof value !== 'undefined') {
-          retObj[ct++] = value;
+          retObj[ct++] = value
         }
       }
-    }
-    else {
+    } else {
       for (const k in arg) {
         if (Object.prototype.hasOwnProperty.call(arg, k)) {
-          const value = arg[k];
+          const value = arg[k]
           if (typeof value === 'undefined') {
-            continue;
+            continue
           }
           if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = value;
-          }
-          else {
-            retObj[k] = value;
+            retObj[ct++] = value
+          } else {
+            retObj[k] = value
           }
         }
       }
     }
   }
-  return retObj;
+  return retObj
 }{% endcodeblock %}
 </div>

@@ -48,12 +48,14 @@ alias:
 ---
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}import fs from 'fs'
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+
+type FileGetContentsInput = PhpRuntimeValue
 
 export function file_get_contents(
   url: string,
-  _flags?: PhpMixed,
-  _context?: PhpMixed,
+  _flags?: FileGetContentsInput,
+  _context?: FileGetContentsInput,
   _offset?: number,
   _maxLen?: number,
 ): string | false {
@@ -79,7 +81,7 @@ export function file_get_contents(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import fs from 'fs';
+{% codeblock lang:javascript %}import fs from 'fs'
 export function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
@@ -97,12 +99,11 @@ export function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //        example 1: var $buf = file_get_contents('test/never-change.txt')
   //        example 1: var $result = $buf.indexOf('hash') !== -1
   //        returns 1: true
-  return fs.readFileSync(url, 'utf-8');
+  return fs.readFileSync(url, 'utf-8')
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/filesystem/file_get_contents
-import fs from 'fs';
 function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //       discuss at: https://locutus.io/php/file_get_contents/
   //      original by: Legaev Andrey
@@ -120,6 +121,6 @@ function file_get_contents(url, _flags, _context, _offset, _maxLen) {
   //        example 1: var $buf = file_get_contents('test/never-change.txt')
   //        example 1: var $result = $buf.indexOf('hash') !== -1
   //        returns 1: true
-  return fs.readFileSync(url, 'utf-8');
+  return fs.readFileSync(url, 'utf-8')
 }{% endcodeblock %}
 </div>

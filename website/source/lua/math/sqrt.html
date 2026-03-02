@@ -53,10 +53,24 @@ alias:
   //       returns 1: 4
   //       example 2: sqrt(2)
   //       returns 2: 1.4142135623730951
-  return Math.sqrt(x);
+  return Math.sqrt(x)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// lua/math/sqrt
+function sqrt(x: number): number {
+  //      discuss at: https://locutus.io/lua/sqrt/
+  // parity verified: Lua 5.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: sqrt(16)
+  //       returns 1: 4
+  //       example 2: sqrt(2)
+  //       returns 2: 1.4142135623730951
+
+  return Math.sqrt(x)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// lua/math/sqrt
 function sqrt(x) {
   //      discuss at: https://locutus.io/lua/sqrt/
@@ -66,6 +80,6 @@ function sqrt(x) {
   //       returns 1: 4
   //       example 2: sqrt(2)
   //       returns 2: 1.4142135623730951
-  return Math.sqrt(x);
+  return Math.sqrt(x)
 }{% endcodeblock %}
 </div>

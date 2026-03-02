@@ -18,6 +18,7 @@ returns:
   - 'true'
   - 'false'
 dependencies:
+  - php/_helpers/_phpRuntimeState
   - php/_helpers/_phpTypes
 authors:
   original by:
@@ -61,11 +62,12 @@ alias:
   - /functions/is_callable/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { getPhpGlobalScope, getPhpObjectEntry, setPhpGlobalEntry } from '../_helpers/_phpRuntimeState.ts'
+import { type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
+type CallableValue = PhpRuntimeValue
 
-export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableName?: string): boolean | false {
+export function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, callableName?: string): boolean {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
   //    input by: François
@@ -97,16 +99,14 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
 
-  const globalContext = globalThis as typeof globalThis & PhpAssoc<PhpValue>
-
   const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
 
   let name = ''
-  let obj: PhpAssoc<PhpValue> | null = null
+  let obj: object | null = null
   let method = ''
   let validFunctionName = false
 
-  const getFuncName = function (fn: PhpValue): string {
+  const getFuncName = function (fn: { toString: () => string }): string {
     const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!funcNameMatch) {
       return '(Anonymous)'
@@ -123,7 +123,7 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
   }
 
   if (typeof mixedVar === 'string') {
-    obj = globalContext
+    obj = getPhpGlobalScope()
     method = mixedVar
     name = mixedVar
     validFunctionName = !!name.match(validJSFunctionNamePattern)
@@ -143,9 +143,10 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
       (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method
   }
 
-  if (syntaxOnly || (obj && typeof obj[method] === 'function')) {
+  const callableCandidate = obj ? getPhpObjectEntry(obj, method) : undefined
+  if (syntaxOnly || typeof callableCandidate === 'function') {
     if (callableName) {
-      globalContext[callableName] = name
+      setPhpGlobalEntry(callableName, name)
     }
     return true
   }
@@ -154,7 +155,7 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
   // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
-      globalContext[callableName] = name
+      setPhpGlobalEntry(callableName, name)
     }
     return true
   }
@@ -164,7 +165,8 @@ export function is_callable(mixedVar: PhpValue, syntaxOnly?: boolean, callableNa
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts';
+{% codeblock lang:javascript %}import { getPhpGlobalScope, getPhpObjectEntry, setPhpGlobalEntry } from '../_helpers/_phpRuntimeState.ts'
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 export function is_callable(mixedVar, syntaxOnly, callableName) {
   //  discuss at: https://locutus.io/php/is_callable/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -196,79 +198,293 @@ export function is_callable(mixedVar, syntaxOnly, callableName) {
   //   returns 4: true
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
-  const globalContext = globalThis;
-  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
-  let name = '';
-  let obj = null;
-  let method = '';
-  let validFunctionName = false;
+  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+  let name = ''
+  let obj = null
+  let method = ''
+  let validFunctionName = false
   const getFuncName = function (fn) {
-    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn));
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!funcNameMatch) {
-      return '(Anonymous)';
+      return '(Anonymous)'
     }
-    return funcNameMatch[1] ?? '(Anonymous)';
-  };
+    return funcNameMatch[1] ?? '(Anonymous)'
+  }
   if (mixedVar == null) {
-    return false;
+    return false
   }
   if (/(^class|\(this,)/.test(String(mixedVar))) {
-    return false;
+    return false
   }
   if (typeof mixedVar === 'string') {
-    obj = globalContext;
-    method = mixedVar;
-    name = mixedVar;
-    validFunctionName = !!name.match(validJSFunctionNamePattern);
-  }
-  else if (typeof mixedVar === 'function') {
-    return true;
-  }
-  else if (Array.isArray(mixedVar) &&
+    obj = getPhpGlobalScope()
+    method = mixedVar
+    name = mixedVar
+    validFunctionName = !!name.match(validJSFunctionNamePattern)
+  } else if (typeof mixedVar === 'function') {
+    return true
+  } else if (
+    Array.isArray(mixedVar) &&
     mixedVar.length === 2 &&
     mixedVar[0] !== null &&
     typeof mixedVar[0] === 'object' &&
-    typeof mixedVar[1] === 'string') {
-    const receiver = toPhpArrayObject(mixedVar[0]);
-    obj = receiver;
-    method = mixedVar[1];
+    typeof mixedVar[1] === 'string'
+  ) {
+    const receiver = toPhpArrayObject(mixedVar[0])
+    obj = receiver
+    method = mixedVar[1]
     name =
-      (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method;
+      (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method
   }
-  if (syntaxOnly || (obj && typeof obj[method] === 'function')) {
+  const callableCandidate = obj ? getPhpObjectEntry(obj, method) : undefined
+  if (syntaxOnly || typeof callableCandidate === 'function') {
     if (callableName) {
-      globalContext[callableName] = name;
+      setPhpGlobalEntry(callableName, name)
     }
-    return true;
+    return true
   }
   // validFunctionName avoids exploits
   // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
-      globalContext[callableName] = name;
+      setPhpGlobalEntry(callableName, name)
     }
-    return true;
+    return true
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
-function isObjectLike(value) {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
   //  returns 1: true
-  return typeof value === 'object' && value !== null;
+  return typeof value === 'object' && value !== null
 }
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/_helpers/_phpRuntimeState
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function setPhpGlobalEntry(key: string, value: PhpInput): void {
+  globalContext[key] = value
+}
+
+function getPhpGlobalScope(): PhpAssoc<PhpInput> {
+  return globalContext
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/var/is_callable
+type CallableValue = PhpRuntimeValue
+
+function is_callable(mixedVar: CallableValue, syntaxOnly?: boolean, callableName?: string): boolean {
+  //  discuss at: https://locutus.io/php/is_callable/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //    input by: François
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: KnightYoshi
+  // improved by: Waldo Malqui Silva (https://fayr.us/waldo/)
+  //      note 1: The variable callableName cannot work as a string variable passed by
+  //      note 1: reference as in PHP (since JavaScript does not support passing
+  //      note 1: strings by reference), but instead will take the name of
+  //      note 1: a global variable and set that instead.
+  //      note 1: When used on an object, depends on a constructor property
+  //      note 1: being kept on the object prototype
+  //      note 2: Depending on the `callableName` that is passed, this function can use eval.
+  //      note 2: The eval input is however checked to only allow valid function names,
+  //      note 2: So it should not be unsafer than uses without eval (seeing as you can)
+  //      note 2: already pass any function to be executed here.
+  //   example 1: is_callable('is_callable')
+  //   returns 1: true
+  //   example 2: is_callable('bogusFunction', true)
+  //   returns 2: true // gives true because does not do strict checking
+  //   example 3: function SomeClass () {}
+  //   example 3: SomeClass.prototype.someMethod = function (){}
+  //   example 3: var testObj = new SomeClass()
+  //   example 3: is_callable([testObj, 'someMethod'], true, 'myVar')
+  //   example 3: var $result = myVar
+  //   returns 3: 'SomeClass::someMethod'
+  //   example 4: is_callable(function () {})
+  //   returns 4: true
+  //   example 5: is_callable(class MyClass {})
+  //   returns 5: false
+
+  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+
+  let name = ''
+  let obj: object | null = null
+  let method = ''
+  let validFunctionName = false
+
+  const getFuncName = function (fn: { toString: () => string }): string {
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
+    if (!funcNameMatch) {
+      return '(Anonymous)'
+    }
+    return funcNameMatch[1] ?? '(Anonymous)'
+  }
+
+  if (mixedVar == null) {
+    return false
+  }
+
+  if (/(^class|\(this,)/.test(String(mixedVar))) {
+    return false
+  }
+
+  if (typeof mixedVar === 'string') {
+    obj = getPhpGlobalScope()
+    method = mixedVar
+    name = mixedVar
+    validFunctionName = !!name.match(validJSFunctionNamePattern)
+  } else if (typeof mixedVar === 'function') {
+    return true
+  } else if (
+    Array.isArray(mixedVar) &&
+    mixedVar.length === 2 &&
+    mixedVar[0] !== null &&
+    typeof mixedVar[0] === 'object' &&
+    typeof mixedVar[1] === 'string'
+  ) {
+    const receiver = toPhpArrayObject(mixedVar[0])
+    obj = receiver
+    method = mixedVar[1]
+    name =
+      (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method
+  }
+
+  const callableCandidate = obj ? getPhpObjectEntry(obj, method) : undefined
+  if (syntaxOnly || typeof callableCandidate === 'function') {
+    if (callableName) {
+      setPhpGlobalEntry(callableName, name)
+    }
+    return true
+  }
+
+  // validFunctionName avoids exploits
+  // biome-ignore lint/security/noGlobalEval: needed for PHP port
+  if (validFunctionName && typeof eval(method) === 'function') {
+    if (callableName) {
+      setPhpGlobalEntry(callableName, name)
+    }
+    return true
+  }
+
+  return false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
 function isPhpArrayObject(value) {
-  return isObjectLike(value);
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
 }
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
-    return value;
+    return value
   }
-  return {};
+  return {}
+}
+
+// php/_helpers/_phpRuntimeState
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+function setPhpGlobalEntry(key, value) {
+  globalContext[key] = value
+}
+function getPhpGlobalScope() {
+  return globalContext
+}
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+  return undefined
 }
 
 // php/var/is_callable
@@ -303,59 +519,59 @@ function is_callable(mixedVar, syntaxOnly, callableName) {
   //   returns 4: true
   //   example 5: is_callable(class MyClass {})
   //   returns 5: false
-  const globalContext = globalThis;
-  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
-  let name = '';
-  let obj = null;
-  let method = '';
-  let validFunctionName = false;
+  const validJSFunctionNamePattern = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/
+  let name = ''
+  let obj = null
+  let method = ''
+  let validFunctionName = false
   const getFuncName = function (fn) {
-    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn));
+    const funcNameMatch = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!funcNameMatch) {
-      return '(Anonymous)';
+      return '(Anonymous)'
     }
-    return funcNameMatch[1] ?? '(Anonymous)';
-  };
+    return funcNameMatch[1] ?? '(Anonymous)'
+  }
   if (mixedVar == null) {
-    return false;
+    return false
   }
   if (/(^class|\(this,)/.test(String(mixedVar))) {
-    return false;
+    return false
   }
   if (typeof mixedVar === 'string') {
-    obj = globalContext;
-    method = mixedVar;
-    name = mixedVar;
-    validFunctionName = !!name.match(validJSFunctionNamePattern);
-  }
-  else if (typeof mixedVar === 'function') {
-    return true;
-  }
-  else if (Array.isArray(mixedVar) &&
+    obj = getPhpGlobalScope()
+    method = mixedVar
+    name = mixedVar
+    validFunctionName = !!name.match(validJSFunctionNamePattern)
+  } else if (typeof mixedVar === 'function') {
+    return true
+  } else if (
+    Array.isArray(mixedVar) &&
     mixedVar.length === 2 &&
     mixedVar[0] !== null &&
     typeof mixedVar[0] === 'object' &&
-    typeof mixedVar[1] === 'string') {
-    const receiver = toPhpArrayObject(mixedVar[0]);
-    obj = receiver;
-    method = mixedVar[1];
+    typeof mixedVar[1] === 'string'
+  ) {
+    const receiver = toPhpArrayObject(mixedVar[0])
+    obj = receiver
+    method = mixedVar[1]
     name =
-      (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method;
+      (typeof receiver.constructor === 'function' ? getFuncName(receiver.constructor) : '(Anonymous)') + '::' + method
   }
-  if (syntaxOnly || (obj && typeof obj[method] === 'function')) {
+  const callableCandidate = obj ? getPhpObjectEntry(obj, method) : undefined
+  if (syntaxOnly || typeof callableCandidate === 'function') {
     if (callableName) {
-      globalContext[callableName] = name;
+      setPhpGlobalEntry(callableName, name)
     }
-    return true;
+    return true
   }
   // validFunctionName avoids exploits
   // biome-ignore lint/security/noGlobalEval: needed for PHP port
   if (validFunctionName && typeof eval(method) === 'function') {
     if (callableName) {
-      globalContext[callableName] = name;
+      setPhpGlobalEntry(callableName, name)
     }
-    return true;
+    return true
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>

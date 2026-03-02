@@ -60,7 +60,7 @@ export function setcookie(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { setrawcookie } from '../network/setrawcookie.ts';
+{% codeblock lang:javascript %}import { setrawcookie } from '../network/setrawcookie.ts'
 export function setcookie(name, value, expires, path, domain, secure) {
   //      discuss at: https://locutus.io/php/setcookie/
   // parity verified: PHP 8.3
@@ -70,10 +70,89 @@ export function setcookie(name, value, expires, path, domain, secure) {
   //     improved by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: setcookie('author_name', 'Kevin van Zonneveld')
   //       returns 1: true
-  return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure);
+  return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/network/setrawcookie
+type CookieExpires = string | number | Date | null | undefined
+
+function setrawcookie(
+  name: string,
+  value: string,
+  expires?: CookieExpires,
+  path?: string | null,
+  domain?: string | null,
+  secure?: boolean,
+): boolean {
+  //  discuss at: https://locutus.io/php/setrawcookie/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: setcookie
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Michael
+  //      note 1: This function requires access to the `window` global and is Browser-only
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')
+  //   returns 1: true
+
+  if (typeof window === 'undefined') {
+    return true
+  }
+
+  let normalizedExpires = expires
+
+  if (typeof normalizedExpires === 'string' && /^\d+$/.test(normalizedExpires)) {
+    normalizedExpires = parseInt(normalizedExpires, 10)
+  }
+
+  if (normalizedExpires instanceof Date) {
+    normalizedExpires = normalizedExpires.toUTCString()
+  } else if (typeof normalizedExpires === 'number') {
+    normalizedExpires = new Date(normalizedExpires * 1e3).toUTCString()
+  }
+
+  const parts = [name + '=' + value]
+  if (normalizedExpires) {
+    parts.push('expires=' + normalizedExpires)
+  }
+  if (path) {
+    parts.push('path=' + path)
+  }
+  if (domain) {
+    parts.push('domain=' + domain)
+  }
+
+  if (secure) {
+    parts.push('secure')
+  }
+
+  window.document.cookie = parts.join(';')
+
+  return true
+}
+
+// php/network/setcookie
+function setcookie(
+  name: string,
+  value: string,
+  expires?: string | number | Date | null,
+  path?: string | null,
+  domain?: string | null,
+  secure?: boolean,
+): boolean {
+  //      discuss at: https://locutus.io/php/setcookie/
+  // parity verified: PHP 8.3
+  //     original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //     bugfixed by: Andreas
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: setcookie('author_name', 'Kevin van Zonneveld')
+  //       returns 1: true
+
+  return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/network/setrawcookie
 function setrawcookie(name, value, expires, path, domain, secure) {
   //  discuss at: https://locutus.io/php/setrawcookie/
@@ -86,33 +165,32 @@ function setrawcookie(name, value, expires, path, domain, secure) {
   //   example 1: setrawcookie('author_name', 'Kevin van Zonneveld')
   //   returns 1: true
   if (typeof window === 'undefined') {
-    return true;
+    return true
   }
-  let normalizedExpires = expires;
+  let normalizedExpires = expires
   if (typeof normalizedExpires === 'string' && /^\d+$/.test(normalizedExpires)) {
-    normalizedExpires = parseInt(normalizedExpires, 10);
+    normalizedExpires = parseInt(normalizedExpires, 10)
   }
   if (normalizedExpires instanceof Date) {
-    normalizedExpires = normalizedExpires.toUTCString();
+    normalizedExpires = normalizedExpires.toUTCString()
+  } else if (typeof normalizedExpires === 'number') {
+    normalizedExpires = new Date(normalizedExpires * 1e3).toUTCString()
   }
-  else if (typeof normalizedExpires === 'number') {
-    normalizedExpires = new Date(normalizedExpires * 1e3).toUTCString();
-  }
-  const parts = [name + '=' + value];
+  const parts = [name + '=' + value]
   if (normalizedExpires) {
-    parts.push('expires=' + normalizedExpires);
+    parts.push('expires=' + normalizedExpires)
   }
   if (path) {
-    parts.push('path=' + path);
+    parts.push('path=' + path)
   }
   if (domain) {
-    parts.push('domain=' + domain);
+    parts.push('domain=' + domain)
   }
   if (secure) {
-    parts.push('secure');
+    parts.push('secure')
   }
-  window.document.cookie = parts.join(';');
-  return true;
+  window.document.cookie = parts.join(';')
+  return true
 }
 
 // php/network/setcookie
@@ -125,6 +203,6 @@ function setcookie(name, value, expires, path, domain, secure) {
   //     improved by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: setcookie('author_name', 'Kevin van Zonneveld')
   //       returns 1: true
-  return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure);
+  return setrawcookie(name, encodeURIComponent(value), expires, path, domain, secure)
 }{% endcodeblock %}
 </div>

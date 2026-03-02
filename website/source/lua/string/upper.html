@@ -53,10 +53,24 @@ alias:
   //       returns 1: 'HELLO'
   //       example 2: upper('Hello World')
   //       returns 2: 'HELLO WORLD'
-  return String(s).toUpperCase();
+  return String(s).toUpperCase()
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// lua/string/upper
+function upper(s: string): string {
+  //      discuss at: https://locutus.io/lua/upper/
+  // parity verified: Lua 5.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: upper('hello')
+  //       returns 1: 'HELLO'
+  //       example 2: upper('Hello World')
+  //       returns 2: 'HELLO WORLD'
+
+  return String(s).toUpperCase()
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// lua/string/upper
 function upper(s) {
   //      discuss at: https://locutus.io/lua/upper/
@@ -66,6 +80,6 @@ function upper(s) {
   //       returns 1: 'HELLO'
   //       example 2: upper('Hello World')
   //       returns 2: 'HELLO WORLD'
-  return String(s).toUpperCase();
+  return String(s).toUpperCase()
 }{% endcodeblock %}
 </div>

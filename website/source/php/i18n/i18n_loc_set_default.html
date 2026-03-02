@@ -39,7 +39,7 @@ alias:
 ---
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}import { ensurePhpRuntimeState, setPhpLocaleDefault } from '../_helpers/_phpRuntimeState.ts'
-import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
 
 export function i18n_loc_set_default(name: string): boolean {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
@@ -53,7 +53,7 @@ export function i18n_loc_set_default(name: string): boolean {
   const runtime = ensurePhpRuntimeState()
 
   runtime.locales.en_US_POSIX = {
-    sorting: function (left: PhpMixed, right: PhpMixed): number {
+    sorting: function (left: PhpInput, right: PhpInput): number {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
       const str1 = String(left)
@@ -69,7 +69,7 @@ export function i18n_loc_set_default(name: string): boolean {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { ensurePhpRuntimeState, setPhpLocaleDefault } from '../_helpers/_phpRuntimeState.ts';
+{% codeblock lang:javascript %}import { ensurePhpRuntimeState, setPhpLocaleDefault } from '../_helpers/_phpRuntimeState.ts'
 export function i18n_loc_set_default(name) {
   //  discuss at: https://locutus.io/php/i18n_loc_set_default/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -78,46 +78,258 @@ export function i18n_loc_set_default(name) {
   //      note 1: To be usable with sort() if it is passed the SORT_LOCALE_STRING sorting flag: https://php.net/manual/en/function.sort.php
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
-  const runtime = ensurePhpRuntimeState();
+  const runtime = ensurePhpRuntimeState()
   runtime.locales.en_US_POSIX = {
     sorting: function (left, right) {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
-      const str1 = String(left);
-      const str2 = String(right);
-      return str1 === str2 ? 0 : str1 > str2 ? 1 : -1;
+      const str1 = String(left)
+      const str2 = String(right)
+      return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
     },
-  };
-  setPhpLocaleDefault(name);
-  return true;
+  }
+  setPhpLocaleDefault(name)
+  return true
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
-function ensurePhpRuntimeState() {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
   // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
-  //     note 1: Ensures the mutable locutus PHP runtime bag exists on globalThis.
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
   //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
   //  returns 1: true
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus || {};
-  globalContext.$locutus.php = globalContext.$locutus.php || {};
-  const php = globalContext.$locutus.php;
-  php.ini = php.ini || {};
-  php.locales = php.locales || {};
-  php.pointers = php.pointers || [];
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
   return {
-    ini: php.ini,
-    locales: php.locales,
-    pointers: php.pointers,
-    locale_default: php.locale_default,
-  };
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function setPhpLocaleDefault(localeDefault: string): void {
+  const php = ensurePhpRuntimeObject()
+  php.locale_default = localeDefault
+}
+
+// php/i18n/i18n_loc_set_default
+function i18n_loc_set_default(name: string): boolean {
+  //  discuss at: https://locutus.io/php/i18n_loc_set_default/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Renamed in PHP6 from locale_set_default(). Not listed yet at php.net
+  //      note 1: List of locales at https://demo.icu-project.org/icu-bin/locexp (use for implementing other locales here)
+  //      note 1: To be usable with sort() if it is passed the SORT_LOCALE_STRING sorting flag: https://php.net/manual/en/function.sort.php
+  //   example 1: i18n_loc_set_default('pt_PT')
+  //   returns 1: true
+
+  const runtime = ensurePhpRuntimeState()
+
+  runtime.locales.en_US_POSIX = {
+    sorting: function (left: PhpInput, right: PhpInput): number {
+      // @todo: This one taken from strcmp, but need for other locales;
+      // we don't use localeCompare since its locale is not settable
+      const str1 = String(left)
+      const str2 = String(right)
+      return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
+    },
+  }
+
+  setPhpLocaleDefault(name)
+
+  return true
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpList(value) {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+const isIniBag = (value) => isPhpAssocObject(value)
+const isLocaleBag = (value) => isPhpAssocObject(value)
+const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
 }
 function setPhpLocaleDefault(localeDefault) {
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus || {};
-  globalContext.$locutus.php = globalContext.$locutus.php || {};
-  globalContext.$locutus.php.locale_default = localeDefault;
+  const php = ensurePhpRuntimeObject()
+  php.locale_default = localeDefault
 }
 
 // php/i18n/i18n_loc_set_default
@@ -129,17 +341,17 @@ function i18n_loc_set_default(name) {
   //      note 1: To be usable with sort() if it is passed the SORT_LOCALE_STRING sorting flag: https://php.net/manual/en/function.sort.php
   //   example 1: i18n_loc_set_default('pt_PT')
   //   returns 1: true
-  const runtime = ensurePhpRuntimeState();
+  const runtime = ensurePhpRuntimeState()
   runtime.locales.en_US_POSIX = {
     sorting: function (left, right) {
       // @todo: This one taken from strcmp, but need for other locales;
       // we don't use localeCompare since its locale is not settable
-      const str1 = String(left);
-      const str2 = String(right);
-      return str1 === str2 ? 0 : str1 > str2 ? 1 : -1;
+      const str1 = String(left)
+      const str2 = String(right)
+      return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
     },
-  };
-  setPhpLocaleDefault(name);
-  return true;
+  }
+  setPhpLocaleDefault(name)
+  return true
 }{% endcodeblock %}
 </div>

@@ -35,9 +35,11 @@ alias:
   - /functions/isset/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-export function isset(...values: PhpMixed[]): boolean {
+type IssetValue = PhpRuntimeValue
+
+export function isset(...values: IssetValue[]): boolean {
   //  discuss at: https://locutus.io/php/isset/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: FremyCompany
@@ -74,17 +76,64 @@ export function isset(...values: PhpMixed[]): boolean {
   //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
   if (values.length === 0) {
-    throw new Error('Empty isset');
+    throw new Error('Empty isset')
   }
   for (const value of values) {
     if (typeof value === 'undefined' || value === null) {
-      return false;
+      return false
     }
   }
-  return true;
+  return true
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/var/isset
+type IssetValue = PhpRuntimeValue
+
+function isset(...values: IssetValue[]): boolean {
+  //  discuss at: https://locutus.io/php/isset/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: FremyCompany
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //   example 1: isset( undefined, true)
+  //   returns 1: false
+  //   example 2: isset( 'Kevin van Zonneveld' )
+  //   returns 2: true
+
+  if (values.length === 0) {
+    throw new Error('Empty isset')
+  }
+
+  for (const value of values) {
+    if (typeof value === 'undefined' || value === null) {
+      return false
+    }
+  }
+
+  return true
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/var/isset
 function isset(...values) {
   //  discuss at: https://locutus.io/php/isset/
@@ -97,13 +146,13 @@ function isset(...values) {
   //   example 2: isset( 'Kevin van Zonneveld' )
   //   returns 2: true
   if (values.length === 0) {
-    throw new Error('Empty isset');
+    throw new Error('Empty isset')
   }
   for (const value of values) {
     if (typeof value === 'undefined' || value === null) {
-      return false;
+      return false
     }
   }
-  return true;
+  return true
 }{% endcodeblock %}
 </div>

@@ -29,22 +29,13 @@ alias:
   - /python/ascii_letters/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function ascii_letters() {
+{% codeblock lang:typescript %}export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_letters()
   //       returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-  const length = 26
-  let i = 65
-
-  return [...new Array(length + 6 + length)]
-    .reduce(function (accumulator) {
-      return accumulator + String.fromCharCode(i++)
-    }, '')
-    .match(/[a-zA-Z]+/g)
-    .reverse()
-    .join('')
+  return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 }
 {% endcodeblock %}
 </div>
@@ -54,32 +45,27 @@ alias:
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_letters()
   //       returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const length = 26;
-  let i = 65;
-  return [...new Array(length + 6 + length)]
-    .reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++);
-  }, '')
-    .match(/[a-zA-Z]+/g)
-    .reverse()
-    .join('');
+  return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// python/string/ascii_letters
+function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' {
+  // parity verified: Python 3.12
+  //     original by: Yury Shapkarin (https://shapkarin.me)
+  //       example 1: ascii_letters()
+  //       returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+  return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// python/string/ascii_letters
 function ascii_letters() {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_letters()
   //       returns 1: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  const length = 26;
-  let i = 65;
-  return [...new Array(length + 6 + length)]
-    .reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++);
-  }, '')
-    .match(/[a-zA-Z]+/g)
-    .reverse()
-    .join('');
+  return 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 }{% endcodeblock %}
 </div>

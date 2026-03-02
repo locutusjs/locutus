@@ -32,17 +32,12 @@ alias:
   - /functions/array_replace/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import {
-  isObjectLike,
-  type PhpArrayLike,
-  type PhpAssoc,
-  type PhpMixed,
-  toPhpArrayObject,
-} from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { isObjectLike, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_replace<TValue = PhpMixed>(
+export function array_replace<TValue>(
   arr: PhpArrayLike<TValue>,
-  ...replacements: Array<PhpArrayLike<TValue> | null | undefined>
+  firstReplacement: PhpArrayLike<TValue> | null | undefined,
+  ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined>
 ): PhpAssoc<TValue | undefined> {
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -50,10 +45,6 @@ export function array_replace<TValue = PhpMixed>(
   //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
 
   const retObj: PhpAssoc<TValue | undefined> = {}
-
-  if (replacements.length < 1) {
-    throw new Error('There should be at least 2 arguments passed to array_replace()')
-  }
 
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
@@ -63,7 +54,7 @@ export function array_replace<TValue = PhpMixed>(
     retObj[p] = arrObject[p]
   }
 
-  for (const replacement of replacements) {
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
     if (!isObjectLike(replacement)) {
       continue
     }
@@ -78,80 +69,137 @@ export function array_replace<TValue = PhpMixed>(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject, } from '../_helpers/_phpTypes.ts';
-export function array_replace(arr, ...replacements) {
+{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+export function array_replace(arr, firstReplacement, ...additionalReplacements) {
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
   //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
-  const retObj = {};
-  if (replacements.length < 1) {
-    throw new Error('There should be at least 2 arguments passed to array_replace()');
-  }
+  const retObj = {}
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
   // (just guessing), so we make a copy here, instead of acting on arr itself
-  const arrObject = toPhpArrayObject(arr);
+  const arrObject = toPhpArrayObject(arr)
   for (const p in arrObject) {
-    retObj[p] = arrObject[p];
+    retObj[p] = arrObject[p]
   }
-  for (const replacement of replacements) {
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
     if (!isObjectLike(replacement)) {
-      continue;
+      continue
     }
-    const current = toPhpArrayObject(replacement);
+    const current = toPhpArrayObject(replacement)
     for (const p in current) {
-      retObj[p] = current[p];
+      retObj[p] = current[p]
     }
   }
-  return retObj;
+  return retObj
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
-function isObjectLike(value) {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
   //  returns 1: true
-  return typeof value === 'object' && value !== null;
+  return typeof value === 'object' && value !== null
 }
-function isPhpArrayObject(value) {
-  return isObjectLike(value);
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
 }
-function toPhpArrayObject(value) {
-  if (isPhpArrayObject(value)) {
-    return value;
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
   }
-  return {};
+
+  return {}
 }
 
 // php/array/array_replace
-function array_replace(arr, ...replacements) {
+function array_replace<TValue>(
+  arr: PhpArrayLike<TValue>,
+  firstReplacement: PhpArrayLike<TValue> | null | undefined,
+  ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined>
+): PhpAssoc<TValue | undefined> {
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
   //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
-  const retObj = {};
-  if (replacements.length < 1) {
-    throw new Error('There should be at least 2 arguments passed to array_replace()');
-  }
+
+  const retObj: PhpAssoc<TValue | undefined> = {}
+
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
   // (just guessing), so we make a copy here, instead of acting on arr itself
-  const arrObject = toPhpArrayObject(arr);
+  const arrObject = toPhpArrayObject<TValue>(arr)
   for (const p in arrObject) {
-    retObj[p] = arrObject[p];
+    retObj[p] = arrObject[p]
   }
-  for (const replacement of replacements) {
+
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
     if (!isObjectLike(replacement)) {
-      continue;
+      continue
     }
-    const current = toPhpArrayObject(replacement);
+    const current = toPhpArrayObject<TValue>(replacement)
     for (const p in current) {
-      retObj[p] = current[p];
+      retObj[p] = current[p]
     }
   }
-  return retObj;
+
+  return retObj
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpArrayObject(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+  return {}
+}
+
+// php/array/array_replace
+function array_replace(arr, firstReplacement, ...additionalReplacements) {
+  //  discuss at: https://locutus.io/php/array_replace/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
+  //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
+  const retObj = {}
+  // Although docs state that the arguments are passed in by reference,
+  // it seems they are not altered, but rather the copy that is returned
+  // (just guessing), so we make a copy here, instead of acting on arr itself
+  const arrObject = toPhpArrayObject(arr)
+  for (const p in arrObject) {
+    retObj[p] = arrObject[p]
+  }
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
+    if (!isObjectLike(replacement)) {
+      continue
+    }
+    const current = toPhpArrayObject(replacement)
+    for (const p in current) {
+      retObj[p] = current[p]
+    }
+  }
+  return retObj
 }{% endcodeblock %}
 </div>

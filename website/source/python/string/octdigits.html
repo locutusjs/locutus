@@ -30,7 +30,7 @@ alias:
   - /python/octdigits/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function octdigits() {
+{% codeblock lang:typescript %}export function octdigits(): '01234567' {
   //      discuss at: https://locutus.io/python/octdigits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -50,10 +50,23 @@ alias:
   //          note 1: Returns the string '01234567'
   //       example 1: octdigits()
   //       returns 1: '01234567'
-  return '01234567';
+  return '01234567'
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// python/string/octdigits
+function octdigits(): '01234567' {
+  //      discuss at: https://locutus.io/python/octdigits/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the string '01234567'
+  //       example 1: octdigits()
+  //       returns 1: '01234567'
+
+  return '01234567'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// python/string/octdigits
 function octdigits() {
   //      discuss at: https://locutus.io/python/octdigits/
@@ -62,6 +75,6 @@ function octdigits() {
   //          note 1: Returns the string '01234567'
   //       example 1: octdigits()
   //       returns 1: '01234567'
-  return '01234567';
+  return '01234567'
 }{% endcodeblock %}
 </div>

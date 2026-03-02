@@ -140,7 +140,7 @@ export function strip_tags(input: string | number, allowed?: string): string {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts';
+{% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
 export function strip_tags(input, allowed) {
   //      discuss at: https://locutus.io/php/strip_tags/
   // parity verified: PHP 8.3
@@ -182,26 +182,165 @@ export function strip_tags(input, allowed) {
   //       example 9: strip_tags(4)
   //       returns 9: '4'
   // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
-  allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
-  const tags = /<\/?([a-z0-9]*)\b[^>]*>?/gi;
-  const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-  let after = _phpCastString(input);
+  allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
+  const tags = /<\/?([a-z0-9]*)\b[^>]*>?/gi
+  const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
+  let after = _phpCastString(input)
   // removes tha '<' char at the end of the string to replicate PHP's behaviour
-  after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after;
+  after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {
-    const before = after;
+    const before = after
     after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
-      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
-    });
+      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
+    })
     // return once no more tags are removed
     if (before === after) {
-      return after;
+      return after
     }
   }
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+// php/_helpers/_phpCastString
+type CastStringValue = PhpInput
+
+function _phpCastString(value: CastStringValue): string {
+  // original by: Rafał Kukawski
+  //   example 1: _phpCastString(true)
+  //   returns 1: '1'
+  //   example 2: _phpCastString(false)
+  //   returns 2: ''
+  //   example 3: _phpCastString('foo')
+  //   returns 3: 'foo'
+  //   example 4: _phpCastString(0/0)
+  //   returns 4: 'NAN'
+  //   example 5: _phpCastString(1/0)
+  //   returns 5: 'INF'
+  //   example 6: _phpCastString(-1/0)
+  //   returns 6: '-INF'
+  //   example 7: _phpCastString(null)
+  //   returns 7: ''
+  //   example 8: _phpCastString(undefined)
+  //   returns 8: ''
+  //   example 9: _phpCastString([])
+  //   returns 9: 'Array'
+  //  example 10: _phpCastString({})
+  //  returns 10: 'Object'
+  //  example 11: _phpCastString(0)
+  //  returns 11: '0'
+  //  example 12: _phpCastString(1)
+  //  returns 12: '1'
+  //  example 13: _phpCastString(3.14)
+  //  returns 13: '3.14'
+
+  if (typeof value === 'boolean') {
+    return value ? '1' : ''
+  }
+  if (typeof value === 'string') {
+    return value
+  }
+  if (typeof value === 'number') {
+    if (isNaN(value)) {
+      return 'NAN'
+    }
+
+    if (!isFinite(value)) {
+      return (value < 0 ? '-' : '') + 'INF'
+    }
+
+    return value + ''
+  }
+  if (typeof value === 'undefined') {
+    return ''
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return 'Array'
+    }
+
+    if (value !== null) {
+      return 'Object'
+    }
+
+    return ''
+  }
+
+  throw new Error('Unsupported value type')
+}
+
+// php/strings/strip_tags
+function strip_tags(input: string | number, allowed?: string): string {
+  //      discuss at: https://locutus.io/php/strip_tags/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Luke Godfrey
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Pul
+  //        input by: Alex
+  //        input by: Marc Palau
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Bobby Drake
+  //        input by: Evertjan Garretsen
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Eric Nagel
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Tomasz Wesolowski
+  //     bugfixed by: Tymon Sturgeon (https://scryptonite.com)
+  //     bugfixed by: Tim de Koning (https://www.kingsquare.nl)
+  //      revised by: Rafał Kukawski (https://blog.kukawski.pl)
+  //       example 1: strip_tags('<p>Kevin</p> <br /><b>van</b> <i>Zonneveld</i>', '<i><b>')
+  //       returns 1: 'Kevin <b>van</b> <i>Zonneveld</i>'
+  //       example 2: strip_tags('<p>Kevin <img src="someimage.png" onmouseover="someFunction()">van <i>Zonneveld</i></p>', '<p>')
+  //       returns 2: '<p>Kevin van Zonneveld</p>'
+  //       example 3: strip_tags("<a href='https://kvz.io'>Kevin van Zonneveld</a>", "<a>")
+  //       returns 3: "<a href='https://kvz.io'>Kevin van Zonneveld</a>"
+  //       example 4: strip_tags('1 < 5 5 > 1')
+  //       returns 4: '1 < 5 5 > 1'
+  //       example 5: strip_tags('1 <br/> 1')
+  //       returns 5: '1  1'
+  //       example 6: strip_tags('1 <br/> 1', '<br>')
+  //       returns 6: '1 <br/> 1'
+  //       example 7: strip_tags('1 <br/> 1', '<br><br/>')
+  //       returns 7: '1 <br/> 1'
+  //       example 8: strip_tags('<i>hello</i> <<foo>script>world<</foo>/script>')
+  //       returns 8: 'hello world'
+  //       example 9: strip_tags(4)
+  //       returns 9: '4'
+
+  // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
+  allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
+
+  const tags = /<\/?([a-z0-9]*)\b[^>]*>?/gi
+  const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
+
+  let after = _phpCastString(input)
+  // removes tha '<' char at the end of the string to replicate PHP's behaviour
+  after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after
+
+  // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
+  while (true) {
+    const before = after
+    after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0: string, $1: string) {
+      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
+    })
+
+    // return once no more tags are removed
+    if (before === after) {
+      return after
+    }
+  }
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpCastString
 function _phpCastString(value) {
   // original by: Rafał Kukawski
@@ -232,33 +371,33 @@ function _phpCastString(value) {
   //  example 13: _phpCastString(3.14)
   //  returns 13: '3.14'
   if (typeof value === 'boolean') {
-    return value ? '1' : '';
+    return value ? '1' : ''
   }
   if (typeof value === 'string') {
-    return value;
+    return value
   }
   if (typeof value === 'number') {
     if (isNaN(value)) {
-      return 'NAN';
+      return 'NAN'
     }
     if (!isFinite(value)) {
-      return (value < 0 ? '-' : '') + 'INF';
+      return (value < 0 ? '-' : '') + 'INF'
     }
-    return value + '';
+    return value + ''
   }
   if (typeof value === 'undefined') {
-    return '';
+    return ''
   }
   if (typeof value === 'object') {
     if (Array.isArray(value)) {
-      return 'Array';
+      return 'Array'
     }
     if (value !== null) {
-      return 'Object';
+      return 'Object'
     }
-    return '';
+    return ''
   }
-  throw new Error('Unsupported value type');
+  throw new Error('Unsupported value type')
 }
 
 // php/strings/strip_tags
@@ -303,21 +442,21 @@ function strip_tags(input, allowed) {
   //       example 9: strip_tags(4)
   //       returns 9: '4'
   // making sure the allowed arg is a string containing only tags in lowercase (<a><b><c>)
-  allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
-  const tags = /<\/?([a-z0-9]*)\b[^>]*>?/gi;
-  const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
-  let after = _phpCastString(input);
+  allowed = (((allowed || '') + '').toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('')
+  const tags = /<\/?([a-z0-9]*)\b[^>]*>?/gi
+  const commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi
+  let after = _phpCastString(input)
   // removes tha '<' char at the end of the string to replicate PHP's behaviour
-  after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after;
+  after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {
-    const before = after;
+    const before = after
     after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
-      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
-    });
+      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
+    })
     // return once no more tags are removed
     if (before === after) {
-      return after;
+      return after
     }
   }
 }{% endcodeblock %}

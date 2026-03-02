@@ -60,12 +60,31 @@ alias:
   //       example 2: Join(['a', 'b', 'c'], '')
   //       returns 2: 'abc'
   if (!Array.isArray(elems)) {
-    return '';
+    return ''
   }
-  return elems.join(sep + '');
+  return elems.join(sep + '')
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// golang/strings/Join
+function Join(elems: unknown[] | unknown, sep: string): string {
+  //      discuss at: https://locutus.io/golang/strings/Join
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Concatenates elements of an array to create a single string
+  //       example 1: Join(['foo', 'bar', 'baz'], ', ')
+  //       returns 1: 'foo, bar, baz'
+  //       example 2: Join(['a', 'b', 'c'], '')
+  //       returns 2: 'abc'
+
+  if (!Array.isArray(elems)) {
+    return ''
+  }
+
+  return (elems as unknown[]).join(sep + '')
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// golang/strings/Join
 function Join(elems, sep) {
   //      discuss at: https://locutus.io/golang/strings/Join
@@ -77,8 +96,8 @@ function Join(elems, sep) {
   //       example 2: Join(['a', 'b', 'c'], '')
   //       returns 2: 'abc'
   if (!Array.isArray(elems)) {
-    return '';
+    return ''
   }
-  return elems.join(sep + '');
+  return elems.join(sep + '')
 }{% endcodeblock %}
 </div>

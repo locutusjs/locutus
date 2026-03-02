@@ -4,7 +4,8 @@ examples:
   - function_exists('isFinite')
 returns:
   - 'true'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -33,9 +34,7 @@ alias:
   - /functions/function_exists/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
-
-type PhpValue = {} | null | undefined
+{% codeblock lang:typescript %}import { getPhpGlobalCallable } from '../_helpers/_phpRuntimeState.ts'
 
 export function function_exists(funcName: string): boolean {
   //  discuss at: https://locutus.io/php/function_exists/
@@ -46,13 +45,13 @@ export function function_exists(funcName: string): boolean {
   //   example 1: function_exists('isFinite')
   //   returns 1: true
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & PhpAssoc<PhpValue>
-  return typeof $global[funcName] === 'function'
+  return typeof getPhpGlobalCallable(funcName) === 'function'
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function function_exists(funcName) {
+{% codeblock lang:javascript %}import { getPhpGlobalCallable } from '../_helpers/_phpRuntimeState.ts'
+export function function_exists(funcName) {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Steve Clay
@@ -60,12 +59,105 @@ export function function_exists(funcName: string): boolean {
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: function_exists('isFinite')
   //   returns 1: true
-  const $global = (typeof window !== 'undefined' ? window : global);
-  return typeof $global[funcName] === 'function';
+  return typeof getPhpGlobalCallable(funcName) === 'function'
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/funchand/function_exists
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpCallableArgs = PhpInput[]
+
+type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
+  ...args: TArgs
+) => TResult
+
+function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
+): value is PhpCallable<TArgs, TResult> {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpGlobalCallable<TArgs extends PhpInput[] = PhpInput[], TResult = PhpInput>(
+  key: string,
+): PhpCallable<TArgs, TResult> | undefined {
+  const value = getPhpGlobalEntry(key)
+  return isPhpCallable<TArgs, TResult>(value) ? value : undefined
+}
+
+// php/funchand/function_exists
+function function_exists(funcName: string): boolean {
+  //  discuss at: https://locutus.io/php/function_exists/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Steve Clay
+  // improved by: Legaev Andrey
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: function_exists('isFinite')
+  //   returns 1: true
+
+  return typeof getPhpGlobalCallable(funcName) === 'function'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpCallable(value) {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function getPhpGlobalCallable(key) {
+  const value = getPhpGlobalEntry(key)
+  return isPhpCallable(value) ? value : undefined
+}
+
+// php/funchand/function_exists
 function function_exists(funcName) {
   //  discuss at: https://locutus.io/php/function_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -74,7 +166,6 @@ function function_exists(funcName) {
   // improved by: Brett Zamir (https://brett-zamir.me)
   //   example 1: function_exists('isFinite')
   //   returns 1: true
-  const $global = (typeof window !== 'undefined' ? window : global);
-  return typeof $global[funcName] === 'function';
+  return typeof getPhpGlobalCallable(funcName) === 'function'
 }{% endcodeblock %}
 </div>

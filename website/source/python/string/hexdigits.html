@@ -30,7 +30,7 @@ alias:
   - /python/hexdigits/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function hexdigits() {
+{% codeblock lang:typescript %}export function hexdigits(): '0123456789abcdefABCDEF' {
   //      discuss at: https://locutus.io/python/hexdigits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -50,10 +50,23 @@ alias:
   //          note 1: Returns the string '0123456789abcdefABCDEF'
   //       example 1: hexdigits()
   //       returns 1: '0123456789abcdefABCDEF'
-  return '0123456789abcdefABCDEF';
+  return '0123456789abcdefABCDEF'
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// python/string/hexdigits
+function hexdigits(): '0123456789abcdefABCDEF' {
+  //      discuss at: https://locutus.io/python/hexdigits/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the string '0123456789abcdefABCDEF'
+  //       example 1: hexdigits()
+  //       returns 1: '0123456789abcdefABCDEF'
+
+  return '0123456789abcdefABCDEF'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// python/string/hexdigits
 function hexdigits() {
   //      discuss at: https://locutus.io/python/hexdigits/
@@ -62,6 +75,6 @@ function hexdigits() {
   //          note 1: Returns the string '0123456789abcdefABCDEF'
   //       example 1: hexdigits()
   //       returns 1: '0123456789abcdefABCDEF'
-  return '0123456789abcdefABCDEF';
+  return '0123456789abcdefABCDEF'
 }{% endcodeblock %}
 </div>

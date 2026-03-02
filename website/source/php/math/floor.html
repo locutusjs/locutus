@@ -48,10 +48,22 @@ alias:
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: floor(8723321.4)
   //       returns 1: 8723321
-  return Math.floor(value);
+  return Math.floor(value)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/math/floor
+function floor(value: number): number {
+  //      discuss at: https://locutus.io/php/floor/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: floor(8723321.4)
+  //       returns 1: 8723321
+
+  return Math.floor(value)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/floor
 function floor(value) {
   //      discuss at: https://locutus.io/php/floor/
@@ -59,6 +71,6 @@ function floor(value) {
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: floor(8723321.4)
   //       returns 1: 8723321
-  return Math.floor(value);
+  return Math.floor(value)
 }{% endcodeblock %}
 </div>

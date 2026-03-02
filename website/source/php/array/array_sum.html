@@ -42,9 +42,11 @@ alias:
   - /functions/array_sum/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { type PhpArrayLike, type PhpNullish, type StringLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-export function array_sum(array: PhpMixed[] | PhpAssoc<PhpMixed> | null): number | null {
+type SummableValue = StringLike | PhpNullish
+
+export function array_sum(array: PhpArrayLike<SummableValue> | null): number | null {
   //  discuss at: https://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: Nate
@@ -79,7 +81,7 @@ export function array_sum(array: PhpMixed[] | PhpAssoc<PhpMixed> | null): number
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts';
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 export function array_sum(array) {
   //  discuss at: https://locutus.io/php/array_sum/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -94,38 +96,105 @@ export function array_sum(array) {
   //   example 2: for (var $y = 0; $y < 12; $y++){ $total[$y] = $y + $index }
   //   example 2: array_sum($total)
   //   returns 2: 67.2
-  let sum = 0;
+  let sum = 0
   // input sanitation
   if (array === null || typeof array !== 'object') {
-    return null;
+    return null
   }
-  const values = toPhpArrayObject(array);
+  const values = toPhpArrayObject(array)
   for (const key in values) {
-    const parsed = parseFloat(String(values[key]));
+    const parsed = parseFloat(String(values[key]))
     if (!isNaN(parsed)) {
-      sum += parsed;
+      sum += parsed
     }
   }
-  return sum;
+  return sum
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
-function isObjectLike(value) {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type StringLike = string | number | boolean | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
   //  returns 1: true
-  return typeof value === 'object' && value !== null;
+  return typeof value === 'object' && value !== null
 }
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_sum
+type SummableValue = StringLike | PhpNullish
+
+function array_sum(array: PhpArrayLike<SummableValue> | null): number | null {
+  //  discuss at: https://locutus.io/php/array_sum/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Nate
+  // bugfixed by: Gilbert
+  // improved by: David Pilia (https://www.beteck.it/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_sum([4, 9, 182.6])
+  //   returns 1: 195.6
+  //   example 2: var $total = []
+  //   example 2: var $index = 0.1
+  //   example 2: for (var $y = 0; $y < 12; $y++){ $total[$y] = $y + $index }
+  //   example 2: array_sum($total)
+  //   returns 2: 67.2
+
+  let sum = 0
+
+  // input sanitation
+  if (array === null || typeof array !== 'object') {
+    return null
+  }
+  const values = toPhpArrayObject(array)
+
+  for (const key in values) {
+    const parsed = parseFloat(String(values[key]))
+    if (!isNaN(parsed)) {
+      sum += parsed
+    }
+  }
+
+  return sum
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
 function isPhpArrayObject(value) {
-  return isObjectLike(value);
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
 }
 function toPhpArrayObject(value) {
   if (isPhpArrayObject(value)) {
-    return value;
+    return value
   }
-  return {};
+  return {}
 }
 
 // php/array/array_sum
@@ -143,18 +212,18 @@ function array_sum(array) {
   //   example 2: for (var $y = 0; $y < 12; $y++){ $total[$y] = $y + $index }
   //   example 2: array_sum($total)
   //   returns 2: 67.2
-  let sum = 0;
+  let sum = 0
   // input sanitation
   if (array === null || typeof array !== 'object') {
-    return null;
+    return null
   }
-  const values = toPhpArrayObject(array);
+  const values = toPhpArrayObject(array)
   for (const key in values) {
-    const parsed = parseFloat(String(values[key]));
+    const parsed = parseFloat(String(values[key]))
     if (!isNaN(parsed)) {
-      sum += parsed;
+      sum += parsed
     }
   }
-  return sum;
+  return sum
 }{% endcodeblock %}
 </div>

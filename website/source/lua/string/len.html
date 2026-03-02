@@ -53,10 +53,24 @@ alias:
   //       returns 1: 5
   //       example 2: len('')
   //       returns 2: 0
-  return String(s).length;
+  return String(s).length
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// lua/string/len
+function len(s: string): number {
+  //      discuss at: https://locutus.io/lua/len/
+  // parity verified: Lua 5.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: len('hello')
+  //       returns 1: 5
+  //       example 2: len('')
+  //       returns 2: 0
+
+  return String(s).length
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// lua/string/len
 function len(s) {
   //      discuss at: https://locutus.io/lua/len/
@@ -66,6 +80,6 @@ function len(s) {
   //       returns 1: 5
   //       example 2: len('')
   //       returns 2: 0
-  return String(s).length;
+  return String(s).length
 }{% endcodeblock %}
 </div>

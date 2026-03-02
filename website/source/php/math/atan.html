@@ -47,10 +47,22 @@ alias:
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: atan(8723321.4)
   //       returns 1: 1.5707962121596615
-  return Math.atan(arg);
+  return Math.atan(arg)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/math/atan
+function atan(arg: number): number {
+  //      discuss at: https://locutus.io/php/atan/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: atan(8723321.4)
+  //       returns 1: 1.5707962121596615
+
+  return Math.atan(arg)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/atan
 function atan(arg) {
   //      discuss at: https://locutus.io/php/atan/
@@ -58,6 +70,6 @@ function atan(arg) {
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: atan(8723321.4)
   //       returns 1: 1.5707962121596615
-  return Math.atan(arg);
+  return Math.atan(arg)
 }{% endcodeblock %}
 </div>

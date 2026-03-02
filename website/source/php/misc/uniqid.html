@@ -14,7 +14,8 @@ returns:
   - 'true'
   - 'true'
   - 'true'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -42,9 +43,7 @@ alias:
   - /functions/uniqid/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}type UniqidLocutusContext = {
-  php?: { uniqidSeed?: number }
-}
+{% codeblock lang:typescript %}import { getPhpRuntimeNumber, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
 
 export function uniqid(prefix?: string, moreEntropy?: boolean): string {
   //  discuss at: https://locutus.io/php/uniqid/
@@ -77,23 +76,15 @@ export function uniqid(prefix?: string, moreEntropy?: boolean): string {
     return hexSeed
   }
 
-  const globalContext = globalThis as typeof globalThis & { $locutus?: UniqidLocutusContext }
-  globalContext.$locutus = globalContext.$locutus ?? {}
-  const locutus = globalContext.$locutus
-  locutus.php = locutus.php ?? {}
-  const php = locutus.php
-
-  if (!php.uniqidSeed) {
-    // init seed with big random int
-    php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15)
-  }
-  php.uniqidSeed++
+  let uniqidSeed = getPhpRuntimeNumber('uniqidSeed', Math.floor(Math.random() * 0x75bcd15)) // init seed with big random int
+  uniqidSeed++
+  setPhpRuntimeEntry('uniqidSeed', uniqidSeed)
 
   // start with prefix, add current milliseconds hex string
   retId = normalizedPrefix
   retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
   // add seed hex string
-  retId += formatSeed(php.uniqidSeed, 5)
+  retId += formatSeed(uniqidSeed, 5)
   if (moreEntropy) {
     // for more entropy we add a float lower to 10
     retId += (Math.random() * 10).toFixed(8).toString()
@@ -104,7 +95,8 @@ export function uniqid(prefix?: string, moreEntropy?: boolean): string {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function uniqid(prefix, moreEntropy) {
+{% codeblock lang:javascript %}import { getPhpRuntimeNumber, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+export function uniqid(prefix, moreEntropy) {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //  revised by: Kankrelune (https://www.webfaktory.info/)
@@ -118,44 +110,215 @@ export function uniqid(prefix?: string, moreEntropy?: boolean): string {
   //   example 3: var $id = uniqid('bar', true)
   //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
-  const normalizedPrefix = prefix ?? '';
-  let retId = '';
+  const normalizedPrefix = prefix ?? ''
+  let retId = ''
   const formatSeed = (seed, reqWidth) => {
-    const hexSeed = Number.parseInt(String(seed), 10).toString(16); // to hex str
+    const hexSeed = Number.parseInt(String(seed), 10).toString(16) // to hex str
     if (reqWidth < hexSeed.length) {
       // so long we split
-      return hexSeed.slice(hexSeed.length - reqWidth);
+      return hexSeed.slice(hexSeed.length - reqWidth)
     }
     if (reqWidth > hexSeed.length) {
       // so short we pad
-      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed;
+      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed
     }
-    return hexSeed;
-  };
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus ?? {};
-  const locutus = globalContext.$locutus;
-  locutus.php = locutus.php ?? {};
-  const php = locutus.php;
-  if (!php.uniqidSeed) {
-    // init seed with big random int
-    php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
+    return hexSeed
   }
-  php.uniqidSeed++;
+  let uniqidSeed = getPhpRuntimeNumber('uniqidSeed', Math.floor(Math.random() * 0x75bcd15)) // init seed with big random int
+  uniqidSeed++
+  setPhpRuntimeEntry('uniqidSeed', uniqidSeed)
   // start with prefix, add current milliseconds hex string
-  retId = normalizedPrefix;
-  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8);
+  retId = normalizedPrefix
+  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
   // add seed hex string
-  retId += formatSeed(php.uniqidSeed, 5);
+  retId += formatSeed(uniqidSeed, 5)
   if (moreEntropy) {
     // for more entropy we add a float lower to 10
-    retId += (Math.random() * 10).toFixed(8).toString();
+    retId += (Math.random() * 10).toFixed(8).toString()
   }
-  return retId;
+  return retId
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/misc/uniqid
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type PhpRuntimeNumberKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends number ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function getPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+): PhpRuntimeKnownEntryMap[TKey] | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function setPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+  value: PhpRuntimeKnownEntryMap[TKey],
+): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+function getPhpRuntimeNumber(key: PhpRuntimeNumberKey, fallback: number): number
+
+function getPhpRuntimeNumber(key: string, fallback: number): number
+
+function getPhpRuntimeNumber(key: string, fallback: number): number {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'number' ? value : fallback
+}
+
+// php/misc/uniqid
+function uniqid(prefix?: string, moreEntropy?: boolean): string {
+  //  discuss at: https://locutus.io/php/uniqid/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Kankrelune (https://www.webfaktory.info/)
+  //      note 1: Uses an internal counter (in locutus global) to avoid collision
+  //   example 1: var $id = uniqid()
+  //   example 1: var $result = $id.length === 13
+  //   returns 1: true
+  //   example 2: var $id = uniqid('foo')
+  //   example 2: var $result = $id.length === (13 + 'foo'.length)
+  //   returns 2: true
+  //   example 3: var $id = uniqid('bar', true)
+  //   example 3: var $result = $id.length === (23 + 'bar'.length)
+  //   returns 3: true
+
+  const normalizedPrefix = prefix ?? ''
+
+  let retId = ''
+  const formatSeed = (seed: number, reqWidth: number): string => {
+    const hexSeed = Number.parseInt(String(seed), 10).toString(16) // to hex str
+    if (reqWidth < hexSeed.length) {
+      // so long we split
+      return hexSeed.slice(hexSeed.length - reqWidth)
+    }
+    if (reqWidth > hexSeed.length) {
+      // so short we pad
+      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed
+    }
+    return hexSeed
+  }
+
+  let uniqidSeed = getPhpRuntimeNumber('uniqidSeed', Math.floor(Math.random() * 0x75bcd15)) // init seed with big random int
+  uniqidSeed++
+  setPhpRuntimeEntry('uniqidSeed', uniqidSeed)
+
+  // start with prefix, add current milliseconds hex string
+  retId = normalizedPrefix
+  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
+  // add seed hex string
+  retId += formatSeed(uniqidSeed, 5)
+  if (moreEntropy) {
+    // for more entropy we add a float lower to 10
+    retId += (Math.random() * 10).toFixed(8).toString()
+  }
+
+  return retId
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function getPhpRuntimeEntry(key) {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function setPhpRuntimeEntry(key, value) {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+function getPhpRuntimeNumber(key, fallback) {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'number' ? value : fallback
+}
+
+// php/misc/uniqid
 function uniqid(prefix, moreEntropy) {
   //  discuss at: https://locutus.io/php/uniqid/
   // original by: Kevin van Zonneveld (https://kvz.io)
@@ -170,39 +333,32 @@ function uniqid(prefix, moreEntropy) {
   //   example 3: var $id = uniqid('bar', true)
   //   example 3: var $result = $id.length === (23 + 'bar'.length)
   //   returns 3: true
-  const normalizedPrefix = prefix ?? '';
-  let retId = '';
+  const normalizedPrefix = prefix ?? ''
+  let retId = ''
   const formatSeed = (seed, reqWidth) => {
-    const hexSeed = Number.parseInt(String(seed), 10).toString(16); // to hex str
+    const hexSeed = Number.parseInt(String(seed), 10).toString(16) // to hex str
     if (reqWidth < hexSeed.length) {
       // so long we split
-      return hexSeed.slice(hexSeed.length - reqWidth);
+      return hexSeed.slice(hexSeed.length - reqWidth)
     }
     if (reqWidth > hexSeed.length) {
       // so short we pad
-      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed;
+      return new Array(1 + (reqWidth - hexSeed.length)).join('0') + hexSeed
     }
-    return hexSeed;
-  };
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus ?? {};
-  const locutus = globalContext.$locutus;
-  locutus.php = locutus.php ?? {};
-  const php = locutus.php;
-  if (!php.uniqidSeed) {
-    // init seed with big random int
-    php.uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
+    return hexSeed
   }
-  php.uniqidSeed++;
+  let uniqidSeed = getPhpRuntimeNumber('uniqidSeed', Math.floor(Math.random() * 0x75bcd15)) // init seed with big random int
+  uniqidSeed++
+  setPhpRuntimeEntry('uniqidSeed', uniqidSeed)
   // start with prefix, add current milliseconds hex string
-  retId = normalizedPrefix;
-  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8);
+  retId = normalizedPrefix
+  retId += formatSeed(Number.parseInt(String(new Date().getTime() / 1000), 10), 8)
   // add seed hex string
-  retId += formatSeed(php.uniqidSeed, 5);
+  retId += formatSeed(uniqidSeed, 5)
   if (moreEntropy) {
     // for more entropy we add a float lower to 10
-    retId += (Math.random() * 10).toFixed(8).toString();
+    retId += (Math.random() * 10).toFixed(8).toString()
   }
-  return retId;
+  return retId
 }{% endcodeblock %}
 </div>

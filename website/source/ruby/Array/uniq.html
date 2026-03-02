@@ -61,12 +61,31 @@ alias:
   //       example 2: uniq(['a', 'b', 'a', 'c', 'b'])
   //       returns 2: ['a', 'b', 'c']
   if (!Array.isArray(arr)) {
-    return [];
+    return []
   }
-  return [...new Set(arr)];
+  return [...new Set(arr)]
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// ruby/Array/uniq
+function uniq<T>(arr: T[] | unknown): T[] {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/Array/uniq/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a new array with duplicate values removed.
+  //       example 1: uniq([1, 2, 2, 3, 3, 3])
+  //       returns 1: [1, 2, 3]
+  //       example 2: uniq(['a', 'b', 'a', 'c', 'b'])
+  //       returns 2: ['a', 'b', 'c']
+
+  if (!Array.isArray(arr)) {
+    return []
+  }
+
+  return [...new Set(arr as T[])]
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// ruby/Array/uniq
 function uniq(arr) {
   // parity verified: Ruby 3.3
@@ -78,8 +97,8 @@ function uniq(arr) {
   //       example 2: uniq(['a', 'b', 'a', 'c', 'b'])
   //       returns 2: ['a', 'b', 'c']
   if (!Array.isArray(arr)) {
-    return [];
+    return []
   }
-  return [...new Set(arr)];
+  return [...new Set(arr)]
 }{% endcodeblock %}
 </div>

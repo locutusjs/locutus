@@ -64,10 +64,28 @@ alias:
   //       example 3: ceil(3)
   //       returns 3: 3.0
   // Clojure's Math/ceil returns a double, so we preserve that behavior
-  return Math.ceil(x);
+  return Math.ceil(x)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// clojure/Math/ceil
+function ceil(x: number): number {
+  //      discuss at: https://locutus.io/clojure/ceil/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the smallest integer >= x
+  //       example 1: ceil(4.2)
+  //       returns 1: 5.0
+  //       example 2: ceil(-0.5)
+  //       returns 2: -0.0
+  //       example 3: ceil(3)
+  //       returns 3: 3.0
+
+  // Clojure's Math/ceil returns a double, so we preserve that behavior
+  return Math.ceil(x)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// clojure/Math/ceil
 function ceil(x) {
   //      discuss at: https://locutus.io/clojure/ceil/
@@ -81,6 +99,6 @@ function ceil(x) {
   //       example 3: ceil(3)
   //       returns 3: 3.0
   // Clojure's Math/ceil returns a double, so we preserve that behavior
-  return Math.ceil(x);
+  return Math.ceil(x)
 }{% endcodeblock %}
 </div>

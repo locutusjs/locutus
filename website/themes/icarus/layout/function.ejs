@@ -246,26 +246,41 @@
       <!-- Code -->
       <% if (page.isTypescript) { %>
         <style>
+          .code-tabs {
+            position: relative;
+          }
           .code-tabs-header {
             display: flex;
-            gap: 0;
+            align-items: center;
+            gap: 8px;
             margin-bottom: -1px;
             position: relative;
             z-index: 1;
           }
+          .code-tabs-left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            min-width: 0;
+            scrollbar-width: thin;
+          }
           .code-tab-btn {
             position: relative;
-            padding: 10px 24px;
+            padding: 8px 10px;
             border: none;
             background: transparent;
             color: #888;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             cursor: pointer;
             transition: color 0.2s ease, background 0.2s ease;
             border-radius: 8px 8px 0 0;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            line-height: 1.2;
+            flex: 0 0 auto;
           }
           .code-tab-btn:hover {
             color: #ccc;
@@ -289,14 +304,13 @@
           .code-tab-btn.active::after {
             transform: translateX(-50%) scaleX(1);
           }
-          .code-tab-btn[data-tab="ts"].active::after {
+          .code-tab-btn[data-tab="ts"].active::after,
+          .code-tab-btn[data-tab="standalone-ts"].active::after {
             background: #3178c6;
           }
-          .code-tab-btn[data-tab="js"].active::after {
+          .code-tab-btn[data-tab="js"].active::after,
+          .code-tab-btn[data-tab="standalone-js"].active::after {
             background: #f0db4f;
-          }
-          .code-tab-btn[data-tab="standalone"].active::after {
-            background: #22c55e;
           }
           .code-tab-btn .tab-icon {
             display: inline-block;
@@ -311,17 +325,18 @@
             vertical-align: -2px;
             letter-spacing: -0.5px;
           }
-          .code-tab-btn[data-tab="ts"] .tab-icon {
+          .code-tab-btn[data-tab="ts"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-ts"] .tab-icon {
             background: #3178c6;
             color: #fff;
           }
-          .code-tab-btn[data-tab="js"] .tab-icon {
+          .code-tab-btn[data-tab="js"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-js"] .tab-icon {
             background: #f0db4f;
             color: #323330;
           }
-          .code-tab-btn[data-tab="standalone"] .tab-icon {
-            background: #22c55e;
-            color: #fff;
+          .code-panels-wrap {
+            position: relative;
           }
           .code-tab-panel {
             display: none;
@@ -333,20 +348,100 @@
             border-radius: 0 8px 8px 8px;
             margin-top: 0 !important;
           }
+          .code-copy-icon-btn {
+            align-items: center;
+            background: rgba(38, 38, 38, 0.95);
+            border: 1px solid #404040;
+            border-radius: 6px;
+            color: #cfcfcf;
+            cursor: pointer;
+            display: inline-flex;
+            height: 30px;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+            width: 30px;
+            z-index: 4;
+          }
+          .code-copy-icon-btn:hover {
+            border-color: #5a5a5a;
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-copy-icon-btn svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+          .code-copy-icon-btn[data-state='copied'] {
+            border-color: #22c55e;
+            color: #22c55e;
+          }
+          .code-copy-icon-btn[data-state='failed'] {
+            border-color: #ef4444;
+            color: #ef4444;
+          }
+          .code-copy-icon-btn .code-copy-success {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-default {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-success {
+            display: block;
+          }
+          .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          @media (max-width: 640px) {
+            .code-tab-btn {
+              padding: 7px 8px;
+              font-size: 11px;
+            }
+          }
         </style>
         <div class="code-tabs">
           <div class="code-tabs-header">
-            <button class="code-tab-btn active" data-tab="ts" type="button">
-              <span class="tab-icon">TS</span>TypeScript
-            </button>
-            <button class="code-tab-btn" data-tab="js" type="button">
-              <span class="tab-icon">JS</span>JavaScript
-            </button>
-            <button class="code-tab-btn" data-tab="standalone" type="button">
-              <span class="tab-icon">1F</span>Standalone
-            </button>
+            <div class="code-tabs-left">
+              <button class="code-tab-btn active" data-tab="ts" type="button">
+                <span class="tab-icon">TS</span>Module TS
+              </button>
+              <button class="code-tab-btn" data-tab="js" type="button">
+                <span class="tab-icon">JS</span>Module JS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-ts" type="button">
+                <span class="tab-icon">TS</span>Standalone TS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-js" type="button">
+                <span class="tab-icon">JS</span>Standalone JS
+              </button>
+            </div>
           </div>
-          <%- page.content %>
+          <div class="code-panels-wrap">
+            <button class="code-copy-icon-btn" type="button" data-state="idle" aria-label="Copy code" title="Copy code">
+              <span class="sr-only">Copy code</span>
+              <svg class="code-copy-default" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
+                <path d="M5 15V6.5C5 5.67 5.67 5 6.5 5H15" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+              <svg class="code-copy-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5L9.2 16.7L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <%- page.content %>
+          </div>
         </div>
         <script>
         (function() {
@@ -357,38 +452,144 @@
             saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
           } catch(e) {}
 
-          var buttons = document.querySelectorAll('.code-tab-btn');
-          var panels = document.querySelectorAll('.code-tab-panel');
-          var validTabs = Array.prototype.map.call(buttons, function(btn) {
-            return btn.getAttribute('data-tab');
-          });
+          if (saved === 'standalone') {
+            saved = 'standalone-js';
+          }
 
-          function switchTab(lang) {
-            if (validTabs.indexOf(lang) === -1) {
-              return;
+          function getPanelCode(panel) {
+            if (!panel) {
+              return '';
             }
+            var pre = panel.querySelector('pre');
+            if (pre) {
+              var preText = pre.innerText || pre.textContent || '';
+              if (preText) {
+                return preText.replace(/\u00a0/g, ' ').trimEnd();
+              }
+            }
+            var codeCell = panel.querySelector('figure.highlight .code');
+            if (codeCell) {
+              return (codeCell.textContent || '').replace(/\u00a0/g, ' ').trimEnd();
+            }
+            return '';
+          }
+
+          function copyText(value) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(value);
+            }
+            return new Promise(function(resolve, reject) {
+              try {
+                var textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (!ok) {
+                  reject(new Error('copy failed'));
+                  return;
+                }
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          var tabGroups = document.querySelectorAll('.code-tabs');
+          tabGroups.forEach(function(group) {
+            var buttons = group.querySelectorAll('.code-tab-btn');
+            var panels = group.querySelectorAll('.code-tab-panel');
+            var copyButton = group.querySelector('.code-copy-icon-btn');
+            var validTabs = [];
+
             buttons.forEach(function(btn) {
-              btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              var tab = btn.getAttribute('data-tab');
+              var hasPanel = Array.prototype.some.call(panels, function(panel) {
+                return panel.getAttribute('data-lang') === tab;
+              });
+              if (!hasPanel) {
+                btn.style.display = 'none';
+                return;
+              }
+              validTabs.push(tab);
             });
-            panels.forEach(function(panel) {
-              panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
-              panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
-            });
-            try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
-          }
 
-          buttons.forEach(function(btn) {
-            btn.addEventListener('click', function() {
-              switchTab(this.getAttribute('data-tab'));
+            function switchTab(lang) {
+              if (validTabs.indexOf(lang) === -1) {
+                return;
+              }
+              buttons.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              });
+              panels.forEach(function(panel) {
+                panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+                panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+              });
+              try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+            }
+
+            buttons.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-tab'));
+              });
             });
+
+            if (copyButton) {
+              var copyTimer = null;
+              copyButton.addEventListener('click', function() {
+                var activePanel = group.querySelector('.code-tab-panel.active') || panels[0];
+                var code = getPanelCode(activePanel);
+                if (!code.trim()) {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'No code available');
+                  copyButton.setAttribute('title', 'No code available');
+                  return;
+                }
+                copyText(code).then(function() {
+                  copyButton.setAttribute('data-state', 'copied');
+                  copyButton.setAttribute('aria-label', 'Copied');
+                  copyButton.setAttribute('title', 'Copied');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1400);
+                }).catch(function() {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'Copy failed');
+                  copyButton.setAttribute('title', 'Copy failed');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1600);
+                });
+              });
+            }
+
+            // Restore saved preference, default to TypeScript when available.
+            var defaultTab = validTabs.indexOf('ts') !== -1 ? 'ts' : validTabs[0];
+            if (saved && validTabs.indexOf(saved) !== -1) {
+              switchTab(saved);
+            } else if (defaultTab) {
+              switchTab(defaultTab);
+            }
           });
-
-          // Restore saved preference, default to TypeScript
-          if (saved && validTabs.indexOf(saved) !== -1) {
-            switchTab(saved);
-          } else {
-            switchTab('ts');
-          }
         })();
         </script>
       <% } else { %>

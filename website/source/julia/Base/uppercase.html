@@ -53,10 +53,24 @@ alias:
   //       returns 1: 'HELLO'
   //       example 2: uppercase('Hello World')
   //       returns 2: 'HELLO WORLD'
-  return String(s).toUpperCase();
+  return String(s).toUpperCase()
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// julia/Base/uppercase
+function uppercase(s: string): string {
+  //      discuss at: https://locutus.io/julia/uppercase/
+  // parity verified: Julia 1.11
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: uppercase('hello')
+  //       returns 1: 'HELLO'
+  //       example 2: uppercase('Hello World')
+  //       returns 2: 'HELLO WORLD'
+
+  return String(s).toUpperCase()
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// julia/Base/uppercase
 function uppercase(s) {
   //      discuss at: https://locutus.io/julia/uppercase/
@@ -66,6 +80,6 @@ function uppercase(s) {
   //       returns 1: 'HELLO'
   //       example 2: uppercase('Hello World')
   //       returns 2: 'HELLO WORLD'
-  return String(s).toUpperCase();
+  return String(s).toUpperCase()
 }{% endcodeblock %}
 </div>

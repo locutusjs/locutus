@@ -6,7 +6,8 @@ examples:
 returns:
   - 'true'
   - 'false'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Paulo Freitas
@@ -31,11 +32,11 @@ alias:
   - /functions/is_scalar/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { isPhpScalar, type PhpRuntimeValue, type PhpScalar } from '../_helpers/_phpTypes.ts'
 
-type PhpScalar = boolean | number | string
+type ScalarCheckValue = PhpRuntimeValue
 
-export function is_scalar(mixedVar: PhpMixed): mixedVar is PhpScalar {
+export function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31)
@@ -43,23 +44,67 @@ export function is_scalar(mixedVar: PhpMixed): mixedVar is PhpScalar {
   //   example 2: is_scalar({0: 'Kevin van Zonneveld'})
   //   returns 2: false
 
-  return typeof mixedVar === 'boolean' || typeof mixedVar === 'number' || typeof mixedVar === 'string'
+  return isPhpScalar(mixedVar)
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function is_scalar(mixedVar) {
+{% codeblock lang:javascript %}import { isPhpScalar } from '../_helpers/_phpTypes.ts'
+export function is_scalar(mixedVar) {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas
   //   example 1: is_scalar(186.31)
   //   returns 1: true
   //   example 2: is_scalar({0: 'Kevin van Zonneveld'})
   //   returns 2: false
-  return typeof mixedVar === 'boolean' || typeof mixedVar === 'number' || typeof mixedVar === 'string';
+  return isPhpScalar(mixedVar)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/var/is_scalar
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isPhpScalar(value: PhpInput): value is PhpScalar {
+  return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
+}
+
+// php/var/is_scalar
+type ScalarCheckValue = PhpRuntimeValue
+
+function is_scalar(mixedVar: ScalarCheckValue): mixedVar is PhpScalar {
+  //  discuss at: https://locutus.io/php/is_scalar/
+  // original by: Paulo Freitas
+  //   example 1: is_scalar(186.31)
+  //   returns 1: true
+  //   example 2: is_scalar({0: 'Kevin van Zonneveld'})
+  //   returns 2: false
+
+  return isPhpScalar(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpScalar(value) {
+  return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean'
+}
+
+// php/var/is_scalar
 function is_scalar(mixedVar) {
   //  discuss at: https://locutus.io/php/is_scalar/
   // original by: Paulo Freitas
@@ -67,6 +112,6 @@ function is_scalar(mixedVar) {
   //   returns 1: true
   //   example 2: is_scalar({0: 'Kevin van Zonneveld'})
   //   returns 2: false
-  return typeof mixedVar === 'boolean' || typeof mixedVar === 'number' || typeof mixedVar === 'string';
+  return isPhpScalar(mixedVar)
 }{% endcodeblock %}
 </div>

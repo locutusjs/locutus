@@ -46,9 +46,19 @@ alias:
   - /functions/in_array/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpArrayLike, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-export function in_array<T>(needle: PhpMixed, haystack: T[] | Record<string, T>, argStrict?: boolean): boolean {
+type InArrayValue = PhpRuntimeValue
+
+export function in_array<TNeedle extends InArrayValue>(
+  needle: TNeedle,
+  haystack: PhpArrayLike<TNeedle>,
+  argStrict: true,
+): boolean
+
+export function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayValue>, argStrict?: boolean): boolean
+
+export function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayValue>, argStrict?: boolean): boolean {
   //  discuss at: https://locutus.io/php/in_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: vlado houba
@@ -67,21 +77,35 @@ export function in_array<T>(needle: PhpMixed, haystack: T[] | Record<string, T>,
   //   returns 4: false
 
   const strict = !!argStrict
-  const entries = haystack as Record<string, T>
 
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance
   // deciding wich type of comparation will do before walk array
-  if (strict) {
-    for (const key in entries) {
-      if (entries[key] === needle) {
+  if (Array.isArray(haystack)) {
+    if (strict) {
+      for (const key in haystack) {
+        if (haystack[Number(key)] === needle) {
+          return true
+        }
+      }
+    } else {
+      for (const key in haystack) {
+        // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+        if (haystack[Number(key)] == needle) {
+          return true
+        }
+      }
+    }
+  } else if (strict) {
+    for (const key in haystack) {
+      if (haystack[key] === needle) {
         return true
       }
     }
   } else {
-    for (const key in entries) {
+    for (const key in haystack) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
-      if (entries[key] == needle) {
+      if (haystack[key] == needle) {
         return true
       }
     }
@@ -109,30 +133,136 @@ export function in_array<T>(needle: PhpMixed, haystack: T[] | Record<string, T>,
   //   returns 3: true
   //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
-  const strict = !!argStrict;
-  const entries = haystack;
+  const strict = !!argStrict
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance
   // deciding wich type of comparation will do before walk array
-  if (strict) {
-    for (const key in entries) {
-      if (entries[key] === needle) {
-        return true;
+  if (Array.isArray(haystack)) {
+    if (strict) {
+      for (const key in haystack) {
+        if (haystack[Number(key)] === needle) {
+          return true
+        }
+      }
+    } else {
+      for (const key in haystack) {
+        // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+        if (haystack[Number(key)] == needle) {
+          return true
+        }
       }
     }
-  }
-  else {
-    for (const key in entries) {
+  } else if (strict) {
+    for (const key in haystack) {
+      if (haystack[key] === needle) {
+        return true
+      }
+    }
+  } else {
+    for (const key in haystack) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
-      if (entries[key] == needle) {
-        return true;
+      if (haystack[key] == needle) {
+        return true
       }
     }
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/array/in_array
+type InArrayValue = PhpRuntimeValue
+
+function in_array<TNeedle extends InArrayValue>(
+  needle: TNeedle,
+  haystack: PhpArrayLike<TNeedle>,
+  argStrict: true,
+): boolean
+
+function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayValue>, argStrict?: boolean): boolean
+
+function in_array(needle: InArrayValue, haystack: PhpArrayLike<InArrayValue>, argStrict?: boolean): boolean {
+  //  discuss at: https://locutus.io/php/in_array/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: vlado houba
+  // improved by: Jonas Sciangula Street (Joni2Back)
+  //    input by: Billy
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: in_array('van', ['Kevin', 'van', 'Zonneveld'])
+  //   returns 1: true
+  //   example 2: in_array('vlado', {0: 'Kevin', vlado: 'van', 1: 'Zonneveld'})
+  //   returns 2: false
+  //   example 3: in_array(1, ['1', '2', '3'])
+  //   example 3: in_array(1, ['1', '2', '3'], false)
+  //   returns 3: true
+  //   returns 3: true
+  //   example 4: in_array(1, ['1', '2', '3'], true)
+  //   returns 4: false
+
+  const strict = !!argStrict
+
+  // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
+  // in just one for, in order to improve the performance
+  // deciding wich type of comparation will do before walk array
+  if (Array.isArray(haystack)) {
+    if (strict) {
+      for (const key in haystack) {
+        if (haystack[Number(key)] === needle) {
+          return true
+        }
+      }
+    } else {
+      for (const key in haystack) {
+        // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+        if (haystack[Number(key)] == needle) {
+          return true
+        }
+      }
+    }
+  } else if (strict) {
+    for (const key in haystack) {
+      if (haystack[key] === needle) {
+        return true
+      }
+    }
+  } else {
+    for (const key in haystack) {
+      // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+      if (haystack[key] == needle) {
+        return true
+      }
+    }
+  }
+
+  return false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/array/in_array
 function in_array(needle, haystack, argStrict) {
   //  discuss at: https://locutus.io/php/in_array/
@@ -151,26 +281,39 @@ function in_array(needle, haystack, argStrict) {
   //   returns 3: true
   //   example 4: in_array(1, ['1', '2', '3'], true)
   //   returns 4: false
-  const strict = !!argStrict;
-  const entries = haystack;
+  const strict = !!argStrict
   // we prevent the double check (strict && arr[key] === ndl) || (!strict && arr[key] === ndl)
   // in just one for, in order to improve the performance
   // deciding wich type of comparation will do before walk array
-  if (strict) {
-    for (const key in entries) {
-      if (entries[key] === needle) {
-        return true;
+  if (Array.isArray(haystack)) {
+    if (strict) {
+      for (const key in haystack) {
+        if (haystack[Number(key)] === needle) {
+          return true
+        }
+      }
+    } else {
+      for (const key in haystack) {
+        // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+        if (haystack[Number(key)] == needle) {
+          return true
+        }
       }
     }
-  }
-  else {
-    for (const key in entries) {
+  } else if (strict) {
+    for (const key in haystack) {
+      if (haystack[key] === needle) {
+        return true
+      }
+    }
+  } else {
+    for (const key in haystack) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
-      if (entries[key] == needle) {
-        return true;
+      if (haystack[key] == needle) {
+        return true
       }
     }
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>

@@ -46,15 +46,23 @@ alias:
   - /functions/array_column/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { isObjectLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
+type ColumnRow<TValue> = PhpAssoc<TValue>
+type ColumnInput<TValue> = ColumnRow<TValue>[] | PhpAssoc<ColumnRow<TValue>>
+type ColumnOutput<TValue> = PhpAssoc<TValue | ColumnRow<TValue> | undefined>
 
-export function array_column(
-  input: PhpValue,
+export function array_column<TValue>(
+  input: ColumnInput<TValue>,
   columnKey: string | number | null,
-  indexKey: string | number | null = null,
-): PhpAssoc<PhpValue> | undefined {
+  indexKey?: string | number | null,
+): ColumnOutput<TValue>
+export function array_column<TValue>(
+  input: ColumnInput<TValue> | null | undefined,
+  columnKey: string | number | null,
+  indexKey?: string | number | null,
+): ColumnOutput<TValue> | undefined {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
@@ -70,12 +78,12 @@ export function array_column(
     return undefined
   }
 
-  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject<PhpValue>(input))
-  const result: PhpAssoc<PhpValue> = {}
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject<ColumnRow<TValue>>(input))
+  const result: ColumnOutput<TValue> = {}
   let fallbackIndex = 0
 
   for (const rowValue of normalizedInput) {
-    const row = isObjectLike(rowValue) ? toPhpArrayObject<PhpValue>(rowValue) : {}
+    const row = toPhpArrayObject<TValue>(rowValue)
     const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
 
     const value = columnKey === null ? rowValue : row[String(columnKey)]
@@ -92,8 +100,8 @@ export function array_column(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts';
-export function array_column(input, columnKey, indexKey = null) {
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+export function array_column(input, columnKey, indexKey) {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
@@ -105,47 +113,128 @@ export function array_column(input, columnKey, indexKey = null) {
   //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
   //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
   if (input === null || typeof input !== 'object') {
-    return undefined;
+    return undefined
   }
-  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input));
-  const result = {};
-  let fallbackIndex = 0;
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input))
+  const result = {}
+  let fallbackIndex = 0
   for (const rowValue of normalizedInput) {
-    const row = isObjectLike(rowValue) ? toPhpArrayObject(rowValue) : {};
-    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)];
-    const value = columnKey === null ? rowValue : row[String(columnKey)];
+    const row = toPhpArrayObject(rowValue)
+    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
+    const value = columnKey === null ? rowValue : row[String(columnKey)]
     if (indexCandidate !== undefined && indexCandidate !== null) {
-      result[String(indexCandidate)] = value;
-    }
-    else {
-      result[String(fallbackIndex)] = value;
-      fallbackIndex += 1;
+      result[String(indexCandidate)] = value
+    } else {
+      result[String(fallbackIndex)] = value
+      fallbackIndex += 1
     }
   }
-  return result;
+  return result
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_phpTypes
-function isObjectLike(value) {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
   //  returns 1: true
-  return typeof value === 'object' && value !== null;
+  return typeof value === 'object' && value !== null
 }
-function isPhpArrayObject(value) {
-  return isObjectLike(value);
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
 }
-function toPhpArrayObject(value) {
-  if (isPhpArrayObject(value)) {
-    return value;
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
   }
-  return {};
+
+  return {}
 }
 
 // php/array/array_column
-function array_column(input, columnKey, indexKey = null) {
+type ColumnRow<TValue> = PhpAssoc<TValue>
+
+type ColumnInput<TValue> = ColumnRow<TValue>[] | PhpAssoc<ColumnRow<TValue>>
+
+type ColumnOutput<TValue> = PhpAssoc<TValue | ColumnRow<TValue> | undefined>
+
+function array_column<TValue>(
+  input: ColumnInput<TValue>,
+  columnKey: string | number | null,
+  indexKey?: string | number | null,
+): ColumnOutput<TValue>
+
+function array_column<TValue>(
+  input: ColumnInput<TValue> | null | undefined,
+  columnKey: string | number | null,
+  indexKey?: string | number | null,
+): ColumnOutput<TValue> | undefined {
+  //  discuss at: https://locutus.io/php/array_column/
+  // original by: Enzo Dañobeytía
+  //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
+  //   returns 1: {0: "Alex", 1: "Elvis", 2: "Michael"}
+  //   example 2: array_column({0: {name: 'Alex', value: 1}, 1: {name: 'Elvis', value: 2}, 2: {name: 'Michael', value: 3}}, 'name')
+  //   returns 2: {0: "Alex", 1: "Elvis", 2: "Michael"}
+  //   example 3: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name', 'value')
+  //   returns 3: {1: "Alex", 2: "Elvis", 3: "Michael"}
+  //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
+  //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
+
+  if (input === null || typeof input !== 'object') {
+    return undefined
+  }
+
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject<ColumnRow<TValue>>(input))
+  const result: ColumnOutput<TValue> = {}
+  let fallbackIndex = 0
+
+  for (const rowValue of normalizedInput) {
+    const row = toPhpArrayObject<TValue>(rowValue)
+    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
+
+    const value = columnKey === null ? rowValue : row[String(columnKey)]
+    if (indexCandidate !== undefined && indexCandidate !== null) {
+      result[String(indexCandidate)] = value
+    } else {
+      result[String(fallbackIndex)] = value
+      fallbackIndex += 1
+    }
+  }
+
+  return result
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpArrayObject(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+  return {}
+}
+
+// php/array/array_column
+function array_column(input, columnKey, indexKey) {
   //  discuss at: https://locutus.io/php/array_column/
   // original by: Enzo Dañobeytía
   //   example 1: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], 'name')
@@ -157,23 +246,22 @@ function array_column(input, columnKey, indexKey = null) {
   //   example 4: array_column([{name: 'Alex', value: 1}, {name: 'Elvis', value: 2}, {name: 'Michael', value: 3}], null, 'value')
   //   returns 4: {1: {name: 'Alex', value: 1}, 2: {name: 'Elvis', value: 2}, 3: {name: 'Michael', value: 3}}
   if (input === null || typeof input !== 'object') {
-    return undefined;
+    return undefined
   }
-  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input));
-  const result = {};
-  let fallbackIndex = 0;
+  const normalizedInput = Array.isArray(input) ? input : Object.values(toPhpArrayObject(input))
+  const result = {}
+  let fallbackIndex = 0
   for (const rowValue of normalizedInput) {
-    const row = isObjectLike(rowValue) ? toPhpArrayObject(rowValue) : {};
-    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)];
-    const value = columnKey === null ? rowValue : row[String(columnKey)];
+    const row = toPhpArrayObject(rowValue)
+    const indexCandidate = indexKey === null ? undefined : row[String(indexKey)]
+    const value = columnKey === null ? rowValue : row[String(columnKey)]
     if (indexCandidate !== undefined && indexCandidate !== null) {
-      result[String(indexCandidate)] = value;
-    }
-    else {
-      result[String(fallbackIndex)] = value;
-      fallbackIndex += 1;
+      result[String(indexCandidate)] = value
+    } else {
+      result[String(fallbackIndex)] = value
+      fallbackIndex += 1
     }
   }
-  return result;
+  return result
 }{% endcodeblock %}
 </div>

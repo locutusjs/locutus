@@ -39,9 +39,14 @@ alias:
   - /functions/metaphone/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-export function metaphone(word: PhpMixed, maxPhonemes: PhpMixed): string | false | null {
+type MetaphoneValue = PhpRuntimeValue
+
+export function metaphone(
+  word: MetaphoneValue,
+  maxPhonemes?: string | number | boolean | null | undefined,
+): string | false | null {
   //      discuss at: https://locutus.io/php/metaphone/
   // parity verified: PHP 8.3
   //     original by: Greg Frazier
@@ -281,218 +286,453 @@ export function metaphone(word: PhpMixed, maxPhonemes: PhpMixed): string | false
   //       returns 3: 'AKKRS'
   //       example 4: metaphone('batch batcher')
   //       returns 4: 'BXBXR'
-  const type = typeof word;
+  const type = typeof word
   if (type === 'undefined' || (type === 'object' && word !== null)) {
     // weird!
-    return null;
+    return null
   }
   // infinity and NaN values are treated as strings
-  let normalizedWord = typeof word === 'string' ? word : '';
+  let normalizedWord = typeof word === 'string' ? word : ''
   if (type === 'number') {
     if (Number.isNaN(word)) {
-      normalizedWord = 'NAN';
-    }
-    else if (!Number.isFinite(word)) {
-      normalizedWord = 'INF';
-    }
-    else {
-      normalizedWord = '';
+      normalizedWord = 'NAN'
+    } else if (!Number.isFinite(word)) {
+      normalizedWord = 'INF'
+    } else {
+      normalizedWord = ''
     }
   }
-  const maxPhonemeLimit = Math.floor(Number(maxPhonemes)) || 0;
+  const maxPhonemeLimit = Math.floor(Number(maxPhonemes)) || 0
   if (maxPhonemeLimit < 0) {
-    return false;
+    return false
   }
   // alpha depends on locale, so this var might need an update
   // or should be turned into a regex
   // for now assuming pure a-z
-  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const vowel = 'AEIOU';
-  const soft = 'EIY';
-  const leadingNonAlpha = new RegExp('^[^' + alpha + ']+');
-  normalizedWord = normalizedWord.toUpperCase().replace(leadingNonAlpha, '');
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const vowel = 'AEIOU'
+  const soft = 'EIY'
+  const leadingNonAlpha = new RegExp('^[^' + alpha + ']+')
+  normalizedWord = normalizedWord.toUpperCase().replace(leadingNonAlpha, '')
   if (!normalizedWord) {
-    return '';
+    return ''
   }
   const is = function (p, c) {
-    return c !== '' && p.indexOf(c) !== -1;
-  };
-  let i = 0;
-  let cc = normalizedWord.charAt(0); // current char. Short name because it's used all over the function
-  let nc = normalizedWord.charAt(1); // next char
-  let nnc = ''; // after next char
-  let pc = ''; // previous char
-  const l = normalizedWord.length;
-  let meta = '';
+    return c !== '' && p.indexOf(c) !== -1
+  }
+  let i = 0
+  let cc = normalizedWord.charAt(0) // current char. Short name because it's used all over the function
+  let nc = normalizedWord.charAt(1) // next char
+  let nnc = '' // after next char
+  let pc = '' // previous char
+  const l = normalizedWord.length
+  let meta = ''
   // traditional is an internal param that could be exposed for now let it be a local var
-  const traditional = true;
+  const traditional = true
   switch (cc) {
     case 'A':
-      meta += nc === 'E' ? nc : cc;
-      i += 1;
-      break;
+      meta += nc === 'E' ? nc : cc
+      i += 1
+      break
     case 'G':
     case 'K':
     case 'P':
       if (nc === 'N') {
-        meta += nc;
-        i += 2;
+        meta += nc
+        i += 2
       }
-      break;
+      break
     case 'W':
       if (nc === 'R') {
-        meta += nc;
-        i += 2;
+        meta += nc
+        i += 2
+      } else if (nc === 'H' || is(vowel, nc)) {
+        meta += 'W'
+        i += 2
       }
-      else if (nc === 'H' || is(vowel, nc)) {
-        meta += 'W';
-        i += 2;
-      }
-      break;
+      break
     case 'X':
-      meta += 'S';
-      i += 1;
-      break;
+      meta += 'S'
+      i += 1
+      break
     case 'E':
     case 'I':
     case 'O':
     case 'U':
-      meta += cc;
-      i++;
-      break;
+      meta += cc
+      i++
+      break
   }
   for (; i < l && (maxPhonemeLimit === 0 || meta.length < maxPhonemeLimit); i += 1) {
-    cc = normalizedWord.charAt(i);
-    nc = normalizedWord.charAt(i + 1);
-    pc = normalizedWord.charAt(i - 1);
-    nnc = normalizedWord.charAt(i + 2);
+    cc = normalizedWord.charAt(i)
+    nc = normalizedWord.charAt(i + 1)
+    pc = normalizedWord.charAt(i - 1)
+    nnc = normalizedWord.charAt(i + 2)
     if (cc === pc && cc !== 'C') {
-      continue;
+      continue
     }
     switch (cc) {
       case 'B':
         if (pc !== 'M') {
-          meta += cc;
+          meta += cc
         }
-        break;
+        break
       case 'C':
         if (is(soft, nc)) {
           if (nc === 'I' && nnc === 'A') {
-            meta += 'X';
+            meta += 'X'
+          } else if (pc !== 'S') {
+            meta += 'S'
           }
-          else if (pc !== 'S') {
-            meta += 'S';
-          }
+        } else if (nc === 'H') {
+          meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X'
+          i += 1
+        } else {
+          meta += 'K'
         }
-        else if (nc === 'H') {
-          meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X';
-          i += 1;
-        }
-        else {
-          meta += 'K';
-        }
-        break;
+        break
       case 'D':
         if (nc === 'G' && is(soft, nnc)) {
-          meta += 'J';
-          i += 1;
+          meta += 'J'
+          i += 1
+        } else {
+          meta += 'T'
         }
-        else {
-          meta += 'T';
-        }
-        break;
+        break
       case 'G':
         if (nc === 'H') {
           if (!(is('BDH', normalizedWord.charAt(i - 3)) || normalizedWord.charAt(i - 4) === 'H')) {
-            meta += 'F';
-            i += 1;
+            meta += 'F'
+            i += 1
           }
-        }
-        else if (nc === 'N') {
+        } else if (nc === 'N') {
           if (is(alpha, nnc) && normalizedWord.substr(i + 1, 3) !== 'NED') {
-            meta += 'K';
+            meta += 'K'
           }
+        } else if (is(soft, nc) && pc !== 'G') {
+          meta += 'J'
+        } else {
+          meta += 'K'
         }
-        else if (is(soft, nc) && pc !== 'G') {
-          meta += 'J';
-        }
-        else {
-          meta += 'K';
-        }
-        break;
+        break
       case 'H':
         if (is(vowel, nc) && !is('CGPST', pc)) {
-          meta += cc;
+          meta += cc
         }
-        break;
+        break
       case 'K':
         if (pc !== 'C') {
-          meta += 'K';
+          meta += 'K'
         }
-        break;
+        break
       case 'P':
-        meta += nc === 'H' ? 'F' : cc;
-        break;
+        meta += nc === 'H' ? 'F' : cc
+        break
       case 'Q':
-        meta += 'K';
-        break;
+        meta += 'K'
+        break
       case 'S':
         if (nc === 'I' && is('AO', nnc)) {
-          meta += 'X';
+          meta += 'X'
+        } else if (nc === 'H') {
+          meta += 'X'
+          i += 1
+        } else if (!traditional && normalizedWord.substr(i + 1, 3) === 'CHW') {
+          meta += 'X'
+          i += 2
+        } else {
+          meta += 'S'
         }
-        else if (nc === 'H') {
-          meta += 'X';
-          i += 1;
-        }
-        else if (!traditional && normalizedWord.substr(i + 1, 3) === 'CHW') {
-          meta += 'X';
-          i += 2;
-        }
-        else {
-          meta += 'S';
-        }
-        break;
+        break
       case 'T':
         if (nc === 'I' && is('AO', nnc)) {
-          meta += 'X';
+          meta += 'X'
+        } else if (nc === 'H') {
+          meta += '0'
+          i += 1
+        } else if (normalizedWord.substr(i + 1, 2) !== 'CH') {
+          meta += 'T'
         }
-        else if (nc === 'H') {
-          meta += '0';
-          i += 1;
-        }
-        else if (normalizedWord.substr(i + 1, 2) !== 'CH') {
-          meta += 'T';
-        }
-        break;
+        break
       case 'V':
-        meta += 'F';
-        break;
+        meta += 'F'
+        break
       case 'W':
       case 'Y':
         if (is(vowel, nc)) {
-          meta += cc;
+          meta += cc
         }
-        break;
+        break
       case 'X':
-        meta += 'KS';
-        break;
+        meta += 'KS'
+        break
       case 'Z':
-        meta += 'S';
-        break;
+        meta += 'S'
+        break
       case 'F':
       case 'J':
       case 'L':
       case 'M':
       case 'N':
       case 'R':
-        meta += cc;
-        break;
+        meta += cc
+        break
     }
   }
-  return meta;
+  return meta
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/strings/metaphone
+type MetaphoneValue = PhpRuntimeValue
+
+function metaphone(
+  word: MetaphoneValue,
+  maxPhonemes?: string | number | boolean | null | undefined,
+): string | false | null {
+  //      discuss at: https://locutus.io/php/metaphone/
+  // parity verified: PHP 8.3
+  //     original by: Greg Frazier
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //       example 1: metaphone('Gnu')
+  //       returns 1: 'N'
+  //       example 2: metaphone('bigger')
+  //       returns 2: 'BKR'
+  //       example 3: metaphone('accuracy')
+  //       returns 3: 'AKKRS'
+  //       example 4: metaphone('batch batcher')
+  //       returns 4: 'BXBXR'
+
+  const type = typeof word
+
+  if (type === 'undefined' || (type === 'object' && word !== null)) {
+    // weird!
+    return null
+  }
+
+  // infinity and NaN values are treated as strings
+  let normalizedWord = typeof word === 'string' ? word : ''
+  if (type === 'number') {
+    if (Number.isNaN(word)) {
+      normalizedWord = 'NAN'
+    } else if (!Number.isFinite(word)) {
+      normalizedWord = 'INF'
+    } else {
+      normalizedWord = ''
+    }
+  }
+
+  const maxPhonemeLimit = Math.floor(Number(maxPhonemes)) || 0
+  if (maxPhonemeLimit < 0) {
+    return false
+  }
+
+  // alpha depends on locale, so this var might need an update
+  // or should be turned into a regex
+  // for now assuming pure a-z
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const vowel = 'AEIOU'
+  const soft = 'EIY'
+  const leadingNonAlpha = new RegExp('^[^' + alpha + ']+')
+
+  normalizedWord = normalizedWord.toUpperCase().replace(leadingNonAlpha, '')
+
+  if (!normalizedWord) {
+    return ''
+  }
+
+  const is = function (p: string, c: string): boolean {
+    return c !== '' && p.indexOf(c) !== -1
+  }
+
+  let i = 0
+  let cc = normalizedWord.charAt(0) // current char. Short name because it's used all over the function
+  let nc = normalizedWord.charAt(1) // next char
+  let nnc = '' // after next char
+  let pc = '' // previous char
+  const l = normalizedWord.length
+  let meta = ''
+  // traditional is an internal param that could be exposed for now let it be a local var
+  const traditional = true
+
+  switch (cc) {
+    case 'A':
+      meta += nc === 'E' ? nc : cc
+      i += 1
+      break
+    case 'G':
+    case 'K':
+    case 'P':
+      if (nc === 'N') {
+        meta += nc
+        i += 2
+      }
+      break
+    case 'W':
+      if (nc === 'R') {
+        meta += nc
+        i += 2
+      } else if (nc === 'H' || is(vowel, nc)) {
+        meta += 'W'
+        i += 2
+      }
+      break
+    case 'X':
+      meta += 'S'
+      i += 1
+      break
+    case 'E':
+    case 'I':
+    case 'O':
+    case 'U':
+      meta += cc
+      i++
+      break
+  }
+
+  for (; i < l && (maxPhonemeLimit === 0 || meta.length < maxPhonemeLimit); i += 1) {
+    cc = normalizedWord.charAt(i)
+    nc = normalizedWord.charAt(i + 1)
+    pc = normalizedWord.charAt(i - 1)
+    nnc = normalizedWord.charAt(i + 2)
+
+    if (cc === pc && cc !== 'C') {
+      continue
+    }
+
+    switch (cc) {
+      case 'B':
+        if (pc !== 'M') {
+          meta += cc
+        }
+        break
+      case 'C':
+        if (is(soft, nc)) {
+          if (nc === 'I' && nnc === 'A') {
+            meta += 'X'
+          } else if (pc !== 'S') {
+            meta += 'S'
+          }
+        } else if (nc === 'H') {
+          meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X'
+          i += 1
+        } else {
+          meta += 'K'
+        }
+        break
+      case 'D':
+        if (nc === 'G' && is(soft, nnc)) {
+          meta += 'J'
+          i += 1
+        } else {
+          meta += 'T'
+        }
+        break
+      case 'G':
+        if (nc === 'H') {
+          if (!(is('BDH', normalizedWord.charAt(i - 3)) || normalizedWord.charAt(i - 4) === 'H')) {
+            meta += 'F'
+            i += 1
+          }
+        } else if (nc === 'N') {
+          if (is(alpha, nnc) && normalizedWord.substr(i + 1, 3) !== 'NED') {
+            meta += 'K'
+          }
+        } else if (is(soft, nc) && pc !== 'G') {
+          meta += 'J'
+        } else {
+          meta += 'K'
+        }
+        break
+      case 'H':
+        if (is(vowel, nc) && !is('CGPST', pc)) {
+          meta += cc
+        }
+        break
+      case 'K':
+        if (pc !== 'C') {
+          meta += 'K'
+        }
+        break
+      case 'P':
+        meta += nc === 'H' ? 'F' : cc
+        break
+      case 'Q':
+        meta += 'K'
+        break
+      case 'S':
+        if (nc === 'I' && is('AO', nnc)) {
+          meta += 'X'
+        } else if (nc === 'H') {
+          meta += 'X'
+          i += 1
+        } else if (!traditional && normalizedWord.substr(i + 1, 3) === 'CHW') {
+          meta += 'X'
+          i += 2
+        } else {
+          meta += 'S'
+        }
+        break
+      case 'T':
+        if (nc === 'I' && is('AO', nnc)) {
+          meta += 'X'
+        } else if (nc === 'H') {
+          meta += '0'
+          i += 1
+        } else if (normalizedWord.substr(i + 1, 2) !== 'CH') {
+          meta += 'T'
+        }
+        break
+      case 'V':
+        meta += 'F'
+        break
+      case 'W':
+      case 'Y':
+        if (is(vowel, nc)) {
+          meta += cc
+        }
+        break
+      case 'X':
+        meta += 'KS'
+        break
+      case 'Z':
+        meta += 'S'
+        break
+      case 'F':
+      case 'J':
+      case 'L':
+      case 'M':
+      case 'N':
+      case 'R':
+        meta += cc
+        break
+    }
+  }
+
+  return meta
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/strings/metaphone
 function metaphone(word, maxPhonemes) {
   //      discuss at: https://locutus.io/php/metaphone/
@@ -508,214 +748,199 @@ function metaphone(word, maxPhonemes) {
   //       returns 3: 'AKKRS'
   //       example 4: metaphone('batch batcher')
   //       returns 4: 'BXBXR'
-  const type = typeof word;
+  const type = typeof word
   if (type === 'undefined' || (type === 'object' && word !== null)) {
     // weird!
-    return null;
+    return null
   }
   // infinity and NaN values are treated as strings
-  let normalizedWord = typeof word === 'string' ? word : '';
+  let normalizedWord = typeof word === 'string' ? word : ''
   if (type === 'number') {
     if (Number.isNaN(word)) {
-      normalizedWord = 'NAN';
-    }
-    else if (!Number.isFinite(word)) {
-      normalizedWord = 'INF';
-    }
-    else {
-      normalizedWord = '';
+      normalizedWord = 'NAN'
+    } else if (!Number.isFinite(word)) {
+      normalizedWord = 'INF'
+    } else {
+      normalizedWord = ''
     }
   }
-  const maxPhonemeLimit = Math.floor(Number(maxPhonemes)) || 0;
+  const maxPhonemeLimit = Math.floor(Number(maxPhonemes)) || 0
   if (maxPhonemeLimit < 0) {
-    return false;
+    return false
   }
   // alpha depends on locale, so this var might need an update
   // or should be turned into a regex
   // for now assuming pure a-z
-  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const vowel = 'AEIOU';
-  const soft = 'EIY';
-  const leadingNonAlpha = new RegExp('^[^' + alpha + ']+');
-  normalizedWord = normalizedWord.toUpperCase().replace(leadingNonAlpha, '');
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const vowel = 'AEIOU'
+  const soft = 'EIY'
+  const leadingNonAlpha = new RegExp('^[^' + alpha + ']+')
+  normalizedWord = normalizedWord.toUpperCase().replace(leadingNonAlpha, '')
   if (!normalizedWord) {
-    return '';
+    return ''
   }
   const is = function (p, c) {
-    return c !== '' && p.indexOf(c) !== -1;
-  };
-  let i = 0;
-  let cc = normalizedWord.charAt(0); // current char. Short name because it's used all over the function
-  let nc = normalizedWord.charAt(1); // next char
-  let nnc = ''; // after next char
-  let pc = ''; // previous char
-  const l = normalizedWord.length;
-  let meta = '';
+    return c !== '' && p.indexOf(c) !== -1
+  }
+  let i = 0
+  let cc = normalizedWord.charAt(0) // current char. Short name because it's used all over the function
+  let nc = normalizedWord.charAt(1) // next char
+  let nnc = '' // after next char
+  let pc = '' // previous char
+  const l = normalizedWord.length
+  let meta = ''
   // traditional is an internal param that could be exposed for now let it be a local var
-  const traditional = true;
+  const traditional = true
   switch (cc) {
     case 'A':
-      meta += nc === 'E' ? nc : cc;
-      i += 1;
-      break;
+      meta += nc === 'E' ? nc : cc
+      i += 1
+      break
     case 'G':
     case 'K':
     case 'P':
       if (nc === 'N') {
-        meta += nc;
-        i += 2;
+        meta += nc
+        i += 2
       }
-      break;
+      break
     case 'W':
       if (nc === 'R') {
-        meta += nc;
-        i += 2;
+        meta += nc
+        i += 2
+      } else if (nc === 'H' || is(vowel, nc)) {
+        meta += 'W'
+        i += 2
       }
-      else if (nc === 'H' || is(vowel, nc)) {
-        meta += 'W';
-        i += 2;
-      }
-      break;
+      break
     case 'X':
-      meta += 'S';
-      i += 1;
-      break;
+      meta += 'S'
+      i += 1
+      break
     case 'E':
     case 'I':
     case 'O':
     case 'U':
-      meta += cc;
-      i++;
-      break;
+      meta += cc
+      i++
+      break
   }
   for (; i < l && (maxPhonemeLimit === 0 || meta.length < maxPhonemeLimit); i += 1) {
-    cc = normalizedWord.charAt(i);
-    nc = normalizedWord.charAt(i + 1);
-    pc = normalizedWord.charAt(i - 1);
-    nnc = normalizedWord.charAt(i + 2);
+    cc = normalizedWord.charAt(i)
+    nc = normalizedWord.charAt(i + 1)
+    pc = normalizedWord.charAt(i - 1)
+    nnc = normalizedWord.charAt(i + 2)
     if (cc === pc && cc !== 'C') {
-      continue;
+      continue
     }
     switch (cc) {
       case 'B':
         if (pc !== 'M') {
-          meta += cc;
+          meta += cc
         }
-        break;
+        break
       case 'C':
         if (is(soft, nc)) {
           if (nc === 'I' && nnc === 'A') {
-            meta += 'X';
+            meta += 'X'
+          } else if (pc !== 'S') {
+            meta += 'S'
           }
-          else if (pc !== 'S') {
-            meta += 'S';
-          }
+        } else if (nc === 'H') {
+          meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X'
+          i += 1
+        } else {
+          meta += 'K'
         }
-        else if (nc === 'H') {
-          meta += !traditional && (nnc === 'R' || pc === 'S') ? 'K' : 'X';
-          i += 1;
-        }
-        else {
-          meta += 'K';
-        }
-        break;
+        break
       case 'D':
         if (nc === 'G' && is(soft, nnc)) {
-          meta += 'J';
-          i += 1;
+          meta += 'J'
+          i += 1
+        } else {
+          meta += 'T'
         }
-        else {
-          meta += 'T';
-        }
-        break;
+        break
       case 'G':
         if (nc === 'H') {
           if (!(is('BDH', normalizedWord.charAt(i - 3)) || normalizedWord.charAt(i - 4) === 'H')) {
-            meta += 'F';
-            i += 1;
+            meta += 'F'
+            i += 1
           }
-        }
-        else if (nc === 'N') {
+        } else if (nc === 'N') {
           if (is(alpha, nnc) && normalizedWord.substr(i + 1, 3) !== 'NED') {
-            meta += 'K';
+            meta += 'K'
           }
+        } else if (is(soft, nc) && pc !== 'G') {
+          meta += 'J'
+        } else {
+          meta += 'K'
         }
-        else if (is(soft, nc) && pc !== 'G') {
-          meta += 'J';
-        }
-        else {
-          meta += 'K';
-        }
-        break;
+        break
       case 'H':
         if (is(vowel, nc) && !is('CGPST', pc)) {
-          meta += cc;
+          meta += cc
         }
-        break;
+        break
       case 'K':
         if (pc !== 'C') {
-          meta += 'K';
+          meta += 'K'
         }
-        break;
+        break
       case 'P':
-        meta += nc === 'H' ? 'F' : cc;
-        break;
+        meta += nc === 'H' ? 'F' : cc
+        break
       case 'Q':
-        meta += 'K';
-        break;
+        meta += 'K'
+        break
       case 'S':
         if (nc === 'I' && is('AO', nnc)) {
-          meta += 'X';
+          meta += 'X'
+        } else if (nc === 'H') {
+          meta += 'X'
+          i += 1
+        } else if (!traditional && normalizedWord.substr(i + 1, 3) === 'CHW') {
+          meta += 'X'
+          i += 2
+        } else {
+          meta += 'S'
         }
-        else if (nc === 'H') {
-          meta += 'X';
-          i += 1;
-        }
-        else if (!traditional && normalizedWord.substr(i + 1, 3) === 'CHW') {
-          meta += 'X';
-          i += 2;
-        }
-        else {
-          meta += 'S';
-        }
-        break;
+        break
       case 'T':
         if (nc === 'I' && is('AO', nnc)) {
-          meta += 'X';
+          meta += 'X'
+        } else if (nc === 'H') {
+          meta += '0'
+          i += 1
+        } else if (normalizedWord.substr(i + 1, 2) !== 'CH') {
+          meta += 'T'
         }
-        else if (nc === 'H') {
-          meta += '0';
-          i += 1;
-        }
-        else if (normalizedWord.substr(i + 1, 2) !== 'CH') {
-          meta += 'T';
-        }
-        break;
+        break
       case 'V':
-        meta += 'F';
-        break;
+        meta += 'F'
+        break
       case 'W':
       case 'Y':
         if (is(vowel, nc)) {
-          meta += cc;
+          meta += cc
         }
-        break;
+        break
       case 'X':
-        meta += 'KS';
-        break;
+        meta += 'KS'
+        break
       case 'Z':
-        meta += 'S';
-        break;
+        meta += 'S'
+        break
       case 'F':
       case 'J':
       case 'L':
       case 'M':
       case 'N':
       case 'R':
-        meta += cc;
-        break;
+        meta += cc
+        break
     }
   }
-  return meta;
+  return meta
 }{% endcodeblock %}
 </div>

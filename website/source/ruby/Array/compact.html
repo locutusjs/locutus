@@ -61,12 +61,31 @@ alias:
   //       example 2: compact([1, 2, 3])
   //       returns 2: [1, 2, 3]
   if (!Array.isArray(arr)) {
-    return [];
+    return []
   }
-  return arr.filter((item) => item != null);
+  return arr.filter((item) => item != null)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// ruby/Array/compact
+function compact<T>(arr: Array<T | null | undefined> | unknown): T[] {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/Array/compact/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a new array with all nil (null/undefined) values removed.
+  //       example 1: compact(['a', null, 'b', undefined, 'c'])
+  //       returns 1: ['a', 'b', 'c']
+  //       example 2: compact([1, 2, 3])
+  //       returns 2: [1, 2, 3]
+
+  if (!Array.isArray(arr)) {
+    return []
+  }
+
+  return (arr as Array<T | null | undefined>).filter((item): item is T => item != null)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// ruby/Array/compact
 function compact(arr) {
   // parity verified: Ruby 3.3
@@ -78,8 +97,8 @@ function compact(arr) {
   //       example 2: compact([1, 2, 3])
   //       returns 2: [1, 2, 3]
   if (!Array.isArray(arr)) {
-    return [];
+    return []
   }
-  return arr.filter((item) => item != null);
+  return arr.filter((item) => item != null)
 }{% endcodeblock %}
 </div>

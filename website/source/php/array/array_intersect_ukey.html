@@ -38,11 +38,24 @@ alias:
 ---
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
-import { type PhpAssoc, type PhpMixed, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+import {
+  entriesOfPhpAssoc,
+  isPhpCallableDescriptor,
+  type PhpAssoc,
+  type PhpKeyComparatorDescriptor,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
 
-type PhpArray = PhpAssoc<PhpMixed>
+type IntersectArray<T> = PhpAssoc<T> | T[]
 
-export function array_intersect_ukey(arr1: PhpArray, ...arraysAndCallback: PhpMixed[]): PhpArray {
+export function array_intersect_ukey<T>(
+  arr1: PhpAssoc<T>,
+  ...arraysAndCallback: [
+    arr2: IntersectArray<T>,
+    ...rest: Array<IntersectArray<T>>,
+    callback: PhpKeyComparatorDescriptor,
+  ]
+): PhpAssoc<T> {
   //  discuss at: https://locutus.io/php/array_intersect_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
@@ -50,19 +63,21 @@ export function array_intersect_ukey(arr1: PhpArray, ...arraysAndCallback: PhpMi
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
 
-  const retArr: PhpArray = {}
+  const retArr: PhpAssoc<T> = {}
   const callback = arraysAndCallback[arraysAndCallback.length - 1]
-  const arrays = arraysAndCallback.slice(0, -1)
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
+    throw new Error('array_intersect_ukey(): Invalid callback')
+  }
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<T>(value))
   const lastArrayIndex = arrays.length - 1
   const keyComparator = resolveNumericComparator<string, string>(callback, 'array_intersect_ukey(): Invalid callback')
 
-  arr1keys: for (const k1 in arr1) {
-    arrs: for (const [i, nextArray] of arrays.entries()) {
-      const arr = toPhpArrayObject(nextArray)
-      for (const k in arr) {
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
+    arrs: for (const [i, arr] of arrays.entries()) {
+      for (const [k] of entriesOfPhpAssoc(arr)) {
         if (keyComparator(k, k1) === 0) {
           if (i === lastArrayIndex) {
-            retArr[k1] = arr1[k1]
+            retArr[k1] = arr1Value
           }
           // If the innermost loop always leads at least once to an equal value,
           // continue the loop until done
@@ -79,8 +94,8 @@ export function array_intersect_ukey(arr1: PhpArray, ...arraysAndCallback: PhpMi
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts';
-import { toPhpArrayObject } from '../_helpers/_phpTypes.ts';
+{% codeblock lang:javascript %}import { resolveNumericComparator } from '../_helpers/_callbackResolver.ts'
+import { entriesOfPhpAssoc, isPhpCallableDescriptor, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 export function array_intersect_ukey(arr1, ...arraysAndCallback) {
   //  discuss at: https://locutus.io/php/array_intersect_ukey/
   // original by: Brett Zamir (https://brett-zamir.me)
@@ -88,97 +103,401 @@ export function array_intersect_ukey(arr1, ...arraysAndCallback) {
   //   example 1: var $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
-  const retArr = {};
-  const callback = arraysAndCallback[arraysAndCallback.length - 1];
-  const arrays = arraysAndCallback.slice(0, -1);
-  const lastArrayIndex = arrays.length - 1;
-  const keyComparator = resolveNumericComparator(callback, 'array_intersect_ukey(): Invalid callback');
-  arr1keys: for (const k1 in arr1) {
-    arrs: for (const [i, nextArray] of arrays.entries()) {
-      const arr = toPhpArrayObject(nextArray);
-      for (const k in arr) {
+  const retArr = {}
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
+    throw new Error('array_intersect_ukey(): Invalid callback')
+  }
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject(value))
+  const lastArrayIndex = arrays.length - 1
+  const keyComparator = resolveNumericComparator(callback, 'array_intersect_ukey(): Invalid callback')
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
+    arrs: for (const [i, arr] of arrays.entries()) {
+      for (const [k] of entriesOfPhpAssoc(arr)) {
         if (keyComparator(k, k1) === 0) {
           if (i === lastArrayIndex) {
-            retArr[k1] = arr1[k1];
+            retArr[k1] = arr1Value
           }
           // If the innermost loop always leads at least once to an equal value,
           // continue the loop until done
-          continue arrs;
+          continue arrs
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys;
+      continue arr1keys
     }
   }
-  return retArr;
+  return retArr
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/_helpers/_callbackResolver
-const isCallable = (value) => typeof value === 'function';
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type NumericLike = number | bigint | string
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
+  return Object.entries(value)
+}
+
+type PhpCallableArgs = PhpInput[]
+
+type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
+  ...args: TArgs
+) => TResult
+
+type PhpCallableScope = PhpInput
+
+type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = readonly [
+  PhpCallableScope,
+  string | PhpCallable<TArgs, TResult>,
+]
+
+type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> =
+  | string
+  | PhpCallable<TArgs, TResult>
+  | PhpCallableTuple<TArgs, TResult>
+
+type PhpKeyComparatorDescriptor = PhpCallableDescriptor<[string, string], NumericLike>
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
+): value is PhpCallable<TArgs, TResult> {
+  return typeof value === 'function'
+}
+
+function isPhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
+): value is PhpCallableDescriptor<TArgs, TResult> {
+  if (typeof value === 'string') {
+    return true
+  }
+
+  if (isPhpCallable<TArgs, TResult>(value)) {
+    return true
+  }
+
+  if (!Array.isArray(value) || value.length < 2) {
+    return false
+  }
+
+  const callableDescriptor = value[1]
+  return typeof callableDescriptor === 'string' || isPhpCallable<TArgs, TResult>(callableDescriptor)
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/_helpers/_phpRuntimeState
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/_helpers/_callbackResolver
+type CallbackValue = PhpInput
+
+interface CallbackResolverOptions {
+  invalidMessage: string
+  missingScopeMessage?: (scopeName: string) => string
+}
+
+interface ResolvedCallback<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue> {
+  fn: PhpCallable<TArgs, TResult>
+  scope: CallbackValue
+}
+
+function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue>(
+  callback: PhpCallableDescriptor<TArgs, TResult>,
+  options: CallbackResolverOptions,
+): ResolvedCallback<TArgs, TResult> {
+  // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
+  //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
+  //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
+  //  returns 1: 'function'
+  if (isPhpCallable<TArgs, TResult>(callback)) {
+    return { fn: callback, scope: null }
+  }
+
+  if (typeof callback === 'string') {
+    const candidate = getPhpGlobalEntry(callback)
+    if (isPhpCallable<TArgs, TResult>(candidate)) {
+      return { fn: candidate, scope: null }
+    }
+    throw new Error(options.invalidMessage)
+  }
+
+  if (Array.isArray(callback) && callback.length >= 2) {
+    const scopeDescriptor = callback[0]
+    const callableDescriptor = callback[1]
+
+    let scope: CallbackValue
+    if (typeof scopeDescriptor === 'string') {
+      scope = getPhpGlobalEntry(scopeDescriptor)
+      if (typeof scope === 'undefined' && options.missingScopeMessage) {
+        throw new Error(options.missingScopeMessage(scopeDescriptor))
+      }
+    } else {
+      scope = scopeDescriptor
+    }
+
+    if (isPhpCallable<TArgs, TResult>(callableDescriptor)) {
+      return { fn: callableDescriptor, scope }
+    }
+
+    if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
+      const candidate = getPhpObjectEntry(scope, callableDescriptor)
+      if (isPhpCallable<TArgs, TResult>(candidate)) {
+        return { fn: candidate, scope }
+      }
+    }
+  }
+
+  throw new Error(options.invalidMessage)
+}
+
+function resolveNumericComparator<
+  TLeft extends CallbackValue = CallbackValue,
+  TRight extends CallbackValue = CallbackValue,
+>(
+  callback: PhpCallableDescriptor<[TLeft, TRight], NumericLike>,
+  invalidMessage: string,
+): (left: TLeft, right: TRight) => number {
+  const resolved = resolvePhpCallable<[TLeft, TRight], NumericLike>(callback, { invalidMessage })
+
+  return (left: TLeft, right: TRight): number => Number(resolved.fn.apply(resolved.scope, [left, right]))
+}
+
+// php/array/array_intersect_ukey
+type IntersectArray<T> = PhpAssoc<T> | T[]
+
+function array_intersect_ukey<T>(
+  arr1: PhpAssoc<T>,
+  ...arraysAndCallback: [
+    arr2: IntersectArray<T>,
+    ...rest: Array<IntersectArray<T>>,
+    callback: PhpKeyComparatorDescriptor,
+  ]
+): PhpAssoc<T> {
+  //  discuss at: https://locutus.io/php/array_intersect_ukey/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: var $array1 = {blue: 1, red: 2, green: 3, purple: 4}
+  //   example 1: var $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
+  //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
+  //   returns 1: {blue: 1, green: 3}
+
+  const retArr: PhpAssoc<T> = {}
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
+    throw new Error('array_intersect_ukey(): Invalid callback')
+  }
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject<T>(value))
+  const lastArrayIndex = arrays.length - 1
+  const keyComparator = resolveNumericComparator<string, string>(callback, 'array_intersect_ukey(): Invalid callback')
+
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
+    arrs: for (const [i, arr] of arrays.entries()) {
+      for (const [k] of entriesOfPhpAssoc(arr)) {
+        if (keyComparator(k, k1) === 0) {
+          if (i === lastArrayIndex) {
+            retArr[k1] = arr1Value
+          }
+          // If the innermost loop always leads at least once to an equal value,
+          // continue the loop until done
+          continue arrs
+        }
+      }
+      // If it reaches here, it wasn't found in at least one array, so try next value
+      continue arr1keys
+    }
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+const entriesOfPhpAssoc = (value) => {
+  return Object.entries(value)
+}
+function isPhpArrayObject(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function isPhpCallable(value) {
+  return typeof value === 'function'
+}
+function isPhpCallableDescriptor(value) {
+  if (typeof value === 'string') {
+    return true
+  }
+  if (isPhpCallable(value)) {
+    return true
+  }
+  if (!Array.isArray(value) || value.length < 2) {
+    return false
+  }
+  const callableDescriptor = value[1]
+  return typeof callableDescriptor === 'string' || isPhpCallable(callableDescriptor)
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+  return {}
+}
+
+// php/_helpers/_phpRuntimeState
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+  return undefined
+}
+
+// php/_helpers/_callbackResolver
 function resolvePhpCallable(callback, options) {
   // discuss at: https://locutus.io/php/_helpers/resolvePhpCallable/
   //     note 1: Resolves PHP-style callbacks: function, global name, or [scope, method].
   //  example 1: typeof resolvePhpCallable('isNaN', { invalidMessage: 'x' }).fn
   //  returns 1: 'function'
-  const globalContext = globalThis;
-  if (isCallable(callback)) {
-    return { fn: callback, scope: null };
+  if (isPhpCallable(callback)) {
+    return { fn: callback, scope: null }
   }
   if (typeof callback === 'string') {
-    const candidate = globalContext[callback];
-    if (isCallable(candidate)) {
-      return { fn: candidate, scope: null };
+    const candidate = getPhpGlobalEntry(callback)
+    if (isPhpCallable(candidate)) {
+      return { fn: candidate, scope: null }
     }
-    throw new Error(options.invalidMessage);
+    throw new Error(options.invalidMessage)
   }
   if (Array.isArray(callback) && callback.length >= 2) {
-    const scopeDescriptor = callback[0];
-    const callableDescriptor = callback[1];
-    let scope;
+    const scopeDescriptor = callback[0]
+    const callableDescriptor = callback[1]
+    let scope
     if (typeof scopeDescriptor === 'string') {
-      scope = globalContext[scopeDescriptor];
+      scope = getPhpGlobalEntry(scopeDescriptor)
       if (typeof scope === 'undefined' && options.missingScopeMessage) {
-        throw new Error(options.missingScopeMessage(scopeDescriptor));
+        throw new Error(options.missingScopeMessage(scopeDescriptor))
       }
+    } else {
+      scope = scopeDescriptor
     }
-    else {
-      scope = scopeDescriptor;
+    if (isPhpCallable(callableDescriptor)) {
+      return { fn: callableDescriptor, scope }
     }
-    if (isCallable(callableDescriptor)) {
-      return { fn: callableDescriptor, scope };
-    }
-    if (typeof callableDescriptor === 'string' &&
-      ((typeof scope === 'object' && scope !== null) || typeof scope === 'function')) {
-      const candidate = Reflect.get(scope, callableDescriptor);
-      if (isCallable(candidate)) {
-        return { fn: candidate, scope };
+    if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
+      const candidate = getPhpObjectEntry(scope, callableDescriptor)
+      if (isPhpCallable(candidate)) {
+        return { fn: candidate, scope }
       }
     }
   }
-  throw new Error(options.invalidMessage);
+  throw new Error(options.invalidMessage)
 }
 function resolveNumericComparator(callback, invalidMessage) {
-  const resolved = resolvePhpCallable(callback, { invalidMessage });
-  return (left, right) => Number(resolved.fn.apply(resolved.scope, [left, right]));
-}
-
-// php/_helpers/_phpTypes
-function isObjectLike(value) {
-  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
-  //     note 1: Shared runtime guard for locutus helper typing.
-  //  example 1: isObjectLike({})
-  //  returns 1: true
-  return typeof value === 'object' && value !== null;
-}
-function isPhpArrayObject(value) {
-  return isObjectLike(value);
-}
-function toPhpArrayObject(value) {
-  if (isPhpArrayObject(value)) {
-    return value;
-  }
-  return {};
+  const resolved = resolvePhpCallable(callback, { invalidMessage })
+  return (left, right) => Number(resolved.fn.apply(resolved.scope, [left, right]))
 }
 
 // php/array/array_intersect_ukey
@@ -189,28 +508,30 @@ function array_intersect_ukey(arr1, ...arraysAndCallback) {
   //   example 1: var $array2 = {green: 5, blue: 6, yellow: 7, cyan: 8}
   //   example 1: array_intersect_ukey ($array1, $array2, function (key1, key2){ return (key1 === key2 ? 0 : (key1 > key2 ? 1 : -1)); })
   //   returns 1: {blue: 1, green: 3}
-  const retArr = {};
-  const callback = arraysAndCallback[arraysAndCallback.length - 1];
-  const arrays = arraysAndCallback.slice(0, -1);
-  const lastArrayIndex = arrays.length - 1;
-  const keyComparator = resolveNumericComparator(callback, 'array_intersect_ukey(): Invalid callback');
-  arr1keys: for (const k1 in arr1) {
-    arrs: for (const [i, nextArray] of arrays.entries()) {
-      const arr = toPhpArrayObject(nextArray);
-      for (const k in arr) {
+  const retArr = {}
+  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
+    throw new Error('array_intersect_ukey(): Invalid callback')
+  }
+  const arrays = arraysAndCallback.slice(0, -1).map((value) => toPhpArrayObject(value))
+  const lastArrayIndex = arrays.length - 1
+  const keyComparator = resolveNumericComparator(callback, 'array_intersect_ukey(): Invalid callback')
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1)) {
+    arrs: for (const [i, arr] of arrays.entries()) {
+      for (const [k] of entriesOfPhpAssoc(arr)) {
         if (keyComparator(k, k1) === 0) {
           if (i === lastArrayIndex) {
-            retArr[k1] = arr1[k1];
+            retArr[k1] = arr1Value
           }
           // If the innermost loop always leads at least once to an equal value,
           // continue the loop until done
-          continue arrs;
+          continue arrs
         }
       }
       // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys;
+      continue arr1keys
     }
   }
-  return retArr;
+  return retArr
 }{% endcodeblock %}
 </div>

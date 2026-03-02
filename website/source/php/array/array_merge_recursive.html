@@ -40,11 +40,10 @@ alias:
   - /functions/array_merge_recursive/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { isObjectLike, type PhpAssoc } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { isObjectLike, type PhpAssoc, type PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
 interface MergeObject extends PhpAssoc<MergeValue> {}
-type MergeValue = PhpValue | MergeValue[] | MergeObject
+type MergeValue = PhpRuntimeValue | MergeValue[] | MergeObject
 
 export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject {
   //       discuss at: https://locutus.io/php/array_merge_recursive/
@@ -67,7 +66,7 @@ export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): Mer
   }
 
   // Helper to check if value is a plain object (not array)
-  const isPlainObject = function (val: PhpValue): val is MergeObject {
+  const isPlainObject = function (val: PhpRuntimeValue): val is MergeObject {
     return isObjectLike(val) && !Array.isArray(val)
   }
 
@@ -113,7 +112,7 @@ export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): Mer
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { isObjectLike } from '../_helpers/_phpTypes.ts';
+{% codeblock lang:javascript %}import { isObjectLike } from '../_helpers/_phpTypes.ts'
 export function array_merge_recursive(arr1, arr2) {
   //       discuss at: https://locutus.io/php/array_merge_recursive/
   //      original by: Subhasis Deb
@@ -125,24 +124,23 @@ export function array_merge_recursive(arr1, arr2) {
   //        example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
   //        example 1: array_merge_recursive($arr1, $arr2)
   //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
-  const result = {};
-  let numericIdx = 0;
+  const result = {}
+  let numericIdx = 0
   // Helper to check if a key is numeric (PHP integer-indexed)
   const isNumericKey = function (key) {
-    return parseInt(key, 10) + '' === key + '';
-  };
+    return parseInt(key, 10) + '' === key + ''
+  }
   // Helper to check if value is a plain object (not array)
   const isPlainObject = function (val) {
-    return isObjectLike(val) && !Array.isArray(val);
-  };
+    return isObjectLike(val) && !Array.isArray(val)
+  }
   // Process arr1
   for (const key in arr1) {
     if (Object.prototype.hasOwnProperty.call(arr1, key)) {
       if (isNumericKey(key)) {
-        result[numericIdx++] = arr1[key];
-      }
-      else {
-        result[key] = arr1[key];
+        result[numericIdx++] = arr1[key]
+      } else {
+        result[key] = arr1[key]
       }
     }
   }
@@ -151,50 +149,141 @@ export function array_merge_recursive(arr1, arr2) {
     if (Object.prototype.hasOwnProperty.call(arr2, key)) {
       if (isNumericKey(key)) {
         // Numeric keys always append
-        result[numericIdx++] = arr2[key];
-      }
-      else if (key in result) {
+        result[numericIdx++] = arr2[key]
+      } else if (key in result) {
         // String key exists in both - need to merge
-        const resultValue = result[key];
-        const arr2Value = arr2[key];
+        const resultValue = result[key]
+        const arr2Value = arr2[key]
         if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
           // Both are objects - recurse
-          result[key] = array_merge_recursive(resultValue, arr2Value);
-        }
-        else if (Array.isArray(resultValue)) {
+          result[key] = array_merge_recursive(resultValue, arr2Value)
+        } else if (Array.isArray(resultValue)) {
           // Result is already an array, push new value
-          resultValue.push(arr2Value);
-        }
-        else {
+          resultValue.push(arr2Value)
+        } else {
           // Create array with both values
-          result[key] = [resultValue, arr2Value];
+          result[key] = [resultValue, arr2Value]
         }
-      }
-      else {
-        result[key] = arr2[key];
+      } else {
+        result[key] = arr2[key]
       }
     }
   }
-  return result;
+  return result
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+// php/array/array_merge_recursive
+interface MergeObject extends PhpAssoc<MergeValue> {}
+
+type MergeValue = PhpRuntimeValue | MergeValue[] | MergeObject
+
+function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject {
+  //       discuss at: https://locutus.io/php/array_merge_recursive/
+  //      original by: Subhasis Deb
+  //         input by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Kevin van Zonneveld (https://kvz.io)
+  //           note 1: Numeric keys are renumbered starting from 0, string keys are preserved
+  //        example 1: var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
+  //        example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
+  //        example 1: array_merge_recursive($arr1, $arr2)
+  //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
+
+  const result: MergeObject = {}
+  let numericIdx = 0
+
+  // Helper to check if a key is numeric (PHP integer-indexed)
+  const isNumericKey = function (key: string): boolean {
+    return parseInt(key, 10) + '' === key + ''
+  }
+
+  // Helper to check if value is a plain object (not array)
+  const isPlainObject = function (val: PhpRuntimeValue): val is MergeObject {
+    return isObjectLike(val) && !Array.isArray(val)
+  }
+
+  // Process arr1
+  for (const key in arr1) {
+    if (Object.prototype.hasOwnProperty.call(arr1, key)) {
+      if (isNumericKey(key)) {
+        result[numericIdx++] = arr1[key]
+      } else {
+        result[key] = arr1[key]
+      }
+    }
+  }
+
+  // Process arr2
+  for (const key in arr2) {
+    if (Object.prototype.hasOwnProperty.call(arr2, key)) {
+      if (isNumericKey(key)) {
+        // Numeric keys always append
+        result[numericIdx++] = arr2[key]
+      } else if (key in result) {
+        // String key exists in both - need to merge
+        const resultValue = result[key]
+        const arr2Value = arr2[key]
+        if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
+          // Both are objects - recurse
+          result[key] = array_merge_recursive(resultValue, arr2Value)
+        } else if (Array.isArray(resultValue)) {
+          // Result is already an array, push new value
+          resultValue.push(arr2Value)
+        } else {
+          // Create array with both values
+          result[key] = [resultValue, arr2Value]
+        }
+      } else {
+        result[key] = arr2[key]
+      }
+    }
+  }
+
+  return result
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes
 function isObjectLike(value) {
   // discuss at: https://locutus.io/php/_helpers/isObjectLike/
   //     note 1: Shared runtime guard for locutus helper typing.
   //  example 1: isObjectLike({})
   //  returns 1: true
-  return typeof value === 'object' && value !== null;
-}
-function isPhpArrayObject(value) {
-  return isObjectLike(value);
-}
-function toPhpArrayObject(value) {
-  if (isPhpArrayObject(value)) {
-    return value;
-  }
-  return {};
+  return typeof value === 'object' && value !== null
 }
 
 // php/array/array_merge_recursive
@@ -209,24 +298,23 @@ function array_merge_recursive(arr1, arr2) {
   //        example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
   //        example 1: array_merge_recursive($arr1, $arr2)
   //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
-  const result = {};
-  let numericIdx = 0;
+  const result = {}
+  let numericIdx = 0
   // Helper to check if a key is numeric (PHP integer-indexed)
   const isNumericKey = function (key) {
-    return parseInt(key, 10) + '' === key + '';
-  };
+    return parseInt(key, 10) + '' === key + ''
+  }
   // Helper to check if value is a plain object (not array)
   const isPlainObject = function (val) {
-    return isObjectLike(val) && !Array.isArray(val);
-  };
+    return isObjectLike(val) && !Array.isArray(val)
+  }
   // Process arr1
   for (const key in arr1) {
     if (Object.prototype.hasOwnProperty.call(arr1, key)) {
       if (isNumericKey(key)) {
-        result[numericIdx++] = arr1[key];
-      }
-      else {
-        result[key] = arr1[key];
+        result[numericIdx++] = arr1[key]
+      } else {
+        result[key] = arr1[key]
       }
     }
   }
@@ -235,30 +323,26 @@ function array_merge_recursive(arr1, arr2) {
     if (Object.prototype.hasOwnProperty.call(arr2, key)) {
       if (isNumericKey(key)) {
         // Numeric keys always append
-        result[numericIdx++] = arr2[key];
-      }
-      else if (key in result) {
+        result[numericIdx++] = arr2[key]
+      } else if (key in result) {
         // String key exists in both - need to merge
-        const resultValue = result[key];
-        const arr2Value = arr2[key];
+        const resultValue = result[key]
+        const arr2Value = arr2[key]
         if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
           // Both are objects - recurse
-          result[key] = array_merge_recursive(resultValue, arr2Value);
-        }
-        else if (Array.isArray(resultValue)) {
+          result[key] = array_merge_recursive(resultValue, arr2Value)
+        } else if (Array.isArray(resultValue)) {
           // Result is already an array, push new value
-          resultValue.push(arr2Value);
-        }
-        else {
+          resultValue.push(arr2Value)
+        } else {
           // Create array with both values
-          result[key] = [resultValue, arr2Value];
+          result[key] = [resultValue, arr2Value]
         }
-      }
-      else {
-        result[key] = arr2[key];
+      } else {
+        result[key] = arr2[key]
       }
     }
   }
-  return result;
+  return result
 }{% endcodeblock %}
 </div>

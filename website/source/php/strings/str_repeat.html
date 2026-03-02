@@ -67,23 +67,48 @@ alias:
   //     improved by: Ian Carter (https://euona.com/)
   //       example 1: str_repeat('-=', 10)
   //       returns 1: '-=-=-=-=-=-=-=-=-=-='
-  let y = '';
+  let y = ''
   while (true) {
     if (multiplier & 1) {
-      y += input;
+      y += input
     }
-    multiplier >>= 1;
+    multiplier >>= 1
     if (multiplier) {
-      input += input;
-    }
-    else {
-      break;
+      input += input
+    } else {
+      break
     }
   }
-  return y;
+  return y
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/strings/str_repeat
+function str_repeat(input: string, multiplier: number): string {
+  //      discuss at: https://locutus.io/php/str_repeat/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //     improved by: Ian Carter (https://euona.com/)
+  //       example 1: str_repeat('-=', 10)
+  //       returns 1: '-=-=-=-=-=-=-=-=-=-='
+
+  let y = ''
+  while (true) {
+    if (multiplier & 1) {
+      y += input
+    }
+    multiplier >>= 1
+    if (multiplier) {
+      input += input
+    } else {
+      break
+    }
+  }
+  return y
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/strings/str_repeat
 function str_repeat(input, multiplier) {
   //      discuss at: https://locutus.io/php/str_repeat/
@@ -93,19 +118,18 @@ function str_repeat(input, multiplier) {
   //     improved by: Ian Carter (https://euona.com/)
   //       example 1: str_repeat('-=', 10)
   //       returns 1: '-=-=-=-=-=-=-=-=-=-='
-  let y = '';
+  let y = ''
   while (true) {
     if (multiplier & 1) {
-      y += input;
+      y += input
     }
-    multiplier >>= 1;
+    multiplier >>= 1
     if (multiplier) {
-      input += input;
-    }
-    else {
-      break;
+      input += input
+    } else {
+      break
     }
   }
-  return y;
+  return y
 }{% endcodeblock %}
 </div>

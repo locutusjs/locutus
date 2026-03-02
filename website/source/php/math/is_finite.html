@@ -33,9 +33,11 @@ alias:
   - /functions/is_finite/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-export function is_finite(val: PhpMixed): boolean {
+type NumberCheckValue = PhpRuntimeValue
+
+export function is_finite(val: NumberCheckValue): boolean {
   //  discuss at: https://locutus.io/php/is_finite/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //   example 1: is_finite(Infinity)
@@ -77,26 +79,79 @@ export function is_finite(val: PhpMixed): boolean {
   //   returns 2: false
   //   example 3: is_finite(0)
   //   returns 3: true
-  let warningType = '';
+  let warningType = ''
   if (val === Infinity || val === -Infinity) {
-    return false;
+    return false
   }
   // Some warnings for maximum PHP compatibility
   if (typeof val === 'object') {
-    warningType = Array.isArray(val) ? 'array' : 'object';
-  }
-  else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
+    warningType = Array.isArray(val) ? 'array' : 'object'
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
-    warningType = 'string';
+    warningType = 'string'
   }
   if (warningType) {
-    const msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given';
-    throw new Error(msg);
+    const msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given'
+    throw new Error(msg)
   }
-  return true;
+  return true
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/math/is_finite
+type NumberCheckValue = PhpRuntimeValue
+
+function is_finite(val: NumberCheckValue): boolean {
+  //  discuss at: https://locutus.io/php/is_finite/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //   example 1: is_finite(Infinity)
+  //   returns 1: false
+  //   example 2: is_finite(-Infinity)
+  //   returns 2: false
+  //   example 3: is_finite(0)
+  //   returns 3: true
+
+  let warningType = ''
+
+  if (val === Infinity || val === -Infinity) {
+    return false
+  }
+
+  // Some warnings for maximum PHP compatibility
+  if (typeof val === 'object') {
+    warningType = Array.isArray(val) ? 'array' : 'object'
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
+    // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
+    warningType = 'string'
+  }
+  if (warningType) {
+    const msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given'
+    throw new Error(msg)
+  }
+
+  return true
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/is_finite
 function is_finite(val) {
   //  discuss at: https://locutus.io/php/is_finite/
@@ -107,22 +162,21 @@ function is_finite(val) {
   //   returns 2: false
   //   example 3: is_finite(0)
   //   returns 3: true
-  let warningType = '';
+  let warningType = ''
   if (val === Infinity || val === -Infinity) {
-    return false;
+    return false
   }
   // Some warnings for maximum PHP compatibility
   if (typeof val === 'object') {
-    warningType = Array.isArray(val) ? 'array' : 'object';
-  }
-  else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
+    warningType = Array.isArray(val) ? 'array' : 'object'
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
-    warningType = 'string';
+    warningType = 'string'
   }
   if (warningType) {
-    const msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given';
-    throw new Error(msg);
+    const msg = 'Warning: is_finite() expects parameter 1 to be double, ' + warningType + ' given'
+    throw new Error(msg)
   }
-  return true;
+  return true
 }{% endcodeblock %}
 </div>

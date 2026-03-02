@@ -53,10 +53,24 @@ alias:
   //       returns 1: 'hello'
   //       example 2: lower('Hello World')
   //       returns 2: 'hello world'
-  return String(s).toLowerCase();
+  return String(s).toLowerCase()
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// lua/string/lower
+function lower(s: string): string {
+  //      discuss at: https://locutus.io/lua/lower/
+  // parity verified: Lua 5.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: lower('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: lower('Hello World')
+  //       returns 2: 'hello world'
+
+  return String(s).toLowerCase()
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// lua/string/lower
 function lower(s) {
   //      discuss at: https://locutus.io/lua/lower/
@@ -66,6 +80,6 @@ function lower(s) {
   //       returns 1: 'hello'
   //       example 2: lower('Hello World')
   //       returns 2: 'hello world'
-  return String(s).toLowerCase();
+  return String(s).toLowerCase()
 }{% endcodeblock %}
 </div>

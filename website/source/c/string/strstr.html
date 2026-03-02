@@ -60,13 +60,31 @@ alias:
   //   returns 1: 'World!'
   //   example 2: strstr('Hello', 'xyz')
   //   returns 2: null
-  haystack = haystack + '';
-  needle = needle + '';
-  const idx = haystack.indexOf(needle);
-  return idx === -1 ? null : haystack.slice(idx);
+  haystack = haystack + ''
+  needle = needle + ''
+  const idx = haystack.indexOf(needle)
+  return idx === -1 ? null : haystack.slice(idx)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// c/string/strstr
+function strstr(haystack: string, needle: string): string | null {
+  //  discuss at: https://locutus.io/c/string/strstr/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Finds the first occurrence of needle in haystack.
+  //      note 1: Returns substring starting from the match, or null if not found.
+  //   example 1: strstr('Hello, World!', 'World')
+  //   returns 1: 'World!'
+  //   example 2: strstr('Hello', 'xyz')
+  //   returns 2: null
+
+  haystack = haystack + ''
+  needle = needle + ''
+  const idx = haystack.indexOf(needle)
+  return idx === -1 ? null : haystack.slice(idx)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// c/string/strstr
 function strstr(haystack, needle) {
   //  discuss at: https://locutus.io/c/string/strstr/
@@ -77,9 +95,9 @@ function strstr(haystack, needle) {
   //   returns 1: 'World!'
   //   example 2: strstr('Hello', 'xyz')
   //   returns 2: null
-  haystack = haystack + '';
-  needle = needle + '';
-  const idx = haystack.indexOf(needle);
-  return idx === -1 ? null : haystack.slice(idx);
+  haystack = haystack + ''
+  needle = needle + ''
+  const idx = haystack.indexOf(needle)
+  return idx === -1 ? null : haystack.slice(idx)
 }{% endcodeblock %}
 </div>

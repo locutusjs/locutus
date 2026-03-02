@@ -33,7 +33,7 @@ alias:
   - /functions/create_function/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpCallable } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpCallable, PhpInput } from '../_helpers/_phpTypes.ts'
 
 export function create_function(args: string, code: string): PhpCallable | false {
   //       discuss at: https://locutus.io/php/create_function/
@@ -49,7 +49,8 @@ export function create_function(args: string, code: string): PhpCallable | false
       .map((param) => param.trim())
       .filter((param) => param.length > 0)
 
-    return new Function(...params, code) as PhpCallable
+    const created = new Function(...params, code)
+    return (...callArgs: PhpInput[]) => Reflect.apply(created, null, callArgs)
   } catch (_e) {
     return false
   }
@@ -68,15 +69,49 @@ export function create_function(args: string, code: string): PhpCallable | false
     const params = args
       .split(',')
       .map((param) => param.trim())
-      .filter((param) => param.length > 0);
-    return new Function(...params, code);
-  }
-  catch (_e) {
-    return false;
+      .filter((param) => param.length > 0)
+    const created = new Function(...params, code)
+    return (...callArgs) => Reflect.apply(created, null, callArgs)
+  } catch (_e) {
+    return false
   }
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpCallableArgs = PhpInput[]
+
+type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
+  ...args: TArgs
+) => TResult
+
+// php/funchand/create_function
+function create_function(args: string, code: string): PhpCallable | false {
+  //       discuss at: https://locutus.io/php/create_function/
+  //      original by: Johnny Mast (https://www.phpvrouwen.nl)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //        example 1: var $f = create_function('a, b', 'return (a + b)')
+  //        example 1: $f(1, 2)
+  //        returns 1: 3
+
+  try {
+    const params = args
+      .split(',')
+      .map((param) => param.trim())
+      .filter((param) => param.length > 0)
+
+    const created = new Function(...params, code)
+    return (...callArgs: PhpInput[]) => Reflect.apply(created, null, callArgs)
+  } catch (_e) {
+    return false
+  }
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/funchand/create_function
 function create_function(args, code) {
   //       discuss at: https://locutus.io/php/create_function/
@@ -89,11 +124,11 @@ function create_function(args, code) {
     const params = args
       .split(',')
       .map((param) => param.trim())
-      .filter((param) => param.length > 0);
-    return new Function(...params, code);
-  }
-  catch (_e) {
-    return false;
+      .filter((param) => param.length > 0)
+    const created = new Function(...params, code)
+    return (...callArgs) => Reflect.apply(created, null, callArgs)
+  } catch (_e) {
+    return false
   }
 }{% endcodeblock %}
 </div>

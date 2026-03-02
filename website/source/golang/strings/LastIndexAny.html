@@ -60,17 +60,38 @@ alias:
   //       returns 1: 4
   //       example 2: LastIndexAny('go gopher', 'rodent')
   //       returns 2: 8
-  let maxIndex = -1;
+  let maxIndex = -1
   for (const char of chars) {
-    const idx = s.lastIndexOf(char);
+    const idx = s.lastIndexOf(char)
     if (idx > maxIndex) {
-      maxIndex = idx;
+      maxIndex = idx
     }
   }
-  return maxIndex;
+  return maxIndex
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// golang/strings/LastIndexAny
+function LastIndexAny(s: string, chars: string): number {
+  //      discuss at: https://locutus.io/golang/strings/LastIndexAny/
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: LastIndexAny('go gopher', 'go')
+  //       returns 1: 4
+  //       example 2: LastIndexAny('go gopher', 'rodent')
+  //       returns 2: 8
+
+  let maxIndex = -1
+  for (const char of chars) {
+    const idx = s.lastIndexOf(char)
+    if (idx > maxIndex) {
+      maxIndex = idx
+    }
+  }
+  return maxIndex
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// golang/strings/LastIndexAny
 function LastIndexAny(s, chars) {
   //      discuss at: https://locutus.io/golang/strings/LastIndexAny/
@@ -80,13 +101,13 @@ function LastIndexAny(s, chars) {
   //       returns 1: 4
   //       example 2: LastIndexAny('go gopher', 'rodent')
   //       returns 2: 8
-  let maxIndex = -1;
+  let maxIndex = -1
   for (const char of chars) {
-    const idx = s.lastIndexOf(char);
+    const idx = s.lastIndexOf(char)
     if (idx > maxIndex) {
-      maxIndex = idx;
+      maxIndex = idx
     }
   }
-  return maxIndex;
+  return maxIndex
 }{% endcodeblock %}
 </div>

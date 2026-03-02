@@ -8,7 +8,8 @@ examples:
     var $result = $data.q
 returns:
   - '5'
-dependencies: []
+dependencies:
+  - php/info/ini_get
 authors:
   original by:
     - Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -38,7 +39,7 @@ alias:
   - /functions/shuffle/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { ini_get } from '../info/ini_get.ts'
 
 export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[] {
   //  discuss at: https://locutus.io/php/shuffle/
@@ -61,7 +62,11 @@ export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k] as T)
+      const value = inputArr[k]
+      if (value === undefined) {
+        continue
+      }
+      valArr.push(value)
       if (sortByReference) {
         delete inputArr[k]
       }
@@ -71,21 +76,24 @@ export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string
     return 0.5 - Math.random()
   })
 
-  const $loc = (
-    globalThis as typeof globalThis & {
-      $locutus?: { php?: { ini?: Record<string, { local_value?: PhpMixed }> } }
-    }
-  ).$locutus
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on'
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
   sortByReference = iniVal === 'on'
   populateArr = sortByReference ? inputArr : populateArr
 
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
     if (Array.isArray(populateArr)) {
-      populateArr[i] = valArr[i] as T
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[i] = value
     } else {
-      populateArr[String(i)] = valArr[i] as T
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[String(i)] = value
     }
   }
 
@@ -94,7 +102,8 @@ export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function shuffle(inputArr) {
+{% codeblock lang:javascript %}import { ini_get } from '../info/ini_get.ts'
+export function shuffle(inputArr) {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
   //  revised by: Kevin van Zonneveld (https://kvz.io)
@@ -105,41 +114,355 @@ export function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string
   //   example 1: shuffle($data)
   //   example 1: var $result = $data.q
   //   returns 1: 5
-  const valArr = [];
-  let k = '';
-  let i = 0;
-  let sortByReference = false;
-  let populateArr = [];
+  const valArr = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr = []
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k]);
+      const value = inputArr[k]
+      if (value === undefined) {
+        continue
+      }
+      valArr.push(value)
       if (sortByReference) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
   valArr.sort(function () {
-    return 0.5 - Math.random();
-  });
-  const $loc = globalThis.$locutus;
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on';
-  sortByReference = iniVal === 'on';
-  populateArr = sortByReference ? inputArr : populateArr;
+    return 0.5 - Math.random()
+  })
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
     if (Array.isArray(populateArr)) {
-      populateArr[i] = valArr[i];
-    }
-    else {
-      populateArr[String(i)] = valArr[i];
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[i] = value
+    } else {
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[String(i)] = value
     }
   }
-  return sortByReference || populateArr;
+  return sortByReference || populateArr
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/array/shuffle
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/info/ini_get
+function ini_get(varname: string): string {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+
+  return ''
+}
+
+// php/array/shuffle
+function shuffle<T>(inputArr: Record<string, T>): boolean | Record<string, T> | T[] {
+  //  discuss at: https://locutus.io/php/shuffle/
+  // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
+  //  revised by: Kevin van Zonneveld (https://kvz.io)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: var $data = {5:'a', 2:'3', 3:'c', 4:5, 'q':5}
+  //   example 1: ini_set('locutus.sortByReference', true)
+  //   example 1: shuffle($data)
+  //   example 1: var $result = $data.q
+  //   returns 1: 5
+
+  const valArr: T[] = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr: Record<string, T> | T[] = []
+
+  for (k in inputArr) {
+    // Get key and value arrays
+    if (inputArr.hasOwnProperty(k)) {
+      const value = inputArr[k]
+      if (value === undefined) {
+        continue
+      }
+      valArr.push(value)
+      if (sortByReference) {
+        delete inputArr[k]
+      }
+    }
+  }
+  valArr.sort(function () {
+    return 0.5 - Math.random()
+  })
+
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
+
+  for (i = 0; i < valArr.length; i++) {
+    // Repopulate the old array
+    if (Array.isArray(populateArr)) {
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[i] = value
+    } else {
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[String(i)] = value
+    }
+  }
+
+  return sortByReference || populateArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpList(value) {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+const isIniBag = (value) => isPhpAssocObject(value)
+const isLocaleBag = (value) => isPhpAssocObject(value)
+const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/info/ini_get
+function ini_get(varname) {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+  return ''
+}
+
+// php/array/shuffle
 function shuffle(inputArr) {
   //  discuss at: https://locutus.io/php/shuffle/
   // original by: Jonas Raoni Soares Silva (https://www.jsfromhell.com)
@@ -151,36 +474,46 @@ function shuffle(inputArr) {
   //   example 1: shuffle($data)
   //   example 1: var $result = $data.q
   //   returns 1: 5
-  const valArr = [];
-  let k = '';
-  let i = 0;
-  let sortByReference = false;
-  let populateArr = [];
+  const valArr = []
+  let k = ''
+  let i = 0
+  let sortByReference = false
+  let populateArr = []
   for (k in inputArr) {
     // Get key and value arrays
     if (inputArr.hasOwnProperty(k)) {
-      valArr.push(inputArr[k]);
+      const value = inputArr[k]
+      if (value === undefined) {
+        continue
+      }
+      valArr.push(value)
       if (sortByReference) {
-        delete inputArr[k];
+        delete inputArr[k]
       }
     }
   }
   valArr.sort(function () {
-    return 0.5 - Math.random();
-  });
-  const $loc = globalThis.$locutus;
-  const iniVal = String($loc?.php?.ini?.['locutus.sortByReference']?.local_value ?? '') || 'on';
-  sortByReference = iniVal === 'on';
-  populateArr = sortByReference ? inputArr : populateArr;
+    return 0.5 - Math.random()
+  })
+  const iniVal = ini_get('locutus.sortByReference') || 'on'
+  sortByReference = iniVal === 'on'
+  populateArr = sortByReference ? inputArr : populateArr
   for (i = 0; i < valArr.length; i++) {
     // Repopulate the old array
     if (Array.isArray(populateArr)) {
-      populateArr[i] = valArr[i];
-    }
-    else {
-      populateArr[String(i)] = valArr[i];
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[i] = value
+    } else {
+      const value = valArr[i]
+      if (value === undefined) {
+        continue
+      }
+      populateArr[String(i)] = value
     }
   }
-  return sortByReference || populateArr;
+  return sortByReference || populateArr
 }{% endcodeblock %}
 </div>

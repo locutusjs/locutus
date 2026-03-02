@@ -150,61 +150,153 @@ alias:
   //        example 3: levenshtein("carrrot", "carrots", 2, 3, 4)
   //        returns 3: 6
   // var LEVENSHTEIN_MAX_LENGTH = 255 // PHP limits the function to max 255 character-long strings
-  costIns = costIns == null ? 1 : +costIns;
-  costRep = costRep == null ? 1 : +costRep;
-  costDel = costDel == null ? 1 : +costDel;
+  costIns = costIns == null ? 1 : +costIns
+  costRep = costRep == null ? 1 : +costRep
+  costDel = costDel == null ? 1 : +costDel
   if (s1 === s2) {
-    return 0;
+    return 0
   }
-  const l1 = s1.length;
-  const l2 = s2.length;
+  const l1 = s1.length
+  const l2 = s2.length
   if (l1 === 0) {
-    return l2 * costIns;
+    return l2 * costIns
   }
   if (l2 === 0) {
-    return l1 * costDel;
+    return l1 * costDel
   }
   // Enable the 3 lines below to set the same limits on string length as PHP does
   // if (l1 > LEVENSHTEIN_MAX_LENGTH || l2 > LEVENSHTEIN_MAX_LENGTH) {
   //   return -1;
   // }
-  const chars1 = s1.split('');
-  const chars2 = s2.split('');
-  let p1 = new Array(l2 + 1);
-  let p2 = new Array(l2 + 1);
-  let i1;
-  let i2;
-  let c0;
-  let c1;
-  let c2;
-  let tmp;
-  const at = (arr, idx) => arr[idx] ?? 0;
+  const chars1 = s1.split('')
+  const chars2 = s2.split('')
+  let p1 = new Array(l2 + 1)
+  let p2 = new Array(l2 + 1)
+  let i1
+  let i2
+  let c0
+  let c1
+  let c2
+  let tmp
+  const at = (arr, idx) => arr[idx] ?? 0
   for (i2 = 0; i2 <= l2; i2++) {
-    p1[i2] = i2 * costIns;
+    p1[i2] = i2 * costIns
   }
   for (i1 = 0; i1 < l1; i1++) {
-    p2[0] = at(p1, 0) + costDel;
+    p2[0] = at(p1, 0) + costDel
     for (i2 = 0; i2 < l2; i2++) {
-      c0 = at(p1, i2) + (chars1[i1] === chars2[i2] ? 0 : costRep);
-      c1 = at(p1, i2 + 1) + costDel;
+      c0 = at(p1, i2) + (chars1[i1] === chars2[i2] ? 0 : costRep)
+      c1 = at(p1, i2 + 1) + costDel
       if (c1 < c0) {
-        c0 = c1;
+        c0 = c1
       }
-      c2 = at(p2, i2) + costIns;
+      c2 = at(p2, i2) + costIns
       if (c2 < c0) {
-        c0 = c2;
+        c0 = c2
       }
-      p2[i2 + 1] = c0;
+      p2[i2 + 1] = c0
     }
-    tmp = p1;
-    p1 = p2;
-    p2 = tmp;
+    tmp = p1
+    p1 = p2
+    p2 = tmp
   }
-  c0 = at(p1, l2);
-  return c0;
+  c0 = at(p1, l2)
+  return c0
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/strings/levenshtein
+function levenshtein(s1: string, s2: string, costIns?: number, costRep?: number, costDel?: number): number {
+  //       discuss at: https://locutus.io/php/levenshtein/
+  //  parity verified: PHP 8.3
+  //      original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       revised by: Andrea Giammarchi (https://webreflection.blogspot.com)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  // reimplemented by: Alexander M Beedie
+  // reimplemented by: Rafał Kukawski (https://blog.kukawski.pl)
+  //        example 1: levenshtein('Kevin van Zonneveld', 'Kevin van Sommeveld')
+  //        returns 1: 3
+  //        example 2: levenshtein("carrrot", "carrots")
+  //        returns 2: 2
+  //        example 3: levenshtein("carrrot", "carrots", 2, 3, 4)
+  //        returns 3: 6
+
+  // var LEVENSHTEIN_MAX_LENGTH = 255 // PHP limits the function to max 255 character-long strings
+
+  costIns = costIns == null ? 1 : +costIns
+  costRep = costRep == null ? 1 : +costRep
+  costDel = costDel == null ? 1 : +costDel
+
+  if (s1 === s2) {
+    return 0
+  }
+
+  const l1 = s1.length
+  const l2 = s2.length
+
+  if (l1 === 0) {
+    return l2 * costIns
+  }
+  if (l2 === 0) {
+    return l1 * costDel
+  }
+
+  // Enable the 3 lines below to set the same limits on string length as PHP does
+  // if (l1 > LEVENSHTEIN_MAX_LENGTH || l2 > LEVENSHTEIN_MAX_LENGTH) {
+  //   return -1;
+  // }
+
+  const chars1 = s1.split('')
+  const chars2 = s2.split('')
+
+  let p1: number[] = new Array(l2 + 1)
+  let p2: number[] = new Array(l2 + 1)
+
+  let i1
+  let i2
+  let c0
+  let c1
+  let c2
+  let tmp: number[]
+
+  const at = (arr: number[], idx: number): number => arr[idx] ?? 0
+
+  for (i2 = 0; i2 <= l2; i2++) {
+    p1[i2] = i2 * costIns
+  }
+
+  for (i1 = 0; i1 < l1; i1++) {
+    p2[0] = at(p1, 0) + costDel
+
+    for (i2 = 0; i2 < l2; i2++) {
+      c0 = at(p1, i2) + (chars1[i1] === chars2[i2] ? 0 : costRep)
+      c1 = at(p1, i2 + 1) + costDel
+
+      if (c1 < c0) {
+        c0 = c1
+      }
+
+      c2 = at(p2, i2) + costIns
+
+      if (c2 < c0) {
+        c0 = c2
+      }
+
+      p2[i2 + 1] = c0
+    }
+
+    tmp = p1
+    p1 = p2
+    p2 = tmp
+  }
+
+  c0 = at(p1, l2)
+
+  return c0
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/strings/levenshtein
 function levenshtein(s1, s2, costIns, costRep, costDel) {
   //       discuss at: https://locutus.io/php/levenshtein/
@@ -222,57 +314,57 @@ function levenshtein(s1, s2, costIns, costRep, costDel) {
   //        example 3: levenshtein("carrrot", "carrots", 2, 3, 4)
   //        returns 3: 6
   // var LEVENSHTEIN_MAX_LENGTH = 255 // PHP limits the function to max 255 character-long strings
-  costIns = costIns == null ? 1 : +costIns;
-  costRep = costRep == null ? 1 : +costRep;
-  costDel = costDel == null ? 1 : +costDel;
+  costIns = costIns == null ? 1 : +costIns
+  costRep = costRep == null ? 1 : +costRep
+  costDel = costDel == null ? 1 : +costDel
   if (s1 === s2) {
-    return 0;
+    return 0
   }
-  const l1 = s1.length;
-  const l2 = s2.length;
+  const l1 = s1.length
+  const l2 = s2.length
   if (l1 === 0) {
-    return l2 * costIns;
+    return l2 * costIns
   }
   if (l2 === 0) {
-    return l1 * costDel;
+    return l1 * costDel
   }
   // Enable the 3 lines below to set the same limits on string length as PHP does
   // if (l1 > LEVENSHTEIN_MAX_LENGTH || l2 > LEVENSHTEIN_MAX_LENGTH) {
   //   return -1;
   // }
-  const chars1 = s1.split('');
-  const chars2 = s2.split('');
-  let p1 = new Array(l2 + 1);
-  let p2 = new Array(l2 + 1);
-  let i1;
-  let i2;
-  let c0;
-  let c1;
-  let c2;
-  let tmp;
-  const at = (arr, idx) => arr[idx] ?? 0;
+  const chars1 = s1.split('')
+  const chars2 = s2.split('')
+  let p1 = new Array(l2 + 1)
+  let p2 = new Array(l2 + 1)
+  let i1
+  let i2
+  let c0
+  let c1
+  let c2
+  let tmp
+  const at = (arr, idx) => arr[idx] ?? 0
   for (i2 = 0; i2 <= l2; i2++) {
-    p1[i2] = i2 * costIns;
+    p1[i2] = i2 * costIns
   }
   for (i1 = 0; i1 < l1; i1++) {
-    p2[0] = at(p1, 0) + costDel;
+    p2[0] = at(p1, 0) + costDel
     for (i2 = 0; i2 < l2; i2++) {
-      c0 = at(p1, i2) + (chars1[i1] === chars2[i2] ? 0 : costRep);
-      c1 = at(p1, i2 + 1) + costDel;
+      c0 = at(p1, i2) + (chars1[i1] === chars2[i2] ? 0 : costRep)
+      c1 = at(p1, i2 + 1) + costDel
       if (c1 < c0) {
-        c0 = c1;
+        c0 = c1
       }
-      c2 = at(p2, i2) + costIns;
+      c2 = at(p2, i2) + costIns
       if (c2 < c0) {
-        c0 = c2;
+        c0 = c2
       }
-      p2[i2 + 1] = c0;
+      p2[i2 + 1] = c0
     }
-    tmp = p1;
-    p1 = p2;
-    p2 = tmp;
+    tmp = p1
+    p1 = p2
+    p2 = tmp
   }
-  c0 = at(p1, l2);
-  return c0;
+  c0 = at(p1, l2)
+  return c0
 }{% endcodeblock %}
 </div>

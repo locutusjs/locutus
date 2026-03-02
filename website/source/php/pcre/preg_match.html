@@ -52,10 +52,21 @@ alias:
   //   returns 1: true
   //   example 2: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "ronypharaohtools.com")
   //   returns 2: false
-  return new RegExp(regex).test(str);
+  return new RegExp(regex).test(str)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/pcre/preg_match
+function preg_match(regex: string, str: string): boolean {
+  // original by: Muhammad Humayun (https://github.com/ronypt)
+  //   example 1: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "rony@pharaohtools.com")
+  //   returns 1: true
+  //   example 2: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "ronypharaohtools.com")
+  //   returns 2: false
+  return new RegExp(regex).test(str)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/pcre/preg_match
 function preg_match(regex, str) {
   // original by: Muhammad Humayun (https://github.com/ronypt)
@@ -63,6 +74,6 @@ function preg_match(regex, str) {
   //   returns 1: true
   //   example 2: preg_match("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", "ronypharaohtools.com")
   //   returns 2: false
-  return new RegExp(regex).test(str);
+  return new RegExp(regex).test(str)
 }{% endcodeblock %}
 </div>

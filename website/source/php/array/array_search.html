@@ -39,11 +39,27 @@ alias:
   - /functions/array_search/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
+type SearchValue = PhpRuntimeValue
 
-export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, argStrict?: PhpValue): string | false {
+export function array_search<TValue extends SearchValue>(
+  needle: TValue | RegExp,
+  haystack: PhpAssoc<TValue>,
+  argStrict: true,
+): string | false
+
+export function array_search(
+  needle: SearchValue | RegExp,
+  haystack: PhpAssoc<SearchValue>,
+  argStrict?: boolean,
+): string | false
+
+export function array_search(
+  needle: SearchValue | RegExp,
+  haystack: PhpAssoc<SearchValue>,
+  argStrict?: boolean,
+): string | false {
   //      discuss at: https://locutus.io/php/array_search/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -55,11 +71,11 @@ export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, arg
   //       example 2: array_search('3', {a: 3, b: 5, c: 7})
   //       returns 2: 'a'
 
-  const strict = !!argStrict
+  const strict = Boolean(argStrict)
 
   if (needle instanceof RegExp) {
     // Duck-type for RegExp
-    let regex = needle
+    let regex: RegExp = needle
     if (!strict) {
       // Let's consider case sensitive searches as strict
       const flags =
@@ -105,40 +121,131 @@ export function array_search(needle: PhpValue, haystack: PhpAssoc<PhpValue>, arg
   //       returns 1: 'surname'
   //       example 2: array_search('3', {a: 3, b: 5, c: 7})
   //       returns 2: 'a'
-  const strict = !!argStrict;
+  const strict = Boolean(argStrict)
   if (needle instanceof RegExp) {
     // Duck-type for RegExp
-    let regex = needle;
+    let regex = needle
     if (!strict) {
       // Let's consider case sensitive searches as strict
-      const flags = 'i' +
+      const flags =
+        'i' +
         (needle.global ? 'g' : '') +
         (needle.multiline ? 'm' : '') +
         // sticky is FF only
-        (needle.sticky ? 'y' : '');
-      regex = new RegExp(needle.source, flags);
+        (needle.sticky ? 'y' : '')
+      regex = new RegExp(needle.source, flags)
     }
     for (const key in haystack) {
       if (Object.prototype.hasOwnProperty.call(haystack, key)) {
         if (regex.test(String(haystack[key]))) {
-          return key;
+          return key
         }
       }
     }
-    return false;
+    return false
   }
   for (const key in haystack) {
     if (Object.prototype.hasOwnProperty.call(haystack, key)) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
       if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-        return key;
+        return key
       }
     }
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/array/array_search
+type SearchValue = PhpRuntimeValue
+
+function array_search<TValue extends SearchValue>(
+  needle: TValue | RegExp,
+  haystack: PhpAssoc<TValue>,
+  argStrict: true,
+): string | false
+
+function array_search(
+  needle: SearchValue | RegExp,
+  haystack: PhpAssoc<SearchValue>,
+  argStrict?: boolean,
+): string | false
+
+function array_search(
+  needle: SearchValue | RegExp,
+  haystack: PhpAssoc<SearchValue>,
+  argStrict?: boolean,
+): string | false {
+  //      discuss at: https://locutus.io/php/array_search/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Reynier de la Rosa (https://scriptinside.blogspot.com.es/)
+  //       example 1: array_search('zonneveld', {firstname: 'kevin', middle: 'van', surname: 'zonneveld'})
+  //       returns 1: 'surname'
+  //       example 2: array_search('3', {a: 3, b: 5, c: 7})
+  //       returns 2: 'a'
+
+  const strict = Boolean(argStrict)
+
+  if (needle instanceof RegExp) {
+    // Duck-type for RegExp
+    let regex: RegExp = needle
+    if (!strict) {
+      // Let's consider case sensitive searches as strict
+      const flags =
+        'i' +
+        (needle.global ? 'g' : '') +
+        (needle.multiline ? 'm' : '') +
+        // sticky is FF only
+        (needle.sticky ? 'y' : '')
+      regex = new RegExp(needle.source, flags)
+    }
+    for (const key in haystack) {
+      if (Object.prototype.hasOwnProperty.call(haystack, key)) {
+        if (regex.test(String(haystack[key]))) {
+          return key
+        }
+      }
+    }
+    return false
+  }
+
+  for (const key in haystack) {
+    if (Object.prototype.hasOwnProperty.call(haystack, key)) {
+      // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
+        return key
+      }
+    }
+  }
+
+  return false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/array/array_search
 function array_search(needle, haystack, argStrict) {
   //      discuss at: https://locutus.io/php/array_search/
@@ -151,36 +258,37 @@ function array_search(needle, haystack, argStrict) {
   //       returns 1: 'surname'
   //       example 2: array_search('3', {a: 3, b: 5, c: 7})
   //       returns 2: 'a'
-  const strict = !!argStrict;
+  const strict = Boolean(argStrict)
   if (needle instanceof RegExp) {
     // Duck-type for RegExp
-    let regex = needle;
+    let regex = needle
     if (!strict) {
       // Let's consider case sensitive searches as strict
-      const flags = 'i' +
+      const flags =
+        'i' +
         (needle.global ? 'g' : '') +
         (needle.multiline ? 'm' : '') +
         // sticky is FF only
-        (needle.sticky ? 'y' : '');
-      regex = new RegExp(needle.source, flags);
+        (needle.sticky ? 'y' : '')
+      regex = new RegExp(needle.source, flags)
     }
     for (const key in haystack) {
       if (Object.prototype.hasOwnProperty.call(haystack, key)) {
         if (regex.test(String(haystack[key]))) {
-          return key;
+          return key
         }
       }
     }
-    return false;
+    return false
   }
   for (const key in haystack) {
     if (Object.prototype.hasOwnProperty.call(haystack, key)) {
       // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
       if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-        return key;
+        return key
       }
     }
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>

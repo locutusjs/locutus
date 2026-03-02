@@ -66,12 +66,32 @@ alias:
   //       example 3: blank('hello')
   //       returns 3: false
   if (s === null || s === undefined) {
-    return true;
+    return true
   }
-  return String(s).trim().length === 0;
+  return String(s).trim().length === 0
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// clojure/string/blank
+function blank(s: string): boolean {
+  //      discuss at: https://locutus.io/clojure/blank/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Clojure uses blank?, JS uses blank
+  //       example 1: blank('')
+  //       returns 1: true
+  //       example 2: blank('  ')
+  //       returns 2: true
+  //       example 3: blank('hello')
+  //       returns 3: false
+
+  if (s === null || s === undefined) {
+    return true
+  }
+  return String(s).trim().length === 0
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// clojure/string/blank
 function blank(s) {
   //      discuss at: https://locutus.io/clojure/blank/
@@ -85,8 +105,8 @@ function blank(s) {
   //       example 3: blank('hello')
   //       returns 3: false
   if (s === null || s === undefined) {
-    return true;
+    return true
   }
-  return String(s).trim().length === 0;
+  return String(s).trim().length === 0
 }{% endcodeblock %}
 </div>

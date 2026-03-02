@@ -63,12 +63,31 @@ alias:
   //       example 3: length('test string')
   //       returns 3: 11
   if (s === undefined || s === null) {
-    return 0;
+    return 0
   }
-  return String(s).length;
+  return String(s).length
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// awk/builtin/length
+function length(s: string): number {
+  //      discuss at: https://locutus.io/awk/length/
+  // parity verified: GNU AWK 5.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: length('hello')
+  //       returns 1: 5
+  //       example 2: length('')
+  //       returns 2: 0
+  //       example 3: length('test string')
+  //       returns 3: 11
+
+  if (s === undefined || s === null) {
+    return 0
+  }
+  return String(s).length
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// awk/builtin/length
 function length(s) {
   //      discuss at: https://locutus.io/awk/length/
@@ -81,8 +100,8 @@ function length(s) {
   //       example 3: length('test string')
   //       returns 3: 11
   if (s === undefined || s === null) {
-    return 0;
+    return 0
   }
-  return String(s).length;
+  return String(s).length
 }{% endcodeblock %}
 </div>

@@ -60,7 +60,7 @@ export function gmstrftime(format: string, timestamp?: number | Date): string {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { strftime } from '../datetime/strftime.ts';
+{% codeblock lang:javascript %}import { strftime } from '../datetime/strftime.ts'
 export function gmstrftime(format, timestamp) {
   //      discuss at: https://locutus.io/php/gmstrftime/
   // parity verified: PHP 8.3
@@ -69,60 +69,339 @@ export function gmstrftime(format, timestamp) {
   //     bugfixed by: Brett Zamir (https://brett-zamir.me)
   //       example 1: gmstrftime("%A", 1062462400)
   //       returns 1: 'Tuesday'
-  const date = typeof timestamp === 'undefined'
-    ? new Date()
-    : timestamp instanceof Date
-      ? new Date(timestamp)
-      : new Date(timestamp * 1000);
-  const utcTimestamp = Date.parse(date.toUTCString().slice(0, -4)) / 1000;
-  return strftime(format, utcTimestamp);
+  const date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
+        ? new Date(timestamp)
+        : new Date(timestamp * 1000)
+  const utcTimestamp = Date.parse(date.toUTCString().slice(0, -4)) / 1000
+  return strftime(format, utcTimestamp)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/info/getenv
-function getenv(varname) {
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type PhpRuntimeStringKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends string ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+): PhpRuntimeKnownEntryMap[TKey] | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function setPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+  value: PhpRuntimeKnownEntryMap[TKey],
+): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+function getPhpRuntimeString(key: PhpRuntimeStringKey, fallback: string): string
+
+function getPhpRuntimeString(key: string, fallback: string): string
+
+function getPhpRuntimeString(key: string, fallback: string): string {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'string' ? value : fallback
+}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+function getPhpLocaleEntry(category: string): LocaleEntry | undefined {
+  const runtime = ensurePhpRuntimeState()
+  const localeName = runtime.localeCategories[category]
+  if (typeof localeName !== 'string') {
+    return undefined
+  }
+  const localeEntry = runtime.locales[localeName]
+  return isPhpAssocObject(localeEntry) ? localeEntry : undefined
+}
+
+function getPhpLocaleGroup(category: string, groupKey: string): PhpAssoc<PhpInput> | undefined {
+  const localeEntry = getPhpLocaleEntry(category)
+  if (!localeEntry) {
+    return undefined
+  }
+  const group = localeEntry[groupKey]
+  return isPhpAssocObject(group) ? group : undefined
+}
+
+// php/info/getenv
+function getenv(varname: string): string | false {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
-  const globalContext = globalThis;
-  const processLike = globalContext.process;
-  const hasProcessLike = typeof globalContext.process !== 'undefined';
+
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
   if (hasProcessLike) {
-    return false;
+    return false
   }
-  if (!processLike?.env || !processLike.env[varname]) {
-    return false;
+
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
   }
-  return processLike.env[varname] ?? false;
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }
 
 // php/strings/setlocale
-const hasOwn = Object.prototype.hasOwnProperty;
-function copyValue(orig) {
+type LocaleDefinition = {
+  LC_COLLATE: (str1: string, str2: string) => number
+  LC_CTYPE: Record<string, RegExp | string>
+  LC_TIME: Record<string, string | string[]>
+  LC_MONETARY: Record<string, string | number | number[]>
+  LC_NUMERIC: Record<string, string | number[]>
+  LC_MESSAGES: Record<string, string>
+  nplurals: (n: number) => number
+}
+
+type LocaleInput = string | string[] | number | null
+
+const hasOwn = Object.prototype.hasOwnProperty
+
+const isLocaleDefinitionMap = (value: PhpInput): value is Record<string, LocaleDefinition> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const isLocaleCategoryMap = (value: PhpInput): value is Record<string, string> =>
+  isPhpAssocObject<PhpInput>(value) &&
+  typeof value.LC_COLLATE === 'string' &&
+  typeof value.LC_CTYPE === 'string' &&
+  typeof value.LC_MONETARY === 'string' &&
+  typeof value.LC_NUMERIC === 'string' &&
+  typeof value.LC_TIME === 'string' &&
+  typeof value.LC_MESSAGES === 'string'
+
+function copyValue<T>(orig: T): T
+
+function copyValue(orig: PhpInput): PhpInput {
   if (orig instanceof RegExp) {
-    return new RegExp(orig);
+    return new RegExp(orig)
   }
   if (orig instanceof Date) {
-    return new Date(orig);
+    return new Date(orig)
   }
   if (Array.isArray(orig)) {
-    return orig.map((item) => copyValue(item));
+    return orig.map((item) => copyValue(item))
   }
   if (orig !== null && typeof orig === 'object') {
-    const newObj = {};
+    const newObj: PhpAssoc<PhpInput> = {}
     for (const [key, value] of Object.entries(orig)) {
       if (!hasOwn.call(orig, key)) {
-        continue;
+        continue
       }
-      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value;
+      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
     }
-    return newObj;
+    return newObj
   }
-  return orig;
+  return orig
 }
-function setlocale(category, locale) {
+
+function setlocale(category: string, locale: LocaleInput): string | false {
   //  discuss at: https://locutus.io/php/setlocale/
   // original by: Brett Zamir (https://brett-zamir.me)
   // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
@@ -136,9 +415,11 @@ function setlocale(category, locale) {
   //      note 2: This feature will not work in Node and hence is Browser-only
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
-  let categ = '';
-  const cats = [];
-  let i = 0;
+
+  let categ = ''
+  const cats: string[] = []
+  let i = 0
+
   // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
   // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
   // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
@@ -148,34 +429,39 @@ function setlocale(category, locale) {
   // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
   // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
   // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+
   // var _nplurals1 = function (n) {
   //   // e.g., Japanese
   //   return 0
   // }
-  const _nplurals2a = function (n) {
+  const _nplurals2a = function (n: number) {
     // e.g., English
-    return n !== 1 ? 1 : 0;
-  };
-  const _nplurals2b = function (n) {
+    return n !== 1 ? 1 : 0
+  }
+  const _nplurals2b = function (n: number) {
     // e.g., French
-    return n > 1 ? 1 : 0;
-  };
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus ?? {};
-  const locutus = globalContext.$locutus;
-  locutus.php = locutus.php ?? {};
-  const php = locutus.php;
+    return n > 1 ? 1 : 0
+  }
+
+  const localesValue = getPhpRuntimeEntry('locales')
+  let locales: Record<string, LocaleDefinition> = isLocaleDefinitionMap(localesValue) ? localesValue : {}
+  if (localesValue !== locales) {
+    setPhpRuntimeEntry('locales', locales)
+  }
+
   // Reconcile Windows vs. *nix locale names?
   // Allow different priority orders of languages, esp. if implement gettext as in
   // LANGUAGE env. var.? (e.g., show German if French is not available)
-  if (!php.locales?.fr_CA?.LC_TIME?.x) {
+  if (!locales.fr_CA?.LC_TIME?.x) {
     // Can add to the locales
-    const locales = (php.locales = {});
+    locales = {}
+    setPhpRuntimeEntry('locales', locales)
+
     locales.en = {
       LC_COLLATE: function (str1, str2) {
         // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
         // since its locale is not settable
-        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1;
+        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
       },
       LC_CTYPE: {
         // Need to change any of these for English as opposed to C?
@@ -287,24 +573,26 @@ function setlocale(category, locale) {
         NOSTR: '',
       },
       nplurals: _nplurals2a,
-    };
-    locales.en_US = copyValue(locales.en);
-    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z';
-    locales.en_US.LC_TIME.x = '%D';
-    locales.en_US.LC_TIME.X = '%r';
+    }
+    locales.en_US = copyValue(locales.en)
+    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
+    locales.en_US.LC_TIME.x = '%D'
+    locales.en_US.LC_TIME.X = '%r'
     // The following are based on *nix settings
-    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD ';
-    locales.en_US.LC_MONETARY.p_sign_posn = 1;
-    locales.en_US.LC_MONETARY.n_sign_posn = 1;
-    locales.en_US.LC_MONETARY.mon_grouping = [3, 3];
-    locales.en_US.LC_NUMERIC.thousands_sep = '';
-    locales.en_US.LC_NUMERIC.grouping = [];
-    locales.en_GB = copyValue(locales.en);
-    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z';
-    locales.en_AU = copyValue(locales.en_GB);
+    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
+    locales.en_US.LC_MONETARY.p_sign_posn = 1
+    locales.en_US.LC_MONETARY.n_sign_posn = 1
+    locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
+    locales.en_US.LC_NUMERIC.thousands_sep = ''
+    locales.en_US.LC_NUMERIC.grouping = []
+
+    locales.en_GB = copyValue(locales.en)
+    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+
+    locales.en_AU = copyValue(locales.en_GB)
     // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
-    locales.C = copyValue(locales.en);
-    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968';
+    locales.C = copyValue(locales.en)
+    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
     locales.C.LC_MONETARY = {
       int_curr_symbol: '',
       currency_symbol: '',
@@ -321,24 +609,25 @@ function setlocale(category, locale) {
       negative_sign: '',
       int_frac_digits: 127,
       frac_digits: 127,
-    };
+    }
     locales.C.LC_NUMERIC = {
       decimal_point: '.',
       thousands_sep: '',
       grouping: [],
-    };
+    }
     // D_T_FMT
-    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y';
+    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
     // D_FMT
-    locales.C.LC_TIME.x = '%m/%d/%y';
+    locales.C.LC_TIME.x = '%m/%d/%y'
     // T_FMT
-    locales.C.LC_TIME.X = '%H:%M:%S';
-    locales.C.LC_MESSAGES.YESEXPR = '^[yY]';
-    locales.C.LC_MESSAGES.NOEXPR = '^[nN]';
-    locales.fr = copyValue(locales.en);
-    locales.fr.nplurals = _nplurals2b;
-    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'];
-    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    locales.C.LC_TIME.X = '%H:%M:%S'
+    locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
+    locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+
+    locales.fr = copyValue(locales.en)
+    locales.fr.nplurals = _nplurals2b
+    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
+    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
     locales.fr.LC_TIME.b = [
       'jan',
       'f\u00E9v',
@@ -352,7 +641,7 @@ function setlocale(category, locale) {
       'oct',
       'nov',
       'd\u00E9c',
-    ];
+    ]
     locales.fr.LC_TIME.B = [
       'janvier',
       'f\u00E9vrier',
@@ -366,93 +655,926 @@ function setlocale(category, locale) {
       'octobre',
       'novembre',
       'd\u00E9cembre',
-    ];
-    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z';
-    locales.fr.LC_TIME.p = ['', ''];
-    locales.fr.LC_TIME.P = ['', ''];
-    locales.fr.LC_TIME.x = '%d.%m.%Y';
-    locales.fr.LC_TIME.X = '%T';
-    locales.fr_CA = copyValue(locales.fr);
-    locales.fr_CA.LC_TIME.x = '%Y-%m-%d';
+    ]
+    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
+    locales.fr.LC_TIME.p = ['', '']
+    locales.fr.LC_TIME.P = ['', '']
+    locales.fr.LC_TIME.x = '%d.%m.%Y'
+    locales.fr.LC_TIME.X = '%T'
+
+    locales.fr_CA = copyValue(locales.fr)
+    locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
   }
-  const locales = php.locales ?? {};
-  if (!php.locale) {
-    php.locale = 'en_US';
+  let currentLocale = getPhpRuntimeString('locale', '')
+  if (!currentLocale) {
+    currentLocale = 'en_US'
     // Try to establish the locale via the `window` global
     if (typeof window !== 'undefined' && window.document) {
-      const d = window.document;
-      const NS_XHTML = 'https://www.w3.org/1999/xhtml';
-      const NS_XML = 'https://www.w3.org/XML/1998/namespace';
-      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined;
+      const d = window.document
+      const NS_XHTML = 'https://www.w3.org/1999/xhtml'
+      const NS_XML = 'https://www.w3.org/XML/1998/namespace'
+      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined
       if (htmlNsElement) {
-        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang');
+        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang')
         if (xmlLang) {
-          php.locale = xmlLang;
-        }
-        else {
-          const htmlLang = htmlNsElement.getAttribute('lang');
+          currentLocale = xmlLang
+        } else {
+          const htmlLang = htmlNsElement.getAttribute('lang')
           if (htmlLang) {
-            php.locale = htmlLang;
+            currentLocale = htmlLang
           }
         }
-      }
-      else {
-        const htmlElement = d.getElementsByTagName('html')[0];
-        const htmlLang = htmlElement?.getAttribute('lang');
+      } else {
+        const htmlElement = d.getElementsByTagName('html')[0]
+        const htmlLang = htmlElement?.getAttribute('lang')
         if (htmlLang) {
-          php.locale = htmlLang;
+          currentLocale = htmlLang
         }
       }
     }
   }
   // PHP-style
-  php.locale = php.locale.replace('-', '_');
+  currentLocale = currentLocale.replace('-', '_')
   // @todo: locale if declared locale hasn't been defined
-  if (!(php.locale in locales)) {
-    const languageLocale = php.locale.replace(/_[a-zA-Z]+$/, '');
+  if (!(currentLocale in locales)) {
+    const languageLocale = currentLocale.replace(/_[a-zA-Z]+$/, '')
     if (languageLocale in locales) {
-      php.locale = languageLocale;
+      currentLocale = languageLocale
     }
   }
-  if (!php.localeCategories) {
-    php.localeCategories = {
-      LC_COLLATE: php.locale,
-      // for string comparison, see strcoll()
-      LC_CTYPE: php.locale,
-      // for character classification and conversion, for example strtoupper()
-      LC_MONETARY: php.locale,
-      // for localeconv()
-      LC_NUMERIC: php.locale,
-      // for decimal separator (See also localeconv())
-      LC_TIME: php.locale,
-      // for date and time formatting with strftime()
-      // for system responses (available if PHP was compiled with libintl):
-      LC_MESSAGES: php.locale,
-    };
+  setPhpRuntimeEntry('locale', currentLocale)
+
+  const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
+  const localeCategories: Record<string, string> = isLocaleCategoryMap(localeCategoriesValue)
+    ? localeCategoriesValue
+    : {
+        LC_COLLATE: currentLocale,
+        // for string comparison, see strcoll()
+        LC_CTYPE: currentLocale,
+        // for character classification and conversion, for example strtoupper()
+        LC_MONETARY: currentLocale,
+        // for localeconv()
+        LC_NUMERIC: currentLocale,
+        // for decimal separator (See also localeconv())
+        LC_TIME: currentLocale,
+        // for date and time formatting with strftime()
+        // for system responses (available if PHP was compiled with libintl):
+        LC_MESSAGES: currentLocale,
+      }
+  if (localeCategoriesValue !== localeCategories) {
+    setPhpRuntimeEntry('localeCategories', localeCategories)
   }
-  const localeCategories = php.localeCategories;
-  let requestedLocale = locale;
+
+  let requestedLocale: LocaleInput | false = locale
+
   if (requestedLocale === null || requestedLocale === '') {
-    requestedLocale = getenv(category) || getenv('LANG');
-  }
-  else if (Array.isArray(requestedLocale)) {
+    requestedLocale = getenv(category) || getenv('LANG')
+  } else if (Array.isArray(requestedLocale)) {
     for (i = 0; i < requestedLocale.length; i++) {
-      const candidate = requestedLocale[i];
+      const candidate = requestedLocale[i]
       if (typeof candidate !== 'string') {
         if (i === requestedLocale.length - 1) {
-          return false;
+          return false
         }
-        continue;
+        continue
       }
       if (!(candidate in locales)) {
         if (i === requestedLocale.length - 1) {
           // none found
-          return false;
+          return false
         }
-        continue;
+        continue
       }
-      requestedLocale = candidate;
-      break;
+      requestedLocale = candidate
+      break
+    }
+  }
+
+  // Just get the locale
+  if (requestedLocale === '0' || requestedLocale === 0) {
+    if (category === 'LC_ALL') {
+      for (categ in localeCategories) {
+        if (!hasOwn.call(localeCategories, categ)) {
+          continue
+        }
+        // Add ".UTF-8" or allow ".@latint", etc. to the end?
+        cats.push(categ + '=' + localeCategories[categ])
+      }
+      return cats.join(';')
+    }
+    return localeCategories[category] ?? false
+  }
+
+  if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
+    // Locale not found
+    return false
+  }
+
+  // Set and get locale
+  if (category === 'LC_ALL') {
+    for (categ in localeCategories) {
+      if (!hasOwn.call(localeCategories, categ)) {
+        continue
+      }
+      localeCategories[categ] = requestedLocale
+    }
+  } else {
+    localeCategories[category] = requestedLocale
+  }
+
+  return requestedLocale
+}
+
+// php/datetime/strftime
+type LcTime = {
+  a: string[]
+  A: string[]
+  b: string[]
+  B: string[]
+  p: string[]
+  P: string[]
+  c: string
+  r: string
+  x: string
+  X: string
+  [key: string]: string | string[] | undefined
+}
+
+type DateGetterMethod = 'getDate' | 'getHours' | 'getMinutes' | 'getSeconds' | 'getDay' | 'getFullYear'
+
+type FormatEntry = DateGetterMethod | ((d: Date) => string | number) | [DateGetterMethod, string | number]
+
+const isStringArray = (value: PhpAssoc<PhpInput>, key: string): boolean => {
+  const candidate = value[key]
+  return Array.isArray(candidate) && candidate.every((item) => typeof item === 'string')
+}
+
+const isLcTime = (value: PhpAssoc<PhpInput>): value is LcTime =>
+  isStringArray(value, 'a') &&
+  isStringArray(value, 'A') &&
+  isStringArray(value, 'b') &&
+  isStringArray(value, 'B') &&
+  isStringArray(value, 'p') &&
+  isStringArray(value, 'P') &&
+  typeof value.c === 'string' &&
+  typeof value.r === 'string' &&
+  typeof value.x === 'string' &&
+  typeof value.X === 'string'
+
+function strftime(fmt: string, timestamp?: Date | number | string): string {
+  //       discuss at: https://locutus.io/php/strftime/
+  //      original by: Blues (https://tech.bluesmoon.info/)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //         input by: Alex
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //           note 1: Uses global: locutus to store locale info
+  //        example 1: strftime("%A", 1062462400); // Return value will depend on date and locale
+  //        returns 1: 'Tuesday'
+  //      bugfixed by: Markus Marchewa
+  //        example 2: strftime('%F', 1577836800);
+  //        returns 2: '2020-01-01'
+  //        example 3: (() => {let e = process.env, tz = e.TZ; e.TZ = 'Europe/Vienna'; let r = strftime('%j', 1680307200); e.TZ = tz; return r;})();
+  //        returns 3: '091'
+
+  // ensure setup of localization variables takes place
+  setlocale('LC_ALL', 0)
+
+  const lcTimeBag = getPhpLocaleGroup('LC_TIME', 'LC_TIME')
+  if (!lcTimeBag || !isLcTime(lcTimeBag)) {
+    return ''
+  }
+
+  const _xPad = function (x: number | string, pad: number | string, r = 10): string {
+    for (; Number.parseInt(String(x), 10) < r && r > 1; r /= 10) {
+      x = String(pad) + x
+    }
+    return String(x)
+  }
+
+  const lcTime = lcTimeBag
+
+  const formats: Record<string, FormatEntry> = {
+    a: function (d: Date) {
+      return lcTime.a[d.getDay()] ?? ''
+    },
+    A: function (d: Date) {
+      return lcTime.A[d.getDay()] ?? ''
+    },
+    b: function (d: Date) {
+      return lcTime.b[d.getMonth()] ?? ''
+    },
+    B: function (d: Date) {
+      return lcTime.B[d.getMonth()] ?? ''
+    },
+    C: function (d: Date) {
+      return _xPad(Number.parseInt(String(d.getFullYear() / 100), 10), 0)
+    },
+    d: ['getDate', '0'],
+    e: ['getDate', ' '],
+    g: function (d: Date) {
+      const formatG = formats.G
+      const isoYear = typeof formatG === 'function' ? Number(formatG(d)) : d.getFullYear()
+      return _xPad(Number.parseInt(String(isoYear / 100), 10), 0)
+    },
+    G: function (d: Date) {
+      let y = d.getFullYear()
+      const formatV = formats.V
+      const formatW = formats.W
+      const V = typeof formatV === 'function' ? Number.parseInt(String(formatV(d)), 10) : 0
+      const W = typeof formatW === 'function' ? Number.parseInt(String(formatW(d)), 10) : 0
+
+      if (W > V) {
+        y++
+      } else if (W === 0 && V >= 52) {
+        y--
+      }
+
+      return y
+    },
+    H: ['getHours', '0'],
+    I: function (d: Date) {
+      const I = d.getHours() % 12
+      return _xPad(I === 0 ? 12 : I, 0)
+    },
+    j: function (d: Date) {
+      // calculate the difference between the given date and the start of the year (in localtime), DST shifts may lead
+      // to deltas less than multiples of 24 hours (the day when DST starts has just 23 hours), compensate by adding
+      // the difference between timezone offsets (subtract since values are negative for positive offsets), e.g.:
+      // 2020-05-01 00:00:00 CEST, timezone +0200, offset -120
+      // 2020-01-01 00:00:00 CET , timezone +0100, offset  -60
+      const b = new Date(d.getFullYear(), 0)
+      const ms = d.getTime() - b.getTime() - (d.getTimezoneOffset() - b.getTimezoneOffset()) * 60000
+      const doy = Number.parseInt(String(ms / 60000 / 60 / 24), 10) + 1
+      return _xPad(doy, 0, 100)
+    },
+    k: ['getHours', '0'],
+    // not in PHP, but implemented here (as in Yahoo)
+    l: function (d: Date) {
+      const l = d.getHours() % 12
+      return _xPad(l === 0 ? 12 : l, ' ')
+    },
+    m: function (d: Date) {
+      return _xPad(d.getMonth() + 1, 0)
+    },
+    M: ['getMinutes', '0'],
+    p: function (d: Date) {
+      return lcTime.p[d.getHours() >= 12 ? 1 : 0] ?? ''
+    },
+    P: function (d: Date) {
+      return lcTime.P[d.getHours() >= 12 ? 1 : 0] ?? ''
+    },
+    s: function (d: Date) {
+      // Yahoo uses return parseInt(d.getTime()/1000, 10);
+      return d.getTime() / 1000
+    },
+    S: ['getSeconds', '0'],
+    u: function (d: Date) {
+      const dow = d.getDay()
+      return dow === 0 ? 7 : dow
+    },
+    U: function (d: Date) {
+      const formatJ = formats.j
+      const doy = typeof formatJ === 'function' ? Number.parseInt(String(formatJ(d)), 10) : 0
+      const rdow = 6 - d.getDay()
+      const woy = Number.parseInt(String((doy + rdow) / 7), 10)
+      return _xPad(woy, 0)
+    },
+    V: function (d: Date) {
+      const formatW = formats.W
+      const formatV = formats.V
+      const woy = typeof formatW === 'function' ? Number.parseInt(String(formatW(d)), 10) : 0
+      const dow11 = new Date('' + d.getFullYear() + '/1/1').getDay()
+      // First week is 01 and not 00 as in the case of %U and %W,
+      // so we add 1 to the final result except if day 1 of the year
+      // is a Monday (then %W returns 01).
+      // We also need to subtract 1 if the day 1 of the year is
+      // Friday-Sunday, so the resulting equation becomes:
+      let idow = woy + (dow11 > 4 || dow11 <= 1 ? 0 : 1)
+      if (idow === 53 && new Date('' + d.getFullYear() + '/12/31').getDay() < 4) {
+        idow = 1
+      } else if (idow === 0) {
+        idow = typeof formatV === 'function' ? Number(formatV(new Date('' + (d.getFullYear() - 1) + '/12/31'))) : 0
+      }
+      return _xPad(idow, 0)
+    },
+    w: 'getDay',
+    W: function (d: Date) {
+      const formatJ = formats.j
+      const formatU = formats.u
+      const doy = typeof formatJ === 'function' ? Number.parseInt(String(formatJ(d)), 10) : 0
+      const rdow = 7 - (typeof formatU === 'function' ? Number(formatU(d)) : 0)
+      const woy = Number.parseInt(String((doy + rdow) / 7), 10)
+      return _xPad(woy, 0, 10)
+    },
+    y: function (d: Date) {
+      return _xPad(d.getFullYear() % 100, 0)
+    },
+    Y: 'getFullYear',
+    z: function (d: Date) {
+      const o = d.getTimezoneOffset()
+      const H = _xPad(Number.parseInt(String(Math.abs(o / 60)), 10), 0)
+      const M = _xPad(o % 60, 0)
+      return (o > 0 ? '-' : '+') + H + M
+    },
+    Z: function (d: Date) {
+      return d.toString().replace(/^.*\(([^)]+)\)$/, '$1')
+    },
+    '%': function () {
+      return '%'
+    },
+  }
+
+  const _date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
+        ? new Date(timestamp)
+        : new Date(Number(timestamp) * 1000)
+
+  const aggregates: Record<string, string> = {
+    c: 'locale',
+    D: '%m/%d/%y',
+    F: '%Y-%m-%d',
+    h: '%b',
+    n: '\n',
+    r: 'locale',
+    R: '%H:%M',
+    t: '\t',
+    T: '%H:%M:%S',
+    x: 'locale',
+    X: 'locale',
+  }
+
+  // First replace aggregates (run in a loop because an agg may be made up of other aggs)
+  while (fmt.match(/%[cDFhnrRtTxX]/)) {
+    fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (_m0, m1: string) {
+      const f = aggregates[m1]
+      if (f === undefined) {
+        return m1
+      }
+      return f === 'locale' ? String(lcTime[m1] ?? '') : f
+    })
+  }
+
+  // Now replace formats - we need a closure so that the date object gets passed through
+  const str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function (_m0, m1: string) {
+    const f = formats[m1]
+    if (typeof f === 'string') {
+      return String(_date[f]())
+    } else if (typeof f === 'function') {
+      return String(f(_date))
+    } else if (Array.isArray(f) && typeof f[0] === 'string') {
+      return _xPad(_date[f[0]](), f[1])
+    } else {
+      // Shouldn't reach here
+      return m1
+    }
+  })
+
+  return str
+}
+
+// php/datetime/gmstrftime
+function gmstrftime(format: string, timestamp?: number | Date): string {
+  //      discuss at: https://locutus.io/php/gmstrftime/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Alex
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: gmstrftime("%A", 1062462400)
+  //       returns 1: 'Tuesday'
+
+  const date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
+        ? new Date(timestamp)
+        : new Date(timestamp * 1000)
+
+  const utcTimestamp = Date.parse(date.toUTCString().slice(0, -4)) / 1000
+
+  return strftime(format, utcTimestamp)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpList(value) {
+  // discuss at: https://locutus.io/php/_helpers/isPhpList/
+  //     note 1: Shared helper guard for PHP list-like array values.
+  //  example 1: isPhpList([1, 2, 3])
+  //  returns 1: true
+  return Array.isArray(value)
+}
+function isObjectLike(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState
+const isIniBag = (value) => isPhpAssocObject(value)
+const isLocaleBag = (value) => isPhpAssocObject(value)
+const isLocaleCategoryBag = (value) => isPhpAssocObject(value)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function ensurePhpRuntimeState() {
+  // discuss at: https://locutus.io/php/_helpers/ensurePhpRuntimeState/
+  //     note 1: Ensures the mutable locutus PHP runtime bag exists on the shared runtime object.
+  //  example 1: Array.isArray(ensurePhpRuntimeState().pointers)
+  //  returns 1: true
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+function getPhpRuntimeEntry(key) {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function setPhpRuntimeEntry(key, value) {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+function getPhpRuntimeString(key, fallback) {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'string' ? value : fallback
+}
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+  return undefined
+}
+function getPhpLocaleEntry(category) {
+  const runtime = ensurePhpRuntimeState()
+  const localeName = runtime.localeCategories[category]
+  if (typeof localeName !== 'string') {
+    return undefined
+  }
+  const localeEntry = runtime.locales[localeName]
+  return isPhpAssocObject(localeEntry) ? localeEntry : undefined
+}
+function getPhpLocaleGroup(category, groupKey) {
+  const localeEntry = getPhpLocaleEntry(category)
+  if (!localeEntry) {
+    return undefined
+  }
+  const group = localeEntry[groupKey]
+  return isPhpAssocObject(group) ? group : undefined
+}
+
+// php/info/getenv
+function getenv(varname) {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
+    return false
+  }
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
+}
+
+// php/strings/setlocale
+const hasOwn = Object.prototype.hasOwnProperty
+const isLocaleDefinitionMap = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+const isLocaleCategoryMap = (value) =>
+  isPhpAssocObject(value) &&
+  typeof value.LC_COLLATE === 'string' &&
+  typeof value.LC_CTYPE === 'string' &&
+  typeof value.LC_MONETARY === 'string' &&
+  typeof value.LC_NUMERIC === 'string' &&
+  typeof value.LC_TIME === 'string' &&
+  typeof value.LC_MESSAGES === 'string'
+function copyValue(orig) {
+  if (orig instanceof RegExp) {
+    return new RegExp(orig)
+  }
+  if (orig instanceof Date) {
+    return new Date(orig)
+  }
+  if (Array.isArray(orig)) {
+    return orig.map((item) => copyValue(item))
+  }
+  if (orig !== null && typeof orig === 'object') {
+    const newObj = {}
+    for (const [key, value] of Object.entries(orig)) {
+      if (!hasOwn.call(orig, key)) {
+        continue
+      }
+      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
+    }
+    return newObj
+  }
+  return orig
+}
+function setlocale(category, locale) {
+  //  discuss at: https://locutus.io/php/setlocale/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
+  // original by: YUI Library (https://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
+  //      note 1: Is extensible, but currently only implements locales en,
+  //      note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
+  //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
+  //      note 1: Uses global: locutus to store locale info
+  //      note 1: Consider using https://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 2: This function tries to establish the locale via the `window` global.
+  //      note 2: This feature will not work in Node and hence is Browser-only
+  //   example 1: setlocale('LC_ALL', 'en_US')
+  //   returns 1: 'en_US'
+  let categ = ''
+  const cats = []
+  let i = 0
+  // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
+  // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+  // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
+  // categories noted with "MDC" below, though not sure of whether there is a convention for the
+  // relative order of these newer groups as far as ngettext) The function name indicates the number
+  // of plural forms (nplural) Need to look into https://cldr.unicode.org/ (maybe future JavaScript);
+  // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
+  // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
+  // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+  // var _nplurals1 = function (n) {
+  //   // e.g., Japanese
+  //   return 0
+  // }
+  const _nplurals2a = function (n) {
+    // e.g., English
+    return n !== 1 ? 1 : 0
+  }
+  const _nplurals2b = function (n) {
+    // e.g., French
+    return n > 1 ? 1 : 0
+  }
+  const localesValue = getPhpRuntimeEntry('locales')
+  let locales = isLocaleDefinitionMap(localesValue) ? localesValue : {}
+  if (localesValue !== locales) {
+    setPhpRuntimeEntry('locales', locales)
+  }
+  // Reconcile Windows vs. *nix locale names?
+  // Allow different priority orders of languages, esp. if implement gettext as in
+  // LANGUAGE env. var.? (e.g., show German if French is not available)
+  if (!locales.fr_CA?.LC_TIME?.x) {
+    // Can add to the locales
+    locales = {}
+    setPhpRuntimeEntry('locales', locales)
+    locales.en = {
+      LC_COLLATE: function (str1, str2) {
+        // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
+        // since its locale is not settable
+        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
+      },
+      LC_CTYPE: {
+        // Need to change any of these for English as opposed to C?
+        an: /^[A-Za-z\d]+$/g,
+        al: /^[A-Za-z]+$/g,
+        // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
+        ct: /^[\u0000-\u001F\u007F]+$/g,
+        dg: /^[\d]+$/g,
+        gr: /^[\u0021-\u007E]+$/g,
+        lw: /^[a-z]+$/g,
+        pr: /^[\u0020-\u007E]+$/g,
+        pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+        sp: /^[\f\n\r\t\v ]+$/g,
+        up: /^[A-Z]+$/g,
+        xd: /^[A-Fa-f\d]+$/g,
+        CODESET: 'UTF-8',
+        // Used by sql_regcase
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      },
+      LC_TIME: {
+        // Comments include nl_langinfo() constant equivalents and any
+        // changes from Blues' implementation
+        a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        // ABDAY_
+        A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        // DAY_
+        b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        // ABMON_
+        B: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ],
+        // MON_
+        c: '%a %d %b %Y %r %Z',
+        // D_T_FMT // changed %T to %r per results
+        p: ['AM', 'PM'],
+        // AM_STR/PM_STR
+        P: ['am', 'pm'],
+        // Not available in nl_langinfo()
+        r: '%I:%M:%S %p',
+        // T_FMT_AMPM (Fixed for all locales)
+        x: '%m/%d/%Y',
+        // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
+        X: '%r',
+        // T_FMT // changed from %T to %r  (%T is default for C, not English US)
+        // Following are from nl_langinfo() or https://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
+        alt_digits: '',
+        // e.g., ordinal
+        ERA: '',
+        ERA_YEAR: '',
+        ERA_D_T_FMT: '',
+        ERA_D_FMT: '',
+        ERA_T_FMT: '',
+      },
+      // Assuming distinction between numeric and monetary is thus:
+      // See below for C locale
+      LC_MONETARY: {
+        // based on Windows "english" (English_United States.1252) locale
+        int_curr_symbol: 'USD',
+        currency_symbol: '$',
+        mon_decimal_point: '.',
+        mon_thousands_sep: ',',
+        mon_grouping: [3],
+        // use mon_thousands_sep; "" for no grouping; additional array members
+        // indicate successive group lengths after first group
+        // (e.g., if to be 1,23,456, could be [3, 2])
+        positive_sign: '',
+        negative_sign: '-',
+        int_frac_digits: 2,
+        // Fractional digits only for money defaults?
+        frac_digits: 2,
+        p_cs_precedes: 1,
+        // positive currency symbol follows value = 0; precedes value = 1
+        p_sep_by_space: 0,
+        // 0: no space between curr. symbol and value; 1: space sep. them unless symb.
+        // and sign are adjacent then space sep. them from value; 2: space sep. sign
+        // and value unless symb. and sign are adjacent then space separates
+        n_cs_precedes: 1,
+        // see p_cs_precedes
+        n_sep_by_space: 0,
+        // see p_sep_by_space
+        p_sign_posn: 3,
+        // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them;
+        // 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed.
+        // succeeds curr. symbol
+        n_sign_posn: 0, // see p_sign_posn
+      },
+      LC_NUMERIC: {
+        // based on Windows "english" (English_United States.1252) locale
+        decimal_point: '.',
+        thousands_sep: ',',
+        grouping: [3], // see mon_grouping, but for non-monetary values (use thousands_sep)
+      },
+      LC_MESSAGES: {
+        YESEXPR: '^[yY].*',
+        NOEXPR: '^[nN].*',
+        YESSTR: '',
+        NOSTR: '',
+      },
+      nplurals: _nplurals2a,
+    }
+    locales.en_US = copyValue(locales.en)
+    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
+    locales.en_US.LC_TIME.x = '%D'
+    locales.en_US.LC_TIME.X = '%r'
+    // The following are based on *nix settings
+    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
+    locales.en_US.LC_MONETARY.p_sign_posn = 1
+    locales.en_US.LC_MONETARY.n_sign_posn = 1
+    locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
+    locales.en_US.LC_NUMERIC.thousands_sep = ''
+    locales.en_US.LC_NUMERIC.grouping = []
+    locales.en_GB = copyValue(locales.en)
+    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+    locales.en_AU = copyValue(locales.en_GB)
+    // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+    locales.C = copyValue(locales.en)
+    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
+    locales.C.LC_MONETARY = {
+      int_curr_symbol: '',
+      currency_symbol: '',
+      mon_decimal_point: '',
+      mon_thousands_sep: '',
+      mon_grouping: [],
+      p_cs_precedes: 127,
+      p_sep_by_space: 127,
+      n_cs_precedes: 127,
+      n_sep_by_space: 127,
+      p_sign_posn: 127,
+      n_sign_posn: 127,
+      positive_sign: '',
+      negative_sign: '',
+      int_frac_digits: 127,
+      frac_digits: 127,
+    }
+    locales.C.LC_NUMERIC = {
+      decimal_point: '.',
+      thousands_sep: '',
+      grouping: [],
+    }
+    // D_T_FMT
+    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
+    // D_FMT
+    locales.C.LC_TIME.x = '%m/%d/%y'
+    // T_FMT
+    locales.C.LC_TIME.X = '%H:%M:%S'
+    locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
+    locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+    locales.fr = copyValue(locales.en)
+    locales.fr.nplurals = _nplurals2b
+    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
+    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+    locales.fr.LC_TIME.b = [
+      'jan',
+      'f\u00E9v',
+      'mar',
+      'avr',
+      'mai',
+      'jun',
+      'jui',
+      'ao\u00FB',
+      'sep',
+      'oct',
+      'nov',
+      'd\u00E9c',
+    ]
+    locales.fr.LC_TIME.B = [
+      'janvier',
+      'f\u00E9vrier',
+      'mars',
+      'avril',
+      'mai',
+      'juin',
+      'juillet',
+      'ao\u00FBt',
+      'septembre',
+      'octobre',
+      'novembre',
+      'd\u00E9cembre',
+    ]
+    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
+    locales.fr.LC_TIME.p = ['', '']
+    locales.fr.LC_TIME.P = ['', '']
+    locales.fr.LC_TIME.x = '%d.%m.%Y'
+    locales.fr.LC_TIME.X = '%T'
+    locales.fr_CA = copyValue(locales.fr)
+    locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
+  }
+  let currentLocale = getPhpRuntimeString('locale', '')
+  if (!currentLocale) {
+    currentLocale = 'en_US'
+    // Try to establish the locale via the `window` global
+    if (typeof window !== 'undefined' && window.document) {
+      const d = window.document
+      const NS_XHTML = 'https://www.w3.org/1999/xhtml'
+      const NS_XML = 'https://www.w3.org/XML/1998/namespace'
+      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined
+      if (htmlNsElement) {
+        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang')
+        if (xmlLang) {
+          currentLocale = xmlLang
+        } else {
+          const htmlLang = htmlNsElement.getAttribute('lang')
+          if (htmlLang) {
+            currentLocale = htmlLang
+          }
+        }
+      } else {
+        const htmlElement = d.getElementsByTagName('html')[0]
+        const htmlLang = htmlElement?.getAttribute('lang')
+        if (htmlLang) {
+          currentLocale = htmlLang
+        }
+      }
+    }
+  }
+  // PHP-style
+  currentLocale = currentLocale.replace('-', '_')
+  // @todo: locale if declared locale hasn't been defined
+  if (!(currentLocale in locales)) {
+    const languageLocale = currentLocale.replace(/_[a-zA-Z]+$/, '')
+    if (languageLocale in locales) {
+      currentLocale = languageLocale
+    }
+  }
+  setPhpRuntimeEntry('locale', currentLocale)
+  const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
+  const localeCategories = isLocaleCategoryMap(localeCategoriesValue)
+    ? localeCategoriesValue
+    : {
+        LC_COLLATE: currentLocale,
+        // for string comparison, see strcoll()
+        LC_CTYPE: currentLocale,
+        // for character classification and conversion, for example strtoupper()
+        LC_MONETARY: currentLocale,
+        // for localeconv()
+        LC_NUMERIC: currentLocale,
+        // for decimal separator (See also localeconv())
+        LC_TIME: currentLocale,
+        // for date and time formatting with strftime()
+        // for system responses (available if PHP was compiled with libintl):
+        LC_MESSAGES: currentLocale,
+      }
+  if (localeCategoriesValue !== localeCategories) {
+    setPhpRuntimeEntry('localeCategories', localeCategories)
+  }
+  let requestedLocale = locale
+  if (requestedLocale === null || requestedLocale === '') {
+    requestedLocale = getenv(category) || getenv('LANG')
+  } else if (Array.isArray(requestedLocale)) {
+    for (i = 0; i < requestedLocale.length; i++) {
+      const candidate = requestedLocale[i]
+      if (typeof candidate !== 'string') {
+        if (i === requestedLocale.length - 1) {
+          return false
+        }
+        continue
+      }
+      if (!(candidate in locales)) {
+        if (i === requestedLocale.length - 1) {
+          // none found
+          return false
+        }
+        continue
+      }
+      requestedLocale = candidate
+      break
     }
   }
   // Just get the locale
@@ -460,35 +1582,49 @@ function setlocale(category, locale) {
     if (category === 'LC_ALL') {
       for (categ in localeCategories) {
         if (!hasOwn.call(localeCategories, categ)) {
-          continue;
+          continue
         }
         // Add ".UTF-8" or allow ".@latint", etc. to the end?
-        cats.push(categ + '=' + localeCategories[categ]);
+        cats.push(categ + '=' + localeCategories[categ])
       }
-      return cats.join(';');
+      return cats.join(';')
     }
-    return localeCategories[category] ?? false;
+    return localeCategories[category] ?? false
   }
   if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
     // Locale not found
-    return false;
+    return false
   }
   // Set and get locale
   if (category === 'LC_ALL') {
     for (categ in localeCategories) {
       if (!hasOwn.call(localeCategories, categ)) {
-        continue;
+        continue
       }
-      localeCategories[categ] = requestedLocale;
+      localeCategories[categ] = requestedLocale
     }
+  } else {
+    localeCategories[category] = requestedLocale
   }
-  else {
-    localeCategories[category] = requestedLocale;
-  }
-  return requestedLocale;
+  return requestedLocale
 }
 
 // php/datetime/strftime
+const isStringArray = (value, key) => {
+  const candidate = value[key]
+  return Array.isArray(candidate) && candidate.every((item) => typeof item === 'string')
+}
+const isLcTime = (value) =>
+  isStringArray(value, 'a') &&
+  isStringArray(value, 'A') &&
+  isStringArray(value, 'b') &&
+  isStringArray(value, 'B') &&
+  isStringArray(value, 'p') &&
+  isStringArray(value, 'P') &&
+  typeof value.c === 'string' &&
+  typeof value.r === 'string' &&
+  typeof value.x === 'string' &&
+  typeof value.X === 'string'
 function strftime(fmt, timestamp) {
   //       discuss at: https://locutus.io/php/strftime/
   //      original by: Blues (https://tech.bluesmoon.info/)
@@ -504,65 +1640,59 @@ function strftime(fmt, timestamp) {
   //        returns 2: '2020-01-01'
   //        example 3: (() => {let e = process.env, tz = e.TZ; e.TZ = 'Europe/Vienna'; let r = strftime('%j', 1680307200); e.TZ = tz; return r;})();
   //        returns 3: '091'
-  const globalContext = globalThis;
-  globalContext.$locutus = globalContext.$locutus ?? {};
-  const locutus = globalContext.$locutus;
-  locutus.php = locutus.php ?? {};
-  const php = locutus.php;
   // ensure setup of localization variables takes place
-  setlocale('LC_ALL', 0);
+  setlocale('LC_ALL', 0)
+  const lcTimeBag = getPhpLocaleGroup('LC_TIME', 'LC_TIME')
+  if (!lcTimeBag || !isLcTime(lcTimeBag)) {
+    return ''
+  }
   const _xPad = function (x, pad, r = 10) {
     for (; Number.parseInt(String(x), 10) < r && r > 1; r /= 10) {
-      x = String(pad) + x;
+      x = String(pad) + x
     }
-    return String(x);
-  };
-  const locale = php.localeCategories?.LC_TIME;
-  const lcTime = locale ? php.locales?.[locale]?.LC_TIME : undefined;
-  if (!lcTime) {
-    return '';
+    return String(x)
   }
+  const lcTime = lcTimeBag
   const formats = {
     a: function (d) {
-      return lcTime.a[d.getDay()] ?? '';
+      return lcTime.a[d.getDay()] ?? ''
     },
     A: function (d) {
-      return lcTime.A[d.getDay()] ?? '';
+      return lcTime.A[d.getDay()] ?? ''
     },
     b: function (d) {
-      return lcTime.b[d.getMonth()] ?? '';
+      return lcTime.b[d.getMonth()] ?? ''
     },
     B: function (d) {
-      return lcTime.B[d.getMonth()] ?? '';
+      return lcTime.B[d.getMonth()] ?? ''
     },
     C: function (d) {
-      return _xPad(Number.parseInt(String(d.getFullYear() / 100), 10), 0);
+      return _xPad(Number.parseInt(String(d.getFullYear() / 100), 10), 0)
     },
     d: ['getDate', '0'],
     e: ['getDate', ' '],
     g: function (d) {
-      const formatG = formats.G;
-      const isoYear = typeof formatG === 'function' ? Number(formatG(d)) : d.getFullYear();
-      return _xPad(Number.parseInt(String(isoYear / 100), 10), 0);
+      const formatG = formats.G
+      const isoYear = typeof formatG === 'function' ? Number(formatG(d)) : d.getFullYear()
+      return _xPad(Number.parseInt(String(isoYear / 100), 10), 0)
     },
     G: function (d) {
-      let y = d.getFullYear();
-      const formatV = formats.V;
-      const formatW = formats.W;
-      const V = typeof formatV === 'function' ? Number.parseInt(String(formatV(d)), 10) : 0;
-      const W = typeof formatW === 'function' ? Number.parseInt(String(formatW(d)), 10) : 0;
+      let y = d.getFullYear()
+      const formatV = formats.V
+      const formatW = formats.W
+      const V = typeof formatV === 'function' ? Number.parseInt(String(formatV(d)), 10) : 0
+      const W = typeof formatW === 'function' ? Number.parseInt(String(formatW(d)), 10) : 0
       if (W > V) {
-        y++;
+        y++
+      } else if (W === 0 && V >= 52) {
+        y--
       }
-      else if (W === 0 && V >= 52) {
-        y--;
-      }
-      return y;
+      return y
     },
     H: ['getHours', '0'],
     I: function (d) {
-      const I = d.getHours() % 12;
-      return _xPad(I === 0 ? 12 : I, 0);
+      const I = d.getHours() % 12
+      return _xPad(I === 0 ? 12 : I, 0)
     },
     j: function (d) {
       // calculate the difference between the given date and the start of the year (in localtime), DST shifts may lead
@@ -570,93 +1700,93 @@ function strftime(fmt, timestamp) {
       // the difference between timezone offsets (subtract since values are negative for positive offsets), e.g.:
       // 2020-05-01 00:00:00 CEST, timezone +0200, offset -120
       // 2020-01-01 00:00:00 CET , timezone +0100, offset  -60
-      const b = new Date(d.getFullYear(), 0);
-      const ms = d.getTime() - b.getTime() - (d.getTimezoneOffset() - b.getTimezoneOffset()) * 60000;
-      const doy = Number.parseInt(String(ms / 60000 / 60 / 24), 10) + 1;
-      return _xPad(doy, 0, 100);
+      const b = new Date(d.getFullYear(), 0)
+      const ms = d.getTime() - b.getTime() - (d.getTimezoneOffset() - b.getTimezoneOffset()) * 60000
+      const doy = Number.parseInt(String(ms / 60000 / 60 / 24), 10) + 1
+      return _xPad(doy, 0, 100)
     },
     k: ['getHours', '0'],
     // not in PHP, but implemented here (as in Yahoo)
     l: function (d) {
-      const l = d.getHours() % 12;
-      return _xPad(l === 0 ? 12 : l, ' ');
+      const l = d.getHours() % 12
+      return _xPad(l === 0 ? 12 : l, ' ')
     },
     m: function (d) {
-      return _xPad(d.getMonth() + 1, 0);
+      return _xPad(d.getMonth() + 1, 0)
     },
     M: ['getMinutes', '0'],
     p: function (d) {
-      return lcTime.p[d.getHours() >= 12 ? 1 : 0] ?? '';
+      return lcTime.p[d.getHours() >= 12 ? 1 : 0] ?? ''
     },
     P: function (d) {
-      return lcTime.P[d.getHours() >= 12 ? 1 : 0] ?? '';
+      return lcTime.P[d.getHours() >= 12 ? 1 : 0] ?? ''
     },
     s: function (d) {
       // Yahoo uses return parseInt(d.getTime()/1000, 10);
-      return d.getTime() / 1000;
+      return d.getTime() / 1000
     },
     S: ['getSeconds', '0'],
     u: function (d) {
-      const dow = d.getDay();
-      return dow === 0 ? 7 : dow;
+      const dow = d.getDay()
+      return dow === 0 ? 7 : dow
     },
     U: function (d) {
-      const formatJ = formats.j;
-      const doy = typeof formatJ === 'function' ? Number.parseInt(String(formatJ(d)), 10) : 0;
-      const rdow = 6 - d.getDay();
-      const woy = Number.parseInt(String((doy + rdow) / 7), 10);
-      return _xPad(woy, 0);
+      const formatJ = formats.j
+      const doy = typeof formatJ === 'function' ? Number.parseInt(String(formatJ(d)), 10) : 0
+      const rdow = 6 - d.getDay()
+      const woy = Number.parseInt(String((doy + rdow) / 7), 10)
+      return _xPad(woy, 0)
     },
     V: function (d) {
-      const formatW = formats.W;
-      const formatV = formats.V;
-      const woy = typeof formatW === 'function' ? Number.parseInt(String(formatW(d)), 10) : 0;
-      const dow11 = new Date('' + d.getFullYear() + '/1/1').getDay();
+      const formatW = formats.W
+      const formatV = formats.V
+      const woy = typeof formatW === 'function' ? Number.parseInt(String(formatW(d)), 10) : 0
+      const dow11 = new Date('' + d.getFullYear() + '/1/1').getDay()
       // First week is 01 and not 00 as in the case of %U and %W,
       // so we add 1 to the final result except if day 1 of the year
       // is a Monday (then %W returns 01).
       // We also need to subtract 1 if the day 1 of the year is
       // Friday-Sunday, so the resulting equation becomes:
-      let idow = woy + (dow11 > 4 || dow11 <= 1 ? 0 : 1);
+      let idow = woy + (dow11 > 4 || dow11 <= 1 ? 0 : 1)
       if (idow === 53 && new Date('' + d.getFullYear() + '/12/31').getDay() < 4) {
-        idow = 1;
+        idow = 1
+      } else if (idow === 0) {
+        idow = typeof formatV === 'function' ? Number(formatV(new Date('' + (d.getFullYear() - 1) + '/12/31'))) : 0
       }
-      else if (idow === 0) {
-        idow = typeof formatV === 'function' ? Number(formatV(new Date('' + (d.getFullYear() - 1) + '/12/31'))) : 0;
-      }
-      return _xPad(idow, 0);
+      return _xPad(idow, 0)
     },
     w: 'getDay',
     W: function (d) {
-      const formatJ = formats.j;
-      const formatU = formats.u;
-      const doy = typeof formatJ === 'function' ? Number.parseInt(String(formatJ(d)), 10) : 0;
-      const rdow = 7 - (typeof formatU === 'function' ? Number(formatU(d)) : 0);
-      const woy = Number.parseInt(String((doy + rdow) / 7), 10);
-      return _xPad(woy, 0, 10);
+      const formatJ = formats.j
+      const formatU = formats.u
+      const doy = typeof formatJ === 'function' ? Number.parseInt(String(formatJ(d)), 10) : 0
+      const rdow = 7 - (typeof formatU === 'function' ? Number(formatU(d)) : 0)
+      const woy = Number.parseInt(String((doy + rdow) / 7), 10)
+      return _xPad(woy, 0, 10)
     },
     y: function (d) {
-      return _xPad(d.getFullYear() % 100, 0);
+      return _xPad(d.getFullYear() % 100, 0)
     },
     Y: 'getFullYear',
     z: function (d) {
-      const o = d.getTimezoneOffset();
-      const H = _xPad(Number.parseInt(String(Math.abs(o / 60)), 10), 0);
-      const M = _xPad(o % 60, 0);
-      return (o > 0 ? '-' : '+') + H + M;
+      const o = d.getTimezoneOffset()
+      const H = _xPad(Number.parseInt(String(Math.abs(o / 60)), 10), 0)
+      const M = _xPad(o % 60, 0)
+      return (o > 0 ? '-' : '+') + H + M
     },
     Z: function (d) {
-      return d.toString().replace(/^.*\(([^)]+)\)$/, '$1');
+      return d.toString().replace(/^.*\(([^)]+)\)$/, '$1')
     },
     '%': function () {
-      return '%';
+      return '%'
     },
-  };
-  const _date = typeof timestamp === 'undefined'
-    ? new Date()
-    : timestamp instanceof Date
-      ? new Date(timestamp)
-      : new Date(Number(timestamp) * 1000);
+  }
+  const _date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
+        ? new Date(timestamp)
+        : new Date(Number(timestamp) * 1000)
   const aggregates = {
     c: 'locale',
     D: '%m/%d/%y',
@@ -669,35 +1799,32 @@ function strftime(fmt, timestamp) {
     T: '%H:%M:%S',
     x: 'locale',
     X: 'locale',
-  };
+  }
   // First replace aggregates (run in a loop because an agg may be made up of other aggs)
   while (fmt.match(/%[cDFhnrRtTxX]/)) {
     fmt = fmt.replace(/%([cDFhnrRtTxX])/g, function (_m0, m1) {
-      const f = aggregates[m1];
+      const f = aggregates[m1]
       if (f === undefined) {
-        return m1;
+        return m1
       }
-      return f === 'locale' ? String(lcTime[m1] ?? '') : f;
-    });
+      return f === 'locale' ? String(lcTime[m1] ?? '') : f
+    })
   }
   // Now replace formats - we need a closure so that the date object gets passed through
   const str = fmt.replace(/%([aAbBCdegGHIjklmMpPsSuUVwWyYzZ%])/g, function (_m0, m1) {
-    const f = formats[m1];
+    const f = formats[m1]
     if (typeof f === 'string') {
-      return String(_date[f]());
-    }
-    else if (typeof f === 'function') {
-      return String(f(_date));
-    }
-    else if (Array.isArray(f) && typeof f[0] === 'string') {
-      return _xPad(_date[f[0]](), f[1]);
-    }
-    else {
+      return String(_date[f]())
+    } else if (typeof f === 'function') {
+      return String(f(_date))
+    } else if (Array.isArray(f) && typeof f[0] === 'string') {
+      return _xPad(_date[f[0]](), f[1])
+    } else {
       // Shouldn't reach here
-      return m1;
+      return m1
     }
-  });
-  return str;
+  })
+  return str
 }
 
 // php/datetime/gmstrftime
@@ -709,12 +1836,13 @@ function gmstrftime(format, timestamp) {
   //     bugfixed by: Brett Zamir (https://brett-zamir.me)
   //       example 1: gmstrftime("%A", 1062462400)
   //       returns 1: 'Tuesday'
-  const date = typeof timestamp === 'undefined'
-    ? new Date()
-    : timestamp instanceof Date
-      ? new Date(timestamp)
-      : new Date(timestamp * 1000);
-  const utcTimestamp = Date.parse(date.toUTCString().slice(0, -4)) / 1000;
-  return strftime(format, utcTimestamp);
+  const date =
+    typeof timestamp === 'undefined'
+      ? new Date()
+      : timestamp instanceof Date
+        ? new Date(timestamp)
+        : new Date(timestamp * 1000)
+  const utcTimestamp = Date.parse(date.toUTCString().slice(0, -4)) / 1000
+  return strftime(format, utcTimestamp)
 }{% endcodeblock %}
 </div>

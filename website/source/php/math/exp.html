@@ -47,10 +47,22 @@ alias:
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: exp(0.3)
   //       returns 1: 1.3498588075760032
-  return Math.exp(arg);
+  return Math.exp(arg)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/math/exp
+function exp(arg: number): number {
+  //      discuss at: https://locutus.io/php/exp/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: exp(0.3)
+  //       returns 1: 1.3498588075760032
+
+  return Math.exp(arg)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/exp
 function exp(arg) {
   //      discuss at: https://locutus.io/php/exp/
@@ -58,6 +70,6 @@ function exp(arg) {
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: exp(0.3)
   //       returns 1: 1.3498588075760032
-  return Math.exp(arg);
+  return Math.exp(arg)
 }{% endcodeblock %}
 </div>

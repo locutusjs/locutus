@@ -61,18 +61,39 @@ alias:
   //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: strcasecmp('Hello', 'hello')
   //       returns 1: 0
-  const string1 = (fString1 + '').toLowerCase();
-  const string2 = (fString2 + '').toLowerCase();
+  const string1 = (fString1 + '').toLowerCase()
+  const string2 = (fString2 + '').toLowerCase()
   if (string1 > string2) {
-    return 1;
+    return 1
+  } else if (string1 === string2) {
+    return 0
   }
-  else if (string1 === string2) {
-    return 0;
-  }
-  return -1;
+  return -1
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/strings/strcasecmp
+function strcasecmp(fString1: string, fString2: string): number {
+  //      discuss at: https://locutus.io/php/strcasecmp/
+  // parity verified: PHP 8.3
+  //     original by: Martijn Wieringa
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: strcasecmp('Hello', 'hello')
+  //       returns 1: 0
+
+  const string1 = (fString1 + '').toLowerCase()
+  const string2 = (fString2 + '').toLowerCase()
+
+  if (string1 > string2) {
+    return 1
+  } else if (string1 === string2) {
+    return 0
+  }
+
+  return -1
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/strings/strcasecmp
 function strcasecmp(fString1, fString2) {
   //      discuss at: https://locutus.io/php/strcasecmp/
@@ -81,14 +102,13 @@ function strcasecmp(fString1, fString2) {
   //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
   //       example 1: strcasecmp('Hello', 'hello')
   //       returns 1: 0
-  const string1 = (fString1 + '').toLowerCase();
-  const string2 = (fString2 + '').toLowerCase();
+  const string1 = (fString1 + '').toLowerCase()
+  const string2 = (fString2 + '').toLowerCase()
   if (string1 > string2) {
-    return 1;
+    return 1
+  } else if (string1 === string2) {
+    return 0
   }
-  else if (string1 === string2) {
-    return 0;
-  }
-  return -1;
+  return -1
 }{% endcodeblock %}
 </div>

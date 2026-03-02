@@ -53,10 +53,24 @@ alias:
   //       returns 1: 'hello'
   //       example 2: tolower('Hello World')
   //       returns 2: 'hello world'
-  return String(x).toLowerCase();
+  return String(x).toLowerCase()
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// r/base/tolower
+function tolower(x: string): string {
+  //      discuss at: https://locutus.io/r/tolower/
+  // parity verified: R 4.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: tolower('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: tolower('Hello World')
+  //       returns 2: 'hello world'
+
+  return String(x).toLowerCase()
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// r/base/tolower
 function tolower(x) {
   //      discuss at: https://locutus.io/r/tolower/
@@ -66,6 +80,6 @@ function tolower(x) {
   //       returns 1: 'hello'
   //       example 2: tolower('Hello World')
   //       returns 2: 'hello world'
-  return String(x).toLowerCase();
+  return String(x).toLowerCase()
 }{% endcodeblock %}
 </div>

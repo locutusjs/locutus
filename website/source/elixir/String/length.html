@@ -53,10 +53,24 @@ alias:
   //       returns 1: 5
   //       example 2: length('')
   //       returns 2: 0
-  return String(string).length;
+  return String(string).length
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// elixir/String/length
+function length(string: string): number {
+  //      discuss at: https://locutus.io/elixir/length/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: length('hello')
+  //       returns 1: 5
+  //       example 2: length('')
+  //       returns 2: 0
+
+  return String(string).length
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// elixir/String/length
 function length(string) {
   //      discuss at: https://locutus.io/elixir/length/
@@ -66,6 +80,6 @@ function length(string) {
   //       returns 1: 5
   //       example 2: length('')
   //       returns 2: 0
-  return String(string).length;
+  return String(string).length
 }{% endcodeblock %}
 </div>

@@ -56,10 +56,25 @@ alias:
   //       returns 1: 5
   //       example 2: length('')
   //       returns 2: 0
-  return (str + '').length;
+  return (str + '').length
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// ruby/String/length
+function length(str: string): number {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/String/length/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the character length of str.
+  //       example 1: length('hello')
+  //       returns 1: 5
+  //       example 2: length('')
+  //       returns 2: 0
+
+  return (str + '').length
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// ruby/String/length
 function length(str) {
   // parity verified: Ruby 3.3
@@ -70,6 +85,6 @@ function length(str) {
   //       returns 1: 5
   //       example 2: length('')
   //       returns 2: 0
-  return (str + '').length;
+  return (str + '').length
 }{% endcodeblock %}
 </div>

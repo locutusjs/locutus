@@ -52,10 +52,24 @@ alias:
   //       returns 1: 'HELLO'
   //       example 2: uc('Hello World')
   //       returns 2: 'HELLO WORLD'
-  return String(str).toUpperCase();
+  return String(str).toUpperCase()
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// perl/core/uc
+function uc(str: string): string {
+  //      discuss at: https://locutus.io/perl/uc/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: uc('hello')
+  //       returns 1: 'HELLO'
+  //       example 2: uc('Hello World')
+  //       returns 2: 'HELLO WORLD'
+
+  return String(str).toUpperCase()
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// perl/core/uc
 function uc(str) {
   //      discuss at: https://locutus.io/perl/uc/
@@ -65,6 +79,6 @@ function uc(str) {
   //       returns 1: 'HELLO'
   //       example 2: uc('Hello World')
   //       returns 2: 'HELLO WORLD'
-  return String(str).toUpperCase();
+  return String(str).toUpperCase()
 }{% endcodeblock %}
 </div>

@@ -33,9 +33,11 @@ alias:
   - /functions/is_nan/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 
-export function is_nan(val: PhpMixed): boolean {
+type NumberCheckValue = PhpRuntimeValue
+
+export function is_nan(val: NumberCheckValue): boolean {
   //  discuss at: https://locutus.io/php/is_nan/
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //    input by: Robin
@@ -74,25 +76,76 @@ export function is_nan(val: PhpMixed): boolean {
   //   returns 1: true
   //   example 2: is_nan(0)
   //   returns 2: false
-  let warningType = '';
+  let warningType = ''
   if (typeof val === 'number' && isNaN(val)) {
-    return true;
+    return true
   }
   // Some errors for maximum PHP compatibility
   if (typeof val === 'object') {
-    warningType = Array.isArray(val) ? 'array' : 'object';
-  }
-  else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
+    warningType = Array.isArray(val) ? 'array' : 'object'
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
-    warningType = 'string';
+    warningType = 'string'
   }
   if (warningType) {
-    throw new Error('Warning: is_nan() expects parameter 1 to be double, ' + warningType + ' given');
+    throw new Error('Warning: is_nan() expects parameter 1 to be double, ' + warningType + ' given')
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/math/is_nan
+type NumberCheckValue = PhpRuntimeValue
+
+function is_nan(val: NumberCheckValue): boolean {
+  //  discuss at: https://locutus.io/php/is_nan/
+  // original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //    input by: Robin
+  //   example 1: is_nan(NaN)
+  //   returns 1: true
+  //   example 2: is_nan(0)
+  //   returns 2: false
+
+  let warningType = ''
+
+  if (typeof val === 'number' && isNaN(val)) {
+    return true
+  }
+
+  // Some errors for maximum PHP compatibility
+  if (typeof val === 'object') {
+    warningType = Array.isArray(val) ? 'array' : 'object'
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
+    // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
+    warningType = 'string'
+  }
+  if (warningType) {
+    throw new Error('Warning: is_nan() expects parameter 1 to be double, ' + warningType + ' given')
+  }
+
+  return false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/math/is_nan
 function is_nan(val) {
   //  discuss at: https://locutus.io/php/is_nan/
@@ -102,21 +155,20 @@ function is_nan(val) {
   //   returns 1: true
   //   example 2: is_nan(0)
   //   returns 2: false
-  let warningType = '';
+  let warningType = ''
   if (typeof val === 'number' && isNaN(val)) {
-    return true;
+    return true
   }
   // Some errors for maximum PHP compatibility
   if (typeof val === 'object') {
-    warningType = Array.isArray(val) ? 'array' : 'object';
-  }
-  else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
+    warningType = Array.isArray(val) ? 'array' : 'object'
+  } else if (typeof val === 'string' && !/^[+-]?\d/.test(val)) {
     // simulate PHP's behaviour: '-9a' doesn't give a warning, but 'a9' does.
-    warningType = 'string';
+    warningType = 'string'
   }
   if (warningType) {
-    throw new Error('Warning: is_nan() expects parameter 1 to be double, ' + warningType + ' given');
+    throw new Error('Warning: is_nan() expects parameter 1 to be double, ' + warningType + ' given')
   }
-  return false;
+  return false
 }{% endcodeblock %}
 </div>

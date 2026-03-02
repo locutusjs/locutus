@@ -34,10 +34,9 @@ alias:
   - /functions/doubleval/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpMixed } from '../_helpers/_phpTypes.ts'
-import { floatval } from '../var/floatval.ts'
+{% codeblock lang:typescript %}import { type FloatvalInput, floatval } from '../var/floatval.ts'
 
-export function doubleval(mixedVar: PhpMixed): number {
+export function doubleval(mixedVar: FloatvalInput): number {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -46,12 +45,12 @@ export function doubleval(mixedVar: PhpMixed): number {
   //       example 1: doubleval(186)
   //       returns 1: 186.00
 
-  return floatval(String(mixedVar ?? ''))
+  return floatval(mixedVar)
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { floatval } from '../var/floatval.ts';
+{% codeblock lang:javascript %}import { floatval } from '../var/floatval.ts'
 export function doubleval(mixedVar) {
   //      discuss at: https://locutus.io/php/doubleval/
   // parity verified: PHP 8.3
@@ -60,10 +59,48 @@ export function doubleval(mixedVar) {
   //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //       example 1: doubleval(186)
   //       returns 1: 186.00
-  return floatval(String(mixedVar ?? ''));
+  return floatval(mixedVar)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type NumericLike = number | bigint | string
+
+// php/var/floatval
+type FloatvalInput = NumericLike | boolean | PhpNullish
+
+function floatval(mixedVar: FloatvalInput): number {
+  //      discuss at: https://locutus.io/php/floatval/
+  // parity verified: PHP 8.3
+  //     original by: Michael White (https://getsprink.com)
+  //          note 1: The native parseFloat() method of JavaScript returns NaN
+  //          note 1: when it encounters a string before an int or float value.
+  //       example 1: floatval('150.03_page-section')
+  //       returns 1: 150.03
+  //       example 2: floatval('page: 3')
+  //       example 2: floatval('-50 + 8')
+  //       returns 2: 0
+  //       returns 2: -50
+
+  return parseFloat(String(mixedVar ?? '')) || 0
+}
+
+// php/var/doubleval
+function doubleval(mixedVar: FloatvalInput): number {
+  //      discuss at: https://locutus.io/php/doubleval/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: doubleval(186)
+  //       returns 1: 186.00
+
+  return floatval(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/var/floatval
 function floatval(mixedVar) {
   //      discuss at: https://locutus.io/php/floatval/
@@ -77,7 +114,7 @@ function floatval(mixedVar) {
   //       example 2: floatval('-50 + 8')
   //       returns 2: 0
   //       returns 2: -50
-  return parseFloat(String(mixedVar ?? '')) || 0;
+  return parseFloat(String(mixedVar ?? '')) || 0
 }
 
 // php/var/doubleval
@@ -89,6 +126,6 @@ function doubleval(mixedVar) {
   //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
   //       example 1: doubleval(186)
   //       returns 1: 186.00
-  return floatval(String(mixedVar ?? ''));
+  return floatval(mixedVar)
 }{% endcodeblock %}
 </div>

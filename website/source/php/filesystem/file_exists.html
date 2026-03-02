@@ -46,7 +46,7 @@ export function file_exists(filename: string): boolean {
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import fs from 'fs';
+{% codeblock lang:javascript %}import fs from 'fs'
 export function file_exists(filename) {
   //      discuss at: https://locutus.io/php/file_exists/
   // parity verified: PHP 8.3
@@ -54,12 +54,11 @@ export function file_exists(filename) {
   //          note 1: so this function is Node-only
   //       example 1: file_exists('test/never-change.txt')
   //       returns 1: true
-  return fs.existsSync(filename);
+  return fs.existsSync(filename)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/filesystem/file_exists
-import fs from 'fs';
 function file_exists(filename) {
   //      discuss at: https://locutus.io/php/file_exists/
   // parity verified: PHP 8.3
@@ -67,6 +66,6 @@ function file_exists(filename) {
   //          note 1: so this function is Node-only
   //       example 1: file_exists('test/never-change.txt')
   //       returns 1: true
-  return fs.existsSync(filename);
+  return fs.existsSync(filename)
 }{% endcodeblock %}
 </div>

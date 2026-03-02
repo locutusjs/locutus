@@ -14,7 +14,8 @@ returns:
   - '{"fubar": 42}'
   - '{"FUBAR": 42}'
   - '{"FUBAR": 42}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Ates Goral (https://magnetiq.com)
@@ -42,24 +43,22 @@ alias:
   - /functions/array_change_key_case/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpArrayLike, PhpAssoc } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { type PhpArrayLike, type PhpAssoc, type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
-type PhpValue = {} | null | undefined
-type ArrayChangeInput = number | PhpArrayLike<PhpValue> | null
+type ChangeValue = PhpRuntimeValue
+type ArrayChangeInput<TValue extends ChangeValue> = number | PhpArrayLike<TValue> | null
+type ChangeKeyCaseMode = 0 | 1 | 2 | 'CASE_LOWER' | 'CASE_UPPER'
 
-type ArrayChangeKeyCaseResult<TInput> = TInput extends (infer TValue)[]
-  ? TValue[]
-  : TInput extends PhpAssoc<infer TValue>
-    ? PhpAssoc<TValue>
-    : false
-
-const castArrayChangeResult = <TInput>(value: PhpArrayLike<PhpValue> | false): ArrayChangeKeyCaseResult<TInput> =>
-  value as ArrayChangeKeyCaseResult<TInput>
-
-export function array_change_key_case<TInput extends ArrayChangeInput>(
-  array: TInput,
-  cs?: string | number,
-): ArrayChangeKeyCaseResult<TInput> {
+export function array_change_key_case(array: number | null, cs?: ChangeKeyCaseMode): false
+export function array_change_key_case<TValue extends ChangeValue>(array: TValue[], cs?: ChangeKeyCaseMode): TValue[]
+export function array_change_key_case<TValue extends ChangeValue>(
+  array: PhpAssoc<TValue>,
+  cs?: ChangeKeyCaseMode,
+): PhpAssoc<TValue>
+export function array_change_key_case<TValue extends ChangeValue>(
+  array: ArrayChangeInput<TValue>,
+  cs?: ChangeKeyCaseMode,
+): PhpArrayLike<TValue> | false {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
   // improved by: marrtins
@@ -77,30 +76,30 @@ export function array_change_key_case<TInput extends ArrayChangeInput>(
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
 
+  let result: PhpArrayLike<TValue> | false
+
   if (Array.isArray(array)) {
-    return castArrayChangeResult<TInput>(array)
-  }
+    result = array
+  } else if (!array || typeof array !== 'object') {
+    result = false
+  } else {
+    const caseFunction: 'toLowerCase' | 'toUpperCase' =
+      cs === undefined || cs === 0 || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
+    const source = toPhpArrayObject<TValue>(array)
+    const transformed: PhpAssoc<TValue> = {}
 
-  if (!array || typeof array !== 'object') {
-    return castArrayChangeResult<TInput>(false)
-  }
-
-  const caseFunction: 'toLowerCase' | 'toUpperCase' = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
-  const source = array as PhpAssoc<PhpValue>
-  const transformed: PhpAssoc<PhpValue> = {}
-
-  for (const key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
-      transformed[key[caseFunction]()] = source[key]
+    for (const [key, value] of Object.entries(source)) {
+      transformed[key[caseFunction]()] = value
     }
+    result = transformed
   }
 
-  return castArrayChangeResult<TInput>(transformed)
+  return result
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const castArrayChangeResult = (value) => value;
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 export function array_change_key_case(array, cs) {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
@@ -118,26 +117,144 @@ export function array_change_key_case(array, cs) {
   //   returns 5: {"FUBAR": 42}
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
+  let result
   if (Array.isArray(array)) {
-    return castArrayChangeResult(array);
-  }
-  if (!array || typeof array !== 'object') {
-    return castArrayChangeResult(false);
-  }
-  const caseFunction = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase';
-  const source = array;
-  const transformed = {};
-  for (const key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
-      transformed[key[caseFunction]()] = source[key];
+    result = array
+  } else if (!array || typeof array !== 'object') {
+    result = false
+  } else {
+    const caseFunction = cs === undefined || cs === 0 || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
+    const source = toPhpArrayObject(array)
+    const transformed = {}
+    for (const [key, value] of Object.entries(source)) {
+      transformed[key[caseFunction]()] = value
     }
+    result = transformed
   }
-  return castArrayChangeResult(transformed);
+  return result
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/array/array_change_key_case
-const castArrayChangeResult = (value) => value;
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_change_key_case
+type ChangeValue = PhpRuntimeValue
+
+type ArrayChangeInput<TValue extends ChangeValue> = number | PhpArrayLike<TValue> | null
+
+type ChangeKeyCaseMode = 0 | 1 | 2 | 'CASE_LOWER' | 'CASE_UPPER'
+
+function array_change_key_case(array: number | null, cs?: ChangeKeyCaseMode): false
+
+function array_change_key_case<TValue extends ChangeValue>(array: TValue[], cs?: ChangeKeyCaseMode): TValue[]
+
+function array_change_key_case<TValue extends ChangeValue>(
+  array: PhpAssoc<TValue>,
+  cs?: ChangeKeyCaseMode,
+): PhpAssoc<TValue>
+
+function array_change_key_case<TValue extends ChangeValue>(
+  array: ArrayChangeInput<TValue>,
+  cs?: ChangeKeyCaseMode,
+): PhpArrayLike<TValue> | false {
+  //  discuss at: https://locutus.io/php/array_change_key_case/
+  // original by: Ates Goral (https://magnetiq.com)
+  // improved by: marrtins
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_change_key_case(42)
+  //   returns 1: false
+  //   example 2: array_change_key_case([ 3, 5 ])
+  //   returns 2: [3, 5]
+  //   example 3: array_change_key_case({ FuBaR: 42 })
+  //   returns 3: {"fubar": 42}
+  //   example 4: array_change_key_case({ FuBaR: 42 }, 'CASE_LOWER')
+  //   returns 4: {"fubar": 42}
+  //   example 5: array_change_key_case({ FuBaR: 42 }, 'CASE_UPPER')
+  //   returns 5: {"FUBAR": 42}
+  //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
+  //   returns 6: {"FUBAR": 42}
+
+  let result: PhpArrayLike<TValue> | false
+
+  if (Array.isArray(array)) {
+    result = array
+  } else if (!array || typeof array !== 'object') {
+    result = false
+  } else {
+    const caseFunction: 'toLowerCase' | 'toUpperCase' =
+      cs === undefined || cs === 0 || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
+    const source = toPhpArrayObject<TValue>(array)
+    const transformed: PhpAssoc<TValue> = {}
+
+    for (const [key, value] of Object.entries(source)) {
+      transformed[key[caseFunction]()] = value
+    }
+    result = transformed
+  }
+
+  return result
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes
+function isPhpArrayObject(value) {
+  // discuss at: https://locutus.io/php/_helpers/isObjectLike/
+  //     note 1: Shared runtime guard for locutus helper typing.
+  //  example 1: isObjectLike({})
+  //  returns 1: true
+  return typeof value === 'object' && value !== null
+}
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+  return {}
+}
+
+// php/array/array_change_key_case
 function array_change_key_case(array, cs) {
   //  discuss at: https://locutus.io/php/array_change_key_case/
   // original by: Ates Goral (https://magnetiq.com)
@@ -155,20 +272,20 @@ function array_change_key_case(array, cs) {
   //   returns 5: {"FUBAR": 42}
   //   example 6: array_change_key_case({ FuBaR: 42 }, 2)
   //   returns 6: {"FUBAR": 42}
+  let result
   if (Array.isArray(array)) {
-    return castArrayChangeResult(array);
-  }
-  if (!array || typeof array !== 'object') {
-    return castArrayChangeResult(false);
-  }
-  const caseFunction = !cs || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase';
-  const source = array;
-  const transformed = {};
-  for (const key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
-      transformed[key[caseFunction]()] = source[key];
+    result = array
+  } else if (!array || typeof array !== 'object') {
+    result = false
+  } else {
+    const caseFunction = cs === undefined || cs === 0 || cs === 'CASE_LOWER' ? 'toLowerCase' : 'toUpperCase'
+    const source = toPhpArrayObject(array)
+    const transformed = {}
+    for (const [key, value] of Object.entries(source)) {
+      transformed[key[caseFunction]()] = value
     }
+    result = transformed
   }
-  return castArrayChangeResult(transformed);
+  return result
 }{% endcodeblock %}
 </div>

@@ -4,7 +4,8 @@ examples:
   - set_time_limit(4)
 returns:
   - undefined
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -29,24 +30,18 @@ alias:
   - /functions/set_time_limit/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function set_time_limit(seconds: number): void {
+{% codeblock lang:typescript %}import { getPhpRuntimeBoolean, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
+export function set_time_limit(seconds: number): void {
   //  discuss at: https://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (https://brett-zamir.me)
   //        test: skip-all
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
 
-  const $global = (typeof window !== 'undefined' ? window : global) as typeof globalThis & {
-    $locutus?: { php?: { timeoutStatus?: boolean } }
-  }
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  const php = $locutus.php
-
   setTimeout(function () {
-    if (!php.timeoutStatus) {
-      php.timeoutStatus = true
+    if (!getPhpRuntimeBoolean('timeoutStatus', false)) {
+      setPhpRuntimeEntry('timeoutStatus', true)
     }
     throw new Error('Maximum execution time exceeded')
   }, seconds * 1000)
@@ -54,43 +49,179 @@ alias:
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function set_time_limit(seconds) {
+{% codeblock lang:javascript %}import { getPhpRuntimeBoolean, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+export function set_time_limit(seconds) {
   //  discuss at: https://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (https://brett-zamir.me)
   //        test: skip-all
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
-  const $global = (typeof window !== 'undefined' ? window : global);
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  const php = $locutus.php;
   setTimeout(function () {
-    if (!php.timeoutStatus) {
-      php.timeoutStatus = true;
+    if (!getPhpRuntimeBoolean('timeoutStatus', false)) {
+      setPhpRuntimeEntry('timeoutStatus', true)
     }
-    throw new Error('Maximum execution time exceeded');
-  }, seconds * 1000);
+    throw new Error('Maximum execution time exceeded')
+  }, seconds * 1000)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
-{% codeblock lang:javascript %}// php/info/set_time_limit
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+// php/_helpers/_phpRuntimeState
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type PhpRuntimeBooleanKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends boolean ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function getPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+): PhpRuntimeKnownEntryMap[TKey] | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function setPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+  value: PhpRuntimeKnownEntryMap[TKey],
+): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+function getPhpRuntimeBoolean(key: PhpRuntimeBooleanKey, fallback: boolean): boolean
+
+function getPhpRuntimeBoolean(key: string, fallback: boolean): boolean
+
+function getPhpRuntimeBoolean(key: string, fallback: boolean): boolean {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'boolean' ? value : fallback
+}
+
+// php/info/set_time_limit
+function set_time_limit(seconds: number): void {
+  //  discuss at: https://locutus.io/php/set_time_limit/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //        test: skip-all
+  //   example 1: set_time_limit(4)
+  //   returns 1: undefined
+
+  setTimeout(function () {
+    if (!getPhpRuntimeBoolean('timeoutStatus', false)) {
+      setPhpRuntimeEntry('timeoutStatus', true)
+    }
+    throw new Error('Maximum execution time exceeded')
+  }, seconds * 1000)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+  return php
+}
+function getPhpRuntimeEntry(key) {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+function setPhpRuntimeEntry(key, value) {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+function getPhpRuntimeBoolean(key, fallback) {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'boolean' ? value : fallback
+}
+
+// php/info/set_time_limit
 function set_time_limit(seconds) {
   //  discuss at: https://locutus.io/php/set_time_limit/
   // original by: Brett Zamir (https://brett-zamir.me)
   //        test: skip-all
   //   example 1: set_time_limit(4)
   //   returns 1: undefined
-  const $global = (typeof window !== 'undefined' ? window : global);
-  $global.$locutus = $global.$locutus || {};
-  const $locutus = $global.$locutus;
-  $locutus.php = $locutus.php || {};
-  const php = $locutus.php;
   setTimeout(function () {
-    if (!php.timeoutStatus) {
-      php.timeoutStatus = true;
+    if (!getPhpRuntimeBoolean('timeoutStatus', false)) {
+      setPhpRuntimeEntry('timeoutStatus', true)
     }
-    throw new Error('Maximum execution time exceeded');
-  }, seconds * 1000);
+    throw new Error('Maximum execution time exceeded')
+  }, seconds * 1000)
 }{% endcodeblock %}
 </div>

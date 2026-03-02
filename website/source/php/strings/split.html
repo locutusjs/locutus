@@ -31,14 +31,15 @@ alias:
   - /functions/split/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc, PhpMixed } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { explode } from '../strings/explode.ts'
 
-type KeyedValues = PhpAssoc<PhpMixed>
+type SplitValue = PhpRuntimeValue
+type KeyedValues = PhpAssoc<SplitValue>
 
 export function split(
   delimiter: string | boolean | null | undefined,
-  string: string | KeyedValues | (() => PhpMixed) | undefined,
+  string: string | KeyedValues | (() => SplitValue) | undefined,
 ): string[] | false | { 0: string } | null {
   //      discuss at: https://locutus.io/php/split/
   // parity verified: PHP 8.3
@@ -51,17 +52,127 @@ export function split(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { explode } from '../strings/explode.ts';
+{% codeblock lang:javascript %}import { explode } from '../strings/explode.ts'
 export function split(delimiter, string) {
   //      discuss at: https://locutus.io/php/split/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: split(' ', 'Kevin van Zonneveld')
   //       returns 1: ['Kevin', 'van', 'Zonneveld']
-  return explode(delimiter, string);
+  return explode(delimiter, string)
 }{% endcodeblock %}
 </div>
-<div class="code-tab-panel" data-lang="standalone" style="display:none">
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/strings/explode
+type ExplodeValue = PhpRuntimeValue
+
+type KeyedValues = PhpAssoc<ExplodeValue>
+
+function explode(
+  ...args: [string | boolean | null | undefined, string | KeyedValues | (() => ExplodeValue) | undefined, number?]
+): string[] | false | { 0: string } | null {
+  //      discuss at: https://locutus.io/php/explode/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: explode(' ', 'Kevin van Zonneveld')
+  //       returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
+
+  let [delimiterRaw, stringRaw, limit] = args
+  let delimiter = delimiterRaw
+  const string = stringRaw
+
+  if (args.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
+    return null
+  }
+  if (delimiter === '' || delimiter === false || delimiter === null) {
+    return false
+  }
+  if (
+    typeof delimiter === 'function' ||
+    typeof delimiter === 'object' ||
+    typeof string === 'function' ||
+    typeof string === 'object'
+  ) {
+    return {
+      0: '',
+    }
+  }
+  if (delimiter === true) {
+    delimiter = '1'
+  }
+
+  // Here we go...
+  const normalizedDelimiter = delimiter + ''
+  const normalizedString = string + ''
+
+  const s = normalizedString.split(normalizedDelimiter)
+
+  if (typeof limit === 'undefined') {
+    return s
+  }
+
+  // Support for limit
+  if (limit === 0) {
+    limit = 1
+  }
+
+  // Positive limit
+  if (limit > 0) {
+    if (limit >= s.length) {
+      return s
+    }
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(normalizedDelimiter)])
+  }
+
+  // Negative limit
+  if (-limit >= s.length) {
+    return []
+  }
+
+  s.splice(s.length + limit)
+  return s
+}
+
+// php/strings/split
+type SplitValue = PhpRuntimeValue
+
+type KeyedValues = PhpAssoc<SplitValue>
+
+function split(
+  delimiter: string | boolean | null | undefined,
+  string: string | KeyedValues | (() => SplitValue) | undefined,
+): string[] | false | { 0: string } | null {
+  //      discuss at: https://locutus.io/php/split/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: split(' ', 'Kevin van Zonneveld')
+  //       returns 1: ['Kevin', 'van', 'Zonneveld']
+
+  return explode(delimiter, string)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/strings/explode
 function explode(...args) {
   //      discuss at: https://locutus.io/php/explode/
@@ -69,50 +180,52 @@ function explode(...args) {
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: explode(' ', 'Kevin van Zonneveld')
   //       returns 1: [ 'Kevin', 'van', 'Zonneveld' ]
-  let [delimiterRaw, stringRaw, limit] = args;
-  let delimiter = delimiterRaw;
-  const string = stringRaw;
+  let [delimiterRaw, stringRaw, limit] = args
+  let delimiter = delimiterRaw
+  const string = stringRaw
   if (args.length < 2 || typeof delimiter === 'undefined' || typeof string === 'undefined') {
-    return null;
+    return null
   }
   if (delimiter === '' || delimiter === false || delimiter === null) {
-    return false;
+    return false
   }
-  if (typeof delimiter === 'function' ||
+  if (
+    typeof delimiter === 'function' ||
     typeof delimiter === 'object' ||
     typeof string === 'function' ||
-    typeof string === 'object') {
+    typeof string === 'object'
+  ) {
     return {
       0: '',
-    };
+    }
   }
   if (delimiter === true) {
-    delimiter = '1';
+    delimiter = '1'
   }
   // Here we go...
-  const normalizedDelimiter = delimiter + '';
-  const normalizedString = string + '';
-  const s = normalizedString.split(normalizedDelimiter);
+  const normalizedDelimiter = delimiter + ''
+  const normalizedString = string + ''
+  const s = normalizedString.split(normalizedDelimiter)
   if (typeof limit === 'undefined') {
-    return s;
+    return s
   }
   // Support for limit
   if (limit === 0) {
-    limit = 1;
+    limit = 1
   }
   // Positive limit
   if (limit > 0) {
     if (limit >= s.length) {
-      return s;
+      return s
     }
-    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(normalizedDelimiter)]);
+    return s.slice(0, limit - 1).concat([s.slice(limit - 1).join(normalizedDelimiter)])
   }
   // Negative limit
   if (-limit >= s.length) {
-    return [];
+    return []
   }
-  s.splice(s.length + limit);
-  return s;
+  s.splice(s.length + limit)
+  return s
 }
 
 // php/strings/split
@@ -122,6 +235,6 @@ function split(delimiter, string) {
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //       example 1: split(' ', 'Kevin van Zonneveld')
   //       returns 1: ['Kevin', 'van', 'Zonneveld']
-  return explode(delimiter, string);
+  return explode(delimiter, string)
 }{% endcodeblock %}
 </div>
