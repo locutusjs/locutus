@@ -5,6 +5,7 @@ const allowedJsFiles = new Set<string>([
   '.remarkrc.mjs',
   'test/browser/app.js',
   'website/themes/icarus/scripts/fancybox.js',
+  'website/themes/icarus/scripts/locutus_stats.js',
   'website/themes/icarus/scripts/meta.js',
   'website/themes/icarus/scripts/thumbnail.js',
   'website/themes/icarus/source/js/insight.js',
