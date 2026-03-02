@@ -63,6 +63,9 @@ import { isset } from '../../src/php/var/isset.ts'
 import { var_dump } from '../../src/php/var/var_dump.ts'
 
 type PhpInput = {} | null | undefined
+type IsAssignable<From, To> = [From] extends [To] ? true : false
+type ExpectTrue<T extends true> = T
+type ExpectFalse<T extends false> = T
 
 const atoiTyped: [number, Error | null] = Atoi('42')
 const parseBoolTyped: [boolean, Error | null] = ParseBool('true')
@@ -111,12 +114,20 @@ const paddedTyped: Array<number | string> = array_pad([7, 8], 4, 'x')
 const pushTarget = [1, 2]
 const pushedTyped: number = array_push(pushTarget, 3)
 const randTyped: string | null = array_rand(['only'])
+const randManyTyped: string | string[] | null = array_rand(['one', 'two', 'three'], 2)
+type ArrayRandSecondParam = Parameters<typeof array_rand>[1]
+type _ArrayRandRejectsStringCount = ExpectFalse<IsAssignable<string, ArrayRandSecondParam>>
+type _ArrayRandAcceptsNumericCount = ExpectTrue<IsAssignable<number, ArrayRandSecondParam>>
 const replacedTyped: { [key: string]: number | undefined } = array_replace({ 0: 1, 1: 2 }, { 1: 9, 2: 5 })
 const multisortNames = ['beta', 'alpha']
 const multisortRanks = [2, 1]
 const multisortTyped: boolean = array_multisort(multisortNames, 'SORT_ASC', multisortRanks, 'SORT_ASC')
 const spliceInput = ['red', 'green', 'blue']
 const splicedTyped: PhpInput[] | { [key: string]: PhpInput } = array_splice(spliceInput, 1, 1, ['purple'])
+const splicedFromListTyped: Array<string | undefined> = array_splice(['alpha', 'beta', 'gamma'], 1, 1)
+type _ArraySpliceListReturnRejectsAssoc = ExpectFalse<
+  IsAssignable<typeof splicedFromListTyped, { [key: string]: string | undefined }>
+>
 const sumTyped: number | null = array_sum({ a: 1, b: '2.5', c: true })
 const countTyped: number = count({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
 const sizeofTyped: number = sizeof({ one: [1, 2, 3] }, 'COUNT_RECURSIVE')
@@ -189,6 +200,7 @@ describe('public type signatures', () => {
     expect(pushedTyped).toBe(3)
     expect(pushTarget).toEqual([1, 2, 3])
     expect(randTyped).toBe('0')
+    expect(randManyTyped === null || Array.isArray(randManyTyped)).toBe(true)
     expect(replacedTyped).toEqual({ 0: 1, 1: 9, 2: 5 })
     expect(multisortTyped).toBe(true)
     expect(multisortNames).toEqual(['alpha', 'beta'])

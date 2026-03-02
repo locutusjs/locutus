@@ -78,7 +78,8 @@ const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined
 
 const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
 
-const globalContext: GlobalWithLocutus = globalThis
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
 
 const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
   let locutus = globalContext.$locutus

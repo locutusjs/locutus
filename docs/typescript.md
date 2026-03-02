@@ -1891,3 +1891,36 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - We can keep copy-paste/runtime compatibility while still hardening dynamic access by centralizing descriptor-based reads/writes.
   - Relation overloads (like `array_rand`) immediately remove downstream `as` pressure and improve public API ergonomics.
+
+## Iteration 71
+
+- Plans
+  - Drive helper dynamic-surface budgets to absolute zero by removing the final `globalThis` identifier in PHP helper sources.
+  - Continue relation-overload tightening in array APIs by encoding list-vs-assoc return behavior in `array_splice`.
+  - Add compile-time negative/positive type assertions (without `@ts-expect-error`) to enforce narrowing decisions in type-signature checks.
+- Progress
+  - Removed the final direct `globalThis` usage in `src/php/_helpers/_phpRuntimeState.ts`:
+    - replaced with environment-guarded global resolution (`window` -> `global` -> `{}`).
+  - Tightened relation overloads in `src/php/array/array_splice.ts`:
+    - list input overload now returns `Array<T | undefined>`.
+    - assoc input overload retains `Array<T | undefined> | AssocArray<T>`.
+  - Strengthened compile-time contract assertions in `test/util/type-signatures.vitest.ts`:
+    - added helper assertion types (`IsAssignable`, `ExpectTrue`, `ExpectFalse`).
+    - added `array_rand` param-shape checks:
+      - rejects string `num` parameter type.
+      - accepts numeric `num` parameter type.
+    - added `array_splice` return-shape check:
+      - list-input return is not assignable to associative map shape.
+    - added runtime assertion for `array_rand(..., 2)` branch shape.
+  - Ratcheted helper budget:
+    - `scripts/check-ts-debt-policy.ts`
+    - `MAX_SRC_PHP_GLOBALTHIS_IDENTIFIER: 1 -> 0`
+- Validation
+  - `corepack yarn lint:ts`
+  - `corepack yarn lint:ts:strict-next`
+  - `corepack yarn lint:ts:debt:policy`
+  - `corepack yarn fix:api:snapshot:php`
+  - `corepack yarn check`
+- Key learnings
+  - Negative type contracts can be encoded with pure type-level assertions, avoiding `@ts-expect-error` debt while still failing hard on widening.
+  - Relation overloads remain the highest-leverage strictness tool for user-facing API ergonomics without tsconfig changes.

@@ -47,6 +47,20 @@ const checkToUpIndices = <T>(assoc: AssocArray<T>, cursor: number, key: string):
 }
 
 export function array_splice<T extends SpliceValue>(
+  arr: Array<T | undefined>,
+  offst: number,
+  lgth?: number,
+  replacement?: ReplacementValue<T>,
+): Array<T | undefined>
+
+export function array_splice<T extends SpliceValue>(
+  arr: AssocArray<T>,
+  offst: number,
+  lgth?: number,
+  replacement?: ReplacementValue<T>,
+): Array<T | undefined> | AssocArray<T>
+
+export function array_splice<T extends SpliceValue>(
   arr: Array<T | undefined> | AssocArray<T>,
   offst: number,
   lgth?: number,
