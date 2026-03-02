@@ -1966,3 +1966,102 @@ To fix a `@ts-nocheck` file:
   - Relation overloads for reducers produce immediate ergonomic gains and remove implicit-cast pressure in consumers.
   - Countable boundary types work best as exported shared contracts; they tighten callsites and enable direct compile-time rejection checks.
   - Primitive-boundary contract generation catches subtle parameter widening that literal-only checks miss.
+
+## Iteration 73
+
+- Plans
+  - Clarify standalone copy-paste intent in website UI by separating runtime-ready JS from optional standalone TS.
+  - Keep standalone outputs self-contained and dependency explicit, while preserving backward compatibility for saved tab preference.
+  - Verify behavior on real pages, including functions that rely on external imports.
+- Progress
+  - Updated standalone panel keying:
+    - `src/_util/util.ts`
+      - renamed existing standalone panel to `data-lang="standalone-js"`.
+      - added conditional `standalone-ts` generation for TS sources.
+  - Added TS standalone generator path:
+    - `src/_util/util.ts`
+      - new `_buildStandaloneTs()` that inlines relative dependencies including type-only imports.
+      - added external-import guard (`_hasExternalImports`) to skip TS standalone when snippet cannot be fully inlined.
+      - expanded module-syntax stripping to remove `export` from `type/interface/enum` for cleaner paste-in TS.
+      - tightened import classification via `_isTypeOnlyImportDeclaration`.
+  - Updated website tabs and compatibility behavior:
+    - `website/themes/icarus/layout/function.ejs`
+      - added `Standalone TS` tab styling.
+      - renamed existing standalone label to `Standalone JS`.
+      - mapped legacy saved tab value `standalone` -> `standalone-js`.
+      - hid tab buttons automatically when matching panel is absent.
+  - Regenerated website snapshots:
+    - `yarn injectweb`
+    - updated `website/source/**` to include new panel keys and conditional TS standalone output.
+- Validation
+  - `yarn lint:ts`
+  - `yarn injectweb`
+  - Browser checks on local site:
+    - `http://localhost:4000/php/array/array_flip/` shows `TypeScript`, `JavaScript`, `Standalone TS`, `Standalone JS`.
+    - `http://localhost:4000/php/strings/md5/` hides `Standalone TS` and keeps `Standalone JS` (external import case).
+- Key learnings
+  - Distinguishing `Standalone JS` vs `Standalone TS` removes ambiguity for copy-paste users without sacrificing advanced workflows.
+  - Conditional tab rendering is necessary once standalone capability varies by function.
+  - External-import detection prevents presenting broken “standalone TS” snippets and keeps UX honest.
+
+## Iteration 74
+
+- Plans
+  - Reduce standalone snippet blast radius by moving from file-level inclusion to symbol-level inclusion.
+  - Keep standalone snippets copy-paste oriented: include only required exports and their local declaration closure.
+  - Preserve existing tab behavior (`Standalone TS` shown only when fully inlinable).
+- Progress
+  - Reworked standalone builder internals in `src/_util/util.ts`:
+    - added module analysis model (`StandaloneModuleInfo`, `StandaloneModuleSelection`, import/export metadata).
+    - added symbol-level selection pass:
+      - seed from required exports (root function + propagated imports),
+      - include only declaration statements required by dependency closure,
+      - propagate required runtime/type imports to dependency modules.
+    - added selective module rendering that emits only included statements.
+    - preserved provenance headers (`// php/...`) per module chunk.
+  - Kept existing TS/JS standalone split behavior:
+    - `Standalone TS` still omitted when external imports exist.
+    - `Standalone JS` remains available.
+  - Regenerated website snapshots with pruned standalone output:
+    - `yarn injectweb`
+- Validation
+  - `yarn lint:ts`
+  - `yarn injectweb`
+  - Browser checks:
+    - `http://localhost:4000/php/array/array_flip/` still shows both standalone tabs.
+    - `http://localhost:4000/php/strings/md5/` still hides `Standalone TS`.
+  - Size impact on `array_flip`:
+    - `standalone-ts`: `223 -> 57` lines (`6933 -> 1680` bytes)
+    - `standalone-js`: `126 -> 38` lines (`3701 -> 1154` bytes)
+- Key learnings
+  - Symbol-level standalone selection dramatically reduces perceived snippet bloat without changing function behavior.
+  - Most user-facing heat came from helper file fan-out, not from the provenance header comment itself.
+
+## Iteration 75
+
+- Plans
+  - Integrate standalone parity into generated language tests using existing `example` + `returns` headers (no HTML scraping).
+  - Execute each example against multiple runtime surfaces to catch TS/JS/standalone drift early.
+  - Keep runtime harness stable across Node builtin import styles and eval contexts.
+- Progress
+  - Updated generated test writer in `src/_util/util.ts`:
+    - now emits variant runners for:
+      - `source`
+      - `module-js` (TS source transpiled and executed as CommonJS)
+      - `standalone-ts` (when fully inlinable)
+      - `standalone-js` (when fully inlinable)
+    - derives all assertions from existing `params.headKeys.example` + `params.headKeys.returns`.
+  - Added reusable generator helpers:
+    - `_addRequireExport(...)` for explicit local export binding in generated tests.
+    - `_toCommonJsRuntimeCode(...)` for deterministic runtime-ready transpilation.
+  - Hardened runtime parity execution:
+    - enabled `esModuleInterop` + `allowSyntheticDefaultImports` for module-js runtime transpilation.
+    - gated standalone runtime variants behind `standalone-ts` availability to avoid unresolved external-import standalones.
+    - changed example execution from inline-in-loop statements to per-example runner functions to avoid loop/transpile scope artifacts.
+- Validation
+  - `yarn lint:ts`
+  - `yarn build:tests`
+  - `yarn test:languages`
+- Key learnings
+  - Reusing existing docs examples as the parity source gives immediate multi-surface confidence without inventing a second test DSL.
+  - Eval/transpile context details (interop flags + where example code is emitted) materially affect behavior and need to be treated as first-class test harness concerns.

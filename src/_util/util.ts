@@ -40,6 +40,48 @@ interface ParsedParams {
   codeDependencies?: string[] // Extracted require() paths
 }
 
+interface StandaloneDependencyOptions {
+  includeTypeOnlyImports?: boolean
+}
+
+type StandaloneMode = 'js' | 'ts'
+
+interface StandaloneImportSpec {
+  depKey: string
+  localName: string
+  importedName: string
+  isTypeOnly: boolean
+}
+
+interface StandaloneStatementInfo {
+  declaredNames: Set<string>
+  runtimeTopLevelDeps: Set<string>
+  allTopLevelDeps: Set<string>
+  runtimeImportLocals: Set<string>
+  typeImportLocals: Set<string>
+}
+
+interface StandaloneModuleInfo {
+  moduleKey: string
+  modulePath: string
+  params: ParsedParams
+  sourceFile: ts.SourceFile
+  hasExternalImports: boolean
+  statements: ts.Statement[]
+  statementInfo: StandaloneStatementInfo[]
+  declarationsByName: Map<string, Set<number>>
+  exportToLocalName: Map<string, string>
+  importSpecsByLocalName: Map<string, StandaloneImportSpec[]>
+}
+
+interface StandaloneModuleSelection {
+  includedStatementIndexes: Set<number>
+  depRuntimeNames: Map<string, Set<string>>
+  depTypeNames: Map<string, Set<string>>
+  runtimeAliases: Set<string>
+  typeAliases: Set<string>
+}
+
 type UnknownMap = { [key: string]: unknown }
 
 type Callback<T = void> = (err: Error | null, result?: T) => void
@@ -499,10 +541,14 @@ class Util {
     if (isTS) {
       const jsCode = this._toWebsiteJs(params.code)
       const standaloneCode = await this._buildStandaloneJs(params)
+      const standaloneTsCode = await this._buildStandaloneTs(params)
 
       buf += `<div class="code-tab-panel" data-lang="ts">\n{% codeblock lang:typescript %}${params.code}{% endcodeblock %}\n</div>\n`
       buf += `<div class="code-tab-panel" data-lang="js" style="display:none">\n{% codeblock lang:javascript %}${jsCode}{% endcodeblock %}\n</div>\n`
-      buf += `<div class="code-tab-panel" data-lang="standalone" style="display:none">\n{% codeblock lang:javascript %}${standaloneCode}{% endcodeblock %}\n</div>`
+      if (standaloneTsCode) {
+        buf += `<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">\n{% codeblock lang:typescript %}${standaloneTsCode}{% endcodeblock %}\n</div>\n`
+      }
+      buf += `<div class="code-tab-panel" data-lang="standalone-js" style="display:none">\n{% codeblock lang:javascript %}${standaloneCode}{% endcodeblock %}\n</div>`
     } else {
       buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
     }
@@ -515,6 +561,14 @@ class Util {
     const isTs = relativeSrcForTest.endsWith('.ts')
     const suffix = isTs ? '.' + name : ''
     return ['const ', name, " = require('", relativeSrcForTest, "')", suffix].join('')
+  }
+
+  _addRequireExport(localName: string, exportName: string, relativeSrcForTest: string): string {
+    const isTs = relativeSrcForTest.endsWith('.ts')
+    if (isTs) {
+      return ['const ', localName, " = require('", relativeSrcForTest, "').", exportName].join('')
+    }
+    return ['const ', localName, " = require('", relativeSrcForTest, "')"].join('')
   }
 
   _resolveSourceExt(subpath: string): string {
@@ -552,6 +606,22 @@ class Util {
       })
       .join('\n')
       .trimEnd()
+  }
+
+  _toCommonJsRuntimeCode(code: string, options: { sourcePath: string }): string {
+    return ts
+      .transpileModule(code, {
+        compilerOptions: {
+          target: ts.ScriptTarget.ES2022,
+          module: ts.ModuleKind.CommonJS,
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+          removeComments: false,
+          newLine: ts.NewLineKind.LineFeed,
+        },
+        fileName: options.sourcePath,
+      })
+      .outputText.trimEnd()
   }
 
   _extractRelativeImportAliases(sourceFile: ts.SourceFile): string[] {
@@ -598,17 +668,45 @@ class Util {
     return jsCode
       .replace(/^\s*import[\s\S]*?from\s+['"](?:\.\.?\/)[^'"]+['"];\s*$/gm, '')
       .replace(/^\s*export\s+\{[^}]+\};?\s*$/gm, '')
-      .replace(/^(\s*)export\s+(?=(?:async\s+)?function\b|const\b|let\b|var\b|class\b)/gm, '$1')
+      .replace(/^(\s*)export\s+(?=(?:async\s+)?function\b|const\b|let\b|var\b|class\b|type\b|interface\b|enum\b)/gm, '$1')
       .replace(/^(\s*)export\s+default\s+/gm, '$1')
       .trim()
   }
 
   async _collectStandaloneDependencyParams(
     params: ParsedParams,
+    options: StandaloneDependencyOptions = {},
     seen = new Set<string>(),
     visiting = new Set<string>(),
   ): Promise<ParsedParams[]> {
     const ordered: ParsedParams[] = []
+    const includeTypeOnlyImports = options.includeTypeOnlyImports === true
+
+    const nestedDepsFor = (moduleParams: ParsedParams): string[] => {
+      const deps = [...(moduleParams.codeDependencies || [])]
+      if (!includeTypeOnlyImports) {
+        return deps
+      }
+
+      const moduleIsTs = moduleParams.filepath.endsWith('.ts')
+      const scriptKind = moduleIsTs ? ts.ScriptKind.TS : ts.ScriptKind.JS
+      const sourceFile = ts.createSourceFile(
+        moduleParams.filepath,
+        moduleParams.code,
+        ts.ScriptTarget.ES2022,
+        true,
+        scriptKind,
+      )
+      const importDeps = this._extractDependencies(sourceFile, moduleParams.filepath, {
+        includeTypeOnlyImports: true,
+      })
+      for (const importDep of importDeps) {
+        if (deps.indexOf(importDep) === -1) {
+          deps.push(importDep)
+        }
+      }
+      return deps
+    }
 
     const visit = async (depCodePath: string): Promise<void> => {
       const depKey = depCodePath.replace(/\.(js|ts)$/, '')
@@ -621,7 +719,7 @@ class Util {
         depCodePath.endsWith('.js') || depCodePath.endsWith('.ts') ? depCodePath : this._resolveSourceExt(depCodePath)
       const depParams = await this._load(depLoadPath, params)
       if (depParams) {
-        for (const nestedDep of depParams.codeDependencies || []) {
+        for (const nestedDep of nestedDepsFor(depParams)) {
           await visit(nestedDep)
         }
         ordered.push(depParams)
@@ -630,7 +728,7 @@ class Util {
       visiting.delete(depKey)
     }
 
-    for (const depCodePath of params.codeDependencies || []) {
+    for (const depCodePath of nestedDepsFor(params)) {
       await visit(depCodePath)
     }
 
@@ -638,35 +736,512 @@ class Util {
   }
 
   async _buildStandaloneJs(params: ParsedParams): Promise<string> {
-    const dependencies = await this._collectStandaloneDependencyParams(params)
+    return (await this._buildStandalone(params, 'js')) || ''
+  }
+
+  async _buildStandaloneTs(params: ParsedParams): Promise<string | null> {
+    return this._buildStandalone(params, 'ts')
+  }
+
+  async _buildStandalone(params: ParsedParams, mode: StandaloneMode): Promise<string | null> {
+    const includeTypeOnlyImports = mode === 'ts'
+    const dependencies = await this._collectStandaloneDependencyParams(params, {
+      includeTypeOnlyImports,
+    })
     const modules = [...dependencies, params]
-    const chunks: string[] = []
+    const moduleInfoByKey = new Map<string, StandaloneModuleInfo>()
+    const moduleOrder: string[] = []
 
     for (const moduleParams of modules) {
-      const moduleIsTs = moduleParams.filepath.endsWith('.ts')
-      const scriptKind = moduleIsTs ? ts.ScriptKind.TS : ts.ScriptKind.JS
-      const sourceFile = ts.createSourceFile(
-        moduleParams.filepath,
-        moduleParams.code,
-        ts.ScriptTarget.ES2022,
-        true,
-        scriptKind,
-      )
-
-      const modulePath = moduleParams.filepath.replace(/\.(js|ts)$/, '')
-      const jsCode = this._toWebsiteJs(moduleParams.code)
-      const standaloneModule = this._stripLocutusModuleSyntax(jsCode)
-      const aliases = this._extractRelativeImportAliases(sourceFile)
-
-      let chunk = `// ${modulePath}\n`
-      if (aliases.length > 0) {
-        chunk += aliases.join('\n') + '\n\n'
+      const info = this._createStandaloneModuleInfo(moduleParams)
+      if (mode === 'ts' && info.hasExternalImports) {
+        return null
       }
-      chunk += standaloneModule
+      moduleInfoByKey.set(info.moduleKey, info)
+      moduleOrder.push(info.moduleKey)
+    }
+
+    const rootKey = params.filepath.replace(/\.(js|ts)$/, '')
+    const runtimeRequiredByModule = new Map<string, Set<string>>()
+    const typeRequiredByModule = new Map<string, Set<string>>()
+    this._addRequiredName(runtimeRequiredByModule, rootKey, params.func_name)
+
+    const selectionByModule = new Map<string, StandaloneModuleSelection>()
+    let changed = true
+    while (changed) {
+      changed = false
+
+      for (const moduleKey of moduleOrder) {
+        const info = moduleInfoByKey.get(moduleKey)
+        if (!info) {
+          continue
+        }
+
+        const runtimeRequired = runtimeRequiredByModule.get(moduleKey) || new Set<string>()
+        const typeRequired = typeRequiredByModule.get(moduleKey) || new Set<string>()
+        if (moduleKey !== rootKey && runtimeRequired.size === 0 && typeRequired.size === 0) {
+          continue
+        }
+
+        const selection = this._selectStandaloneModuleSymbols(info, runtimeRequired, typeRequired, mode)
+        selectionByModule.set(moduleKey, selection)
+
+        for (const [depKey, names] of selection.depRuntimeNames.entries()) {
+          for (const name of names) {
+            if (this._addRequiredName(runtimeRequiredByModule, depKey, name)) {
+              changed = true
+            }
+          }
+        }
+
+        for (const [depKey, names] of selection.depTypeNames.entries()) {
+          for (const name of names) {
+            if (this._addRequiredName(typeRequiredByModule, depKey, name)) {
+              changed = true
+            }
+          }
+        }
+      }
+    }
+
+    const chunks: string[] = []
+    for (const moduleKey of moduleOrder) {
+      const info = moduleInfoByKey.get(moduleKey)
+      if (!info) {
+        continue
+      }
+
+      const runtimeRequired = runtimeRequiredByModule.get(moduleKey) || new Set<string>()
+      const typeRequired = typeRequiredByModule.get(moduleKey) || new Set<string>()
+      if (moduleKey !== rootKey && runtimeRequired.size === 0 && typeRequired.size === 0) {
+        continue
+      }
+
+      const selection =
+        selectionByModule.get(moduleKey) || this._selectStandaloneModuleSymbols(info, runtimeRequired, typeRequired, mode)
+
+      const selectedModuleCode = this._renderStandaloneModule(info, selection.includedStatementIndexes)
+      if (!selectedModuleCode.trim()) {
+        continue
+      }
+
+      let renderedModuleCode = selectedModuleCode
+      if (mode === 'js') {
+        renderedModuleCode = this._stripLocutusModuleSyntax(this._toWebsiteJs(renderedModuleCode))
+      } else {
+        renderedModuleCode = this._stripLocutusModuleSyntax(renderedModuleCode)
+      }
+
+      const aliasLines = [...selection.runtimeAliases, ...selection.typeAliases]
+      let chunk = `// ${info.modulePath}\n`
+      if (aliasLines.length > 0) {
+        chunk += aliasLines.join('\n') + '\n\n'
+      }
+      chunk += renderedModuleCode
       chunks.push(chunk.trim())
     }
 
     return chunks.join('\n\n').trimEnd()
+  }
+
+  _createStandaloneModuleInfo(moduleParams: ParsedParams): StandaloneModuleInfo {
+    const moduleIsTs = moduleParams.filepath.endsWith('.ts')
+    const scriptKind = moduleIsTs ? ts.ScriptKind.TS : ts.ScriptKind.JS
+    const sourceFile = ts.createSourceFile(
+      moduleParams.filepath,
+      moduleParams.code,
+      ts.ScriptTarget.ES2022,
+      true,
+      scriptKind,
+    )
+    const moduleKey = moduleParams.filepath.replace(/\.(js|ts)$/, '')
+    const modulePath = moduleKey
+    const statements = sourceFile.statements.slice()
+    const declarationsByName = new Map<string, Set<number>>()
+    const exportToLocalName = new Map<string, string>()
+    const importSpecsByLocalName = new Map<string, StandaloneImportSpec[]>()
+    const statementDeclaredNames: Array<Set<string>> = []
+
+    for (let index = 0; index < statements.length; index++) {
+      const statement = statements[index]
+      if (!statement) {
+        continue
+      }
+
+      const declaredNames = this._collectStatementDeclaredNames(statement)
+      statementDeclaredNames.push(declaredNames)
+
+      for (const declaredName of declaredNames) {
+        if (!declarationsByName.has(declaredName)) {
+          declarationsByName.set(declaredName, new Set<number>())
+        }
+        declarationsByName.get(declaredName)?.add(index)
+      }
+
+      const exportedNames = this._collectStatementExportedNames(statement, declaredNames)
+      for (const [exportedName, localName] of exportedNames.entries()) {
+        exportToLocalName.set(exportedName, localName)
+      }
+
+      if (!ts.isImportDeclaration(statement) || !statement.moduleSpecifier || !ts.isStringLiteral(statement.moduleSpecifier)) {
+        continue
+      }
+
+      const importPath = statement.moduleSpecifier.text
+      if (!importPath.startsWith('./') && !importPath.startsWith('../')) {
+        continue
+      }
+
+      const depKey = path.normalize(path.join(path.dirname(moduleKey), importPath)).replace(/\.(js|ts)$/, '')
+      const importClause = statement.importClause
+      if (!importClause) {
+        continue
+      }
+
+      if (importClause.name) {
+        this._addStandaloneImportSpec(importSpecsByLocalName, {
+          depKey,
+          localName: importClause.name.text,
+          importedName: 'default',
+          isTypeOnly: importClause.isTypeOnly,
+        })
+      }
+
+      if (importClause.namedBindings && ts.isNamedImports(importClause.namedBindings)) {
+        for (const importElement of importClause.namedBindings.elements) {
+          const localName = importElement.name.text
+          const importedName = importElement.propertyName?.text || localName
+          const isTypeOnly = importClause.isTypeOnly || importElement.isTypeOnly
+          this._addStandaloneImportSpec(importSpecsByLocalName, {
+            depKey,
+            localName,
+            importedName,
+            isTypeOnly,
+          })
+        }
+      }
+    }
+
+    const topLevelNames = new Set<string>(declarationsByName.keys())
+    const runtimeImportLocals = new Set<string>()
+    const typeImportLocals = new Set<string>()
+    for (const [localName, importSpecs] of importSpecsByLocalName.entries()) {
+      const hasRuntimeImport = importSpecs.some((importSpec) => !importSpec.isTypeOnly)
+      if (hasRuntimeImport) {
+        runtimeImportLocals.add(localName)
+      }
+
+      const hasTypeImport = importSpecs.some((importSpec) => importSpec.isTypeOnly)
+      if (hasTypeImport) {
+        typeImportLocals.add(localName)
+      }
+    }
+
+    const statementInfo: StandaloneStatementInfo[] = []
+    for (let index = 0; index < statements.length; index++) {
+      const statement = statements[index]
+      const declaredNames = statementDeclaredNames[index] || new Set<string>()
+
+      const runtimeRefs = this._collectReferencedIdentifiers(statement, false)
+      const allRefs = this._collectReferencedIdentifiers(statement, true)
+      for (const declaredName of declaredNames) {
+        runtimeRefs.delete(declaredName)
+        allRefs.delete(declaredName)
+      }
+
+      const runtimeTopLevelDeps = new Set<string>()
+      const allTopLevelDeps = new Set<string>()
+      const statementRuntimeImportLocals = new Set<string>()
+      const statementTypeImportLocals = new Set<string>()
+
+      for (const ref of runtimeRefs) {
+        if (topLevelNames.has(ref)) {
+          runtimeTopLevelDeps.add(ref)
+        }
+        if (runtimeImportLocals.has(ref)) {
+          statementRuntimeImportLocals.add(ref)
+        }
+      }
+
+      for (const ref of allRefs) {
+        if (topLevelNames.has(ref)) {
+          allTopLevelDeps.add(ref)
+        }
+        if (typeImportLocals.has(ref)) {
+          statementTypeImportLocals.add(ref)
+        }
+      }
+
+      statementInfo.push({
+        declaredNames,
+        runtimeTopLevelDeps,
+        allTopLevelDeps,
+        runtimeImportLocals: statementRuntimeImportLocals,
+        typeImportLocals: statementTypeImportLocals,
+      })
+    }
+
+    return {
+      moduleKey,
+      modulePath,
+      params: moduleParams,
+      sourceFile,
+      hasExternalImports: this._hasExternalImports(sourceFile),
+      statements,
+      statementInfo,
+      declarationsByName,
+      exportToLocalName,
+      importSpecsByLocalName,
+    }
+  }
+
+  _selectStandaloneModuleSymbols(
+    info: StandaloneModuleInfo,
+    runtimeRequiredNames: Set<string>,
+    typeRequiredNames: Set<string>,
+    mode: StandaloneMode,
+  ): StandaloneModuleSelection {
+    const includeTypeDeps = mode === 'ts'
+    const pendingLocalNames: string[] = []
+    const visitedLocalNames = new Set<string>()
+
+    const seedLocalName = (requiredExportName: string): void => {
+      const localName = info.exportToLocalName.get(requiredExportName) || requiredExportName
+      if (!info.declarationsByName.has(localName) || visitedLocalNames.has(localName)) {
+        return
+      }
+      pendingLocalNames.push(localName)
+    }
+
+    for (const runtimeRequiredName of runtimeRequiredNames) {
+      seedLocalName(runtimeRequiredName)
+    }
+    for (const typeRequiredName of typeRequiredNames) {
+      seedLocalName(typeRequiredName)
+    }
+
+    const includedStatementIndexes = new Set<number>()
+    while (pendingLocalNames.length > 0) {
+      const localName = pendingLocalNames.pop()
+      if (!localName || visitedLocalNames.has(localName)) {
+        continue
+      }
+      visitedLocalNames.add(localName)
+
+      const statementIndexes = info.declarationsByName.get(localName)
+      if (!statementIndexes) {
+        continue
+      }
+
+      for (const statementIndex of statementIndexes) {
+        if (includedStatementIndexes.has(statementIndex)) {
+          continue
+        }
+        includedStatementIndexes.add(statementIndex)
+
+        const statementMeta = info.statementInfo[statementIndex]
+        if (!statementMeta) {
+          continue
+        }
+        const deps = includeTypeDeps ? statementMeta.allTopLevelDeps : statementMeta.runtimeTopLevelDeps
+        for (const depName of deps) {
+          if (!visitedLocalNames.has(depName)) {
+            pendingLocalNames.push(depName)
+          }
+        }
+      }
+    }
+
+    const depRuntimeNames = new Map<string, Set<string>>()
+    const depTypeNames = new Map<string, Set<string>>()
+    const runtimeAliases = new Set<string>()
+    const typeAliases = new Set<string>()
+
+    for (const statementIndex of includedStatementIndexes) {
+      const statementMeta = info.statementInfo[statementIndex]
+      if (!statementMeta) {
+        continue
+      }
+
+      for (const runtimeImportLocal of statementMeta.runtimeImportLocals) {
+        const importSpecs = info.importSpecsByLocalName.get(runtimeImportLocal) || []
+        for (const importSpec of importSpecs) {
+          if (importSpec.isTypeOnly) {
+            continue
+          }
+          this._addRequiredName(depRuntimeNames, importSpec.depKey, importSpec.importedName)
+          if (importSpec.localName !== importSpec.importedName) {
+            runtimeAliases.add(`const ${importSpec.localName} = ${importSpec.importedName};`)
+          }
+        }
+      }
+
+      if (!includeTypeDeps) {
+        continue
+      }
+
+      for (const typeImportLocal of statementMeta.typeImportLocals) {
+        const importSpecs = info.importSpecsByLocalName.get(typeImportLocal) || []
+        for (const importSpec of importSpecs) {
+          this._addRequiredName(depTypeNames, importSpec.depKey, importSpec.importedName)
+          if (importSpec.localName !== importSpec.importedName) {
+            typeAliases.add(`type ${importSpec.localName} = ${importSpec.importedName}`)
+          }
+        }
+      }
+    }
+
+    return {
+      includedStatementIndexes,
+      depRuntimeNames,
+      depTypeNames,
+      runtimeAliases,
+      typeAliases,
+    }
+  }
+
+  _renderStandaloneModule(info: StandaloneModuleInfo, includedStatementIndexes: Set<number>): string {
+    const statementTexts: string[] = []
+    const sortedIndexes = [...includedStatementIndexes].sort((a, b) => a - b)
+
+    for (const statementIndex of sortedIndexes) {
+      const statement = info.statements[statementIndex]
+      if (!statement) {
+        continue
+      }
+      const statementText = info.params.code.slice(statement.getFullStart(), statement.getEnd()).trim()
+      if (!statementText) {
+        continue
+      }
+      statementTexts.push(statementText)
+    }
+
+    return statementTexts.join('\n\n')
+  }
+
+  _addStandaloneImportSpec(
+    importSpecsByLocalName: Map<string, StandaloneImportSpec[]>,
+    importSpec: StandaloneImportSpec,
+  ): void {
+    if (!importSpecsByLocalName.has(importSpec.localName)) {
+      importSpecsByLocalName.set(importSpec.localName, [])
+    }
+    importSpecsByLocalName.get(importSpec.localName)?.push(importSpec)
+  }
+
+  _addRequiredName(requiredByModule: Map<string, Set<string>>, moduleKey: string, name: string): boolean {
+    if (!requiredByModule.has(moduleKey)) {
+      requiredByModule.set(moduleKey, new Set<string>())
+    }
+
+    const names = requiredByModule.get(moduleKey)
+    if (!names || names.has(name)) {
+      return false
+    }
+    names.add(name)
+    return true
+  }
+
+  _collectStatementDeclaredNames(statement: ts.Statement): Set<string> {
+    const names = new Set<string>()
+
+    if (
+      (ts.isFunctionDeclaration(statement) ||
+        ts.isClassDeclaration(statement) ||
+        ts.isTypeAliasDeclaration(statement) ||
+        ts.isInterfaceDeclaration(statement) ||
+        ts.isEnumDeclaration(statement)) &&
+      statement.name
+    ) {
+      names.add(statement.name.text)
+      return names
+    }
+
+    if (ts.isVariableStatement(statement)) {
+      for (const declaration of statement.declarationList.declarations) {
+        this._collectBindingNames(declaration.name, names)
+      }
+    }
+
+    return names
+  }
+
+  _collectBindingNames(bindingName: ts.BindingName, names: Set<string>): void {
+    if (ts.isIdentifier(bindingName)) {
+      names.add(bindingName.text)
+      return
+    }
+
+    if (ts.isObjectBindingPattern(bindingName) || ts.isArrayBindingPattern(bindingName)) {
+      for (const element of bindingName.elements) {
+        if (ts.isBindingElement(element)) {
+          this._collectBindingNames(element.name, names)
+        }
+      }
+    }
+  }
+
+  _collectStatementExportedNames(statement: ts.Statement, declaredNames: Set<string>): Map<string, string> {
+    const exportToLocalName = new Map<string, string>()
+    const modifiers = ts.canHaveModifiers(statement) ? ts.getModifiers(statement) : undefined
+    const hasExport = modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) || false
+    const hasDefault = modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.DefaultKeyword) || false
+
+    if (hasExport) {
+      for (const declaredName of declaredNames) {
+        exportToLocalName.set(declaredName, declaredName)
+      }
+    }
+
+    if (hasDefault && declaredNames.size > 0) {
+      const firstDeclared = [...declaredNames][0]
+      if (firstDeclared) {
+        exportToLocalName.set('default', firstDeclared)
+      }
+    }
+
+    if (
+      ts.isExportDeclaration(statement) &&
+      !statement.moduleSpecifier &&
+      statement.exportClause &&
+      ts.isNamedExports(statement.exportClause)
+    ) {
+      for (const exportSpecifier of statement.exportClause.elements) {
+        const exportedName = exportSpecifier.name.text
+        const localName = exportSpecifier.propertyName?.text || exportedName
+        exportToLocalName.set(exportedName, localName)
+      }
+    }
+
+    return exportToLocalName
+  }
+
+  _collectReferencedIdentifiers(node: ts.Node, includeTypeNodes: boolean): Set<string> {
+    const names = new Set<string>()
+
+    const walk = (current: ts.Node): void => {
+      if (!includeTypeNodes && ts.isTypeNode(current)) {
+        return
+      }
+
+      if (
+        ts.isImportDeclaration(current) ||
+        ts.isImportClause(current) ||
+        ts.isImportSpecifier(current) ||
+        ts.isExportDeclaration(current)
+      ) {
+        return
+      }
+
+      if (ts.isIdentifier(current)) {
+        names.add(current.text)
+      }
+
+      ts.forEachChild(current, walk)
+    }
+
+    walk(node)
+    return names
   }
 
   async _writetestOne(params: ParsedParams): Promise<void> {
@@ -699,11 +1274,45 @@ class Util {
       describeSkip = '.skip'
     }
 
+    const sourceModuleRelativePath = relativeSrcForTestDir + '/' + params.filepath
+    const sourceFuncBindingName = '__locutus_source_fn'
+    const websiteJsCode = srcExt === '.ts' ? this._toWebsiteJs(params.code) : params.code
+    const moduleJsRuntimeCode =
+      srcExt === '.ts'
+        ? this._toCommonJsRuntimeCode(websiteJsCode, {
+            sourcePath: params.filepath.replace(/\.ts$/, '.js'),
+          })
+        : null
+    const standaloneTsCode = await this._buildStandaloneTs(params)
+    const standaloneJsCode = await this._buildStandaloneJs(params)
+    const standaloneJsRuntimeCode = standaloneTsCode
+      ? this._toCommonJsRuntimeCode(standaloneJsCode, {
+          sourcePath: params.filepath.replace(/\.ts$/, '.js'),
+        })
+      : null
+    const standaloneTsRuntimeCode = standaloneTsCode
+      ? this._toCommonJsRuntimeCode(standaloneTsCode, {
+          sourcePath: params.filepath,
+        })
+      : null
+
+    const variantDefs: Array<{ name: string; binding: string }> = [{ name: 'source', binding: sourceFuncBindingName }]
+    if (moduleJsRuntimeCode) {
+      variantDefs.push({ name: 'module-js', binding: '__locutus_module_js_fn' })
+    }
+    if (standaloneTsRuntimeCode) {
+      variantDefs.push({ name: 'standalone-ts', binding: '__locutus_standalone_ts_fn' })
+    }
+    if (standaloneJsRuntimeCode && standaloneJsRuntimeCode.trim().length > 0) {
+      variantDefs.push({ name: 'standalone-js', binding: '__locutus_standalone_js_fn' })
+    }
+
     const codez: string[] = []
 
     codez.push('// warning: This file is auto generated by `yarn build:tests`')
     codez.push('// Do not edit by hand!')
     codez.push('')
+    codez.push("import { createRequire } from 'node:module'")
     codez.push("import { describe, it, expect } from 'vitest'")
     codez.push('')
 
@@ -740,7 +1349,44 @@ class Util {
       }
     }
 
-    codez.push(this._addRequire(params.func_name, relativeSrcForTestDir + '/' + params.filepath))
+    codez.push(this._addRequireExport(sourceFuncBindingName, params.func_name, sourceModuleRelativePath))
+    codez.push(
+      `const __locutus_source_module_url = new URL(${JSON.stringify(sourceModuleRelativePath)}, import.meta.url)`,
+    )
+    codez.push('const __locutus_source_require = createRequire(__locutus_source_module_url)')
+    codez.push(`const __locutus_func_name = ${JSON.stringify(params.func_name)}`)
+    if (moduleJsRuntimeCode) {
+      codez.push(`const __locutus_module_js_code = ${JSON.stringify(moduleJsRuntimeCode)}`)
+    }
+    if (standaloneTsRuntimeCode) {
+      codez.push(`const __locutus_standalone_ts_code = ${JSON.stringify(standaloneTsRuntimeCode)}`)
+    }
+    if (standaloneJsRuntimeCode && standaloneJsRuntimeCode.trim().length > 0) {
+      codez.push(`const __locutus_standalone_js_code = ${JSON.stringify(standaloneJsRuntimeCode)}`)
+    }
+    codez.push('')
+    codez.push('const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) => unknown) => {')
+    codez.push("  const evaluator = new Function('require', compiledCode + '\\nreturn ' + __locutus_func_name + ';')")
+    codez.push('  return evaluator(__locutus_source_require) as (...args: unknown[]) => unknown')
+    codez.push('}')
+    codez.push(
+      'const __locutus_eval_module_export = (compiledCode: string, exportName: string): ((...args: unknown[]) => unknown) => {',
+    )
+    codez.push('  const module = { exports: {} as Record<string, unknown> }')
+    codez.push('  const exports = module.exports')
+    codez.push("  const evaluator = new Function('exports', 'module', 'require', compiledCode)")
+    codez.push('  evaluator(exports, module, __locutus_source_require)')
+    codez.push('  return module.exports[exportName] as (...args: unknown[]) => unknown')
+    codez.push('}')
+    if (moduleJsRuntimeCode) {
+      codez.push('const __locutus_module_js_fn = __locutus_eval_module_export(__locutus_module_js_code, __locutus_func_name)')
+    }
+    if (standaloneTsRuntimeCode) {
+      codez.push('const __locutus_standalone_ts_fn = __locutus_eval_function(__locutus_standalone_ts_code)')
+    }
+    if (standaloneJsRuntimeCode && standaloneJsRuntimeCode.trim().length > 0) {
+      codez.push('const __locutus_standalone_js_fn = __locutus_eval_function(__locutus_standalone_js_code)')
+    }
     codez.push('')
 
     codez.push(
@@ -781,6 +1427,12 @@ class Util {
       const testExpected = returnLines.join('\n')
 
       body.push('const expected = ' + testExpected)
+      body.push('const __locutus_variants: Array<{ name: string; fn: (...args: unknown[]) => unknown }> = [')
+      for (const variantDef of variantDefs) {
+        body.push(`  { name: ${JSON.stringify(variantDef.name)}, fn: ${variantDef.binding} },`)
+      }
+      body.push(']')
+      body.push(`const __locutus_run_example = (${params.func_name}: typeof ${sourceFuncBindingName}) => {`)
 
       for (let j = 0; j < exampleLines.length; j++) {
         const exampleLine = exampleLines[j]
@@ -789,13 +1441,17 @@ class Util {
         }
 
         if (j === exampleLines.length - 1) {
-          body.push('const result = ' + exampleLine.replace('var $result = ', ''))
+          body.push('  return ' + exampleLine.replace('var $result = ', ''))
         } else {
-          body.push(exampleLine)
+          body.push('  ' + exampleLine)
         }
       }
 
-      body.push('expect(result).toEqual(expected)')
+      body.push('}')
+      body.push('for (const __locutus_variant of __locutus_variants) {')
+      body.push(`  const result = __locutus_run_example(__locutus_variant.fn as typeof ${sourceFuncBindingName})`)
+      body.push('  expect(result).toEqual(expected)')
+      body.push('}')
 
       codez.push(indentString(body.join('\n'), ' ', 4))
       codez.push('  })')
@@ -904,9 +1560,14 @@ class Util {
    * Extract require() calls and import declarations from AST that reference other locutus functions
    * Returns array of resolved function paths (e.g., "php/strings/echo")
    */
-  _extractDependencies(sourceFile: ts.SourceFile, filepath: string): string[] {
+  _extractDependencies(
+    sourceFile: ts.SourceFile,
+    filepath: string,
+    options: StandaloneDependencyOptions = {},
+  ): string[] {
     const requires: string[] = []
     const seen = new Set<string>()
+    const includeTypeOnlyImports = options.includeTypeOnlyImports === true
 
     const addDep = (depPath: string): void => {
       if (depPath.startsWith('../') || depPath.startsWith('./')) {
@@ -923,7 +1584,7 @@ class Util {
     const walk = (node: ts.Node): void => {
       // ESM: import foo from '../path/to/func.js'
       if (ts.isImportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
-        if (node.importClause?.isTypeOnly) {
+        if (!includeTypeOnlyImports && this._isTypeOnlyImportDeclaration(node)) {
           return
         }
         addDep(node.moduleSpecifier.text)
@@ -946,6 +1607,47 @@ class Util {
 
     walk(sourceFile)
     return requires
+  }
+
+  _isTypeOnlyImportDeclaration(node: ts.ImportDeclaration): boolean {
+    const importClause = node.importClause
+    if (!importClause) {
+      return false
+    }
+
+    if (importClause.isTypeOnly) {
+      return true
+    }
+
+    if (!importClause.namedBindings || !ts.isNamedImports(importClause.namedBindings)) {
+      return false
+    }
+
+    if (importClause.namedBindings.elements.length === 0) {
+      return false
+    }
+
+    return importClause.namedBindings.elements.every((importElement) => importElement.isTypeOnly)
+  }
+
+  _hasExternalImports(sourceFile: ts.SourceFile): boolean {
+    let hasExternalImports = false
+
+    ts.forEachChild(sourceFile, (node) => {
+      if (hasExternalImports) {
+        return
+      }
+      if (!ts.isImportDeclaration(node) || !node.moduleSpecifier || !ts.isStringLiteral(node.moduleSpecifier)) {
+        return
+      }
+
+      const importPath = node.moduleSpecifier.text
+      if (!importPath.startsWith('./') && !importPath.startsWith('../')) {
+        hasExternalImports = true
+      }
+    })
+
+    return hasExternalImports
   }
 
   async _parse(filepath: string, code: string): Promise<ParsedParams> {
