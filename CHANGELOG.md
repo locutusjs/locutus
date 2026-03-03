@@ -18,7 +18,6 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] New language exploration (not yet in `src/`):
   - [ ] Bash
   - [ ] Java
-  - [ ] Rust
   - [ ] Haskell
 
 ## main
@@ -67,6 +66,17 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - `powershell/string/tolower`
   - `powershell/string/toupper`
   - `powershell/string/trim`
+- Added initial Rust support with 10 `str` methods:
+  - `rust/str/contains`
+  - `rust/str/ends_with`
+  - `rust/str/find`
+  - `rust/str/len`
+  - `rust/str/replace`
+  - `rust/str/rfind`
+  - `rust/str/starts_with`
+  - `rust/str/to_lowercase`
+  - `rust/str/to_uppercase`
+  - `rust/str/trim`
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).

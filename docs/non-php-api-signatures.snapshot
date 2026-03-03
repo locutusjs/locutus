@@ -195,6 +195,16 @@ src/ruby/String/reverse.ts :: export function reverse(str: string): string
 src/ruby/String/start_with.ts :: export function start_with(str: string, prefix: string): boolean
 src/ruby/String/strip.ts :: export function strip(str: string): string
 src/ruby/String/upcase.ts :: export function upcase(str: string): string
+src/rust/str/contains.ts :: export function contains(needle: string, haystack: string): boolean
+src/rust/str/ends_with.ts :: export function ends_with(suffix: string, str: string): boolean
+src/rust/str/find.ts :: export function find(needle: string, haystack: string): number
+src/rust/str/len.ts :: export function len(str: string): number
+src/rust/str/replace.ts :: export function replace(str: string, search: string, replacement: string): string
+src/rust/str/rfind.ts :: export function rfind(needle: string, haystack: string): number
+src/rust/str/starts_with.ts :: export function starts_with(prefix: string, str: string): boolean
+src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): string
+src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): string
+src/rust/str/trim.ts :: export function trim(str: string): string
 src/tcl/string/first.ts :: export function first(needle: string, haystack: string, startIndex?: number): number
 src/tcl/string/last.ts :: export function last(needle: string, haystack: string, lastIndex?: number): number
 src/tcl/string/length.ts :: export function length(str: string): number

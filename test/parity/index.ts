@@ -541,6 +541,11 @@ async function main() {
         if (ver.success) {
           console.log(`  Ruby: ${ver.output.trim()}`)
         }
+      } else if (image.startsWith('rust:')) {
+        const ver = runInDocker(image, ['rustc', '--version'], {})
+        if (ver.success) {
+          console.log(`  Rust: ${ver.output.trim()}`)
+        }
       }
 
       // Tcl currently runs in the python image because tcl official tags are unavailable.

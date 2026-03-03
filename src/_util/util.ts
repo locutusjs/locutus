@@ -300,6 +300,14 @@ class Util {
         inspiration_urls: ['<a href="https://learn.microsoft.com/powershell/scripting/">PowerShell docs</a>'],
         function_description_template: `Here's what our current TypeScript equivalent to <a href="https://learn.microsoft.com/powershell/">[language]'s [category].[function]</a> looks like.`,
       },
+      rust: {
+        order: 15,
+        function_title_template: "[language]'s [category]::[function] in TypeScript",
+        human: 'Rust',
+        packageType: 'module',
+        inspiration_urls: ['<a href="https://doc.rust-lang.org/std/primitive.str.html">the Rust std::str docs</a>'],
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://doc.rust-lang.org/std/primitive.str.html#method.[function]">[language]'s [category]::[function]</a> looks like.`,
+      },
     }
 
     this.allowSkip = argv.indexOf('--noskip') === -1

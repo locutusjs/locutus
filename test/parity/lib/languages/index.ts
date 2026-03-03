@@ -16,6 +16,7 @@ import { powershellHandler } from './powershell.ts'
 import { pythonHandler } from './python.ts'
 import { rHandler } from './r.ts'
 import { rubyHandler } from './ruby.ts'
+import { rustHandler } from './rust.ts'
 import { tclHandler } from './tcl.ts'
 
 const handlers: Record<string, LanguageHandler> = {
@@ -31,6 +32,7 @@ const handlers: Record<string, LanguageHandler> = {
   powershell: powershellHandler,
   python: pythonHandler,
   r: rHandler,
+  rust: rustHandler,
   ruby: rubyHandler,
   tcl: tclHandler,
 }
