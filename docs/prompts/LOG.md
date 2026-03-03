@@ -863,3 +863,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - PowerShell parity is straightforward when output is normalized via `ConvertTo-Json -Compress`.
   - Using ordinal string comparison in parity translations avoids culture-driven drift from JS behavior.
+
+### Iteration 56
+
+2026-03-03
+
+- **Area: Expansion (new language: Rust) + Verification**
+- Plan:
+  - Add an initial `rust/str` package with core string methods aligned to Rust naming.
+  - Wire Rust into parity handlers/config so CI parity can execute against Docker.
+  - Regenerate generated tests/snapshots and run targeted checks before push.
+- Progress:
+  - Added initial `src/rust/str/` package with 10 methods:
+    - `contains`, `ends_with`, `find`, `len`, `replace`, `rfind`, `starts_with`, `to_lowercase`, `to_uppercase`, `trim`.
+  - Added Rust website metadata in `src/_util/util.ts` and Rosetta mappings in `src/rosetta.yml`.
+  - Added parity runtime integration:
+    - New handler `test/parity/lib/languages/rust.ts`.
+    - Registered in `test/parity/lib/languages/index.ts` and `test/parity/lib/config.ts` (`Rust 1.85`, `rust:1.85`).
+    - Added Rust version reporting in `test/parity/index.ts`.
+- Validation:
+  - `corepack yarn vitest run test/generated/rust/str/*.vitest.ts` (10 files, 20 tests, all pass).
+  - `corepack yarn test:parity rust/str --no-cache` passes (10/10).
+  - `corepack yarn check` passes.
+- Key learnings:
+  - `rust:1.85` with `sh -lc` does not expose `rustc` on default `PATH`; parity runner must invoke `/usr/local/cargo/bin/rustc` explicitly.

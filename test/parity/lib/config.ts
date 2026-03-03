@@ -92,6 +92,12 @@ export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
     dockerImage: 'r-base:4.4.2',
   },
   {
+    id: 'rust',
+    displayName: 'Rust',
+    version: '1.85',
+    dockerImage: 'rust:1.85',
+  },
+  {
     id: 'ruby',
     displayName: 'Ruby',
     version: '3.3',
