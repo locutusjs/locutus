@@ -177,6 +177,22 @@ function convertFormatCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus time/Parse calls to helper call for parity runtime.
+ * Go returns (time.Time, error), while locutus Parse returns Date.
+ */
+function convertParseCalls(code: string): string {
+  return code.replace(/\bParse\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const layout = args[0]
+    const value = args[1]
+    if (!layout || !value) {
+      return match
+    }
+    return `locutusTimeParse(${layout}, ${value})`
+  })
+}
+
+/**
  * Convert a single JS line to Go
  */
 function convertJsLineToGo(line: string, funcName: string): string {
@@ -214,11 +230,13 @@ function convertJsLineToGo(line: string, funcName: string): string {
 
   if (funcName === 'Format') {
     go = convertFormatCalls(go)
+  } else if (funcName === 'Parse') {
+    go = convertParseCalls(go)
   }
 
   // Handle function calls - prefix with package
   const pkg = GO_PACKAGES[funcName]
-  if (pkg && funcName !== 'Format') {
+  if (pkg && funcName !== 'Format' && funcName !== 'Parse') {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
     go = go.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${pkg}.${goFuncName}(`)
@@ -243,7 +261,7 @@ function getRequiredImports(goCode: string): string[] {
   if (goCode.includes('strconv.')) {
     imports.add('strconv')
   }
-  if (goCode.includes('time.') || goCode.includes('locutusTimeFormat(')) {
+  if (goCode.includes('time.') || goCode.includes('locutusTimeFormat(') || goCode.includes('locutusTimeParse(')) {
     imports.add('time')
   }
 
@@ -285,7 +303,17 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-      : ''
+      : funcName === 'Parse'
+        ? `func locutusTimeParse(layout string, value string) string {
+\tt, err := time.Parse(layout, value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn t.UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+        : ''
 
   return `package main
 

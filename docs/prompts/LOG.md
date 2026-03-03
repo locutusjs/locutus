@@ -909,3 +909,30 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Go's formatting API is method-based (`time.Time.Format`), so parity translation needs an explicit helper path instead of package-function mapping.
   - UTC-only rendering keeps outputs deterministic and avoids local-time drift in generated/parity tests.
+
+### Iteration 58
+
+2026-03-03
+
+- **Area: Expansion (Go time parsing) + Parity integration**
+- Plan:
+  - Add `golang/time/Parse` with a focused, explicit Go layout token subset and strict validation.
+  - Wire parity translation so method-style Go APIs can still be verified against examples.
+  - Regenerate non-PHP signatures/type contracts and run full checks.
+- Progress:
+  - Added `src/golang/time/Parse.ts` and exported it via `src/golang/time/index.ts`.
+  - Implemented tokenized parser for:
+    - `2006`, `06`, `01`, `1`, `02`, `2`, `15`, `03`, `3`, `04`, `05`, `PM`, `pm`, `-0700`, `-07:00`, `Z07:00`.
+  - Added strict input/layout matching, component range checks, and offset handling to produce absolute UTC `Date` output.
+  - Extended Go parity handler (`test/parity/lib/languages/golang.ts`) with `locutusTimeParse(...)` helper conversion for `Parse(...)` calls.
+  - Regenerated artifacts:
+    - `test/generated/golang/time/Parse.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation:
+  - `corepack yarn vitest run test/generated/golang/time/Parse.vitest.ts` passes.
+  - `corepack yarn test:parity golang/time/Parse --no-cache` passes.
+  - `corepack yarn check` passes.
+- Key learnings:
+  - For functions returning `Date`, header `returns` examples should use `new Date(...)` so generated tests assert type-accurate behavior while still comparing deterministic serialized values.
+  - Go parity translation remains robust when method-only APIs are normalized through small, explicit helper shims in the generated Go program.
