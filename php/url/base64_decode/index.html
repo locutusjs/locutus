@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to PHP&#39;s base64_decode looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-03T12:25:06.349Z">
-<meta property="article:modified_time" content="2026-03-03T12:25:06.349Z">
+<meta property="article:published_time" content="2026-03-03T12:31:32.617Z">
+<meta property="article:modified_time" content="2026-03-03T12:31:32.617Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -781,6 +781,7 @@ ga('send', 'pageview');
   }
 
   function truncate(str, len) {
+    if (!str) return ''
     return str.length > len ? str.substring(0, len) + '\u2026' : str
   }
 
@@ -797,17 +798,23 @@ ga('send', 'pageview');
         if (size > 0) return { text: 'pushed ' + size + ' commit' + (size !== 1 ? 's' : '') + ' to ' + branch, url: compareUrl }
         return { text: 'pushed to ' + branch, url: compareUrl }
       case 'PullRequestEvent':
-        return { text: p.action + ' PR: ' + truncate(p.pull_request.title, 50), url: p.pull_request.html_url }
+        var prUrl = (p.pull_request && p.pull_request.html_url) || 'https://github.com/' + ev.repo.name + '/pull/' + p.number
+        var prTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + p.number
+        return { text: p.action + ' PR: ' + prTitle, url: prUrl }
       case 'IssuesEvent':
-        return { text: p.action + ' issue: ' + truncate(p.issue.title, 50), url: p.issue.html_url }
+        var issueTitle = (p.issue && p.issue.title) ? truncate(p.issue.title, 50) : '#' + (p.issue && p.issue.number)
+        return { text: p.action + ' issue: ' + issueTitle, url: (p.issue && p.issue.html_url) || 'https://github.com/' + ev.repo.name + '/issues' }
       case 'IssueCommentEvent':
-        return { text: 'commented on: ' + truncate(p.issue.title, 50), url: p.comment.html_url }
+        var commentTitle = (p.issue && p.issue.title) ? truncate(p.issue.title, 50) : '#' + (p.issue && p.issue.number)
+        return { text: 'commented on: ' + commentTitle, url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
       case 'CommitCommentEvent':
-        return { text: 'commented on commit', url: p.comment.html_url }
+        return { text: 'commented on commit', url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
       case 'PullRequestReviewEvent':
-        return { text: 'reviewed PR: ' + truncate(p.pull_request.title, 50), url: p.review.html_url }
+        var reviewPrTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + (p.pull_request && p.pull_request.number)
+        return { text: 'reviewed PR: ' + reviewPrTitle, url: (p.review && p.review.html_url) || 'https://github.com/' + ev.repo.name }
       case 'PullRequestReviewCommentEvent':
-        return { text: 'commented on PR: ' + truncate(p.pull_request.title, 50), url: p.comment.html_url }
+        var reviewCommentTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + (p.pull_request && p.pull_request.number)
+        return { text: 'commented on PR: ' + reviewCommentTitle, url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
       case 'CreateEvent':
         if (p.ref_type === 'repository') return { text: 'created the repository', url: 'https://github.com/' + ev.repo.name }
         return { text: 'created ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name + '/tree/' + p.ref }
