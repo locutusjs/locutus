@@ -24,6 +24,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main).
 
+### Security
+
+- Hardened `php/funchand/call_user_func_array` callback resolution to avoid `eval` / `new Function` fallback paths for dynamic callback lookup.
+- Added a custom regression test to block code-injection payloads in array callback method names (`test/custom/call_user_func_array-eval-injection.vitest.ts`).
+
 ### Infrastructure
 
 - Modernized browser playground/tests:
