@@ -66,16 +66,16 @@ $header-block-right
         display: none
 
 #main-nav
-    height: header-sub-height
+    min-height: header-sub-height
     line-height: header-sub-height
     padding: 0 15px
-    overflow-x: auto
-    overflow-y: hidden
-    white-space: nowrap
     .main-nav-link
         float: none
         display: inline-block
         line-height: header-sub-height
+        padding: 0 8px
+    .main-nav-link:first-child
+        padding-left: 15px
     @media mq-mobile
         display: none
     @media mq-mini
