@@ -54,14 +54,19 @@ src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
 src/golang/strconv/Atoi.ts :: export function Atoi(s: unknown): [number, Error | null]
 src/golang/strconv/FormatBool.ts :: export function FormatBool(b: boolean): string
+src/golang/strconv/FormatFloat.ts :: export function FormatFloat(f: number, fmt: string, prec: number, _bitSize: number): string
 src/golang/strconv/FormatInt.ts :: export function FormatInt(i: number, base: number): string
 src/golang/strconv/Itoa.ts :: export function Itoa(i: number): string
 src/golang/strconv/ParseBool.ts :: export function ParseBool(str: string): [boolean, Error | null]
+src/golang/strconv/ParseFloat.ts :: export function ParseFloat(s: string, bitSize: number): [number, Error | null]
 src/golang/strconv/ParseInt.ts :: export function ParseInt(s: string, base: number, _bitSize: number): [number, Error | null]
 src/golang/strings/Compare.ts :: export function Compare(a: string, b: string): number
 src/golang/strings/Contains.ts :: export function Contains(s: string, substr: string): boolean
 src/golang/strings/ContainsAny.ts :: export function ContainsAny(s: string, chars: string): boolean | false
 src/golang/strings/Count.ts :: export function Count(s: string, sep: string): number
+src/golang/strings/Cut.ts :: export function Cut(s: string, sep: string): [string, string, boolean]
+src/golang/strings/CutPrefix.ts :: export function CutPrefix(s: string, prefix: string): [string, boolean]
+src/golang/strings/CutSuffix.ts :: export function CutSuffix(s: string, suffix: string): [string, boolean]
 src/golang/strings/EqualFold.ts :: export function EqualFold(s: string, t: string): boolean
 src/golang/strings/Fields.ts :: export function Fields(s: string): string[]
 src/golang/strings/HasPrefix.ts :: export function HasPrefix(s: string, prefix: string): boolean
@@ -73,7 +78,9 @@ src/golang/strings/LastIndex.ts :: export function LastIndex(s: string, sep: str
 src/golang/strings/LastIndexAny.ts :: export function LastIndexAny(s: string, chars: string): number
 src/golang/strings/Repeat.ts :: export function Repeat(s: string, count: number): string
 src/golang/strings/Replace.ts :: export function Replace(s: string, old: string, newStr: string, n: number): string
+src/golang/strings/ReplaceAll.ts :: export function ReplaceAll(s: string, old: string, replacement: string): string
 src/golang/strings/Split.ts :: export function Split(s: string, sep: string): string[]
+src/golang/strings/SplitN.ts :: export function SplitN(s: string, sep: string, n: number): string[]
 src/golang/strings/ToLower.ts :: export function ToLower(s: string): string
 src/golang/strings/ToUpper.ts :: export function ToUpper(s: string): string
 src/golang/strings/Trim.ts :: export function Trim(s: string, cutset: string): string
@@ -82,6 +89,12 @@ src/golang/strings/TrimPrefix.ts :: export function TrimPrefix(s: string, prefix
 src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: string): string
 src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
+src/golang/time/Format.ts :: export function Format(value: DateInput, layout: string): string
+src/golang/time/Parse.ts :: export function Parse(layout: string, value: string): Date
+src/golang/time/ParseDuration.ts :: export function ParseDuration(s: string): number
+src/golang/time/Unix.ts :: export function Unix(sec: number, nsec = 0): Date
+src/golang/time/UnixMicro.ts :: export function UnixMicro(usec: number): Date
+src/golang/time/UnixMilli.ts :: export function UnixMilli(msec: number): Date
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
 src/julia/Base/floor.ts :: export function floor(x: number): number

@@ -887,3 +887,165 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check` passes.
 - Key learnings:
   - `rust:1.85` with `sh -lc` does not expose `rustc` on default `PATH`; parity runner must invoke `/usr/local/cargo/bin/rustc` explicitly.
+
+### Iteration 57
+
+2026-03-03
+
+- **Area: Expansion (Go time formatting) + Policy alignment**
+- Plan:
+  - Start Go date/time work with `golang/time/Format` while enforcing JS-native API boundaries.
+  - Keep deterministic output and parity behavior stable across environments.
+- Progress:
+  - Added `src/golang/time/Format.ts` and `src/golang/time/index.ts`.
+  - Updated `src/golang/index.ts` to export `time` package.
+  - `Format` accepts `Date | string | number` and renders a focused subset of Go layout tokens using UTC output.
+  - Added parity translation support in `test/parity/lib/languages/golang.ts` for `Format` via a Go helper (`locutusTimeFormat`) that parses RFC3339 and calls Go's `time.Time.Format`.
+  - Added Rosetta mapping: `date_format` (`php/datetime/date`, `golang/time/Format`).
+- Validation:
+  - `corepack yarn vitest run test/generated/golang/time/Format.vitest.ts` passes.
+  - `corepack yarn test:parity golang/time/Format --no-cache` passes.
+  - `corepack yarn lint:ts` passes.
+- Key learnings:
+  - Go's formatting API is method-based (`time.Time.Format`), so parity translation needs an explicit helper path instead of package-function mapping.
+  - UTC-only rendering keeps outputs deterministic and avoids local-time drift in generated/parity tests.
+
+### Iteration 58
+
+2026-03-03
+
+- **Area: Expansion (Go time parsing) + Parity integration**
+- Plan:
+  - Add `golang/time/Parse` with a focused, explicit Go layout token subset and strict validation.
+  - Wire parity translation so method-style Go APIs can still be verified against examples.
+  - Regenerate non-PHP signatures/type contracts and run full checks.
+- Progress:
+  - Added `src/golang/time/Parse.ts` and exported it via `src/golang/time/index.ts`.
+  - Implemented tokenized parser for:
+    - `2006`, `06`, `01`, `1`, `02`, `2`, `15`, `03`, `3`, `04`, `05`, `PM`, `pm`, `-0700`, `-07:00`, `Z07:00`.
+  - Added strict input/layout matching, component range checks, and offset handling to produce absolute UTC `Date` output.
+  - Extended Go parity handler (`test/parity/lib/languages/golang.ts`) with `locutusTimeParse(...)` helper conversion for `Parse(...)` calls.
+  - Regenerated artifacts:
+    - `test/generated/golang/time/Parse.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation:
+  - `corepack yarn vitest run test/generated/golang/time/Parse.vitest.ts` passes.
+  - `corepack yarn test:parity golang/time/Parse --no-cache` passes.
+  - `corepack yarn check` passes.
+- Key learnings:
+  - For functions returning `Date`, header `returns` examples should use `new Date(...)` so generated tests assert type-accurate behavior while still comparing deterministic serialized values.
+  - Go parity translation remains robust when method-only APIs are normalized through small, explicit helper shims in the generated Go program.
+
+### Iteration 59
+
+2026-03-03
+
+- **Area: Expansion (Go stdlib breadth) + parity-safe translator upgrades**
+- Plan:
+  - Add six high-value Go functions in sequence: `ParseFloat`, `FormatFloat`, `Unix`, `SplitN`, `ReplaceAll`, `Cut`.
+  - Keep examples parity-verifiable and avoid broad skip-list growth by extending translator helpers where Go API shapes differ.
+- Progress:
+  - Added new sources:
+    - `src/golang/strconv/ParseFloat.ts`
+    - `src/golang/strconv/FormatFloat.ts`
+    - `src/golang/time/Unix.ts`
+    - `src/golang/strings/SplitN.ts`
+    - `src/golang/strings/ReplaceAll.ts`
+    - `src/golang/strings/Cut.ts`
+  - Updated exports:
+    - `src/golang/strconv/index.ts`
+    - `src/golang/time/index.ts`
+    - `src/golang/strings/index.ts`
+  - Extended Go parity handler (`test/parity/lib/languages/golang.ts`):
+    - Added package mappings for all new functions.
+    - Added helper call rewrites for signature/shape mismatches:
+      - `locutusParseFloat(...)` for tuple-style parse result.
+      - `locutusFormatFloat(...)` for byte/rune format argument mismatch.
+      - `locutusTimeUnix(...)` for deterministic ISO output and `.toISOString()` examples.
+      - `locutusStringsCut(...)` for Go tuple return normalization.
+  - Regenerated artifacts:
+    - generated tests for all 6 functions
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation:
+  - `corepack yarn vitest run` on all six new generated tests passes.
+  - `corepack yarn test:parity ... --no-cache` passes for:
+    - `golang/strconv/ParseFloat`
+    - `golang/strconv/FormatFloat`
+    - `golang/time/Unix`
+    - `golang/strings/SplitN`
+    - `golang/strings/ReplaceAll`
+    - `golang/strings/Cut`
+- Key learnings:
+  - Go parity often fails on API-shape differences before semantic differences; a thin helper layer in the translator preserves strictness while keeping function examples natural.
+  - Date/time parity is more stable when helper output is normalized to fixed-millisecond ISO strings (`...000Z`) instead of raw Go JSON `time.Time` formatting.
+
+### Iteration 60
+
+2026-03-03
+
+- **Area: Example quality (Go stdlib test-derived edge coverage)**
+- Plan:
+  - Pull representative edge cases from official Go stdlib tests and promote them into Locutus `example/returns` headers for new Go functions.
+  - Keep parity green; adapt only to cases compatible with JS output normalization.
+- Progress:
+  - Reviewed upstream sources:
+    - `src/strconv/atof_test.go`
+    - `src/strconv/ftoa_test.go`
+    - `src/strings/strings_test.go`
+  - Added 5 stdlib-inspired edge examples (one per function):
+    - `ParseFloat`: high-precision large-number rounding case from `atof_test.go`.
+    - `FormatFloat`: fixed rounding edge (`0.05`, `f`, `0`) from `ftoa_test.go`.
+    - `SplitN`: Unicode split with large `n` from `strings_test.go`.
+    - `ReplaceAll`: empty-pattern replacement expansion from `strings_test.go`.
+    - `Cut`: empty input + empty separator case from `strings_test.go`.
+  - Updated Go parity normalizer to unescape JSON HTML-safe escapes (`\\u003c`, `\\u003e`) so expected strings with `<`/`>` compare correctly.
+- Validation:
+  - Generated tests for all 5 touched functions pass.
+  - Parity passes for:
+    - `golang/strconv/ParseFloat`
+    - `golang/strconv/FormatFloat`
+    - `golang/strings/SplitN`
+    - `golang/strings/ReplaceAll`
+    - `golang/strings/Cut`
+  - `corepack yarn check` passes.
+- Key learnings:
+  - Not every Go stdlib edge case can be used directly in parity because of JS/JSON constraints (notably non-finite floats in JSON), so we should favor finite, high-signal cases when selecting shared examples.
+
+### Iteration 61
+
+2026-03-03
+
+- **Area: Go expansion (time + strings follow-ups)**
+- Plan:
+  - Add requested follow-ups: `UnixMilli`, `UnixMicro`, `ParseDuration`, `CutPrefix`, `CutSuffix`.
+  - Keep behavior JS-native while preserving Go parity through translator helpers.
+- Progress:
+  - Added sources:
+    - `src/golang/time/UnixMilli.ts`
+    - `src/golang/time/UnixMicro.ts`
+    - `src/golang/time/ParseDuration.ts`
+    - `src/golang/strings/CutPrefix.ts`
+    - `src/golang/strings/CutSuffix.ts`
+  - Updated exports:
+    - `src/golang/time/index.ts`
+    - `src/golang/strings/index.ts`
+  - Extended Go parity translator (`test/parity/lib/languages/golang.ts`) with helper rewrites and runtime shims for:
+    - `UnixMilli`, `UnixMicro` (`.toISOString()`-style deterministic formatting)
+    - `ParseDuration` (duration -> milliseconds normalization)
+    - `CutPrefix`, `CutSuffix` (tuple-to-array shape normalization)
+  - Regenerated artifacts:
+    - `test/generated/golang/time/UnixMilli.vitest.ts`
+    - `test/generated/golang/time/UnixMicro.vitest.ts`
+    - `test/generated/golang/time/ParseDuration.vitest.ts`
+    - `test/generated/golang/strings/CutPrefix.vitest.ts`
+    - `test/generated/golang/strings/CutSuffix.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation:
+  - `vitest` passes for all five generated tests.
+  - `test:parity --no-cache` passes for all five functions.
+  - `corepack yarn check` passes.
+- Key learnings:
+  - Microsecond timestamps need explicit examples that survive JavaScript millisecond precision (e.g. `-1000` µs, not `-1` µs) to keep expectations stable.

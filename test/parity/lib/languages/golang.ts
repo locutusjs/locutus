@@ -24,7 +24,9 @@ const GO_PACKAGES: Record<string, string> = {
   LastIndexAny: 'strings',
   Repeat: 'strings',
   Replace: 'strings',
+  ReplaceAll: 'strings',
   Split: 'strings',
+  SplitN: 'strings',
   ToLower: 'strings',
   ToUpper: 'strings',
   Trim: 'strings',
@@ -33,13 +35,24 @@ const GO_PACKAGES: Record<string, string> = {
   TrimRight: 'strings',
   TrimSpace: 'strings',
   TrimSuffix: 'strings',
+  Cut: 'strings',
+  CutPrefix: 'strings',
+  CutSuffix: 'strings',
   // strconv package
   Atoi: 'strconv',
   FormatBool: 'strconv',
+  FormatFloat: 'strconv',
   FormatInt: 'strconv',
   Itoa: 'strconv',
   ParseBool: 'strconv',
+  ParseFloat: 'strconv',
   ParseInt: 'strconv',
+  // time package
+  Format: 'time',
+  ParseDuration: 'time',
+  Unix: 'time',
+  UnixMicro: 'time',
+  UnixMilli: 'time',
 }
 
 // Functions to skip (implementation differences, etc.)
@@ -93,6 +106,273 @@ function stripTrailingComment(code: string): string {
 }
 
 /**
+ * Parse function arguments, handling nested structures and quoted strings.
+ */
+function parseArguments(argsStr: string): string[] {
+  const args: string[] = []
+  let current = ''
+  let depth = 0
+  let inString: string | null = null
+  let escaped = false
+
+  for (const char of argsStr) {
+    if (escaped) {
+      current += char
+      escaped = false
+      continue
+    }
+
+    if (char === '\\') {
+      current += char
+      escaped = true
+      continue
+    }
+
+    if (inString) {
+      current += char
+      if (char === inString) {
+        inString = null
+      }
+      continue
+    }
+
+    if (char === '"' || char === "'") {
+      current += char
+      inString = char
+      continue
+    }
+
+    if (char === '[' || char === '(' || char === '{') {
+      depth++
+      current += char
+      continue
+    }
+
+    if (char === ']' || char === ')' || char === '}') {
+      depth--
+      current += char
+      continue
+    }
+
+    if (char === ',' && depth === 0) {
+      args.push(current.trim())
+      current = ''
+      continue
+    }
+
+    current += char
+  }
+
+  if (current.trim()) {
+    args.push(current.trim())
+  }
+
+  return args
+}
+
+/**
+ * Convert Locutus time/Format calls to helper call for parity runtime.
+ * Go does not expose time.Format as a package function (it's a method on time.Time),
+ * so we route through a small helper.
+ */
+function convertFormatCalls(code: string): string {
+  return code.replace(/\bFormat\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const layout = args[1]
+    if (!value || !layout) {
+      return match
+    }
+    return `locutusTimeFormat(${value}, ${layout})`
+  })
+}
+
+/**
+ * Convert Locutus time/Parse calls to helper call for parity runtime.
+ * Go returns (time.Time, error), while locutus Parse returns Date.
+ */
+function convertParseCalls(code: string): string {
+  return code.replace(/\bParse\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const layout = args[0]
+    const value = args[1]
+    if (!layout || !value) {
+      return match
+    }
+    return `locutusTimeParse(${layout}, ${value})`
+  })
+}
+
+/**
+ * Convert Locutus strconv/ParseFloat calls to helper calls.
+ * Go returns (float64, error), while locutus ParseFloat returns [value, error].
+ */
+function convertParseFloatCalls(code: string): string {
+  return code.replace(/\bParseFloat\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const bitSize = args[1]
+    if (!value || !bitSize) {
+      return match
+    }
+    return `locutusParseFloat(${value}, ${bitSize})`
+  })
+}
+
+/**
+ * Convert Locutus strconv/FormatFloat calls to helper calls.
+ * Go expects format as a byte/rune, while locutus accepts string.
+ */
+function convertFormatFloatCalls(code: string): string {
+  return code.replace(/\bFormatFloat\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const format = args[1]
+    const precision = args[2]
+    const bitSize = args[3]
+    if (!value || !format || !precision || !bitSize) {
+      return match
+    }
+    return `locutusFormatFloat(${value}, ${format}, ${precision}, ${bitSize})`
+  })
+}
+
+/**
+ * Convert Locutus time/Unix calls to helper call for parity runtime.
+ * Go returns time.Time JSON with RFC3339 (no millisecond padding), while
+ * locutus examples often use Date.toISOString() with fixed milliseconds.
+ */
+function convertUnixCalls(code: string): string {
+  const withIso = code.replace(/\bUnix\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const sec = args[0]
+    const nsec = args[1] ?? '0'
+    if (!sec) {
+      return match
+    }
+    return `locutusTimeUnix(${sec}, ${nsec})`
+  })
+
+  return withIso.replace(/\bUnix\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const sec = args[0]
+    const nsec = args[1] ?? '0'
+    if (!sec) {
+      return match
+    }
+    return `locutusTimeUnix(${sec}, ${nsec})`
+  })
+}
+
+/**
+ * Convert Locutus time/UnixMilli calls to helper call for parity runtime.
+ */
+function convertUnixMilliCalls(code: string): string {
+  const withIso = code.replace(/\bUnixMilli\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const millis = args[0]
+    if (!millis) {
+      return match
+    }
+    return `locutusTimeUnixMilli(${millis})`
+  })
+
+  return withIso.replace(/\bUnixMilli\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const millis = args[0]
+    if (!millis) {
+      return match
+    }
+    return `locutusTimeUnixMilli(${millis})`
+  })
+}
+
+/**
+ * Convert Locutus time/UnixMicro calls to helper call for parity runtime.
+ */
+function convertUnixMicroCalls(code: string): string {
+  const withIso = code.replace(/\bUnixMicro\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const micros = args[0]
+    if (!micros) {
+      return match
+    }
+    return `locutusTimeUnixMicro(${micros})`
+  })
+
+  return withIso.replace(/\bUnixMicro\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const micros = args[0]
+    if (!micros) {
+      return match
+    }
+    return `locutusTimeUnixMicro(${micros})`
+  })
+}
+
+/**
+ * Convert Locutus time/ParseDuration calls to helper call for parity runtime.
+ */
+function convertParseDurationCalls(code: string): string {
+  return code.replace(/\bParseDuration\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusParseDuration(${value})`
+  })
+}
+
+/**
+ * Convert Locutus strings/Cut calls to helper calls.
+ * Go returns (before, after, found), while locutus Cut returns [before, after, found].
+ */
+function convertCutCalls(code: string): string {
+  return code.replace(/\bCut\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const sep = args[1]
+    if (!value || !sep) {
+      return match
+    }
+    return `locutusStringsCut(${value}, ${sep})`
+  })
+}
+
+/**
+ * Convert Locutus strings/CutPrefix calls to helper calls.
+ * Go returns (after, found), while locutus CutPrefix returns [after, found].
+ */
+function convertCutPrefixCalls(code: string): string {
+  return code.replace(/\bCutPrefix\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const prefix = args[1]
+    if (!value || !prefix) {
+      return match
+    }
+    return `locutusStringsCutPrefix(${value}, ${prefix})`
+  })
+}
+
+/**
+ * Convert Locutus strings/CutSuffix calls to helper calls.
+ * Go returns (before, found), while locutus CutSuffix returns [before, found].
+ */
+function convertCutSuffixCalls(code: string): string {
+  return code.replace(/\bCutSuffix\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const suffix = args[1]
+    if (!value || !suffix) {
+      return match
+    }
+    return `locutusStringsCutSuffix(${value}, ${suffix})`
+  })
+}
+
+/**
  * Convert a single JS line to Go
  */
 function convertJsLineToGo(line: string, funcName: string): string {
@@ -128,9 +408,46 @@ function convertJsLineToGo(line: string, funcName: string): string {
     return `[]string{${contents}}`
   })
 
+  if (funcName === 'Format') {
+    go = convertFormatCalls(go)
+  } else if (funcName === 'Parse') {
+    go = convertParseCalls(go)
+  } else if (funcName === 'ParseFloat') {
+    go = convertParseFloatCalls(go)
+  } else if (funcName === 'FormatFloat') {
+    go = convertFormatFloatCalls(go)
+  } else if (funcName === 'Unix') {
+    go = convertUnixCalls(go)
+  } else if (funcName === 'UnixMilli') {
+    go = convertUnixMilliCalls(go)
+  } else if (funcName === 'UnixMicro') {
+    go = convertUnixMicroCalls(go)
+  } else if (funcName === 'ParseDuration') {
+    go = convertParseDurationCalls(go)
+  } else if (funcName === 'Cut') {
+    go = convertCutCalls(go)
+  } else if (funcName === 'CutPrefix') {
+    go = convertCutPrefixCalls(go)
+  } else if (funcName === 'CutSuffix') {
+    go = convertCutSuffixCalls(go)
+  }
+
   // Handle function calls - prefix with package
   const pkg = GO_PACKAGES[funcName]
-  if (pkg) {
+  if (
+    pkg &&
+    funcName !== 'Format' &&
+    funcName !== 'Parse' &&
+    funcName !== 'ParseFloat' &&
+    funcName !== 'FormatFloat' &&
+    funcName !== 'Unix' &&
+    funcName !== 'UnixMilli' &&
+    funcName !== 'UnixMicro' &&
+    funcName !== 'ParseDuration' &&
+    funcName !== 'Cut' &&
+    funcName !== 'CutPrefix' &&
+    funcName !== 'CutSuffix'
+  ) {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
     go = go.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${pkg}.${goFuncName}(`)
@@ -149,11 +466,27 @@ function convertJsLineToGo(line: string, funcName: string): string {
 function getRequiredImports(goCode: string): string[] {
   const imports: Set<string> = new Set(['fmt', 'encoding/json'])
 
-  if (goCode.includes('strings.')) {
+  if (
+    goCode.includes('strings.') ||
+    goCode.includes('locutusStringsCut(') ||
+    goCode.includes('locutusStringsCutPrefix(') ||
+    goCode.includes('locutusStringsCutSuffix(')
+  ) {
     imports.add('strings')
   }
-  if (goCode.includes('strconv.')) {
+  if (goCode.includes('strconv.') || goCode.includes('locutusParseFloat(') || goCode.includes('locutusFormatFloat(')) {
     imports.add('strconv')
+  }
+  if (
+    goCode.includes('time.') ||
+    goCode.includes('locutusTimeFormat(') ||
+    goCode.includes('locutusTimeParse(') ||
+    goCode.includes('locutusTimeUnix(') ||
+    goCode.includes('locutusTimeUnixMilli(') ||
+    goCode.includes('locutusTimeUnixMicro(') ||
+    goCode.includes('locutusParseDuration(')
+  ) {
+    imports.add('time')
   }
 
   return Array.from(imports)
@@ -183,11 +516,104 @@ function jsToGo(jsCode: string[], funcName: string): string {
 
   const imports = getRequiredImports(mainBody)
   const importBlock = imports.length === 1 ? `import "${imports[0]}"` : `import (\n\t"${imports.join('"\n\t"')}"\n)`
+  const helperBlock =
+    funcName === 'Format'
+      ? `func locutusTimeFormat(value string, layout string) string {
+\tt, err := time.Parse(time.RFC3339Nano, value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn t.UTC().Format(layout)
+}
+
+`
+      : funcName === 'Parse'
+        ? `func locutusTimeParse(layout string, value string) string {
+\tt, err := time.Parse(layout, value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn t.UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+        : funcName === 'ParseFloat'
+          ? `func locutusParseFloat(value string, bitSize int) []interface{} {
+\tparsed, err := strconv.ParseFloat(value, bitSize)
+\tif err != nil {
+\t\treturn []interface{}{0, err.Error()}
+\t}
+\treturn []interface{}{parsed, nil}
+}
+
+`
+          : funcName === 'FormatFloat'
+            ? `func locutusFormatFloat(value float64, format string, precision int, bitSize int) string {
+\tif len(format) == 0 {
+\t\treturn ""
+\t}
+\treturn strconv.FormatFloat(value, format[0], precision, bitSize)
+}
+
+`
+            : funcName === 'Unix'
+              ? `func locutusTimeUnix(sec float64, nsec float64) string {
+\tseconds := int64(sec)
+\tnanoseconds := int64(nsec)
+\treturn time.Unix(seconds, nanoseconds).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+              : funcName === 'UnixMilli'
+                ? `func locutusTimeUnixMilli(millis float64) string {
+\treturn time.UnixMilli(int64(millis)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                : funcName === 'UnixMicro'
+                  ? `func locutusTimeUnixMicro(micros float64) string {
+\treturn time.UnixMicro(int64(micros)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                  : funcName === 'ParseDuration'
+                    ? `func locutusParseDuration(value string) float64 {
+\td, err := time.ParseDuration(value)
+\tif err != nil {
+\t\treturn 0
+\t}
+\treturn float64(d) / float64(time.Millisecond)
+}
+
+`
+                    : funcName === 'Cut'
+                      ? `func locutusStringsCut(value string, sep string) []interface{} {
+\tbefore, after, found := strings.Cut(value, sep)
+\treturn []interface{}{before, after, found}
+}
+
+`
+                      : funcName === 'CutPrefix'
+                        ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
+\tafter, found := strings.CutPrefix(value, prefix)
+\treturn []interface{}{after, found}
+}
+
+`
+                        : funcName === 'CutSuffix'
+                          ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
+\tbefore, found := strings.CutSuffix(value, suffix)
+\treturn []interface{}{before, found}
+}
+
+`
+                          : ''
 
   return `package main
 
 ${importBlock}
 
+${helperBlock}
 func main() {
 \t${mainBody}
 }
@@ -199,6 +625,8 @@ func main() {
  */
 function normalizeGoOutput(output: string, _expected?: string): string {
   let result = output.trim()
+  // Go's encoding/json escapes HTML-sensitive characters by default.
+  result = result.replace(/\\u003c/g, '<').replace(/\\u003e/g, '>')
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')

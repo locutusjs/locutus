@@ -1,6 +1,8 @@
 export { Atoi } from './Atoi.ts'
 export { FormatBool } from './FormatBool.ts'
+export { FormatFloat } from './FormatFloat.ts'
 export { FormatInt } from './FormatInt.ts'
 export { Itoa } from './Itoa.ts'
 export { ParseBool } from './ParseBool.ts'
+export { ParseFloat } from './ParseFloat.ts'
 export { ParseInt } from './ParseInt.ts'

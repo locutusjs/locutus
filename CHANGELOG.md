@@ -24,7 +24,22 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.1...main).
 
-- No unreleased changes yet.
+### Expansion
+
+- Added Go stdlib-inspired expansions with parity coverage:
+  - `golang/time/Format`
+  - `golang/time/Parse`
+  - `golang/time/ParseDuration`
+  - `golang/time/Unix`
+  - `golang/time/UnixMilli`
+  - `golang/time/UnixMicro`
+  - `golang/strings/Cut`
+  - `golang/strings/CutPrefix`
+  - `golang/strings/CutSuffix`
+  - `golang/strings/ReplaceAll`
+  - `golang/strings/SplitN`
+  - `golang/strconv/FormatFloat`
+  - `golang/strconv/ParseFloat`
 
 ## v3.0.1
 
@@ -88,7 +103,6 @@ Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0
   - `rust/str/to_lowercase`
   - `rust/str/to_uppercase`
   - `rust/str/trim`
-
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
