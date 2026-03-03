@@ -772,3 +772,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Removed `test/browser/app.js` from JS allowlist.
   - Updated CONTRIBUTING Browser Playground section with the new flow.
   - Moved browser modernization out of Backlog into `## main` changelog notes.
+
+### Iteration 51
+
+2026-03-03
+
+- **Area: Expansion (Perl core) + Maintainer follow-up**
+- Synced local `main` after PR #537 merge and continued on new branch `feat/perl-core-basic-string-primitives`.
+- Local deletion of merged branch `feat/modernize-browser-tests` is blocked by current shell policy; branch left in local refs.
+- Added new Perl core functions:
+  - `chr`, `ord`, `ucfirst`, `lcfirst`.
+- Updated `src/perl/core/index.ts` exports and Rosetta mappings in `src/rosetta.yml` for capitalize/uncapitalize and character codepoint conversions.
+- Regenerated tests and added new generated Vitest cases for the four Perl functions.
+- Validation:
+  - `yarn lint` passed.
+  - `yarn lint:ts` passed.
+  - Targeted generated tests for new Perl functions passed (10 tests).

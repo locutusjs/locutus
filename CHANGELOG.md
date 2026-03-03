@@ -32,6 +32,14 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - Added `yarn browser:install`, `yarn browser:test`, and a new `yarn browser:watch` flow.
   - CI now installs Chromium and runs browser smoke tests.
 
+### Expansion
+
+- Added 4 Perl core functions:
+  - `perl/core/chr`
+  - `perl/core/ord`
+  - `perl/core/ucfirst`
+  - `perl/core/lcfirst`
+
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
