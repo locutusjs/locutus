@@ -32,6 +32,20 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - Added `yarn browser:install`, `yarn browser:test`, and a new `yarn browser:watch` flow.
   - CI now installs Chromium and runs browser smoke tests.
 
+### Expansion
+
+- Added initial Tcl support with 10 `string` commands:
+  - `tcl/string/first`
+  - `tcl/string/last`
+  - `tcl/string/length`
+  - `tcl/string/repeat`
+  - `tcl/string/reverse`
+  - `tcl/string/tolower`
+  - `tcl/string/toupper`
+  - `tcl/string/trim`
+  - `tcl/string/trimleft`
+  - `tcl/string/trimright`
+
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).

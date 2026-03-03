@@ -282,6 +282,16 @@ class Util {
         inspiration_urls: ['<a href="https://www.gnu.org/software/gawk/manual/gawk.html">the GNU AWK manual</a>'],
         function_description_template: `Here's what our current TypeScript equivalent to <a href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions">[language]'s [function]</a> looks like.`,
       },
+      tcl: {
+        order: 13,
+        function_title_template: "[language]'s [category] [function] in TypeScript",
+        human: 'Tcl',
+        packageType: 'command',
+        inspiration_urls: [
+          '<a href="https://www.tcl-lang.org/man/tcl/TclCmd/contents.htm">the Tcl command reference</a>',
+        ],
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://www.tcl-lang.org/man/tcl/TclCmd/string.htm">[language]'s [category] [function]</a> looks like.`,
+      },
     }
 
     this.allowSkip = argv.indexOf('--noskip') === -1

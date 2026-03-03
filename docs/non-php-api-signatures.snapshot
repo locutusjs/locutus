@@ -175,3 +175,13 @@ src/ruby/String/reverse.ts :: export function reverse(str: string): string
 src/ruby/String/start_with.ts :: export function start_with(str: string, prefix: string): boolean
 src/ruby/String/strip.ts :: export function strip(str: string): string
 src/ruby/String/upcase.ts :: export function upcase(str: string): string
+src/tcl/string/first.ts :: export function first(needle: string, haystack: string, startIndex?: number): number
+src/tcl/string/last.ts :: export function last(needle: string, haystack: string, lastIndex?: number): number
+src/tcl/string/length.ts :: export function length(str: string): number
+src/tcl/string/repeat.ts :: export function repeat(str: string, count: number): string
+src/tcl/string/reverse.ts :: export function reverse(str: string): string
+src/tcl/string/tolower.ts :: export function tolower(str: string): string
+src/tcl/string/toupper.ts :: export function toupper(str: string): string
+src/tcl/string/trim.ts :: export function trim(str: string, chars?: string): string
+src/tcl/string/trimleft.ts :: export function trimleft(str: string, chars?: string): string
+src/tcl/string/trimright.ts :: export function trimright(str: string, chars?: string): string

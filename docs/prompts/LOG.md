@@ -772,3 +772,18 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Removed `test/browser/app.js` from JS allowlist.
   - Updated CONTRIBUTING Browser Playground section with the new flow.
   - Moved browser modernization out of Backlog into `## main` changelog notes.
+
+### Iteration 51
+
+2026-03-03
+
+- **Area: Expansion (new language: Tcl)**
+- Started a new focused branch from `main` (`feat/tcl-initial-string-package`) while keeping the Perl expansion PR separate.
+- Added initial `src/tcl/string/` package with 10 commands:
+  - `first`, `last`, `length`, `repeat`, `reverse`, `tolower`, `toupper`, `trim`, `trimleft`, `trimright`
+- Added export barrel at `src/tcl/string/index.ts`.
+- Wired website metadata for Tcl in `src/_util/util.ts` (`langDefaults` entry with templates and inspiration URL).
+- Extended Rosetta mappings for Tcl equivalents:
+  - `string_length`, `string_lowercase`, `string_uppercase`, `string_trim`, `string_ltrim`, `string_rtrim`, `string_reverse`, `string_index`, `string_last_index`, `string_repeat`.
+- Regenerated tests and validated Tcl generated coverage:
+  - `corepack yarn vitest run test/generated/tcl/string/*.vitest.ts` (10 files, 23 tests, all pass).

@@ -502,6 +502,16 @@ import type * as m_b92rlr from '../../src/ruby/String/reverse.ts'
 import type * as m_1xasjrq from '../../src/ruby/String/start_with.ts'
 import type * as m_irstah from '../../src/ruby/String/strip.ts'
 import type * as m_14x500e from '../../src/ruby/String/upcase.ts'
+import type * as m_1f89mu6 from '../../src/tcl/string/first.ts'
+import type * as m_160506 from '../../src/tcl/string/last.ts'
+import type * as m_ll2p8m from '../../src/tcl/string/length.ts'
+import type * as m_cf3koh from '../../src/tcl/string/repeat.ts'
+import type * as m_1ws6q7g from '../../src/tcl/string/reverse.ts'
+import type * as m_1e98ap4 from '../../src/tcl/string/tolower.ts'
+import type * as m_10wh9t3 from '../../src/tcl/string/toupper.ts'
+import type * as m_1jg7ioa from '../../src/tcl/string/trim.ts'
+import type * as m_1x1bzoj from '../../src/tcl/string/trimleft.ts'
+import type * as m_s3l8r8 from '../../src/tcl/string/trimright.ts'
 
 type _TypeContract_0000_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_7uo00n.cos>>>
 type _TypeContract_0000_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_7uo00n.cos>[0]>>
@@ -3198,3 +3208,72 @@ type _TypeContract_0527_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_14x
 type _TypeContract_0527_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_14x500e.upcase>[0]>>
 type _TypeContract_0527_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_14x500e.upcase>[0]>>
 type _TypeContract_0527_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_14x500e.upcase>[0]>>
+type _TypeContract_0528_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_1f89mu6.first>>>
+type _TypeContract_0528_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1f89mu6.first>[0]>>
+type _TypeContract_0528_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1f89mu6.first>[0]>>
+type _TypeContract_0528_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1f89mu6.first>[0]>>
+type _TypeContract_0528_Param1_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1f89mu6.first>[1]>>
+type _TypeContract_0528_Param1_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1f89mu6.first>[1]>>
+type _TypeContract_0528_Param1_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1f89mu6.first>[1]>>
+type _TypeContract_0528_Param2_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1f89mu6.first>[2]>>
+type _TypeContract_0528_Param2_OptionalAcceptsUndefined = ExpectTrue<IsAssignable<undefined, Parameters<typeof m_1f89mu6.first>[2]>>
+type _TypeContract_0528_Param2_RejectsString = ExpectFalse<IsAssignable<'__LOCUTUS_INVALID_STRING__', Parameters<typeof m_1f89mu6.first>[2]>>
+type _TypeContract_0528_Param2_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1f89mu6.first>[2]>>
+type _TypeContract_0529_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_160506.last>>>
+type _TypeContract_0529_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_160506.last>[0]>>
+type _TypeContract_0529_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_160506.last>[0]>>
+type _TypeContract_0529_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_160506.last>[0]>>
+type _TypeContract_0529_Param1_NotAny = ExpectFalse<IsAny<Parameters<typeof m_160506.last>[1]>>
+type _TypeContract_0529_Param1_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_160506.last>[1]>>
+type _TypeContract_0529_Param1_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_160506.last>[1]>>
+type _TypeContract_0529_Param2_NotAny = ExpectFalse<IsAny<Parameters<typeof m_160506.last>[2]>>
+type _TypeContract_0529_Param2_OptionalAcceptsUndefined = ExpectTrue<IsAssignable<undefined, Parameters<typeof m_160506.last>[2]>>
+type _TypeContract_0529_Param2_RejectsString = ExpectFalse<IsAssignable<'__LOCUTUS_INVALID_STRING__', Parameters<typeof m_160506.last>[2]>>
+type _TypeContract_0529_Param2_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_160506.last>[2]>>
+type _TypeContract_0530_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_ll2p8m.length>>>
+type _TypeContract_0530_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_ll2p8m.length>[0]>>
+type _TypeContract_0530_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_ll2p8m.length>[0]>>
+type _TypeContract_0530_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_ll2p8m.length>[0]>>
+type _TypeContract_0531_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_cf3koh.repeat>>>
+type _TypeContract_0531_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_cf3koh.repeat>[0]>>
+type _TypeContract_0531_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_cf3koh.repeat>[0]>>
+type _TypeContract_0531_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_cf3koh.repeat>[0]>>
+type _TypeContract_0531_Param1_NotAny = ExpectFalse<IsAny<Parameters<typeof m_cf3koh.repeat>[1]>>
+type _TypeContract_0531_Param1_RejectsString = ExpectFalse<IsAssignable<'__LOCUTUS_INVALID_STRING__', Parameters<typeof m_cf3koh.repeat>[1]>>
+type _TypeContract_0531_Param1_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_cf3koh.repeat>[1]>>
+type _TypeContract_0532_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_1ws6q7g.reverse>>>
+type _TypeContract_0532_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1ws6q7g.reverse>[0]>>
+type _TypeContract_0532_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1ws6q7g.reverse>[0]>>
+type _TypeContract_0532_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1ws6q7g.reverse>[0]>>
+type _TypeContract_0533_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_1e98ap4.tolower>>>
+type _TypeContract_0533_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1e98ap4.tolower>[0]>>
+type _TypeContract_0533_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1e98ap4.tolower>[0]>>
+type _TypeContract_0533_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1e98ap4.tolower>[0]>>
+type _TypeContract_0534_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_10wh9t3.toupper>>>
+type _TypeContract_0534_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_10wh9t3.toupper>[0]>>
+type _TypeContract_0534_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_10wh9t3.toupper>[0]>>
+type _TypeContract_0534_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_10wh9t3.toupper>[0]>>
+type _TypeContract_0535_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_1jg7ioa.trim>>>
+type _TypeContract_0535_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1jg7ioa.trim>[0]>>
+type _TypeContract_0535_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1jg7ioa.trim>[0]>>
+type _TypeContract_0535_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1jg7ioa.trim>[0]>>
+type _TypeContract_0535_Param1_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1jg7ioa.trim>[1]>>
+type _TypeContract_0535_Param1_OptionalAcceptsUndefined = ExpectTrue<IsAssignable<undefined, Parameters<typeof m_1jg7ioa.trim>[1]>>
+type _TypeContract_0535_Param1_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1jg7ioa.trim>[1]>>
+type _TypeContract_0535_Param1_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1jg7ioa.trim>[1]>>
+type _TypeContract_0536_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_1x1bzoj.trimleft>>>
+type _TypeContract_0536_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1x1bzoj.trimleft>[0]>>
+type _TypeContract_0536_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1x1bzoj.trimleft>[0]>>
+type _TypeContract_0536_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1x1bzoj.trimleft>[0]>>
+type _TypeContract_0536_Param1_NotAny = ExpectFalse<IsAny<Parameters<typeof m_1x1bzoj.trimleft>[1]>>
+type _TypeContract_0536_Param1_OptionalAcceptsUndefined = ExpectTrue<IsAssignable<undefined, Parameters<typeof m_1x1bzoj.trimleft>[1]>>
+type _TypeContract_0536_Param1_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_1x1bzoj.trimleft>[1]>>
+type _TypeContract_0536_Param1_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_1x1bzoj.trimleft>[1]>>
+type _TypeContract_0537_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_s3l8r8.trimright>>>
+type _TypeContract_0537_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_s3l8r8.trimright>[0]>>
+type _TypeContract_0537_Param0_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_s3l8r8.trimright>[0]>>
+type _TypeContract_0537_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_s3l8r8.trimright>[0]>>
+type _TypeContract_0537_Param1_NotAny = ExpectFalse<IsAny<Parameters<typeof m_s3l8r8.trimright>[1]>>
+type _TypeContract_0537_Param1_OptionalAcceptsUndefined = ExpectTrue<IsAssignable<undefined, Parameters<typeof m_s3l8r8.trimright>[1]>>
+type _TypeContract_0537_Param1_RejectsNumber = ExpectFalse<IsAssignable<123456789, Parameters<typeof m_s3l8r8.trimright>[1]>>
+type _TypeContract_0537_Param1_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_s3l8r8.trimright>[1]>>
