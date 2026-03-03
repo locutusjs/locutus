@@ -838,3 +838,28 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - `tcl:*` official tags were not available from Docker Hub in our parity environment; relying on broadly available base images is more robust.
   - Sharing runtime images across language handlers requires version-reporting logic to be language-aware, not image-prefix-only.
+
+### Iteration 55
+
+2026-03-03
+
+- **Area: Expansion (new language: PowerShell) + Verification**
+- Plan:
+  - Pivot next-language expansion from Bash to PowerShell for stronger parity ergonomics and runtime consistency.
+  - Ship an initial `powershell/string` package and include parity support in CI.
+- Progress:
+  - Added initial `src/powershell/string/` package with 10 commands:
+    - `contains`, `endswith`, `indexof`, `lastindexof`, `length`, `replace`, `startswith`, `tolower`, `toupper`, `trim`.
+  - Added export barrel at `src/powershell/string/index.ts`.
+  - Wired website metadata for PowerShell in `src/_util/util.ts`.
+  - Extended Rosetta mappings for PowerShell equivalents:
+    - `string_length`, `string_lowercase`, `string_uppercase`, `string_trim`, `string_contains`, `string_starts_with`, `string_ends_with`, `string_replace`, `string_index`, `string_last_index`.
+  - Added PowerShell parity support:
+    - New handler `test/parity/lib/languages/powershell.ts`.
+    - Registered language handler/config and Docker version reporting.
+    - Docker image: `mcr.microsoft.com/powershell:7.4-ubuntu-22.04`.
+  - Validation:
+    - `corepack yarn test:parity powershell/string --no-cache` passes (10/10).
+- Key learnings:
+  - PowerShell parity is straightforward when output is normalized via `ConvertTo-Json -Compress`.
+  - Using ordinal string comparison in parity translations avoids culture-driven drift from JS behavior.

@@ -12,6 +12,7 @@ import { juliaHandler } from './julia.ts'
 import { luaHandler } from './lua.ts'
 import { perlHandler } from './perl.ts'
 import { phpHandler } from './php.ts'
+import { powershellHandler } from './powershell.ts'
 import { pythonHandler } from './python.ts'
 import { rHandler } from './r.ts'
 import { rubyHandler } from './ruby.ts'
@@ -27,6 +28,7 @@ const handlers: Record<string, LanguageHandler> = {
   lua: luaHandler,
   perl: perlHandler,
   php: phpHandler,
+  powershell: powershellHandler,
   python: pythonHandler,
   r: rHandler,
   ruby: rubyHandler,

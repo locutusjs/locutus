@@ -15,6 +15,7 @@ string_length:
   - c/string/strlen
   - ruby/String/length
   - perl/core/length
+  - powershell/string/length
   - tcl/string/length
   - awk/builtin/length
   - lua/string/len
@@ -25,6 +26,7 @@ string_lowercase:
   - php/strings/strtolower
   - ruby/String/downcase
   - golang/strings/ToLower
+  - powershell/string/tolower
   - tcl/string/tolower
   - lua/string/lower
   - perl/core/lc
@@ -38,6 +40,7 @@ string_uppercase:
   - php/strings/strtoupper
   - ruby/String/upcase
   - golang/strings/ToUpper
+  - powershell/string/toupper
   - tcl/string/toupper
   - lua/string/upper
   - perl/core/uc
@@ -52,6 +55,7 @@ string_trim:
   - ruby/String/strip
   - golang/strings/TrimSpace
   - golang/strings/Trim
+  - powershell/string/trim
   - tcl/string/trim
   - clojure/string/trim
 
@@ -71,14 +75,17 @@ string_chomp:
   - perl/core/chomp
 
 string_contains:
+  - powershell/string/contains
   - golang/strings/Contains
   - ruby/String/include
 
 string_starts_with:
+  - powershell/string/startswith
   - golang/strings/HasPrefix
   - ruby/String/start_with
 
 string_ends_with:
+  - powershell/string/endswith
   - golang/strings/HasSuffix
   - ruby/String/end_with
 
@@ -101,16 +108,19 @@ string_join:
 
 string_replace:
   - php/strings/str_replace
+  - powershell/string/replace
   - golang/strings/Replace
 
 string_index:
   - php/strings/strpos
+  - powershell/string/indexof
   - golang/strings/Index
   - golang/strings/Index2
   - tcl/string/first
 
 string_last_index:
   - php/strings/strrpos
+  - powershell/string/lastindexof
   - golang/strings/LastIndex
   - tcl/string/last
 

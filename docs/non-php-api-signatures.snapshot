@@ -118,6 +118,16 @@ src/perl/core/reverse.ts :: export function reverse(str: string): string
 src/perl/core/substr.ts :: export function substr(str: string, offset: number, length?: number): string
 src/perl/core/uc.ts :: export function uc(str: string): string
 src/perl/core/ucfirst.ts :: export function ucfirst(str: string): string
+src/powershell/string/contains.ts :: export function contains(needle: string, haystack: string): boolean
+src/powershell/string/endswith.ts :: export function endswith(suffix: string, str: string): boolean
+src/powershell/string/indexof.ts :: export function indexof(needle: string, haystack: string, startIndex?: number): number
+src/powershell/string/lastindexof.ts :: export function lastindexof(needle: string, haystack: string, startIndex?: number): number
+src/powershell/string/length.ts :: export function length(str: string): number
+src/powershell/string/replace.ts :: export function replace(str: string, search: string, replacement: string): string
+src/powershell/string/startswith.ts :: export function startswith(prefix: string, str: string): boolean
+src/powershell/string/tolower.ts :: export function tolower(str: string): string
+src/powershell/string/toupper.ts :: export function toupper(str: string): string
+src/powershell/string/trim.ts :: export function trim(str: string): string
 src/python/math/ceil.ts :: export function ceil(x: number): number
 src/python/math/exp.ts :: export function exp(x: number): number
 src/python/math/fabs.ts :: export function fabs(x: number): number

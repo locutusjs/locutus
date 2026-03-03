@@ -56,6 +56,17 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - `perl/core/ord`
   - `perl/core/quotemeta`
   - `perl/core/ucfirst`
+- Added initial PowerShell support with 10 `string` commands:
+  - `powershell/string/contains`
+  - `powershell/string/endswith`
+  - `powershell/string/indexof`
+  - `powershell/string/lastindexof`
+  - `powershell/string/length`
+  - `powershell/string/replace`
+  - `powershell/string/startswith`
+  - `powershell/string/tolower`
+  - `powershell/string/toupper`
+  - `powershell/string/trim`
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
