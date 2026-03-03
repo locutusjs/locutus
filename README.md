@@ -11,6 +11,16 @@ Locutus is ~500 TypeScript implementations of standard library functions from PH
 
 Most of these started as rainy Sunday afternoon puzzles. Some are genuinely useful. Some are just fun to write. All of them are a way to learn how different languages solve the same problems.
 
+## Scope
+
+Locutus ports function behavior, not foreign runtime baggage. We reimplement standard-library semantics in TypeScript, but keep API boundaries JavaScript-native.
+
+That means we do not recreate alien language data structures or object models in Locutus APIs (for example: Go slices/maps, Python tuples/bytes, Ruby symbols, C structs/pointers, Perl refs).
+
+Historic exception: for PHP compatibility, plain JS objects may be treated as associative arrays when `locutus.objectsAsArrays` is enabled.
+
+Example: a Go date-formatting port in Locutus should accept a JavaScript `Date` and return a `string`, not a custom Go `time.Time` object.
+
 ## Install
 
 ```bash

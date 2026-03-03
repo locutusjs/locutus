@@ -30,7 +30,11 @@ That said, there are useful things here, and Locutus makes it easy to pull in ju
 
 ## What we port
 
-Individual functions from standard libraries. We stay away from language constructs, global environment, data types, and extending built-in natives. We tried some of that in the early days and it did not end well. Other projects are welcome to take a stab at it using our MIT-licensed sources.
+Individual functions from standard libraries. We port behavior, not baggage: function semantics in TypeScript, with JavaScript-native values at the API boundary.
+
+That means we stay away from language constructs, global runtime environments, foreign data structures, and extending built-in natives. A Go date-formatting port here should take a JavaScript `Date` and return a `string`, not a custom Go `time.Time`.
+
+Historic exception: for PHP compatibility, plain JS objects may be treated as associative arrays when `locutus.objectsAsArrays` is enabled.
 
 ## A community effort
 

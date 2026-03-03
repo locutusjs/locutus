@@ -71,6 +71,13 @@ Verification steps (for new or changed functions):
 
 ## Curation Rules
 
+Policy boundary:
+
+- Port function semantics, keep API boundaries JavaScript-native.
+- Do not introduce foreign runtime data structures or object models in Locutus APIs.
+- Historic exception: PHP compatibility may treat plain JS objects as associative arrays when `locutus.objectsAsArrays` is enabled.
+- Example: a Go date-formatting port should take a JavaScript `Date` and return a `string`, not a custom Go `time.Time`.
+
 Worth porting:
 
 - Complex functions like `sprintf`, `strtotime`, `serialize`, `date`
