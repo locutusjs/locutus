@@ -35,7 +35,11 @@ alias:
   - /functions/rand/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function rand(...args: [min?: number, max?: number]): number {
+{% codeblock lang:typescript %}export function rand(): number
+
+export function rand(min: number, max: number): number
+
+export function rand(...providedArgs: [min?: number, max?: number]): number {
   //      discuss at: https://locutus.io/php/rand/
   // parity verified: PHP 8.3
   //     original by: Leslie Hoare
@@ -46,24 +50,25 @@ alias:
   //       example 1: rand(1, 1)
   //       returns 1: 1
 
-  const argc = args.length
+  const [min, max] = providedArgs
   let minValue: number
   let maxValue: number
-  if (argc === 0) {
+  if (providedArgs.length === 0) {
     minValue = 0
     maxValue = 2147483647
-  } else if (argc === 1) {
+  } else if (providedArgs.length === 1) {
     throw new Error('Warning: rand() expects exactly 2 parameters, 1 given')
   } else {
-    minValue = Number(args[0])
-    maxValue = Number(args[1])
+    minValue = Number(min)
+    maxValue = Number(max)
   }
   return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function rand(...args) {
+{% codeblock lang:javascript %}
+export function rand(...providedArgs) {
   //      discuss at: https://locutus.io/php/rand/
   // parity verified: PHP 8.3
   //     original by: Leslie Hoare
@@ -74,17 +79,17 @@ alias:
   //       example 1: rand(1, 1)
   //       returns 1: 1
 
-  const argc = args.length
+  const [min, max] = providedArgs
   let minValue
   let maxValue
-  if (argc === 0) {
+  if (providedArgs.length === 0) {
     minValue = 0
     maxValue = 2147483647
-  } else if (argc === 1) {
+  } else if (providedArgs.length === 1) {
     throw new Error('Warning: rand() expects exactly 2 parameters, 1 given')
   } else {
-    minValue = Number(args[0])
-    maxValue = Number(args[1])
+    minValue = Number(min)
+    maxValue = Number(max)
   }
   return Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue
 }{% endcodeblock %}

@@ -166,7 +166,6 @@ alias:
   if (charlist) {
     whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1')
   }
-
   l = strValue.length
   for (i = 0; i < l; i++) {
     if (whitespace.indexOf(strValue.charAt(i)) === -1) {
@@ -174,7 +173,6 @@ alias:
       break
     }
   }
-
   l = strValue.length
   for (i = l - 1; i >= 0; i--) {
     if (whitespace.indexOf(strValue.charAt(i)) === -1) {
@@ -182,7 +180,6 @@ alias:
       break
     }
   }
-
   return whitespace.indexOf(strValue.charAt(0)) === -1 ? strValue : ''
 }{% endcodeblock %}
 </div>

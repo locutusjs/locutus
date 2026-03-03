@@ -42,7 +42,16 @@ alias:
 type ImplodeValue = PhpRuntimeValue
 type KeyedValues = PhpAssoc<ImplodeValue>
 
-export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | undefined>): string {
+export function implode(pieces: ImplodeValue[] | KeyedValues | string | undefined): string
+
+export function implode(glue: string, pieces: ImplodeValue[] | KeyedValues | string | undefined): string
+
+export function implode(
+  ...providedArgs: [
+    glueOrPieces?: ImplodeValue[] | KeyedValues | string,
+    pieces?: ImplodeValue[] | KeyedValues | string | undefined,
+  ]
+): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -59,11 +68,13 @@ export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | u
   let actualGlue = ''
   let actualPieces: ImplodeValue[] | KeyedValues | string | undefined
 
-  if (args.length === 1) {
-    actualPieces = args[0]
+  if (providedArgs.length === 1) {
+    const [glueOrPieces] = providedArgs
+    actualPieces = glueOrPieces
   } else {
-    actualGlue = String(args[0] ?? '')
-    actualPieces = args[1]
+    const [glueOrPieces, pieces] = providedArgs
+    actualGlue = String(glueOrPieces ?? '')
+    actualPieces = pieces
   }
 
   if (typeof actualPieces === 'object' && actualPieces !== null) {
@@ -83,7 +94,7 @@ export function implode(...args: Array<ImplodeValue[] | KeyedValues | string | u
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}
-export function implode(...args) {
+export function implode(...providedArgs) {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -100,11 +111,13 @@ export function implode(...args) {
   let actualGlue = ''
   let actualPieces
 
-  if (args.length === 1) {
-    actualPieces = args[0]
+  if (providedArgs.length === 1) {
+    const [glueOrPieces] = providedArgs
+    actualPieces = glueOrPieces
   } else {
-    actualGlue = String(args[0] ?? '')
-    actualPieces = args[1]
+    const [glueOrPieces, pieces] = providedArgs
+    actualGlue = String(glueOrPieces ?? '')
+    actualPieces = pieces
   }
 
   if (typeof actualPieces === 'object' && actualPieces !== null) {

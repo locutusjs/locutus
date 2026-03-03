@@ -48,7 +48,9 @@ alias:
 {% codeblock lang:typescript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function strnatcasecmp(...args: Array<string | number>): number | null {
+export function strnatcasecmp(a: string | number, b: string | number): number
+
+export function strnatcasecmp(...providedArgs: [a?: string | number, b?: string | number]): number | null {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
   //      original by: Martin Pool
@@ -64,11 +66,11 @@ export function strnatcasecmp(...args: Array<string | number>): number | null {
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
 
-  if (args.length !== 2) {
+  if (providedArgs.length !== 2) {
     return null
   }
 
-  const [a, b] = args
+  const [a, b] = providedArgs
   return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }
 {% endcodeblock %}
@@ -77,7 +79,7 @@ export function strnatcasecmp(...args: Array<string | number>): number | null {
 {% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
 import { strnatcmp } from '../strings/strnatcmp.ts'
 
-export function strnatcasecmp(...args) {
+export function strnatcasecmp(...providedArgs) {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
   //      original by: Martin Pool
@@ -93,11 +95,11 @@ export function strnatcasecmp(...args) {
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
 
-  if (args.length !== 2) {
+  if (providedArgs.length !== 2) {
     return null
   }
 
-  const [a, b] = args
+  const [a, b] = providedArgs
   return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }{% endcodeblock %}
 </div>
@@ -287,7 +289,9 @@ function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
 }
 
 // php/strings/strnatcasecmp (target function module)
-function strnatcasecmp(...args: Array<string | number>): number | null {
+function strnatcasecmp(a: string | number, b: string | number): number
+
+function strnatcasecmp(...providedArgs: [a?: string | number, b?: string | number]): number | null {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
   //      original by: Martin Pool
@@ -303,11 +307,11 @@ function strnatcasecmp(...args: Array<string | number>): number | null {
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
 
-  if (args.length !== 2) {
+  if (providedArgs.length !== 2) {
     return null
   }
 
-  const [a, b] = args
+  const [a, b] = providedArgs
   return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }{% endcodeblock %}
 </div>
@@ -474,7 +478,8 @@ function strnatcmp(left, right) {
 }
 
 // php/strings/strnatcasecmp (target function module)
-function strnatcasecmp(...args) {
+
+function strnatcasecmp(...providedArgs) {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
   //      original by: Martin Pool
@@ -490,11 +495,11 @@ function strnatcasecmp(...args) {
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
 
-  if (args.length !== 2) {
+  if (providedArgs.length !== 2) {
     return null
   }
 
-  const [a, b] = args
+  const [a, b] = providedArgs
   return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }{% endcodeblock %}
 </div>

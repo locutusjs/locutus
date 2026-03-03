@@ -368,7 +368,7 @@ function array_udiff<T>(
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
 
-function isPhpArrayObject(value) {
+function isObjectLike(value) {
   return typeof value === 'object' && value !== null
 }
 
@@ -400,6 +400,8 @@ function toPhpArrayObject(value) {
 
   return {}
 }
+
+const isPhpArrayObject = isObjectLike
 
 // php/_helpers/_phpRuntimeState (Locutus helper dependency)
 const globalContext =
