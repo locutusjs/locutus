@@ -197,6 +197,8 @@ Released: 2026-01-08. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.3
 
 Released: 2026-01-07. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.32...v2.0.33).
 
+> Note: `v2.0.33` exists as a Git tag/GitHub release, but was not published to npm. The next npm release after `2.0.32` is `2.0.34`.
+
 ### Bug Fixes
 - [x] `quoted_printable_encode`: Fixed soft line break stripping logic
 - [x] `get_defined_functions`: Updated unrealistic test expectation
@@ -276,6 +278,56 @@ Released: 2019-06-12. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.1
 - [x] Switch from Travis CI to GitHub Actions
 - [x] Fix ReDOS on IPv6
 - [x] Basic timezone support in strtotime
+
+## v2.0.15
+
+Released: 2021-05-27. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.14...v2.0.15).
+
+### Security
+- [x] Prevent ReDoS in `gopher_parsedir` regex handling (#446)
+- [x] Additional ReDoS hardening in networking/parsing paths
+
+### Bug Fixes
+- [x] `str_replace`: ignore empty search strings for PHP parity (#430)
+- [x] `sprintf`: fix extra argument consumption for escaped `%%` (#441)
+- [x] `strtotime`: improve basic timezone handling (#432)
+
+### Infrastructure
+- [x] Dependency and tooling upgrades (Babel, ESLint, Browserify, lodash, cross-env, rimraf, npm-run-all, etc.)
+
+## v2.0.14
+
+Released: 2020-10-02. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.13...v2.0.14).
+
+### Security
+- [x] `escapeshellarg`: refuse to escape strings containing null bytes (#425)
+
+### Behavior
+- [x] Clarify Linux-focused emulation behavior messaging (#424)
+
+## v2.0.13
+
+Released: 2020-10-02. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.12...v2.0.13).
+
+### Security
+- [x] Patch CVE-2020-13619 (#426)
+
+### Bug Fixes
+- [x] Reimplement `unserialize` and tighten related parsing/test coverage (#412)
+- [x] `parse_str` and data-type normalization fixes
+
+## v2.0.12
+
+Released: 2020-09-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.11...v2.0.12).
+
+### Security
+- [x] Fix prototype pollution in parser paths (#418)
+
+### Bug Fixes
+- [x] `substr`: parity fixes for empty strings and unicode semantics edge cases
+- [x] `round`: align behavior with PHP (#405)
+- [x] `var_export`: nested/associative/empty-array formatting fixes
+- [x] Additional date-format and unserialize edge-case fixes
 
 ## v2.0.11
 
@@ -416,4 +468,12 @@ Released: 2016-05-02. [Diff](https://github.com/locutusjs/locutus/compare/v1.3.2
 
 Released: April 4, 2016
 
+> Note: `v1.3.2` exists as a Git tag/GitHub release and predates the current npm version line. npm publication resumed at `0.0.1` and then `2.0.0`.
+
 - [x] Start using a CHANGELOG https://github.com/locutusjs/locutus/releases/tag/v1.3.2
+
+## v0.0.1
+
+Released: 2016-04-18 (npm-only bootstrap publish).
+
+> Note: Historical npm bootstrap release; no corresponding Git tag is present in this repository.
