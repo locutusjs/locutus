@@ -161,8 +161,18 @@ You can write custom Vitest tests by creating a `.vitest.ts` file alongside your
 
 ### Browser Playground
 
-Aside from unit tests, you can also run functions inside web browsers, with Watching, via `yarn browser:watch`. This
-allows you to quickly iterate and see how your functions behave in browsers.
+Aside from unit tests, you can run a browser smoke test flow powered by Vitest browser mode and Playwright:
+
+```bash
+yarn browser:install # first time only
+yarn browser:watch
+```
+
+If you just want a one-off browser run:
+
+```bash
+yarn browser:test
+```
 
 ## Commit
 
