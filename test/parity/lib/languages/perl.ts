@@ -81,6 +81,22 @@ function convertJsLineToPerl(line: string, funcName: string, module: string): st
     pl = pl.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${module}::${funcName}(`)
   }
 
+  // Perl built-ins `chomp`/`chop` require lvalues; emulate pure-function usage
+  // expected by Locutus examples by applying them to a temporary variable.
+  if (module === 'core' && (funcName === 'chomp' || funcName === 'chop')) {
+    pl = pl.replace(
+      new RegExp(`\\b${funcName}\\s*\\(([^()]+)\\)`, 'g'),
+      `(do { my $__locutus_tmp = $1; ${funcName}($__locutus_tmp); $__locutus_tmp })`,
+    )
+    // JS examples often use single-quoted strings with escape sequences
+    // (e.g. 'line\\n'); convert those temp assignments to Perl double quotes
+    // so escape sequences are interpreted like in JS.
+    pl = pl.replace(/my \$__locutus_tmp = '((?:\\.|[^'\\])*)'/g, (_match, value: string) => {
+      const escaped = value.replace(/"/g, '\\"').replace(/\$/g, '\\$').replace(/@/g, '\\@')
+      return `my $__locutus_tmp = "${escaped}"`
+    })
+  }
+
   // reverse() needs scalar context for string reversal in Perl
   if (funcName === 'reverse') {
     pl = pl.replace(/\breverse\s*\(([^)]+)\)/g, 'scalar(reverse($1))')
@@ -102,8 +118,9 @@ function jsToPerl(jsCode: string[], funcName: string, category?: string): string
     return ''
   }
 
-  // Use the module - no JSON needed for simple values
-  // Core built-ins don't need a use statement
+  // Keep source literals/output Unicode-safe in Docker perl -e mode.
+  const prelude = "use utf8;\nbinmode STDOUT, ':encoding(UTF-8)';\n"
+  // Core built-ins don't need a use statement.
   const imports = module !== 'core' ? `use ${module};\n` : ''
 
   const originalLastLine = jsCode[jsCode.length - 1]
@@ -111,12 +128,12 @@ function jsToPerl(jsCode: string[], funcName: string, category?: string): string
 
   let result: string
   if (assignedVar) {
-    result = `${imports}${lines.join(';\n')};\nprint $${assignedVar};`
+    result = `${prelude}${imports}${lines.join(';\n')};\nprint $${assignedVar};`
   } else {
     const setup = lines.slice(0, -1)
     const lastExpr = lines[lines.length - 1]
     const prefix = setup.length ? `${setup.join(';\n')};\n` : ''
-    result = `${prefix}${imports}print ${lastExpr};`
+    result = `${prelude}${imports}${prefix}print ${lastExpr};`
   }
 
   return result
@@ -134,7 +151,7 @@ function normalizePerlOutput(output: string, expected?: string): string {
   // If expected is a quoted string, wrap the native output in quotes
   // Perl print outputs strings without quotes, but JS JSON.stringify adds them
   if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
-    result = `"${result}"`
+    result = JSON.stringify(result)
   }
   return result
 }
