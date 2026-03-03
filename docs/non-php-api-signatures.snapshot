@@ -52,6 +52,14 @@ src/elixir/String/downcase.ts :: export function downcase(string: string): strin
 src/elixir/String/length.ts :: export function length(string: string): number
 src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
+src/golang/path/Base.ts :: export function Base(path: string): string
+src/golang/path/Clean.ts :: export function Clean(path: string): string
+src/golang/path/Dir.ts :: export function Dir(path: string): string
+src/golang/path/Ext.ts :: export function Ext(path: string): string
+src/golang/path/IsAbs.ts :: export function IsAbs(path: string): boolean
+src/golang/path/Join.ts :: export function Join(...elem: string[]): string
+src/golang/sort/SearchStrings.ts :: export function SearchStrings(a: string[], x: string): number
+src/golang/sort/StringsAreSorted.ts :: export function StringsAreSorted(a: string[]): boolean
 src/golang/strconv/Atoi.ts :: export function Atoi(s: unknown): [number, Error | null]
 src/golang/strconv/FormatBool.ts :: export function FormatBool(b: boolean): string
 src/golang/strconv/FormatFloat.ts :: export function FormatFloat(f: number, fmt: string, prec: number, _bitSize: number): string
@@ -89,16 +97,24 @@ src/golang/strings/TrimPrefix.ts :: export function TrimPrefix(s: string, prefix
 src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: string): string
 src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
+src/golang/subtle/ConstantTimeCompare.ts :: export function ConstantTimeCompare(x: string, y: string): number
+src/golang/time/Add.ts :: export function Add(value: GoTimeInput, durationMs: number): Date
 src/golang/time/AddDate.ts :: export function AddDate(value: GoTimeInput, years: number, months: number, days: number): Date
 src/golang/time/After.ts :: export function After(left: GoTimeInput, right: GoTimeInput): boolean
 src/golang/time/Before.ts :: export function Before(left: GoTimeInput, right: GoTimeInput): boolean
+src/golang/time/Date.ts :: export function Date( year: number, month: number, day: number, hour: number, minute: number, second: number, nsec: number, offsetMinutes = 0, ): Date
+src/golang/time/Equal.ts :: export function Equal(left: GoTimeInput, right: GoTimeInput): boolean
 src/golang/time/Format.ts :: export function Format(value: DateInput, layout: string): string
 src/golang/time/Parse.ts :: export function Parse(layout: string, value: string): Date
 src/golang/time/ParseDuration.ts :: export function ParseDuration(s: string): number
+src/golang/time/Round.ts :: export function Round(value: GoTimeInput, unitMs: number): Date
 src/golang/time/Sub.ts :: export function Sub(left: GoTimeInput, right: GoTimeInput): number
+src/golang/time/Truncate.ts :: export function Truncate(value: GoTimeInput, unitMs: number): Date
 src/golang/time/Unix.ts :: export function Unix(sec: number, nsec = 0): Date
 src/golang/time/UnixMicro.ts :: export function UnixMicro(usec: number): Date
 src/golang/time/UnixMilli.ts :: export function UnixMilli(msec: number): Date
+src/golang/url/PathEscape.ts :: export function PathEscape(s: string): string
+src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
 src/julia/Base/floor.ts :: export function floor(x: number): number
