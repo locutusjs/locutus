@@ -48,12 +48,17 @@ const GO_PACKAGES: Record<string, string> = {
   ParseFloat: 'strconv',
   ParseInt: 'strconv',
   // time package
+  Add: 'time',
   AddDate: 'time',
   After: 'time',
   Before: 'time',
+  Date: 'time',
+  Equal: 'time',
   Format: 'time',
   ParseDuration: 'time',
+  Round: 'time',
   Sub: 'time',
+  Truncate: 'time',
   Unix: 'time',
   UnixMicro: 'time',
   UnixMilli: 'time',
@@ -329,6 +334,128 @@ function convertParseDurationCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus time/Date calls to helper calls.
+ * Go exposes time.Date as a package function with location; locutus accepts offset minutes.
+ */
+function convertDateCalls(code: string): string {
+  const withIso = code.replace(/\bDate\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const year = args[0] ?? '0'
+    const month = args[1] ?? '1'
+    const day = args[2] ?? '1'
+    const hour = args[3] ?? '0'
+    const minute = args[4] ?? '0'
+    const second = args[5] ?? '0'
+    const nsec = args[6] ?? '0'
+    const offsetMinutes = args[7] ?? '0'
+    return `locutusTimeDate(${year}, ${month}, ${day}, ${hour}, ${minute}, ${second}, ${nsec}, ${offsetMinutes})`
+  })
+
+  return withIso.replace(/\bDate\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const year = args[0] ?? '0'
+    const month = args[1] ?? '1'
+    const day = args[2] ?? '1'
+    const hour = args[3] ?? '0'
+    const minute = args[4] ?? '0'
+    const second = args[5] ?? '0'
+    const nsec = args[6] ?? '0'
+    const offsetMinutes = args[7] ?? '0'
+    return `locutusTimeDate(${year}, ${month}, ${day}, ${hour}, ${minute}, ${second}, ${nsec}, ${offsetMinutes})`
+  })
+}
+
+/**
+ * Convert Locutus time/Add calls to helper calls.
+ */
+function convertAddCalls(code: string): string {
+  const withIso = code.replace(/\bAdd\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const duration = args[1] ?? '0'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeAdd(${value}, ${duration})`
+  })
+
+  return withIso.replace(/\bAdd\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const duration = args[1] ?? '0'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeAdd(${value}, ${duration})`
+  })
+}
+
+/**
+ * Convert Locutus time/Equal calls to helper calls.
+ */
+function convertEqualCalls(code: string): string {
+  return code.replace(/\bEqual\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const left = args[0]
+    const right = args[1]
+    if (!left || !right) {
+      return match
+    }
+    return `locutusTimeEqual(${left}, ${right})`
+  })
+}
+
+/**
+ * Convert Locutus time/Round calls to helper calls.
+ */
+function convertRoundCalls(code: string): string {
+  const withIso = code.replace(/\bRound\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const unitMs = args[1] ?? '1'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeRound(${value}, ${unitMs})`
+  })
+
+  return withIso.replace(/\bRound\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const unitMs = args[1] ?? '1'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeRound(${value}, ${unitMs})`
+  })
+}
+
+/**
+ * Convert Locutus time/Truncate calls to helper calls.
+ */
+function convertTruncateCalls(code: string): string {
+  const withIso = code.replace(/\bTruncate\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const unitMs = args[1] ?? '1'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeTruncate(${value}, ${unitMs})`
+  })
+
+  return withIso.replace(/\bTruncate\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const unitMs = args[1] ?? '1'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeTruncate(${value}, ${unitMs})`
+  })
+}
+
+/**
  * Convert Locutus time/AddDate calls to helper calls.
  * Go exposes AddDate as a method on time.Time, while locutus takes date-like input.
  */
@@ -503,6 +630,16 @@ function convertJsLineToGo(line: string, funcName: string): string {
     go = convertUnixMicroCalls(go)
   } else if (funcName === 'ParseDuration') {
     go = convertParseDurationCalls(go)
+  } else if (funcName === 'Date') {
+    go = convertDateCalls(go)
+  } else if (funcName === 'Add') {
+    go = convertAddCalls(go)
+  } else if (funcName === 'Equal') {
+    go = convertEqualCalls(go)
+  } else if (funcName === 'Round') {
+    go = convertRoundCalls(go)
+  } else if (funcName === 'Truncate') {
+    go = convertTruncateCalls(go)
   } else if (funcName === 'AddDate') {
     go = convertAddDateCalls(go)
   } else if (funcName === 'Sub') {
@@ -531,6 +668,11 @@ function convertJsLineToGo(line: string, funcName: string): string {
     funcName !== 'UnixMilli' &&
     funcName !== 'UnixMicro' &&
     funcName !== 'ParseDuration' &&
+    funcName !== 'Date' &&
+    funcName !== 'Add' &&
+    funcName !== 'Equal' &&
+    funcName !== 'Round' &&
+    funcName !== 'Truncate' &&
     funcName !== 'AddDate' &&
     funcName !== 'Sub' &&
     funcName !== 'Before' &&
@@ -576,6 +718,11 @@ function getRequiredImports(goCode: string): string[] {
     goCode.includes('locutusTimeUnixMilli(') ||
     goCode.includes('locutusTimeUnixMicro(') ||
     goCode.includes('locutusParseDuration(') ||
+    goCode.includes('locutusTimeDate(') ||
+    goCode.includes('locutusTimeAdd(') ||
+    goCode.includes('locutusTimeEqual(') ||
+    goCode.includes('locutusTimeRound(') ||
+    goCode.includes('locutusTimeTruncate(') ||
     goCode.includes('locutusTimeAddDate(') ||
     goCode.includes('locutusTimeSub(') ||
     goCode.includes('locutusTimeBefore(') ||
@@ -681,8 +828,60 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-                    : funcName === 'AddDate'
-                      ? `func locutusTimeAddDate(value string, years float64, months float64, days float64) string {
+                    : funcName === 'Date'
+                      ? `func locutusTimeDate(year float64, month float64, day float64, hour float64, minute float64, second float64, nsec float64, offsetMinutes float64) string {
+\tlocation := time.FixedZone("locutus", int(offsetMinutes)*60)
+\tt := time.Date(int(year), time.Month(int(month)), int(day), int(hour), int(minute), int(second), int(nsec), location)
+\treturn t.UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                      : funcName === 'Add'
+                        ? `func locutusTimeAdd(value string, durationMs float64) string {
+\tt, err := time.Parse(time.RFC3339Nano, value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\tduration := time.Duration(durationMs * float64(time.Millisecond))
+\treturn t.Add(duration).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                        : funcName === 'Equal'
+                          ? `func locutusTimeEqual(left string, right string) bool {
+\tl, leftErr := time.Parse(time.RFC3339Nano, left)
+\tr, rightErr := time.Parse(time.RFC3339Nano, right)
+\tif leftErr != nil || rightErr != nil {
+\t\treturn false
+\t}
+\treturn l.Equal(r)
+}
+
+`
+                          : funcName === 'Round'
+                            ? `func locutusTimeRound(value string, unitMs float64) string {
+\tt, err := time.Parse(time.RFC3339Nano, value)
+\tif err != nil || unitMs <= 0 {
+\t\treturn ""
+\t}
+\tunit := time.Duration(unitMs * float64(time.Millisecond))
+\treturn t.Round(unit).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                            : funcName === 'Truncate'
+                              ? `func locutusTimeTruncate(value string, unitMs float64) string {
+\tt, err := time.Parse(time.RFC3339Nano, value)
+\tif err != nil || unitMs <= 0 {
+\t\treturn ""
+\t}
+\tunit := time.Duration(unitMs * float64(time.Millisecond))
+\treturn t.Truncate(unit).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                              : funcName === 'AddDate'
+                                ? `func locutusTimeAddDate(value string, years float64, months float64, days float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil {
 \t\treturn ""
@@ -691,8 +890,8 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-                      : funcName === 'Sub'
-                        ? `func locutusTimeSub(left string, right string) float64 {
+                                : funcName === 'Sub'
+                                  ? `func locutusTimeSub(left string, right string) float64 {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -702,8 +901,8 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-                        : funcName === 'Before'
-                          ? `func locutusTimeBefore(left string, right string) bool {
+                                  : funcName === 'Before'
+                                    ? `func locutusTimeBefore(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -713,8 +912,8 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-                          : funcName === 'After'
-                            ? `func locutusTimeAfter(left string, right string) bool {
+                                    : funcName === 'After'
+                                      ? `func locutusTimeAfter(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -724,28 +923,28 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-                            : funcName === 'Cut'
-                              ? `func locutusStringsCut(value string, sep string) []interface{} {
+                                      : funcName === 'Cut'
+                                        ? `func locutusStringsCut(value string, sep string) []interface{} {
 \tbefore, after, found := strings.Cut(value, sep)
 \treturn []interface{}{before, after, found}
 }
 
 `
-                              : funcName === 'CutPrefix'
-                                ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
+                                        : funcName === 'CutPrefix'
+                                          ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
 \tafter, found := strings.CutPrefix(value, prefix)
 \treturn []interface{}{after, found}
 }
 
 `
-                                : funcName === 'CutSuffix'
-                                  ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
+                                          : funcName === 'CutSuffix'
+                                            ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
 \tbefore, found := strings.CutSuffix(value, suffix)
 \treturn []interface{}{before, found}
 }
 
 `
-                                  : ''
+                                            : ''
 
   return `package main
 

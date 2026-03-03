@@ -89,13 +89,18 @@ src/golang/strings/TrimPrefix.ts :: export function TrimPrefix(s: string, prefix
 src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: string): string
 src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
+src/golang/time/Add.ts :: export function Add(value: GoTimeInput, durationMs: number): Date
 src/golang/time/AddDate.ts :: export function AddDate(value: GoTimeInput, years: number, months: number, days: number): Date
 src/golang/time/After.ts :: export function After(left: GoTimeInput, right: GoTimeInput): boolean
 src/golang/time/Before.ts :: export function Before(left: GoTimeInput, right: GoTimeInput): boolean
+src/golang/time/Date.ts :: export function Date( year: number, month: number, day: number, hour: number, minute: number, second: number, nsec: number, offsetMinutes = 0, ): Date
+src/golang/time/Equal.ts :: export function Equal(left: GoTimeInput, right: GoTimeInput): boolean
 src/golang/time/Format.ts :: export function Format(value: DateInput, layout: string): string
 src/golang/time/Parse.ts :: export function Parse(layout: string, value: string): Date
 src/golang/time/ParseDuration.ts :: export function ParseDuration(s: string): number
+src/golang/time/Round.ts :: export function Round(value: GoTimeInput, unitMs: number): Date
 src/golang/time/Sub.ts :: export function Sub(left: GoTimeInput, right: GoTimeInput): number
+src/golang/time/Truncate.ts :: export function Truncate(value: GoTimeInput, unitMs: number): Date
 src/golang/time/Unix.ts :: export function Unix(sec: number, nsec = 0): Date
 src/golang/time/UnixMicro.ts :: export function UnixMicro(usec: number): Date
 src/golang/time/UnixMilli.ts :: export function UnixMilli(msec: number): Date
