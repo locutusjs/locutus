@@ -17,11 +17,12 @@ notes:
     it different from the PHP implementation. We can't fix this unfortunately.
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's is_integer in JavaScript
+title: PHP's is_integer in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.is-integer.php">PHP's is_integer</a>
   looks like.
 function: is_integer
@@ -34,7 +35,10 @@ alias:
   - /php/is_integer/
   - /functions/is_integer/
 ---
-{% codeblock lang:javascript %}module.exports = function is_integer(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { is_int as _isInt } from '../var/is_int.ts'
+
+export function is_integer(mixedVar: number): boolean {
   //      discuss at: https://locutus.io/php/is_integer/
   // parity verified: PHP 8.3
   //     original by: Paulo Freitas
@@ -45,7 +49,131 @@ alias:
   //       example 2: is_integer(12)
   //       returns 2: true
 
-  const _isInt = require('../var/is_int')
   return _isInt(mixedVar)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { is_int as _isInt } from '../var/is_int.ts'
+
+export function is_integer(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_integer/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_integer(186.31)
+  //       returns 1: false
+  //       example 2: is_integer(12)
+  //       returns 2: true
+
+  return _isInt(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/var/is_int (Locutus dependency module)
+type IntValue = PhpRuntimeValue
+
+function is_int(mixedVar: IntValue): mixedVar is number {
+  //      discuss at: https://locutus.io/php/is_int/
+  // parity verified: PHP 8.3
+  //     original by: Alex
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //      revised by: Matt Bradley
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_int(23)
+  //       returns 1: true
+  //       example 2: is_int('23')
+  //       returns 2: false
+  //       example 3: is_int(23.5)
+  //       returns 3: false
+  //       example 4: is_int(true)
+  //       returns 4: false
+
+  const num = Number(mixedVar)
+  return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
+}
+
+// php/var/is_integer (target function module)
+const _isInt = is_int;
+
+function is_integer(mixedVar: number): boolean {
+  //      discuss at: https://locutus.io/php/is_integer/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_integer(186.31)
+  //       returns 1: false
+  //       example 2: is_integer(12)
+  //       returns 2: true
+
+  return _isInt(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/var/is_int (Locutus dependency module)
+function is_int(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_int/
+  // parity verified: PHP 8.3
+  //     original by: Alex
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //      revised by: Matt Bradley
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_int(23)
+  //       returns 1: true
+  //       example 2: is_int('23')
+  //       returns 2: false
+  //       example 3: is_int(23.5)
+  //       returns 3: false
+  //       example 4: is_int(true)
+  //       returns 4: false
+
+  const num = Number(mixedVar)
+  return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
+}
+
+// php/var/is_integer (target function module)
+const _isInt = is_int
+
+function is_integer(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_integer/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_integer(186.31)
+  //       returns 1: false
+  //       example 2: is_integer(12)
+  //       returns 2: true
+
+  return _isInt(mixedVar)
+}{% endcodeblock %}
+</div>

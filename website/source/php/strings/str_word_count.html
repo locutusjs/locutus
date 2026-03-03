@@ -33,11 +33,12 @@ authors:
     - Bug?
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's str_word_count in JavaScript
+title: PHP's str_word_count in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.str-word-count.php">PHP's
   str_word_count</a> looks like.
 function: str_word_count
@@ -50,7 +51,14 @@ alias:
   - /php/str_word_count/
   - /functions/str_word_count/
 ---
-{% codeblock lang:javascript %}module.exports = function str_word_count(str, format, charlist) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { ctype_alpha as ctypeAlpha } from '../ctype/ctype_alpha.ts'
+
+export function str_word_count(
+  str: string,
+  format?: 0 | 1 | 2,
+  charlist?: string,
+): number | string[] | { [key: number]: string } {
   //  discuss at: https://locutus.io/php/str_word_count/
   // original by: Ole Vrijenhoek
   // bugfixed by: Kevin van Zonneveld (https://kvz.io)
@@ -67,46 +75,44 @@ alias:
   //   example 4: str_word_count('hey', 2)
   //   returns 4: {0: 'hey'}
 
-  const ctypeAlpha = require('../ctype/ctype_alpha')
   const len = str.length
-  const cl = charlist && charlist.length
+  const cl = charlist?.length ?? 0
   let chr = ''
   let tmpStr = ''
-  let i = 0
   let c = ''
-  const wArr = []
+  const wArr: string[] = []
   let wC = 0
-  const assoc = {}
+  const assoc: { [key: number]: string } = {}
   let aC = 0
-  let reg = ''
+  let reg: RegExp | null = null
   let match = false
 
-  const _pregQuote = function (str) {
-    return (str + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
+  const _pregQuote = function (value: string): string {
+    return (value + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
   }
-  const _getWholeChar = function (str, i) {
+  const _getWholeChar = function (value: string, index: number): string | false {
     // Use for rare cases of non-BMP characters
-    const code = str.charCodeAt(i)
+    const code = value.charCodeAt(index)
     if (code < 0xd800 || code > 0xdfff) {
-      return str.charAt(i)
+      return value.charAt(index)
     }
     if (code >= 0xd800 && code <= 0xdbff) {
       // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single
       // characters)
-      if (str.length <= i + 1) {
+      if (value.length <= index + 1) {
         throw new Error('High surrogate without following low surrogate')
       }
-      const next = str.charCodeAt(i + 1)
+      const next = value.charCodeAt(index + 1)
       if (next < 0xdc00 || next > 0xdfff) {
         throw new Error('High surrogate without following low surrogate')
       }
-      return str.charAt(i) + str.charAt(i + 1)
+      return value.charAt(index) + value.charAt(index + 1)
     }
     // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
-    if (i === 0) {
+    if (index === 0) {
       throw new Error('Low surrogate without preceding high surrogate')
     }
-    const prev = str.charCodeAt(i - 1)
+    const prev = value.charCodeAt(index - 1)
     if (prev < 0xd800 || prev > 0xdbff) {
       // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
       throw new Error('Low surrogate without preceding high surrogate')
@@ -116,28 +122,33 @@ alias:
     return false
   }
 
-  if (cl) {
-    reg = '^(' + _pregQuote(_getWholeChar(charlist, 0))
-    for (i = 1; i < cl; i++) {
-      if ((chr = _getWholeChar(charlist, i)) === false) {
+  if (cl && typeof charlist === 'string') {
+    const firstChar = _getWholeChar(charlist, 0)
+    let pattern = '^(' + _pregQuote(firstChar === false ? '' : firstChar)
+    for (let i = 1; i < cl; i++) {
+      const wholeChar = _getWholeChar(charlist, i)
+      if (wholeChar === false) {
         continue
       }
-      reg += '|' + _pregQuote(chr)
+      chr = wholeChar
+      pattern += '|' + _pregQuote(chr)
     }
-    reg += ')$'
-    reg = new RegExp(reg)
+    pattern += ')$'
+    reg = new RegExp(pattern)
   }
 
-  for (i = 0; i < len; i++) {
-    if ((c = _getWholeChar(str, i)) === false) {
+  for (let i = 0; i < len; i++) {
+    const wholeChar = _getWholeChar(str, i)
+    if (wholeChar === false) {
       continue
     }
+    c = wholeChar
     // No hyphen at beginning or end unless allowed in charlist (or locale)
     // No apostrophe at beginning unless allowed in charlist (or locale)
     // @todo: Make this more readable
     match =
       ctypeAlpha(c) ||
-      (reg && c.search(reg) !== -1) ||
+      (reg !== null && c.search(reg) !== -1) ||
       (i !== 0 && i !== len - 1 && c === '-') ||
       (i !== 0 && c === "'")
     if (match) {
@@ -168,3 +179,1751 @@ alias:
   throw new Error('You have supplied an incorrect format')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { ctype_alpha as ctypeAlpha } from '../ctype/ctype_alpha.ts'
+
+export function str_word_count(str, format, charlist) {
+  //  discuss at: https://locutus.io/php/str_word_count/
+  // original by: Ole Vrijenhoek
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Bug?
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1)
+  //   returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
+  //   example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2)
+  //   returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
+  //   example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73')
+  //   returns 3: ['Hello', 'fri3nd', "you're", 'looking', 'good', 'today']
+  //   example 4: str_word_count('hey', 2)
+  //   returns 4: {0: 'hey'}
+
+  const len = str.length
+  const cl = charlist?.length ?? 0
+  let chr = ''
+  let tmpStr = ''
+  let c = ''
+  const wArr = []
+  let wC = 0
+  const assoc = {}
+  let aC = 0
+  let reg = null
+  let match = false
+
+  const _pregQuote = function (value) {
+    return (value + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
+  }
+  const _getWholeChar = function (value, index) {
+    // Use for rare cases of non-BMP characters
+    const code = value.charCodeAt(index)
+    if (code < 0xd800 || code > 0xdfff) {
+      return value.charAt(index)
+    }
+    if (code >= 0xd800 && code <= 0xdbff) {
+      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single
+      // characters)
+      if (value.length <= index + 1) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      const next = value.charCodeAt(index + 1)
+      if (next < 0xdc00 || next > 0xdfff) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      return value.charAt(index) + value.charAt(index + 1)
+    }
+    // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
+    if (index === 0) {
+      throw new Error('Low surrogate without preceding high surrogate')
+    }
+    const prev = value.charCodeAt(index - 1)
+    if (prev < 0xd800 || prev > 0xdbff) {
+      // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+      throw new Error('Low surrogate without preceding high surrogate')
+    }
+    // We can pass over low surrogates now as the second component in a pair which we have already
+    // processed
+    return false
+  }
+
+  if (cl && typeof charlist === 'string') {
+    const firstChar = _getWholeChar(charlist, 0)
+    let pattern = '^(' + _pregQuote(firstChar === false ? '' : firstChar)
+    for (let i = 1; i < cl; i++) {
+      const wholeChar = _getWholeChar(charlist, i)
+      if (wholeChar === false) {
+        continue
+      }
+      chr = wholeChar
+      pattern += '|' + _pregQuote(chr)
+    }
+    pattern += ')$'
+    reg = new RegExp(pattern)
+  }
+
+  for (let i = 0; i < len; i++) {
+    const wholeChar = _getWholeChar(str, i)
+    if (wholeChar === false) {
+      continue
+    }
+    c = wholeChar
+    // No hyphen at beginning or end unless allowed in charlist (or locale)
+    // No apostrophe at beginning unless allowed in charlist (or locale)
+    // @todo: Make this more readable
+    match =
+      ctypeAlpha(c) ||
+      (reg !== null && c.search(reg) !== -1) ||
+      (i !== 0 && i !== len - 1 && c === '-') ||
+      (i !== 0 && c === "'")
+    if (match) {
+      if (tmpStr === '' && format === 2) {
+        aC = i
+      }
+      tmpStr = tmpStr + c
+    }
+    if (i === len - 1 || (!match && tmpStr !== '')) {
+      if (format !== 2) {
+        wArr[wArr.length] = tmpStr
+      } else {
+        assoc[aC] = tmpStr
+      }
+      tmpStr = ''
+      wC++
+    }
+  }
+
+  if (!format) {
+    return wC
+  } else if (format === 1) {
+    return wArr
+  } else if (format === 2) {
+    return assoc
+  }
+
+  throw new Error('You have supplied an incorrect format')
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type PhpRuntimeStringKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends string ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+): PhpRuntimeKnownEntryMap[TKey] | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function setPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+  value: PhpRuntimeKnownEntryMap[TKey],
+): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+function getPhpRuntimeString(key: PhpRuntimeStringKey, fallback: string): string
+
+function getPhpRuntimeString(key: string, fallback: string): string
+
+function getPhpRuntimeString(key: string, fallback: string): string {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'string' ? value : fallback
+}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+function getPhpLocaleEntry(category: string): LocaleEntry | undefined {
+  const runtime = ensurePhpRuntimeState()
+  const localeName = runtime.localeCategories[category]
+  if (typeof localeName !== 'string') {
+    return undefined
+  }
+  const localeEntry = runtime.locales[localeName]
+  return isPhpAssocObject(localeEntry) ? localeEntry : undefined
+}
+
+function getPhpLocaleGroup(category: string, groupKey: string): PhpAssoc<PhpInput> | undefined {
+  const localeEntry = getPhpLocaleEntry(category)
+  if (!localeEntry) {
+    return undefined
+  }
+  const group = localeEntry[groupKey]
+  return isPhpAssocObject(group) ? group : undefined
+}
+
+// php/_helpers/_ctypePattern (Locutus helper dependency)
+const defaultCtypePatterns: { [key: string]: RegExp } = {
+  an: /^[A-Za-z\d]+$/g,
+  al: /^[A-Za-z]+$/g,
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
+  ct: /^[\u0000-\u001F\u007F]+$/g,
+  dg: /^[\d]+$/g,
+  gr: /^[\u0021-\u007E]+$/g,
+  lw: /^[a-z]+$/g,
+  pr: /^[\u0020-\u007E]+$/g,
+  pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+  sp: /^[\f\n\r\t\v ]+$/g,
+  up: /^[A-Z]+$/g,
+  xd: /^[A-Fa-f\d]+$/g,
+}
+
+function getCtypePattern(key: string): RegExp | undefined {
+  const ctypeGroup = getPhpLocaleGroup('LC_CTYPE', 'LC_CTYPE')
+  if (!ctypeGroup) {
+    const fallbackPattern = defaultCtypePatterns[key]
+    return fallbackPattern ? new RegExp(fallbackPattern) : undefined
+  }
+
+  const pattern = ctypeGroup[key]
+  if (pattern instanceof RegExp) {
+    return new RegExp(pattern)
+  }
+
+  const fallbackPattern = defaultCtypePatterns[key]
+  return fallbackPattern ? new RegExp(fallbackPattern) : undefined
+}
+
+// php/info/getenv (Locutus dependency module)
+function getenv(varname: string): string | false {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
+    return false
+  }
+
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
+}
+
+// php/strings/setlocale (Locutus dependency module)
+type LocaleDefinition = {
+  LC_COLLATE: (str1: string, str2: string) => number
+  LC_CTYPE: Record<string, RegExp | string>
+  LC_TIME: Record<string, string | string[]>
+  LC_MONETARY: Record<string, string | number | number[]>
+  LC_NUMERIC: Record<string, string | number[]>
+  LC_MESSAGES: Record<string, string>
+  nplurals: (n: number) => number
+}
+
+type LocaleInput = string | string[] | number | null
+
+const hasOwn = Object.prototype.hasOwnProperty
+
+const isLocaleDefinitionMap = (value: PhpInput): value is Record<string, LocaleDefinition> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const isLocaleCategoryMap = (value: PhpInput): value is Record<string, string> =>
+  isPhpAssocObject<PhpInput>(value) &&
+  typeof value.LC_COLLATE === 'string' &&
+  typeof value.LC_CTYPE === 'string' &&
+  typeof value.LC_MONETARY === 'string' &&
+  typeof value.LC_NUMERIC === 'string' &&
+  typeof value.LC_TIME === 'string' &&
+  typeof value.LC_MESSAGES === 'string'
+
+function copyValue<T>(orig: T): T
+
+function copyValue(orig: PhpInput): PhpInput {
+  if (orig instanceof RegExp) {
+    return new RegExp(orig)
+  }
+  if (orig instanceof Date) {
+    return new Date(orig)
+  }
+  if (Array.isArray(orig)) {
+    return orig.map((item) => copyValue(item))
+  }
+  if (orig !== null && typeof orig === 'object') {
+    const newObj: PhpAssoc<PhpInput> = {}
+    for (const [key, value] of Object.entries(orig)) {
+      if (!hasOwn.call(orig, key)) {
+        continue
+      }
+      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
+    }
+    return newObj
+  }
+  return orig
+}
+
+function setlocale(category: string, locale: LocaleInput): string | false {
+  //  discuss at: https://locutus.io/php/setlocale/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
+  // original by: YUI Library (https://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
+  //      note 1: Is extensible, but currently only implements locales en,
+  //      note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
+  //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
+  //      note 1: Uses global: locutus to store locale info
+  //      note 1: Consider using https://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 2: This function tries to establish the locale via the `window` global.
+  //      note 2: This feature will not work in Node and hence is Browser-only
+  //   example 1: setlocale('LC_ALL', 'en_US')
+  //   returns 1: 'en_US'
+
+  let categ = ''
+  const cats: string[] = []
+  let i = 0
+
+  // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
+  // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+  // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
+  // categories noted with "MDC" below, though not sure of whether there is a convention for the
+  // relative order of these newer groups as far as ngettext) The function name indicates the number
+  // of plural forms (nplural) Need to look into https://cldr.unicode.org/ (maybe future JavaScript);
+  // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
+  // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
+  // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+
+  // var _nplurals1 = function (n) {
+  //   // e.g., Japanese
+  //   return 0
+  // }
+  const _nplurals2a = function (n: number) {
+    // e.g., English
+    return n !== 1 ? 1 : 0
+  }
+  const _nplurals2b = function (n: number) {
+    // e.g., French
+    return n > 1 ? 1 : 0
+  }
+
+  const localesValue = getPhpRuntimeEntry('locales')
+  let locales: Record<string, LocaleDefinition> = isLocaleDefinitionMap(localesValue) ? localesValue : {}
+  if (localesValue !== locales) {
+    setPhpRuntimeEntry('locales', locales)
+  }
+
+  // Reconcile Windows vs. *nix locale names?
+  // Allow different priority orders of languages, esp. if implement gettext as in
+  // LANGUAGE env. var.? (e.g., show German if French is not available)
+  if (!locales.fr_CA?.LC_TIME?.x) {
+    // Can add to the locales
+    locales = {}
+    setPhpRuntimeEntry('locales', locales)
+
+    locales.en = {
+      LC_COLLATE: function (str1, str2) {
+        // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
+        // since its locale is not settable
+        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
+      },
+      LC_CTYPE: {
+        // Need to change any of these for English as opposed to C?
+        an: /^[A-Za-z\d]+$/g,
+        al: /^[A-Za-z]+$/g,
+        // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
+        ct: /^[\u0000-\u001F\u007F]+$/g,
+        dg: /^[\d]+$/g,
+        gr: /^[\u0021-\u007E]+$/g,
+        lw: /^[a-z]+$/g,
+        pr: /^[\u0020-\u007E]+$/g,
+        pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+        sp: /^[\f\n\r\t\v ]+$/g,
+        up: /^[A-Z]+$/g,
+        xd: /^[A-Fa-f\d]+$/g,
+        CODESET: 'UTF-8',
+        // Used by sql_regcase
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      },
+      LC_TIME: {
+        // Comments include nl_langinfo() constant equivalents and any
+        // changes from Blues' implementation
+        a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        // ABDAY_
+        A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        // DAY_
+        b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        // ABMON_
+        B: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ],
+        // MON_
+        c: '%a %d %b %Y %r %Z',
+        // D_T_FMT // changed %T to %r per results
+        p: ['AM', 'PM'],
+        // AM_STR/PM_STR
+        P: ['am', 'pm'],
+        // Not available in nl_langinfo()
+        r: '%I:%M:%S %p',
+        // T_FMT_AMPM (Fixed for all locales)
+        x: '%m/%d/%Y',
+        // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
+        X: '%r',
+        // T_FMT // changed from %T to %r  (%T is default for C, not English US)
+        // Following are from nl_langinfo() or https://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
+        alt_digits: '',
+        // e.g., ordinal
+        ERA: '',
+        ERA_YEAR: '',
+        ERA_D_T_FMT: '',
+        ERA_D_FMT: '',
+        ERA_T_FMT: '',
+      },
+      // Assuming distinction between numeric and monetary is thus:
+      // See below for C locale
+      LC_MONETARY: {
+        // based on Windows "english" (English_United States.1252) locale
+        int_curr_symbol: 'USD',
+        currency_symbol: '$',
+        mon_decimal_point: '.',
+        mon_thousands_sep: ',',
+        mon_grouping: [3],
+        // use mon_thousands_sep; "" for no grouping; additional array members
+        // indicate successive group lengths after first group
+        // (e.g., if to be 1,23,456, could be [3, 2])
+        positive_sign: '',
+        negative_sign: '-',
+        int_frac_digits: 2,
+        // Fractional digits only for money defaults?
+        frac_digits: 2,
+        p_cs_precedes: 1,
+        // positive currency symbol follows value = 0; precedes value = 1
+        p_sep_by_space: 0,
+        // 0: no space between curr. symbol and value; 1: space sep. them unless symb.
+        // and sign are adjacent then space sep. them from value; 2: space sep. sign
+        // and value unless symb. and sign are adjacent then space separates
+        n_cs_precedes: 1,
+        // see p_cs_precedes
+        n_sep_by_space: 0,
+        // see p_sep_by_space
+        p_sign_posn: 3,
+        // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them;
+        // 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed.
+        // succeeds curr. symbol
+        n_sign_posn: 0, // see p_sign_posn
+      },
+      LC_NUMERIC: {
+        // based on Windows "english" (English_United States.1252) locale
+        decimal_point: '.',
+        thousands_sep: ',',
+        grouping: [3], // see mon_grouping, but for non-monetary values (use thousands_sep)
+      },
+      LC_MESSAGES: {
+        YESEXPR: '^[yY].*',
+        NOEXPR: '^[nN].*',
+        YESSTR: '',
+        NOSTR: '',
+      },
+      nplurals: _nplurals2a,
+    }
+    locales.en_US = copyValue(locales.en)
+    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
+    locales.en_US.LC_TIME.x = '%D'
+    locales.en_US.LC_TIME.X = '%r'
+    // The following are based on *nix settings
+    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
+    locales.en_US.LC_MONETARY.p_sign_posn = 1
+    locales.en_US.LC_MONETARY.n_sign_posn = 1
+    locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
+    locales.en_US.LC_NUMERIC.thousands_sep = ''
+    locales.en_US.LC_NUMERIC.grouping = []
+
+    locales.en_GB = copyValue(locales.en)
+    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+
+    locales.en_AU = copyValue(locales.en_GB)
+    // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+    locales.C = copyValue(locales.en)
+    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
+    locales.C.LC_MONETARY = {
+      int_curr_symbol: '',
+      currency_symbol: '',
+      mon_decimal_point: '',
+      mon_thousands_sep: '',
+      mon_grouping: [],
+      p_cs_precedes: 127,
+      p_sep_by_space: 127,
+      n_cs_precedes: 127,
+      n_sep_by_space: 127,
+      p_sign_posn: 127,
+      n_sign_posn: 127,
+      positive_sign: '',
+      negative_sign: '',
+      int_frac_digits: 127,
+      frac_digits: 127,
+    }
+    locales.C.LC_NUMERIC = {
+      decimal_point: '.',
+      thousands_sep: '',
+      grouping: [],
+    }
+    // D_T_FMT
+    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
+    // D_FMT
+    locales.C.LC_TIME.x = '%m/%d/%y'
+    // T_FMT
+    locales.C.LC_TIME.X = '%H:%M:%S'
+    locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
+    locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+
+    locales.fr = copyValue(locales.en)
+    locales.fr.nplurals = _nplurals2b
+    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
+    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+    locales.fr.LC_TIME.b = [
+      'jan',
+      'f\u00E9v',
+      'mar',
+      'avr',
+      'mai',
+      'jun',
+      'jui',
+      'ao\u00FB',
+      'sep',
+      'oct',
+      'nov',
+      'd\u00E9c',
+    ]
+    locales.fr.LC_TIME.B = [
+      'janvier',
+      'f\u00E9vrier',
+      'mars',
+      'avril',
+      'mai',
+      'juin',
+      'juillet',
+      'ao\u00FBt',
+      'septembre',
+      'octobre',
+      'novembre',
+      'd\u00E9cembre',
+    ]
+    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
+    locales.fr.LC_TIME.p = ['', '']
+    locales.fr.LC_TIME.P = ['', '']
+    locales.fr.LC_TIME.x = '%d.%m.%Y'
+    locales.fr.LC_TIME.X = '%T'
+
+    locales.fr_CA = copyValue(locales.fr)
+    locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
+  }
+  let currentLocale = getPhpRuntimeString('locale', '')
+  if (!currentLocale) {
+    currentLocale = 'en_US'
+    // Try to establish the locale via the `window` global
+    if (typeof window !== 'undefined' && window.document) {
+      const d = window.document
+      const NS_XHTML = 'https://www.w3.org/1999/xhtml'
+      const NS_XML = 'https://www.w3.org/XML/1998/namespace'
+      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined
+      if (htmlNsElement) {
+        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang')
+        if (xmlLang) {
+          currentLocale = xmlLang
+        } else {
+          const htmlLang = htmlNsElement.getAttribute('lang')
+          if (htmlLang) {
+            currentLocale = htmlLang
+          }
+        }
+      } else {
+        const htmlElement = d.getElementsByTagName('html')[0]
+        const htmlLang = htmlElement?.getAttribute('lang')
+        if (htmlLang) {
+          currentLocale = htmlLang
+        }
+      }
+    }
+  }
+  // PHP-style
+  currentLocale = currentLocale.replace('-', '_')
+  // @todo: locale if declared locale hasn't been defined
+  if (!(currentLocale in locales)) {
+    const languageLocale = currentLocale.replace(/_[a-zA-Z]+$/, '')
+    if (languageLocale in locales) {
+      currentLocale = languageLocale
+    }
+  }
+  setPhpRuntimeEntry('locale', currentLocale)
+
+  const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
+  const localeCategories: Record<string, string> = isLocaleCategoryMap(localeCategoriesValue)
+    ? localeCategoriesValue
+    : {
+        LC_COLLATE: currentLocale,
+        // for string comparison, see strcoll()
+        LC_CTYPE: currentLocale,
+        // for character classification and conversion, for example strtoupper()
+        LC_MONETARY: currentLocale,
+        // for localeconv()
+        LC_NUMERIC: currentLocale,
+        // for decimal separator (See also localeconv())
+        LC_TIME: currentLocale,
+        // for date and time formatting with strftime()
+        // for system responses (available if PHP was compiled with libintl):
+        LC_MESSAGES: currentLocale,
+      }
+  if (localeCategoriesValue !== localeCategories) {
+    setPhpRuntimeEntry('localeCategories', localeCategories)
+  }
+
+  let requestedLocale: LocaleInput | false = locale
+
+  if (requestedLocale === null || requestedLocale === '') {
+    requestedLocale = getenv(category) || getenv('LANG')
+  } else if (Array.isArray(requestedLocale)) {
+    for (i = 0; i < requestedLocale.length; i++) {
+      const candidate = requestedLocale[i]
+      if (typeof candidate !== 'string') {
+        if (i === requestedLocale.length - 1) {
+          return false
+        }
+        continue
+      }
+      if (!(candidate in locales)) {
+        if (i === requestedLocale.length - 1) {
+          // none found
+          return false
+        }
+        continue
+      }
+      requestedLocale = candidate
+      break
+    }
+  }
+
+  // Just get the locale
+  if (requestedLocale === '0' || requestedLocale === 0) {
+    if (category === 'LC_ALL') {
+      for (categ in localeCategories) {
+        if (!hasOwn.call(localeCategories, categ)) {
+          continue
+        }
+        // Add ".UTF-8" or allow ".@latint", etc. to the end?
+        cats.push(categ + '=' + localeCategories[categ])
+      }
+      return cats.join(';')
+    }
+    return localeCategories[category] ?? false
+  }
+
+  if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
+    // Locale not found
+    return false
+  }
+
+  // Set and get locale
+  if (category === 'LC_ALL') {
+    for (categ in localeCategories) {
+      if (!hasOwn.call(localeCategories, categ)) {
+        continue
+      }
+      localeCategories[categ] = requestedLocale
+    }
+  } else {
+    localeCategories[category] = requestedLocale
+  }
+
+  return requestedLocale
+}
+
+// php/ctype/ctype_alpha (Locutus dependency module)
+function ctype_alpha(text: string): boolean {
+  //      discuss at: https://locutus.io/php/ctype_alpha/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: ctype_alpha('Az')
+  //       returns 1: true
+
+  if (typeof text !== 'string') {
+    return false
+  }
+  setlocale('LC_ALL', 0)
+
+  const pattern = getCtypePattern('al')
+  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+}
+
+// php/strings/str_word_count (target function module)
+const ctypeAlpha = ctype_alpha;
+
+function str_word_count(
+  str: string,
+  format?: 0 | 1 | 2,
+  charlist?: string,
+): number | string[] | { [key: number]: string } {
+  //  discuss at: https://locutus.io/php/str_word_count/
+  // original by: Ole Vrijenhoek
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Bug?
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1)
+  //   returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
+  //   example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2)
+  //   returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
+  //   example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73')
+  //   returns 3: ['Hello', 'fri3nd', "you're", 'looking', 'good', 'today']
+  //   example 4: str_word_count('hey', 2)
+  //   returns 4: {0: 'hey'}
+
+  const len = str.length
+  const cl = charlist?.length ?? 0
+  let chr = ''
+  let tmpStr = ''
+  let c = ''
+  const wArr: string[] = []
+  let wC = 0
+  const assoc: { [key: number]: string } = {}
+  let aC = 0
+  let reg: RegExp | null = null
+  let match = false
+
+  const _pregQuote = function (value: string): string {
+    return (value + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
+  }
+  const _getWholeChar = function (value: string, index: number): string | false {
+    // Use for rare cases of non-BMP characters
+    const code = value.charCodeAt(index)
+    if (code < 0xd800 || code > 0xdfff) {
+      return value.charAt(index)
+    }
+    if (code >= 0xd800 && code <= 0xdbff) {
+      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single
+      // characters)
+      if (value.length <= index + 1) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      const next = value.charCodeAt(index + 1)
+      if (next < 0xdc00 || next > 0xdfff) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      return value.charAt(index) + value.charAt(index + 1)
+    }
+    // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
+    if (index === 0) {
+      throw new Error('Low surrogate without preceding high surrogate')
+    }
+    const prev = value.charCodeAt(index - 1)
+    if (prev < 0xd800 || prev > 0xdbff) {
+      // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+      throw new Error('Low surrogate without preceding high surrogate')
+    }
+    // We can pass over low surrogates now as the second component in a pair which we have already
+    // processed
+    return false
+  }
+
+  if (cl && typeof charlist === 'string') {
+    const firstChar = _getWholeChar(charlist, 0)
+    let pattern = '^(' + _pregQuote(firstChar === false ? '' : firstChar)
+    for (let i = 1; i < cl; i++) {
+      const wholeChar = _getWholeChar(charlist, i)
+      if (wholeChar === false) {
+        continue
+      }
+      chr = wholeChar
+      pattern += '|' + _pregQuote(chr)
+    }
+    pattern += ')$'
+    reg = new RegExp(pattern)
+  }
+
+  for (let i = 0; i < len; i++) {
+    const wholeChar = _getWholeChar(str, i)
+    if (wholeChar === false) {
+      continue
+    }
+    c = wholeChar
+    // No hyphen at beginning or end unless allowed in charlist (or locale)
+    // No apostrophe at beginning unless allowed in charlist (or locale)
+    // @todo: Make this more readable
+    match =
+      ctypeAlpha(c) ||
+      (reg !== null && c.search(reg) !== -1) ||
+      (i !== 0 && i !== len - 1 && c === '-') ||
+      (i !== 0 && c === "'")
+    if (match) {
+      if (tmpStr === '' && format === 2) {
+        aC = i
+      }
+      tmpStr = tmpStr + c
+    }
+    if (i === len - 1 || (!match && tmpStr !== '')) {
+      if (format !== 2) {
+        wArr[wArr.length] = tmpStr
+      } else {
+        assoc[aC] = tmpStr
+      }
+      tmpStr = ''
+      wC++
+    }
+  }
+
+  if (!format) {
+    return wC
+  } else if (format === 1) {
+    return wArr
+  } else if (format === 2) {
+    return assoc
+  }
+
+  throw new Error('You have supplied an incorrect format')
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !Array.isArray(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState() {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpRuntimeEntry(key) {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function setPhpRuntimeEntry(key, value) {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+function getPhpRuntimeString(key, fallback) {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'string' ? value : fallback
+}
+
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+function getPhpLocaleEntry(category) {
+  const runtime = ensurePhpRuntimeState()
+  const localeName = runtime.localeCategories[category]
+  if (typeof localeName !== 'string') {
+    return undefined
+  }
+  const localeEntry = runtime.locales[localeName]
+  return isPhpAssocObject(localeEntry) ? localeEntry : undefined
+}
+
+function getPhpLocaleGroup(category, groupKey) {
+  const localeEntry = getPhpLocaleEntry(category)
+  if (!localeEntry) {
+    return undefined
+  }
+  const group = localeEntry[groupKey]
+  return isPhpAssocObject(group) ? group : undefined
+}
+
+// php/_helpers/_ctypePattern (Locutus helper dependency)
+const defaultCtypePatterns = {
+  an: /^[A-Za-z\d]+$/g,
+  al: /^[A-Za-z]+$/g,
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
+  ct: /^[\u0000-\u001F\u007F]+$/g,
+  dg: /^[\d]+$/g,
+  gr: /^[\u0021-\u007E]+$/g,
+  lw: /^[a-z]+$/g,
+  pr: /^[\u0020-\u007E]+$/g,
+  pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+  sp: /^[\f\n\r\t\v ]+$/g,
+  up: /^[A-Z]+$/g,
+  xd: /^[A-Fa-f\d]+$/g,
+}
+
+function getCtypePattern(key) {
+  const ctypeGroup = getPhpLocaleGroup('LC_CTYPE', 'LC_CTYPE')
+  if (!ctypeGroup) {
+    const fallbackPattern = defaultCtypePatterns[key]
+    return fallbackPattern ? new RegExp(fallbackPattern) : undefined
+  }
+
+  const pattern = ctypeGroup[key]
+  if (pattern instanceof RegExp) {
+    return new RegExp(pattern)
+  }
+
+  const fallbackPattern = defaultCtypePatterns[key]
+  return fallbackPattern ? new RegExp(fallbackPattern) : undefined
+}
+
+// php/info/getenv (Locutus dependency module)
+function getenv(varname) {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
+    return false
+  }
+
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
+}
+
+// php/strings/setlocale (Locutus dependency module)
+const hasOwn = Object.prototype.hasOwnProperty
+
+const isLocaleDefinitionMap = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const isLocaleCategoryMap = (value) =>
+  isPhpAssocObject(value) &&
+  typeof value.LC_COLLATE === 'string' &&
+  typeof value.LC_CTYPE === 'string' &&
+  typeof value.LC_MONETARY === 'string' &&
+  typeof value.LC_NUMERIC === 'string' &&
+  typeof value.LC_TIME === 'string' &&
+  typeof value.LC_MESSAGES === 'string'
+
+function copyValue(orig) {
+  if (orig instanceof RegExp) {
+    return new RegExp(orig)
+  }
+  if (orig instanceof Date) {
+    return new Date(orig)
+  }
+  if (Array.isArray(orig)) {
+    return orig.map((item) => copyValue(item))
+  }
+  if (orig !== null && typeof orig === 'object') {
+    const newObj = {}
+    for (const [key, value] of Object.entries(orig)) {
+      if (!hasOwn.call(orig, key)) {
+        continue
+      }
+      newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
+    }
+    return newObj
+  }
+  return orig
+}
+
+function setlocale(category, locale) {
+  //  discuss at: https://locutus.io/php/setlocale/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // original by: Blues (https://hacks.bluesmoon.info/strftime/strftime.js)
+  // original by: YUI Library (https://developer.yahoo.com/yui/docs/YAHOO.util.DateLocale.html)
+  //      note 1: Is extensible, but currently only implements locales en,
+  //      note 1: en_US, en_GB, en_AU, fr, and fr_CA for LC_TIME only; C for LC_CTYPE;
+  //      note 1: C and en for LC_MONETARY/LC_NUMERIC; en for LC_COLLATE
+  //      note 1: Uses global: locutus to store locale info
+  //      note 1: Consider using https://demo.icu-project.org/icu-bin/locexp as basis for localization (as in i18n_loc_set_default())
+  //      note 2: This function tries to establish the locale via the `window` global.
+  //      note 2: This feature will not work in Node and hence is Browser-only
+  //   example 1: setlocale('LC_ALL', 'en_US')
+  //   returns 1: 'en_US'
+
+  let categ = ''
+  const cats = []
+  let i = 0
+
+  // Function usable by a ngettext implementation (apparently not an accessible part of setlocale(),
+  // but locale-specific) See https://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+  // though amended with others from https://developer.mozilla.org/En/Localization_and_Plurals (new
+  // categories noted with "MDC" below, though not sure of whether there is a convention for the
+  // relative order of these newer groups as far as ngettext) The function name indicates the number
+  // of plural forms (nplural) Need to look into https://cldr.unicode.org/ (maybe future JavaScript);
+  // Dojo has some functions (under new BSD), including JSON conversions of LDML XML from CLDR:
+  // https://bugs.dojotoolkit.org/browser/dojo/trunk/cldr and docs at
+  // https://api.dojotoolkit.org/jsdoc/HEAD/dojo.cldr
+
+  // var _nplurals1 = function (n) {
+  //   // e.g., Japanese
+  //   return 0
+  // }
+  const _nplurals2a = function (n) {
+    // e.g., English
+    return n !== 1 ? 1 : 0
+  }
+  const _nplurals2b = function (n) {
+    // e.g., French
+    return n > 1 ? 1 : 0
+  }
+
+  const localesValue = getPhpRuntimeEntry('locales')
+  let locales = isLocaleDefinitionMap(localesValue) ? localesValue : {}
+  if (localesValue !== locales) {
+    setPhpRuntimeEntry('locales', locales)
+  }
+
+  // Reconcile Windows vs. *nix locale names?
+  // Allow different priority orders of languages, esp. if implement gettext as in
+  // LANGUAGE env. var.? (e.g., show German if French is not available)
+  if (!locales.fr_CA?.LC_TIME?.x) {
+    // Can add to the locales
+    locales = {}
+    setPhpRuntimeEntry('locales', locales)
+
+    locales.en = {
+      LC_COLLATE: function (str1, str2) {
+        // @todo: This one taken from strcmp, but need for other locales; we don't use localeCompare
+        // since its locale is not settable
+        return str1 === str2 ? 0 : str1 > str2 ? 1 : -1
+      },
+      LC_CTYPE: {
+        // Need to change any of these for English as opposed to C?
+        an: /^[A-Za-z\d]+$/g,
+        al: /^[A-Za-z]+$/g,
+        // biome-ignore lint/suspicious/noControlCharactersInRegex: intentional for LC_CTYPE control character class
+        ct: /^[\u0000-\u001F\u007F]+$/g,
+        dg: /^[\d]+$/g,
+        gr: /^[\u0021-\u007E]+$/g,
+        lw: /^[a-z]+$/g,
+        pr: /^[\u0020-\u007E]+$/g,
+        pu: /^[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+$/g,
+        sp: /^[\f\n\r\t\v ]+$/g,
+        up: /^[A-Z]+$/g,
+        xd: /^[A-Fa-f\d]+$/g,
+        CODESET: 'UTF-8',
+        // Used by sql_regcase
+        lower: 'abcdefghijklmnopqrstuvwxyz',
+        upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      },
+      LC_TIME: {
+        // Comments include nl_langinfo() constant equivalents and any
+        // changes from Blues' implementation
+        a: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        // ABDAY_
+        A: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        // DAY_
+        b: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        // ABMON_
+        B: [
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December',
+        ],
+        // MON_
+        c: '%a %d %b %Y %r %Z',
+        // D_T_FMT // changed %T to %r per results
+        p: ['AM', 'PM'],
+        // AM_STR/PM_STR
+        P: ['am', 'pm'],
+        // Not available in nl_langinfo()
+        r: '%I:%M:%S %p',
+        // T_FMT_AMPM (Fixed for all locales)
+        x: '%m/%d/%Y',
+        // D_FMT // switched order of %m and %d; changed %y to %Y (C uses %y)
+        X: '%r',
+        // T_FMT // changed from %T to %r  (%T is default for C, not English US)
+        // Following are from nl_langinfo() or https://www.cptec.inpe.br/sx4/sx4man2/g1ab02e/strftime.4.html
+        alt_digits: '',
+        // e.g., ordinal
+        ERA: '',
+        ERA_YEAR: '',
+        ERA_D_T_FMT: '',
+        ERA_D_FMT: '',
+        ERA_T_FMT: '',
+      },
+      // Assuming distinction between numeric and monetary is thus:
+      // See below for C locale
+      LC_MONETARY: {
+        // based on Windows "english" (English_United States.1252) locale
+        int_curr_symbol: 'USD',
+        currency_symbol: '$',
+        mon_decimal_point: '.',
+        mon_thousands_sep: ',',
+        mon_grouping: [3],
+        // use mon_thousands_sep; "" for no grouping; additional array members
+        // indicate successive group lengths after first group
+        // (e.g., if to be 1,23,456, could be [3, 2])
+        positive_sign: '',
+        negative_sign: '-',
+        int_frac_digits: 2,
+        // Fractional digits only for money defaults?
+        frac_digits: 2,
+        p_cs_precedes: 1,
+        // positive currency symbol follows value = 0; precedes value = 1
+        p_sep_by_space: 0,
+        // 0: no space between curr. symbol and value; 1: space sep. them unless symb.
+        // and sign are adjacent then space sep. them from value; 2: space sep. sign
+        // and value unless symb. and sign are adjacent then space separates
+        n_cs_precedes: 1,
+        // see p_cs_precedes
+        n_sep_by_space: 0,
+        // see p_sep_by_space
+        p_sign_posn: 3,
+        // 0: parentheses surround quantity and curr. symbol; 1: sign precedes them;
+        // 2: sign follows them; 3: sign immed. precedes curr. symbol; 4: sign immed.
+        // succeeds curr. symbol
+        n_sign_posn: 0, // see p_sign_posn
+      },
+      LC_NUMERIC: {
+        // based on Windows "english" (English_United States.1252) locale
+        decimal_point: '.',
+        thousands_sep: ',',
+        grouping: [3], // see mon_grouping, but for non-monetary values (use thousands_sep)
+      },
+      LC_MESSAGES: {
+        YESEXPR: '^[yY].*',
+        NOEXPR: '^[nN].*',
+        YESSTR: '',
+        NOSTR: '',
+      },
+      nplurals: _nplurals2a,
+    }
+    locales.en_US = copyValue(locales.en)
+    locales.en_US.LC_TIME.c = '%a %d %b %Y %r %Z'
+    locales.en_US.LC_TIME.x = '%D'
+    locales.en_US.LC_TIME.X = '%r'
+    // The following are based on *nix settings
+    locales.en_US.LC_MONETARY.int_curr_symbol = 'USD '
+    locales.en_US.LC_MONETARY.p_sign_posn = 1
+    locales.en_US.LC_MONETARY.n_sign_posn = 1
+    locales.en_US.LC_MONETARY.mon_grouping = [3, 3]
+    locales.en_US.LC_NUMERIC.thousands_sep = ''
+    locales.en_US.LC_NUMERIC.grouping = []
+
+    locales.en_GB = copyValue(locales.en)
+    locales.en_GB.LC_TIME.r = '%l:%M:%S %P %Z'
+
+    locales.en_AU = copyValue(locales.en_GB)
+    // Assume C locale is like English (?) (We need C locale for LC_CTYPE)
+    locales.C = copyValue(locales.en)
+    locales.C.LC_CTYPE.CODESET = 'ANSI_X3.4-1968'
+    locales.C.LC_MONETARY = {
+      int_curr_symbol: '',
+      currency_symbol: '',
+      mon_decimal_point: '',
+      mon_thousands_sep: '',
+      mon_grouping: [],
+      p_cs_precedes: 127,
+      p_sep_by_space: 127,
+      n_cs_precedes: 127,
+      n_sep_by_space: 127,
+      p_sign_posn: 127,
+      n_sign_posn: 127,
+      positive_sign: '',
+      negative_sign: '',
+      int_frac_digits: 127,
+      frac_digits: 127,
+    }
+    locales.C.LC_NUMERIC = {
+      decimal_point: '.',
+      thousands_sep: '',
+      grouping: [],
+    }
+    // D_T_FMT
+    locales.C.LC_TIME.c = '%a %b %e %H:%M:%S %Y'
+    // D_FMT
+    locales.C.LC_TIME.x = '%m/%d/%y'
+    // T_FMT
+    locales.C.LC_TIME.X = '%H:%M:%S'
+    locales.C.LC_MESSAGES.YESEXPR = '^[yY]'
+    locales.C.LC_MESSAGES.NOEXPR = '^[nN]'
+
+    locales.fr = copyValue(locales.en)
+    locales.fr.nplurals = _nplurals2b
+    locales.fr.LC_TIME.a = ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']
+    locales.fr.LC_TIME.A = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+    locales.fr.LC_TIME.b = [
+      'jan',
+      'f\u00E9v',
+      'mar',
+      'avr',
+      'mai',
+      'jun',
+      'jui',
+      'ao\u00FB',
+      'sep',
+      'oct',
+      'nov',
+      'd\u00E9c',
+    ]
+    locales.fr.LC_TIME.B = [
+      'janvier',
+      'f\u00E9vrier',
+      'mars',
+      'avril',
+      'mai',
+      'juin',
+      'juillet',
+      'ao\u00FBt',
+      'septembre',
+      'octobre',
+      'novembre',
+      'd\u00E9cembre',
+    ]
+    locales.fr.LC_TIME.c = '%a %d %b %Y %T %Z'
+    locales.fr.LC_TIME.p = ['', '']
+    locales.fr.LC_TIME.P = ['', '']
+    locales.fr.LC_TIME.x = '%d.%m.%Y'
+    locales.fr.LC_TIME.X = '%T'
+
+    locales.fr_CA = copyValue(locales.fr)
+    locales.fr_CA.LC_TIME.x = '%Y-%m-%d'
+  }
+  let currentLocale = getPhpRuntimeString('locale', '')
+  if (!currentLocale) {
+    currentLocale = 'en_US'
+    // Try to establish the locale via the `window` global
+    if (typeof window !== 'undefined' && window.document) {
+      const d = window.document
+      const NS_XHTML = 'https://www.w3.org/1999/xhtml'
+      const NS_XML = 'https://www.w3.org/XML/1998/namespace'
+      const htmlNsElement = d.getElementsByTagNameNS ? d.getElementsByTagNameNS(NS_XHTML, 'html')[0] : undefined
+      if (htmlNsElement) {
+        const xmlLang = htmlNsElement.getAttributeNS(NS_XML, 'lang')
+        if (xmlLang) {
+          currentLocale = xmlLang
+        } else {
+          const htmlLang = htmlNsElement.getAttribute('lang')
+          if (htmlLang) {
+            currentLocale = htmlLang
+          }
+        }
+      } else {
+        const htmlElement = d.getElementsByTagName('html')[0]
+        const htmlLang = htmlElement?.getAttribute('lang')
+        if (htmlLang) {
+          currentLocale = htmlLang
+        }
+      }
+    }
+  }
+  // PHP-style
+  currentLocale = currentLocale.replace('-', '_')
+  // @todo: locale if declared locale hasn't been defined
+  if (!(currentLocale in locales)) {
+    const languageLocale = currentLocale.replace(/_[a-zA-Z]+$/, '')
+    if (languageLocale in locales) {
+      currentLocale = languageLocale
+    }
+  }
+  setPhpRuntimeEntry('locale', currentLocale)
+
+  const localeCategoriesValue = getPhpRuntimeEntry('localeCategories')
+  const localeCategories = isLocaleCategoryMap(localeCategoriesValue)
+    ? localeCategoriesValue
+    : {
+        LC_COLLATE: currentLocale,
+        // for string comparison, see strcoll()
+        LC_CTYPE: currentLocale,
+        // for character classification and conversion, for example strtoupper()
+        LC_MONETARY: currentLocale,
+        // for localeconv()
+        LC_NUMERIC: currentLocale,
+        // for decimal separator (See also localeconv())
+        LC_TIME: currentLocale,
+        // for date and time formatting with strftime()
+        // for system responses (available if PHP was compiled with libintl):
+        LC_MESSAGES: currentLocale,
+      }
+  if (localeCategoriesValue !== localeCategories) {
+    setPhpRuntimeEntry('localeCategories', localeCategories)
+  }
+
+  let requestedLocale = locale
+
+  if (requestedLocale === null || requestedLocale === '') {
+    requestedLocale = getenv(category) || getenv('LANG')
+  } else if (Array.isArray(requestedLocale)) {
+    for (i = 0; i < requestedLocale.length; i++) {
+      const candidate = requestedLocale[i]
+      if (typeof candidate !== 'string') {
+        if (i === requestedLocale.length - 1) {
+          return false
+        }
+        continue
+      }
+      if (!(candidate in locales)) {
+        if (i === requestedLocale.length - 1) {
+          // none found
+          return false
+        }
+        continue
+      }
+      requestedLocale = candidate
+      break
+    }
+  }
+
+  // Just get the locale
+  if (requestedLocale === '0' || requestedLocale === 0) {
+    if (category === 'LC_ALL') {
+      for (categ in localeCategories) {
+        if (!hasOwn.call(localeCategories, categ)) {
+          continue
+        }
+        // Add ".UTF-8" or allow ".@latint", etc. to the end?
+        cats.push(categ + '=' + localeCategories[categ])
+      }
+      return cats.join(';')
+    }
+    return localeCategories[category] ?? false
+  }
+
+  if (typeof requestedLocale !== 'string' || !(requestedLocale in locales)) {
+    // Locale not found
+    return false
+  }
+
+  // Set and get locale
+  if (category === 'LC_ALL') {
+    for (categ in localeCategories) {
+      if (!hasOwn.call(localeCategories, categ)) {
+        continue
+      }
+      localeCategories[categ] = requestedLocale
+    }
+  } else {
+    localeCategories[category] = requestedLocale
+  }
+
+  return requestedLocale
+}
+
+// php/ctype/ctype_alpha (Locutus dependency module)
+function ctype_alpha(text) {
+  //      discuss at: https://locutus.io/php/ctype_alpha/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: ctype_alpha('Az')
+  //       returns 1: true
+
+  if (typeof text !== 'string') {
+    return false
+  }
+  setlocale('LC_ALL', 0)
+
+  const pattern = getCtypePattern('al')
+  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+}
+
+// php/strings/str_word_count (target function module)
+const ctypeAlpha = ctype_alpha
+
+function str_word_count(str, format, charlist) {
+  //  discuss at: https://locutus.io/php/str_word_count/
+  // original by: Ole Vrijenhoek
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Bug?
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1)
+  //   returns 1: ['Hello', 'fri', 'nd', "you're", 'looking', 'good', 'today']
+  //   example 2: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 2)
+  //   returns 2: {0: 'Hello', 6: 'fri', 10: 'nd', 14: "you're", 29: 'looking', 46: 'good', 51: 'today'}
+  //   example 3: str_word_count("Hello fri3nd, you're\r\n       looking          good today!", 1, '\u00e0\u00e1\u00e3\u00e73')
+  //   returns 3: ['Hello', 'fri3nd', "you're", 'looking', 'good', 'today']
+  //   example 4: str_word_count('hey', 2)
+  //   returns 4: {0: 'hey'}
+
+  const len = str.length
+  const cl = charlist?.length ?? 0
+  let chr = ''
+  let tmpStr = ''
+  let c = ''
+  const wArr = []
+  let wC = 0
+  const assoc = {}
+  let aC = 0
+  let reg = null
+  let match = false
+
+  const _pregQuote = function (value) {
+    return (value + '').replace(/([\\.+*?[^\]$(){}=!<>|:])/g, '\\$1')
+  }
+  const _getWholeChar = function (value, index) {
+    // Use for rare cases of non-BMP characters
+    const code = value.charCodeAt(index)
+    if (code < 0xd800 || code > 0xdfff) {
+      return value.charAt(index)
+    }
+    if (code >= 0xd800 && code <= 0xdbff) {
+      // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single
+      // characters)
+      if (value.length <= index + 1) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      const next = value.charCodeAt(index + 1)
+      if (next < 0xdc00 || next > 0xdfff) {
+        throw new Error('High surrogate without following low surrogate')
+      }
+      return value.charAt(index) + value.charAt(index + 1)
+    }
+    // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
+    if (index === 0) {
+      throw new Error('Low surrogate without preceding high surrogate')
+    }
+    const prev = value.charCodeAt(index - 1)
+    if (prev < 0xd800 || prev > 0xdbff) {
+      // (could change last hex to 0xDB7F to treat high private surrogates as single characters)
+      throw new Error('Low surrogate without preceding high surrogate')
+    }
+    // We can pass over low surrogates now as the second component in a pair which we have already
+    // processed
+    return false
+  }
+
+  if (cl && typeof charlist === 'string') {
+    const firstChar = _getWholeChar(charlist, 0)
+    let pattern = '^(' + _pregQuote(firstChar === false ? '' : firstChar)
+    for (let i = 1; i < cl; i++) {
+      const wholeChar = _getWholeChar(charlist, i)
+      if (wholeChar === false) {
+        continue
+      }
+      chr = wholeChar
+      pattern += '|' + _pregQuote(chr)
+    }
+    pattern += ')$'
+    reg = new RegExp(pattern)
+  }
+
+  for (let i = 0; i < len; i++) {
+    const wholeChar = _getWholeChar(str, i)
+    if (wholeChar === false) {
+      continue
+    }
+    c = wholeChar
+    // No hyphen at beginning or end unless allowed in charlist (or locale)
+    // No apostrophe at beginning unless allowed in charlist (or locale)
+    // @todo: Make this more readable
+    match =
+      ctypeAlpha(c) ||
+      (reg !== null && c.search(reg) !== -1) ||
+      (i !== 0 && i !== len - 1 && c === '-') ||
+      (i !== 0 && c === "'")
+    if (match) {
+      if (tmpStr === '' && format === 2) {
+        aC = i
+      }
+      tmpStr = tmpStr + c
+    }
+    if (i === len - 1 || (!match && tmpStr !== '')) {
+      if (format !== 2) {
+        wArr[wArr.length] = tmpStr
+      } else {
+        assoc[aC] = tmpStr
+      }
+      tmpStr = ''
+      wC++
+    }
+  }
+
+  if (!format) {
+    return wC
+  } else if (format === 1) {
+    return wArr
+  } else if (format === 2) {
+    return assoc
+  }
+
+  throw new Error('You have supplied an incorrect format')
+}{% endcodeblock %}
+</div>

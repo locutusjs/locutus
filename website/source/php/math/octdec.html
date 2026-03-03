@@ -11,11 +11,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's octdec in JavaScript
+title: PHP's octdec in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.octdec.php">PHP's octdec</a> looks
   like.
 function: octdec
@@ -28,7 +29,8 @@ alias:
   - /php/octdec/
   - /functions/octdec/
 ---
-{% codeblock lang:javascript %}module.exports = function octdec(octString) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function octdec(octString: string): number {
   //      discuss at: https://locutus.io/php/octdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann
@@ -39,3 +41,16 @@ alias:
   return parseInt(octString, 8)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function octdec(octString) {
+  //      discuss at: https://locutus.io/php/octdec/
+  // parity verified: PHP 8.3
+  //     original by: Philippe Baumann
+  //       example 1: octdec('77')
+  //       returns 1: 63
+
+  octString = (octString + '').replace(/[^0-7]/gi, '')
+  return parseInt(octString, 8)
+}{% endcodeblock %}
+</div>

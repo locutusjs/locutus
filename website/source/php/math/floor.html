@@ -11,11 +11,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's floor in JavaScript
+title: PHP's floor in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.floor.php">PHP's floor</a> looks
   like.
 function: floor
@@ -28,7 +29,8 @@ alias:
   - /php/floor/
   - /functions/floor/
 ---
-{% codeblock lang:javascript %}module.exports = function floor(value) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function floor(value: number): number {
   //      discuss at: https://locutus.io/php/floor/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -38,3 +40,15 @@ alias:
   return Math.floor(value)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function floor(value) {
+  //      discuss at: https://locutus.io/php/floor/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: floor(8723321.4)
+  //       returns 1: 8723321
+
+  return Math.floor(value)
+}{% endcodeblock %}
+</div>

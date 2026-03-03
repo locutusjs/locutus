@@ -15,6 +15,7 @@ returns:
   - 'false'
   - 'false'
 dependencies:
+  - php/_helpers/_phpRuntimeState
   - php/info/ini_get
 authors:
   original by:
@@ -39,11 +40,12 @@ notes:
     in which case only genuine JavaScript arrays
     will return true
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's is_array in JavaScript
+title: PHP's is_array in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.is-array.php">PHP's is_array</a>
   looks like.
 function: is_array
@@ -56,7 +58,120 @@ alias:
   - /php/is_array/
   - /functions/is_array/
 ---
-{% codeblock lang:javascript %}module.exports = function is_array(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+import { ini_get } from '../info/ini_get.ts'
+
+type IsArrayValue = PhpRuntimeValue
+type ArrayLikeAssoc = PhpAssoc<IsArrayValue> & { length: number }
+
+const hasNumericLength = (value: IsArrayValue): value is ArrayLikeAssoc =>
+  value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
+
+export function is_array(mixedVar: IsArrayValue): boolean {
+  //  discuss at: https://locutus.io/php/is_array/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Legaev Andrey
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Nathan Sepulveda
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Cord
+  // bugfixed by: Manish
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: In Locutus, javascript objects are like php associative arrays,
+  //      note 1: thus JavaScript objects will also
+  //      note 1: return true in this function (except for objects which inherit properties,
+  //      note 1: being thus used as objects),
+  //      note 1: unless you do ini_set('locutus.objectsAsArrays', 0),
+  //      note 1: in which case only genuine JavaScript arrays
+  //      note 1: will return true
+  //   example 1: is_array(['Kevin', 'van', 'Zonneveld'])
+  //   returns 1: true
+  //   example 2: is_array('Kevin van Zonneveld')
+  //   returns 2: false
+  //   example 3: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+  //   returns 3: true
+  //   example 4: ini_set('locutus.objectsAsArrays', 0)
+  //   example 4: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+  //   returns 4: false
+  //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
+  //   returns 5: false
+
+  const _getFuncName = function (fn: IsArrayValue): string {
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
+    if (!name) {
+      return '(Anonymous)'
+    }
+    return name[1] ?? '(Anonymous)'
+  }
+  const _isArray = function (mixedVar: IsArrayValue): boolean {
+    // return Array.isArray(mixedVar);
+    // The above works, but let's do the even more stringent approach:
+    // (since Object.prototype.toString could be overridden)
+    // Null, Not an object, no length property so couldn't be an Array (or String)
+    if (!hasNumericLength(mixedVar)) {
+      return false
+    }
+    const candidate = mixedVar
+    const len = candidate.length
+    candidate[candidate.length] = 'bogus'
+    // The only way I can think of to get around this (or where there would be trouble)
+    // would be to have an object defined
+    // with a custom "length" getter which changed behavior on each call
+    // (or a setter to mess up the following below) or a custom
+    // setter for numeric properties, but even that would need to listen for
+    // specific indexes; but there should be no false negatives
+    // and such a false positive would need to rely on later JavaScript
+    // innovations like __defineSetter__
+    if (len !== candidate.length) {
+      // We know it's an array since length auto-changed with the addition of a
+      // numeric property at its length end, so safely get rid of our bogus element
+      candidate.length -= 1
+      return true
+    }
+    // Get rid of the property we added onto a non-array object; only possible
+    // side-effect is if the user adds back the property later, it will iterate
+    // this property in the older order placement in IE (an order which should not
+    // be depended on anyways)
+    delete candidate[candidate.length]
+    return false
+  }
+
+  if (!mixedVar || typeof mixedVar !== 'object') {
+    return false
+  }
+
+  const isArray = _isArray(mixedVar)
+
+  if (isArray) {
+    return true
+  }
+
+  const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
+  if (iniVal === 'on') {
+    const asString = Object.prototype.toString.call(mixedVar)
+    const asFunc = _getFuncName(getPhpObjectEntry(mixedVar, 'constructor'))
+
+    if (asString === '[object Object]' && asFunc === 'Object') {
+      // Most likely a literal and intended as assoc. array
+      return true
+    }
+  }
+
+  return false
+}
+{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import { ini_get } from '../info/ini_get.ts'
+
+const hasNumericLength = (value) =>
+  value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
+
+export function is_array(mixedVar) {
   //  discuss at: https://locutus.io/php/is_array/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -87,22 +202,23 @@ alias:
   //   returns 5: false
 
   const _getFuncName = function (fn) {
-    const name = /\W*function\s+([\w$]+)\s*\(/.exec(fn)
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
     if (!name) {
       return '(Anonymous)'
     }
-    return name[1]
+    return name[1] ?? '(Anonymous)'
   }
   const _isArray = function (mixedVar) {
     // return Array.isArray(mixedVar);
     // The above works, but let's do the even more stringent approach:
     // (since Object.prototype.toString could be overridden)
     // Null, Not an object, no length property so couldn't be an Array (or String)
-    if (!mixedVar || typeof mixedVar !== 'object' || typeof mixedVar.length !== 'number') {
+    if (!hasNumericLength(mixedVar)) {
       return false
     }
-    const len = mixedVar.length
-    mixedVar[mixedVar.length] = 'bogus'
+    const candidate = mixedVar
+    const len = candidate.length
+    candidate[candidate.length] = 'bogus'
     // The only way I can think of to get around this (or where there would be trouble)
     // would be to have an object defined
     // with a custom "length" getter which changed behavior on each call
@@ -111,17 +227,17 @@ alias:
     // specific indexes; but there should be no false negatives
     // and such a false positive would need to rely on later JavaScript
     // innovations like __defineSetter__
-    if (len !== mixedVar.length) {
+    if (len !== candidate.length) {
       // We know it's an array since length auto-changed with the addition of a
       // numeric property at its length end, so safely get rid of our bogus element
-      mixedVar.length -= 1
+      candidate.length -= 1
       return true
     }
     // Get rid of the property we added onto a non-array object; only possible
     // side-effect is if the user adds back the property later, it will iterate
     // this property in the older order placement in IE (an order which should not
     // be depended on anyways)
-    delete mixedVar[mixedVar.length]
+    delete candidate[candidate.length]
     return false
   }
 
@@ -135,11 +251,10 @@ alias:
     return true
   }
 
-  const iniVal =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.objectsAsArrays') : undefined) || 'on'
+  const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
   if (iniVal === 'on') {
     const asString = Object.prototype.toString.call(mixedVar)
-    const asFunc = _getFuncName(mixedVar.constructor)
+    const asFunc = _getFuncName(getPhpObjectEntry(mixedVar, 'constructor'))
 
     if (asString === '[object Object]' && asFunc === 'Object') {
       // Most likely a literal and intended as assoc. array
@@ -148,5 +263,492 @@ alias:
   }
 
   return false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
 }
-{% endcodeblock %}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/info/ini_get (Locutus dependency module)
+function ini_get(varname: string): string {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+
+  return ''
+}
+
+// php/var/is_array (target function module)
+type IsArrayValue = PhpRuntimeValue
+
+type ArrayLikeAssoc = PhpAssoc<IsArrayValue> & { length: number }
+
+const hasNumericLength = (value: IsArrayValue): value is ArrayLikeAssoc =>
+  value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
+
+function is_array(mixedVar: IsArrayValue): boolean {
+  //  discuss at: https://locutus.io/php/is_array/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Legaev Andrey
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Nathan Sepulveda
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Cord
+  // bugfixed by: Manish
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: In Locutus, javascript objects are like php associative arrays,
+  //      note 1: thus JavaScript objects will also
+  //      note 1: return true in this function (except for objects which inherit properties,
+  //      note 1: being thus used as objects),
+  //      note 1: unless you do ini_set('locutus.objectsAsArrays', 0),
+  //      note 1: in which case only genuine JavaScript arrays
+  //      note 1: will return true
+  //   example 1: is_array(['Kevin', 'van', 'Zonneveld'])
+  //   returns 1: true
+  //   example 2: is_array('Kevin van Zonneveld')
+  //   returns 2: false
+  //   example 3: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+  //   returns 3: true
+  //   example 4: ini_set('locutus.objectsAsArrays', 0)
+  //   example 4: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+  //   returns 4: false
+  //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
+  //   returns 5: false
+
+  const _getFuncName = function (fn: IsArrayValue): string {
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
+    if (!name) {
+      return '(Anonymous)'
+    }
+    return name[1] ?? '(Anonymous)'
+  }
+  const _isArray = function (mixedVar: IsArrayValue): boolean {
+    // return Array.isArray(mixedVar);
+    // The above works, but let's do the even more stringent approach:
+    // (since Object.prototype.toString could be overridden)
+    // Null, Not an object, no length property so couldn't be an Array (or String)
+    if (!hasNumericLength(mixedVar)) {
+      return false
+    }
+    const candidate = mixedVar
+    const len = candidate.length
+    candidate[candidate.length] = 'bogus'
+    // The only way I can think of to get around this (or where there would be trouble)
+    // would be to have an object defined
+    // with a custom "length" getter which changed behavior on each call
+    // (or a setter to mess up the following below) or a custom
+    // setter for numeric properties, but even that would need to listen for
+    // specific indexes; but there should be no false negatives
+    // and such a false positive would need to rely on later JavaScript
+    // innovations like __defineSetter__
+    if (len !== candidate.length) {
+      // We know it's an array since length auto-changed with the addition of a
+      // numeric property at its length end, so safely get rid of our bogus element
+      candidate.length -= 1
+      return true
+    }
+    // Get rid of the property we added onto a non-array object; only possible
+    // side-effect is if the user adds back the property later, it will iterate
+    // this property in the older order placement in IE (an order which should not
+    // be depended on anyways)
+    delete candidate[candidate.length]
+    return false
+  }
+
+  if (!mixedVar || typeof mixedVar !== 'object') {
+    return false
+  }
+
+  const isArray = _isArray(mixedVar)
+
+  if (isArray) {
+    return true
+  }
+
+  const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
+  if (iniVal === 'on') {
+    const asString = Object.prototype.toString.call(mixedVar)
+    const asFunc = _getFuncName(getPhpObjectEntry(mixedVar, 'constructor'))
+
+    if (asString === '[object Object]' && asFunc === 'Object') {
+      // Most likely a literal and intended as assoc. array
+      return true
+    }
+  }
+
+  return false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !Array.isArray(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState() {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/info/ini_get (Locutus dependency module)
+function ini_get(varname) {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+
+  return ''
+}
+
+// php/var/is_array (target function module)
+const hasNumericLength = (value) =>
+  value !== null && typeof value === 'object' && typeof getPhpObjectEntry(value, 'length') === 'number'
+
+function is_array(mixedVar) {
+  //  discuss at: https://locutus.io/php/is_array/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Legaev Andrey
+  // improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Nathan Sepulveda
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Cord
+  // bugfixed by: Manish
+  // bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: In Locutus, javascript objects are like php associative arrays,
+  //      note 1: thus JavaScript objects will also
+  //      note 1: return true in this function (except for objects which inherit properties,
+  //      note 1: being thus used as objects),
+  //      note 1: unless you do ini_set('locutus.objectsAsArrays', 0),
+  //      note 1: in which case only genuine JavaScript arrays
+  //      note 1: will return true
+  //   example 1: is_array(['Kevin', 'van', 'Zonneveld'])
+  //   returns 1: true
+  //   example 2: is_array('Kevin van Zonneveld')
+  //   returns 2: false
+  //   example 3: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+  //   returns 3: true
+  //   example 4: ini_set('locutus.objectsAsArrays', 0)
+  //   example 4: is_array({0: 'Kevin', 1: 'van', 2: 'Zonneveld'})
+  //   returns 4: false
+  //   example 5: is_array(function tmp_a (){ this.name = 'Kevin' })
+  //   returns 5: false
+
+  const _getFuncName = function (fn) {
+    const name = /\W*function\s+([\w$]+)\s*\(/.exec(String(fn))
+    if (!name) {
+      return '(Anonymous)'
+    }
+    return name[1] ?? '(Anonymous)'
+  }
+  const _isArray = function (mixedVar) {
+    // return Array.isArray(mixedVar);
+    // The above works, but let's do the even more stringent approach:
+    // (since Object.prototype.toString could be overridden)
+    // Null, Not an object, no length property so couldn't be an Array (or String)
+    if (!hasNumericLength(mixedVar)) {
+      return false
+    }
+    const candidate = mixedVar
+    const len = candidate.length
+    candidate[candidate.length] = 'bogus'
+    // The only way I can think of to get around this (or where there would be trouble)
+    // would be to have an object defined
+    // with a custom "length" getter which changed behavior on each call
+    // (or a setter to mess up the following below) or a custom
+    // setter for numeric properties, but even that would need to listen for
+    // specific indexes; but there should be no false negatives
+    // and such a false positive would need to rely on later JavaScript
+    // innovations like __defineSetter__
+    if (len !== candidate.length) {
+      // We know it's an array since length auto-changed with the addition of a
+      // numeric property at its length end, so safely get rid of our bogus element
+      candidate.length -= 1
+      return true
+    }
+    // Get rid of the property we added onto a non-array object; only possible
+    // side-effect is if the user adds back the property later, it will iterate
+    // this property in the older order placement in IE (an order which should not
+    // be depended on anyways)
+    delete candidate[candidate.length]
+    return false
+  }
+
+  if (!mixedVar || typeof mixedVar !== 'object') {
+    return false
+  }
+
+  const isArray = _isArray(mixedVar)
+
+  if (isArray) {
+    return true
+  }
+
+  const iniVal = ini_get('locutus.objectsAsArrays') || 'on'
+  if (iniVal === 'on') {
+    const asString = Object.prototype.toString.call(mixedVar)
+    const asFunc = _getFuncName(getPhpObjectEntry(mixedVar, 'constructor'))
+
+    if (asString === '[object Object]' && asFunc === 'Object') {
+      // Most likely a literal and intended as assoc. array
+      return true
+    }
+  }
+
+  return false
+}{% endcodeblock %}
+</div>

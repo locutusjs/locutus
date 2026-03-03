@@ -1,0 +1,23 @@
+import type { PhpCallableArgs, PhpCallableDescriptor, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+import { call_user_func_array as callUserFuncArray } from '../funchand/call_user_func_array.ts'
+
+type FunctionArg = PhpRuntimeValue
+
+export function call_user_func<TResult = FunctionArg, TArgs extends PhpCallableArgs = PhpCallableArgs>(
+  cb: PhpCallableDescriptor<TArgs, TResult>,
+  ...parameters: TArgs
+): TResult {
+  //  discuss at: https://locutus.io/php/call_user_func/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  // improved by: Diplom@t (https://difane.com/)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Depends on call_user_func_array which in turn depends on the `cb` that is passed,
+  //      note 1: this function can use `eval`.
+  //      note 1: The `eval` input is however checked to only allow valid function names,
+  //      note 1: So it should not be unsafer than uses without eval (seeing as you can)
+  //      note 1: already pass any function to be executed here.
+  //   example 1: call_user_func('isNaN', 'a')
+  //   returns 1: true
+
+  return callUserFuncArray<TResult, TArgs>(cb, parameters)
+}

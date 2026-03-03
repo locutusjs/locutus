@@ -12,11 +12,12 @@ notes:
   - Returns a copy of str with all uppercase letters replaced with lowercase.
 parityVerified:
   - Ruby 3.3
+isTypescript: true
 type: function
 layout: function
-title: Ruby's String.downcase in JavaScript
+title: Ruby's String.downcase in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://ruby-doc.org/core-2.2.2/String.html#method-c-downcase">Ruby's
   String.downcase</a> looks like.
 function: downcase
@@ -28,7 +29,8 @@ alias:
   - /functions/String/downcase/
   - /ruby/downcase/
 ---
-{% codeblock lang:javascript %}module.exports = function downcase(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function downcase(str: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/downcase/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -39,3 +41,16 @@ alias:
   return (str + '').toLowerCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function downcase(str) {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/String/downcase/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a copy of str with all uppercase letters replaced with lowercase.
+  //       example 1: downcase('hELLo')
+  //       returns 1: 'hello'
+
+  return (str + '').toLowerCase()
+}{% endcodeblock %}
+</div>

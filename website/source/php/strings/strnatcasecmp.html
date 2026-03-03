@@ -7,8 +7,8 @@ returns:
   - '1'
   - '-1'
 dependencies:
-  - php/strings/strnatcmp
   - php/_helpers/_phpCastString
+  - php/strings/strnatcmp
 authors:
   original by:
     - Martin Pool
@@ -26,11 +26,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's strnatcasecmp in JavaScript
+title: PHP's strnatcasecmp in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.strnatcasecmp.php">PHP's
   strnatcasecmp</a> looks like.
 function: strnatcasecmp
@@ -43,7 +44,13 @@ alias:
   - /php/strnatcasecmp/
   - /functions/strnatcasecmp/
 ---
-{% codeblock lang:javascript %}module.exports = function strnatcasecmp(a, b) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
+import { strnatcmp } from '../strings/strnatcmp.ts'
+
+export function strnatcasecmp(a: string | number, b: string | number): number
+
+export function strnatcasecmp(...providedArgs: [a?: string | number, b?: string | number]): number | null {
   //       discuss at: https://locutus.io/php/strnatcasecmp/
   //  parity verified: PHP 8.3
   //      original by: Martin Pool
@@ -59,13 +66,440 @@ alias:
   //        example 2: strnatcasecmp('1', '10')
   //        returns 2: -1
 
-  const strnatcmp = require('../strings/strnatcmp')
-  const _phpCastString = require('../_helpers/_phpCastString')
-
-  if (arguments.length !== 2) {
+  if (providedArgs.length !== 2) {
     return null
   }
 
+  const [a, b] = providedArgs
   return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { _phpCastString } from '../_helpers/_phpCastString.ts'
+import { strnatcmp } from '../strings/strnatcmp.ts'
+
+export function strnatcasecmp(...providedArgs) {
+  //       discuss at: https://locutus.io/php/strnatcasecmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martin Pool
+  // reimplemented by: Pierre-Luc Paour
+  // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //         input by: Devan Penner-Woelk
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcasecmp(10, 1)
+  //        returns 1: 1
+  //        example 2: strnatcasecmp('1', '10')
+  //        returns 2: -1
+
+  if (providedArgs.length !== 2) {
+    return null
+  }
+
+  const [a, b] = providedArgs
+  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/_helpers/_phpCastString (Locutus helper dependency)
+type CastStringValue = PhpInput
+
+function _phpCastString(value: CastStringValue): string {
+  // original by: Rafał Kukawski
+
+  if (typeof value === 'boolean') {
+    return value ? '1' : ''
+  }
+  if (typeof value === 'string') {
+    return value
+  }
+  if (typeof value === 'number') {
+    if (isNaN(value)) {
+      return 'NAN'
+    }
+
+    if (!isFinite(value)) {
+      return (value < 0 ? '-' : '') + 'INF'
+    }
+
+    return value + ''
+  }
+  if (typeof value === 'undefined') {
+    return ''
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return 'Array'
+    }
+
+    if (value !== null) {
+      return 'Object'
+    }
+
+    return ''
+  }
+
+  throw new Error('Unsupported value type')
+}
+
+// php/strings/strnatcmp (Locutus dependency module)
+type NatCmpValue = PhpRuntimeValue
+
+function strnatcmp(left: NatCmpValue, right: NatCmpValue): number {
+  //       discuss at: https://locutus.io/php/strnatcmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martijn Wieringa
+  //      improved by: Michael White (https://getsprink.com)
+  //      improved by: Jack
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcmp('abc', 'abc')
+  //        returns 1: 0
+  //        example 2: strnatcmp('a', 'b')
+  //        returns 2: -1
+  //        example 3: strnatcmp('10', '1')
+  //        returns 3: 1
+  //        example 4: strnatcmp('0000abc', '0abc')
+  //        returns 4: 0
+  //        example 5: strnatcmp('1239', '12345')
+  //        returns 5: -1
+  //        example 6: strnatcmp('t01239', 't012345')
+  //        returns 6: 1
+  //        example 7: strnatcmp('0A', '5N')
+  //        returns 7: -1
+
+  const leadingZeros = /^0+(?=\d)/
+  const whitespace = /^\s/
+  const digit = /^\d/
+
+  let leftValue = _phpCastString(left)
+  let rightValue = _phpCastString(right)
+
+  if (!leftValue.length || !rightValue.length) {
+    return leftValue.length - rightValue.length
+  }
+
+  let i = 0
+  let j = 0
+
+  leftValue = leftValue.replace(leadingZeros, '')
+  rightValue = rightValue.replace(leadingZeros, '')
+
+  while (i < leftValue.length && j < rightValue.length) {
+    // skip consecutive whitespace
+    while (whitespace.test(leftValue.charAt(i))) {
+      i++
+    }
+    while (whitespace.test(rightValue.charAt(j))) {
+      j++
+    }
+
+    let ac = leftValue.charAt(i)
+    let bc = rightValue.charAt(j)
+    let aIsDigit = digit.test(ac)
+    let bIsDigit = digit.test(bc)
+
+    if (aIsDigit && bIsDigit) {
+      let bias = 0
+      const fractional = ac === '0' || bc === '0'
+
+      do {
+        if (!aIsDigit) {
+          return -1
+        } else if (!bIsDigit) {
+          return 1
+        } else if (ac < bc) {
+          if (!bias) {
+            bias = -1
+          }
+
+          if (fractional) {
+            return -1
+          }
+        } else if (ac > bc) {
+          if (!bias) {
+            bias = 1
+          }
+
+          if (fractional) {
+            return 1
+          }
+        }
+
+        ac = leftValue.charAt(++i)
+        bc = rightValue.charAt(++j)
+
+        aIsDigit = digit.test(ac)
+        bIsDigit = digit.test(bc)
+      } while (aIsDigit || bIsDigit)
+
+      if (!fractional && bias) {
+        return bias
+      }
+
+      continue
+    }
+
+    if (!ac || !bc) {
+      continue
+    } else if (ac < bc) {
+      return -1
+    } else if (ac > bc) {
+      return 1
+    }
+
+    i++
+    j++
+  }
+
+  const iBeforeStrEnd = i < leftValue.length
+  const jBeforeStrEnd = j < rightValue.length
+
+  // Check which string ended first
+  // return -1 if a, 1 if b, 0 otherwise
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1
+  }
+  return 0
+}
+
+// php/strings/strnatcasecmp (target function module)
+function strnatcasecmp(a: string | number, b: string | number): number
+
+function strnatcasecmp(...providedArgs: [a?: string | number, b?: string | number]): number | null {
+  //       discuss at: https://locutus.io/php/strnatcasecmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martin Pool
+  // reimplemented by: Pierre-Luc Paour
+  // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //         input by: Devan Penner-Woelk
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcasecmp(10, 1)
+  //        returns 1: 1
+  //        example 2: strnatcasecmp('1', '10')
+  //        returns 2: -1
+
+  if (providedArgs.length !== 2) {
+    return null
+  }
+
+  const [a, b] = providedArgs
+  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpCastString (Locutus helper dependency)
+function _phpCastString(value) {
+  // original by: Rafał Kukawski
+
+  if (typeof value === 'boolean') {
+    return value ? '1' : ''
+  }
+  if (typeof value === 'string') {
+    return value
+  }
+  if (typeof value === 'number') {
+    if (isNaN(value)) {
+      return 'NAN'
+    }
+
+    if (!isFinite(value)) {
+      return (value < 0 ? '-' : '') + 'INF'
+    }
+
+    return value + ''
+  }
+  if (typeof value === 'undefined') {
+    return ''
+  }
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return 'Array'
+    }
+
+    if (value !== null) {
+      return 'Object'
+    }
+
+    return ''
+  }
+
+  throw new Error('Unsupported value type')
+}
+
+// php/strings/strnatcmp (Locutus dependency module)
+function strnatcmp(left, right) {
+  //       discuss at: https://locutus.io/php/strnatcmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martijn Wieringa
+  //      improved by: Michael White (https://getsprink.com)
+  //      improved by: Jack
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcmp('abc', 'abc')
+  //        returns 1: 0
+  //        example 2: strnatcmp('a', 'b')
+  //        returns 2: -1
+  //        example 3: strnatcmp('10', '1')
+  //        returns 3: 1
+  //        example 4: strnatcmp('0000abc', '0abc')
+  //        returns 4: 0
+  //        example 5: strnatcmp('1239', '12345')
+  //        returns 5: -1
+  //        example 6: strnatcmp('t01239', 't012345')
+  //        returns 6: 1
+  //        example 7: strnatcmp('0A', '5N')
+  //        returns 7: -1
+
+  const leadingZeros = /^0+(?=\d)/
+  const whitespace = /^\s/
+  const digit = /^\d/
+
+  let leftValue = _phpCastString(left)
+  let rightValue = _phpCastString(right)
+
+  if (!leftValue.length || !rightValue.length) {
+    return leftValue.length - rightValue.length
+  }
+
+  let i = 0
+  let j = 0
+
+  leftValue = leftValue.replace(leadingZeros, '')
+  rightValue = rightValue.replace(leadingZeros, '')
+
+  while (i < leftValue.length && j < rightValue.length) {
+    // skip consecutive whitespace
+    while (whitespace.test(leftValue.charAt(i))) {
+      i++
+    }
+    while (whitespace.test(rightValue.charAt(j))) {
+      j++
+    }
+
+    let ac = leftValue.charAt(i)
+    let bc = rightValue.charAt(j)
+    let aIsDigit = digit.test(ac)
+    let bIsDigit = digit.test(bc)
+
+    if (aIsDigit && bIsDigit) {
+      let bias = 0
+      const fractional = ac === '0' || bc === '0'
+
+      do {
+        if (!aIsDigit) {
+          return -1
+        } else if (!bIsDigit) {
+          return 1
+        } else if (ac < bc) {
+          if (!bias) {
+            bias = -1
+          }
+
+          if (fractional) {
+            return -1
+          }
+        } else if (ac > bc) {
+          if (!bias) {
+            bias = 1
+          }
+
+          if (fractional) {
+            return 1
+          }
+        }
+
+        ac = leftValue.charAt(++i)
+        bc = rightValue.charAt(++j)
+
+        aIsDigit = digit.test(ac)
+        bIsDigit = digit.test(bc)
+      } while (aIsDigit || bIsDigit)
+
+      if (!fractional && bias) {
+        return bias
+      }
+
+      continue
+    }
+
+    if (!ac || !bc) {
+      continue
+    } else if (ac < bc) {
+      return -1
+    } else if (ac > bc) {
+      return 1
+    }
+
+    i++
+    j++
+  }
+
+  const iBeforeStrEnd = i < leftValue.length
+  const jBeforeStrEnd = j < rightValue.length
+
+  // Check which string ended first
+  // return -1 if a, 1 if b, 0 otherwise
+  if (iBeforeStrEnd && !jBeforeStrEnd) {
+    return 1
+  }
+  if (!iBeforeStrEnd && jBeforeStrEnd) {
+    return -1
+  }
+  return 0
+}
+
+// php/strings/strnatcasecmp (target function module)
+
+function strnatcasecmp(...providedArgs) {
+  //       discuss at: https://locutus.io/php/strnatcasecmp/
+  //  parity verified: PHP 8.3
+  //      original by: Martin Pool
+  // reimplemented by: Pierre-Luc Paour
+  // reimplemented by: Kristof Coomans (SCK-CEN (Belgian Nucleair Research Centre))
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //         input by: Devan Penner-Woelk
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Rafał Kukawski
+  //        example 1: strnatcasecmp(10, 1)
+  //        returns 1: 1
+  //        example 2: strnatcasecmp('1', '10')
+  //        returns 2: -1
+
+  if (providedArgs.length !== 2) {
+    return null
+  }
+
+  const [a, b] = providedArgs
+  return strnatcmp(_phpCastString(a).toLowerCase(), _phpCastString(b).toLowerCase())
+}{% endcodeblock %}
+</div>

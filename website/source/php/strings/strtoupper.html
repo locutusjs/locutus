@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's strtoupper in JavaScript
+title: PHP's strtoupper in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.strtoupper.php">PHP's strtoupper</a>
   looks like.
 function: strtoupper
@@ -30,7 +31,8 @@ alias:
   - /php/strtoupper/
   - /functions/strtoupper/
 ---
-{% codeblock lang:javascript %}module.exports = function strtoupper(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function strtoupper(str: string): string {
   //      discuss at: https://locutus.io/php/strtoupper/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,3 +43,16 @@ alias:
   return (str + '').toUpperCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function strtoupper(str) {
+  //      discuss at: https://locutus.io/php/strtoupper/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: strtoupper('Kevin van Zonneveld')
+  //       returns 1: 'KEVIN VAN ZONNEVELD'
+
+  return (str + '').toUpperCase()
+}{% endcodeblock %}
+</div>

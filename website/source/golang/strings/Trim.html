@@ -16,11 +16,12 @@ notes:
     this implementation removes exact matches of cutset from both ends
 parityVerified:
   - Go 1.23
+isTypescript: true
 type: function
 layout: function
-title: Go's strings.Trim in JavaScript
+title: Go's strings.Trim in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://golang.org/pkg/strings/#Trim">Go's strings.Trim</a> looks like.
 function: Trim
 category: strings
@@ -31,7 +32,8 @@ alias:
   - /functions/strings/Trim/
   - /golang/Trim/
 ---
-{% codeblock lang:javascript %}module.exports = function Trim(s, cutset) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function Trim(s: string, cutset: string): string {
   //      discuss at: https://locutus.io/golang/strings/Trim
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -51,3 +53,25 @@ alias:
   return s.replace(regex, '')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function Trim(s, cutset) {
+  //      discuss at: https://locutus.io/golang/strings/Trim
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Unlike Go's strings.Trim which removes characters in cutset,
+  //          note 1: this implementation removes exact matches of cutset from both ends
+  //       example 1: Trim('!!!Hello, Gophers!!!', '!')
+  //       returns 1: 'Hello, Gophers'
+  //       example 2: Trim('  Hello  ', ' ')
+  //       returns 2: 'Hello'
+
+  s = s + ''
+  cutset = cutset + ''
+
+  // Build regex to match cutset characters at start and end
+  const escaped = cutset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const regex = new RegExp('^[' + escaped + ']+|[' + escaped + ']+$', 'g')
+  return s.replace(regex, '')
+}{% endcodeblock %}
+</div>

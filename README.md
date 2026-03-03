@@ -5,66 +5,33 @@
 [![Verified: PHP 8.3](https://img.shields.io/badge/verified-PHP%208.3-777BB4.svg)](https://locutus.io/php/)
 [![Verified: Python 3.12](https://img.shields.io/badge/verified-Python%203.12-3776AB.svg)](https://locutus.io/python/)
 
-> All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.
+> All your standard libraries will be assimilated into our ~~JavaScript~~ TypeScript collective. Resistance is futile.
 
-Welcome to Locutus, where the boundaries of coding languages blur. We're a dedicated collective developers on a mission
-to explore the possibilities of porting standard libraries from various programming language (Go, Ruby, PHP, C) to
-JavaScript. Our journey is one of discovery, innovation, and sometimes, delightful chaos.
+Locutus is ~500 TypeScript implementations of standard library functions from PHP, Go, Python, Ruby, C, and [more](https://locutus.io/). Each function is individually importable and tree-shakeable.
 
-From the complex to the quirky, we assimilate libraries with a spirit of curiosity and a penchant for experimentation.
-Our creations typically start as rainy Sunday afternoon puzzles, and end up ranging from groundbreaking functions that
-enhance the JavaScript ecosystem, to unique oddities that challenge the norms of coding.
-
-As we navigate through this uncharted territory, we invite you to join us. Whether to contribute, learn, or simply
-marvel at the wonders of cross-language integration and portability, your presence on GitHub is valued.
-
-Embark on this journey with us at [locutus.io](https://locutus.io/).
-
-Use our creations at your own risk, and may they inspire you to push the boundaries of what's possible with JavaScript.
-
-## Table of contents
-
-- [Install](#install)
-- [Use](#use)
-- [Development](#development)
-- [License](#license)
+Most of these started as rainy Sunday afternoon puzzles. Some are genuinely useful. Some are just fun to write. All of them are a way to learn how different languages solve the same problems.
 
 ## Install
 
 ```bash
-yarn add locutus
+npm install locutus
 ```
 
 ## Use
 
-```bash
-$ vim php.js
-```
+```typescript
+import { sprintf } from 'locutus/php/strings/sprintf'
 
-```javascript
-const sprintf = require('locutus/php/strings/sprintf')
-const echo = require('locutus/php/strings/echo')
 const effectiveness = 'futile'
-echo(sprintf('Resistance is %s', effectiveness))
+console.log(sprintf('Resistance is %s', effectiveness))
+// Resistance is futile
 ```
 
-```bash
-$ node php.js
-Resistance is futile
-```
+```typescript
+import { Contains } from 'locutus/golang/strings/Contains'
 
-```bash
-$ vim go.js
-```
-
-```javascript
-const strings = require('locutus/golang/strings')
-console.log(strings.Contains('Locutus', 'cut'))
-```
-
-```bash
-$ node go.js
-true
+console.log(Contains('Locutus', 'cut'))
+// true
 ```
 
 ## Development

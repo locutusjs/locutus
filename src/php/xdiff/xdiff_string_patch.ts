@@ -1,0 +1,268 @@
+import { getPhpObjectEntry, setPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpInput } from '../_helpers/_phpTypes.ts'
+
+type XRegExpMeta = {
+  source: string
+  captureNames?: string[] | null
+}
+
+type PatchErrorObject = { value?: string }
+
+export function xdiff_string_patch(
+  originalStr: string,
+  patch: string,
+  flags?: number | string | string[],
+  errorObj?: PatchErrorObject,
+): string | false {
+  //      discuss at: https://locutus.io/php/xdiff_string_patch/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Steven Levithan (stevenlevithan.com)
+  //          note 1: The XDIFF_PATCH_IGNORESPACE flag and the error argument are not
+  //          note 1: currently supported.
+  //          note 2: This has not been tested exhaustively yet.
+  //          note 3: The errorObj parameter (optional) if used must be passed in as a
+  //          note 3: object. The errors will then be written by reference into it's `value` property
+  //       example 1: xdiff_string_patch('', '@@ -0,0 +1,1 @@\n+Hello world!')
+  //       returns 1: 'Hello world!'
+
+  // First two functions were adapted from Steven Levithan, also under an MIT license
+  // Adapted from XRegExp 1.5.0
+  // (c) 2007-2010 Steven Levithan
+  // MIT License
+  // <https://xregexp.com>
+
+  const isRecord = (value: PhpInput): value is { [key: string]: PhpInput } =>
+    typeof value === 'object' && value !== null && !Array.isArray(value)
+
+  const _getNativeFlags = function (regex: RegExp): string {
+    const extended = getPhpObjectEntry(regex, 'extended') === true
+    const sticky = getPhpObjectEntry(regex, 'sticky') === true
+    // Proposed for ES4; included in AS3
+    return [
+      regex.global ? 'g' : '',
+      regex.ignoreCase ? 'i' : '',
+      regex.multiline ? 'm' : '',
+      extended ? 'x' : '',
+      sticky ? 'y' : '',
+    ].join('')
+  }
+
+  const getXRegExpMeta = (regex: RegExp): XRegExpMeta | undefined => {
+    const xregexpValue = getPhpObjectEntry(regex, '_xregexp')
+    if (!isRecord(xregexpValue)) {
+      return undefined
+    }
+
+    const sourceValue = getPhpObjectEntry(xregexpValue, 'source')
+    if (typeof sourceValue !== 'string') {
+      return undefined
+    }
+
+    const captureNamesValue = getPhpObjectEntry(xregexpValue, 'captureNames')
+    let captureNames: string[] | null | undefined
+    if (captureNamesValue === null) {
+      captureNames = null
+    } else if (
+      Array.isArray(captureNamesValue) &&
+      captureNamesValue.every((captureName) => typeof captureName === 'string')
+    ) {
+      captureNames = captureNamesValue
+    }
+
+    if (captureNames === undefined) {
+      return { source: sourceValue }
+    }
+
+    return {
+      source: sourceValue,
+      captureNames,
+    }
+  }
+
+  const _cbSplit = function (input: string, sep: RegExp | string): string[] {
+    // If separator `s` is not a regex, use the native `split`
+    if (!(sep instanceof RegExp)) {
+      return input.split(sep)
+    }
+    const str = String(input)
+    const output: string[] = []
+    let lastLastIndex = 0
+    let match: RegExpExecArray | null = null
+    let lastLength = 0
+    const limit = Infinity
+    const x = getXRegExpMeta(sep)
+    // This is required if not `s.global`, and it avoids needing to set `s.lastIndex` to zero
+    // and restore it to its original value when we're done using the regex
+    // Brett paring down
+    const s = new RegExp(sep.source, _getNativeFlags(sep) + 'g')
+    if (x) {
+      setPhpObjectEntry(s, '_xregexp', {
+        source: x.source,
+        captureNames: x.captureNames ? x.captureNames.slice(0) : null,
+      })
+    }
+
+    while ((match = s.exec(str))) {
+      // Run the altered `exec` (required for `lastIndex` fix, etc.)
+      if (s.lastIndex > lastLastIndex) {
+        output.push(str.slice(lastLastIndex, match.index))
+
+        if (match.length > 1 && match.index < str.length) {
+          const captures = match.slice(1).filter((capture): capture is string => capture !== undefined)
+          Array.prototype.push.apply(output, captures)
+        }
+
+        lastLength = match[0].length
+        lastLastIndex = s.lastIndex
+
+        if (output.length >= limit) {
+          break
+        }
+      }
+
+      if (s.lastIndex === match.index) {
+        s.lastIndex++
+      }
+    }
+
+    if (lastLastIndex === str.length) {
+      if (!s.test('') || lastLength) {
+        output.push('')
+      }
+    } else {
+      output.push(str.slice(lastLastIndex))
+    }
+
+    return output.length > limit ? output.slice(0, limit) : output
+  }
+
+  // Input defaulting & sanitation
+  if (!patch) {
+    return false
+  }
+
+  let i = 0
+  let ll = 0
+  let ranges: RegExpMatchArray | null = null
+  let lastLinePos = 0
+  let firstChar = ''
+  const rangeExp = /^@@\s+-(\d+),(\d+)\s+\+(\d+),(\d+)\s+@@$/
+  const lineBreaks = /\r?\n/
+  const lines = _cbSplit(patch.replace(/(\r?\n)+$/, ''), lineBreaks)
+  const origLines = _cbSplit(originalStr, lineBreaks)
+  const newStrArr: string[] = []
+  let linePos = 0
+  const errors = ''
+  let optTemp = 0 // Both string & integer (constant) input is allowed
+  const OPTS = {
+    // Unsure of actual PHP values, so better to rely on string
+    XDIFF_PATCH_NORMAL: 1,
+    XDIFF_PATCH_REVERSE: 2,
+    XDIFF_PATCH_IGNORESPACE: 4,
+  }
+
+  if (!flags) {
+    flags = 'XDIFF_PATCH_NORMAL'
+  }
+
+  if (typeof flags !== 'number') {
+    // Allow for a single string or an array of string flags
+    const flagList = Array.isArray(flags) ? flags : [flags]
+    const isPatchOption = (value: string): value is keyof typeof OPTS => value in OPTS
+    for (i = 0; i < flagList.length; i++) {
+      const currentFlag = flagList[i]
+      if (!currentFlag) {
+        continue
+      }
+      // Resolve string input to bitwise e.g. 'XDIFF_PATCH_NORMAL' becomes 1
+      if (isPatchOption(currentFlag)) {
+        optTemp = optTemp | OPTS[currentFlag]
+      }
+    }
+    flags = optTemp
+  }
+
+  if (flags & OPTS.XDIFF_PATCH_NORMAL) {
+    for (i = 0, ll = lines.length; i < ll; i++) {
+      const line = lines[i] ?? ''
+      ranges = line.match(rangeExp)
+      if (ranges?.[1]) {
+        lastLinePos = linePos
+        linePos = Number(ranges[1]) - 1
+        while (lastLinePos < linePos) {
+          newStrArr.push(origLines[lastLinePos++] ?? '')
+        }
+        while (lines[++i] !== undefined && rangeExp.exec(lines[i] ?? '') === null) {
+          const patchedLine = lines[i] ?? ''
+          firstChar = patchedLine.charAt(0)
+          switch (firstChar) {
+            case '-':
+              // Skip including that line
+              ++linePos
+              break
+            case '+':
+              newStrArr.push(patchedLine.slice(1))
+              break
+            case ' ':
+              newStrArr.push(origLines[linePos++] ?? '')
+              break
+            default:
+              // Reconcile with returning errrors arg?
+              throw new Error('Unrecognized initial character in unidiff line')
+          }
+        }
+        if (lines[i]) {
+          i--
+        }
+      }
+    }
+    while (linePos > 0 && linePos < origLines.length) {
+      newStrArr.push(origLines[linePos++] ?? '')
+    }
+  } else if (flags & OPTS.XDIFF_PATCH_REVERSE) {
+    // Only differs from above by a few lines
+    for (i = 0, ll = lines.length; i < ll; i++) {
+      const line = lines[i] ?? ''
+      ranges = line.match(rangeExp)
+      if (ranges?.[3]) {
+        lastLinePos = linePos
+        linePos = Number(ranges[3]) - 1
+        while (lastLinePos < linePos) {
+          newStrArr.push(origLines[lastLinePos++] ?? '')
+        }
+        while (lines[++i] !== undefined && rangeExp.exec(lines[i] ?? '') === null) {
+          const patchedLine = lines[i] ?? ''
+          firstChar = patchedLine.charAt(0)
+          switch (firstChar) {
+            case '-':
+              newStrArr.push(patchedLine.slice(1))
+              break
+            case '+':
+              // Skip including that line
+              ++linePos
+              break
+            case ' ':
+              newStrArr.push(origLines[linePos++] ?? '')
+              break
+            default:
+              // Reconcile with returning errrors arg?
+              throw new Error('Unrecognized initial character in unidiff line')
+          }
+        }
+        if (lines[i]) {
+          i--
+        }
+      }
+    }
+    while (linePos > 0 && linePos < origLines.length) {
+      newStrArr.push(origLines[linePos++] ?? '')
+    }
+  }
+
+  if (errorObj) {
+    errorObj.value = errors
+  }
+
+  return newStrArr.join('\n')
+}

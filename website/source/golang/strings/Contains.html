@@ -11,11 +11,12 @@ authors:
 notes: []
 parityVerified:
   - Go 1.23
+isTypescript: true
 type: function
 layout: function
-title: Go's strings.Contains in JavaScript
+title: Go's strings.Contains in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://golang.org/pkg/strings/#Contains">Go's strings.Contains</a>
   looks like.
 function: Contains
@@ -27,7 +28,8 @@ alias:
   - /functions/strings/Contains/
   - /golang/Contains/
 ---
-{% codeblock lang:javascript %}module.exports = function Contains(s, substr) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function Contains(s: string, substr: string): boolean {
   //      discuss at: https://locutus.io/golang/strings/Contains
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -37,3 +39,15 @@ alias:
   return (s + '').indexOf(substr) !== -1
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function Contains(s, substr) {
+  //      discuss at: https://locutus.io/golang/strings/Contains
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: Contains('Kevin', 'K')
+  //       returns 1: true
+
+  return (s + '').indexOf(substr) !== -1
+}{% endcodeblock %}
+</div>

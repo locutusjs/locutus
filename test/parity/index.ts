@@ -155,14 +155,17 @@ async function runParityTest(
     // Run JS implementation
     const jsRun = runJs(fullPath, func.name, example)
     if (!jsRun.success) {
-      results.push({
+      const failedResult: VerifyResult = {
         example: example.number,
         passed: false,
         expected: expectedEval.result,
         jsResult: '',
         nativeResult: '',
-        error: jsRun.error,
-      })
+      }
+      if (jsRun.error !== undefined) {
+        failedResult.error = jsRun.error
+      }
+      results.push(failedResult)
       continue
     }
 
@@ -195,34 +198,40 @@ async function runParityTest(
 
     // Run in Docker with 10s timeout per test
     const nativeRun = runInDocker(handler.dockerImage, handler.dockerCmd(nativeCode), {
-      mountRepo: handler.mountRepo,
+      ...(handler.mountRepo !== undefined ? { mountRepo: handler.mountRepo } : {}),
       repoPath: ROOT,
       timeout: 10000,
     })
 
     if (!nativeRun.success) {
-      results.push({
+      const failedResult: VerifyResult = {
         example: example.number,
         passed: false,
         expected: expectedEval.result,
         jsResult: jsRun.result,
         nativeResult: nativeRun.output,
-        error: nativeRun.error,
-      })
+      }
+      if (nativeRun.error !== undefined) {
+        failedResult.error = nativeRun.error
+      }
+      results.push(failedResult)
       continue
     }
 
     // Normalize and compare (pass expected for context-aware normalization)
     const nativeResult = handler.normalize(nativeRun.output, expectedEval.result.trim())
     const passed = expectedEval.result.trim() === nativeResult
-    results.push({
+    const result: VerifyResult = {
       example: example.number,
       passed,
       expected: expectedEval.result,
       jsResult: jsRun.result,
       nativeResult,
-      error: passed ? undefined : `${func.language.toUpperCase()} result mismatch`,
-    })
+    }
+    if (!passed) {
+      result.error = `${func.language.toUpperCase()} result mismatch`
+    }
+    results.push(result)
   }
 
   // Save to cache
@@ -329,10 +338,11 @@ async function main() {
   const args = process.argv.slice(2)
 
   // Parse options (dockerDigests will be populated after image pulls)
+  const filter = args.find((a) => !a.startsWith('-'))
   const options: VerifyOptions = {
     useCache: !args.includes('--no-cache'),
     includeUnverified: args.includes('--all') || args.includes('--include-unverified'),
-    filter: args.find((a) => !a.startsWith('-')),
+    ...(filter !== undefined ? { filter } : {}),
     dockerDigests: {}, // Will be populated after image pulls
   }
 
@@ -394,13 +404,22 @@ async function main() {
       }
     }
     for (const func of verifiedFunctions) {
-      byLanguage[func.language].verified++
+      const counts = byLanguage[func.language]
+      if (counts) {
+        counts.verified++
+      }
     }
     for (const func of impossibleFunctions) {
-      byLanguage[func.language].impossible++
+      const counts = byLanguage[func.language]
+      if (counts) {
+        counts.impossible++
+      }
     }
     for (const func of unverifiedFunctions) {
-      byLanguage[func.language].unverified++
+      const counts = byLanguage[func.language]
+      if (counts) {
+        counts.unverified++
+      }
     }
 
     console.log('\nBy language:')

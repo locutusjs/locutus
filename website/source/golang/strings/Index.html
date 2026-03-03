@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - Go 1.23
+isTypescript: true
 type: function
 layout: function
-title: Go's strings.Index in JavaScript
+title: Go's strings.Index in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://golang.org/pkg/strings/#Index">Go's strings.Index</a> looks
   like.
 function: Index
@@ -29,7 +30,8 @@ alias:
   - /functions/strings/Index/
   - /golang/Index/
 ---
-{% codeblock lang:javascript %}module.exports = function Index(s, sep) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function Index(s: string, sep: string): number {
   //      discuss at: https://locutus.io/golang/strings/Index
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,3 +43,17 @@ alias:
   return (s + '').indexOf(sep)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function Index(s, sep) {
+  //      discuss at: https://locutus.io/golang/strings/Index
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: Index('Kevin', 'K')
+  //       returns 1: 0
+  //       example 2: Index('Kevin', 'Z')
+  //       returns 2: -1
+
+  return (s + '').indexOf(sep)
+}{% endcodeblock %}
+</div>

@@ -14,11 +14,12 @@ notes:
   - Returns true if str starts with one of the prefixes given.
 parityVerified:
   - Ruby 3.3
+isTypescript: true
 type: function
 layout: function
-title: Ruby's String.start_with in JavaScript
+title: Ruby's String.start_with in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://ruby-doc.org/core-2.2.2/String.html#method-c-start_with">Ruby's
   String.start_with</a> looks like.
 function: start_with
@@ -30,7 +31,8 @@ alias:
   - /functions/String/start_with/
   - /ruby/start_with/
 ---
-{% codeblock lang:javascript %}module.exports = function start_with(str, prefix) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function start_with(str: string, prefix: string): boolean {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/start_with/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -45,3 +47,20 @@ alias:
   return str.slice(0, prefix.length) === prefix
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function start_with(str, prefix) {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/String/start_with/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns true if str starts with one of the prefixes given.
+  //       example 1: start_with('hello', 'hell')
+  //       returns 1: true
+  //       example 2: start_with('hello', 'heaven')
+  //       returns 2: false
+
+  str = str + ''
+  prefix = prefix + ''
+  return str.slice(0, prefix.length) === prefix
+}{% endcodeblock %}
+</div>

@@ -6,7 +6,8 @@ examples:
     'van', 5: 'Zonneveld'})
 returns:
   - '{1: ''van'', 2: ''Zonneveld''}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -16,11 +17,12 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_diff_assoc in JavaScript
+title: PHP's array_diff_assoc in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-diff-assoc.php">PHP's
   array_diff_assoc</a> looks like.
 function: array_diff_assoc
@@ -33,7 +35,47 @@ alias:
   - /php/array_diff_assoc/
   - /functions/array_diff_assoc/
 ---
-{% codeblock lang:javascript %}module.exports = function array_diff_assoc(arr1) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { entriesOfPhpAssoc, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_diff_assoc<TValue>(
+  arr1: PhpArrayLike<TValue>,
+  ...arrays: Array<PhpArrayLike<TValue>>
+): PhpAssoc<TValue> {
+  //  discuss at: https://locutus.io/php/array_diff_assoc/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: 0m3r
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'})
+  //   returns 1: {1: 'van', 2: 'Zonneveld'}
+
+  const retArr: PhpAssoc<TValue> = {}
+
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject<TValue>(arr1)
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject<TValue>(nextArray)
+      for (const [k, value] of entriesOfPhpAssoc(arr)) {
+        if (value === arr1Value && k === k1) {
+          continue arr1keys
+        }
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}
+{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { entriesOfPhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_diff_assoc(arr1, ...arrays) {
   //  discuss at: https://locutus.io/php/array_diff_assoc/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // bugfixed by: 0m3r
@@ -42,25 +84,136 @@ alias:
   //   returns 1: {1: 'van', 2: 'Zonneveld'}
 
   const retArr = {}
-  const argl = arguments.length
-  let k1 = ''
-  let i = 1
-  let k = ''
-  let arr = {}
 
-  arr1keys: for (k1 in arr1) {
-    for (i = 1; i < argl; i++) {
-      arr = arguments[i]
-      for (k in arr) {
-        if (arr[k] === arr1[k1] && k === k1) {
-          // If it reaches here, it was found in at least one array, so try next value
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject(arr1)
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
+      for (const [k, value] of entriesOfPhpAssoc(arr)) {
+        if (value === arr1Value && k === k1) {
           continue arr1keys
         }
       }
-      retArr[k1] = arr1[k1]
     }
+    retArr[k1] = arr1Value
   }
 
   return retArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
+  return Object.entries(value)
 }
-{% endcodeblock %}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_diff_assoc (target function module)
+function array_diff_assoc<TValue>(
+  arr1: PhpArrayLike<TValue>,
+  ...arrays: Array<PhpArrayLike<TValue>>
+): PhpAssoc<TValue> {
+  //  discuss at: https://locutus.io/php/array_diff_assoc/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: 0m3r
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'})
+  //   returns 1: {1: 'van', 2: 'Zonneveld'}
+
+  const retArr: PhpAssoc<TValue> = {}
+
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject<TValue>(arr1)
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject<TValue>(nextArray)
+      for (const [k, value] of entriesOfPhpAssoc(arr)) {
+        if (value === arr1Value && k === k1) {
+          continue arr1keys
+        }
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isPhpArrayObject(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_diff_assoc (target function module)
+function array_diff_assoc(arr1, ...arrays) {
+  //  discuss at: https://locutus.io/php/array_diff_assoc/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // bugfixed by: 0m3r
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_diff_assoc({0: 'Kevin', 1: 'van', 2: 'Zonneveld'}, {0: 'Kevin', 4: 'van', 5: 'Zonneveld'})
+  //   returns 1: {1: 'van', 2: 'Zonneveld'}
+
+  const retArr = {}
+
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject(arr1)
+  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
+      for (const [k, value] of Object.entries(arr)) {
+        if (value === arr1Value && k === k1) {
+          continue arr1keys
+        }
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>

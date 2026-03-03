@@ -1,0 +1,5 @@
+export * as c from './c/index.ts'
+export * as golang from './golang/index.ts'
+export * as php from './php/index.ts'
+export * as python from './python/index.ts'
+export * as ruby from './ruby/index.ts'

@@ -20,11 +20,12 @@ notes:
     when it encounters a string before an int or float value.
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's floatval in JavaScript
+title: PHP's floatval in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.floatval.php">PHP's floatval</a>
   looks like.
 function: floatval
@@ -37,7 +38,12 @@ alias:
   - /php/floatval/
   - /functions/floatval/
 ---
-{% codeblock lang:javascript %}module.exports = function floatval(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import type { NumericLike, PhpNullish } from '../_helpers/_phpTypes.ts'
+
+export type FloatvalInput = NumericLike | boolean | PhpNullish
+
+export function floatval(mixedVar: FloatvalInput): number {
   //      discuss at: https://locutus.io/php/floatval/
   // parity verified: PHP 8.3
   //     original by: Michael White (https://getsprink.com)
@@ -50,6 +56,25 @@ alias:
   //       returns 2: 0
   //       returns 2: -50
 
-  return parseFloat(mixedVar) || 0
+  return parseFloat(String(mixedVar ?? '')) || 0
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}
+export function floatval(mixedVar) {
+  //      discuss at: https://locutus.io/php/floatval/
+  // parity verified: PHP 8.3
+  //     original by: Michael White (https://getsprink.com)
+  //          note 1: The native parseFloat() method of JavaScript returns NaN
+  //          note 1: when it encounters a string before an int or float value.
+  //       example 1: floatval('150.03_page-section')
+  //       returns 1: 150.03
+  //       example 2: floatval('page: 3')
+  //       example 2: floatval('-50 + 8')
+  //       returns 2: 0
+  //       returns 2: -50
+
+  return parseFloat(String(mixedVar ?? '')) || 0
+}{% endcodeblock %}
+</div>

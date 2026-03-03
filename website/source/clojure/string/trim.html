@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - Clojure 1.12
+isTypescript: true
 type: function
 layout: function
-title: Clojure's string/trim in JavaScript
+title: Clojure's string/trim in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://clojuredocs.org/clojure.core/trim">Clojure's string/trim</a>
   looks like.
 function: trim
@@ -29,7 +30,8 @@ alias:
   - /functions/string/trim/
   - /clojure/trim/
 ---
-{% codeblock lang:javascript %}module.exports = function trim(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function trim(s: string): string {
   //      discuss at: https://locutus.io/clojure/trim/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,3 +43,17 @@ alias:
   return String(s).trim()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function trim(s) {
+  //      discuss at: https://locutus.io/clojure/trim/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: trim('  hello  ')
+  //       returns 1: 'hello'
+  //       example 2: trim('abc')
+  //       returns 2: 'abc'
+
+  return String(s).trim()
+}{% endcodeblock %}
+</div>

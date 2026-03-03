@@ -4,18 +4,20 @@ examples:
   - json_last_error()
 returns:
   - '0'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's json_last_error in JavaScript
+title: PHP's json_last_error in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.json-last-error.php">PHP's
   json_last_error</a> looks like.
 function: json_last_error
@@ -28,7 +30,10 @@ alias:
   - /php/json_last_error/
   - /functions/json_last_error/
 ---
-{% codeblock lang:javascript %}module.exports = function json_last_error() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { getPhpRuntimeNumber } from '../_helpers/_phpRuntimeState.ts'
+
+export function json_last_error(): number {
   //      discuss at: https://phpjs.org/functions/json_last_error/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -45,11 +50,191 @@ alias:
   // but JSON functions auto-escape these, so error not possible in JavaScript
   // JSON_ERROR_SYNTAX = 4
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-
-  return $locutus.php && $locutus.php.last_error_json ? $locutus.php.last_error_json : 0
+  return getPhpRuntimeNumber('last_error_json', 0)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { getPhpRuntimeNumber } from '../_helpers/_phpRuntimeState.ts'
+
+export function json_last_error() {
+  //      discuss at: https://phpjs.org/functions/json_last_error/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: json_last_error()
+  //       returns 1: 0
+
+  // JSON_ERROR_NONE = 0
+  // max depth limit to be removed per PHP comments in json.c (not possible in JS?):
+  // JSON_ERROR_DEPTH = 1
+  // internal use? also not documented:
+  // JSON_ERROR_STATE_MISMATCH = 2
+  // [\u0000-\u0008\u000B-\u000C\u000E-\u001F] if used directly within json_decode():
+  // JSON_ERROR_CTRL_CHAR = 3
+  // but JSON functions auto-escape these, so error not possible in JavaScript
+  // JSON_ERROR_SYNTAX = 4
+
+  return getPhpRuntimeNumber('last_error_json', 0)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type PhpRuntimeNumberKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends number ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function getPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+): PhpRuntimeKnownEntryMap[TKey] | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpRuntimeNumber(key: PhpRuntimeNumberKey, fallback: number): number
+
+function getPhpRuntimeNumber(key: string, fallback: number): number
+
+function getPhpRuntimeNumber(key: string, fallback: number): number {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'number' ? value : fallback
+}
+
+// php/json/json_last_error (target function module)
+function json_last_error(): number {
+  //      discuss at: https://phpjs.org/functions/json_last_error/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: json_last_error()
+  //       returns 1: 0
+
+  // JSON_ERROR_NONE = 0
+  // max depth limit to be removed per PHP comments in json.c (not possible in JS?):
+  // JSON_ERROR_DEPTH = 1
+  // internal use? also not documented:
+  // JSON_ERROR_STATE_MISMATCH = 2
+  // [\u0000-\u0008\u000B-\u000C\u000E-\u001F] if used directly within json_decode():
+  // JSON_ERROR_CTRL_CHAR = 3
+  // but JSON functions auto-escape these, so error not possible in JavaScript
+  // JSON_ERROR_SYNTAX = 4
+
+  return getPhpRuntimeNumber('last_error_json', 0)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function getPhpRuntimeEntry(key) {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpRuntimeNumber(key, fallback) {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'number' ? value : fallback
+}
+
+// php/json/json_last_error (target function module)
+function json_last_error() {
+  //      discuss at: https://phpjs.org/functions/json_last_error/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: json_last_error()
+  //       returns 1: 0
+
+  // JSON_ERROR_NONE = 0
+  // max depth limit to be removed per PHP comments in json.c (not possible in JS?):
+  // JSON_ERROR_DEPTH = 1
+  // internal use? also not documented:
+  // JSON_ERROR_STATE_MISMATCH = 2
+  // [\u0000-\u0008\u000B-\u000C\u000E-\u001F] if used directly within json_decode():
+  // JSON_ERROR_CTRL_CHAR = 3
+  // but JSON functions auto-escape these, so error not possible in JavaScript
+  // JSON_ERROR_SYNTAX = 4
+
+  return getPhpRuntimeNumber('last_error_json', 0)
+}{% endcodeblock %}
+</div>

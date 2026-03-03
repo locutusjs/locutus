@@ -20,7 +20,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Engine bump guardrail
         run: |
-          node scripts/check-engine-bump.js
+          node scripts/check-engine-bump.ts
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
@@ -45,6 +45,15 @@ jobs:
       - name: TypeScript Check
         run: |
           corepack yarn lint:ts
+      - name: TypeScript Strict-Next Check
+        run: |
+          corepack yarn lint:ts:strict-next
+      - name: Type Debt Policy Check
+        run: |
+          corepack yarn lint:ts:debt:policy
+      - name: API Signature Snapshot Check
+        run: |
+          corepack yarn lint:api:snapshot
       - name: Header Format Check
         run: |
           corepack yarn lint:headers

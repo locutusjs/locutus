@@ -1,36 +1,30 @@
 // Execute: test:module
 // To test this in a local terminal
-// This file tests that the library works when imported via require()
+// This file tests that the library works when imported via ESM
+export {}
 
+import fs from 'node:fs'
 import { createRequire } from 'node:module'
-
-const require = createRequire(import.meta.url)
+import os from 'node:os'
+import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 const effectiveness = 'futile'
-const location = '../../src'
+const require = createRequire(import.meta.url)
 
-// Test CJS require() compatibility
-const locutus = require(location) as {
-  php: { strings: { sprintf: (format: string, ...args: unknown[]) => string } }
-}
-const php = require(location + '/php') as {
-  strings: { sprintf: (format: string, ...args: unknown[]) => string; echo: (str: unknown) => void }
-  url: { parse_url: (url: string) => { pass: string } }
-  datetime: { strtotime: (str: string) => number }
-}
-const strings = require(location + '/php/strings') as {
-  sprintf: (format: string, ...args: unknown[]) => string
-  echo: (str: unknown) => void
-}
-const sprintf = require(location + '/php/strings/sprintf') as (format: string, ...args: unknown[]) => string
-const ruby = require(location + '/ruby') as { Math: { acos: (n: number) => number } }
-const math = require(location + '/ruby/Math') as { acos: (n: number) => number }
-const preg_match = require(location + '/php/pcre/preg_match') as (pattern: string, subject: string) => boolean | number
-const preg_replace = require(location + '/php/pcre/preg_replace') as (
-  pattern: string,
-  replacement: string,
-  subject: string,
-) => string
+// Test ESM import chain at various depths
+const locutus = await import('../../src/index.ts')
+const php = await import('../../src/php/index.ts')
+const strings = await import('../../src/php/strings/index.ts')
+const sprintfMod = await import('../../src/php/strings/sprintf.ts')
+const ruby = await import('../../src/ruby/index.ts')
+const mathMod = await import('../../src/ruby/Math/index.ts')
+const pregMatchMod = await import('../../src/php/pcre/preg_match.ts')
+const pregReplaceMod = await import('../../src/php/pcre/preg_replace.ts')
+
+const { sprintf } = sprintfMod
+const { preg_match } = pregMatchMod
+const { preg_replace } = pregReplaceMod
 
 console.log(preg_replace('/xmas/i', 'Christmas', 'It was the night before Xmas.')) // Should report It was the night before Christmas.
 console.log(preg_replace('/xmas/ig', 'Christmas', 'xMas: It was the night before Xmas.')) // Should report Christmas: It was the night before Christmas.
@@ -48,7 +42,97 @@ console.log(php.strings.sprintf('Resistance is %s', effectiveness))
 console.log(strings.sprintf('Resistance is %s', effectiveness))
 console.log(sprintf('Resistance is %s', effectiveness))
 console.log(ruby.Math.acos(0.3))
-console.log(math.acos(0.3))
+console.log(mathMod.acos(0.3))
 
-strings.echo(php.url.parse_url('mysql://kevin:abcd1234@example.com/databasename').pass)
+const parsedUrl = php.url.parse_url('mysql://kevin:abcd1234@example.com/databasename')
+const parsedPass = parsedUrl && typeof parsedUrl === 'object' && 'pass' in parsedUrl ? parsedUrl.pass : undefined
+strings.echo(parsedPass)
 strings.echo(php.datetime.strtotime('2 januari 2012, 11:12:13 GMT'))
+
+// Smoke-test published CommonJS shape from dist
+const distLocutus = require('../../dist/index.js')
+const distPhpStrings = require('../../dist/php/strings/index.js')
+const distGolangStrings = require('../../dist/golang/strings/index.js')
+const distSprintf = require('../../dist/php/strings/sprintf.js') as { sprintf?: (...args: unknown[]) => unknown }
+const distCompare = require('../../dist/golang/strings/Compare.js') as { Compare?: (...args: unknown[]) => unknown }
+const distIndex = require('../../dist/golang/strings/Index2.js') as { Index?: (...args: unknown[]) => unknown }
+const distLegacyIndex = require('../../dist/golang/strings/Index.js') as { Index?: (...args: unknown[]) => unknown }
+const distEsmLocutus = (await import(pathToFileURL(path.resolve('dist/esm/index.js')).href)) as {
+  php?: { strings?: { sprintf?: (...args: unknown[]) => unknown } }
+}
+const distEsmSprintf = (await import(pathToFileURL(path.resolve('dist/esm/php/strings/sprintf.js')).href)) as {
+  sprintf?: (...args: unknown[]) => unknown
+}
+
+if (typeof distSprintf?.sprintf !== 'function') {
+  throw new Error('dist/php/strings/sprintf.js should export named function property "sprintf"')
+}
+if (distSprintf.sprintf('Resistance is %s', effectiveness) !== 'Resistance is futile') {
+  throw new Error('dist/php/strings/sprintf.js named export should be callable')
+}
+if (typeof distSprintf === 'function') {
+  throw new Error('dist/php/strings/sprintf.js should not default-export a callable function')
+}
+if (typeof distPhpStrings.sprintf !== 'function') {
+  throw new Error('dist/php/strings/index.js should expose strings.sprintf')
+}
+if (typeof distCompare?.Compare !== 'function') {
+  throw new Error('dist/golang/strings/Compare.js should export named function property "Compare"')
+}
+if (typeof distIndex?.Index !== 'function') {
+  throw new Error('dist/golang/strings/Index2.js should export named function property "Index"')
+}
+if (typeof distLegacyIndex?.Index !== 'function') {
+  throw new Error('dist/golang/strings/Index.js should export named function property "Index"')
+}
+if (typeof distGolangStrings.Compare !== 'function') {
+  throw new Error('dist/golang/strings/index.js should expose strings.Compare')
+}
+if (typeof distGolangStrings.Index !== 'function') {
+  throw new Error('dist/golang/strings/index.js should expose strings.Index')
+}
+if (typeof distLocutus.php?.strings?.sprintf !== 'function') {
+  throw new Error('dist/index.js should expose php.strings.sprintf')
+}
+if (typeof distEsmLocutus.php?.strings?.sprintf !== 'function') {
+  throw new Error('dist/esm/index.js should expose php.strings.sprintf')
+}
+if (typeof distEsmSprintf.sprintf !== 'function') {
+  throw new Error('dist/esm/php/strings/sprintf.js should export named function property "sprintf"')
+}
+
+// Smoke-test installed package behavior via exports map (import + require)
+const sandboxDir = fs.mkdtempSync(path.join(os.tmpdir(), 'locutus-dist-sandbox-'))
+const sandboxNodeModulesDir = path.join(sandboxDir, 'node_modules')
+const sandboxPkgDir = path.join(sandboxNodeModulesDir, 'locutus')
+
+fs.mkdirSync(sandboxNodeModulesDir, { recursive: true })
+fs.symlinkSync(path.resolve('dist'), sandboxPkgDir, process.platform === 'win32' ? 'junction' : 'dir')
+
+const sandboxRequire = createRequire(path.join(sandboxDir, 'entry.cjs'))
+const sandboxCjsSprintf = sandboxRequire('locutus/php/strings/sprintf') as { sprintf?: (...args: unknown[]) => unknown }
+
+if (typeof sandboxCjsSprintf?.sprintf !== 'function') {
+  throw new Error('package require() should expose named export property "sprintf"')
+}
+if (typeof sandboxCjsSprintf === 'function') {
+  throw new Error('package require() should not return callable default function export')
+}
+
+const sandboxEsmEntryPath = path.join(sandboxDir, 'entry.mjs')
+fs.writeFileSync(
+  sandboxEsmEntryPath,
+  [
+    "import { sprintf } from 'locutus/php/strings/sprintf'",
+    "export const result = sprintf('Resistance is %s', 'futile')",
+    '',
+  ].join('\n'),
+  'utf-8',
+)
+
+const sandboxEsmResult = (await import(pathToFileURL(sandboxEsmEntryPath).href)) as { result?: string }
+if (sandboxEsmResult.result !== 'Resistance is futile') {
+  throw new Error('package import() should resolve ESM export path and execute named export correctly')
+}
+
+fs.rmSync(sandboxDir, { recursive: true, force: true })

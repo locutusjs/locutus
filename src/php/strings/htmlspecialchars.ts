@@ -1,0 +1,91 @@
+type HtmlSpecialCharsQuoteStyle = string | string[] | number | null | undefined
+
+export function htmlspecialchars(
+  string: string,
+  quoteStyle?: HtmlSpecialCharsQuoteStyle,
+  charset?: null,
+  doubleEncode?: boolean,
+): string {
+  //       discuss at: https://locutus.io/php/htmlspecialchars/
+  //      original by: Mirek Slugen
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  //      bugfixed by: Nathan
+  //      bugfixed by: Arno
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       revised by: Kevin van Zonneveld (https://kvz.io)
+  //         input by: Ratheous
+  //         input by: Mailfaker (https://www.weedem.fr/)
+  //         input by: felix
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //           note 1: charset argument not supported
+  //        example 1: htmlspecialchars("<a href='test'>Test</a>", 'ENT_QUOTES')
+  //        returns 1: '&lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;'
+  //        example 2: htmlspecialchars("ab\"c'd", ['ENT_NOQUOTES', 'ENT_QUOTES'])
+  //        returns 2: 'ab"c&#039;d'
+  //        example 3: htmlspecialchars('my "&entity;" is still here', null, null, false)
+  //        returns 3: 'my &quot;&entity;&quot; is still here'
+
+  let optTemp = 0
+  let noquotes = false
+  let quoteStyleValue: HtmlSpecialCharsQuoteStyle = quoteStyle
+
+  if (typeof quoteStyleValue === 'undefined' || quoteStyleValue === null) {
+    quoteStyleValue = 2
+  }
+  let encoded = string || ''
+  encoded = encoded.toString()
+
+  if (doubleEncode !== false) {
+    // Put this first to avoid double-encoding
+    encoded = encoded.replace(/&/g, '&amp;')
+  }
+
+  encoded = encoded.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+  const OPTS: Readonly<{
+    ENT_NOQUOTES: number
+    ENT_HTML_QUOTE_SINGLE: number
+    ENT_HTML_QUOTE_DOUBLE: number
+    ENT_COMPAT: number
+    ENT_QUOTES: number
+    ENT_IGNORE: number
+  }> = {
+    ENT_NOQUOTES: 0,
+    ENT_HTML_QUOTE_SINGLE: 1,
+    ENT_HTML_QUOTE_DOUBLE: 2,
+    ENT_COMPAT: 2,
+    ENT_QUOTES: 3,
+    ENT_IGNORE: 4,
+  }
+
+  const isOptKey = (value: string): value is keyof typeof OPTS => Object.prototype.hasOwnProperty.call(OPTS, value)
+
+  if (quoteStyleValue === 0) {
+    noquotes = true
+  }
+  if (typeof quoteStyleValue !== 'number') {
+    // Allow for a single string or an array of string flags
+    const quoteStyleFlags = (Array.isArray(quoteStyleValue) ? quoteStyleValue : [quoteStyleValue]).map((flag) =>
+      String(flag),
+    )
+    for (const flag of quoteStyleFlags) {
+      // Resolve string input to bitwise e.g. 'ENT_IGNORE' becomes 4
+      if (flag === 'ENT_NOQUOTES') {
+        noquotes = true
+      } else if (isOptKey(flag) && OPTS[flag]) {
+        optTemp |= OPTS[flag]
+      }
+    }
+    quoteStyleValue = optTemp
+  }
+  const resolvedQuoteStyle = typeof quoteStyleValue === 'number' ? quoteStyleValue : optTemp
+  if (resolvedQuoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
+    encoded = encoded.replace(/'/g, '&#039;')
+  }
+  if (!noquotes) {
+    encoded = encoded.replace(/"/g, '&quot;')
+  }
+
+  return encoded
+}

@@ -15,11 +15,12 @@ authors:
 notes: []
 parityVerified:
   - Elixir 1.18
+isTypescript: true
 type: function
 layout: function
-title: Elixir's Kernel.abs in JavaScript
+title: Elixir's Kernel.abs in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://hexdocs.pm/elixir/Kernel.html#abs/1">Elixir's Kernel.abs</a>
   looks like.
 function: abs
@@ -31,7 +32,8 @@ alias:
   - /functions/Kernel/abs/
   - /elixir/abs/
 ---
-{% codeblock lang:javascript %}module.exports = function abs(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function abs(x: number): number {
   //      discuss at: https://locutus.io/elixir/abs/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -45,3 +47,19 @@ alias:
   return Math.abs(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function abs(x) {
+  //      discuss at: https://locutus.io/elixir/abs/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: abs(-5)
+  //       returns 1: 5
+  //       example 2: abs(3.14)
+  //       returns 2: 3.14
+  //       example 3: abs(0)
+  //       returns 3: 0
+
+  return Math.abs(x)
+}{% endcodeblock %}
+</div>

@@ -12,11 +12,12 @@ authors:
     - Felix Geisendoerfer (https://www.debuggable.com/felix)
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_key_exists in JavaScript
+title: PHP's array_key_exists in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-key-exists.php">PHP's
   array_key_exists</a> looks like.
 function: array_key_exists
@@ -29,17 +30,29 @@ alias:
   - /php/array_key_exists/
   - /functions/array_key_exists/
 ---
-{% codeblock lang:javascript %}module.exports = function array_key_exists(key, search) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+export function array_key_exists<TValue>(key: string | number, search: PhpArrayLike<TValue>): boolean {
   //  discuss at: https://locutus.io/php/array_key_exists/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
   //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
   //   returns 1: true
 
-  if (!search || (search.constructor !== Array && search.constructor !== Object)) {
-    return false
-  }
-
-  return key in search
+  return String(key) in search
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}
+export function array_key_exists(key, search) {
+  //  discuss at: https://locutus.io/php/array_key_exists/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Felix Geisendoerfer (https://www.debuggable.com/felix)
+  //   example 1: array_key_exists('kevin', {'kevin': 'van Zonneveld'})
+  //   returns 1: true
+
+  return String(key) in search
+}{% endcodeblock %}
+</div>

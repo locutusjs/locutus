@@ -11,11 +11,12 @@ authors:
 notes:
   - Takes a function as an argument, not a function's name
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_reduce in JavaScript
+title: PHP's array_reduce in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-reduce.php">PHP's
   array_reduce</a> looks like.
 function: array_reduce
@@ -28,29 +29,52 @@ alias:
   - /php/array_reduce/
   - /functions/array_reduce/
 ---
-{% codeblock lang:javascript %}module.exports = function array_reduce(aInput, callback) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+
+export function array_reduce<TValue, TCarry>(
+  aInput: readonly TValue[],
+  callback: (carry: TCarry, value: TValue) => TCarry,
+  initial: TCarry,
+): TCarry
+
+export function array_reduce<TValue>(
+  aInput: readonly TValue[],
+  callback: (carry: TValue | null, value: TValue) => TValue,
+): TValue | null
+
+export function array_reduce(
+  aInput: readonly PhpRuntimeValue[],
+  callback: (carry: PhpRuntimeValue | null, value: PhpRuntimeValue) => PhpRuntimeValue,
+  initial?: PhpRuntimeValue,
+): PhpRuntimeValue | null {
   //  discuss at: https://locutus.io/php/array_reduce/
   // original by: Alfonso Jimenez (https://www.alfonsojimenez.com)
   //      note 1: Takes a function as an argument, not a function's name
   //   example 1: array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;})
   //   returns 1: 15
 
-  const lon = aInput.length
-  let res = 0
-  let i = 0
-  let tmp = []
-
-  for (i = 0; i < lon; i += 2) {
-    tmp[0] = aInput[i]
-    if (aInput[i + 1]) {
-      tmp[1] = aInput[i + 1]
-    } else {
-      tmp[1] = 0
-    }
-    res += callback.apply(null, tmp)
-    tmp = []
+  let carry: PhpRuntimeValue | null = typeof initial === 'undefined' ? null : initial
+  for (const value of aInput) {
+    carry = callback(carry, value)
   }
-
-  return res
+  return carry
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}
+export function array_reduce(aInput, callback, initial) {
+  //  discuss at: https://locutus.io/php/array_reduce/
+  // original by: Alfonso Jimenez (https://www.alfonsojimenez.com)
+  //      note 1: Takes a function as an argument, not a function's name
+  //   example 1: array_reduce([1, 2, 3, 4, 5], function (v, w){v += w;return v;})
+  //   returns 1: 15
+
+  let carry = typeof initial === 'undefined' ? null : initial
+  for (const value of aInput) {
+    carry = callback(carry, value)
+  }
+  return carry
+}{% endcodeblock %}
+</div>

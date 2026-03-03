@@ -1,0 +1,12 @@
+export function LastIndex(s: string, sep: string): number {
+  //      discuss at: https://locutus.io/golang/strings/LastIndex
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: GopherJS (https://www.gopherjs.org/)
+  //       example 1: LastIndex('go gopher', 'go')
+  //       returns 1: 3
+  //       example 2: LastIndex('go gopher', 'rodent')
+  //       returns 2: -1
+
+  return s.lastIndexOf(sep)
+}

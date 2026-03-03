@@ -15,11 +15,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's is_bool in JavaScript
+title: PHP's is_bool in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.is-bool.php">PHP's is_bool</a> looks
   like.
 function: is_bool
@@ -32,7 +33,8 @@ alias:
   - /php/is_bool/
   - /functions/is_bool/
 ---
-{% codeblock lang:javascript %}module.exports = function is_bool(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function is_bool(mixedVar: boolean | number): boolean {
   //      discuss at: https://locutus.io/php/is_bool/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -45,3 +47,18 @@ alias:
   return mixedVar === true || mixedVar === false // Faster (in FF) than type checking
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function is_bool(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_bool/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: CoursesWeb (https://www.coursesweb.net/)
+  //       example 1: is_bool(false)
+  //       returns 1: true
+  //       example 2: is_bool(0)
+  //       returns 2: false
+
+  return mixedVar === true || mixedVar === false // Faster (in FF) than type checking
+}{% endcodeblock %}
+</div>

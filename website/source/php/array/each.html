@@ -4,7 +4,9 @@ examples:
   - 'each({a: "apple", b: "balloon"})'
 returns:
   - '{0: "a", 1: "apple", key: "a", value: "apple"}'
-dependencies: []
+dependencies:
+  - php/_helpers/_arrayPointers
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Ates Goral (https://magnetiq.com)
@@ -13,11 +15,12 @@ authors:
 notes:
   - 'Uses global: locutus to store the array pointer'
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's each in JavaScript
+title: PHP's each in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.each.php">PHP's each</a> looks like.
 function: each
 category: array
@@ -29,7 +32,21 @@ alias:
   - /php/each/
   - /functions/each/
 ---
-{% codeblock lang:javascript %}module.exports = function each(arr) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+
+interface EachResultObject<T> {
+  0: string | number
+  1: T
+  key: string | number
+  value: T
+}
+
+type EachResult<T> = [string | number, T] | EachResultObject<T> | false
+
+export function each<T>(arr: PhpArrayLike<T>): EachResult<T> {
   //  discuss at: https://locutus.io/php/each/
   // original by: Ates Goral (https://magnetiq.com)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -37,67 +54,521 @@ alias:
   //   example 1: each({a: "apple", b: "balloon"})
   //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.pointers = $locutus.php.pointers || []
-  const pointers = $locutus.php.pointers
-
-  const indexOf = function (value) {
-    for (let i = 0, length = this.length; i < length; i++) {
-      if (this[i] === value) {
-        return i
-      }
-    }
-    return -1
-  }
-
-  if (!pointers.indexOf) {
-    pointers.indexOf = indexOf
-  }
-  if (pointers.indexOf(arr) === -1) {
-    pointers.push(arr, 0)
-  }
-  const arrpos = pointers.indexOf(arr)
-  const cursor = pointers[arrpos + 1]
-  let pos = 0
-
-  if (!Array.isArray(arr)) {
-    let ct = 0
-    for (const k in arr) {
-      if (ct === cursor) {
-        pointers[arrpos + 1] += 1
-        if (each.returnArrayOnly) {
-          return [k, arr[k]]
-        } else {
-          return {
-            1: arr[k],
-            value: arr[k],
-            0: k,
-            key: k,
-          }
-        }
-      }
-      ct++
-    }
-    // Empty
+  const state = getPointerState(arr, true)
+  if (!state) {
     return false
   }
-  if (arr.length === 0 || cursor === arr.length) {
+
+  const entry = getEntryAtCursor(arr, state.cursor)
+  if (!entry) {
     return false
   }
-  pos = cursor
-  pointers[arrpos + 1] += 1
-  if (each.returnArrayOnly) {
-    return [pos, arr[pos]]
-  } else {
-    return {
-      1: arr[pos],
-      value: arr[pos],
-      0: pos,
-      key: pos,
-    }
+
+  state.setCursor(state.cursor + 1)
+
+  const key = entry[0]
+  const value = entry[1]
+  const returnArrayOnly = getPhpObjectEntry(each, 'returnArrayOnly') === true
+
+  if (returnArrayOnly) {
+    return [key, value]
+  }
+
+  return {
+    1: value,
+    value,
+    0: key,
+    key,
   }
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { getEntryAtCursor, getPointerState } from '../_helpers/_arrayPointers.ts'
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+
+export function each(arr) {
+  //  discuss at: https://locutus.io/php/each/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Uses global: locutus to store the array pointer
+  //   example 1: each({a: "apple", b: "balloon"})
+  //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
+
+  const state = getPointerState(arr, true)
+  if (!state) {
+    return false
+  }
+
+  const entry = getEntryAtCursor(arr, state.cursor)
+  if (!entry) {
+    return false
+  }
+
+  state.setCursor(state.cursor + 1)
+
+  const key = entry[0]
+  const value = entry[1]
+  const returnArrayOnly = getPhpObjectEntry(each, 'returnArrayOnly') === true
+
+  if (returnArrayOnly) {
+    return [key, value]
+  }
+
+  return {
+    1: value,
+    value,
+    0: key,
+    key,
+  }
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
+  return Object.entries(value)
+}
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/_helpers/_arrayPointers (Locutus helper dependency)
+interface PointerState {
+  cursor: number
+  setCursor: (nextCursor: number) => void
+}
+
+const findPointerIndex = (pointers: PhpList<PhpInput>, target: PhpInput): number => {
+  for (let index = 0; index < pointers.length; index += 1) {
+    if (pointers[index] === target) {
+      return index
+    }
+  }
+
+  return -1
+}
+
+function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null {
+  const runtime = ensurePhpRuntimeState()
+  const pointers = runtime.pointers
+  const pointerTarget: PhpInput = target
+
+  let index = findPointerIndex(pointers, pointerTarget)
+  if (index === -1) {
+    if (!initialize) {
+      return null
+    }
+    pointers.push(pointerTarget, 0)
+    index = pointers.length - 2
+  }
+
+  const cursorValue = pointers[index + 1]
+  const cursor = typeof cursorValue === 'number' ? cursorValue : 0
+
+  return {
+    cursor,
+    setCursor: (nextCursor: number) => {
+      pointers[index + 1] = nextCursor
+    },
+  }
+}
+
+function getEntryAtCursor<T>(target: PhpArrayLike<T>, cursor: number): [string | number, T] | null {
+  if (cursor < 0) {
+    return null
+  }
+
+  if (Array.isArray(target)) {
+    if (cursor >= target.length) {
+      return null
+    }
+
+    const value = target[cursor]
+    if (typeof value === 'undefined') {
+      return null
+    }
+    return [cursor, value]
+  }
+
+  let index = 0
+  for (const [key, value] of entriesOfPhpAssoc(target)) {
+    if (index === cursor) {
+      return [key, value]
+    }
+    index += 1
+  }
+
+  return null
+}
+
+// php/array/each (target function module)
+interface EachResultObject<T> {
+  0: string | number
+  1: T
+  key: string | number
+  value: T
+}
+
+type EachResult<T> = [string | number, T] | EachResultObject<T> | false
+
+function each<T>(arr: PhpArrayLike<T>): EachResult<T> {
+  //  discuss at: https://locutus.io/php/each/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Uses global: locutus to store the array pointer
+  //   example 1: each({a: "apple", b: "balloon"})
+  //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
+
+  const state = getPointerState(arr, true)
+  if (!state) {
+    return false
+  }
+
+  const entry = getEntryAtCursor(arr, state.cursor)
+  if (!entry) {
+    return false
+  }
+
+  state.setCursor(state.cursor + 1)
+
+  const key = entry[0]
+  const value = entry[1]
+  const returnArrayOnly = getPhpObjectEntry(each, 'returnArrayOnly') === true
+
+  if (returnArrayOnly) {
+    return [key, value]
+  }
+
+  return {
+    1: value,
+    value,
+    0: key,
+    key,
+  }
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !Array.isArray(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState() {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/_helpers/_arrayPointers (Locutus helper dependency)
+const findPointerIndex = (pointers, target) => {
+  for (let index = 0; index < pointers.length; index += 1) {
+    if (pointers[index] === target) {
+      return index
+    }
+  }
+
+  return -1
+}
+
+function getPointerState(target, initialize = true) {
+  const runtime = ensurePhpRuntimeState()
+  const pointers = runtime.pointers
+  const pointerTarget = target
+
+  let index = findPointerIndex(pointers, pointerTarget)
+  if (index === -1) {
+    if (!initialize) {
+      return null
+    }
+    pointers.push(pointerTarget, 0)
+    index = pointers.length - 2
+  }
+
+  const cursorValue = pointers[index + 1]
+  const cursor = typeof cursorValue === 'number' ? cursorValue : 0
+
+  return {
+    cursor,
+    setCursor: (nextCursor) => {
+      pointers[index + 1] = nextCursor
+    },
+  }
+}
+
+function getEntryAtCursor(target, cursor) {
+  if (cursor < 0) {
+    return null
+  }
+
+  if (Array.isArray(target)) {
+    if (cursor >= target.length) {
+      return null
+    }
+
+    const value = target[cursor]
+    if (typeof value === 'undefined') {
+      return null
+    }
+    return [cursor, value]
+  }
+
+  let index = 0
+  for (const [key, value] of Object.entries(target)) {
+    if (index === cursor) {
+      return [key, value]
+    }
+    index += 1
+  }
+
+  return null
+}
+
+// php/array/each (target function module)
+function each(arr) {
+  //  discuss at: https://locutus.io/php/each/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Uses global: locutus to store the array pointer
+  //   example 1: each({a: "apple", b: "balloon"})
+  //   returns 1: {0: "a", 1: "apple", key: "a", value: "apple"}
+
+  const state = getPointerState(arr, true)
+  if (!state) {
+    return false
+  }
+
+  const entry = getEntryAtCursor(arr, state.cursor)
+  if (!entry) {
+    return false
+  }
+
+  state.setCursor(state.cursor + 1)
+
+  const key = entry[0]
+  const value = entry[1]
+  const returnArrayOnly = getPhpObjectEntry(each, 'returnArrayOnly') === true
+
+  if (returnArrayOnly) {
+    return [key, value]
+  }
+
+  return {
+    1: value,
+    value,
+    0: key,
+    key,
+  }
+}{% endcodeblock %}
+</div>

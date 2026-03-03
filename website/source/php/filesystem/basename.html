@@ -22,11 +22,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's basename in JavaScript
+title: PHP's basename in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.basename.php">PHP's basename</a>
   looks like.
 function: basename
@@ -39,7 +40,8 @@ alias:
   - /php/basename/
   - /functions/basename/
 ---
-{% codeblock lang:javascript %}module.exports = function basename(path, suffix) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function basename(path: string, suffix?: string): string {
   //      discuss at: https://locutus.io/php/basename/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -72,3 +74,38 @@ alias:
   return b
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function basename(path, suffix) {
+  //      discuss at: https://locutus.io/php/basename/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Ash Searle (https://hexmen.com/blog/)
+  //     improved by: Lincoln Ramsay
+  //     improved by: djmix
+  //     improved by: Dmitry Gorelenkov
+  //       example 1: basename('/www/site/home.htm', '.htm')
+  //       returns 1: 'home'
+  //       example 2: basename('ecra.php?p=1')
+  //       returns 2: 'ecra.php?p=1'
+  //       example 3: basename('/some/path/')
+  //       returns 3: 'path'
+  //       example 4: basename('/some/path_ext.ext/','.ext')
+  //       returns 4: 'path_ext'
+
+  let b = path
+  const lastChar = b.charAt(b.length - 1)
+
+  if (lastChar === '/' || lastChar === '\\') {
+    b = b.slice(0, -1)
+  }
+
+  b = b.replace(/^.*[/\\]/g, '')
+
+  if (typeof suffix === 'string' && b.substr(b.length - suffix.length) === suffix) {
+    b = b.substr(0, b.length - suffix.length)
+  }
+
+  return b
+}{% endcodeblock %}
+</div>

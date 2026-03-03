@@ -12,11 +12,12 @@ notes:
   - Returns the string '0123456789'
 parityVerified:
   - Python 3.12
+isTypescript: true
 type: function
 layout: function
-title: Python's string.digits in JavaScript
+title: Python's string.digits in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://docs.python.org/3/library/string.html#string.digits">Python's
   string.digits</a> looks like.
 function: digits
@@ -28,7 +29,8 @@ alias:
   - /functions/string/digits/
   - /python/digits/
 ---
-{% codeblock lang:javascript %}module.exports = function digits() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function digits(): '0123456789' {
   //      discuss at: https://locutus.io/python/digits/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -39,3 +41,16 @@ alias:
   return '0123456789'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function digits() {
+  //      discuss at: https://locutus.io/python/digits/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the string '0123456789'
+  //       example 1: digits()
+  //       returns 1: '0123456789'
+
+  return '0123456789'
+}{% endcodeblock %}
+</div>

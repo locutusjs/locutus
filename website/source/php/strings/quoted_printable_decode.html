@@ -26,12 +26,14 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
     - Theriault (https://github.com/Theriault)
 notes: []
-parityVerified: null
+parityVerified:
+  - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's quoted_printable_decode in JavaScript
+title: PHP's quoted_printable_decode in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.quoted-printable-decode.php">PHP's
   quoted_printable_decode</a> looks like.
 function: quoted_printable_decode
@@ -44,8 +46,10 @@ alias:
   - /php/quoted_printable_decode/
   - /functions/quoted_printable_decode/
 ---
-{% codeblock lang:javascript %}module.exports = function quoted_printable_decode(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function quoted_printable_decode(str: string): string {
   //       discuss at: https://locutus.io/php/quoted_printable_decode/
+  //  parity verified: PHP 8.3
   //      original by: Ole Vrijenhoek
   //      bugfixed by: Brett Zamir (https://brett-zamir.me)
   //      bugfixed by: Theriault (https://github.com/Theriault)
@@ -67,10 +71,43 @@ alias:
   const RFC2045Decode2IN = /=([0-9A-F]{2})/gim
   // RFC2045Decode2IN = /=([0-9A-F]{2})/gm,
 
-  const RFC2045Decode2OUT = function (sMatch, sHex) {
+  const RFC2045Decode2OUT = function (_sMatch: string, sHex: string): string {
     return String.fromCharCode(parseInt(sHex, 16))
   }
 
   return str.replace(RFC2045Decode1, '').replace(RFC2045Decode2IN, RFC2045Decode2OUT)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function quoted_printable_decode(str) {
+  //       discuss at: https://locutus.io/php/quoted_printable_decode/
+  //  parity verified: PHP 8.3
+  //      original by: Ole Vrijenhoek
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Theriault (https://github.com/Theriault)
+  // reimplemented by: Theriault (https://github.com/Theriault)
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //        example 1: quoted_printable_decode('a=3Db=3Dc')
+  //        returns 1: 'a=b=c'
+  //        example 2: quoted_printable_decode('abc  =20\r\n123  =20\r\n')
+  //        returns 2: 'abc   \r\n123   \r\n'
+  //        example 3: quoted_printable_decode('012345678901234567890123456789012345678901234567890123456789012345678901234=\r\n56789')
+  //        returns 3: '01234567890123456789012345678901234567890123456789012345678901234567890123456789'
+  //        example 4: quoted_printable_decode("Lorem ipsum dolor sit amet=23, consectetur adipisicing elit")
+  //        returns 4: 'Lorem ipsum dolor sit amet#, consectetur adipisicing elit'
+
+  // Decodes all equal signs followed by two hex digits
+  const RFC2045Decode1 = /=\r\n/gm
+
+  // the RFC states against decoding lower case encodings, but following apparent PHP behavior
+  const RFC2045Decode2IN = /=([0-9A-F]{2})/gim
+  // RFC2045Decode2IN = /=([0-9A-F]{2})/gm,
+
+  const RFC2045Decode2OUT = function (_sMatch, sHex) {
+    return String.fromCharCode(parseInt(sHex, 16))
+  }
+
+  return str.replace(RFC2045Decode1, '').replace(RFC2045Decode2IN, RFC2045Decode2OUT)
+}{% endcodeblock %}
+</div>

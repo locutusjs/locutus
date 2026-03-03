@@ -1,0 +1,58 @@
+import nodePath from 'path'
+
+export function realpath(path: string): string {
+  //  discuss at: https://locutus.io/php/realpath/
+  // original by: mk.keck
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Returned path is an url like e.g. 'https://yourhost.tld/path/'
+  //   example 1: realpath('some/dir/.././_supporters/pj_test_supportfile_1.htm')
+  //   returns 1: 'some/_supporters/pj_test_supportfile_1.htm'
+
+  if (typeof window === 'undefined') {
+    return nodePath.normalize(path)
+  }
+
+  let hasProtocol = false
+  let parts: string[] = [] // Save the root, if not given
+  const href = window.location.href // Avoid input failures
+
+  // Check if there's a port in path (like 'https://')
+  let normalizedPath = String(path).replace('\\', '/')
+  if (normalizedPath.indexOf('://') !== -1) {
+    hasProtocol = true
+  }
+
+  // Ok, there's not a port in path, so let's take the root
+  if (!hasProtocol) {
+    normalizedPath = href.substring(0, href.lastIndexOf('/') + 1) + normalizedPath
+  }
+
+  // Explode the given path into it's parts
+  parts = normalizedPath.split('/') // The path is an array now
+  const resolvedParts: string[] = [] // Foreach part make a check
+  for (const part of parts) {
+    // This is'nt really interesting
+    if (part === '.') {
+      continue
+    }
+    // This reduces the realpath
+    if (part === '..') {
+      /* But only if there more than 3 parts in the path-array.
+       * The first three parts are for the uri */
+      if (resolvedParts.length > 3) {
+        resolvedParts.pop()
+      }
+    } else {
+      // This adds parts to the realpath
+      // But only if the part is not empty or the uri
+      // (the first three parts ar needed) was not
+      // saved
+      if (resolvedParts.length < 2 || part !== '') {
+        resolvedParts.push(part)
+      }
+    }
+  }
+
+  // Returns the absloute path as a string
+  return resolvedParts.join('/')
+}

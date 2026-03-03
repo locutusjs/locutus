@@ -1,0 +1,144 @@
+import { getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import { type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type LocutusType = 'function' | 'boolean' | 'number' | 'string' | 'array' | 'object' | 'undefined' | 'null'
+type SerializeValue = PhpRuntimeValue
+
+export function serialize(mixedValue: SerializeValue): string {
+  //  discuss at: https://locutus.io/php/serialize/
+  // original by: Arpad Ray (mailto:arpad@php.net)
+  // improved by: Dino
+  // improved by: Le Torbi (https://www.letorbi.de/)
+  // improved by: Kevin van Zonneveld (https://kvz.io/)
+  // bugfixed by: Andrej Pavlovic
+  // bugfixed by: Garagoth
+  // bugfixed by: Russell Walker (https://www.nbill.co.uk/)
+  // bugfixed by: Jamie Beck (https://www.terabit.ca/)
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io/)
+  // bugfixed by: Ben (https://benblume.co.uk/)
+  // bugfixed by: Codestar (https://codestarlive.com/)
+  // bugfixed by: idjem (https://github.com/idjem)
+  //    input by: DtTvB (https://dt.in.th/2008-09-16.string-length-in-bytes.html)
+  //    input by: Martin (https://www.erlenwiese.de/)
+  //      note 1: We feel the main purpose of this function should be to ease
+  //      note 1: the transport of data between php & js
+  //      note 1: Aiming for PHP-compatibility, we have to translate objects to arrays
+  //   example 1: serialize(['Kevin', 'van', 'Zonneveld'])
+  //   returns 1: 'a:3:{i:0;s:5:"Kevin";i:1;s:3:"van";i:2;s:9:"Zonneveld";}'
+  //   example 2: serialize({firstName: 'Kevin', midName: 'van'})
+  //   returns 2: 'a:2:{s:9:"firstName";s:5:"Kevin";s:7:"midName";s:3:"van";}'
+  //   example 3: serialize( {'ü': 'ü', '四': '四', '𠜎': '𠜎'})
+  //   returns 3: 'a:3:{s:2:"ü";s:2:"ü";s:3:"四";s:3:"四";s:4:"𠜎";s:4:"𠜎";}'
+
+  let val = ''
+  let okey: number | string
+  let ktype: LocutusType = 'undefined'
+  let vals = ''
+  let count = 0
+
+  const _utf8Size = function (str: string): number {
+    return ~-encodeURI(str).split(/%..|./).length
+  }
+
+  const _getType = function (inp: SerializeValue): LocutusType {
+    let match: RegExpMatchArray | null
+    let cons = ''
+    const types: Array<'boolean' | 'number' | 'string' | 'array'> = ['boolean', 'number', 'string', 'array']
+    const jsType = typeof inp
+    let type: LocutusType =
+      jsType === 'boolean' ||
+      jsType === 'number' ||
+      jsType === 'string' ||
+      jsType === 'function' ||
+      jsType === 'undefined' ||
+      jsType === 'object'
+        ? jsType
+        : 'undefined'
+
+    if (type === 'object' && !inp) {
+      return 'null'
+    }
+
+    if (type === 'object' && typeof inp === 'object' && inp !== null) {
+      const constructorValue = getPhpObjectEntry(inp, 'constructor')
+      if (typeof constructorValue !== 'function') {
+        return 'object'
+      }
+      cons = constructorValue.toString()
+      match = cons.match(/(\w+)\(/)
+      if (match) {
+        cons = (match[1] ?? '').toLowerCase()
+      }
+      for (const itemType of types) {
+        if (cons === itemType) {
+          type = itemType
+          break
+        }
+      }
+    }
+    return type
+  }
+
+  const type = _getType(mixedValue)
+
+  switch (type) {
+    case 'function':
+      val = ''
+      break
+    case 'boolean':
+      val = 'b:' + (mixedValue ? '1' : '0')
+      break
+    case 'number': {
+      const numericValue = Number(mixedValue)
+      val = (Math.round(numericValue) === numericValue ? 'i' : 'd') + ':' + numericValue
+      break
+    }
+    case 'string': {
+      const stringValue = String(mixedValue)
+      val = 's:' + _utf8Size(stringValue) + ':"' + stringValue + '"'
+      break
+    }
+    case 'array':
+    case 'object': {
+      val = 'a'
+      /*
+      if (type === 'object') {
+        var objname = mixedValue.constructor.toString().match(/(\w+)\(\)/);
+        if (objname === undefined) {
+          return;
+        }
+        objname[1] = serialize(objname[1]);
+        val = 'O' + objname[1].substring(1, objname[1].length - 1);
+      }
+      */
+      const source = toPhpArrayObject<SerializeValue>(mixedValue)
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          const entry = source[key]
+          ktype = _getType(entry)
+          if (ktype === 'function') {
+            continue
+          }
+
+          okey = key.match(/^[0-9]+$/) ? parseInt(key, 10) : key
+          vals += serialize(okey) + serialize(entry)
+          count++
+        }
+      }
+      val += ':' + count + ':{' + vals + '}'
+      break
+    }
+    case 'undefined':
+    default:
+      // Fall-through
+      // if the JS object has a property which contains a null value,
+      // the string cannot be unserialized by PHP
+      val = 'N'
+      break
+  }
+  if (type !== 'object' && type !== 'array') {
+    val += ';'
+  }
+
+  return val
+}

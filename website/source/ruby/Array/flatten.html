@@ -16,11 +16,12 @@ notes:
   - Returns a new array that is a one-dimensional flattening of the array.
 parityVerified:
   - Ruby 3.3
+isTypescript: true
 type: function
 layout: function
-title: Ruby's Array.flatten in JavaScript
+title: Ruby's Array.flatten in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://ruby-doc.org/core-2.2.2/Array.html#method-c-flatten">Ruby's
   Array.flatten</a> looks like.
 function: flatten
@@ -32,7 +33,33 @@ alias:
   - /functions/Array/flatten/
   - /ruby/flatten/
 ---
-{% codeblock lang:javascript %}module.exports = function flatten(arr, depth) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function flatten(arr: unknown[] | unknown, depth?: number): unknown[] {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/Array/flatten/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a new array that is a one-dimensional flattening of the array.
+  //       example 1: flatten([1, [2, 3, [4, 5]]])
+  //       returns 1: [1, 2, 3, 4, 5]
+  //       example 2: flatten([1, [2, [3, [4]]]], 1)
+  //       returns 2: [1, 2, [3, [4]]]
+  //       example 3: flatten([[1, 2], [3, 4]])
+  //       returns 3: [1, 2, 3, 4]
+
+  if (!Array.isArray(arr)) {
+    return []
+  }
+
+  if (depth === undefined) {
+    depth = Infinity
+  }
+
+  return (arr as unknown[]).flat(depth)
+}
+{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function flatten(arr, depth) {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/Array/flatten/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -53,5 +80,5 @@ alias:
   }
 
   return arr.flat(depth)
-}
-{% endcodeblock %}
+}{% endcodeblock %}
+</div>

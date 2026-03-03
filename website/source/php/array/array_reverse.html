@@ -4,7 +4,8 @@ examples:
   - array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
 returns:
   - '{ 2: [''green'', ''red''], 1: ''4.0'', 0: ''php''}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -12,11 +13,12 @@ authors:
     - Karol Kowalski
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_reverse in JavaScript
+title: PHP's array_reverse in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-reverse.php">PHP's
   array_reverse</a> looks like.
 function: array_reverse
@@ -29,41 +31,270 @@ alias:
   - /php/array_reverse/
   - /functions/array_reverse/
 ---
-{% codeblock lang:javascript %}module.exports = function array_reverse(array, preserveKeys) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { type PhpAssoc, type PhpRuntimeValue, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+type ReverseValue = PhpRuntimeValue
+
+export function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys?: false | undefined): TValue[]
+export function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys: true): PhpAssoc<TValue>
+export function array_reverse<TValue extends ReverseValue>(
+  array: PhpAssoc<TValue>,
+  preserveKeys?: false | undefined,
+): PhpAssoc<TValue> | TValue[]
+export function array_reverse<TValue extends ReverseValue>(
+  array: PhpAssoc<TValue>,
+  preserveKeys: true,
+): PhpAssoc<TValue>
+export function array_reverse(
+  array: ReverseValue[] | PhpAssoc<ReverseValue>,
+  preserveKeys?: boolean,
+): ReverseValue[] | PhpAssoc<ReverseValue> {
   //  discuss at: https://locutus.io/php/array_reverse/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Karol Kowalski
   //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
   //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
 
-  const isArray = Array.isArray(array)
-  const tmpArr = preserveKeys ? {} : []
-  let key
+  const preserve = preserveKeys === true
+  let result: ReverseValue[] | PhpAssoc<ReverseValue>
 
-  if (isArray && !preserveKeys) {
-    return array.slice(0).reverse()
-  }
-
-  if (preserveKeys) {
-    const keys = []
-    for (key in array) {
-      keys.push(key)
-    }
-
-    let i = keys.length
-    while (i--) {
-      key = keys[i]
-      // @todo: don't rely on browsers keeping keys in insertion order
-      // it's implementation specific
-      // eg. the result will differ from expected in Google Chrome
-      tmpArr[key] = array[key]
-    }
+  if (Array.isArray(array) && !preserve) {
+    result = array.slice(0).reverse()
   } else {
-    for (key in array) {
-      tmpArr.unshift(array[key])
+    const source = toPhpArrayObject(array)
+
+    if (preserve) {
+      const keys = Object.keys(source)
+      const reversed: PhpAssoc<ReverseValue> = {}
+
+      for (let index = keys.length - 1; index >= 0; index -= 1) {
+        const key = keys[index]
+        if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed[key] = source[key]
+        }
+      }
+
+      result = reversed
+    } else {
+      const reversed: ReverseValue[] = []
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed.unshift(source[key])
+        }
+      }
+
+      result = reversed
     }
   }
 
-  return tmpArr
+  return result
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+export function array_reverse(array, preserveKeys) {
+  //  discuss at: https://locutus.io/php/array_reverse/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Karol Kowalski
+  //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
+  //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
+
+  const preserve = preserveKeys === true
+  let result
+
+  if (Array.isArray(array) && !preserve) {
+    result = array.slice(0).reverse()
+  } else {
+    const source = toPhpArrayObject(array)
+
+    if (preserve) {
+      const keys = Object.keys(source)
+      const reversed = {}
+
+      for (let index = keys.length - 1; index >= 0; index -= 1) {
+        const key = keys[index]
+        if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed[key] = source[key]
+        }
+      }
+
+      result = reversed
+    } else {
+      const reversed = []
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed.unshift(source[key])
+        }
+      }
+
+      result = reversed
+    }
+  }
+
+  return result
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_reverse (target function module)
+type ReverseValue = PhpRuntimeValue
+
+function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys?: false | undefined): TValue[]
+
+function array_reverse<TValue extends ReverseValue>(array: TValue[], preserveKeys: true): PhpAssoc<TValue>
+
+function array_reverse<TValue extends ReverseValue>(
+  array: PhpAssoc<TValue>,
+  preserveKeys?: false | undefined,
+): PhpAssoc<TValue> | TValue[]
+
+function array_reverse<TValue extends ReverseValue>(
+  array: PhpAssoc<TValue>,
+  preserveKeys: true,
+): PhpAssoc<TValue>
+
+function array_reverse(
+  array: ReverseValue[] | PhpAssoc<ReverseValue>,
+  preserveKeys?: boolean,
+): ReverseValue[] | PhpAssoc<ReverseValue> {
+  //  discuss at: https://locutus.io/php/array_reverse/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Karol Kowalski
+  //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
+  //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
+
+  const preserve = preserveKeys === true
+  let result: ReverseValue[] | PhpAssoc<ReverseValue>
+
+  if (Array.isArray(array) && !preserve) {
+    result = array.slice(0).reverse()
+  } else {
+    const source = toPhpArrayObject(array)
+
+    if (preserve) {
+      const keys = Object.keys(source)
+      const reversed: PhpAssoc<ReverseValue> = {}
+
+      for (let index = keys.length - 1; index >= 0; index -= 1) {
+        const key = keys[index]
+        if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed[key] = source[key]
+        }
+      }
+
+      result = reversed
+    } else {
+      const reversed: ReverseValue[] = []
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed.unshift(source[key])
+        }
+      }
+
+      result = reversed
+    }
+  }
+
+  return result
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+function isPhpArrayObject(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_reverse (target function module)
+
+function array_reverse(array, preserveKeys) {
+  //  discuss at: https://locutus.io/php/array_reverse/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Karol Kowalski
+  //   example 1: array_reverse( [ 'php', '4.0', ['green', 'red'] ], true)
+  //   returns 1: { 2: ['green', 'red'], 1: '4.0', 0: 'php'}
+
+  const preserve = preserveKeys === true
+  let result
+
+  if (Array.isArray(array) && !preserve) {
+    result = array.slice(0).reverse()
+  } else {
+    const source = toPhpArrayObject(array)
+
+    if (preserve) {
+      const keys = Object.keys(source)
+      const reversed = {}
+
+      for (let index = keys.length - 1; index >= 0; index -= 1) {
+        const key = keys[index]
+        if (typeof key === 'string' && Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed[key] = source[key]
+        }
+      }
+
+      result = reversed
+    } else {
+      const reversed = []
+      for (const key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          reversed.unshift(source[key])
+        }
+      }
+
+      result = reversed
+    }
+  }
+
+  return result
+}{% endcodeblock %}
+</div>

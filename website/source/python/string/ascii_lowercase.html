@@ -11,11 +11,12 @@ authors:
 notes: []
 parityVerified:
   - Python 3.12
+isTypescript: true
 type: function
 layout: function
-title: Python's string.ascii_lowercase in JavaScript
+title: Python's string.ascii_lowercase in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://docs.python.org/3/library/string.html#string.ascii_lowercase">Python's
   string.ascii_lowercase</a> looks like.
 function: ascii_lowercase
@@ -27,17 +28,24 @@ alias:
   - /functions/string/ascii_lowercase/
   - /python/ascii_lowercase/
 ---
-{% codeblock lang:javascript %}module.exports = function ascii_lowercase() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz' {
   // parity verified: Python 3.12
   //     original by: Yury Shapkarin (https://shapkarin.me)
   //       example 1: ascii_lowercase()
   //       returns 1: 'abcdefghijklmnopqrstuvwxyz'
 
-  const length = 26
-  let i = 65 + length + 6
-
-  return [...new Array(length)].reduce(function (accumulator) {
-    return accumulator + String.fromCharCode(i++)
-  }, '')
+  return 'abcdefghijklmnopqrstuvwxyz'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function ascii_lowercase() {
+  // parity verified: Python 3.12
+  //     original by: Yury Shapkarin (https://shapkarin.me)
+  //       example 1: ascii_lowercase()
+  //       returns 1: 'abcdefghijklmnopqrstuvwxyz'
+
+  return 'abcdefghijklmnopqrstuvwxyz'
+}{% endcodeblock %}
+</div>

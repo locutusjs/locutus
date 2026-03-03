@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - Perl 5.40
+isTypescript: true
 type: function
 layout: function
-title: Perl's core::lc in JavaScript
+title: Perl's core::lc in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://perldoc.perl.org/core">Perl's core::lc</a> looks like.
 function: lc
 category: core
@@ -28,7 +29,8 @@ alias:
   - /functions/core/lc/
   - /perl/lc/
 ---
-{% codeblock lang:javascript %}module.exports = function lc(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function lc(str: string): string {
   //      discuss at: https://locutus.io/perl/lc/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -40,3 +42,17 @@ alias:
   return String(str).toLowerCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function lc(str) {
+  //      discuss at: https://locutus.io/perl/lc/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: lc('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: lc('Hello World')
+  //       returns 2: 'hello world'
+
+  return String(str).toLowerCase()
+}{% endcodeblock %}
+</div>

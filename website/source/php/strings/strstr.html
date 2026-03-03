@@ -21,11 +21,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's strstr in JavaScript
+title: PHP's strstr in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.strstr.php">PHP's strstr</a> looks
   like.
 function: strstr
@@ -38,7 +39,8 @@ alias:
   - /php/strstr/
   - /functions/strstr/
 ---
-{% codeblock lang:javascript %}module.exports = function strstr(haystack, needle, bool) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function strstr(haystack: string, needle: string, bool?: boolean): string | false {
   //      discuss at: https://locutus.io/php/strstr/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -68,3 +70,35 @@ alias:
   }
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function strstr(haystack, needle, bool) {
+  //      discuss at: https://locutus.io/php/strstr/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: strstr('Kevin van Zonneveld', 'van')
+  //       returns 1: 'van Zonneveld'
+  //       example 2: strstr('Kevin van Zonneveld', 'van', true)
+  //       returns 2: 'Kevin '
+  //       example 3: strstr('name@example.com', '@')
+  //       returns 3: '@example.com'
+  //       example 4: strstr('name@example.com', '@', true)
+  //       returns 4: 'name'
+
+  let pos = 0
+
+  haystack += ''
+  pos = haystack.indexOf(needle)
+  if (pos === -1) {
+    return false
+  } else {
+    if (bool) {
+      return haystack.substr(0, pos)
+    } else {
+      return haystack.slice(pos)
+    }
+  }
+}{% endcodeblock %}
+</div>

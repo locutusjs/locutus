@@ -7,6 +7,15 @@
     </header>
 
     <div class="article-entry">
+      <%
+      var funcCount = site.pages.find({ language: page.language, type: 'function' }).length;
+      var catCount = site.pages.find({ language: page.language, type: 'category' }).length;
+      %>
+      <p>
+        TypeScript implementations of <%= funcCount %> <%= page.human || page.language %> standard library functions across <%= catCount %> module<%= catCount !== 1 ? 's' : '' %>.
+        Each function is individually importable and tree-shakeable.
+      </p>
+
       <% site.pages.find({ language: page.language, type: 'category'}).sort('category').each(function (cat) { %>
         <strong><%- cat.category %></strong>
         <ul>

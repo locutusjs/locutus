@@ -21,11 +21,12 @@ authors:
     - pilus
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's dechex in JavaScript
+title: PHP's dechex in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.dechex.php">PHP's dechex</a> looks
   like.
 function: dechex
@@ -38,7 +39,8 @@ alias:
   - /php/dechex/
   - /functions/dechex/
 ---
-{% codeblock lang:javascript %}module.exports = function dechex(number) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function dechex(number: number): string {
   //  discuss at: https://locutus.io/php/dechex/
   // original by: Philippe Baumann
   // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -51,9 +53,32 @@ alias:
   //   example 3: dechex(-1415723993)
   //   returns 3: 'ab9dc427'
 
-  if (number < 0) {
-    number = 0xffffffff + number + 1
+  let normalized = parseInt(String(number), 10)
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1
   }
-  return parseInt(number, 10).toString(16)
+  return normalized.toString(16)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function dechex(number) {
+  //  discuss at: https://locutus.io/php/dechex/
+  // original by: Philippe Baumann
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // improved by: https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+  //    input by: pilus
+  //   example 1: dechex(10)
+  //   returns 1: 'a'
+  //   example 2: dechex(47)
+  //   returns 2: '2f'
+  //   example 3: dechex(-1415723993)
+  //   returns 3: 'ab9dc427'
+
+  let normalized = parseInt(String(number), 10)
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1
+  }
+  return normalized.toString(16)
+}{% endcodeblock %}
+</div>

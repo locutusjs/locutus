@@ -17,11 +17,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's strpbrk in JavaScript
+title: PHP's strpbrk in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.strpbrk.php">PHP's strpbrk</a> looks
   like.
 function: strpbrk
@@ -34,7 +35,8 @@ alias:
   - /php/strpbrk/
   - /functions/strpbrk/
 ---
-{% codeblock lang:javascript %}module.exports = function strpbrk(haystack, charList) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function strpbrk(haystack: string, charList: string): string | false {
   //      discuss at: https://locutus.io/php/strpbrk/
   // parity verified: PHP 8.3
   //     original by: Alfonso Jimenez (https://www.alfonsojimenez.com)
@@ -52,3 +54,23 @@ alias:
   return false
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function strpbrk(haystack, charList) {
+  //      discuss at: https://locutus.io/php/strpbrk/
+  // parity verified: PHP 8.3
+  //     original by: Alfonso Jimenez (https://www.alfonsojimenez.com)
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //      revised by: Christoph
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: strpbrk('This is a Simple text.', 'is')
+  //       returns 1: 'is is a Simple text.'
+
+  for (let i = 0, len = haystack.length; i < len; ++i) {
+    if (charList.indexOf(haystack.charAt(i)) >= 0) {
+      return haystack.slice(i)
+    }
+  }
+  return false
+}{% endcodeblock %}
+</div>

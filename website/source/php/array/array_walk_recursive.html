@@ -8,18 +8,20 @@ returns:
   - 'true'
   - 'true'
   - 'true'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Hugues Peccatte
 notes:
   - Only works with user-defined functions, not built-in functions like void()
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_walk_recursive in JavaScript
+title: PHP's array_walk_recursive in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-walk-recursive.php">PHP's
   array_walk_recursive</a> looks like.
 function: array_walk_recursive
@@ -32,7 +34,54 @@ alias:
   - /php/array_walk_recursive/
   - /functions/array_walk_recursive/
 ---
-{% codeblock lang:javascript %}module.exports = function array_walk_recursive(array, funcname, userdata) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import {
+  isObjectLike,
+  type PhpAssoc,
+  type PhpRuntimeList,
+  type PhpRuntimeValue,
+  toPhpArrayObject,
+} from '../_helpers/_phpTypes.ts'
+
+type RecursiveWalkNode<TValue> = TValue | RecursiveWalkList<TValue>
+type RecursiveWalkList<TValue> = RecursiveWalkNode<TValue>[]
+type RecursiveWalkAssoc<TValue> = PhpAssoc<RecursiveWalkNode<TValue>>
+type RecursiveWalkCollection<TValue> = RecursiveWalkList<TValue> | RecursiveWalkAssoc<TValue>
+type RecursiveWalkInput = Exclude<PhpRuntimeValue, PhpRuntimeList>
+type ArrayWalkRecursiveCallback<TKey extends number | string, TValue, TUserdata> = (
+  value: TValue,
+  key: TKey,
+  userdata?: TUserdata,
+) => void
+
+export function array_walk_recursive<
+  TValue extends RecursiveWalkInput = RecursiveWalkInput,
+  TUserdata extends RecursiveWalkInput = RecursiveWalkInput,
+>(
+  array: RecursiveWalkList<TValue>,
+  funcname: ArrayWalkRecursiveCallback<number, TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean
+
+export function array_walk_recursive<
+  TValue extends RecursiveWalkInput = RecursiveWalkInput,
+  TUserdata extends RecursiveWalkInput = RecursiveWalkInput,
+>(
+  array: RecursiveWalkAssoc<TValue>,
+  funcname: ArrayWalkRecursiveCallback<string, TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean
+
+export function array_walk_recursive<
+  TValue extends RecursiveWalkInput = RecursiveWalkInput,
+  TUserdata extends RecursiveWalkInput = RecursiveWalkInput,
+>(
+  array: RecursiveWalkCollection<TValue>,
+  funcname:
+    | ArrayWalkRecursiveCallback<number, TValue, TUserdata>
+    | ArrayWalkRecursiveCallback<string, TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean {
   // original by: Hugues Peccatte
   //      note 1: Only works with user-defined functions, not built-in functions like void()
   //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
@@ -42,7 +91,7 @@ alias:
   //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
   //   returns 3: true
 
-  if (!array || typeof array !== 'object') {
+  if (!isObjectLike(array)) {
     return false
   }
 
@@ -50,29 +99,373 @@ alias:
     return false
   }
 
-  for (const key in array) {
-    // apply "funcname" recursively only on arrays
-    if (Array.isArray(array[key])) {
-      const funcArgs = [array[key], funcname]
-      if (arguments.length > 2) {
-        funcArgs.push(userdata)
-      }
-      if (array_walk_recursive.apply(null, funcArgs) === false) {
-        return false
-      }
-      continue
-    }
+  const hasUserdata = typeof userdata !== 'undefined'
+
+  const callCallback = (value: TValue, key: number | string): boolean => {
     try {
-      if (arguments.length > 2) {
-        funcname(array[key], key, userdata)
+      if (hasUserdata) {
+        Reflect.apply(funcname, undefined, [value, key, userdata])
       } else {
-        funcname(array[key], key)
+        Reflect.apply(funcname, undefined, [value, key])
       }
+      return true
     } catch (_e) {
       return false
     }
   }
 
-  return true
+  const walkList = (list: RecursiveWalkList<TValue>): boolean => {
+    for (const [index, value] of list.entries()) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, index)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  const walkAssoc = (assoc: RecursiveWalkAssoc<TValue>): boolean => {
+    for (const [key, value] of Object.entries(assoc)) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, key)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  if (Array.isArray(array)) {
+    return walkList(array)
+  }
+
+  return walkAssoc(toPhpArrayObject<RecursiveWalkNode<TValue>>(array))
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_walk_recursive(array, funcname, userdata) {
+  // original by: Hugues Peccatte
+  //      note 1: Only works with user-defined functions, not built-in functions like void()
+  //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
+  //   returns 1: true
+  //   example 2: array_walk_recursive([3, [4]], function () {}, 'userdata')
+  //   returns 2: true
+  //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
+  //   returns 3: true
+
+  if (!isObjectLike(array)) {
+    return false
+  }
+
+  if (typeof funcname !== 'function') {
+    return false
+  }
+
+  const hasUserdata = typeof userdata !== 'undefined'
+
+  const callCallback = (value, key) => {
+    try {
+      if (hasUserdata) {
+        Reflect.apply(funcname, undefined, [value, key, userdata])
+      } else {
+        Reflect.apply(funcname, undefined, [value, key])
+      }
+      return true
+    } catch (_e) {
+      return false
+    }
+  }
+
+  const walkList = (list) => {
+    for (const [index, value] of list.entries()) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, index)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  const walkAssoc = (assoc) => {
+    for (const [key, value] of Object.entries(assoc)) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, key)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  if (Array.isArray(array)) {
+    return walkList(array)
+  }
+
+  return walkAssoc(toPhpArrayObject(array))
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_walk_recursive (target function module)
+type RecursiveWalkNode<TValue> = TValue | RecursiveWalkList<TValue>
+
+type RecursiveWalkList<TValue> = RecursiveWalkNode<TValue>[]
+
+type RecursiveWalkAssoc<TValue> = PhpAssoc<RecursiveWalkNode<TValue>>
+
+type RecursiveWalkCollection<TValue> = RecursiveWalkList<TValue> | RecursiveWalkAssoc<TValue>
+
+type RecursiveWalkInput = Exclude<PhpRuntimeValue, PhpRuntimeList>
+
+type ArrayWalkRecursiveCallback<TKey extends number | string, TValue, TUserdata> = (
+  value: TValue,
+  key: TKey,
+  userdata?: TUserdata,
+) => void
+
+function array_walk_recursive<
+  TValue extends RecursiveWalkInput = RecursiveWalkInput,
+  TUserdata extends RecursiveWalkInput = RecursiveWalkInput,
+>(
+  array: RecursiveWalkList<TValue>,
+  funcname: ArrayWalkRecursiveCallback<number, TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean
+
+function array_walk_recursive<
+  TValue extends RecursiveWalkInput = RecursiveWalkInput,
+  TUserdata extends RecursiveWalkInput = RecursiveWalkInput,
+>(
+  array: RecursiveWalkAssoc<TValue>,
+  funcname: ArrayWalkRecursiveCallback<string, TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean
+
+function array_walk_recursive<
+  TValue extends RecursiveWalkInput = RecursiveWalkInput,
+  TUserdata extends RecursiveWalkInput = RecursiveWalkInput,
+>(
+  array: RecursiveWalkCollection<TValue>,
+  funcname:
+    | ArrayWalkRecursiveCallback<number, TValue, TUserdata>
+    | ArrayWalkRecursiveCallback<string, TValue, TUserdata>,
+  userdata?: TUserdata,
+): boolean {
+  // original by: Hugues Peccatte
+  //      note 1: Only works with user-defined functions, not built-in functions like void()
+  //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
+  //   returns 1: true
+  //   example 2: array_walk_recursive([3, [4]], function () {}, 'userdata')
+  //   returns 2: true
+  //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
+  //   returns 3: true
+
+  if (!isObjectLike(array)) {
+    return false
+  }
+
+  if (typeof funcname !== 'function') {
+    return false
+  }
+
+  const hasUserdata = typeof userdata !== 'undefined'
+
+  const callCallback = (value: TValue, key: number | string): boolean => {
+    try {
+      if (hasUserdata) {
+        Reflect.apply(funcname, undefined, [value, key, userdata])
+      } else {
+        Reflect.apply(funcname, undefined, [value, key])
+      }
+      return true
+    } catch (_e) {
+      return false
+    }
+  }
+
+  const walkList = (list: RecursiveWalkList<TValue>): boolean => {
+    for (const [index, value] of list.entries()) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, index)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  const walkAssoc = (assoc: RecursiveWalkAssoc<TValue>): boolean => {
+    for (const [key, value] of Object.entries(assoc)) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, key)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  if (Array.isArray(array)) {
+    return walkList(array)
+  }
+
+  return walkAssoc(toPhpArrayObject<RecursiveWalkNode<TValue>>(array))
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+
+  return {}
+}
+
+const isPhpArrayObject = isObjectLike
+
+// php/array/array_walk_recursive (target function module)
+
+function array_walk_recursive(array, funcname, userdata) {
+  // original by: Hugues Peccatte
+  //      note 1: Only works with user-defined functions, not built-in functions like void()
+  //   example 1: array_walk_recursive([3, 4], function () {}, 'userdata')
+  //   returns 1: true
+  //   example 2: array_walk_recursive([3, [4]], function () {}, 'userdata')
+  //   returns 2: true
+  //   example 3: array_walk_recursive([3, []], function () {}, 'userdata')
+  //   returns 3: true
+
+  if (!isObjectLike(array)) {
+    return false
+  }
+
+  if (typeof funcname !== 'function') {
+    return false
+  }
+
+  const hasUserdata = typeof userdata !== 'undefined'
+
+  const callCallback = (value, key) => {
+    try {
+      if (hasUserdata) {
+        Reflect.apply(funcname, undefined, [value, key, userdata])
+      } else {
+        Reflect.apply(funcname, undefined, [value, key])
+      }
+      return true
+    } catch (_e) {
+      return false
+    }
+  }
+
+  const walkList = (list) => {
+    for (const [index, value] of list.entries()) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, index)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  const walkAssoc = (assoc) => {
+    for (const [key, value] of Object.entries(assoc)) {
+      if (Array.isArray(value)) {
+        if (!walkList(value)) {
+          return false
+        }
+        continue
+      }
+      if (!callCallback(value, key)) {
+        return false
+      }
+    }
+    return true
+  }
+
+  if (Array.isArray(array)) {
+    return walkList(array)
+  }
+
+  return walkAssoc(toPhpArrayObject(array))
+}{% endcodeblock %}
+</div>

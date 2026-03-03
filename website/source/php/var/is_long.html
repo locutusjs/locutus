@@ -14,11 +14,12 @@ notes:
     1.0 is simplified to 1 before it can be accessed by the function, this makes
     it different from the PHP implementation. We can't fix this unfortunately.
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's is_long in JavaScript
+title: PHP's is_long in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.is-long.php">PHP's is_long</a> looks
   like.
 function: is_long
@@ -31,7 +32,10 @@ alias:
   - /php/is_long/
   - /functions/is_long/
 ---
-{% codeblock lang:javascript %}module.exports = function is_long(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { is_float as _isFloat } from '../var/is_float.ts'
+
+export function is_long(mixedVar: number): boolean {
   //  discuss at: https://locutus.io/php/is_long/
   // original by: Paulo Freitas
   //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
@@ -39,7 +43,83 @@ alias:
   //   example 1: is_long(186.31)
   //   returns 1: true
 
-  const _isFloat = require('../var/is_float')
   return _isFloat(mixedVar)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { is_float as _isFloat } from '../var/is_float.ts'
+
+export function is_long(mixedVar) {
+  //  discuss at: https://locutus.io/php/is_long/
+  // original by: Paulo Freitas
+  //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //   example 1: is_long(186.31)
+  //   returns 1: true
+
+  return _isFloat(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/var/is_float (Locutus dependency module)
+function is_float(mixedVar: number): boolean {
+  //      discuss at: https://locutus.io/php/is_float/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_float(186.31)
+  //       returns 1: true
+
+  return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
+}
+
+// php/var/is_long (target function module)
+const _isFloat = is_float;
+
+function is_long(mixedVar: number): boolean {
+  //  discuss at: https://locutus.io/php/is_long/
+  // original by: Paulo Freitas
+  //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //   example 1: is_long(186.31)
+  //   returns 1: true
+
+  return _isFloat(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/var/is_float (Locutus dependency module)
+function is_float(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_float/
+  // parity verified: PHP 8.3
+  //     original by: Paulo Freitas
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_float(186.31)
+  //       returns 1: true
+
+  return +mixedVar === mixedVar && (!isFinite(mixedVar) || !!(mixedVar % 1))
+}
+
+// php/var/is_long (target function module)
+const _isFloat = is_float
+
+function is_long(mixedVar) {
+  //  discuss at: https://locutus.io/php/is_long/
+  // original by: Paulo Freitas
+  //      note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //      note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //   example 1: is_long(186.31)
+  //   returns 1: true
+
+  return _isFloat(mixedVar)
+}{% endcodeblock %}
+</div>

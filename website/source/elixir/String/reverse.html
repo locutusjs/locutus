@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - Elixir 1.18
+isTypescript: true
 type: function
 layout: function
-title: Elixir's String.reverse in JavaScript
+title: Elixir's String.reverse in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://hexdocs.pm/elixir/String.html#reverse/1">Elixir's
   String.reverse</a> looks like.
 function: reverse
@@ -29,7 +30,8 @@ alias:
   - /functions/String/reverse/
   - /elixir/reverse/
 ---
-{% codeblock lang:javascript %}module.exports = function reverse(string) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function reverse(string: string): string {
   //      discuss at: https://locutus.io/elixir/reverse/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,3 +43,17 @@ alias:
   return String(string).split('').reverse().join('')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function reverse(string) {
+  //      discuss at: https://locutus.io/elixir/reverse/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: reverse('hello')
+  //       returns 1: 'olleh'
+  //       example 2: reverse('abc')
+  //       returns 2: 'cba'
+
+  return String(string).split('').reverse().join('')
+}{% endcodeblock %}
+</div>

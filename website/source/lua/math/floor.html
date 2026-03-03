@@ -16,11 +16,12 @@ notes:
   - Returns the largest integer <= x
 parityVerified:
   - Lua 5.4
+isTypescript: true
 type: function
 layout: function
-title: Lua's math.floor in JavaScript
+title: Lua's math.floor in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://www.lua.org/manual/5.4/manual.html#pdf-math.floor">Lua's
   math.floor</a> looks like.
 function: floor
@@ -32,7 +33,8 @@ alias:
   - /functions/math/floor/
   - /lua/floor/
 ---
-{% codeblock lang:javascript %}module.exports = function floor(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function floor(x: number): number {
   //      discuss at: https://locutus.io/lua/floor/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -47,3 +49,20 @@ alias:
   return Math.floor(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function floor(x) {
+  //      discuss at: https://locutus.io/lua/floor/
+  // parity verified: Lua 5.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the largest integer <= x
+  //       example 1: floor(4.7)
+  //       returns 1: 4
+  //       example 2: floor(-0.5)
+  //       returns 2: -1
+  //       example 3: floor(3)
+  //       returns 3: 3
+
+  return Math.floor(x)
+}{% endcodeblock %}
+</div>

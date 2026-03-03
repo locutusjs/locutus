@@ -19,11 +19,12 @@ notes:
   - Relies on is_int because !isNaN accepts floats
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_slice in JavaScript
+title: PHP's array_slice in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-slice.php">PHP's
   array_slice</a> looks like.
 function: array_slice
@@ -36,7 +37,36 @@ alias:
   - /php/array_slice/
   - /functions/array_slice/
 ---
-{% codeblock lang:javascript %}module.exports = function array_slice(arr, offst, lgth, preserveKeys) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+import { is_int as isInt } from '../var/is_int.ts'
+
+type SliceValue = PhpRuntimeValue
+
+export function array_slice<TValue extends SliceValue>(
+  arr: TValue[],
+  offst: number,
+  lgth?: number,
+  preserveKeys?: false | undefined,
+): TValue[]
+export function array_slice<TValue extends SliceValue>(
+  arr: TValue[],
+  offst: number,
+  lgth: number | undefined,
+  preserveKeys: true,
+): TValue[] | PhpAssoc<TValue | undefined>
+export function array_slice<TValue extends SliceValue>(
+  arr: PhpAssoc<TValue>,
+  offst: number,
+  lgth?: number,
+  preserveKeys?: boolean,
+): PhpAssoc<TValue | undefined>
+export function array_slice<TValue extends SliceValue>(
+  arr: TValue[] | PhpAssoc<TValue>,
+  offst: number,
+  lgth?: number,
+  preserveKeys?: boolean,
+): TValue[] | PhpAssoc<TValue | undefined> {
   //      discuss at: https://locutus.io/php/array_slice/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -48,64 +78,419 @@ alias:
   //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
   //       returns 2: {2: 'c', 3: 'd'}
 
-  const isInt = require('../var/is_int')
+  const preserve = preserveKeys === true
+  let result: TValue[] | PhpAssoc<TValue | undefined>
 
-  /*
-    if ('callee' in arr && 'length' in arr) {
-      arr = Array.prototype.slice.call(arr);
+  if (Array.isArray(arr) && !(preserve && offst !== 0)) {
+    if (lgth === undefined) {
+      result = arr.slice(offst)
+    } else if (lgth >= 0) {
+      result = arr.slice(offst, offst + lgth)
+    } else {
+      result = arr.slice(offst, lgth)
     }
-  */
+  } else {
+    const sourceAssoc: PhpAssoc<TValue | undefined> = {}
+    let sourceLength = 0
 
-  let key = ''
-
-  if (!Array.isArray(arr) || (preserveKeys && offst !== 0)) {
-    // Assoc. array as input or if required as output
-    let lgt = 0
-    const newAssoc = {}
-    for (key in arr) {
-      lgt += 1
-      newAssoc[key] = arr[key]
+    if (Array.isArray(arr)) {
+      for (let index = 0; index < arr.length; index += 1) {
+        sourceLength += 1
+        sourceAssoc[String(index)] = arr[index]
+      }
+    } else {
+      for (const key in arr) {
+        sourceLength += 1
+        sourceAssoc[key] = arr[key]
+      }
     }
-    arr = newAssoc
 
-    offst = offst < 0 ? lgt + offst : offst
-    lgth = lgth === undefined ? lgt : lgth < 0 ? lgt + lgth - offst : lgth
+    const normalizedOffset = offst < 0 ? sourceLength + offst : offst
+    const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
 
-    const assoc = {}
-    let start = false
-    let it = -1
-    let arrlgth = 0
-    let noPkIdx = 0
+    const sliced: PhpAssoc<TValue | undefined> = {}
+    let started = false
+    let sourceIndex = -1
+    let collected = 0
+    let sequentialKey = 0
 
-    for (key in arr) {
-      ++it
-      if (arrlgth >= lgth) {
+    for (const key in sourceAssoc) {
+      sourceIndex += 1
+
+      if (collected >= resolvedLength) {
         break
       }
-      if (it === offst) {
-        start = true
+
+      if (sourceIndex === normalizedOffset) {
+        started = true
       }
-      if (!start) {
+
+      if (!started) {
         continue
       }
-      ++arrlgth
-      if (isInt(key) && !preserveKeys) {
-        assoc[noPkIdx++] = arr[key]
+
+      collected += 1
+
+      if (isInt(key) && !preserve) {
+        sliced[String(sequentialKey)] = sourceAssoc[key]
+        sequentialKey += 1
       } else {
-        assoc[key] = arr[key]
+        sliced[key] = sourceAssoc[key]
       }
     }
-    // Make as array-like object (though length will not be dynamic)
-    // assoc.length = arrlgth;
-    return assoc
+
+    result = sliced
   }
 
-  if (lgth === undefined) {
-    return arr.slice(offst)
-  } else if (lgth >= 0) {
-    return arr.slice(offst, offst + lgth)
-  } else {
-    return arr.slice(offst, lgth)
-  }
+  return result
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { is_int as isInt } from '../var/is_int.ts'
+export function array_slice(arr, offst, lgth, preserveKeys) {
+  //      discuss at: https://locutus.io/php/array_slice/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Relies on is_int because !isNaN accepts floats
+  //       example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1)
+  //       returns 1: [ 'c', 'd' ]
+  //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
+  //       returns 2: {2: 'c', 3: 'd'}
+
+  const preserve = preserveKeys === true
+  let result
+
+  if (Array.isArray(arr) && !(preserve && offst !== 0)) {
+    if (lgth === undefined) {
+      result = arr.slice(offst)
+    } else if (lgth >= 0) {
+      result = arr.slice(offst, offst + lgth)
+    } else {
+      result = arr.slice(offst, lgth)
+    }
+  } else {
+    const sourceAssoc = {}
+    let sourceLength = 0
+
+    if (Array.isArray(arr)) {
+      for (let index = 0; index < arr.length; index += 1) {
+        sourceLength += 1
+        sourceAssoc[String(index)] = arr[index]
+      }
+    } else {
+      for (const key in arr) {
+        sourceLength += 1
+        sourceAssoc[key] = arr[key]
+      }
+    }
+
+    const normalizedOffset = offst < 0 ? sourceLength + offst : offst
+    const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
+
+    const sliced = {}
+    let started = false
+    let sourceIndex = -1
+    let collected = 0
+    let sequentialKey = 0
+
+    for (const key in sourceAssoc) {
+      sourceIndex += 1
+
+      if (collected >= resolvedLength) {
+        break
+      }
+
+      if (sourceIndex === normalizedOffset) {
+        started = true
+      }
+
+      if (!started) {
+        continue
+      }
+
+      collected += 1
+
+      if (isInt(key) && !preserve) {
+        sliced[String(sequentialKey)] = sourceAssoc[key]
+        sequentialKey += 1
+      } else {
+        sliced[key] = sourceAssoc[key]
+      }
+    }
+
+    result = sliced
+  }
+
+  return result
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+// php/var/is_int (Locutus dependency module)
+type IntValue = PhpRuntimeValue
+
+function is_int(mixedVar: IntValue): mixedVar is number {
+  //      discuss at: https://locutus.io/php/is_int/
+  // parity verified: PHP 8.3
+  //     original by: Alex
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //      revised by: Matt Bradley
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_int(23)
+  //       returns 1: true
+  //       example 2: is_int('23')
+  //       returns 2: false
+  //       example 3: is_int(23.5)
+  //       returns 3: false
+  //       example 4: is_int(true)
+  //       returns 4: false
+
+  const num = Number(mixedVar)
+  return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
+}
+
+// php/array/array_slice (target function module)
+const isInt = is_int;
+
+type SliceValue = PhpRuntimeValue
+
+function array_slice<TValue extends SliceValue>(
+  arr: TValue[],
+  offst: number,
+  lgth?: number,
+  preserveKeys?: false | undefined,
+): TValue[]
+
+function array_slice<TValue extends SliceValue>(
+  arr: TValue[],
+  offst: number,
+  lgth: number | undefined,
+  preserveKeys: true,
+): TValue[] | PhpAssoc<TValue | undefined>
+
+function array_slice<TValue extends SliceValue>(
+  arr: PhpAssoc<TValue>,
+  offst: number,
+  lgth?: number,
+  preserveKeys?: boolean,
+): PhpAssoc<TValue | undefined>
+
+function array_slice<TValue extends SliceValue>(
+  arr: TValue[] | PhpAssoc<TValue>,
+  offst: number,
+  lgth?: number,
+  preserveKeys?: boolean,
+): TValue[] | PhpAssoc<TValue | undefined> {
+  //      discuss at: https://locutus.io/php/array_slice/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Relies on is_int because !isNaN accepts floats
+  //       example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1)
+  //       returns 1: [ 'c', 'd' ]
+  //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
+  //       returns 2: {2: 'c', 3: 'd'}
+
+  const preserve = preserveKeys === true
+  let result: TValue[] | PhpAssoc<TValue | undefined>
+
+  if (Array.isArray(arr) && !(preserve && offst !== 0)) {
+    if (lgth === undefined) {
+      result = arr.slice(offst)
+    } else if (lgth >= 0) {
+      result = arr.slice(offst, offst + lgth)
+    } else {
+      result = arr.slice(offst, lgth)
+    }
+  } else {
+    const sourceAssoc: PhpAssoc<TValue | undefined> = {}
+    let sourceLength = 0
+
+    if (Array.isArray(arr)) {
+      for (let index = 0; index < arr.length; index += 1) {
+        sourceLength += 1
+        sourceAssoc[String(index)] = arr[index]
+      }
+    } else {
+      for (const key in arr) {
+        sourceLength += 1
+        sourceAssoc[key] = arr[key]
+      }
+    }
+
+    const normalizedOffset = offst < 0 ? sourceLength + offst : offst
+    const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
+
+    const sliced: PhpAssoc<TValue | undefined> = {}
+    let started = false
+    let sourceIndex = -1
+    let collected = 0
+    let sequentialKey = 0
+
+    for (const key in sourceAssoc) {
+      sourceIndex += 1
+
+      if (collected >= resolvedLength) {
+        break
+      }
+
+      if (sourceIndex === normalizedOffset) {
+        started = true
+      }
+
+      if (!started) {
+        continue
+      }
+
+      collected += 1
+
+      if (isInt(key) && !preserve) {
+        sliced[String(sequentialKey)] = sourceAssoc[key]
+        sequentialKey += 1
+      } else {
+        sliced[key] = sourceAssoc[key]
+      }
+    }
+
+    result = sliced
+  }
+
+  return result
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/var/is_int (Locutus dependency module)
+function is_int(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_int/
+  // parity verified: PHP 8.3
+  //     original by: Alex
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: WebDevHobo (https://webdevhobo.blogspot.com/)
+  //     improved by: Rafał Kukawski (https://blog.kukawski.pl)
+  //      revised by: Matt Bradley
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: 1.0 is simplified to 1 before it can be accessed by the function, this makes
+  //          note 1: it different from the PHP implementation. We can't fix this unfortunately.
+  //       example 1: is_int(23)
+  //       returns 1: true
+  //       example 2: is_int('23')
+  //       returns 2: false
+  //       example 3: is_int(23.5)
+  //       returns 3: false
+  //       example 4: is_int(true)
+  //       returns 4: false
+
+  const num = Number(mixedVar)
+  return typeof mixedVar === 'number' && mixedVar === num && Number.isFinite(num) && Number.isInteger(num)
+}
+
+// php/array/array_slice (target function module)
+const isInt = is_int
+
+function array_slice(arr, offst, lgth, preserveKeys) {
+  //      discuss at: https://locutus.io/php/array_slice/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Relies on is_int because !isNaN accepts floats
+  //       example 1: array_slice(["a", "b", "c", "d", "e"], 2, -1)
+  //       returns 1: [ 'c', 'd' ]
+  //       example 2: array_slice(["a", "b", "c", "d", "e"], 2, -1, true)
+  //       returns 2: {2: 'c', 3: 'd'}
+
+  const preserve = preserveKeys === true
+  let result
+
+  if (Array.isArray(arr) && !(preserve && offst !== 0)) {
+    if (lgth === undefined) {
+      result = arr.slice(offst)
+    } else if (lgth >= 0) {
+      result = arr.slice(offst, offst + lgth)
+    } else {
+      result = arr.slice(offst, lgth)
+    }
+  } else {
+    const sourceAssoc = {}
+    let sourceLength = 0
+
+    if (Array.isArray(arr)) {
+      for (let index = 0; index < arr.length; index += 1) {
+        sourceLength += 1
+        sourceAssoc[String(index)] = arr[index]
+      }
+    } else {
+      for (const key in arr) {
+        sourceLength += 1
+        sourceAssoc[key] = arr[key]
+      }
+    }
+
+    const normalizedOffset = offst < 0 ? sourceLength + offst : offst
+    const resolvedLength = lgth === undefined ? sourceLength : lgth < 0 ? sourceLength + lgth - normalizedOffset : lgth
+
+    const sliced = {}
+    let started = false
+    let sourceIndex = -1
+    let collected = 0
+    let sequentialKey = 0
+
+    for (const key in sourceAssoc) {
+      sourceIndex += 1
+
+      if (collected >= resolvedLength) {
+        break
+      }
+
+      if (sourceIndex === normalizedOffset) {
+        started = true
+      }
+
+      if (!started) {
+        continue
+      }
+
+      collected += 1
+
+      if (isInt(key) && !preserve) {
+        sliced[String(sequentialKey)] = sourceAssoc[key]
+        sequentialKey += 1
+      } else {
+        sliced[key] = sourceAssoc[key]
+      }
+    }
+
+    result = sliced
+  }
+
+  return result
+}{% endcodeblock %}
+</div>

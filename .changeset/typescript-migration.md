@@ -1,0 +1,14 @@
+---
+"locutus": major
+---
+
+TypeScript migration: all source files converted from CJS to TypeScript with named exports.
+
+Breaking changes:
+- Functions now use named exports instead of default exports
+  - ESM: `import { sort } from 'locutus/php/array/sort'` (was: `import sort from ...`)
+  - CJS: use named access (`const { sort } = require('locutus/php/array/sort')`)
+- The `ini_get` dependency is no longer required — functions read ini values inline via optional chaining on `globalThis.$locutus`
+- Repository tooling now runs as native ESM (`"type": "module"`), and Node script invocations no longer need typeless/strip-type flags.
+  - Published package now ships dual runtime outputs: ESM for `import` and CJS for `require(...)` deep imports.
+- Minimum supported Node.js version is now `22` (`engines.node: >= 22`).

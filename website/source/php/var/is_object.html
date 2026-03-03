@@ -8,7 +8,8 @@ returns:
   - 'false'
   - 'true'
   - 'false'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -17,11 +18,12 @@ authors:
     - Michael White (https://getsprink.com)
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's is_object in JavaScript
+title: PHP's is_object in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.is-object.php">PHP's is_object</a>
   looks like.
 function: is_object
@@ -34,7 +36,12 @@ alias:
   - /php/is_object/
   - /functions/is_object/
 ---
-{% codeblock lang:javascript %}module.exports = function is_object(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { isPhpAssocObject, type PhpAssoc, type PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+
+type ObjectValue = PhpRuntimeValue
+
+export function is_object(mixedVar: ObjectValue): mixedVar is PhpAssoc<ObjectValue> {
   //  discuss at: https://locutus.io/php/is_object/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Legaev Andrey
@@ -46,9 +53,108 @@ alias:
   //   example 3: is_object(null)
   //   returns 3: false
 
-  if (Array.isArray(mixedVar)) {
-    return false
-  }
-  return mixedVar !== null && typeof mixedVar === 'object'
+  return isPhpAssocObject(mixedVar)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { isPhpAssocObject } from '../_helpers/_phpTypes.ts'
+
+export function is_object(mixedVar) {
+  //  discuss at: https://locutus.io/php/is_object/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Legaev Andrey
+  // improved by: Michael White (https://getsprink.com)
+  //   example 1: is_object('23')
+  //   returns 1: false
+  //   example 2: is_object({foo: 'bar'})
+  //   returns 2: true
+  //   example 3: is_object(null)
+  //   returns 3: false
+
+  return isPhpAssocObject(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/var/is_object (target function module)
+type ObjectValue = PhpRuntimeValue
+
+function is_object(mixedVar: ObjectValue): mixedVar is PhpAssoc<ObjectValue> {
+  //  discuss at: https://locutus.io/php/is_object/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Legaev Andrey
+  // improved by: Michael White (https://getsprink.com)
+  //   example 1: is_object('23')
+  //   returns 1: false
+  //   example 2: is_object({foo: 'bar'})
+  //   returns 2: true
+  //   example 3: is_object(null)
+  //   returns 3: false
+
+  return isPhpAssocObject(mixedVar)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !Array.isArray(value)
+}
+
+// php/var/is_object (target function module)
+function is_object(mixedVar) {
+  //  discuss at: https://locutus.io/php/is_object/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Legaev Andrey
+  // improved by: Michael White (https://getsprink.com)
+  //   example 1: is_object('23')
+  //   returns 1: false
+  //   example 2: is_object({foo: 'bar'})
+  //   returns 2: true
+  //   example 3: is_object(null)
+  //   returns 3: false
+
+  return isPhpAssocObject(mixedVar)
+}{% endcodeblock %}
+</div>

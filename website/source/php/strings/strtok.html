@@ -9,18 +9,20 @@ examples:
     var $result = $b
 returns:
   - '"Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
 notes:
   - Use tab and newline as tokenizing characters as well
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's strtok in JavaScript
+title: PHP's strtok in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.strtok.php">PHP's strtok</a> looks
   like.
 function: strtok
@@ -33,7 +35,10 @@ alias:
   - /php/strtok/
   - /functions/strtok/
 ---
-{% codeblock lang:javascript %}module.exports = function strtok(str, tokens) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { getPhpRuntimeString, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
+export function strtok(str: string, tokens?: string): string | false {
   //  discuss at: https://locutus.io/php/strtok/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Use tab and newline as tokenizing characters as well
@@ -44,20 +49,15 @@ alias:
   //   example 1: var $result = $b
   //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-
-  if (tokens === undefined) {
+  if (typeof tokens === 'undefined') {
     tokens = str
-    str = $locutus.php.strtokleftOver
+    str = getPhpRuntimeString('strtokleftOver', '')
   }
   if (str.length === 0) {
     return false
   }
   if (tokens.indexOf(str.charAt(0)) !== -1) {
-    return strtok(str.substr(1), tokens)
+    return strtok(str.substring(1), tokens)
   }
   let i = 0
   for (; i < str.length; i++) {
@@ -65,8 +65,246 @@ alias:
       break
     }
   }
-  $locutus.php.strtokleftOver = str.substr(i + 1)
+  setPhpRuntimeEntry('strtokleftOver', str.substring(i + 1))
 
   return str.substring(0, i)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { getPhpRuntimeString, setPhpRuntimeEntry } from '../_helpers/_phpRuntimeState.ts'
+
+export function strtok(str, tokens) {
+  //  discuss at: https://locutus.io/php/strtok/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Use tab and newline as tokenizing characters as well
+  //   example 1: var $string = "\t\t\t\nThis is\tan example\nstring\n"
+  //   example 1: var $tok = strtok($string, " \n\t")
+  //   example 1: var $b = ''
+  //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+  //   example 1: var $result = $b
+  //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+
+  if (typeof tokens === 'undefined') {
+    tokens = str
+    str = getPhpRuntimeString('strtokleftOver', '')
+  }
+  if (str.length === 0) {
+    return false
+  }
+  if (tokens.indexOf(str.charAt(0)) !== -1) {
+    return strtok(str.substring(1), tokens)
+  }
+  let i = 0
+  for (; i < str.length; i++) {
+    if (tokens.indexOf(str.charAt(i)) !== -1) {
+      break
+    }
+  }
+  setPhpRuntimeEntry('strtokleftOver', str.substring(i + 1))
+
+  return str.substring(0, i)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpRuntimeKnownEntryMap {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string
+  locale: string
+  uniqidSeed: number
+  timeoutStatus: boolean
+  last_error_json: number
+  strtokleftOver: string
+}
+
+type PhpRuntimeStringKey = {
+  [K in keyof PhpRuntimeKnownEntryMap]: PhpRuntimeKnownEntryMap[K] extends string ? K : never
+}[keyof PhpRuntimeKnownEntryMap]
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function getPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+): PhpRuntimeKnownEntryMap[TKey] | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined
+
+function getPhpRuntimeEntry(key: string): PhpInput | undefined {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function setPhpRuntimeEntry<TKey extends keyof PhpRuntimeKnownEntryMap>(
+  key: TKey,
+  value: PhpRuntimeKnownEntryMap[TKey],
+): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void
+
+function setPhpRuntimeEntry(key: string, value: PhpInput): void {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+function getPhpRuntimeString(key: PhpRuntimeStringKey, fallback: string): string
+
+function getPhpRuntimeString(key: string, fallback: string): string
+
+function getPhpRuntimeString(key: string, fallback: string): string {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'string' ? value : fallback
+}
+
+// php/strings/strtok (target function module)
+function strtok(str: string, tokens?: string): string | false {
+  //  discuss at: https://locutus.io/php/strtok/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Use tab and newline as tokenizing characters as well
+  //   example 1: var $string = "\t\t\t\nThis is\tan example\nstring\n"
+  //   example 1: var $tok = strtok($string, " \n\t")
+  //   example 1: var $b = ''
+  //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+  //   example 1: var $result = $b
+  //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+
+  if (typeof tokens === 'undefined') {
+    tokens = str
+    str = getPhpRuntimeString('strtokleftOver', '')
+  }
+  if (str.length === 0) {
+    return false
+  }
+  if (tokens.indexOf(str.charAt(0)) !== -1) {
+    return strtok(str.substring(1), tokens)
+  }
+  let i = 0
+  for (; i < str.length; i++) {
+    if (tokens.indexOf(str.charAt(i)) !== -1) {
+      break
+    }
+  }
+  setPhpRuntimeEntry('strtokleftOver', str.substring(i + 1))
+
+  return str.substring(0, i)
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function getPhpRuntimeEntry(key) {
+  const php = ensurePhpRuntimeObject()
+  const value = php[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function setPhpRuntimeEntry(key, value) {
+  const php = ensurePhpRuntimeObject()
+  php[key] = value
+}
+
+function getPhpRuntimeString(key, fallback) {
+  const value = getPhpRuntimeEntry(key)
+  return typeof value === 'string' ? value : fallback
+}
+
+// php/strings/strtok (target function module)
+function strtok(str, tokens) {
+  //  discuss at: https://locutus.io/php/strtok/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Use tab and newline as tokenizing characters as well
+  //   example 1: var $string = "\t\t\t\nThis is\tan example\nstring\n"
+  //   example 1: var $tok = strtok($string, " \n\t")
+  //   example 1: var $b = ''
+  //   example 1: while ($tok !== false) {$b += "Word="+$tok+"\n"; $tok = strtok(" \n\t");}
+  //   example 1: var $result = $b
+  //   returns 1: "Word=This\nWord=is\nWord=an\nWord=example\nWord=string\n"
+
+  if (typeof tokens === 'undefined') {
+    tokens = str
+    str = getPhpRuntimeString('strtokleftOver', '')
+  }
+  if (str.length === 0) {
+    return false
+  }
+  if (tokens.indexOf(str.charAt(0)) !== -1) {
+    return strtok(str.substring(1), tokens)
+  }
+  let i = 0
+  for (; i < str.length; i++) {
+    if (tokens.indexOf(str.charAt(i)) !== -1) {
+      break
+    }
+  }
+  setPhpRuntimeEntry('strtokleftOver', str.substring(i + 1))
+
+  return str.substring(0, i)
+}{% endcodeblock %}
+</div>

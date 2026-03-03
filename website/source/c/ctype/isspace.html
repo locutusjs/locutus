@@ -17,11 +17,12 @@ notes:
     Checks if the character is a whitespace character.
     Includes space, tab, newline, vertical tab, form feed, carriage return.
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: C's ctype.isspace in JavaScript
+title: C's ctype.isspace in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://en.cppreference.com/w/c/numeric/ctype/isspace">C's isspace found
   in the ctype.h header file</a> looks like.
 function: isspace
@@ -33,7 +34,8 @@ alias:
   - /functions/ctype/isspace/
   - /c/isspace/
 ---
-{% codeblock lang:javascript %}module.exports = function isspace(c) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function isspace(c: string): boolean {
   //  discuss at: https://locutus.io/c/ctype/isspace/
   // original by: Kevin van Zonneveld (https://kvz.io)
   //      note 1: Checks if the character is a whitespace character.
@@ -49,3 +51,21 @@ alias:
   return /^[\s]$/.test(c)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function isspace(c) {
+  //  discuss at: https://locutus.io/c/ctype/isspace/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Checks if the character is a whitespace character.
+  //      note 1: Includes space, tab, newline, vertical tab, form feed, carriage return.
+  //   example 1: isspace(' ')
+  //   returns 1: true
+  //   example 2: isspace('\t')
+  //   returns 2: true
+  //   example 3: isspace('a')
+  //   returns 3: false
+
+  c = (c + '').charAt(0)
+  return /^[\s]$/.test(c)
+}{% endcodeblock %}
+</div>

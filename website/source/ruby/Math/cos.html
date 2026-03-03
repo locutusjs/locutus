@@ -14,11 +14,12 @@ notes:
   - Precision may vary across platforms
 parityVerified:
   - Ruby 3.3
+isTypescript: true
 type: function
 layout: function
-title: Ruby's Math.cos in JavaScript
+title: Ruby's Math.cos in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://ruby-doc.org/core-2.2.2/Math.html#method-c-cos">Ruby's
   Math.cos</a> looks like.
 function: cos
@@ -30,7 +31,8 @@ alias:
   - /functions/Math/cos/
   - /ruby/cos/
 ---
-{% codeblock lang:javascript %}module.exports = function cos(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function cos(x: number): number {
   //      discuss at: https://locutus.io/ruby/Math/cos/
   // parity verified: Ruby 3.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -43,3 +45,18 @@ alias:
   return Math.cos(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function cos(x) {
+  //      discuss at: https://locutus.io/ruby/Math/cos/
+  // parity verified: Ruby 3.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Precision may vary across platforms
+  //       example 1: cos(0)
+  //       returns 1: 1
+  //       example 2: cos(1)
+  //       returns 2: 0.5403023058681398
+
+  return Math.cos(x)
+}{% endcodeblock %}
+</div>

@@ -1,0 +1,177 @@
+src/_util/headerFormatter.ts :: export function checkAll(srcDir: string): CheckAllResult
+src/_util/headerFormatter.ts :: export function checkFile(filepath: string): CheckResult
+src/_util/headerFormatter.ts :: export function formatAll(srcDir: string): FormatAllResult
+src/_util/headerFormatter.ts :: export function formatFile(filepath: string): FormatFileResult
+src/_util/headerFormatter.ts :: export function formatHeaderLine(key: string, value: string, longestKeyLength: number): string
+src/_util/headerFormatter.ts :: export function formatHeaders(content: string): FormatResult
+src/_util/headerFormatter.ts :: export function parseHeaderLine(line: string): ParsedLine
+src/_util/headerSchema.ts :: export function getValidHeaderKeys(): string[]
+src/_util/headerSchema.ts :: export function isValidHeaderKey(key: string): boolean
+src/_util/headerSchema.ts :: export function validateHeaderKeys(headKeys: unknown, filepath: string): HeaderKeys
+src/_util/headerSchema.ts :: export type HeaderKeys = z.infer<typeof HeaderKeysSchema>
+src/awk/builtin/cos.ts :: export function cos(x: number): number
+src/awk/builtin/exp.ts :: export function exp(x: number): number
+src/awk/builtin/int.ts :: export function int(x: number): number
+src/awk/builtin/length.ts :: export function length(s: string): number
+src/awk/builtin/log.ts :: export function log(x: number): number
+src/awk/builtin/sin.ts :: export function sin(x: number): number
+src/awk/builtin/sqrt.ts :: export function sqrt(x: number): number
+src/awk/builtin/substr.ts :: export function substr(str: string, start: number, len?: number): string
+src/awk/builtin/tolower.ts :: export function tolower(s: string): string
+src/awk/builtin/toupper.ts :: export function toupper(s: string): string
+src/c/ctype/isalnum.ts :: export function isalnum(c: string): boolean
+src/c/ctype/isalpha.ts :: export function isalpha(c: string): boolean
+src/c/ctype/isdigit.ts :: export function isdigit(c: string): boolean
+src/c/ctype/islower.ts :: export function islower(c: string): boolean
+src/c/ctype/isspace.ts :: export function isspace(c: string): boolean
+src/c/ctype/isupper.ts :: export function isupper(c: string): boolean
+src/c/ctype/tolower.ts :: export function tolower(c: string): string
+src/c/ctype/toupper.ts :: export function toupper(c: string): string
+src/c/math/abs.ts :: export function abs(mixedNumber: number): number
+src/c/math/frexp.ts :: export function frexp(arg: number): [number, number]
+src/c/stdio/sprintf.ts :: export function sprintf(format: string, ...args: unknown[]): string
+src/c/stdlib/atof.ts :: export function atof(str: string): number
+src/c/stdlib/atoi.ts :: export function atoi(str: string): number
+src/c/string/strcat.ts :: export function strcat(dest: string, src: string): string
+src/c/string/strchr.ts :: export function strchr(str: string, c: string): string | null
+src/c/string/strcmp.ts :: export function strcmp(str1: string, str2: string): number
+src/c/string/strlen.ts :: export function strlen(str: string): number
+src/c/string/strstr.ts :: export function strstr(haystack: string, needle: string): string | null
+src/clojure/Math/abs.ts :: export function abs(x: number): number
+src/clojure/Math/ceil.ts :: export function ceil(x: number): number
+src/clojure/Math/floor.ts :: export function floor(x: number): number
+src/clojure/string/blank.ts :: export function blank(s: string): boolean
+src/clojure/string/lower_case.ts :: export function lower_case(s: string): string
+src/clojure/string/reverse.ts :: export function reverse(s: string): string
+src/clojure/string/trim.ts :: export function trim(s: string): string
+src/clojure/string/upper_case.ts :: export function upper_case(s: string): string
+src/elixir/Float/ceil.ts :: export function ceil(x: number): number
+src/elixir/Float/floor.ts :: export function floor(x: number): number
+src/elixir/Kernel/abs.ts :: export function abs(x: number): number
+src/elixir/String/downcase.ts :: export function downcase(string: string): string
+src/elixir/String/length.ts :: export function length(string: string): number
+src/elixir/String/reverse.ts :: export function reverse(string: string): string
+src/elixir/String/upcase.ts :: export function upcase(string: string): string
+src/golang/strconv/Atoi.ts :: export function Atoi(s: unknown): [number, Error | null]
+src/golang/strconv/FormatBool.ts :: export function FormatBool(b: boolean): string
+src/golang/strconv/FormatInt.ts :: export function FormatInt(i: number, base: number): string
+src/golang/strconv/Itoa.ts :: export function Itoa(i: number): string
+src/golang/strconv/ParseBool.ts :: export function ParseBool(str: string): [boolean, Error | null]
+src/golang/strconv/ParseInt.ts :: export function ParseInt(s: string, base: number, _bitSize: number): [number, Error | null]
+src/golang/strings/Compare.ts :: export function Compare(a: string, b: string): number
+src/golang/strings/Contains.ts :: export function Contains(s: string, substr: string): boolean
+src/golang/strings/ContainsAny.ts :: export function ContainsAny(s: string, chars: string): boolean | false
+src/golang/strings/Count.ts :: export function Count(s: string, sep: string): number
+src/golang/strings/EqualFold.ts :: export function EqualFold(s: string, t: string): boolean
+src/golang/strings/Fields.ts :: export function Fields(s: string): string[]
+src/golang/strings/HasPrefix.ts :: export function HasPrefix(s: string, prefix: string): boolean
+src/golang/strings/HasSuffix.ts :: export function HasSuffix(s: string, suffix: string): boolean
+src/golang/strings/Index2.ts :: export function Index(s: string, sep: string): number
+src/golang/strings/IndexAny.ts :: export function IndexAny(s: string, chars: string): number
+src/golang/strings/Join.ts :: export function Join(elems: unknown[] | unknown, sep: string): string
+src/golang/strings/LastIndex.ts :: export function LastIndex(s: string, sep: string): number
+src/golang/strings/LastIndexAny.ts :: export function LastIndexAny(s: string, chars: string): number
+src/golang/strings/Repeat.ts :: export function Repeat(s: string, count: number): string
+src/golang/strings/Replace.ts :: export function Replace(s: string, old: string, newStr: string, n: number): string
+src/golang/strings/Split.ts :: export function Split(s: string, sep: string): string[]
+src/golang/strings/ToLower.ts :: export function ToLower(s: string): string
+src/golang/strings/ToUpper.ts :: export function ToUpper(s: string): string
+src/golang/strings/Trim.ts :: export function Trim(s: string, cutset: string): string
+src/golang/strings/TrimLeft.ts :: export function TrimLeft(s: string, cutset: string): string
+src/golang/strings/TrimPrefix.ts :: export function TrimPrefix(s: string, prefix: string): string
+src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: string): string
+src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
+src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
+src/julia/Base/abs.ts :: export function abs(x: number): number
+src/julia/Base/ceil.ts :: export function ceil(x: number): number
+src/julia/Base/floor.ts :: export function floor(x: number): number
+src/julia/Base/lowercase.ts :: export function lowercase(s: string): string
+src/julia/Base/uppercase.ts :: export function uppercase(s: string): string
+src/lua/math/abs.ts :: export function abs(x: number): number
+src/lua/math/ceil.ts :: export function ceil(x: number): number
+src/lua/math/cos.ts :: export function cos(x: number): number
+src/lua/math/floor.ts :: export function floor(x: number): number
+src/lua/math/max.ts :: export function max(...args: number[]): number
+src/lua/math/min.ts :: export function min(...args: number[]): number
+src/lua/math/sin.ts :: export function sin(x: number): number
+src/lua/math/sqrt.ts :: export function sqrt(x: number): number
+src/lua/string/len.ts :: export function len(s: string): number
+src/lua/string/lower.ts :: export function lower(s: string): string
+src/lua/string/rep.ts :: export function rep(s: string, n: number): string
+src/lua/string/reverse.ts :: export function reverse(s: string): string
+src/lua/string/sub.ts :: export function sub(s: string, i: number, j?: number): string
+src/lua/string/upper.ts :: export function upper(s: string): string
+src/perl/POSIX/ceil.ts :: export function ceil(x: number): number
+src/perl/POSIX/floor.ts :: export function floor(x: number): number
+src/perl/core/lc.ts :: export function lc(str: string): string
+src/perl/core/length.ts :: export function length(str: string | null | undefined): number | undefined
+src/perl/core/reverse.ts :: export function reverse(str: string): string
+src/perl/core/substr.ts :: export function substr(str: string, offset: number, length?: number): string
+src/perl/core/uc.ts :: export function uc(str: string): string
+src/python/math/ceil.ts :: export function ceil(x: number): number
+src/python/math/exp.ts :: export function exp(x: number): number
+src/python/math/fabs.ts :: export function fabs(x: number): number
+src/python/math/factorial.ts :: export function factorial(n: number | string): number
+src/python/math/floor.ts :: export function floor(x: number): number
+src/python/math/gcd.ts :: export function gcd(a: number | string, b: number | string): number
+src/python/math/isfinite.ts :: export function isfinite(x: number): boolean
+src/python/math/isinf.ts :: export function isinf(x: number): boolean
+src/python/math/isnan.ts :: export function isnan(x: number): boolean
+src/python/math/log.ts :: export function log(x: number, base: number): number
+src/python/math/log10.ts :: export function log10(x: number): number
+src/python/math/log2.ts :: export function log2(x: number): number
+src/python/math/pow.ts :: export function pow(x: number, y: number): number
+src/python/math/sqrt.ts :: export function sqrt(x: number): number
+src/python/math/trunc.ts :: export function trunc(x: number): number
+src/python/string/ascii_letters.ts :: export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+src/python/string/ascii_lowercase.ts :: export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz'
+src/python/string/ascii_uppercase.ts :: export function ascii_uppercase(): 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+src/python/string/capwords.ts :: export function capwords(str: string): string
+src/python/string/digits.ts :: export function digits(): '0123456789'
+src/python/string/hexdigits.ts :: export function hexdigits(): '0123456789abcdefABCDEF'
+src/python/string/octdigits.ts :: export function octdigits(): '01234567'
+src/python/string/printable.ts :: export function printable(): '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
+src/python/string/punctuation.ts :: export function punctuation(): '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+src/python/string/whitespace.ts :: export function whitespace(): ' \t\n\r\x0b\x0c'
+src/r/base/abs.ts :: export function abs(x: number): number
+src/r/base/ceiling.ts :: export function ceiling(x: number): number
+src/r/base/floor.ts :: export function floor(x: number): number
+src/r/base/max.ts :: export function max(...args: number[]): number
+src/r/base/min.ts :: export function min(...args: number[]): number
+src/r/base/nchar.ts :: export function nchar(x: string): number
+src/r/base/round.ts :: export function round(x: number, digits?: number): number
+src/r/base/sqrt.ts :: export function sqrt(x: number): number
+src/r/base/tolower.ts :: export function tolower(x: string): string
+src/r/base/toupper.ts :: export function toupper(x: string): string
+src/ruby/Array/compact.ts :: export function compact<T>(arr: Array<T | null | undefined> | unknown): T[]
+src/ruby/Array/first.ts :: export function first<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
+src/ruby/Array/flatten.ts :: export function flatten(arr: unknown[] | unknown, depth?: number): unknown[]
+src/ruby/Array/last.ts :: export function last<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
+src/ruby/Array/sample.ts :: export function sample(arr: unknown[], n?: number): unknown | unknown[] | undefined
+src/ruby/Array/uniq.ts :: export function uniq<T>(arr: T[] | unknown): T[]
+src/ruby/Math/acos.ts :: export function acos(arg: number): number
+src/ruby/Math/asin.ts :: export function asin(x: number): number
+src/ruby/Math/atan.ts :: export function atan(x: number): number
+src/ruby/Math/cbrt.ts :: export function cbrt(x: number): number
+src/ruby/Math/cos.ts :: export function cos(x: number): number
+src/ruby/Math/cosh.ts :: export function cosh(x: number): number
+src/ruby/Math/exp.ts :: export function exp(x: number): number
+src/ruby/Math/log.ts :: export function log(x: number): number
+src/ruby/Math/log10.ts :: export function log10(x: number): number
+src/ruby/Math/log2.ts :: export function log2(x: number): number
+src/ruby/Math/sin.ts :: export function sin(x: number): number
+src/ruby/Math/sinh.ts :: export function sinh(x: number): number
+src/ruby/Math/sqrt.ts :: export function sqrt(x: number): number
+src/ruby/Math/tan.ts :: export function tan(x: number): number
+src/ruby/Math/tanh.ts :: export function tanh(x: number): number
+src/ruby/String/capitalize.ts :: export function capitalize(str: string): string
+src/ruby/String/chomp.ts :: export function chomp(str: string, separator?: string): string
+src/ruby/String/chop.ts :: export function chop(str: string): string
+src/ruby/String/downcase.ts :: export function downcase(str: string): string
+src/ruby/String/end_with.ts :: export function end_with(str: string, suffix: string): boolean
+src/ruby/String/include.ts :: export function include(str: string, other: string): boolean
+src/ruby/String/length.ts :: export function length(str: string): number
+src/ruby/String/reverse.ts :: export function reverse(str: string): string
+src/ruby/String/start_with.ts :: export function start_with(str: string, prefix: string): boolean
+src/ruby/String/strip.ts :: export function strip(str: string): string
+src/ruby/String/upcase.ts :: export function upcase(str: string): string

@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - R 4.4
+isTypescript: true
 type: function
 layout: function
-title: R's nchar in JavaScript
+title: R's nchar in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/nchar.html">R's
   nchar</a> looks like.
 function: nchar
@@ -29,7 +30,8 @@ alias:
   - /functions/base/nchar/
   - /r/nchar/
 ---
-{% codeblock lang:javascript %}module.exports = function nchar(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function nchar(x: string): number {
   //      discuss at: https://locutus.io/r/nchar/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,3 +43,17 @@ alias:
   return String(x).length
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function nchar(x) {
+  //      discuss at: https://locutus.io/r/nchar/
+  // parity verified: R 4.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: nchar('hello')
+  //       returns 1: 5
+  //       example 2: nchar('')
+  //       returns 2: 0
+
+  return String(x).length
+}{% endcodeblock %}
+</div>

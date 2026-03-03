@@ -16,11 +16,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's strpos in JavaScript
+title: PHP's strpos in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.strpos.php">PHP's strpos</a> looks
   like.
 function: strpos
@@ -33,7 +34,8 @@ alias:
   - /php/strpos/
   - /functions/strpos/
 ---
-{% codeblock lang:javascript %}module.exports = function strpos(haystack, needle, offset) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function strpos(haystack: string, needle: string, offset: number): number | false {
   //      discuss at: https://locutus.io/php/strpos/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -47,3 +49,19 @@ alias:
   return i === -1 ? false : i
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function strpos(haystack, needle, offset) {
+  //      discuss at: https://locutus.io/php/strpos/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Daniel Esteban
+  //       example 1: strpos('Kevin van Zonneveld', 'e', 5)
+  //       returns 1: 14
+
+  const i = (haystack + '').indexOf(needle, offset || 0)
+  return i === -1 ? false : i
+}{% endcodeblock %}
+</div>

@@ -6,7 +6,8 @@ examples:
 returns:
   - '{"green":2, "blue":3, "white":4}'
   - '{"green":2, "blue":3, "white":4}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Ates Goral (https://magnetiq.com)
@@ -16,11 +17,12 @@ authors:
     - Everlasto
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_diff_key in JavaScript
+title: PHP's array_diff_key in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-diff-key.php">PHP's
   array_diff_key</a> looks like.
 function: array_diff_key
@@ -33,7 +35,13 @@ alias:
   - /php/array_diff_key/
   - /functions/array_diff_key/
 ---
-{% codeblock lang:javascript %}module.exports = function array_diff_key(arr1) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { entriesOfPhpAssoc, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_diff_key<TValue>(
+  arr1: PhpArrayLike<TValue>,
+  ...arrays: Array<PhpArrayLike<TValue>>
+): PhpAssoc<TValue> {
   //  discuss at: https://locutus.io/php/array_diff_key/
   // original by: Ates Goral (https://magnetiq.com)
   //  revised by: Brett Zamir (https://brett-zamir.me)
@@ -43,26 +51,177 @@ alias:
   //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
   //   returns 2: {"green":2, "blue":3, "white":4}
 
-  const argl = arguments.length
-  const retArr = {}
-  let k1 = ''
-  let i = 1
-  let k = ''
-  let arr = {}
+  const retArr: PhpAssoc<TValue> = {}
 
-  arr1keys: for (k1 in arr1) {
-    for (i = 1; i < argl; i++) {
-      arr = arguments[i]
-      for (k in arr) {
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject<TValue>(arr1)
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject<TValue>(nextArray)
+      for (const [k] of entriesOfPhpAssoc(arr)) {
         if (k === k1) {
-          // If it reaches here, it was found in at least one array, so try next value
           continue arr1keys
         }
       }
-      retArr[k1] = arr1[k1]
     }
+    retArr[k1] = arr1Value
   }
 
   return retArr
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { entriesOfPhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_diff_key(arr1, ...arrays) {
+  //  discuss at: https://locutus.io/php/array_diff_key/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Everlasto
+  //   example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5})
+  //   returns 1: {"green":2, "blue":3, "white":4}
+  //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
+  //   returns 2: {"green":2, "blue":3, "white":4}
+
+  const retArr = {}
+
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject(arr1)
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
+      for (const [k] of entriesOfPhpAssoc(arr)) {
+        if (k === k1) {
+          continue arr1keys
+        }
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
+  return Object.entries(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_diff_key (target function module)
+function array_diff_key<TValue>(
+  arr1: PhpArrayLike<TValue>,
+  ...arrays: Array<PhpArrayLike<TValue>>
+): PhpAssoc<TValue> {
+  //  discuss at: https://locutus.io/php/array_diff_key/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Everlasto
+  //   example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5})
+  //   returns 1: {"green":2, "blue":3, "white":4}
+  //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
+  //   returns 2: {"green":2, "blue":3, "white":4}
+
+  const retArr: PhpAssoc<TValue> = {}
+
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject<TValue>(arr1)
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject<TValue>(nextArray)
+      for (const [k] of entriesOfPhpAssoc(arr)) {
+        if (k === k1) {
+          continue arr1keys
+        }
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isPhpArrayObject(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_diff_key (target function module)
+function array_diff_key(arr1, ...arrays) {
+  //  discuss at: https://locutus.io/php/array_diff_key/
+  // original by: Ates Goral (https://magnetiq.com)
+  //  revised by: Brett Zamir (https://brett-zamir.me)
+  //    input by: Everlasto
+  //   example 1: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5})
+  //   returns 1: {"green":2, "blue":3, "white":4}
+  //   example 2: array_diff_key({red: 1, green: 2, blue: 3, white: 4}, {red: 5}, {red: 5})
+  //   returns 2: {"green":2, "blue":3, "white":4}
+
+  const retArr = {}
+
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject(arr1)
+  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
+      for (const [k] of Object.entries(arr)) {
+        if (k === k1) {
+          continue arr1keys
+        }
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>

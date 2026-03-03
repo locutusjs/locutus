@@ -31,11 +31,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's htmlspecialchars_decode in JavaScript
+title: PHP's htmlspecialchars_decode in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.htmlspecialchars-decode.php">PHP's
   htmlspecialchars_decode</a> looks like.
 function: htmlspecialchars_decode
@@ -48,7 +49,10 @@ alias:
   - /php/htmlspecialchars_decode/
   - /functions/htmlspecialchars_decode/
 ---
-{% codeblock lang:javascript %}module.exports = function htmlspecialchars_decode(string, quoteStyle) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}type HtmlSpecialCharsQuoteStyle = string | string[] | number | null | undefined
+
+export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecialCharsQuoteStyle): string {
   //       discuss at: https://locutus.io/php/htmlspecialchars_decode/
   //  parity verified: PHP 8.3
   //      original by: Mirek Slugen
@@ -71,13 +75,100 @@ alias:
   //        returns 2: '&quot;'
 
   let optTemp = 0
-  let i = 0
   let noquotes = false
 
-  if (typeof quoteStyle === 'undefined') {
-    quoteStyle = 2
+  let quoteStyleValue: HtmlSpecialCharsQuoteStyle = quoteStyle
+  if (typeof quoteStyleValue === 'undefined') {
+    quoteStyleValue = 2
   }
-  string = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+
+  let decoded = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+  const OPTS: Readonly<{
+    ENT_NOQUOTES: number
+    ENT_HTML_QUOTE_SINGLE: number
+    ENT_HTML_QUOTE_DOUBLE: number
+    ENT_COMPAT: number
+    ENT_QUOTES: number
+    ENT_IGNORE: number
+  }> = {
+    ENT_NOQUOTES: 0,
+    ENT_HTML_QUOTE_SINGLE: 1,
+    ENT_HTML_QUOTE_DOUBLE: 2,
+    ENT_COMPAT: 2,
+    ENT_QUOTES: 3,
+    ENT_IGNORE: 4,
+  }
+
+  const isOptKey = (value: string): value is keyof typeof OPTS => Object.prototype.hasOwnProperty.call(OPTS, value)
+
+  if (quoteStyleValue === 0) {
+    noquotes = true
+  }
+  if (typeof quoteStyleValue !== 'number') {
+    // Allow for a single string or an array of string flags
+    const quoteStyleFlags = (Array.isArray(quoteStyleValue) ? quoteStyleValue : [quoteStyleValue]).map((flag) =>
+      String(flag),
+    )
+    for (const flag of quoteStyleFlags) {
+      // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
+      if (flag === 'ENT_NOQUOTES') {
+        noquotes = true
+      } else if (isOptKey(flag) && OPTS[flag]) {
+        optTemp |= OPTS[flag]
+      }
+    }
+    quoteStyleValue = optTemp
+  }
+  const resolvedQuoteStyle = typeof quoteStyleValue === 'number' ? quoteStyleValue : optTemp
+  if (resolvedQuoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
+    // PHP doesn't currently escape if more than one 0, but it should:
+    decoded = decoded.replace(/&#0*39;/g, "'")
+    // This would also be useful here, but not a part of PHP:
+    // string = string.replace(/&apos;|&#x0*27;/g, "'");
+  }
+  if (!noquotes) {
+    decoded = decoded.replace(/&quot;/g, '"')
+  }
+  // Put this in last place to avoid escape being double-decoded
+  decoded = decoded.replace(/&amp;/g, '&')
+
+  return decoded
+}
+{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}
+export function htmlspecialchars_decode(string, quoteStyle) {
+  //       discuss at: https://locutus.io/php/htmlspecialchars_decode/
+  //  parity verified: PHP 8.3
+  //      original by: Mirek Slugen
+  //      improved by: Kevin van Zonneveld (https://kvz.io)
+  //      bugfixed by: Mateusz "loonquawl" Zalega
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //         input by: ReverseSyntax
+  //         input by: Slawomir Kaniecki
+  //         input by: Scott Cariss
+  //         input by: Francois
+  //         input by: Ratheous
+  //         input by: Mailfaker (https://www.weedem.fr/)
+  //       revised by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //        example 1: htmlspecialchars_decode("<p>this -&gt; &quot;</p>", 'ENT_NOQUOTES')
+  //        returns 1: '<p>this -> &quot;</p>'
+  //        example 2: htmlspecialchars_decode("&amp;quot;")
+  //        returns 2: '&quot;'
+
+  let optTemp = 0
+  let noquotes = false
+
+  let quoteStyleValue = quoteStyle
+  if (typeof quoteStyleValue === 'undefined') {
+    quoteStyleValue = 2
+  }
+
+  let decoded = string.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>')
   const OPTS = {
     ENT_NOQUOTES: 0,
     ENT_HTML_QUOTE_SINGLE: 1,
@@ -86,34 +177,40 @@ alias:
     ENT_QUOTES: 3,
     ENT_IGNORE: 4,
   }
-  if (quoteStyle === 0) {
+
+  const isOptKey = (value) => Object.prototype.hasOwnProperty.call(OPTS, value)
+
+  if (quoteStyleValue === 0) {
     noquotes = true
   }
-  if (typeof quoteStyle !== 'number') {
+  if (typeof quoteStyleValue !== 'number') {
     // Allow for a single string or an array of string flags
-    quoteStyle = [].concat(quoteStyle)
-    for (i = 0; i < quoteStyle.length; i++) {
+    const quoteStyleFlags = (Array.isArray(quoteStyleValue) ? quoteStyleValue : [quoteStyleValue]).map((flag) =>
+      String(flag),
+    )
+    for (const flag of quoteStyleFlags) {
       // Resolve string input to bitwise e.g. 'PATHINFO_EXTENSION' becomes 4
-      if (OPTS[quoteStyle[i]] === 0) {
+      if (flag === 'ENT_NOQUOTES') {
         noquotes = true
-      } else if (OPTS[quoteStyle[i]]) {
-        optTemp = optTemp | OPTS[quoteStyle[i]]
+      } else if (isOptKey(flag) && OPTS[flag]) {
+        optTemp |= OPTS[flag]
       }
     }
-    quoteStyle = optTemp
+    quoteStyleValue = optTemp
   }
-  if (quoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
+  const resolvedQuoteStyle = typeof quoteStyleValue === 'number' ? quoteStyleValue : optTemp
+  if (resolvedQuoteStyle & OPTS.ENT_HTML_QUOTE_SINGLE) {
     // PHP doesn't currently escape if more than one 0, but it should:
-    string = string.replace(/&#0*39;/g, "'")
+    decoded = decoded.replace(/&#0*39;/g, "'")
     // This would also be useful here, but not a part of PHP:
     // string = string.replace(/&apos;|&#x0*27;/g, "'");
   }
   if (!noquotes) {
-    string = string.replace(/&quot;/g, '"')
+    decoded = decoded.replace(/&quot;/g, '"')
   }
   // Put this in last place to avoid escape being double-decoded
-  string = string.replace(/&amp;/g, '&')
+  decoded = decoded.replace(/&amp;/g, '&')
 
-  return string
-}
-{% endcodeblock %}
+  return decoded
+}{% endcodeblock %}
+</div>

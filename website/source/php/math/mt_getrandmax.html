@@ -11,11 +11,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's mt_getrandmax in JavaScript
+title: PHP's mt_getrandmax in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.mt-getrandmax.php">PHP's
   mt_getrandmax</a> looks like.
 function: mt_getrandmax
@@ -28,7 +29,8 @@ alias:
   - /php/mt_getrandmax/
   - /functions/mt_getrandmax/
 ---
-{% codeblock lang:javascript %}module.exports = function mt_getrandmax() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function mt_getrandmax(): number {
   //      discuss at: https://locutus.io/php/mt_getrandmax/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -38,3 +40,15 @@ alias:
   return 2147483647
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function mt_getrandmax() {
+  //      discuss at: https://locutus.io/php/mt_getrandmax/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: mt_getrandmax()
+  //       returns 1: 2147483647
+
+  return 2147483647
+}{% endcodeblock %}
+</div>

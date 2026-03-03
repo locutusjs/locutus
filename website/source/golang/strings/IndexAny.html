@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - Go 1.23
+isTypescript: true
 type: function
 layout: function
-title: Go's strings.IndexAny in JavaScript
+title: Go's strings.IndexAny in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://golang.org/pkg/strings/#IndexAny">Go's strings.IndexAny</a>
   looks like.
 function: IndexAny
@@ -29,7 +30,8 @@ alias:
   - /functions/strings/IndexAny/
   - /golang/IndexAny/
 ---
-{% codeblock lang:javascript %}module.exports = function IndexAny(s, chars) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function IndexAny(s: string, chars: string): number {
   //      discuss at: https://locutus.io/golang/strings/IndexAny/
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -48,3 +50,24 @@ alias:
   return minIndex
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function IndexAny(s, chars) {
+  //      discuss at: https://locutus.io/golang/strings/IndexAny/
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: IndexAny('chicken', 'aeiouy')
+  //       returns 1: 2
+  //       example 2: IndexAny('crwth', 'aeiouy')
+  //       returns 2: -1
+
+  let minIndex = -1
+  for (const char of chars) {
+    const idx = s.indexOf(char)
+    if (idx !== -1 && (minIndex === -1 || idx < minIndex)) {
+      minIndex = idx
+    }
+  }
+  return minIndex
+}{% endcodeblock %}
+</div>

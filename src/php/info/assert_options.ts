@@ -1,0 +1,45 @@
+import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+import { ini_get } from './ini_get.ts'
+
+type AssertOptionValue = PhpRuntimeValue
+
+export function assert_options(what: string, _value?: AssertOptionValue): string | number | null {
+  //  discuss at: https://locutus.io/php/assert_options/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: assert_options('ASSERT_CALLBACK')
+  //   returns 1: null
+
+  let iniKey: string
+  let defaultVal: number | null
+  switch (what) {
+    case 'ASSERT_ACTIVE':
+      iniKey = 'assert.active'
+      defaultVal = 1
+      break
+    case 'ASSERT_WARNING': {
+      iniKey = 'assert.warning'
+      defaultVal = 1
+      let msg = 'We have not yet implemented warnings for us to throw '
+      msg += 'in JavaScript (assert_options())'
+      throw new Error(msg)
+    }
+    case 'ASSERT_BAIL':
+      iniKey = 'assert.bail'
+      defaultVal = 0
+      break
+    case 'ASSERT_QUIET_EVAL':
+      iniKey = 'assert.quiet_eval'
+      defaultVal = 0
+      break
+    case 'ASSERT_CALLBACK':
+      iniKey = 'assert.callback'
+      defaultVal = null
+      break
+    default:
+      throw new Error('Improper type for assert_options()')
+  }
+
+  // I presume this is to be the most recent value, instead of the default value
+  const iniVal = ini_get(iniKey)
+  return iniVal === '' ? defaultVal : iniVal
+}

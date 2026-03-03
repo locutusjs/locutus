@@ -6,7 +6,9 @@ examples:
     var $result = Array.isArray($funcs) && $funcs.length > 0
 returns:
   - 'true'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -18,11 +20,12 @@ notes:
     JavaScript doesn't distinguish between user and internal functions.
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's get_defined_functions in JavaScript
+title: PHP's get_defined_functions in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.get-defined-functions.php">PHP's
   get_defined_functions</a> looks like.
 function: get_defined_functions
@@ -35,7 +38,11 @@ alias:
   - /php/get_defined_functions/
   - /functions/get_defined_functions/
 ---
-{% codeblock lang:javascript %}module.exports = function get_defined_functions() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { ensurePhpRuntimeState, getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function get_defined_functions(): string[] {
   //      discuss at: https://locutus.io/php/get_defined_functions/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
@@ -46,25 +53,24 @@ alias:
   //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
   //       returns 1: true
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
+  ensurePhpRuntimeState()
 
-  let i = ''
-  const arr = []
-  const already = {}
+  const arr: string[] = []
+  const already: Record<string, 1> = {}
+  const globalScope = getPhpGlobalScope()
 
-  for (i in $global) {
+  for (const i in globalScope) {
     try {
-      if (typeof $global[i] === 'function') {
+      const topLevelValue = globalScope[i]
+      if (typeof topLevelValue === 'function') {
         if (!already[i]) {
           already[i] = 1
           arr.push(i)
         }
-      } else if (typeof $global[i] === 'object') {
-        for (const j in $global[i]) {
-          if (typeof $global[j] === 'function' && $global[j] && !already[j]) {
+      } else if (typeof topLevelValue === 'object' && topLevelValue !== null) {
+        const nestedObject = toPhpArrayObject(topLevelValue)
+        for (const j in nestedObject) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
             already[j] = 1
             arr.push(j)
           }
@@ -79,3 +85,354 @@ alias:
   return arr
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { ensurePhpRuntimeState, getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
+import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function get_defined_functions() {
+  //      discuss at: https://locutus.io/php/get_defined_functions/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Returns an array of global function names. Unlike PHP,
+  //          note 1: JavaScript doesn't distinguish between user and internal functions.
+  //       example 1: var $funcs = get_defined_functions()
+  //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
+  //       returns 1: true
+
+  ensurePhpRuntimeState()
+
+  const arr = []
+  const already = {}
+  const globalScope = getPhpGlobalScope()
+
+  for (const i in globalScope) {
+    try {
+      const topLevelValue = globalScope[i]
+      if (typeof topLevelValue === 'function') {
+        if (!already[i]) {
+          already[i] = 1
+          arr.push(i)
+        }
+      } else if (typeof topLevelValue === 'object' && topLevelValue !== null) {
+        const nestedObject = toPhpArrayObject(topLevelValue)
+        for (const j in nestedObject) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
+            already[j] = 1
+            arr.push(j)
+          }
+        }
+      }
+    } catch (_e) {
+      // Some objects in Firefox throw exceptions when their
+      // properties are accessed (e.g., sessionStorage)
+    }
+  }
+
+  return arr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpGlobalScope(): PhpAssoc<PhpInput> {
+  return globalContext
+}
+
+// php/funchand/get_defined_functions (target function module)
+function get_defined_functions(): string[] {
+  //      discuss at: https://locutus.io/php/get_defined_functions/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Returns an array of global function names. Unlike PHP,
+  //          note 1: JavaScript doesn't distinguish between user and internal functions.
+  //       example 1: var $funcs = get_defined_functions()
+  //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
+  //       returns 1: true
+
+  ensurePhpRuntimeState()
+
+  const arr: string[] = []
+  const already: Record<string, 1> = {}
+  const globalScope = getPhpGlobalScope()
+
+  for (const i in globalScope) {
+    try {
+      const topLevelValue = globalScope[i]
+      if (typeof topLevelValue === 'function') {
+        if (!already[i]) {
+          already[i] = 1
+          arr.push(i)
+        }
+      } else if (typeof topLevelValue === 'object' && topLevelValue !== null) {
+        const nestedObject = toPhpArrayObject(topLevelValue)
+        for (const j in nestedObject) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
+            already[j] = 1
+            arr.push(j)
+          }
+        }
+      }
+    } catch (_e) {
+      // Some objects in Firefox throw exceptions when their
+      // properties are accessed (e.g., sessionStorage)
+    }
+  }
+
+  return arr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !Array.isArray(value)
+}
+
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+
+  return {}
+}
+
+const isPhpArrayObject = isObjectLike
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState() {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+function getPhpGlobalScope() {
+  return globalContext
+}
+
+// php/funchand/get_defined_functions (target function module)
+function get_defined_functions() {
+  //      discuss at: https://locutus.io/php/get_defined_functions/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //          note 1: Returns an array of global function names. Unlike PHP,
+  //          note 1: JavaScript doesn't distinguish between user and internal functions.
+  //       example 1: var $funcs = get_defined_functions()
+  //       example 1: var $result = Array.isArray($funcs) && $funcs.length > 0
+  //       returns 1: true
+
+  ensurePhpRuntimeState()
+
+  const arr = []
+  const already = {}
+  const globalScope = getPhpGlobalScope()
+
+  for (const i in globalScope) {
+    try {
+      const topLevelValue = globalScope[i]
+      if (typeof topLevelValue === 'function') {
+        if (!already[i]) {
+          already[i] = 1
+          arr.push(i)
+        }
+      } else if (typeof topLevelValue === 'object' && topLevelValue !== null) {
+        const nestedObject = toPhpArrayObject(topLevelValue)
+        for (const j in nestedObject) {
+          if (typeof nestedObject[j] === 'function' && !already[j]) {
+            already[j] = 1
+            arr.push(j)
+          }
+        }
+      }
+    } catch (_e) {
+      // Some objects in Firefox throw exceptions when their
+      // properties are accessed (e.g., sessionStorage)
+    }
+  }
+
+  return arr
+}{% endcodeblock %}
+</div>

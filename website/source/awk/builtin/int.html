@@ -15,11 +15,12 @@ authors:
 notes: []
 parityVerified:
   - GNU AWK 5.3
+isTypescript: true
 type: function
 layout: function
-title: AWK's int in JavaScript
+title: AWK's int in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions">AWK's
   int</a> looks like.
 function: int
@@ -31,7 +32,8 @@ alias:
   - /functions/builtin/int/
   - /awk/int/
 ---
-{% codeblock lang:javascript %}module.exports = function int(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function int(x: number): number {
   //      discuss at: https://locutus.io/awk/int/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -45,3 +47,19 @@ alias:
   return Math.trunc(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function int(x) {
+  //      discuss at: https://locutus.io/awk/int/
+  // parity verified: GNU AWK 5.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: int(4.7)
+  //       returns 1: 4
+  //       example 2: int(-4.7)
+  //       returns 2: -4
+  //       example 3: int(3)
+  //       returns 3: 3
+
+  return Math.trunc(x)
+}{% endcodeblock %}
+</div>

@@ -12,11 +12,12 @@ notes:
   - so this function is Node-only
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's file_exists in JavaScript
+title: PHP's file_exists in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.file-exists.php">PHP's
   file_exists</a> looks like.
 function: file_exists
@@ -29,7 +30,10 @@ alias:
   - /php/file_exists/
   - /functions/file_exists/
 ---
-{% codeblock lang:javascript %}module.exports = function file_exists(filename) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import fs from 'fs'
+
+export function file_exists(filename: string): boolean {
   //      discuss at: https://locutus.io/php/file_exists/
   // parity verified: PHP 8.3
   //     original by: Erik Niebla
@@ -37,8 +41,21 @@ alias:
   //       example 1: file_exists('test/never-change.txt')
   //       returns 1: true
 
-  const fs = require('fs')
-
   return fs.existsSync(filename)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import fs from 'fs'
+
+export function file_exists(filename) {
+  //      discuss at: https://locutus.io/php/file_exists/
+  // parity verified: PHP 8.3
+  //     original by: Erik Niebla
+  //          note 1: so this function is Node-only
+  //       example 1: file_exists('test/never-change.txt')
+  //       returns 1: true
+
+  return fs.existsSync(filename)
+}{% endcodeblock %}
+</div>

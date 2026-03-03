@@ -116,7 +116,7 @@ function jsToClojure(jsCode: string[], funcName: string, category?: string): str
   if (assignedVar) {
     // For assignment, use let binding then print
     // Parse "result = ceil(4.2)" -> "(let [result (Math/ceil 4.2)] (println result))"
-    const lastLine = lines[lines.length - 1]
+    const lastLine = lines[lines.length - 1] ?? ''
     const assignMatch = lastLine.match(/(\w+)\s*=\s*(.+)/)
     if (assignMatch) {
       const setup = lines.slice(0, -1)

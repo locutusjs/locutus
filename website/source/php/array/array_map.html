@@ -4,7 +4,8 @@ examples:
   - array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
 returns:
   - '[ 1, 8, 27, 64, 125 ]'
-dependencies: []
+dependencies:
+  - php/_helpers/_callbackResolver
 authors:
   original by:
     - Andrea Giammarchi (https://webreflection.blogspot.com)
@@ -18,11 +19,12 @@ notes:
     If the callback is a string (or object, if an array is supplied),
     it can only work if the function name is in the global context
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_map in JavaScript
+title: PHP's array_map in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-map.php">PHP's array_map</a>
   looks like.
 function: array_map
@@ -35,7 +37,33 @@ alias:
   - /php/array_map/
   - /functions/array_map/
 ---
-{% codeblock lang:javascript %}module.exports = function array_map(callback) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+import type { PhpCallableDescriptor, PhpList, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+
+type ArrayMapValue = PhpRuntimeValue
+type ArrayMapInputs = [firstArray: PhpList<ArrayMapValue>, ...restArrays: Array<PhpList<ArrayMapValue>>]
+type ArrayMapTupleArgs<TInputs extends readonly PhpList<ArrayMapValue>[]> = [
+  ...{
+    [K in keyof TInputs]: TInputs[K] extends PhpList<infer TValue> ? TValue | undefined : ArrayMapValue | undefined
+  },
+]
+type ArrayMapCallbackArgsVariadic = Array<ArrayMapValue | undefined>
+
+export function array_map<TInputs extends ArrayMapInputs, TResult>(
+  callback: PhpCallableDescriptor<ArrayMapTupleArgs<TInputs>, TResult>,
+  ...inputArrays: TInputs
+): PhpList<TResult>
+
+export function array_map<TInputs extends ArrayMapInputs>(
+  callback: null | undefined,
+  ...inputArrays: TInputs
+): PhpList<ArrayMapTupleArgs<TInputs>>
+
+export function array_map<TResult = ArrayMapValue>(
+  callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined,
+  ...inputArrays: ArrayMapInputs
+): PhpList<TResult> | PhpList<ArrayMapCallbackArgsVariadic> {
   //  discuss at: https://locutus.io/php/array_map/
   // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
   // improved by: Kevin van Zonneveld (https://kvz.io)
@@ -46,45 +74,463 @@ alias:
   //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
   //   returns 1: [ 1, 8, 27, 64, 125 ]
 
-  const argc = arguments.length
-  const argv = arguments
-  let obj = null
-  let cb = callback
-  const j = argv[1].length
-  let i = 0
-  let k = 1
-  let m = 0
-  let tmp = []
-  const tmpArr = []
+  const argc = inputArrays.length + 1
+  const itemCount = inputArrays[0]?.length ?? 0
 
-  const $global = typeof window !== 'undefined' ? window : global
+  const resolved =
+    callback === null || typeof callback === 'undefined'
+      ? null
+      : resolvePhpCallable<ArrayMapCallbackArgsVariadic, TResult>(callback, {
+          invalidMessage: 'array_map(): Invalid callback',
+          missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
+        })
 
-  while (i < j) {
-    while (k < argc) {
-      tmp[m++] = argv[k++][i]
-    }
-
-    m = 0
-    k = 1
-
-    if (callback) {
-      if (typeof callback === 'string') {
-        cb = $global[callback]
-      } else if (typeof callback === 'object' && callback.length) {
-        obj = typeof callback[0] === 'string' ? $global[callback[0]] : callback[0]
-        if (typeof obj === 'undefined') {
-          throw new Error('Object not found: ' + callback[0])
-        }
-        cb = typeof callback[1] === 'string' ? obj[callback[1]] : callback[1]
+  if (resolved) {
+    const mapped: PhpList<TResult> = []
+    for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+      const args: ArrayMapCallbackArgsVariadic = []
+      for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+        args.push(inputArrays[arrayIndex]?.[itemIndex])
       }
-      tmpArr[i++] = cb.apply(obj, tmp)
-    } else {
-      tmpArr[i++] = tmp
+      mapped[itemIndex] = resolved.fn.apply(resolved.scope, args)
     }
-
-    tmp = []
+    return mapped
   }
 
-  return tmpArr
+  const mapped: PhpList<ArrayMapCallbackArgsVariadic> = []
+  for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+    const args: ArrayMapCallbackArgsVariadic = []
+    for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+      args.push(inputArrays[arrayIndex]?.[itemIndex])
+    }
+    mapped[itemIndex] = args
+  }
+
+  return mapped
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { resolvePhpCallable } from '../_helpers/_callbackResolver.ts'
+
+export function array_map(callback, ...inputArrays) {
+  //  discuss at: https://locutus.io/php/array_map/
+  // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //    input by: thekid
+  //      note 1: If the callback is a string (or object, if an array is supplied),
+  //      note 1: it can only work if the function name is in the global context
+  //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
+  //   returns 1: [ 1, 8, 27, 64, 125 ]
+
+  const argc = inputArrays.length + 1
+  const itemCount = inputArrays[0]?.length ?? 0
+
+  const resolved =
+    callback === null || typeof callback === 'undefined'
+      ? null
+      : resolvePhpCallable(callback, {
+          invalidMessage: 'array_map(): Invalid callback',
+          missingScopeMessage: (scopeName) => 'Object not found: ' + scopeName,
+        })
+
+  if (resolved) {
+    const mapped = []
+    for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+      const args = []
+      for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+        args.push(inputArrays[arrayIndex]?.[itemIndex])
+      }
+      mapped[itemIndex] = resolved.fn.apply(resolved.scope, args)
+    }
+    return mapped
+  }
+
+  const mapped = []
+  for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+    const args = []
+    for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+      args.push(inputArrays[arrayIndex]?.[itemIndex])
+    }
+    mapped[itemIndex] = args
+  }
+
+  return mapped
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpScalar = string | number | boolean
+
+type PhpPrimitive = PhpScalar | bigint
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpFunctionValue = (...args: PhpInput[]) => PhpInput
+
+interface PhpRuntimeAssoc {
+  [key: string]: PhpRuntimeValue
+}
+
+interface PhpRuntimeList extends Array<PhpRuntimeValue> {}
+
+type PhpRuntimeValue = PhpPrimitive | PhpNullish | PhpRuntimeList | PhpRuntimeAssoc | PhpFunctionValue
+
+type PhpCallableArgs = PhpInput[]
+
+type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
+  ...args: TArgs
+) => TResult
+
+type PhpCallableScope = PhpInput
+
+type PhpCallableTuple<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = readonly [
+  PhpCallableScope,
+  string | PhpCallable<TArgs, TResult>,
+]
+
+type PhpCallableDescriptor<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> =
+  | string
+  | PhpCallable<TArgs, TResult>
+  | PhpCallableTuple<TArgs, TResult>
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
+): value is PhpCallable<TArgs, TResult> {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/_helpers/_callbackResolver (Locutus helper dependency)
+type CallbackValue = PhpInput
+
+interface CallbackResolverOptions {
+  invalidMessage: string
+  missingScopeMessage?: (scopeName: string) => string
+}
+
+interface ResolvedCallback<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue> {
+  fn: PhpCallable<TArgs, TResult>
+  scope: CallbackValue
+}
+
+function resolvePhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = CallbackValue>(
+  callback: PhpCallableDescriptor<TArgs, TResult>,
+  options: CallbackResolverOptions,
+): ResolvedCallback<TArgs, TResult> {
+  if (isPhpCallable<TArgs, TResult>(callback)) {
+    return { fn: callback, scope: null }
+  }
+
+  if (typeof callback === 'string') {
+    const candidate = getPhpGlobalEntry(callback)
+    if (isPhpCallable<TArgs, TResult>(candidate)) {
+      return { fn: candidate, scope: null }
+    }
+    throw new Error(options.invalidMessage)
+  }
+
+  if (Array.isArray(callback) && callback.length >= 2) {
+    const scopeDescriptor = callback[0]
+    const callableDescriptor = callback[1]
+
+    let scope: CallbackValue
+    if (typeof scopeDescriptor === 'string') {
+      scope = getPhpGlobalEntry(scopeDescriptor)
+      if (typeof scope === 'undefined' && options.missingScopeMessage) {
+        throw new Error(options.missingScopeMessage(scopeDescriptor))
+      }
+    } else {
+      scope = scopeDescriptor
+    }
+
+    if (isPhpCallable<TArgs, TResult>(callableDescriptor)) {
+      return { fn: callableDescriptor, scope }
+    }
+
+    if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
+      const candidate = getPhpObjectEntry(scope, callableDescriptor)
+      if (isPhpCallable<TArgs, TResult>(candidate)) {
+        return { fn: candidate, scope }
+      }
+    }
+  }
+
+  throw new Error(options.invalidMessage)
+}
+
+// php/array/array_map (target function module)
+type ArrayMapValue = PhpRuntimeValue
+
+type ArrayMapInputs = [firstArray: PhpList<ArrayMapValue>, ...restArrays: Array<PhpList<ArrayMapValue>>]
+
+type ArrayMapTupleArgs<TInputs extends readonly PhpList<ArrayMapValue>[]> = [
+  ...{
+    [K in keyof TInputs]: TInputs[K] extends PhpList<infer TValue> ? TValue | undefined : ArrayMapValue | undefined
+  },
+]
+
+type ArrayMapCallbackArgsVariadic = Array<ArrayMapValue | undefined>
+
+function array_map<TInputs extends ArrayMapInputs, TResult>(
+  callback: PhpCallableDescriptor<ArrayMapTupleArgs<TInputs>, TResult>,
+  ...inputArrays: TInputs
+): PhpList<TResult>
+
+function array_map<TInputs extends ArrayMapInputs>(
+  callback: null | undefined,
+  ...inputArrays: TInputs
+): PhpList<ArrayMapTupleArgs<TInputs>>
+
+function array_map<TResult = ArrayMapValue>(
+  callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined,
+  ...inputArrays: ArrayMapInputs
+): PhpList<TResult> | PhpList<ArrayMapCallbackArgsVariadic> {
+  //  discuss at: https://locutus.io/php/array_map/
+  // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //    input by: thekid
+  //      note 1: If the callback is a string (or object, if an array is supplied),
+  //      note 1: it can only work if the function name is in the global context
+  //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
+  //   returns 1: [ 1, 8, 27, 64, 125 ]
+
+  const argc = inputArrays.length + 1
+  const itemCount = inputArrays[0]?.length ?? 0
+
+  const resolved =
+    callback === null || typeof callback === 'undefined'
+      ? null
+      : resolvePhpCallable<ArrayMapCallbackArgsVariadic, TResult>(callback, {
+          invalidMessage: 'array_map(): Invalid callback',
+          missingScopeMessage: (scopeName: string) => 'Object not found: ' + scopeName,
+        })
+
+  if (resolved) {
+    const mapped: PhpList<TResult> = []
+    for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+      const args: ArrayMapCallbackArgsVariadic = []
+      for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+        args.push(inputArrays[arrayIndex]?.[itemIndex])
+      }
+      mapped[itemIndex] = resolved.fn.apply(resolved.scope, args)
+    }
+    return mapped
+  }
+
+  const mapped: PhpList<ArrayMapCallbackArgsVariadic> = []
+  for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+    const args: ArrayMapCallbackArgsVariadic = []
+    for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+      args.push(inputArrays[arrayIndex]?.[itemIndex])
+    }
+    mapped[itemIndex] = args
+  }
+
+  return mapped
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpCallable(value) {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/_helpers/_callbackResolver (Locutus helper dependency)
+function resolvePhpCallable(callback, options) {
+  if (isPhpCallable(callback)) {
+    return { fn: callback, scope: null }
+  }
+
+  if (typeof callback === 'string') {
+    const candidate = getPhpGlobalEntry(callback)
+    if (isPhpCallable(candidate)) {
+      return { fn: candidate, scope: null }
+    }
+    throw new Error(options.invalidMessage)
+  }
+
+  if (Array.isArray(callback) && callback.length >= 2) {
+    const scopeDescriptor = callback[0]
+    const callableDescriptor = callback[1]
+
+    let scope
+    if (typeof scopeDescriptor === 'string') {
+      scope = getPhpGlobalEntry(scopeDescriptor)
+      if (typeof scope === 'undefined' && options.missingScopeMessage) {
+        throw new Error(options.missingScopeMessage(scopeDescriptor))
+      }
+    } else {
+      scope = scopeDescriptor
+    }
+
+    if (isPhpCallable(callableDescriptor)) {
+      return { fn: callableDescriptor, scope }
+    }
+
+    if (typeof callableDescriptor === 'string' && (isObjectLike(scope) || typeof scope === 'function')) {
+      const candidate = getPhpObjectEntry(scope, callableDescriptor)
+      if (isPhpCallable(candidate)) {
+        return { fn: candidate, scope }
+      }
+    }
+  }
+
+  throw new Error(options.invalidMessage)
+}
+
+// php/array/array_map (target function module)
+
+function array_map(callback, ...inputArrays) {
+  //  discuss at: https://locutus.io/php/array_map/
+  // original by: Andrea Giammarchi (https://webreflection.blogspot.com)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Brett Zamir (https://brett-zamir.me)
+  //    input by: thekid
+  //      note 1: If the callback is a string (or object, if an array is supplied),
+  //      note 1: it can only work if the function name is in the global context
+  //   example 1: array_map( function (a){return (a * a * a)}, [1, 2, 3, 4, 5] )
+  //   returns 1: [ 1, 8, 27, 64, 125 ]
+
+  const argc = inputArrays.length + 1
+  const itemCount = inputArrays[0]?.length ?? 0
+
+  const resolved =
+    callback === null || typeof callback === 'undefined'
+      ? null
+      : resolvePhpCallable(callback, {
+          invalidMessage: 'array_map(): Invalid callback',
+          missingScopeMessage: (scopeName) => 'Object not found: ' + scopeName,
+        })
+
+  if (resolved) {
+    const mapped = []
+    for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+      const args = []
+      for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+        args.push(inputArrays[arrayIndex]?.[itemIndex])
+      }
+      mapped[itemIndex] = resolved.fn.apply(resolved.scope, args)
+    }
+    return mapped
+  }
+
+  const mapped = []
+  for (let itemIndex = 0; itemIndex < itemCount; itemIndex++) {
+    const args = []
+    for (let arrayIndex = 0; arrayIndex < argc - 1; arrayIndex++) {
+      args.push(inputArrays[arrayIndex]?.[itemIndex])
+    }
+    mapped[itemIndex] = args
+  }
+
+  return mapped
+}{% endcodeblock %}
+</div>

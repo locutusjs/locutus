@@ -28,11 +28,12 @@ notes:
     object. The count will then be written by reference into it's `value`
     property
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's str_ireplace in JavaScript
+title: PHP's str_ireplace in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.str-ireplace.php">PHP's
   str_ireplace</a> looks like.
 function: str_ireplace
@@ -45,7 +46,16 @@ alias:
   - /php/str_ireplace/
   - /functions/str_ireplace/
 ---
-{% codeblock lang:javascript %}module.exports = function str_ireplace(search, replace, subject, countObj) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}type CountObj = { value?: number }
+const asArray = (value: string | string[]): string[] => (Array.isArray(value) ? [...value] : [value])
+
+export function str_ireplace(
+  search: string | string[],
+  replace: string | string[],
+  subject: string | string[],
+  countObj?: CountObj,
+): string | string[] {
   //  discuss at: https://locutus.io/php/str_ireplace/
   // original by: Glen Arason (https://CanadianDomainRegistry.ca)
   // bugfixed by: Mahmoud Saeed
@@ -63,88 +73,113 @@ alias:
   //   example 3: str_ireplace('', '.', 'aaa')
   //   returns 3: 'aaa'
 
-  let i = 0
-  let j = 0
-  let temp = ''
-  let repl = ''
-  let sl = 0
-  let fl = 0
-  let f = ''
-  let r = ''
-  let s = ''
-  let ra = ''
-  let otemp = ''
-  let oi = ''
-  let ofjl = ''
-  let os = subject
-  const osa = Array.isArray(os)
-  // var sa = ''
+  const loweredSearch = Array.isArray(search) ? search.map((item) => item.toLowerCase()) : search.toLowerCase()
+  const loweredSubject = Array.isArray(subject) ? subject.map((item) => item.toLowerCase()) : subject.toLowerCase()
+  const osa = Array.isArray(subject)
+  const f = asArray(loweredSearch)
+  const s = asArray(loweredSubject)
+  const os = asArray(subject)
+  let r = asArray(replace)
 
-  if (typeof search === 'object') {
-    temp = search
-    search = []
-    for (i = 0; i < temp.length; i += 1) {
-      search[i] = temp[i].toLowerCase()
-    }
-  } else {
-    search = search.toLowerCase()
+  if (Array.isArray(loweredSearch) && typeof replace === 'string') {
+    r = loweredSearch.map(() => replace)
   }
-
-  if (typeof subject === 'object') {
-    temp = subject
-    subject = []
-    for (i = 0; i < temp.length; i += 1) {
-      subject[i] = temp[i].toLowerCase()
-    }
-  } else {
-    subject = subject.toLowerCase()
-  }
-
-  if (typeof search === 'object' && typeof replace === 'string') {
-    temp = replace
-    replace = []
-    for (i = 0; i < search.length; i += 1) {
-      replace[i] = temp
-    }
-  }
-
-  temp = ''
-  f = [].concat(search)
-  r = [].concat(replace)
-  ra = Array.isArray(r)
-  s = subject
-  // sa = Array.isArray(s)
-  s = [].concat(s)
-  os = [].concat(os)
 
   if (countObj) {
     countObj.value = 0
   }
 
-  for (i = 0, sl = s.length; i < sl; i++) {
+  for (let i = 0, sl = s.length; i < sl; i++) {
     if (s[i] === '') {
       continue
     }
-    for (j = 0, fl = f.length; j < fl; j++) {
-      if (f[j] === '') {
+    for (let j = 0, fl = f.length; j < fl; j++) {
+      const searchTerm = f[j] ?? ''
+      if (searchTerm === '') {
         continue
       }
-      temp = s[i] + ''
-      repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0]
-      s[i] = temp.split(f[j]).join(repl)
-      otemp = os[i] + ''
-      oi = temp.indexOf(f[j])
-      ofjl = f[j].length
+      const temp = s[i] ?? ''
+      const repl = r[j] ?? ''
+      s[i] = temp.split(searchTerm).join(repl)
+      const otemp = os[i] ?? ''
+      const oi = temp.indexOf(searchTerm)
+      const ofjl = searchTerm.length
       if (oi >= 0) {
         os[i] = otemp.split(otemp.substr(oi, ofjl)).join(repl)
       }
 
       if (countObj) {
-        countObj.value += temp.split(f[j]).length - 1
+        countObj.value = (countObj.value ?? 0) + temp.split(searchTerm).length - 1
       }
     }
   }
 
-  return osa ? os : os[0]
+  return osa ? os : (os[0] ?? '')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}const asArray = (value) => (Array.isArray(value) ? [...value] : [value])
+
+export function str_ireplace(search, replace, subject, countObj) {
+  //  discuss at: https://locutus.io/php/str_ireplace/
+  // original by: Glen Arason (https://CanadianDomainRegistry.ca)
+  // bugfixed by: Mahmoud Saeed
+  //      note 1: Case-insensitive version of str_replace()
+  //      note 1: Compliant with PHP 5.0 str_ireplace() Full details at:
+  //      note 1: https://ca3.php.net/manual/en/function.str-ireplace.php
+  //      note 2: The countObj parameter (optional) if used must be passed in as a
+  //      note 2: object. The count will then be written by reference into it's `value` property
+  //   example 1: str_ireplace('M', 'e', 'name')
+  //   returns 1: 'naee'
+  //   example 2: var $countObj = {}
+  //   example 2: str_ireplace('M', 'e', 'name', $countObj)
+  //   example 2: var $result = $countObj.value
+  //   returns 2: 1
+  //   example 3: str_ireplace('', '.', 'aaa')
+  //   returns 3: 'aaa'
+
+  const loweredSearch = Array.isArray(search) ? search.map((item) => item.toLowerCase()) : search.toLowerCase()
+  const loweredSubject = Array.isArray(subject) ? subject.map((item) => item.toLowerCase()) : subject.toLowerCase()
+  const osa = Array.isArray(subject)
+  const f = asArray(loweredSearch)
+  const s = asArray(loweredSubject)
+  const os = asArray(subject)
+  let r = asArray(replace)
+
+  if (Array.isArray(loweredSearch) && typeof replace === 'string') {
+    r = loweredSearch.map(() => replace)
+  }
+
+  if (countObj) {
+    countObj.value = 0
+  }
+
+  for (let i = 0, sl = s.length; i < sl; i++) {
+    if (s[i] === '') {
+      continue
+    }
+    for (let j = 0, fl = f.length; j < fl; j++) {
+      const searchTerm = f[j] ?? ''
+      if (searchTerm === '') {
+        continue
+      }
+      const temp = s[i] ?? ''
+      const repl = r[j] ?? ''
+      s[i] = temp.split(searchTerm).join(repl)
+      const otemp = os[i] ?? ''
+      const oi = temp.indexOf(searchTerm)
+      const ofjl = searchTerm.length
+      if (oi >= 0) {
+        os[i] = otemp.split(otemp.substr(oi, ofjl)).join(repl)
+      }
+
+      if (countObj) {
+        countObj.value = (countObj.value ?? 0) + temp.split(searchTerm).length - 1
+      }
+    }
+  }
+
+  return osa ? os : (os[0] ?? '')
+}{% endcodeblock %}
+</div>

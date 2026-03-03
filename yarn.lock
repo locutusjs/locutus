@@ -2605,16 +2605,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esprima@npm:4.0.1":
-  version: 4.0.1
-  resolution: "esprima@npm:4.0.1"
-  bin:
-    esparse: ./bin/esparse.js
-    esvalidate: ./bin/esvalidate.js
-  checksum: 10/f1d3c622ad992421362294f7acf866aa9409fbad4eb2e8fa230bd33944ce371d32279667b242d8b8907ec2b6ad7353a717f3c0e60e748873a34a7905174bc0eb
-  languageName: node
-  linkType: hard
-
 "estree-walker@npm:^3.0.3":
   version: 3.0.3
   resolution: "estree-walker@npm:3.0.3"
@@ -3806,7 +3796,6 @@ __metadata:
     budo: "npm:11.8.4"
     cross-env: "npm:10"
     debug: "npm:^4.4.3"
-    esprima: "npm:4.0.1"
     globby: "npm:4.1.0"
     indent-string: "npm:2.1.0"
     js-yaml: "npm:4.1.1"

@@ -3,6 +3,8 @@
   <% curLang = lang %>
 <% }) %>
 
+<% var srcExt = page.isTypescript ? '.ts' : '.js' %>
+
 <article class="article article-type-<%= page.layout %>" >
   <div class="article-inner">
     <header class="article-header">
@@ -117,26 +119,33 @@
 
     <div class="article-entry">
       <h2>How to use</h2>
+      <% if (page.isTypescript) { %>
+        <p>
+          Install via <code>yarn add locutus</code> and import:
+          <code>import { <%= page.function %> } from 'locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>'</code>.
+        </p>
+        <p style="margin-top: 4px; font-size: 13px; color: #888;">
+          Or with CommonJS: <code>const { <%= page.function %> } = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>
+        </p>
+      <% } else { %>
+        <p>
+          Install via <code>yarn add locutus</code> and
+          require this function via <code>const <%= page.function %> = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
+        </p>
+      <% } %>
       <p>
-        You you can install via <code>yarn add locutus</code> and
-        require this function via <code>const <%= page.function %> = require('locutus/<%= page.language %>/<%= page.category %>/<%= page.function %>')</code>.
-      </p>
-      <p>
-        It is important to use a bundler that supports tree-shaking
-        so that you only ship the functions that you actually use to your browser,
-        instead of all of Locutus, which is massive. Examples are:
-        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
-        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-
-        For server-side use this is typically less of a concern.
+        Use a bundler that supports tree-shaking so you only ship the functions you actually use.
+        <a href="https://vite.dev/" target="_blank" rel="external">Vite</a>,
+        <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a>,
+        <a href="https://rollupjs.org/" target="_blank" rel="external">Rollup</a>, and
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>
+        all handle this. For server-side use this is less of a concern.
       </p>
 
       <% if (page.examples.length > 0 ) { %>
         <h2>Examples</h2>
         <p>
-          Please note that these examples are distilled from test cases that automatically verify
-          our functions still work correctly. This could explain some quirky ones.
+          These examples are extracted from test cases that automatically verify our functions against their native counterparts.
         </p>
 
         <table>
@@ -153,11 +162,11 @@
       <% } %>
 
       <% if (page.language === 'php' && page.category === 'array') { %>
-        <h2>PHP arrays and JavaScript</h2>
+        <h2>PHP arrays and TypeScript/JavaScript</h2>
         <p>
-          Please note that Locutus uses JavaScript objects as substitutes for PHP arrays,
+          Please note that Locutus uses TypeScript/JavaScript objects as substitutes for PHP arrays,
           they are the closest we can get to this hashtable-like data structure without
-          rolling our own. While many JavaScript implementations preserve the order of object properties, the
+          rolling our own. While many TypeScript/JavaScript implementations preserve the order of object properties, the
           <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-8.6">ECMAScript Language Specification</a>
           explicitly states that:
         </p>
@@ -165,41 +174,41 @@
         <blockquote>The mechanics and order of enumerating the properties is not specified.</blockquote>
 
         <p>
-          So don't use this for anything serious if you rely on the order to be consistent accross platforms.
+          In practice most engines preserve insertion order, but if your code depends on key ordering across platforms, keep this caveat in mind.
         </p>
 
         <p>
-          To influence how Locutus treats objects to arrays, you can check out the `locutus.objectsAsArrays` setting.
+          To influence how Locutus treats objects as arrays, you can check out the <code>locutus.objectsAsArrays</code> setting.
         </p>
       <% } %>
 
       <% if (page.language === 'ruby') { %>
-        <h2>Ruby nil and JavaScript undefined</h2>
+        <h2>Ruby nil and TypeScript/JavaScript undefined</h2>
         <p>
-          Ruby's <code>nil</code> and JavaScript's <code>undefined</code> are semantically equivalent—both
+          Ruby's <code>nil</code> and TypeScript/JavaScript <code>undefined</code> are semantically equivalent—both
           represent "no value" or "nothing here". However, they serialize differently:
           <code>nil</code> becomes <code>null</code> in JSON, while <code>undefined</code> is typically
           omitted or becomes <code>undefined</code>.
         </p>
         <p>
-          Locutus Ruby functions return <code>undefined</code> (idiomatic JavaScript) where Ruby would
+          Locutus Ruby functions return <code>undefined</code> (idiomatic TypeScript/JavaScript) where Ruby would
           return <code>nil</code>. Our parity tests treat these as equivalent when verifying against
           native Ruby.
         </p>
       <% } %>
 
       <% if (page.language === 'c') { %>
-        <h2>C types and JavaScript</h2>
+        <h2>C types and TypeScript/JavaScript</h2>
         <p>
-          C is statically typed while JavaScript is dynamically typed. Locutus C functions
-          accept JavaScript's flexible types but are only parity-verified for inputs that would
+          C is statically typed while TypeScript/JavaScript is dynamically typed. Locutus C functions
+          accept TypeScript/JavaScript's flexible types but are only parity-verified for inputs that would
           be valid in C.
         </p>
         <p>
-          For example, <code>abs()</code> in JavaScript accepts floats (like C's <code>fabs()</code>)
+          For example, <code>abs()</code> in TypeScript/JavaScript accepts floats (like C's <code>fabs()</code>)
           and handles strings gracefully, but only integer inputs are verified against native C.
           This pragmatic approach gives you the expected C behavior for valid inputs while
-          leveraging JavaScript's flexibility for edge cases.
+          leveraging TypeScript/JavaScript's flexibility for edge cases.
         </p>
       <% } %>
 
@@ -232,31 +241,385 @@
       </p>
 
       <!-- Code -->
-      <%- page.content %>
+      <% if (page.isTypescript) { %>
+        <style>
+          .code-tabs {
+            position: relative;
+          }
+          .code-tabs-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+          }
+          .code-tabs-left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            min-width: 0;
+            scrollbar-width: thin;
+          }
+          .code-tab-btn {
+            position: relative;
+            padding: 8px 10px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            line-height: 1.2;
+            flex: 0 0 auto;
+          }
+          .code-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.04);
+          }
+          .code-tab-btn.active {
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            border-radius: 2px 2px 0 0;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .code-tab-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+          }
+          .code-tab-btn[data-tab="ts"].active::after,
+          .code-tab-btn[data-tab="standalone-ts"].active::after {
+            background: #3178c6;
+          }
+          .code-tab-btn[data-tab="js"].active::after,
+          .code-tab-btn[data-tab="standalone-js"].active::after {
+            background: #f0db4f;
+          }
+          .code-tab-btn .tab-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 900;
+            line-height: 16px;
+            text-align: center;
+            margin-right: 6px;
+            vertical-align: -2px;
+            letter-spacing: -0.5px;
+          }
+          .code-tab-btn[data-tab="ts"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-ts"] .tab-icon {
+            background: #3178c6;
+            color: #fff;
+          }
+          .code-tab-btn[data-tab="js"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-js"] .tab-icon {
+            background: #f0db4f;
+            color: #323330;
+          }
+          .code-panels-wrap {
+            position: relative;
+          }
+          .code-tab-panel {
+            display: none;
+          }
+          .code-tab-panel.active {
+            display: block;
+          }
+          .code-tab-panel figure.highlight {
+            border-radius: 0 8px 8px 8px;
+            margin-top: 0 !important;
+          }
+          .code-copy-icon-btn {
+            align-items: center;
+            background: rgba(38, 38, 38, 0.95);
+            border: 1px solid #404040;
+            border-radius: 6px;
+            color: #cfcfcf;
+            cursor: pointer;
+            display: inline-flex;
+            height: 30px;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+            width: 30px;
+            z-index: 4;
+          }
+          .code-copy-icon-btn:hover {
+            border-color: #5a5a5a;
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-copy-icon-btn svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+          .code-copy-icon-btn[data-state='copied'] {
+            border-color: #22c55e;
+            color: #22c55e;
+          }
+          .code-copy-icon-btn[data-state='failed'] {
+            border-color: #ef4444;
+            color: #ef4444;
+          }
+          .code-copy-icon-btn .code-copy-success {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-default {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-success {
+            display: block;
+          }
+          .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          @media (max-width: 640px) {
+            .code-tab-btn {
+              padding: 7px 8px;
+              font-size: 11px;
+            }
+          }
+        </style>
+        <div class="code-tabs">
+          <div class="code-tabs-header">
+            <div class="code-tabs-left">
+              <button class="code-tab-btn active" data-tab="ts" type="button">
+                <span class="tab-icon">TS</span><span class="tab-label">TypeScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="js" type="button">
+                <span class="tab-icon">JS</span><span class="tab-label">JavaScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-ts" type="button">
+                <span class="tab-icon">TS</span>Standalone TS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-js" type="button">
+                <span class="tab-icon">JS</span>Standalone JS
+              </button>
+            </div>
+          </div>
+          <div class="code-panels-wrap">
+            <button class="code-copy-icon-btn" type="button" data-state="idle" aria-label="Copy code" title="Copy code">
+              <span class="sr-only">Copy code</span>
+              <svg class="code-copy-default" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
+                <path d="M5 15V6.5C5 5.67 5.67 5 6.5 5H15" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+              <svg class="code-copy-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5L9.2 16.7L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <%- page.content %>
+          </div>
+        </div>
+        <script>
+        (function() {
+          var STORAGE_KEY = 'locutus-code-variant';
+          var LEGACY_STORAGE_KEY = 'locutus-code-lang';
+          var saved = null;
+          try {
+            saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+          } catch(e) {}
+
+          if (saved === 'standalone') {
+            saved = 'standalone-js';
+          }
+
+          function getPanelCode(panel) {
+            if (!panel) {
+              return '';
+            }
+            var pre = panel.querySelector('pre');
+            if (pre) {
+              var preText = pre.innerText || pre.textContent || '';
+              if (preText) {
+                return preText.replace(/\u00a0/g, ' ').trimEnd();
+              }
+            }
+            var codeCell = panel.querySelector('figure.highlight .code');
+            if (codeCell) {
+              return (codeCell.textContent || '').replace(/\u00a0/g, ' ').trimEnd();
+            }
+            return '';
+          }
+
+          function copyText(value) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(value);
+            }
+            return new Promise(function(resolve, reject) {
+              try {
+                var textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (!ok) {
+                  reject(new Error('copy failed'));
+                  return;
+                }
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          var tabGroups = document.querySelectorAll('.code-tabs');
+          tabGroups.forEach(function(group) {
+            var buttons = group.querySelectorAll('.code-tab-btn');
+            var panels = group.querySelectorAll('.code-tab-panel');
+            var copyButton = group.querySelector('.code-copy-icon-btn');
+            var validTabs = [];
+
+            buttons.forEach(function(btn) {
+              var tab = btn.getAttribute('data-tab');
+              var hasPanel = Array.prototype.some.call(panels, function(panel) {
+                return panel.getAttribute('data-lang') === tab;
+              });
+              if (!hasPanel) {
+                btn.style.display = 'none';
+                return;
+              }
+              validTabs.push(tab);
+            });
+
+            var hasStandaloneTabs =
+              validTabs.indexOf('standalone-ts') !== -1 || validTabs.indexOf('standalone-js') !== -1;
+            var tsLabel = group.querySelector('.code-tab-btn[data-tab=\"ts\"] .tab-label');
+            var jsLabel = group.querySelector('.code-tab-btn[data-tab=\"js\"] .tab-label');
+            if (tsLabel) {
+              tsLabel.textContent = hasStandaloneTabs ? 'Module TS' : 'TypeScript';
+            }
+            if (jsLabel) {
+              jsLabel.textContent = hasStandaloneTabs ? 'Module JS' : 'JavaScript';
+            }
+
+            function switchTab(lang) {
+              if (validTabs.indexOf(lang) === -1) {
+                return;
+              }
+              buttons.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              });
+              panels.forEach(function(panel) {
+                panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+                panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+              });
+              try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+            }
+
+            buttons.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-tab'));
+              });
+            });
+
+            if (copyButton) {
+              var copyTimer = null;
+              copyButton.addEventListener('click', function() {
+                var activePanel = group.querySelector('.code-tab-panel.active') || panels[0];
+                var code = getPanelCode(activePanel);
+                if (!code.trim()) {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'No code available');
+                  copyButton.setAttribute('title', 'No code available');
+                  return;
+                }
+                copyText(code).then(function() {
+                  copyButton.setAttribute('data-state', 'copied');
+                  copyButton.setAttribute('aria-label', 'Copied');
+                  copyButton.setAttribute('title', 'Copied');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1400);
+                }).catch(function() {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'Copy failed');
+                  copyButton.setAttribute('title', 'Copy failed');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1600);
+                });
+              });
+            }
+
+            // Restore saved preference, default to TypeScript when available.
+            var defaultTab = validTabs.indexOf('ts') !== -1 ? 'ts' : validTabs[0];
+            if (saved && validTabs.indexOf(saved) !== -1) {
+              switchTab(saved);
+            } else if (defaultTab) {
+              switchTab(defaultTab);
+            }
+          });
+        })();
+        </script>
+      <% } else { %>
+        <%- page.content %>
+      <% } %>
 
 
       <div class="clearfix"></div>
 
-      <h2>Think you can do better?</h2>
+      <h2>Improve this function</h2>
       <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we assimilate first iterations with imperfections,
-        hoping for others to take issue with-and improve them.
-
-        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
-        but please be reminded to use our creations at your own risk.
-        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+        Locutus is a community effort following
+        <a href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald's Theory</a>:
+        we ship first iterations, hoping others will improve them.
+        If you see something that could be better, we'd love your contribution.
       </p>
       <p>
-        Now go and:
-        [
-        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">View on GitHub</a></strong>
-        |
-        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">Edit on GitHub</a></strong>
-        |
-        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %>.js">View Raw</a></strong>
-        ]
+        <strong><a href="https://github.com/locutusjs/locutus/blob/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %><%= srcExt %>">View on GitHub</a></strong>
+        &middot;
+        <strong><a href="https://github.com/locutusjs/locutus/edit/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %><%= srcExt %>">Edit on GitHub</a></strong>
+        &middot;
+        <strong><a href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/<%= page.language %>/<%= page.category %>/<%= page.function %><%= srcExt %>">View Raw</a></strong>
       </p>
 
 

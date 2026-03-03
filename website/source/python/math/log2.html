@@ -16,11 +16,12 @@ notes:
   - Returns the base-2 logarithm of x
 parityVerified:
   - Python 3.12
+isTypescript: true
 type: function
 layout: function
-title: Python's math.log2 in JavaScript
+title: Python's math.log2 in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://docs.python.org/3/library/math.html#math.log2">Python's
   math.log2</a> looks like.
 function: log2
@@ -32,7 +33,8 @@ alias:
   - /functions/math/log2/
   - /python/log2/
 ---
-{% codeblock lang:javascript %}module.exports = function log2(x) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function log2(x: number): number {
   //      discuss at: https://locutus.io/python/log2/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -47,3 +49,20 @@ alias:
   return Math.log2(x)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function log2(x) {
+  //      discuss at: https://locutus.io/python/log2/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the base-2 logarithm of x
+  //       example 1: log2(1)
+  //       returns 1: 0
+  //       example 2: log2(2)
+  //       returns 2: 1
+  //       example 3: log2(8)
+  //       returns 3: 3
+
+  return Math.log2(x)
+}{% endcodeblock %}
+</div>

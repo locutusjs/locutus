@@ -1,6 +1,144 @@
 <div class="widget-wrap widget-list">
   <h3 class="widget-title"><%= __('widget.on_the_githubs') %></h3>
   <div class="widget widget-on_the_githubs">
-    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+    <ul class="on-the-githubs">
+      <li class="otg-loading">Loading...</li>
+    </ul>
   </div>
 </div>
+
+<script>
+(function () {
+  var CACHE_KEY = 'otg_events'
+  var CACHE_TTL = 15 * 60 * 1000 // 15 minutes
+  var MAX_EVENTS = 15
+
+  function timeAgo(dateStr) {
+    var seconds = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000)
+    if (seconds < 60) return 'just now'
+    var minutes = Math.floor(seconds / 60)
+    if (minutes < 60) return minutes + 'm ago'
+    var hours = Math.floor(minutes / 60)
+    if (hours < 24) return hours + 'h ago'
+    var days = Math.floor(hours / 24)
+    if (days < 30) return days + 'd ago'
+    return Math.floor(days / 30) + 'mo ago'
+  }
+
+  function escHtml(str) {
+    var div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML
+  }
+
+  function truncate(str, len) {
+    return str.length > len ? str.substring(0, len) + '\u2026' : str
+  }
+
+  function describeEvent(ev) {
+    var p = ev.payload
+    switch (ev.type) {
+      case 'PushEvent':
+        var commits = p.commits || []
+        var branch = (p.ref || '').replace('refs/heads/', '')
+        var compareUrl = 'https://github.com/' + ev.repo.name + '/compare/' + p.before.substring(0, 10) + '...' + p.head.substring(0, 10)
+        if (commits.length === 1) return { text: truncate(commits[0].message.split('\n')[0], 60), url: 'https://github.com/' + ev.repo.name + '/commit/' + commits[0].sha }
+        if (commits.length > 1) return { text: 'pushed ' + commits.length + ' commits to ' + branch, url: compareUrl }
+        var size = p.size || p.distinct_size || 0
+        if (size > 0) return { text: 'pushed ' + size + ' commit' + (size !== 1 ? 's' : '') + ' to ' + branch, url: compareUrl }
+        return { text: 'pushed to ' + branch, url: compareUrl }
+      case 'PullRequestEvent':
+        return { text: p.action + ' PR: ' + truncate(p.pull_request.title, 50), url: p.pull_request.html_url }
+      case 'IssuesEvent':
+        return { text: p.action + ' issue: ' + truncate(p.issue.title, 50), url: p.issue.html_url }
+      case 'IssueCommentEvent':
+        return { text: 'commented on: ' + truncate(p.issue.title, 50), url: p.comment.html_url }
+      case 'CommitCommentEvent':
+        return { text: 'commented on commit', url: p.comment.html_url }
+      case 'PullRequestReviewEvent':
+        return { text: 'reviewed PR: ' + truncate(p.pull_request.title, 50), url: p.review.html_url }
+      case 'PullRequestReviewCommentEvent':
+        return { text: 'commented on PR: ' + truncate(p.pull_request.title, 50), url: p.comment.html_url }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'created the repository', url: 'https://github.com/' + ev.repo.name }
+        return { text: 'created ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name + '/tree/' + p.ref }
+      case 'DeleteEvent':
+        return { text: 'deleted ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name }
+      case 'ForkEvent':
+        return { text: 'forked the repo', url: p.forkee.html_url }
+      case 'WatchEvent':
+        return { text: 'starred the repo', url: 'https://github.com/' + ev.repo.name }
+      case 'ReleaseEvent':
+        return { text: p.action + ' release: ' + p.release.tag_name, url: p.release.html_url }
+      case 'MemberEvent':
+        return { text: p.action + ' member: ' + p.member.login, url: 'https://github.com/' + p.member.login }
+      default:
+        return null
+    }
+  }
+
+  function render(events) {
+    var ul = document.querySelector('.on-the-githubs')
+    if (!ul) return
+    ul.innerHTML = ''
+    var shown = 0
+    for (var i = 0; i < events.length && shown < MAX_EVENTS; i++) {
+      var desc = describeEvent(events[i])
+      if (!desc) continue
+      var ev = events[i]
+      var li = document.createElement('li')
+      li.innerHTML =
+        '<img src="https://avatars.githubusercontent.com/u/' + ev.actor.id + '?s=32&v=4" alt="" />' +
+        '<a href="https://github.com/' + escHtml(ev.actor.login) + '">' + escHtml(ev.actor.login) + '</a> ' +
+        '<a href="' + escHtml(desc.url) + '">' + escHtml(desc.text) + '</a> ' +
+        '<time>' + timeAgo(ev.created_at) + '</time>'
+      ul.appendChild(li)
+      shown++
+    }
+    if (shown === 0) {
+      ul.innerHTML = '<li>No recent activity</li>'
+    }
+  }
+
+  function showFallback() {
+    var ul = document.querySelector('.on-the-githubs')
+    if (ul) ul.innerHTML = '<li><a href="https://github.com/locutusjs/locutus/activity">View recent activity on GitHub</a></li>'
+  }
+
+  function load() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')
+      if (cached.data && cached.ts && (Date.now() - cached.ts) < CACHE_TTL) {
+        render(cached.data)
+        return
+      }
+    } catch (e) { /* ignore */ }
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://api.github.com/repos/locutusjs/locutus/events?per_page=20')
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText)
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, ts: Date.now() }))
+          render(data)
+        } catch (e) {
+          showFallback()
+        }
+      } else {
+        showFallback()
+      }
+    }
+    xhr.onerror = function () {
+      showFallback()
+    }
+    xhr.send()
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load)
+  } else {
+    load()
+  }
+})()
+</script>

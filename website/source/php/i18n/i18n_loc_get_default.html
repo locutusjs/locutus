@@ -8,7 +8,8 @@ examples:
 returns:
   - '''en_US_POSIX'''
   - '''pt_PT'''
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -19,11 +20,12 @@ notes:
     To be usable with sort() if it is passed the `SORT_LOCALE_STRING`
     sorting flag: https://php.net/manual/en/function.sort.php
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's i18n_loc_get_default in JavaScript
+title: PHP's i18n_loc_get_default in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.i18n-loc-get-default.php">PHP's
   i18n_loc_get_default</a> looks like.
 function: i18n_loc_get_default
@@ -36,7 +38,10 @@ alias:
   - /php/i18n_loc_get_default/
   - /functions/i18n_loc_get_default/
 ---
-{% codeblock lang:javascript %}module.exports = function i18n_loc_get_default() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+
+export function i18n_loc_get_default(): string {
   //  discuss at: https://locutus.io/php/i18n_loc_get_default/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
@@ -49,12 +54,249 @@ alias:
   //   example 2: i18n_loc_get_default()
   //   returns 2: 'pt_PT'
 
-  const $global = typeof window !== 'undefined' ? window : global
-  $global.$locutus = $global.$locutus || {}
-  const $locutus = $global.$locutus
-  $locutus.php = $locutus.php || {}
-  $locutus.php.locales = $locutus.php.locales || {}
-
-  return $locutus.php.locale_default || 'en_US_POSIX'
+  const runtime = ensurePhpRuntimeState()
+  return runtime.locale_default ?? 'en_US_POSIX'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { ensurePhpRuntimeState } from '../_helpers/_phpRuntimeState.ts'
+
+export function i18n_loc_get_default() {
+  //  discuss at: https://locutus.io/php/i18n_loc_get_default/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
+  //      note 1: List of locales at <https://demo.icu-project.org/icu-bin/locexp>
+  //      note 1: To be usable with sort() if it is passed the `SORT_LOCALE_STRING`
+  //      note 1: sorting flag: https://php.net/manual/en/function.sort.php
+  //   example 1: i18n_loc_get_default()
+  //   returns 1: 'en_US_POSIX'
+  //   example 2: i18n_loc_set_default('pt_PT')
+  //   example 2: i18n_loc_get_default()
+  //   returns 2: 'pt_PT'
+
+  const runtime = ensurePhpRuntimeState()
+  return runtime.locale_default ?? 'en_US_POSIX'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/i18n/i18n_loc_get_default (target function module)
+function i18n_loc_get_default(): string {
+  //  discuss at: https://locutus.io/php/i18n_loc_get_default/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
+  //      note 1: List of locales at <https://demo.icu-project.org/icu-bin/locexp>
+  //      note 1: To be usable with sort() if it is passed the `SORT_LOCALE_STRING`
+  //      note 1: sorting flag: https://php.net/manual/en/function.sort.php
+  //   example 1: i18n_loc_get_default()
+  //   returns 1: 'en_US_POSIX'
+  //   example 2: i18n_loc_set_default('pt_PT')
+  //   example 2: i18n_loc_get_default()
+  //   returns 2: 'pt_PT'
+
+  const runtime = ensurePhpRuntimeState()
+  return runtime.locale_default ?? 'en_US_POSIX'
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !Array.isArray(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState() {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/i18n/i18n_loc_get_default (target function module)
+function i18n_loc_get_default() {
+  //  discuss at: https://locutus.io/php/i18n_loc_get_default/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: Renamed in PHP6 from locale_get_default(). Not listed yet at php.net.
+  //      note 1: List of locales at <https://demo.icu-project.org/icu-bin/locexp>
+  //      note 1: To be usable with sort() if it is passed the `SORT_LOCALE_STRING`
+  //      note 1: sorting flag: https://php.net/manual/en/function.sort.php
+  //   example 1: i18n_loc_get_default()
+  //   returns 1: 'en_US_POSIX'
+  //   example 2: i18n_loc_set_default('pt_PT')
+  //   example 2: i18n_loc_get_default()
+  //   returns 2: 'pt_PT'
+
+  const runtime = ensurePhpRuntimeState()
+  return runtime.locale_default ?? 'en_US_POSIX'
+}{% endcodeblock %}
+</div>

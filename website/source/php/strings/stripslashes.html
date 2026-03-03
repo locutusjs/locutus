@@ -26,11 +26,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's stripslashes in JavaScript
+title: PHP's stripslashes in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.stripslashes.php">PHP's
   stripslashes</a> looks like.
 function: stripslashes
@@ -43,7 +44,8 @@ alias:
   - /php/stripslashes/
   - /functions/stripslashes/
 ---
-{% codeblock lang:javascript %}module.exports = function stripslashes(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function stripslashes(str: string): string {
   //       discuss at: https://locutus.io/php/stripslashes/
   //  parity verified: PHP 8.3
   //      original by: Kevin van Zonneveld (https://kvz.io)
@@ -75,3 +77,37 @@ alias:
   })
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function stripslashes(str) {
+  //       discuss at: https://locutus.io/php/stripslashes/
+  //  parity verified: PHP 8.3
+  //      original by: Kevin van Zonneveld (https://kvz.io)
+  //      improved by: Ates Goral (https://magnetiq.com)
+  //      improved by: marrtins
+  //      improved by: rezna
+  //      bugfixed by: Mick@el
+  //      bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //      bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //         input by: Rick Waldron
+  //         input by: Brant Messenger (https://www.brantmessenger.com/)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //        example 1: stripslashes('Kevin\'s code')
+  //        returns 1: "Kevin's code"
+  //        example 2: stripslashes('Kevin\\\'s code')
+  //        returns 2: "Kevin\'s code"
+
+  return (str + '').replace(/\\(.?)/g, function (s, n1) {
+    switch (n1) {
+      case '\\':
+        return '\\'
+      case '0':
+        return '\u0000'
+      case '':
+        return ''
+      default:
+        return n1
+    }
+  })
+}{% endcodeblock %}
+</div>

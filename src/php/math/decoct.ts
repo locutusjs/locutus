@@ -1,0 +1,18 @@
+export function decoct(number: number): string {
+  //      discuss at: https://locutus.io/php/decoct/
+  // parity verified: PHP 8.3
+  //     original by: Enrique Gonzalez
+  //     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  //     improved by: https://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+  //        input by: pilus
+  //       example 1: decoct(15)
+  //       returns 1: '17'
+  //       example 2: decoct(264)
+  //       returns 2: '410'
+
+  let normalized = parseInt(String(number), 10)
+  if (normalized < 0) {
+    normalized = 0xffffffff + normalized + 1
+  }
+  return normalized.toString(8)
+}

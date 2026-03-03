@@ -1,0 +1,9 @@
+export function tan(arg: number): number {
+  //      discuss at: https://locutus.io/php/tan/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: Math.ceil(tan(8723321.4) * 10000000)
+  //       returns 1: 54251849
+
+  return Math.tan(arg)
+}

@@ -6,17 +6,19 @@ examples:
     4 : "cherry"}, {0:"grape"})
 returns:
   - '{0: ''grape'', 1: ''banana'', 2: ''apple'', 3: ''raspberry'', 4: ''cherry''}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_replace in JavaScript
+title: PHP's array_replace in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-replace.php">PHP's
   array_replace</a> looks like.
 function: array_replace
@@ -29,34 +31,180 @@ alias:
   - /php/array_replace/
   - /functions/array_replace/
 ---
-{% codeblock lang:javascript %}module.exports = function array_replace(arr) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { isObjectLike, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_replace<TValue>(
+  arr: PhpArrayLike<TValue>,
+  firstReplacement: PhpArrayLike<TValue> | null | undefined,
+  ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined>
+): PhpAssoc<TValue | undefined> {
   //  discuss at: https://locutus.io/php/array_replace/
   // original by: Brett Zamir (https://brett-zamir.me)
   //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
   //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
 
-  const retObj = {}
-  let i = 0
-  let p = ''
-  const argl = arguments.length
-
-  if (argl < 2) {
-    throw new Error('There should be at least 2 arguments passed to array_replace()')
-  }
+  const retObj: PhpAssoc<TValue | undefined> = {}
 
   // Although docs state that the arguments are passed in by reference,
   // it seems they are not altered, but rather the copy that is returned
   // (just guessing), so we make a copy here, instead of acting on arr itself
-  for (p in arr) {
-    retObj[p] = arr[p]
+  const arrObject = toPhpArrayObject<TValue>(arr)
+  for (const p in arrObject) {
+    retObj[p] = arrObject[p]
   }
 
-  for (i = 1; i < argl; i++) {
-    for (p in arguments[i]) {
-      retObj[p] = arguments[i][p]
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
+    if (!isObjectLike(replacement)) {
+      continue
+    }
+    const current = toPhpArrayObject<TValue>(replacement)
+    for (const p in current) {
+      retObj[p] = current[p]
     }
   }
 
   return retObj
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { isObjectLike, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_replace(arr, firstReplacement, ...additionalReplacements) {
+  //  discuss at: https://locutus.io/php/array_replace/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
+  //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
+
+  const retObj = {}
+
+  // Although docs state that the arguments are passed in by reference,
+  // it seems they are not altered, but rather the copy that is returned
+  // (just guessing), so we make a copy here, instead of acting on arr itself
+  const arrObject = toPhpArrayObject(arr)
+  for (const p in arrObject) {
+    retObj[p] = arrObject[p]
+  }
+
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
+    if (!isObjectLike(replacement)) {
+      continue
+    }
+    const current = toPhpArrayObject(replacement)
+    for (const p in current) {
+      retObj[p] = current[p]
+    }
+  }
+
+  return retObj
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_replace (target function module)
+function array_replace<TValue>(
+  arr: PhpArrayLike<TValue>,
+  firstReplacement: PhpArrayLike<TValue> | null | undefined,
+  ...additionalReplacements: Array<PhpArrayLike<TValue> | null | undefined>
+): PhpAssoc<TValue | undefined> {
+  //  discuss at: https://locutus.io/php/array_replace/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
+  //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
+
+  const retObj: PhpAssoc<TValue | undefined> = {}
+
+  // Although docs state that the arguments are passed in by reference,
+  // it seems they are not altered, but rather the copy that is returned
+  // (just guessing), so we make a copy here, instead of acting on arr itself
+  const arrObject = toPhpArrayObject<TValue>(arr)
+  for (const p in arrObject) {
+    retObj[p] = arrObject[p]
+  }
+
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
+    if (!isObjectLike(replacement)) {
+      continue
+    }
+    const current = toPhpArrayObject<TValue>(replacement)
+    for (const p in current) {
+      retObj[p] = current[p]
+    }
+  }
+
+  return retObj
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+
+  return {}
+}
+
+const isPhpArrayObject = isObjectLike
+
+// php/array/array_replace (target function module)
+function array_replace(arr, firstReplacement, ...additionalReplacements) {
+  //  discuss at: https://locutus.io/php/array_replace/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //   example 1: array_replace(["orange", "banana", "apple", "raspberry"], {0 : "pineapple", 4 : "cherry"}, {0:"grape"})
+  //   returns 1: {0: 'grape', 1: 'banana', 2: 'apple', 3: 'raspberry', 4: 'cherry'}
+
+  const retObj = {}
+
+  // Although docs state that the arguments are passed in by reference,
+  // it seems they are not altered, but rather the copy that is returned
+  // (just guessing), so we make a copy here, instead of acting on arr itself
+  const arrObject = toPhpArrayObject(arr)
+  for (const p in arrObject) {
+    retObj[p] = arrObject[p]
+  }
+
+  for (const replacement of [firstReplacement, ...additionalReplacements]) {
+    if (!isObjectLike(replacement)) {
+      continue
+    }
+    const current = toPhpArrayObject(replacement)
+    for (const p in current) {
+      retObj[p] = current[p]
+    }
+  }
+
+  return retObj
+}{% endcodeblock %}
+</div>

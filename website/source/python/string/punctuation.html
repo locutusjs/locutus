@@ -9,11 +9,12 @@ authors: {}
 notes: []
 parityVerified:
   - Python 3.12
+isTypescript: true
 type: function
 layout: function
-title: Python's string.punctuation in JavaScript
+title: Python's string.punctuation in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://docs.python.org/3/library/string.html#string.punctuation">Python's
   string.punctuation</a> looks like.
 function: punctuation
@@ -25,7 +26,8 @@ alias:
   - /functions/string/punctuation/
   - /python/punctuation/
 ---
-{% codeblock lang:javascript %}module.exports = function punctuation() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function punctuation(): '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~' {
   // parity verified: Python 3.12
   // Original by: Clari (https://github.com/Clari-7744)
   //       example 1: punctuation()
@@ -34,3 +36,14 @@ alias:
   return '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function punctuation() {
+  // parity verified: Python 3.12
+  // Original by: Clari (https://github.com/Clari-7744)
+  //       example 1: punctuation()
+  //       returns 1: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+
+  return '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+}{% endcodeblock %}
+</div>

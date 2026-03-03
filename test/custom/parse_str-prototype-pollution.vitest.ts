@@ -6,8 +6,7 @@
  */
 
 import { afterEach, describe, expect, it } from 'vitest'
-// @ts-expect-error - CJS module
-import parse_str from '../../src/php/strings/parse_str.js'
+import { parse_str } from '../../src/php/strings/parse_str.ts'
 
 describe('parse_str prototype pollution resistance', () => {
   const originalIncludes = String.prototype.includes

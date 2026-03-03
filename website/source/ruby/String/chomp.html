@@ -18,11 +18,12 @@ notes:
     If separator is not specified, removes trailing newlines (\n, \r, or \r\n).
 parityVerified:
   - Ruby 3.3
+isTypescript: true
 type: function
 layout: function
-title: Ruby's String.chomp in JavaScript
+title: Ruby's String.chomp in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://ruby-doc.org/core-2.2.2/String.html#method-c-chomp">Ruby's
   String.chomp</a> looks like.
 function: chomp
@@ -34,7 +35,8 @@ alias:
   - /functions/String/chomp/
   - /ruby/chomp/
 ---
-{% codeblock lang:javascript %}module.exports = function chomp(str, separator) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function chomp(str: string, separator?: string): string {
   // parity verified: Ruby 3.3
   //      discuss at: https://locutus.io/ruby/String/chomp/
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -62,3 +64,33 @@ alias:
   return str
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function chomp(str, separator) {
+  // parity verified: Ruby 3.3
+  //      discuss at: https://locutus.io/ruby/String/chomp/
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a new string with the given record separator removed from the end.
+  //          note 1: If separator is not specified, removes trailing newlines (\n, \r, or \r\n).
+  //       example 1: chomp("hello\n")
+  //       returns 1: 'hello'
+  //       example 2: chomp("hello\r\n")
+  //       returns 2: 'hello'
+  //       example 3: chomp('hello', 'llo')
+  //       returns 3: 'he'
+
+  str = str + ''
+
+  if (separator === undefined) {
+    // Default: remove trailing \r\n, \n, or \r
+    return str.replace(/(\r\n|\r|\n)$/, '')
+  }
+
+  separator = separator + ''
+  if (str.slice(-separator.length) === separator) {
+    return str.slice(0, -separator.length)
+  }
+
+  return str
+}{% endcodeblock %}
+</div>

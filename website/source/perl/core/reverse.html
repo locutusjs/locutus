@@ -14,11 +14,12 @@ notes:
   - In scalar context, reverses string characters
 parityVerified:
   - Perl 5.40
+isTypescript: true
 type: function
 layout: function
-title: Perl's core::reverse in JavaScript
+title: Perl's core::reverse in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://perldoc.perl.org/core">Perl's core::reverse</a> looks like.
 function: reverse
 category: core
@@ -29,7 +30,8 @@ alias:
   - /functions/core/reverse/
   - /perl/reverse/
 ---
-{% codeblock lang:javascript %}module.exports = function reverse(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function reverse(str: string): string {
   //      discuss at: https://locutus.io/perl/reverse/
   // parity verified: Perl 5.40
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,3 +44,18 @@ alias:
   return String(str).split('').reverse().join('')
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function reverse(str) {
+  //      discuss at: https://locutus.io/perl/reverse/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: In scalar context, reverses string characters
+  //       example 1: reverse('hello')
+  //       returns 1: 'olleh'
+  //       example 2: reverse('abc')
+  //       returns 2: 'cba'
+
+  return String(str).split('').reverse().join('')
+}{% endcodeblock %}
+</div>

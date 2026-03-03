@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - R 4.4
+isTypescript: true
 type: function
 layout: function
-title: R's max in JavaScript
+title: R's max in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/max.html">R's
   max</a> looks like.
 function: max
@@ -29,7 +30,8 @@ alias:
   - /functions/base/max/
   - /r/max/
 ---
-{% codeblock lang:javascript %}module.exports = function max(...args) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function max(...args: number[]): number {
   //      discuss at: https://locutus.io/r/max/
   // parity verified: R 4.4
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,3 +43,17 @@ alias:
   return Math.max(...args)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function max(...args) {
+  //      discuss at: https://locutus.io/r/max/
+  // parity verified: R 4.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: max(1, 5, 3)
+  //       returns 1: 5
+  //       example 2: max(-1, -5)
+  //       returns 2: -1
+
+  return Math.max(...args)
+}{% endcodeblock %}
+</div>

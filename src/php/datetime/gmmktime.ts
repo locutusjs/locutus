@@ -1,0 +1,63 @@
+export function gmmktime(
+  hour?: number | string,
+  minute?: number | string,
+  second?: number | string,
+  month?: number | string,
+  day?: number | string,
+  year?: number | string,
+): number | false {
+  //      discuss at: https://locutus.io/php/gmmktime/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //     original by: mktime
+  //       example 1: gmmktime(14, 10, 2, 2, 1, 2008)
+  //       returns 1: 1201875002
+  //       example 2: gmmktime(0, 0, -1, 1, 1, 1970)
+  //       returns 2: -1
+
+  const d = new Date()
+  const resolved: [number, number, number, number, number, number] = [
+    d.getUTCHours(),
+    d.getUTCMinutes(),
+    d.getUTCSeconds(),
+    d.getUTCMonth() + 1, // +1 to fix JS months.
+    d.getUTCDate(),
+    d.getUTCFullYear(),
+  ]
+  const input: [
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+    number | string | undefined,
+  ] = [hour, minute, second, month, day, year]
+
+  for (let i = 0; i < input.length; i++) {
+    const value = input[i]
+    if (typeof value !== 'undefined') {
+      const parsed = Number.parseInt(String(value), 10)
+      if (Number.isNaN(parsed)) {
+        return false
+      }
+      resolved[i] = parsed
+    }
+  }
+
+  // Map years 0-69 to 2000-2069 and years 70-100 to 1970-2000.
+  const normalizedYear =
+    resolved[5] + (resolved[5] >= 0 ? (resolved[5] <= 69 ? 2000 : resolved[5] <= 100 ? 1900 : 0) : 0)
+
+  // Set year, month (-1 to fix JS months), and date.
+  // !This must come before the call to setHours!
+  d.setUTCFullYear(normalizedYear, resolved[3] - 1, resolved[4])
+
+  // Set hours, minutes, and seconds.
+  d.setUTCHours(resolved[0], resolved[1], resolved[2])
+
+  const time = d.getTime()
+
+  // Divide milliseconds by 1000 to return seconds and drop decimal.
+  // Add 1 second if negative or it'll be off from PHP by 1 second.
+  return ((time / 1e3) >> 0) - Number(time < 0)
+}

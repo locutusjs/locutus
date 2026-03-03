@@ -8,7 +8,9 @@ returns:
   - '''Kevin van Zonneveld'''
   - '''a'''
   - '''✓ à la mode'''
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Tyler Akins (https://rumkin.com)
@@ -26,11 +28,12 @@ authors:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's base64_decode in JavaScript
+title: PHP's base64_decode in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.base64-decode.php">PHP's
   base64_decode</a> looks like.
 function: base64_decode
@@ -43,7 +46,122 @@ alias:
   - /php/base64_decode/
   - /functions/base64_decode/
 ---
-{% codeblock lang:javascript %}module.exports = function base64_decode(encodedData) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { getPhpGlobalCallable, getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import { isObjectLike, isPhpCallable } from '../_helpers/_phpTypes.ts'
+
+export function base64_decode(encodedData: string | null | undefined): string | null | undefined {
+  //  discuss at: https://locutus.io/php/base64_decode/
+  // original by: Tyler Akins (https://rumkin.com)
+  // improved by: Thunder.m
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Aman Gupta
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // bugfixed by: Pellentesque Malesuada
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Indigo744
+  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
+  //   returns 1: 'Kevin van Zonneveld'
+  //   example 2: base64_decode('YQ==')
+  //   returns 2: 'a'
+  //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=')
+  //   returns 3: '✓ à la mode'
+
+  // decodeUTF8string()
+  // Internal function to decode properly UTF8 string
+  // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+  const decodeUTF8string = function (str: string): string {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(
+      str
+        .split('')
+        .map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        })
+        .join(''),
+    )
+  }
+
+  const bufferValue = getPhpGlobalEntry('Buffer')
+  if (isObjectLike(bufferValue)) {
+    const bufferFrom = getPhpObjectEntry(bufferValue, 'from')
+    if (isPhpCallable<[string, string], object>(bufferFrom)) {
+      const decoded = bufferFrom.call(bufferValue, String(encodedData), 'base64')
+      if (typeof decoded === 'object' && decoded !== null) {
+        const decodedToString = getPhpObjectEntry(decoded, 'toString')
+        if (isPhpCallable<[string], string>(decodedToString)) {
+          const utf8Value = decodedToString.call(decoded, 'utf-8')
+          if (typeof utf8Value === 'string') {
+            return utf8Value
+          }
+        }
+      }
+    }
+  }
+
+  const atobValue = getPhpGlobalCallable<[string], string>('atob')
+  if (atobValue) {
+    const decoded = atobValue(String(encodedData))
+    if (typeof decoded === 'string') {
+      return decodeUTF8string(decoded)
+    }
+  }
+
+  const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  let o1: number
+  let o2: number
+  let o3: number
+  let h1: number
+  let h2: number
+  let h3: number
+  let h4: number
+  let bits: number
+  let i = 0
+  let ac = 0
+  let dec = ''
+  const tmpArr: string[] = []
+
+  if (!encodedData) {
+    return encodedData
+  }
+
+  encodedData += ''
+
+  do {
+    // unpack four hexets into three octets using index points in b64
+    h1 = b64.indexOf(encodedData.charAt(i++))
+    h2 = b64.indexOf(encodedData.charAt(i++))
+    h3 = b64.indexOf(encodedData.charAt(i++))
+    h4 = b64.indexOf(encodedData.charAt(i++))
+
+    bits = (h1 << 18) | (h2 << 12) | (h3 << 6) | h4
+
+    o1 = (bits >> 16) & 0xff
+    o2 = (bits >> 8) & 0xff
+    o3 = bits & 0xff
+
+    if (h3 === 64) {
+      tmpArr[ac++] = String.fromCharCode(o1)
+    } else if (h4 === 64) {
+      tmpArr[ac++] = String.fromCharCode(o1, o2)
+    } else {
+      tmpArr[ac++] = String.fromCharCode(o1, o2, o3)
+    }
+  } while (i < encodedData.length)
+
+  dec = tmpArr.join('')
+
+  return decodeUTF8string(dec.replace(/\0+$/, ''))
+}
+{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { getPhpGlobalCallable, getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+import { isObjectLike, isPhpCallable } from '../_helpers/_phpTypes.ts'
+
+export function base64_decode(encodedData) {
   //  discuss at: https://locutus.io/php/base64_decode/
   // original by: Tyler Akins (https://rumkin.com)
   // improved by: Thunder.m
@@ -77,12 +195,29 @@ alias:
     )
   }
 
-  if (typeof window !== 'undefined') {
-    if (typeof window.atob !== 'undefined') {
-      return decodeUTF8string(window.atob(encodedData))
+  const bufferValue = getPhpGlobalEntry('Buffer')
+  if (isObjectLike(bufferValue)) {
+    const bufferFrom = getPhpObjectEntry(bufferValue, 'from')
+    if (isPhpCallable(bufferFrom)) {
+      const decoded = bufferFrom.call(bufferValue, String(encodedData), 'base64')
+      if (typeof decoded === 'object' && decoded !== null) {
+        const decodedToString = getPhpObjectEntry(decoded, 'toString')
+        if (isPhpCallable(decodedToString)) {
+          const utf8Value = decodedToString.call(decoded, 'utf-8')
+          if (typeof utf8Value === 'string') {
+            return utf8Value
+          }
+        }
+      }
     }
-  } else {
-    return new Buffer(encodedData, 'base64').toString('utf-8')
+  }
+
+  const atobValue = getPhpGlobalCallable('atob')
+  if (atobValue) {
+    const decoded = atobValue(String(encodedData))
+    if (typeof decoded === 'string') {
+      return decodeUTF8string(decoded)
+    }
   }
 
   const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
@@ -130,5 +265,359 @@ alias:
   dec = tmpArr.join('')
 
   return decodeUTF8string(dec.replace(/\0+$/, ''))
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+type PhpCallableArgs = PhpInput[]
+
+type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
+  ...args: TArgs
+) => TResult
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
 }
-{% endcodeblock %}
+
+function isPhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput>(
+  value: PhpInput,
+): value is PhpCallable<TArgs, TResult> {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpGlobalCallable<TArgs extends PhpInput[] = PhpInput[], TResult = PhpInput>(
+  key: string,
+): PhpCallable<TArgs, TResult> | undefined {
+  const value = getPhpGlobalEntry(key)
+  return isPhpCallable<TArgs, TResult>(value) ? value : undefined
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/url/base64_decode (target function module)
+function base64_decode(encodedData: string | null | undefined): string | null | undefined {
+  //  discuss at: https://locutus.io/php/base64_decode/
+  // original by: Tyler Akins (https://rumkin.com)
+  // improved by: Thunder.m
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Aman Gupta
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // bugfixed by: Pellentesque Malesuada
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Indigo744
+  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
+  //   returns 1: 'Kevin van Zonneveld'
+  //   example 2: base64_decode('YQ==')
+  //   returns 2: 'a'
+  //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=')
+  //   returns 3: '✓ à la mode'
+
+  // decodeUTF8string()
+  // Internal function to decode properly UTF8 string
+  // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+  const decodeUTF8string = function (str: string): string {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(
+      str
+        .split('')
+        .map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        })
+        .join(''),
+    )
+  }
+
+  const bufferValue = getPhpGlobalEntry('Buffer')
+  if (isObjectLike(bufferValue)) {
+    const bufferFrom = getPhpObjectEntry(bufferValue, 'from')
+    if (isPhpCallable<[string, string], object>(bufferFrom)) {
+      const decoded = bufferFrom.call(bufferValue, String(encodedData), 'base64')
+      if (typeof decoded === 'object' && decoded !== null) {
+        const decodedToString = getPhpObjectEntry(decoded, 'toString')
+        if (isPhpCallable<[string], string>(decodedToString)) {
+          const utf8Value = decodedToString.call(decoded, 'utf-8')
+          if (typeof utf8Value === 'string') {
+            return utf8Value
+          }
+        }
+      }
+    }
+  }
+
+  const atobValue = getPhpGlobalCallable<[string], string>('atob')
+  if (atobValue) {
+    const decoded = atobValue(String(encodedData))
+    if (typeof decoded === 'string') {
+      return decodeUTF8string(decoded)
+    }
+  }
+
+  const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  let o1: number
+  let o2: number
+  let o3: number
+  let h1: number
+  let h2: number
+  let h3: number
+  let h4: number
+  let bits: number
+  let i = 0
+  let ac = 0
+  let dec = ''
+  const tmpArr: string[] = []
+
+  if (!encodedData) {
+    return encodedData
+  }
+
+  encodedData += ''
+
+  do {
+    // unpack four hexets into three octets using index points in b64
+    h1 = b64.indexOf(encodedData.charAt(i++))
+    h2 = b64.indexOf(encodedData.charAt(i++))
+    h3 = b64.indexOf(encodedData.charAt(i++))
+    h4 = b64.indexOf(encodedData.charAt(i++))
+
+    bits = (h1 << 18) | (h2 << 12) | (h3 << 6) | h4
+
+    o1 = (bits >> 16) & 0xff
+    o2 = (bits >> 8) & 0xff
+    o3 = bits & 0xff
+
+    if (h3 === 64) {
+      tmpArr[ac++] = String.fromCharCode(o1)
+    } else if (h4 === 64) {
+      tmpArr[ac++] = String.fromCharCode(o1, o2)
+    } else {
+      tmpArr[ac++] = String.fromCharCode(o1, o2, o3)
+    }
+  } while (i < encodedData.length)
+
+  dec = tmpArr.join('')
+
+  return decodeUTF8string(dec.replace(/\0+$/, ''))
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpCallable(value) {
+  return typeof value === 'function'
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpGlobalCallable(key) {
+  const value = getPhpGlobalEntry(key)
+  return isPhpCallable(value) ? value : undefined
+}
+
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/url/base64_decode (target function module)
+function base64_decode(encodedData) {
+  //  discuss at: https://locutus.io/php/base64_decode/
+  // original by: Tyler Akins (https://rumkin.com)
+  // improved by: Thunder.m
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Kevin van Zonneveld (https://kvz.io)
+  //    input by: Aman Gupta
+  //    input by: Brett Zamir (https://brett-zamir.me)
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // bugfixed by: Pellentesque Malesuada
+  // bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // improved by: Indigo744
+  //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==')
+  //   returns 1: 'Kevin van Zonneveld'
+  //   example 2: base64_decode('YQ==')
+  //   returns 2: 'a'
+  //   example 3: base64_decode('4pyTIMOgIGxhIG1vZGU=')
+  //   returns 3: '✓ à la mode'
+
+  // decodeUTF8string()
+  // Internal function to decode properly UTF8 string
+  // Adapted from Solution #1 at https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+  const decodeUTF8string = function (str) {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(
+      str
+        .split('')
+        .map(function (c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        })
+        .join(''),
+    )
+  }
+
+  const bufferValue = getPhpGlobalEntry('Buffer')
+  if (isObjectLike(bufferValue)) {
+    const bufferFrom = getPhpObjectEntry(bufferValue, 'from')
+    if (isPhpCallable(bufferFrom)) {
+      const decoded = bufferFrom.call(bufferValue, String(encodedData), 'base64')
+      if (typeof decoded === 'object' && decoded !== null) {
+        const decodedToString = getPhpObjectEntry(decoded, 'toString')
+        if (isPhpCallable(decodedToString)) {
+          const utf8Value = decodedToString.call(decoded, 'utf-8')
+          if (typeof utf8Value === 'string') {
+            return utf8Value
+          }
+        }
+      }
+    }
+  }
+
+  const atobValue = getPhpGlobalCallable('atob')
+  if (atobValue) {
+    const decoded = atobValue(String(encodedData))
+    if (typeof decoded === 'string') {
+      return decodeUTF8string(decoded)
+    }
+  }
+
+  const b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+  let o1
+  let o2
+  let o3
+  let h1
+  let h2
+  let h3
+  let h4
+  let bits
+  let i = 0
+  let ac = 0
+  let dec = ''
+  const tmpArr = []
+
+  if (!encodedData) {
+    return encodedData
+  }
+
+  encodedData += ''
+
+  do {
+    // unpack four hexets into three octets using index points in b64
+    h1 = b64.indexOf(encodedData.charAt(i++))
+    h2 = b64.indexOf(encodedData.charAt(i++))
+    h3 = b64.indexOf(encodedData.charAt(i++))
+    h4 = b64.indexOf(encodedData.charAt(i++))
+
+    bits = (h1 << 18) | (h2 << 12) | (h3 << 6) | h4
+
+    o1 = (bits >> 16) & 0xff
+    o2 = (bits >> 8) & 0xff
+    o3 = bits & 0xff
+
+    if (h3 === 64) {
+      tmpArr[ac++] = String.fromCharCode(o1)
+    } else if (h4 === 64) {
+      tmpArr[ac++] = String.fromCharCode(o1, o2)
+    } else {
+      tmpArr[ac++] = String.fromCharCode(o1, o2, o3)
+    }
+  } while (i < encodedData.length)
+
+  dec = tmpArr.join('')
+
+  return decodeUTF8string(dec.replace(/\0+$/, ''))
+}{% endcodeblock %}
+</div>

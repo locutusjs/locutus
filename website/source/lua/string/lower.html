@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - Lua 5.4
+isTypescript: true
 type: function
 layout: function
-title: Lua's string.lower in JavaScript
+title: Lua's string.lower in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://www.lua.org/manual/5.4/manual.html#pdf-string.lower">Lua's
   string.lower</a> looks like.
 function: lower
@@ -29,7 +30,8 @@ alias:
   - /functions/string/lower/
   - /lua/lower/
 ---
-{% codeblock lang:javascript %}module.exports = function lower(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function lower(s: string): string {
   //      discuss at: https://locutus.io/lua/lower/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -41,3 +43,17 @@ alias:
   return String(s).toLowerCase()
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function lower(s) {
+  //      discuss at: https://locutus.io/lua/lower/
+  // parity verified: Lua 5.4
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: lower('HELLO')
+  //       returns 1: 'hello'
+  //       example 2: lower('Hello World')
+  //       returns 2: 'hello world'
+
+  return String(s).toLowerCase()
+}{% endcodeblock %}
+</div>

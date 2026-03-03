@@ -11,11 +11,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's acosh in JavaScript
+title: PHP's acosh in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.acosh.php">PHP's acosh</a> looks
   like.
 function: acosh
@@ -28,7 +29,8 @@ alias:
   - /php/acosh/
   - /functions/acosh/
 ---
-{% codeblock lang:javascript %}module.exports = function acosh(arg) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function acosh(arg: number): number {
   //      discuss at: https://locutus.io/php/acosh/
   // parity verified: PHP 8.3
   //     original by: Onno Marsman (https://twitter.com/onnomarsman)
@@ -38,3 +40,15 @@ alias:
   return Math.log(arg + Math.sqrt(arg * arg - 1))
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function acosh(arg) {
+  //      discuss at: https://locutus.io/php/acosh/
+  // parity verified: PHP 8.3
+  //     original by: Onno Marsman (https://twitter.com/onnomarsman)
+  //       example 1: acosh(8723321.4)
+  //       returns 1: 16.674657798418625
+
+  return Math.log(arg + Math.sqrt(arg * arg - 1))
+}{% endcodeblock %}
+</div>

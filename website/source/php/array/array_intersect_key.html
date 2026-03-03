@@ -7,7 +7,8 @@ examples:
     array_intersect_key($array1, $array2)
 returns:
   - '{0: ''red'', a: ''green''}'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
@@ -16,11 +17,12 @@ notes:
     These only output associative arrays (would need to be
     all numeric and counting from zero to be numeric)
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's array_intersect_key in JavaScript
+title: PHP's array_intersect_key in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.array-intersect-key.php">PHP's
   array_intersect_key</a> looks like.
 function: array_intersect_key
@@ -33,7 +35,47 @@ alias:
   - /php/array_intersect_key/
   - /functions/array_intersect_key/
 ---
-{% codeblock lang:javascript %}module.exports = function array_intersect_key(arr1) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { entriesOfPhpAssoc, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_intersect_key<TValue>(
+  arr1: PhpArrayLike<TValue>,
+  ...arrays: Array<PhpArrayLike<TValue>>
+): PhpAssoc<TValue> {
+  //  discuss at: https://locutus.io/php/array_intersect_key/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: These only output associative arrays (would need to be
+  //      note 1: all numeric and counting from zero to be numeric)
+  //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+  //   example 1: var $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
+  //   example 1: array_intersect_key($array1, $array2)
+  //   returns 1: {0: 'red', a: 'green'}
+
+  const retArr: PhpAssoc<TValue> = {}
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject<TValue>(arr1)
+  const hasOwn = Object.prototype.hasOwnProperty
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject<TValue>(nextArray)
+      if (!hasOwn.call(arr, k1)) {
+        continue arr1keys
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}
+{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { entriesOfPhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+
+export function array_intersect_key(arr1, ...arrays) {
   //  discuss at: https://locutus.io/php/array_intersect_key/
   // original by: Brett Zamir (https://brett-zamir.me)
   //      note 1: These only output associative arrays (would need to be
@@ -44,37 +86,134 @@ alias:
   //   returns 1: {0: 'red', a: 'green'}
 
   const retArr = {}
-  const argl = arguments.length
-  const arglm1 = argl - 1
-  let k1 = ''
-  let arr = {}
-  let i = 0
-  let k = ''
+  if (arrays.length < 1) {
+    return retArr
+  }
 
-  arr1keys: for (k1 in arr1) {
-    if (!arr1.hasOwnProperty(k1)) {
-      continue
-    }
-    arrs: for (i = 1; i < argl; i++) {
-      arr = arguments[i]
-      for (k in arr) {
-        if (!arr.hasOwnProperty(k)) {
-          continue
-        }
-        if (k === k1) {
-          if (i === arglm1) {
-            retArr[k1] = arr1[k1]
-          }
-          // If the innermost loop always leads at least once to an equal value,
-          // continue the loop until done
-          continue arrs
-        }
+  const arr1Object = toPhpArrayObject(arr1)
+  const hasOwn = Object.prototype.hasOwnProperty
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
+      if (!hasOwn.call(arr, k1)) {
+        continue arr1keys
       }
-      // If it reaches here, it wasn't found in at least one array, so try next value
-      continue arr1keys
     }
+    retArr[k1] = arr1Value
   }
 
   return retArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
+  return Object.entries(value)
 }
-{% endcodeblock %}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpArrayObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value)
+}
+
+function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
+  if (isPhpArrayObject<T>(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_intersect_key (target function module)
+function array_intersect_key<TValue>(
+  arr1: PhpArrayLike<TValue>,
+  ...arrays: Array<PhpArrayLike<TValue>>
+): PhpAssoc<TValue> {
+  //  discuss at: https://locutus.io/php/array_intersect_key/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: These only output associative arrays (would need to be
+  //      note 1: all numeric and counting from zero to be numeric)
+  //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+  //   example 1: var $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
+  //   example 1: array_intersect_key($array1, $array2)
+  //   returns 1: {0: 'red', a: 'green'}
+
+  const retArr: PhpAssoc<TValue> = {}
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject<TValue>(arr1)
+  const hasOwn = Object.prototype.hasOwnProperty
+  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject<TValue>(nextArray)
+      if (!hasOwn.call(arr, k1)) {
+        continue arr1keys
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isPhpArrayObject(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function toPhpArrayObject(value) {
+  if (isPhpArrayObject(value)) {
+    return value
+  }
+
+  return {}
+}
+
+// php/array/array_intersect_key (target function module)
+function array_intersect_key(arr1, ...arrays) {
+  //  discuss at: https://locutus.io/php/array_intersect_key/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: These only output associative arrays (would need to be
+  //      note 1: all numeric and counting from zero to be numeric)
+  //   example 1: var $array1 = {a: 'green', b: 'brown', c: 'blue', 0: 'red'}
+  //   example 1: var $array2 = {a: 'green', 0: 'yellow', 1: 'red'}
+  //   example 1: array_intersect_key($array1, $array2)
+  //   returns 1: {0: 'red', a: 'green'}
+
+  const retArr = {}
+  if (arrays.length < 1) {
+    return retArr
+  }
+
+  const arr1Object = toPhpArrayObject(arr1)
+  const hasOwn = Object.prototype.hasOwnProperty
+  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1Object)) {
+    for (const nextArray of arrays) {
+      const arr = toPhpArrayObject(nextArray)
+      if (!hasOwn.call(arr, k1)) {
+        continue arr1keys
+      }
+    }
+    retArr[k1] = arr1Value
+  }
+
+  return retArr
+}{% endcodeblock %}
+</div>

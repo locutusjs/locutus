@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's is_null in JavaScript
+title: PHP's is_null in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.is-null.php">PHP's is_null</a> looks
   like.
 function: is_null
@@ -30,7 +31,8 @@ alias:
   - /php/is_null/
   - /functions/is_null/
 ---
-{% codeblock lang:javascript %}module.exports = function is_null(mixedVar) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function is_null(mixedVar: string | null): boolean {
   //      discuss at: https://locutus.io/php/is_null/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -42,3 +44,17 @@ alias:
   return mixedVar === null
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function is_null(mixedVar) {
+  //      discuss at: https://locutus.io/php/is_null/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: is_null('23')
+  //       returns 1: false
+  //       example 2: is_null(null)
+  //       returns 2: true
+
+  return mixedVar === null
+}{% endcodeblock %}
+</div>

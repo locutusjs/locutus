@@ -13,11 +13,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's hexdec in JavaScript
+title: PHP's hexdec in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.hexdec.php">PHP's hexdec</a> looks
   like.
 function: hexdec
@@ -30,7 +31,8 @@ alias:
   - /php/hexdec/
   - /functions/hexdec/
 ---
-{% codeblock lang:javascript %}module.exports = function hexdec(hexString) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function hexdec(hexString: string): number {
   //      discuss at: https://locutus.io/php/hexdec/
   // parity verified: PHP 8.3
   //     original by: Philippe Baumann
@@ -43,3 +45,18 @@ alias:
   return parseInt(hexString, 16)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function hexdec(hexString) {
+  //      discuss at: https://locutus.io/php/hexdec/
+  // parity verified: PHP 8.3
+  //     original by: Philippe Baumann
+  //       example 1: hexdec('that')
+  //       returns 1: 10
+  //       example 2: hexdec('a0')
+  //       returns 2: 160
+
+  hexString = (hexString + '').replace(/[^a-f0-9]/gi, '')
+  return parseInt(hexString, 16)
+}{% endcodeblock %}
+</div>

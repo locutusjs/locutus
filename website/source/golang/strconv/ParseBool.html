@@ -19,11 +19,12 @@ notes:
     Accepts: 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False
 parityVerified:
   - Go 1.23
+isTypescript: true
 type: function
 layout: function
-title: Go's strconv.ParseBool in JavaScript
+title: Go's strconv.ParseBool in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://golang.org/pkg/strconv/#ParseBool">Go's strconv.ParseBool</a>
   looks like.
 function: ParseBool
@@ -35,7 +36,8 @@ alias:
   - /functions/strconv/ParseBool/
   - /golang/ParseBool/
 ---
-{% codeblock lang:javascript %}module.exports = function ParseBool(str) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function ParseBool(str: string): [boolean, Error | null] {
   //      discuss at: https://locutus.io/golang/strconv/ParseBool
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -71,3 +73,41 @@ alias:
   }
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function ParseBool(str) {
+  //      discuss at: https://locutus.io/golang/strconv/ParseBool
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Parses a boolean string value.
+  //          note 1: Returns [value, null] on success, [false, error] on failure.
+  //          note 1: Accepts: 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False
+  //       example 1: ParseBool('true')[0]
+  //       returns 1: true
+  //       example 2: ParseBool('FALSE')[0]
+  //       returns 2: false
+  //       example 3: ParseBool('1')[0]
+  //       returns 3: true
+
+  str = (str + '').trim()
+
+  switch (str) {
+    case '1':
+    case 't':
+    case 'T':
+    case 'true':
+    case 'TRUE':
+    case 'True':
+      return [true, null]
+    case '0':
+    case 'f':
+    case 'F':
+    case 'false':
+    case 'FALSE':
+    case 'False':
+      return [false, null]
+    default:
+      return [false, new Error('strconv.ParseBool: parsing "' + str + '": invalid syntax')]
+  }
+}{% endcodeblock %}
+</div>

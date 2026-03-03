@@ -17,11 +17,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's time in JavaScript
+title: PHP's time in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.time.php">PHP's time</a> looks like.
 function: time
 category: datetime
@@ -33,7 +34,8 @@ alias:
   - /php/time/
   - /functions/time/
 ---
-{% codeblock lang:javascript %}module.exports = function time() {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function time(): number {
   //      discuss at: https://locutus.io/php/time/
   // parity verified: PHP 8.3
   //     original by: GeekFG (https://geekfg.blogspot.com)
@@ -47,3 +49,19 @@ alias:
   return Math.floor(new Date().getTime() / 1000)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function time() {
+  //      discuss at: https://locutus.io/php/time/
+  // parity verified: PHP 8.3
+  //     original by: GeekFG (https://geekfg.blogspot.com)
+  //     improved by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: metjay
+  //     improved by: HKM
+  //       example 1: var $timeStamp = time()
+  //       example 1: var $result = $timeStamp > 1000000000 && $timeStamp < 2000000000
+  //       returns 1: true
+
+  return Math.floor(new Date().getTime() / 1000)
+}{% endcodeblock %}
+</div>

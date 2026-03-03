@@ -15,11 +15,12 @@ authors:
 notes: []
 parityVerified:
   - GNU AWK 5.3
+isTypescript: true
 type: function
 layout: function
-title: AWK's length in JavaScript
+title: AWK's length in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://www.gnu.org/software/gawk/manual/gawk.html#String-Functions">AWK's
   length</a> looks like.
 function: length
@@ -31,7 +32,8 @@ alias:
   - /functions/builtin/length/
   - /awk/length/
 ---
-{% codeblock lang:javascript %}module.exports = function length(s) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}export function length(s: string): number {
   //      discuss at: https://locutus.io/awk/length/
   // parity verified: GNU AWK 5.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -48,3 +50,22 @@ alias:
   return String(s).length
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}export function length(s) {
+  //      discuss at: https://locutus.io/awk/length/
+  // parity verified: GNU AWK 5.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: length('hello')
+  //       returns 1: 5
+  //       example 2: length('')
+  //       returns 2: 0
+  //       example 3: length('test string')
+  //       returns 3: 11
+
+  if (s === undefined || s === null) {
+    return 0
+  }
+  return String(s).length
+}{% endcodeblock %}
+</div>

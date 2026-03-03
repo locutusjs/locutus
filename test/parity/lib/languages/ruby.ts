@@ -100,7 +100,11 @@ function convertFunctionCall(code: string, funcName: string, methodInfo: RubyMet
       return match
     }
 
-    const firstArg = args[0].trim()
+    const rawFirstArg = args[0]
+    if (rawFirstArg === undefined) {
+      return match
+    }
+    const firstArg = rawFirstArg.trim()
     const restArgs = args.slice(1)
 
     if (methodInfo.isInstanceMethod) {
@@ -226,7 +230,11 @@ function convertJsLineToRuby(line: string, funcName: string, category: string): 
       if (args.length === 0) {
         return match
       }
-      const receiver = args[0].trim()
+      const rawReceiver = args[0]
+      if (rawReceiver === undefined) {
+        return match
+      }
+      const receiver = rawReceiver.trim()
       const restArgs = args.slice(1)
       if (restArgs.length > 0) {
         return `${receiver}.${funcName}(${restArgs.join(', ')})`

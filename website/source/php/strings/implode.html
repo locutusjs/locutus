@@ -18,11 +18,12 @@ authors:
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's implode in JavaScript
+title: PHP's implode in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.implode.php">PHP's implode</a> looks
   like.
 function: implode
@@ -35,7 +36,22 @@ alias:
   - /php/implode/
   - /functions/implode/
 ---
-{% codeblock lang:javascript %}module.exports = function implode(glue, pieces) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import type { PhpAssoc, PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
+
+type ImplodeValue = PhpRuntimeValue
+type KeyedValues = PhpAssoc<ImplodeValue>
+
+export function implode(pieces: ImplodeValue[] | KeyedValues | string | undefined): string
+
+export function implode(glue: string, pieces: ImplodeValue[] | KeyedValues | string | undefined): string
+
+export function implode(
+  ...providedArgs: [
+    glueOrPieces?: ImplodeValue[] | KeyedValues | string,
+    pieces?: ImplodeValue[] | KeyedValues | string | undefined,
+  ]
+): string {
   //      discuss at: https://locutus.io/php/implode/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -47,26 +63,74 @@ alias:
   //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
   //       returns 2: 'Kevin van Zonneveld'
 
-  let i = ''
   let retVal = ''
   let tGlue = ''
+  let actualGlue = ''
+  let actualPieces: ImplodeValue[] | KeyedValues | string | undefined
 
-  if (arguments.length === 1) {
-    pieces = glue
-    glue = ''
+  if (providedArgs.length === 1) {
+    const [glueOrPieces] = providedArgs
+    actualPieces = glueOrPieces
+  } else {
+    const [glueOrPieces, pieces] = providedArgs
+    actualGlue = String(glueOrPieces ?? '')
+    actualPieces = pieces
   }
 
-  if (typeof pieces === 'object') {
-    if (Array.isArray(pieces)) {
-      return pieces.join(glue)
+  if (typeof actualPieces === 'object' && actualPieces !== null) {
+    if (Array.isArray(actualPieces)) {
+      return actualPieces.join(actualGlue)
     }
-    for (i in pieces) {
-      retVal += tGlue + pieces[i]
-      tGlue = glue
+    for (const key in actualPieces) {
+      retVal += tGlue + actualPieces[key]
+      tGlue = actualGlue
     }
     return retVal
   }
 
-  return pieces
+  return String(actualPieces)
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}
+export function implode(...providedArgs) {
+  //      discuss at: https://locutus.io/php/implode/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Waldo Malqui Silva (https://waldo.malqui.info)
+  //     improved by: Itsacon (https://www.itsacon.net/)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: implode(' ', ['Kevin', 'van', 'Zonneveld'])
+  //       returns 1: 'Kevin van Zonneveld'
+  //       example 2: implode(' ', {first:'Kevin', last: 'van Zonneveld'})
+  //       returns 2: 'Kevin van Zonneveld'
+
+  let retVal = ''
+  let tGlue = ''
+  let actualGlue = ''
+  let actualPieces
+
+  if (providedArgs.length === 1) {
+    const [glueOrPieces] = providedArgs
+    actualPieces = glueOrPieces
+  } else {
+    const [glueOrPieces, pieces] = providedArgs
+    actualGlue = String(glueOrPieces ?? '')
+    actualPieces = pieces
+  }
+
+  if (typeof actualPieces === 'object' && actualPieces !== null) {
+    if (Array.isArray(actualPieces)) {
+      return actualPieces.join(actualGlue)
+    }
+    for (const key in actualPieces) {
+      retVal += tGlue + actualPieces[key]
+      tGlue = actualGlue
+    }
+    return retVal
+  }
+
+  return String(actualPieces)
+}{% endcodeblock %}
+</div>

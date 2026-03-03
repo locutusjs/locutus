@@ -21,7 +21,10 @@ export function parseExamples(filePath: string): Example[] {
   for (const line of lines) {
     const exampleMatch = line.match(/\/\/\s+example\s+(\d+):\s*(.+)/)
     if (exampleMatch) {
-      const num = parseInt(exampleMatch[1])
+      if (!exampleMatch[1] || !exampleMatch[2]) {
+        continue
+      }
+      const num = parseInt(exampleMatch[1], 10)
       if (!exampleMatches[num]) {
         exampleMatches[num] = []
       }
@@ -30,19 +33,24 @@ export function parseExamples(filePath: string): Example[] {
 
     const returnsMatch = line.match(/\/\/\s+returns\s+(\d+):\s*(.+)/)
     if (returnsMatch) {
-      const num = parseInt(returnsMatch[1])
+      if (!returnsMatch[1] || !returnsMatch[2]) {
+        continue
+      }
+      const num = parseInt(returnsMatch[1], 10)
       returnsMatches[num] = returnsMatch[2].trim()
     }
   }
 
   // Combine into examples
   for (const numStr of Object.keys(exampleMatches)) {
-    const num = parseInt(numStr)
-    if (returnsMatches[num]) {
+    const num = parseInt(numStr, 10)
+    const code = exampleMatches[num]
+    const expectedRaw = returnsMatches[num]
+    if (code && expectedRaw !== undefined) {
       examples.push({
         number: num,
-        code: exampleMatches[num],
-        expectedRaw: returnsMatches[num],
+        code,
+        expectedRaw,
       })
     }
   }
@@ -60,7 +68,7 @@ export function parseDependsOn(filePath: string): string[] {
   const lines = content.split('\n')
   for (const line of lines) {
     const match = line.match(/\/\/\s+depends on:\s*(.+)/)
-    if (match) {
+    if (match?.[1]) {
       deps.push(match[1].trim())
     }
   }
@@ -80,7 +88,7 @@ export function parseVerified(filePath: string): { verified: string[]; isImpossi
   const lines = content.split('\n')
   for (const line of lines) {
     const match = line.match(/\/\/\s+parity verified:\s*(.+)/)
-    if (match) {
+    if (match?.[1]) {
       // Split by comma and trim each value (e.g., "PHP 8.3, Python 3.12")
       const versions = match[1].split(',').map((v) => v.trim())
       for (const v of versions) {
@@ -145,13 +153,15 @@ export function parseExamplesFromHeadKeys(headKeys: Record<string, string[][]>):
   const parsed: Example[] = []
 
   for (let i = 0; i < examples.length; i++) {
-    if (!returns[i]) {
+    const code = examples[i]
+    const expected = returns[i]
+    if (!code || !expected) {
       continue
     }
     parsed.push({
       number: i + 1,
-      code: examples[i],
-      expectedRaw: returns[i].join('\n'),
+      code,
+      expectedRaw: expected.join('\n'),
     })
   }
 

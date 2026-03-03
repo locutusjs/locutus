@@ -41,11 +41,12 @@ notes:
     well as our allowing
     an extra slash after the scheme/protocol (to allow file:/// as in PHP)
 parityVerified: null
+isTypescript: true
 type: function
 layout: function
-title: PHP's parse_url in JavaScript
+title: PHP's parse_url in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.parse-url.php">PHP's parse_url</a>
   looks like.
 function: parse_url
@@ -58,7 +59,31 @@ alias:
   - /php/parse_url/
   - /functions/parse_url/
 ---
-{% codeblock lang:javascript %}module.exports = function parse_url(str, component) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { ini_get } from '../info/ini_get.ts'
+
+type ParseUrlQueryMap = Record<string, string>
+type ParseUrlValue = string | ParseUrlQueryMap
+
+type ParseUrlResult = {
+  source?: string
+  scheme?: string
+  authority?: string
+  userInfo?: string
+  user?: string
+  pass?: string
+  host?: string
+  port?: string
+  relative?: string
+  path?: string
+  directory?: string
+  file?: string
+  query?: string
+  fragment?: string
+  [key: string]: ParseUrlValue | undefined
+}
+
+export function parse_url(str: string, component?: string): ParseUrlResult | string {
   //       discuss at: https://locutus.io/php/parse_url/
   //      original by: Steven Levithan (https://blog.stevenlevithan.com)
   // reimplemented by: Brett Zamir (https://brett-zamir.me)
@@ -83,10 +108,9 @@ alias:
   //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
   //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
 
-  let query
+  let query: string
 
-  const mode =
-    (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.mode') : undefined) || 'php'
+  const mode = ini_get('locutus.parse_url.mode') || 'php'
 
   const key = [
     'source',
@@ -106,7 +130,7 @@ alias:
   ]
 
   // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
-  let parser = {
+  const parser = {
     php: new RegExp(
       [
         '(?:([^:\\/?#]+):)?',
@@ -133,31 +157,38 @@ alias:
     ),
   }
 
-  const m = parser[mode].exec(str)
-  const uri = {}
+  const parserMode = mode === 'php' || mode === 'strict' || mode === 'loose' ? mode : 'php'
+  const selectedParser = parser[parserMode]
+  const m = selectedParser.exec(str)
+  const uri: ParseUrlResult = {}
+  if (!m) {
+    return uri
+  }
   let i = 14
 
   while (i--) {
-    if (m[i]) {
-      uri[key[i]] = m[i]
+    const keyName = key[i]
+    if (keyName && m[i]) {
+      uri[keyName] = m[i]
     }
   }
 
   if (component) {
-    return uri[component.replace('PHP_URL_', '').toLowerCase()]
+    return String(uri[component.replace('PHP_URL_', '').toLowerCase()] ?? '')
   }
 
   if (mode !== 'php') {
-    const name =
-      (typeof require !== 'undefined' ? require('../info/ini_get')('locutus.parse_url.queryKey') : undefined) ||
-      'queryKey'
-    parser = /(?:^|&)([^&=]*)=?([^&]*)/g
-    uri[name] = {}
-    query = uri[key[12]] || ''
-    query.replace(parser, function ($0, $1, $2) {
+    const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
+    const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
+    const queryObj: ParseUrlQueryMap = {}
+    uri[name] = queryObj
+    const queryKeyName = key[12]
+    query = String((queryKeyName ? uri[queryKeyName] : '') || '')
+    query.replace(queryParser, function ($0: string, $1: string, $2: string): string {
       if ($1) {
-        uri[name][$1] = $2
+        queryObj[$1] = $2
       }
+      return $0
     })
   }
 
@@ -165,3 +196,599 @@ alias:
   return uri
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { ini_get } from '../info/ini_get.ts'
+
+export function parse_url(str, component) {
+  //       discuss at: https://locutus.io/php/parse_url/
+  //      original by: Steven Levithan (https://blog.stevenlevithan.com)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //         input by: Lorenzo Pisani
+  //         input by: Tony
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //           note 1: original by https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: blog post at https://blog.stevenlevithan.com/archives/parseuri
+  //           note 1: demo at https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: Does not replace invalid characters with '_' as in PHP,
+  //           note 1: nor does it return false with
+  //           note 1: a seriously malformed URL.
+  //           note 1: Besides function name, is essentially the same as parseUri as
+  //           note 1: well as our allowing
+  //           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
+  //        example 1: parse_url('https://user:pass@host/path?a=v#a')
+  //        returns 1: {scheme: 'https', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
+  //        example 2: parse_url('https://en.wikipedia.org/wiki/%22@%22_%28album%29')
+  //        returns 2: {scheme: 'https', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
+  //        example 3: parse_url('https://host.domain.tld/a@b.c/folder')
+  //        returns 3: {scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'}
+  //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
+  //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
+
+  let query
+
+  const mode = ini_get('locutus.parse_url.mode') || 'php'
+
+  const key = [
+    'source',
+    'scheme',
+    'authority',
+    'userInfo',
+    'user',
+    'pass',
+    'host',
+    'port',
+    'relative',
+    'path',
+    'directory',
+    'file',
+    'query',
+    'fragment',
+  ]
+
+  // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
+  const parser = {
+    php: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '()',
+        '(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    strict: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    loose: new RegExp(
+      [
+        '(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?',
+        '(?:\\/\\/\\/?)?',
+        '((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)',
+        '(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))',
+        '(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+  }
+
+  const parserMode = mode === 'php' || mode === 'strict' || mode === 'loose' ? mode : 'php'
+  const selectedParser = parser[parserMode]
+  const m = selectedParser.exec(str)
+  const uri = {}
+  if (!m) {
+    return uri
+  }
+  let i = 14
+
+  while (i--) {
+    const keyName = key[i]
+    if (keyName && m[i]) {
+      uri[keyName] = m[i]
+    }
+  }
+
+  if (component) {
+    return String(uri[component.replace('PHP_URL_', '').toLowerCase()] ?? '')
+  }
+
+  if (mode !== 'php') {
+    const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
+    const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
+    const queryObj = {}
+    uri[name] = queryObj
+    const queryKeyName = key[12]
+    query = String((queryKeyName ? uri[queryKeyName] : '') || '')
+    query.replace(queryParser, function ($0, $1, $2) {
+      if ($1) {
+        queryObj[$1] = $2
+      }
+      return $0
+    })
+  }
+
+  delete uri.source
+  return uri
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T> {
+  return Array.isArray(value)
+}
+
+function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject<T = PhpInput>(value: PhpInput): value is PhpAssoc<T> {
+  return isObjectLike(value) && !isPhpList(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface IniEntry {
+  local_value?: PhpInput
+}
+
+type LocaleEntry = PhpAssoc<PhpInput> & {
+  sorting?: (left: PhpInput, right: PhpInput) => number
+}
+
+type LocaleCategoryMap = PhpAssoc<string | undefined>
+
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+interface PhpRuntimeState {
+  ini: PhpAssoc<IniEntry | undefined>
+  locales: PhpAssoc<LocaleEntry | undefined>
+  localeCategories: LocaleCategoryMap
+  pointers: PhpList<PhpInput>
+  locale_default: string | undefined
+}
+
+const isIniBag = (value: PhpInput): value is PhpAssoc<IniEntry | undefined> =>
+  isPhpAssocObject<IniEntry | undefined>(value)
+
+const isLocaleBag = (value: PhpInput): value is PhpAssoc<LocaleEntry | undefined> =>
+  isPhpAssocObject<LocaleEntry | undefined>(value)
+
+const isLocaleCategoryBag = (value: PhpInput): value is LocaleCategoryMap => isPhpAssocObject<string | undefined>(value)
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = (): PhpAssoc<PhpInput> => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState(): PhpRuntimeState {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isIniBag(iniValue) ? iniValue : {}
+  const locales = isLocaleBag(localesValue) ? localesValue : {}
+  const localeCategories = isLocaleCategoryBag(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers: PhpList<PhpInput> = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/info/ini_get (Locutus dependency module)
+function ini_get(varname: string): string {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+
+  return ''
+}
+
+// php/url/parse_url (target function module)
+type ParseUrlQueryMap = Record<string, string>
+
+type ParseUrlValue = string | ParseUrlQueryMap
+
+type ParseUrlResult = {
+  source?: string
+  scheme?: string
+  authority?: string
+  userInfo?: string
+  user?: string
+  pass?: string
+  host?: string
+  port?: string
+  relative?: string
+  path?: string
+  directory?: string
+  file?: string
+  query?: string
+  fragment?: string
+  [key: string]: ParseUrlValue | undefined
+}
+
+function parse_url(str: string, component?: string): ParseUrlResult | string {
+  //       discuss at: https://locutus.io/php/parse_url/
+  //      original by: Steven Levithan (https://blog.stevenlevithan.com)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //         input by: Lorenzo Pisani
+  //         input by: Tony
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //           note 1: original by https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: blog post at https://blog.stevenlevithan.com/archives/parseuri
+  //           note 1: demo at https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: Does not replace invalid characters with '_' as in PHP,
+  //           note 1: nor does it return false with
+  //           note 1: a seriously malformed URL.
+  //           note 1: Besides function name, is essentially the same as parseUri as
+  //           note 1: well as our allowing
+  //           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
+  //        example 1: parse_url('https://user:pass@host/path?a=v#a')
+  //        returns 1: {scheme: 'https', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
+  //        example 2: parse_url('https://en.wikipedia.org/wiki/%22@%22_%28album%29')
+  //        returns 2: {scheme: 'https', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
+  //        example 3: parse_url('https://host.domain.tld/a@b.c/folder')
+  //        returns 3: {scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'}
+  //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
+  //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
+
+  let query: string
+
+  const mode = ini_get('locutus.parse_url.mode') || 'php'
+
+  const key = [
+    'source',
+    'scheme',
+    'authority',
+    'userInfo',
+    'user',
+    'pass',
+    'host',
+    'port',
+    'relative',
+    'path',
+    'directory',
+    'file',
+    'query',
+    'fragment',
+  ]
+
+  // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
+  const parser = {
+    php: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '()',
+        '(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    strict: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    loose: new RegExp(
+      [
+        '(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?',
+        '(?:\\/\\/\\/?)?',
+        '((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)',
+        '(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))',
+        '(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+  }
+
+  const parserMode = mode === 'php' || mode === 'strict' || mode === 'loose' ? mode : 'php'
+  const selectedParser = parser[parserMode]
+  const m = selectedParser.exec(str)
+  const uri: ParseUrlResult = {}
+  if (!m) {
+    return uri
+  }
+  let i = 14
+
+  while (i--) {
+    const keyName = key[i]
+    if (keyName && m[i]) {
+      uri[keyName] = m[i]
+    }
+  }
+
+  if (component) {
+    return String(uri[component.replace('PHP_URL_', '').toLowerCase()] ?? '')
+  }
+
+  if (mode !== 'php') {
+    const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
+    const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
+    const queryObj: ParseUrlQueryMap = {}
+    uri[name] = queryObj
+    const queryKeyName = key[12]
+    query = String((queryKeyName ? uri[queryKeyName] : '') || '')
+    query.replace(queryParser, function ($0: string, $1: string, $2: string): string {
+      if ($1) {
+        queryObj[$1] = $2
+      }
+      return $0
+    })
+  }
+
+  delete uri.source
+  return uri
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPhpAssocObject(value) {
+  return isObjectLike(value) && !Array.isArray(value)
+}
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+const ensurePhpRuntimeObject = () => {
+  let locutus = globalContext.$locutus
+  if (typeof locutus !== 'object' || locutus === null) {
+    locutus = {}
+    globalContext.$locutus = locutus
+  }
+
+  let php = locutus.php
+  if (typeof php !== 'object' || php === null) {
+    php = {}
+    locutus.php = php
+  }
+
+  return php
+}
+
+function ensurePhpRuntimeState() {
+  const php = ensurePhpRuntimeObject()
+  const iniValue = php.ini
+  const localesValue = php.locales
+  const localeCategoriesValue = php.localeCategories
+  const pointersValue = php.pointers
+
+  const ini = isPhpAssocObject(iniValue) ? iniValue : {}
+  const locales = isPhpAssocObject(localesValue) ? localesValue : {}
+  const localeCategories = isPhpAssocObject(localeCategoriesValue) ? localeCategoriesValue : {}
+  const pointers = Array.isArray(pointersValue) ? pointersValue : []
+
+  if (iniValue !== ini) {
+    php.ini = ini
+  }
+  if (localesValue !== locales) {
+    php.locales = locales
+  }
+  if (localeCategoriesValue !== localeCategories) {
+    php.localeCategories = localeCategories
+  }
+  if (pointersValue !== pointers) {
+    php.pointers = pointers
+  }
+
+  const localeDefaultValue = php.locale_default
+  const localeDefault = typeof localeDefaultValue === 'string' ? localeDefaultValue : undefined
+
+  return {
+    ini,
+    locales,
+    localeCategories,
+    pointers,
+    locale_default: localeDefault,
+  }
+}
+
+// php/info/ini_get (Locutus dependency module)
+function ini_get(varname) {
+  //  discuss at: https://locutus.io/php/ini_get/
+  // original by: Brett Zamir (https://brett-zamir.me)
+  //      note 1: The ini values must be set by ini_set or manually within an ini file
+  //   example 1: ini_set('date.timezone', 'Asia/Hong_Kong')
+  //   example 1: ini_get('date.timezone')
+  //   returns 1: 'Asia/Hong_Kong'
+
+  const runtime = ensurePhpRuntimeState()
+  const entry = runtime.ini[varname]
+
+  if (entry && entry.local_value !== undefined) {
+    if (entry.local_value === null) {
+      return ''
+    }
+    return String(entry.local_value)
+  }
+
+  return ''
+}
+
+// php/url/parse_url (target function module)
+function parse_url(str, component) {
+  //       discuss at: https://locutus.io/php/parse_url/
+  //      original by: Steven Levithan (https://blog.stevenlevithan.com)
+  // reimplemented by: Brett Zamir (https://brett-zamir.me)
+  //         input by: Lorenzo Pisani
+  //         input by: Tony
+  //      improved by: Brett Zamir (https://brett-zamir.me)
+  //           note 1: original by https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: blog post at https://blog.stevenlevithan.com/archives/parseuri
+  //           note 1: demo at https://stevenlevithan.com/demo/parseuri/js/assets/parseuri.js
+  //           note 1: Does not replace invalid characters with '_' as in PHP,
+  //           note 1: nor does it return false with
+  //           note 1: a seriously malformed URL.
+  //           note 1: Besides function name, is essentially the same as parseUri as
+  //           note 1: well as our allowing
+  //           note 1: an extra slash after the scheme/protocol (to allow file:/// as in PHP)
+  //        example 1: parse_url('https://user:pass@host/path?a=v#a')
+  //        returns 1: {scheme: 'https', host: 'host', user: 'user', pass: 'pass', path: '/path', query: 'a=v', fragment: 'a'}
+  //        example 2: parse_url('https://en.wikipedia.org/wiki/%22@%22_%28album%29')
+  //        returns 2: {scheme: 'https', host: 'en.wikipedia.org', path: '/wiki/%22@%22_%28album%29'}
+  //        example 3: parse_url('https://host.domain.tld/a@b.c/folder')
+  //        returns 3: {scheme: 'https', host: 'host.domain.tld', path: '/a@b.c/folder'}
+  //        example 4: parse_url('https://gooduser:secretpassword@www.example.com/a@b.c/folder?foo=bar')
+  //        returns 4: { scheme: 'https', host: 'www.example.com', path: '/a@b.c/folder', query: 'foo=bar', user: 'gooduser', pass: 'secretpassword' }
+
+  let query
+
+  const mode = ini_get('locutus.parse_url.mode') || 'php'
+
+  const key = [
+    'source',
+    'scheme',
+    'authority',
+    'userInfo',
+    'user',
+    'pass',
+    'host',
+    'port',
+    'relative',
+    'path',
+    'directory',
+    'file',
+    'query',
+    'fragment',
+  ]
+
+  // For loose we added one optional slash to post-scheme to catch file:/// (should restrict this)
+  const parser = {
+    php: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/()(?:(?:()(?:([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '()',
+        '(?:(()(?:(?:[^?#\\/]*\\/)*)()(?:[^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    strict: new RegExp(
+      [
+        '(?:([^:\\/?#]+):)?',
+        '(?:\\/\\/((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?))?',
+        '((((?:[^?#\\/]*\\/)*)([^?#]*))(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+    loose: new RegExp(
+      [
+        '(?:(?![^:@]+:[^:@\\/]*@)([^:\\/?#.]+):)?',
+        '(?:\\/\\/\\/?)?',
+        '((?:(([^:@\\/]*):?([^:@\\/]*))?@)?([^:\\/?#]*)(?::(\\d*))?)',
+        '(((\\/(?:[^?#](?![^?#\\/]*\\.[^?#\\/.]+(?:[?#]|$)))*\\/?)?([^?#\\/]*))',
+        '(?:\\?([^#]*))?(?:#(.*))?)',
+      ].join(''),
+    ),
+  }
+
+  const parserMode = mode === 'php' || mode === 'strict' || mode === 'loose' ? mode : 'php'
+  const selectedParser = parser[parserMode]
+  const m = selectedParser.exec(str)
+  const uri = {}
+  if (!m) {
+    return uri
+  }
+  let i = 14
+
+  while (i--) {
+    const keyName = key[i]
+    if (keyName && m[i]) {
+      uri[keyName] = m[i]
+    }
+  }
+
+  if (component) {
+    return String(uri[component.replace('PHP_URL_', '').toLowerCase()] ?? '')
+  }
+
+  if (mode !== 'php') {
+    const name = ini_get('locutus.parse_url.queryKey') || 'queryKey'
+    const queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g
+    const queryObj = {}
+    uri[name] = queryObj
+    const queryKeyName = key[12]
+    query = String((queryKeyName ? uri[queryKeyName] : '') || '')
+    query.replace(queryParser, function ($0, $1, $2) {
+      if ($1) {
+        queryObj[$1] = $2
+      }
+      return $0
+    })
+  }
+
+  delete uri.source
+  return uri
+}{% endcodeblock %}
+</div>

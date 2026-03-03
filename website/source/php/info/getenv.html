@@ -4,18 +4,20 @@ examples:
   - getenv('LC_ALL')
 returns:
   - 'false'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpRuntimeState
 authors:
   original by:
     - Brett Zamir (https://brett-zamir.me)
 notes: []
 parityVerified:
   - PHP 8.3
+isTypescript: true
 type: function
 layout: function
-title: PHP's getenv in JavaScript
+title: PHP's getenv in TypeScript
 description: >-
-  Here's what our current JavaScript equivalent to <a
+  Here's what our current TypeScript equivalent to <a
   href="https://php.net/manual/en/function.getenv.php">PHP's getenv</a> looks
   like.
 function: getenv
@@ -28,17 +30,215 @@ alias:
   - /php/getenv/
   - /functions/getenv/
 ---
-{% codeblock lang:javascript %}module.exports = function getenv(varname) {
+<div class="code-tab-panel" data-lang="ts">
+{% codeblock lang:typescript %}import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+
+export function getenv(varname: string): string | false {
   //      discuss at: https://locutus.io/php/getenv/
   // parity verified: PHP 8.3
   //     original by: Brett Zamir (https://brett-zamir.me)
   //       example 1: getenv('LC_ALL')
   //       returns 1: false
 
-  if (typeof process !== 'undefined' || !process.env || !process.env[varname]) {
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
     return false
   }
 
-  return process.env[varname]
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
 }
 {% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+{% codeblock lang:javascript %}import { getPhpGlobalEntry, getPhpObjectEntry } from '../_helpers/_phpRuntimeState.ts'
+
+export function getenv(varname) {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
+    return false
+  }
+
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+interface LocutusRuntimeContainer {
+  php?: PhpAssoc<PhpInput>
+}
+
+interface PhpGlobalProcessLike {
+  env?: PhpAssoc<string | undefined>
+}
+
+interface PhpGlobalBufferLike {
+  from?: (...args: PhpInput[]) => PhpInput
+}
+
+interface PhpGlobalKnownEntryMap {
+  process: PhpGlobalProcessLike
+  Buffer: PhpGlobalBufferLike
+}
+
+type GlobalWithLocutus = {
+  $locutus?: LocutusRuntimeContainer
+  [key: string]: PhpInput
+}
+
+const globalContext: GlobalWithLocutus =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry<TKey extends keyof PhpGlobalKnownEntryMap>(
+  key: TKey,
+): PhpGlobalKnownEntryMap[TKey] | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined
+
+function getPhpGlobalEntry(key: string): PhpInput | undefined {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value: PhpInput, key: string): PhpInput | undefined {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current: object | null = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/info/getenv (target function module)
+function getenv(varname: string): string | false {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
+    return false
+  }
+
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpRuntimeState (Locutus helper dependency)
+const globalContext =
+  typeof window === 'object' && window !== null ? window : typeof global === 'object' && global !== null ? global : {}
+
+function getPhpGlobalEntry(key) {
+  const value = globalContext[key]
+  return typeof value === 'undefined' ? undefined : value
+}
+
+function getPhpObjectEntry(value, key) {
+  if ((typeof value !== 'object' && typeof value !== 'function') || value === null) {
+    return undefined
+  }
+
+  let current = value
+  while (current) {
+    const descriptor = Object.getOwnPropertyDescriptor(current, key)
+    if (descriptor) {
+      if (typeof descriptor.get === 'function') {
+        const getterValue = descriptor.get.call(value)
+        return typeof getterValue === 'undefined' ? undefined : getterValue
+      }
+      const directValue = descriptor.value
+      return typeof directValue === 'undefined' ? undefined : directValue
+    }
+    current = Object.getPrototypeOf(current)
+  }
+
+  return undefined
+}
+
+// php/info/getenv (target function module)
+function getenv(varname) {
+  //      discuss at: https://locutus.io/php/getenv/
+  // parity verified: PHP 8.3
+  //     original by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: getenv('LC_ALL')
+  //       returns 1: false
+
+  const processValue = getPhpGlobalEntry('process')
+  const hasProcessLike = typeof processValue !== 'undefined'
+  if (hasProcessLike) {
+    return false
+  }
+
+  if (typeof processValue !== 'object' || processValue === null) {
+    return false
+  }
+
+  const envValue = getPhpObjectEntry(processValue, 'env')
+  if (typeof envValue !== 'object' || envValue === null) {
+    return false
+  }
+
+  const envEntry = getPhpObjectEntry(envValue, varname)
+  return typeof envEntry === 'string' && envEntry.length > 0 ? envEntry : false
+}{% endcodeblock %}
+</div>
