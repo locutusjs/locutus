@@ -22,7 +22,13 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.1...main).
+
+- No unreleased changes yet.
+
+## v3.0.1
+
+Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...v3.0.1).
 
 ### Security
 
@@ -82,6 +88,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - `rust/str/to_lowercase`
   - `rust/str/to_uppercase`
   - `rust/str/trim`
+
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
