@@ -40,15 +40,15 @@
               if (!author) return;
 
               if (!uniqueAuthors[author]) {
-                uniqueAuthors[author] = { author: author, total: 0, functions: [] };
+                uniqueAuthors[author] = { author: author, total: 0, functions: {} };
               }
               if (!uniqueAuthors[author][typeKey]) {
                 uniqueAuthors[author][typeKey] = 0;
               }
               uniqueAuthors[author][typeKey]++;
               uniqueAuthors[author].total++;
-              if (uniqueAuthors[author].functions.indexOf(func.function) === -1) {
-                uniqueAuthors[author].functions.push(func.function);
+              if (!uniqueAuthors[author].functions[func.function]) {
+                uniqueAuthors[author].functions[func.function] = '/' + func.language + '/' + func.category + '/' + func.function + '/';
               }
             });
           }
@@ -85,11 +85,14 @@
                 }
               });
               %>
+              <%
+              var funcNames = Object.keys(author.functions);
+              %>
               <%- parts.join(', ') %>
-              <% if (author.functions.length === 1) { %>
-                &mdash; <a href="/<%= data.lang.language %>/<%= author.functions[0] %>"><%= author.functions[0] %></a>
+              <% if (funcNames.length === 1) { %>
+                &mdash; <a href="<%= author.functions[funcNames[0]] %>"><%= funcNames[0] %></a>
               <% } else { %>
-                &mdash; <%= author.functions.length %> functions
+                &mdash; <%= funcNames.length %> functions
               <% } %>
               </span>
             </li>
