@@ -724,28 +724,28 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-                    : funcName === 'Cut'
-                      ? `func locutusStringsCut(value string, sep string) []interface{} {
+                            : funcName === 'Cut'
+                              ? `func locutusStringsCut(value string, sep string) []interface{} {
 \tbefore, after, found := strings.Cut(value, sep)
 \treturn []interface{}{before, after, found}
 }
 
 `
-                      : funcName === 'CutPrefix'
-                        ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
+                              : funcName === 'CutPrefix'
+                                ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
 \tafter, found := strings.CutPrefix(value, prefix)
 \treturn []interface{}{after, found}
 }
 
 `
-                        : funcName === 'CutSuffix'
-                          ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
+                                : funcName === 'CutSuffix'
+                                  ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
 \tbefore, found := strings.CutSuffix(value, suffix)
 \treturn []interface{}{before, found}
 }
 
 `
-                          : ''
+                                  : ''
 
   return `package main
 
