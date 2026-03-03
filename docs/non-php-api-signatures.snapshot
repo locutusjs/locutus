@@ -103,11 +103,17 @@ src/lua/string/sub.ts :: export function sub(s: string, i: number, j?: number): 
 src/lua/string/upper.ts :: export function upper(s: string): string
 src/perl/POSIX/ceil.ts :: export function ceil(x: number): number
 src/perl/POSIX/floor.ts :: export function floor(x: number): number
+src/perl/core/abs.ts :: export function abs(value: number): number
+src/perl/core/chomp.ts :: export function chomp(str: string): string
+src/perl/core/chop.ts :: export function chop(str: string): string
 src/perl/core/chr.ts :: export function chr(code: number): string
+src/perl/core/hex.ts :: export function hex(value: string | number): number
+src/perl/core/int.ts :: export function int(value: number): number
 src/perl/core/lc.ts :: export function lc(str: string): string
 src/perl/core/lcfirst.ts :: export function lcfirst(str: string): string
 src/perl/core/length.ts :: export function length(str: string | null | undefined): number | undefined
 src/perl/core/ord.ts :: export function ord(str: string): number
+src/perl/core/quotemeta.ts :: export function quotemeta(str: string): string
 src/perl/core/reverse.ts :: export function reverse(str: string): string
 src/perl/core/substr.ts :: export function substr(str: string, offset: number, length?: number): string
 src/perl/core/uc.ts :: export function uc(str: string): string

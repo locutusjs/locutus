@@ -34,11 +34,17 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
 
 ### Expansion
 
-- Added 4 Perl core functions:
+- Added 10 Perl core functions:
+  - `perl/core/abs`
+  - `perl/core/chomp`
+  - `perl/core/chop`
   - `perl/core/chr`
-  - `perl/core/ord`
-  - `perl/core/ucfirst`
+  - `perl/core/hex`
+  - `perl/core/int`
   - `perl/core/lcfirst`
+  - `perl/core/ord`
+  - `perl/core/quotemeta`
+  - `perl/core/ucfirst`
 
 ## v3.0.0
 

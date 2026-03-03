@@ -788,3 +788,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `yarn lint` passed.
   - `yarn lint:ts` passed.
   - Targeted generated tests for new Perl functions passed (10 tests).
+
+### Iteration 52
+
+2026-03-03
+
+- **Area: Expansion (Perl core) + CI hardening follow-up**
+- Expanded the same PR scope from 4 to 10 Perl core additions by adding:
+  - `abs`, `chomp`, `chop`, `hex`, `int`, `quotemeta`
+  - (alongside previously added `chr`, `ord`, `ucfirst`, `lcfirst`)
+- Updated `src/perl/core/index.ts` exports and extended `src/rosetta.yml` mappings:
+  - Added Perl links for `math_abs`, `math_trunc`, `string_rtrim`.
+  - Added groups for `string_chomp` and `string_regex_escape`.
+- Regenerated generated tests and validated full Perl core generated suite:
+  - `corepack yarn vitest run test/generated/perl/core/*.vitest.ts` (15 files, 40 tests, all pass).
+- Addressed CI gate requirement for API signature snapshots:
+  - Updated `docs/non-php-api-signatures.snapshot` after export surface growth.
+- Note: local branch deletion for old merged branch remains blocked by shell policy in this environment.
