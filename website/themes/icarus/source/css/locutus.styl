@@ -69,6 +69,59 @@ section.authors
     a:before
       content: ""
 
+// Authors page
+.authors-intro
+  font-size: 1.05em
+  color: #555
+  margin-bottom: 1.5em
+
+.authors-lang-summary
+  font-size: 0.85em
+  color: #999
+  margin: -0.5em 0 0.5em
+
+.authors-list
+  list-style: none !important
+  margin: 0 !important
+  padding: 0 !important
+
+.author-entry
+  display: flex !important
+  align-items: baseline !important
+  gap: 8px
+  padding: 4px 0 !important
+  border-bottom: none !important
+
+  &:before
+    content: none !important
+
+  a:before
+    content: none !important
+
+.author-rank
+  flex-shrink: 0
+  width: 28px
+  text-align: right
+  font-size: 13px
+  color: #999
+
+.author-top1 .author-rank,
+.author-top2 .author-rank,
+.author-top3 .author-rank
+  font-size: 18px
+  width: 28px
+
+.author-name
+  font-weight: 600
+  flex-shrink: 0
+
+  a
+    font-weight: 600
+
+.author-stats
+  font-size: 0.85em
+  color: #777
+
 
 .article-entry blockquote:before
   content: ""

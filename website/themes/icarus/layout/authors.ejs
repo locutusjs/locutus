@@ -5,43 +5,39 @@
     </header>
 
     <div class="article-entry">
-      <p>
+      <p class="authors-intro">
         Locutus has had <a href="https://github.com/locutusjs/locutus/graphs/contributors">137 contributors</a> since 2008.
-        Below is a fine-grained record of who wrote, improved, or fixed each function:
+        Every function header tracks who wrote, improved, or fixed it.
+        This page tallies those credits per language.
       </p>
 
       <%
-      // Contribution types to track
       var contributionKeys = ['original by', 'improved by', 'reimplemented by', 'parts by', 'bugfixed by', 'revised by', 'input by'];
+      var medals = ['\u{1F947}', '\u{1F948}', '\u{1F949}']; // gold, silver, bronze
 
-      // Helper to format author name as link
       function formatAuthor(author) {
         var m;
-        // Skip Kevin (maintainer)
         if (author.match(/Kevin van Zonneveld/)) {
           return null;
         }
-        // Format: "Name (URL)" -> link
         if ((m = author.match(/^\s*(.+)\s*\(([^\)]+)\)\s*$/))) {
           return '<a href="' + m[2] + '">' + m[1] + '</a>';
         }
-        // Format: "https://..." -> link with domain
         if ((m = author.match(/^\s*(https?:\/\/.+)\s*$/i))) {
           return '<a href="' + m[1] + '">' + m[1].split('/')[2] + '</a>';
         }
         return author.trim();
       }
-      %>
 
-      <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
-        <%
-        // Aggregate authors for this language
+      // Collect all languages and their author data, skip empty ones
+      var languageData = [];
+      site.pages.find({ type: 'language' }).sort('order').each(function (lang) {
         var uniqueAuthors = {};
         site.pages.find({ language: lang.language, type: 'function' }).each(function (func) {
           for (var typeKey in func.authors) {
             func.authors[typeKey].forEach(function(authorRaw) {
               var author = formatAuthor(trim(authorRaw));
-              if (!author) return; // Skip Kevin
+              if (!author) return;
 
               if (!uniqueAuthors[author]) {
                 uniqueAuthors[author] = { author: author, total: 0, functions: [] };
@@ -58,37 +54,47 @@
           }
         });
 
-        // Convert to array and sort by total contributions
         var authorList = [];
         for (var name in uniqueAuthors) {
           authorList.push(uniqueAuthors[name]);
         }
         authorList.sort(function(a, b) { return b.total - a.total; });
-        %>
 
-        <h2>Authors of <a href="<%- url_for(lang.path).replace('index.html', '') %>"><%- lang.title %></a></h2>
-        <section class="authors" data-language="<%= lang.language %>">
-          <ol>
-          <% authorList.forEach(function(author) { %>
-            <li>
-              <%- author.author %>
-              <small>
+        // Only include languages that have authors
+        if (authorList.length > 0) {
+          languageData.push({ lang: lang, authors: authorList });
+        }
+      });
+      %>
+
+      <% languageData.forEach(function(data) { %>
+        <h2><a href="<%- url_for(data.lang.path).replace('index.html', '') %>"><%- data.lang.title %></a></h2>
+        <p class="authors-lang-summary"><%= data.authors.length %> contributor<%= data.authors.length !== 1 ? 's' : '' %></p>
+        <section class="authors" data-language="<%= data.lang.language %>">
+          <ul class="authors-list">
+          <% data.authors.forEach(function(author, idx) { %>
+            <li class="author-entry<%= idx < 3 ? ' author-top' + (idx + 1) : '' %>">
+              <span class="author-rank"><%= idx < 3 ? medals[idx] : (idx + 1) %></span>
+              <span class="author-name"><%- author.author %></span>
+              <span class="author-stats">
               <%
-              var contributions = [];
+              var parts = [];
               contributionKeys.forEach(function(key) {
                 if (author[key]) {
-                  contributions.push(key.replace(' by', '') + ': ' + author[key]);
+                  parts.push(author[key] + ' ' + key.replace(' by', ''));
                 }
               });
               %>
-              <%- contributions.join(' / ') %>
+              <%- parts.join(', ') %>
               <% if (author.functions.length === 1) { %>
-                (<a href="/<%= lang.language %>/<%= author.functions[0] %>"><%= author.functions[0] %></a>)
+                &mdash; <a href="/<%= data.lang.language %>/<%= author.functions[0] %>"><%= author.functions[0] %></a>
+              <% } else { %>
+                &mdash; <%= author.functions.length %> functions
               <% } %>
-              </small>
+              </span>
             </li>
           <% }); %>
-          </ol>
+          </ul>
         </section>
       <% }) %>
 
