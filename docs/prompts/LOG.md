@@ -1049,3 +1049,41 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check` passes.
 - Key learnings:
   - Microsecond timestamps need explicit examples that survive JavaScript millisecond precision (e.g. `-1000` µs, not `-1` µs) to keep expectations stable.
+
+### Iteration 62
+
+2026-03-03
+
+- **Area: Release + Go expansion (time follow-up)**
+- Plan:
+  - Ship `v3.0.1` security patch release.
+  - Land queued generated-test refresh on `main`.
+  - Start next Go expansion with deterministic time helpers.
+- Progress:
+  - Released `v3.0.1` from `main`:
+    - moved `## main` notes into `## v3.0.1` in `CHANGELOG.md`
+    - ran `npm version patch` and pushed tag
+    - confirmed publish + created GitHub release
+  - Squash-merged Go expansion PR `#542` after resolving `CHANGELOG.md` merge conflict against post-release `main`.
+  - Committed/pushed generated-test refresh on `main` (targeted files under `test/generated/php/**` and `test/generated/rust/**`).
+  - Opened new branch `feat/golang-time-next-expansion` and added:
+    - `src/golang/time/AddDate.ts`
+    - `src/golang/time/Sub.ts`
+    - `src/golang/time/Before.ts`
+    - `src/golang/time/After.ts`
+    - export wiring in `src/golang/time/index.ts`
+  - Regenerated tests:
+    - `test/generated/golang/time/AddDate.vitest.ts`
+    - `test/generated/golang/time/Sub.vitest.ts`
+    - `test/generated/golang/time/Before.vitest.ts`
+    - `test/generated/golang/time/After.vitest.ts`
+- Validation:
+  - New Go generated tests pass via targeted `vitest` run.
+  - `corepack yarn lint:ts` passes.
+- Follow-up fixes:
+  - CI parity regression for `golang/time/AddDate`, `Sub`, `Before`, `After` was resolved by extending `test/parity/lib/languages/golang.ts`:
+    - Added call converters to helper shims (`locutusTimeAddDate`, `locutusTimeSub`, `locutusTimeBefore`, `locutusTimeAfter`).
+    - Added time import detection for new helper names.
+  - Verified with targeted parity runs (`--no-cache`) for all four functions.
+- Key learnings:
+  - Locutus test generation expects exported function files to have standard header blocks; shared helpers are safer as local non-exported functions unless promoted to full helper modules with proper docs/tests.
