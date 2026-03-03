@@ -56,6 +56,10 @@ string_rtrim:
   - php/strings/chop
   - ruby/String/chop
   - ruby/String/chomp
+  - perl/core/chop
+
+string_chomp:
+  - perl/core/chomp
 
 string_contains:
   - golang/strings/Contains
@@ -106,6 +110,11 @@ string_repeat:
 string_capitalize:
   - php/strings/ucfirst
   - ruby/String/capitalize
+  - perl/core/ucfirst
+
+string_uncapitalize:
+  - php/strings/lcfirst
+  - perl/core/lcfirst
 
 string_compare:
   - php/strings/strcmp
@@ -231,6 +240,7 @@ math_abs:
   - julia/Base/abs
   - elixir/Kernel/abs
   - clojure/Math/abs
+  - perl/core/abs
 
 math_max:
   - php/math/max
@@ -259,6 +269,7 @@ math_cbrt:
 math_trunc:
   - python/math/trunc
   - awk/builtin/int
+  - perl/core/int
 
 math_factorial:
   - python/math/factorial
@@ -312,6 +323,14 @@ char_tolower:
 char_toupper:
   - c/ctype/toupper
 
+char_from_codepoint:
+  - php/strings/chr
+  - perl/core/chr
+
+char_to_codepoint:
+  - php/strings/ord
+  - perl/core/ord
+
 # =============================================================================
 # TYPE CONVERSION
 # =============================================================================
@@ -338,6 +357,10 @@ parse_bool:
 
 format_bool:
   - golang/strconv/FormatBool
+
+string_regex_escape:
+  - php/strings/quotemeta
+  - perl/core/quotemeta
 
 # =============================================================================
 # ARRAY/COLLECTION OPERATIONS
