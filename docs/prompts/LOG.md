@@ -1080,5 +1080,10 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Validation:
   - New Go generated tests pass via targeted `vitest` run.
   - `corepack yarn lint:ts` passes.
+- Follow-up fixes:
+  - CI parity regression for `golang/time/AddDate`, `Sub`, `Before`, `After` was resolved by extending `test/parity/lib/languages/golang.ts`:
+    - Added call converters to helper shims (`locutusTimeAddDate`, `locutusTimeSub`, `locutusTimeBefore`, `locutusTimeAfter`).
+    - Added time import detection for new helper names.
+  - Verified with targeted parity runs (`--no-cache`) for all four functions.
 - Key learnings:
   - Locutus test generation expects exported function files to have standard header blocks; shared helpers are safer as local non-exported functions unless promoted to full helper modules with proper docs/tests.

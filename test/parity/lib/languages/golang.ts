@@ -48,8 +48,12 @@ const GO_PACKAGES: Record<string, string> = {
   ParseFloat: 'strconv',
   ParseInt: 'strconv',
   // time package
+  AddDate: 'time',
+  After: 'time',
+  Before: 'time',
   Format: 'time',
   ParseDuration: 'time',
+  Sub: 'time',
   Unix: 'time',
   UnixMicro: 'time',
   UnixMilli: 'time',
@@ -325,6 +329,81 @@ function convertParseDurationCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus time/AddDate calls to helper calls.
+ * Go exposes AddDate as a method on time.Time, while locutus takes date-like input.
+ */
+function convertAddDateCalls(code: string): string {
+  const withIso = code.replace(/\bAddDate\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const years = args[1] ?? '0'
+    const months = args[2] ?? '0'
+    const days = args[3] ?? '0'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeAddDate(${value}, ${years}, ${months}, ${days})`
+  })
+
+  return withIso.replace(/\bAddDate\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const years = args[1] ?? '0'
+    const months = args[2] ?? '0'
+    const days = args[3] ?? '0'
+    if (!value) {
+      return match
+    }
+    return `locutusTimeAddDate(${value}, ${years}, ${months}, ${days})`
+  })
+}
+
+/**
+ * Convert Locutus time/Sub calls to helper calls.
+ */
+function convertSubCalls(code: string): string {
+  return code.replace(/\bSub\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const left = args[0]
+    const right = args[1]
+    if (!left || !right) {
+      return match
+    }
+    return `locutusTimeSub(${left}, ${right})`
+  })
+}
+
+/**
+ * Convert Locutus time/Before calls to helper calls.
+ */
+function convertBeforeCalls(code: string): string {
+  return code.replace(/\bBefore\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const left = args[0]
+    const right = args[1]
+    if (!left || !right) {
+      return match
+    }
+    return `locutusTimeBefore(${left}, ${right})`
+  })
+}
+
+/**
+ * Convert Locutus time/After calls to helper calls.
+ */
+function convertAfterCalls(code: string): string {
+  return code.replace(/\bAfter\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const left = args[0]
+    const right = args[1]
+    if (!left || !right) {
+      return match
+    }
+    return `locutusTimeAfter(${left}, ${right})`
+  })
+}
+
+/**
  * Convert Locutus strings/Cut calls to helper calls.
  * Go returns (before, after, found), while locutus Cut returns [before, after, found].
  */
@@ -424,6 +503,14 @@ function convertJsLineToGo(line: string, funcName: string): string {
     go = convertUnixMicroCalls(go)
   } else if (funcName === 'ParseDuration') {
     go = convertParseDurationCalls(go)
+  } else if (funcName === 'AddDate') {
+    go = convertAddDateCalls(go)
+  } else if (funcName === 'Sub') {
+    go = convertSubCalls(go)
+  } else if (funcName === 'Before') {
+    go = convertBeforeCalls(go)
+  } else if (funcName === 'After') {
+    go = convertAfterCalls(go)
   } else if (funcName === 'Cut') {
     go = convertCutCalls(go)
   } else if (funcName === 'CutPrefix') {
@@ -444,6 +531,10 @@ function convertJsLineToGo(line: string, funcName: string): string {
     funcName !== 'UnixMilli' &&
     funcName !== 'UnixMicro' &&
     funcName !== 'ParseDuration' &&
+    funcName !== 'AddDate' &&
+    funcName !== 'Sub' &&
+    funcName !== 'Before' &&
+    funcName !== 'After' &&
     funcName !== 'Cut' &&
     funcName !== 'CutPrefix' &&
     funcName !== 'CutSuffix'
@@ -484,7 +575,11 @@ function getRequiredImports(goCode: string): string[] {
     goCode.includes('locutusTimeUnix(') ||
     goCode.includes('locutusTimeUnixMilli(') ||
     goCode.includes('locutusTimeUnixMicro(') ||
-    goCode.includes('locutusParseDuration(')
+    goCode.includes('locutusParseDuration(') ||
+    goCode.includes('locutusTimeAddDate(') ||
+    goCode.includes('locutusTimeSub(') ||
+    goCode.includes('locutusTimeBefore(') ||
+    goCode.includes('locutusTimeAfter(')
   ) {
     imports.add('time')
   }
@@ -583,6 +678,49 @@ function jsToGo(jsCode: string[], funcName: string): string {
 \t\treturn 0
 \t}
 \treturn float64(d) / float64(time.Millisecond)
+}
+
+`
+                    : funcName === 'AddDate'
+                      ? `func locutusTimeAddDate(value string, years float64, months float64, days float64) string {
+\tt, err := time.Parse(time.RFC3339Nano, value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn t.AddDate(int(years), int(months), int(days)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                      : funcName === 'Sub'
+                        ? `func locutusTimeSub(left string, right string) float64 {
+\tl, leftErr := time.Parse(time.RFC3339Nano, left)
+\tr, rightErr := time.Parse(time.RFC3339Nano, right)
+\tif leftErr != nil || rightErr != nil {
+\t\treturn 0
+\t}
+\treturn float64(l.Sub(r)) / float64(time.Millisecond)
+}
+
+`
+                        : funcName === 'Before'
+                          ? `func locutusTimeBefore(left string, right string) bool {
+\tl, leftErr := time.Parse(time.RFC3339Nano, left)
+\tr, rightErr := time.Parse(time.RFC3339Nano, right)
+\tif leftErr != nil || rightErr != nil {
+\t\treturn false
+\t}
+\treturn l.Before(r)
+}
+
+`
+                          : funcName === 'After'
+                            ? `func locutusTimeAfter(left string, right string) bool {
+\tl, leftErr := time.Parse(time.RFC3339Nano, left)
+\tr, rightErr := time.Parse(time.RFC3339Nano, right)
+\tif leftErr != nil || rightErr != nil {
+\t\treturn false
+\t}
+\treturn l.After(r)
 }
 
 `
