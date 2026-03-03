@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our JavaScript TypeScript collective. Resistance is futile.  Locutus is 527 TypeScript implementations of standard library functions from 15 progr">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-03-03T13:20:11.192Z">
-<meta property="article:modified_time" content="2026-03-03T13:20:11.192Z">
+<meta property="article:published_time" content="2026-03-03T13:38:42.607Z">
+<meta property="article:modified_time" content="2026-03-03T13:38:42.607Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -242,7 +242,9 @@ ga('send', 'pageview');
 
 <h2 id="What-we-are-not"><a href="#What-we-are-not" class="headerlink" title="What we are not"></a>What we are not</h2><p>Locutus is <strong>not a drop-in standard library for TypeScript</strong>. If you need a well-rounded utility library, <a target="_blank" rel="noopener" href="https://lodash.com/">lodash</a> is the better choice.</p>
 <p>That said, there are useful things here, and Locutus makes it easy to pull in just a single function. The notes on each function page should help you judge its maturity.</p>
-<h2 id="What-we-port"><a href="#What-we-port" class="headerlink" title="What we port"></a>What we port</h2><p>Individual functions from standard libraries. We stay away from language constructs, global environment, data types, and extending built-in natives. We tried some of that in the early days and it did not end well. Other projects are welcome to take a stab at it using our MIT-licensed sources.</p>
+<h2 id="What-we-port"><a href="#What-we-port" class="headerlink" title="What we port"></a>What we port</h2><p>Individual functions from standard libraries. We port behavior, not baggage: function semantics in TypeScript, with JavaScript-native values at the API boundary.</p>
+<p>That means we stay away from language constructs, global runtime environments, foreign data structures, and extending built-in natives. A Go date-formatting port here should take a JavaScript <code>Date</code> and return a <code>string</code>, not a custom Go <code>time.Time</code>.</p>
+<p>Historic exception: for PHP compatibility, plain JS objects may be treated as associative arrays when <code>locutus.objectsAsArrays</code> is enabled.</p>
 <h2 id="A-community-effort"><a href="#A-community-effort" class="headerlink" title="A community effort"></a>A community effort</h2><p>Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>. Many of our functions are first iterations that could be improved. We hope they inspire you to come up with something better.</p>
 <h2 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h2><p>We use <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus">GitHub</a> for collaboration. There are a few guidelines in our <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/HEAD/CONTRIBUTING.md">CONTRIBUTING.md</a>. It would be helpful to glance over them before submitting your work.</p>
 <h2 id="Licensing"><a href="#Licensing" class="headerlink" title="Licensing"></a>Licensing</h2><p>Locutus is <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/HEAD/LICENSE">MIT licensed</a>. Use it however you like, including in commercial projects, as long as the license travels with it.</p>
@@ -256,7 +258,7 @@ ga('send', 'pageview');
 
 </div>
 
-    <a data-url="https://locutus.io/index.html" data-id="cuid6tEUUgIXj_YTkX3tXXVU3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://locutus.io/index.html" data-id="cuidHkxWTZEktLiiOAvPKVcGf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
