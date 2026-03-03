@@ -550,6 +550,16 @@ async function main() {
           console.log(`  Tcl: ${ver.output.trim()}`)
         }
       }
+      if (requiredLanguages.has('powershell') && image.startsWith('mcr.microsoft.com/powershell:')) {
+        const ver = runInDocker(
+          image,
+          ['pwsh', '-NoLogo', '-NoProfile', '-Command', '$PSVersionTable.PSVersion.ToString()'],
+          {},
+        )
+        if (ver.success) {
+          console.log(`  PowerShell: ${ver.output.trim()}`)
+        }
+      }
     }
     console.log('')
 

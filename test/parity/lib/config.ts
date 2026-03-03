@@ -104,6 +104,12 @@ export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
     // Uses python image because it ships `tclsh` and has reliable Docker Hub tags.
     dockerImage: 'python:3.12',
   },
+  {
+    id: 'powershell',
+    displayName: 'PowerShell',
+    version: '7.4',
+    dockerImage: 'mcr.microsoft.com/powershell:7.4-ubuntu-22.04',
+  },
 ]
 
 /**

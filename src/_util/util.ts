@@ -292,6 +292,14 @@ class Util {
         ],
         function_description_template: `Here's what our current TypeScript equivalent to <a href="https://www.tcl-lang.org/man/tcl/TclCmd/string.htm">[language]'s [category] [function]</a> looks like.`,
       },
+      powershell: {
+        order: 14,
+        function_title_template: "[language]'s [category].[function] in TypeScript",
+        human: 'PowerShell',
+        packageType: 'module',
+        inspiration_urls: ['<a href="https://learn.microsoft.com/powershell/scripting/">PowerShell docs</a>'],
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://learn.microsoft.com/powershell/">[language]'s [category].[function]</a> looks like.`,
+      },
     }
 
     this.allowSkip = argv.indexOf('--noskip') === -1
