@@ -887,3 +887,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check` passes.
 - Key learnings:
   - `rust:1.85` with `sh -lc` does not expose `rustc` on default `PATH`; parity runner must invoke `/usr/local/cargo/bin/rustc` explicitly.
+
+### Iteration 57
+
+2026-03-03
+
+- **Area: Expansion (Go time formatting) + Policy alignment**
+- Plan:
+  - Start Go date/time work with `golang/time/Format` while enforcing JS-native API boundaries.
+  - Keep deterministic output and parity behavior stable across environments.
+- Progress:
+  - Added `src/golang/time/Format.ts` and `src/golang/time/index.ts`.
+  - Updated `src/golang/index.ts` to export `time` package.
+  - `Format` accepts `Date | string | number` and renders a focused subset of Go layout tokens using UTC output.
+  - Added parity translation support in `test/parity/lib/languages/golang.ts` for `Format` via a Go helper (`locutusTimeFormat`) that parses RFC3339 and calls Go's `time.Time.Format`.
+  - Added Rosetta mapping: `date_format` (`php/datetime/date`, `golang/time/Format`).
+- Validation:
+  - `corepack yarn vitest run test/generated/golang/time/Format.vitest.ts` passes.
+  - `corepack yarn test:parity golang/time/Format --no-cache` passes.
+  - `corepack yarn lint:ts` passes.
+- Key learnings:
+  - Go's formatting API is method-based (`time.Time.Format`), so parity translation needs an explicit helper path instead of package-function mapping.
+  - UTC-only rendering keeps outputs deterministic and avoids local-time drift in generated/parity tests.

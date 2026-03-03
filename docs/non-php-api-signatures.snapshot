@@ -82,6 +82,7 @@ src/golang/strings/TrimPrefix.ts :: export function TrimPrefix(s: string, prefix
 src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: string): string
 src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
+src/golang/time/Format.ts :: export function Format(value: DateInput, layout: string): string
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
 src/julia/Base/floor.ts :: export function floor(x: number): number

@@ -40,6 +40,8 @@ const GO_PACKAGES: Record<string, string> = {
   Itoa: 'strconv',
   ParseBool: 'strconv',
   ParseInt: 'strconv',
+  // time package
+  Format: 'time',
 }
 
 // Functions to skip (implementation differences, etc.)
@@ -93,6 +95,88 @@ function stripTrailingComment(code: string): string {
 }
 
 /**
+ * Parse function arguments, handling nested structures and quoted strings.
+ */
+function parseArguments(argsStr: string): string[] {
+  const args: string[] = []
+  let current = ''
+  let depth = 0
+  let inString: string | null = null
+  let escaped = false
+
+  for (const char of argsStr) {
+    if (escaped) {
+      current += char
+      escaped = false
+      continue
+    }
+
+    if (char === '\\') {
+      current += char
+      escaped = true
+      continue
+    }
+
+    if (inString) {
+      current += char
+      if (char === inString) {
+        inString = null
+      }
+      continue
+    }
+
+    if (char === '"' || char === "'") {
+      current += char
+      inString = char
+      continue
+    }
+
+    if (char === '[' || char === '(' || char === '{') {
+      depth++
+      current += char
+      continue
+    }
+
+    if (char === ']' || char === ')' || char === '}') {
+      depth--
+      current += char
+      continue
+    }
+
+    if (char === ',' && depth === 0) {
+      args.push(current.trim())
+      current = ''
+      continue
+    }
+
+    current += char
+  }
+
+  if (current.trim()) {
+    args.push(current.trim())
+  }
+
+  return args
+}
+
+/**
+ * Convert Locutus time/Format calls to helper call for parity runtime.
+ * Go does not expose time.Format as a package function (it's a method on time.Time),
+ * so we route through a small helper.
+ */
+function convertFormatCalls(code: string): string {
+  return code.replace(/\bFormat\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const layout = args[1]
+    if (!value || !layout) {
+      return match
+    }
+    return `locutusTimeFormat(${value}, ${layout})`
+  })
+}
+
+/**
  * Convert a single JS line to Go
  */
 function convertJsLineToGo(line: string, funcName: string): string {
@@ -128,9 +212,13 @@ function convertJsLineToGo(line: string, funcName: string): string {
     return `[]string{${contents}}`
   })
 
+  if (funcName === 'Format') {
+    go = convertFormatCalls(go)
+  }
+
   // Handle function calls - prefix with package
   const pkg = GO_PACKAGES[funcName]
-  if (pkg) {
+  if (pkg && funcName !== 'Format') {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
     go = go.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${pkg}.${goFuncName}(`)
@@ -154,6 +242,9 @@ function getRequiredImports(goCode: string): string[] {
   }
   if (goCode.includes('strconv.')) {
     imports.add('strconv')
+  }
+  if (goCode.includes('time.') || goCode.includes('locutusTimeFormat(')) {
+    imports.add('time')
   }
 
   return Array.from(imports)
@@ -183,11 +274,24 @@ function jsToGo(jsCode: string[], funcName: string): string {
 
   const imports = getRequiredImports(mainBody)
   const importBlock = imports.length === 1 ? `import "${imports[0]}"` : `import (\n\t"${imports.join('"\n\t"')}"\n)`
+  const helperBlock =
+    funcName === 'Format'
+      ? `func locutusTimeFormat(value string, layout string) string {
+\tt, err := time.Parse(time.RFC3339Nano, value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn t.UTC().Format(layout)
+}
+
+`
+      : ''
 
   return `package main
 
 ${importBlock}
 
+${helperBlock}
 func main() {
 \t${mainBody}
 }

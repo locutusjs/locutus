@@ -77,6 +77,8 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - `rust/str/to_lowercase`
   - `rust/str/to_uppercase`
   - `rust/str/trim`
+- Added Go time formatting support:
+  - `golang/time/Format`
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
