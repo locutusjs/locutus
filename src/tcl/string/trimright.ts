@@ -1,12 +1,13 @@
 const escapeForCharClass = (chars: string): string => chars.replace(/[\\\]^/-]/g, '\\$&')
 
 export function trimright(str: string, chars?: string): string {
-  //  discuss at: https://locutus.io/tcl/trimright/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //   example 1: trimright('  hello  ')
-  //   returns 1: '  hello'
-  //   example 2: trimright('__hello__', '_')
-  //   returns 2: '__hello'
+  //      discuss at: https://locutus.io/tcl/trimright/
+  // parity verified: Tcl 8.6
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: trimright('  hello  ')
+  //       returns 1: '  hello'
+  //       example 2: trimright('__hello__', '_')
+  //       returns 2: '__hello'
 
   const value = String(str)
   if (chars === undefined) {

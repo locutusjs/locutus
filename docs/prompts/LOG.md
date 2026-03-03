@@ -787,3 +787,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `string_length`, `string_lowercase`, `string_uppercase`, `string_trim`, `string_ltrim`, `string_rtrim`, `string_reverse`, `string_index`, `string_last_index`, `string_repeat`.
 - Regenerated tests and validated Tcl generated coverage:
   - `corepack yarn vitest run test/generated/tcl/string/*.vitest.ts` (10 files, 23 tests, all pass).
+
+### Iteration 52
+
+2026-03-03
+
+- **Area: Verification (Tcl parity runtime integration)**
+- Plan:
+  - Wire Tcl into parity runner/parser stack used by TypeScript-first sources.
+  - Run Tcl parity in CI-compatible Docker without introducing custom images.
+  - Keep tracking strict and explicit in logs before broader Tcl expansion.
+- Progress:
+  - Added Tcl language handler registration and parity config entry.
+  - Updated parser/runtime resolution to support `.ts` sources (with `.js` fallback) and named export loading.
+  - Added Tcl translation/normalization handler and `parity verified: Tcl 8.6` headers to initial Tcl string functions.
+  - Switched Tcl parity Docker runtime from unavailable `tcl:8.6` to `python:3.12` (ships `tclsh` 8.6.x on Docker Hub).
+  - Updated parity runtime version output to print Tcl patchlevel when Tcl checks run via python image.
+- Key learnings:
+  - `tcl:*` official tags were not available from Docker Hub in our parity environment; relying on broadly available base images is more robust.
+  - Sharing runtime images across language handlers requires version-reporting logic to be language-aware, not image-prefix-only.

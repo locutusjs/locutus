@@ -71,8 +71,19 @@ export function runJs(
   example: Example,
 ): { success: boolean; result: string; error?: string } {
   try {
-    // Dynamic import the function
-    const func = require(filePath)
+    // Support both legacy CommonJS function exports and TS named exports
+    const loadedModule = require(filePath) as unknown
+    const func =
+      typeof loadedModule === 'function'
+        ? loadedModule
+        : typeof loadedModule === 'object' && loadedModule !== null
+          ? (loadedModule as Record<string, unknown>)[funcName]
+          : undefined
+
+    if (typeof func !== 'function') {
+      return { success: false, result: '', error: `Unable to resolve function "${funcName}" from ${filePath}` }
+    }
+
     const context = createBaseContext({ [funcName]: func })
 
     const lastLine = example.code[example.code.length - 1] || ''
