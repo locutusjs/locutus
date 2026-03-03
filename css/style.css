@@ -423,17 +423,18 @@ code {
   }
 }
 #main-nav {
-  height: 48px;
+  min-height: 48px;
   line-height: 48px;
   padding: 0 15px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
 }
 #main-nav .main-nav-link {
   float: none;
   display: inline-block;
   line-height: 48px;
+  padding: 0 8px;
+}
+#main-nav .main-nav-link:first-child {
+  padding-left: 15px;
 }
 @media screen and (min-width: 560px) and (max-width: 799px) {
   #main-nav {
