@@ -22,7 +22,33 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.1...main).
+
+### Expansion
+
+- Added Go stdlib-inspired expansions with parity coverage:
+  - `golang/time/Format`
+  - `golang/time/Parse`
+  - `golang/time/ParseDuration`
+  - `golang/time/Unix`
+  - `golang/time/UnixMilli`
+  - `golang/time/UnixMicro`
+  - `golang/strings/Cut`
+  - `golang/strings/CutPrefix`
+  - `golang/strings/CutSuffix`
+  - `golang/strings/ReplaceAll`
+  - `golang/strings/SplitN`
+  - `golang/strconv/FormatFloat`
+  - `golang/strconv/ParseFloat`
+
+## v3.0.1
+
+Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...v3.0.1).
+
+### Security
+
+- Hardened `php/funchand/call_user_func_array` callback resolution to avoid `eval` / `new Function` fallback paths for dynamic callback lookup.
+- Added a custom regression test to block code-injection payloads in array callback method names (`test/custom/call_user_func_array-eval-injection.vitest.ts`).
 
 ### Infrastructure
 
@@ -77,8 +103,6 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - `rust/str/to_lowercase`
   - `rust/str/to_uppercase`
   - `rust/str/trim`
-- Added Go time formatting support:
-  - `golang/time/Format`
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
