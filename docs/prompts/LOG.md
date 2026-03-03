@@ -772,8 +772,40 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Removed `test/browser/app.js` from JS allowlist.
   - Updated CONTRIBUTING Browser Playground section with the new flow.
   - Moved browser modernization out of Backlog into `## main` changelog notes.
-
 ### Iteration 51
+
+2026-03-03
+
+- **Area: Expansion (Perl core) + Maintainer follow-up**
+- Synced local `main` after PR #537 merge and continued on new branch `feat/perl-core-basic-string-primitives`.
+- Local deletion of merged branch `feat/modernize-browser-tests` is blocked by current shell policy; branch left in local refs.
+- Added new Perl core functions:
+  - `chr`, `ord`, `ucfirst`, `lcfirst`.
+- Updated `src/perl/core/index.ts` exports and Rosetta mappings in `src/rosetta.yml` for capitalize/uncapitalize and character codepoint conversions.
+- Regenerated tests and added new generated Vitest cases for the four Perl functions.
+- Validation:
+  - `yarn lint` passed.
+  - `yarn lint:ts` passed.
+  - Targeted generated tests for new Perl functions passed (10 tests).
+
+### Iteration 52
+
+2026-03-03
+
+- **Area: Expansion (Perl core) + CI hardening follow-up**
+- Expanded the same PR scope from 4 to 10 Perl core additions by adding:
+  - `abs`, `chomp`, `chop`, `hex`, `int`, `quotemeta`
+  - (alongside previously added `chr`, `ord`, `ucfirst`, `lcfirst`)
+- Updated `src/perl/core/index.ts` exports and extended `src/rosetta.yml` mappings:
+  - Added Perl links for `math_abs`, `math_trunc`, `string_rtrim`.
+  - Added groups for `string_chomp` and `string_regex_escape`.
+- Regenerated generated tests and validated full Perl core generated suite:
+  - `corepack yarn vitest run test/generated/perl/core/*.vitest.ts` (15 files, 40 tests, all pass).
+- Addressed CI gate requirement for API signature snapshots:
+  - Updated `docs/non-php-api-signatures.snapshot` after export surface growth.
+- Note: local branch deletion for old merged branch remains blocked by shell policy in this environment.
+
+### Iteration 53
 
 2026-03-03
 
@@ -788,7 +820,7 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Regenerated tests and validated Tcl generated coverage:
   - `corepack yarn vitest run test/generated/tcl/string/*.vitest.ts` (10 files, 23 tests, all pass).
 
-### Iteration 52
+### Iteration 54
 
 2026-03-03
 

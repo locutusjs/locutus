@@ -45,7 +45,17 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - `tcl/string/trim`
   - `tcl/string/trimleft`
   - `tcl/string/trimright`
-
+- Added 10 Perl core functions:
+  - `perl/core/abs`
+  - `perl/core/chomp`
+  - `perl/core/chop`
+  - `perl/core/chr`
+  - `perl/core/hex`
+  - `perl/core/int`
+  - `perl/core/lcfirst`
+  - `perl/core/ord`
+  - `perl/core/quotemeta`
+  - `perl/core/ucfirst`
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
