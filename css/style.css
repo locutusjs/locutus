@@ -348,15 +348,13 @@ code {
   color: #38b7ea;
 }
 .header-inner #logo,
-#main-nav,
 #sub-nav,
 #search-form-wrap {
   height: 40px;
   line-height: 40px;
   padding: 12px 15px;
 }
-.header-inner #logo,
-#main-nav {
+.header-inner #logo {
   float: left;
 }
 #sub-nav,
@@ -424,6 +422,19 @@ code {
     display: none;
   }
 }
+#main-nav {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+#main-nav .main-nav-link {
+  float: none;
+  display: inline-block;
+  line-height: 48px;
+}
 @media screen and (min-width: 560px) and (max-width: 799px) {
   #main-nav {
     display: none;
@@ -431,6 +442,16 @@ code {
 }
 @media screen and (max-width: 559px) {
   #main-nav {
+    display: none;
+  }
+}
+@media screen and (min-width: 560px) and (max-width: 799px) {
+  #main-nav-desktop {
+    display: none;
+  }
+}
+@media screen and (max-width: 559px) {
+  #main-nav-desktop {
     display: none;
   }
 }
@@ -493,11 +514,6 @@ code {
 #sub-nav #profile-nav .fa {
   line-height: 40px;
 }
-@media screen and (max-width: 559px) {
-  #search-form-wrap {
-    display: none;
-  }
-}
 #search-form-wrap .search-form {
   position: relative;
 }
@@ -529,6 +545,15 @@ code {
 #search-form-wrap .search-form .search-form-submit:hover,
 #search-form-wrap .search-form .search-form-submit:focus {
   color: #777;
+}
+@media screen and (max-width: 559px) {
+  #search-form-wrap .search-form .search-form-input {
+    width: 120px;
+    padding: 0 24px 0 10px;
+  }
+  #search-form-wrap .search-form .search-form-submit {
+    right: 10px;
+  }
 }
 .search-form-input,
 .search-form-input.ins-search-input,
@@ -588,23 +613,6 @@ code {
 }
 #main-nav-mobile .menu:after {
   clear: both;
-}
-#main-nav-mobile .menu .search-form-input {
-  display: none;
-  padding: 0 10px;
-  margin-right: 15px;
-  height: 32px;
-  line-height: 32px;
-  border-radius: 16px;
-}
-@media screen and (max-width: 559px) {
-  #main-nav-mobile .menu .search-form-input {
-    display: block;
-  }
-}
-#main-nav-mobile .menu .search-form-input::-webkit-search-results-decoration,
-#main-nav-mobile .menu .search-form-input::-webkit-search-cancel-button {
-  -webkit-appearance: none;
 }
 .bio {
   text-align: center;

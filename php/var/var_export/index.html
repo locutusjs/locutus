@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     
-    <title>PHP&#39;s var_export in JavaScript | Locutus</title>
+    <title>PHP&#39;s var_export in TypeScript | Locutus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s var_export looks like.">
+    <meta name="description" content="Here&#39;s what our current TypeScript equivalent to PHP&#39;s var_export looks like.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PHP&#39;s var_export in JavaScript">
+<meta property="og:title" content="PHP&#39;s var_export in TypeScript">
 <meta property="og:url" content="https://locutus.io/php/var/var_export/index.html">
 <meta property="og:site_name" content="Locutus">
-<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s var_export looks like.">
+<meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to PHP&#39;s var_export looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-02-02T16:38:52.288Z">
-<meta property="article:modified_time" content="2026-02-02T16:38:52.288Z">
+<meta property="article:published_time" content="2026-03-03T09:05:11.046Z">
+<meta property="article:modified_time" content="2026-03-03T09:05:11.046Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -42,7 +42,6 @@
     
 <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
 
-    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
@@ -77,40 +76,6 @@ ga('send', 'pageview');
                 <i class="logo"></i>
                 <span class="site-title">Locutus</span>
             </a>
-            <nav id="main-nav">
-                
-                  <a class="main-nav-link" href="/c">C</a>
-                
-                  <a class="main-nav-link" href="/golang">Go</a>
-                
-                  <a class="main-nav-link" href="/python">Python</a>
-                
-                  <a class="main-nav-link" href="/ruby">Ruby</a>
-                
-                  <a class="main-nav-link" href="/php">PHP</a>
-                
-                  <a class="main-nav-link" href="/perl">Perl</a>
-                
-                  <a class="main-nav-link" href="/lua">Lua</a>
-                
-                  <a class="main-nav-link" href="/r">R</a>
-                
-                  <a class="main-nav-link" href="/julia">Julia</a>
-                
-                  <a class="main-nav-link" href="/elixir">Elixir</a>
-                
-                  <a class="main-nav-link" href="/clojure">Clojure</a>
-                
-                  <a class="main-nav-link" href="/awk">AWK</a>
-                
-                <span class="main-nav-link">|</span>
-                
-                  <a class="main-nav-link" href="/archives">Blog</a>
-                
-                  <a class="main-nav-link" href="/authors">Authors</a>
-                
-            </nav>
-            
             <div id="search-form-wrap">
 
     <form class="search-form">
@@ -153,7 +118,43 @@ ga('send', 'pageview');
 
 
 </div>
+            
         </div>
+    </div>
+    <div id="main-nav-desktop" class="header-sub header-inner">
+        <nav id="main-nav" class="outer">
+            
+              <a class="main-nav-link" href="/c">C</a>
+            
+              <a class="main-nav-link" href="/golang">Go</a>
+            
+              <a class="main-nav-link" href="/python">Python</a>
+            
+              <a class="main-nav-link" href="/ruby">Ruby</a>
+            
+              <a class="main-nav-link" href="/php">PHP</a>
+            
+              <a class="main-nav-link" href="/perl">Perl</a>
+            
+              <a class="main-nav-link" href="/lua">Lua</a>
+            
+              <a class="main-nav-link" href="/r">R</a>
+            
+              <a class="main-nav-link" href="/julia">Julia</a>
+            
+              <a class="main-nav-link" href="/elixir">Elixir</a>
+            
+              <a class="main-nav-link" href="/clojure">Clojure</a>
+            
+              <a class="main-nav-link" href="/awk">AWK</a>
+            
+            <span class="main-nav-link">|</span>
+            
+              <a class="main-nav-link" href="/archives">Blog</a>
+            
+              <a class="main-nav-link" href="/authors">Authors</a>
+            
+        </nav>
     </div>
     <div id="main-nav-mobile" class="header-sub header-inner">
         <table class="menu outer">
@@ -189,13 +190,6 @@ ga('send', 'pageview');
                 
                     <td><a class="main-nav-link" href="/authors">Authors</a></td>
                 
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-    </div>
-
-                </td>
             </tr>
         </table>
     </div>
@@ -208,10 +202,12 @@ ga('send', 'pageview');
   
 
 
+
+
 <article class="article article-type-function" >
   <div class="article-inner">
     <header class="article-header">
-      <h1 class="article-title">PHP&#39;s var_export in JavaScript</h1>
+      <h1 class="article-title">PHP&#39;s var_export in TypeScript</h1>
       
 
       
@@ -220,26 +216,28 @@ ga('send', 'pageview');
 
     <div class="article-entry">
       <h2>How to use</h2>
+      
+        <p>
+          Install via <code>yarn add locutus</code> and import:
+          <code>import { var_export } from 'locutus/php/var/var_export'</code>.
+        </p>
+        <p style="margin-top: 4px; font-size: 13px; color: #888;">
+          Or with CommonJS: <code>const { var_export } = require('locutus/php/var/var_export')</code>
+        </p>
+      
       <p>
-        You you can install via <code>yarn add locutus</code> and
-        require this function via <code>const var_export = require('locutus/php/var/var_export')</code>.
-      </p>
-      <p>
-        It is important to use a bundler that supports tree-shaking
-        so that you only ship the functions that you actually use to your browser,
-        instead of all of Locutus, which is massive. Examples are:
-        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
-        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-
-        For server-side use this is typically less of a concern.
+        Use a bundler that supports tree-shaking so you only ship the functions you actually use.
+        <a href="https://vite.dev/" target="_blank" rel="external">Vite</a>,
+        <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a>,
+        <a href="https://rollupjs.org/" target="_blank" rel="external">Rollup</a>, and
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>
+        all handle this. For server-side use this is less of a concern.
       </p>
 
       
         <h2>Examples</h2>
         <p>
-          Please note that these examples are distilled from test cases that automatically verify
-          our functions still work correctly. This could explain some quirky ones.
+          These examples are extracted from test cases that automatically verify our functions against their native counterparts.
         </p>
 
         <table>
@@ -275,41 +273,410 @@ var_export(data, true)</code></td><td><code>&#34;&#39;Kevin&#39;&#34;</code></td
         <ul>
         
           
+          <li><a href="/php/_helpers/_phpRuntimeState/">_phpRuntimeState</a> (php/_helpers)</li>
+        
+          
+          <li><a href="/php/_helpers/_phpTypes/">_phpTypes</a> (php/_helpers)</li>
+        
+          
           <li><a href="/php/strings/echo/">echo</a> (php/strings)</li>
         
         </ul>
       
 
       <p>
-        Here's what our current JavaScript equivalent to <a target="_blank" rel="noopener" href="https://php.net/manual/en/function.var-export.php">PHP's var_export</a> looks like.
+        Here's what our current TypeScript equivalent to <a target="_blank" rel="noopener" href="https://php.net/manual/en/function.var-export.php">PHP's var_export</a> looks like.
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params">mixedExpression, boolReturn</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (https://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (https://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  2 =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 3: var data = &#x27;Kevin&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: &quot;&#x27;Kevin&#x27;&quot;</span></span><br><span class="line">  <span class="comment">//   example 4: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, &#x27;lastName&#x27;: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 4: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  &#x27;lastName&#x27; =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 5: var_export([], true)</span></span><br><span class="line">  <span class="comment">//   returns 5: &quot;array (\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 6: var_export(&#123; test: [ &#x27;a&#x27;, &#x27;b&#x27; ] &#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 6: &quot;array (\n  &#x27;test&#x27; =&gt;\n  array (\n    0 =&gt; &#x27;a&#x27;,\n    1 =&gt; &#x27;b&#x27;,\n  ),\n)&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> echo = <span class="built_in">require</span>(<span class="string">&#x27;../strings/echo&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> retstr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> iret = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> value</span><br><span class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> x = []</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> funcParts = []</span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">const</span> idtLevel = <span class="variable language_">arguments</span>[<span class="number">2</span>] || <span class="number">2</span></span><br><span class="line">  <span class="keyword">let</span> innerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> outerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> getFuncName = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn)</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _isNormalInteger = <span class="keyword">function</span> (<span class="params">string</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> number = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Number</span>(string))</span><br><span class="line">    <span class="keyword">return</span> number !== <span class="title class_">Infinity</span> &amp;&amp; <span class="title class_">String</span>(number) === string &amp;&amp; number &gt;= <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _makeIndent = <span class="keyword">function</span> (<span class="params">idtLevel</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Array</span>(idtLevel + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> __getType = <span class="keyword">function</span> (<span class="params">inp</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> match</span><br><span class="line">    <span class="keyword">let</span> types</span><br><span class="line">    <span class="keyword">let</span> cons</span><br><span class="line">    <span class="keyword">let</span> type = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp &amp;&amp; inp.<span class="property">constructor</span> &amp;&amp; <span class="title function_">getFuncName</span>(inp.<span class="property">constructor</span>) === <span class="string">&#x27;LOCUTUS_Resource&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;function&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!inp.<span class="property">constructor</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;object&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = inp.<span class="property">constructor</span>.<span class="title function_">toString</span>()</span><br><span class="line">      match = cons.<span class="title function_">match</span>(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = match[<span class="number">1</span>].<span class="title function_">toLowerCase</span>()</span><br><span class="line">      &#125;</span><br><span class="line">      types = [<span class="string">&#x27;boolean&#x27;</span>, <span class="string">&#x27;number&#x27;</span>, <span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;array&#x27;</span>]</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cons === types[i]) &#123;</span><br><span class="line">          type = types[i]</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> type</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> type = <span class="title function_">__getType</span>(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;array&#x27;</span> || type === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    outerIndent = <span class="title function_">_makeIndent</span>(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = <span class="title function_">_makeIndent</span>(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> mixedExpression) &#123;</span><br><span class="line">      value = <span class="string">&#x27; &#x27;</span></span><br><span class="line">      <span class="keyword">const</span> subtype = <span class="title function_">__getType</span>(mixedExpression[i])</span><br><span class="line">      <span class="keyword">if</span> (subtype === <span class="string">&#x27;array&#x27;</span> || subtype === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        value = <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      value += <span class="title function_">var_export</span>(mixedExpression[i], <span class="number">1</span>, idtLevel + <span class="number">2</span>)</span><br><span class="line">      i = <span class="title function_">_isNormalInteger</span>(i) ? i : <span class="string">`&#x27;<span class="subst">$&#123;i&#125;</span>&#x27;`</span></span><br><span class="line">      x[cnt++] = innerIndent + i + <span class="string">&#x27; =&gt;&#x27;</span> + value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      iret = x.<span class="title function_">join</span>(<span class="string">&#x27;,\n&#x27;</span>) + <span class="string">&#x27;,\n&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    retstr = outerIndent + <span class="string">&#x27;array (\n&#x27;</span> + iret + outerIndent + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    funcParts = mixedExpression.<span class="title function_">toString</span>().<span class="title function_">match</span>(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// &#x27;\000lambda_1&#x27;. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we&#x27;ll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">&quot;create_function (&#x27;&quot;</span> + funcParts[<span class="number">1</span>] + <span class="string">&quot;&#x27;, &#x27;&quot;</span> + funcParts[<span class="number">2</span>].<span class="title function_">replace</span>(<span class="regexp">/&#x27;/g</span>, <span class="string">&quot;\\&#x27;&quot;</span>) + <span class="string">&quot;&#x27;)&quot;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;resource&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    retstr =</span><br><span class="line">      <span class="keyword">typeof</span> mixedExpression !== <span class="string">&#x27;string&#x27;</span></span><br><span class="line">        ? mixedExpression</span><br><span class="line">        : <span class="string">&quot;&#x27;&quot;</span> + mixedExpression.<span class="title function_">replace</span>(<span class="regexp">/([\\&#x27;])/g</span>, <span class="string">&#x27;\\$1&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\0/g</span>, <span class="string">&#x27;\\0&#x27;</span>) + <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    <span class="title function_">echo</span>(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+        <style>
+          .code-tabs {
+            position: relative;
+          }
+          .code-tabs-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+          }
+          .code-tabs-left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            min-width: 0;
+            scrollbar-width: thin;
+          }
+          .code-tab-btn {
+            position: relative;
+            padding: 8px 10px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            line-height: 1.2;
+            flex: 0 0 auto;
+          }
+          .code-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.04);
+          }
+          .code-tab-btn.active {
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            border-radius: 2px 2px 0 0;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .code-tab-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+          }
+          .code-tab-btn[data-tab="ts"].active::after,
+          .code-tab-btn[data-tab="standalone-ts"].active::after {
+            background: #3178c6;
+          }
+          .code-tab-btn[data-tab="js"].active::after,
+          .code-tab-btn[data-tab="standalone-js"].active::after {
+            background: #f0db4f;
+          }
+          .code-tab-btn .tab-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 900;
+            line-height: 16px;
+            text-align: center;
+            margin-right: 6px;
+            vertical-align: -2px;
+            letter-spacing: -0.5px;
+          }
+          .code-tab-btn[data-tab="ts"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-ts"] .tab-icon {
+            background: #3178c6;
+            color: #fff;
+          }
+          .code-tab-btn[data-tab="js"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-js"] .tab-icon {
+            background: #f0db4f;
+            color: #323330;
+          }
+          .code-panels-wrap {
+            position: relative;
+          }
+          .code-tab-panel {
+            display: none;
+          }
+          .code-tab-panel.active {
+            display: block;
+          }
+          .code-tab-panel figure.highlight {
+            border-radius: 0 8px 8px 8px;
+            margin-top: 0 !important;
+          }
+          .code-copy-icon-btn {
+            align-items: center;
+            background: rgba(38, 38, 38, 0.95);
+            border: 1px solid #404040;
+            border-radius: 6px;
+            color: #cfcfcf;
+            cursor: pointer;
+            display: inline-flex;
+            height: 30px;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+            width: 30px;
+            z-index: 4;
+          }
+          .code-copy-icon-btn:hover {
+            border-color: #5a5a5a;
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-copy-icon-btn svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+          .code-copy-icon-btn[data-state='copied'] {
+            border-color: #22c55e;
+            color: #22c55e;
+          }
+          .code-copy-icon-btn[data-state='failed'] {
+            border-color: #ef4444;
+            color: #ef4444;
+          }
+          .code-copy-icon-btn .code-copy-success {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-default {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-success {
+            display: block;
+          }
+          .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          @media (max-width: 640px) {
+            .code-tab-btn {
+              padding: 7px 8px;
+              font-size: 11px;
+            }
+          }
+        </style>
+        <div class="code-tabs">
+          <div class="code-tabs-header">
+            <div class="code-tabs-left">
+              <button class="code-tab-btn active" data-tab="ts" type="button">
+                <span class="tab-icon">TS</span><span class="tab-label">TypeScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="js" type="button">
+                <span class="tab-icon">JS</span><span class="tab-label">JavaScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-ts" type="button">
+                <span class="tab-icon">TS</span>Standalone TS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-js" type="button">
+                <span class="tab-icon">JS</span>Standalone JS
+              </button>
+            </div>
+          </div>
+          <div class="code-panels-wrap">
+            <button class="code-copy-icon-btn" type="button" data-state="idle" aria-label="Copy code" title="Copy code">
+              <span class="sr-only">Copy code</span>
+              <svg class="code-copy-default" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
+                <path d="M5 15V6.5C5 5.67 5.67 5 6.5 5H15" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+              <svg class="code-copy-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5L9.2 16.7L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <div class="code-tab-panel" data-lang="ts">
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getPhpObjectEntry &#125; <span class="keyword">from</span> <span class="string">&#x27;../_helpers/_phpRuntimeState.ts&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">type</span> <span class="title class_">PhpRuntimeValue</span>, toPhpArrayObject &#125; <span class="keyword">from</span> <span class="string">&#x27;../_helpers/_phpTypes.ts&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; echo &#125; <span class="keyword">from</span> <span class="string">&#x27;../strings/echo.ts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">VarExportInput</span> = <span class="title class_">PhpRuntimeValue</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">VarExportType</span> =</span><br><span class="line">  | <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;function&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;null&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;array&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;object&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;string&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;number&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;boolean&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">VarExportResult</span> = <span class="built_in">string</span> | <span class="built_in">number</span> | <span class="built_in">boolean</span> | <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"><span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>, <span class="attr">boolReturn</span>: <span class="literal">true</span>, <span class="attr">idtLevel</span>?: <span class="built_in">number</span></span>): <span class="title class_">VarExportResult</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"><span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>, <span class="attr">boolReturn</span>?: <span class="literal">false</span> | <span class="literal">undefined</span>, <span class="attr">idtLevel</span>?: <span class="built_in">number</span></span>): <span class="literal">null</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">boolReturn</span>?: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">idtLevel</span>?: <span class="built_in">number</span>,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">VarExportResult</span> | <span class="literal">null</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">boolReturn</span>?: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">  idtLevel = <span class="number">2</span>,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">VarExportResult</span> | <span class="literal">null</span> &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (https://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (https://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  2 =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 3: var data = &#x27;Kevin&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: &quot;&#x27;Kevin&#x27;&quot;</span></span><br><span class="line">  <span class="comment">//   example 4: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, &#x27;lastName&#x27;: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 4: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  &#x27;lastName&#x27; =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 5: var_export([], true)</span></span><br><span class="line">  <span class="comment">//   returns 5: &quot;array (\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 6: var_export(&#123; test: [ &#x27;a&#x27;, &#x27;b&#x27; ] &#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 6: &quot;array (\n  &#x27;test&#x27; =&gt;\n  array (\n    0 =&gt; &#x27;a&#x27;,\n    1 =&gt; &#x27;b&#x27;,\n  ),\n)&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> <span class="attr">retstr</span>: <span class="title class_">VarExportResult</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> iret = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> value = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">x</span>: <span class="built_in">string</span>[] = []</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">funcParts</span>: <span class="title class_">RegExpMatchArray</span> | <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">let</span> innerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> outerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> getFuncName = <span class="keyword">function</span> (<span class="params"><span class="attr">fn</span>: &#123; toString: () =&gt; <span class="built_in">string</span> &#125;</span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn.<span class="title function_">toString</span>())</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>] ?? <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _isNormalInteger = <span class="keyword">function</span> (<span class="params"><span class="attr">input</span>: <span class="built_in">string</span></span>): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">number</span> = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Number</span>(input))</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">number</span> !== <span class="title class_">Infinity</span> &amp;&amp; <span class="title class_">String</span>(<span class="built_in">number</span>) === input &amp;&amp; <span class="built_in">number</span> &gt;= <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _makeIndent = <span class="keyword">function</span> (<span class="params"><span class="attr">indentLevel</span>: <span class="built_in">number</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Array</span>(indentLevel + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> __getType = <span class="keyword">function</span> (<span class="params"><span class="attr">inp</span>: <span class="title class_">VarExportInput</span></span>): <span class="title class_">VarExportType</span> | <span class="literal">null</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> <span class="attr">match</span>: <span class="title class_">RegExpMatchArray</span> | <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">let</span> cons = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">types</span>: <span class="title class_">Array</span>&lt;<span class="string">&#x27;boolean&#x27;</span> | <span class="string">&#x27;number&#x27;</span> | <span class="string">&#x27;string&#x27;</span> | <span class="string">&#x27;array&#x27;</span>&gt; = [<span class="string">&#x27;boolean&#x27;</span>, <span class="string">&#x27;number&#x27;</span>, <span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;array&#x27;</span>]</span><br><span class="line">    <span class="keyword">const</span> jsType = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">let</span> <span class="attr">type</span>: <span class="title class_">VarExportType</span> | <span class="literal">null</span> =</span><br><span class="line">      jsType === <span class="string">&#x27;boolean&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;number&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;string&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;function&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;undefined&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;object&#x27;</span></span><br><span class="line">        ? jsType</span><br><span class="line">        : <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue === <span class="string">&#x27;function&#x27;</span> &amp;&amp; <span class="title function_">getFuncName</span>(constructorValue) === <span class="string">&#x27;LOCUTUS_Resource&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;function&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;object&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = constructorValue.<span class="title function_">toString</span>()</span><br><span class="line">      match = cons.<span class="title function_">match</span>(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = (match[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span>).<span class="title function_">toLowerCase</span>()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> knownType = types[i]</span><br><span class="line">        <span class="keyword">if</span> (knownType &amp;&amp; cons === knownType) &#123;</span><br><span class="line">          <span class="keyword">type</span> = knownType</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">type</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">type</span> = <span class="title function_">__getType</span>(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;array&#x27;</span> || <span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> source = toPhpArrayObject&lt;<span class="title class_">VarExportInput</span>&gt;(mixedExpression)</span><br><span class="line">    outerIndent = <span class="title function_">_makeIndent</span>(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = <span class="title function_">_makeIndent</span>(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> source) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hasOwnProperty</span>.<span class="title function_">call</span>(source, key)) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      value = <span class="string">&#x27; &#x27;</span></span><br><span class="line">      <span class="keyword">const</span> entry = source[key]</span><br><span class="line">      <span class="keyword">const</span> subtype = <span class="title function_">__getType</span>(entry)</span><br><span class="line">      <span class="keyword">if</span> (subtype === <span class="string">&#x27;array&#x27;</span> || subtype === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        value = <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      value += <span class="title class_">String</span>(<span class="title function_">var_export</span>(entry, <span class="literal">true</span>, idtLevel + <span class="number">2</span>))</span><br><span class="line">      <span class="keyword">const</span> mappedKey = <span class="title function_">_isNormalInteger</span>(key) ? key : <span class="string">`&#x27;<span class="subst">$&#123;key&#125;</span>&#x27;`</span></span><br><span class="line">      x[cnt++] = innerIndent + mappedKey + <span class="string">&#x27; =&gt;&#x27;</span> + value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      iret = x.<span class="title function_">join</span>(<span class="string">&#x27;,\n&#x27;</span>) + <span class="string">&#x27;,\n&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    retstr = outerIndent + <span class="string">&#x27;array (\n&#x27;</span> + iret + outerIndent + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    funcParts = <span class="title class_">String</span>(mixedExpression).<span class="title function_">match</span>(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line">    <span class="keyword">const</span> funcArgs = funcParts?.[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> funcBody = funcParts?.[<span class="number">2</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// &#x27;\000lambda_1&#x27;. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we&#x27;ll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">&quot;create_function (&#x27;&quot;</span> + funcArgs + <span class="string">&quot;&#x27;, &#x27;&quot;</span> + funcBody.<span class="title function_">replace</span>(<span class="regexp">/&#x27;/g</span>, <span class="string">&quot;\\&#x27;&quot;</span>) + <span class="string">&quot;&#x27;)&quot;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;resource&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="string">&quot;&#x27;&quot;</span> + mixedExpression.<span class="title function_">replace</span>(<span class="regexp">/([\\&#x27;])/g</span>, <span class="string">&#x27;\\$1&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\0/g</span>, <span class="string">&#x27;\\0&#x27;</span>) + <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mixedExpression === <span class="literal">null</span>) &#123;</span><br><span class="line">      retstr = <span class="literal">null</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Number</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;boolean&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Boolean</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      retstr = <span class="title class_">String</span>(mixedExpression)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    <span class="title function_">echo</span>(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getPhpObjectEntry &#125; <span class="keyword">from</span> <span class="string">&#x27;../_helpers/_phpRuntimeState.ts&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; toPhpArrayObject &#125; <span class="keyword">from</span> <span class="string">&#x27;../_helpers/_phpTypes.ts&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; echo &#125; <span class="keyword">from</span> <span class="string">&#x27;../strings/echo.ts&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params">mixedExpression, boolReturn, idtLevel = <span class="number">2</span></span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (https://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (https://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  2 =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 3: var data = &#x27;Kevin&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: &quot;&#x27;Kevin&#x27;&quot;</span></span><br><span class="line">  <span class="comment">//   example 4: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, &#x27;lastName&#x27;: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 4: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  &#x27;lastName&#x27; =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 5: var_export([], true)</span></span><br><span class="line">  <span class="comment">//   returns 5: &quot;array (\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 6: var_export(&#123; test: [ &#x27;a&#x27;, &#x27;b&#x27; ] &#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 6: &quot;array (\n  &#x27;test&#x27; =&gt;\n  array (\n    0 =&gt; &#x27;a&#x27;,\n    1 =&gt; &#x27;b&#x27;,\n  ),\n)&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> retstr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> iret = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> value = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> x = []</span><br><span class="line">  <span class="keyword">let</span> funcParts = <span class="literal">null</span></span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">let</span> innerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> outerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> getFuncName = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn.<span class="title function_">toString</span>())</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>] ?? <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _isNormalInteger = <span class="keyword">function</span> (<span class="params">input</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> number = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Number</span>(input))</span><br><span class="line">    <span class="keyword">return</span> number !== <span class="title class_">Infinity</span> &amp;&amp; <span class="title class_">String</span>(number) === input &amp;&amp; number &gt;= <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _makeIndent = <span class="keyword">function</span> (<span class="params">indentLevel</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Array</span>(indentLevel + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> __getType = <span class="keyword">function</span> (<span class="params">inp</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> match = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">let</span> cons = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> types = [<span class="string">&#x27;boolean&#x27;</span>, <span class="string">&#x27;number&#x27;</span>, <span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;array&#x27;</span>]</span><br><span class="line">    <span class="keyword">const</span> jsType = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">let</span> type =</span><br><span class="line">      jsType === <span class="string">&#x27;boolean&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;number&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;string&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;function&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;undefined&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;object&#x27;</span></span><br><span class="line">        ? jsType</span><br><span class="line">        : <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue === <span class="string">&#x27;function&#x27;</span> &amp;&amp; <span class="title function_">getFuncName</span>(constructorValue) === <span class="string">&#x27;LOCUTUS_Resource&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;function&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;object&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = constructorValue.<span class="title function_">toString</span>()</span><br><span class="line">      match = cons.<span class="title function_">match</span>(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = (match[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span>).<span class="title function_">toLowerCase</span>()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> knownType = types[i]</span><br><span class="line">        <span class="keyword">if</span> (knownType &amp;&amp; cons === knownType) &#123;</span><br><span class="line">          type = knownType</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> type</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> type = <span class="title function_">__getType</span>(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;array&#x27;</span> || type === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> source = <span class="title function_">toPhpArrayObject</span>(mixedExpression)</span><br><span class="line">    outerIndent = <span class="title function_">_makeIndent</span>(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = <span class="title function_">_makeIndent</span>(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> source) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hasOwnProperty</span>.<span class="title function_">call</span>(source, key)) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      value = <span class="string">&#x27; &#x27;</span></span><br><span class="line">      <span class="keyword">const</span> entry = source[key]</span><br><span class="line">      <span class="keyword">const</span> subtype = <span class="title function_">__getType</span>(entry)</span><br><span class="line">      <span class="keyword">if</span> (subtype === <span class="string">&#x27;array&#x27;</span> || subtype === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        value = <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      value += <span class="title class_">String</span>(<span class="title function_">var_export</span>(entry, <span class="literal">true</span>, idtLevel + <span class="number">2</span>))</span><br><span class="line">      <span class="keyword">const</span> mappedKey = <span class="title function_">_isNormalInteger</span>(key) ? key : <span class="string">`&#x27;<span class="subst">$&#123;key&#125;</span>&#x27;`</span></span><br><span class="line">      x[cnt++] = innerIndent + mappedKey + <span class="string">&#x27; =&gt;&#x27;</span> + value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      iret = x.<span class="title function_">join</span>(<span class="string">&#x27;,\n&#x27;</span>) + <span class="string">&#x27;,\n&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    retstr = outerIndent + <span class="string">&#x27;array (\n&#x27;</span> + iret + outerIndent + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    funcParts = <span class="title class_">String</span>(mixedExpression).<span class="title function_">match</span>(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line">    <span class="keyword">const</span> funcArgs = funcParts?.[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> funcBody = funcParts?.[<span class="number">2</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// &#x27;\000lambda_1&#x27;. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we&#x27;ll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">&quot;create_function (&#x27;&quot;</span> + funcArgs + <span class="string">&quot;&#x27;, &#x27;&quot;</span> + funcBody.<span class="title function_">replace</span>(<span class="regexp">/&#x27;/g</span>, <span class="string">&quot;\\&#x27;&quot;</span>) + <span class="string">&quot;&#x27;)&quot;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;resource&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="string">&quot;&#x27;&quot;</span> + mixedExpression.<span class="title function_">replace</span>(<span class="regexp">/([\\&#x27;])/g</span>, <span class="string">&#x27;\\$1&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\0/g</span>, <span class="string">&#x27;\\0&#x27;</span>) + <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mixedExpression === <span class="literal">null</span>) &#123;</span><br><span class="line">      retstr = <span class="literal">null</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Number</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;boolean&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Boolean</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      retstr = <span class="title class_">String</span>(mixedExpression)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    <span class="title function_">echo</span>(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// php/_helpers/_phpTypes (Locutus helper dependency)</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpNullish</span> = <span class="literal">null</span> | <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpInput</span> = &#123;&#125; | <span class="title class_">PhpNullish</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpScalar</span> = <span class="built_in">string</span> | <span class="built_in">number</span> | <span class="built_in">boolean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpPrimitive</span> = <span class="title class_">PhpScalar</span> | <span class="built_in">bigint</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpList</span>&lt;T = <span class="title class_">PhpInput</span>&gt; = T[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpAssoc</span>&lt;T = <span class="title class_">PhpInput</span>&gt; = &#123; [<span class="attr">key</span>: <span class="built_in">string</span>]: T &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpArrayLike</span>&lt;T = <span class="title class_">PhpInput</span>&gt; = <span class="title class_">PhpList</span>&lt;T&gt; | <span class="title class_">PhpAssoc</span>&lt;T&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpFunctionValue</span> = <span class="function">(<span class="params">...<span class="attr">args</span>: <span class="title class_">PhpInput</span>[]</span>) =&gt;</span> <span class="title class_">PhpInput</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">PhpRuntimeAssoc</span> &#123;</span><br><span class="line">  [<span class="attr">key</span>: <span class="built_in">string</span>]: <span class="title class_">PhpRuntimeValue</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">PhpRuntimeList</span> <span class="keyword">extends</span> <span class="title class_">Array</span>&lt;<span class="title class_">PhpRuntimeValue</span>&gt; &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PhpRuntimeValue</span> = <span class="title class_">PhpPrimitive</span> | <span class="title class_">PhpNullish</span> | <span class="title class_">PhpRuntimeList</span> | <span class="title class_">PhpRuntimeAssoc</span> | <span class="title class_">PhpFunctionValue</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isObjectLike</span>(<span class="params"><span class="attr">value</span>: <span class="title class_">PhpInput</span></span>): value is <span class="title class_">PhpArrayLike</span>&lt;<span class="title class_">PhpInput</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">&#x27;object&#x27;</span> &amp;&amp; value !== <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> isPhpArrayObject&lt;T = <span class="title class_">PhpInput</span>&gt;(<span class="attr">value</span>: <span class="title class_">PhpInput</span>): value is <span class="title class_">PhpAssoc</span>&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">isObjectLike</span>(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> toPhpArrayObject&lt;T = <span class="title class_">PhpInput</span>&gt;(<span class="attr">value</span>: <span class="title class_">PhpInput</span>): <span class="title class_">PhpAssoc</span>&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (isPhpArrayObject&lt;T&gt;(value)) &#123;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/_helpers/_phpRuntimeState (Locutus helper dependency)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getPhpObjectEntry</span>(<span class="params"><span class="attr">value</span>: <span class="title class_">PhpInput</span>, <span class="attr">key</span>: <span class="built_in">string</span></span>): <span class="title class_">PhpInput</span> | <span class="literal">undefined</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> ((<span class="keyword">typeof</span> value !== <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> value !== <span class="string">&#x27;function&#x27;</span>) || value === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> <span class="attr">current</span>: <span class="built_in">object</span> | <span class="literal">null</span> = value</span><br><span class="line">  <span class="keyword">while</span> (current) &#123;</span><br><span class="line">    <span class="keyword">const</span> descriptor = <span class="title class_">Object</span>.<span class="title function_">getOwnPropertyDescriptor</span>(current, key)</span><br><span class="line">    <span class="keyword">if</span> (descriptor) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> descriptor.<span class="property">get</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> getterValue = descriptor.<span class="property">get</span>.<span class="title function_">call</span>(value)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">typeof</span> getterValue === <span class="string">&#x27;undefined&#x27;</span> ? <span class="literal">undefined</span> : getterValue</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> directValue = descriptor.<span class="property">value</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">typeof</span> directValue === <span class="string">&#x27;undefined&#x27;</span> ? <span class="literal">undefined</span> : directValue</span><br><span class="line">    &#125;</span><br><span class="line">    current = <span class="title class_">Object</span>.<span class="title function_">getPrototypeOf</span>(current)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/strings/echo (Locutus dependency module)</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">EchoValue</span> = <span class="title class_">PhpRuntimeValue</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">echo</span>(<span class="params">...<span class="attr">args</span>: <span class="title class_">EchoValue</span>[]</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/echo/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">//     improved by: echo is bad</span></span><br><span class="line">  <span class="comment">//     improved by: Nate</span></span><br><span class="line">  <span class="comment">//     improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      revised by: Der Simon (https://innerdom.sourceforge.net/)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Eugene Bulkin (https://doubleaw.com/)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: EdorFaus</span></span><br><span class="line">  <span class="comment">//          note 1: In 1.3.2 and earlier, this function wrote to the body of the document when it</span></span><br><span class="line">  <span class="comment">//          note 1: was called in webbrowsers, in addition to supporting XUL.</span></span><br><span class="line">  <span class="comment">//          note 1: This involved &gt;100 lines of boilerplate to do this in a safe way.</span></span><br><span class="line">  <span class="comment">//          note 1: Since I can&#x27;t imageine a complelling use-case for this, and XUL is deprecated</span></span><br><span class="line">  <span class="comment">//          note 1: I have removed this behavior in favor of just calling `console.log`</span></span><br><span class="line">  <span class="comment">//          note 2: You&#x27;ll see functions depends on `echo` instead of `console.log` as we&#x27;ll want</span></span><br><span class="line">  <span class="comment">//          note 2: to have 1 contact point to interface with the outside world, so that it&#x27;s easy</span></span><br><span class="line">  <span class="comment">//          note 2: to support other ways of printing output.</span></span><br><span class="line">  <span class="comment">//      revised by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//        input by: JB</span></span><br><span class="line">  <span class="comment">//       example 1: echo(&#x27;Hello world&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: undefined</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(args.<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/var/var_export (target function module)</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">VarExportInput</span> = <span class="title class_">PhpRuntimeValue</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">VarExportType</span> =</span><br><span class="line">  | <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;function&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;null&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;array&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;object&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;string&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;number&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;boolean&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">VarExportResult</span> = <span class="built_in">string</span> | <span class="built_in">number</span> | <span class="built_in">boolean</span> | <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"><span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>, <span class="attr">boolReturn</span>: <span class="literal">true</span>, <span class="attr">idtLevel</span>?: <span class="built_in">number</span></span>): <span class="title class_">VarExportResult</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"><span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>, <span class="attr">boolReturn</span>?: <span class="literal">false</span> | <span class="literal">undefined</span>, <span class="attr">idtLevel</span>?: <span class="built_in">number</span></span>): <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">boolReturn</span>?: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">idtLevel</span>?: <span class="built_in">number</span>,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">VarExportResult</span> | <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params"></span></span><br><span class="line"><span class="params">  <span class="attr">mixedExpression</span>: <span class="title class_">VarExportInput</span>,</span></span><br><span class="line"><span class="params">  <span class="attr">boolReturn</span>?: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">  idtLevel = <span class="number">2</span>,</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">VarExportResult</span> | <span class="literal">null</span> &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (https://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (https://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  2 =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 3: var data = &#x27;Kevin&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: &quot;&#x27;Kevin&#x27;&quot;</span></span><br><span class="line">  <span class="comment">//   example 4: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, &#x27;lastName&#x27;: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 4: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  &#x27;lastName&#x27; =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 5: var_export([], true)</span></span><br><span class="line">  <span class="comment">//   returns 5: &quot;array (\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 6: var_export(&#123; test: [ &#x27;a&#x27;, &#x27;b&#x27; ] &#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 6: &quot;array (\n  &#x27;test&#x27; =&gt;\n  array (\n    0 =&gt; &#x27;a&#x27;,\n    1 =&gt; &#x27;b&#x27;,\n  ),\n)&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> <span class="attr">retstr</span>: <span class="title class_">VarExportResult</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> iret = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> value = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">x</span>: <span class="built_in">string</span>[] = []</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">funcParts</span>: <span class="title class_">RegExpMatchArray</span> | <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">let</span> innerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> outerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> getFuncName = <span class="keyword">function</span> (<span class="params"><span class="attr">fn</span>: &#123; toString: () =&gt; <span class="built_in">string</span> &#125;</span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn.<span class="title function_">toString</span>())</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>] ?? <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _isNormalInteger = <span class="keyword">function</span> (<span class="params"><span class="attr">input</span>: <span class="built_in">string</span></span>): <span class="built_in">boolean</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">number</span> = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Number</span>(input))</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">number</span> !== <span class="title class_">Infinity</span> &amp;&amp; <span class="title class_">String</span>(<span class="built_in">number</span>) === input &amp;&amp; <span class="built_in">number</span> &gt;= <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _makeIndent = <span class="keyword">function</span> (<span class="params"><span class="attr">indentLevel</span>: <span class="built_in">number</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Array</span>(indentLevel + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> __getType = <span class="keyword">function</span> (<span class="params"><span class="attr">inp</span>: <span class="title class_">VarExportInput</span></span>): <span class="title class_">VarExportType</span> | <span class="literal">null</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> <span class="attr">match</span>: <span class="title class_">RegExpMatchArray</span> | <span class="literal">null</span> = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">let</span> cons = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> <span class="attr">types</span>: <span class="title class_">Array</span>&lt;<span class="string">&#x27;boolean&#x27;</span> | <span class="string">&#x27;number&#x27;</span> | <span class="string">&#x27;string&#x27;</span> | <span class="string">&#x27;array&#x27;</span>&gt; = [<span class="string">&#x27;boolean&#x27;</span>, <span class="string">&#x27;number&#x27;</span>, <span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;array&#x27;</span>]</span><br><span class="line">    <span class="keyword">const</span> jsType = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">let</span> <span class="attr">type</span>: <span class="title class_">VarExportType</span> | <span class="literal">null</span> =</span><br><span class="line">      jsType === <span class="string">&#x27;boolean&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;number&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;string&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;function&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;undefined&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;object&#x27;</span></span><br><span class="line">        ? jsType</span><br><span class="line">        : <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue === <span class="string">&#x27;function&#x27;</span> &amp;&amp; <span class="title function_">getFuncName</span>(constructorValue) === <span class="string">&#x27;LOCUTUS_Resource&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;function&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;object&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = constructorValue.<span class="title function_">toString</span>()</span><br><span class="line">      match = cons.<span class="title function_">match</span>(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = (match[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span>).<span class="title function_">toLowerCase</span>()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> knownType = types[i]</span><br><span class="line">        <span class="keyword">if</span> (knownType &amp;&amp; cons === knownType) &#123;</span><br><span class="line">          <span class="keyword">type</span> = knownType</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">type</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">type</span> = <span class="title function_">__getType</span>(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;array&#x27;</span> || <span class="keyword">type</span> === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> source = toPhpArrayObject&lt;<span class="title class_">VarExportInput</span>&gt;(mixedExpression)</span><br><span class="line">    outerIndent = <span class="title function_">_makeIndent</span>(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = <span class="title function_">_makeIndent</span>(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> source) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hasOwnProperty</span>.<span class="title function_">call</span>(source, key)) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      value = <span class="string">&#x27; &#x27;</span></span><br><span class="line">      <span class="keyword">const</span> entry = source[key]</span><br><span class="line">      <span class="keyword">const</span> subtype = <span class="title function_">__getType</span>(entry)</span><br><span class="line">      <span class="keyword">if</span> (subtype === <span class="string">&#x27;array&#x27;</span> || subtype === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        value = <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      value += <span class="title class_">String</span>(<span class="title function_">var_export</span>(entry, <span class="literal">true</span>, idtLevel + <span class="number">2</span>))</span><br><span class="line">      <span class="keyword">const</span> mappedKey = <span class="title function_">_isNormalInteger</span>(key) ? key : <span class="string">`&#x27;<span class="subst">$&#123;key&#125;</span>&#x27;`</span></span><br><span class="line">      x[cnt++] = innerIndent + mappedKey + <span class="string">&#x27; =&gt;&#x27;</span> + value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      iret = x.<span class="title function_">join</span>(<span class="string">&#x27;,\n&#x27;</span>) + <span class="string">&#x27;,\n&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    retstr = outerIndent + <span class="string">&#x27;array (\n&#x27;</span> + iret + outerIndent + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    funcParts = <span class="title class_">String</span>(mixedExpression).<span class="title function_">match</span>(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line">    <span class="keyword">const</span> funcArgs = funcParts?.[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> funcBody = funcParts?.[<span class="number">2</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// &#x27;\000lambda_1&#x27;. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we&#x27;ll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">&quot;create_function (&#x27;&quot;</span> + funcArgs + <span class="string">&quot;&#x27;, &#x27;&quot;</span> + funcBody.<span class="title function_">replace</span>(<span class="regexp">/&#x27;/g</span>, <span class="string">&quot;\\&#x27;&quot;</span>) + <span class="string">&quot;&#x27;)&quot;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">type</span> === <span class="string">&#x27;resource&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="string">&quot;&#x27;&quot;</span> + mixedExpression.<span class="title function_">replace</span>(<span class="regexp">/([\\&#x27;])/g</span>, <span class="string">&#x27;\\$1&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\0/g</span>, <span class="string">&#x27;\\0&#x27;</span>) + <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mixedExpression === <span class="literal">null</span>) &#123;</span><br><span class="line">      retstr = <span class="literal">null</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Number</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;boolean&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Boolean</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      retstr = <span class="title class_">String</span>(mixedExpression)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    <span class="title function_">echo</span>(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// php/_helpers/_phpTypes (Locutus helper dependency)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isPhpArrayObject</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">&#x27;object&#x27;</span> &amp;&amp; value !== <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">toPhpArrayObject</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isPhpArrayObject</span>(value)) &#123;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/_helpers/_phpRuntimeState (Locutus helper dependency)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getPhpObjectEntry</span>(<span class="params">value, key</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> ((<span class="keyword">typeof</span> value !== <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> value !== <span class="string">&#x27;function&#x27;</span>) || value === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> current = value</span><br><span class="line">  <span class="keyword">while</span> (current) &#123;</span><br><span class="line">    <span class="keyword">const</span> descriptor = <span class="title class_">Object</span>.<span class="title function_">getOwnPropertyDescriptor</span>(current, key)</span><br><span class="line">    <span class="keyword">if</span> (descriptor) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> descriptor.<span class="property">get</span> === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> getterValue = descriptor.<span class="property">get</span>.<span class="title function_">call</span>(value)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">typeof</span> getterValue === <span class="string">&#x27;undefined&#x27;</span> ? <span class="literal">undefined</span> : getterValue</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> directValue = descriptor.<span class="property">value</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">typeof</span> directValue === <span class="string">&#x27;undefined&#x27;</span> ? <span class="literal">undefined</span> : directValue</span><br><span class="line">    &#125;</span><br><span class="line">    current = <span class="title class_">Object</span>.<span class="title function_">getPrototypeOf</span>(current)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/strings/echo (Locutus dependency module)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">echo</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/echo/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">//     improved by: echo is bad</span></span><br><span class="line">  <span class="comment">//     improved by: Nate</span></span><br><span class="line">  <span class="comment">//     improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      revised by: Der Simon (https://innerdom.sourceforge.net/)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Eugene Bulkin (https://doubleaw.com/)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: EdorFaus</span></span><br><span class="line">  <span class="comment">//          note 1: In 1.3.2 and earlier, this function wrote to the body of the document when it</span></span><br><span class="line">  <span class="comment">//          note 1: was called in webbrowsers, in addition to supporting XUL.</span></span><br><span class="line">  <span class="comment">//          note 1: This involved &gt;100 lines of boilerplate to do this in a safe way.</span></span><br><span class="line">  <span class="comment">//          note 1: Since I can&#x27;t imageine a complelling use-case for this, and XUL is deprecated</span></span><br><span class="line">  <span class="comment">//          note 1: I have removed this behavior in favor of just calling `console.log`</span></span><br><span class="line">  <span class="comment">//          note 2: You&#x27;ll see functions depends on `echo` instead of `console.log` as we&#x27;ll want</span></span><br><span class="line">  <span class="comment">//          note 2: to have 1 contact point to interface with the outside world, so that it&#x27;s easy</span></span><br><span class="line">  <span class="comment">//          note 2: to support other ways of printing output.</span></span><br><span class="line">  <span class="comment">//      revised by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//        input by: JB</span></span><br><span class="line">  <span class="comment">//       example 1: echo(&#x27;Hello world&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: undefined</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(args.<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/var/var_export (target function module)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">var_export</span>(<span class="params">mixedExpression, boolReturn, idtLevel = <span class="number">2</span></span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/var_export/</span></span><br><span class="line">  <span class="comment">// original by: Philip Peterson</span></span><br><span class="line">  <span class="comment">// improved by: johnrembo</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: Brian Tafoya (https://www.premasolutions.com/)</span></span><br><span class="line">  <span class="comment">//    input by: Hans Henrik (https://hanshenrik.tk/)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">// bugfixed by: simivar (https://github.com/simivar)</span></span><br><span class="line">  <span class="comment">//   example 1: var_export(null)</span></span><br><span class="line">  <span class="comment">//   returns 1: null</span></span><br><span class="line">  <span class="comment">//   example 2: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, 2: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 2: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  2 =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 3: var data = &#x27;Kevin&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: var_export(data, true)</span></span><br><span class="line">  <span class="comment">//   returns 3: &quot;&#x27;Kevin&#x27;&quot;</span></span><br><span class="line">  <span class="comment">//   example 4: var_export(&#123;0: &#x27;Kevin&#x27;, 1: &#x27;van&#x27;, &#x27;lastName&#x27;: &#x27;Zonneveld&#x27;&#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 4: &quot;array (\n  0 =&gt; &#x27;Kevin&#x27;,\n  1 =&gt; &#x27;van&#x27;,\n  &#x27;lastName&#x27; =&gt; &#x27;Zonneveld&#x27;,\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 5: var_export([], true)</span></span><br><span class="line">  <span class="comment">//   returns 5: &quot;array (\n)&quot;</span></span><br><span class="line">  <span class="comment">//   example 6: var_export(&#123; test: [ &#x27;a&#x27;, &#x27;b&#x27; ] &#125;, true)</span></span><br><span class="line">  <span class="comment">//   returns 6: &quot;array (\n  &#x27;test&#x27; =&gt;\n  array (\n    0 =&gt; &#x27;a&#x27;,\n    1 =&gt; &#x27;b&#x27;,\n  ),\n)&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> retstr = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> iret = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> value = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> cnt = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> x = []</span><br><span class="line">  <span class="keyword">let</span> funcParts = <span class="literal">null</span></span><br><span class="line">  <span class="comment">// We use the last argument (not part of PHP) to pass in</span></span><br><span class="line">  <span class="comment">// our indentation level</span></span><br><span class="line">  <span class="keyword">let</span> innerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> outerIndent = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> getFuncName = <span class="keyword">function</span> (<span class="params">fn</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> name = <span class="regexp">/\W*function\s+([\w$]+)\s*\(/</span>.<span class="title function_">exec</span>(fn.<span class="title function_">toString</span>())</span><br><span class="line">    <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> name[<span class="number">1</span>] ?? <span class="string">&#x27;(Anonymous)&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _isNormalInteger = <span class="keyword">function</span> (<span class="params">input</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> number = <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Number</span>(input))</span><br><span class="line">    <span class="keyword">return</span> number !== <span class="title class_">Infinity</span> &amp;&amp; <span class="title class_">String</span>(number) === input &amp;&amp; number &gt;= <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _makeIndent = <span class="keyword">function</span> (<span class="params">indentLevel</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Array</span>(indentLevel + <span class="number">1</span>).<span class="title function_">join</span>(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> __getType = <span class="keyword">function</span> (<span class="params">inp</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> match = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">let</span> cons = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> types = [<span class="string">&#x27;boolean&#x27;</span>, <span class="string">&#x27;number&#x27;</span>, <span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;array&#x27;</span>]</span><br><span class="line">    <span class="keyword">const</span> jsType = <span class="keyword">typeof</span> inp</span><br><span class="line">    <span class="keyword">let</span> type =</span><br><span class="line">      jsType === <span class="string">&#x27;boolean&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;number&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;string&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;function&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;undefined&#x27;</span> ||</span><br><span class="line">      jsType === <span class="string">&#x27;object&#x27;</span></span><br><span class="line">        ? jsType</span><br><span class="line">        : <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue === <span class="string">&#x27;function&#x27;</span> &amp;&amp; <span class="title function_">getFuncName</span>(constructorValue) === <span class="string">&#x27;LOCUTUS_Resource&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;resource&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;function&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; !inp) &#123;</span><br><span class="line">      <span class="comment">// Should this be just null?</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;null&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;object&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> inp === <span class="string">&#x27;object&#x27;</span> &amp;&amp; inp !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> constructorValue = <span class="title function_">getPhpObjectEntry</span>(inp, <span class="string">&#x27;constructor&#x27;</span>)</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> constructorValue !== <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;object&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      cons = constructorValue.<span class="title function_">toString</span>()</span><br><span class="line">      match = cons.<span class="title function_">match</span>(<span class="regexp">/(\w+)\(/</span>)</span><br><span class="line">      <span class="keyword">if</span> (match) &#123;</span><br><span class="line">        cons = (match[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span>).<span class="title function_">toLowerCase</span>()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; types.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> knownType = types[i]</span><br><span class="line">        <span class="keyword">if</span> (knownType &amp;&amp; cons === knownType) &#123;</span><br><span class="line">          type = knownType</span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> type</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> type = <span class="title function_">__getType</span>(mixedExpression)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (type === <span class="literal">null</span>) &#123;</span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;array&#x27;</span> || type === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> source = <span class="title function_">toPhpArrayObject</span>(mixedExpression)</span><br><span class="line">    outerIndent = <span class="title function_">_makeIndent</span>(idtLevel - <span class="number">2</span>)</span><br><span class="line">    innerIndent = <span class="title function_">_makeIndent</span>(idtLevel)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> source) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hasOwnProperty</span>.<span class="title function_">call</span>(source, key)) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      value = <span class="string">&#x27; &#x27;</span></span><br><span class="line">      <span class="keyword">const</span> entry = source[key]</span><br><span class="line">      <span class="keyword">const</span> subtype = <span class="title function_">__getType</span>(entry)</span><br><span class="line">      <span class="keyword">if</span> (subtype === <span class="string">&#x27;array&#x27;</span> || subtype === <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">        value = <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">      value += <span class="title class_">String</span>(<span class="title function_">var_export</span>(entry, <span class="literal">true</span>, idtLevel + <span class="number">2</span>))</span><br><span class="line">      <span class="keyword">const</span> mappedKey = <span class="title function_">_isNormalInteger</span>(key) ? key : <span class="string">`&#x27;<span class="subst">$&#123;key&#125;</span>&#x27;`</span></span><br><span class="line">      x[cnt++] = innerIndent + mappedKey + <span class="string">&#x27; =&gt;&#x27;</span> + value</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      iret = x.<span class="title function_">join</span>(<span class="string">&#x27;,\n&#x27;</span>) + <span class="string">&#x27;,\n&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    retstr = outerIndent + <span class="string">&#x27;array (\n&#x27;</span> + iret + outerIndent + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;function&#x27;</span>) &#123;</span><br><span class="line">    funcParts = <span class="title class_">String</span>(mixedExpression).<span class="title function_">match</span>(<span class="regexp">/function .*?\((.*?)\) \&#123;([\s\S]*)\&#125;/</span>)</span><br><span class="line">    <span class="keyword">const</span> funcArgs = funcParts?.[<span class="number">1</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">const</span> funcBody = funcParts?.[<span class="number">2</span>] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// For lambda functions, var_export() outputs such as the following:</span></span><br><span class="line">    <span class="comment">// &#x27;\000lambda_1&#x27;. Since it will probably not be a common use to</span></span><br><span class="line">    <span class="comment">// expect this (unhelpful) form, we&#x27;ll use another PHP-exportable</span></span><br><span class="line">    <span class="comment">// construct, create_function() (though dollar signs must be on the</span></span><br><span class="line">    <span class="comment">// variables in JavaScript); if using instead in JavaScript and you</span></span><br><span class="line">    <span class="comment">// are using the namespaced version, note that create_function() will</span></span><br><span class="line">    <span class="comment">// not be available as a global</span></span><br><span class="line">    retstr = <span class="string">&quot;create_function (&#x27;&quot;</span> + funcArgs + <span class="string">&quot;&#x27;, &#x27;&quot;</span> + funcBody.<span class="title function_">replace</span>(<span class="regexp">/&#x27;/g</span>, <span class="string">&quot;\\&#x27;&quot;</span>) + <span class="string">&quot;&#x27;)&quot;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;resource&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// Resources treated as null for var_export</span></span><br><span class="line">    retstr = <span class="string">&#x27;NULL&#x27;</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="string">&quot;&#x27;&quot;</span> + mixedExpression.<span class="title function_">replace</span>(<span class="regexp">/([\\&#x27;])/g</span>, <span class="string">&#x27;\\$1&#x27;</span>).<span class="title function_">replace</span>(<span class="regexp">/\0/g</span>, <span class="string">&#x27;\\0&#x27;</span>) + <span class="string">&quot;&#x27;&quot;</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (mixedExpression === <span class="literal">null</span>) &#123;</span><br><span class="line">      retstr = <span class="literal">null</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;number&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Number</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> mixedExpression === <span class="string">&#x27;boolean&#x27;</span>) &#123;</span><br><span class="line">      retstr = <span class="title class_">Boolean</span>(mixedExpression)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      retstr = <span class="title class_">String</span>(mixedExpression)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!boolReturn) &#123;</span><br><span class="line">    <span class="title function_">echo</span>(retstr)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> retstr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+          </div>
+        </div>
+        <script>
+        (function() {
+          var STORAGE_KEY = 'locutus-code-variant';
+          var LEGACY_STORAGE_KEY = 'locutus-code-lang';
+          var saved = null;
+          try {
+            saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+          } catch(e) {}
+
+          if (saved === 'standalone') {
+            saved = 'standalone-js';
+          }
+
+          function getPanelCode(panel) {
+            if (!panel) {
+              return '';
+            }
+            var pre = panel.querySelector('pre');
+            if (pre) {
+              var preText = pre.innerText || pre.textContent || '';
+              if (preText) {
+                return preText.replace(/\u00a0/g, ' ').trimEnd();
+              }
+            }
+            var codeCell = panel.querySelector('figure.highlight .code');
+            if (codeCell) {
+              return (codeCell.textContent || '').replace(/\u00a0/g, ' ').trimEnd();
+            }
+            return '';
+          }
+
+          function copyText(value) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(value);
+            }
+            return new Promise(function(resolve, reject) {
+              try {
+                var textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (!ok) {
+                  reject(new Error('copy failed'));
+                  return;
+                }
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          var tabGroups = document.querySelectorAll('.code-tabs');
+          tabGroups.forEach(function(group) {
+            var buttons = group.querySelectorAll('.code-tab-btn');
+            var panels = group.querySelectorAll('.code-tab-panel');
+            var copyButton = group.querySelector('.code-copy-icon-btn');
+            var validTabs = [];
+
+            buttons.forEach(function(btn) {
+              var tab = btn.getAttribute('data-tab');
+              var hasPanel = Array.prototype.some.call(panels, function(panel) {
+                return panel.getAttribute('data-lang') === tab;
+              });
+              if (!hasPanel) {
+                btn.style.display = 'none';
+                return;
+              }
+              validTabs.push(tab);
+            });
+
+            var hasStandaloneTabs =
+              validTabs.indexOf('standalone-ts') !== -1 || validTabs.indexOf('standalone-js') !== -1;
+            var tsLabel = group.querySelector('.code-tab-btn[data-tab=\"ts\"] .tab-label');
+            var jsLabel = group.querySelector('.code-tab-btn[data-tab=\"js\"] .tab-label');
+            if (tsLabel) {
+              tsLabel.textContent = hasStandaloneTabs ? 'Module TS' : 'TypeScript';
+            }
+            if (jsLabel) {
+              jsLabel.textContent = hasStandaloneTabs ? 'Module JS' : 'JavaScript';
+            }
+
+            function switchTab(lang) {
+              if (validTabs.indexOf(lang) === -1) {
+                return;
+              }
+              buttons.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              });
+              panels.forEach(function(panel) {
+                panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+                panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+              });
+              try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+            }
+
+            buttons.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-tab'));
+              });
+            });
+
+            if (copyButton) {
+              var copyTimer = null;
+              copyButton.addEventListener('click', function() {
+                var activePanel = group.querySelector('.code-tab-panel.active') || panels[0];
+                var code = getPanelCode(activePanel);
+                if (!code.trim()) {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'No code available');
+                  copyButton.setAttribute('title', 'No code available');
+                  return;
+                }
+                copyText(code).then(function() {
+                  copyButton.setAttribute('data-state', 'copied');
+                  copyButton.setAttribute('aria-label', 'Copied');
+                  copyButton.setAttribute('title', 'Copied');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1400);
+                }).catch(function() {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'Copy failed');
+                  copyButton.setAttribute('title', 'Copy failed');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1600);
+                });
+              });
+            }
+
+            // Restore saved preference, default to TypeScript when available.
+            var defaultTab = validTabs.indexOf('ts') !== -1 ? 'ts' : validTabs[0];
+            if (saved && validTabs.indexOf(saved) !== -1) {
+              switchTab(saved);
+            } else if (defaultTab) {
+              switchTab(defaultTab);
+            }
+          });
+        })();
+        </script>
+      
 
 
       <div class="clearfix"></div>
 
-      <h2>Think you can do better?</h2>
+      <h2>Improve this function</h2>
       <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we assimilate first iterations with imperfections,
-        hoping for others to take issue with-and improve them.
-
-        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
-        but please be reminded to use our creations at your own risk.
-        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+        Locutus is a community effort following
+        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald's Theory</a>:
+        we ship first iterations, hoping others will improve them.
+        If you see something that could be better, we'd love your contribution.
       </p>
       <p>
-        Now go and:
-        [
-        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/php/var/var_export.js">View on GitHub</a></strong>
-        |
-        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/php/var/var_export.js">Edit on GitHub</a></strong>
-        |
-        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/var_export.js">View Raw</a></strong>
-        ]
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/php/var/var_export.ts">View on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/php/var/var_export.ts">Edit on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/var/var_export.ts">View Raw</a></strong>
       </p>
 
 
@@ -340,7 +707,7 @@ var_export(data, true)</code></td><td><code>&#34;&#39;Kevin&#39;&#34;</code></td
         <div class="base-info profile-block">
             <img id="avatar" src="/css/images/locutus-alpha.png" />
             <h2 id="name">Locutus</h2>
-            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <h3 id="title">All your standard libraries will be assimilated into our <del>JavaScript</del> <a href="/2026/03/locutus-3-0/">TypeScript</a> collective. Resistance is futile.</h3>
             <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
             <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
 
@@ -385,9 +752,147 @@ var_export(data, true)</code></td><td><code>&#34;&#39;Kevin&#39;&#34;</code></td
         <div class="widget-wrap widget-list">
   <h3 class="widget-title">on the githubs</h3>
   <div class="widget widget-on_the_githubs">
-    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+    <ul class="on-the-githubs">
+      <li class="otg-loading">Loading...</li>
+    </ul>
   </div>
 </div>
+
+<script>
+(function () {
+  var CACHE_KEY = 'otg_events'
+  var CACHE_TTL = 15 * 60 * 1000 // 15 minutes
+  var MAX_EVENTS = 15
+
+  function timeAgo(dateStr) {
+    var seconds = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000)
+    if (seconds < 60) return 'just now'
+    var minutes = Math.floor(seconds / 60)
+    if (minutes < 60) return minutes + 'm ago'
+    var hours = Math.floor(minutes / 60)
+    if (hours < 24) return hours + 'h ago'
+    var days = Math.floor(hours / 24)
+    if (days < 30) return days + 'd ago'
+    return Math.floor(days / 30) + 'mo ago'
+  }
+
+  function escHtml(str) {
+    var div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML
+  }
+
+  function truncate(str, len) {
+    return str.length > len ? str.substring(0, len) + '\u2026' : str
+  }
+
+  function describeEvent(ev) {
+    var p = ev.payload
+    switch (ev.type) {
+      case 'PushEvent':
+        var commits = p.commits || []
+        var branch = (p.ref || '').replace('refs/heads/', '')
+        var compareUrl = 'https://github.com/' + ev.repo.name + '/compare/' + p.before.substring(0, 10) + '...' + p.head.substring(0, 10)
+        if (commits.length === 1) return { text: truncate(commits[0].message.split('\n')[0], 60), url: 'https://github.com/' + ev.repo.name + '/commit/' + commits[0].sha }
+        if (commits.length > 1) return { text: 'pushed ' + commits.length + ' commits to ' + branch, url: compareUrl }
+        var size = p.size || p.distinct_size || 0
+        if (size > 0) return { text: 'pushed ' + size + ' commit' + (size !== 1 ? 's' : '') + ' to ' + branch, url: compareUrl }
+        return { text: 'pushed to ' + branch, url: compareUrl }
+      case 'PullRequestEvent':
+        return { text: p.action + ' PR: ' + truncate(p.pull_request.title, 50), url: p.pull_request.html_url }
+      case 'IssuesEvent':
+        return { text: p.action + ' issue: ' + truncate(p.issue.title, 50), url: p.issue.html_url }
+      case 'IssueCommentEvent':
+        return { text: 'commented on: ' + truncate(p.issue.title, 50), url: p.comment.html_url }
+      case 'CommitCommentEvent':
+        return { text: 'commented on commit', url: p.comment.html_url }
+      case 'PullRequestReviewEvent':
+        return { text: 'reviewed PR: ' + truncate(p.pull_request.title, 50), url: p.review.html_url }
+      case 'PullRequestReviewCommentEvent':
+        return { text: 'commented on PR: ' + truncate(p.pull_request.title, 50), url: p.comment.html_url }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'created the repository', url: 'https://github.com/' + ev.repo.name }
+        return { text: 'created ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name + '/tree/' + p.ref }
+      case 'DeleteEvent':
+        return { text: 'deleted ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name }
+      case 'ForkEvent':
+        return { text: 'forked the repo', url: p.forkee.html_url }
+      case 'WatchEvent':
+        return { text: 'starred the repo', url: 'https://github.com/' + ev.repo.name }
+      case 'ReleaseEvent':
+        return { text: p.action + ' release: ' + p.release.tag_name, url: p.release.html_url }
+      case 'MemberEvent':
+        return { text: p.action + ' member: ' + p.member.login, url: 'https://github.com/' + p.member.login }
+      default:
+        return null
+    }
+  }
+
+  function render(events) {
+    var ul = document.querySelector('.on-the-githubs')
+    if (!ul) return
+    ul.innerHTML = ''
+    var shown = 0
+    for (var i = 0; i < events.length && shown < MAX_EVENTS; i++) {
+      var desc = describeEvent(events[i])
+      if (!desc) continue
+      var ev = events[i]
+      var li = document.createElement('li')
+      li.innerHTML =
+        '<img src="https://avatars.githubusercontent.com/u/' + ev.actor.id + '?s=32&v=4" alt="" />' +
+        '<a target="_blank" rel="noopener" href="https://github.com/' + escHtml(ev.actor.login) + '">' + escHtml(ev.actor.login) + '</a> ' +
+        '<a href="' + escHtml(desc.url) + '">' + escHtml(desc.text) + '</a> ' +
+        '<time>' + timeAgo(ev.created_at) + '</time>'
+      ul.appendChild(li)
+      shown++
+    }
+    if (shown === 0) {
+      ul.innerHTML = '<li>No recent activity</li>'
+    }
+  }
+
+  function showFallback() {
+    var ul = document.querySelector('.on-the-githubs')
+    if (ul) ul.innerHTML = '<li><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/activity">View recent activity on GitHub</a></li>'
+  }
+
+  function load() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')
+      if (cached.data && cached.ts && (Date.now() - cached.ts) < CACHE_TTL) {
+        render(cached.data)
+        return
+      }
+    } catch (e) { /* ignore */ }
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://api.github.com/repos/locutusjs/locutus/events?per_page=20')
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText)
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, ts: Date.now() }))
+          render(data)
+        } catch (e) {
+          showFallback()
+        }
+      } else {
+        showFallback()
+      }
+    }
+    xhr.onerror = function () {
+      showFallback()
+    }
+    xhr.send()
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load)
+  } else {
+    load()
+  }
+})()
+</script>
 
     
         <div class="widget-wrap widget-list">
@@ -789,6 +1294,25 @@ var_export(data, true)</code></td><td><code>&#34;&#39;Kevin&#39;&#34;</code></td
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2026/03/locutus-3-0/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-3-typescript.svg)" alt="Locutus 3.0: Fully Assimilated into TypeScript" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2026/03/locutus-3-0/" class="title">Locutus 3.0: Fully Assimilated into TypeScript</a></p>
+                            <p class="item-date"><time datetime="2026-03-02T00:00:00.000Z" itemprop="datePublished">2026-03-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2024/04/24-update/" class="thumbnail">
     
     
@@ -824,25 +1348,6 @@ var_export(data, true)</code></td><td><code>&#34;&#39;Kevin&#39;&#34;</code></td
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/breaking-bc/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
-                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -857,7 +1362,7 @@ var_export(data, true)</code></td><td><code>&#34;&#39;Kevin&#39;&#34;</code></td
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Arwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+            Artwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>

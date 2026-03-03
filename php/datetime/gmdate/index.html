@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     
-    <title>PHP&#39;s gmdate in JavaScript | Locutus</title>
+    <title>PHP&#39;s gmdate in TypeScript | Locutus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s gmdate looks like.">
+    <meta name="description" content="Here&#39;s what our current TypeScript equivalent to PHP&#39;s gmdate looks like.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PHP&#39;s gmdate in JavaScript">
+<meta property="og:title" content="PHP&#39;s gmdate in TypeScript">
 <meta property="og:url" content="https://locutus.io/php/datetime/gmdate/index.html">
 <meta property="og:site_name" content="Locutus">
-<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s gmdate looks like.">
+<meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to PHP&#39;s gmdate looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-02-02T16:38:52.119Z">
-<meta property="article:modified_time" content="2026-02-02T16:38:52.119Z">
+<meta property="article:published_time" content="2026-03-03T09:04:53.391Z">
+<meta property="article:modified_time" content="2026-03-03T09:04:53.391Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -42,7 +42,6 @@
     
 <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
 
-    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
@@ -77,40 +76,6 @@ ga('send', 'pageview');
                 <i class="logo"></i>
                 <span class="site-title">Locutus</span>
             </a>
-            <nav id="main-nav">
-                
-                  <a class="main-nav-link" href="/c">C</a>
-                
-                  <a class="main-nav-link" href="/golang">Go</a>
-                
-                  <a class="main-nav-link" href="/python">Python</a>
-                
-                  <a class="main-nav-link" href="/ruby">Ruby</a>
-                
-                  <a class="main-nav-link" href="/php">PHP</a>
-                
-                  <a class="main-nav-link" href="/perl">Perl</a>
-                
-                  <a class="main-nav-link" href="/lua">Lua</a>
-                
-                  <a class="main-nav-link" href="/r">R</a>
-                
-                  <a class="main-nav-link" href="/julia">Julia</a>
-                
-                  <a class="main-nav-link" href="/elixir">Elixir</a>
-                
-                  <a class="main-nav-link" href="/clojure">Clojure</a>
-                
-                  <a class="main-nav-link" href="/awk">AWK</a>
-                
-                <span class="main-nav-link">|</span>
-                
-                  <a class="main-nav-link" href="/archives">Blog</a>
-                
-                  <a class="main-nav-link" href="/authors">Authors</a>
-                
-            </nav>
-            
             <div id="search-form-wrap">
 
     <form class="search-form">
@@ -153,7 +118,43 @@ ga('send', 'pageview');
 
 
 </div>
+            
         </div>
+    </div>
+    <div id="main-nav-desktop" class="header-sub header-inner">
+        <nav id="main-nav" class="outer">
+            
+              <a class="main-nav-link" href="/c">C</a>
+            
+              <a class="main-nav-link" href="/golang">Go</a>
+            
+              <a class="main-nav-link" href="/python">Python</a>
+            
+              <a class="main-nav-link" href="/ruby">Ruby</a>
+            
+              <a class="main-nav-link" href="/php">PHP</a>
+            
+              <a class="main-nav-link" href="/perl">Perl</a>
+            
+              <a class="main-nav-link" href="/lua">Lua</a>
+            
+              <a class="main-nav-link" href="/r">R</a>
+            
+              <a class="main-nav-link" href="/julia">Julia</a>
+            
+              <a class="main-nav-link" href="/elixir">Elixir</a>
+            
+              <a class="main-nav-link" href="/clojure">Clojure</a>
+            
+              <a class="main-nav-link" href="/awk">AWK</a>
+            
+            <span class="main-nav-link">|</span>
+            
+              <a class="main-nav-link" href="/archives">Blog</a>
+            
+              <a class="main-nav-link" href="/authors">Authors</a>
+            
+        </nav>
     </div>
     <div id="main-nav-mobile" class="header-sub header-inner">
         <table class="menu outer">
@@ -189,13 +190,6 @@ ga('send', 'pageview');
                 
                     <td><a class="main-nav-link" href="/authors">Authors</a></td>
                 
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-    </div>
-
-                </td>
             </tr>
         </table>
     </div>
@@ -208,10 +202,12 @@ ga('send', 'pageview');
   
 
 
+
+
 <article class="article article-type-function" >
   <div class="article-inner">
     <header class="article-header">
-      <h1 class="article-title">PHP&#39;s gmdate in JavaScript</h1>
+      <h1 class="article-title">PHP&#39;s gmdate in TypeScript</h1>
       
         <style>
           .verified-container {
@@ -265,26 +261,28 @@ ga('send', 'pageview');
 
     <div class="article-entry">
       <h2>How to use</h2>
+      
+        <p>
+          Install via <code>yarn add locutus</code> and import:
+          <code>import { gmdate } from 'locutus/php/datetime/gmdate'</code>.
+        </p>
+        <p style="margin-top: 4px; font-size: 13px; color: #888;">
+          Or with CommonJS: <code>const { gmdate } = require('locutus/php/datetime/gmdate')</code>
+        </p>
+      
       <p>
-        You you can install via <code>yarn add locutus</code> and
-        require this function via <code>const gmdate = require('locutus/php/datetime/gmdate')</code>.
-      </p>
-      <p>
-        It is important to use a bundler that supports tree-shaking
-        so that you only ship the functions that you actually use to your browser,
-        instead of all of Locutus, which is massive. Examples are:
-        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
-        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-
-        For server-side use this is typically less of a concern.
+        Use a bundler that supports tree-shaking so you only ship the functions you actually use.
+        <a href="https://vite.dev/" target="_blank" rel="external">Vite</a>,
+        <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a>,
+        <a href="https://rollupjs.org/" target="_blank" rel="external">Rollup</a>, and
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>
+        all handle this. For server-side use this is less of a concern.
       </p>
 
       
         <h2>Examples</h2>
         <p>
-          Please note that these examples are distilled from test cases that automatically verify
-          our functions still work correctly. This could explain some quirky ones.
+          These examples are extracted from test cases that automatically verify our functions against their native counterparts.
         </p>
 
         <table>
@@ -315,35 +313,398 @@ ga('send', 'pageview');
       
 
       <p>
-        Here's what our current JavaScript equivalent to <a target="_blank" rel="noopener" href="https://php.net/manual/en/function.gmdate.php">PHP's gmdate</a> looks like.
+        Here's what our current TypeScript equivalent to <a target="_blank" rel="noopener" href="https://php.net/manual/en/function.gmdate.php">PHP's gmdate</a> looks like.
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">gmdate</span>(<span class="params">format, timestamp</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/gmdate/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//        input by: Alex</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//       example 1: gmdate(&#x27;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#x27;, 1062402400); // Return will depend on your timezone</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;07:09:40 m is month&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> date = <span class="built_in">require</span>(<span class="string">&#x27;../datetime/date&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> dt =</span><br><span class="line">    <span class="keyword">typeof</span> timestamp === <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="keyword">new</span> <span class="title class_">Date</span>() <span class="comment">// Not provided</span></span><br><span class="line">      : timestamp <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp) <span class="comment">// Javascript Date()</span></span><br><span class="line">        : <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></span><br><span class="line"></span><br><span class="line">  timestamp = <span class="title class_">Date</span>.<span class="title function_">parse</span>(dt.<span class="title function_">toUTCString</span>().<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">4</span>)) / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">date</span>(format, timestamp)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+        <style>
+          .code-tabs {
+            position: relative;
+          }
+          .code-tabs-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+          }
+          .code-tabs-left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            min-width: 0;
+            scrollbar-width: thin;
+          }
+          .code-tab-btn {
+            position: relative;
+            padding: 8px 10px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            line-height: 1.2;
+            flex: 0 0 auto;
+          }
+          .code-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.04);
+          }
+          .code-tab-btn.active {
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            border-radius: 2px 2px 0 0;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .code-tab-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+          }
+          .code-tab-btn[data-tab="ts"].active::after,
+          .code-tab-btn[data-tab="standalone-ts"].active::after {
+            background: #3178c6;
+          }
+          .code-tab-btn[data-tab="js"].active::after,
+          .code-tab-btn[data-tab="standalone-js"].active::after {
+            background: #f0db4f;
+          }
+          .code-tab-btn .tab-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 900;
+            line-height: 16px;
+            text-align: center;
+            margin-right: 6px;
+            vertical-align: -2px;
+            letter-spacing: -0.5px;
+          }
+          .code-tab-btn[data-tab="ts"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-ts"] .tab-icon {
+            background: #3178c6;
+            color: #fff;
+          }
+          .code-tab-btn[data-tab="js"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-js"] .tab-icon {
+            background: #f0db4f;
+            color: #323330;
+          }
+          .code-panels-wrap {
+            position: relative;
+          }
+          .code-tab-panel {
+            display: none;
+          }
+          .code-tab-panel.active {
+            display: block;
+          }
+          .code-tab-panel figure.highlight {
+            border-radius: 0 8px 8px 8px;
+            margin-top: 0 !important;
+          }
+          .code-copy-icon-btn {
+            align-items: center;
+            background: rgba(38, 38, 38, 0.95);
+            border: 1px solid #404040;
+            border-radius: 6px;
+            color: #cfcfcf;
+            cursor: pointer;
+            display: inline-flex;
+            height: 30px;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+            width: 30px;
+            z-index: 4;
+          }
+          .code-copy-icon-btn:hover {
+            border-color: #5a5a5a;
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-copy-icon-btn svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+          .code-copy-icon-btn[data-state='copied'] {
+            border-color: #22c55e;
+            color: #22c55e;
+          }
+          .code-copy-icon-btn[data-state='failed'] {
+            border-color: #ef4444;
+            color: #ef4444;
+          }
+          .code-copy-icon-btn .code-copy-success {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-default {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-success {
+            display: block;
+          }
+          .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          @media (max-width: 640px) {
+            .code-tab-btn {
+              padding: 7px 8px;
+              font-size: 11px;
+            }
+          }
+        </style>
+        <div class="code-tabs">
+          <div class="code-tabs-header">
+            <div class="code-tabs-left">
+              <button class="code-tab-btn active" data-tab="ts" type="button">
+                <span class="tab-icon">TS</span><span class="tab-label">TypeScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="js" type="button">
+                <span class="tab-icon">JS</span><span class="tab-label">JavaScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-ts" type="button">
+                <span class="tab-icon">TS</span>Standalone TS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-js" type="button">
+                <span class="tab-icon">JS</span>Standalone JS
+              </button>
+            </div>
+          </div>
+          <div class="code-panels-wrap">
+            <button class="code-copy-icon-btn" type="button" data-state="idle" aria-label="Copy code" title="Copy code">
+              <span class="sr-only">Copy code</span>
+              <svg class="code-copy-default" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
+                <path d="M5 15V6.5C5 5.67 5.67 5 6.5 5H15" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+              <svg class="code-copy-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5L9.2 16.7L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <div class="code-tab-panel" data-lang="ts">
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; date &#125; <span class="keyword">from</span> <span class="string">&#x27;../datetime/date.ts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">gmdate</span>(<span class="params"><span class="attr">format</span>: <span class="built_in">string</span>, <span class="attr">timestamp</span>?: <span class="built_in">string</span> | <span class="built_in">number</span> | <span class="title class_">Date</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/gmdate/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//        input by: Alex</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//       example 1: gmdate(&#x27;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#x27;, 1062402400); // Return will depend on your timezone</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;07:09:40 m is month&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> dt =</span><br><span class="line">    <span class="keyword">typeof</span> timestamp === <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="keyword">new</span> <span class="title class_">Date</span>() <span class="comment">// Not provided</span></span><br><span class="line">      : timestamp <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp) <span class="comment">// Javascript Date()</span></span><br><span class="line">        : <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(timestamp) * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ts = <span class="title class_">Date</span>.<span class="title function_">parse</span>(dt.<span class="title function_">toUTCString</span>().<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">4</span>)) / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">date</span>(format, ts)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; date &#125; <span class="keyword">from</span> <span class="string">&#x27;../datetime/date.ts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">gmdate</span>(<span class="params">format, timestamp</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/gmdate/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//        input by: Alex</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//       example 1: gmdate(&#x27;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#x27;, 1062402400); // Return will depend on your timezone</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;07:09:40 m is month&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> dt =</span><br><span class="line">    <span class="keyword">typeof</span> timestamp === <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="keyword">new</span> <span class="title class_">Date</span>() <span class="comment">// Not provided</span></span><br><span class="line">      : timestamp <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp) <span class="comment">// Javascript Date()</span></span><br><span class="line">        : <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(timestamp) * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ts = <span class="title class_">Date</span>.<span class="title function_">parse</span>(dt.<span class="title function_">toUTCString</span>().<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">4</span>)) / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">date</span>(format, ts)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// php/datetime/date (Locutus dependency module)</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">DateFormatToken</span> =</span><br><span class="line">  | <span class="string">&#x27;d&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;D&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;j&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;l&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;N&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;S&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;w&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;z&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;W&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;F&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;m&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;M&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;n&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;t&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;L&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;o&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;Y&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;y&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;a&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;A&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;B&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;g&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;G&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;h&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;H&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;i&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;s&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;u&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;e&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;I&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;O&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;P&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;T&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;Z&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;c&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;r&#x27;</span></span><br><span class="line">  | <span class="string">&#x27;U&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">DateFormatterMap</span> = &#123; [K <span class="keyword">in</span> <span class="title class_">DateFormatToken</span>]: <span class="function">() =&gt;</span> <span class="built_in">string</span> | <span class="built_in">number</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">date</span>(<span class="params"><span class="attr">format</span>: <span class="built_in">string</span>, <span class="attr">timestamp</span>?: <span class="built_in">number</span> | <span class="title class_">Date</span> | <span class="built_in">string</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/date/</span></span><br><span class="line">  <span class="comment">// original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)</span></span><br><span class="line">  <span class="comment">// original by: gettimeofday</span></span><br><span class="line">  <span class="comment">//    parts by: Peter-Paul Koch (https://www.quirksmode.org/js/beat.html)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: MeEtc (https://yass.meetcweb.com)</span></span><br><span class="line">  <span class="comment">// improved by: Brad Touesnard</span></span><br><span class="line">  <span class="comment">// improved by: Tim Wiel</span></span><br><span class="line">  <span class="comment">// improved by: Bryan Elliott</span></span><br><span class="line">  <span class="comment">// improved by: David Randall</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Thomas Beaucourt (https://www.webapp.fr)</span></span><br><span class="line">  <span class="comment">// improved by: JT</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Rafał Kukawski (https://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: majak</span></span><br><span class="line">  <span class="comment">//    input by: Alex</span></span><br><span class="line">  <span class="comment">//    input by: Martin</span></span><br><span class="line">  <span class="comment">//    input by: Alex Wilson</span></span><br><span class="line">  <span class="comment">//    input by: Haravikk</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: majak</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: omid (https://locutus.io/php/380:380#comment_137122)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Chris (https://www.devotis.nl/)</span></span><br><span class="line">  <span class="comment">//      note 1: Uses global: locutus to store the default timezone</span></span><br><span class="line">  <span class="comment">//      note 1: Although the function potentially allows timezone info</span></span><br><span class="line">  <span class="comment">//      note 1: (see notes), it currently does not set</span></span><br><span class="line">  <span class="comment">//      note 1: per a timezone specified by date_default_timezone_set(). Implementers might use</span></span><br><span class="line">  <span class="comment">//      note 1: $locutus.currentTimezoneOffset and</span></span><br><span class="line">  <span class="comment">//      note 1: $locutus.currentTimezoneDST set by that function</span></span><br><span class="line">  <span class="comment">//      note 1: in order to adjust the dates in this function</span></span><br><span class="line">  <span class="comment">//      note 1: (or our other date functions!) accordingly</span></span><br><span class="line">  <span class="comment">//   example 1: date(&#x27;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#x27;, 1062402400)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;07:09:40 m is month&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: date(&#x27;F j, Y, g:i a&#x27;, 1062462400)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;September 2, 2003, 12:26 am&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: date(&#x27;Y W o&#x27;, 1062462400)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;2003 36 2003&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: var $x = date(&#x27;Y m d&#x27;, (new Date()).getTime() / 1000)</span></span><br><span class="line">  <span class="comment">//   example 4: $x = $x + &#x27;&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: var $result = $x.length // 2009 01 09</span></span><br><span class="line">  <span class="comment">//   returns 4: 10</span></span><br><span class="line">  <span class="comment">//   example 5: date(&#x27;W&#x27;, 1104534000)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#x27;52&#x27;</span></span><br><span class="line">  <span class="comment">//   example 6: date(&#x27;B t&#x27;, 1104534000)</span></span><br><span class="line">  <span class="comment">//   returns 6: &#x27;999 31&#x27;</span></span><br><span class="line">  <span class="comment">//   example 7: date(&#x27;W U&#x27;, 1293750000.82); // 2010-12-31</span></span><br><span class="line">  <span class="comment">//   returns 7: &#x27;52 1293750000&#x27;</span></span><br><span class="line">  <span class="comment">//   example 8: date(&#x27;W&#x27;, 1293836400); // 2011-01-01</span></span><br><span class="line">  <span class="comment">//   returns 8: &#x27;52&#x27;</span></span><br><span class="line">  <span class="comment">//   example 9: date(&#x27;W Y-m-d&#x27;, 1293974054); // 2011-01-02</span></span><br><span class="line">  <span class="comment">//   returns 9: &#x27;52 2011-01-02&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> jsdate = <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="keyword">let</span> f!: <span class="title class_">DateFormatterMap</span></span><br><span class="line">  <span class="comment">// Keep this here (works, but for code commented-out below for file size reasons)</span></span><br><span class="line">  <span class="comment">// var tal= [];</span></span><br><span class="line">  <span class="keyword">const</span> txtWords = [</span><br><span class="line">    <span class="string">&#x27;Sun&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Mon&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Tues&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Wednes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Thurs&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Fri&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Satur&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;January&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;February&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;March&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;April&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;May&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;June&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;July&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;August&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;September&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;October&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;November&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;December&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line">  <span class="comment">// trailing backslash -&gt; (dropped)</span></span><br><span class="line">  <span class="comment">// a backslash followed by any character (including backslash) -&gt; the character</span></span><br><span class="line">  <span class="comment">// empty string -&gt; empty string</span></span><br><span class="line">  <span class="keyword">const</span> formatChr = <span class="regexp">/\\?(.?)/gi</span></span><br><span class="line">  <span class="keyword">const</span> hasFormatterToken = (<span class="attr">token</span>: <span class="built_in">string</span>): token is <span class="title class_">DateFormatToken</span> =&gt; <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hasOwnProperty</span>.<span class="title function_">call</span>(f, token)</span><br><span class="line">  <span class="keyword">const</span> formatChrCb = <span class="keyword">function</span> (<span class="params"><span class="attr">t</span>: <span class="built_in">string</span>, <span class="attr">s</span>: <span class="built_in">string</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">hasFormatterToken</span>(t) ? <span class="title class_">String</span>(f[t]()) : s</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _pad = <span class="keyword">function</span> (<span class="params"><span class="attr">n</span>: <span class="built_in">string</span> | <span class="built_in">number</span>, <span class="attr">c</span>: <span class="built_in">number</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="title class_">String</span>(n)</span><br><span class="line">    <span class="keyword">while</span> (str.<span class="property">length</span> &lt; c) &#123;</span><br><span class="line">      str = <span class="string">&#x27;0&#x27;</span> + str</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str</span><br><span class="line">  &#125;</span><br><span class="line">  f = &#123;</span><br><span class="line">    <span class="comment">// Day</span></span><br><span class="line">    <span class="attr">d</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of month w/leading 0; 01..31</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">j</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">D</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Shorthand day name; Mon...Sun</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">l</span>()).<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">j</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of month; 1..31</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getDate</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">l</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Full day name; Monday...Sunday</span></span><br><span class="line">      <span class="keyword">return</span> (txtWords[<span class="title class_">Number</span>(f.<span class="title function_">w</span>())] ?? <span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;day&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">N</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 day of week; 1[Mon]..7[Sun]</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Number</span>(f.<span class="title function_">w</span>()) || <span class="number">7</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">S</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Ordinal suffix for day of month; st, nd, rd, th</span></span><br><span class="line">      <span class="keyword">const</span> j = <span class="title class_">Number</span>(f.<span class="title function_">j</span>())</span><br><span class="line">      <span class="keyword">let</span> i = j % <span class="number">10</span></span><br><span class="line">      <span class="keyword">if</span> (i &lt;= <span class="number">3</span> &amp;&amp; <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(<span class="title class_">String</span>((j % <span class="number">100</span>) / <span class="number">10</span>), <span class="number">10</span>) === <span class="number">1</span>) &#123;</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;st&#x27;</span>, <span class="string">&#x27;nd&#x27;</span>, <span class="string">&#x27;rd&#x27;</span>][i - <span class="number">1</span>] || <span class="string">&#x27;th&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">w</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of week; 0[Sun]..6[Sat]</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getDay</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">z</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of year; 0..365</span></span><br><span class="line">      <span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="title class_">Number</span>(f.<span class="title function_">n</span>()) - <span class="number">1</span>, <span class="title class_">Number</span>(f.<span class="title function_">j</span>()))</span><br><span class="line">      <span class="keyword">const</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">round</span>((a.<span class="title function_">getTime</span>() - b.<span class="title function_">getTime</span>()) / <span class="number">864e5</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Week</span></span><br><span class="line">    <span class="attr">W</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 week number</span></span><br><span class="line">      <span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="title class_">Number</span>(f.<span class="title function_">n</span>()) - <span class="number">1</span>, <span class="title class_">Number</span>(f.<span class="title function_">j</span>()) - <span class="title class_">Number</span>(f.<span class="title function_">N</span>()) + <span class="number">3</span>)</span><br><span class="line">      <span class="keyword">const</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(a.<span class="title function_">getFullYear</span>(), <span class="number">0</span>, <span class="number">4</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(<span class="number">1</span> + <span class="title class_">Math</span>.<span class="title function_">round</span>((a.<span class="title function_">getTime</span>() - b.<span class="title function_">getTime</span>()) / <span class="number">864e5</span> / <span class="number">7</span>), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Month</span></span><br><span class="line">    <span class="attr">F</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Full month name; January...December</span></span><br><span class="line">      <span class="keyword">return</span> txtWords[<span class="number">6</span> + <span class="title class_">Number</span>(f.<span class="title function_">n</span>())] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">m</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Month w/leading 0; 01...12</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">n</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">M</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Shorthand month name; Jan...Dec</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">F</span>()).<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">n</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Month; 1...12</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getMonth</span>() + <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">t</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Days in month; 28...31</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="title class_">Number</span>(f.<span class="title function_">n</span>()), <span class="number">0</span>).<span class="title function_">getDate</span>()</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Year</span></span><br><span class="line">    <span class="attr">L</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Is leap year?; 0 or 1</span></span><br><span class="line">      <span class="keyword">const</span> j = <span class="title class_">Number</span>(f.<span class="title function_">Y</span>())</span><br><span class="line">      <span class="keyword">return</span> (j % <span class="number">4</span> === <span class="number">0</span> &amp;&amp; j % <span class="number">100</span> !== <span class="number">0</span>) || j % <span class="number">400</span> === <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">o</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 year</span></span><br><span class="line">      <span class="keyword">const</span> n = <span class="title class_">Number</span>(f.<span class="title function_">n</span>())</span><br><span class="line">      <span class="keyword">const</span> W = <span class="title class_">Number</span>(f.<span class="title function_">W</span>())</span><br><span class="line">      <span class="keyword">const</span> Y = <span class="title class_">Number</span>(f.<span class="title function_">Y</span>())</span><br><span class="line">      <span class="keyword">return</span> Y + (n === <span class="number">12</span> &amp;&amp; W &lt; <span class="number">9</span> ? <span class="number">1</span> : n === <span class="number">1</span> &amp;&amp; W &gt; <span class="number">9</span> ? -<span class="number">1</span> : <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">Y</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Full year; e.g. 1980...2010</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getFullYear</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">y</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Last two digits of year; 00...99</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">Y</span>()).<span class="title function_">slice</span>(-<span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Time</span></span><br><span class="line">    <span class="attr">a</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// am or pm</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getHours</span>() &gt; <span class="number">11</span> ? <span class="string">&#x27;pm&#x27;</span> : <span class="string">&#x27;am&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">A</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// AM or PM</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">a</span>()).<span class="title function_">toUpperCase</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">B</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Swatch Internet time; 000..999</span></span><br><span class="line">      <span class="keyword">const</span> H = jsdate.<span class="title function_">getUTCHours</span>() * <span class="number">36e2</span></span><br><span class="line">      <span class="comment">// Hours</span></span><br><span class="line">      <span class="keyword">const</span> i = jsdate.<span class="title function_">getUTCMinutes</span>() * <span class="number">60</span></span><br><span class="line">      <span class="comment">// Minutes</span></span><br><span class="line">      <span class="comment">// Seconds</span></span><br><span class="line">      <span class="keyword">const</span> s = jsdate.<span class="title function_">getUTCSeconds</span>()</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>((H + i + s + <span class="number">36e2</span>) / <span class="number">86.4</span>) % <span class="number">1e3</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">g</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 12-Hours; 1..12</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Number</span>(f.<span class="title function_">G</span>()) % <span class="number">12</span> || <span class="number">12</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">G</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 24-Hours; 0..23</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getHours</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">h</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 12-Hours w/leading 0; 01..12</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">g</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">H</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 24-Hours w/leading 0; 00..23</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">G</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">i</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Minutes w/leading 0; 00..59</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(jsdate.<span class="title function_">getMinutes</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">s</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Seconds w/leading 0; 00..59</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(jsdate.<span class="title function_">getSeconds</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">u</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Microseconds; 000000-999000</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(jsdate.<span class="title function_">getMilliseconds</span>() * <span class="number">1000</span>, <span class="number">6</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Timezone</span></span><br><span class="line">    <span class="attr">e</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Timezone identifier; e.g. Atlantic/Azores, ...</span></span><br><span class="line">      <span class="comment">// The following works, but requires inclusion of the very large</span></span><br><span class="line">      <span class="comment">// timezone_abbreviations_list() function.</span></span><br><span class="line">      <span class="comment">/*              return that.date_default_timezone_get();</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      <span class="keyword">const</span> msg = <span class="string">&#x27;Not supported (see source code of date() for timezone on how to add support)&#x27;</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(msg)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">I</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// DST observed?; 0 or 1</span></span><br><span class="line">      <span class="comment">// Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.</span></span><br><span class="line">      <span class="comment">// If they are not equal, then DST is observed.</span></span><br><span class="line">      <span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">0</span>)</span><br><span class="line">      <span class="comment">// Jan 1</span></span><br><span class="line">      <span class="keyword">const</span> c = <span class="title class_">Date</span>.<span class="title function_">UTC</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">0</span>)</span><br><span class="line">      <span class="comment">// Jan 1 UTC</span></span><br><span class="line">      <span class="keyword">const</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">6</span>)</span><br><span class="line">      <span class="comment">// Jul 1</span></span><br><span class="line">      <span class="comment">// Jul 1 UTC</span></span><br><span class="line">      <span class="keyword">const</span> d = <span class="title class_">Date</span>.<span class="title function_">UTC</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">6</span>)</span><br><span class="line">      <span class="keyword">return</span> a.<span class="title function_">getTime</span>() - c !== b.<span class="title function_">getTime</span>() - d ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">O</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Difference to GMT in hour format; e.g. +0200</span></span><br><span class="line">      <span class="keyword">const</span> tzo = jsdate.<span class="title function_">getTimezoneOffset</span>()</span><br><span class="line">      <span class="keyword">const</span> a = <span class="title class_">Math</span>.<span class="title function_">abs</span>(tzo)</span><br><span class="line">      <span class="keyword">return</span> (tzo &gt; <span class="number">0</span> ? <span class="string">&#x27;-&#x27;</span> : <span class="string">&#x27;+&#x27;</span>) + <span class="title function_">_pad</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>(a / <span class="number">60</span>) * <span class="number">100</span> + (a % <span class="number">60</span>), <span class="number">4</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">P</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Difference to GMT w/colon; e.g. +02:00</span></span><br><span class="line">      <span class="keyword">const</span> O = <span class="title class_">String</span>(f.<span class="title function_">O</span>())</span><br><span class="line">      <span class="keyword">return</span> O.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">3</span>) + <span class="string">&#x27;:&#x27;</span> + O.<span class="title function_">slice</span>(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">T</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// The following works, but requires inclusion of the very</span></span><br><span class="line">      <span class="comment">// large timezone_abbreviations_list() function.</span></span><br><span class="line">      <span class="comment">/*              var abbr, i, os, _default;</span></span><br><span class="line"><span class="comment">      if (!tal.length) &#123;</span></span><br><span class="line"><span class="comment">        tal = that.timezone_abbreviations_list();</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      if ($locutus &amp;&amp; $locutus.default_timezone) &#123;</span></span><br><span class="line"><span class="comment">        _default = $locutus.default_timezone;</span></span><br><span class="line"><span class="comment">        for (abbr in tal) &#123;</span></span><br><span class="line"><span class="comment">          for (i = 0; i &lt; tal[abbr].length; i++) &#123;</span></span><br><span class="line"><span class="comment">            if (tal[abbr][i].timezone_id === _default) &#123;</span></span><br><span class="line"><span class="comment">              return abbr.toUpperCase();</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">          &#125;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      for (abbr in tal) &#123;</span></span><br><span class="line"><span class="comment">        for (i = 0; i &lt; tal[abbr].length; i++) &#123;</span></span><br><span class="line"><span class="comment">          os = -jsdate.getTimezoneOffset() * 60;</span></span><br><span class="line"><span class="comment">          if (tal[abbr][i].offset === os) &#123;</span></span><br><span class="line"><span class="comment">            return abbr.toUpperCase();</span></span><br><span class="line"><span class="comment">          &#125;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;UTC&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">Z</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Timezone offset in seconds (-43200...50400)</span></span><br><span class="line">      <span class="keyword">return</span> -jsdate.<span class="title function_">getTimezoneOffset</span>() * <span class="number">60</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Full Date/Time</span></span><br><span class="line">    <span class="attr">c</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 date.</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;Y-m-d\\TH:i:sP&#x27;</span>.<span class="title function_">replace</span>(formatChr, formatChrCb)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">r</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// RFC 2822</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;D, d M Y H:i:s O&#x27;</span>.<span class="title function_">replace</span>(formatChr, formatChrCb)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">U</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Seconds since UNIX epoch</span></span><br><span class="line">      <span class="keyword">return</span> (jsdate.<span class="title function_">getTime</span>() / <span class="number">1000</span>) | <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _date = <span class="keyword">function</span> (<span class="params"><span class="attr">formatStr</span>: <span class="built_in">string</span>, <span class="attr">timestampValue</span>?: <span class="built_in">number</span> | <span class="title class_">Date</span> | <span class="built_in">string</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">    jsdate =</span><br><span class="line">      timestampValue === <span class="literal">undefined</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>() <span class="comment">// Not provided</span></span><br><span class="line">        : timestampValue <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">          ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestampValue) <span class="comment">// JS Date()</span></span><br><span class="line">          : <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(timestampValue) * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></span><br><span class="line">    <span class="keyword">return</span> formatStr.<span class="title function_">replace</span>(formatChr, formatChrCb)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">_date</span>(format, timestamp)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/datetime/gmdate (target function module)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">gmdate</span>(<span class="params"><span class="attr">format</span>: <span class="built_in">string</span>, <span class="attr">timestamp</span>?: <span class="built_in">string</span> | <span class="built_in">number</span> | <span class="title class_">Date</span></span>): <span class="built_in">string</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/gmdate/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//        input by: Alex</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//       example 1: gmdate(&#x27;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#x27;, 1062402400); // Return will depend on your timezone</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;07:09:40 m is month&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> dt =</span><br><span class="line">    <span class="keyword">typeof</span> timestamp === <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="keyword">new</span> <span class="title class_">Date</span>() <span class="comment">// Not provided</span></span><br><span class="line">      : timestamp <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp) <span class="comment">// Javascript Date()</span></span><br><span class="line">        : <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(timestamp) * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ts = <span class="title class_">Date</span>.<span class="title function_">parse</span>(dt.<span class="title function_">toUTCString</span>().<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">4</span>)) / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">date</span>(format, ts)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// php/datetime/date (Locutus dependency module)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">date</span>(<span class="params">format, timestamp</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/php/date/</span></span><br><span class="line">  <span class="comment">// original by: Carlos R. L. Rodrigues (https://www.jsfromhell.com)</span></span><br><span class="line">  <span class="comment">// original by: gettimeofday</span></span><br><span class="line">  <span class="comment">//    parts by: Peter-Paul Koch (https://www.quirksmode.org/js/beat.html)</span></span><br><span class="line">  <span class="comment">// improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// improved by: MeEtc (https://yass.meetcweb.com)</span></span><br><span class="line">  <span class="comment">// improved by: Brad Touesnard</span></span><br><span class="line">  <span class="comment">// improved by: Tim Wiel</span></span><br><span class="line">  <span class="comment">// improved by: Bryan Elliott</span></span><br><span class="line">  <span class="comment">// improved by: David Randall</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Thomas Beaucourt (https://www.webapp.fr)</span></span><br><span class="line">  <span class="comment">// improved by: JT</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">// improved by: Rafał Kukawski (https://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">// improved by: Theriault (https://github.com/Theriault)</span></span><br><span class="line">  <span class="comment">//    input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//    input by: majak</span></span><br><span class="line">  <span class="comment">//    input by: Alex</span></span><br><span class="line">  <span class="comment">//    input by: Martin</span></span><br><span class="line">  <span class="comment">//    input by: Alex Wilson</span></span><br><span class="line">  <span class="comment">//    input by: Haravikk</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: majak</span></span><br><span class="line">  <span class="comment">// bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// bugfixed by: omid (https://locutus.io/php/380:380#comment_137122)</span></span><br><span class="line">  <span class="comment">// bugfixed by: Chris (https://www.devotis.nl/)</span></span><br><span class="line">  <span class="comment">//      note 1: Uses global: locutus to store the default timezone</span></span><br><span class="line">  <span class="comment">//      note 1: Although the function potentially allows timezone info</span></span><br><span class="line">  <span class="comment">//      note 1: (see notes), it currently does not set</span></span><br><span class="line">  <span class="comment">//      note 1: per a timezone specified by date_default_timezone_set(). Implementers might use</span></span><br><span class="line">  <span class="comment">//      note 1: $locutus.currentTimezoneOffset and</span></span><br><span class="line">  <span class="comment">//      note 1: $locutus.currentTimezoneDST set by that function</span></span><br><span class="line">  <span class="comment">//      note 1: in order to adjust the dates in this function</span></span><br><span class="line">  <span class="comment">//      note 1: (or our other date functions!) accordingly</span></span><br><span class="line">  <span class="comment">//   example 1: date(&#x27;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#x27;, 1062402400)</span></span><br><span class="line">  <span class="comment">//   returns 1: &#x27;07:09:40 m is month&#x27;</span></span><br><span class="line">  <span class="comment">//   example 2: date(&#x27;F j, Y, g:i a&#x27;, 1062462400)</span></span><br><span class="line">  <span class="comment">//   returns 2: &#x27;September 2, 2003, 12:26 am&#x27;</span></span><br><span class="line">  <span class="comment">//   example 3: date(&#x27;Y W o&#x27;, 1062462400)</span></span><br><span class="line">  <span class="comment">//   returns 3: &#x27;2003 36 2003&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: var $x = date(&#x27;Y m d&#x27;, (new Date()).getTime() / 1000)</span></span><br><span class="line">  <span class="comment">//   example 4: $x = $x + &#x27;&#x27;</span></span><br><span class="line">  <span class="comment">//   example 4: var $result = $x.length // 2009 01 09</span></span><br><span class="line">  <span class="comment">//   returns 4: 10</span></span><br><span class="line">  <span class="comment">//   example 5: date(&#x27;W&#x27;, 1104534000)</span></span><br><span class="line">  <span class="comment">//   returns 5: &#x27;52&#x27;</span></span><br><span class="line">  <span class="comment">//   example 6: date(&#x27;B t&#x27;, 1104534000)</span></span><br><span class="line">  <span class="comment">//   returns 6: &#x27;999 31&#x27;</span></span><br><span class="line">  <span class="comment">//   example 7: date(&#x27;W U&#x27;, 1293750000.82); // 2010-12-31</span></span><br><span class="line">  <span class="comment">//   returns 7: &#x27;52 1293750000&#x27;</span></span><br><span class="line">  <span class="comment">//   example 8: date(&#x27;W&#x27;, 1293836400); // 2011-01-01</span></span><br><span class="line">  <span class="comment">//   returns 8: &#x27;52&#x27;</span></span><br><span class="line">  <span class="comment">//   example 9: date(&#x27;W Y-m-d&#x27;, 1293974054); // 2011-01-02</span></span><br><span class="line">  <span class="comment">//   returns 9: &#x27;52 2011-01-02&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> jsdate = <span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="keyword">let</span> f</span><br><span class="line">  <span class="comment">// Keep this here (works, but for code commented-out below for file size reasons)</span></span><br><span class="line">  <span class="comment">// var tal= [];</span></span><br><span class="line">  <span class="keyword">const</span> txtWords = [</span><br><span class="line">    <span class="string">&#x27;Sun&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Mon&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Tues&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Wednes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Thurs&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Fri&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Satur&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;January&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;February&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;March&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;April&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;May&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;June&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;July&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;August&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;September&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;October&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;November&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;December&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line">  <span class="comment">// trailing backslash -&gt; (dropped)</span></span><br><span class="line">  <span class="comment">// a backslash followed by any character (including backslash) -&gt; the character</span></span><br><span class="line">  <span class="comment">// empty string -&gt; empty string</span></span><br><span class="line">  <span class="keyword">const</span> formatChr = <span class="regexp">/\\?(.?)/gi</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">hasFormatterToken</span> = (<span class="params">token</span>) =&gt; <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hasOwnProperty</span>.<span class="title function_">call</span>(f, token)</span><br><span class="line">  <span class="keyword">const</span> formatChrCb = <span class="keyword">function</span> (<span class="params">t, s</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">hasFormatterToken</span>(t) ? <span class="title class_">String</span>(f[t]()) : s</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _pad = <span class="keyword">function</span> (<span class="params">n, c</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="title class_">String</span>(n)</span><br><span class="line">    <span class="keyword">while</span> (str.<span class="property">length</span> &lt; c) &#123;</span><br><span class="line">      str = <span class="string">&#x27;0&#x27;</span> + str</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str</span><br><span class="line">  &#125;</span><br><span class="line">  f = &#123;</span><br><span class="line">    <span class="comment">// Day</span></span><br><span class="line">    <span class="attr">d</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of month w/leading 0; 01..31</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">j</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">D</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Shorthand day name; Mon...Sun</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">l</span>()).<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">j</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of month; 1..31</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getDate</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">l</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Full day name; Monday...Sunday</span></span><br><span class="line">      <span class="keyword">return</span> (txtWords[<span class="title class_">Number</span>(f.<span class="title function_">w</span>())] ?? <span class="string">&#x27;&#x27;</span>) + <span class="string">&#x27;day&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">N</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 day of week; 1[Mon]..7[Sun]</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Number</span>(f.<span class="title function_">w</span>()) || <span class="number">7</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">S</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Ordinal suffix for day of month; st, nd, rd, th</span></span><br><span class="line">      <span class="keyword">const</span> j = <span class="title class_">Number</span>(f.<span class="title function_">j</span>())</span><br><span class="line">      <span class="keyword">let</span> i = j % <span class="number">10</span></span><br><span class="line">      <span class="keyword">if</span> (i &lt;= <span class="number">3</span> &amp;&amp; <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(<span class="title class_">String</span>((j % <span class="number">100</span>) / <span class="number">10</span>), <span class="number">10</span>) === <span class="number">1</span>) &#123;</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> [<span class="string">&#x27;st&#x27;</span>, <span class="string">&#x27;nd&#x27;</span>, <span class="string">&#x27;rd&#x27;</span>][i - <span class="number">1</span>] || <span class="string">&#x27;th&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">w</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of week; 0[Sun]..6[Sat]</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getDay</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">z</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Day of year; 0..365</span></span><br><span class="line">      <span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="title class_">Number</span>(f.<span class="title function_">n</span>()) - <span class="number">1</span>, <span class="title class_">Number</span>(f.<span class="title function_">j</span>()))</span><br><span class="line">      <span class="keyword">const</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">round</span>((a.<span class="title function_">getTime</span>() - b.<span class="title function_">getTime</span>()) / <span class="number">864e5</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Week</span></span><br><span class="line">    <span class="attr">W</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 week number</span></span><br><span class="line">      <span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="title class_">Number</span>(f.<span class="title function_">n</span>()) - <span class="number">1</span>, <span class="title class_">Number</span>(f.<span class="title function_">j</span>()) - <span class="title class_">Number</span>(f.<span class="title function_">N</span>()) + <span class="number">3</span>)</span><br><span class="line">      <span class="keyword">const</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(a.<span class="title function_">getFullYear</span>(), <span class="number">0</span>, <span class="number">4</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(<span class="number">1</span> + <span class="title class_">Math</span>.<span class="title function_">round</span>((a.<span class="title function_">getTime</span>() - b.<span class="title function_">getTime</span>()) / <span class="number">864e5</span> / <span class="number">7</span>), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Month</span></span><br><span class="line">    <span class="attr">F</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Full month name; January...December</span></span><br><span class="line">      <span class="keyword">return</span> txtWords[<span class="number">6</span> + <span class="title class_">Number</span>(f.<span class="title function_">n</span>())] ?? <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">m</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Month w/leading 0; 01...12</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">n</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">M</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Shorthand month name; Jan...Dec</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">F</span>()).<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">n</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Month; 1...12</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getMonth</span>() + <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">t</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Days in month; 28...31</span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="title class_">Number</span>(f.<span class="title function_">n</span>()), <span class="number">0</span>).<span class="title function_">getDate</span>()</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Year</span></span><br><span class="line">    <span class="attr">L</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Is leap year?; 0 or 1</span></span><br><span class="line">      <span class="keyword">const</span> j = <span class="title class_">Number</span>(f.<span class="title function_">Y</span>())</span><br><span class="line">      <span class="keyword">return</span> (j % <span class="number">4</span> === <span class="number">0</span> &amp;&amp; j % <span class="number">100</span> !== <span class="number">0</span>) || j % <span class="number">400</span> === <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">o</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 year</span></span><br><span class="line">      <span class="keyword">const</span> n = <span class="title class_">Number</span>(f.<span class="title function_">n</span>())</span><br><span class="line">      <span class="keyword">const</span> W = <span class="title class_">Number</span>(f.<span class="title function_">W</span>())</span><br><span class="line">      <span class="keyword">const</span> Y = <span class="title class_">Number</span>(f.<span class="title function_">Y</span>())</span><br><span class="line">      <span class="keyword">return</span> Y + (n === <span class="number">12</span> &amp;&amp; W &lt; <span class="number">9</span> ? <span class="number">1</span> : n === <span class="number">1</span> &amp;&amp; W &gt; <span class="number">9</span> ? -<span class="number">1</span> : <span class="number">0</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">Y</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Full year; e.g. 1980...2010</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getFullYear</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">y</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Last two digits of year; 00...99</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">Y</span>()).<span class="title function_">slice</span>(-<span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Time</span></span><br><span class="line">    <span class="attr">a</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// am or pm</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getHours</span>() &gt; <span class="number">11</span> ? <span class="string">&#x27;pm&#x27;</span> : <span class="string">&#x27;am&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">A</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// AM or PM</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">String</span>(f.<span class="title function_">a</span>()).<span class="title function_">toUpperCase</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">B</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Swatch Internet time; 000..999</span></span><br><span class="line">      <span class="keyword">const</span> H = jsdate.<span class="title function_">getUTCHours</span>() * <span class="number">36e2</span></span><br><span class="line">      <span class="comment">// Hours</span></span><br><span class="line">      <span class="keyword">const</span> i = jsdate.<span class="title function_">getUTCMinutes</span>() * <span class="number">60</span></span><br><span class="line">      <span class="comment">// Minutes</span></span><br><span class="line">      <span class="comment">// Seconds</span></span><br><span class="line">      <span class="keyword">const</span> s = jsdate.<span class="title function_">getUTCSeconds</span>()</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>((H + i + s + <span class="number">36e2</span>) / <span class="number">86.4</span>) % <span class="number">1e3</span>, <span class="number">3</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">g</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 12-Hours; 1..12</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title class_">Number</span>(f.<span class="title function_">G</span>()) % <span class="number">12</span> || <span class="number">12</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">G</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 24-Hours; 0..23</span></span><br><span class="line">      <span class="keyword">return</span> jsdate.<span class="title function_">getHours</span>()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">h</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 12-Hours w/leading 0; 01..12</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">g</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">H</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 24-Hours w/leading 0; 00..23</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(f.<span class="title function_">G</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">i</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Minutes w/leading 0; 00..59</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(jsdate.<span class="title function_">getMinutes</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">s</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Seconds w/leading 0; 00..59</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(jsdate.<span class="title function_">getSeconds</span>(), <span class="number">2</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">u</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Microseconds; 000000-999000</span></span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">_pad</span>(jsdate.<span class="title function_">getMilliseconds</span>() * <span class="number">1000</span>, <span class="number">6</span>)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Timezone</span></span><br><span class="line">    <span class="attr">e</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Timezone identifier; e.g. Atlantic/Azores, ...</span></span><br><span class="line">      <span class="comment">// The following works, but requires inclusion of the very large</span></span><br><span class="line">      <span class="comment">// timezone_abbreviations_list() function.</span></span><br><span class="line">      <span class="comment">/*              return that.date_default_timezone_get();</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      <span class="keyword">const</span> msg = <span class="string">&#x27;Not supported (see source code of date() for timezone on how to add support)&#x27;</span></span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(msg)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">I</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// DST observed?; 0 or 1</span></span><br><span class="line">      <span class="comment">// Compares Jan 1 minus Jan 1 UTC to Jul 1 minus Jul 1 UTC.</span></span><br><span class="line">      <span class="comment">// If they are not equal, then DST is observed.</span></span><br><span class="line">      <span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">0</span>)</span><br><span class="line">      <span class="comment">// Jan 1</span></span><br><span class="line">      <span class="keyword">const</span> c = <span class="title class_">Date</span>.<span class="title function_">UTC</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">0</span>)</span><br><span class="line">      <span class="comment">// Jan 1 UTC</span></span><br><span class="line">      <span class="keyword">const</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">6</span>)</span><br><span class="line">      <span class="comment">// Jul 1</span></span><br><span class="line">      <span class="comment">// Jul 1 UTC</span></span><br><span class="line">      <span class="keyword">const</span> d = <span class="title class_">Date</span>.<span class="title function_">UTC</span>(<span class="title class_">Number</span>(f.<span class="title function_">Y</span>()), <span class="number">6</span>)</span><br><span class="line">      <span class="keyword">return</span> a.<span class="title function_">getTime</span>() - c !== b.<span class="title function_">getTime</span>() - d ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">O</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Difference to GMT in hour format; e.g. +0200</span></span><br><span class="line">      <span class="keyword">const</span> tzo = jsdate.<span class="title function_">getTimezoneOffset</span>()</span><br><span class="line">      <span class="keyword">const</span> a = <span class="title class_">Math</span>.<span class="title function_">abs</span>(tzo)</span><br><span class="line">      <span class="keyword">return</span> (tzo &gt; <span class="number">0</span> ? <span class="string">&#x27;-&#x27;</span> : <span class="string">&#x27;+&#x27;</span>) + <span class="title function_">_pad</span>(<span class="title class_">Math</span>.<span class="title function_">floor</span>(a / <span class="number">60</span>) * <span class="number">100</span> + (a % <span class="number">60</span>), <span class="number">4</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">P</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Difference to GMT w/colon; e.g. +02:00</span></span><br><span class="line">      <span class="keyword">const</span> O = <span class="title class_">String</span>(f.<span class="title function_">O</span>())</span><br><span class="line">      <span class="keyword">return</span> O.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">3</span>) + <span class="string">&#x27;:&#x27;</span> + O.<span class="title function_">slice</span>(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">T</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// The following works, but requires inclusion of the very</span></span><br><span class="line">      <span class="comment">// large timezone_abbreviations_list() function.</span></span><br><span class="line">      <span class="comment">/*              var abbr, i, os, _default;</span></span><br><span class="line"><span class="comment">      if (!tal.length) &#123;</span></span><br><span class="line"><span class="comment">       tal = that.timezone_abbreviations_list();</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      if ($locutus &amp;&amp; $locutus.default_timezone) &#123;</span></span><br><span class="line"><span class="comment">       _default = $locutus.default_timezone;</span></span><br><span class="line"><span class="comment">       for (abbr in tal) &#123;</span></span><br><span class="line"><span class="comment">        for (i = 0; i &lt; tal[abbr].length; i++) &#123;</span></span><br><span class="line"><span class="comment">         if (tal[abbr][i].timezone_id === _default) &#123;</span></span><br><span class="line"><span class="comment">          return abbr.toUpperCase();</span></span><br><span class="line"><span class="comment">         &#125;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">       &#125;</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      for (abbr in tal) &#123;</span></span><br><span class="line"><span class="comment">       for (i = 0; i &lt; tal[abbr].length; i++) &#123;</span></span><br><span class="line"><span class="comment">        os = -jsdate.getTimezoneOffset() * 60;</span></span><br><span class="line"><span class="comment">        if (tal[abbr][i].offset === os) &#123;</span></span><br><span class="line"><span class="comment">         return abbr.toUpperCase();</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">       &#125;</span></span><br><span class="line"><span class="comment">      &#125;</span></span><br><span class="line"><span class="comment">      */</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;UTC&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">Z</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Timezone offset in seconds (-43200...50400)</span></span><br><span class="line">      <span class="keyword">return</span> -jsdate.<span class="title function_">getTimezoneOffset</span>() * <span class="number">60</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Full Date/Time</span></span><br><span class="line">    <span class="attr">c</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// ISO-8601 date.</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;Y-m-d\\TH:i:sP&#x27;</span>.<span class="title function_">replace</span>(formatChr, formatChrCb)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">r</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// RFC 2822</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;D, d M Y H:i:s O&#x27;</span>.<span class="title function_">replace</span>(formatChr, formatChrCb)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">U</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// Seconds since UNIX epoch</span></span><br><span class="line">      <span class="keyword">return</span> (jsdate.<span class="title function_">getTime</span>() / <span class="number">1000</span>) | <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _date = <span class="keyword">function</span> (<span class="params">formatStr, timestampValue</span>) &#123;</span><br><span class="line">    jsdate =</span><br><span class="line">      timestampValue === <span class="literal">undefined</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>() <span class="comment">// Not provided</span></span><br><span class="line">        : timestampValue <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">          ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestampValue) <span class="comment">// JS Date()</span></span><br><span class="line">          : <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(timestampValue) * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></span><br><span class="line">    <span class="keyword">return</span> formatStr.<span class="title function_">replace</span>(formatChr, formatChrCb)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">_date</span>(format, timestamp)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/datetime/gmdate (target function module)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">gmdate</span>(<span class="params">format, timestamp</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/gmdate/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//        input by: Alex</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//       example 1: gmdate(&#x27;H:m:s \\m \\i\\s \\m\\o\\n\\t\\h&#x27;, 1062402400); // Return will depend on your timezone</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;07:09:40 m is month&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> dt =</span><br><span class="line">    <span class="keyword">typeof</span> timestamp === <span class="string">&#x27;undefined&#x27;</span></span><br><span class="line">      ? <span class="keyword">new</span> <span class="title class_">Date</span>() <span class="comment">// Not provided</span></span><br><span class="line">      : timestamp <span class="keyword">instanceof</span> <span class="title class_">Date</span></span><br><span class="line">        ? <span class="keyword">new</span> <span class="title class_">Date</span>(timestamp) <span class="comment">// Javascript Date()</span></span><br><span class="line">        : <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Number</span>(timestamp) * <span class="number">1000</span>) <span class="comment">// UNIX timestamp (auto-convert to int)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> ts = <span class="title class_">Date</span>.<span class="title function_">parse</span>(dt.<span class="title function_">toUTCString</span>().<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">4</span>)) / <span class="number">1000</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">date</span>(format, ts)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+          </div>
+        </div>
+        <script>
+        (function() {
+          var STORAGE_KEY = 'locutus-code-variant';
+          var LEGACY_STORAGE_KEY = 'locutus-code-lang';
+          var saved = null;
+          try {
+            saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+          } catch(e) {}
+
+          if (saved === 'standalone') {
+            saved = 'standalone-js';
+          }
+
+          function getPanelCode(panel) {
+            if (!panel) {
+              return '';
+            }
+            var pre = panel.querySelector('pre');
+            if (pre) {
+              var preText = pre.innerText || pre.textContent || '';
+              if (preText) {
+                return preText.replace(/\u00a0/g, ' ').trimEnd();
+              }
+            }
+            var codeCell = panel.querySelector('figure.highlight .code');
+            if (codeCell) {
+              return (codeCell.textContent || '').replace(/\u00a0/g, ' ').trimEnd();
+            }
+            return '';
+          }
+
+          function copyText(value) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(value);
+            }
+            return new Promise(function(resolve, reject) {
+              try {
+                var textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (!ok) {
+                  reject(new Error('copy failed'));
+                  return;
+                }
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          var tabGroups = document.querySelectorAll('.code-tabs');
+          tabGroups.forEach(function(group) {
+            var buttons = group.querySelectorAll('.code-tab-btn');
+            var panels = group.querySelectorAll('.code-tab-panel');
+            var copyButton = group.querySelector('.code-copy-icon-btn');
+            var validTabs = [];
+
+            buttons.forEach(function(btn) {
+              var tab = btn.getAttribute('data-tab');
+              var hasPanel = Array.prototype.some.call(panels, function(panel) {
+                return panel.getAttribute('data-lang') === tab;
+              });
+              if (!hasPanel) {
+                btn.style.display = 'none';
+                return;
+              }
+              validTabs.push(tab);
+            });
+
+            var hasStandaloneTabs =
+              validTabs.indexOf('standalone-ts') !== -1 || validTabs.indexOf('standalone-js') !== -1;
+            var tsLabel = group.querySelector('.code-tab-btn[data-tab=\"ts\"] .tab-label');
+            var jsLabel = group.querySelector('.code-tab-btn[data-tab=\"js\"] .tab-label');
+            if (tsLabel) {
+              tsLabel.textContent = hasStandaloneTabs ? 'Module TS' : 'TypeScript';
+            }
+            if (jsLabel) {
+              jsLabel.textContent = hasStandaloneTabs ? 'Module JS' : 'JavaScript';
+            }
+
+            function switchTab(lang) {
+              if (validTabs.indexOf(lang) === -1) {
+                return;
+              }
+              buttons.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              });
+              panels.forEach(function(panel) {
+                panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+                panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+              });
+              try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+            }
+
+            buttons.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-tab'));
+              });
+            });
+
+            if (copyButton) {
+              var copyTimer = null;
+              copyButton.addEventListener('click', function() {
+                var activePanel = group.querySelector('.code-tab-panel.active') || panels[0];
+                var code = getPanelCode(activePanel);
+                if (!code.trim()) {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'No code available');
+                  copyButton.setAttribute('title', 'No code available');
+                  return;
+                }
+                copyText(code).then(function() {
+                  copyButton.setAttribute('data-state', 'copied');
+                  copyButton.setAttribute('aria-label', 'Copied');
+                  copyButton.setAttribute('title', 'Copied');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1400);
+                }).catch(function() {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'Copy failed');
+                  copyButton.setAttribute('title', 'Copy failed');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1600);
+                });
+              });
+            }
+
+            // Restore saved preference, default to TypeScript when available.
+            var defaultTab = validTabs.indexOf('ts') !== -1 ? 'ts' : validTabs[0];
+            if (saved && validTabs.indexOf(saved) !== -1) {
+              switchTab(saved);
+            } else if (defaultTab) {
+              switchTab(defaultTab);
+            }
+          });
+        })();
+        </script>
+      
 
 
       <div class="clearfix"></div>
 
-      <h2>Think you can do better?</h2>
+      <h2>Improve this function</h2>
       <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we assimilate first iterations with imperfections,
-        hoping for others to take issue with-and improve them.
-
-        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
-        but please be reminded to use our creations at your own risk.
-        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+        Locutus is a community effort following
+        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald's Theory</a>:
+        we ship first iterations, hoping others will improve them.
+        If you see something that could be better, we'd love your contribution.
       </p>
       <p>
-        Now go and:
-        [
-        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/php/datetime/gmdate.js">View on GitHub</a></strong>
-        |
-        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/php/datetime/gmdate.js">Edit on GitHub</a></strong>
-        |
-        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/datetime/gmdate.js">View Raw</a></strong>
-        ]
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/php/datetime/gmdate.ts">View on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/php/datetime/gmdate.ts">Edit on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/datetime/gmdate.ts">View Raw</a></strong>
       </p>
 
 
@@ -374,7 +735,7 @@ ga('send', 'pageview');
         <div class="base-info profile-block">
             <img id="avatar" src="/css/images/locutus-alpha.png" />
             <h2 id="name">Locutus</h2>
-            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <h3 id="title">All your standard libraries will be assimilated into our <del>JavaScript</del> <a href="/2026/03/locutus-3-0/">TypeScript</a> collective. Resistance is futile.</h3>
             <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
             <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
 
@@ -419,9 +780,147 @@ ga('send', 'pageview');
         <div class="widget-wrap widget-list">
   <h3 class="widget-title">on the githubs</h3>
   <div class="widget widget-on_the_githubs">
-    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+    <ul class="on-the-githubs">
+      <li class="otg-loading">Loading...</li>
+    </ul>
   </div>
 </div>
+
+<script>
+(function () {
+  var CACHE_KEY = 'otg_events'
+  var CACHE_TTL = 15 * 60 * 1000 // 15 minutes
+  var MAX_EVENTS = 15
+
+  function timeAgo(dateStr) {
+    var seconds = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000)
+    if (seconds < 60) return 'just now'
+    var minutes = Math.floor(seconds / 60)
+    if (minutes < 60) return minutes + 'm ago'
+    var hours = Math.floor(minutes / 60)
+    if (hours < 24) return hours + 'h ago'
+    var days = Math.floor(hours / 24)
+    if (days < 30) return days + 'd ago'
+    return Math.floor(days / 30) + 'mo ago'
+  }
+
+  function escHtml(str) {
+    var div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML
+  }
+
+  function truncate(str, len) {
+    return str.length > len ? str.substring(0, len) + '\u2026' : str
+  }
+
+  function describeEvent(ev) {
+    var p = ev.payload
+    switch (ev.type) {
+      case 'PushEvent':
+        var commits = p.commits || []
+        var branch = (p.ref || '').replace('refs/heads/', '')
+        var compareUrl = 'https://github.com/' + ev.repo.name + '/compare/' + p.before.substring(0, 10) + '...' + p.head.substring(0, 10)
+        if (commits.length === 1) return { text: truncate(commits[0].message.split('\n')[0], 60), url: 'https://github.com/' + ev.repo.name + '/commit/' + commits[0].sha }
+        if (commits.length > 1) return { text: 'pushed ' + commits.length + ' commits to ' + branch, url: compareUrl }
+        var size = p.size || p.distinct_size || 0
+        if (size > 0) return { text: 'pushed ' + size + ' commit' + (size !== 1 ? 's' : '') + ' to ' + branch, url: compareUrl }
+        return { text: 'pushed to ' + branch, url: compareUrl }
+      case 'PullRequestEvent':
+        return { text: p.action + ' PR: ' + truncate(p.pull_request.title, 50), url: p.pull_request.html_url }
+      case 'IssuesEvent':
+        return { text: p.action + ' issue: ' + truncate(p.issue.title, 50), url: p.issue.html_url }
+      case 'IssueCommentEvent':
+        return { text: 'commented on: ' + truncate(p.issue.title, 50), url: p.comment.html_url }
+      case 'CommitCommentEvent':
+        return { text: 'commented on commit', url: p.comment.html_url }
+      case 'PullRequestReviewEvent':
+        return { text: 'reviewed PR: ' + truncate(p.pull_request.title, 50), url: p.review.html_url }
+      case 'PullRequestReviewCommentEvent':
+        return { text: 'commented on PR: ' + truncate(p.pull_request.title, 50), url: p.comment.html_url }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'created the repository', url: 'https://github.com/' + ev.repo.name }
+        return { text: 'created ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name + '/tree/' + p.ref }
+      case 'DeleteEvent':
+        return { text: 'deleted ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name }
+      case 'ForkEvent':
+        return { text: 'forked the repo', url: p.forkee.html_url }
+      case 'WatchEvent':
+        return { text: 'starred the repo', url: 'https://github.com/' + ev.repo.name }
+      case 'ReleaseEvent':
+        return { text: p.action + ' release: ' + p.release.tag_name, url: p.release.html_url }
+      case 'MemberEvent':
+        return { text: p.action + ' member: ' + p.member.login, url: 'https://github.com/' + p.member.login }
+      default:
+        return null
+    }
+  }
+
+  function render(events) {
+    var ul = document.querySelector('.on-the-githubs')
+    if (!ul) return
+    ul.innerHTML = ''
+    var shown = 0
+    for (var i = 0; i < events.length && shown < MAX_EVENTS; i++) {
+      var desc = describeEvent(events[i])
+      if (!desc) continue
+      var ev = events[i]
+      var li = document.createElement('li')
+      li.innerHTML =
+        '<img src="https://avatars.githubusercontent.com/u/' + ev.actor.id + '?s=32&v=4" alt="" />' +
+        '<a target="_blank" rel="noopener" href="https://github.com/' + escHtml(ev.actor.login) + '">' + escHtml(ev.actor.login) + '</a> ' +
+        '<a href="' + escHtml(desc.url) + '">' + escHtml(desc.text) + '</a> ' +
+        '<time>' + timeAgo(ev.created_at) + '</time>'
+      ul.appendChild(li)
+      shown++
+    }
+    if (shown === 0) {
+      ul.innerHTML = '<li>No recent activity</li>'
+    }
+  }
+
+  function showFallback() {
+    var ul = document.querySelector('.on-the-githubs')
+    if (ul) ul.innerHTML = '<li><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/activity">View recent activity on GitHub</a></li>'
+  }
+
+  function load() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')
+      if (cached.data && cached.ts && (Date.now() - cached.ts) < CACHE_TTL) {
+        render(cached.data)
+        return
+      }
+    } catch (e) { /* ignore */ }
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://api.github.com/repos/locutusjs/locutus/events?per_page=20')
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText)
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, ts: Date.now() }))
+          render(data)
+        } catch (e) {
+          showFallback()
+        }
+      } else {
+        showFallback()
+      }
+    }
+    xhr.onerror = function () {
+      showFallback()
+    }
+    xhr.send()
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load)
+  } else {
+    load()
+  }
+})()
+</script>
 
     
         <div class="widget-wrap widget-list">
@@ -823,6 +1322,25 @@ ga('send', 'pageview');
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2026/03/locutus-3-0/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-3-typescript.svg)" alt="Locutus 3.0: Fully Assimilated into TypeScript" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2026/03/locutus-3-0/" class="title">Locutus 3.0: Fully Assimilated into TypeScript</a></p>
+                            <p class="item-date"><time datetime="2026-03-02T00:00:00.000Z" itemprop="datePublished">2026-03-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2024/04/24-update/" class="thumbnail">
     
     
@@ -858,25 +1376,6 @@ ga('send', 'pageview');
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/breaking-bc/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
-                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -891,7 +1390,7 @@ ga('send', 'pageview');
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Arwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+            Artwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>

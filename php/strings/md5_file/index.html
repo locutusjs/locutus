@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     
-    <title>PHP&#39;s md5_file in JavaScript | Locutus</title>
+    <title>PHP&#39;s md5_file in TypeScript | Locutus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s md5_file looks like.">
+    <meta name="description" content="Here&#39;s what our current TypeScript equivalent to PHP&#39;s md5_file looks like.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PHP&#39;s md5_file in JavaScript">
+<meta property="og:title" content="PHP&#39;s md5_file in TypeScript">
 <meta property="og:url" content="https://locutus.io/php/strings/md5_file/index.html">
 <meta property="og:site_name" content="Locutus">
-<meta property="og:description" content="Here&#39;s what our current JavaScript equivalent to PHP&#39;s md5_file looks like.">
+<meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to PHP&#39;s md5_file looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-02-02T16:38:52.212Z">
-<meta property="article:modified_time" content="2026-02-02T16:38:52.212Z">
+<meta property="article:published_time" content="2026-03-03T09:05:03.030Z">
+<meta property="article:modified_time" content="2026-03-03T09:05:03.030Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -42,7 +42,6 @@
     
 <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
 
-    <script src="//kvz.github.io/on-the-githubs/js/jquery.on-the-githubs.min.js"></script>
 
     
     
@@ -77,40 +76,6 @@ ga('send', 'pageview');
                 <i class="logo"></i>
                 <span class="site-title">Locutus</span>
             </a>
-            <nav id="main-nav">
-                
-                  <a class="main-nav-link" href="/c">C</a>
-                
-                  <a class="main-nav-link" href="/golang">Go</a>
-                
-                  <a class="main-nav-link" href="/python">Python</a>
-                
-                  <a class="main-nav-link" href="/ruby">Ruby</a>
-                
-                  <a class="main-nav-link" href="/php">PHP</a>
-                
-                  <a class="main-nav-link" href="/perl">Perl</a>
-                
-                  <a class="main-nav-link" href="/lua">Lua</a>
-                
-                  <a class="main-nav-link" href="/r">R</a>
-                
-                  <a class="main-nav-link" href="/julia">Julia</a>
-                
-                  <a class="main-nav-link" href="/elixir">Elixir</a>
-                
-                  <a class="main-nav-link" href="/clojure">Clojure</a>
-                
-                  <a class="main-nav-link" href="/awk">AWK</a>
-                
-                <span class="main-nav-link">|</span>
-                
-                  <a class="main-nav-link" href="/archives">Blog</a>
-                
-                  <a class="main-nav-link" href="/authors">Authors</a>
-                
-            </nav>
-            
             <div id="search-form-wrap">
 
     <form class="search-form">
@@ -153,7 +118,43 @@ ga('send', 'pageview');
 
 
 </div>
+            
         </div>
+    </div>
+    <div id="main-nav-desktop" class="header-sub header-inner">
+        <nav id="main-nav" class="outer">
+            
+              <a class="main-nav-link" href="/c">C</a>
+            
+              <a class="main-nav-link" href="/golang">Go</a>
+            
+              <a class="main-nav-link" href="/python">Python</a>
+            
+              <a class="main-nav-link" href="/ruby">Ruby</a>
+            
+              <a class="main-nav-link" href="/php">PHP</a>
+            
+              <a class="main-nav-link" href="/perl">Perl</a>
+            
+              <a class="main-nav-link" href="/lua">Lua</a>
+            
+              <a class="main-nav-link" href="/r">R</a>
+            
+              <a class="main-nav-link" href="/julia">Julia</a>
+            
+              <a class="main-nav-link" href="/elixir">Elixir</a>
+            
+              <a class="main-nav-link" href="/clojure">Clojure</a>
+            
+              <a class="main-nav-link" href="/awk">AWK</a>
+            
+            <span class="main-nav-link">|</span>
+            
+              <a class="main-nav-link" href="/archives">Blog</a>
+            
+              <a class="main-nav-link" href="/authors">Authors</a>
+            
+        </nav>
     </div>
     <div id="main-nav-mobile" class="header-sub header-inner">
         <table class="menu outer">
@@ -189,13 +190,6 @@ ga('send', 'pageview');
                 
                     <td><a class="main-nav-link" href="/authors">Authors</a></td>
                 
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
-    </div>
-
-                </td>
             </tr>
         </table>
     </div>
@@ -208,10 +202,12 @@ ga('send', 'pageview');
   
 
 
+
+
 <article class="article article-type-function" >
   <div class="article-inner">
     <header class="article-header">
-      <h1 class="article-title">PHP&#39;s md5_file in JavaScript</h1>
+      <h1 class="article-title">PHP&#39;s md5_file in TypeScript</h1>
       
         <style>
           .verified-container {
@@ -265,26 +261,28 @@ ga('send', 'pageview');
 
     <div class="article-entry">
       <h2>How to use</h2>
+      
+        <p>
+          Install via <code>yarn add locutus</code> and import:
+          <code>import { md5_file } from 'locutus/php/strings/md5_file'</code>.
+        </p>
+        <p style="margin-top: 4px; font-size: 13px; color: #888;">
+          Or with CommonJS: <code>const { md5_file } = require('locutus/php/strings/md5_file')</code>
+        </p>
+      
       <p>
-        You you can install via <code>yarn add locutus</code> and
-        require this function via <code>const md5_file = require('locutus/php/strings/md5_file')</code>.
-      </p>
-      <p>
-        It is important to use a bundler that supports tree-shaking
-        so that you only ship the functions that you actually use to your browser,
-        instead of all of Locutus, which is massive. Examples are:
-        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>,
-        <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a>, or
-        <a href="https://rollupjs.org/" target="_blank" rel="external">rollup.js</a>.
-
-        For server-side use this is typically less of a concern.
+        Use a bundler that supports tree-shaking so you only ship the functions you actually use.
+        <a href="https://vite.dev/" target="_blank" rel="external">Vite</a>,
+        <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a>,
+        <a href="https://rollupjs.org/" target="_blank" rel="external">Rollup</a>, and
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>
+        all handle this. For server-side use this is less of a concern.
       </p>
 
       
         <h2>Examples</h2>
         <p>
-          Please note that these examples are distilled from test cases that automatically verify
-          our functions still work correctly. This could explain some quirky ones.
+          These examples are extracted from test cases that automatically verify our functions against their native counterparts.
         </p>
 
         <table>
@@ -331,35 +329,395 @@ efficient hashing</p>
       
 
       <p>
-        Here's what our current JavaScript equivalent to <a target="_blank" rel="noopener" href="https://php.net/manual/en/function.md5-file.php">PHP's md5_file</a> looks like.
+        Here's what our current TypeScript equivalent to <a target="_blank" rel="noopener" href="https://php.net/manual/en/function.md5-file.php">PHP's md5_file</a> looks like.
       </p>
 
       <!-- Code -->
-      <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> <span class="title function_">md5_file</span>(<span class="params">str_filename</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/md5_file/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//        input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Relies on file_get_contents which does not work in the browser, so Node only.</span></span><br><span class="line">  <span class="comment">//          note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then</span></span><br><span class="line">  <span class="comment">//          note 2: hashed. We&#x27;d recommend Node&#x27;s native crypto modules for faster and more</span></span><br><span class="line">  <span class="comment">//          note 2: efficient hashing</span></span><br><span class="line">  <span class="comment">//       example 1: md5_file(&#x27;test/never-change.txt&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;bc3aa724b0ec7dce4c26e7f4d0d9b064&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> fileGetContents = <span class="built_in">require</span>(<span class="string">&#x27;../filesystem/file_get_contents&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> md5 = <span class="built_in">require</span>(<span class="string">&#x27;../strings/md5&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> buf = <span class="title function_">fileGetContents</span>(str_filename)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (buf === <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">md5</span>(buf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+        <style>
+          .code-tabs {
+            position: relative;
+          }
+          .code-tabs-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+          }
+          .code-tabs-left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            min-width: 0;
+            scrollbar-width: thin;
+          }
+          .code-tab-btn {
+            position: relative;
+            padding: 8px 10px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            line-height: 1.2;
+            flex: 0 0 auto;
+          }
+          .code-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.04);
+          }
+          .code-tab-btn.active {
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            border-radius: 2px 2px 0 0;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .code-tab-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+          }
+          .code-tab-btn[data-tab="ts"].active::after,
+          .code-tab-btn[data-tab="standalone-ts"].active::after {
+            background: #3178c6;
+          }
+          .code-tab-btn[data-tab="js"].active::after,
+          .code-tab-btn[data-tab="standalone-js"].active::after {
+            background: #f0db4f;
+          }
+          .code-tab-btn .tab-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 900;
+            line-height: 16px;
+            text-align: center;
+            margin-right: 6px;
+            vertical-align: -2px;
+            letter-spacing: -0.5px;
+          }
+          .code-tab-btn[data-tab="ts"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-ts"] .tab-icon {
+            background: #3178c6;
+            color: #fff;
+          }
+          .code-tab-btn[data-tab="js"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-js"] .tab-icon {
+            background: #f0db4f;
+            color: #323330;
+          }
+          .code-panels-wrap {
+            position: relative;
+          }
+          .code-tab-panel {
+            display: none;
+          }
+          .code-tab-panel.active {
+            display: block;
+          }
+          .code-tab-panel figure.highlight {
+            border-radius: 0 8px 8px 8px;
+            margin-top: 0 !important;
+          }
+          .code-copy-icon-btn {
+            align-items: center;
+            background: rgba(38, 38, 38, 0.95);
+            border: 1px solid #404040;
+            border-radius: 6px;
+            color: #cfcfcf;
+            cursor: pointer;
+            display: inline-flex;
+            height: 30px;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+            width: 30px;
+            z-index: 4;
+          }
+          .code-copy-icon-btn:hover {
+            border-color: #5a5a5a;
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-copy-icon-btn svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+          .code-copy-icon-btn[data-state='copied'] {
+            border-color: #22c55e;
+            color: #22c55e;
+          }
+          .code-copy-icon-btn[data-state='failed'] {
+            border-color: #ef4444;
+            color: #ef4444;
+          }
+          .code-copy-icon-btn .code-copy-success {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-default {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-success {
+            display: block;
+          }
+          .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          @media (max-width: 640px) {
+            .code-tab-btn {
+              padding: 7px 8px;
+              font-size: 11px;
+            }
+          }
+        </style>
+        <div class="code-tabs">
+          <div class="code-tabs-header">
+            <div class="code-tabs-left">
+              <button class="code-tab-btn active" data-tab="ts" type="button">
+                <span class="tab-icon">TS</span><span class="tab-label">TypeScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="js" type="button">
+                <span class="tab-icon">JS</span><span class="tab-label">JavaScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-ts" type="button">
+                <span class="tab-icon">TS</span>Standalone TS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-js" type="button">
+                <span class="tab-icon">JS</span>Standalone JS
+              </button>
+            </div>
+          </div>
+          <div class="code-panels-wrap">
+            <button class="code-copy-icon-btn" type="button" data-state="idle" aria-label="Copy code" title="Copy code">
+              <span class="sr-only">Copy code</span>
+              <svg class="code-copy-default" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
+                <path d="M5 15V6.5C5 5.67 5.67 5 6.5 5H15" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+              <svg class="code-copy-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5L9.2 16.7L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <div class="code-tab-panel" data-lang="ts">
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; file_get_contents <span class="keyword">as</span> fileGetContents &#125; <span class="keyword">from</span> <span class="string">&#x27;../filesystem/file_get_contents.ts&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; md5 &#125; <span class="keyword">from</span> <span class="string">&#x27;../strings/md5.ts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">md5_file</span>(<span class="params"><span class="attr">str_filename</span>: <span class="built_in">string</span></span>): <span class="built_in">string</span> | <span class="literal">false</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/md5_file/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//        input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Relies on file_get_contents which does not work in the browser, so Node only.</span></span><br><span class="line">  <span class="comment">//          note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then</span></span><br><span class="line">  <span class="comment">//          note 2: hashed. We&#x27;d recommend Node&#x27;s native crypto modules for faster and more</span></span><br><span class="line">  <span class="comment">//          note 2: efficient hashing</span></span><br><span class="line">  <span class="comment">//       example 1: md5_file(&#x27;test/never-change.txt&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;bc3aa724b0ec7dce4c26e7f4d0d9b064&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> buf = <span class="title function_">fileGetContents</span>(str_filename)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (buf === <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">md5</span>(buf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; file_get_contents <span class="keyword">as</span> fileGetContents &#125; <span class="keyword">from</span> <span class="string">&#x27;../filesystem/file_get_contents.ts&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; md5 &#125; <span class="keyword">from</span> <span class="string">&#x27;../strings/md5.ts&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">md5_file</span>(<span class="params">str_filename</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/md5_file/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//        input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Relies on file_get_contents which does not work in the browser, so Node only.</span></span><br><span class="line">  <span class="comment">//          note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then</span></span><br><span class="line">  <span class="comment">//          note 2: hashed. We&#x27;d recommend Node&#x27;s native crypto modules for faster and more</span></span><br><span class="line">  <span class="comment">//          note 2: efficient hashing</span></span><br><span class="line">  <span class="comment">//       example 1: md5_file(&#x27;test/never-change.txt&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;bc3aa724b0ec7dce4c26e7f4d0d9b064&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> buf = <span class="title function_">fileGetContents</span>(str_filename)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (buf === <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">md5</span>(buf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// php/filesystem/file_get_contents (Locutus dependency module)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">file_get_contents</span>(<span class="params">url, _flags, _context, _offset, _maxLen</span>) &#123;</span><br><span class="line">  <span class="comment">//       discuss at: https://locutus.io/php/file_get_contents/</span></span><br><span class="line">  <span class="comment">//      original by: Legaev Andrey</span></span><br><span class="line">  <span class="comment">//         input by: Jani Hartikainen</span></span><br><span class="line">  <span class="comment">//         input by: Raphael (Ao) RUDLER</span></span><br><span class="line">  <span class="comment">//      improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//      improved by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//      bugfixed by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">// reimplemented by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//           note 1: This used to work in the browser via blocking ajax</span></span><br><span class="line">  <span class="comment">//           note 1: requests in 1.3.2 and earlier</span></span><br><span class="line">  <span class="comment">//           note 1: but then people started using that for real app,</span></span><br><span class="line">  <span class="comment">//           note 1: so we deprecated this behavior,</span></span><br><span class="line">  <span class="comment">//           note 1: so this function is now Node-only</span></span><br><span class="line">  <span class="comment">//        example 1: var $buf = file_get_contents(&#x27;test/never-change.txt&#x27;)</span></span><br><span class="line">  <span class="comment">//        example 1: var $result = $buf.indexOf(&#x27;hash&#x27;) !== -1</span></span><br><span class="line">  <span class="comment">//        returns 1: true</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> fs.<span class="title function_">readFileSync</span>(url, <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/xml/utf8_encode (Locutus dependency module)</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">utf8_encode</span>(<span class="params">argString</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/utf8_encode/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Webtoolkit.info (https://www.webtoolkit.info/)</span></span><br><span class="line">  <span class="comment">//     improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//     improved by: sowberry</span></span><br><span class="line">  <span class="comment">//     improved by: Jack</span></span><br><span class="line">  <span class="comment">//     improved by: Yves Sucaet</span></span><br><span class="line">  <span class="comment">//     improved by: kirilloid</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Ulrich</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Rafał Kukawski (https://blog.kukawski.pl)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: kirilloid</span></span><br><span class="line">  <span class="comment">//       example 1: utf8_encode(&#x27;Kevin van Zonneveld&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;Kevin van Zonneveld&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (argString === <span class="literal">null</span> || <span class="keyword">typeof</span> argString === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// .replace(/\r\n/g, &quot;\n&quot;).replace(/\r/g, &quot;\n&quot;);</span></span><br><span class="line">  <span class="keyword">const</span> string = argString + <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> utftext = <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="keyword">let</span> start</span><br><span class="line">  <span class="keyword">let</span> end</span><br><span class="line">  <span class="keyword">let</span> stringl = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  start = end = <span class="number">0</span></span><br><span class="line">  stringl = string.<span class="property">length</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> n = <span class="number">0</span>; n &lt; stringl; n++) &#123;</span><br><span class="line">    <span class="keyword">let</span> c1 = string.<span class="title function_">charCodeAt</span>(n)</span><br><span class="line">    <span class="keyword">let</span> enc = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (c1 &lt; <span class="number">128</span>) &#123;</span><br><span class="line">      end++</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c1 &gt; <span class="number">127</span> &amp;&amp; c1 &lt; <span class="number">2048</span>) &#123;</span><br><span class="line">      enc = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>((c1 &gt;&gt; <span class="number">6</span>) | <span class="number">192</span>, (c1 &amp; <span class="number">63</span>) | <span class="number">128</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((c1 &amp; <span class="number">0xf800</span>) !== <span class="number">0xd800</span>) &#123;</span><br><span class="line">      enc = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>((c1 &gt;&gt; <span class="number">12</span>) | <span class="number">224</span>, ((c1 &gt;&gt; <span class="number">6</span>) &amp; <span class="number">63</span>) | <span class="number">128</span>, (c1 &amp; <span class="number">63</span>) | <span class="number">128</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// surrogate pairs</span></span><br><span class="line">      <span class="keyword">if</span> ((c1 &amp; <span class="number">0xfc00</span>) !== <span class="number">0xd800</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;Unmatched trail surrogate at &#x27;</span> + n)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> c2 = string.<span class="title function_">charCodeAt</span>(++n)</span><br><span class="line">      <span class="keyword">if</span> ((c2 &amp; <span class="number">0xfc00</span>) !== <span class="number">0xdc00</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;Unmatched lead surrogate at &#x27;</span> + (n - <span class="number">1</span>))</span><br><span class="line">      &#125;</span><br><span class="line">      c1 = ((c1 &amp; <span class="number">0x3ff</span>) &lt;&lt; <span class="number">10</span>) + (c2 &amp; <span class="number">0x3ff</span>) + <span class="number">0x10000</span></span><br><span class="line">      enc = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>((c1 &gt;&gt; <span class="number">18</span>) | <span class="number">240</span>, ((c1 &gt;&gt; <span class="number">12</span>) &amp; <span class="number">63</span>) | <span class="number">128</span>, ((c1 &gt;&gt; <span class="number">6</span>) &amp; <span class="number">63</span>) | <span class="number">128</span>, (c1 &amp; <span class="number">63</span>) | <span class="number">128</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (enc !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (end &gt; start) &#123;</span><br><span class="line">        utftext += string.<span class="title function_">slice</span>(start, end)</span><br><span class="line">      &#125;</span><br><span class="line">      utftext += enc</span><br><span class="line">      start = end = n + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (end &gt; start) &#123;</span><br><span class="line">    utftext += string.<span class="title function_">slice</span>(start, stringl)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> utftext</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/strings/md5 (Locutus dependency module)</span></span><br><span class="line"><span class="keyword">const</span> utf8Encode = utf8_encode</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">md5</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/md5/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Webtoolkit.info (https://www.webtoolkit.info/)</span></span><br><span class="line">  <span class="comment">//     improved by: Michael White (https://getsprink.com)</span></span><br><span class="line">  <span class="comment">//     improved by: Jack</span></span><br><span class="line">  <span class="comment">//     improved by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//        input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Keep in mind that in accordance with PHP, the whole string is buffered and then</span></span><br><span class="line">  <span class="comment">//          note 1: hashed. If available, we&#x27;d recommend using Node&#x27;s native crypto modules directly</span></span><br><span class="line">  <span class="comment">//          note 1: in a steaming fashion for faster and more efficient hashing</span></span><br><span class="line">  <span class="comment">//       example 1: md5(&#x27;Kevin van Zonneveld&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;6e658d4bfcb59cc13f96c14450ac40b9&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> hash</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> md5sum = crypto.<span class="title function_">createHash</span>(<span class="string">&#x27;md5&#x27;</span>)</span><br><span class="line">    md5sum.<span class="title function_">update</span>(str)</span><br><span class="line">    hash = md5sum.<span class="title function_">digest</span>(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (_e) &#123;</span><br><span class="line">    hash = <span class="literal">undefined</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (hash !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> hash</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> xl = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _rotateLeft = <span class="keyword">function</span> (<span class="params">lValue, iShiftBits</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (lValue &lt;&lt; iShiftBits) | (lValue &gt;&gt;&gt; (<span class="number">32</span> - iShiftBits))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _addUnsigned = <span class="keyword">function</span> (<span class="params">lX, lY</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> lX8 = lX &amp; <span class="number">0x80000000</span></span><br><span class="line">    <span class="keyword">const</span> lY8 = lY &amp; <span class="number">0x80000000</span></span><br><span class="line">    <span class="keyword">const</span> lX4 = lX &amp; <span class="number">0x40000000</span></span><br><span class="line">    <span class="keyword">const</span> lY4 = lY &amp; <span class="number">0x40000000</span></span><br><span class="line">    <span class="keyword">const</span> lResult = (lX &amp; <span class="number">0x3fffffff</span>) + (lY &amp; <span class="number">0x3fffffff</span>)</span><br><span class="line">    <span class="keyword">if</span> (lX4 &amp; lY4) &#123;</span><br><span class="line">      <span class="keyword">return</span> lResult ^ <span class="number">0x80000000</span> ^ lX8 ^ lY8</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (lX4 | lY4) &#123;</span><br><span class="line">      <span class="keyword">if</span> (lResult &amp; <span class="number">0x40000000</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> lResult ^ <span class="number">0xc0000000</span> ^ lX8 ^ lY8</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> lResult ^ <span class="number">0x40000000</span> ^ lX8 ^ lY8</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> lResult ^ lX8 ^ lY8</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _F = <span class="keyword">function</span> (<span class="params">x, y, z</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (x &amp; y) | (~x &amp; z)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _G = <span class="keyword">function</span> (<span class="params">x, y, z</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (x &amp; z) | (y &amp; ~z)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _H = <span class="keyword">function</span> (<span class="params">x, y, z</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x ^ y ^ z</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> _I = <span class="keyword">function</span> (<span class="params">x, y, z</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> y ^ (x | ~z)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _FF = <span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) &#123;</span><br><span class="line">    a = <span class="title function_">_addUnsigned</span>(a, <span class="title function_">_addUnsigned</span>(<span class="title function_">_addUnsigned</span>(<span class="title function_">_F</span>(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">_addUnsigned</span>(<span class="title function_">_rotateLeft</span>(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _GG = <span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) &#123;</span><br><span class="line">    a = <span class="title function_">_addUnsigned</span>(a, <span class="title function_">_addUnsigned</span>(<span class="title function_">_addUnsigned</span>(<span class="title function_">_G</span>(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">_addUnsigned</span>(<span class="title function_">_rotateLeft</span>(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _HH = <span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) &#123;</span><br><span class="line">    a = <span class="title function_">_addUnsigned</span>(a, <span class="title function_">_addUnsigned</span>(<span class="title function_">_addUnsigned</span>(<span class="title function_">_H</span>(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">_addUnsigned</span>(<span class="title function_">_rotateLeft</span>(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _II = <span class="keyword">function</span> (<span class="params">a, b, c, d, x, s, ac</span>) &#123;</span><br><span class="line">    a = <span class="title function_">_addUnsigned</span>(a, <span class="title function_">_addUnsigned</span>(<span class="title function_">_addUnsigned</span>(<span class="title function_">_I</span>(b, c, d), x), ac))</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">_addUnsigned</span>(<span class="title function_">_rotateLeft</span>(a, s), b)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _convertToWordArray = <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> lWordCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">const</span> lMessageLength = value.<span class="property">length</span></span><br><span class="line">    <span class="keyword">const</span> lNumberOfWordsTemp1 = lMessageLength + <span class="number">8</span></span><br><span class="line">    <span class="keyword">const</span> lNumberOfWordsTemp2 = (lNumberOfWordsTemp1 - (lNumberOfWordsTemp1 % <span class="number">64</span>)) / <span class="number">64</span></span><br><span class="line">    <span class="keyword">const</span> lNumberOfWords = (lNumberOfWordsTemp2 + <span class="number">1</span>) * <span class="number">16</span></span><br><span class="line">    <span class="keyword">const</span> lWordArray = <span class="keyword">new</span> <span class="title class_">Array</span>(lNumberOfWords).<span class="title function_">fill</span>(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">let</span> lBytePosition = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> lByteCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (lByteCount &lt; lMessageLength) &#123;</span><br><span class="line">      lWordCount = (lByteCount - (lByteCount % <span class="number">4</span>)) / <span class="number">4</span></span><br><span class="line">      lBytePosition = (lByteCount % <span class="number">4</span>) * <span class="number">8</span></span><br><span class="line">      lWordArray[lWordCount] = (lWordArray[lWordCount] ?? <span class="number">0</span>) | (value.<span class="title function_">charCodeAt</span>(lByteCount) &lt;&lt; lBytePosition)</span><br><span class="line">      lByteCount++</span><br><span class="line">    &#125;</span><br><span class="line">    lWordCount = (lByteCount - (lByteCount % <span class="number">4</span>)) / <span class="number">4</span></span><br><span class="line">    lBytePosition = (lByteCount % <span class="number">4</span>) * <span class="number">8</span></span><br><span class="line">    lWordArray[lWordCount] = (lWordArray[lWordCount] ?? <span class="number">0</span>) | (<span class="number">0x80</span> &lt;&lt; lBytePosition)</span><br><span class="line">    lWordArray[lNumberOfWords - <span class="number">2</span>] = lMessageLength &lt;&lt; <span class="number">3</span></span><br><span class="line">    lWordArray[lNumberOfWords - <span class="number">1</span>] = lMessageLength &gt;&gt;&gt; <span class="number">29</span></span><br><span class="line">    <span class="keyword">return</span> lWordArray</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> _wordToHex = <span class="keyword">function</span> (<span class="params">lValue</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> wordToHexValue = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">let</span> wordToHexValueTemp = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">let</span> lByte = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> lCount = <span class="number">0</span>; lCount &lt;= <span class="number">3</span>; lCount++) &#123;</span><br><span class="line">      lByte = (lValue &gt;&gt;&gt; (lCount * <span class="number">8</span>)) &amp; <span class="number">255</span></span><br><span class="line">      wordToHexValueTemp = <span class="string">&#x27;0&#x27;</span> + lByte.<span class="title function_">toString</span>(<span class="number">16</span>)</span><br><span class="line">      wordToHexValue = wordToHexValue + wordToHexValueTemp.<span class="title function_">substr</span>(wordToHexValueTemp.<span class="property">length</span> - <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> wordToHexValue</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> x = []</span><br><span class="line">  <span class="keyword">let</span> k = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> <span class="variable constant_">AA</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> <span class="variable constant_">BB</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> <span class="variable constant_">CC</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> <span class="variable constant_">DD</span> = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> c = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> d = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S11</span> = <span class="number">7</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S12</span> = <span class="number">12</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S13</span> = <span class="number">17</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S14</span> = <span class="number">22</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S21</span> = <span class="number">5</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S22</span> = <span class="number">9</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S23</span> = <span class="number">14</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S24</span> = <span class="number">20</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S31</span> = <span class="number">4</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S32</span> = <span class="number">11</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S33</span> = <span class="number">16</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S34</span> = <span class="number">23</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S41</span> = <span class="number">6</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S42</span> = <span class="number">10</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S43</span> = <span class="number">15</span></span><br><span class="line">  <span class="keyword">const</span> <span class="variable constant_">S44</span> = <span class="number">21</span></span><br><span class="line"></span><br><span class="line">  str = <span class="title function_">utf8Encode</span>(str)</span><br><span class="line">  x = <span class="title function_">_convertToWordArray</span>(str)</span><br><span class="line">  <span class="keyword">const</span> _X = <span class="keyword">function</span> (<span class="params">index</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x[index] ?? <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  a = <span class="number">0x67452301</span></span><br><span class="line">  b = <span class="number">0xefcdab89</span></span><br><span class="line">  c = <span class="number">0x98badcfe</span></span><br><span class="line">  d = <span class="number">0x10325476</span></span><br><span class="line"></span><br><span class="line">  xl = x.<span class="property">length</span></span><br><span class="line">  <span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; xl; k += <span class="number">16</span>) &#123;</span><br><span class="line">    <span class="variable constant_">AA</span> = a</span><br><span class="line">    <span class="variable constant_">BB</span> = b</span><br><span class="line">    <span class="variable constant_">CC</span> = c</span><br><span class="line">    <span class="variable constant_">DD</span> = d</span><br><span class="line">    a = <span class="title function_">_FF</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">0</span>), <span class="variable constant_">S11</span>, <span class="number">0xd76aa478</span>)</span><br><span class="line">    d = <span class="title function_">_FF</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">1</span>), <span class="variable constant_">S12</span>, <span class="number">0xe8c7b756</span>)</span><br><span class="line">    c = <span class="title function_">_FF</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">2</span>), <span class="variable constant_">S13</span>, <span class="number">0x242070db</span>)</span><br><span class="line">    b = <span class="title function_">_FF</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">3</span>), <span class="variable constant_">S14</span>, <span class="number">0xc1bdceee</span>)</span><br><span class="line">    a = <span class="title function_">_FF</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">4</span>), <span class="variable constant_">S11</span>, <span class="number">0xf57c0faf</span>)</span><br><span class="line">    d = <span class="title function_">_FF</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">5</span>), <span class="variable constant_">S12</span>, <span class="number">0x4787c62a</span>)</span><br><span class="line">    c = <span class="title function_">_FF</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">6</span>), <span class="variable constant_">S13</span>, <span class="number">0xa8304613</span>)</span><br><span class="line">    b = <span class="title function_">_FF</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">7</span>), <span class="variable constant_">S14</span>, <span class="number">0xfd469501</span>)</span><br><span class="line">    a = <span class="title function_">_FF</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">8</span>), <span class="variable constant_">S11</span>, <span class="number">0x698098d8</span>)</span><br><span class="line">    d = <span class="title function_">_FF</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">9</span>), <span class="variable constant_">S12</span>, <span class="number">0x8b44f7af</span>)</span><br><span class="line">    c = <span class="title function_">_FF</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">10</span>), <span class="variable constant_">S13</span>, <span class="number">0xffff5bb1</span>)</span><br><span class="line">    b = <span class="title function_">_FF</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">11</span>), <span class="variable constant_">S14</span>, <span class="number">0x895cd7be</span>)</span><br><span class="line">    a = <span class="title function_">_FF</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">12</span>), <span class="variable constant_">S11</span>, <span class="number">0x6b901122</span>)</span><br><span class="line">    d = <span class="title function_">_FF</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">13</span>), <span class="variable constant_">S12</span>, <span class="number">0xfd987193</span>)</span><br><span class="line">    c = <span class="title function_">_FF</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">14</span>), <span class="variable constant_">S13</span>, <span class="number">0xa679438e</span>)</span><br><span class="line">    b = <span class="title function_">_FF</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">15</span>), <span class="variable constant_">S14</span>, <span class="number">0x49b40821</span>)</span><br><span class="line">    a = <span class="title function_">_GG</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">1</span>), <span class="variable constant_">S21</span>, <span class="number">0xf61e2562</span>)</span><br><span class="line">    d = <span class="title function_">_GG</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">6</span>), <span class="variable constant_">S22</span>, <span class="number">0xc040b340</span>)</span><br><span class="line">    c = <span class="title function_">_GG</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">11</span>), <span class="variable constant_">S23</span>, <span class="number">0x265e5a51</span>)</span><br><span class="line">    b = <span class="title function_">_GG</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">0</span>), <span class="variable constant_">S24</span>, <span class="number">0xe9b6c7aa</span>)</span><br><span class="line">    a = <span class="title function_">_GG</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">5</span>), <span class="variable constant_">S21</span>, <span class="number">0xd62f105d</span>)</span><br><span class="line">    d = <span class="title function_">_GG</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">10</span>), <span class="variable constant_">S22</span>, <span class="number">0x2441453</span>)</span><br><span class="line">    c = <span class="title function_">_GG</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">15</span>), <span class="variable constant_">S23</span>, <span class="number">0xd8a1e681</span>)</span><br><span class="line">    b = <span class="title function_">_GG</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">4</span>), <span class="variable constant_">S24</span>, <span class="number">0xe7d3fbc8</span>)</span><br><span class="line">    a = <span class="title function_">_GG</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">9</span>), <span class="variable constant_">S21</span>, <span class="number">0x21e1cde6</span>)</span><br><span class="line">    d = <span class="title function_">_GG</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">14</span>), <span class="variable constant_">S22</span>, <span class="number">0xc33707d6</span>)</span><br><span class="line">    c = <span class="title function_">_GG</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">3</span>), <span class="variable constant_">S23</span>, <span class="number">0xf4d50d87</span>)</span><br><span class="line">    b = <span class="title function_">_GG</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">8</span>), <span class="variable constant_">S24</span>, <span class="number">0x455a14ed</span>)</span><br><span class="line">    a = <span class="title function_">_GG</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">13</span>), <span class="variable constant_">S21</span>, <span class="number">0xa9e3e905</span>)</span><br><span class="line">    d = <span class="title function_">_GG</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">2</span>), <span class="variable constant_">S22</span>, <span class="number">0xfcefa3f8</span>)</span><br><span class="line">    c = <span class="title function_">_GG</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">7</span>), <span class="variable constant_">S23</span>, <span class="number">0x676f02d9</span>)</span><br><span class="line">    b = <span class="title function_">_GG</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">12</span>), <span class="variable constant_">S24</span>, <span class="number">0x8d2a4c8a</span>)</span><br><span class="line">    a = <span class="title function_">_HH</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">5</span>), <span class="variable constant_">S31</span>, <span class="number">0xfffa3942</span>)</span><br><span class="line">    d = <span class="title function_">_HH</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">8</span>), <span class="variable constant_">S32</span>, <span class="number">0x8771f681</span>)</span><br><span class="line">    c = <span class="title function_">_HH</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">11</span>), <span class="variable constant_">S33</span>, <span class="number">0x6d9d6122</span>)</span><br><span class="line">    b = <span class="title function_">_HH</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">14</span>), <span class="variable constant_">S34</span>, <span class="number">0xfde5380c</span>)</span><br><span class="line">    a = <span class="title function_">_HH</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">1</span>), <span class="variable constant_">S31</span>, <span class="number">0xa4beea44</span>)</span><br><span class="line">    d = <span class="title function_">_HH</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">4</span>), <span class="variable constant_">S32</span>, <span class="number">0x4bdecfa9</span>)</span><br><span class="line">    c = <span class="title function_">_HH</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">7</span>), <span class="variable constant_">S33</span>, <span class="number">0xf6bb4b60</span>)</span><br><span class="line">    b = <span class="title function_">_HH</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">10</span>), <span class="variable constant_">S34</span>, <span class="number">0xbebfbc70</span>)</span><br><span class="line">    a = <span class="title function_">_HH</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">13</span>), <span class="variable constant_">S31</span>, <span class="number">0x289b7ec6</span>)</span><br><span class="line">    d = <span class="title function_">_HH</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">0</span>), <span class="variable constant_">S32</span>, <span class="number">0xeaa127fa</span>)</span><br><span class="line">    c = <span class="title function_">_HH</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">3</span>), <span class="variable constant_">S33</span>, <span class="number">0xd4ef3085</span>)</span><br><span class="line">    b = <span class="title function_">_HH</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">6</span>), <span class="variable constant_">S34</span>, <span class="number">0x4881d05</span>)</span><br><span class="line">    a = <span class="title function_">_HH</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">9</span>), <span class="variable constant_">S31</span>, <span class="number">0xd9d4d039</span>)</span><br><span class="line">    d = <span class="title function_">_HH</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">12</span>), <span class="variable constant_">S32</span>, <span class="number">0xe6db99e5</span>)</span><br><span class="line">    c = <span class="title function_">_HH</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">15</span>), <span class="variable constant_">S33</span>, <span class="number">0x1fa27cf8</span>)</span><br><span class="line">    b = <span class="title function_">_HH</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">2</span>), <span class="variable constant_">S34</span>, <span class="number">0xc4ac5665</span>)</span><br><span class="line">    a = <span class="title function_">_II</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">0</span>), <span class="variable constant_">S41</span>, <span class="number">0xf4292244</span>)</span><br><span class="line">    d = <span class="title function_">_II</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">7</span>), <span class="variable constant_">S42</span>, <span class="number">0x432aff97</span>)</span><br><span class="line">    c = <span class="title function_">_II</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">14</span>), <span class="variable constant_">S43</span>, <span class="number">0xab9423a7</span>)</span><br><span class="line">    b = <span class="title function_">_II</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">5</span>), <span class="variable constant_">S44</span>, <span class="number">0xfc93a039</span>)</span><br><span class="line">    a = <span class="title function_">_II</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">12</span>), <span class="variable constant_">S41</span>, <span class="number">0x655b59c3</span>)</span><br><span class="line">    d = <span class="title function_">_II</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">3</span>), <span class="variable constant_">S42</span>, <span class="number">0x8f0ccc92</span>)</span><br><span class="line">    c = <span class="title function_">_II</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">10</span>), <span class="variable constant_">S43</span>, <span class="number">0xffeff47d</span>)</span><br><span class="line">    b = <span class="title function_">_II</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">1</span>), <span class="variable constant_">S44</span>, <span class="number">0x85845dd1</span>)</span><br><span class="line">    a = <span class="title function_">_II</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">8</span>), <span class="variable constant_">S41</span>, <span class="number">0x6fa87e4f</span>)</span><br><span class="line">    d = <span class="title function_">_II</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">15</span>), <span class="variable constant_">S42</span>, <span class="number">0xfe2ce6e0</span>)</span><br><span class="line">    c = <span class="title function_">_II</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">6</span>), <span class="variable constant_">S43</span>, <span class="number">0xa3014314</span>)</span><br><span class="line">    b = <span class="title function_">_II</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">13</span>), <span class="variable constant_">S44</span>, <span class="number">0x4e0811a1</span>)</span><br><span class="line">    a = <span class="title function_">_II</span>(a, b, c, d, <span class="title function_">_X</span>(k + <span class="number">4</span>), <span class="variable constant_">S41</span>, <span class="number">0xf7537e82</span>)</span><br><span class="line">    d = <span class="title function_">_II</span>(d, a, b, c, <span class="title function_">_X</span>(k + <span class="number">11</span>), <span class="variable constant_">S42</span>, <span class="number">0xbd3af235</span>)</span><br><span class="line">    c = <span class="title function_">_II</span>(c, d, a, b, <span class="title function_">_X</span>(k + <span class="number">2</span>), <span class="variable constant_">S43</span>, <span class="number">0x2ad7d2bb</span>)</span><br><span class="line">    b = <span class="title function_">_II</span>(b, c, d, a, <span class="title function_">_X</span>(k + <span class="number">9</span>), <span class="variable constant_">S44</span>, <span class="number">0xeb86d391</span>)</span><br><span class="line">    a = <span class="title function_">_addUnsigned</span>(a, <span class="variable constant_">AA</span>)</span><br><span class="line">    b = <span class="title function_">_addUnsigned</span>(b, <span class="variable constant_">BB</span>)</span><br><span class="line">    c = <span class="title function_">_addUnsigned</span>(c, <span class="variable constant_">CC</span>)</span><br><span class="line">    d = <span class="title function_">_addUnsigned</span>(d, <span class="variable constant_">DD</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> temp = <span class="title function_">_wordToHex</span>(a) + <span class="title function_">_wordToHex</span>(b) + <span class="title function_">_wordToHex</span>(c) + <span class="title function_">_wordToHex</span>(d)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> temp.<span class="title function_">toLowerCase</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// php/strings/md5_file (target function module)</span></span><br><span class="line"><span class="keyword">const</span> fileGetContents = file_get_contents</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">md5_file</span>(<span class="params">str_filename</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/php/md5_file/</span></span><br><span class="line">  <span class="comment">// parity verified: PHP 8.3</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//        input by: Brett Zamir (https://brett-zamir.me)</span></span><br><span class="line">  <span class="comment">//     bugfixed by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Relies on file_get_contents which does not work in the browser, so Node only.</span></span><br><span class="line">  <span class="comment">//          note 2: Keep in mind that in accordance with PHP, the whole file is buffered and then</span></span><br><span class="line">  <span class="comment">//          note 2: hashed. We&#x27;d recommend Node&#x27;s native crypto modules for faster and more</span></span><br><span class="line">  <span class="comment">//          note 2: efficient hashing</span></span><br><span class="line">  <span class="comment">//       example 1: md5_file(&#x27;test/never-change.txt&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: &#x27;bc3aa724b0ec7dce4c26e7f4d0d9b064&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> buf = <span class="title function_">fileGetContents</span>(str_filename)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (buf === <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">md5</span>(buf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+          </div>
+        </div>
+        <script>
+        (function() {
+          var STORAGE_KEY = 'locutus-code-variant';
+          var LEGACY_STORAGE_KEY = 'locutus-code-lang';
+          var saved = null;
+          try {
+            saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+          } catch(e) {}
+
+          if (saved === 'standalone') {
+            saved = 'standalone-js';
+          }
+
+          function getPanelCode(panel) {
+            if (!panel) {
+              return '';
+            }
+            var pre = panel.querySelector('pre');
+            if (pre) {
+              var preText = pre.innerText || pre.textContent || '';
+              if (preText) {
+                return preText.replace(/\u00a0/g, ' ').trimEnd();
+              }
+            }
+            var codeCell = panel.querySelector('figure.highlight .code');
+            if (codeCell) {
+              return (codeCell.textContent || '').replace(/\u00a0/g, ' ').trimEnd();
+            }
+            return '';
+          }
+
+          function copyText(value) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(value);
+            }
+            return new Promise(function(resolve, reject) {
+              try {
+                var textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (!ok) {
+                  reject(new Error('copy failed'));
+                  return;
+                }
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          var tabGroups = document.querySelectorAll('.code-tabs');
+          tabGroups.forEach(function(group) {
+            var buttons = group.querySelectorAll('.code-tab-btn');
+            var panels = group.querySelectorAll('.code-tab-panel');
+            var copyButton = group.querySelector('.code-copy-icon-btn');
+            var validTabs = [];
+
+            buttons.forEach(function(btn) {
+              var tab = btn.getAttribute('data-tab');
+              var hasPanel = Array.prototype.some.call(panels, function(panel) {
+                return panel.getAttribute('data-lang') === tab;
+              });
+              if (!hasPanel) {
+                btn.style.display = 'none';
+                return;
+              }
+              validTabs.push(tab);
+            });
+
+            var hasStandaloneTabs =
+              validTabs.indexOf('standalone-ts') !== -1 || validTabs.indexOf('standalone-js') !== -1;
+            var tsLabel = group.querySelector('.code-tab-btn[data-tab=\"ts\"] .tab-label');
+            var jsLabel = group.querySelector('.code-tab-btn[data-tab=\"js\"] .tab-label');
+            if (tsLabel) {
+              tsLabel.textContent = hasStandaloneTabs ? 'Module TS' : 'TypeScript';
+            }
+            if (jsLabel) {
+              jsLabel.textContent = hasStandaloneTabs ? 'Module JS' : 'JavaScript';
+            }
+
+            function switchTab(lang) {
+              if (validTabs.indexOf(lang) === -1) {
+                return;
+              }
+              buttons.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              });
+              panels.forEach(function(panel) {
+                panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+                panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+              });
+              try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+            }
+
+            buttons.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-tab'));
+              });
+            });
+
+            if (copyButton) {
+              var copyTimer = null;
+              copyButton.addEventListener('click', function() {
+                var activePanel = group.querySelector('.code-tab-panel.active') || panels[0];
+                var code = getPanelCode(activePanel);
+                if (!code.trim()) {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'No code available');
+                  copyButton.setAttribute('title', 'No code available');
+                  return;
+                }
+                copyText(code).then(function() {
+                  copyButton.setAttribute('data-state', 'copied');
+                  copyButton.setAttribute('aria-label', 'Copied');
+                  copyButton.setAttribute('title', 'Copied');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1400);
+                }).catch(function() {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'Copy failed');
+                  copyButton.setAttribute('title', 'Copy failed');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1600);
+                });
+              });
+            }
+
+            // Restore saved preference, default to TypeScript when available.
+            var defaultTab = validTabs.indexOf('ts') !== -1 ? 'ts' : validTabs[0];
+            if (saved && validTabs.indexOf(saved) !== -1) {
+              switchTab(saved);
+            } else if (defaultTab) {
+              switchTab(defaultTab);
+            }
+          });
+        })();
+        </script>
+      
 
 
       <div class="clearfix"></div>
 
-      <h2>Think you can do better?</h2>
+      <h2>Improve this function</h2>
       <p>
-        Not unlike Wikipedia, Locutus is an ongoing community effort. Our philosophy follows
-        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald’s Theory</a>.
-        This means that we assimilate first iterations with imperfections,
-        hoping for others to take issue with-and improve them.
-
-        This unorthodox approach has worked very well to foster fun and fruitful collaboration,
-        but please be reminded to use our creations at your own risk.
-        <code>THE SOFTWARE IS PROVIDED "AS IS"</code> has never been more true than for Locutus.
+        Locutus is a community effort following
+        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald's Theory</a>:
+        we ship first iterations, hoping others will improve them.
+        If you see something that could be better, we'd love your contribution.
       </p>
       <p>
-        Now go and:
-        [
-        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/md5_file.js">View on GitHub</a></strong>
-        |
-        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/md5_file.js">Edit on GitHub</a></strong>
-        |
-        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/md5_file.js">View Raw</a></strong>
-        ]
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/php/strings/md5_file.ts">View on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/php/strings/md5_file.ts">Edit on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/php/strings/md5_file.ts">View Raw</a></strong>
       </p>
 
 
@@ -390,7 +748,7 @@ efficient hashing</p>
         <div class="base-info profile-block">
             <img id="avatar" src="/css/images/locutus-alpha.png" />
             <h2 id="name">Locutus</h2>
-            <h3 id="title">All your standard libraries will be assimilated into our JavaScript collective. Resistance is futile.</h3>
+            <h3 id="title">All your standard libraries will be assimilated into our <del>JavaScript</del> <a href="/2026/03/locutus-3-0/">TypeScript</a> collective. Resistance is futile.</h3>
             <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
             <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
 
@@ -435,9 +793,147 @@ efficient hashing</p>
         <div class="widget-wrap widget-list">
   <h3 class="widget-title">on the githubs</h3>
   <div class="widget widget-on_the_githubs">
-    <div class="on-the-githubs" data-event-source="repos/locutusjs/locutus">Loading...</div>
+    <ul class="on-the-githubs">
+      <li class="otg-loading">Loading...</li>
+    </ul>
   </div>
 </div>
+
+<script>
+(function () {
+  var CACHE_KEY = 'otg_events'
+  var CACHE_TTL = 15 * 60 * 1000 // 15 minutes
+  var MAX_EVENTS = 15
+
+  function timeAgo(dateStr) {
+    var seconds = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000)
+    if (seconds < 60) return 'just now'
+    var minutes = Math.floor(seconds / 60)
+    if (minutes < 60) return minutes + 'm ago'
+    var hours = Math.floor(minutes / 60)
+    if (hours < 24) return hours + 'h ago'
+    var days = Math.floor(hours / 24)
+    if (days < 30) return days + 'd ago'
+    return Math.floor(days / 30) + 'mo ago'
+  }
+
+  function escHtml(str) {
+    var div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML
+  }
+
+  function truncate(str, len) {
+    return str.length > len ? str.substring(0, len) + '\u2026' : str
+  }
+
+  function describeEvent(ev) {
+    var p = ev.payload
+    switch (ev.type) {
+      case 'PushEvent':
+        var commits = p.commits || []
+        var branch = (p.ref || '').replace('refs/heads/', '')
+        var compareUrl = 'https://github.com/' + ev.repo.name + '/compare/' + p.before.substring(0, 10) + '...' + p.head.substring(0, 10)
+        if (commits.length === 1) return { text: truncate(commits[0].message.split('\n')[0], 60), url: 'https://github.com/' + ev.repo.name + '/commit/' + commits[0].sha }
+        if (commits.length > 1) return { text: 'pushed ' + commits.length + ' commits to ' + branch, url: compareUrl }
+        var size = p.size || p.distinct_size || 0
+        if (size > 0) return { text: 'pushed ' + size + ' commit' + (size !== 1 ? 's' : '') + ' to ' + branch, url: compareUrl }
+        return { text: 'pushed to ' + branch, url: compareUrl }
+      case 'PullRequestEvent':
+        return { text: p.action + ' PR: ' + truncate(p.pull_request.title, 50), url: p.pull_request.html_url }
+      case 'IssuesEvent':
+        return { text: p.action + ' issue: ' + truncate(p.issue.title, 50), url: p.issue.html_url }
+      case 'IssueCommentEvent':
+        return { text: 'commented on: ' + truncate(p.issue.title, 50), url: p.comment.html_url }
+      case 'CommitCommentEvent':
+        return { text: 'commented on commit', url: p.comment.html_url }
+      case 'PullRequestReviewEvent':
+        return { text: 'reviewed PR: ' + truncate(p.pull_request.title, 50), url: p.review.html_url }
+      case 'PullRequestReviewCommentEvent':
+        return { text: 'commented on PR: ' + truncate(p.pull_request.title, 50), url: p.comment.html_url }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'created the repository', url: 'https://github.com/' + ev.repo.name }
+        return { text: 'created ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name + '/tree/' + p.ref }
+      case 'DeleteEvent':
+        return { text: 'deleted ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name }
+      case 'ForkEvent':
+        return { text: 'forked the repo', url: p.forkee.html_url }
+      case 'WatchEvent':
+        return { text: 'starred the repo', url: 'https://github.com/' + ev.repo.name }
+      case 'ReleaseEvent':
+        return { text: p.action + ' release: ' + p.release.tag_name, url: p.release.html_url }
+      case 'MemberEvent':
+        return { text: p.action + ' member: ' + p.member.login, url: 'https://github.com/' + p.member.login }
+      default:
+        return null
+    }
+  }
+
+  function render(events) {
+    var ul = document.querySelector('.on-the-githubs')
+    if (!ul) return
+    ul.innerHTML = ''
+    var shown = 0
+    for (var i = 0; i < events.length && shown < MAX_EVENTS; i++) {
+      var desc = describeEvent(events[i])
+      if (!desc) continue
+      var ev = events[i]
+      var li = document.createElement('li')
+      li.innerHTML =
+        '<img src="https://avatars.githubusercontent.com/u/' + ev.actor.id + '?s=32&v=4" alt="" />' +
+        '<a target="_blank" rel="noopener" href="https://github.com/' + escHtml(ev.actor.login) + '">' + escHtml(ev.actor.login) + '</a> ' +
+        '<a href="' + escHtml(desc.url) + '">' + escHtml(desc.text) + '</a> ' +
+        '<time>' + timeAgo(ev.created_at) + '</time>'
+      ul.appendChild(li)
+      shown++
+    }
+    if (shown === 0) {
+      ul.innerHTML = '<li>No recent activity</li>'
+    }
+  }
+
+  function showFallback() {
+    var ul = document.querySelector('.on-the-githubs')
+    if (ul) ul.innerHTML = '<li><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/activity">View recent activity on GitHub</a></li>'
+  }
+
+  function load() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')
+      if (cached.data && cached.ts && (Date.now() - cached.ts) < CACHE_TTL) {
+        render(cached.data)
+        return
+      }
+    } catch (e) { /* ignore */ }
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://api.github.com/repos/locutusjs/locutus/events?per_page=20')
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText)
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, ts: Date.now() }))
+          render(data)
+        } catch (e) {
+          showFallback()
+        }
+      } else {
+        showFallback()
+      }
+    }
+    xhr.onerror = function () {
+      showFallback()
+    }
+    xhr.send()
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load)
+  } else {
+    load()
+  }
+})()
+</script>
 
     
         <div class="widget-wrap widget-list">
@@ -839,6 +1335,25 @@ efficient hashing</p>
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2026/03/locutus-3-0/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-3-typescript.svg)" alt="Locutus 3.0: Fully Assimilated into TypeScript" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2026/03/locutus-3-0/" class="title">Locutus 3.0: Fully Assimilated into TypeScript</a></p>
+                            <p class="item-date"><time datetime="2026-03-02T00:00:00.000Z" itemprop="datePublished">2026-03-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2024/04/24-update/" class="thumbnail">
     
     
@@ -874,25 +1389,6 @@ efficient hashing</p>
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/04/breaking-bc/" class="thumbnail">
-    
-    
-        <span style="background-image:url(https://imgc.allpostersimages.com/images/P-488-488-90/55/5543/C6HLG00Z/posters/warning-zombies-ahead.jpg)" alt="Breaking Backwards Compatibility" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/04/breaking-bc/" class="title">Breaking Backwards Compatibility</a></p>
-                            <p class="item-date"><time datetime="2016-04-20T00:00:00.000Z" itemprop="datePublished">2016-04-20</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -907,7 +1403,7 @@ efficient hashing</p>
     <div class="outer">
         <div id="footer-info" class="inner">
             &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
-            Arwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+            Artwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
 
         </div>
     </div>
