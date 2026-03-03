@@ -88,6 +88,7 @@
       var ev = events[i]
       var li = document.createElement('li')
       li.innerHTML =
+        '<img src="https://avatars.githubusercontent.com/u/' + ev.actor.id + '?s=32&v=4" alt="" />' +
         '<span class="otg-text">' +
           '<a href="https://github.com/' + escHtml(ev.actor.login) + '">' + escHtml(ev.actor.login) + '</a> ' +
           '<a href="' + escHtml(desc.url) + '">' + escHtml(desc.text) + '</a>' +
