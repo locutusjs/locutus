@@ -3,7 +3,6 @@ import fs from 'node:fs'
 
 const allowedJsFiles = new Set<string>([
   '.remarkrc.mjs',
-  'test/browser/app.js',
   'website/themes/icarus/scripts/fancybox.js',
   'website/themes/icarus/scripts/locutus_stats.js',
   'website/themes/icarus/scripts/meta.js',

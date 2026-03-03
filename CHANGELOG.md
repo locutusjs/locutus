@@ -12,8 +12,6 @@ the hundreds of contributions across the many languages that Locutus is assimila
 
 Ideas that will be planned and find their way into a release at one point
 
-- [ ] Modernize browser playground and browser tests:
-  - [ ] Migrate `test/browser/app.js` and `yarn browser:watch` from browserify/budo to a Vitest + Playwright/Vite-based setup.
 - [ ] Expansion:
   - [ ] Continue porting additional functions in existing languages.
   - [ ] Expand parity coverage and edge-case coverage for generated tests.
@@ -26,6 +24,13 @@ Ideas that will be planned and find their way into a release at one point
 ## main
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main).
+
+### Infrastructure
+
+- Modernized browser playground/tests:
+  - Replaced legacy browserify/budo flow with Vitest browser mode + Playwright.
+  - Added `yarn browser:install`, `yarn browser:test`, and a new `yarn browser:watch` flow.
+  - CI now installs Chromium and runs browser smoke tests.
 
 ## v3.0.0
 

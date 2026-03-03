@@ -39,6 +39,9 @@ jobs:
       - name: Install Dependencies
         run: |
           corepack yarn
+      - name: Install Browser Runtime
+        run: |
+          corepack yarn browser:install
       - name: Lint
         run: |
           corepack yarn lint
@@ -66,6 +69,9 @@ jobs:
       - name: Test
         run: |
           corepack yarn test
+      - name: Browser Test
+        run: |
+          corepack yarn browser:test
       - name: Parity tests
         run: |
           corepack yarn test:parity

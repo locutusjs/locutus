@@ -737,4 +737,38 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - **Area: Expansion**
 - Balance: Expansion (4), Modernization (blocked), Verification (1, PR pending)
 - Plan: Expand Julia functions (currently only 6)
+- Outcome: superseded by subsequent major modernization/type migration work completed for v3.0.0.
 
+### Iteration 49
+
+2026-03-03
+
+- **Area: Modernization (browser testing stack) + Maintainer triage**
+- Maintainer cycle checks completed:
+  - `gh auth status`: active maintainer identity is `kvz`.
+  - Open PRs: none.
+  - Open issues: none.
+  - `main` CI healthy after release/changelog follow-ups.
+- Backlog was trimmed to active items only; next highest-impact unresolved item is browser test/playground modernization.
+- Created branch `feat/modernize-browser-tests` (no direct `main` changes for implementation work).
+- Plan for this iteration:
+  - Replace legacy browserify/budo path with a Vitest + Playwright browser flow.
+  - Preserve local dev ergonomics (watch mode + quick iteration).
+  - Keep validation explicit (`yarn check` plus browser-focused tests).
+
+### Iteration 50
+
+2026-03-03
+
+- **Area: Modernization (browser testing stack) + Documentation**
+- Completed browser test stack migration on branch `feat/modernize-browser-tests`:
+  - Removed legacy `test/browser/app.js` and browserify/budo scripts.
+  - Added Vitest browser config (`vitest.browser.config.ts`) with Playwright Chromium provider.
+  - Added browser smoke test (`test/browser/playground.vitest.ts`) covering legacy demo flow (`sprintf`, `preg_match`, `ini_set`, `is_array`).
+- Updated scripts:
+  - Added `yarn browser:install`, `yarn browser:test`, and new `yarn browser:watch`.
+  - Updated `playground:start` to alias `yarn browser:watch`.
+- Updated policy/docs:
+  - Removed `test/browser/app.js` from JS allowlist.
+  - Updated CONTRIBUTING Browser Playground section with the new flow.
+  - Moved browser modernization out of Backlog into `## main` changelog notes.
