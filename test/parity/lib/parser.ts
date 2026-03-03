@@ -6,6 +6,28 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { basename, join } from 'node:path'
 import type { Example, FunctionInfo } from './types.ts'
 
+const SOURCE_EXTENSIONS = ['.ts', '.js'] as const
+
+export function resolveFunctionSourcePath(srcDir: string, funcPath: string): string | null {
+  for (const ext of SOURCE_EXTENSIONS) {
+    const fullPath = join(srcDir, `${funcPath}${ext}`)
+    if (existsSync(fullPath)) {
+      return fullPath
+    }
+  }
+  return null
+}
+
+function resolveFunctionRelativePath(srcDir: string, funcPath: string): string | null {
+  for (const ext of SOURCE_EXTENSIONS) {
+    const relPath = `${funcPath}${ext}`
+    if (existsSync(join(srcDir, relPath))) {
+      return relPath
+    }
+  }
+  return null
+}
+
 /**
  * Parse example/returns from function file comments (fallback parser)
  */
@@ -180,7 +202,10 @@ export async function parseFunctionWithUtil(
   const { Util } = await import(join(rootDir, 'src/_util/util.ts'))
   const util = new Util([])
 
-  const relPath = `${funcPath}.js`
+  const relPath = resolveFunctionRelativePath(srcDir, funcPath)
+  if (!relPath) {
+    throw new Error(`Unable to resolve source file for ${funcPath}`)
+  }
   const fullPath = join(srcDir, relPath)
   const code = readFileSync(fullPath, 'utf8')
 
@@ -218,10 +243,32 @@ export function findFunctions(srcDir: string, filter?: string): FunctionInfo[] {
 
     for (const category of categories) {
       const catDir = join(langDir, category)
-      const files = readdirSync(catDir).filter((f) => f.endsWith('.js') && !f.startsWith('_') && f !== 'index.js')
+      const files = readdirSync(catDir).filter((fileName) => {
+        if (fileName.startsWith('_')) {
+          return false
+        }
+        if (fileName === 'index.ts' || fileName === 'index.js') {
+          return false
+        }
+        if (fileName.endsWith('.vitest.ts') || fileName.endsWith('.d.ts')) {
+          return false
+        }
+        return fileName.endsWith('.ts') || fileName.endsWith('.js')
+      })
 
-      for (const file of files) {
-        const funcName = basename(file, '.js')
+      // Prefer TypeScript when both source variants exist
+      const filesByBase = new Map<string, string>()
+      for (const fileName of files) {
+        const funcName = basename(fileName, fileName.endsWith('.ts') ? '.ts' : '.js')
+        const existing = filesByBase.get(funcName)
+        if (!existing || fileName.endsWith('.ts')) {
+          filesByBase.set(funcName, fileName)
+        }
+      }
+
+      const selectedFiles = Array.from(filesByBase.values()).sort((left, right) => left.localeCompare(right))
+      for (const file of selectedFiles) {
+        const funcName = basename(file, file.endsWith('.ts') ? '.ts' : '.js')
         const funcPath = `${language}/${category}/${funcName}`
 
         if (filter && filter.length > language.length && !funcPath.startsWith(filter)) {

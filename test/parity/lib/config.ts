@@ -97,6 +97,13 @@ export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
     version: '3.3',
     dockerImage: 'ruby:3.3',
   },
+  {
+    id: 'tcl',
+    displayName: 'Tcl',
+    version: '8.6',
+    // Uses python image because it ships `tclsh` and has reliable Docker Hub tags.
+    dockerImage: 'python:3.12',
+  },
 ]
 
 /**

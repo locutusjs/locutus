@@ -15,6 +15,7 @@ string_length:
   - c/string/strlen
   - ruby/String/length
   - perl/core/length
+  - tcl/string/length
   - awk/builtin/length
   - lua/string/len
   - elixir/String/length
@@ -24,6 +25,7 @@ string_lowercase:
   - php/strings/strtolower
   - ruby/String/downcase
   - golang/strings/ToLower
+  - tcl/string/tolower
   - lua/string/lower
   - perl/core/lc
   - awk/builtin/tolower
@@ -36,6 +38,7 @@ string_uppercase:
   - php/strings/strtoupper
   - ruby/String/upcase
   - golang/strings/ToUpper
+  - tcl/string/toupper
   - lua/string/upper
   - perl/core/uc
   - awk/builtin/toupper
@@ -49,13 +52,19 @@ string_trim:
   - ruby/String/strip
   - golang/strings/TrimSpace
   - golang/strings/Trim
+  - tcl/string/trim
   - clojure/string/trim
+
+string_ltrim:
+  - php/strings/ltrim
+  - tcl/string/trimleft
 
 string_rtrim:
   - php/strings/rtrim
   - php/strings/chop
   - ruby/String/chop
   - ruby/String/chomp
+  - tcl/string/trimright
   - perl/core/chop
 
 string_chomp:
@@ -76,6 +85,7 @@ string_ends_with:
 string_reverse:
   - php/strings/strrev
   - ruby/String/reverse
+  - tcl/string/reverse
   - lua/string/reverse
   - perl/core/reverse
   - elixir/String/reverse
@@ -97,14 +107,17 @@ string_index:
   - php/strings/strpos
   - golang/strings/Index
   - golang/strings/Index2
+  - tcl/string/first
 
 string_last_index:
   - php/strings/strrpos
   - golang/strings/LastIndex
+  - tcl/string/last
 
 string_repeat:
   - php/strings/str_repeat
   - golang/strings/Repeat
+  - tcl/string/repeat
   - lua/string/rep
 
 string_capitalize:

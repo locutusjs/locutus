@@ -27,7 +27,7 @@ import pMap from 'p-map'
 import { CACHE_VERSION, calculateHash, loadCache, saveCache } from './lib/cache.ts'
 import { checkDockerAvailable, ensureDockerImage, getDockerDigest, runInDocker } from './lib/docker.ts'
 import { getLanguageHandler, isLanguageSupported } from './lib/languages/index.ts'
-import { findFunctions, parseFunctionWithUtil } from './lib/parser.ts'
+import { findFunctions, parseFunctionWithUtil, resolveFunctionSourcePath } from './lib/parser.ts'
 import { evaluateExpected, runJs } from './lib/runner.ts'
 import type { FunctionInfo, ParitySummary, VerifyOptions, VerifyResult } from './lib/types.ts'
 
@@ -59,7 +59,22 @@ async function runParityTest(
   func: FunctionInfo,
   options: VerifyOptions,
 ): Promise<{ results: VerifyResult[]; cached: boolean }> {
-  const fullPath = join(SRC, func.path + '.js')
+  const fullPath = resolveFunctionSourcePath(SRC, func.path)
+  if (!fullPath) {
+    return {
+      results: [
+        {
+          example: 0,
+          passed: false,
+          expected: '',
+          jsResult: '',
+          nativeResult: '',
+          error: `Unable to resolve source file for ${func.path}`,
+        },
+      ],
+      cached: false,
+    }
+  }
 
   // Parse function with util.js for accurate example extraction
   let parsed: { examples: typeof func.examples; dependsOn: string[]; verified: string[]; isImpossible: boolean }
@@ -477,6 +492,7 @@ async function main() {
 
   // Step 2: Pull all required Docker images in parallel
   const requiredImages = new Set<string>()
+  const requiredLanguages = new Set<string>()
   for (const { func, category } of functionsToTest) {
     if (category === 'impossible') {
       continue
@@ -484,6 +500,7 @@ async function main() {
     const handler = getLanguageHandler(func.language)
     if (handler) {
       requiredImages.add(handler.dockerImage)
+      requiredLanguages.add(func.language)
     }
   }
 
@@ -523,6 +540,14 @@ async function main() {
         const ver = runInDocker(image, ['ruby', '--version'], {})
         if (ver.success) {
           console.log(`  Ruby: ${ver.output.trim()}`)
+        }
+      }
+
+      // Tcl currently runs in the python image because tcl official tags are unavailable.
+      if (requiredLanguages.has('tcl') && image.startsWith('python:')) {
+        const ver = runInDocker(image, ['sh', '-lc', "echo 'puts [info patchlevel]' | tclsh"], {})
+        if (ver.success) {
+          console.log(`  Tcl: ${ver.output.trim()}`)
         }
       }
     }

@@ -15,6 +15,7 @@ import { phpHandler } from './php.ts'
 import { pythonHandler } from './python.ts'
 import { rHandler } from './r.ts'
 import { rubyHandler } from './ruby.ts'
+import { tclHandler } from './tcl.ts'
 
 const handlers: Record<string, LanguageHandler> = {
   awk: awkHandler,
@@ -29,6 +30,7 @@ const handlers: Record<string, LanguageHandler> = {
   python: pythonHandler,
   r: rHandler,
   ruby: rubyHandler,
+  tcl: tclHandler,
 }
 
 /**

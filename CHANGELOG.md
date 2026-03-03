@@ -34,6 +34,17 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
 
 ### Expansion
 
+- Added initial Tcl support with 10 `string` commands:
+  - `tcl/string/first`
+  - `tcl/string/last`
+  - `tcl/string/length`
+  - `tcl/string/repeat`
+  - `tcl/string/reverse`
+  - `tcl/string/tolower`
+  - `tcl/string/toupper`
+  - `tcl/string/trim`
+  - `tcl/string/trimleft`
+  - `tcl/string/trimright`
 - Added 10 Perl core functions:
   - `perl/core/abs`
   - `perl/core/chomp`
@@ -45,7 +56,6 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main
   - `perl/core/ord`
   - `perl/core/quotemeta`
   - `perl/core/ucfirst`
-
 ## v3.0.0
 
 Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
