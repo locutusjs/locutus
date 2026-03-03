@@ -62,7 +62,37 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.0...main).
+
+## v3.0.0
+
+Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.39...v3.0.0).
+
+### Breaking Changes
+
+- Full source migration to TypeScript with named exports across modules.
+- Node engine bumped to `>= 22`.
+- Public deep-import usage now targets named exports (`import { fn } from 'locutus/.../fn'`).
+
+### Build and Packaging
+
+- Package now publishes dual runtime outputs:
+  - CommonJS-compatible deep `require(...)` paths.
+  - ESM output for modern `import`.
+- Repo/tooling switched to native ESM operation (`"type": "module"`), with TypeScript-based scripts.
+
+### Type Safety and CI
+
+- Added strict type quality gates in CI:
+  - API signature snapshot checks.
+  - Type contract snapshot checks.
+  - Type debt policy checks (`@ts-ignore` / `@ts-nocheck` / unsafe patterns blocked).
+- Added automated signature comparison tooling against DefinitelyTyped for triage (`compare:dt:signatures`).
+
+### Website and Docs
+
+- Website function pages now include improved TS/JS code variants (module and standalone where applicable).
+- Added release documentation and migration notes for TypeScript-first development.
 
 ## v2.0.39
 
