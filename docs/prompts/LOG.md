@@ -1012,3 +1012,40 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check` passes.
 - Key learnings:
   - Not every Go stdlib edge case can be used directly in parity because of JS/JSON constraints (notably non-finite floats in JSON), so we should favor finite, high-signal cases when selecting shared examples.
+
+### Iteration 61
+
+2026-03-03
+
+- **Area: Go expansion (time + strings follow-ups)**
+- Plan:
+  - Add requested follow-ups: `UnixMilli`, `UnixMicro`, `ParseDuration`, `CutPrefix`, `CutSuffix`.
+  - Keep behavior JS-native while preserving Go parity through translator helpers.
+- Progress:
+  - Added sources:
+    - `src/golang/time/UnixMilli.ts`
+    - `src/golang/time/UnixMicro.ts`
+    - `src/golang/time/ParseDuration.ts`
+    - `src/golang/strings/CutPrefix.ts`
+    - `src/golang/strings/CutSuffix.ts`
+  - Updated exports:
+    - `src/golang/time/index.ts`
+    - `src/golang/strings/index.ts`
+  - Extended Go parity translator (`test/parity/lib/languages/golang.ts`) with helper rewrites and runtime shims for:
+    - `UnixMilli`, `UnixMicro` (`.toISOString()`-style deterministic formatting)
+    - `ParseDuration` (duration -> milliseconds normalization)
+    - `CutPrefix`, `CutSuffix` (tuple-to-array shape normalization)
+  - Regenerated artifacts:
+    - `test/generated/golang/time/UnixMilli.vitest.ts`
+    - `test/generated/golang/time/UnixMicro.vitest.ts`
+    - `test/generated/golang/time/ParseDuration.vitest.ts`
+    - `test/generated/golang/strings/CutPrefix.vitest.ts`
+    - `test/generated/golang/strings/CutSuffix.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation:
+  - `vitest` passes for all five generated tests.
+  - `test:parity --no-cache` passes for all five functions.
+  - `corepack yarn check` passes.
+- Key learnings:
+  - Microsecond timestamps need explicit examples that survive JavaScript millisecond precision (e.g. `-1000` µs, not `-1` µs) to keep expectations stable.

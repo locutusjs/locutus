@@ -36,6 +36,8 @@ const GO_PACKAGES: Record<string, string> = {
   TrimSpace: 'strings',
   TrimSuffix: 'strings',
   Cut: 'strings',
+  CutPrefix: 'strings',
+  CutSuffix: 'strings',
   // strconv package
   Atoi: 'strconv',
   FormatBool: 'strconv',
@@ -47,7 +49,10 @@ const GO_PACKAGES: Record<string, string> = {
   ParseInt: 'strconv',
   // time package
   Format: 'time',
+  ParseDuration: 'time',
   Unix: 'time',
+  UnixMicro: 'time',
+  UnixMilli: 'time',
 }
 
 // Functions to skip (implementation differences, etc.)
@@ -260,6 +265,66 @@ function convertUnixCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus time/UnixMilli calls to helper call for parity runtime.
+ */
+function convertUnixMilliCalls(code: string): string {
+  const withIso = code.replace(/\bUnixMilli\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const millis = args[0]
+    if (!millis) {
+      return match
+    }
+    return `locutusTimeUnixMilli(${millis})`
+  })
+
+  return withIso.replace(/\bUnixMilli\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const millis = args[0]
+    if (!millis) {
+      return match
+    }
+    return `locutusTimeUnixMilli(${millis})`
+  })
+}
+
+/**
+ * Convert Locutus time/UnixMicro calls to helper call for parity runtime.
+ */
+function convertUnixMicroCalls(code: string): string {
+  const withIso = code.replace(/\bUnixMicro\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const micros = args[0]
+    if (!micros) {
+      return match
+    }
+    return `locutusTimeUnixMicro(${micros})`
+  })
+
+  return withIso.replace(/\bUnixMicro\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const micros = args[0]
+    if (!micros) {
+      return match
+    }
+    return `locutusTimeUnixMicro(${micros})`
+  })
+}
+
+/**
+ * Convert Locutus time/ParseDuration calls to helper call for parity runtime.
+ */
+function convertParseDurationCalls(code: string): string {
+  return code.replace(/\bParseDuration\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusParseDuration(${value})`
+  })
+}
+
+/**
  * Convert Locutus strings/Cut calls to helper calls.
  * Go returns (before, after, found), while locutus Cut returns [before, after, found].
  */
@@ -272,6 +337,38 @@ function convertCutCalls(code: string): string {
       return match
     }
     return `locutusStringsCut(${value}, ${sep})`
+  })
+}
+
+/**
+ * Convert Locutus strings/CutPrefix calls to helper calls.
+ * Go returns (after, found), while locutus CutPrefix returns [after, found].
+ */
+function convertCutPrefixCalls(code: string): string {
+  return code.replace(/\bCutPrefix\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const prefix = args[1]
+    if (!value || !prefix) {
+      return match
+    }
+    return `locutusStringsCutPrefix(${value}, ${prefix})`
+  })
+}
+
+/**
+ * Convert Locutus strings/CutSuffix calls to helper calls.
+ * Go returns (before, found), while locutus CutSuffix returns [before, found].
+ */
+function convertCutSuffixCalls(code: string): string {
+  return code.replace(/\bCutSuffix\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const suffix = args[1]
+    if (!value || !suffix) {
+      return match
+    }
+    return `locutusStringsCutSuffix(${value}, ${suffix})`
   })
 }
 
@@ -321,8 +418,18 @@ function convertJsLineToGo(line: string, funcName: string): string {
     go = convertFormatFloatCalls(go)
   } else if (funcName === 'Unix') {
     go = convertUnixCalls(go)
+  } else if (funcName === 'UnixMilli') {
+    go = convertUnixMilliCalls(go)
+  } else if (funcName === 'UnixMicro') {
+    go = convertUnixMicroCalls(go)
+  } else if (funcName === 'ParseDuration') {
+    go = convertParseDurationCalls(go)
   } else if (funcName === 'Cut') {
     go = convertCutCalls(go)
+  } else if (funcName === 'CutPrefix') {
+    go = convertCutPrefixCalls(go)
+  } else if (funcName === 'CutSuffix') {
+    go = convertCutSuffixCalls(go)
   }
 
   // Handle function calls - prefix with package
@@ -334,7 +441,12 @@ function convertJsLineToGo(line: string, funcName: string): string {
     funcName !== 'ParseFloat' &&
     funcName !== 'FormatFloat' &&
     funcName !== 'Unix' &&
-    funcName !== 'Cut'
+    funcName !== 'UnixMilli' &&
+    funcName !== 'UnixMicro' &&
+    funcName !== 'ParseDuration' &&
+    funcName !== 'Cut' &&
+    funcName !== 'CutPrefix' &&
+    funcName !== 'CutSuffix'
   ) {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
@@ -354,7 +466,12 @@ function convertJsLineToGo(line: string, funcName: string): string {
 function getRequiredImports(goCode: string): string[] {
   const imports: Set<string> = new Set(['fmt', 'encoding/json'])
 
-  if (goCode.includes('strings.') || goCode.includes('locutusStringsCut(')) {
+  if (
+    goCode.includes('strings.') ||
+    goCode.includes('locutusStringsCut(') ||
+    goCode.includes('locutusStringsCutPrefix(') ||
+    goCode.includes('locutusStringsCutSuffix(')
+  ) {
     imports.add('strings')
   }
   if (goCode.includes('strconv.') || goCode.includes('locutusParseFloat(') || goCode.includes('locutusFormatFloat(')) {
@@ -364,7 +481,10 @@ function getRequiredImports(goCode: string): string[] {
     goCode.includes('time.') ||
     goCode.includes('locutusTimeFormat(') ||
     goCode.includes('locutusTimeParse(') ||
-    goCode.includes('locutusTimeUnix(')
+    goCode.includes('locutusTimeUnix(') ||
+    goCode.includes('locutusTimeUnixMilli(') ||
+    goCode.includes('locutusTimeUnixMicro(') ||
+    goCode.includes('locutusParseDuration(')
   ) {
     imports.add('time')
   }
@@ -444,14 +564,50 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-              : funcName === 'Cut'
-                ? `func locutusStringsCut(value string, sep string) []interface{} {
+              : funcName === 'UnixMilli'
+                ? `func locutusTimeUnixMilli(millis float64) string {
+\treturn time.UnixMilli(int64(millis)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                : funcName === 'UnixMicro'
+                  ? `func locutusTimeUnixMicro(micros float64) string {
+\treturn time.UnixMicro(int64(micros)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+                  : funcName === 'ParseDuration'
+                    ? `func locutusParseDuration(value string) float64 {
+\td, err := time.ParseDuration(value)
+\tif err != nil {
+\t\treturn 0
+\t}
+\treturn float64(d) / float64(time.Millisecond)
+}
+
+`
+                    : funcName === 'Cut'
+                      ? `func locutusStringsCut(value string, sep string) []interface{} {
 \tbefore, after, found := strings.Cut(value, sep)
 \treturn []interface{}{before, after, found}
 }
 
 `
-                : ''
+                      : funcName === 'CutPrefix'
+                        ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
+\tafter, found := strings.CutPrefix(value, prefix)
+\treturn []interface{}{after, found}
+}
+
+`
+                        : funcName === 'CutSuffix'
+                          ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
+\tbefore, found := strings.CutSuffix(value, suffix)
+\treturn []interface{}{before, found}
+}
+
+`
+                          : ''
 
   return `package main
 

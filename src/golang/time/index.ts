@@ -1,3 +1,6 @@
 export { Format } from './Format.ts'
 export { Parse } from './Parse.ts'
+export { ParseDuration } from './ParseDuration.ts'
 export { Unix } from './Unix.ts'
+export { UnixMicro } from './UnixMicro.ts'
+export { UnixMilli } from './UnixMilli.ts'

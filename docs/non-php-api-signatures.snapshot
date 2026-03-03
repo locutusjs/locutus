@@ -65,6 +65,8 @@ src/golang/strings/Contains.ts :: export function Contains(s: string, substr: st
 src/golang/strings/ContainsAny.ts :: export function ContainsAny(s: string, chars: string): boolean | false
 src/golang/strings/Count.ts :: export function Count(s: string, sep: string): number
 src/golang/strings/Cut.ts :: export function Cut(s: string, sep: string): [string, string, boolean]
+src/golang/strings/CutPrefix.ts :: export function CutPrefix(s: string, prefix: string): [string, boolean]
+src/golang/strings/CutSuffix.ts :: export function CutSuffix(s: string, suffix: string): [string, boolean]
 src/golang/strings/EqualFold.ts :: export function EqualFold(s: string, t: string): boolean
 src/golang/strings/Fields.ts :: export function Fields(s: string): string[]
 src/golang/strings/HasPrefix.ts :: export function HasPrefix(s: string, prefix: string): boolean
@@ -89,7 +91,10 @@ src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
 src/golang/time/Format.ts :: export function Format(value: DateInput, layout: string): string
 src/golang/time/Parse.ts :: export function Parse(layout: string, value: string): Date
+src/golang/time/ParseDuration.ts :: export function ParseDuration(s: string): number
 src/golang/time/Unix.ts :: export function Unix(sec: number, nsec = 0): Date
+src/golang/time/UnixMicro.ts :: export function UnixMicro(usec: number): Date
+src/golang/time/UnixMilli.ts :: export function UnixMilli(msec: number): Date
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
 src/julia/Base/floor.ts :: export function floor(x: number): number
