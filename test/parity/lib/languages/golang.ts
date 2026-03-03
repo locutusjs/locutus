@@ -72,8 +72,14 @@ const GO_PACKAGES: Record<string, string> = {
   Ext: 'path',
   IsAbs: 'path',
   // net/url package
+  JoinPath: 'url',
+  ParseQuery: 'url',
   PathEscape: 'url',
   QueryEscape: 'url',
+  QueryUnescape: 'url',
+  // net package
+  JoinHostPort: 'net',
+  SplitHostPort: 'net',
   // crypto/subtle package
   ConstantTimeCompare: 'subtle',
 }
@@ -624,6 +630,65 @@ function convertConstantTimeCompareCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus url/QueryUnescape calls to helper calls.
+ * Go returns (string, error), while locutus QueryUnescape returns string.
+ */
+function convertQueryUnescapeCalls(code: string): string {
+  return code.replace(/\bQueryUnescape\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusQueryUnescape(${value})`
+  })
+}
+
+/**
+ * Convert Locutus url/ParseQuery calls to helper calls.
+ * Go returns (Values, error), while locutus ParseQuery returns plain object.
+ */
+function convertParseQueryCalls(code: string): string {
+  return code.replace(/\bParseQuery\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusParseQuery(${value})`
+  })
+}
+
+/**
+ * Convert Locutus url/JoinPath calls to helper calls.
+ * Go returns (string, error), while locutus JoinPath returns string.
+ */
+function convertJoinPathCalls(code: string): string {
+  return code.replace(/\bJoinPath\s*\(([^)]*)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    if (args.length === 0) {
+      return match
+    }
+    return `locutusUrlJoinPath(${args.join(', ')})`
+  })
+}
+
+/**
+ * Convert Locutus net/SplitHostPort calls to helper calls.
+ * Go returns (host, port, error), while locutus SplitHostPort returns [host, port].
+ */
+function convertSplitHostPortCalls(code: string): string {
+  return code.replace(/\bSplitHostPort\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusSplitHostPort(${value})`
+  })
+}
+
+/**
  * Convert a single JS line to Go
  */
 function convertJsLineToGo(line: string, funcName: string, category?: string): string {
@@ -701,6 +766,14 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     go = convertCutSuffixCalls(go)
   } else if (funcName === 'ConstantTimeCompare') {
     go = convertConstantTimeCompareCalls(go)
+  } else if (funcName === 'QueryUnescape') {
+    go = convertQueryUnescapeCalls(go)
+  } else if (funcName === 'ParseQuery') {
+    go = convertParseQueryCalls(go)
+  } else if (funcName === 'JoinPath') {
+    go = convertJoinPathCalls(go)
+  } else if (funcName === 'SplitHostPort') {
+    go = convertSplitHostPortCalls(go)
   }
 
   // Handle function calls - prefix with package
@@ -727,7 +800,11 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     funcName !== 'Cut' &&
     funcName !== 'CutPrefix' &&
     funcName !== 'CutSuffix' &&
-    funcName !== 'ConstantTimeCompare'
+    funcName !== 'ConstantTimeCompare' &&
+    funcName !== 'QueryUnescape' &&
+    funcName !== 'ParseQuery' &&
+    funcName !== 'JoinPath' &&
+    funcName !== 'SplitHostPort'
   ) {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
@@ -764,8 +841,16 @@ function getRequiredImports(goCode: string): string[] {
   if (goCode.includes('sort.')) {
     imports.add('sort')
   }
-  if (goCode.includes('url.')) {
+  if (
+    goCode.includes('url.') ||
+    goCode.includes('locutusQueryUnescape(') ||
+    goCode.includes('locutusParseQuery(') ||
+    goCode.includes('locutusUrlJoinPath(')
+  ) {
     imports.add('net/url')
+  }
+  if (goCode.includes('net.') || goCode.includes('locutusSplitHostPort(')) {
+    imports.add('net')
   }
   if (goCode.includes('locutusConstantTimeCompare(')) {
     imports.add('crypto/subtle')
@@ -1010,7 +1095,47 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                              : ''
+                                              : funcName === 'QueryUnescape'
+                                                ? `func locutusQueryUnescape(value string) string {
+\tdecoded, err := url.QueryUnescape(value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn decoded
+}
+
+`
+                                                : funcName === 'ParseQuery'
+                                                  ? `func locutusParseQuery(value string) map[string][]string {
+\tparsed, err := url.ParseQuery(value)
+\tif err != nil {
+\t\treturn map[string][]string{}
+\t}
+\treturn parsed
+}
+
+`
+                                                  : funcName === 'JoinPath'
+                                                    ? `func locutusUrlJoinPath(base string, elems ...string) string {
+\tjoined, err := url.JoinPath(base, elems...)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn joined
+}
+
+`
+                                                    : funcName === 'SplitHostPort'
+                                                      ? `func locutusSplitHostPort(value string) []interface{} {
+\thost, port, err := net.SplitHostPort(value)
+\tif err != nil {
+\t\treturn []interface{}{"", ""}
+\t}
+\treturn []interface{}{host, port}
+}
+
+`
+                                                      : ''
 
   return `package main
 

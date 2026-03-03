@@ -2451,3 +2451,47 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Category-aware package resolution is necessary as Go coverage grows because function names collide across packages (`Join` was the first concrete collision).
   - Some parity translator limitations still exist for empty JS array literal inference to typed Go slices; examples should avoid ambiguous literals unless translator typing support is extended.
+
+## Iteration 90
+
+- Plans
+  - Add 5 higher-value Go networking/URL functions: `QueryUnescape`, `ParseQuery`, `JoinPath`, `SplitHostPort`, `JoinHostPort`.
+  - Keep parity strict by adding Go helper shims for APIs that return `(value, error)` tuples in native Go.
+- Progress
+  - Added source modules:
+    - `src/golang/url/QueryUnescape.ts`
+    - `src/golang/url/ParseQuery.ts`
+    - `src/golang/url/JoinPath.ts`
+    - `src/golang/net/SplitHostPort.ts`
+    - `src/golang/net/JoinHostPort.ts`
+  - Added `src/golang/net/index.ts` and updated namespace exports:
+    - `src/golang/index.ts` now exports `net`.
+    - `src/golang/url/index.ts` now exports `JoinPath`, `ParseQuery`, `QueryUnescape`.
+  - Extended Go parity translator (`test/parity/lib/languages/golang.ts`):
+    - package mapping additions for new `url/*` and `net/*` functions.
+    - new helper conversions:
+      - `locutusQueryUnescape(...)`
+      - `locutusParseQuery(...)`
+      - `locutusUrlJoinPath(...)`
+      - `locutusSplitHostPort(...)`
+    - import detection additions for `net/url` and `net` based on helper usage.
+  - Regenerated test outputs and snapshots:
+    - new generated tests under `test/generated/golang/url/` and `test/generated/golang/net/`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Fixed parity mismatch discovered during validation:
+    - aligned `JoinHostPort` behavior with Go for already-bracketed IPv6 host strings.
+    - aligned `ParseQuery` behavior with Go by not stripping a leading `?`.
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/url/QueryUnescape.vitest.ts test/generated/golang/url/ParseQuery.vitest.ts test/generated/golang/url/JoinPath.vitest.ts test/generated/golang/net/SplitHostPort.vitest.ts test/generated/golang/net/JoinHostPort.vitest.ts`
+  - `corepack yarn test:parity golang/url/QueryUnescape --no-cache`
+  - `corepack yarn test:parity golang/url/ParseQuery --no-cache`
+  - `corepack yarn test:parity golang/url/JoinPath --no-cache`
+  - `corepack yarn test:parity golang/net/SplitHostPort --no-cache`
+  - `corepack yarn test:parity golang/net/JoinHostPort --no-cache`
+  - `corepack yarn test:parity golang/strings/Join --no-cache`
+  - `corepack yarn test:parity golang/path/Join --no-cache`
+- Key learnings
+  - `url.ParseQuery` in Go treats a leading `?` as part of the key, so callers should pass raw query components, not full search strings.
+  - `net.JoinHostPort` wraps any host containing `:` (including already-bracketed IPv6 text), which is surprising but parity-correct.
