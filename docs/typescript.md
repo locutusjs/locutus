@@ -2412,3 +2412,42 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Go parity infra currently keys conversion logic by function name only, so new Go additions should avoid same-name collisions across categories unless translator context is upgraded to include category/path.
   - Parser/test discovery currently supports `src/<language>/<category>/<function>.ts` depth, so Go package additions should stay one category deep for now.
+
+## Iteration 89
+
+- Plans
+  - Fix the CI break introduced by `replaceAll` usage in `golang/url/QueryEscape` by using compatibility-safe replacements.
+  - Add another 5 useful Go functions that remain feasible with current parser/parity constraints.
+  - Resolve parity collisions where identical function names exist across Go categories.
+- Progress
+  - Fixed CI compatibility in `src/golang/url/QueryEscape.ts`:
+    - replaced `replaceAll(...)` usage with regex `replace(...)` variants.
+  - Added new Go functions:
+    - `src/golang/path/IsAbs.ts`
+    - `src/golang/path/Join.ts`
+    - `src/golang/url/PathEscape.ts`
+    - `src/golang/sort/SearchStrings.ts`
+    - `src/golang/sort/StringsAreSorted.ts`
+  - Export wiring:
+    - `src/golang/path/index.ts`
+    - `src/golang/url/index.ts`
+    - `src/golang/sort/index.ts` (new)
+    - `src/golang/index.ts` now exports `sort`.
+  - Updated Go parity translator (`test/parity/lib/languages/golang.ts`):
+    - added package mappings/import detection for `sort`, `path` additions, and `PathEscape`.
+    - made package resolution category-aware (`translate(..., funcName, category)`), adding scoped overrides so `strings/Join` and `path/Join` can coexist without key collisions.
+  - Regenerated generated tests and type/API snapshots:
+    - new tests under `test/generated/golang/path/`, `test/generated/golang/url/`, and `test/generated/golang/sort/`.
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/path/IsAbs.vitest.ts test/generated/golang/path/Join.vitest.ts test/generated/golang/url/PathEscape.vitest.ts test/generated/golang/url/QueryEscape.vitest.ts test/generated/golang/sort/SearchStrings.vitest.ts test/generated/golang/sort/StringsAreSorted.vitest.ts`
+  - `corepack yarn test:parity golang/path/IsAbs --no-cache`
+  - `corepack yarn test:parity golang/path/Join --no-cache`
+  - `corepack yarn test:parity golang/url/PathEscape --no-cache`
+  - `corepack yarn test:parity golang/url/QueryEscape --no-cache`
+  - `corepack yarn test:parity golang/sort/SearchStrings --no-cache`
+  - `corepack yarn test:parity golang/sort/StringsAreSorted --no-cache`
+  - `corepack yarn test:parity golang/strings/Join --no-cache` (regression guard for name collision handling)
+- Key learnings
+  - Category-aware package resolution is necessary as Go coverage grows because function names collide across packages (`Join` was the first concrete collision).
+  - Some parity translator limitations still exist for empty JS array literal inference to typed Go slices; examples should avoid ambiguous literals unless translator typing support is extended.

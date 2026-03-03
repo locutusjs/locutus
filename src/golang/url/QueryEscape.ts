@@ -1,5 +1,5 @@
 const strictEncodeURIComponent = (value: string): string =>
-  encodeURIComponent(value).replaceAll(/[!'()*]/g, (char) => `%${char.charCodeAt(0).toString(16).toUpperCase()}`)
+  encodeURIComponent(value).replace(/[!'()*]/g, (char) => `%${char.charCodeAt(0).toString(16).toUpperCase()}`)
 
 export function QueryEscape(s: string): string {
   //      discuss at: https://locutus.io/golang/url/QueryEscape
@@ -13,5 +13,5 @@ export function QueryEscape(s: string): string {
   //       example 3: QueryEscape('100%')
   //       returns 3: '100%25'
 
-  return strictEncodeURIComponent(String(s)).replaceAll('%20', '+')
+  return strictEncodeURIComponent(String(s)).replace(/%20/g, '+')
 }

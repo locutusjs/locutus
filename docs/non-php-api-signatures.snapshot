@@ -56,6 +56,10 @@ src/golang/path/Base.ts :: export function Base(path: string): string
 src/golang/path/Clean.ts :: export function Clean(path: string): string
 src/golang/path/Dir.ts :: export function Dir(path: string): string
 src/golang/path/Ext.ts :: export function Ext(path: string): string
+src/golang/path/IsAbs.ts :: export function IsAbs(path: string): boolean
+src/golang/path/Join.ts :: export function Join(...elem: string[]): string
+src/golang/sort/SearchStrings.ts :: export function SearchStrings(a: string[], x: string): number
+src/golang/sort/StringsAreSorted.ts :: export function StringsAreSorted(a: string[]): boolean
 src/golang/strconv/Atoi.ts :: export function Atoi(s: unknown): [number, Error | null]
 src/golang/strconv/FormatBool.ts :: export function FormatBool(b: boolean): string
 src/golang/strconv/FormatFloat.ts :: export function FormatFloat(f: number, fmt: string, prec: number, _bitSize: number): string
@@ -109,6 +113,7 @@ src/golang/time/Truncate.ts :: export function Truncate(value: GoTimeInput, unit
 src/golang/time/Unix.ts :: export function Unix(sec: number, nsec = 0): Date
 src/golang/time/UnixMicro.ts :: export function UnixMicro(usec: number): Date
 src/golang/time/UnixMilli.ts :: export function UnixMilli(msec: number): Date
+src/golang/url/PathEscape.ts :: export function PathEscape(s: string): string
 src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number

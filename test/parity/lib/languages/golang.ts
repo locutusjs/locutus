@@ -38,6 +38,9 @@ const GO_PACKAGES: Record<string, string> = {
   Cut: 'strings',
   CutPrefix: 'strings',
   CutSuffix: 'strings',
+  // sort package
+  SearchStrings: 'sort',
+  StringsAreSorted: 'sort',
   // strconv package
   Atoi: 'strconv',
   FormatBool: 'strconv',
@@ -67,10 +70,27 @@ const GO_PACKAGES: Record<string, string> = {
   Clean: 'path',
   Dir: 'path',
   Ext: 'path',
+  IsAbs: 'path',
   // net/url package
+  PathEscape: 'url',
   QueryEscape: 'url',
   // crypto/subtle package
   ConstantTimeCompare: 'subtle',
+}
+
+const GO_PACKAGE_OVERRIDES: Record<string, string> = {
+  'path/Join': 'path',
+}
+
+const getGoPackage = (funcName: string, category?: string): string | undefined => {
+  if (category) {
+    const scoped = GO_PACKAGE_OVERRIDES[`${category}/${funcName}`]
+    if (scoped) {
+      return scoped
+    }
+  }
+
+  return GO_PACKAGES[funcName]
 }
 
 // Functions to skip (implementation differences, etc.)
@@ -606,7 +626,7 @@ function convertConstantTimeCompareCalls(code: string): string {
 /**
  * Convert a single JS line to Go
  */
-function convertJsLineToGo(line: string, funcName: string): string {
+function convertJsLineToGo(line: string, funcName: string, category?: string): string {
   let go = line.trim()
   if (!go) {
     return ''
@@ -684,7 +704,7 @@ function convertJsLineToGo(line: string, funcName: string): string {
   }
 
   // Handle function calls - prefix with package
-  const pkg = GO_PACKAGES[funcName]
+  const pkg = getGoPackage(funcName, category)
   if (
     pkg &&
     funcName !== 'Format' &&
@@ -741,6 +761,9 @@ function getRequiredImports(goCode: string): string[] {
   if (goCode.includes('path.')) {
     imports.add('path')
   }
+  if (goCode.includes('sort.')) {
+    imports.add('sort')
+  }
   if (goCode.includes('url.')) {
     imports.add('net/url')
   }
@@ -774,8 +797,8 @@ function getRequiredImports(goCode: string): string[] {
 /**
  * Convert JS example code to Go
  */
-function jsToGo(jsCode: string[], funcName: string): string {
-  const lines = jsCode.map((line) => convertJsLineToGo(line, funcName)).filter(Boolean)
+function jsToGo(jsCode: string[], funcName: string, category?: string): string {
+  const lines = jsCode.map((line) => convertJsLineToGo(line, funcName, category)).filter(Boolean)
   if (!lines.length) {
     return ''
   }
