@@ -12,53 +12,16 @@ the hundreds of contributions across the many languages that Locutus is assimila
 
 Ideas that will be planned and find their way into a release at one point
 
-- [x] ~~Address the 25 remaining test failures~~ → reduced to 1 (`set_time_limit` is intentionally untestable)
-- [x] Compare example test cases for PHP against `php -r` → implemented via parity verification system (`yarn test:parity`)
-- [x] ~~Have _one_ way of checking pure JS arrays~~ → standardized to `Array.isArray()` in 43 files (PR #518). Object checking patterns remain varied (acceptable - different use cases).
-- [x] ~~Investigate callable helper~~ → Only 2 files use complex resolution (`is_callable.js`, `call_user_func_array.js`). Low ROI for abstraction. `array_walk` only accepts functions directly.
-- [x] ~~Parse `require`s with ts-morph~~ → used existing esprima AST parsing to extract require() calls. 85 PHP functions now show internal dependencies on website with links
-- [x] Verification: verify examples against native runtimes with Docker (254 functions verified across 5 languages)
-  - [x] PHP: 170 functions verified against PHP 8.3
-  - [x] Go: 20 functions verified against Go 1.23
-  - [x] Python: 23/25 (92%) - remaining: capwords (impl difference), printable (.length)
-  - [x] Ruby: 30/32 (94%) - remaining: sample (random), acos (example incompatible)
-  - [x] C: 11/18 (61%) - remaining: sprintf, strchr, strstr, strcat, frexp, isspace, atof (complex/different semantics)
-  - [x] Infrastructure: parallel execution, caching, modular architecture, per-language handlers, type-safe config
-  - [x] CI integration: `parity verified:` header in function files, Zod validation, `yarn test:parity`
-  - [x] Badge: "Verified against PHP 8.3" (added to README, PR #501)
-- [ ] Modernize, e.g.:
-  - [x] Migrate Babel 6 → TS (Node 22+ typestripping) - removed Babel, using `node --experimental-strip-types`
-  - [x] Migrate Mocha → Vitest (PR #506)
-  - [ ] Migrate custom `test/browser/app.js` and `yarn browser:watch`/browserify → Vitest with Playwright support (blocked on ESM migration - Vite browser mode requires ESM, but source functions are CJS)
-  - [ ] Drop Node < 22 support (planned for v3; requires Node >= 22)
-  - [x] ESLint/Prettier → Biome (done in v2.0.33)
-  - [ ] Migrate CJS → ESM (v3.0 candidate - 448 files, use tsup for dual exports, breaking change for consumers)
-  - [x] ~~Migrate Custom tagged releases → Changesets~~ (current process works well: npm version + gh release)
-  - [x] Migrate JS → TS for infra scripts (use Node v22+ native type stripping to run)
-- [x] TypeScript:
-  - [x] Convert `src/_util/` to TypeScript
-  - [x] Strict mode compatible. Node type stripping compatible
-- [ ] Expansion (port more functions to the different languages) we'll go from most feasible + sensible, to least :) Also: improve header comment driven test coverage to expose more edge cases. And finally another way to expand is on parity test coverage, and fixing issues found by doing that.
-  - **New language candidates** (missing from `src/`, ranked by suitability for Locutus):
-    1. **Perl** (Excellent) - PHP's spiritual ancestor, dynamically typed, function-first stdlib. Functions: `join`, `split`, `grep`, `map`, `sort`, `reverse`, `substr`, `index`, `uc`, `lc`, `chomp`. Module structure: core + `List::Util`, `File::Basename`.
-    2. **Lua** (Excellent) - Simple, clean, educational. Small but organized stdlib. Functions: `string.sub`, `string.upper`, `string.lower`, `table.insert`, `table.sort`, `math.floor`. Module structure: `string`, `table`, `math`, `io`, `os`.
-    3. **R** (Good) - Vectorized but function-centric; strong text + math. Functions: `nchar`, `substr`, `toupper`, `tolower`, `paste`, `grep`, `gsub`, `sprintf`, `sort`.
-    4. **Julia** (Good) - Multiple dispatch and rich stdlib, great for math-heavy functions. Functions: `split`, `join`, `replace`, `lowercase`, `uppercase`, `sort`, `floor`, `round`. Modules: `Base`, `Printf`, `Statistics`.
-    5. **Elixir** (Good) - Module/function oriented; `String` and `Enum` map well to `strings`/`array`. Functions: `String.split`, `String.replace`, `String.downcase`, `String.upcase`, `Enum.map`, `Enum.filter`.
-    6. **Clojure** (Good) - Strong function-first stdlib; `clojure.string` mirrors JS string ops. Functions: `clojure.string/split`, `join`, `replace`, `lower-case`, `upper-case`, plus core `map`/`filter`/`reduce`.
-    7. **AWK** (Good) - Text processing powerhouse, function-based. Functions: `length`, `substr`, `index`, `split`, `gsub`, `sub`, `tolower`, `toupper`, `sprintf`. Could be single category or split by type.
-    8. **Bash** (Moderate) - Useful for CLI, but command-based nature challenging. Built-ins: `printf`, `test`, string ops via parameter expansion (substring, replace, case conversion).
-    9. **Java** (Moderate) - Popular but OOP-heavy. Static methods only: `Math.max`, `Math.min`, `Math.abs`, `Arrays.sort`, `String.format`. Package structure: `java.lang`, `java.util`.
-    10. **Rust** (Lower) - Ownership model + method-heavy, but solid stdlib. Methods: `trim`, `split`, `chars`. Modules: `std::string`, `std::collections`.
-    11. **Haskell** (Lower) - Different paradigm but educational. Functions: `map`, `filter`, `foldl`, `foldr`, `zip`. Modules: `Data.List`, `Data.Char`.
-  - **Selection criteria**: (1) Type compatibility with JS, (2) Stdlib organized in modules/categories, (3) Function-oriented (or easy to wrap methods as functions), (4) Popularity/demand, (5) Semantic compatibility with JS, (6) Clean mapping to existing `src` module layout (strings/array/math/pcre/etc.)
-- [x] Docs/Website:
-  - [x] The function pages could have a badge themselves in which language version they were parity checked (similar to what was added in the README.md)
-  - [x] website: Render authors server-side (PR #511)
-  - [x] website: Fix the search functionality (verified working 2026-01-07)
-  - [x] Hexo upgrade to 8.1.1 (PR #512) - Next.js migration deferred
-  - [x] Fix Search by function name or behavior (verified working 2026-01-07)
-  - [x] "Rosetta Stone" view for cross-language comparison (PR #520)
+- [ ] Modernize browser playground and browser tests:
+  - [ ] Migrate `test/browser/app.js` and `yarn browser:watch` from browserify/budo to a Vitest + Playwright/Vite-based setup.
+- [ ] Expansion:
+  - [ ] Continue porting additional functions in existing languages.
+  - [ ] Expand parity coverage and edge-case coverage for generated tests.
+- [ ] New language exploration (not yet in `src/`):
+  - [ ] Bash
+  - [ ] Java
+  - [ ] Rust
+  - [ ] Haskell
 
 ## main
 
@@ -71,6 +34,7 @@ Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v2.0.3
 ### Breaking Changes
 
 - Full source migration to TypeScript with named exports across modules.
+- Source modules migrated from CommonJS export patterns to ESM module syntax.
 - Node engine bumped to `>= 22`.
 - Public deep-import usage now targets named exports (`import { fn } from 'locutus/.../fn'`).
 
