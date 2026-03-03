@@ -1,3 +1,4 @@
+export * as net from './net/index.ts'
 export * as path from './path/index.ts'
 export * as sort from './sort/index.ts'
 export * as strconv from './strconv/index.ts'
