@@ -7,5 +7,12 @@ export function replace(str: string, search: string, replacement: string): strin
   //       example 2: replace('a+b+c', '+', '-')
   //       returns 2: 'a-b-c'
 
-  return String(str).replaceAll(String(search), String(replacement))
+  const source = String(str)
+  const from = String(search)
+  const to = String(replacement)
+  if (!from) {
+    return source
+  }
+
+  return source.split(from).join(to)
 }
