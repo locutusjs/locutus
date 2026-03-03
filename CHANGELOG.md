@@ -22,7 +22,13 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.1...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.2...main).
+
+- No unreleased changes yet.
+
+## v3.0.2
+
+Released: 2026-03-03. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.1...v3.0.2).
 
 ### Expansion
 
@@ -40,6 +46,15 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.1...main
   - `golang/strings/SplitN`
   - `golang/strconv/FormatFloat`
   - `golang/strconv/ParseFloat`
+  - `golang/time/AddDate`
+  - `golang/time/Sub`
+  - `golang/time/Before`
+  - `golang/time/After`
+
+### Infrastructure
+
+- Extended Go parity translation helpers for new `time` exports (`AddDate`, `Sub`, `Before`, `After`) so CI parity checks stay green.
+- Refreshed selected generated test fixtures to match current snapshot output.
 
 ## v3.0.1
 
