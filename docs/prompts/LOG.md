@@ -980,3 +980,35 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Go parity often fails on API-shape differences before semantic differences; a thin helper layer in the translator preserves strictness while keeping function examples natural.
   - Date/time parity is more stable when helper output is normalized to fixed-millisecond ISO strings (`...000Z`) instead of raw Go JSON `time.Time` formatting.
+
+### Iteration 60
+
+2026-03-03
+
+- **Area: Example quality (Go stdlib test-derived edge coverage)**
+- Plan:
+  - Pull representative edge cases from official Go stdlib tests and promote them into Locutus `example/returns` headers for new Go functions.
+  - Keep parity green; adapt only to cases compatible with JS output normalization.
+- Progress:
+  - Reviewed upstream sources:
+    - `src/strconv/atof_test.go`
+    - `src/strconv/ftoa_test.go`
+    - `src/strings/strings_test.go`
+  - Added 5 stdlib-inspired edge examples (one per function):
+    - `ParseFloat`: high-precision large-number rounding case from `atof_test.go`.
+    - `FormatFloat`: fixed rounding edge (`0.05`, `f`, `0`) from `ftoa_test.go`.
+    - `SplitN`: Unicode split with large `n` from `strings_test.go`.
+    - `ReplaceAll`: empty-pattern replacement expansion from `strings_test.go`.
+    - `Cut`: empty input + empty separator case from `strings_test.go`.
+  - Updated Go parity normalizer to unescape JSON HTML-safe escapes (`\\u003c`, `\\u003e`) so expected strings with `<`/`>` compare correctly.
+- Validation:
+  - Generated tests for all 5 touched functions pass.
+  - Parity passes for:
+    - `golang/strconv/ParseFloat`
+    - `golang/strconv/FormatFloat`
+    - `golang/strings/SplitN`
+    - `golang/strings/ReplaceAll`
+    - `golang/strings/Cut`
+  - `corepack yarn check` passes.
+- Key learnings:
+  - Not every Go stdlib edge case can be used directly in parity because of JS/JSON constraints (notably non-finite floats in JSON), so we should favor finite, high-signal cases when selecting shared examples.

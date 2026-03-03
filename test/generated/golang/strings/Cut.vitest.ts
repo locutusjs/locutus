@@ -9,9 +9,9 @@ const __locutus_source_fn = require('../../../../src/golang/strings/Cut.ts').Cut
 const __locutus_source_module_url = new URL("../../../../src/golang/strings/Cut.ts", import.meta.url)
 const __locutus_source_require = createRequire(__locutus_source_module_url)
 const __locutus_func_name = "Cut"
-const __locutus_module_js_code = "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.Cut = Cut;\nfunction Cut(s, sep) {\n    //      discuss at: https://locutus.io/golang/strings/Cut\n    // parity verified: Go 1.23\n    //     original by: Kevin van Zonneveld (https://kvz.io)\n    //       example 1: Cut('a/b/c', '/')\n    //       returns 1: ['a', 'b/c', true]\n    //       example 2: Cut('abc', ':')\n    //       returns 2: ['abc', '', false]\n    //       example 3: Cut('abc', '')\n    //       returns 3: ['', 'abc', true]\n    const value = String(s);\n    const separator = String(sep);\n    const index = value.indexOf(separator);\n    if (index < 0) {\n        return [value, '', false];\n    }\n    return [value.slice(0, index), value.slice(index + separator.length), true];\n}"
-const __locutus_standalone_ts_code = "// golang/strings/Cut (target function module)\nfunction Cut(s, sep) {\n    //      discuss at: https://locutus.io/golang/strings/Cut\n    // parity verified: Go 1.23\n    //     original by: Kevin van Zonneveld (https://kvz.io)\n    //       example 1: Cut('a/b/c', '/')\n    //       returns 1: ['a', 'b/c', true]\n    //       example 2: Cut('abc', ':')\n    //       returns 2: ['abc', '', false]\n    //       example 3: Cut('abc', '')\n    //       returns 3: ['', 'abc', true]\n    const value = String(s);\n    const separator = String(sep);\n    const index = value.indexOf(separator);\n    if (index < 0) {\n        return [value, '', false];\n    }\n    return [value.slice(0, index), value.slice(index + separator.length), true];\n}"
-const __locutus_standalone_js_code = "// golang/strings/Cut (target function module)\nfunction Cut(s, sep) {\n    //      discuss at: https://locutus.io/golang/strings/Cut\n    // parity verified: Go 1.23\n    //     original by: Kevin van Zonneveld (https://kvz.io)\n    //       example 1: Cut('a/b/c', '/')\n    //       returns 1: ['a', 'b/c', true]\n    //       example 2: Cut('abc', ':')\n    //       returns 2: ['abc', '', false]\n    //       example 3: Cut('abc', '')\n    //       returns 3: ['', 'abc', true]\n    const value = String(s);\n    const separator = String(sep);\n    const index = value.indexOf(separator);\n    if (index < 0) {\n        return [value, '', false];\n    }\n    return [value.slice(0, index), value.slice(index + separator.length), true];\n}"
+const __locutus_module_js_code = "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.Cut = Cut;\nfunction Cut(s, sep) {\n    //      discuss at: https://locutus.io/golang/strings/Cut\n    // parity verified: Go 1.23\n    //     original by: Kevin van Zonneveld (https://kvz.io)\n    //          note 1: Includes edge cases adapted from Go's src/strings/strings_test.go.\n    //       example 1: Cut('a/b/c', '/')\n    //       returns 1: ['a', 'b/c', true]\n    //       example 2: Cut('abc', ':')\n    //       returns 2: ['abc', '', false]\n    //       example 3: Cut('abc', '')\n    //       returns 3: ['', 'abc', true]\n    //       example 4: Cut('', '')\n    //       returns 4: ['', '', true]\n    const value = String(s);\n    const separator = String(sep);\n    const index = value.indexOf(separator);\n    if (index < 0) {\n        return [value, '', false];\n    }\n    return [value.slice(0, index), value.slice(index + separator.length), true];\n}"
+const __locutus_standalone_ts_code = "// golang/strings/Cut (target function module)\nfunction Cut(s, sep) {\n    //      discuss at: https://locutus.io/golang/strings/Cut\n    // parity verified: Go 1.23\n    //     original by: Kevin van Zonneveld (https://kvz.io)\n    //          note 1: Includes edge cases adapted from Go's src/strings/strings_test.go.\n    //       example 1: Cut('a/b/c', '/')\n    //       returns 1: ['a', 'b/c', true]\n    //       example 2: Cut('abc', ':')\n    //       returns 2: ['abc', '', false]\n    //       example 3: Cut('abc', '')\n    //       returns 3: ['', 'abc', true]\n    //       example 4: Cut('', '')\n    //       returns 4: ['', '', true]\n    const value = String(s);\n    const separator = String(sep);\n    const index = value.indexOf(separator);\n    if (index < 0) {\n        return [value, '', false];\n    }\n    return [value.slice(0, index), value.slice(index + separator.length), true];\n}"
+const __locutus_standalone_js_code = "// golang/strings/Cut (target function module)\nfunction Cut(s, sep) {\n    //      discuss at: https://locutus.io/golang/strings/Cut\n    // parity verified: Go 1.23\n    //     original by: Kevin van Zonneveld (https://kvz.io)\n    //          note 1: Includes edge cases adapted from Go's src/strings/strings_test.go.\n    //       example 1: Cut('a/b/c', '/')\n    //       returns 1: ['a', 'b/c', true]\n    //       example 2: Cut('abc', ':')\n    //       returns 2: ['abc', '', false]\n    //       example 3: Cut('abc', '')\n    //       returns 3: ['', 'abc', true]\n    //       example 4: Cut('', '')\n    //       returns 4: ['', '', true]\n    const value = String(s);\n    const separator = String(sep);\n    const index = value.indexOf(separator);\n    if (index < 0) {\n        return [value, '', false];\n    }\n    return [value.slice(0, index), value.slice(index + separator.length), true];\n}"
 
 const __locutus_eval_function = (compiledCode: string): ((...args: unknown[]) => unknown) => {
   const evaluator = new Function('require', compiledCode + '\nreturn ' + __locutus_func_name + ';')
@@ -71,6 +71,22 @@ describe('src/golang/strings/Cut.ts (tested in test/generated/golang/strings/Cut
     ]
     const __locutus_run_example = (Cut: typeof __locutus_source_fn) => {
       return Cut('abc', '')
+    }
+    for (const __locutus_variant of __locutus_variants) {
+      const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)
+      expect(result).toEqual(expected)
+    }
+  })
+  it('should pass example 4', function () {
+    const expected = ['', '', true]
+    const __locutus_variants: Array<{ name: string; fn: (...args: unknown[]) => unknown }> = [
+      { name: "source", fn: __locutus_source_fn },
+      { name: "module-js", fn: __locutus_module_js_fn },
+      { name: "standalone-ts", fn: __locutus_standalone_ts_fn },
+      { name: "standalone-js", fn: __locutus_standalone_js_fn },
+    ]
+    const __locutus_run_example = (Cut: typeof __locutus_source_fn) => {
+      return Cut('', '')
     }
     for (const __locutus_variant of __locutus_variants) {
       const result = __locutus_run_example(__locutus_variant.fn as typeof __locutus_source_fn)

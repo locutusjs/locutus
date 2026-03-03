@@ -3,12 +3,15 @@ export function SplitN(s: string, sep: string, n: number): string[] {
   // parity verified: Go 1.23
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //          note 1: Splits into at most n parts. n < 0 means no limit, n == 0 returns [].
+  //          note 2: Includes edge cases adapted from Go's src/strings/strings_test.go.
   //       example 1: SplitN('a,b,c', ',', 2)
   //       returns 1: ['a', 'b,c']
   //       example 2: SplitN('a,b,c', ',', -1)
   //       returns 2: ['a', 'b', 'c']
   //       example 3: SplitN('hello', '', 3)
   //       returns 3: ['h', 'e', 'llo']
+  //       example 4: SplitN('☺☻☹', '', 17)
+  //       returns 4: ['☺', '☻', '☹']
 
   const value = String(s)
   const delimiter = String(sep)

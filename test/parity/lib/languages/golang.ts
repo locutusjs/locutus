@@ -469,6 +469,8 @@ func main() {
  */
 function normalizeGoOutput(output: string, _expected?: string): string {
   let result = output.trim()
+  // Go's encoding/json escapes HTML-sensitive characters by default.
+  result = result.replace(/\\u003c/g, '<').replace(/\\u003e/g, '>')
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')

@@ -15,12 +15,15 @@ export function FormatFloat(f: number, fmt: string, prec: number, _bitSize: numb
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //          note 1: Supports common Go format verbs f/e/E/g/G.
   //          note 2: For unsupported verbs this implementation throws.
+  //          note 3: Includes edge cases adapted from Go's src/strconv/ftoa_test.go.
   //       example 1: FormatFloat(3.1415926, 'f', 2, 64)
   //       returns 1: '3.14'
   //       example 2: FormatFloat(1200, 'e', 2, 64)
   //       returns 2: '1.20e+03'
   //       example 3: FormatFloat(1200, 'E', 2, 64)
   //       returns 3: '1.20E+03'
+  //       example 4: FormatFloat(0.05, 'f', 0, 64)
+  //       returns 4: '0'
 
   const value = Number(f)
   const format = String(fmt)
