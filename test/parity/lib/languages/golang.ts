@@ -24,7 +24,9 @@ const GO_PACKAGES: Record<string, string> = {
   LastIndexAny: 'strings',
   Repeat: 'strings',
   Replace: 'strings',
+  ReplaceAll: 'strings',
   Split: 'strings',
+  SplitN: 'strings',
   ToLower: 'strings',
   ToUpper: 'strings',
   Trim: 'strings',
@@ -33,15 +35,19 @@ const GO_PACKAGES: Record<string, string> = {
   TrimRight: 'strings',
   TrimSpace: 'strings',
   TrimSuffix: 'strings',
+  Cut: 'strings',
   // strconv package
   Atoi: 'strconv',
   FormatBool: 'strconv',
+  FormatFloat: 'strconv',
   FormatInt: 'strconv',
   Itoa: 'strconv',
   ParseBool: 'strconv',
+  ParseFloat: 'strconv',
   ParseInt: 'strconv',
   // time package
   Format: 'time',
+  Unix: 'time',
 }
 
 // Functions to skip (implementation differences, etc.)
@@ -193,6 +199,83 @@ function convertParseCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus strconv/ParseFloat calls to helper calls.
+ * Go returns (float64, error), while locutus ParseFloat returns [value, error].
+ */
+function convertParseFloatCalls(code: string): string {
+  return code.replace(/\bParseFloat\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const bitSize = args[1]
+    if (!value || !bitSize) {
+      return match
+    }
+    return `locutusParseFloat(${value}, ${bitSize})`
+  })
+}
+
+/**
+ * Convert Locutus strconv/FormatFloat calls to helper calls.
+ * Go expects format as a byte/rune, while locutus accepts string.
+ */
+function convertFormatFloatCalls(code: string): string {
+  return code.replace(/\bFormatFloat\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const format = args[1]
+    const precision = args[2]
+    const bitSize = args[3]
+    if (!value || !format || !precision || !bitSize) {
+      return match
+    }
+    return `locutusFormatFloat(${value}, ${format}, ${precision}, ${bitSize})`
+  })
+}
+
+/**
+ * Convert Locutus time/Unix calls to helper call for parity runtime.
+ * Go returns time.Time JSON with RFC3339 (no millisecond padding), while
+ * locutus examples often use Date.toISOString() with fixed milliseconds.
+ */
+function convertUnixCalls(code: string): string {
+  const withIso = code.replace(/\bUnix\s*\(([^)]+)\)\.toISOString\(\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const sec = args[0]
+    const nsec = args[1] ?? '0'
+    if (!sec) {
+      return match
+    }
+    return `locutusTimeUnix(${sec}, ${nsec})`
+  })
+
+  return withIso.replace(/\bUnix\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const sec = args[0]
+    const nsec = args[1] ?? '0'
+    if (!sec) {
+      return match
+    }
+    return `locutusTimeUnix(${sec}, ${nsec})`
+  })
+}
+
+/**
+ * Convert Locutus strings/Cut calls to helper calls.
+ * Go returns (before, after, found), while locutus Cut returns [before, after, found].
+ */
+function convertCutCalls(code: string): string {
+  return code.replace(/\bCut\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    const sep = args[1]
+    if (!value || !sep) {
+      return match
+    }
+    return `locutusStringsCut(${value}, ${sep})`
+  })
+}
+
+/**
  * Convert a single JS line to Go
  */
 function convertJsLineToGo(line: string, funcName: string): string {
@@ -232,11 +315,27 @@ function convertJsLineToGo(line: string, funcName: string): string {
     go = convertFormatCalls(go)
   } else if (funcName === 'Parse') {
     go = convertParseCalls(go)
+  } else if (funcName === 'ParseFloat') {
+    go = convertParseFloatCalls(go)
+  } else if (funcName === 'FormatFloat') {
+    go = convertFormatFloatCalls(go)
+  } else if (funcName === 'Unix') {
+    go = convertUnixCalls(go)
+  } else if (funcName === 'Cut') {
+    go = convertCutCalls(go)
   }
 
   // Handle function calls - prefix with package
   const pkg = GO_PACKAGES[funcName]
-  if (pkg && funcName !== 'Format' && funcName !== 'Parse') {
+  if (
+    pkg &&
+    funcName !== 'Format' &&
+    funcName !== 'Parse' &&
+    funcName !== 'ParseFloat' &&
+    funcName !== 'FormatFloat' &&
+    funcName !== 'Unix' &&
+    funcName !== 'Cut'
+  ) {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
     go = go.replace(new RegExp(`\\b${funcName}\\s*\\(`, 'g'), `${pkg}.${goFuncName}(`)
@@ -255,13 +354,18 @@ function convertJsLineToGo(line: string, funcName: string): string {
 function getRequiredImports(goCode: string): string[] {
   const imports: Set<string> = new Set(['fmt', 'encoding/json'])
 
-  if (goCode.includes('strings.')) {
+  if (goCode.includes('strings.') || goCode.includes('locutusStringsCut(')) {
     imports.add('strings')
   }
-  if (goCode.includes('strconv.')) {
+  if (goCode.includes('strconv.') || goCode.includes('locutusParseFloat(') || goCode.includes('locutusFormatFloat(')) {
     imports.add('strconv')
   }
-  if (goCode.includes('time.') || goCode.includes('locutusTimeFormat(') || goCode.includes('locutusTimeParse(')) {
+  if (
+    goCode.includes('time.') ||
+    goCode.includes('locutusTimeFormat(') ||
+    goCode.includes('locutusTimeParse(') ||
+    goCode.includes('locutusTimeUnix(')
+  ) {
     imports.add('time')
   }
 
@@ -313,7 +417,41 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-        : ''
+        : funcName === 'ParseFloat'
+          ? `func locutusParseFloat(value string, bitSize int) []interface{} {
+\tparsed, err := strconv.ParseFloat(value, bitSize)
+\tif err != nil {
+\t\treturn []interface{}{0, err.Error()}
+\t}
+\treturn []interface{}{parsed, nil}
+}
+
+`
+          : funcName === 'FormatFloat'
+            ? `func locutusFormatFloat(value float64, format string, precision int, bitSize int) string {
+\tif len(format) == 0 {
+\t\treturn ""
+\t}
+\treturn strconv.FormatFloat(value, format[0], precision, bitSize)
+}
+
+`
+            : funcName === 'Unix'
+              ? `func locutusTimeUnix(sec float64, nsec float64) string {
+\tseconds := int64(sec)
+\tnanoseconds := int64(nsec)
+\treturn time.Unix(seconds, nanoseconds).UTC().Format("2006-01-02T15:04:05.000Z07:00")
+}
+
+`
+              : funcName === 'Cut'
+                ? `func locutusStringsCut(value string, sep string) []interface{} {
+\tbefore, after, found := strings.Cut(value, sep)
+\treturn []interface{}{before, after, found}
+}
+
+`
+                : ''
 
   return `package main
 

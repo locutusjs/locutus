@@ -936,3 +936,47 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - For functions returning `Date`, header `returns` examples should use `new Date(...)` so generated tests assert type-accurate behavior while still comparing deterministic serialized values.
   - Go parity translation remains robust when method-only APIs are normalized through small, explicit helper shims in the generated Go program.
+
+### Iteration 59
+
+2026-03-03
+
+- **Area: Expansion (Go stdlib breadth) + parity-safe translator upgrades**
+- Plan:
+  - Add six high-value Go functions in sequence: `ParseFloat`, `FormatFloat`, `Unix`, `SplitN`, `ReplaceAll`, `Cut`.
+  - Keep examples parity-verifiable and avoid broad skip-list growth by extending translator helpers where Go API shapes differ.
+- Progress:
+  - Added new sources:
+    - `src/golang/strconv/ParseFloat.ts`
+    - `src/golang/strconv/FormatFloat.ts`
+    - `src/golang/time/Unix.ts`
+    - `src/golang/strings/SplitN.ts`
+    - `src/golang/strings/ReplaceAll.ts`
+    - `src/golang/strings/Cut.ts`
+  - Updated exports:
+    - `src/golang/strconv/index.ts`
+    - `src/golang/time/index.ts`
+    - `src/golang/strings/index.ts`
+  - Extended Go parity handler (`test/parity/lib/languages/golang.ts`):
+    - Added package mappings for all new functions.
+    - Added helper call rewrites for signature/shape mismatches:
+      - `locutusParseFloat(...)` for tuple-style parse result.
+      - `locutusFormatFloat(...)` for byte/rune format argument mismatch.
+      - `locutusTimeUnix(...)` for deterministic ISO output and `.toISOString()` examples.
+      - `locutusStringsCut(...)` for Go tuple return normalization.
+  - Regenerated artifacts:
+    - generated tests for all 6 functions
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation:
+  - `corepack yarn vitest run` on all six new generated tests passes.
+  - `corepack yarn test:parity ... --no-cache` passes for:
+    - `golang/strconv/ParseFloat`
+    - `golang/strconv/FormatFloat`
+    - `golang/time/Unix`
+    - `golang/strings/SplitN`
+    - `golang/strings/ReplaceAll`
+    - `golang/strings/Cut`
+- Key learnings:
+  - Go parity often fails on API-shape differences before semantic differences; a thin helper layer in the translator preserves strictness while keeping function examples natural.
+  - Date/time parity is more stable when helper output is normalized to fixed-millisecond ISO strings (`...000Z`) instead of raw Go JSON `time.Time` formatting.
