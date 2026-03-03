@@ -36,7 +36,7 @@ export function call_user_func_array<TResult = FunctionValue, TArgs extends PhpC
     func = resolved.fn
     scope = resolved.scope
   } catch {
-    // Fall back to PHP-compatible eval/new Function paths below.
+    // Fall back to legacy-compatible callback resolution paths below.
   }
 
   if (!func && typeof cb === 'string') {
