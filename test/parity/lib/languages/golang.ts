@@ -62,6 +62,15 @@ const GO_PACKAGES: Record<string, string> = {
   Unix: 'time',
   UnixMicro: 'time',
   UnixMilli: 'time',
+  // path package
+  Base: 'path',
+  Clean: 'path',
+  Dir: 'path',
+  Ext: 'path',
+  // net/url package
+  QueryEscape: 'url',
+  // crypto/subtle package
+  ConstantTimeCompare: 'subtle',
 }
 
 // Functions to skip (implementation differences, etc.)
@@ -579,6 +588,22 @@ function convertCutSuffixCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus subtle/ConstantTimeCompare calls to helper calls.
+ * Go subtle.ConstantTimeCompare operates on []byte; locutus signature uses strings.
+ */
+function convertConstantTimeCompareCalls(code: string): string {
+  return code.replace(/\bConstantTimeCompare\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const left = args[0]
+    const right = args[1]
+    if (!left || !right) {
+      return match
+    }
+    return `locutusConstantTimeCompare(${left}, ${right})`
+  })
+}
+
+/**
  * Convert a single JS line to Go
  */
 function convertJsLineToGo(line: string, funcName: string): string {
@@ -654,6 +679,8 @@ function convertJsLineToGo(line: string, funcName: string): string {
     go = convertCutPrefixCalls(go)
   } else if (funcName === 'CutSuffix') {
     go = convertCutSuffixCalls(go)
+  } else if (funcName === 'ConstantTimeCompare') {
+    go = convertConstantTimeCompareCalls(go)
   }
 
   // Handle function calls - prefix with package
@@ -679,7 +706,8 @@ function convertJsLineToGo(line: string, funcName: string): string {
     funcName !== 'After' &&
     funcName !== 'Cut' &&
     funcName !== 'CutPrefix' &&
-    funcName !== 'CutSuffix'
+    funcName !== 'CutSuffix' &&
+    funcName !== 'ConstantTimeCompare'
   ) {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
@@ -709,6 +737,15 @@ function getRequiredImports(goCode: string): string[] {
   }
   if (goCode.includes('strconv.') || goCode.includes('locutusParseFloat(') || goCode.includes('locutusFormatFloat(')) {
     imports.add('strconv')
+  }
+  if (goCode.includes('path.')) {
+    imports.add('path')
+  }
+  if (goCode.includes('url.')) {
+    imports.add('net/url')
+  }
+  if (goCode.includes('locutusConstantTimeCompare(')) {
+    imports.add('crypto/subtle')
   }
   if (
     goCode.includes('time.') ||
@@ -944,7 +981,13 @@ function jsToGo(jsCode: string[], funcName: string): string {
 }
 
 `
-                                            : ''
+                                            : funcName === 'ConstantTimeCompare'
+                                              ? `func locutusConstantTimeCompare(left string, right string) int {
+\treturn subtle.ConstantTimeCompare([]byte(left), []byte(right))
+}
+
+`
+                                              : ''
 
   return `package main
 

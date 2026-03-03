@@ -1,3 +1,6 @@
+export * as path from './path/index.ts'
 export * as strconv from './strconv/index.ts'
 export * as strings from './strings/index.ts'
+export * as subtle from './subtle/index.ts'
 export * as time from './time/index.ts'
+export * as url from './url/index.ts'

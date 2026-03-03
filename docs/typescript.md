@@ -2376,3 +2376,39 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - DefinitelyTyped coverage is materially behind current source breadth, so strictness comparisons are only meaningful on the shared deep-module subset.
   - Fixed-arity overloads give better consumer ergonomics than rest-arg runtime emulation while still preserving PHP-style runtime checks.
+
+## Iteration 88
+
+- Plans
+  - Add five high-utility, non-trivial Go functions that map cleanly to JS data structures and keep parity verification strict.
+  - Keep parser/parity constraints in mind (single category depth, Go translator keyed by function name).
+- Progress
+  - Added new Go function modules:
+    - `src/golang/path/Base.ts`
+    - `src/golang/path/Clean.ts`
+    - `src/golang/path/Dir.ts`
+    - `src/golang/path/Ext.ts`
+    - `src/golang/url/QueryEscape.ts`
+    - `src/golang/subtle/ConstantTimeCompare.ts`
+  - Added package index wiring:
+    - `src/golang/path/index.ts`
+    - `src/golang/url/index.ts`
+    - `src/golang/subtle/index.ts`
+    - `src/golang/index.ts` exports `path`, `url`, and `subtle`.
+  - Extended Go parity translator in `test/parity/lib/languages/golang.ts`:
+    - package mappings for `path/*`, `QueryEscape`, and `ConstantTimeCompare`.
+    - helper conversion + helper runtime for `ConstantTimeCompare` (`crypto/subtle` byte compare).
+    - import detection for `path`, `net/url`, and `crypto/subtle`.
+  - Regenerated generated tests and snapshots:
+    - new generated tests under `test/generated/golang/path/`, `test/generated/golang/url/`, `test/generated/golang/subtle/`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/path/Base.vitest.ts test/generated/golang/path/Clean.vitest.ts test/generated/golang/path/Dir.vitest.ts test/generated/golang/path/Ext.vitest.ts test/generated/golang/url/QueryEscape.vitest.ts test/generated/golang/subtle/ConstantTimeCompare.vitest.ts`
+  - `corepack yarn test:parity golang/path --no-cache`
+  - `corepack yarn test:parity golang/url/QueryEscape --no-cache`
+  - `corepack yarn test:parity golang/subtle/ConstantTimeCompare --no-cache`
+- Key learnings
+  - Go parity infra currently keys conversion logic by function name only, so new Go additions should avoid same-name collisions across categories unless translator context is upgraded to include category/path.
+  - Parser/test discovery currently supports `src/<language>/<category>/<function>.ts` depth, so Go package additions should stay one category deep for now.
