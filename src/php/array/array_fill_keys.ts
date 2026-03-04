@@ -20,8 +20,8 @@ export function array_fill_keys<TKey extends PhpKey | StringLike, TValue>(
   const retObj: PhpAssoc<TValue> = {}
   const keyedValues = toPhpArrayObject<TKey>(keys)
 
-  for (const key in keyedValues) {
-    retObj[String(keyedValues[key])] = value
+  for (const keyedValue of Object.values(keyedValues)) {
+    retObj[String(keyedValue)] = value
   }
 
   return retObj

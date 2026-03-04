@@ -20,16 +20,12 @@ export function localeconv(): LocaleValues {
   if (!numeric) {
     return arr
   }
-  for (const prop in numeric) {
-    arr[prop] = numeric[prop]
-  }
+  Object.assign(arr, numeric)
   const monetary = getPhpLocaleGroup('LC_MONETARY', 'LC_MONETARY')
   if (!monetary) {
     return arr
   }
-  for (const prop in monetary) {
-    arr[prop] = monetary[prop]
-  }
+  Object.assign(arr, monetary)
 
   return arr
 }
