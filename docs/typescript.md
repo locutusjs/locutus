@@ -2642,3 +2642,54 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Go parity for same-name functions across categories requires category-aware translator logic (e.g. `Parse` in both `time` and `url`) to avoid helper collisions.
   - PowerShell JSON pipeline behavior can produce scalar output for single-item arrays, so examples should avoid accidental scalarization unless the translator explicitly forces array serialization.
+
+## Iteration 94
+
+- Plans
+  - Push a juicier utility batch with strong real-world usage and broad language spread:
+    - `python/math/lcm`
+    - `ruby/Array/zip`
+    - `perl/core/join`
+    - `powershell/string/padright`
+    - `golang/strconv/Quote`
+- Progress
+  - Added source modules:
+    - `src/python/math/lcm.ts`
+    - `src/ruby/Array/zip.ts`
+    - `src/perl/core/join.ts`
+    - `src/powershell/string/padright.ts`
+    - `src/golang/strconv/Quote.ts`
+  - Updated exports:
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+    - `src/golang/strconv/index.ts`
+  - Updated parity translators where needed:
+    - `test/parity/lib/languages/powershell.ts`: native `.PadRight(...)` mapping.
+    - `test/parity/lib/languages/golang.ts`: package mapping for `strconv/Quote`.
+  - Regenerated artifacts:
+    - `test/generated/python/math/lcm.vitest.ts`
+    - `test/generated/ruby/Array/zip.vitest.ts`
+    - `test/generated/perl/core/join.vitest.ts`
+    - `test/generated/powershell/string/padright.vitest.ts`
+    - `test/generated/golang/strconv/Quote.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+  - Parity fix made during this iteration:
+    - Adjusted `Quote` example coverage to avoid translator string-literal edge cases while still validating quoting behavior robustly.
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/python/math/lcm.vitest.ts test/generated/ruby/Array/zip.vitest.ts test/generated/perl/core/join.vitest.ts test/generated/powershell/string/padright.vitest.ts test/generated/golang/strconv/Quote.vitest.ts`
+  - `corepack yarn test:parity python/math/lcm --no-cache`
+  - `corepack yarn test:parity ruby/Array/zip --no-cache`
+  - `corepack yarn test:parity perl/core/join --no-cache`
+  - `corepack yarn test:parity powershell/string/padright --no-cache`
+  - `corepack yarn test:parity golang/strconv/Quote --no-cache`
+- Key learnings
+  - Parity-safe examples matter as much as implementations: escape-heavy literals can trigger translator codegen edge cases unrelated to function correctness.
+  - Juicy additions with simple call shapes give high utility without forcing broad translator refactors.

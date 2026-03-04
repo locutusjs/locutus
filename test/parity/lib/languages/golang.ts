@@ -50,6 +50,7 @@ const GO_PACKAGES: Record<string, string> = {
   ParseBool: 'strconv',
   ParseFloat: 'strconv',
   ParseInt: 'strconv',
+  Quote: 'strconv',
   // time package
   Add: 'time',
   AddDate: 'time',
