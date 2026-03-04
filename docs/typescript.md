@@ -2495,3 +2495,42 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - `url.ParseQuery` in Go treats a leading `?` as part of the key, so callers should pass raw query components, not full search strings.
   - `net.JoinHostPort` wraps any host containing `:` (including already-bracketed IPv6 text), which is surprising but parity-correct.
+
+## Iteration 91
+
+- Plans
+  - Add one high-value function each across Python, Ruby, Perl, PowerShell, and Tcl.
+  - Keep parity stable by only adding translator logic where the native runtime call shape differs from current generic handlers.
+- Progress
+  - Added new cross-language functions:
+    - `src/python/math/dist.ts`
+    - `src/ruby/Array/group_by.ts`
+    - `src/perl/core/sprintf.ts`
+    - `src/powershell/string/substring.ts`
+    - `src/tcl/string/range.ts`
+  - Updated category indexes:
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+    - `src/tcl/string/index.ts`
+  - Updated parity translators where needed:
+    - `test/parity/lib/languages/ruby.ts`: special identity-block conversion for `group_by(...)` to Ruby `array.group_by { |v| v }`.
+    - `test/parity/lib/languages/powershell.ts`: native call mapping for `substring(...)` to `.Substring(...)`.
+  - Regenerated snapshots/artifacts:
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+    - new generated tests under `test/generated/python/math/`, `test/generated/ruby/Array/`, `test/generated/perl/core/`, `test/generated/powershell/string/`, `test/generated/tcl/string/`.
+  - Fixed a Tcl range example mismatch during validation:
+    - corrected example index from `'end-2'` to `'end-1'` in `src/tcl/string/range.ts`.
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/python/math/dist.vitest.ts test/generated/ruby/Array/group_by.vitest.ts test/generated/perl/core/sprintf.vitest.ts test/generated/powershell/string/substring.vitest.ts test/generated/tcl/string/range.vitest.ts`
+  - `corepack yarn test:parity python/math/dist --no-cache`
+  - `corepack yarn test:parity ruby/Array/group_by --no-cache`
+  - `corepack yarn test:parity perl/core/sprintf --no-cache`
+  - `corepack yarn test:parity powershell/string/substring --no-cache`
+  - `corepack yarn test:parity tcl/string/range --no-cache`
+- Key learnings
+  - Ruby parity for block-driven methods can stay deterministic by explicitly synthesizing a simple block in the translator when JS signatures omit callback arguments.
+  - Tcl range semantics are inclusive on end index, including symbolic forms like `end-1`, so example expectations must reflect that to avoid false regressions.

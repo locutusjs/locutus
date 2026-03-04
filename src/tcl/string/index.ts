@@ -1,6 +1,7 @@
 export { first } from './first.ts'
 export { last } from './last.ts'
 export { length } from './length.ts'
+export { range } from './range.ts'
 export { repeat } from './repeat.ts'
 export { reverse } from './reverse.ts'
 export { tolower } from './tolower.ts'

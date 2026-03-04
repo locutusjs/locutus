@@ -29,6 +29,7 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   compact: { rubyMethod: 'compact', category: 'Array', isInstanceMethod: true },
   first: { rubyMethod: 'first', category: 'Array', isInstanceMethod: true },
   flatten: { rubyMethod: 'flatten', category: 'Array', isInstanceMethod: true },
+  group_by: { rubyMethod: 'group_by', category: 'Array', isInstanceMethod: true },
   last: { rubyMethod: 'last', category: 'Array', isInstanceMethod: true },
   sample: { rubyMethod: 'sample', category: 'Array', isInstanceMethod: true },
   uniq: { rubyMethod: 'uniq', category: 'Array', isInstanceMethod: true },
@@ -108,6 +109,10 @@ function convertFunctionCall(code: string, funcName: string, methodInfo: RubyMet
     const restArgs = args.slice(1)
 
     if (methodInfo.isInstanceMethod) {
+      if (methodInfo.rubyMethod === 'group_by' && restArgs.length === 0) {
+        return `${firstArg}.group_by { |__locutus_v| __locutus_v }`
+      }
+
       // Instance method: first arg becomes receiver
       // e.g., strip('str') → "str".strip
       // e.g., end_with('str', 'suffix') → "str".end_with?("suffix")

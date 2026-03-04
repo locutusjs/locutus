@@ -245,6 +245,15 @@ function buildNativeCall(funcName: string, args: string[]): string {
       const value = args[0] ?? '$null'
       return `([string]${value}).Trim()`
     }
+    case 'substring': {
+      const source = args[0] ?? '$null'
+      const start = args[1] ?? '0'
+      const length = args[2]
+      if (length === undefined) {
+        return `([string]${source}).Substring([int]${start})`
+      }
+      return `([string]${source}).Substring([int]${start}, [int]${length})`
+    }
     default: {
       return `${funcName}(${args.join(', ')})`
     }

@@ -1,4 +1,5 @@
 export { ceil } from './ceil.ts'
+export { dist } from './dist.ts'
 export { exp } from './exp.ts'
 export { fabs } from './fabs.ts'
 export { factorial } from './factorial.ts'

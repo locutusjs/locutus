@@ -153,6 +153,7 @@ src/perl/core/length.ts :: export function length(str: string | null | undefined
 src/perl/core/ord.ts :: export function ord(str: string): number
 src/perl/core/quotemeta.ts :: export function quotemeta(str: string): string
 src/perl/core/reverse.ts :: export function reverse(str: string): string
+src/perl/core/sprintf.ts :: export function sprintf(format: string, ...values: unknown[]): string
 src/perl/core/substr.ts :: export function substr(str: string, offset: number, length?: number): string
 src/perl/core/uc.ts :: export function uc(str: string): string
 src/perl/core/ucfirst.ts :: export function ucfirst(str: string): string
@@ -163,10 +164,12 @@ src/powershell/string/lastindexof.ts :: export function lastindexof(needle: stri
 src/powershell/string/length.ts :: export function length(str: string): number
 src/powershell/string/replace.ts :: export function replace(str: string, search: string, replacement: string): string
 src/powershell/string/startswith.ts :: export function startswith(prefix: string, str: string): boolean
+src/powershell/string/substring.ts :: export function substring(str: string, startIndex: number, length?: number): string
 src/powershell/string/tolower.ts :: export function tolower(str: string): string
 src/powershell/string/toupper.ts :: export function toupper(str: string): string
 src/powershell/string/trim.ts :: export function trim(str: string): string
 src/python/math/ceil.ts :: export function ceil(x: number): number
+src/python/math/dist.ts :: export function dist(p: number[] | unknown, q: number[] | unknown): number
 src/python/math/exp.ts :: export function exp(x: number): number
 src/python/math/fabs.ts :: export function fabs(x: number): number
 src/python/math/factorial.ts :: export function factorial(n: number | string): number
@@ -204,6 +207,7 @@ src/r/base/toupper.ts :: export function toupper(x: string): string
 src/ruby/Array/compact.ts :: export function compact<T>(arr: Array<T | null | undefined> | unknown): T[]
 src/ruby/Array/first.ts :: export function first<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
 src/ruby/Array/flatten.ts :: export function flatten(arr: unknown[] | unknown, depth?: number): unknown[]
+src/ruby/Array/group_by.ts :: export function group_by<T>(arr: T[] | unknown): Record<string, T[]>
 src/ruby/Array/last.ts :: export function last<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
 src/ruby/Array/sample.ts :: export function sample(arr: unknown[], n?: number): unknown | unknown[] | undefined
 src/ruby/Array/uniq.ts :: export function uniq<T>(arr: T[] | unknown): T[]
@@ -246,6 +250,7 @@ src/rust/str/trim.ts :: export function trim(str: string): string
 src/tcl/string/first.ts :: export function first(needle: string, haystack: string, startIndex?: number): number
 src/tcl/string/last.ts :: export function last(needle: string, haystack: string, lastIndex?: number): number
 src/tcl/string/length.ts :: export function length(str: string): number
+src/tcl/string/range.ts :: export function range(str: string, first: number | string, last: number | string): string
 src/tcl/string/repeat.ts :: export function repeat(str: string, count: number): string
 src/tcl/string/reverse.ts :: export function reverse(str: string): string
 src/tcl/string/tolower.ts :: export function tolower(str: string): string
