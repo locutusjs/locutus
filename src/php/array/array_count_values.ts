@@ -51,10 +51,8 @@ export function array_count_values(array: PhpArrayLike<CountValue>): PhpAssoc<nu
   }
 
   const source = toPhpArrayObject<CountValue>(array)
-  for (const key in source) {
-    if (Object.hasOwn(source, key)) {
-      _countValue(tmpArr, source[key])
-    }
+  for (const value of Object.values(source)) {
+    _countValue(tmpArr, value)
   }
 
   return tmpArr

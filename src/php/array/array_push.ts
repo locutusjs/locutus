@@ -26,13 +26,11 @@ export function array_push<TValue>(inputArr: PhpArrayLike<TValue>, ...values: TV
 
   // Associative (object)
   const target = toPhpArrayObject<TValue>(inputArr)
-  for (const pr in target) {
-    if (Object.hasOwn(target, pr)) {
-      ++len
-      if (pr.search(allDigits) !== -1) {
-        size = parseInt(pr, 10)
-        highestIdx = size > highestIdx ? size : highestIdx
-      }
+  for (const pr of Object.keys(target)) {
+    ++len
+    if (pr.search(allDigits) !== -1) {
+      size = parseInt(pr, 10)
+      highestIdx = size > highestIdx ? size : highestIdx
     }
   }
   for (const value of values) {

@@ -33,12 +33,7 @@ export function empty(mixedVar: EmptyValue): boolean {
   }
 
   if (typeof mixedVar === 'object' && mixedVar !== null) {
-    for (const key in mixedVar) {
-      if (Object.hasOwn(mixedVar, key)) {
-        return false
-      }
-    }
-    return true
+    return Object.keys(mixedVar).length === 0
   }
 
   return false
