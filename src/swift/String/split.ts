@@ -4,15 +4,15 @@ export function split(
   maxSplits: number = Number.MAX_SAFE_INTEGER,
   omittingEmptySubsequences: boolean = true,
 ): string[] {
-  //      discuss at: https://locutus.io/swift/String/split/
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //          note 1: Mirrors Swift String.split semantics with configurable max splits and empty-subsequence handling.
-  //       example 1: split('a,b,c', ',')
-  //       returns 1: ['a', 'b', 'c']
-  //       example 2: split('a,,b,', ',', Number.MAX_SAFE_INTEGER, false)
-  //       returns 2: ['a', '', 'b', '']
-  //       example 3: split('a,b,c,d', ',', 2)
-  //       returns 3: ['a', 'b', 'c,d']
+  //  discuss at: https://locutus.io/swift/String/split/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Mirrors Swift String.split semantics with configurable max splits and empty-subsequence handling.
+  //   example 1: split('a,b,c', ',')
+  //   returns 1: ['a', 'b', 'c']
+  //   example 2: split('a,,b,', ',', Number.MAX_SAFE_INTEGER, false)
+  //   returns 2: ['a', '', 'b', '']
+  //   example 3: split('a,b,c,d', ',', 2)
+  //   returns 3: ['a', 'b', 'c,d']
 
   const source = String(str)
   const needle = String(separator)
