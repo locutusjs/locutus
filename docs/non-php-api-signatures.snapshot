@@ -126,11 +126,15 @@ src/golang/url/PathEscape.ts :: export function PathEscape(s: string): string
 src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
 src/golang/url/QueryUnescape.ts :: export function QueryUnescape(s: string): string
 src/golang/url/ResolveReference.ts :: export function ResolveReference(baseURL: string, refURL: string): string
+src/haskell/list/permutations.ts :: export function permutations<T>(items: T[] | unknown): T[][]
+src/haskell/list/transpose.ts :: export function transpose<T>(rows: Array<Array<T> | unknown> | unknown): T[][]
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
 src/julia/Base/floor.ts :: export function floor(x: number): number
 src/julia/Base/lowercase.ts :: export function lowercase(s: string): string
 src/julia/Base/uppercase.ts :: export function uppercase(s: string): string
+src/kotlin/collections/groupBy.ts :: export function groupBy<T>( values: T[] | unknown, selector: (value: T, index: number, array: T[]) => string | number | symbol, ): Record<string, T[]>
+src/kotlin/text/chunked.ts :: export function chunked(str: string, size: number): string[]
 src/lua/math/abs.ts :: export function abs(x: number): number
 src/lua/math/ceil.ts :: export function ceil(x: number): number
 src/lua/math/cos.ts :: export function cos(x: number): number
@@ -276,6 +280,8 @@ src/rust/str/starts_with.ts :: export function starts_with(prefix: string, str: 
 src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): string
 src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): string
 src/rust/str/trim.ts :: export function trim(str: string): string
+src/swift/String/replacingOccurrences.ts :: export function replacingOccurrences( str: string, target: string, replacement: string, caseInsensitive: boolean = false, ): string
+src/swift/String/split.ts :: export function split( str: string, separator: string, maxSplits: number = Number.MAX_SAFE_INTEGER, omittingEmptySubsequences: boolean = true, ): string[]
 src/tcl/string/compare.ts :: export function compare(str1: string, str2: string): number
 src/tcl/string/first.ts :: export function first(needle: string, haystack: string, startIndex?: number): number
 src/tcl/string/last.ts :: export function last(needle: string, haystack: string, lastIndex?: number): number

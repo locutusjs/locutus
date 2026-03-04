@@ -108,6 +108,7 @@ string_reverse:
 string_split:
   - php/strings/explode
   - golang/strings/Split
+  - swift/String/split
 
 string_join:
   - php/strings/implode
@@ -118,11 +119,23 @@ string_replace:
   - powershell/string/replace
   - rust/str/replace
   - golang/strings/Replace
+  - swift/String/replacingOccurrences
 
 regex_replace:
   - php/pcre/preg_replace
   - ruby/String/gsub
   - python/re/sub
+
+collection_group_by:
+  - ruby/Array/group_by
+  - kotlin/collections/groupBy
+
+list_permutations:
+  - ruby/Array/permutation
+  - haskell/list/permutations
+
+matrix_transpose:
+  - haskell/list/transpose
 
 string_index:
   - php/strings/strpos

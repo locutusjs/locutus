@@ -1,5 +1,8 @@
 export * as c from './c/index.ts'
 export * as golang from './golang/index.ts'
+export * as haskell from './haskell/index.ts'
+export * as kotlin from './kotlin/index.ts'
 export * as php from './php/index.ts'
 export * as python from './python/index.ts'
 export * as ruby from './ruby/index.ts'
+export * as swift from './swift/index.ts'

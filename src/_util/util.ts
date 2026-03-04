@@ -308,6 +308,34 @@ class Util {
         inspiration_urls: ['<a href="https://doc.rust-lang.org/std/primitive.str.html">the Rust std::str docs</a>'],
         function_description_template: `Here's what our current TypeScript equivalent to <a href="https://doc.rust-lang.org/std/primitive.str.html#method.[function]">[language]'s [category]::[function]</a> looks like.`,
       },
+      swift: {
+        order: 16,
+        function_title_template: "[language]'s [category].[function] in TypeScript",
+        human: 'Swift',
+        packageType: 'module',
+        inspiration_urls: ['<a href="https://developer.apple.com/documentation/swift">the Swift documentation</a>'],
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://developer.apple.com/documentation/swift/[category]">[language]'s [category].[function]</a> looks like.`,
+      },
+      kotlin: {
+        order: 17,
+        function_title_template: "[language]'s [category].[function] in TypeScript",
+        human: 'Kotlin',
+        packageType: 'package',
+        inspiration_urls: [
+          '<a href="https://kotlinlang.org/api/latest/jvm/stdlib/">the Kotlin stdlib documentation</a>',
+        ],
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/[category]/">[language]'s [category].[function]</a> looks like.`,
+      },
+      haskell: {
+        order: 18,
+        function_title_template: "[language]'s [category].[function] in TypeScript",
+        human: 'Haskell',
+        packageType: 'module',
+        inspiration_urls: [
+          '<a href="https://hackage.haskell.org/package/base/docs/Data-List.html">the Haskell base Data.List docs</a>',
+        ],
+        function_description_template: `Here's what our current TypeScript equivalent to <a href="https://hackage.haskell.org/package/base/docs/Data-List.html">[language]'s [category].[function]</a> looks like.`,
+      },
     }
 
     this.allowSkip = argv.indexOf('--noskip') === -1

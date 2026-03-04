@@ -31,6 +31,15 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.3...main
 - Added `ruby/Array/slice_when` for boundary-driven chunking with callback predicates.
 - Added `rust/str/split_inclusive` for delimiter-preserving split behavior.
 - Added `perl/core/pack` with a pragmatic binary template subset (`A`, `a`, `C`, `n`, `N`, `v`, `V`, `H`, `h`).
+- Added Swift string functions:
+  - `swift/String/split`
+  - `swift/String/replacingOccurrences`
+- Added Kotlin functions:
+  - `kotlin/collections/groupBy`
+  - `kotlin/text/chunked`
+- Added Haskell list functions:
+  - `haskell/list/permutations`
+  - `haskell/list/transpose`
 
 ### Infrastructure
 
