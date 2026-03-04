@@ -6,8 +6,6 @@ type SortComparator = (a: SortValue, b: SortValue) => number
 type ComparablePrimitive = string | number | bigint | boolean
 type SortArg = SortValue[] | SortableObject | SortFlag
 
-const hasOwn = Object.prototype.hasOwnProperty
-
 const flags: Readonly<{
   SORT_REGULAR: number
   SORT_NUMERIC: number
@@ -38,7 +36,7 @@ const isComparablePrimitive = (value: SortValue): value is ComparablePrimitive =
 
 const copyBackToObject = (target: SortableObject, values: SortValue[], keys: string[]): void => {
   for (const key in target) {
-    if (hasOwn.call(target, key)) {
+    if (Object.hasOwn(target, key)) {
       delete target[key]
     }
   }
@@ -170,7 +168,7 @@ export function array_multisort(arr: SortValue[] | SortableObject, ...rest: Sort
       return false
     }
     for (const key in arr) {
-      if (hasOwn.call(arr, key)) {
+      if (Object.hasOwn(arr, key)) {
         firstSortKeys.push(key)
         firstSortValues.push(arr[key])
       }
@@ -206,7 +204,7 @@ export function array_multisort(arr: SortValue[] | SortableObject, ...rest: Sort
       const currentSortValues: SortValue[] = (sortArrs[j] = [])
       sortFlag[j] = 0
       for (const key in arg) {
-        if (hasOwn.call(arg, key)) {
+        if (Object.hasOwn(arg, key)) {
           currentSortKeys.push(key)
           currentSortValues.push(arg[key])
         }
@@ -236,7 +234,7 @@ export function array_multisort(arr: SortValue[] | SortableObject, ...rest: Sort
 
   // Sort all the arrays....
   for (const iKey in sortArrs) {
-    if (hasOwn.call(sortArrs, iKey)) {
+    if (Object.hasOwn(sortArrs, iKey)) {
       const iNum = Number(iKey)
       const lastSorts: number[][] = []
       let tmpArray: SortValue[] = []
@@ -298,7 +296,7 @@ export function array_multisort(arr: SortValue[] | SortableObject, ...rest: Sort
       // Duplicate the sorting of the current array on future arrays.
       sFunction = sortDuplicator
       for (const jKey in sortArrs) {
-        if (hasOwn.call(sortArrs, jKey)) {
+        if (Object.hasOwn(sortArrs, jKey)) {
           const jNum = Number(jKey)
           const targetSortArr = sortArrs[jNum]
           if (!targetSortArr || targetSortArr === currentSortArr) {
@@ -325,7 +323,7 @@ export function array_multisort(arr: SortValue[] | SortableObject, ...rest: Sort
 
       // Duplicate the sorting of the current array on array keys
       for (const jKey in sortKeys) {
-        if (hasOwn.call(sortKeys, jKey)) {
+        if (Object.hasOwn(sortKeys, jKey)) {
           const jNum = Number(jKey)
           const targetSortKeys = sortKeys[jNum]
           if (!targetSortKeys) {

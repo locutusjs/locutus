@@ -26,9 +26,8 @@ export function array_push<TValue>(inputArr: PhpArrayLike<TValue>, ...values: TV
 
   // Associative (object)
   const target = toPhpArrayObject<TValue>(inputArr)
-  const hasOwn = Object.prototype.hasOwnProperty
   for (const pr in target) {
-    if (hasOwn.call(target, pr)) {
+    if (Object.hasOwn(target, pr)) {
       ++len
       if (pr.search(allDigits) !== -1) {
         size = parseInt(pr, 10)

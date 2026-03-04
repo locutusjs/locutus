@@ -14,7 +14,6 @@ type LocaleDefinition = {
 
 type LocaleInput = string | string[] | number | null
 
-const hasOwn = Object.prototype.hasOwnProperty
 const isLocaleDefinitionMap = (value: PhpInput): value is Record<string, LocaleDefinition> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 const isLocaleCategoryMap = (value: PhpInput): value is Record<string, string> =>
@@ -40,7 +39,7 @@ function copyValue(orig: PhpInput): PhpInput {
   if (orig !== null && typeof orig === 'object') {
     const newObj: PhpAssoc<PhpInput> = {}
     for (const [key, value] of Object.entries(orig)) {
-      if (!hasOwn.call(orig, key)) {
+      if (!Object.hasOwn(orig, key)) {
         continue
       }
       newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
@@ -403,7 +402,7 @@ export function setlocale(category: string, locale: LocaleInput): string | false
   if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
       for (categ in localeCategories) {
-        if (!hasOwn.call(localeCategories, categ)) {
+        if (!Object.hasOwn(localeCategories, categ)) {
           continue
         }
         // Add ".UTF-8" or allow ".@latint", etc. to the end?
@@ -422,7 +421,7 @@ export function setlocale(category: string, locale: LocaleInput): string | false
   // Set and get locale
   if (category === 'LC_ALL') {
     for (categ in localeCategories) {
-      if (!hasOwn.call(localeCategories, categ)) {
+      if (!Object.hasOwn(localeCategories, categ)) {
         continue
       }
       localeCategories[categ] = requestedLocale

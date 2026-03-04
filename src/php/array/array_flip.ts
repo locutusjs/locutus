@@ -17,9 +17,8 @@ export function array_flip<TValue extends PhpKey | StringLike>(trans: PhpArrayLi
 
   const tmpArr: PhpAssoc<string> = {}
   const values = toPhpArrayObject<TValue>(trans)
-  const hasOwn = Object.prototype.hasOwnProperty
   for (const key in values) {
-    if (!hasOwn.call(values, key)) {
+    if (!Object.hasOwn(values, key)) {
       continue
     }
     tmpArr[String(values[key])] = key

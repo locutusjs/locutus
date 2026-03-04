@@ -6,7 +6,6 @@ type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
 type JsonEncodeInput = PhpRuntimeValue
 
-const hasOwn = Object.prototype.hasOwnProperty
 const isJsonObject = (value: PhpRuntimeValue): value is JsonObject =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
@@ -160,7 +159,7 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
             throw new SyntaxError('json_encode')
           }
           for (k in value) {
-            if (hasOwn.call(value, k)) {
+            if (Object.hasOwn(value, k)) {
               v = _str(k, value) || ''
               if (v) {
                 partial.push(quote(k) + (gap ? ': ' : ':') + v)

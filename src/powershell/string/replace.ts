@@ -14,5 +14,5 @@ export function replace(str: string, search: string, replacement: string): strin
     return source
   }
 
-  return source.split(from).join(to)
+  return source.replaceAll(from, to)
 }

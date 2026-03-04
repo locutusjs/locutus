@@ -19,11 +19,10 @@ export function array_intersect_key<TValue>(
   }
 
   const arr1Object = toPhpArrayObject<TValue>(arr1)
-  const hasOwn = Object.prototype.hasOwnProperty
   arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
     for (const nextArray of arrays) {
       const arr = toPhpArrayObject<TValue>(nextArray)
-      if (!hasOwn.call(arr, k1)) {
+      if (!Object.hasOwn(arr, k1)) {
         continue arr1keys
       }
     }

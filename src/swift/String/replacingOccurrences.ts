@@ -28,5 +28,5 @@ export function replacingOccurrences(
     return source.replace(new RegExp(escapeRegExp(needle), 'gi'), nextValue)
   }
 
-  return source.split(needle).join(nextValue)
+  return source.replaceAll(needle, nextValue)
 }
