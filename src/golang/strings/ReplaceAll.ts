@@ -20,5 +20,5 @@ export function ReplaceAll(s: string, old: string, replacement: string): string 
     return `${to}${Array.from(value).join(to)}${to}`
   }
 
-  return value.split(from).join(to)
+  return value.replaceAll(from, to)
 }

@@ -23,7 +23,7 @@ export function array_unique<T>(inputArr: T[] | PhpAssoc<T>): PhpAssoc<T> | fals
   const _arraySearch = function (needle: T, haystack: PhpAssoc<T>): string | false {
     let fkey = ''
     for (fkey in haystack) {
-      if (Object.prototype.hasOwnProperty.call(haystack, fkey)) {
+      if (Object.hasOwn(haystack, fkey)) {
         if (String(haystack[fkey]) === String(needle)) {
           return fkey
         }

@@ -15,7 +15,7 @@ export function last<T>(arr: T[] | unknown, n?: number): T | T[] | undefined {
   }
 
   if (n === undefined) {
-    return arr[arr.length - 1]
+    return arr.at(-1)
   }
 
   return arr.slice(-n)

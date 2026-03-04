@@ -26,7 +26,7 @@ export function strcspn(str: string, mask: string, start?: number, length?: numb
   }
   let lgth = 0
   for (let i = start; i < e; i++) {
-    if (mask.indexOf(str.charAt(i)) !== -1) {
+    if (mask.includes(str.charAt(i))) {
       break
     }
     ++lgth

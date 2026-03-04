@@ -80,7 +80,7 @@ export function str_replace(
       temp = (s[i] ?? '') + ''
       const replacement = r[j]
       repl = replacement ?? ''
-      s[i] = temp.split(findValue).join(repl)
+      s[i] = temp.replaceAll(findValue, repl)
       if (typeof countObj !== 'undefined') {
         countObj.value = (countObj.value ?? 0) + temp.split(findValue).length - 1
       }

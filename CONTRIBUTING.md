@@ -187,6 +187,7 @@ yarn browser:test
 Locutus has two runtime targets:
 
 - Node package runtime: `engines.node >= 22`
+- Published package compile target (CJS + ESM dist): `ES2022`
 - Browser-facing runtime (website `Module JS` / `Standalone JS`, browser playground/tests):
   `baseline widely available with downstream`
 
@@ -271,6 +272,8 @@ something dramatic to how Locutus works across functions (ship ESM, move to Type
 Engine policy:
 
 - Increasing `engines.node` is treated as a breaking change and requires a **major** version bump.
+- Raising the published dist language target (for example `ES2020` -> `ES2022`) is treated as a breaking change and
+  requires a **major** version bump.
 - Keep development tooling on Node 22+ if needed, but the published `engines.node` must reflect runtime compatibility.
 
 The publish workflow is `.github/workflows/ci.yml` and triggers on tags that point at `main`.

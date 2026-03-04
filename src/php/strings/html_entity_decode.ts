@@ -28,8 +28,7 @@ export function html_entity_decode(string: string, quoteStyle?: string | number)
   }
   const normalizedHashMap: { [key: string]: string } = {}
   const hashMapObject = toPhpArrayObject(hashMapUnknown)
-  for (const symbol in hashMapObject) {
-    const entity = hashMapObject[symbol]
+  for (const [symbol, entity] of Object.entries(hashMapObject)) {
     if (typeof entity === 'string') {
       normalizedHashMap[symbol] = entity
     }
@@ -40,14 +39,10 @@ export function html_entity_decode(string: string, quoteStyle?: string | number)
   delete normalizedHashMap['&']
   normalizedHashMap['&'] = '&amp;'
 
-  for (const symbol in normalizedHashMap) {
-    const entity = normalizedHashMap[symbol]
-    if (typeof entity !== 'string') {
-      continue
-    }
-    tmpStr = tmpStr.split(entity).join(symbol)
+  for (const [symbol, entity] of Object.entries(normalizedHashMap)) {
+    tmpStr = tmpStr.replaceAll(entity, symbol)
   }
-  tmpStr = tmpStr.split('&#039;').join("'")
+  tmpStr = tmpStr.replaceAll('&#039;', "'")
 
   return tmpStr
 }

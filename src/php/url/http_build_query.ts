@@ -64,12 +64,9 @@ export function http_build_query(
             }
           }
         } else {
-          for (const nestedKey in val) {
-            if (Object.prototype.hasOwnProperty.call(val, nestedKey)) {
-              const nestedValue = val[nestedKey]
-              if (typeof nestedValue !== 'undefined' && nestedValue !== null) {
-                nested.push(_httpBuildQueryHelper(key + '[' + nestedKey + ']', nestedValue, separator))
-              }
+          for (const [nestedKey, nestedValue] of Object.entries(val)) {
+            if (typeof nestedValue !== 'undefined' && nestedValue !== null) {
+              nested.push(_httpBuildQueryHelper(key + '[' + nestedKey + ']', nestedValue, separator))
             }
           }
         }
@@ -100,11 +97,7 @@ export function http_build_query(
       }
     }
   } else {
-    for (const key in formdata) {
-      if (!Object.prototype.hasOwnProperty.call(formdata, key)) {
-        continue
-      }
-      const value = formdata[key]
+    for (const [key, value] of Object.entries(formdata)) {
       if (typeof value === 'undefined') {
         continue
       }

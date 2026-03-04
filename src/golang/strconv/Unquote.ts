@@ -17,7 +17,7 @@ export function Unquote(s: string): [string, Error | null] {
   }
 
   const quote = input[0]
-  const endQuote = input[input.length - 1]
+  const endQuote = input.at(-1)
   if (!quote || quote !== endQuote || (quote !== '"' && quote !== "'" && quote !== '`')) {
     return ['', new Error(`invalid syntax: ${input}`)]
   }

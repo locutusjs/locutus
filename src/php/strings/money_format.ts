@@ -126,7 +126,7 @@ export function money_format(format: string, number: number): string | null {
     const fillMatch = flags && /=./.test(flags) ? flags.match(/=(.)/) : null
     const fill = fillMatch?.[1] ?? ' ' // flag: =f (numeric fill)
     // flag: ! (suppress currency symbol)
-    const showCurrSymbol = !flags || flags.indexOf('!') === -1
+    const showCurrSymbol = !flags || !flags.includes('!')
     // field width: w (minimum field width)
     const widthNum = parseInt(width, 10) || 0
 
@@ -155,7 +155,7 @@ export function money_format(format: string, number: number): string | null {
     if (filler) {
       integer = new Array(fillnum + 1).join(fill) + integer
     }
-    if (flags.indexOf('^') === -1) {
+    if (!flags.includes('^')) {
       // flag: ^ (disable grouping characters (of locale))
       // use grouping characters
       // ','
@@ -238,7 +238,7 @@ export function money_format(format: string, number: number): string | null {
     const csPrecedes = neg ? monetary.n_cs_precedes : monetary.p_cs_precedes
 
     // Assemble symbol/value/sign and possible space as appropriate
-    if (flags.indexOf('(') !== -1) {
+    if (flags.includes('(')) {
       // flag: parenth. for negative
       // @todo: unclear on whether and how sepBySpace, signPosn, or csPrecedes have
       // an impact here (as they do below), but assuming for now behaves as signPosn 0 as
@@ -309,7 +309,7 @@ export function money_format(format: string, number: number): string | null {
       const padding = new Array(paddingWidth + 1).join(' ')
       // @todo: How does p_sep_by_space affect the count if there is a space?
       // Included in count presumably?
-      if (flags.indexOf('-') !== -1) {
+      if (flags.includes('-')) {
         // left-justified (pad to right)
         repl += padding
       } else {

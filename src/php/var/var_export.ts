@@ -135,12 +135,8 @@ export function var_export(
     const source = toPhpArrayObject<VarExportInput>(mixedExpression)
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
-    for (const key in source) {
-      if (!Object.prototype.hasOwnProperty.call(source, key)) {
-        continue
-      }
+    for (const [key, entry] of Object.entries(source)) {
       value = ' '
-      const entry = source[key]
       const subtype = __getType(entry)
       if (subtype === 'array' || subtype === 'object') {
         value = '\n'

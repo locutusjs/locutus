@@ -5,5 +5,5 @@ export function Contains(s: string, substr: string): boolean {
   //       example 1: Contains('Kevin', 'K')
   //       returns 1: true
 
-  return (s + '').indexOf(substr) !== -1
+  return (s + '').includes(substr)
 }

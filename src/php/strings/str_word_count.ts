@@ -94,7 +94,7 @@ export function str_word_count(
     // @todo: Make this more readable
     match =
       ctypeAlpha(c) ||
-      (reg !== null && c.search(reg) !== -1) ||
+      (reg !== null && reg.test(c)) ||
       (i !== 0 && i !== len - 1 && c === '-') ||
       (i !== 0 && c === "'")
     if (match) {
@@ -105,7 +105,7 @@ export function str_word_count(
     }
     if (i === len - 1 || (!match && tmpStr !== '')) {
       if (format !== 2) {
-        wArr[wArr.length] = tmpStr
+        wArr.push(tmpStr)
       } else {
         assoc[aC] = tmpStr
       }

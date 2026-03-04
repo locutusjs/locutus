@@ -25,8 +25,8 @@ export function array_sum(array: PhpArrayLike<SummableValue> | null): number | n
   }
   const values = toPhpArrayObject(array)
 
-  for (const key in values) {
-    const parsed = parseFloat(String(values[key]))
+  for (const value of Object.values(values)) {
+    const parsed = parseFloat(String(value))
     if (!isNaN(parsed)) {
       sum += parsed
     }

@@ -10,8 +10,5 @@ export function end_with(str: string, suffix: string): boolean {
 
   str = str + ''
   suffix = suffix + ''
-  if (suffix.length === 0) {
-    return true
-  }
-  return str.slice(-suffix.length) === suffix
+  return str.endsWith(suffix)
 }

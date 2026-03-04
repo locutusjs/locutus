@@ -19,7 +19,7 @@ export function chomp(str: string, separator?: string): string {
   }
 
   separator = separator + ''
-  if (str.slice(-separator.length) === separator) {
+  if (str.endsWith(separator)) {
     return str.slice(0, -separator.length)
   }
 

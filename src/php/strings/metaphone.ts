@@ -59,7 +59,7 @@ export function metaphone(
   }
 
   const is = function (p: string, c: string): boolean {
-    return c !== '' && p.indexOf(c) !== -1
+    return c !== '' && p.includes(c)
   }
 
   let i = 0

@@ -14,5 +14,5 @@ export function ctype_xdigit(text: string): boolean {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('xd')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }

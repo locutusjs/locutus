@@ -132,7 +132,7 @@ export function addcslashes(str: string, charlist: string): string {
 
   for (i = 0; i < str.length; i++) {
     c = str.charAt(i)
-    if (chrs.indexOf(c) !== -1) {
+    if (chrs.includes(c)) {
       target += '\\'
       cca = c.charCodeAt(0)
       if (cca < 32 || cca > 126) {

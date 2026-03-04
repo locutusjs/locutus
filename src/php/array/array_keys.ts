@@ -18,20 +18,18 @@ export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: b
   const strict = !!argStrict
   let include = true
 
-  for (const key in input) {
-    if (Object.prototype.hasOwnProperty.call(input, key)) {
-      include = true
-      if (search) {
-        if (strict && input[key] !== searchValue) {
-          include = false
-        } else if (input[key] !== searchValue) {
-          include = false
-        }
+  for (const [key, value] of Object.entries(input)) {
+    include = true
+    if (search) {
+      if (strict && value !== searchValue) {
+        include = false
+      } else if (value !== searchValue) {
+        include = false
       }
+    }
 
-      if (include) {
-        tmpArr[tmpArr.length] = key
-      }
+    if (include) {
+      tmpArr.push(key)
     }
   }
 

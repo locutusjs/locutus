@@ -328,13 +328,13 @@ export function pack(format: string, ...inputArgs: PackArgument[]): string {
           for (; k; ) {
             n += (1 << j) * Number(tmpResult.charAt(--k))
             if (j === 7) {
-              r[r.length] = String.fromCharCode(n)
+              r.push(String.fromCharCode(n))
               n = 0
             }
             j = (j + 1) % 8
           }
 
-          r[r.length] = n ? String.fromCharCode(n) : ''
+          r.push(n ? String.fromCharCode(n) : '')
           result += r.join('')
           argumentPointer++
         }

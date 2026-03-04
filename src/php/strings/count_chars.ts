@@ -53,13 +53,13 @@ export function count_chars(
     }
     if (mode === 4) {
       let absentChars = ''
-      for (const key in result) {
+      for (const key of Object.keys(result)) {
         absentChars += String.fromCharCode(Number(key))
       }
       return absentChars
     }
 
-    for (const key in result) {
+    for (const key of Object.keys(result)) {
       result[key] = 0
     }
   } else {

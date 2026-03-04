@@ -338,7 +338,7 @@ class Util {
       },
     }
 
-    this.allowSkip = argv.indexOf('--noskip') === -1
+    this.allowSkip = !argv.includes('--noskip')
 
     this._reindexBuffer = {}
     this._injectwebBuffer = {}
@@ -873,7 +873,7 @@ class Util {
         includeTypeOnlyImports: true,
       })
       for (const importDep of importDeps) {
-        if (deps.indexOf(importDep) === -1) {
+        if (!deps.includes(importDep)) {
           deps.push(importDep)
         }
       }
@@ -1744,7 +1744,7 @@ class Util {
     if (restParams.length > 1) {
       return null
     }
-    if (restParams.length === 1 && !parameters[parameters.length - 1]?.dotDotDotToken) {
+    if (restParams.length === 1 && !parameters.at(-1)?.dotDotDotToken) {
       return null
     }
 
@@ -2011,7 +2011,7 @@ class Util {
     }
 
     let describeSkip = ''
-    if (this.allowSkip && testProps.indexOf('skip-all') !== -1) {
+    if (this.allowSkip && testProps.includes('skip-all')) {
       describeSkip = '.skip'
     }
 
@@ -2160,7 +2160,7 @@ class Util {
 
       const humanIndex = i + 1
       let itSkip = ''
-      if (this.allowSkip && testProps.indexOf('skip-' + humanIndex) !== -1) {
+      if (this.allowSkip && testProps.includes('skip-' + humanIndex)) {
         itSkip = '.skip'
       }
 
@@ -2228,10 +2228,10 @@ class Util {
       path
         .basename(fileOrName)
         .replace(/\.(js|ts)$/, '')
-        .indexOf('.') !== -1
+        .includes('.')
     ) {
       pattern = this.__src + '/' + language + '/' + fileOrName.replace(/\./g, '/') + '.{js,ts}'
-    } else if (fileOrName.indexOf('/') === -1) {
+    } else if (!fileOrName.includes('/')) {
       pattern = this.__src + '/' + language + '/*/' + fileOrName + '.{js,ts}'
     } else {
       pattern = this.__src + '/' + fileOrName
@@ -2401,14 +2401,14 @@ class Util {
       throw new Error('Unable to parse ' + filepath + '. Received no code')
     }
 
-    if (filepath.indexOf('/') === -1) {
+    if (!filepath.includes('/')) {
       throw new Error("Parse only accepts relative filepaths. Received: '" + filepath + "'")
     }
 
     const parts = filepath.split('/')
     const language = parts.shift() as string
     // Strip file extension from the last part
-    const lastPart = parts[parts.length - 1]
+    const lastPart = parts.at(-1)
     if (!lastPart) {
       throw new Error(`Unable to parse ${filepath}. Invalid path segments`)
     }

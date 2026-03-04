@@ -43,8 +43,11 @@ export function array_merge<T>(
     return merged
   }
 
-  for (let i = 0, ct = 0; i < args.length; i++) {
+  for (let ct = 0, i = 0; i < args.length; i++) {
     const arg = args[i]
+    if (typeof arg === 'undefined') {
+      continue
+    }
     if (Array.isArray(arg)) {
       for (let j = 0, argil = arg.length; j < argil; j++) {
         const value = arg[j]
@@ -53,17 +56,14 @@ export function array_merge<T>(
         }
       }
     } else {
-      for (const k in arg) {
-        if (Object.prototype.hasOwnProperty.call(arg, k)) {
-          const value = arg[k]
-          if (typeof value === 'undefined') {
-            continue
-          }
-          if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = value
-          } else {
-            retObj[k] = value
-          }
+      for (const [k, value] of Object.entries(arg)) {
+        if (typeof value === 'undefined') {
+          continue
+        }
+        if (parseInt(k, 10) + '' === k) {
+          retObj[ct++] = value
+        } else {
+          retObj[k] = value
         }
       }
     }

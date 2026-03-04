@@ -112,18 +112,15 @@ export function serialize(mixedValue: SerializeValue): string {
       }
       */
       const source = toPhpArrayObject<SerializeValue>(mixedValue)
-      for (const key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          const entry = source[key]
-          ktype = _getType(entry)
-          if (ktype === 'function') {
-            continue
-          }
-
-          okey = key.match(/^[0-9]+$/) ? parseInt(key, 10) : key
-          vals += serialize(okey) + serialize(entry)
-          count++
+      for (const [key, entry] of Object.entries(source)) {
+        ktype = _getType(entry)
+        if (ktype === 'function') {
+          continue
         }
+
+        okey = key.match(/^[0-9]+$/) ? parseInt(key, 10) : key
+        vals += serialize(okey) + serialize(entry)
+        count++
       }
       val += ':' + count + ':{' + vals + '}'
       break

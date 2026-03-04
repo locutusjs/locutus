@@ -50,7 +50,6 @@ export function parse_str(str: string, array?: ParseObject): void {
   let i = 0
   let j = 0
   let ct = 0
-  let p = ''
   let lastObj: ParseObject = {}
   let obj: ParseObject = {}
   let chr
@@ -80,8 +79,9 @@ export function parse_str(str: string, array?: ParseObject): void {
       key = key.slice(1)
     }
 
-    if (key.indexOf('\x00') > -1) {
-      key = key.slice(0, key.indexOf('\x00'))
+    const nullByteIndex = key.indexOf('\x00')
+    if (nullByteIndex > -1) {
+      key = key.slice(0, nullByteIndex)
     }
 
     if (key && key.charAt(0) !== '[') {
@@ -135,11 +135,9 @@ export function parse_str(str: string, array?: ParseObject): void {
           // Insert new dimension
           ct = -1
 
-          for (p in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, p)) {
-              if (+p > ct && p.match(/^\d+$/g)) {
-                ct = +p
-              }
+          for (const objKey of Object.keys(obj)) {
+            if (+objKey > ct && /^\d+$/.test(objKey)) {
+              ct = +objKey
             }
           }
 

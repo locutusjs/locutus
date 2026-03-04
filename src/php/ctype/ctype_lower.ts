@@ -15,5 +15,5 @@ export function ctype_lower(text: string): boolean {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('lw')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }

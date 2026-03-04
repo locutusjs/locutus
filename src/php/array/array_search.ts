@@ -45,22 +45,18 @@ export function array_search(
         (needle.sticky ? 'y' : '')
       regex = new RegExp(needle.source, flags)
     }
-    for (const key in haystack) {
-      if (Object.prototype.hasOwnProperty.call(haystack, key)) {
-        if (regex.test(String(haystack[key]))) {
-          return key
-        }
+    for (const [key, value] of Object.entries(haystack)) {
+      if (regex.test(String(value))) {
+        return key
       }
     }
     return false
   }
 
-  for (const key in haystack) {
-    if (Object.prototype.hasOwnProperty.call(haystack, key)) {
-      // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
-      if ((strict && haystack[key] === needle) || (!strict && haystack[key] == needle)) {
-        return key
-      }
+  for (const [key, value] of Object.entries(haystack)) {
+    // biome-ignore lint/suspicious/noDoubleEquals: non-strict comparison intended
+    if ((strict && value === needle) || (!strict && value == needle)) {
+      return key
     }
   }
 

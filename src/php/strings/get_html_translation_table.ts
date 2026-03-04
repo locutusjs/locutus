@@ -24,7 +24,6 @@ export function get_html_translation_table(
 
   const entities: { [key: string]: string } = {}
   const hashMap: { [key: string]: string } = {}
-  let decimal = ''
   const constMappingTable: { [key: number]: string } = {}
   const constMappingQuoteStyle: { [key: number]: string } = {}
   let useTable = ''
@@ -162,10 +161,8 @@ export function get_html_translation_table(
   entities['62'] = '&gt;'
 
   // ascii decimals to real symbols
-  for (decimal in entities) {
-    if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
-      hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
-    }
+  for (const [decimal, entity] of Object.entries(entities)) {
+    hashMap[String.fromCharCode(Number(decimal))] = entity ?? ''
   }
 
   return hashMap

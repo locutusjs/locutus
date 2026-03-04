@@ -173,13 +173,13 @@ export function var_dump(...args: DumpValue[]): string {
       let lgth = 0
       const objRecord = toPhpArrayObject<DumpValue>(obj)
       for (const someProp in objRecord) {
-        if (Object.prototype.hasOwnProperty.call(objRecord, someProp)) {
+        if (Object.hasOwn(objRecord, someProp)) {
           lgth++
         }
       }
       str += 'array(' + lgth + ') {\n'
       for (const key in objRecord) {
-        if (!Object.prototype.hasOwnProperty.call(objRecord, key)) {
+        if (!Object.hasOwn(objRecord, key)) {
           continue
         }
         const objVal = objRecord[key]

@@ -19,7 +19,7 @@ export function array_udiff_assoc<T>(
   //   returns 1: {1: 'van', 2: 'Zonneveld'}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[T, T]>(callback)) {
     throw new Error('array_udiff_assoc(): Invalid callback')
   }

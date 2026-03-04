@@ -27,8 +27,8 @@ export function array_udiff_uassoc<T>(
   //   returns 1: {0: 'red', c: 'blue'}
 
   const retArr: PhpAssoc<T> = {}
-  const keyCallback = arraysAndComparators[arraysAndComparators.length - 1]
-  const valueCallback = arraysAndComparators[arraysAndComparators.length - 2]
+  const keyCallback = arraysAndComparators.at(-1)
+  const valueCallback = arraysAndComparators.at(-2)
   if (
     typeof keyCallback === 'undefined' ||
     typeof valueCallback === 'undefined' ||

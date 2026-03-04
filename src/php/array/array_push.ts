@@ -19,21 +19,18 @@ export function array_push<TValue>(inputArr: PhpArrayLike<TValue>, ...values: TV
 
   if (Array.isArray(inputArr)) {
     for (const value of values) {
-      inputArr[inputArr.length] = value
+      inputArr.push(value)
     }
     return inputArr.length
   }
 
   // Associative (object)
   const target = toPhpArrayObject<TValue>(inputArr)
-  const hasOwn = Object.prototype.hasOwnProperty
-  for (const pr in target) {
-    if (hasOwn.call(target, pr)) {
-      ++len
-      if (pr.search(allDigits) !== -1) {
-        size = parseInt(pr, 10)
-        highestIdx = size > highestIdx ? size : highestIdx
-      }
+  for (const pr of Object.keys(target)) {
+    ++len
+    if (allDigits.test(pr)) {
+      size = parseInt(pr, 10)
+      highestIdx = size > highestIdx ? size : highestIdx
     }
   }
   for (const value of values) {

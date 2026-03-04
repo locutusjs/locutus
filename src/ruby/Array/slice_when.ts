@@ -28,7 +28,7 @@ export function slice_when<T>(
       out.push([current])
       continue
     }
-    const last = out[out.length - 1]
+    const last = out.at(-1)
     if (last) {
       last.push(current)
     }

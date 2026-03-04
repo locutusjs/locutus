@@ -9,7 +9,7 @@ export function strpbrk(haystack: string, charList: string): string | false {
   //       returns 1: 'is is a Simple text.'
 
   for (let i = 0, len = haystack.length; i < len; ++i) {
-    if (charList.indexOf(haystack.charAt(i)) >= 0) {
+    if (charList.includes(haystack.charAt(i))) {
       return haystack.slice(i)
     }
   }

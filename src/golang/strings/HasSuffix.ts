@@ -13,8 +13,5 @@ export function HasSuffix(s: string, suffix: string): boolean {
 
   s = s + ''
   suffix = suffix + ''
-  if (suffix.length === 0) {
-    return true
-  }
-  return s.slice(-suffix.length) === suffix
+  return s.endsWith(suffix)
 }

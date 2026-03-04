@@ -23,5 +23,5 @@ export function gsub(str: string, pattern: string | RegExp, replacement: string)
     return source
   }
 
-  return source.split(needle).join(replacementText)
+  return source.replaceAll(needle, replacementText)
 }

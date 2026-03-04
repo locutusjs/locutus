@@ -15,5 +15,5 @@ export function ctype_alnum(text: string): boolean {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('an')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }

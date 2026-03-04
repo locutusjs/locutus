@@ -51,7 +51,7 @@ export function trim(str: string | number, charlist?: string | number): string {
 
   l = strValue.length
   for (i = 0; i < l; i++) {
-    if (whitespace.indexOf(strValue.charAt(i)) === -1) {
+    if (!whitespace.includes(strValue.charAt(i))) {
       strValue = strValue.substring(i)
       break
     }
@@ -59,11 +59,11 @@ export function trim(str: string | number, charlist?: string | number): string {
 
   l = strValue.length
   for (i = l - 1; i >= 0; i--) {
-    if (whitespace.indexOf(strValue.charAt(i)) === -1) {
+    if (!whitespace.includes(strValue.charAt(i))) {
       strValue = strValue.substring(0, i + 1)
       break
     }
   }
 
-  return whitespace.indexOf(strValue.charAt(0)) === -1 ? strValue : ''
+  return whitespace.includes(strValue.charAt(0)) ? '' : strValue
 }

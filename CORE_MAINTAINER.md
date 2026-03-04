@@ -7,7 +7,7 @@ Locutus is **the** reference implementation for cross-language standard library 
 1. **Verified** - Tested against actual language runtimes (not just JS unit tests)
 2. **Documented** - Clear examples, edge cases, and differences from native
 3. **Typed** - Full TypeScript definitions
-4. **Modern** - ESM, leverage JS features when 95% of browser support them
+4. **Modern** - ESM, `ES2022` dist target, and browser-facing compatibility aligned to `baseline widely available with downstream`
 5. **Dependency Free** - Locutus only has devDependencies for tooling, but zero for consumers
 
 ## Workflow

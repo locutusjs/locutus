@@ -13,7 +13,7 @@ const cleanPath = (path: string): string => {
     }
 
     if (segment === '..') {
-      const top = stack[stack.length - 1]
+      const top = stack.at(-1)
       if (top && top !== '..') {
         stack.pop()
       } else if (!rooted) {
