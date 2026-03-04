@@ -153,6 +153,7 @@ src/perl/core/length.ts :: export function length(str: string | null | undefined
 src/perl/core/ord.ts :: export function ord(str: string): number
 src/perl/core/quotemeta.ts :: export function quotemeta(str: string): string
 src/perl/core/reverse.ts :: export function reverse(str: string): string
+src/perl/core/rindex.ts :: export function rindex(str: string, substr: string, position?: number): number
 src/perl/core/sprintf.ts :: export function sprintf(format: string, ...values: unknown[]): string
 src/perl/core/substr.ts :: export function substr(str: string, offset: number, length?: number): string
 src/perl/core/uc.ts :: export function uc(str: string): string
@@ -162,6 +163,7 @@ src/powershell/string/endswith.ts :: export function endswith(suffix: string, st
 src/powershell/string/indexof.ts :: export function indexof(needle: string, haystack: string, startIndex?: number): number
 src/powershell/string/lastindexof.ts :: export function lastindexof(needle: string, haystack: string, startIndex?: number): number
 src/powershell/string/length.ts :: export function length(str: string): number
+src/powershell/string/padleft.ts :: export function padleft(str: string, totalWidth: number, paddingChar?: string): string
 src/powershell/string/replace.ts :: export function replace(str: string, search: string, replacement: string): string
 src/powershell/string/startswith.ts :: export function startswith(prefix: string, str: string): boolean
 src/powershell/string/substring.ts :: export function substring(str: string, startIndex: number, length?: number): string
@@ -169,6 +171,7 @@ src/powershell/string/tolower.ts :: export function tolower(str: string): string
 src/powershell/string/toupper.ts :: export function toupper(str: string): string
 src/powershell/string/trim.ts :: export function trim(str: string): string
 src/python/math/ceil.ts :: export function ceil(x: number): number
+src/python/math/comb.ts :: export function comb(n: number | string, k: number | string): number
 src/python/math/dist.ts :: export function dist(p: number[] | unknown, q: number[] | unknown): number
 src/python/math/exp.ts :: export function exp(x: number): number
 src/python/math/fabs.ts :: export function fabs(x: number): number
@@ -210,6 +213,7 @@ src/ruby/Array/flatten.ts :: export function flatten(arr: unknown[] | unknown, d
 src/ruby/Array/group_by.ts :: export function group_by<T>(arr: T[] | unknown): Record<string, T[]>
 src/ruby/Array/last.ts :: export function last<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
 src/ruby/Array/sample.ts :: export function sample(arr: unknown[], n?: number): unknown | unknown[] | undefined
+src/ruby/Array/tally.ts :: export function tally<T>(arr: T[] | unknown): Record<string, number>
 src/ruby/Array/uniq.ts :: export function uniq<T>(arr: T[] | unknown): T[]
 src/ruby/Math/acos.ts :: export function acos(arg: number): number
 src/ruby/Math/asin.ts :: export function asin(x: number): number
@@ -247,6 +251,7 @@ src/rust/str/starts_with.ts :: export function starts_with(prefix: string, str: 
 src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): string
 src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): string
 src/rust/str/trim.ts :: export function trim(str: string): string
+src/tcl/string/compare.ts :: export function compare(str1: string, str2: string): number
 src/tcl/string/first.ts :: export function first(needle: string, haystack: string, startIndex?: number): number
 src/tcl/string/last.ts :: export function last(needle: string, haystack: string, lastIndex?: number): number
 src/tcl/string/length.ts :: export function length(str: string): number

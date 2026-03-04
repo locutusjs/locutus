@@ -1,0 +1,26 @@
+export function rindex(str: string, substr: string, position?: number): number {
+  //      discuss at: https://locutus.io/perl/rindex/
+  // parity verified: Perl 5.40
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the last index of substr in str, or -1 when not found.
+  //       example 1: rindex('hello hello', 'lo')
+  //       returns 1: 9
+  //       example 2: rindex('hello hello', 'lo', 8)
+  //       returns 2: 3
+  //       example 3: rindex('hello', 'x')
+  //       returns 3: -1
+
+  const source = String(str)
+  const needle = String(substr)
+
+  if (position === undefined) {
+    return source.lastIndexOf(needle)
+  }
+
+  const from = Math.trunc(Number(position))
+  if (!Number.isFinite(from)) {
+    return source.lastIndexOf(needle)
+  }
+
+  return source.lastIndexOf(needle, from)
+}

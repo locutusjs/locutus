@@ -2534,3 +2534,52 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Ruby parity for block-driven methods can stay deterministic by explicitly synthesizing a simple block in the translator when JS signatures omit callback arguments.
   - Tcl range semantics are inclusive on end index, including symbolic forms like `end-1`, so example expectations must reflect that to avoid false regressions.
+
+## Iteration 92
+
+- Plans
+  - Add the next 5 cross-language utility functions on the same PR:
+    - `python/math/comb`
+    - `ruby/Array/tally`
+    - `perl/core/rindex`
+    - `powershell/string/padleft`
+    - `tcl/string/compare`
+  - Keep parity compatibility by only extending translators where native call syntax differs.
+- Progress
+  - Added source modules:
+    - `src/python/math/comb.ts`
+    - `src/ruby/Array/tally.ts`
+    - `src/perl/core/rindex.ts`
+    - `src/powershell/string/padleft.ts`
+    - `src/tcl/string/compare.ts`
+  - Updated exports:
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+    - `src/tcl/string/index.ts`
+  - Extended parity translator:
+    - `test/parity/lib/languages/powershell.ts` with native `.PadLeft(...)` mapping for `padleft(...)`.
+  - Regenerated artifacts:
+    - `test/generated/python/math/comb.vitest.ts`
+    - `test/generated/ruby/Array/tally.vitest.ts`
+    - `test/generated/perl/core/rindex.vitest.ts`
+    - `test/generated/powershell/string/padleft.vitest.ts`
+    - `test/generated/tcl/string/compare.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after test generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/python/math/comb.vitest.ts test/generated/ruby/Array/tally.vitest.ts test/generated/perl/core/rindex.vitest.ts test/generated/powershell/string/padleft.vitest.ts test/generated/tcl/string/compare.vitest.ts`
+  - `corepack yarn test:parity python/math/comb --no-cache`
+  - `corepack yarn test:parity ruby/Array/tally --no-cache`
+  - `corepack yarn test:parity perl/core/rindex --no-cache`
+  - `corepack yarn test:parity powershell/string/padleft --no-cache`
+  - `corepack yarn test:parity tcl/string/compare --no-cache`
+- Key learnings
+  - The PowerShell translator needs explicit native call wiring for methods with overload-style argument shapes; generic fallback does not preserve language idioms.
+  - For small, high-value language additions, parity-safe examples with deterministic output let us expand coverage quickly without broad translator refactors.

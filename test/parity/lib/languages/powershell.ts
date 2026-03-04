@@ -227,6 +227,15 @@ function buildNativeCall(funcName: string, args: string[]): string {
       const value = args[0] ?? '$null'
       return `([string]${value}).Length`
     }
+    case 'padleft': {
+      const source = args[0] ?? '$null'
+      const width = args[1] ?? '0'
+      const padChar = args[2]
+      if (padChar === undefined) {
+        return `([string]${source}).PadLeft([int]${width})`
+      }
+      return `([string]${source}).PadLeft([int]${width}, [char]${padChar})`
+    }
     case 'replace': {
       const source = args[0] ?? '$null'
       const from = args[1] ?? '$null'
