@@ -20,6 +20,7 @@ for fun experiments such as running PHP code directly in Node.js
   - [Running a single generated test](#running-a-single-generated-test)
   - [Custom tests](#custom-tests)
   - [Browser Playground](#browser-playground)
+  - [JavaScript Compatibility (Browser-Facing)](#javascript-compatibility-browser-facing)
 - [Commit](#commit)
 - [Releasing](#releasing)
 - [Website Development](#website-development)
@@ -180,6 +181,35 @@ If you just want a one-off browser run:
 ```bash
 yarn browser:test
 ```
+
+### JavaScript Compatibility (Browser-Facing)
+
+Locutus has two runtime targets:
+
+- Node package runtime: `engines.node >= 22`
+- Browser-facing runtime (website `Module JS` / `Standalone JS`, browser playground/tests):
+  `baseline widely available with downstream`
+
+For browser-facing code:
+
+- use syntax and built-ins compatible with the rolling Baseline target above
+- do not assume polyfills for website copy-paste snippets
+- if a function needs behavior outside this target, document it with a function header `note` comment
+
+Example exception note:
+
+```js
+// note 1: Uses Intl.Segmenter. For older targets, transpile and provide a compatible polyfill/fallback.
+```
+
+Quick local checks:
+
+```bash
+npx browserslist "baseline widely available with downstream"
+npx browserslist --coverage=global "baseline widely available with downstream"
+```
+
+This target is rolling by design and may shift as browser data and tooling updates.
 
 ## Commit
 

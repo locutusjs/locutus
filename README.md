@@ -44,6 +44,20 @@ console.log(Contains('Locutus', 'cut'))
 // true
 ```
 
+## Browser Compatibility (Copy-Paste Snippets)
+
+Code shown on function pages (`Module JS` / `Standalone JS`) targets:
+
+- `baseline widely available with downstream`
+
+If your application targets older browsers, treat Locutus snippets like normal application code:
+
+1. transpile to your target (for example with TypeScript, Babel, SWC, or esbuild)
+2. add required polyfills for missing APIs in your environment
+3. validate with your own Browserslist target and browser test matrix
+
+Locutus does not inject polyfills into copy-paste snippets by default.
+
 ## Development
 
 Some guidelines and instructions can be found in [CONTRIBUTING.md](CONTRIBUTING.md)
