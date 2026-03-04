@@ -54,16 +54,16 @@ function packHex(hex: string, highFirst: boolean, nybbles: number): string {
 }
 
 export function pack(template: string, ...values: unknown[]): string {
-  //      discuss at: https://locutus.io/perl/pack/
-  //     original by: Kevin van Zonneveld (https://kvz.io)
-  //          note 1: Implements a practical subset: A, a, C, n, N, v, V, H, h with optional counts and *.
-  //          note 2: Output is a binary JavaScript string (char codes 0-255).
-  //       example 1: pack('A5', 'hi')
-  //       returns 1: 'hi   '
-  //       example 2: pack('C*', 72, 105, 33)
-  //       returns 2: 'Hi!'
-  //       example 3: pack('n', 258).split('').map((ch) => ch.charCodeAt(0))
-  //       returns 3: [1, 2]
+  //  discuss at: https://locutus.io/perl/pack/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Implements a practical subset: A, a, C, n, N, v, V, H, h with optional counts and *.
+  //      note 2: Output is a binary JavaScript string (char codes 0-255).
+  //   example 1: pack('A5', 'hi')
+  //   returns 1: 'hi   '
+  //   example 2: pack('C*', 72, 105, 33)
+  //   returns 2: 'Hi!'
+  //   example 3: pack('n', 258).split('').map((ch) => ch.charCodeAt(0))
+  //   returns 3: [1, 2]
 
   const format = String(template).replace(/\s+/g, '')
   let cursor = 0
