@@ -22,9 +22,79 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.2...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.3...main).
 
 - No unreleased changes yet.
+
+## v3.0.3
+
+Released: 2026-03-04. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.2...v3.0.3).
+
+### Expansion
+
+- Added Go stdlib-inspired functions:
+  - `golang/time/Add`
+  - `golang/time/Date`
+  - `golang/time/Equal`
+  - `golang/time/Round`
+  - `golang/time/Truncate`
+  - `golang/path/Base`
+  - `golang/path/Clean`
+  - `golang/path/Dir`
+  - `golang/path/Ext`
+  - `golang/path/IsAbs`
+  - `golang/path/Join`
+  - `golang/path/Match`
+  - `golang/url/JoinPath`
+  - `golang/url/ParseQuery`
+  - `golang/url/PathEscape`
+  - `golang/url/QueryEscape`
+  - `golang/url/QueryUnescape`
+  - `golang/url/EncodeQuery`
+  - `golang/url/Parse`
+  - `golang/url/ResolveReference`
+  - `golang/net/JoinHostPort`
+  - `golang/net/SplitHostPort`
+  - `golang/sort/SearchStrings`
+  - `golang/sort/StringsAreSorted`
+  - `golang/strconv/Quote`
+  - `golang/subtle/ConstantTimeCompare`
+- Added Perl core functions:
+  - `perl/core/join`
+  - `perl/core/rindex`
+  - `perl/core/split`
+  - `perl/core/sprintf`
+- Added PowerShell string functions:
+  - `powershell/string/insert`
+  - `powershell/string/padleft`
+  - `powershell/string/padright`
+  - `powershell/string/remove`
+  - `powershell/string/split`
+  - `powershell/string/substring`
+- Added Python math functions:
+  - `python/math/comb`
+  - `python/math/dist`
+  - `python/math/fsum`
+  - `python/math/isclose`
+  - `python/math/lcm`
+- Added Ruby functions:
+  - `ruby/Array/group_by`
+  - `ruby/Array/permutation`
+  - `ruby/Array/tally`
+  - `ruby/Array/zip`
+  - `ruby/String/gsub`
+  - `ruby/String/tr`
+- Added Rust functions:
+  - `rust/str/match_indices`
+  - `rust/str/split_once`
+- Added Tcl functions:
+  - `tcl/string/compare`
+  - `tcl/string/range`
+
+### Infrastructure
+
+- Extended parity translation coverage for newly added Go/Perl/PowerShell/Python/Ruby/Rust functions.
+- Refreshed generated `docs/non-php-api-signatures.snapshot` and type-contract snapshots to match the expanded API surface.
 
 ## v3.0.2
 
