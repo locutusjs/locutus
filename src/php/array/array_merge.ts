@@ -43,8 +43,11 @@ export function array_merge<T>(
     return merged
   }
 
-  for (let i = 0, ct = 0; i < args.length; i++) {
+  for (let ct = 0, i = 0; i < args.length; i++) {
     const arg = args[i]
+    if (typeof arg === 'undefined') {
+      continue
+    }
     if (Array.isArray(arg)) {
       for (let j = 0, argil = arg.length; j < argil; j++) {
         const value = arg[j]
