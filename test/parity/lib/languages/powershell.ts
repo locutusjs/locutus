@@ -242,6 +242,15 @@ function buildNativeCall(funcName: string, args: string[]): string {
       const to = args[2] ?? '$null'
       return `([string]${source}).Replace(${from}, ${to})`
     }
+    case 'split': {
+      const source = args[0] ?? '$null'
+      const delimiter = args[1] ?? "''"
+      const limit = args[2]
+      if (limit === undefined) {
+        return `@(([string]${source}).Split(@([string]${delimiter}), [System.StringSplitOptions]::None))`
+      }
+      return `@(([string]${source}).Split(@([string]${delimiter}), ([int]${limit}) + 1, [System.StringSplitOptions]::None) | Select-Object -First ([int]${limit}))`
+    }
     case 'tolower': {
       const value = args[0] ?? '$null'
       return `([string]${value}).ToLowerInvariant()`

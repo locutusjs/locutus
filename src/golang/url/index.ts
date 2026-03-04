@@ -1,4 +1,5 @@
 export { JoinPath } from './JoinPath.ts'
+export { Parse } from './Parse.ts'
 export { ParseQuery } from './ParseQuery.ts'
 export { PathEscape } from './PathEscape.ts'
 export { QueryEscape } from './QueryEscape.ts'

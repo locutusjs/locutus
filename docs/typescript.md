@@ -2583,3 +2583,62 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - The PowerShell translator needs explicit native call wiring for methods with overload-style argument shapes; generic fallback does not preserve language idioms.
   - For small, high-value language additions, parity-safe examples with deterministic output let us expand coverage quickly without broad translator refactors.
+
+## Iteration 93
+
+- Plans
+  - Add another cross-language juicy 5:
+    - `golang/path/Match`
+    - `golang/url/Parse`
+    - `ruby/String/gsub`
+    - `perl/core/split`
+    - `powershell/string/split`
+  - Keep parity robust by extending translators only where native signatures differ from locutus return shapes.
+- Progress
+  - Added source modules:
+    - `src/golang/path/Match.ts`
+    - `src/golang/url/Parse.ts`
+    - `src/ruby/String/gsub.ts`
+    - `src/perl/core/split.ts`
+    - `src/powershell/string/split.ts`
+  - Updated exports:
+    - `src/golang/path/index.ts`
+    - `src/golang/url/index.ts`
+    - `src/ruby/String/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+  - Extended parity translators:
+    - `test/parity/lib/languages/golang.ts`
+      - added package mapping for `Match` and scoped override for `url/Parse`.
+      - added helper conversions for `path/Match` and category-aware `Parse` conversion (`time/Parse` vs `url/Parse`).
+      - added helper runtime blocks for `locutusPathMatch(...)` and `locutusUrlParse(...)`.
+      - updated import detection for new Go helpers.
+    - `test/parity/lib/languages/ruby.ts`
+      - added `gsub` method mapping in `RUBY_METHODS`.
+    - `test/parity/lib/languages/powershell.ts`
+      - added native split mapping with optional limit handling.
+    - `test/parity/lib/languages/perl.ts`
+      - added explicit skip rationale for `split` list-context behavior.
+  - Regenerated artifacts:
+    - `test/generated/golang/path/Match.vitest.ts`
+    - `test/generated/golang/url/Parse.vitest.ts`
+    - `test/generated/ruby/String/gsub.vitest.ts`
+    - `test/generated/perl/core/split.vitest.ts`
+    - `test/generated/powershell/string/split.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/path/Match.vitest.ts test/generated/golang/url/Parse.vitest.ts test/generated/ruby/String/gsub.vitest.ts test/generated/perl/core/split.vitest.ts test/generated/powershell/string/split.vitest.ts`
+  - `corepack yarn test:parity golang/path/Match --no-cache`
+  - `corepack yarn test:parity golang/url/Parse --no-cache`
+  - `corepack yarn test:parity ruby/String/gsub --no-cache`
+  - `corepack yarn test:parity perl/core/split --no-cache`
+  - `corepack yarn test:parity powershell/string/split --no-cache`
+- Key learnings
+  - Go parity for same-name functions across categories requires category-aware translator logic (e.g. `Parse` in both `time` and `url`) to avoid helper collisions.
+  - PowerShell JSON pipeline behavior can produce scalar output for single-item arrays, so examples should avoid accidental scalarization unless the translator explicitly forces array serialization.

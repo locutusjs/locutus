@@ -19,6 +19,7 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   chop: { rubyMethod: 'chop', category: 'String', isInstanceMethod: true },
   downcase: { rubyMethod: 'downcase', category: 'String', isInstanceMethod: true },
   end_with: { rubyMethod: 'end_with?', category: 'String', isInstanceMethod: true },
+  gsub: { rubyMethod: 'gsub', category: 'String', isInstanceMethod: true },
   include: { rubyMethod: 'include?', category: 'String', isInstanceMethod: true },
   length: { rubyMethod: 'length', category: 'String', isInstanceMethod: true },
   reverse: { rubyMethod: 'reverse', category: 'String', isInstanceMethod: true },

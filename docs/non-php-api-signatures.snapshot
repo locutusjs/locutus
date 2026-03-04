@@ -60,6 +60,7 @@ src/golang/path/Dir.ts :: export function Dir(path: string): string
 src/golang/path/Ext.ts :: export function Ext(path: string): string
 src/golang/path/IsAbs.ts :: export function IsAbs(path: string): boolean
 src/golang/path/Join.ts :: export function Join(...elem: string[]): string
+src/golang/path/Match.ts :: export function Match(pattern: string, name: string): boolean
 src/golang/sort/SearchStrings.ts :: export function SearchStrings(a: string[], x: string): number
 src/golang/sort/StringsAreSorted.ts :: export function StringsAreSorted(a: string[]): boolean
 src/golang/strconv/Atoi.ts :: export function Atoi(s: unknown): [number, Error | null]
@@ -116,6 +117,7 @@ src/golang/time/Unix.ts :: export function Unix(sec: number, nsec = 0): Date
 src/golang/time/UnixMicro.ts :: export function UnixMicro(usec: number): Date
 src/golang/time/UnixMilli.ts :: export function UnixMilli(msec: number): Date
 src/golang/url/JoinPath.ts :: export function JoinPath(base: string, ...elem: string[]): string
+src/golang/url/Parse.ts :: export function Parse(rawurl: string): ParsedURL
 src/golang/url/ParseQuery.ts :: export function ParseQuery(query: string): QueryValues
 src/golang/url/PathEscape.ts :: export function PathEscape(s: string): string
 src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
@@ -154,6 +156,7 @@ src/perl/core/ord.ts :: export function ord(str: string): number
 src/perl/core/quotemeta.ts :: export function quotemeta(str: string): string
 src/perl/core/reverse.ts :: export function reverse(str: string): string
 src/perl/core/rindex.ts :: export function rindex(str: string, substr: string, position?: number): number
+src/perl/core/split.ts :: export function split(str: string, delimiter: string, limit?: number): string[]
 src/perl/core/sprintf.ts :: export function sprintf(format: string, ...values: unknown[]): string
 src/perl/core/substr.ts :: export function substr(str: string, offset: number, length?: number): string
 src/perl/core/uc.ts :: export function uc(str: string): string
@@ -165,6 +168,7 @@ src/powershell/string/lastindexof.ts :: export function lastindexof(needle: stri
 src/powershell/string/length.ts :: export function length(str: string): number
 src/powershell/string/padleft.ts :: export function padleft(str: string, totalWidth: number, paddingChar?: string): string
 src/powershell/string/replace.ts :: export function replace(str: string, search: string, replacement: string): string
+src/powershell/string/split.ts :: export function split(str: string, delimiter: string, limit?: number): string[]
 src/powershell/string/startswith.ts :: export function startswith(prefix: string, str: string): boolean
 src/powershell/string/substring.ts :: export function substring(str: string, startIndex: number, length?: number): string
 src/powershell/string/tolower.ts :: export function tolower(str: string): string
@@ -235,6 +239,7 @@ src/ruby/String/chomp.ts :: export function chomp(str: string, separator?: strin
 src/ruby/String/chop.ts :: export function chop(str: string): string
 src/ruby/String/downcase.ts :: export function downcase(str: string): string
 src/ruby/String/end_with.ts :: export function end_with(str: string, suffix: string): boolean
+src/ruby/String/gsub.ts :: export function gsub(str: string, pattern: string | RegExp, replacement: string): string
 src/ruby/String/include.ts :: export function include(str: string, other: string): boolean
 src/ruby/String/length.ts :: export function length(str: string): number
 src/ruby/String/reverse.ts :: export function reverse(str: string): string

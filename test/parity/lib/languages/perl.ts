@@ -7,7 +7,8 @@ import type { LanguageHandler } from '../types.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const PERL_SKIP_LIST = new Set<string>([
-  // None currently
+  // split() returns list context in Perl and needs dedicated array-aware translator support.
+  'split',
 ])
 
 /**
