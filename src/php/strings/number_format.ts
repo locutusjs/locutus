@@ -62,7 +62,7 @@ export function number_format(
   let s: string[]
 
   const toFixedFix = function (n: number, prec: number): number | string {
-    if (('' + n).indexOf('e') === -1) {
+    if (!('' + n).includes('e')) {
       return +(Math.round(+(n + 'e+' + prec)) + 'e-' + prec)
     } else {
       const arr = ('' + n).split('e')

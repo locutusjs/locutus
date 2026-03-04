@@ -11,5 +11,5 @@ export function HasPrefix(s: string, prefix: string): boolean {
 
   s = s + ''
   prefix = prefix + ''
-  return s.slice(0, prefix.length) === prefix
+  return s.startsWith(prefix)
 }

@@ -113,7 +113,7 @@ export function serialize(mixedValue: SerializeValue): string {
       */
       const source = toPhpArrayObject<SerializeValue>(mixedValue)
       for (const key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
+        if (Object.hasOwn(source, key)) {
           const entry = source[key]
           ktype = _getType(entry)
           if (ktype === 'function') {

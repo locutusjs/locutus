@@ -22,7 +22,7 @@ export function Replace(s: string, old: string, newStr: string, n: number): stri
 
   if (n < 0) {
     // Replace all occurrences
-    return s.split(old).join(newStr)
+    return s.replaceAll(old, newStr)
   }
 
   // Replace n occurrences

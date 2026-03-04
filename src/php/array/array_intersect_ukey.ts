@@ -25,7 +25,7 @@ export function array_intersect_ukey<T>(
   //   returns 1: {blue: 1, green: 3}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
     throw new Error('array_intersect_ukey(): Invalid callback')
   }

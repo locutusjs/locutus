@@ -34,7 +34,7 @@ export function empty(mixedVar: EmptyValue): boolean {
 
   if (typeof mixedVar === 'object' && mixedVar !== null) {
     for (const key in mixedVar) {
-      if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
+      if (Object.hasOwn(mixedVar, key)) {
         return false
       }
     }

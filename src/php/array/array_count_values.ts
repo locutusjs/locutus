@@ -39,7 +39,7 @@ export function array_count_values(array: PhpArrayLike<CountValue>): PhpAssoc<nu
       normalized = value
     }
 
-    if (normalized in target && Object.prototype.hasOwnProperty.call(target, normalized)) {
+    if (normalized in target && Object.hasOwn(target, normalized)) {
       target[normalized] = (target[normalized] ?? 0) + 1
     } else {
       target[normalized] = 1
@@ -52,7 +52,7 @@ export function array_count_values(array: PhpArrayLike<CountValue>): PhpAssoc<nu
 
   const source = toPhpArrayObject<CountValue>(array)
   for (const key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
+    if (Object.hasOwn(source, key)) {
       _countValue(tmpArr, source[key])
     }
   }

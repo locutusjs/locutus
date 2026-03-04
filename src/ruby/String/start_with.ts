@@ -10,5 +10,5 @@ export function start_with(str: string, prefix: string): boolean {
 
   str = str + ''
   prefix = prefix + ''
-  return str.slice(0, prefix.length) === prefix
+  return str.startsWith(prefix)
 }

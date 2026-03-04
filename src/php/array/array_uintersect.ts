@@ -26,7 +26,7 @@ export function array_uintersect<T>(
   //   returns 1: {a: 'green', b: 'brown', 0: 'red'}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[T, T]>(callback)) {
     throw new Error('array_uintersect(): Invalid callback')
   }

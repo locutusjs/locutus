@@ -45,9 +45,9 @@ export function html_entity_decode(string: string, quoteStyle?: string | number)
     if (typeof entity !== 'string') {
       continue
     }
-    tmpStr = tmpStr.split(entity).join(symbol)
+    tmpStr = tmpStr.replaceAll(entity, symbol)
   }
-  tmpStr = tmpStr.split('&#039;').join("'")
+  tmpStr = tmpStr.replaceAll('&#039;', "'")
 
   return tmpStr
 }

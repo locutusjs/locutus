@@ -54,7 +54,7 @@ export function array_merge<T>(
       }
     } else {
       for (const k in arg) {
-        if (Object.prototype.hasOwnProperty.call(arg, k)) {
+        if (Object.hasOwn(arg, k)) {
           const value = arg[k]
           if (typeof value === 'undefined') {
             continue

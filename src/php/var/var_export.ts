@@ -136,7 +136,7 @@ export function var_export(
     outerIndent = _makeIndent(idtLevel - 2)
     innerIndent = _makeIndent(idtLevel)
     for (const key in source) {
-      if (!Object.prototype.hasOwnProperty.call(source, key)) {
+      if (!Object.hasOwn(source, key)) {
         continue
       }
       value = ' '

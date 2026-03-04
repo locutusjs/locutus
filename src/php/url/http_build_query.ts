@@ -65,7 +65,7 @@ export function http_build_query(
           }
         } else {
           for (const nestedKey in val) {
-            if (Object.prototype.hasOwnProperty.call(val, nestedKey)) {
+            if (Object.hasOwn(val, nestedKey)) {
               const nestedValue = val[nestedKey]
               if (typeof nestedValue !== 'undefined' && nestedValue !== null) {
                 nested.push(_httpBuildQueryHelper(key + '[' + nestedKey + ']', nestedValue, separator))
@@ -101,7 +101,7 @@ export function http_build_query(
     }
   } else {
     for (const key in formdata) {
-      if (!Object.prototype.hasOwnProperty.call(formdata, key)) {
+      if (!Object.hasOwn(formdata, key)) {
         continue
       }
       const value = formdata[key]

@@ -12,7 +12,7 @@ export function escapeshellarg(arg: string): string {
   //       example 2: escapeshellarg("/home'; whoami;''")
   //       returns 2: "'/home'\\''; whoami;'\\'''\\'''"
 
-  if (arg.indexOf('\x00') !== -1) {
+  if (arg.includes('\x00')) {
     throw new Error('escapeshellarg(): Argument #1 ($arg) must not contain any null bytes')
   }
 
@@ -22,7 +22,7 @@ export function escapeshellarg(arg: string): string {
     isWindows = process.platform === 'win32'
   }
   if (typeof window !== 'undefined' && window.navigator.platform) {
-    isWindows = window.navigator.platform.indexOf('Win') !== -1
+    isWindows = window.navigator.platform.includes('Win')
   }
 
   if (isWindows) {

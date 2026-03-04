@@ -30,7 +30,7 @@ export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): Mer
 
   // Process arr1
   for (const key in arr1) {
-    if (Object.prototype.hasOwnProperty.call(arr1, key)) {
+    if (Object.hasOwn(arr1, key)) {
       if (isNumericKey(key)) {
         result[numericIdx++] = arr1[key]
       } else {
@@ -41,7 +41,7 @@ export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): Mer
 
   // Process arr2
   for (const key in arr2) {
-    if (Object.prototype.hasOwnProperty.call(arr2, key)) {
+    if (Object.hasOwn(arr2, key)) {
       if (isNumericKey(key)) {
         // Numeric keys always append
         result[numericIdx++] = arr2[key]

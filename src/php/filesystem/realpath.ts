@@ -18,7 +18,7 @@ export function realpath(path: string): string {
 
   // Check if there's a port in path (like 'https://')
   let normalizedPath = String(path).replace('\\', '/')
-  if (normalizedPath.indexOf('://') !== -1) {
+  if (normalizedPath.includes('://')) {
     hasProtocol = true
   }
 

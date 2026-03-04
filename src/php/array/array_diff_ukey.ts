@@ -21,7 +21,7 @@ export function array_diff_ukey<T>(
   //   returns 1: {red: 2, purple: 4}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
     throw new Error('array_diff_ukey(): Invalid callback')
   }

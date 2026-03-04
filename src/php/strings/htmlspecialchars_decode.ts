@@ -47,7 +47,7 @@ export function htmlspecialchars_decode(string: string, quoteStyle?: HtmlSpecial
     ENT_IGNORE: 4,
   }
 
-  const isOptKey = (value: string): value is keyof typeof OPTS => Object.prototype.hasOwnProperty.call(OPTS, value)
+  const isOptKey = (value: string): value is keyof typeof OPTS => Object.hasOwn(OPTS, value)
 
   if (quoteStyleValue === 0) {
     noquotes = true

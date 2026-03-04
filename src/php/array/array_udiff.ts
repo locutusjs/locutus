@@ -21,7 +21,7 @@ export function array_udiff<T>(
   //   returns 1: {c: 'blue'}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[T, T]>(callback)) {
     throw new Error('array_udiff(): Invalid callback')
   }

@@ -58,7 +58,7 @@ export function count(mixedVar: Countable | null | undefined, mode: CountMode = 
   }
 
   for (const key in mixedVar) {
-    if (Object.prototype.hasOwnProperty.call(mixedVar, key)) {
+    if (Object.hasOwn(mixedVar, key)) {
       cnt++
       const value = mixedVar[key]
       if (recursiveMode && isCountable(value)) {

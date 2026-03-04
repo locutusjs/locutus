@@ -163,7 +163,7 @@ export function get_html_translation_table(
 
   // ascii decimals to real symbols
   for (decimal in entities) {
-    if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
+    if (Object.hasOwn(entities, decimal)) {
       hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
     }
   }

@@ -136,7 +136,7 @@ export function parse_str(str: string, array?: ParseObject): void {
           ct = -1
 
           for (p in obj) {
-            if (Object.prototype.hasOwnProperty.call(obj, p)) {
+            if (Object.hasOwn(obj, p)) {
               if (+p > ct && p.match(/^\d+$/g)) {
                 ct = +p
               }

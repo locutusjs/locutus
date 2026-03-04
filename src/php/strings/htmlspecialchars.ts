@@ -59,7 +59,7 @@ export function htmlspecialchars(
     ENT_IGNORE: 4,
   }
 
-  const isOptKey = (value: string): value is keyof typeof OPTS => Object.prototype.hasOwnProperty.call(OPTS, value)
+  const isOptKey = (value: string): value is keyof typeof OPTS => Object.hasOwn(OPTS, value)
 
   if (quoteStyleValue === 0) {
     noquotes = true

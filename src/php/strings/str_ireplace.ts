@@ -51,12 +51,12 @@ export function str_ireplace(
       }
       const temp = s[i] ?? ''
       const repl = r[j] ?? ''
-      s[i] = temp.split(searchTerm).join(repl)
+      s[i] = temp.replaceAll(searchTerm, repl)
       const otemp = os[i] ?? ''
       const oi = temp.indexOf(searchTerm)
       const ofjl = searchTerm.length
       if (oi >= 0) {
-        os[i] = otemp.split(otemp.substr(oi, ofjl)).join(repl)
+        os[i] = otemp.replaceAll(otemp.substr(oi, ofjl), repl)
       }
 
       if (countObj) {

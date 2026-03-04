@@ -12,7 +12,7 @@ const objectToArray = (value: PhpMinMaxValue[] | PhpMinMaxObject): PhpMinMaxValu
 
   const converted: PhpMinMaxValue[] = []
   for (const key in value) {
-    if (Object.prototype.hasOwnProperty.call(value, key)) {
+    if (Object.hasOwn(value, key)) {
       const item = value[key]
       if (typeof item !== 'undefined') {
         converted.push(item)

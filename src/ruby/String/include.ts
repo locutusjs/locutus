@@ -8,5 +8,5 @@ export function include(str: string, other: string): boolean {
   //       example 2: include('hello', 'ol')
   //       returns 2: false
 
-  return (str + '').indexOf(other + '') !== -1
+  return (str + '').includes(other + '')
 }
