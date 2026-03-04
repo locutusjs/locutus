@@ -22,7 +22,11 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.4...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.5...main).
+
+## v3.0.5
+
+Released: 2026-03-04. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.4...v3.0.5).
 
 ### Infrastructure
 
@@ -31,6 +35,8 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.4...main
 - Documented runtime policy explicitly:
   - Node package runtime remains `engines.node >= 22`.
   - Browser-facing website snippets continue to target `baseline widely available with downstream`.
+- Modernized implementation patterns across `src/` to leverage the project baseline (`Object.entries`/`Object.values`,
+  `Object.hasOwn`, `replaceAll`, `includes`, `startsWith`/`endsWith`, and `at`) while preserving function behavior.
 
 ## v3.0.4
 
