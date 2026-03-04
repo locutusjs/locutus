@@ -39,9 +39,6 @@ function copyValue(orig: PhpInput): PhpInput {
   if (orig !== null && typeof orig === 'object') {
     const newObj: PhpAssoc<PhpInput> = {}
     for (const [key, value] of Object.entries(orig)) {
-      if (!Object.hasOwn(orig, key)) {
-        continue
-      }
       newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
     }
     return newObj
@@ -64,7 +61,6 @@ export function setlocale(category: string, locale: LocaleInput): string | false
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
 
-  let categ = ''
   const cats: string[] = []
   let i = 0
 
@@ -401,10 +397,7 @@ export function setlocale(category: string, locale: LocaleInput): string | false
   // Just get the locale
   if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
-      for (categ in localeCategories) {
-        if (!Object.hasOwn(localeCategories, categ)) {
-          continue
-        }
+      for (const categ of Object.keys(localeCategories)) {
         // Add ".UTF-8" or allow ".@latint", etc. to the end?
         cats.push(categ + '=' + localeCategories[categ])
       }
@@ -420,10 +413,7 @@ export function setlocale(category: string, locale: LocaleInput): string | false
 
   // Set and get locale
   if (category === 'LC_ALL') {
-    for (categ in localeCategories) {
-      if (!Object.hasOwn(localeCategories, categ)) {
-        continue
-      }
+    for (const categ of Object.keys(localeCategories)) {
       localeCategories[categ] = requestedLocale
     }
   } else {

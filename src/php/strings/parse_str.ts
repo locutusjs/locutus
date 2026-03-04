@@ -50,7 +50,6 @@ export function parse_str(str: string, array?: ParseObject): void {
   let i = 0
   let j = 0
   let ct = 0
-  let p = ''
   let lastObj: ParseObject = {}
   let obj: ParseObject = {}
   let chr
@@ -136,11 +135,9 @@ export function parse_str(str: string, array?: ParseObject): void {
           // Insert new dimension
           ct = -1
 
-          for (p in obj) {
-            if (Object.hasOwn(obj, p)) {
-              if (+p > ct && p.match(/^\d+$/g)) {
-                ct = +p
-              }
+          for (const objKey of Object.keys(obj)) {
+            if (+objKey > ct && /^\d+$/.test(objKey)) {
+              ct = +objKey
             }
           }
 
