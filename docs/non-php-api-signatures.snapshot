@@ -117,6 +117,7 @@ src/golang/time/Truncate.ts :: export function Truncate(value: GoTimeInput, unit
 src/golang/time/Unix.ts :: export function Unix(sec: number, nsec = 0): Date
 src/golang/time/UnixMicro.ts :: export function UnixMicro(usec: number): Date
 src/golang/time/UnixMilli.ts :: export function UnixMilli(msec: number): Date
+src/golang/url/EncodeQuery.ts :: export function EncodeQuery(values: QueryValues | string): string
 src/golang/url/JoinPath.ts :: export function JoinPath(base: string, ...elem: string[]): string
 src/golang/url/Parse.ts :: export function Parse(rawurl: string): ParsedURL
 src/golang/url/ParseQuery.ts :: export function ParseQuery(query: string): QueryValues
@@ -167,6 +168,7 @@ src/perl/core/ucfirst.ts :: export function ucfirst(str: string): string
 src/powershell/string/contains.ts :: export function contains(needle: string, haystack: string): boolean
 src/powershell/string/endswith.ts :: export function endswith(suffix: string, str: string): boolean
 src/powershell/string/indexof.ts :: export function indexof(needle: string, haystack: string, startIndex?: number): number
+src/powershell/string/insert.ts :: export function insert(str: string, startIndex: number, value: string): string
 src/powershell/string/lastindexof.ts :: export function lastindexof(needle: string, haystack: string, startIndex?: number): number
 src/powershell/string/length.ts :: export function length(str: string): number
 src/powershell/string/padleft.ts :: export function padleft(str: string, totalWidth: number, paddingChar?: string): string
@@ -186,6 +188,7 @@ src/python/math/exp.ts :: export function exp(x: number): number
 src/python/math/fabs.ts :: export function fabs(x: number): number
 src/python/math/factorial.ts :: export function factorial(n: number | string): number
 src/python/math/floor.ts :: export function floor(x: number): number
+src/python/math/fsum.ts :: export function fsum(...values: Array<number | string>): number
 src/python/math/gcd.ts :: export function gcd(a: number | string, b: number | string): number
 src/python/math/isclose.ts :: export function isclose( a: number | string, b: number | string, relTol: number | string = 1e-9, absTol: number | string = 0, ): boolean
 src/python/math/isfinite.ts :: export function isfinite(x: number): boolean
@@ -223,6 +226,7 @@ src/ruby/Array/first.ts :: export function first<T>(arr: T[] | unknown, n?: numb
 src/ruby/Array/flatten.ts :: export function flatten(arr: unknown[] | unknown, depth?: number): unknown[]
 src/ruby/Array/group_by.ts :: export function group_by<T>(arr: T[] | unknown): Record<string, T[]>
 src/ruby/Array/last.ts :: export function last<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
+src/ruby/Array/permutation.ts :: export function permutation<T>(arr: T[] | unknown, r?: number): T[][]
 src/ruby/Array/sample.ts :: export function sample(arr: unknown[], n?: number): unknown | unknown[] | undefined
 src/ruby/Array/tally.ts :: export function tally<T>(arr: T[] | unknown): Record<string, number>
 src/ruby/Array/uniq.ts :: export function uniq<T>(arr: T[] | unknown): T[]
@@ -259,6 +263,7 @@ src/rust/str/contains.ts :: export function contains(needle: string, haystack: s
 src/rust/str/ends_with.ts :: export function ends_with(suffix: string, str: string): boolean
 src/rust/str/find.ts :: export function find(needle: string, haystack: string): number
 src/rust/str/len.ts :: export function len(str: string): number
+src/rust/str/match_indices.ts :: export function match_indices(pattern: string, str: string): Array<[number, string]>
 src/rust/str/replace.ts :: export function replace(str: string, search: string, replacement: string): string
 src/rust/str/rfind.ts :: export function rfind(needle: string, haystack: string): number
 src/rust/str/split_once.ts :: export function split_once(delimiter: string, str: string): [string, string] | null

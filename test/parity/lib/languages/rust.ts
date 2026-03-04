@@ -180,6 +180,11 @@ function buildRustCall(funcName: string, args: string[]): string {
       const source = args[1] ?? '""'
       return `match ${source}.rfind(${needle}) { Some(i) => i as i64, None => -1 }`
     }
+    case 'match_indices': {
+      const needle = args[0] ?? '""'
+      const source = args[1] ?? '""'
+      return `{ let mut __locutus_parts: Vec<String> = Vec::new(); for (i, m) in ${source}.match_indices(${needle}) { __locutus_parts.push(format!("[{},{}]", i, format!("{:?}", m))); } format!("[{}]", __locutus_parts.join(",")) }`
+    }
     case 'split_once': {
       const needle = args[0] ?? '""'
       const source = args[1] ?? '""'
@@ -295,7 +300,7 @@ function jsToRust(jsCode: string[], funcName: string, _category?: string): strin
 
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
-  const formatVerb = funcName === 'split_once' ? '{}' : '{:?}'
+  const formatVerb = funcName === 'split_once' || funcName === 'match_indices' ? '{}' : '{:?}'
 
   let rustLines: string[]
   if (assignedVar) {

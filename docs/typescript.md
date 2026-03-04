@@ -2753,3 +2753,61 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Some language runtimes require argument-shape translation, not just function-name mapping (Python `math.isclose` keyword-only tolerance args in 3.12).
   - For tuple/option-like native outputs, targeted translator output shaping can keep parity strict without introducing non-JS public API shapes.
+
+## Iteration 96
+
+- Plans
+  - Add another high-value, cross-language "push-the-limits" batch:
+    - `golang/url/EncodeQuery`
+    - `rust/str/match_indices`
+    - `python/math/fsum`
+    - `ruby/Array/permutation`
+    - `powershell/string/insert`
+- Progress
+  - Added source modules:
+    - `src/golang/url/EncodeQuery.ts`
+    - `src/rust/str/match_indices.ts`
+    - `src/python/math/fsum.ts`
+    - `src/ruby/Array/permutation.ts`
+    - `src/powershell/string/insert.ts`
+  - Updated exports:
+    - `src/golang/url/index.ts`
+    - `src/rust/str/index.ts`
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/powershell/string/index.ts`
+  - Extended parity translators:
+    - `test/parity/lib/languages/golang.ts`
+      - added `EncodeQuery` package mapping, helper conversion (`locutusEncodeQuery(...)`), helper runtime, and import/prefix handling.
+      - updated Go output normalization to also unescape `\\u0026` emitted by `encoding/json`.
+    - `test/parity/lib/languages/rust.ts`
+      - added lowering for `match_indices` with JSON-compatible string output shaping for pair arrays.
+    - `test/parity/lib/languages/python.ts`
+      - added `fsum(...)` call conversion to Python `math.fsum([...])` iterable semantics.
+    - `test/parity/lib/languages/ruby.ts`
+      - added `permutation` method mapping and explicit `.to_a` conversion for deterministic array output.
+    - `test/parity/lib/languages/powershell.ts`
+      - added native `.Insert(start, value)` mapping.
+  - Regenerated artifacts:
+    - `test/generated/golang/url/EncodeQuery.vitest.ts`
+    - `test/generated/rust/str/match_indices.vitest.ts`
+    - `test/generated/python/math/fsum.vitest.ts`
+    - `test/generated/ruby/Array/permutation.vitest.ts`
+    - `test/generated/powershell/string/insert.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/url/EncodeQuery.vitest.ts test/generated/rust/str/match_indices.vitest.ts test/generated/python/math/fsum.vitest.ts test/generated/ruby/Array/permutation.vitest.ts test/generated/powershell/string/insert.vitest.ts`
+  - `corepack yarn test:parity golang/url/EncodeQuery --no-cache`
+  - `corepack yarn test:parity rust/str/match_indices --no-cache`
+  - `corepack yarn test:parity python/math/fsum --no-cache`
+  - `corepack yarn test:parity ruby/Array/permutation --no-cache`
+  - `corepack yarn test:parity powershell/string/insert --no-cache`
+- Key learnings
+  - Go parity output can differ only by JSON escaping (`&` -> `\\u0026`), so normalizer updates are sometimes required even with correct function logic.
+  - For Rust tuple-like collection outputs, generating JSON-compatible strings in translator expressions is a pragmatic way to keep strict parity without extra dependencies.

@@ -33,6 +33,7 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   flatten: { rubyMethod: 'flatten', category: 'Array', isInstanceMethod: true },
   group_by: { rubyMethod: 'group_by', category: 'Array', isInstanceMethod: true },
   last: { rubyMethod: 'last', category: 'Array', isInstanceMethod: true },
+  permutation: { rubyMethod: 'permutation', category: 'Array', isInstanceMethod: true },
   sample: { rubyMethod: 'sample', category: 'Array', isInstanceMethod: true },
   uniq: { rubyMethod: 'uniq', category: 'Array', isInstanceMethod: true },
   // Math methods (module methods)
@@ -113,6 +114,12 @@ function convertFunctionCall(code: string, funcName: string, methodInfo: RubyMet
     if (methodInfo.isInstanceMethod) {
       if (methodInfo.rubyMethod === 'group_by' && restArgs.length === 0) {
         return `${firstArg}.group_by { |__locutus_v| __locutus_v }`
+      }
+      if (methodInfo.rubyMethod === 'permutation') {
+        if (restArgs.length > 0) {
+          return `${firstArg}.permutation(${restArgs.join(', ')}).to_a`
+        }
+        return `${firstArg}.permutation.to_a`
       }
 
       // Instance method: first arg becomes receiver

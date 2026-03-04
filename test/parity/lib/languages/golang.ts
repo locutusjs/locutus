@@ -76,6 +76,7 @@ const GO_PACKAGES: Record<string, string> = {
   // net/url package
   JoinPath: 'url',
   ParseQuery: 'url',
+  EncodeQuery: 'url',
   PathEscape: 'url',
   QueryEscape: 'url',
   QueryUnescape: 'url',
@@ -679,6 +680,21 @@ function convertParseQueryCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus url/EncodeQuery calls to helper calls.
+ * Go uses url.Values.Encode method, while locutus exposes a function.
+ */
+function convertEncodeQueryCalls(code: string): string {
+  return code.replace(/\bEncodeQuery\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusEncodeQuery(${value})`
+  })
+}
+
+/**
  * Convert Locutus url/JoinPath calls to helper calls.
  * Go returns (string, error), while locutus JoinPath returns string.
  */
@@ -823,6 +839,8 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     go = convertQueryUnescapeCalls(go)
   } else if (funcName === 'ParseQuery') {
     go = convertParseQueryCalls(go)
+  } else if (funcName === 'EncodeQuery') {
+    go = convertEncodeQueryCalls(go)
   } else if (funcName === 'JoinPath') {
     go = convertJoinPathCalls(go)
   } else if (funcName === 'ResolveReference') {
@@ -860,6 +878,7 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     funcName !== 'ConstantTimeCompare' &&
     funcName !== 'QueryUnescape' &&
     funcName !== 'ParseQuery' &&
+    funcName !== 'EncodeQuery' &&
     funcName !== 'JoinPath' &&
     funcName !== 'ResolveReference' &&
     funcName !== 'SplitHostPort' &&
@@ -904,6 +923,7 @@ function getRequiredImports(goCode: string): string[] {
     goCode.includes('url.') ||
     goCode.includes('locutusQueryUnescape(') ||
     goCode.includes('locutusParseQuery(') ||
+    goCode.includes('locutusEncodeQuery(') ||
     goCode.includes('locutusUrlJoinPath(') ||
     goCode.includes('locutusUrlParse(') ||
     goCode.includes('locutusResolveReference(')
@@ -1200,8 +1220,18 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                    : funcName === 'JoinPath'
-                                                      ? `func locutusUrlJoinPath(base string, elems ...string) string {
+                                                    : funcName === 'EncodeQuery'
+                                                      ? `func locutusEncodeQuery(value string) string {
+\tparsed, err := url.ParseQuery(value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn parsed.Encode()
+}
+
+`
+                                                      : funcName === 'JoinPath'
+                                                        ? `func locutusUrlJoinPath(base string, elems ...string) string {
 \tjoined, err := url.JoinPath(base, elems...)
 \tif err != nil {
 \t\treturn ""
@@ -1210,8 +1240,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                      : funcName === 'ResolveReference'
-                                                        ? `func locutusResolveReference(base string, reference string) string {
+                                                        : funcName === 'ResolveReference'
+                                                          ? `func locutusResolveReference(base string, reference string) string {
 \tbaseURL, baseErr := url.Parse(base)
 \trefURL, refErr := url.Parse(reference)
 \tif baseErr != nil || refErr != nil || baseURL == nil || refURL == nil {
@@ -1221,8 +1251,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                        : funcName === 'SplitHostPort'
-                                                          ? `func locutusSplitHostPort(value string) []interface{} {
+                                                          : funcName === 'SplitHostPort'
+                                                            ? `func locutusSplitHostPort(value string) []interface{} {
 \thost, port, err := net.SplitHostPort(value)
 \tif err != nil {
 \t\treturn []interface{}{"", ""}
@@ -1231,8 +1261,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                          : funcName === 'Match'
-                                                            ? `func locutusPathMatch(pattern string, name string) bool {
+                                                            : funcName === 'Match'
+                                                              ? `func locutusPathMatch(pattern string, name string) bool {
 \tmatched, err := path.Match(pattern, name)
 \tif err != nil {
 \t\treturn false
@@ -1241,7 +1271,7 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                            : ''
+                                                              : ''
 
   return `package main
 
@@ -1260,7 +1290,10 @@ func main() {
 function normalizeGoOutput(output: string, _expected?: string): string {
   let result = output.trim()
   // Go's encoding/json escapes HTML-sensitive characters by default.
-  result = result.replace(/\\u003c/g, '<').replace(/\\u003e/g, '>')
+  result = result
+    .replace(/\\u003c/g, '<')
+    .replace(/\\u003e/g, '>')
+    .replace(/\\u0026/g, '&')
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')

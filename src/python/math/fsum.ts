@@ -1,0 +1,32 @@
+export function fsum(...values: Array<number | string>): number {
+  //      discuss at: https://locutus.io/python/fsum/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Uses compensated summation for better floating-point precision than naive accumulation.
+  //       example 1: fsum(1e16, 1, -1e16)
+  //       returns 1: 1
+  //       example 2: fsum(0.1, 0.2, 0.3)
+  //       returns 2: 0.6
+  //       example 3: fsum(1, 2, 3, 4)
+  //       returns 3: 10
+
+  let sum = 0
+  let compensation = 0
+
+  for (const value of values) {
+    const x = Number(value)
+    if (Number.isNaN(x)) {
+      return Number.NaN
+    }
+
+    const t = sum + x
+    if (Math.abs(sum) >= Math.abs(x)) {
+      compensation += sum - t + x
+    } else {
+      compensation += x - t + sum
+    }
+    sum = t
+  }
+
+  return sum + compensation
+}

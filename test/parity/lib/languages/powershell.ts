@@ -214,6 +214,12 @@ function buildNativeCall(funcName: string, args: string[]): string {
       }
       return `([string]${source}).IndexOf(${needle}, [int]${start}, [System.StringComparison]::Ordinal)`
     }
+    case 'insert': {
+      const source = args[0] ?? '$null'
+      const start = args[1] ?? '0'
+      const value = args[2] ?? "''"
+      return `([string]${source}).Insert([int]${start}, [string]${value})`
+    }
     case 'lastindexof': {
       const needle = args[0] ?? '$null'
       const source = args[1] ?? '$null'

@@ -1,3 +1,4 @@
+export { EncodeQuery } from './EncodeQuery.ts'
 export { JoinPath } from './JoinPath.ts'
 export { Parse } from './Parse.ts'
 export { ParseQuery } from './ParseQuery.ts'

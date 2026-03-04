@@ -1,6 +1,7 @@
 export { contains } from './contains.ts'
 export { endswith } from './endswith.ts'
 export { indexof } from './indexof.ts'
+export { insert } from './insert.ts'
 export { lastindexof } from './lastindexof.ts'
 export { length } from './length.ts'
 export { padleft } from './padleft.ts'

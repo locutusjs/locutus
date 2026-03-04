@@ -179,6 +179,20 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
   // .length → len()
   py = py.replace(/(\w+)\.length\b/g, 'len($1)')
 
+  if (funcName === 'fsum') {
+    py = py.replace(/\bfsum\s*\(([^)]*)\)/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      if (args.length === 0) {
+        return `${module}.fsum([])`
+      }
+      if (args.length === 1) {
+        return `${module}.fsum([${args[0]}])`
+      }
+      return `${module}.fsum([${args.join(', ')}])`
+    })
+    return py
+  }
+
   if (funcName === 'isclose') {
     py = py.replace(/\bisclose\s*\(([^)]*)\)/g, (match, argsText) => {
       const args = splitArgs(argsText)
