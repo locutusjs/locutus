@@ -53,17 +53,14 @@ export function array_merge<T>(
         }
       }
     } else {
-      for (const k in arg) {
-        if (Object.hasOwn(arg, k)) {
-          const value = arg[k]
-          if (typeof value === 'undefined') {
-            continue
-          }
-          if (parseInt(k, 10) + '' === k) {
-            retObj[ct++] = value
-          } else {
-            retObj[k] = value
-          }
+      for (const [k, value] of Object.entries(arg)) {
+        if (typeof value === 'undefined') {
+          continue
+        }
+        if (parseInt(k, 10) + '' === k) {
+          retObj[ct++] = value
+        } else {
+          retObj[k] = value
         }
       }
     }

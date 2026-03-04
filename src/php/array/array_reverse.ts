@@ -36,21 +36,14 @@ export function array_reverse(
 
       for (let index = keys.length - 1; index >= 0; index -= 1) {
         const key = keys[index]
-        if (typeof key === 'string' && Object.hasOwn(source, key)) {
+        if (typeof key === 'string') {
           reversed[key] = source[key]
         }
       }
 
       result = reversed
     } else {
-      const reversed: ReverseValue[] = []
-      for (const key in source) {
-        if (Object.hasOwn(source, key)) {
-          reversed.unshift(source[key])
-        }
-      }
-
-      result = reversed
+      result = Object.values(source).reverse()
     }
   }
 
