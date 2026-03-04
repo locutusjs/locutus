@@ -24,6 +24,14 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.4...main).
 
+### Infrastructure
+
+- Raised CommonJS build target from `ES2020` to `ES2022` so published CJS/ESM builds align with repository TypeScript
+  source target and modern API usage.
+- Documented runtime policy explicitly:
+  - Node package runtime remains `engines.node >= 22`.
+  - Browser-facing website snippets continue to target `baseline widely available with downstream`.
+
 ## v3.0.4
 
 Released: 2026-03-04. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.3...v3.0.4).

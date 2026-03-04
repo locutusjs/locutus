@@ -50,6 +50,11 @@ Code shown on function pages (`Module JS` / `Standalone JS`) targets:
 
 - `baseline widely available with downstream`
 
+Package runtime targets:
+
+- Node: `engines.node >= 22`
+- Published dist output (`dist/` CommonJS + `dist/esm` ESM): `ES2022`
+
 If your application targets older browsers, treat Locutus snippets like normal application code:
 
 1. transpile to your target (for example with TypeScript, Babel, SWC, or esbuild)
