@@ -46,7 +46,7 @@ function packHex(hex: string, highFirst: boolean, nybbles: number): string {
   }
 
   if (input.length % 2 === 1) {
-    const last = nibble(input[input.length - 1] ?? '0')
+    const last = nibble(input.at(-1) ?? '0')
     out += toChar(highFirst ? last << 4 : last)
   }
 
