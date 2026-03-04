@@ -158,12 +158,11 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
           if (!isJsonObject(value)) {
             throw new SyntaxError('json_encode')
           }
-          for (k in value) {
-            if (Object.hasOwn(value, k)) {
-              v = _str(k, value) || ''
-              if (v) {
-                partial.push(quote(k) + (gap ? ': ' : ':') + v)
-              }
+          for (const [entryKey] of Object.entries(value)) {
+            k = entryKey
+            v = _str(k, value) || ''
+            if (v) {
+              partial.push(quote(k) + (gap ? ': ' : ':') + v)
             }
           }
 
