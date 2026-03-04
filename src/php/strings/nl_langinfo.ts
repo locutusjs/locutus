@@ -76,16 +76,16 @@ export function nl_langinfo(item: string): string | string[] | false {
   const lcTimeCandidate = localeFor('LC_TIME')
   const lcTime = lcTimeCandidate && isLocaleTime(lcTimeCandidate) ? lcTimeCandidate : defaultLocaleTime
 
-  if (item.indexOf('ABDAY_') === 0) {
+  if (item.startsWith('ABDAY_')) {
     const index = Number.parseInt(item.replace(/^ABDAY_/, ''), 10) - 1
     return lcTime.a[index] ?? false
-  } else if (item.indexOf('DAY_') === 0) {
+  } else if (item.startsWith('DAY_')) {
     const index = Number.parseInt(item.replace(/^DAY_/, ''), 10) - 1
     return lcTime.A[index] ?? false
-  } else if (item.indexOf('ABMON_') === 0) {
+  } else if (item.startsWith('ABMON_')) {
     const index = Number.parseInt(item.replace(/^ABMON_/, ''), 10) - 1
     return lcTime.b[index] ?? false
-  } else if (item.indexOf('MON_') === 0) {
+  } else if (item.startsWith('MON_')) {
     const index = Number.parseInt(item.replace(/^MON_/, ''), 10) - 1
     return lcTime.B[index] ?? false
   } else {

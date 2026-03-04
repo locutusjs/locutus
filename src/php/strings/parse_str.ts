@@ -80,8 +80,9 @@ export function parse_str(str: string, array?: ParseObject): void {
       key = key.slice(1)
     }
 
-    if (key.indexOf('\x00') > -1) {
-      key = key.slice(0, key.indexOf('\x00'))
+    const nullByteIndex = key.indexOf('\x00')
+    if (nullByteIndex > -1) {
+      key = key.slice(0, nullByteIndex)
     }
 
     if (key && key.charAt(0) !== '[') {

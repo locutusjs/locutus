@@ -18,12 +18,12 @@ export function strtok(str: string, tokens?: string): string | false {
   if (str.length === 0) {
     return false
   }
-  if (tokens.indexOf(str.charAt(0)) !== -1) {
+  if (tokens.includes(str.charAt(0))) {
     return strtok(str.substring(1), tokens)
   }
   let i = 0
   for (; i < str.length; i++) {
-    if (tokens.indexOf(str.charAt(i)) !== -1) {
+    if (tokens.includes(str.charAt(i))) {
       break
     }
   }

@@ -49,13 +49,13 @@ export function strip_tags(input: string | number, allowed?: string): string {
 
   let after = _phpCastString(input)
   // removes tha '<' char at the end of the string to replicate PHP's behaviour
-  after = after.substring(after.length - 1) === '<' ? after.substring(0, after.length - 1) : after
+  after = after.endsWith('<') ? after.slice(0, -1) : after
 
   // recursively remove tags to ensure that the returned string doesn't contain forbidden tags after previous passes (e.g. '<<bait/>switch/>')
   while (true) {
     const before = after
     after = before.replace(commentsAndPhpTags, '').replace(tags, function ($0: string, $1: string) {
-      return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
+      return allowed.includes('<' + $1.toLowerCase() + '>') ? $0 : ''
     })
 
     // return once no more tags are removed

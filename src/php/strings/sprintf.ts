@@ -154,7 +154,7 @@ export function sprintf(format: string, ...args: SprintfValue[]): string | false
 
     let precisionNum: number | undefined
     if (!precisionRaw) {
-      precisionNum = specifier === 'd' ? 0 : 'fFeE'.indexOf(specifier) > -1 ? 6 : undefined
+      precisionNum = specifier === 'd' ? 0 : 'fFeE'.includes(specifier) ? 6 : undefined
     } else {
       precisionNum = +precisionRaw
     }
