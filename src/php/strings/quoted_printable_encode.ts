@@ -31,7 +31,7 @@ export function quoted_printable_encode(str: string): string {
 
   const RFC2045Encode2IN = /.{1,72}(?!\r\n)[^=]{0,3}/g
   const RFC2045Encode2OUT = function (sMatch: string): string {
-    if (sMatch.substr(sMatch.length - 2) === '\r\n') {
+    if (sMatch.endsWith('\r\n')) {
       return sMatch
     }
     return sMatch + '=\r\n'
@@ -40,8 +40,8 @@ export function quoted_printable_encode(str: string): string {
   str = str.replace(RFC2045Encode1IN, RFC2045Encode1OUT).replace(RFC2045Encode2IN, RFC2045Encode2OUT)
 
   // Strip last softline break (only if it's a soft break =\r\n, not a hard break \r\n)
-  if (str.substr(str.length - 3) === '=\r\n') {
-    return str.substr(0, str.length - 3)
+  if (str.endsWith('=\r\n')) {
+    return str.slice(0, -3)
   }
   return str
 }

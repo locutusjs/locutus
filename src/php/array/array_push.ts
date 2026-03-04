@@ -19,7 +19,7 @@ export function array_push<TValue>(inputArr: PhpArrayLike<TValue>, ...values: TV
 
   if (Array.isArray(inputArr)) {
     for (const value of values) {
-      inputArr[inputArr.length] = value
+      inputArr.push(value)
     }
     return inputArr.length
   }
@@ -28,7 +28,7 @@ export function array_push<TValue>(inputArr: PhpArrayLike<TValue>, ...values: TV
   const target = toPhpArrayObject<TValue>(inputArr)
   for (const pr of Object.keys(target)) {
     ++len
-    if (pr.search(allDigits) !== -1) {
+    if (allDigits.test(pr)) {
       size = parseInt(pr, 10)
       highestIdx = size > highestIdx ? size : highestIdx
     }

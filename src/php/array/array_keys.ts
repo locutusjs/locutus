@@ -29,7 +29,7 @@ export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: b
     }
 
     if (include) {
-      tmpArr[tmpArr.length] = key
+      tmpArr.push(key)
     }
   }
 

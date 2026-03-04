@@ -16,5 +16,5 @@ export function ctype_cntrl(text: string): boolean {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('ct')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }
