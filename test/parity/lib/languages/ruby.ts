@@ -35,6 +35,7 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   last: { rubyMethod: 'last', category: 'Array', isInstanceMethod: true },
   permutation: { rubyMethod: 'permutation', category: 'Array', isInstanceMethod: true },
   sample: { rubyMethod: 'sample', category: 'Array', isInstanceMethod: true },
+  slice_when: { rubyMethod: 'slice_when', category: 'Array', isInstanceMethod: true },
   uniq: { rubyMethod: 'uniq', category: 'Array', isInstanceMethod: true },
   // Math methods (module methods)
   acos: { rubyMethod: 'acos', category: 'Math', isInstanceMethod: false },
@@ -47,6 +48,8 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
 export const RUBY_SKIP_LIST = new Set<string>([
   // sample() is random - can't verify deterministically
   'sample',
+  // slice_when() uses callbacks in JS examples; translator does not map callback lambdas to Ruby blocks yet.
+  'slice_when',
   // acos example uses JS string concatenation (float + '') which doesn't work in Ruby
   'acos',
 ])

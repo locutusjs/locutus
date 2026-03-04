@@ -158,6 +158,7 @@ src/perl/core/lc.ts :: export function lc(str: string): string
 src/perl/core/lcfirst.ts :: export function lcfirst(str: string): string
 src/perl/core/length.ts :: export function length(str: string | null | undefined): number | undefined
 src/perl/core/ord.ts :: export function ord(str: string): number
+src/perl/core/pack.ts :: export function pack(template: string, ...values: unknown[]): string
 src/perl/core/quotemeta.ts :: export function quotemeta(str: string): string
 src/perl/core/reverse.ts :: export function reverse(str: string): string
 src/perl/core/rindex.ts :: export function rindex(str: string, substr: string, position?: number): number
@@ -230,6 +231,7 @@ src/ruby/Array/group_by.ts :: export function group_by<T>(arr: T[] | unknown): R
 src/ruby/Array/last.ts :: export function last<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
 src/ruby/Array/permutation.ts :: export function permutation<T>(arr: T[] | unknown, r?: number): T[][]
 src/ruby/Array/sample.ts :: export function sample(arr: unknown[], n?: number): unknown | unknown[] | undefined
+src/ruby/Array/slice_when.ts :: export function slice_when<T>( arr: T[] | unknown, boundary: (previous: T, current: T, index: number, source: T[]) => boolean, ): T[][]
 src/ruby/Array/tally.ts :: export function tally<T>(arr: T[] | unknown): Record<string, number>
 src/ruby/Array/uniq.ts :: export function uniq<T>(arr: T[] | unknown): T[]
 src/ruby/Array/zip.ts :: export function zip<T>(arr: T[] | unknown, ...others: unknown[]): Array<Array<T | unknown | null>>
@@ -268,6 +270,7 @@ src/rust/str/len.ts :: export function len(str: string): number
 src/rust/str/match_indices.ts :: export function match_indices(pattern: string, str: string): Array<[number, string]>
 src/rust/str/replace.ts :: export function replace(str: string, search: string, replacement: string): string
 src/rust/str/rfind.ts :: export function rfind(needle: string, haystack: string): number
+src/rust/str/split_inclusive.ts :: export function split_inclusive(delimiter: string, str: string): string[]
 src/rust/str/split_once.ts :: export function split_once(delimiter: string, str: string): [string, string] | null
 src/rust/str/starts_with.ts :: export function starts_with(prefix: string, str: string): boolean
 src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): string

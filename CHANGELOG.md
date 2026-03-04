@@ -28,10 +28,17 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.3...main
 
 - Added `golang/strconv/Unquote` with Go-style quoted literal decoding (`"..."`, `'...'`, and raw backquoted literals).
 - Added `python/re/sub` with regex replacement, count-limited substitution, callable replacements, and Python-like replacement backreferences.
+- Added `ruby/Array/slice_when` for boundary-driven chunking with callback predicates.
+- Added `rust/str/split_inclusive` for delimiter-preserving split behavior.
+- Added `perl/core/pack` with a pragmatic binary template subset (`A`, `a`, `C`, `n`, `N`, `v`, `V`, `H`, `h`).
 
 ### Infrastructure
 
 - Extended Go parity translator helpers to support `golang/strconv/Unquote` tuple-to-native parity checks.
+- Extended Rust parity translator helpers to support `rust/str/split_inclusive` result formatting.
+- Added parity skip entries for callback/binary edge cases:
+  - `ruby/Array/slice_when`
+  - `perl/core/pack`
 
 ## v3.0.3
 

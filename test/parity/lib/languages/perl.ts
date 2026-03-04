@@ -9,6 +9,8 @@ import type { LanguageHandler } from '../types.ts'
 export const PERL_SKIP_LIST = new Set<string>([
   // split() returns list context in Perl and needs dedicated array-aware translator support.
   'split',
+  // pack() emits binary output; parity translator currently compares plain scalar prints.
+  'pack',
 ])
 
 /**

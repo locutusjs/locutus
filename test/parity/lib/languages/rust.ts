@@ -190,6 +190,11 @@ function buildRustCall(funcName: string, args: string[]): string {
       const source = args[1] ?? '""'
       return `match ${source}.split_once(${needle}) { Some((left, right)) => format!("[{:?},{:?}]", left, right), None => "null".to_string() }`
     }
+    case 'split_inclusive': {
+      const needle = args[0] ?? '""'
+      const source = args[1] ?? '""'
+      return `{ let __locutus_parts: Vec<String> = ${source}.split_inclusive(${needle}).map(|s| format!("{:?}", s)).collect(); format!("[{}]", __locutus_parts.join(",")) }`
+    }
     case 'len': {
       const value = args[0] ?? '""'
       return `${value}.len() as i64`
@@ -300,7 +305,8 @@ function jsToRust(jsCode: string[], funcName: string, _category?: string): strin
 
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
-  const formatVerb = funcName === 'split_once' || funcName === 'match_indices' ? '{}' : '{:?}'
+  const formatVerb =
+    funcName === 'split_once' || funcName === 'split_inclusive' || funcName === 'match_indices' ? '{}' : '{:?}'
 
   let rustLines: string[]
   if (assignedVar) {
