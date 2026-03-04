@@ -23,6 +23,95 @@ export const PYTHON_SKIP_LIST = new Set<string>([
   // None currently - all Python functions should be testable
 ])
 
+function splitArgs(argsText: string): string[] {
+  const args: string[] = []
+  let current = ''
+  let inString: string | null = null
+  let escaped = false
+  let depthParen = 0
+  let depthBracket = 0
+  let depthBrace = 0
+
+  for (let i = 0; i < argsText.length; i++) {
+    const char = argsText[i] ?? ''
+
+    if (escaped) {
+      current += char
+      escaped = false
+      continue
+    }
+
+    if (char === '\\') {
+      current += char
+      escaped = true
+      continue
+    }
+
+    if (inString) {
+      current += char
+      if (char === inString) {
+        inString = null
+      }
+      continue
+    }
+
+    if (char === '"' || char === "'") {
+      inString = char
+      current += char
+      continue
+    }
+
+    if (char === '(') {
+      depthParen++
+      current += char
+      continue
+    }
+    if (char === ')') {
+      depthParen--
+      current += char
+      continue
+    }
+    if (char === '[') {
+      depthBracket++
+      current += char
+      continue
+    }
+    if (char === ']') {
+      depthBracket--
+      current += char
+      continue
+    }
+    if (char === '{') {
+      depthBrace++
+      current += char
+      continue
+    }
+    if (char === '}') {
+      depthBrace--
+      current += char
+      continue
+    }
+
+    if (char === ',' && depthParen === 0 && depthBracket === 0 && depthBrace === 0) {
+      const trimmed = current.trim()
+      if (trimmed) {
+        args.push(trimmed)
+      }
+      current = ''
+      continue
+    }
+
+    current += char
+  }
+
+  const tail = current.trim()
+  if (tail) {
+    args.push(tail)
+  }
+
+  return args
+}
+
 /**
  * Strip trailing JS comments (// ...) that are not inside strings
  */
@@ -89,6 +178,42 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
 
   // .length → len()
   py = py.replace(/(\w+)\.length\b/g, 'len($1)')
+
+  if (funcName === 'fsum') {
+    py = py.replace(/\bfsum\s*\(([^)]*)\)/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      if (args.length === 0) {
+        return `${module}.fsum([])`
+      }
+      if (args.length === 1) {
+        return `${module}.fsum([${args[0]}])`
+      }
+      return `${module}.fsum([${args.join(', ')}])`
+    })
+    return py
+  }
+
+  if (funcName === 'isclose') {
+    py = py.replace(/\bisclose\s*\(([^)]*)\)/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      const left = args[0]
+      const right = args[1]
+      if (!left || !right) {
+        return match
+      }
+      if (args.length === 2) {
+        return `${module}.isclose(${left}, ${right})`
+      }
+      if (args.length === 3) {
+        const relTol = args[2]
+        return `${module}.isclose(${left}, ${right}, rel_tol=${relTol})`
+      }
+      const relTol = args[2]
+      const absTol = args[3]
+      return `${module}.isclose(${left}, ${right}, rel_tol=${relTol}, abs_tol=${absTol})`
+    })
+    return py
+  }
 
   // Handle function calls - prefix with module (inferred from category/directory)
   if (STRING_CONSTANTS.has(funcName)) {

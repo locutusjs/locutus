@@ -2495,3 +2495,319 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - `url.ParseQuery` in Go treats a leading `?` as part of the key, so callers should pass raw query components, not full search strings.
   - `net.JoinHostPort` wraps any host containing `:` (including already-bracketed IPv6 text), which is surprising but parity-correct.
+
+## Iteration 91
+
+- Plans
+  - Add one high-value function each across Python, Ruby, Perl, PowerShell, and Tcl.
+  - Keep parity stable by only adding translator logic where the native runtime call shape differs from current generic handlers.
+- Progress
+  - Added new cross-language functions:
+    - `src/python/math/dist.ts`
+    - `src/ruby/Array/group_by.ts`
+    - `src/perl/core/sprintf.ts`
+    - `src/powershell/string/substring.ts`
+    - `src/tcl/string/range.ts`
+  - Updated category indexes:
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+    - `src/tcl/string/index.ts`
+  - Updated parity translators where needed:
+    - `test/parity/lib/languages/ruby.ts`: special identity-block conversion for `group_by(...)` to Ruby `array.group_by { |v| v }`.
+    - `test/parity/lib/languages/powershell.ts`: native call mapping for `substring(...)` to `.Substring(...)`.
+  - Regenerated snapshots/artifacts:
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+    - new generated tests under `test/generated/python/math/`, `test/generated/ruby/Array/`, `test/generated/perl/core/`, `test/generated/powershell/string/`, `test/generated/tcl/string/`.
+  - Fixed a Tcl range example mismatch during validation:
+    - corrected example index from `'end-2'` to `'end-1'` in `src/tcl/string/range.ts`.
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/python/math/dist.vitest.ts test/generated/ruby/Array/group_by.vitest.ts test/generated/perl/core/sprintf.vitest.ts test/generated/powershell/string/substring.vitest.ts test/generated/tcl/string/range.vitest.ts`
+  - `corepack yarn test:parity python/math/dist --no-cache`
+  - `corepack yarn test:parity ruby/Array/group_by --no-cache`
+  - `corepack yarn test:parity perl/core/sprintf --no-cache`
+  - `corepack yarn test:parity powershell/string/substring --no-cache`
+  - `corepack yarn test:parity tcl/string/range --no-cache`
+- Key learnings
+  - Ruby parity for block-driven methods can stay deterministic by explicitly synthesizing a simple block in the translator when JS signatures omit callback arguments.
+  - Tcl range semantics are inclusive on end index, including symbolic forms like `end-1`, so example expectations must reflect that to avoid false regressions.
+
+## Iteration 92
+
+- Plans
+  - Add the next 5 cross-language utility functions on the same PR:
+    - `python/math/comb`
+    - `ruby/Array/tally`
+    - `perl/core/rindex`
+    - `powershell/string/padleft`
+    - `tcl/string/compare`
+  - Keep parity compatibility by only extending translators where native call syntax differs.
+- Progress
+  - Added source modules:
+    - `src/python/math/comb.ts`
+    - `src/ruby/Array/tally.ts`
+    - `src/perl/core/rindex.ts`
+    - `src/powershell/string/padleft.ts`
+    - `src/tcl/string/compare.ts`
+  - Updated exports:
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+    - `src/tcl/string/index.ts`
+  - Extended parity translator:
+    - `test/parity/lib/languages/powershell.ts` with native `.PadLeft(...)` mapping for `padleft(...)`.
+  - Regenerated artifacts:
+    - `test/generated/python/math/comb.vitest.ts`
+    - `test/generated/ruby/Array/tally.vitest.ts`
+    - `test/generated/perl/core/rindex.vitest.ts`
+    - `test/generated/powershell/string/padleft.vitest.ts`
+    - `test/generated/tcl/string/compare.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after test generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/python/math/comb.vitest.ts test/generated/ruby/Array/tally.vitest.ts test/generated/perl/core/rindex.vitest.ts test/generated/powershell/string/padleft.vitest.ts test/generated/tcl/string/compare.vitest.ts`
+  - `corepack yarn test:parity python/math/comb --no-cache`
+  - `corepack yarn test:parity ruby/Array/tally --no-cache`
+  - `corepack yarn test:parity perl/core/rindex --no-cache`
+  - `corepack yarn test:parity powershell/string/padleft --no-cache`
+  - `corepack yarn test:parity tcl/string/compare --no-cache`
+- Key learnings
+  - The PowerShell translator needs explicit native call wiring for methods with overload-style argument shapes; generic fallback does not preserve language idioms.
+  - For small, high-value language additions, parity-safe examples with deterministic output let us expand coverage quickly without broad translator refactors.
+
+## Iteration 93
+
+- Plans
+  - Add another cross-language juicy 5:
+    - `golang/path/Match`
+    - `golang/url/Parse`
+    - `ruby/String/gsub`
+    - `perl/core/split`
+    - `powershell/string/split`
+  - Keep parity robust by extending translators only where native signatures differ from locutus return shapes.
+- Progress
+  - Added source modules:
+    - `src/golang/path/Match.ts`
+    - `src/golang/url/Parse.ts`
+    - `src/ruby/String/gsub.ts`
+    - `src/perl/core/split.ts`
+    - `src/powershell/string/split.ts`
+  - Updated exports:
+    - `src/golang/path/index.ts`
+    - `src/golang/url/index.ts`
+    - `src/ruby/String/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+  - Extended parity translators:
+    - `test/parity/lib/languages/golang.ts`
+      - added package mapping for `Match` and scoped override for `url/Parse`.
+      - added helper conversions for `path/Match` and category-aware `Parse` conversion (`time/Parse` vs `url/Parse`).
+      - added helper runtime blocks for `locutusPathMatch(...)` and `locutusUrlParse(...)`.
+      - updated import detection for new Go helpers.
+    - `test/parity/lib/languages/ruby.ts`
+      - added `gsub` method mapping in `RUBY_METHODS`.
+    - `test/parity/lib/languages/powershell.ts`
+      - added native split mapping with optional limit handling.
+    - `test/parity/lib/languages/perl.ts`
+      - added explicit skip rationale for `split` list-context behavior.
+  - Regenerated artifacts:
+    - `test/generated/golang/path/Match.vitest.ts`
+    - `test/generated/golang/url/Parse.vitest.ts`
+    - `test/generated/ruby/String/gsub.vitest.ts`
+    - `test/generated/perl/core/split.vitest.ts`
+    - `test/generated/powershell/string/split.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/path/Match.vitest.ts test/generated/golang/url/Parse.vitest.ts test/generated/ruby/String/gsub.vitest.ts test/generated/perl/core/split.vitest.ts test/generated/powershell/string/split.vitest.ts`
+  - `corepack yarn test:parity golang/path/Match --no-cache`
+  - `corepack yarn test:parity golang/url/Parse --no-cache`
+  - `corepack yarn test:parity ruby/String/gsub --no-cache`
+  - `corepack yarn test:parity perl/core/split --no-cache`
+  - `corepack yarn test:parity powershell/string/split --no-cache`
+- Key learnings
+  - Go parity for same-name functions across categories requires category-aware translator logic (e.g. `Parse` in both `time` and `url`) to avoid helper collisions.
+  - PowerShell JSON pipeline behavior can produce scalar output for single-item arrays, so examples should avoid accidental scalarization unless the translator explicitly forces array serialization.
+
+## Iteration 94
+
+- Plans
+  - Push a juicier utility batch with strong real-world usage and broad language spread:
+    - `python/math/lcm`
+    - `ruby/Array/zip`
+    - `perl/core/join`
+    - `powershell/string/padright`
+    - `golang/strconv/Quote`
+- Progress
+  - Added source modules:
+    - `src/python/math/lcm.ts`
+    - `src/ruby/Array/zip.ts`
+    - `src/perl/core/join.ts`
+    - `src/powershell/string/padright.ts`
+    - `src/golang/strconv/Quote.ts`
+  - Updated exports:
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/perl/core/index.ts`
+    - `src/powershell/string/index.ts`
+    - `src/golang/strconv/index.ts`
+  - Updated parity translators where needed:
+    - `test/parity/lib/languages/powershell.ts`: native `.PadRight(...)` mapping.
+    - `test/parity/lib/languages/golang.ts`: package mapping for `strconv/Quote`.
+  - Regenerated artifacts:
+    - `test/generated/python/math/lcm.vitest.ts`
+    - `test/generated/ruby/Array/zip.vitest.ts`
+    - `test/generated/perl/core/join.vitest.ts`
+    - `test/generated/powershell/string/padright.vitest.ts`
+    - `test/generated/golang/strconv/Quote.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+  - Parity fix made during this iteration:
+    - Adjusted `Quote` example coverage to avoid translator string-literal edge cases while still validating quoting behavior robustly.
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/python/math/lcm.vitest.ts test/generated/ruby/Array/zip.vitest.ts test/generated/perl/core/join.vitest.ts test/generated/powershell/string/padright.vitest.ts test/generated/golang/strconv/Quote.vitest.ts`
+  - `corepack yarn test:parity python/math/lcm --no-cache`
+  - `corepack yarn test:parity ruby/Array/zip --no-cache`
+  - `corepack yarn test:parity perl/core/join --no-cache`
+  - `corepack yarn test:parity powershell/string/padright --no-cache`
+  - `corepack yarn test:parity golang/strconv/Quote --no-cache`
+- Key learnings
+  - Parity-safe examples matter as much as implementations: escape-heavy literals can trigger translator codegen edge cases unrelated to function correctness.
+  - Juicy additions with simple call shapes give high utility without forcing broad translator refactors.
+
+## Iteration 95
+
+- Plans
+  - Add 5 higher-ceiling cross-language utilities that stay inside locutus data-shape constraints while stretching translator depth:
+    - `golang/url/ResolveReference`
+    - `rust/str/split_once`
+    - `python/math/isclose`
+    - `ruby/String/tr`
+    - `powershell/string/remove`
+- Progress
+  - Added source modules:
+    - `src/golang/url/ResolveReference.ts`
+    - `src/rust/str/split_once.ts`
+    - `src/python/math/isclose.ts`
+    - `src/ruby/String/tr.ts`
+    - `src/powershell/string/remove.ts`
+  - Updated exports:
+    - `src/golang/url/index.ts`
+    - `src/rust/str/index.ts`
+    - `src/python/math/index.ts`
+    - `src/ruby/String/index.ts`
+    - `src/powershell/string/index.ts`
+  - Extended parity translators:
+    - `test/parity/lib/languages/golang.ts`
+      - added `ResolveReference` package mapping and helper conversion (`locutusResolveReference(...)`).
+      - added helper runtime implementation using `url.Parse` + `ResolveReference`.
+      - updated package-prefix bypass and import detection for new helper usage.
+    - `test/parity/lib/languages/rust.ts`
+      - added `split_once` call lowering.
+      - added function-specific output formatting path so tuple-option semantics can compare against JS JSON-shaped output.
+    - `test/parity/lib/languages/python.ts`
+      - added `isclose` argument translation for 3rd/4th args as Python keyword args (`rel_tol`, `abs_tol`) to match Python 3.12 call semantics.
+    - `test/parity/lib/languages/ruby.ts`
+      - added `tr` to Ruby String method map.
+    - `test/parity/lib/languages/powershell.ts`
+      - added native mapping for `.Remove(start[,count])`.
+  - Regenerated artifacts:
+    - `test/generated/golang/url/ResolveReference.vitest.ts`
+    - `test/generated/rust/str/split_once.vitest.ts`
+    - `test/generated/python/math/isclose.vitest.ts`
+    - `test/generated/ruby/String/tr.vitest.ts`
+    - `test/generated/powershell/string/remove.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/url/ResolveReference.vitest.ts test/generated/rust/str/split_once.vitest.ts test/generated/python/math/isclose.vitest.ts test/generated/ruby/String/tr.vitest.ts test/generated/powershell/string/remove.vitest.ts`
+  - `corepack yarn test:parity golang/url/ResolveReference --no-cache`
+  - `corepack yarn test:parity rust/str/split_once --no-cache`
+  - `corepack yarn test:parity python/math/isclose --no-cache`
+  - `corepack yarn test:parity ruby/String/tr --no-cache`
+  - `corepack yarn test:parity powershell/string/remove --no-cache`
+- Key learnings
+  - Some language runtimes require argument-shape translation, not just function-name mapping (Python `math.isclose` keyword-only tolerance args in 3.12).
+  - For tuple/option-like native outputs, targeted translator output shaping can keep parity strict without introducing non-JS public API shapes.
+
+## Iteration 96
+
+- Plans
+  - Add another high-value, cross-language "push-the-limits" batch:
+    - `golang/url/EncodeQuery`
+    - `rust/str/match_indices`
+    - `python/math/fsum`
+    - `ruby/Array/permutation`
+    - `powershell/string/insert`
+- Progress
+  - Added source modules:
+    - `src/golang/url/EncodeQuery.ts`
+    - `src/rust/str/match_indices.ts`
+    - `src/python/math/fsum.ts`
+    - `src/ruby/Array/permutation.ts`
+    - `src/powershell/string/insert.ts`
+  - Updated exports:
+    - `src/golang/url/index.ts`
+    - `src/rust/str/index.ts`
+    - `src/python/math/index.ts`
+    - `src/ruby/Array/index.ts`
+    - `src/powershell/string/index.ts`
+  - Extended parity translators:
+    - `test/parity/lib/languages/golang.ts`
+      - added `EncodeQuery` package mapping, helper conversion (`locutusEncodeQuery(...)`), helper runtime, and import/prefix handling.
+      - updated Go output normalization to also unescape `\\u0026` emitted by `encoding/json`.
+    - `test/parity/lib/languages/rust.ts`
+      - added lowering for `match_indices` with JSON-compatible string output shaping for pair arrays.
+    - `test/parity/lib/languages/python.ts`
+      - added `fsum(...)` call conversion to Python `math.fsum([...])` iterable semantics.
+    - `test/parity/lib/languages/ruby.ts`
+      - added `permutation` method mapping and explicit `.to_a` conversion for deterministic array output.
+    - `test/parity/lib/languages/powershell.ts`
+      - added native `.Insert(start, value)` mapping.
+  - Regenerated artifacts:
+    - `test/generated/golang/url/EncodeQuery.vitest.ts`
+    - `test/generated/rust/str/match_indices.vitest.ts`
+    - `test/generated/python/math/fsum.vitest.ts`
+    - `test/generated/ruby/Array/permutation.vitest.ts`
+    - `test/generated/powershell/string/insert.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/url/EncodeQuery.vitest.ts test/generated/rust/str/match_indices.vitest.ts test/generated/python/math/fsum.vitest.ts test/generated/ruby/Array/permutation.vitest.ts test/generated/powershell/string/insert.vitest.ts`
+  - `corepack yarn test:parity golang/url/EncodeQuery --no-cache`
+  - `corepack yarn test:parity rust/str/match_indices --no-cache`
+  - `corepack yarn test:parity python/math/fsum --no-cache`
+  - `corepack yarn test:parity ruby/Array/permutation --no-cache`
+  - `corepack yarn test:parity powershell/string/insert --no-cache`
+- Key learnings
+  - Go parity output can differ only by JSON escaping (`&` -> `\\u0026`), so normalizer updates are sometimes required even with correct function logic.
+  - For Rust tuple-like collection outputs, generating JSON-compatible strings in translator expressions is a pragmatic way to keep strict parity without extra dependencies.

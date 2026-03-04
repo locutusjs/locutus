@@ -214,6 +214,12 @@ function buildNativeCall(funcName: string, args: string[]): string {
       }
       return `([string]${source}).IndexOf(${needle}, [int]${start}, [System.StringComparison]::Ordinal)`
     }
+    case 'insert': {
+      const source = args[0] ?? '$null'
+      const start = args[1] ?? '0'
+      const value = args[2] ?? "''"
+      return `([string]${source}).Insert([int]${start}, [string]${value})`
+    }
     case 'lastindexof': {
       const needle = args[0] ?? '$null'
       const source = args[1] ?? '$null'
@@ -227,11 +233,47 @@ function buildNativeCall(funcName: string, args: string[]): string {
       const value = args[0] ?? '$null'
       return `([string]${value}).Length`
     }
+    case 'padleft': {
+      const source = args[0] ?? '$null'
+      const width = args[1] ?? '0'
+      const padChar = args[2]
+      if (padChar === undefined) {
+        return `([string]${source}).PadLeft([int]${width})`
+      }
+      return `([string]${source}).PadLeft([int]${width}, [char]${padChar})`
+    }
+    case 'padright': {
+      const source = args[0] ?? '$null'
+      const width = args[1] ?? '0'
+      const padChar = args[2]
+      if (padChar === undefined) {
+        return `([string]${source}).PadRight([int]${width})`
+      }
+      return `([string]${source}).PadRight([int]${width}, [char]${padChar})`
+    }
     case 'replace': {
       const source = args[0] ?? '$null'
       const from = args[1] ?? '$null'
       const to = args[2] ?? '$null'
       return `([string]${source}).Replace(${from}, ${to})`
+    }
+    case 'remove': {
+      const source = args[0] ?? '$null'
+      const start = args[1] ?? '0'
+      const count = args[2]
+      if (count === undefined) {
+        return `([string]${source}).Remove([int]${start})`
+      }
+      return `([string]${source}).Remove([int]${start}, [int]${count})`
+    }
+    case 'split': {
+      const source = args[0] ?? '$null'
+      const delimiter = args[1] ?? "''"
+      const limit = args[2]
+      if (limit === undefined) {
+        return `@(([string]${source}).Split(@([string]${delimiter}), [System.StringSplitOptions]::None))`
+      }
+      return `@(([string]${source}).Split(@([string]${delimiter}), ([int]${limit}) + 1, [System.StringSplitOptions]::None) | Select-Object -First ([int]${limit}))`
     }
     case 'tolower': {
       const value = args[0] ?? '$null'
@@ -244,6 +286,15 @@ function buildNativeCall(funcName: string, args: string[]): string {
     case 'trim': {
       const value = args[0] ?? '$null'
       return `([string]${value}).Trim()`
+    }
+    case 'substring': {
+      const source = args[0] ?? '$null'
+      const start = args[1] ?? '0'
+      const length = args[2]
+      if (length === undefined) {
+        return `([string]${source}).Substring([int]${start})`
+      }
+      return `([string]${source}).Substring([int]${start}, [int]${length})`
     }
     default: {
       return `${funcName}(${args.join(', ')})`

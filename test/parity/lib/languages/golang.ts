@@ -50,6 +50,7 @@ const GO_PACKAGES: Record<string, string> = {
   ParseBool: 'strconv',
   ParseFloat: 'strconv',
   ParseInt: 'strconv',
+  Quote: 'strconv',
   // time package
   Add: 'time',
   AddDate: 'time',
@@ -71,12 +72,15 @@ const GO_PACKAGES: Record<string, string> = {
   Dir: 'path',
   Ext: 'path',
   IsAbs: 'path',
+  Match: 'path',
   // net/url package
   JoinPath: 'url',
   ParseQuery: 'url',
+  EncodeQuery: 'url',
   PathEscape: 'url',
   QueryEscape: 'url',
   QueryUnescape: 'url',
+  ResolveReference: 'url',
   // net package
   JoinHostPort: 'net',
   SplitHostPort: 'net',
@@ -86,6 +90,7 @@ const GO_PACKAGES: Record<string, string> = {
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {
   'path/Join': 'path',
+  'url/Parse': 'url',
 }
 
 const getGoPackage = (funcName: string, category?: string): string | undefined => {
@@ -244,6 +249,21 @@ function convertParseCalls(code: string): string {
       return match
     }
     return `locutusTimeParse(${layout}, ${value})`
+  })
+}
+
+/**
+ * Convert Locutus url/Parse calls to helper calls.
+ * Go returns (*url.URL, error), while locutus Parse returns plain parts.
+ */
+function convertUrlParseCalls(code: string): string {
+  return code.replace(/\bParse\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusUrlParse(${value})`
   })
 }
 
@@ -660,6 +680,21 @@ function convertParseQueryCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus url/EncodeQuery calls to helper calls.
+ * Go uses url.Values.Encode method, while locutus exposes a function.
+ */
+function convertEncodeQueryCalls(code: string): string {
+  return code.replace(/\bEncodeQuery\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusEncodeQuery(${value})`
+  })
+}
+
+/**
  * Convert Locutus url/JoinPath calls to helper calls.
  * Go returns (string, error), while locutus JoinPath returns string.
  */
@@ -670,6 +705,22 @@ function convertJoinPathCalls(code: string): string {
       return match
     }
     return `locutusUrlJoinPath(${args.join(', ')})`
+  })
+}
+
+/**
+ * Convert Locutus url/ResolveReference calls to helper calls.
+ * Go resolves references via URL methods rather than package-level functions.
+ */
+function convertResolveReferenceCalls(code: string): string {
+  return code.replace(/\bResolveReference\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const base = args[0]
+    const reference = args[1]
+    if (!base || !reference) {
+      return match
+    }
+    return `locutusResolveReference(${base}, ${reference})`
   })
 }
 
@@ -685,6 +736,22 @@ function convertSplitHostPortCalls(code: string): string {
       return match
     }
     return `locutusSplitHostPort(${value})`
+  })
+}
+
+/**
+ * Convert Locutus path/Match calls to helper calls.
+ * Go returns (bool, error), while locutus Match returns bool.
+ */
+function convertMatchCalls(code: string): string {
+  return code.replace(/\bMatch\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const pattern = args[0]
+    const name = args[1]
+    if (!pattern || !name) {
+      return match
+    }
+    return `locutusPathMatch(${pattern}, ${name})`
   })
 }
 
@@ -726,8 +793,10 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
 
   if (funcName === 'Format') {
     go = convertFormatCalls(go)
-  } else if (funcName === 'Parse') {
+  } else if (funcName === 'Parse' && category === 'time') {
     go = convertParseCalls(go)
+  } else if (funcName === 'Parse' && category === 'url') {
+    go = convertUrlParseCalls(go)
   } else if (funcName === 'ParseFloat') {
     go = convertParseFloatCalls(go)
   } else if (funcName === 'FormatFloat') {
@@ -770,10 +839,16 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     go = convertQueryUnescapeCalls(go)
   } else if (funcName === 'ParseQuery') {
     go = convertParseQueryCalls(go)
+  } else if (funcName === 'EncodeQuery') {
+    go = convertEncodeQueryCalls(go)
   } else if (funcName === 'JoinPath') {
     go = convertJoinPathCalls(go)
+  } else if (funcName === 'ResolveReference') {
+    go = convertResolveReferenceCalls(go)
   } else if (funcName === 'SplitHostPort') {
     go = convertSplitHostPortCalls(go)
+  } else if (funcName === 'Match') {
+    go = convertMatchCalls(go)
   }
 
   // Handle function calls - prefix with package
@@ -803,8 +878,11 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     funcName !== 'ConstantTimeCompare' &&
     funcName !== 'QueryUnescape' &&
     funcName !== 'ParseQuery' &&
+    funcName !== 'EncodeQuery' &&
     funcName !== 'JoinPath' &&
-    funcName !== 'SplitHostPort'
+    funcName !== 'ResolveReference' &&
+    funcName !== 'SplitHostPort' &&
+    funcName !== 'Match'
   ) {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
@@ -835,7 +913,7 @@ function getRequiredImports(goCode: string): string[] {
   if (goCode.includes('strconv.') || goCode.includes('locutusParseFloat(') || goCode.includes('locutusFormatFloat(')) {
     imports.add('strconv')
   }
-  if (goCode.includes('path.')) {
+  if (goCode.includes('path.') || goCode.includes('locutusPathMatch(')) {
     imports.add('path')
   }
   if (goCode.includes('sort.')) {
@@ -845,7 +923,10 @@ function getRequiredImports(goCode: string): string[] {
     goCode.includes('url.') ||
     goCode.includes('locutusQueryUnescape(') ||
     goCode.includes('locutusParseQuery(') ||
-    goCode.includes('locutusUrlJoinPath(')
+    goCode.includes('locutusEncodeQuery(') ||
+    goCode.includes('locutusUrlJoinPath(') ||
+    goCode.includes('locutusUrlParse(') ||
+    goCode.includes('locutusResolveReference(')
   ) {
     imports.add('net/url')
   }
@@ -914,7 +995,7 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-      : funcName === 'Parse'
+      : funcName === 'Parse' && category === 'time'
         ? `func locutusTimeParse(layout string, value string) string {
 \tt, err := time.Parse(layout, value)
 \tif err != nil {
@@ -924,8 +1005,32 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-        : funcName === 'ParseFloat'
-          ? `func locutusParseFloat(value string, bitSize int) []interface{} {
+        : funcName === 'Parse' && category === 'url'
+          ? `type locutusParsedURL struct {
+\tScheme   string \`json:"scheme"\`
+\tHost     string \`json:"host"\`
+\tPath     string \`json:"path"\`
+\tRawQuery string \`json:"rawQuery"\`
+\tFragment string \`json:"fragment"\`
+}
+
+func locutusUrlParse(value string) locutusParsedURL {
+\tparsed, err := url.Parse(value)
+\tif err != nil || parsed == nil {
+\t\treturn locutusParsedURL{}
+\t}
+\treturn locutusParsedURL{
+\t\tScheme: parsed.Scheme,
+\t\tHost: parsed.Host,
+\t\tPath: parsed.Path,
+\t\tRawQuery: parsed.RawQuery,
+\t\tFragment: parsed.Fragment,
+\t}
+}
+
+`
+          : funcName === 'ParseFloat'
+            ? `func locutusParseFloat(value string, bitSize int) []interface{} {
 \tparsed, err := strconv.ParseFloat(value, bitSize)
 \tif err != nil {
 \t\treturn []interface{}{0, err.Error()}
@@ -934,8 +1039,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-          : funcName === 'FormatFloat'
-            ? `func locutusFormatFloat(value float64, format string, precision int, bitSize int) string {
+            : funcName === 'FormatFloat'
+              ? `func locutusFormatFloat(value float64, format string, precision int, bitSize int) string {
 \tif len(format) == 0 {
 \t\treturn ""
 \t}
@@ -943,28 +1048,28 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-            : funcName === 'Unix'
-              ? `func locutusTimeUnix(sec float64, nsec float64) string {
+              : funcName === 'Unix'
+                ? `func locutusTimeUnix(sec float64, nsec float64) string {
 \tseconds := int64(sec)
 \tnanoseconds := int64(nsec)
 \treturn time.Unix(seconds, nanoseconds).UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-              : funcName === 'UnixMilli'
-                ? `func locutusTimeUnixMilli(millis float64) string {
+                : funcName === 'UnixMilli'
+                  ? `func locutusTimeUnixMilli(millis float64) string {
 \treturn time.UnixMilli(int64(millis)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-                : funcName === 'UnixMicro'
-                  ? `func locutusTimeUnixMicro(micros float64) string {
+                  : funcName === 'UnixMicro'
+                    ? `func locutusTimeUnixMicro(micros float64) string {
 \treturn time.UnixMicro(int64(micros)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-                  : funcName === 'ParseDuration'
-                    ? `func locutusParseDuration(value string) float64 {
+                    : funcName === 'ParseDuration'
+                      ? `func locutusParseDuration(value string) float64 {
 \td, err := time.ParseDuration(value)
 \tif err != nil {
 \t\treturn 0
@@ -973,16 +1078,16 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                    : funcName === 'Date'
-                      ? `func locutusTimeDate(year float64, month float64, day float64, hour float64, minute float64, second float64, nsec float64, offsetMinutes float64) string {
+                      : funcName === 'Date'
+                        ? `func locutusTimeDate(year float64, month float64, day float64, hour float64, minute float64, second float64, nsec float64, offsetMinutes float64) string {
 \tlocation := time.FixedZone("locutus", int(offsetMinutes)*60)
 \tt := time.Date(int(year), time.Month(int(month)), int(day), int(hour), int(minute), int(second), int(nsec), location)
 \treturn t.UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-                      : funcName === 'Add'
-                        ? `func locutusTimeAdd(value string, durationMs float64) string {
+                        : funcName === 'Add'
+                          ? `func locutusTimeAdd(value string, durationMs float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil {
 \t\treturn ""
@@ -992,8 +1097,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                        : funcName === 'Equal'
-                          ? `func locutusTimeEqual(left string, right string) bool {
+                          : funcName === 'Equal'
+                            ? `func locutusTimeEqual(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1003,8 +1108,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                          : funcName === 'Round'
-                            ? `func locutusTimeRound(value string, unitMs float64) string {
+                            : funcName === 'Round'
+                              ? `func locutusTimeRound(value string, unitMs float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil || unitMs <= 0 {
 \t\treturn ""
@@ -1014,8 +1119,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                            : funcName === 'Truncate'
-                              ? `func locutusTimeTruncate(value string, unitMs float64) string {
+                              : funcName === 'Truncate'
+                                ? `func locutusTimeTruncate(value string, unitMs float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil || unitMs <= 0 {
 \t\treturn ""
@@ -1025,8 +1130,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                              : funcName === 'AddDate'
-                                ? `func locutusTimeAddDate(value string, years float64, months float64, days float64) string {
+                                : funcName === 'AddDate'
+                                  ? `func locutusTimeAddDate(value string, years float64, months float64, days float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil {
 \t\treturn ""
@@ -1035,8 +1140,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                : funcName === 'Sub'
-                                  ? `func locutusTimeSub(left string, right string) float64 {
+                                  : funcName === 'Sub'
+                                    ? `func locutusTimeSub(left string, right string) float64 {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1046,8 +1151,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                  : funcName === 'Before'
-                                    ? `func locutusTimeBefore(left string, right string) bool {
+                                    : funcName === 'Before'
+                                      ? `func locutusTimeBefore(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1057,8 +1162,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                    : funcName === 'After'
-                                      ? `func locutusTimeAfter(left string, right string) bool {
+                                      : funcName === 'After'
+                                        ? `func locutusTimeAfter(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1068,35 +1173,35 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                      : funcName === 'Cut'
-                                        ? `func locutusStringsCut(value string, sep string) []interface{} {
+                                        : funcName === 'Cut'
+                                          ? `func locutusStringsCut(value string, sep string) []interface{} {
 \tbefore, after, found := strings.Cut(value, sep)
 \treturn []interface{}{before, after, found}
 }
 
 `
-                                        : funcName === 'CutPrefix'
-                                          ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
+                                          : funcName === 'CutPrefix'
+                                            ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
 \tafter, found := strings.CutPrefix(value, prefix)
 \treturn []interface{}{after, found}
 }
 
 `
-                                          : funcName === 'CutSuffix'
-                                            ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
+                                            : funcName === 'CutSuffix'
+                                              ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
 \tbefore, found := strings.CutSuffix(value, suffix)
 \treturn []interface{}{before, found}
 }
 
 `
-                                            : funcName === 'ConstantTimeCompare'
-                                              ? `func locutusConstantTimeCompare(left string, right string) int {
+                                              : funcName === 'ConstantTimeCompare'
+                                                ? `func locutusConstantTimeCompare(left string, right string) int {
 \treturn subtle.ConstantTimeCompare([]byte(left), []byte(right))
 }
 
 `
-                                              : funcName === 'QueryUnescape'
-                                                ? `func locutusQueryUnescape(value string) string {
+                                                : funcName === 'QueryUnescape'
+                                                  ? `func locutusQueryUnescape(value string) string {
 \tdecoded, err := url.QueryUnescape(value)
 \tif err != nil {
 \t\treturn ""
@@ -1105,8 +1210,8 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                                : funcName === 'ParseQuery'
-                                                  ? `func locutusParseQuery(value string) map[string][]string {
+                                                  : funcName === 'ParseQuery'
+                                                    ? `func locutusParseQuery(value string) map[string][]string {
 \tparsed, err := url.ParseQuery(value)
 \tif err != nil {
 \t\treturn map[string][]string{}
@@ -1115,8 +1220,18 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                                  : funcName === 'JoinPath'
-                                                    ? `func locutusUrlJoinPath(base string, elems ...string) string {
+                                                    : funcName === 'EncodeQuery'
+                                                      ? `func locutusEncodeQuery(value string) string {
+\tparsed, err := url.ParseQuery(value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn parsed.Encode()
+}
+
+`
+                                                      : funcName === 'JoinPath'
+                                                        ? `func locutusUrlJoinPath(base string, elems ...string) string {
 \tjoined, err := url.JoinPath(base, elems...)
 \tif err != nil {
 \t\treturn ""
@@ -1125,8 +1240,19 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                                    : funcName === 'SplitHostPort'
-                                                      ? `func locutusSplitHostPort(value string) []interface{} {
+                                                        : funcName === 'ResolveReference'
+                                                          ? `func locutusResolveReference(base string, reference string) string {
+\tbaseURL, baseErr := url.Parse(base)
+\trefURL, refErr := url.Parse(reference)
+\tif baseErr != nil || refErr != nil || baseURL == nil || refURL == nil {
+\t\treturn ""
+\t}
+\treturn baseURL.ResolveReference(refURL).String()
+}
+
+`
+                                                          : funcName === 'SplitHostPort'
+                                                            ? `func locutusSplitHostPort(value string) []interface{} {
 \thost, port, err := net.SplitHostPort(value)
 \tif err != nil {
 \t\treturn []interface{}{"", ""}
@@ -1135,7 +1261,17 @@ function jsToGo(jsCode: string[], funcName: string, category?: string): string {
 }
 
 `
-                                                      : ''
+                                                            : funcName === 'Match'
+                                                              ? `func locutusPathMatch(pattern string, name string) bool {
+\tmatched, err := path.Match(pattern, name)
+\tif err != nil {
+\t\treturn false
+\t}
+\treturn matched
+}
+
+`
+                                                              : ''
 
   return `package main
 
@@ -1154,7 +1290,10 @@ func main() {
 function normalizeGoOutput(output: string, _expected?: string): string {
   let result = output.trim()
   // Go's encoding/json escapes HTML-sensitive characters by default.
-  result = result.replace(/\\u003c/g, '<').replace(/\\u003e/g, '>')
+  result = result
+    .replace(/\\u003c/g, '<')
+    .replace(/\\u003e/g, '>')
+    .replace(/\\u0026/g, '&')
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')

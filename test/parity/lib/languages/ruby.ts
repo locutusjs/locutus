@@ -19,17 +19,21 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   chop: { rubyMethod: 'chop', category: 'String', isInstanceMethod: true },
   downcase: { rubyMethod: 'downcase', category: 'String', isInstanceMethod: true },
   end_with: { rubyMethod: 'end_with?', category: 'String', isInstanceMethod: true },
+  gsub: { rubyMethod: 'gsub', category: 'String', isInstanceMethod: true },
   include: { rubyMethod: 'include?', category: 'String', isInstanceMethod: true },
   length: { rubyMethod: 'length', category: 'String', isInstanceMethod: true },
   reverse: { rubyMethod: 'reverse', category: 'String', isInstanceMethod: true },
   start_with: { rubyMethod: 'start_with?', category: 'String', isInstanceMethod: true },
   strip: { rubyMethod: 'strip', category: 'String', isInstanceMethod: true },
+  tr: { rubyMethod: 'tr', category: 'String', isInstanceMethod: true },
   upcase: { rubyMethod: 'upcase', category: 'String', isInstanceMethod: true },
   // Array methods (instance methods on Array)
   compact: { rubyMethod: 'compact', category: 'Array', isInstanceMethod: true },
   first: { rubyMethod: 'first', category: 'Array', isInstanceMethod: true },
   flatten: { rubyMethod: 'flatten', category: 'Array', isInstanceMethod: true },
+  group_by: { rubyMethod: 'group_by', category: 'Array', isInstanceMethod: true },
   last: { rubyMethod: 'last', category: 'Array', isInstanceMethod: true },
+  permutation: { rubyMethod: 'permutation', category: 'Array', isInstanceMethod: true },
   sample: { rubyMethod: 'sample', category: 'Array', isInstanceMethod: true },
   uniq: { rubyMethod: 'uniq', category: 'Array', isInstanceMethod: true },
   // Math methods (module methods)
@@ -108,6 +112,16 @@ function convertFunctionCall(code: string, funcName: string, methodInfo: RubyMet
     const restArgs = args.slice(1)
 
     if (methodInfo.isInstanceMethod) {
+      if (methodInfo.rubyMethod === 'group_by' && restArgs.length === 0) {
+        return `${firstArg}.group_by { |__locutus_v| __locutus_v }`
+      }
+      if (methodInfo.rubyMethod === 'permutation') {
+        if (restArgs.length > 0) {
+          return `${firstArg}.permutation(${restArgs.join(', ')}).to_a`
+        }
+        return `${firstArg}.permutation.to_a`
+      }
+
       // Instance method: first arg becomes receiver
       // e.g., strip('str') → "str".strip
       // e.g., end_with('str', 'suffix') → "str".end_with?("suffix")
