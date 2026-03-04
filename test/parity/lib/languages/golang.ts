@@ -51,6 +51,7 @@ const GO_PACKAGES: Record<string, string> = {
   ParseFloat: 'strconv',
   ParseInt: 'strconv',
   Quote: 'strconv',
+  Unquote: 'strconv',
   // time package
   Add: 'time',
   AddDate: 'time',
@@ -299,6 +300,23 @@ function convertFormatFloatCalls(code: string): string {
     }
     return `locutusFormatFloat(${value}, ${format}, ${precision}, ${bitSize})`
   })
+}
+
+/**
+ * Convert Locutus strconv/Unquote calls to helper calls.
+ * Go returns (string, error), while locutus Unquote returns [value, error].
+ */
+function convertUnquoteCalls(code: string): string {
+  const firstValue = code.replace(/\bUnquote\s*\(([^)]+)\)\s*\[\s*0\s*\]/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusUnquote(${value})`
+  })
+
+  return firstValue
 }
 
 /**
@@ -801,6 +819,8 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     go = convertParseFloatCalls(go)
   } else if (funcName === 'FormatFloat') {
     go = convertFormatFloatCalls(go)
+  } else if (funcName === 'Unquote') {
+    go = convertUnquoteCalls(go)
   } else if (funcName === 'Unix') {
     go = convertUnixCalls(go)
   } else if (funcName === 'UnixMilli') {
@@ -859,6 +879,7 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     funcName !== 'Parse' &&
     funcName !== 'ParseFloat' &&
     funcName !== 'FormatFloat' &&
+    funcName !== 'Unquote' &&
     funcName !== 'Unix' &&
     funcName !== 'UnixMilli' &&
     funcName !== 'UnixMicro' &&
@@ -910,7 +931,12 @@ function getRequiredImports(goCode: string): string[] {
   ) {
     imports.add('strings')
   }
-  if (goCode.includes('strconv.') || goCode.includes('locutusParseFloat(') || goCode.includes('locutusFormatFloat(')) {
+  if (
+    goCode.includes('strconv.') ||
+    goCode.includes('locutusParseFloat(') ||
+    goCode.includes('locutusFormatFloat(') ||
+    goCode.includes('locutusUnquote(')
+  ) {
     imports.add('strconv')
   }
   if (goCode.includes('path.') || goCode.includes('locutusPathMatch(')) {
@@ -1048,28 +1074,38 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-              : funcName === 'Unix'
-                ? `func locutusTimeUnix(sec float64, nsec float64) string {
+              : funcName === 'Unquote'
+                ? `func locutusUnquote(value string) string {
+\tunquoted, err := strconv.Unquote(value)
+\tif err != nil {
+\t\treturn ""
+\t}
+\treturn unquoted
+}
+
+`
+                : funcName === 'Unix'
+                  ? `func locutusTimeUnix(sec float64, nsec float64) string {
 \tseconds := int64(sec)
 \tnanoseconds := int64(nsec)
 \treturn time.Unix(seconds, nanoseconds).UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-                : funcName === 'UnixMilli'
-                  ? `func locutusTimeUnixMilli(millis float64) string {
+                  : funcName === 'UnixMilli'
+                    ? `func locutusTimeUnixMilli(millis float64) string {
 \treturn time.UnixMilli(int64(millis)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-                  : funcName === 'UnixMicro'
-                    ? `func locutusTimeUnixMicro(micros float64) string {
+                    : funcName === 'UnixMicro'
+                      ? `func locutusTimeUnixMicro(micros float64) string {
 \treturn time.UnixMicro(int64(micros)).UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-                    : funcName === 'ParseDuration'
-                      ? `func locutusParseDuration(value string) float64 {
+                      : funcName === 'ParseDuration'
+                        ? `func locutusParseDuration(value string) float64 {
 \td, err := time.ParseDuration(value)
 \tif err != nil {
 \t\treturn 0
@@ -1078,16 +1114,16 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                      : funcName === 'Date'
-                        ? `func locutusTimeDate(year float64, month float64, day float64, hour float64, minute float64, second float64, nsec float64, offsetMinutes float64) string {
+                        : funcName === 'Date'
+                          ? `func locutusTimeDate(year float64, month float64, day float64, hour float64, minute float64, second float64, nsec float64, offsetMinutes float64) string {
 \tlocation := time.FixedZone("locutus", int(offsetMinutes)*60)
 \tt := time.Date(int(year), time.Month(int(month)), int(day), int(hour), int(minute), int(second), int(nsec), location)
 \treturn t.UTC().Format("2006-01-02T15:04:05.000Z07:00")
 }
 
 `
-                        : funcName === 'Add'
-                          ? `func locutusTimeAdd(value string, durationMs float64) string {
+                          : funcName === 'Add'
+                            ? `func locutusTimeAdd(value string, durationMs float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil {
 \t\treturn ""
@@ -1097,8 +1133,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                          : funcName === 'Equal'
-                            ? `func locutusTimeEqual(left string, right string) bool {
+                            : funcName === 'Equal'
+                              ? `func locutusTimeEqual(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1108,8 +1144,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                            : funcName === 'Round'
-                              ? `func locutusTimeRound(value string, unitMs float64) string {
+                              : funcName === 'Round'
+                                ? `func locutusTimeRound(value string, unitMs float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil || unitMs <= 0 {
 \t\treturn ""
@@ -1119,8 +1155,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                              : funcName === 'Truncate'
-                                ? `func locutusTimeTruncate(value string, unitMs float64) string {
+                                : funcName === 'Truncate'
+                                  ? `func locutusTimeTruncate(value string, unitMs float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil || unitMs <= 0 {
 \t\treturn ""
@@ -1130,8 +1166,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                : funcName === 'AddDate'
-                                  ? `func locutusTimeAddDate(value string, years float64, months float64, days float64) string {
+                                  : funcName === 'AddDate'
+                                    ? `func locutusTimeAddDate(value string, years float64, months float64, days float64) string {
 \tt, err := time.Parse(time.RFC3339Nano, value)
 \tif err != nil {
 \t\treturn ""
@@ -1140,8 +1176,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                  : funcName === 'Sub'
-                                    ? `func locutusTimeSub(left string, right string) float64 {
+                                    : funcName === 'Sub'
+                                      ? `func locutusTimeSub(left string, right string) float64 {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1151,8 +1187,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                    : funcName === 'Before'
-                                      ? `func locutusTimeBefore(left string, right string) bool {
+                                      : funcName === 'Before'
+                                        ? `func locutusTimeBefore(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1162,8 +1198,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                      : funcName === 'After'
-                                        ? `func locutusTimeAfter(left string, right string) bool {
+                                        : funcName === 'After'
+                                          ? `func locutusTimeAfter(left string, right string) bool {
 \tl, leftErr := time.Parse(time.RFC3339Nano, left)
 \tr, rightErr := time.Parse(time.RFC3339Nano, right)
 \tif leftErr != nil || rightErr != nil {
@@ -1173,35 +1209,35 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                        : funcName === 'Cut'
-                                          ? `func locutusStringsCut(value string, sep string) []interface{} {
+                                          : funcName === 'Cut'
+                                            ? `func locutusStringsCut(value string, sep string) []interface{} {
 \tbefore, after, found := strings.Cut(value, sep)
 \treturn []interface{}{before, after, found}
 }
 
 `
-                                          : funcName === 'CutPrefix'
-                                            ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
+                                            : funcName === 'CutPrefix'
+                                              ? `func locutusStringsCutPrefix(value string, prefix string) []interface{} {
 \tafter, found := strings.CutPrefix(value, prefix)
 \treturn []interface{}{after, found}
 }
 
 `
-                                            : funcName === 'CutSuffix'
-                                              ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
+                                              : funcName === 'CutSuffix'
+                                                ? `func locutusStringsCutSuffix(value string, suffix string) []interface{} {
 \tbefore, found := strings.CutSuffix(value, suffix)
 \treturn []interface{}{before, found}
 }
 
 `
-                                              : funcName === 'ConstantTimeCompare'
-                                                ? `func locutusConstantTimeCompare(left string, right string) int {
+                                                : funcName === 'ConstantTimeCompare'
+                                                  ? `func locutusConstantTimeCompare(left string, right string) int {
 \treturn subtle.ConstantTimeCompare([]byte(left), []byte(right))
 }
 
 `
-                                                : funcName === 'QueryUnescape'
-                                                  ? `func locutusQueryUnescape(value string) string {
+                                                  : funcName === 'QueryUnescape'
+                                                    ? `func locutusQueryUnescape(value string) string {
 \tdecoded, err := url.QueryUnescape(value)
 \tif err != nil {
 \t\treturn ""
@@ -1210,8 +1246,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                  : funcName === 'ParseQuery'
-                                                    ? `func locutusParseQuery(value string) map[string][]string {
+                                                    : funcName === 'ParseQuery'
+                                                      ? `func locutusParseQuery(value string) map[string][]string {
 \tparsed, err := url.ParseQuery(value)
 \tif err != nil {
 \t\treturn map[string][]string{}
@@ -1220,8 +1256,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                    : funcName === 'EncodeQuery'
-                                                      ? `func locutusEncodeQuery(value string) string {
+                                                      : funcName === 'EncodeQuery'
+                                                        ? `func locutusEncodeQuery(value string) string {
 \tparsed, err := url.ParseQuery(value)
 \tif err != nil {
 \t\treturn ""
@@ -1230,8 +1266,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                      : funcName === 'JoinPath'
-                                                        ? `func locutusUrlJoinPath(base string, elems ...string) string {
+                                                        : funcName === 'JoinPath'
+                                                          ? `func locutusUrlJoinPath(base string, elems ...string) string {
 \tjoined, err := url.JoinPath(base, elems...)
 \tif err != nil {
 \t\treturn ""
@@ -1240,8 +1276,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                        : funcName === 'ResolveReference'
-                                                          ? `func locutusResolveReference(base string, reference string) string {
+                                                          : funcName === 'ResolveReference'
+                                                            ? `func locutusResolveReference(base string, reference string) string {
 \tbaseURL, baseErr := url.Parse(base)
 \trefURL, refErr := url.Parse(reference)
 \tif baseErr != nil || refErr != nil || baseURL == nil || refURL == nil {
@@ -1251,8 +1287,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                          : funcName === 'SplitHostPort'
-                                                            ? `func locutusSplitHostPort(value string) []interface{} {
+                                                            : funcName === 'SplitHostPort'
+                                                              ? `func locutusSplitHostPort(value string) []interface{} {
 \thost, port, err := net.SplitHostPort(value)
 \tif err != nil {
 \t\treturn []interface{}{"", ""}
@@ -1261,8 +1297,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                            : funcName === 'Match'
-                                                              ? `func locutusPathMatch(pattern string, name string) bool {
+                                                              : funcName === 'Match'
+                                                                ? `func locutusPathMatch(pattern string, name string) bool {
 \tmatched, err := path.Match(pattern, name)
 \tif err != nil {
 \t\treturn false
@@ -1271,7 +1307,7 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                              : ''
+                                                                : ''
 
   return `package main
 

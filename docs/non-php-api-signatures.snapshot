@@ -72,6 +72,7 @@ src/golang/strconv/ParseBool.ts :: export function ParseBool(str: string): [bool
 src/golang/strconv/ParseFloat.ts :: export function ParseFloat(s: string, bitSize: number): [number, Error | null]
 src/golang/strconv/ParseInt.ts :: export function ParseInt(s: string, base: number, _bitSize: number): [number, Error | null]
 src/golang/strconv/Quote.ts :: export function Quote(s: string): string
+src/golang/strconv/Unquote.ts :: export function Unquote(s: string): [string, Error | null]
 src/golang/strings/Compare.ts :: export function Compare(a: string, b: string): number
 src/golang/strings/Contains.ts :: export function Contains(s: string, substr: string): boolean
 src/golang/strings/ContainsAny.ts :: export function ContainsAny(s: string, chars: string): boolean | false
@@ -201,6 +202,7 @@ src/python/math/log2.ts :: export function log2(x: number): number
 src/python/math/pow.ts :: export function pow(x: number, y: number): number
 src/python/math/sqrt.ts :: export function sqrt(x: number): number
 src/python/math/trunc.ts :: export function trunc(x: number): number
+src/python/re/sub.ts :: export function sub( pattern: string | RegExp, replacement: ReSubReplacement, source: string, count: number = 0, flags: ReSubFlags = 0, ): string
 src/python/string/ascii_letters.ts :: export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 src/python/string/ascii_lowercase.ts :: export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz'
 src/python/string/ascii_uppercase.ts :: export function ascii_uppercase(): 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

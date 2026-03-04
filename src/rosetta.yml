@@ -119,6 +119,11 @@ string_replace:
   - rust/str/replace
   - golang/strings/Replace
 
+regex_replace:
+  - php/pcre/preg_replace
+  - ruby/String/gsub
+  - python/re/sub
+
 string_index:
   - php/strings/strpos
   - powershell/string/indexof

@@ -24,7 +24,14 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.3...main).
 
-- No unreleased changes yet.
+### Expansion
+
+- Added `golang/strconv/Unquote` with Go-style quoted literal decoding (`"..."`, `'...'`, and raw backquoted literals).
+- Added `python/re/sub` with regex replacement, count-limited substitution, callable replacements, and Python-like replacement backreferences.
+
+### Infrastructure
+
+- Extended Go parity translator helpers to support `golang/strconv/Unquote` tuple-to-native parity checks.
 
 ## v3.0.3
 
