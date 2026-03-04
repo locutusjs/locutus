@@ -123,6 +123,7 @@ src/golang/url/ParseQuery.ts :: export function ParseQuery(query: string): Query
 src/golang/url/PathEscape.ts :: export function PathEscape(s: string): string
 src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
 src/golang/url/QueryUnescape.ts :: export function QueryUnescape(s: string): string
+src/golang/url/ResolveReference.ts :: export function ResolveReference(baseURL: string, refURL: string): string
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
 src/julia/Base/floor.ts :: export function floor(x: number): number
@@ -170,6 +171,7 @@ src/powershell/string/lastindexof.ts :: export function lastindexof(needle: stri
 src/powershell/string/length.ts :: export function length(str: string): number
 src/powershell/string/padleft.ts :: export function padleft(str: string, totalWidth: number, paddingChar?: string): string
 src/powershell/string/padright.ts :: export function padright(str: string, totalWidth: number, paddingChar?: string): string
+src/powershell/string/remove.ts :: export function remove(str: string, startIndex: number, count?: number): string
 src/powershell/string/replace.ts :: export function replace(str: string, search: string, replacement: string): string
 src/powershell/string/split.ts :: export function split(str: string, delimiter: string, limit?: number): string[]
 src/powershell/string/startswith.ts :: export function startswith(prefix: string, str: string): boolean
@@ -185,6 +187,7 @@ src/python/math/fabs.ts :: export function fabs(x: number): number
 src/python/math/factorial.ts :: export function factorial(n: number | string): number
 src/python/math/floor.ts :: export function floor(x: number): number
 src/python/math/gcd.ts :: export function gcd(a: number | string, b: number | string): number
+src/python/math/isclose.ts :: export function isclose( a: number | string, b: number | string, relTol: number | string = 1e-9, absTol: number | string = 0, ): boolean
 src/python/math/isfinite.ts :: export function isfinite(x: number): boolean
 src/python/math/isinf.ts :: export function isinf(x: number): boolean
 src/python/math/isnan.ts :: export function isnan(x: number): boolean
@@ -250,6 +253,7 @@ src/ruby/String/length.ts :: export function length(str: string): number
 src/ruby/String/reverse.ts :: export function reverse(str: string): string
 src/ruby/String/start_with.ts :: export function start_with(str: string, prefix: string): boolean
 src/ruby/String/strip.ts :: export function strip(str: string): string
+src/ruby/String/tr.ts :: export function tr(str: string, from: string, to: string): string
 src/ruby/String/upcase.ts :: export function upcase(str: string): string
 src/rust/str/contains.ts :: export function contains(needle: string, haystack: string): boolean
 src/rust/str/ends_with.ts :: export function ends_with(suffix: string, str: string): boolean
@@ -257,6 +261,7 @@ src/rust/str/find.ts :: export function find(needle: string, haystack: string): 
 src/rust/str/len.ts :: export function len(str: string): number
 src/rust/str/replace.ts :: export function replace(str: string, search: string, replacement: string): string
 src/rust/str/rfind.ts :: export function rfind(needle: string, haystack: string): number
+src/rust/str/split_once.ts :: export function split_once(delimiter: string, str: string): [string, string] | null
 src/rust/str/starts_with.ts :: export function starts_with(prefix: string, str: string): boolean
 src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): string
 src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): string

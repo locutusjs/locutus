@@ -2693,3 +2693,63 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Parity-safe examples matter as much as implementations: escape-heavy literals can trigger translator codegen edge cases unrelated to function correctness.
   - Juicy additions with simple call shapes give high utility without forcing broad translator refactors.
+
+## Iteration 95
+
+- Plans
+  - Add 5 higher-ceiling cross-language utilities that stay inside locutus data-shape constraints while stretching translator depth:
+    - `golang/url/ResolveReference`
+    - `rust/str/split_once`
+    - `python/math/isclose`
+    - `ruby/String/tr`
+    - `powershell/string/remove`
+- Progress
+  - Added source modules:
+    - `src/golang/url/ResolveReference.ts`
+    - `src/rust/str/split_once.ts`
+    - `src/python/math/isclose.ts`
+    - `src/ruby/String/tr.ts`
+    - `src/powershell/string/remove.ts`
+  - Updated exports:
+    - `src/golang/url/index.ts`
+    - `src/rust/str/index.ts`
+    - `src/python/math/index.ts`
+    - `src/ruby/String/index.ts`
+    - `src/powershell/string/index.ts`
+  - Extended parity translators:
+    - `test/parity/lib/languages/golang.ts`
+      - added `ResolveReference` package mapping and helper conversion (`locutusResolveReference(...)`).
+      - added helper runtime implementation using `url.Parse` + `ResolveReference`.
+      - updated package-prefix bypass and import detection for new helper usage.
+    - `test/parity/lib/languages/rust.ts`
+      - added `split_once` call lowering.
+      - added function-specific output formatting path so tuple-option semantics can compare against JS JSON-shaped output.
+    - `test/parity/lib/languages/python.ts`
+      - added `isclose` argument translation for 3rd/4th args as Python keyword args (`rel_tol`, `abs_tol`) to match Python 3.12 call semantics.
+    - `test/parity/lib/languages/ruby.ts`
+      - added `tr` to Ruby String method map.
+    - `test/parity/lib/languages/powershell.ts`
+      - added native mapping for `.Remove(start[,count])`.
+  - Regenerated artifacts:
+    - `test/generated/golang/url/ResolveReference.vitest.ts`
+    - `test/generated/rust/str/split_once.vitest.ts`
+    - `test/generated/python/math/isclose.vitest.ts`
+    - `test/generated/ruby/String/tr.vitest.ts`
+    - `test/generated/powershell/string/remove.vitest.ts`
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+  - Restored known unrelated generated churn after generation:
+    - `test/generated/golang/time/Date.vitest.ts`
+    - `test/generated/php/funchand/call_user_func.vitest.ts`
+    - `test/generated/php/funchand/call_user_func_array.vitest.ts`
+- Validation
+  - `corepack yarn lint`
+  - `corepack yarn vitest test/generated/golang/url/ResolveReference.vitest.ts test/generated/rust/str/split_once.vitest.ts test/generated/python/math/isclose.vitest.ts test/generated/ruby/String/tr.vitest.ts test/generated/powershell/string/remove.vitest.ts`
+  - `corepack yarn test:parity golang/url/ResolveReference --no-cache`
+  - `corepack yarn test:parity rust/str/split_once --no-cache`
+  - `corepack yarn test:parity python/math/isclose --no-cache`
+  - `corepack yarn test:parity ruby/String/tr --no-cache`
+  - `corepack yarn test:parity powershell/string/remove --no-cache`
+- Key learnings
+  - Some language runtimes require argument-shape translation, not just function-name mapping (Python `math.isclose` keyword-only tolerance args in 3.12).
+  - For tuple/option-like native outputs, targeted translator output shaping can keep parity strict without introducing non-JS public API shapes.

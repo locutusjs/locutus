@@ -79,6 +79,7 @@ const GO_PACKAGES: Record<string, string> = {
   PathEscape: 'url',
   QueryEscape: 'url',
   QueryUnescape: 'url',
+  ResolveReference: 'url',
   // net package
   JoinHostPort: 'net',
   SplitHostPort: 'net',
@@ -692,6 +693,22 @@ function convertJoinPathCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus url/ResolveReference calls to helper calls.
+ * Go resolves references via URL methods rather than package-level functions.
+ */
+function convertResolveReferenceCalls(code: string): string {
+  return code.replace(/\bResolveReference\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const base = args[0]
+    const reference = args[1]
+    if (!base || !reference) {
+      return match
+    }
+    return `locutusResolveReference(${base}, ${reference})`
+  })
+}
+
+/**
  * Convert Locutus net/SplitHostPort calls to helper calls.
  * Go returns (host, port, error), while locutus SplitHostPort returns [host, port].
  */
@@ -808,6 +825,8 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     go = convertParseQueryCalls(go)
   } else if (funcName === 'JoinPath') {
     go = convertJoinPathCalls(go)
+  } else if (funcName === 'ResolveReference') {
+    go = convertResolveReferenceCalls(go)
   } else if (funcName === 'SplitHostPort') {
     go = convertSplitHostPortCalls(go)
   } else if (funcName === 'Match') {
@@ -842,6 +861,7 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     funcName !== 'QueryUnescape' &&
     funcName !== 'ParseQuery' &&
     funcName !== 'JoinPath' &&
+    funcName !== 'ResolveReference' &&
     funcName !== 'SplitHostPort' &&
     funcName !== 'Match'
   ) {
@@ -885,7 +905,8 @@ function getRequiredImports(goCode: string): string[] {
     goCode.includes('locutusQueryUnescape(') ||
     goCode.includes('locutusParseQuery(') ||
     goCode.includes('locutusUrlJoinPath(') ||
-    goCode.includes('locutusUrlParse(')
+    goCode.includes('locutusUrlParse(') ||
+    goCode.includes('locutusResolveReference(')
   ) {
     imports.add('net/url')
   }
@@ -1189,8 +1210,19 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                      : funcName === 'SplitHostPort'
-                                                        ? `func locutusSplitHostPort(value string) []interface{} {
+                                                      : funcName === 'ResolveReference'
+                                                        ? `func locutusResolveReference(base string, reference string) string {
+\tbaseURL, baseErr := url.Parse(base)
+\trefURL, refErr := url.Parse(reference)
+\tif baseErr != nil || refErr != nil || baseURL == nil || refURL == nil {
+\t\treturn ""
+\t}
+\treturn baseURL.ResolveReference(refURL).String()
+}
+
+`
+                                                        : funcName === 'SplitHostPort'
+                                                          ? `func locutusSplitHostPort(value string) []interface{} {
 \thost, port, err := net.SplitHostPort(value)
 \tif err != nil {
 \t\treturn []interface{}{"", ""}
@@ -1199,8 +1231,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                        : funcName === 'Match'
-                                                          ? `func locutusPathMatch(pattern string, name string) bool {
+                                                          : funcName === 'Match'
+                                                            ? `func locutusPathMatch(pattern string, name string) bool {
 \tmatched, err := path.Match(pattern, name)
 \tif err != nil {
 \t\treturn false
@@ -1209,7 +1241,7 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                          : ''
+                                                            : ''
 
   return `package main
 

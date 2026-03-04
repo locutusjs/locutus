@@ -25,6 +25,7 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   reverse: { rubyMethod: 'reverse', category: 'String', isInstanceMethod: true },
   start_with: { rubyMethod: 'start_with?', category: 'String', isInstanceMethod: true },
   strip: { rubyMethod: 'strip', category: 'String', isInstanceMethod: true },
+  tr: { rubyMethod: 'tr', category: 'String', isInstanceMethod: true },
   upcase: { rubyMethod: 'upcase', category: 'String', isInstanceMethod: true },
   // Array methods (instance methods on Array)
   compact: { rubyMethod: 'compact', category: 'Array', isInstanceMethod: true },

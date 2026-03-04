@@ -251,6 +251,15 @@ function buildNativeCall(funcName: string, args: string[]): string {
       const to = args[2] ?? '$null'
       return `([string]${source}).Replace(${from}, ${to})`
     }
+    case 'remove': {
+      const source = args[0] ?? '$null'
+      const start = args[1] ?? '0'
+      const count = args[2]
+      if (count === undefined) {
+        return `([string]${source}).Remove([int]${start})`
+      }
+      return `([string]${source}).Remove([int]${start}, [int]${count})`
+    }
     case 'split': {
       const source = args[0] ?? '$null'
       const delimiter = args[1] ?? "''"
