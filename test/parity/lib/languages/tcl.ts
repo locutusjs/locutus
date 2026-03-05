@@ -154,6 +154,15 @@ function decodeJsString(token: string): string {
 function convertArgument(arg: string, funcName: string): string {
   const trimmed = arg.trim()
 
+  if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+    const inner = trimmed.slice(1, -1).trim()
+    if (!inner) {
+      return '[list]'
+    }
+    const listItems = splitArgs(inner).map((item) => convertArgument(item, funcName))
+    return `[list ${listItems.join(' ')}]`
+  }
+
   if ((trimmed.startsWith("'") && trimmed.endsWith("'")) || (trimmed.startsWith('"') && trimmed.endsWith('"'))) {
     return quoteTclString(decodeJsString(trimmed))
   }
@@ -194,6 +203,12 @@ function convertExpression(expr: string, funcName: string): string {
   const callMatch = trimmed.match(/^([A-Za-z_]\w*)\s*\(([\s\S]*)\)$/)
   if (callMatch?.[1] && callMatch[1] === funcName) {
     const args = splitArgs(callMatch[2] ?? '').map((arg) => convertArgument(arg, funcName))
+    if (funcName === 'regsub') {
+      while (args.length < 5) {
+        args.push('0')
+      }
+      return `[locutus_regsub ${args.join(' ')}]`
+    }
     return `[string ${funcName} ${args.join(' ')}]`
   }
 
@@ -231,17 +246,33 @@ function jsToTcl(jsCode: string[], funcName: string, _category?: string): string
     return ''
   }
 
+  const setupLines: string[] = []
+  if (funcName === 'regsub') {
+    setupLines.push(
+      'proc locutus_regsub {pattern input replacement all nocase} {',
+      '  set opts [list]',
+      '  if {$all ne "0"} {lappend opts -all}',
+      '  if {$nocase ne "0"} {lappend opts -nocase}',
+      '  set out $input',
+      '  regsub {*}$opts -- $pattern $input $replacement out',
+      '  return $out',
+      '}',
+    )
+  }
+
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
 
   if (assignedVar) {
     const normalizedVar = normalizeVarName(assignedVar)
-    return `${lines.join('\n')}\nputs $${normalizedVar}`
+    const prefix = setupLines.length ? `${setupLines.join('\n')}\n` : ''
+    return `${prefix}${lines.join('\n')}\nputs $${normalizedVar}`
   }
 
   const setup = lines.slice(0, -1)
   const lastExpr = lines[lines.length - 1] ?? ''
-  const prefix = setup.length ? `${setup.join('\n')}\n` : ''
+  const withHelpers = setupLines.concat(setup)
+  const prefix = withHelpers.length ? `${withHelpers.join('\n')}\n` : ''
   return `${prefix}puts ${lastExpr}`
 }
 

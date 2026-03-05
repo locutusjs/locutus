@@ -10,6 +10,94 @@ export const JULIA_SKIP_LIST = new Set<string>([
   // None currently
 ])
 
+function splitArgs(argsText: string): string[] {
+  const args: string[] = []
+  let current = ''
+  let inString: string | null = null
+  let escaped = false
+  let depthParen = 0
+  let depthBracket = 0
+  let depthBrace = 0
+
+  for (let i = 0; i < argsText.length; i++) {
+    const char = argsText[i] ?? ''
+
+    if (escaped) {
+      current += char
+      escaped = false
+      continue
+    }
+
+    if (char === '\\') {
+      current += char
+      escaped = true
+      continue
+    }
+
+    if (inString) {
+      current += char
+      if (char === inString) {
+        inString = null
+      }
+      continue
+    }
+
+    if (char === '"' || char === "'") {
+      inString = char
+      current += char
+      continue
+    }
+
+    if (char === '(') {
+      depthParen++
+      current += char
+      continue
+    }
+    if (char === ')') {
+      depthParen--
+      current += char
+      continue
+    }
+    if (char === '[') {
+      depthBracket++
+      current += char
+      continue
+    }
+    if (char === ']') {
+      depthBracket--
+      current += char
+      continue
+    }
+    if (char === '{') {
+      depthBrace++
+      current += char
+      continue
+    }
+    if (char === '}') {
+      depthBrace--
+      current += char
+      continue
+    }
+
+    if (char === ',' && depthParen === 0 && depthBracket === 0 && depthBrace === 0) {
+      const trimmed = current.trim()
+      if (trimmed) {
+        args.push(trimmed)
+      }
+      current = ''
+      continue
+    }
+
+    current += char
+  }
+
+  const tail = current.trim()
+  if (tail) {
+    args.push(tail)
+  }
+  return args
+}
+
 /**
  * Strip trailing JS comments (// ...) that are not inside strings
  */
@@ -74,8 +162,16 @@ function convertJsLineToJulia(line: string, funcName: string): string {
   jl = jl.replace(/\bInfinity\b/g, 'Inf')
   jl = jl.replace(/\bNaN\b/g, 'NaN')
 
-  // Julia's ceil returns an integer when called on Int, float otherwise
-  // For float input we need ceil(x) which returns same type
+  // sortperm uses keyword arguments in Julia (`rev=true`) instead of positional booleans.
+  if (funcName === 'sortperm') {
+    jl = jl.replace(/sortperm\s*\(([\s\S]*)\)$/g, (_match: string, argsText: string) => {
+      const args = splitArgs(argsText)
+      if (args.length === 2) {
+        return `sortperm(${args[0]}; rev=${args[1]})`
+      }
+      return `sortperm(${argsText})`
+    })
+  }
 
   return jl
 }
@@ -119,6 +215,11 @@ function normalizeJuliaOutput(output: string, expected?: string): string {
   // Strip trailing .0 from floats for integer comparison
   if (expected && /^-?\d+$/.test(expected) && /^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')
+  }
+
+  // Normalize Julia array rendering spacing: `[1, 2, 3]` -> `[1,2,3]`.
+  if (expected && /^\[.*\]$/.test(expected) && /^\[.*\]$/.test(result)) {
+    result = result.replace(/,\s+/g, ',')
   }
 
   // String quoting: Julia's print() doesn't add quotes, but expected values have them

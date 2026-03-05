@@ -7,7 +7,10 @@ import type { LanguageHandler } from '../types.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const CLOJURE_SKIP_LIST = new Set<string>([
-  // None currently
+  // partition emits lazy seqs/lists; parity translator currently compares scalar/string-style outputs only.
+  'partition',
+  // update-in requires higher-order function translation (JS callback -> Clojure fn) not implemented yet.
+  'update_in',
 ])
 
 /**
@@ -53,7 +56,7 @@ function stripTrailingComment(code: string): string {
  */
 function convertFunctionCall(code: string, funcName: string, category?: string): string {
   // Simple regex to match funcName(args)
-  const regex = new RegExp(`${funcName}\\s*\\(([^)]+)\\)`, 'g')
+  const regex = new RegExp(`${funcName}\\s*\\(([^)]*)\\)`, 'g')
 
   // Determine the namespace and convert function name
   if (category === 'string') {
@@ -64,6 +67,10 @@ function convertFunctionCall(code: string, funcName: string, category?: string):
       cljFuncName = 'blank?'
     }
     return code.replace(regex, `(clojure.string/${cljFuncName} $1)`)
+  }
+  if (category === 'core') {
+    const cljFuncName = funcName.replace(/_/g, '-')
+    return code.replace(regex, `(${cljFuncName} $1)`)
   }
   // Default to Math namespace
   return code.replace(regex, `(Math/${funcName} $1)`)

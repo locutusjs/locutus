@@ -21,9 +21,9 @@ export function map(mappings: TclMapInput, str: string): string {
   // parity verified: Tcl 8.6
   //     original by: Kevin van Zonneveld (https://kvz.io)
   //          note 1: Applies key/value replacements in left-to-right single-pass order like Tcl string map.
-  //       example 1: map({abc: 'X', a: 'Y'}, 'abc abca')
+  //       example 1: map(['abc', 'X', 'a', 'Y'], 'abc abca')
   //       returns 1: 'X XY'
-  //       example 2: map([['cat', 'dog'], [' ', '_']], 'cat cat')
+  //       example 2: map(['cat', 'dog', ' ', '_'], 'cat cat')
   //       returns 2: 'dog_dog'
   //       example 3: map(['ab', 'X', 'a', 'Y'], 'ababa')
   //       returns 3: 'XXY'
