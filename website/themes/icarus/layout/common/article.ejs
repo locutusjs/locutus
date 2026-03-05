@@ -32,9 +32,15 @@
             <%- post.content %>
         <% } %>
         </div>
-        <footer class="article-footer">
-            <%- partial('share/index', { post: post }) %>
-            <%- partial('comment/counter', { post: post }) %>
+        <footer class="article-footer<%= !index ? ' article-footer-post' : '' %>">
+            <% if (!index) { %>
+                <div class="article-social-actions">
+                    <a class="article-social-action article-social-action-x" href="https://x.com/locutus_io" target="_blank" rel="noopener noreferrer">Follow on X</a>
+                    <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+                </div>
+            <% } else { %>
+                <%- partial('comment/counter', { post: post }) %>
+            <% } %>
         </footer>
     </div>
     <% if (!index) { %>

@@ -11,8 +11,7 @@
 
             <br />
             <div class="Social">
-              <a href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a><br />
-              <br />
+              <a class="social-action social-action-x" href="https://x.com/locutus_io" target="_blank" rel="noopener noreferrer">Follow on X</a>
               <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
         </div>
@@ -31,7 +30,17 @@
             <table>
                 <tr>
                     <% for(var i in theme.customize.social_links) { %>
-                    <td><a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= i %>"><i class="fa fa-<%= i %>"></i></a></td>
+                    <% var iconName = i.toLowerCase(); %>
+                    <% var isX = (iconName === 'twitter' || iconName === 'x'); %>
+                    <td>
+                        <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= isX ? 'X' : i %>">
+                            <% if (isX) { %>
+                                <span class="social-icon-x" aria-hidden="true">X</span>
+                            <% } else { %>
+                                <i class="fa fa-<%= i %>"></i>
+                            <% } %>
+                        </a>
+                    </td>
                     <% } %>
                 </tr>
             </table>

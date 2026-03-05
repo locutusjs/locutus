@@ -1,4 +1,4 @@
-<% if (post.comments) { %>
+<% if (post.comments && (theme.comment.disqus || theme.comment.duoshuo || theme.comment.youyan)) { %>
     <section id="comments">
     <% if (theme.comment.disqus) { %>
         <%- partial('comment/disqus') %>

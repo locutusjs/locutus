@@ -61,6 +61,22 @@
                 transition: 0.2s ease
                 &:hover
                     background: color-link + #111
+            .Social
+                margin-top: 14px
+                text-align: center
+                .social-action
+                    display: inline-block
+                    margin-bottom: 12px
+                    padding: 8px 12px
+                    border: 1px solid color-border
+                    border-radius: 4px
+                    color: color-default
+                    font-size: 13px
+                    text-decoration: none
+                    transition: 0.2s ease
+                    &:hover
+                        color: color-default
+                        border-color: color-default + #444
         .article-info
             clearfix()
             padding: 0px
@@ -87,6 +103,12 @@
                         position: relative
                         transition: 0.2s ease
                         color: color-default + #333
+                        .social-icon-x
+                            display: inline-block
+                            font-family: font-sans
+                            font-size: 18px
+                            font-weight: 700
+                            line-height: 1
                         &:hover
                             color: color-default
                             &:after
