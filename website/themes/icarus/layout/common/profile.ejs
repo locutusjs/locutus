@@ -11,7 +11,7 @@
 
             <br />
             <div class="Social">
-              <a class="social-action social-action-x" href="https://x.com/locutus_io" target="_blank" rel="noopener noreferrer">Follow on X</a>
+              <a href="https://x.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a>
               <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
         </div>
@@ -35,7 +35,9 @@
                     <td>
                         <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= isX ? 'X' : i %>">
                             <% if (isX) { %>
-                                <span class="social-icon-x" aria-hidden="true">X</span>
+                                <svg class="social-icon-x" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M18.244 2H21.5l-7.11 8.13L22 22h-5.95l-4.66-6.11L5.99 22H2.73l7.61-8.7L2 2h6.1l4.2 5.55L18.244 2zm-1.04 18.2h1.8L5.17 3.7H3.24L17.2 20.2z"/>
+                                </svg>
                             <% } else { %>
                                 <i class="fa fa-<%= i %>"></i>
                             <% } %>
