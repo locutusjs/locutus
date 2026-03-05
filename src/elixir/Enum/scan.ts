@@ -5,6 +5,10 @@ type ScanReducer<TAccumulator, TValue> = (
   array: TValue[],
 ) => TAccumulator
 
+function isScanReducer<TAccumulator, TValue>(value: unknown): value is ScanReducer<TAccumulator, TValue> {
+  return typeof value === 'function'
+}
+
 export function scan<TValue>(values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>): TValue[]
 export function scan<TAccumulator, TValue>(
   values: TValue[] | unknown,
@@ -13,7 +17,7 @@ export function scan<TAccumulator, TValue>(
 ): TAccumulator[]
 export function scan<TAccumulator, TValue>(
   values: TValue[] | unknown,
-  initialOrReducer: TAccumulator | ScanReducer<TAccumulator, TValue>,
+  initialOrReducer: TAccumulator | ScanReducer<TValue, TValue>,
   maybeReducer?: ScanReducer<TAccumulator, TValue>,
 ): Array<TAccumulator | TValue> {
   //  discuss at: https://locutus.io/elixir/scan/
@@ -31,11 +35,6 @@ export function scan<TAccumulator, TValue>(
   }
 
   const hasInitial = typeof maybeReducer === 'function'
-  const reducer = (hasInitial ? maybeReducer : initialOrReducer) as ScanReducer<TAccumulator, TValue>
-
-  if (typeof reducer !== 'function') {
-    throw new TypeError('scan(): reducer must be a function')
-  }
 
   if (values.length === 0) {
     return []
@@ -44,6 +43,11 @@ export function scan<TAccumulator, TValue>(
   const out: Array<TAccumulator | TValue> = []
 
   if (hasInitial) {
+    const reducer = maybeReducer
+    if (!isScanReducer<TAccumulator, TValue>(reducer)) {
+      throw new TypeError('scan(): reducer must be a function')
+    }
+
     let accumulator = initialOrReducer as TAccumulator
     for (let i = 0; i < values.length; i++) {
       accumulator = reducer(accumulator, values[i] as TValue, i, values)
@@ -52,8 +56,13 @@ export function scan<TAccumulator, TValue>(
     return out
   }
 
-  let accumulator = values[0] as unknown as TAccumulator
-  out.push(accumulator as unknown as TValue)
+  if (!isScanReducer<TValue, TValue>(initialOrReducer)) {
+    throw new TypeError('scan(): reducer must be a function')
+  }
+
+  const reducer = initialOrReducer
+  let accumulator = values[0] as TValue
+  out.push(accumulator)
   for (let i = 1; i < values.length; i++) {
     accumulator = reducer(accumulator, values[i] as TValue, i, values)
     out.push(accumulator)

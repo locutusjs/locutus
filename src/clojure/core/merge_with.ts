@@ -1,4 +1,4 @@
-type MergeRecord = Record<string, unknown>
+type MergeRecord = { [key: string]: unknown }
 type MergeCombiner = (left: unknown, right: unknown, key: string) => unknown
 
 export function merge_with(combiner: MergeCombiner, ...maps: unknown[]): MergeRecord {
