@@ -740,6 +740,28 @@ code {
 #profile .inner .base-info #follow:hover {
   background: #49c8fb;
 }
+#profile .inner .base-info .Social {
+  margin-top: 14px;
+  text-align: center;
+}
+#profile .inner .base-info .Social .social-action {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 1px solid #eceff2;
+  border-radius: 4px;
+  color: #565a5f;
+  font-size: 13px;
+  text-decoration: none;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+#profile .inner .base-info .Social .social-action:hover {
+  color: #565a5f;
+  border-color: #9a9ea3;
+}
 #profile .inner .article-info {
   padding: 0px;
 }
@@ -783,6 +805,13 @@ code {
   -ms-transition: 0.2s ease;
   transition: 0.2s ease;
   color: #898d92;
+}
+#profile .inner .social-links > table td a .social-icon-x {
+  display: inline-block;
+  font-family: "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
 }
 #profile .inner .social-links > table td a:hover {
   color: #565a5f;
@@ -1086,6 +1115,51 @@ a.article-title:hover {
 }
 .article-footer a:hover {
   color: #565a5f;
+}
+.article-footer-post {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 10px;
+}
+.article-social-actions {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  gap: 12px;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.article-social-action {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #eceff2;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1;
+  color: #565a5f !important;
+  background: #fff;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+.article-social-action:hover {
+  border-color: #9a9ea3;
+  color: #565a5f !important;
+}
+.article-social-action-x {
+  font-weight: 600;
 }
 .article-comment-link {
   float: right;
