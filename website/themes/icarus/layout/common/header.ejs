@@ -39,10 +39,6 @@
                 <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
                   <td><a class="main-nav-link" href="<%- url_for(lang.language) %>"><%= lang.human %></a></td>
                 <% }) %>
-                <td><span class="main-nav-link">|</span></td>
-                <% for (var i in theme.menu) { %>
-                    <td><a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a></td>
-                <% } %>
             </tr>
         </table>
     </div>

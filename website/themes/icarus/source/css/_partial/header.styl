@@ -143,9 +143,27 @@ $nav-link
         padding: 0 8px
         font-weight: 500
     @media mq-mobile
-        display: none
+        display: block
+        float: none
+        clear: both
+        height: auto
+        line-height: 1.4
+        padding: 0 15px 10px
+        text-align: right
+        .top-nav-link
+            line-height: 1.4
+            padding: 0 8px 0 0
     @media mq-mini
-        display: none
+        display: block
+        float: none
+        clear: both
+        height: auto
+        line-height: 1.4
+        padding: 0 15px 10px
+        text-align: right
+        .top-nav-link
+            line-height: 1.4
+            padding: 0 8px 0 0
 
 #search-form-wrap
     @extend $header-block
@@ -182,6 +200,10 @@ $nav-link
                 padding: 0 24px 0 10px
             .search-form-submit
                 right: 10px
+    @media mq-mobile
+        .search-form
+            .search-form-input
+                width: 160px
 
 .search-form-input,
 .search-form-input.ins-search-input,
