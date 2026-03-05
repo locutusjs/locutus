@@ -134,6 +134,19 @@ $nav-link
         .fa
             line-height: logo-height
 
+#top-page-nav
+    @extend $header-block
+    @extend $header-block-right
+    .top-nav-link
+        display: inline-block
+        line-height: logo-height
+        padding: 0 8px
+        font-weight: 500
+    @media mq-mobile
+        display: none
+    @media mq-mini
+        display: none
+
 #search-form-wrap
     @extend $header-block
     @extend $header-block-right

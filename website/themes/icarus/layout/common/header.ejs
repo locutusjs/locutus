@@ -6,6 +6,13 @@
                 <span class="site-title"><%= config.title %></span>
             </a>
             <%- partial('search/index') %>
+            <% if (theme.menu) { %>
+                <nav id="top-page-nav">
+                    <% for (var i in theme.menu) { %>
+                        <a class="top-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
+                    <% } %>
+                </nav>
+            <% } %>
             <% if(theme.customize.profile && theme.customize.profile.enabled) { %>
                 <% var profile = theme.customize.profile; %>
                 <nav id="sub-nav">
@@ -24,10 +31,6 @@
             <% site.pages.find({ type: 'language' }).sort('order').each(function (lang) { %>
               <a class="main-nav-link" href="<%- url_for(lang.language) %>"><%= lang.human %></a>
             <% }) %>
-            <span class="main-nav-link">|</span>
-            <% for (var i in theme.menu) { %>
-              <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
-            <% } %>
         </nav>
     </div>
     <div id="main-nav-mobile" class="header-sub header-inner">
