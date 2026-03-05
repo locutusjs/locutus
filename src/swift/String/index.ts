@@ -1,4 +1,5 @@
 export { componentsSeparatedBy } from './componentsSeparatedBy.ts'
+export { hasPrefix } from './hasPrefix.ts'
 export { padding } from './padding.ts'
 export { replacingOccurrences } from './replacingOccurrences.ts'
 export { split } from './split.ts'

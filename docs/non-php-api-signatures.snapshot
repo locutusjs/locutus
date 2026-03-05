@@ -131,6 +131,8 @@ src/golang/url/QueryUnescape.ts :: export function QueryUnescape(s: string): str
 src/golang/url/ResolveReference.ts :: export function ResolveReference(baseURL: string, refURL: string): string
 src/haskell/list/groupBy.ts :: export function groupBy<T>(items: T[] | unknown, predicate?: GroupPredicate<T>): T[][]
 src/haskell/list/inits.ts :: export function inits<T>(items: T[] | unknown): T[][]
+src/haskell/list/intercalate.ts :: export function intercalate<T>(separator: T[] | unknown, lists: Array<T[] | unknown> | unknown): T[]
+src/haskell/list/intersperse.ts :: export function intersperse<T>(separator: T, items: T[] | unknown): T[]
 src/haskell/list/nubBy.ts :: export function nubBy<T>(items: T[] | unknown, eq?: EqFn<T>): T[]
 src/haskell/list/permutations.ts :: export function permutations<T>(items: T[] | unknown): T[][]
 src/haskell/list/subsequences.ts :: export function subsequences<T>(items: T[] | unknown): T[][]
@@ -144,8 +146,10 @@ src/julia/Base/partialsortperm.ts :: export function partialsortperm<T>(values: 
 src/julia/Base/sortperm.ts :: export function sortperm<T>(values: T[] | unknown, rev: boolean = false): number[]
 src/julia/Base/uppercase.ts :: export function uppercase(s: string): string
 src/kotlin/collections/associateBy.ts :: export function associateBy<T>(values: T[] | unknown, keySelector: AssociateKeySelector<T>): Record<string, T>
+src/kotlin/collections/chunked.ts :: export function chunked<T>(values: T[] | unknown, size: number): T[][]
 src/kotlin/collections/groupBy.ts :: export function groupBy<T>( values: T[] | unknown, selector: (value: T, index: number, array: T[]) => string | number | symbol, ): Record<string, T[]>
 src/kotlin/collections/runningFold.ts :: export function runningFold<T, R>(values: T[] | unknown, initial: R, operation: RunningOperation<T, R>): R[]
+src/kotlin/collections/runningReduce.ts :: export function runningReduce<T>(values: T[] | unknown, operation: ReduceOperation<T>): T[]
 src/kotlin/collections/windowed.ts :: export function windowed<T>( values: T[] | unknown, size: number, step: number = 1, partialWindows: boolean = false, ): T[][]
 src/kotlin/collections/zipWithNext.ts :: export function zipWithNext<T, R>(values: T[] | unknown, transform: ZipTransform<T, R>): R[]
 src/kotlin/collections/zipWithNext.ts :: export function zipWithNext<T, R>(values: T[] | unknown, transform?: ZipTransform<T, R>): Array<[T, T]> | R[]
@@ -297,6 +301,7 @@ src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): strin
 src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): string
 src/rust/str/trim.ts :: export function trim(str: string): string
 src/swift/String/componentsSeparatedBy.ts :: export function componentsSeparatedBy(str: string, separator: string): string[]
+src/swift/String/hasPrefix.ts :: export function hasPrefix(str: string, prefix: string): boolean
 src/swift/String/padding.ts :: export function padding(str: string, toLength: number, withPad: string = ' ', startingAt: number = 0): string
 src/swift/String/replacingOccurrences.ts :: export function replacingOccurrences( str: string, target: string, replacement: string, caseInsensitive: boolean = false, ): string
 src/swift/String/split.ts :: export function split( str: string, separator: string, maxSplits: number = Number.MAX_SAFE_INTEGER, omittingEmptySubsequences: boolean = true, ): string[]

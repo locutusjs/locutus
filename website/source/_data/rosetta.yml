@@ -90,6 +90,7 @@ string_starts_with:
   - rust/str/starts_with
   - golang/strings/HasPrefix
   - ruby/String/start_with
+  - swift/String/hasPrefix
 
 string_ends_with:
   - powershell/string/endswith
@@ -441,13 +442,21 @@ array_unique_by:
 array_chunk:
   - php/array/array_chunk
   - elixir/Enum/chunk_every
+  - kotlin/collections/chunked
   - kotlin/collections/windowed
 
 running_fold:
   - kotlin/collections/runningFold
+  - kotlin/collections/runningReduce
 
 adjacent_pairs:
   - kotlin/collections/zipWithNext
+
+list_intersperse:
+  - haskell/list/intersperse
+
+list_intercalate:
+  - haskell/list/intercalate
 
 list_prefixes:
   - haskell/list/inits
