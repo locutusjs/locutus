@@ -1087,3 +1087,28 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Verified with targeted parity runs (`--no-cache`) for all four functions.
 - Key learnings:
   - Locutus test generation expects exported function files to have standard header blocks; shared helpers are safer as local non-exported functions unless promoted to full helper modules with proper docs/tests.
+
+### Iteration 63
+
+2026-03-05
+
+- **Area: Release + Verification infrastructure + TypeScript**
+- Plan:
+  - Merge the queued expansion PR once CI clears.
+  - Cut the next patch release from clean `main`.
+  - Start the higher-order parity callback work from a fresh post-release branch with a written plan and explicit targets.
+- Progress:
+  - Confirmed PR `#550` passed all required checks and squash-merged it into `main`.
+  - Released `v3.0.7`:
+    - moved `## main` notes in `CHANGELOG.md` into `## v3.0.7`
+    - ran `npm version patch -m "Release v%s"`
+    - pushed `main` and tag `v3.0.7`
+  - Started branch `feat/callback-parity-plan` from released `main`.
+  - Added `docs/prompts/callback-parity-plan.md` documenting:
+    - current callback-related parity skips
+    - the AST-first plan
+    - the supported callback subset for phase 1
+    - explicit Elixir, Clojure, and Julia success targets
+- Key learnings:
+  - The real blocker is not just callback lowering. `elixir` and `clojure` parity also need deterministic JSON-like serialization for maps/lists once higher-order functions are unlocked.
+  - We already depend on `typescript`, so callback lowering should reuse the TS AST rather than introduce regex-heavy translators.
