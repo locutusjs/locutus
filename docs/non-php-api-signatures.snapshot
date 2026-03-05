@@ -61,7 +61,7 @@ src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unk
 src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector?: GroupValueSelector<T, U>, ): Record<string, unknown[]>
 src/elixir/Enum/group_by.ts :: export function group_by<T>(values: T[] | unknown, keySelector: GroupKeySelector<T>): Record<string, T[]>
 src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initial: TAccumulator, reducer: ScanReducer<TAccumulator, TValue>, ): TAccumulator[]
-src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initialOrReducer: TAccumulator | ScanReducer<TAccumulator, TValue>, maybeReducer?: ScanReducer<TAccumulator, TValue>, ): Array<TAccumulator | TValue>
+src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initialOrReducer: TAccumulator | ScanReducer<TValue, TValue>, maybeReducer?: ScanReducer<TAccumulator, TValue>, ): Array<TAccumulator | TValue>
 src/elixir/Enum/scan.ts :: export function scan<TValue>(values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>): TValue[]
 src/elixir/Float/ceil.ts :: export function ceil(x: number): number
 src/elixir/Float/floor.ts :: export function floor(x: number): number
