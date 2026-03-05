@@ -24,7 +24,11 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.6...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.7...main).
+
+## v3.0.7
+
+Released: 2026-03-05. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.6...v3.0.7).
 
 ### Expansion
 
