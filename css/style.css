@@ -744,23 +744,8 @@ code {
   margin-top: 14px;
   text-align: center;
 }
-#profile .inner .base-info .Social .social-action {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 8px 12px;
-  border: 1px solid #eceff2;
-  border-radius: 4px;
-  color: #565a5f;
-  font-size: 13px;
-  text-decoration: none;
-  -webkit-transition: 0.2s ease;
-  -moz-transition: 0.2s ease;
-  -ms-transition: 0.2s ease;
-  transition: 0.2s ease;
-}
-#profile .inner .base-info .Social .social-action:hover {
-  color: #565a5f;
-  border-color: #9a9ea3;
+#profile .inner .base-info .Social .twitter-follow-button {
+  margin-bottom: 10px;
 }
 #profile .inner .article-info {
   padding: 0px;
@@ -808,10 +793,10 @@ code {
 }
 #profile .inner .social-links > table td a .social-icon-x {
   display: inline-block;
-  font-family: "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  vertical-align: middle;
 }
 #profile .inner .social-links > table td a:hover {
   color: #565a5f;
@@ -1140,26 +1125,8 @@ a.article-title:hover {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
-.article-social-action {
-  display: inline-block;
-  padding: 8px 12px;
-  border: 1px solid #eceff2;
-  border-radius: 4px;
-  font-size: 13px;
-  line-height: 1;
-  color: #565a5f !important;
-  background: #fff;
-  -webkit-transition: 0.2s ease;
-  -moz-transition: 0.2s ease;
-  -ms-transition: 0.2s ease;
-  transition: 0.2s ease;
-}
-.article-social-action:hover {
-  border-color: #9a9ea3;
-  color: #565a5f !important;
-}
-.article-social-action-x {
-  font-weight: 600;
+.article-social-actions .twitter-follow-button {
+  margin-bottom: 0;
 }
 .article-comment-link {
   float: right;
