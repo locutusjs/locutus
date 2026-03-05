@@ -24,9 +24,11 @@ import { Contains } from 'locutus/golang/strings/Contains'
 
 ## What we are not
 
-Locutus is **not a drop-in standard library for TypeScript**. If you need a well-rounded utility library, [lodash](https://lodash.com/) is the better choice.
+Locutus is not a drop-in utility framework for TypeScript. If you need a broad utility toolkit, [lodash](https://lodash.com/) is often the better fit.
 
-That said, there are useful things here, and Locutus makes it easy to pull in just a single function. The notes on each function page should help you judge its maturity.
+JavaScript's standard library improves every year, so for production apps it is worth checking whether your target environments already support what you need out of the box.
+
+Locutus still offers practical value where native APIs differ or parity with other languages matters, and it is easy to import a single function. Function page notes help you judge maturity before adopting.
 
 ## What we port
 
