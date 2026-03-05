@@ -24,7 +24,34 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.5...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.6...main).
+
+## v3.0.6
+
+Released: 2026-03-05. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.5...v3.0.6).
+
+### Expansion
+
+- Added Haskell list functions:
+  - `haskell/list/inits`
+  - `haskell/list/tails`
+- Added Kotlin collections function:
+  - `kotlin/collections/runningFold`
+- Added Swift string functions:
+  - `swift/String/trimmingCharacters`
+  - `swift/String/componentsSeparatedBy`
+
+### Documentation
+
+- Added root `AGENTS.md` rule requiring Rosetta updates for new/renamed functions.
+- Backfilled Rosetta mappings for recent additions, including:
+  - `elixir/Enum/chunk_every`
+  - `haskell/list/nubBy`
+  - `haskell/list/inits`
+  - `haskell/list/tails`
+  - `julia/Base/partialsortperm`
+  - `kotlin/collections/zipWithNext`
+  - `kotlin/collections/runningFold`
 
 ## v3.0.5
 
