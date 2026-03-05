@@ -11,5 +11,5 @@ export function ConstantTimeSelect(v: number, x: number, y: number): number {
   //       returns 3: 43
 
   const mask = (v - 1) | 0
-  return ((~mask & (x | 0)) | (mask & (y | 0))) | 0
+  return (~mask & (x | 0)) | (mask & (y | 0)) | 0
 }
