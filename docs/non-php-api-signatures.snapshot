@@ -32,6 +32,8 @@ src/c/math/frexp.ts :: export function frexp(arg: number): [number, number]
 src/c/stdio/sprintf.ts :: export function sprintf(format: string, ...args: unknown[]): string
 src/c/stdlib/atof.ts :: export function atof(str: string): number
 src/c/stdlib/atoi.ts :: export function atoi(str: string): number
+src/c/stdlib/strtod.ts :: export function strtod(str: string): number
+src/c/stdlib/strtol.ts :: export function strtol(str: string, base: number = 10): number
 src/c/string/strcat.ts :: export function strcat(dest: string, src: string): string
 src/c/string/strchr.ts :: export function strchr(str: string, c: string): string | null
 src/c/string/strcmp.ts :: export function strcmp(str1: string, str2: string): number
@@ -40,7 +42,13 @@ src/c/string/strstr.ts :: export function strstr(haystack: string, needle: strin
 src/clojure/Math/abs.ts :: export function abs(x: number): number
 src/clojure/Math/ceil.ts :: export function ceil(x: number): number
 src/clojure/Math/floor.ts :: export function floor(x: number): number
+src/clojure/core/assoc_in.ts :: export function assoc_in(value: unknown, keys: PathKey[] | unknown, newValue: unknown): unknown
+src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown): unknown
+src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue: unknown): unknown
+src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue?: unknown): unknown
+src/clojure/core/merge_with.ts :: export function merge_with(combiner: MergeCombiner, ...maps: unknown[]): MergeRecord
 src/clojure/core/partition.ts :: export function partition<T>(n: number, values: T[] | unknown, step: number = n, pad: T[] | null = null): T[][]
+src/clojure/core/reduce_kv.ts :: export function reduce_kv<TAccumulator, TValue = unknown>( reducer: ReduceKvReducer<TAccumulator, TValue>, initial: TAccumulator, collection: ReduceKvCollection<TValue> | unknown, ): TAccumulator
 src/clojure/core/update_in.ts :: export function update_in(value: unknown, keys: PathKey[] | unknown, updater: Updater, ...args: unknown[]): unknown
 src/clojure/string/blank.ts :: export function blank(s: string): boolean
 src/clojure/string/lower_case.ts :: export function lower_case(s: string): string
@@ -48,6 +56,13 @@ src/clojure/string/reverse.ts :: export function reverse(s: string): string
 src/clojure/string/trim.ts :: export function trim(s: string): string
 src/clojure/string/upper_case.ts :: export function upper_case(s: string): string
 src/elixir/Enum/chunk_every.ts :: export function chunk_every<T>(values: T[] | unknown, count: number, step: number = count, leftover: T[] = []): T[][]
+src/elixir/Enum/frequencies_by.ts :: export function frequencies_by<T>(values: T[] | unknown, selector: FrequencySelector<T>): Record<string, number>
+src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector: GroupValueSelector<T, U>, ): Record<string, U[]>
+src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector?: GroupValueSelector<T, U>, ): Record<string, unknown[]>
+src/elixir/Enum/group_by.ts :: export function group_by<T>(values: T[] | unknown, keySelector: GroupKeySelector<T>): Record<string, T[]>
+src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initial: TAccumulator, reducer: ScanReducer<TAccumulator, TValue>, ): TAccumulator[]
+src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initialOrReducer: TAccumulator | ScanReducer<TValue, TValue>, maybeReducer?: ScanReducer<TAccumulator, TValue>, ): Array<TAccumulator | TValue>
+src/elixir/Enum/scan.ts :: export function scan<TValue>(values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>): TValue[]
 src/elixir/Float/ceil.ts :: export function ceil(x: number): number
 src/elixir/Float/floor.ts :: export function floor(x: number): number
 src/elixir/Kernel/abs.ts :: export function abs(x: number): number
@@ -56,6 +71,9 @@ src/elixir/String/length.ts :: export function length(string: string): number
 src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
 src/golang/net/JoinHostPort.ts :: export function JoinHostPort(host: string, port: string): string
+src/golang/net/ParseCIDR.ts :: export function ParseCIDR(value: string): ParsedCIDR | null
+src/golang/net/ParseCIDR.ts :: export type ParsedCIDR = { ip: string maskBits: number }
+src/golang/net/ParseIP.ts :: export function ParseIP(value: string): string | null
 src/golang/net/SplitHostPort.ts :: export function SplitHostPort(hostport: string): [string, string]
 src/golang/path/Base.ts :: export function Base(path: string): string
 src/golang/path/Clean.ts :: export function Clean(path: string): string
@@ -106,6 +124,9 @@ src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: 
 src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
 src/golang/subtle/ConstantTimeCompare.ts :: export function ConstantTimeCompare(x: string, y: string): number
+src/golang/subtle/ConstantTimeCopy.ts :: export function ConstantTimeCopy(v: number, x: number[] | unknown, y: number[] | unknown): number[]
+src/golang/subtle/ConstantTimeEq.ts :: export function ConstantTimeEq(x: number, y: number): number
+src/golang/subtle/ConstantTimeSelect.ts :: export function ConstantTimeSelect(v: number, x: number, y: number): number
 src/golang/time/Add.ts :: export function Add(value: GoTimeInput, durationMs: number): Date
 src/golang/time/AddDate.ts :: export function AddDate(value: GoTimeInput, years: number, months: number, days: number): Date
 src/golang/time/After.ts :: export function After(left: GoTimeInput, right: GoTimeInput): boolean
@@ -129,8 +150,11 @@ src/golang/url/PathEscape.ts :: export function PathEscape(s: string): string
 src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
 src/golang/url/QueryUnescape.ts :: export function QueryUnescape(s: string): string
 src/golang/url/ResolveReference.ts :: export function ResolveReference(baseURL: string, refURL: string): string
+src/haskell/list/group.ts :: export function group<T>(items: T[] | unknown): T[][]
 src/haskell/list/groupBy.ts :: export function groupBy<T>(items: T[] | unknown, predicate?: GroupPredicate<T>): T[][]
 src/haskell/list/inits.ts :: export function inits<T>(items: T[] | unknown): T[][]
+src/haskell/list/intercalate.ts :: export function intercalate<T>(separator: T[] | unknown, lists: Array<T[] | unknown> | unknown): T[]
+src/haskell/list/intersperse.ts :: export function intersperse<T>(separator: T, items: T[] | unknown): T[]
 src/haskell/list/nubBy.ts :: export function nubBy<T>(items: T[] | unknown, eq?: EqFn<T>): T[]
 src/haskell/list/permutations.ts :: export function permutations<T>(items: T[] | unknown): T[][]
 src/haskell/list/subsequences.ts :: export function subsequences<T>(items: T[] | unknown): T[][]
@@ -138,14 +162,23 @@ src/haskell/list/tails.ts :: export function tails<T>(items: T[] | unknown): T[]
 src/haskell/list/transpose.ts :: export function transpose<T>(rows: Array<Array<T> | unknown> | unknown): T[][]
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
+src/julia/Base/findall.ts :: export function findall<T>(matcher: FindPredicate<T> | T, values: T[] | unknown): number[]
+src/julia/Base/findall.ts :: export function findall<T>(matcher: FindPredicate<T>, values: T[] | unknown): number[]
+src/julia/Base/findall.ts :: export function findall<T>(matcher: T, values: T[] | unknown): number[]
 src/julia/Base/floor.ts :: export function floor(x: number): number
 src/julia/Base/lowercase.ts :: export function lowercase(s: string): string
 src/julia/Base/partialsortperm.ts :: export function partialsortperm<T>(values: T[] | unknown, k: number, rev: boolean = false): number[]
+src/julia/Base/searchsorted.ts :: export function searchsorted(values: number[] | unknown, target: number): SearchSortedRange
+src/julia/Base/searchsorted.ts :: export type SearchSortedRange = { start: number end: number }
+src/julia/Base/searchsortedfirst.ts :: export function searchsortedfirst(values: number[] | unknown, target: number): number
+src/julia/Base/searchsortedlast.ts :: export function searchsortedlast(values: number[] | unknown, target: number): number
 src/julia/Base/sortperm.ts :: export function sortperm<T>(values: T[] | unknown, rev: boolean = false): number[]
 src/julia/Base/uppercase.ts :: export function uppercase(s: string): string
 src/kotlin/collections/associateBy.ts :: export function associateBy<T>(values: T[] | unknown, keySelector: AssociateKeySelector<T>): Record<string, T>
+src/kotlin/collections/chunked.ts :: export function chunked<T>(values: T[] | unknown, size: number): T[][]
 src/kotlin/collections/groupBy.ts :: export function groupBy<T>( values: T[] | unknown, selector: (value: T, index: number, array: T[]) => string | number | symbol, ): Record<string, T[]>
 src/kotlin/collections/runningFold.ts :: export function runningFold<T, R>(values: T[] | unknown, initial: R, operation: RunningOperation<T, R>): R[]
+src/kotlin/collections/runningReduce.ts :: export function runningReduce<T>(values: T[] | unknown, operation: ReduceOperation<T>): T[]
 src/kotlin/collections/windowed.ts :: export function windowed<T>( values: T[] | unknown, size: number, step: number = 1, partialWindows: boolean = false, ): T[][]
 src/kotlin/collections/zipWithNext.ts :: export function zipWithNext<T, R>(values: T[] | unknown, transform: ZipTransform<T, R>): R[]
 src/kotlin/collections/zipWithNext.ts :: export function zipWithNext<T, R>(values: T[] | unknown, transform?: ZipTransform<T, R>): Array<[T, T]> | R[]
@@ -223,6 +256,9 @@ src/python/math/log2.ts :: export function log2(x: number): number
 src/python/math/pow.ts :: export function pow(x: number, y: number): number
 src/python/math/sqrt.ts :: export function sqrt(x: number): number
 src/python/math/trunc.ts :: export function trunc(x: number): number
+src/python/re/findall.ts :: export function findall(pattern: string | RegExp, source: string, flags: ReFindallFlags = 0): Array<string | string[]>
+src/python/re/finditer.ts :: export function finditer(pattern: string | RegExp, source: string, flags: ReFinditerFlags = 0): FinditerMatch[]
+src/python/re/finditer.ts :: export type FinditerMatch = { match: string index: number groups: string[] }
 src/python/re/sub.ts :: export function sub( pattern: string | RegExp, replacement: ReSubReplacement, source: string, count: number = 0, flags: ReSubFlags = 0, ): string
 src/python/string/ascii_letters.ts :: export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 src/python/string/ascii_lowercase.ts :: export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz'
@@ -237,10 +273,12 @@ src/python/string/whitespace.ts :: export function whitespace(): ' \t\n\r\x0b\x0
 src/r/base/abs.ts :: export function abs(x: number): number
 src/r/base/ceiling.ts :: export function ceiling(x: number): number
 src/r/base/floor.ts :: export function floor(x: number): number
+src/r/base/match.ts :: export function match( value: string | number | boolean | null, table: Array<string | number | boolean | null> | unknown, nomatch: number | null = null, ): number | null
 src/r/base/max.ts :: export function max(...args: number[]): number
 src/r/base/min.ts :: export function min(...args: number[]): number
 src/r/base/nchar.ts :: export function nchar(x: string): number
 src/r/base/round.ts :: export function round(x: number, digits?: number): number
+src/r/base/seq.ts :: export function seq(from: number, to?: number, by?: number, length_out?: number): number[]
 src/r/base/sqrt.ts :: export function sqrt(x: number): number
 src/r/base/tolower.ts :: export function tolower(x: string): string
 src/r/base/toupper.ts :: export function toupper(x: string): string
@@ -297,7 +335,11 @@ src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): strin
 src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): string
 src/rust/str/trim.ts :: export function trim(str: string): string
 src/swift/String/componentsSeparatedBy.ts :: export function componentsSeparatedBy(str: string, separator: string): string[]
+src/swift/String/hasPrefix.ts :: export function hasPrefix(str: string, prefix: string): boolean
+src/swift/String/hasSuffix.ts :: export function hasSuffix(str: string, suffix: string): boolean
 src/swift/String/padding.ts :: export function padding(str: string, toLength: number, withPad: string = ' ', startingAt: number = 0): string
+src/swift/String/rangeOf.ts :: export function rangeOf( str: string, search: string, caseInsensitive: boolean = false, backwards: boolean = false, ): StringRange | null
+src/swift/String/rangeOf.ts :: export type StringRange = { start: number end: number }
 src/swift/String/replacingOccurrences.ts :: export function replacingOccurrences( str: string, target: string, replacement: string, caseInsensitive: boolean = false, ): string
 src/swift/String/split.ts :: export function split( str: string, separator: string, maxSplits: number = Number.MAX_SAFE_INTEGER, omittingEmptySubsequences: boolean = true, ): string[]
 src/swift/String/trimmingCharacters.ts :: export function trimmingCharacters(str: string, characters: string = ' \n\r\t'): string

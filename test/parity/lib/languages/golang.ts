@@ -84,9 +84,14 @@ const GO_PACKAGES: Record<string, string> = {
   ResolveReference: 'url',
   // net package
   JoinHostPort: 'net',
+  ParseCIDR: 'net',
+  ParseIP: 'net',
   SplitHostPort: 'net',
   // crypto/subtle package
   ConstantTimeCompare: 'subtle',
+  ConstantTimeCopy: 'subtle',
+  ConstantTimeEq: 'subtle',
+  ConstantTimeSelect: 'subtle',
 }
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {
@@ -116,6 +121,8 @@ export const GO_SKIP_LIST = new Set<string>([
   'Index2',
   // TrimSpace example uses escape sequences (\t\n\r) that get mangled in shell escaping
   'TrimSpace',
+  // ConstantTimeCopy mutates destination in Go and returns nothing; locutus returns updated array.
+  'ConstantTimeCopy',
 ])
 
 /**
@@ -959,7 +966,7 @@ function getRequiredImports(goCode: string): string[] {
   if (goCode.includes('net.') || goCode.includes('locutusSplitHostPort(')) {
     imports.add('net')
   }
-  if (goCode.includes('locutusConstantTimeCompare(')) {
+  if (goCode.includes('locutusConstantTimeCompare(') || goCode.includes('subtle.')) {
     imports.add('crypto/subtle')
   }
   if (

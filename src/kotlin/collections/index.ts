@@ -1,5 +1,7 @@
 export { associateBy } from './associateBy.ts'
+export { chunked } from './chunked.ts'
 export { groupBy } from './groupBy.ts'
 export { runningFold } from './runningFold.ts'
+export { runningReduce } from './runningReduce.ts'
 export { windowed } from './windowed.ts'
 export { zipWithNext } from './zipWithNext.ts'

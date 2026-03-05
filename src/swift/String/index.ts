@@ -1,5 +1,8 @@
 export { componentsSeparatedBy } from './componentsSeparatedBy.ts'
+export { hasPrefix } from './hasPrefix.ts'
+export { hasSuffix } from './hasSuffix.ts'
 export { padding } from './padding.ts'
+export { rangeOf } from './rangeOf.ts'
 export { replacingOccurrences } from './replacingOccurrences.ts'
 export { split } from './split.ts'
 export { trimmingCharacters } from './trimmingCharacters.ts'

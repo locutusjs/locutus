@@ -2999,3 +2999,51 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Prefix/suffix and running-accumulation combinators deliver outsized utility for small language surfaces while staying fully aligned with JS-native data structures.
   - Swift string additions can remain expressive and copy-paste-friendly when we keep signatures strict and behavior explicit around edge cases (empty separators/character sets).
+
+## Iteration 102
+
+- Plans
+  - Open a new PR with another 5-function juicy expansion batch while deferring release until a larger ready point.
+  - Keep blast radius low by focusing on non-parity-translator languages for this batch:
+    - `haskell/list/intersperse`
+    - `haskell/list/intercalate`
+    - `kotlin/collections/chunked`
+    - `kotlin/collections/runningReduce`
+    - `swift/String/hasPrefix`
+- Progress
+  - Added source modules:
+    - `src/haskell/list/intersperse.ts`
+    - `src/haskell/list/intercalate.ts`
+    - `src/kotlin/collections/chunked.ts`
+    - `src/kotlin/collections/runningReduce.ts`
+    - `src/swift/String/hasPrefix.ts`
+  - Updated exports:
+    - `src/haskell/list/index.ts`
+    - `src/kotlin/collections/index.ts`
+    - `src/swift/String/index.ts`
+  - Updated Rosetta mappings to include all new additions:
+    - existing groups: `string_starts_with`, `array_chunk`, `running_fold`
+    - new groups: `list_intersperse`, `list_intercalate`
+  - Regenerated tests:
+    - `test/generated/haskell/list/intersperse.vitest.ts`
+    - `test/generated/haskell/list/intercalate.vitest.ts`
+    - `test/generated/kotlin/collections/chunked.vitest.ts`
+    - `test/generated/kotlin/collections/runningReduce.vitest.ts`
+    - `test/generated/swift/String/hasPrefix.vitest.ts`
+  - Refreshed type quality artifacts:
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation
+  - `yarn biome check` on new/updated source files
+  - `yarn lint:headers`
+  - `yarn build:tests`
+  - `yarn vitest run test/generated/haskell/list/intercalate.vitest.ts test/generated/haskell/list/intersperse.vitest.ts test/generated/kotlin/collections/chunked.vitest.ts test/generated/kotlin/collections/runningReduce.vitest.ts test/generated/swift/String/hasPrefix.vitest.ts`
+  - `yarn fix:api:snapshot`
+  - `yarn fix:type:contracts`
+  - `yarn lint:api:snapshot`
+  - `yarn lint:type:contracts`
+  - `yarn lint:ts`
+  - `yarn lint:ts:strict-next`
+- Key learnings
+  - We can keep pushing high-value sequence utilities (`intercalate`, `runningReduce`, `chunked`) without introducing parity-translator risk.
+  - Rosetta maintenance remains practical if handled in the same commit as new functions, with singleton groups used when no strong cross-language equivalent exists yet.

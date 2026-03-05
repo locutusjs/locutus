@@ -26,6 +26,64 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.6...main).
 
+### Expansion
+
+- Added C stdlib parsing helpers:
+  - `c/stdlib/strtol`
+  - `c/stdlib/strtod`
+- Added Clojure core data helpers:
+  - `clojure/core/merge_with`
+  - `clojure/core/reduce_kv`
+  - `clojure/core/get_in`
+  - `clojure/core/assoc_in`
+- Added Elixir `Enum` helpers:
+  - `elixir/Enum/frequencies_by`
+  - `elixir/Enum/group_by`
+  - `elixir/Enum/scan`
+- Added Go helpers in `net` and `subtle`:
+  - `golang/net/ParseIP`
+  - `golang/net/ParseCIDR`
+  - `golang/subtle/ConstantTimeSelect`
+  - `golang/subtle/ConstantTimeEq`
+  - `golang/subtle/ConstantTimeCopy`
+- Added Haskell list helpers:
+  - `haskell/list/intercalate`
+  - `haskell/list/intersperse`
+  - `haskell/list/group`
+- Added Julia Base helpers:
+  - `julia/Base/findall`
+  - `julia/Base/searchsorted`
+  - `julia/Base/searchsortedfirst`
+  - `julia/Base/searchsortedlast`
+- Added Kotlin collections helpers:
+  - `kotlin/collections/chunked`
+  - `kotlin/collections/runningReduce`
+- Added Python regex helpers:
+  - `python/re/findall`
+  - `python/re/finditer`
+- Added R base helpers:
+  - `r/base/seq`
+  - `r/base/match`
+- Added Swift string helpers:
+  - `swift/String/hasPrefix`
+  - `swift/String/hasSuffix`
+  - `swift/String/rangeOf`
+
+### Infrastructure
+
+- Extended parity translation coverage for:
+  - `python/re/findall`
+  - `python/re/finditer`
+  - Go `net` and `subtle` additions
+- Added explicit parity skips for higher-order callback cases that current translators still cannot lower correctly:
+  - `clojure/core/merge_with`
+  - `clojure/core/reduce_kv`
+  - `elixir/Enum/frequencies_by`
+  - `elixir/Enum/group_by`
+  - `elixir/Enum/scan`
+  - `julia/Base/findall`
+- Refreshed Rosetta mappings, generated API signature snapshots, and generated type-contract snapshots to match the expanded API surface.
+
 ## v3.0.6
 
 Released: 2026-03-05. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.5...v3.0.6).

@@ -7,7 +7,8 @@ import type { LanguageHandler } from '../types.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const JULIA_SKIP_LIST = new Set<string>([
-  // None currently
+  // findall callback/value overloads do not translate cleanly to Julia's predicate-only findall call yet.
+  'findall',
 ])
 
 function splitArgs(argsText: string): string[] {

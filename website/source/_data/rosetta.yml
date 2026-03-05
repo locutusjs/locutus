@@ -90,12 +90,14 @@ string_starts_with:
   - rust/str/starts_with
   - golang/strings/HasPrefix
   - ruby/String/start_with
+  - swift/String/hasPrefix
 
 string_ends_with:
   - powershell/string/endswith
   - rust/str/ends_with
   - golang/strings/HasSuffix
   - ruby/String/end_with
+  - swift/String/hasSuffix
 
 string_reverse:
   - php/strings/strrev
@@ -132,9 +134,28 @@ regex_match:
   - php/pcre/preg_match
   - tcl/string/match
 
+regex_find_all:
+  - python/re/findall
+
+regex_find_iter:
+  - python/re/finditer
+
+constant_time_compare:
+  - golang/subtle/ConstantTimeCompare
+
+constant_time_equal:
+  - golang/subtle/ConstantTimeEq
+
+constant_time_copy:
+  - golang/subtle/ConstantTimeCopy
+
+constant_time_select:
+  - golang/subtle/ConstantTimeSelect
+
 collection_group_by:
   - ruby/Array/group_by
   - kotlin/collections/groupBy
+  - elixir/Enum/group_by
 
 list_permutations:
   - ruby/Array/permutation
@@ -150,6 +171,9 @@ string_index:
   - golang/strings/Index
   - golang/strings/Index2
   - tcl/string/first
+
+string_search_range:
+  - swift/String/rangeOf
 
 string_last_index:
   - php/strings/strrpos
@@ -441,13 +465,37 @@ array_unique_by:
 array_chunk:
   - php/array/array_chunk
   - elixir/Enum/chunk_every
+  - kotlin/collections/chunked
   - kotlin/collections/windowed
 
 running_fold:
+  - elixir/Enum/scan
   - kotlin/collections/runningFold
+  - kotlin/collections/runningReduce
 
 adjacent_pairs:
   - kotlin/collections/zipWithNext
+
+collection_frequencies_by:
+  - elixir/Enum/frequencies_by
+
+map_merge_with:
+  - clojure/core/merge_with
+
+map_reduce_kv:
+  - clojure/core/reduce_kv
+
+map_get_in:
+  - clojure/core/get_in
+
+map_assoc_in:
+  - clojure/core/assoc_in
+
+list_intersperse:
+  - haskell/list/intersperse
+
+list_intercalate:
+  - haskell/list/intercalate
 
 list_prefixes:
   - haskell/list/inits
@@ -458,6 +506,41 @@ list_suffixes:
 sort_permutation:
   - julia/Base/sortperm
   - julia/Base/partialsortperm
+
+search_sorted_first:
+  - julia/Base/searchsortedfirst
+
+search_sorted_last:
+  - julia/Base/searchsortedlast
+
+search_sorted_range:
+  - julia/Base/searchsorted
+
+find_all_indices:
+  - julia/Base/findall
+
+list_group_adjacent:
+  - haskell/list/group
+  - haskell/list/groupBy
+
+sequence_generate:
+  - php/array/range
+  - r/base/seq
+
+ip_parse:
+  - golang/net/ParseIP
+
+cidr_parse:
+  - golang/net/ParseCIDR
+
+string_to_integer_base:
+  - c/stdlib/strtol
+
+string_to_float:
+  - c/stdlib/strtod
+
+value_match_position:
+  - r/base/match
 
 array_flatten:
   - ruby/Array/flatten
