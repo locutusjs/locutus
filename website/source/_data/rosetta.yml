@@ -134,6 +134,9 @@ regex_match:
   - php/pcre/preg_match
   - tcl/string/match
 
+regex_find_all:
+  - python/re/findall
+
 constant_time_compare:
   - golang/subtle/ConstantTimeCompare
 
@@ -482,6 +485,9 @@ map_reduce_kv:
 map_get_in:
   - clojure/core/get_in
 
+map_assoc_in:
+  - clojure/core/assoc_in
+
 list_intersperse:
   - haskell/list/intersperse
 
@@ -510,6 +516,16 @@ find_all_indices:
 list_group_adjacent:
   - haskell/list/group
   - haskell/list/groupBy
+
+sequence_generate:
+  - php/array/range
+  - r/base/seq
+
+ip_parse:
+  - golang/net/ParseIP
+
+string_to_integer_base:
+  - c/stdlib/strtol
 
 array_flatten:
   - ruby/Array/flatten

@@ -32,6 +32,7 @@ src/c/math/frexp.ts :: export function frexp(arg: number): [number, number]
 src/c/stdio/sprintf.ts :: export function sprintf(format: string, ...args: unknown[]): string
 src/c/stdlib/atof.ts :: export function atof(str: string): number
 src/c/stdlib/atoi.ts :: export function atoi(str: string): number
+src/c/stdlib/strtol.ts :: export function strtol(str: string, base: number = 10): number
 src/c/string/strcat.ts :: export function strcat(dest: string, src: string): string
 src/c/string/strchr.ts :: export function strchr(str: string, c: string): string | null
 src/c/string/strcmp.ts :: export function strcmp(str1: string, str2: string): number
@@ -40,6 +41,7 @@ src/c/string/strstr.ts :: export function strstr(haystack: string, needle: strin
 src/clojure/Math/abs.ts :: export function abs(x: number): number
 src/clojure/Math/ceil.ts :: export function ceil(x: number): number
 src/clojure/Math/floor.ts :: export function floor(x: number): number
+src/clojure/core/assoc_in.ts :: export function assoc_in(value: unknown, keys: PathKey[] | unknown, newValue: unknown): unknown
 src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown): unknown
 src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue: unknown): unknown
 src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue?: unknown): unknown
@@ -59,7 +61,7 @@ src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unk
 src/elixir/Enum/group_by.ts :: export function group_by<T>(values: T[] | unknown, keySelector: GroupKeySelector<T>): Record<string, T[]>
 src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initial: TAccumulator, reducer: ScanReducer<TAccumulator, TValue>, ): TAccumulator[]
 src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initialOrReducer: TAccumulator | ScanReducer<TAccumulator, TValue>, maybeReducer?: ScanReducer<TAccumulator, TValue>, ): Array<TAccumulator | TValue>
-src/elixir/Enum/scan.ts :: export function scan<TValue>( values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>, ): TValue[]
+src/elixir/Enum/scan.ts :: export function scan<TValue>(values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>): TValue[]
 src/elixir/Float/ceil.ts :: export function ceil(x: number): number
 src/elixir/Float/floor.ts :: export function floor(x: number): number
 src/elixir/Kernel/abs.ts :: export function abs(x: number): number
@@ -68,6 +70,7 @@ src/elixir/String/length.ts :: export function length(string: string): number
 src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
 src/golang/net/JoinHostPort.ts :: export function JoinHostPort(host: string, port: string): string
+src/golang/net/ParseIP.ts :: export function ParseIP(value: string): string | null
 src/golang/net/SplitHostPort.ts :: export function SplitHostPort(hostport: string): [string, string]
 src/golang/path/Base.ts :: export function Base(path: string): string
 src/golang/path/Clean.ts :: export function Clean(path: string): string
@@ -248,6 +251,7 @@ src/python/math/log2.ts :: export function log2(x: number): number
 src/python/math/pow.ts :: export function pow(x: number, y: number): number
 src/python/math/sqrt.ts :: export function sqrt(x: number): number
 src/python/math/trunc.ts :: export function trunc(x: number): number
+src/python/re/findall.ts :: export function findall(pattern: string | RegExp, source: string, flags: ReFindallFlags = 0): Array<string | string[]>
 src/python/re/sub.ts :: export function sub( pattern: string | RegExp, replacement: ReSubReplacement, source: string, count: number = 0, flags: ReSubFlags = 0, ): string
 src/python/string/ascii_letters.ts :: export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 src/python/string/ascii_lowercase.ts :: export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz'
@@ -266,6 +270,7 @@ src/r/base/max.ts :: export function max(...args: number[]): number
 src/r/base/min.ts :: export function min(...args: number[]): number
 src/r/base/nchar.ts :: export function nchar(x: string): number
 src/r/base/round.ts :: export function round(x: number, digits?: number): number
+src/r/base/seq.ts :: export function seq(from: number, to?: number, by?: number, length_out?: number): number[]
 src/r/base/sqrt.ts :: export function sqrt(x: number): number
 src/r/base/tolower.ts :: export function tolower(x: string): string
 src/r/base/toupper.ts :: export function toupper(x: string): string

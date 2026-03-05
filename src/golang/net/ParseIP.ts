@@ -1,0 +1,122 @@
+type IPv4Bytes = [number, number, number, number]
+
+export function ParseIP(value: string): string | null {
+  //  discuss at: https://locutus.io/golang/net/ParseIP/
+  // original by: Kevin van Zonneveld (https://kvz.io)
+  //      note 1: Parses IPv4/IPv6 textual addresses and returns a normalized string or null when invalid.
+  //      note 2: IPv6 output is normalized to lowercase but not fully canonicalized.
+  //   example 1: ParseIP('127.0.0.1')
+  //   returns 1: '127.0.0.1'
+  //   example 2: ParseIP('2001:DB8::1')
+  //   returns 2: '2001:db8::1'
+  //   example 3: ParseIP('999.1.2.3')
+  //   returns 3: null
+
+  const input = String(value)
+  const ipv4 = parseIPv4(input)
+  if (ipv4) {
+    return ipv4.join('.')
+  }
+
+  if (isValidIPv6(input)) {
+    return input.toLowerCase()
+  }
+
+  return null
+}
+
+function parseIPv4(value: string): IPv4Bytes | null {
+  const parts = value.split('.')
+  if (parts.length !== 4) {
+    return null
+  }
+
+  const bytes: number[] = []
+  for (const part of parts) {
+    if (!/^\d+$/.test(part)) {
+      return null
+    }
+    if (part.length > 1 && part.startsWith('0')) {
+      return null
+    }
+    const n = Number(part)
+    if (!Number.isInteger(n) || n < 0 || n > 255) {
+      return null
+    }
+    bytes.push(n)
+  }
+
+  return [bytes[0] ?? 0, bytes[1] ?? 0, bytes[2] ?? 0, bytes[3] ?? 0]
+}
+
+function isValidIPv6(value: string): boolean {
+  if (value === '' || value.includes('[') || value.includes(']') || value.includes('%')) {
+    return false
+  }
+
+  const doubleColonParts = value.split('::')
+  if (doubleColonParts.length > 2) {
+    return false
+  }
+
+  const hasCompression = doubleColonParts.length === 2
+  const left = doubleColonParts[0] ?? ''
+  const right = doubleColonParts[1] ?? ''
+
+  const leftGroups = left === '' ? [] : left.split(':')
+  const rightGroups = right === '' ? [] : right.split(':')
+
+  if (leftGroups.some((group) => group === '') || rightGroups.some((group) => group === '')) {
+    return false
+  }
+
+  let groupCount = 0
+
+  for (let i = 0; i < leftGroups.length; i++) {
+    const group = leftGroups[i] ?? ''
+    if (group.includes('.')) {
+      if (i !== leftGroups.length - 1 || rightGroups.length > 0) {
+        return false
+      }
+      if (!parseIPv4(group)) {
+        return false
+      }
+      groupCount += 2
+      continue
+    }
+
+    if (!isValidHextet(group)) {
+      return false
+    }
+    groupCount += 1
+  }
+
+  for (let i = 0; i < rightGroups.length; i++) {
+    const group = rightGroups[i] ?? ''
+    if (group.includes('.')) {
+      if (i !== rightGroups.length - 1) {
+        return false
+      }
+      if (!parseIPv4(group)) {
+        return false
+      }
+      groupCount += 2
+      continue
+    }
+
+    if (!isValidHextet(group)) {
+      return false
+    }
+    groupCount += 1
+  }
+
+  if (hasCompression) {
+    return groupCount < 8
+  }
+
+  return groupCount === 8
+}
+
+function isValidHextet(value: string): boolean {
+  return /^[0-9a-fA-F]{1,4}$/.test(value)
+}

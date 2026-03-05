@@ -265,6 +265,16 @@ function jsToPython(jsCode: string[], funcName: string, category?: string): stri
  */
 function normalizePythonOutput(output: string, _expected?: string): string {
   let result = output.trim()
+
+  // Python json.dumps includes spaces after commas/colons by default.
+  // Canonicalize JSON-like output for stable string comparison.
+  try {
+    const parsed = JSON.parse(result)
+    result = JSON.stringify(parsed)
+  } catch {
+    // Non-JSON output: keep original normalization behavior.
+  }
+
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')
