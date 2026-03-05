@@ -2912,3 +2912,46 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - A small parity translator gap can look like a runtime regression; for cross-language functions, translator semantics are part of the product surface.
   - Explicitly documenting temporary skips in translator skip lists keeps CI green while preserving a clear, auditable backlog of parity work to complete.
+
+## Iteration 100
+
+- Plans
+  - Add 5 more high-value expansions favoring lower-count languages/categories:
+    - `haskell/list/nubBy`
+    - `julia/Base/partialsortperm`
+    - `kotlin/collections/zipWithNext`
+    - `tcl/string/match`
+    - `elixir/Enum/chunk_every`
+- Progress
+  - Added source modules:
+    - `src/haskell/list/nubBy.ts`
+    - `src/julia/Base/partialsortperm.ts`
+    - `src/kotlin/collections/zipWithNext.ts`
+    - `src/tcl/string/match.ts`
+    - `src/elixir/Enum/chunk_every.ts`
+  - Added/updated exports:
+    - `src/haskell/list/index.ts`
+    - `src/julia/Base/index.ts`
+    - `src/kotlin/collections/index.ts`
+    - `src/tcl/string/index.ts`
+    - `src/elixir/Enum/index.ts`
+  - Updated Julia parity translator:
+    - `test/parity/lib/languages/julia.ts`
+    - added conversion for `partialsortperm(values, k[, rev])` to Julia range/keyword form.
+  - Regenerated tests:
+    - `test/generated/haskell/list/nubBy.vitest.ts`
+    - `test/generated/julia/Base/partialsortperm.vitest.ts`
+    - `test/generated/kotlin/collections/zipWithNext.vitest.ts`
+    - `test/generated/tcl/string/match.vitest.ts`
+    - `test/generated/elixir/Enum/chunk_every.vitest.ts`
+- Validation
+  - `yarn biome check` on new/updated source and translator files
+  - `yarn build:tests`
+  - `yarn vitest run test/generated/haskell/list/nubBy.vitest.ts test/generated/julia/Base/partialsortperm.vitest.ts test/generated/kotlin/collections/zipWithNext.vitest.ts test/generated/tcl/string/match.vitest.ts test/generated/elixir/Enum/chunk_every.vitest.ts`
+  - `yarn test:parity julia/Base/partialsortperm --no-cache`
+  - `yarn test:parity tcl/string/match --no-cache`
+  - `yarn lint:ts`
+  - `yarn lint:ts:strict-next`
+- Key learnings
+  - `partialsortperm` is a meaningful “algorithmic” addition but needs explicit translator argument-shape mapping (`1:k`, keyword args) for parity.
+  - We can keep adding high-ceiling sequence utilities (`nubBy`, `zipWithNext`, `chunk_every`) while remaining within plain JS arrays/objects and predictable runtime behavior.

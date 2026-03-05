@@ -173,6 +173,21 @@ function convertJsLineToJulia(line: string, funcName: string): string {
     })
   }
 
+  // partialsortperm(v, k[, rev]) in locutus maps to partialsortperm(v, 1:k; rev=...)
+  if (funcName === 'partialsortperm') {
+    jl = jl.replace(/partialsortperm\s*\(([\s\S]*)\)$/g, (_match: string, argsText: string) => {
+      const args = splitArgs(argsText)
+      if (args.length >= 2) {
+        const base = `partialsortperm(${args[0]}, 1:${args[1]}`
+        if (args.length >= 3) {
+          return `${base}; rev=${args[2]})`
+        }
+        return `${base})`
+      }
+      return `partialsortperm(${argsText})`
+    })
+  }
+
   return jl
 }
 
