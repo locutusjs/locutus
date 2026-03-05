@@ -7,6 +7,7 @@ export type JsExpression =
   | { kind: 'boolean'; value: boolean }
   | { kind: 'null' }
   | { kind: 'array'; elements: JsExpression[] }
+  | { kind: 'object'; properties: JsObjectProperty[] }
   | { kind: 'property'; object: JsExpression; property: string }
   | { kind: 'index'; object: JsExpression; index: JsExpression }
   | { kind: 'call'; callee: JsExpression; args: JsExpression[] }
@@ -36,6 +37,10 @@ export interface JsArrowFunction {
   params: string[]
   body: JsExpression
 }
+
+export type JsObjectProperty =
+  | { kind: 'spread'; expression: JsExpression }
+  | { kind: 'property'; key: string | JsExpression; computed: boolean; value: JsExpression }
 
 function parseSourceExpression(sourceText: string): ts.Expression {
   const sourceFile = ts.createSourceFile(
@@ -137,6 +142,51 @@ function convertTsExpression(expression: ts.Expression): JsExpression {
           unsupported(element, 'Spread elements are not supported')
         }
         return convertTsExpression(element)
+      }),
+    }
+  }
+
+  if (ts.isObjectLiteralExpression(expression)) {
+    return {
+      kind: 'object',
+      properties: expression.properties.map((property) => {
+        if (ts.isSpreadAssignment(property)) {
+          return {
+            kind: 'spread',
+            expression: convertTsExpression(property.expression),
+          }
+        }
+
+        if (ts.isShorthandPropertyAssignment(property)) {
+          return {
+            kind: 'property',
+            key: property.name.text,
+            computed: false,
+            value: { kind: 'identifier', name: property.name.text },
+          }
+        }
+
+        if (ts.isPropertyAssignment(property)) {
+          if (ts.isComputedPropertyName(property.name)) {
+            return {
+              kind: 'property',
+              key: convertTsExpression(property.name.expression),
+              computed: true,
+              value: convertTsExpression(property.initializer),
+            }
+          }
+
+          if (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name) || ts.isNumericLiteral(property.name)) {
+            return {
+              kind: 'property',
+              key: property.name.text,
+              computed: false,
+              value: convertTsExpression(property.initializer),
+            }
+          }
+        }
+
+        unsupported(property, 'Unsupported object literal property')
       }),
     }
   }

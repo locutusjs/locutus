@@ -11,15 +11,16 @@ export function reduce_kv<TAccumulator, TValue = unknown>(
   initial: TAccumulator,
   collection: ReduceKvCollection<TValue> | unknown,
 ): TAccumulator {
-  //  discuss at: https://locutus.io/clojure/reduce_kv/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Reduces map/array entries with key + value, similar to Clojure reduce-kv.
-  //   example 1: reduce_kv((acc, key, value) => acc + key + value, '', {a: 1, b: 2})
-  //   returns 1: 'a1b2'
-  //   example 2: reduce_kv((acc, key, value) => acc + Number(key) * Number(value), 0, [10, 20, 30])
-  //   returns 2: 80
-  //   example 3: reduce_kv((acc, key, value) => ({...acc, [key]: Number(value) + 1}), {}, {x: 4})
-  //   returns 3: {x: 5}
+  //      discuss at: https://locutus.io/clojure/reduce_kv/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Reduces map/array entries with key + value, similar to Clojure reduce-kv.
+  //       example 1: reduce_kv((acc, key, value) => acc + key + value, '', {a: 1, b: 2})
+  //       returns 1: 'a1b2'
+  //       example 2: reduce_kv((acc, key, value) => acc + Number(key) * Number(value), 0, [10, 20, 30])
+  //       returns 2: 80
+  //       example 3: reduce_kv((acc, key, value) => ({...acc, [key]: Number(value) + 1}), {}, {x: 4})
+  //       returns 3: {x: 5}
 
   if (typeof reducer !== 'function') {
     throw new TypeError('reduce_kv(): reducer must be a function')

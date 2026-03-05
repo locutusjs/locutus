@@ -2,6 +2,9 @@
  * Clojure language handler for verification
  */
 
+import ts from 'typescript'
+
+import { parseJsArrowFunction, parseJsExpression, type JsExpression, type JsObjectProperty } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -9,13 +12,44 @@ import type { LanguageHandler } from '../types.ts'
 export const CLOJURE_SKIP_LIST = new Set<string>([
   // partition emits lazy seqs/lists; parity translator currently compares scalar/string-style outputs only.
   'partition',
-  // update-in requires higher-order function translation (JS callback -> Clojure fn) not implemented yet.
-  'update_in',
-  // merge-with requires higher-order combiner translation (JS callback -> Clojure fn) not implemented yet.
-  'merge_with',
-  // reduce-kv requires higher-order reducer translation (JS callback -> Clojure fn) not implemented yet.
-  'reduce_kv',
 ])
+
+const CLOJURE_PARITY_PRELUDE = `
+(require '[clojure.string :as clojure-string])
+
+(defn locutus-json [value]
+  (cond
+    (nil? value) "null"
+    (string? value) (pr-str value)
+    (boolean? value) (if value "true" "false")
+    (number? value) (str value)
+    (vector? value) (str "[" (clojure-string/join "," (map locutus-json value)) "]")
+    (sequential? value) (str "[" (clojure-string/join "," (map locutus-json value)) "]")
+    (map? value) (let [entries (sort-by first (for [[k v] value] [(str k) v]))]
+                   (str "{"
+                        (clojure-string/join
+                          ","
+                          (map (fn [[k v]] (str (pr-str k) ":" (locutus-json v))) entries))
+                        "}"))
+    :else (pr-str (str value))))
+
+(defn locutus-to-number [value]
+  (cond
+    (number? value) value
+    (string? value) (try
+                      (Long/parseLong value)
+                      (catch Exception _
+                        (Double/parseDouble value)))
+    :else (throw (ex-info "Cannot coerce value to number" {:value value}))))
+
+(defn locutus-add [left right]
+  (if (and (number? left) (number? right))
+    (+ left right)
+    (str left right)))
+
+(defn locutus-strict-eq [left right]
+  (= left right))
+`.trim()
 
 /**
  * Strip trailing JS comments (// ...) that are not inside strings
@@ -53,20 +87,171 @@ function stripTrailingComment(code: string): string {
   return code
 }
 
+function emitClojureMap(properties: JsObjectProperty[]): string {
+  const hasSpecialProperties = properties.some(
+    (property) => property.kind === 'spread' || (property.kind === 'property' && property.computed),
+  )
+
+  if (!hasSpecialProperties) {
+    const pairs = properties
+      .map((property) => {
+        if (property.kind !== 'property' || property.computed || typeof property.key !== 'string') {
+          throw new Error('Unsupported simple Clojure map property')
+        }
+        return `${JSON.stringify(property.key)} ${emitClojureExpression(property.value)}`
+      })
+      .join(', ')
+
+    return `{${pairs}}`
+  }
+
+  let current = '{}'
+  for (const property of properties) {
+    if (property.kind === 'spread') {
+      current = `(merge ${current} ${emitClojureExpression(property.expression)})`
+      continue
+    }
+
+    const keyExpression =
+      property.computed && typeof property.key !== 'string'
+        ? emitClojureExpression(property.key)
+        : JSON.stringify(String(property.key))
+    current = `(assoc ${current} ${keyExpression} ${emitClojureExpression(property.value)})`
+  }
+
+  return current
+}
+
+function emitClojureExpression(expression: JsExpression): string {
+  switch (expression.kind) {
+    case 'identifier':
+      if (expression.name === 'undefined') {
+        return 'nil'
+      }
+      return expression.name
+    case 'number':
+      return expression.value
+    case 'string':
+      return JSON.stringify(expression.value)
+    case 'boolean':
+      return expression.value ? 'true' : 'false'
+    case 'null':
+      return 'nil'
+    case 'array':
+      return `[${expression.elements.map((element) => emitClojureExpression(element)).join(' ')}]`
+    case 'object':
+      return emitClojureMap(expression.properties)
+    case 'property':
+      if (expression.property === 'length') {
+        return `(count ${emitClojureExpression(expression.object)})`
+      }
+      return `(${expression.property} ${emitClojureExpression(expression.object)})`
+    case 'index':
+      return `(nth ${emitClojureExpression(expression.object)} ${emitClojureExpression(expression.index)})`
+    case 'call':
+      if (expression.callee.kind === 'identifier') {
+        if (expression.callee.name === 'Number' && expression.args.length === 1) {
+          return `(locutus-to-number ${emitClojureExpression(expression.args[0] as JsExpression)})`
+        }
+        if (expression.callee.name === 'String' && expression.args.length === 1) {
+          return `(str ${emitClojureExpression(expression.args[0] as JsExpression)})`
+        }
+      }
+
+      if (expression.callee.kind === 'property' && expression.args.length === 1) {
+        if (expression.callee.property === 'charAt') {
+          return `(str (nth ${emitClojureExpression(expression.callee.object)} ${emitClojureExpression(
+            expression.args[0] as JsExpression,
+          )}))`
+        }
+        if (expression.callee.property === 'join') {
+          return `(clojure-string/join ${emitClojureExpression(expression.args[0] as JsExpression)} ${emitClojureExpression(expression.callee.object)})`
+        }
+      }
+
+      throw new Error('Unsupported Clojure callback call expression')
+    case 'unary':
+      if (expression.operator === '!') {
+        return `(not ${emitClojureExpression(expression.argument)})`
+      }
+      if (expression.operator === '+') {
+        return `(locutus-to-number ${emitClojureExpression(expression.argument)})`
+      }
+      return `(- ${emitClojureExpression(expression.argument)})`
+    case 'binary':
+      if (expression.operator === '+') {
+        return `(locutus-add ${emitClojureExpression(expression.left)} ${emitClojureExpression(expression.right)})`
+      }
+      if (expression.operator === '%') {
+        return `(mod ${emitClojureExpression(expression.left)} ${emitClojureExpression(expression.right)})`
+      }
+      if (expression.operator === '===') {
+        return `(locutus-strict-eq ${emitClojureExpression(expression.left)} ${emitClojureExpression(expression.right)})`
+      }
+      if (expression.operator === '!==') {
+        return `(not (locutus-strict-eq ${emitClojureExpression(expression.left)} ${emitClojureExpression(
+          expression.right,
+        )}))`
+      }
+      if (expression.operator === '&&') {
+        return `(and ${emitClojureExpression(expression.left)} ${emitClojureExpression(expression.right)})`
+      }
+      if (expression.operator === '||') {
+        return `(or ${emitClojureExpression(expression.left)} ${emitClojureExpression(expression.right)})`
+      }
+      return `(${expression.operator} ${emitClojureExpression(expression.left)} ${emitClojureExpression(expression.right)})`
+    case 'conditional':
+      return `(if ${emitClojureExpression(expression.test)} ${emitClojureExpression(
+        expression.consequent,
+      )} ${emitClojureExpression(expression.alternate)})`
+  }
+
+  throw new Error(`Unsupported Clojure expression kind: ${(expression as { kind?: string }).kind ?? 'unknown'}`)
+}
+
+function emitClojureArrow(sourceText: string): string {
+  const callback = parseJsArrowFunction(sourceText)
+  return `(fn [${callback.params.join(' ')}] ${emitClojureExpression(callback.body)})`
+}
+
+function stringifyJsonLikeExpected(value: unknown, expectedShape: unknown): string {
+  if (Array.isArray(value)) {
+    return `[${value
+      .map((item, index) =>
+        stringifyJsonLikeExpected(item, Array.isArray(expectedShape) ? (expectedShape[index] as unknown) : undefined),
+      )
+      .join(',')}]`
+  }
+
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>
+    const expectedRecord =
+      expectedShape && typeof expectedShape === 'object' && !Array.isArray(expectedShape)
+        ? (expectedShape as Record<string, unknown>)
+        : undefined
+
+    const expectedKeys = expectedRecord ? Object.keys(expectedRecord) : []
+    const remainingKeys = Object.keys(record)
+      .filter((key) => !expectedKeys.includes(key))
+      .sort()
+    const orderedKeys = [...expectedKeys.filter((key) => Object.hasOwn(record, key)), ...remainingKeys]
+
+    return `{${orderedKeys
+      .map((key) => `${JSON.stringify(key)}:${stringifyJsonLikeExpected(record[key], expectedRecord?.[key])}`)
+      .join(',')}}`
+  }
+
+  return JSON.stringify(value)
+}
+
 /**
- * Convert JS function call to Clojure S-expression
- * e.g., ceil(4.2) -> (Math/ceil 4.2) for Math functions
- * e.g., lower_case("HELLO") -> (clojure.string/lower-case "HELLO") for string functions
+ * Convert function call to Clojure S-expression
  */
 function convertFunctionCall(code: string, funcName: string, category?: string): string {
-  // Simple regex to match funcName(args)
   const regex = new RegExp(`${funcName}\\s*\\(([^)]*)\\)`, 'g')
 
-  // Determine the namespace and convert function name
   if (category === 'string') {
-    // String functions use clojure.string namespace and hyphens instead of underscores
     let cljFuncName = funcName.replace(/_/g, '-')
-    // Clojure predicate functions use ? suffix (e.g., blank -> blank?)
     if (funcName === 'blank') {
       cljFuncName = 'blank?'
     }
@@ -76,8 +261,72 @@ function convertFunctionCall(code: string, funcName: string, category?: string):
     const cljFuncName = funcName.replace(/_/g, '-')
     return code.replace(regex, `(${cljFuncName} $1)`)
   }
-  // Default to Math namespace
   return code.replace(regex, `(Math/${funcName} $1)`)
+}
+
+function translateHigherOrderCall(line: string, funcName: string): string | null {
+  if (funcName !== 'merge_with' && funcName !== 'reduce_kv' && funcName !== 'update_in') {
+    return null
+  }
+
+  const sourceFile = ts.createSourceFile('example.ts', line, ts.ScriptTarget.ES2022, true, ts.ScriptKind.TS)
+  const statement = sourceFile.statements[0]
+  if (!statement) {
+    return null
+  }
+
+  let assignmentName: string | null = null
+  let callExpression: ts.CallExpression | null = null
+
+  if (ts.isVariableStatement(statement)) {
+    const declaration = statement.declarationList.declarations[0]
+    if (declaration && ts.isIdentifier(declaration.name) && declaration.initializer && ts.isCallExpression(declaration.initializer)) {
+      assignmentName = declaration.name.text
+      callExpression = declaration.initializer
+    }
+  } else if (ts.isExpressionStatement(statement)) {
+    if (ts.isCallExpression(statement.expression)) {
+      callExpression = statement.expression
+    } else if (
+      ts.isBinaryExpression(statement.expression) &&
+      statement.expression.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+      ts.isIdentifier(statement.expression.left) &&
+      ts.isCallExpression(statement.expression.right)
+    ) {
+      assignmentName = statement.expression.left.text
+      callExpression = statement.expression.right
+    }
+  }
+
+  if (!callExpression || !ts.isIdentifier(callExpression.expression) || callExpression.expression.text !== funcName) {
+    return null
+  }
+
+  const args = callExpression.arguments
+  let translatedCall: string | null = null
+
+  if (funcName === 'merge_with' && args.length >= 1) {
+    const translatedArgs = args.map((arg, index) =>
+      index === 0 ? emitClojureArrow(arg.getText(sourceFile)) : emitClojureExpression(parseJsExpression(arg.getText(sourceFile))),
+    )
+    translatedCall = `(merge-with ${translatedArgs.join(' ')})`
+  } else if (funcName === 'reduce_kv' && args.length === 3) {
+    translatedCall = `(reduce-kv ${emitClojureArrow(args[0]?.getText(sourceFile) ?? '')} ${emitClojureExpression(
+      parseJsExpression(args[1]?.getText(sourceFile) ?? 'undefined'),
+    )} ${emitClojureExpression(parseJsExpression(args[2]?.getText(sourceFile) ?? 'undefined'))})`
+  } else if (funcName === 'update_in' && args.length >= 3) {
+    const headArgs = args.slice(0, 3).map((arg, index) =>
+      index === 2 ? emitClojureArrow(arg.getText(sourceFile)) : emitClojureExpression(parseJsExpression(arg.getText(sourceFile))),
+    )
+    const tailArgs = args.slice(3).map((arg) => emitClojureExpression(parseJsExpression(arg.getText(sourceFile))))
+    translatedCall = `(update-in ${[...headArgs, ...tailArgs].join(' ')})`
+  }
+
+  if (!translatedCall) {
+    return null
+  }
+
+  return assignmentName ? `(let [${assignmentName} ${translatedCall}] ${assignmentName})` : translatedCall
 }
 
 /**
@@ -92,6 +341,11 @@ function convertJsLineToClojure(line: string, funcName: string, category?: strin
   clj = stripTrailingComment(clj)
   clj = clj.replace(/;+$/, '')
 
+  const higherOrderTranslation = translateHigherOrderCall(clj, funcName)
+  if (higherOrderTranslation) {
+    return higherOrderTranslation
+  }
+
   // Convert single-quoted strings to double-quoted (Clojure uses double quotes for strings)
   clj = clj.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g, '"$1"')
 
@@ -105,7 +359,6 @@ function convertJsLineToClojure(line: string, funcName: string, category?: strin
   clj = clj.replace(/\bInfinity\b/g, 'Double/POSITIVE_INFINITY')
   clj = clj.replace(/\bNaN\b/g, 'Double/NaN')
 
-  // Convert function calls
   clj = convertFunctionCall(clj, funcName, category)
 
   return clj
@@ -123,27 +376,27 @@ function jsToClojure(jsCode: string[], funcName: string, category?: string): str
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
 
-  let result: string
+  let mainBody: string
   if (assignedVar) {
-    // For assignment, use let binding then print
-    // Parse "result = ceil(4.2)" -> "(let [result (Math/ceil 4.2)] (println result))"
     const lastLine = lines[lines.length - 1] ?? ''
     const assignMatch = lastLine.match(/(\w+)\s*=\s*(.+)/)
     if (assignMatch) {
       const setup = lines.slice(0, -1)
       const prefix = setup.length ? setup.join('\n') + '\n' : ''
-      result = `${prefix}(println ${assignMatch[2]})`
+      mainBody = `${prefix}(println (locutus-json ${assignMatch[2]}))`
     } else {
-      result = `(println ${lines[lines.length - 1]})`
+      const setup = lines.slice(0, -1)
+      const prefix = setup.length ? `${setup.join('\n')}\n` : ''
+      mainBody = `${prefix}(println (locutus-json ${lastLine}))`
     }
   } else {
     const setup = lines.slice(0, -1)
     const lastExpr = lines[lines.length - 1]
     const prefix = setup.length ? `${setup.join('\n')}\n` : ''
-    result = `${prefix}(println ${lastExpr})`
+    mainBody = `${prefix}(println (locutus-json ${lastExpr}))`
   }
 
-  return result
+  return `(do\n${CLOJURE_PARITY_PRELUDE}\n\n${mainBody}\n)`
 }
 
 /**
@@ -152,11 +405,15 @@ function jsToClojure(jsCode: string[], funcName: string, category?: string): str
 function normalizeClojureOutput(output: string, expected?: string): string {
   let result = output.trim()
 
-  // Clojure Math/ceil returns a double, so 5.0 for ceil(4.2)
-  // If expected is an integer string, convert
+  try {
+    const parsed = JSON.parse(result)
+    const expectedParsed = expected ? JSON.parse(expected) : undefined
+    result = stringifyJsonLikeExpected(parsed, expectedParsed)
+  } catch {
+    // Non-JSON output: keep fallback behavior below.
+  }
+
   if (expected && /^-?\d+$/.test(expected)) {
-    // Expected is integer, Clojure returns float
-    // Handle -0.0 -> 0 conversion
     if (result === '-0.0') {
       result = '0'
     } else if (/^-?\d+\.0$/.test(result)) {
@@ -164,7 +421,6 @@ function normalizeClojureOutput(output: string, expected?: string): string {
     }
   }
 
-  // String quoting: Clojure's println doesn't add quotes, but expected values have them
   if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
     result = `"${result}"`
   }

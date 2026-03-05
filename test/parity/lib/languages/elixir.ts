@@ -144,6 +144,8 @@ function emitElixirExpression(expression: JsExpression): string {
         expression.consequent,
       )}, else: ${emitElixirExpression(expression.alternate)})`
   }
+
+  throw new Error(`Unsupported Elixir expression kind: ${(expression as { kind?: string }).kind ?? 'unknown'}`)
 }
 
 function emitElixirArrow(sourceText: string): string {

@@ -1112,3 +1112,34 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The real blocker is not just callback lowering. `elixir` and `clojure` parity also need deterministic JSON-like serialization for maps/lists once higher-order functions are unlocked.
   - We already depend on `typescript`, so callback lowering should reuse the TS AST rather than introduce regex-heavy translators.
+
+### Iteration 64
+
+2026-03-05
+
+- **Area: Verification infrastructure + TypeScript**
+- Plan:
+  - Reuse the new callback AST helper to unlock the skipped higher-order parity cases in `clojure`.
+  - Finish the smaller Julia predicate/value lowering follow-up if the shared helper makes it cheap.
+- Progress:
+  - Extended `test/parity/lib/jsCallbackAst.ts` to cover object literals, spreads, and computed keys.
+  - Added parser coverage in `test/util/js-callback-ast.vitest.ts` for reducer-shaped object expressions.
+  - Reworked `test/parity/lib/languages/clojure.ts`:
+    - AST-based callback lowering for `merge_with`, `reduce_kv`, and `update_in`
+    - no-dependency JSON-like serializer for vectors/maps
+    - helpers for JS-like numeric coercion and `+` semantics where examples rely on them
+  - Marked parity verification in:
+    - `src/clojure/core/merge_with.ts`
+    - `src/clojure/core/reduce_kv.ts`
+  - Reworked `test/parity/lib/languages/julia.ts` just enough to lower `findall` value and predicate forms.
+  - Marked parity verification in `src/julia/Base/findall.ts`.
+- Validation:
+  - `test:parity` now passes for:
+    - `clojure/core/merge_with`
+    - `clojure/core/reduce_kv`
+    - `clojure/core/update_in`
+    - `julia/Base/findall`
+  - Generated tests pass for the affected Clojure and Julia functions plus the callback AST helper tests.
+- Key learnings:
+  - Clojure parity under `clojure -e` must wrap helper definitions in `do` or top-level `defn` results pollute stdout.
+  - For these callback-heavy cases, the stable approach is: AST lowering first, target-language helper shim second, then JSON-like normalization last.

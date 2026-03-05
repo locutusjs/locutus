@@ -52,6 +52,33 @@ describe('jsCallbackAst', () => {
     })
   })
 
+  it('parses object spread and computed keys used by reducer examples', () => {
+    expect(parseJsExpression('({...acc, [key]: Number(value) + 1})')).toEqual({
+      kind: 'object',
+      properties: [
+        {
+          kind: 'spread',
+          expression: { kind: 'identifier', name: 'acc' },
+        },
+        {
+          kind: 'property',
+          key: { kind: 'identifier', name: 'key' },
+          computed: true,
+          value: {
+            kind: 'binary',
+            operator: '+',
+            left: {
+              kind: 'call',
+              callee: { kind: 'identifier', name: 'Number' },
+              args: [{ kind: 'identifier', name: 'value' }],
+            },
+            right: { kind: 'number', value: '1' },
+          },
+        },
+      ],
+    })
+  })
+
   it('rejects unsupported callback forms', () => {
     expect(() => parseJsArrowFunction('(value = 1) => value')).toThrow('Default parameters are not supported')
     expect(() => parseJsArrowFunction('({ value }) => value')).toThrow(
