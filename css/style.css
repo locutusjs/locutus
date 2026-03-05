@@ -525,32 +525,20 @@ code {
 }
 @media screen and (min-width: 560px) and (max-width: 799px) {
   #top-page-nav {
-    display: block;
-    float: none;
-    clear: both;
-    height: auto;
-    line-height: 1.4;
-    padding: 0 15px 10px;
-    text-align: right;
+    padding: 12px 8px;
   }
   #top-page-nav .top-nav-link {
-    line-height: 1.4;
-    padding: 0 8px 0 0;
+    padding: 0 6px;
+    font-size: 13px;
   }
 }
 @media screen and (max-width: 559px) {
   #top-page-nav {
-    display: block;
-    float: none;
-    clear: both;
-    height: auto;
-    line-height: 1.4;
-    padding: 0 15px 10px;
-    text-align: right;
+    padding: 12px 6px;
   }
   #top-page-nav .top-nav-link {
-    line-height: 1.4;
-    padding: 0 8px 0 0;
+    padding: 0 4px;
+    font-size: 12px;
   }
 }
 #search-form-wrap .search-form {
@@ -587,7 +575,7 @@ code {
 }
 @media screen and (max-width: 559px) {
   #search-form-wrap .search-form .search-form-input {
-    width: 120px;
+    width: 100px;
     padding: 0 24px 0 10px;
   }
   #search-form-wrap .search-form .search-form-submit {
@@ -596,7 +584,12 @@ code {
 }
 @media screen and (min-width: 560px) and (max-width: 799px) {
   #search-form-wrap .search-form .search-form-input {
-    width: 160px;
+    width: 140px;
+  }
+}
+@media screen and (max-width: 559px) {
+  #logo .site-title {
+    display: none;
   }
 }
 .search-form-input,
@@ -685,6 +678,11 @@ code {
   width: 28.000000000000004%;
   margin: 0 1%;
   display: none;
+}
+@media screen and (min-width: 800px) and (max-width: 1199px) {
+  #profile {
+    display: block;
+  }
 }
 @media screen and (min-width: 1200px) {
   #profile {
