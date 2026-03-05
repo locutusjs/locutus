@@ -40,6 +40,9 @@ src/c/string/strstr.ts :: export function strstr(haystack: string, needle: strin
 src/clojure/Math/abs.ts :: export function abs(x: number): number
 src/clojure/Math/ceil.ts :: export function ceil(x: number): number
 src/clojure/Math/floor.ts :: export function floor(x: number): number
+src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown): unknown
+src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue: unknown): unknown
+src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue?: unknown): unknown
 src/clojure/core/merge_with.ts :: export function merge_with(combiner: MergeCombiner, ...maps: unknown[]): MergeRecord
 src/clojure/core/partition.ts :: export function partition<T>(n: number, values: T[] | unknown, step: number = n, pad: T[] | null = null): T[][]
 src/clojure/core/reduce_kv.ts :: export function reduce_kv<TAccumulator, TValue = unknown>( reducer: ReduceKvReducer<TAccumulator, TValue>, initial: TAccumulator, collection: ReduceKvCollection<TValue> | unknown, ): TAccumulator
@@ -54,6 +57,9 @@ src/elixir/Enum/frequencies_by.ts :: export function frequencies_by<T>(values: T
 src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector: GroupValueSelector<T, U>, ): Record<string, U[]>
 src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector?: GroupValueSelector<T, U>, ): Record<string, unknown[]>
 src/elixir/Enum/group_by.ts :: export function group_by<T>(values: T[] | unknown, keySelector: GroupKeySelector<T>): Record<string, T[]>
+src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initial: TAccumulator, reducer: ScanReducer<TAccumulator, TValue>, ): TAccumulator[]
+src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initialOrReducer: TAccumulator | ScanReducer<TAccumulator, TValue>, maybeReducer?: ScanReducer<TAccumulator, TValue>, ): Array<TAccumulator | TValue>
+src/elixir/Enum/scan.ts :: export function scan<TValue>( values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>, ): TValue[]
 src/elixir/Float/ceil.ts :: export function ceil(x: number): number
 src/elixir/Float/floor.ts :: export function floor(x: number): number
 src/elixir/Kernel/abs.ts :: export function abs(x: number): number
@@ -112,6 +118,7 @@ src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: 
 src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
 src/golang/subtle/ConstantTimeCompare.ts :: export function ConstantTimeCompare(x: string, y: string): number
+src/golang/subtle/ConstantTimeCopy.ts :: export function ConstantTimeCopy(v: number, x: number[] | unknown, y: number[] | unknown): number[]
 src/golang/subtle/ConstantTimeEq.ts :: export function ConstantTimeEq(x: number, y: number): number
 src/golang/subtle/ConstantTimeSelect.ts :: export function ConstantTimeSelect(v: number, x: number, y: number): number
 src/golang/time/Add.ts :: export function Add(value: GoTimeInput, durationMs: number): Date
@@ -137,6 +144,7 @@ src/golang/url/PathEscape.ts :: export function PathEscape(s: string): string
 src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
 src/golang/url/QueryUnescape.ts :: export function QueryUnescape(s: string): string
 src/golang/url/ResolveReference.ts :: export function ResolveReference(baseURL: string, refURL: string): string
+src/haskell/list/group.ts :: export function group<T>(items: T[] | unknown): T[][]
 src/haskell/list/groupBy.ts :: export function groupBy<T>(items: T[] | unknown, predicate?: GroupPredicate<T>): T[][]
 src/haskell/list/inits.ts :: export function inits<T>(items: T[] | unknown): T[][]
 src/haskell/list/intercalate.ts :: export function intercalate<T>(separator: T[] | unknown, lists: Array<T[] | unknown> | unknown): T[]
@@ -148,6 +156,9 @@ src/haskell/list/tails.ts :: export function tails<T>(items: T[] | unknown): T[]
 src/haskell/list/transpose.ts :: export function transpose<T>(rows: Array<Array<T> | unknown> | unknown): T[][]
 src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
+src/julia/Base/findall.ts :: export function findall<T>(matcher: FindPredicate<T> | T, values: T[] | unknown): number[]
+src/julia/Base/findall.ts :: export function findall<T>(matcher: FindPredicate<T>, values: T[] | unknown): number[]
+src/julia/Base/findall.ts :: export function findall<T>(matcher: T, values: T[] | unknown): number[]
 src/julia/Base/floor.ts :: export function floor(x: number): number
 src/julia/Base/lowercase.ts :: export function lowercase(s: string): string
 src/julia/Base/partialsortperm.ts :: export function partialsortperm<T>(values: T[] | unknown, k: number, rev: boolean = false): number[]

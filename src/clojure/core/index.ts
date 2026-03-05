@@ -1,3 +1,4 @@
+export { get_in } from './get_in.ts'
 export { merge_with } from './merge_with.ts'
 export { partition } from './partition.ts'
 export { reduce_kv } from './reduce_kv.ts'

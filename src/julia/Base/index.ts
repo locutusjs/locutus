@@ -1,5 +1,6 @@
 export { abs } from './abs.ts'
 export { ceil } from './ceil.ts'
+export { findall } from './findall.ts'
 export { floor } from './floor.ts'
 export { lowercase } from './lowercase.ts'
 export { partialsortperm } from './partialsortperm.ts'

@@ -1,3 +1,4 @@
+export { group } from './group.ts'
 export { groupBy } from './groupBy.ts'
 export { inits } from './inits.ts'
 export { intercalate } from './intercalate.ts'

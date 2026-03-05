@@ -11,6 +11,8 @@ export const ELIXIR_SKIP_LIST = new Set<string>([
   'frequencies_by',
   // group_by requires callback translation (JS arrow function -> Elixir anonymous fn) not implemented yet.
   'group_by',
+  // scan requires callback translation (JS arrow function -> Elixir anonymous fn) not implemented yet.
+  'scan',
 ])
 
 /**

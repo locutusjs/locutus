@@ -140,6 +140,9 @@ constant_time_compare:
 constant_time_equal:
   - golang/subtle/ConstantTimeEq
 
+constant_time_copy:
+  - golang/subtle/ConstantTimeCopy
+
 constant_time_select:
   - golang/subtle/ConstantTimeSelect
 
@@ -460,6 +463,7 @@ array_chunk:
   - kotlin/collections/windowed
 
 running_fold:
+  - elixir/Enum/scan
   - kotlin/collections/runningFold
   - kotlin/collections/runningReduce
 
@@ -474,6 +478,9 @@ map_merge_with:
 
 map_reduce_kv:
   - clojure/core/reduce_kv
+
+map_get_in:
+  - clojure/core/get_in
 
 list_intersperse:
   - haskell/list/intersperse
@@ -496,6 +503,13 @@ search_sorted_first:
 
 search_sorted_last:
   - julia/Base/searchsortedlast
+
+find_all_indices:
+  - julia/Base/findall
+
+list_group_adjacent:
+  - haskell/list/group
+  - haskell/list/groupBy
 
 array_flatten:
   - ruby/Array/flatten
