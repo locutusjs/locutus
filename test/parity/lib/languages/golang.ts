@@ -87,6 +87,7 @@ const GO_PACKAGES: Record<string, string> = {
   SplitHostPort: 'net',
   // crypto/subtle package
   ConstantTimeCompare: 'subtle',
+  ConstantTimeEq: 'subtle',
   ConstantTimeSelect: 'subtle',
 }
 

@@ -42,6 +42,7 @@ src/clojure/Math/ceil.ts :: export function ceil(x: number): number
 src/clojure/Math/floor.ts :: export function floor(x: number): number
 src/clojure/core/merge_with.ts :: export function merge_with(combiner: MergeCombiner, ...maps: unknown[]): MergeRecord
 src/clojure/core/partition.ts :: export function partition<T>(n: number, values: T[] | unknown, step: number = n, pad: T[] | null = null): T[][]
+src/clojure/core/reduce_kv.ts :: export function reduce_kv<TAccumulator, TValue = unknown>( reducer: ReduceKvReducer<TAccumulator, TValue>, initial: TAccumulator, collection: ReduceKvCollection<TValue> | unknown, ): TAccumulator
 src/clojure/core/update_in.ts :: export function update_in(value: unknown, keys: PathKey[] | unknown, updater: Updater, ...args: unknown[]): unknown
 src/clojure/string/blank.ts :: export function blank(s: string): boolean
 src/clojure/string/lower_case.ts :: export function lower_case(s: string): string
@@ -50,6 +51,9 @@ src/clojure/string/trim.ts :: export function trim(s: string): string
 src/clojure/string/upper_case.ts :: export function upper_case(s: string): string
 src/elixir/Enum/chunk_every.ts :: export function chunk_every<T>(values: T[] | unknown, count: number, step: number = count, leftover: T[] = []): T[][]
 src/elixir/Enum/frequencies_by.ts :: export function frequencies_by<T>(values: T[] | unknown, selector: FrequencySelector<T>): Record<string, number>
+src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector: GroupValueSelector<T, U>, ): Record<string, U[]>
+src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector?: GroupValueSelector<T, U>, ): Record<string, unknown[]>
+src/elixir/Enum/group_by.ts :: export function group_by<T>(values: T[] | unknown, keySelector: GroupKeySelector<T>): Record<string, T[]>
 src/elixir/Float/ceil.ts :: export function ceil(x: number): number
 src/elixir/Float/floor.ts :: export function floor(x: number): number
 src/elixir/Kernel/abs.ts :: export function abs(x: number): number
@@ -108,6 +112,7 @@ src/golang/strings/TrimRight.ts :: export function TrimRight(s: string, cutset: 
 src/golang/strings/TrimSpace.ts :: export function TrimSpace(s: string): string
 src/golang/strings/TrimSuffix.ts :: export function TrimSuffix(s: string, suffix: string): string
 src/golang/subtle/ConstantTimeCompare.ts :: export function ConstantTimeCompare(x: string, y: string): number
+src/golang/subtle/ConstantTimeEq.ts :: export function ConstantTimeEq(x: number, y: number): number
 src/golang/subtle/ConstantTimeSelect.ts :: export function ConstantTimeSelect(v: number, x: number, y: number): number
 src/golang/time/Add.ts :: export function Add(value: GoTimeInput, durationMs: number): Date
 src/golang/time/AddDate.ts :: export function AddDate(value: GoTimeInput, years: number, months: number, days: number): Date
@@ -147,6 +152,7 @@ src/julia/Base/floor.ts :: export function floor(x: number): number
 src/julia/Base/lowercase.ts :: export function lowercase(s: string): string
 src/julia/Base/partialsortperm.ts :: export function partialsortperm<T>(values: T[] | unknown, k: number, rev: boolean = false): number[]
 src/julia/Base/searchsortedfirst.ts :: export function searchsortedfirst(values: number[] | unknown, target: number): number
+src/julia/Base/searchsortedlast.ts :: export function searchsortedlast(values: number[] | unknown, target: number): number
 src/julia/Base/sortperm.ts :: export function sortperm<T>(values: T[] | unknown, rev: boolean = false): number[]
 src/julia/Base/uppercase.ts :: export function uppercase(s: string): string
 src/kotlin/collections/associateBy.ts :: export function associateBy<T>(values: T[] | unknown, keySelector: AssociateKeySelector<T>): Record<string, T>
@@ -306,6 +312,7 @@ src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): strin
 src/rust/str/trim.ts :: export function trim(str: string): string
 src/swift/String/componentsSeparatedBy.ts :: export function componentsSeparatedBy(str: string, separator: string): string[]
 src/swift/String/hasPrefix.ts :: export function hasPrefix(str: string, prefix: string): boolean
+src/swift/String/hasSuffix.ts :: export function hasSuffix(str: string, suffix: string): boolean
 src/swift/String/padding.ts :: export function padding(str: string, toLength: number, withPad: string = ' ', startingAt: number = 0): string
 src/swift/String/rangeOf.ts :: export function rangeOf( str: string, search: string, caseInsensitive: boolean = false, backwards: boolean = false, ): StringRange | null
 src/swift/String/rangeOf.ts :: export type StringRange = { start: number end: number }

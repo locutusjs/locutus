@@ -13,6 +13,8 @@ export const CLOJURE_SKIP_LIST = new Set<string>([
   'update_in',
   // merge-with requires higher-order combiner translation (JS callback -> Clojure fn) not implemented yet.
   'merge_with',
+  // reduce-kv requires higher-order reducer translation (JS callback -> Clojure fn) not implemented yet.
+  'reduce_kv',
 ])
 
 /**

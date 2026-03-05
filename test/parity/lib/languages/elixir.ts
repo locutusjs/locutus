@@ -9,6 +9,8 @@ import type { LanguageHandler } from '../types.ts'
 export const ELIXIR_SKIP_LIST = new Set<string>([
   // frequencies_by requires callback translation (JS arrow function -> Elixir anonymous fn) not implemented yet.
   'frequencies_by',
+  // group_by requires callback translation (JS arrow function -> Elixir anonymous fn) not implemented yet.
+  'group_by',
 ])
 
 /**

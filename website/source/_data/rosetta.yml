@@ -97,6 +97,7 @@ string_ends_with:
   - rust/str/ends_with
   - golang/strings/HasSuffix
   - ruby/String/end_with
+  - swift/String/hasSuffix
 
 string_reverse:
   - php/strings/strrev
@@ -136,12 +137,16 @@ regex_match:
 constant_time_compare:
   - golang/subtle/ConstantTimeCompare
 
+constant_time_equal:
+  - golang/subtle/ConstantTimeEq
+
 constant_time_select:
   - golang/subtle/ConstantTimeSelect
 
 collection_group_by:
   - ruby/Array/group_by
   - kotlin/collections/groupBy
+  - elixir/Enum/group_by
 
 list_permutations:
   - ruby/Array/permutation
@@ -467,6 +472,9 @@ collection_frequencies_by:
 map_merge_with:
   - clojure/core/merge_with
 
+map_reduce_kv:
+  - clojure/core/reduce_kv
+
 list_intersperse:
   - haskell/list/intersperse
 
@@ -485,6 +493,9 @@ sort_permutation:
 
 search_sorted_first:
   - julia/Base/searchsortedfirst
+
+search_sorted_last:
+  - julia/Base/searchsortedlast
 
 array_flatten:
   - ruby/Array/flatten
