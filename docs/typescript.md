@@ -2846,3 +2846,35 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Lower-count languages can absorb high-leverage additions quickly when functions stay within plain JS arrays/objects/strings.
   - `windowed` + `partition` + `subsequences` meaningfully expand sequence-processing expressiveness without introducing non-JS runtime shapes.
+
+## Iteration 98
+
+- Plans
+  - Add another high-impact expansion batch focused on low-count languages/categories:
+    - `clojure/core/update_in`
+    - `haskell/list/groupBy`
+    - `julia/Base/sortperm`
+    - `tcl/string/regsub`
+    - `kotlin/collections/associateBy`
+- Progress
+  - Added source modules:
+    - `src/clojure/core/update_in.ts`
+    - `src/haskell/list/groupBy.ts`
+    - `src/julia/Base/sortperm.ts`
+    - `src/tcl/string/regsub.ts`
+    - `src/kotlin/collections/associateBy.ts`
+  - Updated exports:
+    - `src/clojure/core/index.ts`
+    - `src/haskell/list/index.ts`
+    - `src/julia/Base/index.ts`
+    - `src/tcl/string/index.ts`
+    - `src/kotlin/collections/index.ts`
+  - Regenerated tests via:
+    - `yarn build:tests`
+- Validation
+  - `yarn biome check --write src/clojure/core/update_in.ts src/haskell/list/groupBy.ts`
+  - `yarn biome check src/clojure/core/update_in.ts src/clojure/core/index.ts src/haskell/list/groupBy.ts src/haskell/list/index.ts src/julia/Base/sortperm.ts src/julia/Base/index.ts src/tcl/string/regsub.ts src/tcl/string/index.ts src/kotlin/collections/associateBy.ts src/kotlin/collections/index.ts`
+  - `yarn vitest run test/generated/clojure/core/update_in.vitest.ts test/generated/haskell/list/groupBy.vitest.ts test/generated/julia/Base/sortperm.vitest.ts test/generated/tcl/string/regsub.vitest.ts test/generated/kotlin/collections/associateBy.vitest.ts`
+- Key learnings
+  - `update_in` and `regsub` significantly increase expressiveness without violating the project constraint of sticking to JS-native data shapes.
+  - `groupBy` (adjacent), `sortperm` (stable permutation indices), and `associateBy` (last-key-wins maps) add genuinely nontrivial utility in small language surfaces.
