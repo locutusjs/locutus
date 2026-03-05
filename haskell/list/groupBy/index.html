@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Haskell&#39;s list.groupBy in TypeScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here&#39;s what our current TypeScript equivalent to Haskell&#39;s list.groupBy looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Haskell&#39;s list.groupBy in TypeScript">
+<meta property="og:url" content="https://locutus.io/haskell/list/groupBy/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to Haskell&#39;s list.groupBy looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-03-05T13:52:19.034Z">
+<meta property="article:modified_time" content="2026-03-05T13:52:19.034Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+            
+                <nav id="top-page-nav">
+                    
+                        <a class="top-nav-link" href="/archives">Blog</a>
+                    
+                        <a class="top-nav-link" href="/authors">Authors</a>
+                    
+                </nav>
+            
+            
+        </div>
+    </div>
+    <div id="main-nav-desktop" class="header-sub header-inner">
+        <nav id="main-nav" class="outer">
+            
+              <a class="main-nav-link" href="/c">C</a>
+            
+              <a class="main-nav-link" href="/golang">Go</a>
+            
+              <a class="main-nav-link" href="/python">Python</a>
+            
+              <a class="main-nav-link" href="/ruby">Ruby</a>
+            
+              <a class="main-nav-link" href="/php">PHP</a>
+            
+              <a class="main-nav-link" href="/perl">Perl</a>
+            
+              <a class="main-nav-link" href="/lua">Lua</a>
+            
+              <a class="main-nav-link" href="/r">R</a>
+            
+              <a class="main-nav-link" href="/julia">Julia</a>
+            
+              <a class="main-nav-link" href="/elixir">Elixir</a>
+            
+              <a class="main-nav-link" href="/clojure">Clojure</a>
+            
+              <a class="main-nav-link" href="/awk">AWK</a>
+            
+              <a class="main-nav-link" href="/tcl">Tcl</a>
+            
+              <a class="main-nav-link" href="/powershell">PowerShell</a>
+            
+              <a class="main-nav-link" href="/rust">Rust</a>
+            
+              <a class="main-nav-link" href="/swift">Swift</a>
+            
+              <a class="main-nav-link" href="/kotlin">Kotlin</a>
+            
+              <a class="main-nav-link" href="/haskell">Haskell</a>
+            
+        </nav>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                  <td><a class="main-nav-link" href="/perl">Perl</a></td>
+                
+                  <td><a class="main-nav-link" href="/lua">Lua</a></td>
+                
+                  <td><a class="main-nav-link" href="/r">R</a></td>
+                
+                  <td><a class="main-nav-link" href="/julia">Julia</a></td>
+                
+                  <td><a class="main-nav-link" href="/elixir">Elixir</a></td>
+                
+                  <td><a class="main-nav-link" href="/clojure">Clojure</a></td>
+                
+                  <td><a class="main-nav-link" href="/awk">AWK</a></td>
+                
+                  <td><a class="main-nav-link" href="/tcl">Tcl</a></td>
+                
+                  <td><a class="main-nav-link" href="/powershell">PowerShell</a></td>
+                
+                  <td><a class="main-nav-link" href="/rust">Rust</a></td>
+                
+                  <td><a class="main-nav-link" href="/swift">Swift</a></td>
+                
+                  <td><a class="main-nav-link" href="/kotlin">Kotlin</a></td>
+                
+                  <td><a class="main-nav-link" href="/haskell">Haskell</a></td>
+                
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">Haskell&#39;s list.groupBy in TypeScript</h1>
+      
+
+      
+      
+        <div style="margin-top: 12px; padding: 10px 14px; background: #f8f9fa; border-left: 4px solid #007acc; border-radius: 4px;">
+          <span style="font-size: 13px; color: #555;">
+            <strong>Rosetta Stone:</strong>
+            
+              <a href="/kotlin/collections/groupBy/" style="margin-left: 8px;" title="Kotlin&#39;s collections.groupBy in TypeScript">kotlin/groupBy</a>
+            
+          </span>
+        </div>
+      
+    </header>
+
+    <div class="article-entry">
+      <h2>How to use</h2>
+      
+        <p>
+          Install via <code>yarn add locutus</code> and import:
+          <code>import { groupBy } from 'locutus/haskell/list/groupBy'</code>.
+        </p>
+        <p style="margin-top: 4px; font-size: 13px; color: #888;">
+          Or with CommonJS: <code>const { groupBy } = require('locutus/haskell/list/groupBy')</code>
+        </p>
+      
+      <p>
+        Use a bundler that supports tree-shaking so you only ship the functions you actually use.
+        <a href="https://vite.dev/" target="_blank" rel="external">Vite</a>,
+        <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a>,
+        <a href="https://rollupjs.org/" target="_blank" rel="external">Rollup</a>, and
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>
+        all handle this. For server-side use this is less of a concern.
+      </p>
+
+      
+        <h2>Examples</h2>
+        <p>
+          These examples are extracted from test cases that automatically verify our functions against their native counterparts.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>groupBy([1, 1, 2, 3, 3, 3, 2], (a, b) =&gt; a === b)</code></td><td><code>[[1, 1], [2], [3, 3, 3], [2]]</code></td></tr>
+        
+          <tr><td>2</td><td><code>groupBy([&#39;a&#39;, &#39;A&#39;, &#39;b&#39;, &#39;B&#39;], (a, b) =&gt; a.toLowerCase() === b.toLowerCase())</code></td><td><code>[[&#39;a&#39;, &#39;A&#39;], [&#39;b&#39;, &#39;B&#39;]]</code></td></tr>
+        
+          <tr><td>3</td><td><code>groupBy([], (a, b) =&gt; a === b)</code></td><td><code>[]</code></td></tr>
+        
+        </table>
+      
+
+      
+
+      
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Groups adjacent elements while predicate(prev, current) is true, like Haskell Data.List.groupBy.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here's what our current TypeScript equivalent to <a target="_blank" rel="noopener" href="https://hackage.haskell.org/package/base/docs/Data-List.html">Haskell's list.groupBy</a> looks like.
+      </p>
+
+      <!-- Code -->
+      
+        <style>
+          .code-tabs {
+            position: relative;
+          }
+          .code-tabs-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+          }
+          .code-tabs-left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            min-width: 0;
+            scrollbar-width: thin;
+          }
+          .code-tab-btn {
+            position: relative;
+            padding: 8px 10px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            line-height: 1.2;
+            flex: 0 0 auto;
+          }
+          .code-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.04);
+          }
+          .code-tab-btn.active {
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            border-radius: 2px 2px 0 0;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .code-tab-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+          }
+          .code-tab-btn[data-tab="ts"].active::after,
+          .code-tab-btn[data-tab="standalone-ts"].active::after {
+            background: #3178c6;
+          }
+          .code-tab-btn[data-tab="js"].active::after,
+          .code-tab-btn[data-tab="standalone-js"].active::after {
+            background: #f0db4f;
+          }
+          .code-tab-btn .tab-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 900;
+            line-height: 16px;
+            text-align: center;
+            margin-right: 6px;
+            vertical-align: -2px;
+            letter-spacing: -0.5px;
+          }
+          .code-tab-btn[data-tab="ts"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-ts"] .tab-icon {
+            background: #3178c6;
+            color: #fff;
+          }
+          .code-tab-btn[data-tab="js"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-js"] .tab-icon {
+            background: #f0db4f;
+            color: #323330;
+          }
+          .code-panels-wrap {
+            position: relative;
+          }
+          .code-tab-panel {
+            display: none;
+          }
+          .code-tab-panel.active {
+            display: block;
+          }
+          .code-tab-panel figure.highlight {
+            border-radius: 0 8px 8px 8px;
+            margin-top: 0 !important;
+          }
+          .code-copy-icon-btn {
+            align-items: center;
+            background: rgba(38, 38, 38, 0.95);
+            border: 1px solid #404040;
+            border-radius: 6px;
+            color: #cfcfcf;
+            cursor: pointer;
+            display: inline-flex;
+            height: 30px;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+            width: 30px;
+            z-index: 4;
+          }
+          .code-copy-icon-btn:hover {
+            border-color: #5a5a5a;
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-copy-icon-btn svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+          .code-copy-icon-btn[data-state='copied'] {
+            border-color: #22c55e;
+            color: #22c55e;
+          }
+          .code-copy-icon-btn[data-state='failed'] {
+            border-color: #ef4444;
+            color: #ef4444;
+          }
+          .code-copy-icon-btn .code-copy-success {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-default {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-success {
+            display: block;
+          }
+          .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          @media (max-width: 640px) {
+            .code-tab-btn {
+              padding: 7px 8px;
+              font-size: 11px;
+            }
+          }
+        </style>
+        <div class="code-tabs">
+          <div class="code-tabs-header">
+            <div class="code-tabs-left">
+              <button class="code-tab-btn active" data-tab="ts" type="button">
+                <span class="tab-icon">TS</span><span class="tab-label">TypeScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="js" type="button">
+                <span class="tab-icon">JS</span><span class="tab-label">JavaScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-ts" type="button">
+                <span class="tab-icon">TS</span>Standalone TS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-js" type="button">
+                <span class="tab-icon">JS</span>Standalone JS
+              </button>
+            </div>
+          </div>
+          <div class="code-panels-wrap">
+            <button class="code-copy-icon-btn" type="button" data-state="idle" aria-label="Copy code" title="Copy code">
+              <span class="sr-only">Copy code</span>
+              <svg class="code-copy-default" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
+                <path d="M5 15V6.5C5 5.67 5.67 5 6.5 5H15" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+              <svg class="code-copy-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5L9.2 16.7L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <div class="code-tab-panel" data-lang="ts">
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">GroupPredicate</span>&lt;T&gt; = <span class="function">(<span class="params"><span class="attr">left</span>: T, <span class="attr">right</span>: T</span>) =&gt;</span> <span class="built_in">boolean</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> groupBy&lt;T&gt;(<span class="attr">items</span>: T[] | <span class="built_in">unknown</span>, <span class="attr">predicate</span>?: <span class="title class_">GroupPredicate</span>&lt;T&gt;): T[][] &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/haskell/list/groupBy/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//      note 1: Groups adjacent elements while predicate(prev, current) is true, like Haskell Data.List.groupBy.</span></span><br><span class="line">  <span class="comment">//   example 1: groupBy([1, 1, 2, 3, 3, 3, 2], (a, b) =&gt; a === b)</span></span><br><span class="line">  <span class="comment">//   returns 1: [[1, 1], [2], [3, 3, 3], [2]]</span></span><br><span class="line">  <span class="comment">//   example 2: groupBy([&#x27;a&#x27;, &#x27;A&#x27;, &#x27;b&#x27;, &#x27;B&#x27;], (a, b) =&gt; a.toLowerCase() === b.toLowerCase())</span></span><br><span class="line">  <span class="comment">//   returns 2: [[&#x27;a&#x27;, &#x27;A&#x27;], [&#x27;b&#x27;, &#x27;B&#x27;]]</span></span><br><span class="line">  <span class="comment">//   example 3: groupBy([], (a, b) =&gt; a === b)</span></span><br><span class="line">  <span class="comment">//   returns 3: []</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title class_">Array</span>.<span class="title function_">isArray</span>(items) || items.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">eq</span>: <span class="title class_">GroupPredicate</span>&lt;T&gt; = <span class="keyword">typeof</span> predicate === <span class="string">&#x27;function&#x27;</span> ? predicate : <span class="function">(<span class="params">left, right</span>) =&gt;</span> <span class="title class_">Object</span>.<span class="title function_">is</span>(left, right)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">out</span>: T[][] = [[items[<span class="number">0</span>] <span class="keyword">as</span> T]]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; items.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> prev = items[i - <span class="number">1</span>] <span class="keyword">as</span> T</span><br><span class="line">    <span class="keyword">const</span> current = items[i] <span class="keyword">as</span> T</span><br><span class="line">    <span class="keyword">const</span> bucket = out[out.<span class="property">length</span> - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> (bucket &amp;&amp; <span class="title function_">eq</span>(prev, current)) &#123;</span><br><span class="line">      bucket.<span class="title function_">push</span>(current)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      out.<span class="title function_">push</span>([current])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">groupBy</span>(<span class="params">items, predicate</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/haskell/list/groupBy/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//      note 1: Groups adjacent elements while predicate(prev, current) is true, like Haskell Data.List.groupBy.</span></span><br><span class="line">  <span class="comment">//   example 1: groupBy([1, 1, 2, 3, 3, 3, 2], (a, b) =&gt; a === b)</span></span><br><span class="line">  <span class="comment">//   returns 1: [[1, 1], [2], [3, 3, 3], [2]]</span></span><br><span class="line">  <span class="comment">//   example 2: groupBy([&#x27;a&#x27;, &#x27;A&#x27;, &#x27;b&#x27;, &#x27;B&#x27;], (a, b) =&gt; a.toLowerCase() === b.toLowerCase())</span></span><br><span class="line">  <span class="comment">//   returns 2: [[&#x27;a&#x27;, &#x27;A&#x27;], [&#x27;b&#x27;, &#x27;B&#x27;]]</span></span><br><span class="line">  <span class="comment">//   example 3: groupBy([], (a, b) =&gt; a === b)</span></span><br><span class="line">  <span class="comment">//   returns 3: []</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title class_">Array</span>.<span class="title function_">isArray</span>(items) || items.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> eq = <span class="keyword">typeof</span> predicate === <span class="string">&#x27;function&#x27;</span> ? predicate : <span class="function">(<span class="params">left, right</span>) =&gt;</span> <span class="title class_">Object</span>.<span class="title function_">is</span>(left, right)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> out = [[items[<span class="number">0</span>]]]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; items.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> prev = items[i - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">const</span> current = items[i]</span><br><span class="line">    <span class="keyword">const</span> bucket = out[out.<span class="property">length</span> - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> (bucket &amp;&amp; <span class="title function_">eq</span>(prev, current)) &#123;</span><br><span class="line">      bucket.<span class="title function_">push</span>(current)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      out.<span class="title function_">push</span>([current])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> out</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+          </div>
+        </div>
+        <script>
+        (function() {
+          var STORAGE_KEY = 'locutus-code-variant';
+          var LEGACY_STORAGE_KEY = 'locutus-code-lang';
+          var saved = null;
+          try {
+            saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+          } catch(e) {}
+
+          if (saved === 'standalone') {
+            saved = 'standalone-js';
+          }
+
+          function getPanelCode(panel) {
+            if (!panel) {
+              return '';
+            }
+            var pre = panel.querySelector('pre');
+            if (pre) {
+              var preText = pre.innerText || pre.textContent || '';
+              if (preText) {
+                return preText.replace(/\u00a0/g, ' ').trimEnd();
+              }
+            }
+            var codeCell = panel.querySelector('figure.highlight .code');
+            if (codeCell) {
+              return (codeCell.textContent || '').replace(/\u00a0/g, ' ').trimEnd();
+            }
+            return '';
+          }
+
+          function copyText(value) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(value);
+            }
+            return new Promise(function(resolve, reject) {
+              try {
+                var textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (!ok) {
+                  reject(new Error('copy failed'));
+                  return;
+                }
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          var tabGroups = document.querySelectorAll('.code-tabs');
+          tabGroups.forEach(function(group) {
+            var buttons = group.querySelectorAll('.code-tab-btn');
+            var panels = group.querySelectorAll('.code-tab-panel');
+            var copyButton = group.querySelector('.code-copy-icon-btn');
+            var validTabs = [];
+
+            buttons.forEach(function(btn) {
+              var tab = btn.getAttribute('data-tab');
+              var hasPanel = Array.prototype.some.call(panels, function(panel) {
+                return panel.getAttribute('data-lang') === tab;
+              });
+              if (!hasPanel) {
+                btn.style.display = 'none';
+                return;
+              }
+              validTabs.push(tab);
+            });
+
+            var hasStandaloneTabs =
+              validTabs.indexOf('standalone-ts') !== -1 || validTabs.indexOf('standalone-js') !== -1;
+            var tsLabel = group.querySelector('.code-tab-btn[data-tab=\"ts\"] .tab-label');
+            var jsLabel = group.querySelector('.code-tab-btn[data-tab=\"js\"] .tab-label');
+            if (tsLabel) {
+              tsLabel.textContent = hasStandaloneTabs ? 'Module TS' : 'TypeScript';
+            }
+            if (jsLabel) {
+              jsLabel.textContent = hasStandaloneTabs ? 'Module JS' : 'JavaScript';
+            }
+
+            function switchTab(lang) {
+              if (validTabs.indexOf(lang) === -1) {
+                return;
+              }
+              buttons.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              });
+              panels.forEach(function(panel) {
+                panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+                panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+              });
+              try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+            }
+
+            buttons.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-tab'));
+              });
+            });
+
+            if (copyButton) {
+              var copyTimer = null;
+              copyButton.addEventListener('click', function() {
+                var activePanel = group.querySelector('.code-tab-panel.active') || panels[0];
+                var code = getPanelCode(activePanel);
+                if (!code.trim()) {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'No code available');
+                  copyButton.setAttribute('title', 'No code available');
+                  return;
+                }
+                copyText(code).then(function() {
+                  copyButton.setAttribute('data-state', 'copied');
+                  copyButton.setAttribute('aria-label', 'Copied');
+                  copyButton.setAttribute('title', 'Copied');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1400);
+                }).catch(function() {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'Copy failed');
+                  copyButton.setAttribute('title', 'Copy failed');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1600);
+                });
+              });
+            }
+
+            // Restore saved preference, default to TypeScript when available.
+            var defaultTab = validTabs.indexOf('ts') !== -1 ? 'ts' : validTabs[0];
+            if (saved && validTabs.indexOf(saved) !== -1) {
+              switchTab(saved);
+            } else if (defaultTab) {
+              switchTab(defaultTab);
+            }
+          });
+        })();
+        </script>
+      
+
+
+      <div class="clearfix"></div>
+
+      <h2>Improve this function</h2>
+      <p>
+        Locutus is a community effort following
+        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald's Theory</a>:
+        we ship first iterations, hoping others will improve them.
+        If you see something that could be better, we'd love your contribution.
+      </p>
+      <p>
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/haskell/list/groupBy.ts">View on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/haskell/list/groupBy.ts">Edit on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/haskell/list/groupBy.ts">View Raw</a></strong>
+      </p>
+
+
+      <hr />
+      
+  
+
+  <h2>We have 4 Haskell functions so far - help us add more</h2>
+  <p>
+    Got a rainy Sunday afternoon and a taste for a porting puzzle?
+  </p>
+  <ul>
+    <li>
+      Get inspiration from
+      <a target="_blank" rel="noopener" href="https://hackage.haskell.org/package/base/docs/Data-List.html">the Haskell base Data.List docs</a>.
+    </li>
+    <li>
+      Click "New file" in the appropriate folder
+      <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/tree/main/src/haskell/">on GitHub</a>.
+      This will fork the project to your account, directly add the file to it, and send a
+      Pull Request to us.
+    </li>
+  </ul>
+
+  <p>
+    We will then review it. If it's useful to the project and in line with our
+    <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/CONTRIBUTING.md">contributing guidelines</a>
+    your work will become part of Locutus and you'll be automatically credited
+    in the <a href="/authors">authors</a>
+    section accordingly.
+  </p>
+
+
+
+      <p>
+        <a href="/haskell/list/">&laquo; More Haskell list functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our <del>JavaScript</del> <a href="/2026/03/locutus-3-0/">TypeScript</a> collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a target="_blank" rel="noopener" href="https://x.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a>
+              <a class="github-button" target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              18
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                616
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    
+                    <td>
+                        <a href="https://github.com/locutusjs/locutus" target="_blank" title="github">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    
+                    
+                    <td>
+                        <a href="https://x.com/locutus_io" target="_blank" title="X">
+                            
+                                <svg class="social-icon-x" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M18.244 2H21.5l-7.11 8.13L22 22h-5.95l-4.66-6.11L5.99 22H2.73l7.61-8.7L2 2h6.1l4.2 5.55L18.244 2zm-1.04 18.2h1.8L5.17 3.7H3.24L17.2 20.2z"/>
+                                </svg>
+                            
+                        </a>
+                    </td>
+                    
+                    
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rss">
+                            
+                                <i class="fa fa-rss"></i>
+                            
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <ul class="on-the-githubs">
+      <li class="otg-loading">Loading...</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CACHE_KEY = 'otg_events'
+  var CACHE_TTL = 15 * 60 * 1000 // 15 minutes
+  var MAX_EVENTS = 15
+
+  function timeAgo(dateStr) {
+    var seconds = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000)
+    if (seconds < 60) return 'just now'
+    var minutes = Math.floor(seconds / 60)
+    if (minutes < 60) return minutes + 'm ago'
+    var hours = Math.floor(minutes / 60)
+    if (hours < 24) return hours + 'h ago'
+    var days = Math.floor(hours / 24)
+    if (days < 30) return days + 'd ago'
+    return Math.floor(days / 30) + 'mo ago'
+  }
+
+  function escHtml(str) {
+    var div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML
+  }
+
+  function truncate(str, len) {
+    if (!str) return ''
+    return str.length > len ? str.substring(0, len) + '\u2026' : str
+  }
+
+  function describeEvent(ev) {
+    var p = ev.payload
+    switch (ev.type) {
+      case 'PushEvent':
+        var commits = p.commits || []
+        var branch = (p.ref || '').replace('refs/heads/', '')
+        var compareUrl = 'https://github.com/' + ev.repo.name + '/compare/' + p.before.substring(0, 10) + '...' + p.head.substring(0, 10)
+        if (commits.length === 1) return { text: truncate(commits[0].message.split('\n')[0], 60), url: 'https://github.com/' + ev.repo.name + '/commit/' + commits[0].sha }
+        if (commits.length > 1) return { text: 'pushed ' + commits.length + ' commits to ' + branch, url: compareUrl }
+        var size = p.size || p.distinct_size || 0
+        if (size > 0) return { text: 'pushed ' + size + ' commit' + (size !== 1 ? 's' : '') + ' to ' + branch, url: compareUrl }
+        return { text: 'pushed to ' + branch, url: compareUrl }
+      case 'PullRequestEvent':
+        var prUrl = (p.pull_request && p.pull_request.html_url) || 'https://github.com/' + ev.repo.name + '/pull/' + p.number
+        var prTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + p.number
+        return { text: p.action + ' PR: ' + prTitle, url: prUrl }
+      case 'IssuesEvent':
+        var issueTitle = (p.issue && p.issue.title) ? truncate(p.issue.title, 50) : '#' + (p.issue && p.issue.number)
+        return { text: p.action + ' issue: ' + issueTitle, url: (p.issue && p.issue.html_url) || 'https://github.com/' + ev.repo.name + '/issues' }
+      case 'IssueCommentEvent':
+        var commentTitle = (p.issue && p.issue.title) ? truncate(p.issue.title, 50) : '#' + (p.issue && p.issue.number)
+        return { text: 'commented on: ' + commentTitle, url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'CommitCommentEvent':
+        return { text: 'commented on commit', url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'PullRequestReviewEvent':
+        var reviewPrTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + (p.pull_request && p.pull_request.number)
+        return { text: 'reviewed PR: ' + reviewPrTitle, url: (p.review && p.review.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'PullRequestReviewCommentEvent':
+        var reviewCommentTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + (p.pull_request && p.pull_request.number)
+        return { text: 'commented on PR: ' + reviewCommentTitle, url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'created the repository', url: 'https://github.com/' + ev.repo.name }
+        return { text: 'created ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name + '/tree/' + p.ref }
+      case 'DeleteEvent':
+        return { text: 'deleted ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name }
+      case 'ForkEvent':
+        return { text: 'forked the repo', url: p.forkee.html_url }
+      case 'WatchEvent':
+        return { text: 'starred the repo', url: 'https://github.com/' + ev.repo.name }
+      case 'ReleaseEvent':
+        return { text: p.action + ' release: ' + p.release.tag_name, url: p.release.html_url }
+      case 'MemberEvent':
+        return { text: p.action + ' member: ' + p.member.login, url: 'https://github.com/' + p.member.login }
+      default:
+        return null
+    }
+  }
+
+  function render(events) {
+    var ul = document.querySelector('.on-the-githubs')
+    if (!ul) return
+    ul.innerHTML = ''
+    var shown = 0
+    for (var i = 0; i < events.length && shown < MAX_EVENTS; i++) {
+      var desc = describeEvent(events[i])
+      if (!desc) continue
+      var ev = events[i]
+      var li = document.createElement('li')
+      li.innerHTML =
+        '<img src="https://avatars.githubusercontent.com/u/' + ev.actor.id + '?s=32&v=4" alt="" />' +
+        '<a target="_blank" rel="noopener" href="https://github.com/' + escHtml(ev.actor.login) + '">' + escHtml(ev.actor.login) + '</a> ' +
+        '<a href="' + escHtml(desc.url) + '">' + escHtml(desc.text) + '</a> ' +
+        '<time>' + timeAgo(ev.created_at) + '</time>'
+      ul.appendChild(li)
+      shown++
+    }
+    if (shown === 0) {
+      ul.innerHTML = '<li>No recent activity</li>'
+    }
+  }
+
+  function showFallback() {
+    var ul = document.querySelector('.on-the-githubs')
+    if (ul) ul.innerHTML = '<li><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/activity">View recent activity on GitHub</a></li>'
+  }
+
+  function load() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')
+      if (cached.data && cached.ts && (Date.now() - cached.ts) < CACHE_TTL) {
+        render(cached.data)
+        return
+      }
+    } catch (e) { /* ignore */ }
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://api.github.com/repos/locutusjs/locutus/events?per_page=20')
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText)
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, ts: Date.now() }))
+          render(data)
+        } catch (e) {
+          showFallback()
+        }
+      } else {
+        showFallback()
+      }
+    }
+    xhr.onerror = function () {
+      showFallback()
+    }
+    xhr.send()
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load)
+  } else {
+    load()
+  }
+})()
+</script>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (18)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdlib/">
+            stdlib
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (74)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/net/">
+            net
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/path/">
+            path
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/sort/">
+            sort
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (10)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/subtle/">
+            subtle
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/time/">
+            time
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (31)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (20)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/re/">
+            re
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (39)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (13)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (321)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/perl/">
+          Perl
+          (22)
+        </a></li>
+        
+        <ul>
+          <li><a href="/perl/POSIX/">
+            POSIX
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/perl/core/">
+            core
+            (20)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/lua/">
+          Lua
+          (14)
+        </a></li>
+        
+        <ul>
+          <li><a href="/lua/math/">
+            math
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/lua/string/">
+            string
+            (6)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/r/">
+          R
+          (10)
+        </a></li>
+        
+        <ul>
+          <li><a href="/r/base/">
+            base
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/julia/">
+          Julia
+          (6)
+        </a></li>
+        
+        <ul>
+          <li><a href="/julia/Base/">
+            Base
+            (6)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/elixir/">
+          Elixir
+          (7)
+        </a></li>
+        
+        <ul>
+          <li><a href="/elixir/Float/">
+            Float
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/elixir/Kernel/">
+            Kernel
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/elixir/String/">
+            String
+            (4)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/clojure/">
+          Clojure
+          (10)
+        </a></li>
+        
+        <ul>
+          <li><a href="/clojure/Math/">
+            Math
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/clojure/core/">
+            core
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/clojure/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/awk/">
+          AWK
+          (10)
+        </a></li>
+        
+        <ul>
+          <li><a href="/awk/builtin/">
+            builtin
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/tcl/">
+          Tcl
+          (14)
+        </a></li>
+        
+        <ul>
+          <li><a href="/tcl/string/">
+            string
+            (14)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/powershell/">
+          PowerShell
+          (16)
+        </a></li>
+        
+        <ul>
+          <li><a href="/powershell/string/">
+            string
+            (16)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/rust/">
+          Rust
+          (13)
+        </a></li>
+        
+        <ul>
+          <li><a href="/rust/str/">
+            str
+            (13)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/swift/">
+          Swift
+          (3)
+        </a></li>
+        
+        <ul>
+          <li><a href="/swift/String/">
+            String
+            (3)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/kotlin/">
+          Kotlin
+          (4)
+        </a></li>
+        
+        <ul>
+          <li><a href="/kotlin/collections/">
+            collections
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/kotlin/text/">
+            text
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/haskell/">
+          Haskell
+          (4)
+        </a></li>
+        
+        <ul>
+          <li><a href="/haskell/list/">
+            list
+            (4)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2026/03/locutus-3-0/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-3-typescript.svg)" alt="Locutus 3.0: Fully Assimilated into TypeScript" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2026/03/locutus-3-0/" class="title">Locutus 3.0: Fully Assimilated into TypeScript</a></p>
+                            <p class="item-date"><time datetime="2026-03-02T00:00:00.000Z" itemprop="datePublished">2026-03-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Artwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    </div>
+</body>
+</html>
