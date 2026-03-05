@@ -15,6 +15,9 @@ string_length:
   - c/string/strlen
   - ruby/String/length
   - perl/core/length
+  - powershell/string/length
+  - tcl/string/length
+  - rust/str/len
   - awk/builtin/length
   - lua/string/len
   - elixir/String/length
@@ -24,6 +27,9 @@ string_lowercase:
   - php/strings/strtolower
   - ruby/String/downcase
   - golang/strings/ToLower
+  - powershell/string/tolower
+  - tcl/string/tolower
+  - rust/str/to_lowercase
   - lua/string/lower
   - perl/core/lc
   - awk/builtin/tolower
@@ -36,6 +42,9 @@ string_uppercase:
   - php/strings/strtoupper
   - ruby/String/upcase
   - golang/strings/ToUpper
+  - powershell/string/toupper
+  - tcl/string/toupper
+  - rust/str/to_uppercase
   - lua/string/upper
   - perl/core/uc
   - awk/builtin/toupper
@@ -49,29 +58,49 @@ string_trim:
   - ruby/String/strip
   - golang/strings/TrimSpace
   - golang/strings/Trim
+  - powershell/string/trim
+  - tcl/string/trim
+  - rust/str/trim
   - clojure/string/trim
+  - swift/String/trimmingCharacters
+
+string_ltrim:
+  - php/strings/ltrim
+  - tcl/string/trimleft
 
 string_rtrim:
   - php/strings/rtrim
   - php/strings/chop
   - ruby/String/chop
   - ruby/String/chomp
+  - tcl/string/trimright
+  - perl/core/chop
+
+string_chomp:
+  - perl/core/chomp
 
 string_contains:
+  - powershell/string/contains
+  - rust/str/contains
   - golang/strings/Contains
   - ruby/String/include
 
 string_starts_with:
+  - powershell/string/startswith
+  - rust/str/starts_with
   - golang/strings/HasPrefix
   - ruby/String/start_with
 
 string_ends_with:
+  - powershell/string/endswith
+  - rust/str/ends_with
   - golang/strings/HasSuffix
   - ruby/String/end_with
 
 string_reverse:
   - php/strings/strrev
   - ruby/String/reverse
+  - tcl/string/reverse
   - lua/string/reverse
   - perl/core/reverse
   - elixir/String/reverse
@@ -80,6 +109,8 @@ string_reverse:
 string_split:
   - php/strings/explode
   - golang/strings/Split
+  - swift/String/split
+  - swift/String/componentsSeparatedBy
 
 string_join:
   - php/strings/implode
@@ -87,25 +118,60 @@ string_join:
 
 string_replace:
   - php/strings/str_replace
+  - powershell/string/replace
+  - rust/str/replace
   - golang/strings/Replace
+  - swift/String/replacingOccurrences
+
+regex_replace:
+  - php/pcre/preg_replace
+  - ruby/String/gsub
+  - python/re/sub
+
+regex_match:
+  - php/pcre/preg_match
+  - tcl/string/match
+
+collection_group_by:
+  - ruby/Array/group_by
+  - kotlin/collections/groupBy
+
+list_permutations:
+  - ruby/Array/permutation
+  - haskell/list/permutations
+
+matrix_transpose:
+  - haskell/list/transpose
 
 string_index:
   - php/strings/strpos
+  - powershell/string/indexof
+  - rust/str/find
   - golang/strings/Index
   - golang/strings/Index2
+  - tcl/string/first
 
 string_last_index:
   - php/strings/strrpos
+  - powershell/string/lastindexof
+  - rust/str/rfind
   - golang/strings/LastIndex
+  - tcl/string/last
 
 string_repeat:
   - php/strings/str_repeat
   - golang/strings/Repeat
+  - tcl/string/repeat
   - lua/string/rep
 
 string_capitalize:
   - php/strings/ucfirst
   - ruby/String/capitalize
+  - perl/core/ucfirst
+
+string_uncapitalize:
+  - php/strings/lcfirst
+  - perl/core/lcfirst
 
 string_compare:
   - php/strings/strcmp
@@ -231,6 +297,7 @@ math_abs:
   - julia/Base/abs
   - elixir/Kernel/abs
   - clojure/Math/abs
+  - perl/core/abs
 
 math_max:
   - php/math/max
@@ -259,6 +326,7 @@ math_cbrt:
 math_trunc:
   - python/math/trunc
   - awk/builtin/int
+  - perl/core/int
 
 math_factorial:
   - python/math/factorial
@@ -312,6 +380,14 @@ char_tolower:
 char_toupper:
   - c/ctype/toupper
 
+char_from_codepoint:
+  - php/strings/chr
+  - perl/core/chr
+
+char_to_codepoint:
+  - php/strings/ord
+  - perl/core/ord
+
 # =============================================================================
 # TYPE CONVERSION
 # =============================================================================
@@ -339,6 +415,10 @@ parse_bool:
 format_bool:
   - golang/strconv/FormatBool
 
+string_regex_escape:
+  - php/strings/quotemeta
+  - perl/core/quotemeta
+
 # =============================================================================
 # ARRAY/COLLECTION OPERATIONS
 # =============================================================================
@@ -354,6 +434,30 @@ array_last:
 array_unique:
   - php/array/array_unique
   - ruby/Array/uniq
+
+array_unique_by:
+  - haskell/list/nubBy
+
+array_chunk:
+  - php/array/array_chunk
+  - elixir/Enum/chunk_every
+  - kotlin/collections/windowed
+
+running_fold:
+  - kotlin/collections/runningFold
+
+adjacent_pairs:
+  - kotlin/collections/zipWithNext
+
+list_prefixes:
+  - haskell/list/inits
+
+list_suffixes:
+  - haskell/list/tails
+
+sort_permutation:
+  - julia/Base/sortperm
+  - julia/Base/partialsortperm
 
 array_flatten:
   - ruby/Array/flatten
@@ -371,3 +475,7 @@ array_sample:
 sprintf:
   - php/strings/sprintf
   - c/stdio/sprintf
+
+date_format:
+  - php/datetime/date
+  - golang/time/Format
