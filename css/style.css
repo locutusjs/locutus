@@ -525,12 +525,32 @@ code {
 }
 @media screen and (min-width: 560px) and (max-width: 799px) {
   #top-page-nav {
-    display: none;
+    display: block;
+    float: none;
+    clear: both;
+    height: auto;
+    line-height: 1.4;
+    padding: 0 15px 10px;
+    text-align: right;
+  }
+  #top-page-nav .top-nav-link {
+    line-height: 1.4;
+    padding: 0 8px 0 0;
   }
 }
 @media screen and (max-width: 559px) {
   #top-page-nav {
-    display: none;
+    display: block;
+    float: none;
+    clear: both;
+    height: auto;
+    line-height: 1.4;
+    padding: 0 15px 10px;
+    text-align: right;
+  }
+  #top-page-nav .top-nav-link {
+    line-height: 1.4;
+    padding: 0 8px 0 0;
   }
 }
 #search-form-wrap .search-form {
@@ -572,6 +592,11 @@ code {
   }
   #search-form-wrap .search-form .search-form-submit {
     right: 10px;
+  }
+}
+@media screen and (min-width: 560px) and (max-width: 799px) {
+  #search-form-wrap .search-form .search-form-input {
+    width: 160px;
   }
 }
 .search-form-input,
