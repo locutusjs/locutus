@@ -32,6 +32,7 @@ src/c/math/frexp.ts :: export function frexp(arg: number): [number, number]
 src/c/stdio/sprintf.ts :: export function sprintf(format: string, ...args: unknown[]): string
 src/c/stdlib/atof.ts :: export function atof(str: string): number
 src/c/stdlib/atoi.ts :: export function atoi(str: string): number
+src/c/stdlib/strtod.ts :: export function strtod(str: string): number
 src/c/stdlib/strtol.ts :: export function strtol(str: string, base: number = 10): number
 src/c/string/strcat.ts :: export function strcat(dest: string, src: string): string
 src/c/string/strchr.ts :: export function strchr(str: string, c: string): string | null
@@ -70,6 +71,8 @@ src/elixir/String/length.ts :: export function length(string: string): number
 src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
 src/golang/net/JoinHostPort.ts :: export function JoinHostPort(host: string, port: string): string
+src/golang/net/ParseCIDR.ts :: export function ParseCIDR(value: string): ParsedCIDR | null
+src/golang/net/ParseCIDR.ts :: export type ParsedCIDR = { ip: string maskBits: number }
 src/golang/net/ParseIP.ts :: export function ParseIP(value: string): string | null
 src/golang/net/SplitHostPort.ts :: export function SplitHostPort(hostport: string): [string, string]
 src/golang/path/Base.ts :: export function Base(path: string): string
@@ -165,6 +168,8 @@ src/julia/Base/findall.ts :: export function findall<T>(matcher: T, values: T[] 
 src/julia/Base/floor.ts :: export function floor(x: number): number
 src/julia/Base/lowercase.ts :: export function lowercase(s: string): string
 src/julia/Base/partialsortperm.ts :: export function partialsortperm<T>(values: T[] | unknown, k: number, rev: boolean = false): number[]
+src/julia/Base/searchsorted.ts :: export function searchsorted(values: number[] | unknown, target: number): SearchSortedRange
+src/julia/Base/searchsorted.ts :: export type SearchSortedRange = { start: number end: number }
 src/julia/Base/searchsortedfirst.ts :: export function searchsortedfirst(values: number[] | unknown, target: number): number
 src/julia/Base/searchsortedlast.ts :: export function searchsortedlast(values: number[] | unknown, target: number): number
 src/julia/Base/sortperm.ts :: export function sortperm<T>(values: T[] | unknown, rev: boolean = false): number[]
@@ -252,6 +257,8 @@ src/python/math/pow.ts :: export function pow(x: number, y: number): number
 src/python/math/sqrt.ts :: export function sqrt(x: number): number
 src/python/math/trunc.ts :: export function trunc(x: number): number
 src/python/re/findall.ts :: export function findall(pattern: string | RegExp, source: string, flags: ReFindallFlags = 0): Array<string | string[]>
+src/python/re/finditer.ts :: export function finditer(pattern: string | RegExp, source: string, flags: ReFinditerFlags = 0): FinditerMatch[]
+src/python/re/finditer.ts :: export type FinditerMatch = { match: string index: number groups: string[] }
 src/python/re/sub.ts :: export function sub( pattern: string | RegExp, replacement: ReSubReplacement, source: string, count: number = 0, flags: ReSubFlags = 0, ): string
 src/python/string/ascii_letters.ts :: export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 src/python/string/ascii_lowercase.ts :: export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz'
@@ -266,6 +273,7 @@ src/python/string/whitespace.ts :: export function whitespace(): ' \t\n\r\x0b\x0
 src/r/base/abs.ts :: export function abs(x: number): number
 src/r/base/ceiling.ts :: export function ceiling(x: number): number
 src/r/base/floor.ts :: export function floor(x: number): number
+src/r/base/match.ts :: export function match( value: string | number | boolean | null, table: Array<string | number | boolean | null> | unknown, nomatch: number | null = null, ): number | null
 src/r/base/max.ts :: export function max(...args: number[]): number
 src/r/base/min.ts :: export function min(...args: number[]): number
 src/r/base/nchar.ts :: export function nchar(x: string): number

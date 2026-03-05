@@ -137,6 +137,9 @@ regex_match:
 regex_find_all:
   - python/re/findall
 
+regex_find_iter:
+  - python/re/finditer
+
 constant_time_compare:
   - golang/subtle/ConstantTimeCompare
 
@@ -510,6 +513,9 @@ search_sorted_first:
 search_sorted_last:
   - julia/Base/searchsortedlast
 
+search_sorted_range:
+  - julia/Base/searchsorted
+
 find_all_indices:
   - julia/Base/findall
 
@@ -524,8 +530,17 @@ sequence_generate:
 ip_parse:
   - golang/net/ParseIP
 
+cidr_parse:
+  - golang/net/ParseCIDR
+
 string_to_integer_base:
   - c/stdlib/strtol
+
+string_to_float:
+  - c/stdlib/strtod
+
+value_match_position:
+  - r/base/match
 
 array_flatten:
   - ruby/Array/flatten

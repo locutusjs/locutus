@@ -84,6 +84,7 @@ const GO_PACKAGES: Record<string, string> = {
   ResolveReference: 'url',
   // net package
   JoinHostPort: 'net',
+  ParseCIDR: 'net',
   ParseIP: 'net',
   SplitHostPort: 'net',
   // crypto/subtle package

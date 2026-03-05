@@ -1,6 +1,7 @@
 export { abs } from './abs.ts'
 export { ceiling } from './ceiling.ts'
 export { floor } from './floor.ts'
+export { match } from './match.ts'
 export { max } from './max.ts'
 export { min } from './min.ts'
 export { nchar } from './nchar.ts'

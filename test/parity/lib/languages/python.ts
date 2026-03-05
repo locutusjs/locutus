@@ -215,6 +215,24 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
     return py
   }
 
+  if (funcName === 'finditer') {
+    py = py.replace(/\bfinditer\s*\(([\s\S]*)\)$/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      const pattern = args[0]
+      const source = args[1]
+      const flags = args[2]
+      if (!pattern || !source) {
+        return match
+      }
+
+      const call = flags
+        ? `${module}.finditer(${pattern}, ${source}, ${flags})`
+        : `${module}.finditer(${pattern}, ${source})`
+      return `[{"match": __m.group(0), "index": __m.start(), "groups": list(__m.groups())} for __m in ${call}]`
+    })
+    return py
+  }
+
   // Handle function calls - prefix with module (inferred from category/directory)
   if (STRING_CONSTANTS.has(funcName)) {
     // Constants like string.digits - replace funcName() with module.funcName

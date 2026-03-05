@@ -1,0 +1,90 @@
+type ReFinditerFlags = number | string
+
+const PY_RE_IGNORECASE = 2
+const PY_RE_MULTILINE = 8
+const PY_RE_DOTALL = 16
+
+export type FinditerMatch = {
+  match: string
+  index: number
+  groups: string[]
+}
+
+export function finditer(pattern: string | RegExp, source: string, flags: ReFinditerFlags = 0): FinditerMatch[] {
+  //      discuss at: https://locutus.io/python/re/finditer/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns match records with match text, 0-based index, and capture groups.
+  //          note 2: Mirrors Python re.finditer iteration shape with a Locutus-friendly JSONable structure.
+  //       example 1: finditer('\\d+', 'a1b22c333')
+  //       returns 1: [{match: '1', index: 1, groups: []}, {match: '22', index: 3, groups: []}, {match: '333', index: 6, groups: []}]
+  //       example 2: finditer('(\\w+)-(\\d+)', 'x-1 y-20')
+  //       returns 2: [{match: 'x-1', index: 0, groups: ['x', '1']}, {match: 'y-20', index: 4, groups: ['y', '20']}]
+  //       example 3: finditer('abc', 'ABC abc', 2)
+  //       returns 3: [{match: 'ABC', index: 0, groups: []}, {match: 'abc', index: 4, groups: []}]
+
+  const input = String(source)
+  const regex = createGlobalRegex(pattern, flags)
+  const out: FinditerMatch[] = []
+
+  regex.lastIndex = 0
+  while (true) {
+    const match = regex.exec(input)
+    if (!match) {
+      break
+    }
+
+    out.push({
+      match: match[0] ?? '',
+      index: match.index,
+      groups: match.slice(1).map((value) => value ?? ''),
+    })
+
+    if ((match[0] ?? '') === '') {
+      if (regex.lastIndex >= input.length) {
+        break
+      }
+      regex.lastIndex += 1
+    }
+  }
+
+  return out
+}
+
+function createGlobalRegex(pattern: string | RegExp, flags: ReFinditerFlags): RegExp {
+  const source = pattern instanceof RegExp ? pattern.source : String(pattern)
+  const base = pattern instanceof RegExp ? pattern.flags : ''
+  const extra = normalizeRegexFlags(flags)
+  const combined = dedupeFlags((base + extra).replace(/g/g, '').replace(/y/g, ''))
+  return new RegExp(source, `${combined}g`)
+}
+
+function normalizeRegexFlags(flags: ReFinditerFlags): string {
+  if (typeof flags === 'string') {
+    return dedupeFlags(flags.replace(/[^dgimsuvy]/g, ''))
+  }
+
+  let out = ''
+  if (flags & PY_RE_IGNORECASE) {
+    out += 'i'
+  }
+  if (flags & PY_RE_MULTILINE) {
+    out += 'm'
+  }
+  if (flags & PY_RE_DOTALL) {
+    out += 's'
+  }
+  return out
+}
+
+function dedupeFlags(flags: string): string {
+  const seen = new Set<string>()
+  let out = ''
+  for (const flag of flags) {
+    if (!seen.has(flag)) {
+      seen.add(flag)
+      out += flag
+    }
+  }
+  return out
+}
