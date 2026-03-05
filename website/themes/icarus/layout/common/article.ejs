@@ -32,8 +32,8 @@
             <%- post.content %>
         <% } %>
         </div>
-        <footer class="article-footer<%= !index ? ' article-footer-post' : '' %>">
-            <% if (!index) { %>
+        <footer class="article-footer<%= (!index && post.layout === 'post') ? ' article-footer-post' : '' %>">
+            <% if (!index && post.layout === 'post') { %>
                 <div class="article-social-actions">
                     <a class="article-social-action article-social-action-x" href="https://x.com/locutus_io" target="_blank" rel="noopener noreferrer">Follow on X</a>
                     <a class="github-button" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
