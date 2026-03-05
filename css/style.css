@@ -349,6 +349,7 @@ code {
 }
 .header-inner #logo,
 #sub-nav,
+#top-page-nav,
 #search-form-wrap {
   height: 40px;
   line-height: 40px;
@@ -358,6 +359,7 @@ code {
   float: left;
 }
 #sub-nav,
+#top-page-nav,
 #search-form-wrap {
   float: right;
 }
@@ -514,6 +516,22 @@ code {
 }
 #sub-nav #profile-nav .fa {
   line-height: 40px;
+}
+#top-page-nav .top-nav-link {
+  display: inline-block;
+  line-height: 40px;
+  padding: 0 8px;
+  font-weight: 500;
+}
+@media screen and (min-width: 560px) and (max-width: 799px) {
+  #top-page-nav {
+    display: none;
+  }
+}
+@media screen and (max-width: 559px) {
+  #top-page-nav {
+    display: none;
+  }
 }
 #search-form-wrap .search-form {
   position: relative;
