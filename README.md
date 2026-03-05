@@ -27,6 +27,9 @@ Example: a Go date-formatting port in Locutus should accept a JavaScript `Date` 
 npm install locutus
 ```
 
+Locutus uses pragmatic versioning: `patch` is the default even for function-level parity fixes; see
+`CONTRIBUTING.md#versioning` for exact bump criteria.
+
 ## Use
 
 ```typescript

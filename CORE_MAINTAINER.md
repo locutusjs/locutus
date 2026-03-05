@@ -50,6 +50,8 @@ Note that for any task, it's important to first get ample context. Search past i
     - **For new functions**: Check if semantic equivalents exist in other languages and update `src/rosetta.yml`
     - **For website changes**: After merge, verify the live site at https://locutus.io using Playwright MCP
 10. Release recently merged PRs that contain new/changed functions (not just build tools, tests, or docs).
+    - Before tagging, classify the release using `CONTRIBUTING.md#versioning` and include a one-line rationale in
+      `CHANGELOG.md`.
 11. Log iteration results in `docs/prompts/LOG.md`.
 12. → Back to step 1
 

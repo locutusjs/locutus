@@ -7,6 +7,8 @@ histories.
 
 Locutus does not follow SemVer as we're a work in progress - and even though we try, we cannot guarantee BC-safety for
 the hundreds of contributions across the many languages that Locutus is assimilating.
+Detailed bump rules (patch/minor/major, including parity-target thresholds) are defined in
+`CONTRIBUTING.md#versioning`.
 
 ## Backlog
 

@@ -265,9 +265,27 @@ Any Core contributor can let our GHA CI create an npm release via OIDC Trusted P
 
 ### Versioning
 
-Locutus does not adhere to Semver, so typically you would just use `patch` level upgrades for changes. If we change
-something dramatic to how Locutus works across functions (ship ESM, move to TypeScript, etc), that's when we'll involve
-`minor` and `major` levels.
+Locutus does not strictly adhere to SemVer. With hundreds of ports, we optimize for continuous parity and quality
+improvements over strict backward compatibility on every function edge case.
+
+Release level defaults:
+
+- `patch`: default for most releases, including isolated function behavior/parity fixes, type tightening, docs, tests,
+  and security fixes.
+- `minor`: additive project capabilities and scoped compatibility shifts that do not change package runtime/import
+  contracts.
+- `major`: package/runtime/import contract breaks, or broad cross-function semantic shifts.
+
+Parity target policy:
+
+- Isolated parity behavior updates (one or a few functions): `patch`.
+- Parity target shifts with scoped expected drift: `minor`.
+- Parity target shifts with broad expected drift: `major`.
+
+Broad drift threshold (treat as `major`):
+
+- expected behavior changes in `>= 25` functions, or
+- impact across `>= 2` language namespaces.
 
 Engine policy:
 
