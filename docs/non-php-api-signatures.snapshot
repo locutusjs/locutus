@@ -47,6 +47,7 @@ src/clojure/string/lower_case.ts :: export function lower_case(s: string): strin
 src/clojure/string/reverse.ts :: export function reverse(s: string): string
 src/clojure/string/trim.ts :: export function trim(s: string): string
 src/clojure/string/upper_case.ts :: export function upper_case(s: string): string
+src/elixir/Enum/chunk_every.ts :: export function chunk_every<T>(values: T[] | unknown, count: number, step: number = count, leftover: T[] = []): T[][]
 src/elixir/Float/ceil.ts :: export function ceil(x: number): number
 src/elixir/Float/floor.ts :: export function floor(x: number): number
 src/elixir/Kernel/abs.ts :: export function abs(x: number): number
@@ -129,6 +130,7 @@ src/golang/url/QueryEscape.ts :: export function QueryEscape(s: string): string
 src/golang/url/QueryUnescape.ts :: export function QueryUnescape(s: string): string
 src/golang/url/ResolveReference.ts :: export function ResolveReference(baseURL: string, refURL: string): string
 src/haskell/list/groupBy.ts :: export function groupBy<T>(items: T[] | unknown, predicate?: GroupPredicate<T>): T[][]
+src/haskell/list/nubBy.ts :: export function nubBy<T>(items: T[] | unknown, eq?: EqFn<T>): T[]
 src/haskell/list/permutations.ts :: export function permutations<T>(items: T[] | unknown): T[][]
 src/haskell/list/subsequences.ts :: export function subsequences<T>(items: T[] | unknown): T[][]
 src/haskell/list/transpose.ts :: export function transpose<T>(rows: Array<Array<T> | unknown> | unknown): T[][]
@@ -136,11 +138,15 @@ src/julia/Base/abs.ts :: export function abs(x: number): number
 src/julia/Base/ceil.ts :: export function ceil(x: number): number
 src/julia/Base/floor.ts :: export function floor(x: number): number
 src/julia/Base/lowercase.ts :: export function lowercase(s: string): string
+src/julia/Base/partialsortperm.ts :: export function partialsortperm<T>(values: T[] | unknown, k: number, rev: boolean = false): number[]
 src/julia/Base/sortperm.ts :: export function sortperm<T>(values: T[] | unknown, rev: boolean = false): number[]
 src/julia/Base/uppercase.ts :: export function uppercase(s: string): string
 src/kotlin/collections/associateBy.ts :: export function associateBy<T>(values: T[] | unknown, keySelector: AssociateKeySelector<T>): Record<string, T>
 src/kotlin/collections/groupBy.ts :: export function groupBy<T>( values: T[] | unknown, selector: (value: T, index: number, array: T[]) => string | number | symbol, ): Record<string, T[]>
 src/kotlin/collections/windowed.ts :: export function windowed<T>( values: T[] | unknown, size: number, step: number = 1, partialWindows: boolean = false, ): T[][]
+src/kotlin/collections/zipWithNext.ts :: export function zipWithNext<T, R>(values: T[] | unknown, transform: ZipTransform<T, R>): R[]
+src/kotlin/collections/zipWithNext.ts :: export function zipWithNext<T, R>(values: T[] | unknown, transform?: ZipTransform<T, R>): Array<[T, T]> | R[]
+src/kotlin/collections/zipWithNext.ts :: export function zipWithNext<T>(values: T[] | unknown): Array<[T, T]>
 src/kotlin/text/chunked.ts :: export function chunked(str: string, size: number): string[]
 src/lua/math/abs.ts :: export function abs(x: number): number
 src/lua/math/ceil.ts :: export function ceil(x: number): number
@@ -295,6 +301,7 @@ src/tcl/string/first.ts :: export function first(needle: string, haystack: strin
 src/tcl/string/last.ts :: export function last(needle: string, haystack: string, lastIndex?: number): number
 src/tcl/string/length.ts :: export function length(str: string): number
 src/tcl/string/map.ts :: export function map(mappings: TclMapInput, str: string): string
+src/tcl/string/match.ts :: export function match(pattern: string, str: string): 1 | 0
 src/tcl/string/range.ts :: export function range(str: string, first: number | string, last: number | string): string
 src/tcl/string/regsub.ts :: export function regsub( pattern: string | RegExp, str: string, replacement: string, all: boolean = false, caseInsensitive: boolean = false, ): string
 src/tcl/string/repeat.ts :: export function repeat(str: string, count: number): string
