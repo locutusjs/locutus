@@ -133,6 +133,12 @@ regex_match:
   - php/pcre/preg_match
   - tcl/string/match
 
+constant_time_compare:
+  - golang/subtle/ConstantTimeCompare
+
+constant_time_select:
+  - golang/subtle/ConstantTimeSelect
+
 collection_group_by:
   - ruby/Array/group_by
   - kotlin/collections/groupBy
@@ -151,6 +157,9 @@ string_index:
   - golang/strings/Index
   - golang/strings/Index2
   - tcl/string/first
+
+string_search_range:
+  - swift/String/rangeOf
 
 string_last_index:
   - php/strings/strrpos
@@ -452,6 +461,12 @@ running_fold:
 adjacent_pairs:
   - kotlin/collections/zipWithNext
 
+collection_frequencies_by:
+  - elixir/Enum/frequencies_by
+
+map_merge_with:
+  - clojure/core/merge_with
+
 list_intersperse:
   - haskell/list/intersperse
 
@@ -467,6 +482,9 @@ list_suffixes:
 sort_permutation:
   - julia/Base/sortperm
   - julia/Base/partialsortperm
+
+search_sorted_first:
+  - julia/Base/searchsortedfirst
 
 array_flatten:
   - ruby/Array/flatten

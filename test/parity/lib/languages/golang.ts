@@ -87,6 +87,7 @@ const GO_PACKAGES: Record<string, string> = {
   SplitHostPort: 'net',
   // crypto/subtle package
   ConstantTimeCompare: 'subtle',
+  ConstantTimeSelect: 'subtle',
 }
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {
@@ -959,7 +960,7 @@ function getRequiredImports(goCode: string): string[] {
   if (goCode.includes('net.') || goCode.includes('locutusSplitHostPort(')) {
     imports.add('net')
   }
-  if (goCode.includes('locutusConstantTimeCompare(')) {
+  if (goCode.includes('locutusConstantTimeCompare(') || goCode.includes('subtle.')) {
     imports.add('crypto/subtle')
   }
   if (
