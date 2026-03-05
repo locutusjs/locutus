@@ -2955,3 +2955,47 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - `partialsortperm` is a meaningful “algorithmic” addition but needs explicit translator argument-shape mapping (`1:k`, keyword args) for parity.
   - We can keep adding high-ceiling sequence utilities (`nubBy`, `zipWithNext`, `chunk_every`) while remaining within plain JS arrays/objects and predictable runtime behavior.
+
+## Iteration 101
+
+- Plans
+  - Add another 5-function “juicy expansion” batch focusing on low-coverage language surfaces without introducing new parity-translator complexity:
+    - `haskell/list/inits`
+    - `haskell/list/tails`
+    - `kotlin/collections/runningFold`
+    - `swift/String/trimmingCharacters`
+    - `swift/String/componentsSeparatedBy`
+- Progress
+  - Added source modules:
+    - `src/haskell/list/inits.ts`
+    - `src/haskell/list/tails.ts`
+    - `src/kotlin/collections/runningFold.ts`
+    - `src/swift/String/trimmingCharacters.ts`
+    - `src/swift/String/componentsSeparatedBy.ts`
+  - Updated exports:
+    - `src/haskell/list/index.ts`
+    - `src/kotlin/collections/index.ts`
+    - `src/swift/String/index.ts`
+  - Regenerated tests:
+    - `test/generated/haskell/list/inits.vitest.ts`
+    - `test/generated/haskell/list/tails.vitest.ts`
+    - `test/generated/kotlin/collections/runningFold.vitest.ts`
+    - `test/generated/swift/String/trimmingCharacters.vitest.ts`
+    - `test/generated/swift/String/componentsSeparatedBy.vitest.ts`
+  - Refreshed type quality artifacts:
+    - `docs/non-php-api-signatures.snapshot`
+    - `test/util/type-contracts.generated.d.ts`
+- Validation
+  - `yarn biome check` on new/updated source files
+  - `yarn lint:headers`
+  - `yarn build:tests`
+  - `yarn vitest run test/generated/haskell/list/inits.vitest.ts test/generated/haskell/list/tails.vitest.ts test/generated/kotlin/collections/runningFold.vitest.ts test/generated/swift/String/componentsSeparatedBy.vitest.ts test/generated/swift/String/trimmingCharacters.vitest.ts`
+  - `yarn fix:api:snapshot`
+  - `yarn fix:type:contracts`
+  - `yarn lint:api:snapshot`
+  - `yarn lint:type:contracts`
+  - `yarn lint:ts`
+  - `yarn lint:ts:strict-next`
+- Key learnings
+  - Prefix/suffix and running-accumulation combinators deliver outsized utility for small language surfaces while staying fully aligned with JS-native data structures.
+  - Swift string additions can remain expressive and copy-paste-friendly when we keep signatures strict and behavior explicit around edge cases (empty separators/character sets).

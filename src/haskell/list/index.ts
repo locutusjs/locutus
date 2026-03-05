@@ -1,5 +1,7 @@
 export { groupBy } from './groupBy.ts'
+export { inits } from './inits.ts'
 export { nubBy } from './nubBy.ts'
 export { permutations } from './permutations.ts'
 export { subsequences } from './subsequences.ts'
+export { tails } from './tails.ts'
 export { transpose } from './transpose.ts'
