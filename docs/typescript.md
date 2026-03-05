@@ -2811,3 +2811,38 @@ To fix a `@ts-nocheck` file:
 - Key learnings
   - Go parity output can differ only by JSON escaping (`&` -> `\\u0026`), so normalizer updates are sometimes required even with correct function logic.
   - For Rust tuple-like collection outputs, generating JSON-compatible strings in translator expressions is a pragmatic way to keep strict parity without extra dependencies.
+
+## Iteration 97
+
+- Plans
+  - Add 5 juicy, high-value functions in low-count languages/categories:
+    - `haskell/list/subsequences`
+    - `kotlin/collections/windowed`
+    - `swift/String/padding`
+    - `tcl/string/map`
+    - `clojure/core/partition`
+- Progress
+  - Added source modules:
+    - `src/haskell/list/subsequences.ts`
+    - `src/kotlin/collections/windowed.ts`
+    - `src/swift/String/padding.ts`
+    - `src/tcl/string/map.ts`
+    - `src/clojure/core/partition.ts`
+  - Added/updated exports:
+    - `src/haskell/list/index.ts`
+    - `src/kotlin/collections/index.ts`
+    - `src/swift/String/index.ts`
+    - `src/tcl/string/index.ts`
+    - `src/clojure/core/index.ts`
+  - Regenerated tests and website source snapshots via:
+    - `yarn build:tests`
+    - `yarn injectweb`
+- Validation
+  - `yarn biome check --write src/kotlin/collections/windowed.ts src/clojure/core/partition.ts`
+  - `yarn biome check src/haskell/list/subsequences.ts src/haskell/list/index.ts src/kotlin/collections/windowed.ts src/kotlin/collections/index.ts src/swift/String/padding.ts src/swift/String/index.ts src/tcl/string/map.ts src/tcl/string/index.ts src/clojure/core/partition.ts src/clojure/core/index.ts`
+  - `yarn lint:ts`
+  - `yarn lint:headers`
+  - `yarn vitest run test/generated/haskell/list/subsequences.vitest.ts test/generated/kotlin/collections/windowed.vitest.ts test/generated/swift/String/padding.vitest.ts test/generated/tcl/string/map.vitest.ts test/generated/clojure/core/partition.vitest.ts`
+- Key learnings
+  - Lower-count languages can absorb high-leverage additions quickly when functions stay within plain JS arrays/objects/strings.
+  - `windowed` + `partition` + `subsequences` meaningfully expand sequence-processing expressiveness without introducing non-JS runtime shapes.
