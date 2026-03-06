@@ -44,10 +44,7 @@ alias:
 
   str = str + ''
   suffix = suffix + ''
-  if (suffix.length === 0) {
-    return true
-  }
-  return str.slice(-suffix.length) === suffix
+  return str.endsWith(suffix)
 }
 {% endcodeblock %}
 </div>
@@ -64,9 +61,6 @@ alias:
 
   str = str + ''
   suffix = suffix + ''
-  if (suffix.length === 0) {
-    return true
-  }
-  return str.slice(-suffix.length) === suffix
+  return str.endsWith(suffix)
 }{% endcodeblock %}
 </div>

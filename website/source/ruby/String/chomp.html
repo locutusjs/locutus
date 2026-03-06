@@ -57,7 +57,7 @@ alias:
   }
 
   separator = separator + ''
-  if (str.slice(-separator.length) === separator) {
+  if (str.endsWith(separator)) {
     return str.slice(0, -separator.length)
   }
 
@@ -87,7 +87,7 @@ alias:
   }
 
   separator = separator + ''
-  if (str.slice(-separator.length) === separator) {
+  if (str.endsWith(separator)) {
     return str.slice(0, -separator.length)
   }
 

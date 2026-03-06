@@ -78,8 +78,7 @@ export function html_entity_decode(string: string, quoteStyle?: string | number)
   }
   const normalizedHashMap: { [key: string]: string } = {}
   const hashMapObject = toPhpArrayObject(hashMapUnknown)
-  for (const symbol in hashMapObject) {
-    const entity = hashMapObject[symbol]
+  for (const [symbol, entity] of Object.entries(hashMapObject)) {
     if (typeof entity === 'string') {
       normalizedHashMap[symbol] = entity
     }
@@ -90,14 +89,10 @@ export function html_entity_decode(string: string, quoteStyle?: string | number)
   delete normalizedHashMap['&']
   normalizedHashMap['&'] = '&amp;'
 
-  for (const symbol in normalizedHashMap) {
-    const entity = normalizedHashMap[symbol]
-    if (typeof entity !== 'string') {
-      continue
-    }
-    tmpStr = tmpStr.split(entity).join(symbol)
+  for (const [symbol, entity] of Object.entries(normalizedHashMap)) {
+    tmpStr = tmpStr.replaceAll(entity, symbol)
   }
-  tmpStr = tmpStr.split('&#039;').join("'")
+  tmpStr = tmpStr.replaceAll('&#039;', "'")
 
   return tmpStr
 }
@@ -134,8 +129,7 @@ export function html_entity_decode(string, quoteStyle) {
   }
   const normalizedHashMap = {}
   const hashMapObject = toPhpArrayObject(hashMapUnknown)
-  for (const symbol in hashMapObject) {
-    const entity = hashMapObject[symbol]
+  for (const [symbol, entity] of Object.entries(hashMapObject)) {
     if (typeof entity === 'string') {
       normalizedHashMap[symbol] = entity
     }
@@ -146,14 +140,10 @@ export function html_entity_decode(string, quoteStyle) {
   delete normalizedHashMap['&']
   normalizedHashMap['&'] = '&amp;'
 
-  for (const symbol in normalizedHashMap) {
-    const entity = normalizedHashMap[symbol]
-    if (typeof entity !== 'string') {
-      continue
-    }
-    tmpStr = tmpStr.split(entity).join(symbol)
+  for (const [symbol, entity] of Object.entries(normalizedHashMap)) {
+    tmpStr = tmpStr.replaceAll(entity, symbol)
   }
-  tmpStr = tmpStr.split('&#039;').join("'")
+  tmpStr = tmpStr.replaceAll('&#039;', "'")
 
   return tmpStr
 }{% endcodeblock %}
@@ -213,7 +203,6 @@ function get_html_translation_table(
 
   const entities: { [key: string]: string } = {}
   const hashMap: { [key: string]: string } = {}
-  let decimal = ''
   const constMappingTable: { [key: number]: string } = {}
   const constMappingQuoteStyle: { [key: number]: string } = {}
   let useTable = ''
@@ -351,10 +340,8 @@ function get_html_translation_table(
   entities['62'] = '&gt;'
 
   // ascii decimals to real symbols
-  for (decimal in entities) {
-    if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
-      hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
-    }
+  for (const [decimal, entity] of Object.entries(entities)) {
+    hashMap[String.fromCharCode(Number(decimal))] = entity ?? ''
   }
 
   return hashMap
@@ -390,8 +377,7 @@ function html_entity_decode(string: string, quoteStyle?: string | number): strin
   }
   const normalizedHashMap: { [key: string]: string } = {}
   const hashMapObject = toPhpArrayObject(hashMapUnknown)
-  for (const symbol in hashMapObject) {
-    const entity = hashMapObject[symbol]
+  for (const [symbol, entity] of Object.entries(hashMapObject)) {
     if (typeof entity === 'string') {
       normalizedHashMap[symbol] = entity
     }
@@ -402,14 +388,10 @@ function html_entity_decode(string: string, quoteStyle?: string | number): strin
   delete normalizedHashMap['&']
   normalizedHashMap['&'] = '&amp;'
 
-  for (const symbol in normalizedHashMap) {
-    const entity = normalizedHashMap[symbol]
-    if (typeof entity !== 'string') {
-      continue
-    }
-    tmpStr = tmpStr.split(entity).join(symbol)
+  for (const [symbol, entity] of Object.entries(normalizedHashMap)) {
+    tmpStr = tmpStr.replaceAll(entity, symbol)
   }
-  tmpStr = tmpStr.split('&#039;').join("'")
+  tmpStr = tmpStr.replaceAll('&#039;', "'")
 
   return tmpStr
 }{% endcodeblock %}
@@ -452,7 +434,6 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
 
   const entities = {}
   const hashMap = {}
-  let decimal = ''
   const constMappingTable = {}
   const constMappingQuoteStyle = {}
   let useTable = ''
@@ -590,10 +571,8 @@ function get_html_translation_table(table = 'HTML_SPECIALCHARS', quoteStyle = 'E
   entities['62'] = '&gt;'
 
   // ascii decimals to real symbols
-  for (decimal in entities) {
-    if (Object.prototype.hasOwnProperty.call(entities, decimal)) {
-      hashMap[String.fromCharCode(Number(decimal))] = entities[decimal] ?? ''
-    }
+  for (const [decimal, entity] of Object.entries(entities)) {
+    hashMap[String.fromCharCode(Number(decimal))] = entity ?? ''
   }
 
   return hashMap
@@ -629,8 +608,7 @@ function html_entity_decode(string, quoteStyle) {
   }
   const normalizedHashMap = {}
   const hashMapObject = toPhpArrayObject(hashMapUnknown)
-  for (const symbol in hashMapObject) {
-    const entity = hashMapObject[symbol]
+  for (const [symbol, entity] of Object.entries(hashMapObject)) {
     if (typeof entity === 'string') {
       normalizedHashMap[symbol] = entity
     }
@@ -641,14 +619,10 @@ function html_entity_decode(string, quoteStyle) {
   delete normalizedHashMap['&']
   normalizedHashMap['&'] = '&amp;'
 
-  for (const symbol in normalizedHashMap) {
-    const entity = normalizedHashMap[symbol]
-    if (typeof entity !== 'string') {
-      continue
-    }
-    tmpStr = tmpStr.split(entity).join(symbol)
+  for (const [symbol, entity] of Object.entries(normalizedHashMap)) {
+    tmpStr = tmpStr.replaceAll(entity, symbol)
   }
-  tmpStr = tmpStr.split('&#039;').join("'")
+  tmpStr = tmpStr.replaceAll('&#039;', "'")
 
   return tmpStr
 }{% endcodeblock %}

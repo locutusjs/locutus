@@ -60,7 +60,7 @@ export function array_diff_ukey<T>(
   //   returns 1: {red: 2, purple: 4}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
     throw new Error('array_diff_ukey(): Invalid callback')
   }
@@ -96,7 +96,7 @@ export function array_diff_ukey(arr1, ...arraysAndCallback) {
   //   returns 1: {red: 2, purple: 4}
 
   const retArr = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
     throw new Error('array_diff_ukey(): Invalid callback')
   }
@@ -341,7 +341,7 @@ function array_diff_ukey<T>(
   //   returns 1: {red: 2, purple: 4}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
     throw new Error('array_diff_ukey(): Invalid callback')
   }
@@ -491,7 +491,7 @@ function array_diff_ukey(arr1, ...arraysAndCallback) {
   //   returns 1: {red: 2, purple: 4}
 
   const retArr = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
     throw new Error('array_diff_ukey(): Invalid callback')
   }

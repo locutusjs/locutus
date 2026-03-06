@@ -66,7 +66,7 @@ export function array_intersect_uassoc<T>(
   //   returns 1: {b: 'brown'}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
     throw new Error('array_intersect_uassoc(): Invalid callback')
   }
@@ -108,7 +108,7 @@ export function array_intersect_uassoc(arr1, ...arraysAndCallback) {
   //   returns 1: {b: 'brown'}
 
   const retArr = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
     throw new Error('array_intersect_uassoc(): Invalid callback')
   }
@@ -363,7 +363,7 @@ function array_intersect_uassoc<T>(
   //   returns 1: {b: 'brown'}
 
   const retArr: PhpAssoc<T> = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor<[string, string]>(callback)) {
     throw new Error('array_intersect_uassoc(): Invalid callback')
   }
@@ -519,7 +519,7 @@ function array_intersect_uassoc(arr1, ...arraysAndCallback) {
   //   returns 1: {b: 'brown'}
 
   const retArr = {}
-  const callback = arraysAndCallback[arraysAndCallback.length - 1]
+  const callback = arraysAndCallback.at(-1)
   if (typeof callback === 'undefined' || !isPhpCallableDescriptor(callback)) {
     throw new Error('array_intersect_uassoc(): Invalid callback')
   }

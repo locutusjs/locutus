@@ -44,7 +44,7 @@ alias:
 
   str = str + ''
   prefix = prefix + ''
-  return str.slice(0, prefix.length) === prefix
+  return str.startsWith(prefix)
 }
 {% endcodeblock %}
 </div>
@@ -61,6 +61,6 @@ alias:
 
   str = str + ''
   prefix = prefix + ''
-  return str.slice(0, prefix.length) === prefix
+  return str.startsWith(prefix)
 }{% endcodeblock %}
 </div>

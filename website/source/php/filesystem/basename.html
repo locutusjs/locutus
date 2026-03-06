@@ -59,16 +59,14 @@ alias:
   //       returns 4: 'path_ext'
 
   let b = path
-  const lastChar = b.charAt(b.length - 1)
-
-  if (lastChar === '/' || lastChar === '\\') {
+  if (b.endsWith('/') || b.endsWith('\\')) {
     b = b.slice(0, -1)
   }
 
   b = b.replace(/^.*[/\\]/g, '')
 
-  if (typeof suffix === 'string' && b.substr(b.length - suffix.length) === suffix) {
-    b = b.substr(0, b.length - suffix.length)
+  if (typeof suffix === 'string' && b.endsWith(suffix)) {
+    b = b.slice(0, -suffix.length)
   }
 
   return b
@@ -94,16 +92,14 @@ alias:
   //       returns 4: 'path_ext'
 
   let b = path
-  const lastChar = b.charAt(b.length - 1)
-
-  if (lastChar === '/' || lastChar === '\\') {
+  if (b.endsWith('/') || b.endsWith('\\')) {
     b = b.slice(0, -1)
   }
 
   b = b.replace(/^.*[/\\]/g, '')
 
-  if (typeof suffix === 'string' && b.substr(b.length - suffix.length) === suffix) {
-    b = b.substr(0, b.length - suffix.length)
+  if (typeof suffix === 'string' && b.endsWith(suffix)) {
+    b = b.slice(0, -suffix.length)
   }
 
   return b

@@ -13,6 +13,10 @@
         <style>
           .verified-container {
             margin-top: 8px;
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
           }
           .verified-badges {
             display: flex;
@@ -28,22 +32,47 @@
             border-radius: 4px;
             font-size: 12px;
             font-weight: bold;
-            cursor: help;
+            cursor: default;
           }
           .verified-tooltip {
-            display: block;
-            max-height: 0;
-            overflow: hidden;
+            position: absolute;
+            top: calc(100% + 2px);
+            left: 0;
+            z-index: 30;
+            width: max-content;
+            max-width: min(430px, calc(100vw - 56px));
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.28);
             opacity: 0;
+            visibility: hidden;
+            transform: translateY(-5px) scale(0.98);
+            transform-origin: top left;
+            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+            color: #e2e8f0;
             font-size: 12px;
-            color: #666;
-            line-height: 1.4;
-            transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+            line-height: 1.5;
           }
-          .verified-container:hover .verified-tooltip {
-            max-height: 60px;
+          .verified-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 16px;
+            width: 10px;
+            height: 10px;
+            background: #0f172a;
+            border-left: 1px solid #334155;
+            border-top: 1px solid #334155;
+            transform: rotate(45deg);
+          }
+          .verified-container:hover .verified-tooltip,
+          .verified-container:focus-within .verified-tooltip {
             opacity: 1;
-            margin-top: 6px;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            transition-delay: 0s;
           }
         </style>
         <div class="verified-container">

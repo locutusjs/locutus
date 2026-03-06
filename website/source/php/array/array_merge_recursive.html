@@ -71,39 +71,34 @@ export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): Mer
   }
 
   // Process arr1
-  for (const key in arr1) {
-    if (Object.prototype.hasOwnProperty.call(arr1, key)) {
-      if (isNumericKey(key)) {
-        result[numericIdx++] = arr1[key]
-      } else {
-        result[key] = arr1[key]
-      }
+  for (const [key, value] of Object.entries(arr1)) {
+    if (isNumericKey(key)) {
+      result[numericIdx++] = value
+    } else {
+      result[key] = value
     }
   }
 
   // Process arr2
-  for (const key in arr2) {
-    if (Object.prototype.hasOwnProperty.call(arr2, key)) {
-      if (isNumericKey(key)) {
-        // Numeric keys always append
-        result[numericIdx++] = arr2[key]
-      } else if (key in result) {
-        // String key exists in both - need to merge
-        const resultValue = result[key]
-        const arr2Value = arr2[key]
-        if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
-          // Both are objects - recurse
-          result[key] = array_merge_recursive(resultValue, arr2Value)
-        } else if (Array.isArray(resultValue)) {
-          // Result is already an array, push new value
-          resultValue.push(arr2Value)
-        } else {
-          // Create array with both values
-          result[key] = [resultValue, arr2Value]
-        }
+  for (const [key, arr2Value] of Object.entries(arr2)) {
+    if (isNumericKey(key)) {
+      // Numeric keys always append
+      result[numericIdx++] = arr2Value
+    } else if (key in result) {
+      // String key exists in both - need to merge
+      const resultValue = result[key]
+      if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
+        // Both are objects - recurse
+        result[key] = array_merge_recursive(resultValue, arr2Value)
+      } else if (Array.isArray(resultValue)) {
+        // Result is already an array, push new value
+        resultValue.push(arr2Value)
       } else {
-        result[key] = arr2[key]
+        // Create array with both values
+        result[key] = [resultValue, arr2Value]
       }
+    } else {
+      result[key] = arr2Value
     }
   }
 
@@ -140,39 +135,34 @@ export function array_merge_recursive(arr1, arr2) {
   }
 
   // Process arr1
-  for (const key in arr1) {
-    if (Object.prototype.hasOwnProperty.call(arr1, key)) {
-      if (isNumericKey(key)) {
-        result[numericIdx++] = arr1[key]
-      } else {
-        result[key] = arr1[key]
-      }
+  for (const [key, value] of Object.entries(arr1)) {
+    if (isNumericKey(key)) {
+      result[numericIdx++] = value
+    } else {
+      result[key] = value
     }
   }
 
   // Process arr2
-  for (const key in arr2) {
-    if (Object.prototype.hasOwnProperty.call(arr2, key)) {
-      if (isNumericKey(key)) {
-        // Numeric keys always append
-        result[numericIdx++] = arr2[key]
-      } else if (key in result) {
-        // String key exists in both - need to merge
-        const resultValue = result[key]
-        const arr2Value = arr2[key]
-        if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
-          // Both are objects - recurse
-          result[key] = array_merge_recursive(resultValue, arr2Value)
-        } else if (Array.isArray(resultValue)) {
-          // Result is already an array, push new value
-          resultValue.push(arr2Value)
-        } else {
-          // Create array with both values
-          result[key] = [resultValue, arr2Value]
-        }
+  for (const [key, arr2Value] of Object.entries(arr2)) {
+    if (isNumericKey(key)) {
+      // Numeric keys always append
+      result[numericIdx++] = arr2Value
+    } else if (key in result) {
+      // String key exists in both - need to merge
+      const resultValue = result[key]
+      if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
+        // Both are objects - recurse
+        result[key] = array_merge_recursive(resultValue, arr2Value)
+      } else if (Array.isArray(resultValue)) {
+        // Result is already an array, push new value
+        resultValue.push(arr2Value)
       } else {
-        result[key] = arr2[key]
+        // Create array with both values
+        result[key] = [resultValue, arr2Value]
       }
+    } else {
+      result[key] = arr2Value
     }
   }
 
@@ -240,39 +230,34 @@ function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObjec
   }
 
   // Process arr1
-  for (const key in arr1) {
-    if (Object.prototype.hasOwnProperty.call(arr1, key)) {
-      if (isNumericKey(key)) {
-        result[numericIdx++] = arr1[key]
-      } else {
-        result[key] = arr1[key]
-      }
+  for (const [key, value] of Object.entries(arr1)) {
+    if (isNumericKey(key)) {
+      result[numericIdx++] = value
+    } else {
+      result[key] = value
     }
   }
 
   // Process arr2
-  for (const key in arr2) {
-    if (Object.prototype.hasOwnProperty.call(arr2, key)) {
-      if (isNumericKey(key)) {
-        // Numeric keys always append
-        result[numericIdx++] = arr2[key]
-      } else if (key in result) {
-        // String key exists in both - need to merge
-        const resultValue = result[key]
-        const arr2Value = arr2[key]
-        if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
-          // Both are objects - recurse
-          result[key] = array_merge_recursive(resultValue, arr2Value)
-        } else if (Array.isArray(resultValue)) {
-          // Result is already an array, push new value
-          resultValue.push(arr2Value)
-        } else {
-          // Create array with both values
-          result[key] = [resultValue, arr2Value]
-        }
+  for (const [key, arr2Value] of Object.entries(arr2)) {
+    if (isNumericKey(key)) {
+      // Numeric keys always append
+      result[numericIdx++] = arr2Value
+    } else if (key in result) {
+      // String key exists in both - need to merge
+      const resultValue = result[key]
+      if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
+        // Both are objects - recurse
+        result[key] = array_merge_recursive(resultValue, arr2Value)
+      } else if (Array.isArray(resultValue)) {
+        // Result is already an array, push new value
+        resultValue.push(arr2Value)
       } else {
-        result[key] = arr2[key]
+        // Create array with both values
+        result[key] = [resultValue, arr2Value]
       }
+    } else {
+      result[key] = arr2Value
     }
   }
 
@@ -312,39 +297,34 @@ function array_merge_recursive(arr1, arr2) {
   }
 
   // Process arr1
-  for (const key in arr1) {
-    if (Object.prototype.hasOwnProperty.call(arr1, key)) {
-      if (isNumericKey(key)) {
-        result[numericIdx++] = arr1[key]
-      } else {
-        result[key] = arr1[key]
-      }
+  for (const [key, value] of Object.entries(arr1)) {
+    if (isNumericKey(key)) {
+      result[numericIdx++] = value
+    } else {
+      result[key] = value
     }
   }
 
   // Process arr2
-  for (const key in arr2) {
-    if (Object.prototype.hasOwnProperty.call(arr2, key)) {
-      if (isNumericKey(key)) {
-        // Numeric keys always append
-        result[numericIdx++] = arr2[key]
-      } else if (key in result) {
-        // String key exists in both - need to merge
-        const resultValue = result[key]
-        const arr2Value = arr2[key]
-        if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
-          // Both are objects - recurse
-          result[key] = array_merge_recursive(resultValue, arr2Value)
-        } else if (Array.isArray(resultValue)) {
-          // Result is already an array, push new value
-          resultValue.push(arr2Value)
-        } else {
-          // Create array with both values
-          result[key] = [resultValue, arr2Value]
-        }
+  for (const [key, arr2Value] of Object.entries(arr2)) {
+    if (isNumericKey(key)) {
+      // Numeric keys always append
+      result[numericIdx++] = arr2Value
+    } else if (key in result) {
+      // String key exists in both - need to merge
+      const resultValue = result[key]
+      if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
+        // Both are objects - recurse
+        result[key] = array_merge_recursive(resultValue, arr2Value)
+      } else if (Array.isArray(resultValue)) {
+        // Result is already an array, push new value
+        resultValue.push(arr2Value)
       } else {
-        result[key] = arr2[key]
+        // Create array with both values
+        result[key] = [resultValue, arr2Value]
       }
+    } else {
+      result[key] = arr2Value
     }
   }
 

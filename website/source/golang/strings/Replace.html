@@ -56,7 +56,7 @@ alias:
 
   if (n < 0) {
     // Replace all occurrences
-    return s.split(old).join(newStr)
+    return s.replaceAll(old, newStr)
   }
 
   // Replace n occurrences
@@ -103,7 +103,7 @@ alias:
 
   if (n < 0) {
     // Replace all occurrences
-    return s.split(old).join(newStr)
+    return s.replaceAll(old, newStr)
   }
 
   // Replace n occurrences

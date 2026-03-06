@@ -48,7 +48,7 @@ export function ctype_punct(text: string): boolean {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('pu')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }
 {% endcodeblock %}
 </div>
@@ -69,7 +69,7 @@ export function ctype_punct(text) {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('pu')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
@@ -375,8 +375,6 @@ type LocaleDefinition = {
 
 type LocaleInput = string | string[] | number | null
 
-const hasOwn = Object.prototype.hasOwnProperty
-
 const isLocaleDefinitionMap = (value: PhpInput): value is Record<string, LocaleDefinition> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
@@ -404,9 +402,6 @@ function copyValue(orig: PhpInput): PhpInput {
   if (orig !== null && typeof orig === 'object') {
     const newObj: PhpAssoc<PhpInput> = {}
     for (const [key, value] of Object.entries(orig)) {
-      if (!hasOwn.call(orig, key)) {
-        continue
-      }
       newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
     }
     return newObj
@@ -429,7 +424,6 @@ function setlocale(category: string, locale: LocaleInput): string | false {
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
 
-  let categ = ''
   const cats: string[] = []
   let i = 0
 
@@ -766,10 +760,7 @@ function setlocale(category: string, locale: LocaleInput): string | false {
   // Just get the locale
   if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
-      for (categ in localeCategories) {
-        if (!hasOwn.call(localeCategories, categ)) {
-          continue
-        }
+      for (const categ of Object.keys(localeCategories)) {
         // Add ".UTF-8" or allow ".@latint", etc. to the end?
         cats.push(categ + '=' + localeCategories[categ])
       }
@@ -785,10 +776,7 @@ function setlocale(category: string, locale: LocaleInput): string | false {
 
   // Set and get locale
   if (category === 'LC_ALL') {
-    for (categ in localeCategories) {
-      if (!hasOwn.call(localeCategories, categ)) {
-        continue
-      }
+    for (const categ of Object.keys(localeCategories)) {
       localeCategories[categ] = requestedLocale
     }
   } else {
@@ -812,7 +800,7 @@ function ctype_punct(text: string): boolean {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('pu')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }{% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
@@ -1006,8 +994,6 @@ function getenv(varname) {
 }
 
 // php/strings/setlocale (Locutus dependency module)
-const hasOwn = Object.prototype.hasOwnProperty
-
 const isLocaleDefinitionMap = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
 
 const isLocaleCategoryMap = (value) =>
@@ -1032,9 +1018,6 @@ function copyValue(orig) {
   if (orig !== null && typeof orig === 'object') {
     const newObj = {}
     for (const [key, value] of Object.entries(orig)) {
-      if (!hasOwn.call(orig, key)) {
-        continue
-      }
       newObj[key] = value !== null && typeof value === 'object' ? copyValue(value) : value
     }
     return newObj
@@ -1057,7 +1040,6 @@ function setlocale(category, locale) {
   //   example 1: setlocale('LC_ALL', 'en_US')
   //   returns 1: 'en_US'
 
-  let categ = ''
   const cats = []
   let i = 0
 
@@ -1394,10 +1376,7 @@ function setlocale(category, locale) {
   // Just get the locale
   if (requestedLocale === '0' || requestedLocale === 0) {
     if (category === 'LC_ALL') {
-      for (categ in localeCategories) {
-        if (!hasOwn.call(localeCategories, categ)) {
-          continue
-        }
+      for (const categ of Object.keys(localeCategories)) {
         // Add ".UTF-8" or allow ".@latint", etc. to the end?
         cats.push(categ + '=' + localeCategories[categ])
       }
@@ -1413,10 +1392,7 @@ function setlocale(category, locale) {
 
   // Set and get locale
   if (category === 'LC_ALL') {
-    for (categ in localeCategories) {
-      if (!hasOwn.call(localeCategories, categ)) {
-        continue
-      }
+    for (const categ of Object.keys(localeCategories)) {
       localeCategories[categ] = requestedLocale
     }
   } else {
@@ -1440,6 +1416,6 @@ function ctype_punct(text) {
   setlocale('LC_ALL', 0)
 
   const pattern = getCtypePattern('pu')
-  return pattern instanceof RegExp ? text.search(pattern) !== -1 : false
+  return pattern instanceof RegExp ? pattern.test(text) : false
 }{% endcodeblock %}
 </div>

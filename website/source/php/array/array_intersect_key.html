@@ -36,7 +36,7 @@ alias:
   - /functions/array_intersect_key/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import { entriesOfPhpAssoc, type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { type PhpArrayLike, type PhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_intersect_key<TValue>(
   arr1: PhpArrayLike<TValue>,
@@ -57,15 +57,12 @@ export function array_intersect_key<TValue>(
   }
 
   const arr1Object = toPhpArrayObject<TValue>(arr1)
-  const hasOwn = Object.prototype.hasOwnProperty
-  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
-    for (const nextArray of arrays) {
-      const arr = toPhpArrayObject<TValue>(nextArray)
-      if (!hasOwn.call(arr, k1)) {
-        continue arr1keys
-      }
+  const keySets = arrays.map((nextArray) => new Set(Object.keys(toPhpArrayObject<TValue>(nextArray))))
+
+  for (const [k1, arr1Value] of Object.entries(arr1Object)) {
+    if (keySets.every((keys) => keys.has(k1))) {
+      retArr[k1] = arr1Value
     }
-    retArr[k1] = arr1Value
   }
 
   return retArr
@@ -73,7 +70,7 @@ export function array_intersect_key<TValue>(
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}import { entriesOfPhpAssoc, toPhpArrayObject } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:javascript %}import { toPhpArrayObject } from '../_helpers/_phpTypes.ts'
 
 export function array_intersect_key(arr1, ...arrays) {
   //  discuss at: https://locutus.io/php/array_intersect_key/
@@ -91,15 +88,12 @@ export function array_intersect_key(arr1, ...arrays) {
   }
 
   const arr1Object = toPhpArrayObject(arr1)
-  const hasOwn = Object.prototype.hasOwnProperty
-  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
-    for (const nextArray of arrays) {
-      const arr = toPhpArrayObject(nextArray)
-      if (!hasOwn.call(arr, k1)) {
-        continue arr1keys
-      }
+  const keySets = arrays.map((nextArray) => new Set(Object.keys(toPhpArrayObject(nextArray))))
+
+  for (const [k1, arr1Value] of Object.entries(arr1Object)) {
+    if (keySets.every((keys) => keys.has(k1))) {
+      retArr[k1] = arr1Value
     }
-    retArr[k1] = arr1Value
   }
 
   return retArr
@@ -116,10 +110,6 @@ type PhpList<T = PhpInput> = T[]
 type PhpAssoc<T = PhpInput> = { [key: string]: T }
 
 type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
-
-const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
-  return Object.entries(value)
-}
 
 function isObjectLike(value: PhpInput): value is PhpArrayLike<PhpInput> {
   return typeof value === 'object' && value !== null
@@ -157,15 +147,12 @@ function array_intersect_key<TValue>(
   }
 
   const arr1Object = toPhpArrayObject<TValue>(arr1)
-  const hasOwn = Object.prototype.hasOwnProperty
-  arr1keys: for (const [k1, arr1Value] of entriesOfPhpAssoc(arr1Object)) {
-    for (const nextArray of arrays) {
-      const arr = toPhpArrayObject<TValue>(nextArray)
-      if (!hasOwn.call(arr, k1)) {
-        continue arr1keys
-      }
+  const keySets = arrays.map((nextArray) => new Set(Object.keys(toPhpArrayObject<TValue>(nextArray))))
+
+  for (const [k1, arr1Value] of Object.entries(arr1Object)) {
+    if (keySets.every((keys) => keys.has(k1))) {
+      retArr[k1] = arr1Value
     }
-    retArr[k1] = arr1Value
   }
 
   return retArr
@@ -173,7 +160,6 @@ function array_intersect_key<TValue>(
 </div>
 <div class="code-tab-panel" data-lang="standalone-js" style="display:none">
 {% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
-
 function isPhpArrayObject(value) {
   return typeof value === 'object' && value !== null
 }
@@ -203,15 +189,12 @@ function array_intersect_key(arr1, ...arrays) {
   }
 
   const arr1Object = toPhpArrayObject(arr1)
-  const hasOwn = Object.prototype.hasOwnProperty
-  arr1keys: for (const [k1, arr1Value] of Object.entries(arr1Object)) {
-    for (const nextArray of arrays) {
-      const arr = toPhpArrayObject(nextArray)
-      if (!hasOwn.call(arr, k1)) {
-        continue arr1keys
-      }
+  const keySets = arrays.map((nextArray) => new Set(Object.keys(toPhpArrayObject(nextArray))))
+
+  for (const [k1, arr1Value] of Object.entries(arr1Object)) {
+    if (keySets.every((keys) => keys.has(k1))) {
+      retArr[k1] = arr1Value
     }
-    retArr[k1] = arr1Value
   }
 
   return retArr
