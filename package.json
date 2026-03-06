@@ -41,6 +41,7 @@
     "fix:headers": "node src/_util/formatHeaders.ts fix",
     "lint:headers": "node src/_util/formatHeaders.ts check",
     "compare:dt:signatures": "node scripts/compare-definitelytyped-signatures.ts",
+    "select:parity": "node scripts/select-parity-targets.ts",
     "lint:no-stray-js": "node scripts/check-allowed-js-files.ts",
     "lint:ts": "tsc --noEmit -p tsconfig.json",
     "lint:ts:strict-next": "tsc --noEmit -p tsconfig.strict-next.json",

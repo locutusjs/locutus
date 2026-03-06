@@ -1298,3 +1298,34 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The repo already has enough dependency extraction in `src/_util/util.ts` to avoid inventing a new metadata layer.
   - The selector must be explainable in CI logs or it will become hard to trust once it starts skipping most of the matrix.
+
+### Iteration 72
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Implement selective PR parity with smoke coverage, keep full parity on `main`/tags, and add a nightly full-parity backstop.
+- Progress:
+  - Added `scripts/select-parity-targets.ts`:
+    - builds a source dependency graph from `src/**`
+    - computes reverse dependents
+    - selects direct function hits plus dependent functions
+    - forces full parity for parity-core / generation / workflow changes
+    - selects all functions for per-language parity handler changes
+    - keeps a fixed smoke subset on every PR
+  - Added selector tests in `test/util/select-parity-targets.vitest.ts`.
+  - Updated `test/parity/index.ts` to accept multiple positional targets so CI can run one parity invocation for smoke + selected functions.
+  - Wired `.github/workflows/ci.yml` so:
+    - pull requests use selective parity
+    - `main` pushes and tags still run full parity
+  - Added `.github/workflows/nightly-parity.yml` for scheduled/manual full parity runs.
+- Validation:
+  - `yarn lint`
+  - `yarn lint:ts`
+  - `yarn vitest run test/util/select-parity-targets.vitest.ts`
+  - `node scripts/select-parity-targets.ts --base-ref origin/main --format json`
+  - `node test/parity/index.ts php/math/max php/math/min --summary`
+- Key learnings:
+  - The selector does not need perfect minimality to be useful; conservative force-full rules keep the risky areas explicit.
+  - Keeping smoke targets in a stable order is useful for CI readability and for avoiding accidental selector-test churn.
