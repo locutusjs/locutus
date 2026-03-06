@@ -1212,3 +1212,70 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Clojure’s remaining wins now mostly come from translating JS literals into native data structures, not from callback lowering.
   - Go’s remaining wins often need result-shape adapters because native APIs return tuples or runtime-specific values that do not match Locutus’ normalized surface.
+
+### Iteration 68
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Only take one more batch if it is clearly stale skip-list debt rather than new translator work.
+- Progress:
+  - Confirmed that the following functions already pass parity under `--all`:
+    - `c/ctype/isspace`
+    - `c/math/frexp`
+    - `c/stdio/sprintf`
+    - `c/stdlib/atof`
+    - `c/string/strcat`
+    - `c/string/strchr`
+    - `c/string/strstr`
+    - `perl/core/pack`
+  - Removed those stale skip-list entries and marked them parity-verified in source headers.
+- Key learnings:
+  - This was still a bounded win because the translator already had enough machinery; only old skip-list assumptions were blocking verification.
+  - The next remaining unverifieds are no longer this cheap. They need actual new translator/runtime logic rather than policy cleanup.
+
+### Iteration 69
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Check whether the final two C unverifieds are still a bounded adapter issue or whether they start a larger translator project.
+- Progress:
+  - Added C helper adapters for:
+    - `strtod`
+    - `strtol`
+  - Fixed C return-type inference so `strtod` is printed as a floating-point value, not an integer.
+  - Marked parity verification in:
+    - `src/c/stdlib/strtod.ts`
+    - `src/c/stdlib/strtol.ts`
+- Key learnings:
+  - `strtol`/`strtod` were still worth taking because the work stayed local to one parity handler and one return-type table.
+  - After this, C is effectively exhausted as a cheap supported-language bucket.
+
+### Iteration 70
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Re-run the provisional C/Perl promotions through actual verified parity and keep only the functions that survive without broad new adapter work.
+- Progress:
+  - Confirmed real parity for:
+    - `c/ctype/isspace`
+    - `c/stdlib/strtod`
+    - `c/stdlib/strtol`
+  - Dropped provisional promotions for:
+    - `c/math/frexp`
+    - `c/stdio/sprintf`
+    - `c/stdlib/atof`
+    - `c/string/strcat`
+    - `c/string/strchr`
+    - `c/string/strstr`
+    - `perl/core/pack`
+  - Fixed one real translator bug while doing this:
+    - escaped JS character literals like `'\t'` now lower to C character literals instead of C strings in `test/parity/lib/languages/c.ts`
+- Key learnings:
+  - Passing under `--all` is not enough for promotion; some functions still fail once native output shape and signature mismatches are exercised in the verified path.
+  - The final bounded benefit here is small but real: keep the translator bug fix plus the three C functions that truly pass, and stop before this turns into a broader C/Perl parity project.

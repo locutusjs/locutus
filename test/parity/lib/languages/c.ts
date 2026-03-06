@@ -33,7 +33,7 @@ function inferReturnType(funcName: string): ReturnType {
   if (funcName === 'tolower' || funcName === 'toupper') {
     return 'char'
   }
-  if (funcName === 'atof') {
+  if (funcName === 'atof' || funcName === 'strtod') {
     return 'double'
   }
   if (funcName === 'strchr' || funcName === 'strstr' || funcName === 'strcat') {
@@ -43,22 +43,7 @@ function inferReturnType(funcName: string): ReturnType {
 }
 
 // Functions to skip
-export const C_SKIP_LIST = new Set<string>([
-  // sprintf has complex format string handling that differs between JS and C
-  'sprintf',
-  // strchr returns pointer or NULL - complex to map to JS null
-  'strchr',
-  // strstr returns pointer or NULL - complex to map to JS null
-  'strstr',
-  // strcat modifies in place, needs buffer setup
-  'strcat',
-  // frexp returns multiple values (via pointer) - complex to test
-  'frexp',
-  // JS isspace handles strings, C only handles single char
-  'isspace',
-  // atof output format differs (scientific notation vs decimal)
-  'atof',
-])
+export const C_SKIP_LIST = new Set<string>([])
 
 /**
  * Convert JS string literal to C - handles single to double quotes
@@ -69,6 +54,9 @@ function convertString(str: string): string {
     const inner = str.slice(1, -1)
     // For single character strings in ctype functions, use character literal
     if (inner.length === 1 && !inner.includes('\\')) {
+      return `'${inner}'`
+    }
+    if (inner.startsWith('\\') && inner.length === 2) {
       return `'${inner}'`
     }
     return `"${inner.replace(/"/g, '\\"')}"`
@@ -154,6 +142,29 @@ function convertFunctionCall(code: string, funcName: string): string {
   })
 }
 
+function convertStrtodCalls(code: string): string {
+  return code.replace(/\bstrtod\s*\(([^)]+)\)/g, (_match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]?.trim()
+    if (!value) {
+      return _match
+    }
+    return `locutus_strtod(${convertString(value)})`
+  })
+}
+
+function convertStrtolCalls(code: string): string {
+  return code.replace(/\bstrtol\s*\(([^)]+)\)/g, (_match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]?.trim()
+    const base = args[1]?.trim() ?? '10'
+    if (!value) {
+      return _match
+    }
+    return `locutus_strtol(${convertString(value)}, ${base})`
+  })
+}
+
 /**
  * Strip trailing JS comments
  */
@@ -209,6 +220,21 @@ function jsToC(jsCode: string[], funcName: string, category?: string): string {
     headers.add('stdbool.h')
   }
 
+  let helperBlock = ''
+  if (funcName === 'strtod') {
+    helperBlock = `double locutus_strtod(const char* value) {
+  char* endptr = NULL;
+  return strtod(value, &endptr);
+}
+`
+  } else if (funcName === 'strtol') {
+    helperBlock = `long locutus_strtol(const char* value, int base) {
+  char* endptr = NULL;
+  return strtol(value, &endptr, base);
+}
+`
+  }
+
   // Process lines
   const processedLines: string[] = []
   let lastExpr = ''
@@ -224,7 +250,13 @@ function jsToC(jsCode: string[], funcName: string, category?: string): string {
     processed = processed.replace(/^\s*(var|let|const)\s+/, '')
 
     // Convert function calls
-    processed = convertFunctionCall(processed, funcName)
+    if (funcName === 'strtod') {
+      processed = convertStrtodCalls(processed)
+    } else if (funcName === 'strtol') {
+      processed = convertStrtolCalls(processed)
+    } else {
+      processed = convertFunctionCall(processed, funcName)
+    }
 
     // Convert JS true/false to C
     processed = processed.replace(/\btrue\b/g, '1')
@@ -288,7 +320,7 @@ function jsToC(jsCode: string[], funcName: string, category?: string): string {
 
   const includeLines = Array.from(headers).map((h) => `#include <${h}>`)
 
-  return [...includeLines, '', 'int main() {', ...bodyLines, '}', ''].join('\n')
+  return [...includeLines, '', helperBlock, 'int main() {', ...bodyLines, '}', ''].join('\n')
 }
 
 /**
