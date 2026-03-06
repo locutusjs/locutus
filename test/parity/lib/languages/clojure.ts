@@ -4,7 +4,7 @@
 
 import ts from 'typescript'
 
-import { parseJsArrowFunction, parseJsExpression, type JsExpression, type JsObjectProperty } from '../jsCallbackAst.ts'
+import { type JsExpression, type JsObjectProperty, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -280,7 +280,12 @@ function translateHigherOrderCall(line: string, funcName: string): string | null
 
   if (ts.isVariableStatement(statement)) {
     const declaration = statement.declarationList.declarations[0]
-    if (declaration && ts.isIdentifier(declaration.name) && declaration.initializer && ts.isCallExpression(declaration.initializer)) {
+    if (
+      declaration &&
+      ts.isIdentifier(declaration.name) &&
+      declaration.initializer &&
+      ts.isCallExpression(declaration.initializer)
+    ) {
       assignmentName = declaration.name.text
       callExpression = declaration.initializer
     }
@@ -307,7 +312,9 @@ function translateHigherOrderCall(line: string, funcName: string): string | null
 
   if (funcName === 'merge_with' && args.length >= 1) {
     const translatedArgs = args.map((arg, index) =>
-      index === 0 ? emitClojureArrow(arg.getText(sourceFile)) : emitClojureExpression(parseJsExpression(arg.getText(sourceFile))),
+      index === 0
+        ? emitClojureArrow(arg.getText(sourceFile))
+        : emitClojureExpression(parseJsExpression(arg.getText(sourceFile))),
     )
     translatedCall = `(merge-with ${translatedArgs.join(' ')})`
   } else if (funcName === 'reduce_kv' && args.length === 3) {
@@ -315,9 +322,13 @@ function translateHigherOrderCall(line: string, funcName: string): string | null
       parseJsExpression(args[1]?.getText(sourceFile) ?? 'undefined'),
     )} ${emitClojureExpression(parseJsExpression(args[2]?.getText(sourceFile) ?? 'undefined'))})`
   } else if (funcName === 'update_in' && args.length >= 3) {
-    const headArgs = args.slice(0, 3).map((arg, index) =>
-      index === 2 ? emitClojureArrow(arg.getText(sourceFile)) : emitClojureExpression(parseJsExpression(arg.getText(sourceFile))),
-    )
+    const headArgs = args
+      .slice(0, 3)
+      .map((arg, index) =>
+        index === 2
+          ? emitClojureArrow(arg.getText(sourceFile))
+          : emitClojureExpression(parseJsExpression(arg.getText(sourceFile))),
+      )
     const tailArgs = args.slice(3).map((arg) => emitClojureExpression(parseJsExpression(arg.getText(sourceFile))))
     translatedCall = `(update-in ${[...headArgs, ...tailArgs].join(' ')})`
   }
@@ -345,7 +356,12 @@ function translateStructuredCoreCall(line: string, funcName: string): string | n
 
   if (ts.isVariableStatement(statement)) {
     const declaration = statement.declarationList.declarations[0]
-    if (declaration && ts.isIdentifier(declaration.name) && declaration.initializer && ts.isCallExpression(declaration.initializer)) {
+    if (
+      declaration &&
+      ts.isIdentifier(declaration.name) &&
+      declaration.initializer &&
+      ts.isCallExpression(declaration.initializer)
+    ) {
       assignmentName = declaration.name.text
       callExpression = declaration.initializer
     }
@@ -367,7 +383,9 @@ function translateStructuredCoreCall(line: string, funcName: string): string | n
     return null
   }
 
-  const translatedArgs = callExpression.arguments.map((arg) => emitClojureExpression(parseJsExpression(arg.getText(sourceFile))))
+  const translatedArgs = callExpression.arguments.map((arg) =>
+    emitClojureExpression(parseJsExpression(arg.getText(sourceFile))),
+  )
   const cljFuncName = funcName.replace(/_/g, '-')
   const translatedCall = `(${cljFuncName} ${translatedArgs.join(' ')})`
   return assignmentName ? `(let [${assignmentName} ${translatedCall}] ${assignmentName})` : translatedCall

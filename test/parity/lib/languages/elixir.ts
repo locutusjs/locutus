@@ -4,7 +4,7 @@
 
 import ts from 'typescript'
 
-import { parseJsArrowFunction, parseJsExpression, type JsExpression } from '../jsCallbackAst.ts'
+import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -169,7 +169,12 @@ function translateHigherOrderCall(line: string, funcName: string): string | null
 
   if (ts.isVariableStatement(statement)) {
     const declaration = statement.declarationList.declarations[0]
-    if (declaration && ts.isIdentifier(declaration.name) && declaration.initializer && ts.isCallExpression(declaration.initializer)) {
+    if (
+      declaration &&
+      ts.isIdentifier(declaration.name) &&
+      declaration.initializer &&
+      ts.isCallExpression(declaration.initializer)
+    ) {
       assignmentName = declaration.name.text
       callExpression = declaration.initializer
     }

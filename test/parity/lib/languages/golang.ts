@@ -999,7 +999,12 @@ function getRequiredImports(goCode: string): string[] {
   ) {
     imports.add('net/url')
   }
-  if (goCode.includes('net.') || goCode.includes('locutusSplitHostPort(') || goCode.includes('locutusParseIP(') || goCode.includes('locutusParseCIDR(')) {
+  if (
+    goCode.includes('net.') ||
+    goCode.includes('locutusSplitHostPort(') ||
+    goCode.includes('locutusParseIP(') ||
+    goCode.includes('locutusParseCIDR(')
+  ) {
     imports.add('net')
   }
   if (goCode.includes('locutusConstantTimeCompare(') || goCode.includes('subtle.')) {
@@ -1340,8 +1345,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                                : funcName === 'ParseIP'
-                                                                  ? `func locutusParseIP(value string) interface{} {
+                                                              : funcName === 'ParseIP'
+                                                                ? `func locutusParseIP(value string) interface{} {
 \tparsed := net.ParseIP(value)
 \tif parsed == nil {
 \t\treturn nil
@@ -1350,8 +1355,8 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                                  : funcName === 'ParseCIDR'
-                                                                    ? `type locutusParsedCIDR struct {
+                                                                : funcName === 'ParseCIDR'
+                                                                  ? `type locutusParsedCIDR struct {
 \tIP       string \`json:"ip"\`
 \tMaskBits int    \`json:"maskBits"\`
 }
@@ -1366,8 +1371,8 @@ func locutusParseCIDR(value string) interface{} {
 }
 
 `
-                                                                : funcName === 'Match'
-                                                                  ? `func locutusPathMatch(pattern string, name string) bool {
+                                                                  : funcName === 'Match'
+                                                                    ? `func locutusPathMatch(pattern string, name string) bool {
 \tmatched, err := path.Match(pattern, name)
 \tif err != nil {
 \t\treturn false
@@ -1376,7 +1381,7 @@ func locutusParseCIDR(value string) interface{} {
 }
 
 `
-                                                                : ''
+                                                                    : ''
 
   return `package main
 

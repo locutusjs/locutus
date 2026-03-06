@@ -4,7 +4,7 @@
 
 import ts from 'typescript'
 
-import { parseJsArrowFunction, parseJsExpression, type JsExpression } from '../jsCallbackAst.ts'
+import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -241,10 +241,18 @@ function emitRubyExpression(expression: JsExpression): string {
     case 'index':
       return `${emitRubyExpression(expression.object)}[${emitRubyExpression(expression.index)}]`
     case 'call':
-      if (expression.callee.kind === 'identifier' && expression.callee.name === 'Number' && expression.args.length === 1) {
+      if (
+        expression.callee.kind === 'identifier' &&
+        expression.callee.name === 'Number' &&
+        expression.args.length === 1
+      ) {
         return `Float(${emitRubyExpression(expression.args[0] as JsExpression)})`
       }
-      if (expression.callee.kind === 'identifier' && expression.callee.name === 'String' && expression.args.length === 1) {
+      if (
+        expression.callee.kind === 'identifier' &&
+        expression.callee.name === 'String' &&
+        expression.args.length === 1
+      ) {
         return `${emitRubyExpression(expression.args[0] as JsExpression)}.to_s`
       }
       throw new Error('Unsupported Ruby callback call expression')
@@ -287,7 +295,12 @@ function translateSliceWhenCall(line: string): string | null {
 
   if (ts.isVariableStatement(statement)) {
     const declaration = statement.declarationList.declarations[0]
-    if (declaration && ts.isIdentifier(declaration.name) && declaration.initializer && ts.isCallExpression(declaration.initializer)) {
+    if (
+      declaration &&
+      ts.isIdentifier(declaration.name) &&
+      declaration.initializer &&
+      ts.isCallExpression(declaration.initializer)
+    ) {
       assignmentName = declaration.name.text
       callExpression = declaration.initializer
     }
@@ -305,7 +318,11 @@ function translateSliceWhenCall(line: string): string | null {
     }
   }
 
-  if (!callExpression || !ts.isIdentifier(callExpression.expression) || callExpression.expression.text !== 'slice_when') {
+  if (
+    !callExpression ||
+    !ts.isIdentifier(callExpression.expression) ||
+    callExpression.expression.text !== 'slice_when'
+  ) {
     return null
   }
 

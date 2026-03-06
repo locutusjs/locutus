@@ -14,20 +14,7 @@ export type JsExpression =
   | { kind: 'unary'; operator: '!' | '-' | '+'; argument: JsExpression }
   | {
       kind: 'binary'
-      operator:
-        | '+'
-        | '-'
-        | '*'
-        | '/'
-        | '%'
-        | '==='
-        | '!=='
-        | '>'
-        | '>='
-        | '<'
-        | '<='
-        | '&&'
-        | '||'
+      operator: '+' | '-' | '*' | '/' | '%' | '===' | '!==' | '>' | '>=' | '<' | '<=' | '&&' | '||'
       left: JsExpression
       right: JsExpression
     }
@@ -176,7 +163,11 @@ function convertTsExpression(expression: ts.Expression): JsExpression {
             }
           }
 
-          if (ts.isIdentifier(property.name) || ts.isStringLiteral(property.name) || ts.isNumericLiteral(property.name)) {
+          if (
+            ts.isIdentifier(property.name) ||
+            ts.isStringLiteral(property.name) ||
+            ts.isNumericLiteral(property.name)
+          ) {
             return {
               kind: 'property',
               key: property.name.text,
@@ -186,7 +177,7 @@ function convertTsExpression(expression: ts.Expression): JsExpression {
           }
         }
 
-        unsupported(property, 'Unsupported object literal property')
+        return unsupported(property, 'Unsupported object literal property')
       }),
     }
   }
