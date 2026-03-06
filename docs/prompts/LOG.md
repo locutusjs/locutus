@@ -1143,3 +1143,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Clojure parity under `clojure -e` must wrap helper definitions in `do` or top-level `defn` results pollute stdout.
   - For these callback-heavy cases, the stable approach is: AST lowering first, target-language helper shim second, then JSON-like normalization last.
+
+### Iteration 65
+
+2026-03-06
+
+- **Area: Verification infrastructure + TypeScript**
+- Plan:
+  - Use the same callback AST helper to unlock the remaining Ruby higher-order parity case.
+  - Re-scan parity skip lists afterwards to see whether any meaningful callback-driven gaps remain.
+- Progress:
+  - Reworked `test/parity/lib/languages/ruby.ts` to lower `slice_when` callbacks into Ruby blocks via the shared AST helper.
+  - Marked parity verification in `src/ruby/Array/slice_when.ts`.
+- Validation:
+  - `test:parity ruby/Array/slice_when --all --no-cache` passes.
+- Key learnings:
+  - Ruby was the cheapest follow-up because its JSON serialization path was already solid; only block lowering was missing.
+  - After Elixir, Clojure, Julia, and Ruby, the obvious callback-related parity skips are effectively exhausted in the current language handlers.

@@ -2,16 +2,17 @@ export function slice_when<T>(
   arr: T[] | unknown,
   boundary: (previous: T, current: T, index: number, source: T[]) => boolean,
 ): T[][] {
-  //  discuss at: https://locutus.io/ruby/Array/slice_when/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Starts a new slice whenever boundary(previous, current) returns true.
-  //      note 2: Mirrors Ruby's Enumerable#slice_when behavior on arrays.
-  //   example 1: slice_when([1, 2, 4, 5, 7, 8], (prev, curr) => curr - prev !== 1)
-  //   returns 1: [[1, 2], [4, 5], [7, 8]]
-  //   example 2: slice_when(['a', 'ab', 'abc', 'd', 'de'], (prev, curr) => curr.length <= prev.length)
-  //   returns 2: [['a', 'ab', 'abc'], ['d', 'de']]
-  //   example 3: slice_when([], () => true)
-  //   returns 3: []
+  //      discuss at: https://locutus.io/ruby/Array/slice_when/
+  // parity verified: Ruby 3.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Starts a new slice whenever boundary(previous, current) returns true.
+  //          note 2: Mirrors Ruby's Enumerable#slice_when behavior on arrays.
+  //       example 1: slice_when([1, 2, 4, 5, 7, 8], (prev, curr) => curr - prev !== 1)
+  //       returns 1: [[1, 2], [4, 5], [7, 8]]
+  //       example 2: slice_when(['a', 'ab', 'abc', 'd', 'de'], (prev, curr) => curr.length <= prev.length)
+  //       returns 2: [['a', 'ab', 'abc'], ['d', 'de']]
+  //       example 3: slice_when([], () => true)
+  //       returns 3: []
 
   if (!Array.isArray(arr) || arr.length === 0 || typeof boundary !== 'function') {
     return []
