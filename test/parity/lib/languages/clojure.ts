@@ -329,6 +329,50 @@ function translateHigherOrderCall(line: string, funcName: string): string | null
   return assignmentName ? `(let [${assignmentName} ${translatedCall}] ${assignmentName})` : translatedCall
 }
 
+function translateStructuredCoreCall(line: string, funcName: string): string | null {
+  if (funcName !== 'assoc_in' && funcName !== 'get_in') {
+    return null
+  }
+
+  const sourceFile = ts.createSourceFile('example.ts', line, ts.ScriptTarget.ES2022, true, ts.ScriptKind.TS)
+  const statement = sourceFile.statements[0]
+  if (!statement) {
+    return null
+  }
+
+  let assignmentName: string | null = null
+  let callExpression: ts.CallExpression | null = null
+
+  if (ts.isVariableStatement(statement)) {
+    const declaration = statement.declarationList.declarations[0]
+    if (declaration && ts.isIdentifier(declaration.name) && declaration.initializer && ts.isCallExpression(declaration.initializer)) {
+      assignmentName = declaration.name.text
+      callExpression = declaration.initializer
+    }
+  } else if (ts.isExpressionStatement(statement)) {
+    if (ts.isCallExpression(statement.expression)) {
+      callExpression = statement.expression
+    } else if (
+      ts.isBinaryExpression(statement.expression) &&
+      statement.expression.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+      ts.isIdentifier(statement.expression.left) &&
+      ts.isCallExpression(statement.expression.right)
+    ) {
+      assignmentName = statement.expression.left.text
+      callExpression = statement.expression.right
+    }
+  }
+
+  if (!callExpression || !ts.isIdentifier(callExpression.expression) || callExpression.expression.text !== funcName) {
+    return null
+  }
+
+  const translatedArgs = callExpression.arguments.map((arg) => emitClojureExpression(parseJsExpression(arg.getText(sourceFile))))
+  const cljFuncName = funcName.replace(/_/g, '-')
+  const translatedCall = `(${cljFuncName} ${translatedArgs.join(' ')})`
+  return assignmentName ? `(let [${assignmentName} ${translatedCall}] ${assignmentName})` : translatedCall
+}
+
 /**
  * Convert a single JS line to Clojure
  */
@@ -344,6 +388,11 @@ function convertJsLineToClojure(line: string, funcName: string, category?: strin
   const higherOrderTranslation = translateHigherOrderCall(clj, funcName)
   if (higherOrderTranslation) {
     return higherOrderTranslation
+  }
+
+  const structuredCoreTranslation = translateStructuredCoreCall(clj, funcName)
+  if (structuredCoreTranslation) {
+    return structuredCoreTranslation
   }
 
   // Convert single-quoted strings to double-quoted (Clojure uses double quotes for strings)

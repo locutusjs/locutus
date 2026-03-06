@@ -1186,3 +1186,29 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Some remaining unverifieds are real work, not free promotions:
     - `clojure/core/assoc_in` and `clojure/core/get_in` still need literal/object translation for non-callback calls
     - `golang/net/ParseIP` and `golang/net/ParseCIDR` still need Go-side shape adapters
+
+### Iteration 67
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Take the next non-trivial but still high-ROI parity bucket: `clojure/core/assoc_in`, `clojure/core/get_in`, `golang/net/ParseIP`, `golang/net/ParseCIDR`.
+  - Only keep the work if the verified path passes cleanly after lightweight translator/adapter changes.
+- Progress:
+  - Extended `test/parity/lib/languages/clojure.ts` with structured literal-call lowering for:
+    - `assoc_in`
+    - `get_in`
+  - Extended `test/parity/lib/languages/golang.ts` with helper adapters for:
+    - `ParseIP`
+    - `ParseCIDR`
+  - Marked parity verification in:
+    - `src/clojure/core/assoc_in.ts`
+    - `src/clojure/core/get_in.ts`
+    - `src/golang/net/ParseIP.ts`
+    - `src/golang/net/ParseCIDR.ts`
+- Validation:
+  - `test:parity --all --no-cache` passes for all four functions.
+- Key learnings:
+  - Clojure’s remaining wins now mostly come from translating JS literals into native data structures, not from callback lowering.
+  - Go’s remaining wins often need result-shape adapters because native APIs return tuples or runtime-specific values that do not match Locutus’ normalized surface.

@@ -11,15 +11,16 @@ function cloneForKey(value: unknown, nextKey?: PathKey): Record<string | number,
 }
 
 export function assoc_in(value: unknown, keys: PathKey[] | unknown, newValue: unknown): unknown {
-  //  discuss at: https://locutus.io/clojure/assoc_in/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Immutably associates a value at a nested path, similar to Clojure assoc-in.
-  //   example 1: assoc_in({a: {b: 1}}, ['a', 'b'], 2)
-  //   returns 1: {a: {b: 2}}
-  //   example 2: assoc_in({a: {}}, ['a', 'c'], 10)
-  //   returns 2: {a: {c: 10}}
-  //   example 3: assoc_in([1, {x: 3}], [1, 'x'], 9)
-  //   returns 3: [1, {x: 9}]
+  //      discuss at: https://locutus.io/clojure/assoc_in/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Immutably associates a value at a nested path, similar to Clojure assoc-in.
+  //       example 1: assoc_in({a: {b: 1}}, ['a', 'b'], 2)
+  //       returns 1: {a: {b: 2}}
+  //       example 2: assoc_in({a: {}}, ['a', 'c'], 10)
+  //       returns 2: {a: {c: 10}}
+  //       example 3: assoc_in([1, {x: 3}], [1, 'x'], 9)
+  //       returns 3: [1, {x: 9}]
 
   if (!Array.isArray(keys)) {
     return value

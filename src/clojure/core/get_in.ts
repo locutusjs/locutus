@@ -15,15 +15,16 @@ function readAtPath(target: unknown, key: PathKey): unknown {
 export function get_in(value: unknown, keys: PathKey[] | unknown): unknown
 export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue: unknown): unknown
 export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue?: unknown): unknown {
-  //  discuss at: https://locutus.io/clojure/get_in/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Reads nested values by path, similar to Clojure get-in.
-  //   example 1: get_in({a: {b: 42}}, ['a', 'b'])
-  //   returns 1: 42
-  //   example 2: get_in({a: {b: 42}}, ['a', 'c'], 'fallback')
-  //   returns 2: 'fallback'
-  //   example 3: get_in([10, {x: [1, 2, 3]}], [1, 'x', 2], null)
-  //   returns 3: 3
+  //      discuss at: https://locutus.io/clojure/get_in/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Reads nested values by path, similar to Clojure get-in.
+  //       example 1: get_in({a: {b: 42}}, ['a', 'b'])
+  //       returns 1: 42
+  //       example 2: get_in({a: {b: 42}}, ['a', 'c'], 'fallback')
+  //       returns 2: 'fallback'
+  //       example 3: get_in([10, {x: [1, 2, 3]}], [1, 'x', 2], null)
+  //       returns 3: 3
 
   if (!Array.isArray(keys)) {
     return defaultValue

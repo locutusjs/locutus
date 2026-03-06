@@ -765,6 +765,36 @@ function convertSplitHostPortCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus net/ParseIP calls to helper calls.
+ * Go returns nil for invalid IP and net.IP marshals to base64-ish byte JSON by default.
+ */
+function convertParseIPCalls(code: string): string {
+  return code.replace(/\bParseIP\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusParseIP(${value})`
+  })
+}
+
+/**
+ * Convert Locutus net/ParseCIDR calls to helper calls.
+ * Go returns (IP, *IPNet, error), while locutus returns {ip, maskBits} | null.
+ */
+function convertParseCIDRCalls(code: string): string {
+  return code.replace(/\bParseCIDR\s*\(([^)]+)\)/g, (match, argsStr) => {
+    const args = parseArguments(argsStr)
+    const value = args[0]
+    if (!value) {
+      return match
+    }
+    return `locutusParseCIDR(${value})`
+  })
+}
+
+/**
  * Convert Locutus path/Match calls to helper calls.
  * Go returns (bool, error), while locutus Match returns bool.
  */
@@ -874,6 +904,10 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     go = convertResolveReferenceCalls(go)
   } else if (funcName === 'SplitHostPort') {
     go = convertSplitHostPortCalls(go)
+  } else if (funcName === 'ParseIP') {
+    go = convertParseIPCalls(go)
+  } else if (funcName === 'ParseCIDR') {
+    go = convertParseCIDRCalls(go)
   } else if (funcName === 'Match') {
     go = convertMatchCalls(go)
   }
@@ -910,6 +944,8 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     funcName !== 'JoinPath' &&
     funcName !== 'ResolveReference' &&
     funcName !== 'SplitHostPort' &&
+    funcName !== 'ParseIP' &&
+    funcName !== 'ParseCIDR' &&
     funcName !== 'Match'
   ) {
     // Index2 is our alias for Index
@@ -963,7 +999,7 @@ function getRequiredImports(goCode: string): string[] {
   ) {
     imports.add('net/url')
   }
-  if (goCode.includes('net.') || goCode.includes('locutusSplitHostPort(')) {
+  if (goCode.includes('net.') || goCode.includes('locutusSplitHostPort(') || goCode.includes('locutusParseIP(') || goCode.includes('locutusParseCIDR(')) {
     imports.add('net')
   }
   if (goCode.includes('locutusConstantTimeCompare(') || goCode.includes('subtle.')) {
@@ -1304,8 +1340,34 @@ func locutusUrlParse(value string) locutusParsedURL {
 }
 
 `
-                                                              : funcName === 'Match'
-                                                                ? `func locutusPathMatch(pattern string, name string) bool {
+                                                                : funcName === 'ParseIP'
+                                                                  ? `func locutusParseIP(value string) interface{} {
+\tparsed := net.ParseIP(value)
+\tif parsed == nil {
+\t\treturn nil
+\t}
+\treturn parsed.String()
+}
+
+`
+                                                                  : funcName === 'ParseCIDR'
+                                                                    ? `type locutusParsedCIDR struct {
+\tIP       string \`json:"ip"\`
+\tMaskBits int    \`json:"maskBits"\`
+}
+
+func locutusParseCIDR(value string) interface{} {
+\tip, network, err := net.ParseCIDR(value)
+\tif err != nil || ip == nil || network == nil {
+\t\treturn nil
+\t}
+\tones, _ := network.Mask.Size()
+\treturn locutusParsedCIDR{IP: ip.String(), MaskBits: ones}
+}
+
+`
+                                                                : funcName === 'Match'
+                                                                  ? `func locutusPathMatch(pattern string, name string) bool {
 \tmatched, err := path.Match(pattern, name)
 \tif err != nil {
 \t\treturn false
