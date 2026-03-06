@@ -341,6 +341,13 @@ function jsToJulia(jsCode: string[], funcName: string, _category?: string): stri
 function normalizeJuliaOutput(output: string, expected?: string): string {
   let result = output.trim()
 
+  if (expected && /^\{\"start\":-?\d+,\"end\":-?\d+\}$/.test(expected)) {
+    const rangeMatch = result.match(/^(-?\d+):(-?\d+)$/)
+    if (rangeMatch?.[1] && rangeMatch[2]) {
+      return `{"start":${rangeMatch[1]},"end":${rangeMatch[2]}}`
+    }
+  }
+
   // Handle -0 -> 0 conversion (for ceil(-0.5) which returns -0 in Julia)
   if ((result === '-0' || result === '-0.0') && (expected === '0' || expected === '0.0')) {
     return expected || '0'

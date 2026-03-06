@@ -1,13 +1,14 @@
 export function chunk_every<T>(values: T[] | unknown, count: number, step: number = count, leftover: T[] = []): T[][] {
-  //  discuss at: https://locutus.io/elixir/chunk_every/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Mirrors Elixir Enum.chunk_every/4 semantics with count, step and optional leftover padding.
-  //   example 1: chunk_every([1, 2, 3, 4, 5], 2)
-  //   returns 1: [[1, 2], [3, 4], [5]]
-  //   example 2: chunk_every([1, 2, 3, 4, 5], 2, 2, [])
-  //   returns 2: [[1, 2], [3, 4], [5]]
-  //   example 3: chunk_every([1, 2, 3, 4, 5], 3, 3, [0, 0])
-  //   returns 3: [[1, 2, 3], [4, 5, 0]]
+  //      discuss at: https://locutus.io/elixir/chunk_every/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Mirrors Elixir Enum.chunk_every/4 semantics with count, step and optional leftover padding.
+  //       example 1: chunk_every([1, 2, 3, 4, 5], 2)
+  //       returns 1: [[1, 2], [3, 4], [5]]
+  //       example 2: chunk_every([1, 2, 3, 4, 5], 2, 2, [])
+  //       returns 2: [[1, 2], [3, 4], [5]]
+  //       example 3: chunk_every([1, 2, 3, 4, 5], 3, 3, [0, 0])
+  //       returns 3: [[1, 2, 3], [4, 5, 0]]
 
   if (!Array.isArray(values)) {
     return []

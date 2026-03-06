@@ -1160,3 +1160,29 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Ruby was the cheapest follow-up because its JSON serialization path was already solid; only block lowering was missing.
   - After Elixir, Clojure, Julia, and Ruby, the obvious callback-related parity skips are effectively exhausted in the current language handlers.
+
+### Iteration 66
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Chase only parity improvements with obvious ROI after the callback pass.
+  - Prefer functions that already pass under `--all` or only need normalization, not new large translators.
+- Progress:
+  - Sampled the next unverified bucket across supported languages.
+  - Confirmed easy wins:
+    - `elixir/Enum/chunk_every` already passes parity
+    - `julia/Base/searchsortedfirst` already passes parity
+    - `julia/Base/searchsortedlast` already passes parity
+  - Normalized Julia `searchsorted` native ranges like `2:4` into the Locutus object shape `{start, end}`.
+  - Marked parity verification in:
+    - `src/elixir/Enum/chunk_every.ts`
+    - `src/julia/Base/searchsorted.ts`
+    - `src/julia/Base/searchsortedfirst.ts`
+    - `src/julia/Base/searchsortedlast.ts`
+- Key learnings:
+  - The best post-callback parity work is not necessarily more translator complexity; often it is just recognizing native output shapes and normalizing them cleanly.
+  - Some remaining unverifieds are real work, not free promotions:
+    - `clojure/core/assoc_in` and `clojure/core/get_in` still need literal/object translation for non-callback calls
+    - `golang/net/ParseIP` and `golang/net/ParseCIDR` still need Go-side shape adapters
