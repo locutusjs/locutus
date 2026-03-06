@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to C&#39;s strtod found in the stdlib.h header file looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-05T21:43:44.669Z">
-<meta property="article:modified_time" content="2026-03-05T21:43:44.669Z">
+<meta property="article:published_time" content="2026-03-06T13:35:35.906Z">
+<meta property="article:modified_time" content="2026-03-06T13:35:35.906Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,6 +229,51 @@ ga('send', 'pageview');
   <div class="article-inner">
     <header class="article-header">
       <h1 class="article-title">C&#39;s stdlib.strtod in TypeScript</h1>
+      
+        <style>
+          .verified-container {
+            margin-top: 8px;
+          }
+          .verified-badges {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+          }
+          .verified-badge {
+            display: inline-block;
+            background-color: #4c1;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: help;
+          }
+          .verified-tooltip {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+          }
+          .verified-container:hover .verified-tooltip {
+            max-height: 60px;
+            opacity: 1;
+            margin-top: 6px;
+          }
+        </style>
+        <div class="verified-container">
+          <div class="verified-badges">
+            
+              <span class="verified-badge">✓ Verified: C 23</span>
+            
+          </div>
+          <div class="verified-tooltip">Examples tested against actual runtime. CI re-verifies continuously. Only documented examples are tested.</div>
+        </div>
       
 
       
@@ -509,10 +554,10 @@ ga('send', 'pageview');
               </svg>
             </button>
             <div class="code-tab-panel" data-lang="ts">
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">strtod</span>(<span class="params"><span class="attr">str</span>: <span class="built_in">string</span></span>): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/c/stdlib/strtod/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//      note 1: Parses a floating-point number from the start of the string.</span></span><br><span class="line">  <span class="comment">//      note 2: Stops at the first invalid trailing character, similar to C strtod.</span></span><br><span class="line">  <span class="comment">//   example 1: strtod(&#x27;3.14&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: 3.14</span></span><br><span class="line">  <span class="comment">//   example 2: strtod(&#x27;  -2.5e2xyz&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: -250</span></span><br><span class="line">  <span class="comment">//   example 3: strtod(&#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> input = <span class="title class_">String</span>(str).<span class="title function_">replace</span>(<span class="regexp">/^\s+/</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> match = input.<span class="title function_">match</span>(<span class="regexp">/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/</span>)</span><br><span class="line">  <span class="keyword">if</span> (!match || !match[<span class="number">0</span>]) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> parsed = <span class="title class_">Number</span>.<span class="built_in">parseFloat</span>(match[<span class="number">0</span>])</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Number</span>.<span class="built_in">isNaN</span>(parsed) ? <span class="number">0</span> : parsed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">strtod</span>(<span class="params"><span class="attr">str</span>: <span class="built_in">string</span></span>): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/c/stdlib/strtod/</span></span><br><span class="line">  <span class="comment">// parity verified: C 23</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Parses a floating-point number from the start of the string.</span></span><br><span class="line">  <span class="comment">//          note 2: Stops at the first invalid trailing character, similar to C strtod.</span></span><br><span class="line">  <span class="comment">//       example 1: strtod(&#x27;3.14&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: 3.14</span></span><br><span class="line">  <span class="comment">//       example 2: strtod(&#x27;  -2.5e2xyz&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 2: -250</span></span><br><span class="line">  <span class="comment">//       example 3: strtod(&#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> input = <span class="title class_">String</span>(str).<span class="title function_">replace</span>(<span class="regexp">/^\s+/</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> match = input.<span class="title function_">match</span>(<span class="regexp">/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/</span>)</span><br><span class="line">  <span class="keyword">if</span> (!match || !match[<span class="number">0</span>]) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> parsed = <span class="title class_">Number</span>.<span class="built_in">parseFloat</span>(match[<span class="number">0</span>])</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Number</span>.<span class="built_in">isNaN</span>(parsed) ? <span class="number">0</span> : parsed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">strtod</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">//  discuss at: https://locutus.io/c/stdlib/strtod/</span></span><br><span class="line">  <span class="comment">// original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//      note 1: Parses a floating-point number from the start of the string.</span></span><br><span class="line">  <span class="comment">//      note 2: Stops at the first invalid trailing character, similar to C strtod.</span></span><br><span class="line">  <span class="comment">//   example 1: strtod(&#x27;3.14&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 1: 3.14</span></span><br><span class="line">  <span class="comment">//   example 2: strtod(&#x27;  -2.5e2xyz&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 2: -250</span></span><br><span class="line">  <span class="comment">//   example 3: strtod(&#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//   returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> input = <span class="title class_">String</span>(str).<span class="title function_">replace</span>(<span class="regexp">/^\s+/</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> match = input.<span class="title function_">match</span>(<span class="regexp">/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/</span>)</span><br><span class="line">  <span class="keyword">if</span> (!match || !match[<span class="number">0</span>]) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> parsed = <span class="title class_">Number</span>.<span class="built_in">parseFloat</span>(match[<span class="number">0</span>])</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Number</span>.<span class="built_in">isNaN</span>(parsed) ? <span class="number">0</span> : parsed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">strtod</span>(<span class="params">str</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/c/stdlib/strtod/</span></span><br><span class="line">  <span class="comment">// parity verified: C 23</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Parses a floating-point number from the start of the string.</span></span><br><span class="line">  <span class="comment">//          note 2: Stops at the first invalid trailing character, similar to C strtod.</span></span><br><span class="line">  <span class="comment">//       example 1: strtod(&#x27;3.14&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: 3.14</span></span><br><span class="line">  <span class="comment">//       example 2: strtod(&#x27;  -2.5e2xyz&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 2: -250</span></span><br><span class="line">  <span class="comment">//       example 3: strtod(&#x27;abc&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> input = <span class="title class_">String</span>(str).<span class="title function_">replace</span>(<span class="regexp">/^\s+/</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  <span class="keyword">const</span> match = input.<span class="title function_">match</span>(<span class="regexp">/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/</span>)</span><br><span class="line">  <span class="keyword">if</span> (!match || !match[<span class="number">0</span>]) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> parsed = <span class="title class_">Number</span>.<span class="built_in">parseFloat</span>(match[<span class="number">0</span>])</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Number</span>.<span class="built_in">isNaN</span>(parsed) ? <span class="number">0</span> : parsed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div>
 
           </div>
