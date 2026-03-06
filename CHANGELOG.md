@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.7...main).
 
+## v3.0.8
+
+Released: 2026-03-06. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.7...v3.0.8).
+
 ### Infrastructure
 
 - Expanded parity translator support for higher-order and data-shaped native checks across:
