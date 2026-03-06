@@ -793,10 +793,10 @@ code {
 }
 #profile .inner .social-links > table td a .social-icon-x {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: calc(1em - 2px);
+  height: calc(1em - 2px);
   fill: currentColor;
-  vertical-align: middle;
+  vertical-align: -0.125em;
 }
 #profile .inner .social-links > table td a:hover {
   color: #565a5f;

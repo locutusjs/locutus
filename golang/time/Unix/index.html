@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to Go&#39;s time.Unix looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-06T14:52:54.266Z">
-<meta property="article:modified_time" content="2026-03-06T14:52:54.266Z">
+<meta property="article:published_time" content="2026-03-06T15:04:35.732Z">
+<meta property="article:modified_time" content="2026-03-06T15:04:35.732Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -233,6 +233,10 @@ ga('send', 'pageview');
         <style>
           .verified-container {
             margin-top: 8px;
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
           }
           .verified-badges {
             display: flex;
@@ -248,22 +252,47 @@ ga('send', 'pageview');
             border-radius: 4px;
             font-size: 12px;
             font-weight: bold;
-            cursor: help;
+            cursor: default;
           }
           .verified-tooltip {
-            display: block;
-            max-height: 0;
-            overflow: hidden;
+            position: absolute;
+            top: calc(100% + 2px);
+            left: 0;
+            z-index: 30;
+            width: max-content;
+            max-width: min(430px, calc(100vw - 56px));
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.28);
             opacity: 0;
+            visibility: hidden;
+            transform: translateY(-5px) scale(0.98);
+            transform-origin: top left;
+            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+            color: #e2e8f0;
             font-size: 12px;
-            color: #666;
-            line-height: 1.4;
-            transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+            line-height: 1.5;
           }
-          .verified-container:hover .verified-tooltip {
-            max-height: 60px;
+          .verified-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 16px;
+            width: 10px;
+            height: 10px;
+            background: #0f172a;
+            border-left: 1px solid #334155;
+            border-top: 1px solid #334155;
+            transform: rotate(45deg);
+          }
+          .verified-container:hover .verified-tooltip,
+          .verified-container:focus-within .verified-tooltip {
             opacity: 1;
-            margin-top: 6px;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            transition-delay: 0s;
           }
         </style>
         <div class="verified-container">
@@ -788,7 +817,7 @@ ga('send', 'pageview');
 
             <br />
             <div class="Social">
-              <a target="_blank" rel="noopener" href="https://x.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a>
+              <a target="_blank" rel="noopener" href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a>
               <a class="github-button" target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
             </div>
         </div>
@@ -822,8 +851,8 @@ ga('send', 'pageview');
                     <td>
                         <a href="https://x.com/locutus_io" target="_blank" title="X">
                             
-                                <svg class="social-icon-x" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                    <path d="M18.244 2H21.5l-7.11 8.13L22 22h-5.95l-4.66-6.11L5.99 22H2.73l7.61-8.7L2 2h6.1l4.2 5.55L18.244 2zm-1.04 18.2h1.8L5.17 3.7H3.24L17.2 20.2z"/>
+                                <svg class="social-icon-x" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                    <path d="M12.6.75h2.34L9.82 6.57 15.84 14h-4.71L7.4 9.35 3.36 14H1.02l5.48-6.3L.76.75h4.83L8.97 5.1zm-.82 11.85h1.3L4.89 2.08H3.5z"/>
                                 </svg>
                             
                         </a>
