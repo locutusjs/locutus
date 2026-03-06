@@ -1279,3 +1279,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Passing under `--all` is not enough for promotion; some functions still fail once native output shape and signature mismatches are exercised in the verified path.
   - The final bounded benefit here is small but real: keep the translator bug fix plus the three C functions that truly pass, and stop before this turns into a broader C/Perl parity project.
+
+### Iteration 71
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Replace full PR parity with a selective parity targeter plus nightly full parity, while keeping release tags on full parity.
+- Progress:
+  - Wrote the selective parity CI plan in `docs/prompts/selective-parity-ci-plan.md`.
+  - Locked the rules before implementation:
+    - direct function changes select themselves
+    - helper/shared source changes select reverse dependents
+    - parity core / generation / workflow changes force full parity
+    - PRs keep a fixed smoke subset as a floor
+    - nightly and release tags stay full
+- Key learnings:
+  - The repo already has enough dependency extraction in `src/_util/util.ts` to avoid inventing a new metadata layer.
+  - The selector must be explainable in CI logs or it will become hard to trust once it starts skipping most of the matrix.
