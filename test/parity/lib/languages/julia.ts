@@ -2,14 +2,14 @@
  * Julia language handler for verification
  */
 
+import ts from 'typescript'
+
+import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
 // Functions to skip (implementation differences, etc.)
-export const JULIA_SKIP_LIST = new Set<string>([
-  // findall callback/value overloads do not translate cleanly to Julia's predicate-only findall call yet.
-  'findall',
-])
+export const JULIA_SKIP_LIST = new Set<string>([])
 
 function splitArgs(argsText: string): string[] {
   const args: string[] = []
@@ -138,6 +138,126 @@ function stripTrailingComment(code: string): string {
 /**
  * Convert a single JS line to Julia
  */
+function emitJuliaExpression(expression: JsExpression): string {
+  switch (expression.kind) {
+    case 'identifier':
+      if (expression.name === 'undefined') {
+        return 'nothing'
+      }
+      return expression.name
+    case 'number':
+      return expression.value
+    case 'string':
+      return JSON.stringify(expression.value)
+    case 'boolean':
+      return expression.value ? 'true' : 'false'
+    case 'null':
+      return 'nothing'
+    case 'array':
+      return `[${expression.elements.map((element) => emitJuliaExpression(element)).join(', ')}]`
+    case 'call':
+      if (
+        expression.callee.kind === 'identifier' &&
+        expression.callee.name === 'Number' &&
+        expression.args.length === 1
+      ) {
+        return `parse(Float64, string(${emitJuliaExpression(expression.args[0] as JsExpression)}))`
+      }
+      throw new Error('Unsupported Julia callback call expression')
+    case 'property':
+      if (expression.property === 'length') {
+        return `length(${emitJuliaExpression(expression.object)})`
+      }
+      throw new Error(`Unsupported Julia property access: .${expression.property}`)
+    case 'index':
+      return `${emitJuliaExpression(expression.object)}[${emitJuliaExpression(expression.index)} + 1]`
+    case 'unary':
+      return `${expression.operator}(${emitJuliaExpression(expression.argument)})`
+    case 'binary':
+      if (expression.operator === '===') {
+        return `(${emitJuliaExpression(expression.left)} == ${emitJuliaExpression(expression.right)})`
+      }
+      if (expression.operator === '!==') {
+        return `(${emitJuliaExpression(expression.left)} != ${emitJuliaExpression(expression.right)})`
+      }
+      if (expression.operator === '&&' || expression.operator === '||') {
+        return `(${emitJuliaExpression(expression.left)} ${expression.operator} ${emitJuliaExpression(expression.right)})`
+      }
+      return `(${emitJuliaExpression(expression.left)} ${expression.operator} ${emitJuliaExpression(expression.right)})`
+    case 'conditional':
+      return `(${emitJuliaExpression(expression.test)} ? ${emitJuliaExpression(expression.consequent)} : ${emitJuliaExpression(
+        expression.alternate,
+      )})`
+    case 'object':
+      throw new Error('Object literals are not supported in Julia parity callbacks')
+  }
+
+  throw new Error(`Unsupported Julia expression kind: ${(expression as { kind?: string }).kind ?? 'unknown'}`)
+}
+
+function emitJuliaArrow(sourceText: string): string {
+  const callback = parseJsArrowFunction(sourceText)
+  if (callback.params.length === 0) {
+    throw new Error('Julia predicate callback requires at least one parameter')
+  }
+  return `${callback.params[0]} -> ${emitJuliaExpression(callback.body)}`
+}
+
+function translateFindallCall(line: string): string | null {
+  const sourceFile = ts.createSourceFile('example.ts', line, ts.ScriptTarget.ES2022, true, ts.ScriptKind.TS)
+  const statement = sourceFile.statements[0]
+  if (!statement) {
+    return null
+  }
+
+  let assignmentName: string | null = null
+  let callExpression: ts.CallExpression | null = null
+
+  if (ts.isVariableStatement(statement)) {
+    const declaration = statement.declarationList.declarations[0]
+    if (
+      declaration &&
+      ts.isIdentifier(declaration.name) &&
+      declaration.initializer &&
+      ts.isCallExpression(declaration.initializer)
+    ) {
+      assignmentName = declaration.name.text
+      callExpression = declaration.initializer
+    }
+  } else if (ts.isExpressionStatement(statement)) {
+    if (ts.isCallExpression(statement.expression)) {
+      callExpression = statement.expression
+    } else if (
+      ts.isBinaryExpression(statement.expression) &&
+      statement.expression.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+      ts.isIdentifier(statement.expression.left) &&
+      ts.isCallExpression(statement.expression.right)
+    ) {
+      assignmentName = statement.expression.left.text
+      callExpression = statement.expression.right
+    }
+  }
+
+  if (!callExpression || !ts.isIdentifier(callExpression.expression) || callExpression.expression.text !== 'findall') {
+    return null
+  }
+
+  const matcherArg = callExpression.arguments[0]
+  const valuesArg = callExpression.arguments[1]
+  if (!matcherArg || !valuesArg) {
+    return null
+  }
+
+  const matcherText = matcherArg.getText(sourceFile)
+  const valuesText = emitJuliaExpression(parseJsExpression(valuesArg.getText(sourceFile)))
+  const matcherExpression = ts.isArrowFunction(matcherArg)
+    ? emitJuliaArrow(matcherText)
+    : `(value -> value == ${emitJuliaExpression(parseJsExpression(matcherText))})`
+
+  const translated = `findall(${matcherExpression}, ${valuesText})`
+  return assignmentName ? `${assignmentName} = ${translated}` : translated
+}
+
 function convertJsLineToJulia(line: string, funcName: string): string {
   let jl = line.trim()
   if (!jl) {
@@ -146,6 +266,13 @@ function convertJsLineToJulia(line: string, funcName: string): string {
 
   jl = stripTrailingComment(jl)
   jl = jl.replace(/;+$/, '')
+
+  if (funcName === 'findall') {
+    const translatedFindall = translateFindallCall(jl)
+    if (translatedFindall) {
+      return translatedFindall
+    }
+  }
 
   // Remove var/let/const - Julia just uses name = value
   jl = jl.replace(/^\s*(var|let|const)\s+/, '')
@@ -222,6 +349,13 @@ function jsToJulia(jsCode: string[], funcName: string, _category?: string): stri
  */
 function normalizeJuliaOutput(output: string, expected?: string): string {
   let result = output.trim()
+
+  if (expected && /^\{"start":-?\d+,"end":-?\d+\}$/.test(expected)) {
+    const rangeMatch = result.match(/^(-?\d+):(-?\d+)$/)
+    if (rangeMatch?.[1] && rangeMatch[2]) {
+      return `{"start":${rangeMatch[1]},"end":${rangeMatch[2]}}`
+    }
+  }
 
   // Handle -0 -> 0 conversion (for ceil(-0.5) which returns -0 in Julia)
   if ((result === '-0' || result === '-0.0') && (expected === '0' || expected === '0.0')) {

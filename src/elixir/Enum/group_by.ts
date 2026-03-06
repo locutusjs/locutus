@@ -12,15 +12,16 @@ export function group_by<T, U>(
   keySelector: GroupKeySelector<T>,
   valueSelector?: GroupValueSelector<T, U>,
 ): Record<string, unknown[]> {
-  //  discuss at: https://locutus.io/elixir/group_by/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Groups values by key selector, similar to Elixir Enum.group_by/3.
-  //   example 1: group_by(['one', 'two', 'three'], (value) => value.length)
-  //   returns 1: {3: ['one', 'two'], 5: ['three']}
-  //   example 2: group_by([1, 2, 3, 4], (value) => (value % 2 === 0 ? 'even' : 'odd'))
-  //   returns 2: {odd: [1, 3], even: [2, 4]}
-  //   example 3: group_by([1, 2, 3], (value) => (value % 2 === 0 ? 'even' : 'odd'), (value) => value * 10)
-  //   returns 3: {odd: [10, 30], even: [20]}
+  //      discuss at: https://locutus.io/elixir/group_by/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Groups values by key selector, similar to Elixir Enum.group_by/3.
+  //       example 1: group_by(['one', 'two', 'three'], (value) => value.length)
+  //       returns 1: {3: ['one', 'two'], 5: ['three']}
+  //       example 2: group_by([1, 2, 3, 4], (value) => (value % 2 === 0 ? 'even' : 'odd'))
+  //       returns 2: {odd: [1, 3], even: [2, 4]}
+  //       example 3: group_by([1, 2, 3], (value) => (value % 2 === 0 ? 'even' : 'odd'), (value) => value * 10)
+  //       returns 3: {odd: [10, 30], even: [20]}
 
   if (typeof keySelector !== 'function') {
     throw new TypeError('group_by(): keySelector must be a function')

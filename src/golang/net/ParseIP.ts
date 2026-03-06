@@ -1,16 +1,17 @@
 type IPv4Bytes = [number, number, number, number]
 
 export function ParseIP(value: string): string | null {
-  //  discuss at: https://locutus.io/golang/net/ParseIP/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Parses IPv4/IPv6 textual addresses and returns a normalized string or null when invalid.
-  //      note 2: IPv6 output is normalized to lowercase but not fully canonicalized.
-  //   example 1: ParseIP('127.0.0.1')
-  //   returns 1: '127.0.0.1'
-  //   example 2: ParseIP('2001:DB8::1')
-  //   returns 2: '2001:db8::1'
-  //   example 3: ParseIP('999.1.2.3')
-  //   returns 3: null
+  //      discuss at: https://locutus.io/golang/net/ParseIP/
+  // parity verified: Go 1.23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Parses IPv4/IPv6 textual addresses and returns a normalized string or null when invalid.
+  //          note 2: IPv6 output is normalized to lowercase but not fully canonicalized.
+  //       example 1: ParseIP('127.0.0.1')
+  //       returns 1: '127.0.0.1'
+  //       example 2: ParseIP('2001:DB8::1')
+  //       returns 2: '2001:db8::1'
+  //       example 3: ParseIP('999.1.2.3')
+  //       returns 3: null
 
   const input = String(value)
   const ipv4 = parseIPv4(input)

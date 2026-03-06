@@ -1087,3 +1087,195 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Verified with targeted parity runs (`--no-cache`) for all four functions.
 - Key learnings:
   - Locutus test generation expects exported function files to have standard header blocks; shared helpers are safer as local non-exported functions unless promoted to full helper modules with proper docs/tests.
+
+### Iteration 63
+
+2026-03-05
+
+- **Area: Release + Verification infrastructure + TypeScript**
+- Plan:
+  - Merge the queued expansion PR once CI clears.
+  - Cut the next patch release from clean `main`.
+  - Start the higher-order parity callback work from a fresh post-release branch with a written plan and explicit targets.
+- Progress:
+  - Confirmed PR `#550` passed all required checks and squash-merged it into `main`.
+  - Released `v3.0.7`:
+    - moved `## main` notes in `CHANGELOG.md` into `## v3.0.7`
+    - ran `npm version patch -m "Release v%s"`
+    - pushed `main` and tag `v3.0.7`
+  - Started branch `feat/callback-parity-plan` from released `main`.
+  - Added `docs/prompts/callback-parity-plan.md` documenting:
+    - current callback-related parity skips
+    - the AST-first plan
+    - the supported callback subset for phase 1
+    - explicit Elixir, Clojure, and Julia success targets
+- Key learnings:
+  - The real blocker is not just callback lowering. `elixir` and `clojure` parity also need deterministic JSON-like serialization for maps/lists once higher-order functions are unlocked.
+  - We already depend on `typescript`, so callback lowering should reuse the TS AST rather than introduce regex-heavy translators.
+
+### Iteration 64
+
+2026-03-05
+
+- **Area: Verification infrastructure + TypeScript**
+- Plan:
+  - Reuse the new callback AST helper to unlock the skipped higher-order parity cases in `clojure`.
+  - Finish the smaller Julia predicate/value lowering follow-up if the shared helper makes it cheap.
+- Progress:
+  - Extended `test/parity/lib/jsCallbackAst.ts` to cover object literals, spreads, and computed keys.
+  - Added parser coverage in `test/util/js-callback-ast.vitest.ts` for reducer-shaped object expressions.
+  - Reworked `test/parity/lib/languages/clojure.ts`:
+    - AST-based callback lowering for `merge_with`, `reduce_kv`, and `update_in`
+    - no-dependency JSON-like serializer for vectors/maps
+    - helpers for JS-like numeric coercion and `+` semantics where examples rely on them
+  - Marked parity verification in:
+    - `src/clojure/core/merge_with.ts`
+    - `src/clojure/core/reduce_kv.ts`
+  - Reworked `test/parity/lib/languages/julia.ts` just enough to lower `findall` value and predicate forms.
+  - Marked parity verification in `src/julia/Base/findall.ts`.
+- Validation:
+  - `test:parity` now passes for:
+    - `clojure/core/merge_with`
+    - `clojure/core/reduce_kv`
+    - `clojure/core/update_in`
+    - `julia/Base/findall`
+  - Generated tests pass for the affected Clojure and Julia functions plus the callback AST helper tests.
+- Key learnings:
+  - Clojure parity under `clojure -e` must wrap helper definitions in `do` or top-level `defn` results pollute stdout.
+  - For these callback-heavy cases, the stable approach is: AST lowering first, target-language helper shim second, then JSON-like normalization last.
+
+### Iteration 65
+
+2026-03-06
+
+- **Area: Verification infrastructure + TypeScript**
+- Plan:
+  - Use the same callback AST helper to unlock the remaining Ruby higher-order parity case.
+  - Re-scan parity skip lists afterwards to see whether any meaningful callback-driven gaps remain.
+- Progress:
+  - Reworked `test/parity/lib/languages/ruby.ts` to lower `slice_when` callbacks into Ruby blocks via the shared AST helper.
+  - Marked parity verification in `src/ruby/Array/slice_when.ts`.
+- Validation:
+  - `test:parity ruby/Array/slice_when --all --no-cache` passes.
+- Key learnings:
+  - Ruby was the cheapest follow-up because its JSON serialization path was already solid; only block lowering was missing.
+  - After Elixir, Clojure, Julia, and Ruby, the obvious callback-related parity skips are effectively exhausted in the current language handlers.
+
+### Iteration 66
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Chase only parity improvements with obvious ROI after the callback pass.
+  - Prefer functions that already pass under `--all` or only need normalization, not new large translators.
+- Progress:
+  - Sampled the next unverified bucket across supported languages.
+  - Confirmed easy wins:
+    - `elixir/Enum/chunk_every` already passes parity
+    - `julia/Base/searchsortedfirst` already passes parity
+    - `julia/Base/searchsortedlast` already passes parity
+  - Normalized Julia `searchsorted` native ranges like `2:4` into the Locutus object shape `{start, end}`.
+  - Marked parity verification in:
+    - `src/elixir/Enum/chunk_every.ts`
+    - `src/julia/Base/searchsorted.ts`
+    - `src/julia/Base/searchsortedfirst.ts`
+    - `src/julia/Base/searchsortedlast.ts`
+- Key learnings:
+  - The best post-callback parity work is not necessarily more translator complexity; often it is just recognizing native output shapes and normalizing them cleanly.
+  - Some remaining unverifieds are real work, not free promotions:
+    - `clojure/core/assoc_in` and `clojure/core/get_in` still need literal/object translation for non-callback calls
+    - `golang/net/ParseIP` and `golang/net/ParseCIDR` still need Go-side shape adapters
+
+### Iteration 67
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Take the next non-trivial but still high-ROI parity bucket: `clojure/core/assoc_in`, `clojure/core/get_in`, `golang/net/ParseIP`, `golang/net/ParseCIDR`.
+  - Only keep the work if the verified path passes cleanly after lightweight translator/adapter changes.
+- Progress:
+  - Extended `test/parity/lib/languages/clojure.ts` with structured literal-call lowering for:
+    - `assoc_in`
+    - `get_in`
+  - Extended `test/parity/lib/languages/golang.ts` with helper adapters for:
+    - `ParseIP`
+    - `ParseCIDR`
+  - Marked parity verification in:
+    - `src/clojure/core/assoc_in.ts`
+    - `src/clojure/core/get_in.ts`
+    - `src/golang/net/ParseIP.ts`
+    - `src/golang/net/ParseCIDR.ts`
+- Validation:
+  - `test:parity --all --no-cache` passes for all four functions.
+- Key learnings:
+  - Clojure’s remaining wins now mostly come from translating JS literals into native data structures, not from callback lowering.
+  - Go’s remaining wins often need result-shape adapters because native APIs return tuples or runtime-specific values that do not match Locutus’ normalized surface.
+
+### Iteration 68
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Only take one more batch if it is clearly stale skip-list debt rather than new translator work.
+- Progress:
+  - Confirmed that the following functions already pass parity under `--all`:
+    - `c/ctype/isspace`
+    - `c/math/frexp`
+    - `c/stdio/sprintf`
+    - `c/stdlib/atof`
+    - `c/string/strcat`
+    - `c/string/strchr`
+    - `c/string/strstr`
+    - `perl/core/pack`
+  - Removed those stale skip-list entries and marked them parity-verified in source headers.
+- Key learnings:
+  - This was still a bounded win because the translator already had enough machinery; only old skip-list assumptions were blocking verification.
+  - The next remaining unverifieds are no longer this cheap. They need actual new translator/runtime logic rather than policy cleanup.
+
+### Iteration 69
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Check whether the final two C unverifieds are still a bounded adapter issue or whether they start a larger translator project.
+- Progress:
+  - Added C helper adapters for:
+    - `strtod`
+    - `strtol`
+  - Fixed C return-type inference so `strtod` is printed as a floating-point value, not an integer.
+  - Marked parity verification in:
+    - `src/c/stdlib/strtod.ts`
+    - `src/c/stdlib/strtol.ts`
+- Key learnings:
+  - `strtol`/`strtod` were still worth taking because the work stayed local to one parity handler and one return-type table.
+  - After this, C is effectively exhausted as a cheap supported-language bucket.
+
+### Iteration 70
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Re-run the provisional C/Perl promotions through actual verified parity and keep only the functions that survive without broad new adapter work.
+- Progress:
+  - Confirmed real parity for:
+    - `c/ctype/isspace`
+    - `c/stdlib/strtod`
+    - `c/stdlib/strtol`
+  - Dropped provisional promotions for:
+    - `c/math/frexp`
+    - `c/stdio/sprintf`
+    - `c/stdlib/atof`
+    - `c/string/strcat`
+    - `c/string/strchr`
+    - `c/string/strstr`
+    - `perl/core/pack`
+  - Fixed one real translator bug while doing this:
+    - escaped JS character literals like `'\t'` now lower to C character literals instead of C strings in `test/parity/lib/languages/c.ts`
+- Key learnings:
+  - Passing under `--all` is not enough for promotion; some functions still fail once native output shape and signature mismatches are exercised in the verified path.
+  - The final bounded benefit here is small but real: keep the translator bug fix plus the three C functions that truly pass, and stop before this turns into a broader C/Perl parity project.

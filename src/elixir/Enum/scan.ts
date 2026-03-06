@@ -20,15 +20,16 @@ export function scan<TAccumulator, TValue>(
   initialOrReducer: TAccumulator | ScanReducer<TValue, TValue>,
   maybeReducer?: ScanReducer<TAccumulator, TValue>,
 ): Array<TAccumulator | TValue> {
-  //  discuss at: https://locutus.io/elixir/scan/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Produces running accumulator states, similar to Elixir Enum.scan/2 and Enum.scan/3.
-  //   example 1: scan([1, 2, 3, 4], (acc, value) => Number(acc) + Number(value))
-  //   returns 1: [1, 3, 6, 10]
-  //   example 2: scan([1, 2, 3], 10, (acc, value) => Number(acc) + Number(value))
-  //   returns 2: [11, 13, 16]
-  //   example 3: scan([], 5, (acc, value) => Number(acc) + Number(value))
-  //   returns 3: []
+  //      discuss at: https://locutus.io/elixir/scan/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Produces running accumulator states, similar to Elixir Enum.scan/2 and Enum.scan/3.
+  //       example 1: scan([1, 2, 3, 4], (acc, value) => Number(acc) + Number(value))
+  //       returns 1: [1, 3, 6, 10]
+  //       example 2: scan([1, 2, 3], 10, (acc, value) => Number(acc) + Number(value))
+  //       returns 2: [11, 13, 16]
+  //       example 3: scan([], 5, (acc, value) => Number(acc) + Number(value))
+  //       returns 3: []
 
   if (!Array.isArray(values)) {
     return []

@@ -1,14 +1,15 @@
 export function strtol(str: string, base: number = 10): number {
-  //  discuss at: https://locutus.io/c/stdlib/strtol/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  //      note 1: Parses a string as a signed integer with optional radix support.
-  //      note 2: Supports base 0 auto-detection (0x => 16, leading 0 => 8, otherwise 10).
-  //   example 1: strtol('42', 10)
-  //   returns 1: 42
-  //   example 2: strtol('   -0x2a', 0)
-  //   returns 2: -42
-  //   example 3: strtol('077', 0)
-  //   returns 3: 63
+  //      discuss at: https://locutus.io/c/stdlib/strtol/
+  // parity verified: C 23
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Parses a string as a signed integer with optional radix support.
+  //          note 2: Supports base 0 auto-detection (0x => 16, leading 0 => 8, otherwise 10).
+  //       example 1: strtol('42', 10)
+  //       returns 1: 42
+  //       example 2: strtol('   -0x2a', 0)
+  //       returns 2: -42
+  //       example 3: strtol('077', 0)
+  //       returns 3: 63
 
   const input = String(str)
   let index = 0
