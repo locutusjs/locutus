@@ -14,6 +14,7 @@
  *   yarn test:parity --all                 # Include unverified functions
  *   yarn test:parity php                   # Filter to PHP only
  *   yarn test:parity php/strings/sprintf   # Test specific function
+ *   yarn test:parity php/strings/trim golang/net/ParseIP   # Test multiple targets
  *   yarn test:parity --no-cache            # Skip cache
  *   yarn test:parity --summary             # Show counts only, don't run tests
  */
@@ -262,6 +263,23 @@ interface TestResult {
   cached: boolean
 }
 
+function matchesFilter(func: FunctionInfo, filter: string): boolean {
+  return (
+    func.path === filter ||
+    func.language === filter ||
+    `${func.language}/${func.category}` === filter ||
+    func.path.startsWith(`${filter}/`)
+  )
+}
+
+function filterFunctions(functions: FunctionInfo[], filters: string[]): FunctionInfo[] {
+  if (filters.length === 0) {
+    return functions
+  }
+
+  return functions.filter((func) => filters.some((filter) => matchesFilter(func, filter)))
+}
+
 /**
  * Print parity test results with emoji indicators
  */
@@ -351,13 +369,13 @@ function formatDuration(ms: number): string {
 async function main() {
   const startTime = performance.now()
   const args = process.argv.slice(2)
+  const filters = args.filter((a) => !a.startsWith('-'))
 
   // Parse options (dockerDigests will be populated after image pulls)
-  const filter = args.find((a) => !a.startsWith('-'))
   const options: VerifyOptions = {
     useCache: !args.includes('--no-cache'),
     includeUnverified: args.includes('--all') || args.includes('--include-unverified'),
-    ...(filter !== undefined ? { filter } : {}),
+    ...(filters[0] !== undefined ? { filter: filters[0] } : {}),
     dockerDigests: {}, // Will be populated after image pulls
   }
 
@@ -373,7 +391,7 @@ async function main() {
   }
 
   // Step 1: Find all functions first
-  const allFunctions = findFunctions(SRC, options.filter)
+  const allFunctions = filterFunctions(findFunctions(SRC), filters)
 
   // Categorize functions
   const verifiedFunctions: FunctionInfo[] = []

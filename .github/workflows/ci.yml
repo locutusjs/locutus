@@ -72,7 +72,26 @@ jobs:
       - name: Browser Test
         run: |
           corepack yarn browser:test
-      - name: Parity tests
+      - name: Select parity targets
+        if: github.event_name == 'pull_request'
+        id: parity-targets
+        run: |
+          corepack yarn select:parity --base-ref origin/${{ github.event.pull_request.base.ref }} --github-output "$GITHUB_OUTPUT"
+      - name: Parity tests (selective)
+        if: github.event_name == 'pull_request'
+        run: |
+          printf '%s\n' "${{ steps.parity-targets.outputs.summary }}"
+          if [ "${{ steps.parity-targets.outputs.mode }}" = "full" ]; then
+            corepack yarn test:parity
+            exit 0
+          fi
+
+          mapfile -t targets < <(printf '%s\n' "${{ steps.parity-targets.outputs.targets }}" | sed '/^$/d')
+          printf 'Running selective parity on %s targets\n' "${#targets[@]}"
+          printf '  %s\n' "${targets[@]}"
+          corepack yarn test:parity "${targets[@]}"
+      - name: Parity tests (full)
+        if: github.event_name != 'pull_request'
         run: |
           corepack yarn test:parity
       - name: Release
