@@ -344,7 +344,11 @@ function getChangedFiles(baseRef: string): string[] {
     .filter(Boolean)
 }
 
-function parseArgs(args: string[]): { baseRef: string; githubOutputPath?: string; format: 'text' | 'json' } {
+function parseArgs(args: string[]): {
+  baseRef: string
+  githubOutputPath: string | undefined
+  format: 'text' | 'json'
+} {
   let baseRef = 'origin/main'
   let githubOutputPath: string | undefined
   let format: 'text' | 'json' = 'text'
