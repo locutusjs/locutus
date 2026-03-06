@@ -24,7 +24,18 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.7...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.9...main).
+
+## v3.0.9
+
+Released: 2026-03-06. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.8...v3.0.9).
+
+### Fixes
+
+- Fixed a `php/math/{min,max}` regression introduced in 3.x for string-only inputs, including PHP-style ordering for
+  string collections and variadics.
+- Added a custom regression test to lock in the reported behavior and ensure array inputs are not mutated during
+  comparison.
 
 ## v3.0.8
 

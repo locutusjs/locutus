@@ -71,6 +71,10 @@ const compareValues = (current: PhpMinMaxValue, next: PhpMinMaxValue): number =>
     return nextNum > 0 ? 1 : -1
   }
 
+  if (typeof current === 'string' && typeof next === 'string' && Number.isNaN(currentNum) && Number.isNaN(nextNum)) {
+    return next > current ? 1 : -1
+  }
+
   return nextNum > currentNum ? 1 : -1
 }
 
@@ -79,6 +83,7 @@ export function min(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   // original by: Onno Marsman (https://twitter.com/onnomarsman)
   //  revised by: Onno Marsman (https://twitter.com/onnomarsman)
   // improved by: Jack
+  // improved by: Thomas Hohn
   //      note 1: Long code cause we're aiming for maximum PHP compatibility
   //   example 1: min(1, 3, 5, 6, 7)
   //   returns 1: 1
@@ -94,6 +99,8 @@ export function min(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   //   returns 6: [2, 4, 8]
   //   example 7: min({2:'two', 1:'one', 3:'three', 5:'five', 4:'four'})
   //   returns 7: 'five'
+  //   example 8: min('one', 'two')
+  //   returns 8: 'one'
 
   if (args.length === 0) {
     throw new Error('At least one value should be passed to min()')
@@ -119,12 +126,6 @@ export function min(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   const first = values[0]
   if (typeof first === 'undefined') {
     throw new Error('Array must contain at least one element for min()')
-  }
-
-  // If whole array is strings - handle it via sort min
-  const stringOnly = values.every((i) => typeof i === 'string')
-  if (stringOnly) {
-    return String(values.sort()[0])
   }
 
   let result = first
