@@ -26,6 +26,36 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.7...main).
 
+### Infrastructure
+
+- Expanded parity translator support for higher-order and data-shaped native checks across:
+  - Elixir `Enum` callback helpers
+  - Clojure callback and nested-data helpers
+  - Julia callback/value helpers
+  - Ruby callback helpers
+  - Go `net` shape adapters
+  - C char-literal and numeric parsing helpers
+- Promoted additional functions from skipped/unverified parity status to verified parity coverage, including:
+  - `elixir/Enum/frequencies_by`
+  - `elixir/Enum/group_by`
+  - `elixir/Enum/scan`
+  - `elixir/Enum/chunk_every`
+  - `clojure/core/merge_with`
+  - `clojure/core/reduce_kv`
+  - `clojure/core/get_in`
+  - `clojure/core/assoc_in`
+  - `julia/Base/findall`
+  - `julia/Base/searchsorted`
+  - `julia/Base/searchsortedfirst`
+  - `julia/Base/searchsortedlast`
+  - `ruby/Array/slice_when`
+  - `golang/net/ParseIP`
+  - `golang/net/ParseCIDR`
+  - `c/ctype/isspace`
+  - `c/stdlib/strtod`
+  - `c/stdlib/strtol`
+- Added the callback-parity execution log and plan in `docs/prompts/` so follow-up parity work can build on a documented baseline instead of re-discovering translator gaps.
+
 ## v3.0.7
 
 Released: 2026-03-05. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.6...v3.0.7).
