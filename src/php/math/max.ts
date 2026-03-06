@@ -92,6 +92,8 @@ export function max(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   //   returns 5: 'hello'
   //   example 6: max([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 5, 7]
+  //   example 7: max({2:'two', 1:'one', 3:'three', 5:'five', 4:'four'})
+  //   returns 7: 'two'
 
   if (args.length === 0) {
     throw new Error('At least one value should be passed to max()')
@@ -118,6 +120,13 @@ export function max(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   if (typeof first === 'undefined') {
     throw new Error('Array must contain at least one element for max()')
   }
+
+  // If whole array is strings - handle it via sort and reverse for max
+  const stringOnly = values.every((i) => typeof i === 'string')
+  if (stringOnly) {
+    return String(values.sort().reverse()[0])
+  }
+
   let result = first
 
   for (let index = 1; index < values.length; index += 1) {

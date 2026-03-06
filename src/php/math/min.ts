@@ -92,6 +92,8 @@ export function min(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   //   returns 5: -1
   //   example 6: min([2, 4, 8], [2, 5, 7])
   //   returns 6: [2, 4, 8]
+  //   example 7: min({2:'two', 1:'one', 3:'three', 5:'five', 4:'four'})
+  //   returns 7: 'five'
 
   if (args.length === 0) {
     throw new Error('At least one value should be passed to min()')
@@ -118,6 +120,13 @@ export function min(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   if (typeof first === 'undefined') {
     throw new Error('Array must contain at least one element for min()')
   }
+
+  // If whole array is strings - handle it via sort min
+  const stringOnly = values.every((i) => typeof i === 'string')
+  if (stringOnly) {
+    return String(values.sort()[0])
+  }
+
   let result = first
 
   for (let index = 1; index < values.length; index += 1) {
