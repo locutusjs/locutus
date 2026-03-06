@@ -122,11 +122,10 @@ export function min(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   }
 
   // If whole array is strings - handle it via sort min
-  const stringOnly = values.every(i => typeof i === 'string')
+  const stringOnly = values.every((i) => typeof i === 'string')
   if (stringOnly) {
-    return String( values.sort()[0])
+    return String(values.sort()[0])
   }
-
 
   let result = first
 

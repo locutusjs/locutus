@@ -122,7 +122,7 @@ export function max(...args: PhpMinMaxValue[]): PhpMinMaxValue {
   }
 
   // If whole array is strings - handle it via sort and reverse for max
-  const stringOnly = values.every(i => typeof i === 'string')
+  const stringOnly = values.every((i) => typeof i === 'string')
   if (stringOnly) {
     return String(values.sort().reverse()[0])
   }
