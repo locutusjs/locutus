@@ -1329,3 +1329,18 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The selector does not need perfect minimality to be useful; conservative force-full rules keep the risky areas explicit.
   - Keeping smoke targets in a stable order is useful for CI readability and for avoiding accidental selector-test churn.
+
+### Iteration 73
+
+2026-03-06
+
+- **Area: Verification infrastructure**
+- Plan:
+  - Prove the selector end-to-end on a clean follow-up PR with one direct function change and one bounded helper cascade.
+- Progress:
+  - Chose `src/python/re/findall.ts` as the direct leaf target.
+  - Chose `src/php/_helpers/_arrayPointers.ts` as the shared helper target so the cascade stays bounded to PHP pointer helpers like `current`, `next`, `prev`, `reset`, `end`, `key`, and `each`.
+- Validation:
+  - Pending PR CI on the proof branch will be the source of truth; the selector PR itself could not prove selective behavior because it necessarily changed force-full files.
+- Key learnings:
+  - Selector proof has to happen after the workflow lands on `main`; otherwise the proof is masked by the selector's own force-full rules.
