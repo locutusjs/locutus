@@ -36,6 +36,7 @@ export function findall(pattern: string | RegExp, source: string, flags: ReFinda
       out.push(match.slice(1).map((value) => value ?? ''))
     }
 
+    // Advance zero-width matches manually so the global scan always makes progress.
     if ((match[0] ?? '') === '') {
       if (regex.lastIndex >= input.length) {
         break
