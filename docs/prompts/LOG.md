@@ -1374,3 +1374,49 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Website source generation needs the same cross-platform rigor as runtime code because tracked generated files can make `main` look dirty or even unworkable on contributor machines.
   - The safe fix is to decouple source file naming from public permalink routing; changing the source filename is cheap, changing the URL would be churn.
+
+### Iteration 75
+
+2026-03-09
+
+- **Area: Expansion (Rust `str`)**
+- Plan:
+  - Shift back from infrastructure to product-facing expansion in a parity-supported but still thin language.
+  - Add a coherent Rust `str` batch centered on split/boundary helpers rather than trivial wrappers.
+  - Keep the batch release-worthy by shipping the source functions, Rosetta mappings, generated tests, website pages, and snapshot updates together.
+- Progress:
+  - Created branch `feat/rust-str-next-batch`.
+  - Added ten Rust `str` functions:
+    - `lines`
+    - `rsplit_once`
+    - `rsplit_terminator`
+    - `rsplitn`
+    - `split_terminator`
+    - `splitn`
+    - `strip_prefix`
+    - `strip_suffix`
+    - `trim_end`
+    - `trim_start`
+  - Extended `test/parity/lib/languages/rust.ts` to translate and normalize:
+    - reverse split-once tuples
+    - split iterator outputs
+    - prefix/suffix stripping option results
+    - leading/trailing trim variants
+    - `lines()`
+  - Updated `src/rust/str/index.ts` exports.
+  - Updated Rosetta mappings in both:
+    - `src/rosetta.yml`
+    - `website/source/_data/rosetta.yml`
+  - Regenerated the Rust generated tests for the new functions.
+  - Generated targeted website pages under `website/source/rust/str/` for the new functions.
+  - Refreshed non-PHP API signatures and type-contract snapshots to match the expanded surface.
+- Validation:
+  - `corepack yarn lint:ts`
+  - `corepack yarn build:tests`
+  - `corepack yarn exec vitest run test/generated/rust/str/*.vitest.ts`
+  - `corepack yarn test:parity rust/str --no-cache`
+  - `corepack yarn fix:api:snapshot:nonphp`
+  - `corepack yarn fix:type:contracts`
+- Key learnings:
+  - Rust `str` remains a high-ROI expansion area because method-style parity lowers cleanly once output-shape adapters are explicit.
+  - Targeted website generation is the right tool for these expansion PRs; full `injectweb` is broader than necessary when only one language package changed.

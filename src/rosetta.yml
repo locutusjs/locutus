@@ -66,6 +66,7 @@ string_trim:
 string_ltrim:
   - php/strings/ltrim
   - tcl/string/trimleft
+  - rust/str/trim_start
 
 string_rtrim:
   - php/strings/rtrim
@@ -74,6 +75,7 @@ string_rtrim:
   - ruby/String/chomp
   - tcl/string/trimright
   - perl/core/chop
+  - rust/str/trim_end
 
 string_chomp:
   - perl/core/chomp
@@ -109,6 +111,34 @@ string_split:
   - php/strings/explode
   - golang/strings/Split
   - swift/String/split
+
+string_split_n:
+  - golang/strings/SplitN
+  - rust/str/splitn
+
+string_rsplit_n:
+  - rust/str/rsplitn
+
+string_split_once:
+  - rust/str/split_once
+
+string_rsplit_once:
+  - rust/str/rsplit_once
+
+string_split_terminator:
+  - rust/str/split_terminator
+
+string_rsplit_terminator:
+  - rust/str/rsplit_terminator
+
+string_strip_prefix:
+  - rust/str/strip_prefix
+
+string_strip_suffix:
+  - rust/str/strip_suffix
+
+string_lines:
+  - rust/str/lines
 
 string_join:
   - php/strings/implode
