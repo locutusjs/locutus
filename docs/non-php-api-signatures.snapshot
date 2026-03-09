@@ -48,6 +48,7 @@ src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathK
 src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue?: unknown): unknown
 src/clojure/core/merge_with.ts :: export function merge_with(combiner: MergeCombiner, ...maps: unknown[]): MergeRecord
 src/clojure/core/partition.ts :: export function partition<T>(n: number, values: T[] | unknown, step: number = n, pad: T[] | null = null): T[][]
+src/clojure/core/partition_by.ts :: export function partition_by<T, TKey>(selector: PartitionBySelector<T, TKey>, values: T[] | unknown): T[][]
 src/clojure/core/reduce_kv.ts :: export function reduce_kv<TAccumulator, TValue = unknown>( reducer: ReduceKvReducer<TAccumulator, TValue>, initial: TAccumulator, collection: ReduceKvCollection<TValue> | unknown, ): TAccumulator
 src/clojure/core/update_in.ts :: export function update_in(value: unknown, keys: PathKey[] | unknown, updater: Updater, ...args: unknown[]): unknown
 src/clojure/string/blank.ts :: export function blank(s: string): boolean
@@ -60,6 +61,7 @@ src/elixir/Enum/frequencies_by.ts :: export function frequencies_by<T>(values: T
 src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector: GroupValueSelector<T, U>, ): Record<string, U[]>
 src/elixir/Enum/group_by.ts :: export function group_by<T, U>( values: T[] | unknown, keySelector: GroupKeySelector<T>, valueSelector?: GroupValueSelector<T, U>, ): Record<string, unknown[]>
 src/elixir/Enum/group_by.ts :: export function group_by<T>(values: T[] | unknown, keySelector: GroupKeySelector<T>): Record<string, T[]>
+src/elixir/Enum/reduce_while.ts :: export function reduce_while<TAccumulator, TValue>( values: TValue[] | unknown, initial: TAccumulator, reducer: ReduceWhileReducer<TAccumulator, TValue>, ): TAccumulator
 src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initial: TAccumulator, reducer: ScanReducer<TAccumulator, TValue>, ): TAccumulator[]
 src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initialOrReducer: TAccumulator | ScanReducer<TValue, TValue>, maybeReducer?: ScanReducer<TAccumulator, TValue>, ): Array<TAccumulator | TValue>
 src/elixir/Enum/scan.ts :: export function scan<TValue>(values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>): TValue[]
@@ -236,6 +238,7 @@ src/powershell/string/substring.ts :: export function substring(str: string, sta
 src/powershell/string/tolower.ts :: export function tolower(str: string): string
 src/powershell/string/toupper.ts :: export function toupper(str: string): string
 src/powershell/string/trim.ts :: export function trim(str: string): string
+src/python/difflib/get_close_matches.ts :: export function get_close_matches( word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6, ): string[]
 src/python/math/ceil.ts :: export function ceil(x: number): number
 src/python/math/comb.ts :: export function comb(n: number | string, k: number | string): number
 src/python/math/dist.ts :: export function dist(p: number[] | unknown, q: number[] | unknown): number
@@ -282,6 +285,7 @@ src/r/base/seq.ts :: export function seq(from: number, to?: number, by?: number,
 src/r/base/sqrt.ts :: export function sqrt(x: number): number
 src/r/base/tolower.ts :: export function tolower(x: string): string
 src/r/base/toupper.ts :: export function toupper(x: string): string
+src/ruby/Array/bsearch.ts :: export function bsearch<T>(values: T[] | unknown, callback: BsearchCallback<T>): T | null
 src/ruby/Array/compact.ts :: export function compact<T>(arr: Array<T | null | undefined> | unknown): T[]
 src/ruby/Array/first.ts :: export function first<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
 src/ruby/Array/flatten.ts :: export function flatten(arr: unknown[] | unknown, depth?: number): unknown[]

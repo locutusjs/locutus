@@ -283,6 +283,57 @@ function emitRubyArrow(sourceText: string): string {
   return `|${callback.params.join(', ')}| ${emitRubyExpression(callback.body)}`
 }
 
+function translateBsearchCall(line: string): string | null {
+  const sourceFile = ts.createSourceFile('example.ts', line, ts.ScriptTarget.ES2022, true, ts.ScriptKind.TS)
+  const statement = sourceFile.statements[0]
+  if (!statement) {
+    return null
+  }
+
+  let assignmentName: string | null = null
+  let callExpression: ts.CallExpression | null = null
+
+  if (ts.isVariableStatement(statement)) {
+    const declaration = statement.declarationList.declarations[0]
+    if (
+      declaration &&
+      ts.isIdentifier(declaration.name) &&
+      declaration.initializer &&
+      ts.isCallExpression(declaration.initializer)
+    ) {
+      assignmentName = declaration.name.text
+      callExpression = declaration.initializer
+    }
+  } else if (ts.isExpressionStatement(statement)) {
+    if (ts.isCallExpression(statement.expression)) {
+      callExpression = statement.expression
+    } else if (
+      ts.isBinaryExpression(statement.expression) &&
+      statement.expression.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+      ts.isIdentifier(statement.expression.left) &&
+      ts.isCallExpression(statement.expression.right)
+    ) {
+      assignmentName = statement.expression.left.text
+      callExpression = statement.expression.right
+    }
+  }
+
+  if (!callExpression || !ts.isIdentifier(callExpression.expression) || callExpression.expression.text !== 'bsearch') {
+    return null
+  }
+
+  const valuesArg = callExpression.arguments[0]
+  const callbackArg = callExpression.arguments[1]
+  if (!valuesArg || !callbackArg) {
+    return null
+  }
+
+  const translated = `${emitRubyExpression(parseJsExpression(valuesArg.getText(sourceFile)))}.bsearch { ${emitRubyArrow(
+    callbackArg.getText(sourceFile),
+  )} }`
+  return assignmentName ? `${assignmentName} = ${translated}` : translated
+}
+
 function translateSliceWhenCall(line: string): string | null {
   const sourceFile = ts.createSourceFile('example.ts', line, ts.ScriptTarget.ES2022, true, ts.ScriptKind.TS)
   const statement = sourceFile.statements[0]
@@ -350,6 +401,13 @@ function convertJsLineToRuby(line: string, funcName: string, category: string): 
 
   ruby = stripTrailingComment(ruby)
   ruby = ruby.replace(/;+$/, '')
+
+  if (funcName === 'bsearch') {
+    const translatedBsearch = translateBsearchCall(ruby)
+    if (translatedBsearch) {
+      return translatedBsearch
+    }
+  }
 
   if (funcName === 'slice_when') {
     const translatedSliceWhen = translateSliceWhenCall(ruby)

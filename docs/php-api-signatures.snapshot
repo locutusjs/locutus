@@ -297,6 +297,7 @@ src/php/math/tan.ts :: export function tan(arg: number): number
 src/php/math/tanh.ts :: export function tanh(arg: number): number
 src/php/misc/pack.ts :: export function pack(format: string, ...inputArgs: PackArgument[]): string
 src/php/misc/uniqid.ts :: export function uniqid(prefix?: string, moreEntropy?: boolean): string
+src/php/misc/unpack.ts :: export function unpack(format: string, data: string): UnpackResult | false
 src/php/net-gopher/gopher_parsedir.ts :: export function gopher_parsedir(dirent: string): GopherKnownEntry | GopherUnknownEntry
 src/php/network/inet_ntop.ts :: export function inet_ntop(a: string | number): string | false
 src/php/network/inet_pton.ts :: export function inet_pton(a: string): string | false

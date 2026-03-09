@@ -153,8 +153,39 @@ function emitElixirArrow(sourceText: string): string {
   return `fn ${callback.params.join(', ')} -> ${emitElixirExpression(callback.body)} end`
 }
 
+function emitElixirReduceWhileExpression(expression: JsExpression): string {
+  switch (expression.kind) {
+    case 'array':
+      if (
+        expression.elements.length === 2 &&
+        expression.elements[0]?.kind === 'string' &&
+        (expression.elements[0].value === 'cont' || expression.elements[0].value === 'halt')
+      ) {
+        return `{:${expression.elements[0].value}, ${emitElixirReduceWhileExpression(expression.elements[1] as JsExpression)}}`
+      }
+      return `[${expression.elements.map((element) => emitElixirReduceWhileExpression(element)).join(', ')}]`
+    case 'conditional':
+      return `(if ${emitElixirExpression(expression.test)}, do: ${emitElixirReduceWhileExpression(
+        expression.consequent,
+      )}, else: ${emitElixirReduceWhileExpression(expression.alternate)})`
+    default:
+      return emitElixirExpression(expression)
+  }
+}
+
+function emitElixirReduceWhileArrow(sourceText: string): string {
+  const callback = parseJsArrowFunction(sourceText)
+  if (callback.params.length < 2) {
+    throw new Error('reduce_while parity callbacks must accept accumulator and value parameters')
+  }
+
+  const accumulator = callback.params[0] ?? 'acc'
+  const value = callback.params[1] ?? 'value'
+  return `fn ${value}, ${accumulator} -> ${emitElixirReduceWhileExpression(callback.body)} end`
+}
+
 function translateHigherOrderCall(line: string, funcName: string): string | null {
-  if (funcName !== 'frequencies_by' && funcName !== 'group_by' && funcName !== 'scan') {
+  if (funcName !== 'frequencies_by' && funcName !== 'group_by' && funcName !== 'scan' && funcName !== 'reduce_while') {
     return null
   }
 
@@ -209,6 +240,8 @@ function translateHigherOrderCall(line: string, funcName: string): string | null
     translatedCall = `Enum.scan(${emitElixirExpression(parseJsExpression(args[0]?.getText(sourceFile) ?? 'undefined'))}, ${emitElixirArrow(args[1]?.getText(sourceFile) ?? '')})`
   } else if (funcName === 'scan' && args.length === 3) {
     translatedCall = `Enum.scan(${emitElixirExpression(parseJsExpression(args[0]?.getText(sourceFile) ?? 'undefined'))}, ${emitElixirExpression(parseJsExpression(args[1]?.getText(sourceFile) ?? 'undefined'))}, ${emitElixirArrow(args[2]?.getText(sourceFile) ?? '')})`
+  } else if (funcName === 'reduce_while' && args.length === 3) {
+    translatedCall = `Enum.reduce_while(${emitElixirExpression(parseJsExpression(args[0]?.getText(sourceFile) ?? 'undefined'))}, ${emitElixirExpression(parseJsExpression(args[1]?.getText(sourceFile) ?? 'undefined'))}, ${emitElixirReduceWhileArrow(args[2]?.getText(sourceFile) ?? '')})`
   }
 
   if (!translatedCall) {

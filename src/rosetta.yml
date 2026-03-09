@@ -160,6 +160,15 @@ collection_group_by:
   - ruby/Array/group_by
   - kotlin/collections/groupBy
 
+array_binary_search:
+  - ruby/Array/bsearch
+
+sequence_partition_by:
+  - clojure/core/partition_by
+
+enumerable_reduce_while:
+  - elixir/Enum/reduce_while
+
 list_permutations:
   - ruby/Array/permutation
   - haskell/list/permutations
@@ -213,6 +222,9 @@ string_char_search:
 string_count:
   - php/strings/substr_count
   - golang/strings/Count
+
+string_close_matches:
+  - python/difflib/get_close_matches
 
 string_substring:
   - php/strings/substr
@@ -467,6 +479,9 @@ array_compact:
 
 array_sample:
   - ruby/Array/sample
+
+binary_unpack:
+  - php/misc/unpack
 
 # =============================================================================
 # FORMATTING

@@ -26,6 +26,17 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...main).
 
+### Expansion
+
+- Added a mixed batch of harder algorithmic helpers across languages:
+  - `ruby/Array/bsearch`
+  - `clojure/core/partition_by`
+  - `elixir/Enum/reduce_while`
+  - `python/difflib/get_close_matches`
+  - `php/misc/unpack`
+- Extended parity lowering for higher-order Ruby, Clojure, and Elixir helpers so callback-heavy examples remain
+  verifiable in CI.
+
 ## v3.0.10
 
 Released: 2026-03-09. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.9...v3.0.10).

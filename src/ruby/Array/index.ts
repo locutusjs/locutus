@@ -1,3 +1,4 @@
+export { bsearch } from './bsearch.ts'
 export { compact } from './compact.ts'
 export { first } from './first.ts'
 export { flatten } from './flatten.ts'
