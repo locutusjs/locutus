@@ -783,7 +783,7 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `chr`, `ord`, `ucfirst`, `lcfirst`.
 - Updated `src/perl/core/index.ts` exports and Rosetta mappings in `src/rosetta.yml` for capitalize/uncapitalize and character codepoint conversions.
 - Regenerated tests and added new generated Vitest cases for the four Perl functions.
-- Validation:
+- Planned validation:
   - `yarn lint` passed.
   - `yarn lint:ts` passed.
   - Targeted generated tests for new Perl functions passed (10 tests).
@@ -1444,3 +1444,46 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `curl -fsSL --max-time 20 https://locutus.io/golang/strings/Index/ | rg -n "Index|golang|strings"`
 - Key learnings:
   - The release gate is satisfied by a green `main` deploy plus live HTTP confirmation even when Playwright MCP is temporarily blocked by local browser state, but the Playwright failure should be treated as an environment issue rather than a successful browser verification.
+
+### Iteration 77
+
+2026-03-09
+
+- **Area: Expansion (hard algorithms across languages)**
+- Plan:
+  - Add a mixed batch of harder, higher-value functions that stay within Locutus' plain-JS data model instead of adding more leaf string helpers.
+  - Prioritize functions that are algorithmic or contract-heavy and still verifiable with existing language handlers.
+  - Target this initial batch:
+    - `golang/path/Rel`
+    - `ruby/Array/bsearch`
+    - `clojure/core/partition_by`
+    - `elixir/Enum/reduce_while`
+    - `php/misc/unpack`
+- Validation:
+  - Targeted generated tests for the new functions.
+  - Targeted parity runs for Go, Ruby, Clojure, Elixir, and PHP if the examples lower cleanly.
+  - Snapshot refreshes and `corepack yarn check` before PR.
+- Progress:
+  - Dropped `golang/path/Rel` after confirming the Go stdlib `path` package does not expose `Rel`.
+  - Added:
+    - `ruby/Array/bsearch`
+    - `clojure/core/partition_by`
+    - `elixir/Enum/reduce_while`
+    - `python/difflib/get_close_matches`
+    - `php/misc/unpack`
+  - Updated Rosetta mappings in both `src/rosetta.yml` and `website/source/_data/rosetta.yml`.
+  - Extended parity lowering for:
+    - Ruby `Array#bsearch` block translation
+    - Clojure `partition_by` callback translation and vector normalization
+    - Elixir `Enum.reduce_while/3` reducer lowering and accumulator/value argument reordering
+  - Regenerated only the targeted generated tests and website pages for the new functions to avoid unrelated churn.
+- Validation:
+  - `corepack yarn lint:ts`
+  - `corepack yarn test:parity ruby/Array/bsearch clojure/core/partition_by elixir/Enum/reduce_while python/difflib/get_close_matches php/misc/unpack --no-cache`
+  - `corepack yarn exec vitest run test/generated/ruby/Array/bsearch.vitest.ts test/generated/clojure/core/partition_by.vitest.ts test/generated/elixir/Enum/reduce_while.vitest.ts test/generated/python/difflib/get_close_matches.vitest.ts test/generated/php/misc/unpack.vitest.ts`
+  - `corepack yarn fix:api:snapshot`
+  - `corepack yarn fix:type:contracts`
+  - `corepack yarn check`
+- Key learnings:
+  - The most interesting near-term work is in structured algorithms over plain JS values: binary search, boundary partitioning, control-flow reducers, path semantics, and binary decoding.
+  - Mixed-language “hard helper” batches are a better product lever than another single-namespace trim/split batch once parity infrastructure is stable.

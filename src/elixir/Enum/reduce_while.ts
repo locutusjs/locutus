@@ -1,0 +1,62 @@
+type ReduceWhileTag = 'cont' | 'halt'
+type ReduceWhileTuple<TAccumulator> = [ReduceWhileTag, TAccumulator]
+type ReduceWhileObject<TAccumulator> = { tag: ReduceWhileTag; value: TAccumulator }
+type ReduceWhileStep<TAccumulator> = ReduceWhileTuple<TAccumulator> | ReduceWhileObject<TAccumulator>
+type ReduceWhileReducer<TAccumulator, TValue> = (
+  accumulator: TAccumulator,
+  value: TValue,
+  index: number,
+  array: TValue[],
+) => ReduceWhileStep<TAccumulator>
+
+function normalizeReduceWhileStep<TAccumulator>(value: ReduceWhileStep<TAccumulator>): ReduceWhileTuple<TAccumulator> {
+  if (Array.isArray(value)) {
+    const tag = value[0]
+    if ((tag === 'cont' || tag === 'halt') && value.length >= 2) {
+      return [tag, value[1] as TAccumulator]
+    }
+  } else if (value && typeof value === 'object') {
+    const tag = value.tag
+    if (tag === 'cont' || tag === 'halt') {
+      return [tag, value.value]
+    }
+  }
+
+  throw new TypeError("reduce_while(): reducer must return ['cont', value], ['halt', value], or { tag, value }")
+}
+
+export function reduce_while<TAccumulator, TValue>(
+  values: TValue[] | unknown,
+  initial: TAccumulator,
+  reducer: ReduceWhileReducer<TAccumulator, TValue>,
+): TAccumulator {
+  //      discuss at: https://locutus.io/elixir/reduce_while/
+  // parity verified: Elixir 1.18
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Mirrors Elixir Enum.reduce_while/3 using ['cont', acc] and ['halt', acc] control tuples.
+  //       example 1: reduce_while([1, 2, 3, 4], 0, (acc, value) => (value < 4 ? ['cont', acc + value] : ['halt', acc]))
+  //       returns 1: 6
+  //       example 2: reduce_while([1, 3, 4, 6], null, (acc, value) => (value % 2 === 0 ? ['halt', value] : ['cont', acc]))
+  //       returns 2: 4
+  //       example 3: reduce_while([], 'done', (acc, _value) => ['cont', acc])
+  //       returns 3: 'done'
+
+  if (typeof reducer !== 'function') {
+    throw new TypeError('reduce_while(): reducer must be a function')
+  }
+
+  if (!Array.isArray(values) || values.length === 0) {
+    return initial
+  }
+
+  let accumulator = initial
+  for (let i = 0; i < values.length; i++) {
+    const [tag, nextAccumulator] = normalizeReduceWhileStep(reducer(accumulator, values[i] as TValue, i, values))
+    accumulator = nextAccumulator
+    if (tag === 'halt') {
+      break
+    }
+  }
+
+  return accumulator
+}

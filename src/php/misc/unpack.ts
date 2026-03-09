@@ -1,0 +1,262 @@
+type UnpackResult = Record<string, number | string>
+
+interface UnpackSegment {
+  code: string
+  quantifier: number | '*'
+  label: string
+}
+
+const STRING_CODES = new Set(['a', 'A', 'h', 'H'])
+
+function toByteArray(input: string): Uint8Array {
+  return Uint8Array.from(Array.from(input, (char) => char.charCodeAt(0) & 0xff))
+}
+
+function parseFormat(format: string): UnpackSegment[] | null {
+  const segments = String(format)
+    .split('/')
+    .map((segment) => segment.trim())
+    .filter(Boolean)
+
+  const parsed: UnpackSegment[] = []
+  for (const segment of segments) {
+    const code = segment[0] ?? ''
+    if (!/[aAhHcCsSvVnNiIlLfdxX@CN]/.test(code)) {
+      return null
+    }
+
+    let cursor = 1
+    let quantifierText = ''
+    while (cursor < segment.length && /[\d*]/.test(segment[cursor] ?? '')) {
+      quantifierText += segment[cursor]
+      cursor += 1
+    }
+
+    const label = segment.slice(cursor)
+    const quantifier = quantifierText === '' ? 1 : quantifierText === '*' ? '*' : Number.parseInt(quantifierText, 10)
+    if (typeof quantifier === 'number' && (!Number.isFinite(quantifier) || quantifier < 0)) {
+      return null
+    }
+
+    parsed.push({ code, quantifier, label })
+  }
+
+  return parsed
+}
+
+function resolveCount(quantifier: number | '*', cursor: number, bytesPerValue: number, totalLength: number): number {
+  if (quantifier !== '*') {
+    return quantifier
+  }
+
+  if (bytesPerValue <= 0) {
+    return 0
+  }
+
+  return Math.floor((totalLength - cursor) / bytesPerValue)
+}
+
+function addResult(
+  target: UnpackResult,
+  nextNumericKey: { value: number },
+  label: string,
+  index: number,
+  count: number,
+  value: number | string,
+) {
+  if (label) {
+    const key = count === 1 && index === 0 ? label : `${label}${index + 1}`
+    target[key] = value
+    return
+  }
+
+  target[String(nextNumericKey.value)] = value
+  nextNumericKey.value += 1
+}
+
+function readUInt16(bytes: Uint8Array, cursor: number, littleEndian: boolean): number {
+  return new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getUint16(cursor, littleEndian)
+}
+
+function readInt16(bytes: Uint8Array, cursor: number, littleEndian: boolean): number {
+  return new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getInt16(cursor, littleEndian)
+}
+
+function readUInt32(bytes: Uint8Array, cursor: number, littleEndian: boolean): number {
+  return new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getUint32(cursor, littleEndian)
+}
+
+function readInt32(bytes: Uint8Array, cursor: number, littleEndian: boolean): number {
+  return new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getInt32(cursor, littleEndian)
+}
+
+export function unpack(format: string, data: string): UnpackResult | false {
+  //      discuss at: https://locutus.io/php/unpack/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Supports pragmatic unpack templates for strings, integers, floats, skips, rewind, and absolute seek.
+  //          note 2: Machine-order numeric templates follow the project's existing little-endian pack/unpack convention.
+  //       example 1: unpack('nversion/Ctype', "\x12\x34\x7f")
+  //       returns 1: {version: 4660, type: 127}
+  //       example 2: unpack('a5label/x/Cflag', "hello\x00\x01")
+  //       returns 2: {label: 'hello', flag: 1}
+  //       example 3: unpack('H4hex/Cvalue', "\x23\x45\x21")
+  //       returns 3: {hex: '2345', value: 33}
+
+  const parsed = parseFormat(format)
+  if (!parsed) {
+    return false
+  }
+
+  const bytes = toByteArray(String(data))
+  const out: UnpackResult = {}
+  const nextNumericKey = { value: 1 }
+  let cursor = 0
+
+  for (const segment of parsed) {
+    const { code, quantifier, label } = segment
+
+    if (code === 'x') {
+      const count = quantifier === '*' ? bytes.length - cursor : quantifier
+      cursor += count
+      if (cursor > bytes.length) {
+        return false
+      }
+      continue
+    }
+
+    if (code === 'X') {
+      const count = quantifier === '*' ? cursor : quantifier
+      cursor -= count
+      if (cursor < 0) {
+        return false
+      }
+      continue
+    }
+
+    if (code === '@') {
+      cursor = quantifier === '*' ? bytes.length : quantifier
+      if (cursor < 0 || cursor > bytes.length) {
+        return false
+      }
+      continue
+    }
+
+    if (STRING_CODES.has(code)) {
+      const nibbleMode = code === 'h' || code === 'H'
+      const unitSize = nibbleMode ? 0.5 : 1
+      const requested =
+        quantifier === '*' ? (nibbleMode ? (bytes.length - cursor) * 2 : bytes.length - cursor) : quantifier
+
+      if (!Number.isFinite(requested) || requested < 0) {
+        return false
+      }
+
+      if (nibbleMode) {
+        const byteCount = Math.ceil(requested * unitSize)
+        if (cursor + byteCount > bytes.length) {
+          return false
+        }
+
+        let hex = ''
+        for (let i = 0; i < byteCount; i++) {
+          const pair = (bytes[cursor + i] ?? 0).toString(16).padStart(2, '0')
+          hex += code === 'h' ? `${pair[1] ?? '0'}${pair[0] ?? '0'}` : pair
+        }
+
+        addResult(out, nextNumericKey, label, 0, 1, hex.slice(0, requested))
+        cursor += byteCount
+        continue
+      }
+
+      if (cursor + requested > bytes.length) {
+        return false
+      }
+
+      const chunk = String.fromCharCode(...bytes.slice(cursor, cursor + requested))
+      const normalized = code === 'a' ? chunk.replace(/\0+$/g, '') : chunk.replace(/[\0 ]+$/g, '')
+      addResult(out, nextNumericKey, label, 0, 1, normalized)
+      cursor += requested
+      continue
+    }
+
+    let bytesPerValue = 1
+    switch (code) {
+      case 's':
+      case 'S':
+      case 'v':
+      case 'n':
+        bytesPerValue = 2
+        break
+      case 'i':
+      case 'I':
+      case 'l':
+      case 'L':
+      case 'V':
+      case 'N':
+      case 'f':
+        bytesPerValue = 4
+        break
+      case 'd':
+        bytesPerValue = 8
+        break
+      default:
+        bytesPerValue = 1
+        break
+    }
+
+    const count = resolveCount(quantifier, cursor, bytesPerValue, bytes.length)
+    for (let i = 0; i < count; i++) {
+      if (cursor + bytesPerValue > bytes.length) {
+        return false
+      }
+
+      let value: number
+      switch (code) {
+        case 'c': {
+          const byte = bytes[cursor] ?? 0
+          value = byte > 0x7f ? byte - 0x100 : byte
+          break
+        }
+        case 'C':
+          value = bytes[cursor] ?? 0
+          break
+        case 's':
+          value = readInt16(bytes, cursor, true)
+          break
+        case 'S':
+        case 'v':
+          value = readUInt16(bytes, cursor, true)
+          break
+        case 'n':
+          value = readUInt16(bytes, cursor, false)
+          break
+        case 'i':
+        case 'l':
+          value = readInt32(bytes, cursor, true)
+          break
+        case 'I':
+        case 'L':
+        case 'V':
+          value = readUInt32(bytes, cursor, true)
+          break
+        case 'N':
+          value = readUInt32(bytes, cursor, false)
+          break
+        case 'f':
+          value = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getFloat32(cursor, true)
+          break
+        case 'd':
+          value = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getFloat64(cursor, true)
+          break
+        default:
+          return false
+      }
+
+      addResult(out, nextNumericKey, label, i, count, value)
+      cursor += bytesPerValue
+    }
+  }
+
+  return out
+}

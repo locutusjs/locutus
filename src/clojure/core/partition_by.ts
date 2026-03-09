@@ -1,0 +1,86 @@
+type PartitionBySelector<T, TKey> = (value: T, index: number, array: T[]) => TKey
+
+function stablePartitionKey(value: unknown): string {
+  if (value === null) {
+    return 'null'
+  }
+  if (typeof value === 'undefined') {
+    return 'undefined'
+  }
+  if (typeof value === 'number') {
+    if (Number.isNaN(value)) {
+      return 'number:NaN'
+    }
+    if (Object.is(value, -0)) {
+      return 'number:-0'
+    }
+    return `number:${value}`
+  }
+  if (typeof value === 'string') {
+    return `string:${value}`
+  }
+  if (typeof value === 'boolean') {
+    return `boolean:${value}`
+  }
+  if (typeof value === 'bigint') {
+    return `bigint:${value}`
+  }
+  if (Array.isArray(value)) {
+    return `array:[${value.map((item) => stablePartitionKey(item)).join(',')}]`
+  }
+  if (typeof value === 'object') {
+    const record = value as { [key: string]: unknown }
+    const entries = Object.keys(record)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${stablePartitionKey(record[key])}`)
+    return `object:{${entries.join(',')}}`
+  }
+
+  return `${typeof value}:${String(value)}`
+}
+
+export function partition_by<T, TKey>(selector: PartitionBySelector<T, TKey>, values: T[] | unknown): T[][] {
+  //      discuss at: https://locutus.io/clojure/partition_by/
+  // parity verified: Clojure 1.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Groups consecutive values while selector(value) remains equal, similar to Clojure partition-by.
+  //       example 1: partition_by((value) => value % 2 === 0, [1, 1, 2, 2, 3, 4, 5, 5])
+  //       returns 1: [[1, 1], [2, 2], [3], [4], [5, 5]]
+  //       example 2: partition_by((value) => value.length, ['a', 'ab', 'cd', 'efg'])
+  //       returns 2: [['a'], ['ab', 'cd'], ['efg']]
+  //       example 3: partition_by((value) => value, [])
+  //       returns 3: []
+
+  if (typeof selector !== 'function') {
+    throw new TypeError('partition_by(): selector must be a function')
+  }
+
+  if (!Array.isArray(values) || values.length === 0) {
+    return []
+  }
+
+  const out: T[][] = []
+  let currentBucket: T[] = []
+  let previousKey: string | null = null
+
+  for (let i = 0; i < values.length; i++) {
+    const value = values[i] as T
+    const nextKey = stablePartitionKey(selector(value, i, values))
+
+    if (previousKey === null || nextKey === previousKey) {
+      currentBucket.push(value)
+      previousKey = nextKey
+      continue
+    }
+
+    out.push(currentBucket)
+    currentBucket = [value]
+    previousKey = nextKey
+  }
+
+  if (currentBucket.length > 0) {
+    out.push(currentBucket)
+  }
+
+  return out
+}

@@ -265,7 +265,12 @@ function convertFunctionCall(code: string, funcName: string, category?: string):
 }
 
 function translateHigherOrderCall(line: string, funcName: string): string | null {
-  if (funcName !== 'merge_with' && funcName !== 'reduce_kv' && funcName !== 'update_in') {
+  if (
+    funcName !== 'merge_with' &&
+    funcName !== 'reduce_kv' &&
+    funcName !== 'update_in' &&
+    funcName !== 'partition_by'
+  ) {
     return null
   }
 
@@ -331,6 +336,10 @@ function translateHigherOrderCall(line: string, funcName: string): string | null
       )
     const tailArgs = args.slice(3).map((arg) => emitClojureExpression(parseJsExpression(arg.getText(sourceFile))))
     translatedCall = `(update-in ${[...headArgs, ...tailArgs].join(' ')})`
+  } else if (funcName === 'partition_by' && args.length === 2) {
+    translatedCall = `(mapv vec (partition-by ${emitClojureArrow(args[0]?.getText(sourceFile) ?? '')} ${emitClojureExpression(
+      parseJsExpression(args[1]?.getText(sourceFile) ?? 'undefined'),
+    )}))`
   }
 
   if (!translatedCall) {
