@@ -41,6 +41,28 @@ describe('util', function () {
     })
   })
 
+  describe('injectweb path safety', function () {
+    it('should use a collision-safe source filename for Index function pages', function () {
+      const util = new Util()
+
+      const funcPath = util._getInjectwebFunctionPath('/tmp/website/source/golang/strings', 'Index')
+      const regularPath = util._getInjectwebFunctionPath('/tmp/website/source/golang/strings', 'Join')
+
+      expect(funcPath).toBe('/tmp/website/source/golang/strings/Index.function.html')
+      expect(regularPath).toBe('/tmp/website/source/golang/strings/Join.html')
+    })
+
+    it('should reject case-insensitive output path collisions before writing files', function () {
+      const util = new Util()
+      util._injectwebBuffer = {
+        '/tmp/website/source/golang/strings/index.html': 'category',
+        '/tmp/website/source/golang/strings/Index.html': 'function',
+      }
+
+      expect(() => util._verifyInjectwebPaths()).toThrow(/case-insensitive path collision/)
+    })
+  })
+
   describe('_extractDependencies', function () {
     it('should ignore type-only imports when extracting runtime dependencies', function () {
       const util = new Util()

@@ -26,6 +26,12 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.9...main).
 
+### Website
+
+- Fixed `injectweb` source generation on case-insensitive filesystems by avoiding `Index.html`/`index.html` collisions
+  while preserving function permalinks, and added a regression guard that fails generation on future case-insensitive
+  path collisions.
+
 ## v3.0.9
 
 Released: 2026-03-06. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.8...v3.0.9).
