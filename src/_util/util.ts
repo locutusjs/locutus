@@ -348,6 +348,7 @@ class Util {
     try {
       this._injectwebBuffer = {}
       await this._runFunctionOnAll(this._injectwebOne.bind(this))
+      this._verifyInjectwebPaths()
 
       // Copy rosetta.yml from src/ to website/source/_data/
       const rosettaSrc = path.join(this.__src, 'rosetta.yml')
@@ -358,15 +359,16 @@ class Util {
         debug('copied rosetta.yml to website')
       }
 
-      // Write all buffered index files
+      // Write all buffered website source files
       let filesWritten = 0
-      for (const indexHtml in this._injectwebBuffer) {
-        const html = this._injectwebBuffer[indexHtml]
+      for (const outputPath in this._injectwebBuffer) {
+        const html = this._injectwebBuffer[outputPath]
         if (typeof html === 'undefined') {
           continue
         }
-        debug('writing: ' + indexHtml)
-        fs.writeFileSync(indexHtml, html, 'utf-8')
+        await fs.promises.mkdir(path.dirname(outputPath), { recursive: true })
+        debug('writing: ' + outputPath)
+        fs.writeFileSync(outputPath, html, 'utf-8')
         filesWritten++
       }
 
@@ -386,15 +388,15 @@ class Util {
         )
       }
 
-      // Verify minimum expected index files (5 languages + ~30 categories = ~35)
+      // Verify minimum expected generated files
       const minExpectedIndexFiles = 30
       if (filesWritten < minExpectedIndexFiles) {
         throw new Error(
-          `injectweb verification failed: only ${filesWritten} index files written, expected at least ${minExpectedIndexFiles}`,
+          `injectweb verification failed: only ${filesWritten} files written, expected at least ${minExpectedIndexFiles}`,
         )
       }
 
-      debug(`injectweb complete: ${filesWritten} index files written`)
+      debug(`injectweb complete: ${filesWritten} files written`)
       cb(null)
     } catch (err) {
       cb(err instanceof Error ? err : new Error(String(err)))
@@ -518,7 +520,7 @@ class Util {
     const langIndexPath = langPath + '/index.html'
     const catPath = langPath + '/' + params.category
     const catIndexPath = catPath + '/' + 'index.html'
-    const funcPath = catPath + '/' + params.func_name + '.html'
+    const funcPath = this._getInjectwebFunctionPath(catPath, params.func_name)
     const langDefaults = this.langDefaults[params.language]
     if (!langDefaults) {
       throw new Error(`Unknown language defaults for: ${params.language}`)
@@ -629,8 +631,27 @@ class Util {
       buf += `{% codeblock lang:javascript %}${params.code}{% endcodeblock %}`
     }
 
-    await fs.promises.mkdir(path.dirname(funcPath), { recursive: true })
-    await fs.promises.writeFile(funcPath, buf, 'utf-8')
+    this._injectwebBuffer[funcPath] = buf
+  }
+
+  _getInjectwebFunctionPath(categoryPath: string, funcName: string): string {
+    const sourceFilename = funcName.toLowerCase() === 'index' ? `${funcName}.function.html` : `${funcName}.html`
+    return path.join(categoryPath, sourceFilename)
+  }
+
+  _verifyInjectwebPaths(): void {
+    const seen = new Map<string, string>()
+
+    for (const outputPath of Object.keys(this._injectwebBuffer)) {
+      const normalizedPath = outputPath.toLowerCase()
+      const existingPath = seen.get(normalizedPath)
+      if (typeof existingPath !== 'undefined' && existingPath !== outputPath) {
+        throw new Error(
+          `injectweb verification failed: case-insensitive path collision between ${existingPath} and ${outputPath}`,
+        )
+      }
+      seen.set(normalizedPath, outputPath)
+    }
   }
 
   _addRequire(name: string, relativeSrcForTest: string): string {

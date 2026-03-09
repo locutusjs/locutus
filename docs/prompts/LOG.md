@@ -1344,3 +1344,33 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Pending PR CI on the proof branch will be the source of truth; the selector PR itself could not prove selective behavior because it necessarily changed force-full files.
 - Key learnings:
   - Selector proof has to happen after the workflow lands on `main`; otherwise the proof is masked by the selector's own force-full rules.
+
+### Iteration 74
+
+2026-03-09
+
+- **Area: Website generation + Maintainer workflow**
+- Plan:
+  - Fix the `injectweb` website-source collision that leaves `main` dirty on case-insensitive filesystems.
+  - Keep the public website permalink for Go `strings.Index` stable while making the generated source path safe.
+  - Add a regression test so future case-insensitive path collisions fail before files are written.
+- Progress:
+  - Confirmed the local dirtiness was a real collision between tracked website files:
+    - `website/source/golang/strings/Index.html`
+    - `website/source/golang/strings/index.html`
+  - Created branch `fix/injectweb-case-collision`.
+  - Updated `src/_util/util.ts` so `injectweb`:
+    - buffers all website-source writes before touching disk
+    - verifies the buffered output set for case-insensitive path collisions
+    - writes `Index.function.html` as the source file for function pages named `Index`
+    - preserves the function permalink `/golang/strings/Index/`
+  - Added util tests covering:
+    - collision-safe source path generation for `Index`
+    - fast failure on case-insensitive duplicate output paths
+  - Updated `CHANGELOG.md` `## main` with the website-generation fix note.
+- Validation:
+  - `corepack yarn exec vitest run test/util/test-util.ts`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - Website source generation needs the same cross-platform rigor as runtime code because tracked generated files can make `main` look dirty or even unworkable on contributor machines.
+  - The safe fix is to decouple source file naming from public permalink routing; changing the source filename is cheap, changing the URL would be churn.
