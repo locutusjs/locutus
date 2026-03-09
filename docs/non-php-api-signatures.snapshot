@@ -325,15 +325,25 @@ src/rust/str/contains.ts :: export function contains(needle: string, haystack: s
 src/rust/str/ends_with.ts :: export function ends_with(suffix: string, str: string): boolean
 src/rust/str/find.ts :: export function find(needle: string, haystack: string): number
 src/rust/str/len.ts :: export function len(str: string): number
+src/rust/str/lines.ts :: export function lines(str: string): string[]
 src/rust/str/match_indices.ts :: export function match_indices(pattern: string, str: string): Array<[number, string]>
 src/rust/str/replace.ts :: export function replace(str: string, search: string, replacement: string): string
 src/rust/str/rfind.ts :: export function rfind(needle: string, haystack: string): number
+src/rust/str/rsplit_once.ts :: export function rsplit_once(delimiter: string, str: string): [string, string] | null
+src/rust/str/rsplit_terminator.ts :: export function rsplit_terminator(delimiter: string, str: string): string[]
+src/rust/str/rsplitn.ts :: export function rsplitn(n: number, delimiter: string, str: string): string[]
 src/rust/str/split_inclusive.ts :: export function split_inclusive(delimiter: string, str: string): string[]
 src/rust/str/split_once.ts :: export function split_once(delimiter: string, str: string): [string, string] | null
+src/rust/str/split_terminator.ts :: export function split_terminator(delimiter: string, str: string): string[]
+src/rust/str/splitn.ts :: export function splitn(n: number, delimiter: string, str: string): string[]
 src/rust/str/starts_with.ts :: export function starts_with(prefix: string, str: string): boolean
+src/rust/str/strip_prefix.ts :: export function strip_prefix(prefix: string, str: string): string | null
+src/rust/str/strip_suffix.ts :: export function strip_suffix(suffix: string, str: string): string | null
 src/rust/str/to_lowercase.ts :: export function to_lowercase(str: string): string
 src/rust/str/to_uppercase.ts :: export function to_uppercase(str: string): string
 src/rust/str/trim.ts :: export function trim(str: string): string
+src/rust/str/trim_end.ts :: export function trim_end(str: string): string
+src/rust/str/trim_start.ts :: export function trim_start(str: string): string
 src/swift/String/componentsSeparatedBy.ts :: export function componentsSeparatedBy(str: string, separator: string): string[]
 src/swift/String/hasPrefix.ts :: export function hasPrefix(str: string, prefix: string): boolean
 src/swift/String/hasSuffix.ts :: export function hasSuffix(str: string, suffix: string): boolean

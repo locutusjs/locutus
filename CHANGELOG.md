@@ -26,6 +26,21 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.9...main).
 
+### Expansion
+
+- Added ten Rust `str` helpers:
+  - `lines`
+  - `rsplit_once`
+  - `rsplit_terminator`
+  - `rsplitn`
+  - `split_terminator`
+  - `splitn`
+  - `strip_prefix`
+  - `strip_suffix`
+  - `trim_end`
+  - `trim_start`
+- Extended Rust parity coverage and Rosetta mappings for split/boundary-oriented string helpers.
+
 ### Website
 
 - Fixed `injectweb` source generation on case-insensitive filesystems by avoiding `Index.html`/`index.html` collisions

@@ -190,10 +190,37 @@ function buildRustCall(funcName: string, args: string[]): string {
       const source = args[1] ?? '""'
       return `match ${source}.split_once(${needle}) { Some((left, right)) => format!("[{:?},{:?}]", left, right), None => "null".to_string() }`
     }
+    case 'rsplit_once': {
+      const needle = args[0] ?? '""'
+      const source = args[1] ?? '""'
+      return `match ${source}.rsplit_once(${needle}) { Some((left, right)) => format!("[{:?},{:?}]", left, right), None => "null".to_string() }`
+    }
     case 'split_inclusive': {
       const needle = args[0] ?? '""'
       const source = args[1] ?? '""'
       return `{ let __locutus_parts: Vec<String> = ${source}.split_inclusive(${needle}).map(|s| format!("{:?}", s)).collect(); format!("[{}]", __locutus_parts.join(",")) }`
+    }
+    case 'split_terminator': {
+      const needle = args[0] ?? '""'
+      const source = args[1] ?? '""'
+      return `{ let __locutus_parts: Vec<String> = ${source}.split_terminator(${needle}).map(|s| format!("{:?}", s)).collect(); format!("[{}]", __locutus_parts.join(",")) }`
+    }
+    case 'rsplit_terminator': {
+      const needle = args[0] ?? '""'
+      const source = args[1] ?? '""'
+      return `{ let __locutus_parts: Vec<String> = ${source}.rsplit_terminator(${needle}).map(|s| format!("{:?}", s)).collect(); format!("[{}]", __locutus_parts.join(",")) }`
+    }
+    case 'splitn': {
+      const limit = args[0] ?? '0'
+      const needle = args[1] ?? '""'
+      const source = args[2] ?? '""'
+      return `{ let __locutus_parts: Vec<String> = ${source}.splitn(${limit} as usize, ${needle}).map(|s| format!("{:?}", s)).collect(); format!("[{}]", __locutus_parts.join(",")) }`
+    }
+    case 'rsplitn': {
+      const limit = args[0] ?? '0'
+      const needle = args[1] ?? '""'
+      const source = args[2] ?? '""'
+      return `{ let __locutus_parts: Vec<String> = ${source}.rsplitn(${limit} as usize, ${needle}).map(|s| format!("{:?}", s)).collect(); format!("[{}]", __locutus_parts.join(",")) }`
     }
     case 'len': {
       const value = args[0] ?? '""'
@@ -216,6 +243,28 @@ function buildRustCall(funcName: string, args: string[]): string {
     case 'trim': {
       const value = args[0] ?? '""'
       return `${value}.trim().to_string()`
+    }
+    case 'trim_start': {
+      const value = args[0] ?? '""'
+      return `${value}.trim_start().to_string()`
+    }
+    case 'trim_end': {
+      const value = args[0] ?? '""'
+      return `${value}.trim_end().to_string()`
+    }
+    case 'strip_prefix': {
+      const prefix = args[0] ?? '""'
+      const source = args[1] ?? '""'
+      return `match ${source}.strip_prefix(${prefix}) { Some(s) => format!("{:?}", s), None => "null".to_string() }`
+    }
+    case 'strip_suffix': {
+      const suffix = args[0] ?? '""'
+      const source = args[1] ?? '""'
+      return `match ${source}.strip_suffix(${suffix}) { Some(s) => format!("{:?}", s), None => "null".to_string() }`
+    }
+    case 'lines': {
+      const value = args[0] ?? '""'
+      return `{ let __locutus_parts: Vec<String> = ${value}.lines().map(|s| format!("{:?}", s)).collect(); format!("[{}]", __locutus_parts.join(",")) }`
     }
     default: {
       return `${funcName}(${args.join(', ')})`
@@ -306,7 +355,19 @@ function jsToRust(jsCode: string[], funcName: string, _category?: string): strin
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
   const formatVerb =
-    funcName === 'split_once' || funcName === 'split_inclusive' || funcName === 'match_indices' ? '{}' : '{:?}'
+    funcName === 'split_once' ||
+    funcName === 'rsplit_once' ||
+    funcName === 'split_inclusive' ||
+    funcName === 'split_terminator' ||
+    funcName === 'rsplit_terminator' ||
+    funcName === 'splitn' ||
+    funcName === 'rsplitn' ||
+    funcName === 'match_indices' ||
+    funcName === 'strip_prefix' ||
+    funcName === 'strip_suffix' ||
+    funcName === 'lines'
+      ? '{}'
+      : '{:?}'
 
   let rustLines: string[]
   if (assignedVar) {
