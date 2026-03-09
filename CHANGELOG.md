@@ -24,7 +24,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.9...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...main).
+
+## v3.0.10
+
+Released: 2026-03-09. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.9...v3.0.10).
+Version rationale: `patch` for additive Rust function expansion plus a scoped website-generation fix without package runtime or import-contract changes.
 
 ### Expansion
 

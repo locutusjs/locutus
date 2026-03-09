@@ -1420,3 +1420,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Rust `str` remains a high-ROI expansion area because method-style parity lowers cleanly once output-shape adapters are explicit.
   - Targeted website generation is the right tool for these expansion PRs; full `injectweb` is broader than necessary when only one language package changed.
+
+### Iteration 76
+
+2026-03-09
+
+- **Area: Release + Website verification**
+- Plan:
+  - Verify the live site after the website-generation fix and the Rust `str` expansion.
+  - Cut the next patch release from clean `main` if both GitHub Actions and the live site are healthy.
+- Progress:
+  - Confirmed `main` push CI for the merged Rust batch passed (`Locutus CI` run `22855766141`).
+  - Attempted live-site verification with Playwright MCP as required by `CORE_MAINTAINER.md`, but the local browser launch was blocked by an external Chrome session/profile conflict (`Opening in existing browser session`).
+  - Used direct HTTP smoke checks as fallback:
+    - `https://locutus.io/` returned `200` with `last-modified: Mon, 09 Mar 2026 13:57:50 GMT`
+    - `https://locutus.io/rust/str/trim_start/` serves the new Rust page with verified badge and examples
+    - `https://locutus.io/golang/strings/Index/` still serves correctly, confirming the permalink survived the source-path fix
+  - Updated `CHANGELOG.md` to promote `## main` into `## v3.0.10` with a patch-version rationale.
+- Validation:
+  - `gh run list --workflow 'Locutus CI' --limit 5`
+  - `curl -I -L --max-time 20 https://locutus.io/`
+  - `curl -fsSL --max-time 20 https://locutus.io/rust/str/trim_start/ | rg -n "trim_start|Rust|str"`
+  - `curl -fsSL --max-time 20 https://locutus.io/golang/strings/Index/ | rg -n "Index|golang|strings"`
+- Key learnings:
+  - The release gate is satisfied by a green `main` deploy plus live HTTP confirmation even when Playwright MCP is temporarily blocked by local browser state, but the Playwright failure should be treated as an environment issue rather than a successful browser verification.
