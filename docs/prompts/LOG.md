@@ -1487,3 +1487,31 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The most interesting near-term work is in structured algorithms over plain JS values: binary search, boundary partitioning, control-flow reducers, path semantics, and binary decoding.
   - Mixed-language “hard helper” batches are a better product lever than another single-namespace trim/split batch once parity infrastructure is stable.
+
+### Iteration 78
+
+2026-03-10
+
+- **Area: Release + Website verification**
+- Plan:
+  - Confirm the merged hard-algorithms batch is green on `main`.
+  - Verify the deployed site pages for the new functions.
+  - Cut the next patch release from clean `main` if both checks are healthy.
+- Progress:
+  - Confirmed `Locutus CI` on `main` passed for merge commit `be6aa8a8b20bdd53b2eb67a0d636af8c0ff0ec5e` (run `22869126086`).
+  - Attempted live-site verification with Playwright MCP, but browser launch was blocked again by the external Chrome session/profile conflict (`Opening in existing browser session`).
+  - Used direct HTTP verification as fallback:
+    - `https://locutus.io/` returned the expected homepage content.
+    - `https://locutus.io/ruby/Array/bsearch/` serves the new Ruby page with verified badge and examples.
+    - `https://locutus.io/php/unpack/` redirects to the deployed `php/misc/unpack` page.
+    - `https://locutus.io/python/difflib/get_close_matches/` serves the new Python page with verified badge and examples.
+  - Updated `CHANGELOG.md` to promote the current `## main` expansion notes into `## v3.0.11` with a patch-version rationale.
+- Validation:
+  - `gh run list --workflow 'Locutus CI' --branch main --limit 5`
+  - `curl -I -L --max-time 20 https://locutus.io/ruby/Array/bsearch/`
+  - `curl -fsSL --max-time 20 https://locutus.io/ | rg -n "locutus|standard library|Languages"`
+  - `curl -fsSL --max-time 20 https://locutus.io/ruby/Array/bsearch/ | rg -n "bsearch|Ruby|Array"`
+  - `curl -fsSL --max-time 20 https://locutus.io/php/unpack/ | head`
+  - `curl -fsSL --max-time 20 https://locutus.io/python/difflib/get_close_matches/ | rg -n "get_close_matches|Python|difflib"`
+- Key learnings:
+  - The release gate is still robust even when Playwright MCP is temporarily blocked, as long as `main` deploy is green and the live pages are confirmed over HTTP.

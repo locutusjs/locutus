@@ -26,6 +26,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...main).
 
+## v3.0.11
+
+Released: 2026-03-10. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...v3.0.11).
+Version rationale: `patch` for additive verified function expansion across multiple languages without import-model or runtime floor changes.
+
 ### Expansion
 
 - Added a mixed batch of harder algorithmic helpers across languages:
