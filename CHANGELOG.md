@@ -26,6 +26,15 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...main).
 
+### Modernization
+
+- Removed root dev dependencies that are now replaceable with Node 22 built-ins or tiny local helpers:
+  - `globby`
+  - `indent-string`
+  - `lodash`
+  - `rimraf`
+- Replaced cleanup scripts with a small Node-based remover and bumped the remaining low-risk root tooling deps.
+
 ## v3.0.11
 
 Released: 2026-03-10. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...v3.0.11).

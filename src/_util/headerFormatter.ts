@@ -6,7 +6,6 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
-import globby from 'globby'
 import { isValidHeaderKey } from './headerSchema.ts'
 
 type ParsedLine = { isHeader: false } | { isHeader: true; key: string; value: string }
@@ -34,6 +33,24 @@ interface CheckAllResult {
 interface FormatAllResult {
   formattedCount: number
   files: string[]
+}
+
+function globFiles(patterns: string | string[]): string[] {
+  const patternList = Array.isArray(patterns) ? patterns : [patterns]
+  const includes = patternList.filter((pattern) => !pattern.startsWith('!'))
+  const excludes = patternList.filter((pattern) => pattern.startsWith('!')).map((pattern) => pattern.slice(1))
+  const files = new Set<string>()
+
+  for (const pattern of includes) {
+    for (const file of fs.globSync(pattern)) {
+      if (excludes.some((exclude) => path.matchesGlob(file, exclude))) {
+        continue
+      }
+      files.add(file)
+    }
+  }
+
+  return Array.from(files).sort()
 }
 
 /**
@@ -140,7 +157,7 @@ export function formatFile(filepath: string): FormatFileResult {
  */
 export function checkAll(srcDir: string): CheckAllResult {
   const pattern = [path.join(srcDir, '**/*.{js,ts}'), '!**/index.{js,ts}', '!**/_util/**', '!**/*.vitest.ts']
-  const files = globby.sync(pattern)
+  const files = globFiles(pattern)
   const badFiles: string[] = []
 
   for (const file of files) {
@@ -161,7 +178,7 @@ export function checkAll(srcDir: string): CheckAllResult {
  */
 export function formatAll(srcDir: string): FormatAllResult {
   const pattern = [path.join(srcDir, '**/*.{js,ts}'), '!**/index.{js,ts}', '!**/_util/**', '!**/*.vitest.ts']
-  const files = globby.sync(pattern)
+  const files = globFiles(pattern)
   const formattedFiles: string[] = []
 
   for (const file of files) {

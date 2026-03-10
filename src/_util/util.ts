@@ -2,16 +2,38 @@ import { spawnSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import Debug from 'debug'
-import globby from 'globby'
-import indentStringModule from 'indent-string'
 import YAML from 'js-yaml'
-import _ from 'lodash'
 import pMap from 'p-map'
 import ts from 'typescript'
 import { isValidHeaderKey, validateHeaderKeys } from './headerSchema.ts'
 
 const debug = Debug('locutus:utils')
-const indentString = (indentStringModule as { default?: typeof indentStringModule }).default || indentStringModule
+
+function indentText(text: string, indent: string, count: number): string {
+  const prefix = indent.repeat(count)
+  return text
+    .split('\n')
+    .map((line) => (line.length > 0 ? `${prefix}${line}` : line))
+    .join('\n')
+}
+
+function globFiles(patterns: string | string[]): string[] {
+  const patternList = Array.isArray(patterns) ? patterns : [patterns]
+  const includes = patternList.filter((pattern) => !pattern.startsWith('!'))
+  const excludes = patternList.filter((pattern) => pattern.startsWith('!')).map((pattern) => pattern.slice(1))
+  const files = new Set<string>()
+
+  for (const pattern of includes) {
+    for (const file of fs.globSync(pattern)) {
+      if (excludes.some((exclude) => path.matchesGlob(file, exclude))) {
+        continue
+      }
+      files.add(file)
+    }
+  }
+
+  return Array.from(files).sort()
+}
 
 interface LangDefaults {
   order: number
@@ -434,7 +456,7 @@ class Util {
 
   async _runFunctionOnAll(runFunc: (params: ParsedParams) => Promise<void>): Promise<void> {
     debug({ pattern: this.pattern })
-    const files = globby.sync(this.pattern)
+    const files = globFiles(this.pattern)
 
     if (files.length === 0) {
       throw new Error(`No files found matching pattern: ${this.pattern.join(', ')}`)
@@ -511,7 +533,7 @@ class Util {
     const authors: Record<string, string[]> = {}
     this.authorKeys.forEach((key) => {
       if (params.headKeys[key]) {
-        authors[key] = _.flattenDeep(params.headKeys[key])
+        authors[key] = params.headKeys[key].flat()
       }
     })
 
@@ -2220,7 +2242,7 @@ class Util {
       body.push('  expect(result).toEqual(expected)')
       body.push('}')
 
-      codez.push(indentString(body.join('\n'), ' ', 4))
+      codez.push(indentText(body.join('\n'), ' ', 4))
       codez.push('  })')
     }
 
@@ -2260,7 +2282,7 @@ class Util {
 
     pattern = pattern.replace(/golang\/strings\/Index\.(js|ts|\{js,ts\})/, 'golang/strings/Index2.$1')
     debug('loading: ' + pattern)
-    let files = globby.sync(pattern, {})
+    let files = globFiles(pattern)
 
     // If both .js and .ts exist for the same function, prefer .ts
     if (files.length === 2) {
