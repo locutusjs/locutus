@@ -70,7 +70,9 @@
     "website:deploy": "cd website && yarn deploy",
     "website:start": "cd website && yarn server",
     "website:build": "cd website && yarn generate",
-    "website:clean": "cd website && yarn clean"
+    "website:clean": "cd website && yarn clean",
+    "website:verify": "node scripts/check-website-build.ts",
+    "website:ci": "npm-run-all --serial website:install injectweb website:build website:verify"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.6",

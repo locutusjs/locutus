@@ -1543,3 +1543,33 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Pending targeted checks and full `corepack yarn check`.
 - Key learnings:
   - The root dependency footprint is now small enough that utility dependencies should only remain when they are materially better than a tiny built-in-backed helper.
+
+### Iteration 80
+
+2026-03-10
+
+- **Area: Website validation harness**
+- Plan:
+  - Add a real website build safety net before attempting any Hexo-stack dependency upgrades.
+  - Verify representative generated pages, redirects, feed output, and search index output from a fresh local build.
+  - Wire the same validation path into CI for pull requests so website dependency changes are gated before merge.
+- Progress:
+  - Added `scripts/check-website-build.ts` to validate:
+    - required top-level outputs in `website/public`
+    - representative function pages across Go, Ruby, PHP, and Python
+    - the legacy `php/unpack` redirect alias
+    - `content.json` structure and minimum output counts
+    - Atom feed presence and entry count
+  - Added a root `website:verify` script and a single-entry `website:ci` script to run:
+    - `website:install`
+    - `injectweb`
+    - `website:build`
+    - `website:verify`
+  - Updated `.github/workflows/ci.yml` so PRs now run the website build verification path instead of only building/deploying the site on `main`.
+  - Verified the new harness against a fresh local build and fixed one brittle assumption in the Go sample-page assertion before finalizing it.
+- Validation:
+  - `corepack yarn website:verify`
+  - `corepack yarn website:ci`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - The right way to de-risk website dependency upgrades is not a giant upgrade PR first; it is a narrow build/output contract that future website PRs must satisfy.

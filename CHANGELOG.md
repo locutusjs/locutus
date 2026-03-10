@@ -35,6 +35,11 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...mai
   - `rimraf`
 - Replaced cleanup scripts with a small Node-based remover and bumped the remaining low-risk root tooling deps.
 
+### Website
+
+- Added a website build verification harness for representative generated pages, redirects, feed output, and search-index output.
+- Updated CI to run website build verification on pull requests as well as `main`, so website dependency upgrades get a pre-merge safety net.
+
 ## v3.0.11
 
 Released: 2026-03-10. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...v3.0.11).
