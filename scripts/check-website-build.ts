@@ -150,19 +150,19 @@ function main(): void {
     {
       path: 'ruby/Array/bsearch/index.html',
       title: 'Ruby&#39;s Array.bsearch in TypeScript | Locutus',
-      includes: ['Verified: Ruby', "locutus/ruby/Array/bsearch"],
+      includes: ['Verified: Ruby', 'locutus/ruby/Array/bsearch'],
       ogUrl: 'https://locutus.io/ruby/Array/bsearch/index.html',
     },
     {
       path: 'php/misc/unpack/index.html',
       title: 'PHP&#39;s unpack in TypeScript | Locutus',
-      includes: ['Verified: PHP', "locutus/php/misc/unpack"],
+      includes: ['Verified: PHP', 'locutus/php/misc/unpack'],
       ogUrl: 'https://locutus.io/php/misc/unpack/index.html',
     },
     {
       path: 'python/difflib/get_close_matches/index.html',
       title: 'Python&#39;s difflib.get_close_matches in TypeScript | Locutus',
-      includes: ['Verified: Python', "locutus/python/difflib/get_close_matches"],
+      includes: ['Verified: Python', 'locutus/python/difflib/get_close_matches'],
       ogUrl: 'https://locutus.io/python/difflib/get_close_matches/index.html',
     },
     {
