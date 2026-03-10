@@ -1515,3 +1515,31 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `curl -fsSL --max-time 20 https://locutus.io/python/difflib/get_close_matches/ | rg -n "get_close_matches|Python|difflib"`
 - Key learnings:
   - The release gate is still robust even when Playwright MCP is temporarily blocked, as long as `main` deploy is green and the live pages are confirmed over HTTP.
+
+### Iteration 79
+
+2026-03-10
+
+- **Area: Dependencies + build modernization**
+- Plan:
+  - Audit the remaining old utility dependencies and remove the ones that are now replaceable with Node built-ins or tiny local helpers.
+  - Keep the branch scoped to maintainership hygiene: no product expansion, just dependency surface reduction plus safe low-risk dev-dependency bumps.
+  - Validate the affected paths directly before running the full repo check.
+- Progress:
+  - Confirmed the removable surface is small:
+    - `globby` only in `src/_util/util.ts` and `src/_util/headerFormatter.ts`
+    - `indent-string` and `lodash` only in `src/_util/util.ts`
+    - `rimraf` only in root package scripts
+  - Verified Node 22 provides `fs.globSync` / `fs.promises.glob`, making `globby` a real removal candidate rather than a version bump.
+  - Replaced package-script `rimraf` usage with a small Node cleanup script (`scripts/rmrf.ts`).
+  - Replaced `globby` usage with a shared built-in-backed helper (`src/_util/glob.ts`).
+  - Replaced `lodash.flattenDeep(...)` with native array flattening and `indent-string` with a local indentation helper.
+  - Bumped the remaining safe root dev dependencies:
+    - `@biomejs/biome`
+    - `@types/node`
+    - `knip`
+    - `zod`
+- Validation:
+  - Pending targeted checks and full `corepack yarn check`.
+- Key learnings:
+  - The root dependency footprint is now small enough that utility dependencies should only remain when they are materially better than a tiny built-in-backed helper.
