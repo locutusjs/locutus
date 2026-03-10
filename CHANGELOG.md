@@ -39,6 +39,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...mai
 
 - Added a website build verification harness for representative generated pages, redirects, feed output, and search-index output.
 - Updated CI to run website build verification on pull requests as well as `main`, so website dependency upgrades get a pre-merge safety net.
+- Upgraded `website/` from `hexo-generator-feed@3` to `hexo-generator-feed@4`, added a small Hexo route patch to preserve Atom `type="html"` semantics, and revalidated the site with a clean rebuild plus the website verification harness.
 
 ## v3.0.11
 

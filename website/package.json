@@ -18,7 +18,7 @@
     "hexo-generator-alias": "1.0.0",
     "hexo-generator-archive": "2.0.0",
     "hexo-generator-category": "2.0.0",
-    "hexo-generator-feed": "3.0.0",
+    "hexo-generator-feed": "4.0.0",
     "hexo-generator-json-content": "4.2.3",
     "hexo-generator-tag": "2.0.0",
     "hexo-migrator-rss": "1.1.0",

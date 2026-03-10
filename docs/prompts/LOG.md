@@ -1573,3 +1573,29 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn lint:ts`
 - Key learnings:
   - The right way to de-risk website dependency upgrades is not a giant upgrade PR first; it is a narrow build/output contract that future website PRs must satisfy.
+
+### Iteration 81
+
+2026-03-10
+
+- **Area: Website dependencies**
+- Plan:
+  - Upgrade the remaining outdated website dependency in isolation now that the website verification harness is on `main`.
+  - Validate the upgrade with both the normal website CI path and a cold Hexo rebuild so the result does not depend on existing database or `public/` state.
+  - Keep the PR scoped to `website/package.json` and `website/yarn.lock`, plus release notes.
+- Progress:
+  - Confirmed the only remaining outdated package in `website/` was `hexo-generator-feed` (`3.0.0` -> `4.0.0`).
+  - Upgraded `website/package.json` and refreshed `website/yarn.lock`.
+  - Tightened `scripts/check-website-build.ts` to assert Atom `<content>` and `<summary>` keep `type="html"`.
+  - Added a small Hexo `after_generate` route patch in `website/scripts/fix-atom-html-type.js` so the upgraded feed plugin preserves Atom HTML semantics before routes are written to `public/`.
+  - Validated the upgrade with:
+    - `corepack yarn website:ci`
+    - `corepack yarn website:clean && corepack yarn injectweb && corepack yarn website:build && corepack yarn website:verify`
+  - Restored generated `website/source/**` churn after validation so the branch stays focused on the dependency update itself.
+- Validation:
+  - `cd website && npm outdated --json`
+  - `corepack yarn website:ci`
+  - `corepack yarn website:clean && corepack yarn injectweb && corepack yarn website:build && corepack yarn website:verify`
+  - `~/code/dotfiles/bin/council.ts review`
+- Key learnings:
+  - The new harness is strong enough to catch subtle feed-format regressions from dependency majors, not just missing files or broken pages.
