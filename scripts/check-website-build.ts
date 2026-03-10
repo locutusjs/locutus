@@ -76,6 +76,8 @@ function checkTopLevelOutputs(): void {
   const atomXml = readFile('atom.xml')
   requireIncludes('website/public/atom.xml', atomXml, '<feed')
   requireIncludes('website/public/atom.xml', atomXml, '<title>Locutus</title>')
+  requireIncludes('website/public/atom.xml', atomXml, '<content type="html">')
+  requireIncludes('website/public/atom.xml', atomXml, '<summary type="html">')
   const entryCount = (atomXml.match(/<entry>/g) || []).length
   if (entryCount < 5) {
     fail(`website/public/atom.xml has too few feed entries: ${entryCount}`)

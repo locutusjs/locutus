@@ -1307,6 +1307,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"entities@npm:^7.0.0":
+  version: 7.0.1
+  resolution: "entities@npm:7.0.1"
+  checksum: 10/3c0c58d869c45148463e96d21dee2d1b801bd3fe4cf47aa470cd26dfe81d59e9e0a9be92ae083fa02fa441283c883a471486e94538dcfb8544428aa80a55271b
+  languageName: node
+  linkType: hard
+
 "env-paths@npm:^2.2.0":
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
@@ -1461,6 +1468,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-xml-builder@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "fast-xml-builder@npm:1.1.0"
+  dependencies:
+    path-expression-matcher: "npm:^1.1.2"
+  checksum: 10/1a12e74781ec785db875c87bd6aee3abff65e8cd4fc8cb33898b43f8b1cbdcfb5430633aae488559403673d0b6091ee8bfc044e8b49c4859772eadfa1766a7de
+  languageName: node
+  linkType: hard
+
+"fast-xml-parser@npm:^5.3.3":
+  version: 5.5.1
+  resolution: "fast-xml-parser@npm:5.5.1"
+  dependencies:
+    fast-xml-builder: "npm:^1.1.0"
+    path-expression-matcher: "npm:^1.1.2"
+    strnum: "npm:^2.1.2"
+  bin:
+    fxparser: src/cli/cli.js
+  checksum: 10/52aa3c4bb16d32909b7eb76531552dbbccfe72fae3d0bebb44c271925edd2150e6cf61362e23fdb81f5b1ba4ee0b2a2ac5355b9c4043134c44f4d37b5e71de0d
+  languageName: node
+  linkType: hard
+
 "fdir@npm:^6.5.0":
   version: 6.5.0
   resolution: "fdir@npm:6.5.0"
@@ -1470,6 +1499,16 @@ __metadata:
     picomatch:
       optional: true
   checksum: 10/14ca1c9f0a0e8f4f2e9bf4e8551065a164a09545dae548c12a18d238b72e51e5a7b39bd8e5494b56463a0877672d0a6c1ef62c6fa0677db1b0c847773be939b1
+  languageName: node
+  linkType: hard
+
+"feedsmith@npm:2.9.0":
+  version: 2.9.0
+  resolution: "feedsmith@npm:2.9.0"
+  dependencies:
+    entities: "npm:^7.0.0"
+    fast-xml-parser: "npm:^5.3.3"
+  checksum: 10/74044bf460392733bd7432549796aa952ededf30c8c2543c2cc72e96234b8a3afe6c01373cc9774253c2dc2bf2e2b4844299138b8d1c098e803f006886d90644
   languageName: node
   linkType: hard
 
@@ -1913,13 +1952,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hexo-generator-feed@npm:3.0.0":
-  version: 3.0.0
-  resolution: "hexo-generator-feed@npm:3.0.0"
+"hexo-generator-feed@npm:4.0.0":
+  version: 4.0.0
+  resolution: "hexo-generator-feed@npm:4.0.0"
   dependencies:
-    hexo-util: "npm:^2.1.0"
-    nunjucks: "npm:^3.0.0"
-  checksum: 10/abaa430b1b82ccb646aac731bcd6db9785b3cc4749e3ff0108ae3b0adae9a9837075511b0acecb936408656fab5915fc7bbc5bdc3fb5ab7739105c1115214f04
+    feedsmith: "npm:2.9.0"
+    hexo-util: "npm:4.0.0"
+  checksum: 10/851f48b18b5032bb48b2fe9e5e653eaa4465fe070e01f4230898af52c64b8de4f646e498229a8353bc619f99abca87b5223cf7d9961a073648449870607da3e7
   languageName: node
   linkType: hard
 
@@ -2041,7 +2080,7 @@ __metadata:
     hexo-generator-alias: "npm:1.0.0"
     hexo-generator-archive: "npm:2.0.0"
     hexo-generator-category: "npm:2.0.0"
-    hexo-generator-feed: "npm:3.0.0"
+    hexo-generator-feed: "npm:4.0.0"
     hexo-generator-json-content: "npm:4.2.3"
     hexo-generator-tag: "npm:2.0.0"
     hexo-migrator-rss: "npm:1.1.0"
@@ -2051,6 +2090,21 @@ __metadata:
     hexo-server: "npm:3.0.0"
   languageName: unknown
   linkType: soft
+
+"hexo-util@npm:4.0.0, hexo-util@npm:^4.0.0, hexo-util@npm:latest":
+  version: 4.0.0
+  resolution: "hexo-util@npm:4.0.0"
+  dependencies:
+    camel-case: "npm:^4.1.2"
+    cross-spawn: "npm:^7.0.3"
+    deepmerge: "npm:^4.2.2"
+    highlight.js: "npm:^11.6.0"
+    htmlparser2: "npm:^10.0.0"
+    prismjs: "npm:^1.29.0"
+    strip-indent: "npm:^3.0.0"
+  checksum: 10/a0d2aed7dc7e89dd6ec41c6686a6752d9ada8c0cf019db4f2465fda143c75a030c53ee8f12daf85213cb0d6d0d112da41719068e3171e7fd7e456e3e0da629fb
+  languageName: node
+  linkType: hard
 
 "hexo-util@npm:^2.0.0, hexo-util@npm:^2.1.0, hexo-util@npm:^2.4.0, hexo-util@npm:^2.7.0":
   version: 2.7.0
@@ -2080,21 +2134,6 @@ __metadata:
     prismjs: "npm:^1.29.0"
     strip-indent: "npm:^3.0.0"
   checksum: 10/1de489db33dac3863226030a1e9ced74eca6a5c35ddafc75c69c6fa7036558e79e2a5fcbc16d41d574c1397d9c274a3fc57093fe7f5f7e9ce3ddbc06c9396931
-  languageName: node
-  linkType: hard
-
-"hexo-util@npm:^4.0.0, hexo-util@npm:latest":
-  version: 4.0.0
-  resolution: "hexo-util@npm:4.0.0"
-  dependencies:
-    camel-case: "npm:^4.1.2"
-    cross-spawn: "npm:^7.0.3"
-    deepmerge: "npm:^4.2.2"
-    highlight.js: "npm:^11.6.0"
-    htmlparser2: "npm:^10.0.0"
-    prismjs: "npm:^1.29.0"
-    strip-indent: "npm:^3.0.0"
-  checksum: 10/a0d2aed7dc7e89dd6ec41c6686a6752d9ada8c0cf019db4f2465fda143c75a030c53ee8f12daf85213cb0d6d0d112da41719068e3171e7fd7e456e3e0da629fb
   languageName: node
   linkType: hard
 
@@ -3129,7 +3168,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nunjucks@npm:^3.0.0, nunjucks@npm:^3.2.3, nunjucks@npm:^3.2.4":
+"nunjucks@npm:^3.2.3, nunjucks@npm:^3.2.4":
   version: 3.2.4
   resolution: "nunjucks@npm:3.2.4"
   dependencies:
@@ -3273,6 +3312,13 @@ __metadata:
     no-case: "npm:^3.0.4"
     tslib: "npm:^2.0.3"
   checksum: 10/ba98bfd595fc91ef3d30f4243b1aee2f6ec41c53b4546bfa3039487c367abaa182471dcfc830a1f9e1a0df00c14a370514fa2b3a1aacc68b15a460c31116873e
+  languageName: node
+  linkType: hard
+
+"path-expression-matcher@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "path-expression-matcher@npm:1.1.2"
+  checksum: 10/e44da8dfa6fdb7b33382b83a717530bb0b9fec29392e28146310ec37a4dabfddb24248c41bd884035ed5c62a93d40d538c3bc75b9ad65c25d547c2db76abe228
   languageName: node
   linkType: hard
 
@@ -3961,6 +4007,13 @@ __metadata:
   dependencies:
     min-indent: "npm:^1.0.0"
   checksum: 10/18f045d57d9d0d90cd16f72b2313d6364fd2cb4bf85b9f593523ad431c8720011a4d5f08b6591c9d580f446e78855c5334a30fb91aa1560f5d9f95ed1b4a0530
+  languageName: node
+  linkType: hard
+
+"strnum@npm:^2.1.2":
+  version: 2.2.0
+  resolution: "strnum@npm:2.2.0"
+  checksum: 10/2969dbc8441f5af1b55db1d2fcea64a8f912de18515b57f85574e66bdb8f30ae76c419cf1390b343d72d687e2aea5aca82390f18b9e0de45d6bcc6d605eb9385
   languageName: node
   linkType: hard
 
