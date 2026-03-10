@@ -101,11 +101,9 @@ jobs:
           cd dist/
           npm publish --access public --provenance
       - name: Website Build
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
         run: |
-          corepack yarn website:install
-          corepack yarn injectweb
-          corepack yarn website:build
+          corepack yarn website:ci
       - name: Website Deploy 🚀
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@3.7.1
