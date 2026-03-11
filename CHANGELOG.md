@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.10...main).
 
+### Expansion
+
+- Added `golang/time/ParseInLocation`, interpreting wall-clock inputs in a supplied IANA time zone while preserving deterministic `Date` output and parity coverage around DST boundaries.
+
 ### Modernization
 
 - Removed root dev dependencies that are now replaceable with Node 22 built-ins or tiny local helpers:

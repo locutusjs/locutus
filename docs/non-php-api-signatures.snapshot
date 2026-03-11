@@ -138,6 +138,7 @@ src/golang/time/Equal.ts :: export function Equal(left: GoTimeInput, right: GoTi
 src/golang/time/Format.ts :: export function Format(value: DateInput, layout: string): string
 src/golang/time/Parse.ts :: export function Parse(layout: string, value: string): Date
 src/golang/time/ParseDuration.ts :: export function ParseDuration(s: string): number
+src/golang/time/ParseInLocation.ts :: export function ParseInLocation(layout: string, value: string, location: string): Date
 src/golang/time/Round.ts :: export function Round(value: GoTimeInput, unitMs: number): Date
 src/golang/time/Sub.ts :: export function Sub(left: GoTimeInput, right: GoTimeInput): number
 src/golang/time/Truncate.ts :: export function Truncate(value: GoTimeInput, unitMs: number): Date
