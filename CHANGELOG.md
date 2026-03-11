@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.13...main).
 
+### PHP
+
+- Breaking: removed `php/funchand/create_function` for PHP 8.3 parity and security posture. The function was deprecated in PHP 7.2, removed in PHP 8.0, and Locutus now treats closure export behavior in `php/var/var_export` as the current `\Closure::__set_state(array(...))` form instead of referencing the removed API.
+
 ## v3.0.13
 
 Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.12...v3.0.13).

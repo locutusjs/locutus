@@ -1747,3 +1747,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Pending tag and `main` workflow completion.
 - Key learnings:
   - This issue was small enough for a same-day merge-and-release, but still worth running through the standard `main` and tag workflow gates because it changes runtime error semantics in a verified function.
+
+### Iteration 88
+
+2026-03-11
+
+- **Area: PHP parity + Security**
+- Plan:
+  - Remove `php/funchand/create_function` entirely instead of trying to sanitize a dynamic-code API that PHP itself removed.
+  - Align `php/var/var_export` with current PHP closure export behavior so Locutus no longer references the removed function indirectly.
+  - Regenerate affected generated artifacts and website output, then validate the change before opening a PR.
+- Progress:
+  - Confirmed the project’s parity target is PHP 8.3 and verified locally that `create_function()` no longer exists in modern PHP.
+  - Removed the `create_function` export surface from `src/php/funchand`.
+  - Updated `var_export` so function values now export to the PHP 8-style `\\Closure::__set_state(array(...))` placeholder instead of generating `create_function(...)`.
+  - Added a focused util test to compare Locutus closure export output against real local PHP output when PHP is installed.
+- Validation:
+  - Pending regeneration and test runs.
+- Key learnings:
+  - For removed upstream APIs, parity should be handled with explicit deletion plus nearby cleanup, not by keeping a dangerous compatibility shim alive.

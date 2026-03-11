@@ -51,14 +51,13 @@ export function var_export(
   //   example 5: var_export([], true)
   //   returns 5: "array (\n)"
   //   example 6: var_export({ test: [ 'a', 'b' ] }, true)
-  //   returns 6: "array (\n  'test' =>\n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
+  //   returns 6: "array (\n  'test' => \n  array (\n    0 => 'a',\n    1 => 'b',\n  ),\n)"
 
   let retstr: VarExportResult = ''
   let iret = ''
   let value = ''
   let cnt = 0
   const x: string[] = []
-  let funcParts: RegExpMatchArray | null = null
   // We use the last argument (not part of PHP) to pass in
   // our indentation level
   let innerIndent = ''
@@ -77,7 +76,7 @@ export function var_export(
   }
 
   const _makeIndent = function (indentLevel: number): string {
-    return new Array(indentLevel + 1).join(' ')
+    return new Array(Math.max(indentLevel, 0) + 1).join(' ')
   }
   const __getType = function (inp: VarExportInput): VarExportType | null {
     let i = 0
@@ -138,8 +137,8 @@ export function var_export(
     for (const [key, entry] of Object.entries(source)) {
       value = ' '
       const subtype = __getType(entry)
-      if (subtype === 'array' || subtype === 'object') {
-        value = '\n'
+      if (subtype === 'array' || subtype === 'object' || subtype === 'function') {
+        value = ' \n'
       }
       value += String(var_export(entry, true, idtLevel + 2))
       const mappedKey = _isNormalInteger(key) ? key : `'${key}'`
@@ -150,18 +149,10 @@ export function var_export(
     }
     retstr = outerIndent + 'array (\n' + iret + outerIndent + ')'
   } else if (type === 'function') {
-    funcParts = String(mixedExpression).match(/function .*?\((.*?)\) \{([\s\S]*)\}/)
-    const funcArgs = funcParts?.[1] ?? ''
-    const funcBody = funcParts?.[2] ?? ''
-
-    // For lambda functions, var_export() outputs such as the following:
-    // '\000lambda_1'. Since it will probably not be a common use to
-    // expect this (unhelpful) form, we'll use another PHP-exportable
-    // construct, create_function() (though dollar signs must be on the
-    // variables in JavaScript); if using instead in JavaScript and you
-    // are using the namespaced version, note that create_function() will
-    // not be available as a global
-    retstr = "create_function ('" + funcArgs + "', '" + funcBody.replace(/'/g, "\\'") + "')"
+    // PHP deprecated create_function() in 7.2 and removed it in 8.0.
+    // On our PHP 8.3 parity target, closures export as \Closure::__set_state(array()).
+    outerIndent = _makeIndent(idtLevel - 2)
+    retstr = outerIndent + '\\Closure::__set_state(array(\n' + outerIndent + '))'
   } else if (type === 'resource') {
     // Resources treated as null for var_export
     retstr = 'NULL'
