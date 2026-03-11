@@ -1708,3 +1708,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `DRY_RUN=1 ./scripts/deploy-gh-pages.sh`
 - Key learnings:
   - The Pages deploy step was the only part of the workflow family that could not be fixed with a simple version bump; the actual Node 24-safe move was to replace the third-party action rather than shuffle to another Node 20-based deploy wrapper.
+
+### Iteration 86
+
+2026-03-11
+
+- **Area: PHP parity bug fix**
+- Plan:
+  - Reproduce issue `#565` with a failing parity-oriented test before changing runtime code.
+  - Fix `php/array/array_values` so invalid string input no longer coerces through `Object.values`.
+  - Validate both the negative parity case and the normal verified function path before opening a PR.
+- Progress:
+  - Confirmed the current implementation in `src/php/array/array_values.ts` returned `['a', 'b', 'c']` for `array_values('abc')` because it delegated directly to `Object.values`.
+  - Verified actual PHP behavior locally; current PHP throws `TypeError: array_values(): Argument #1 ($array) must be of type array, string given`.
+  - Added `test/util/php-array-values.vitest.ts` as a parity-oriented util test that compares the Locutus throw contract against real PHP CLI output for the invalid string case when `php` is available locally, while skipping that assertion on machines without PHP installed.
+  - Fixed `array_values` by rejecting primitive and boxed scalar input with a PHP-style `TypeError` message instead of coercing it, while preserving Locutus support for associative-style plain objects.
+- Validation:
+  - `corepack yarn exec vitest run test/util/php-array-values.vitest.ts` (failed before fix, passed after)
+  - `corepack yarn exec vitest run test/generated/php/array/array_values.vitest.ts`
+  - `corepack yarn test:parity php/array/array_values --no-cache`
+- Key learnings:
+  - For PHP helpers with narrowed TypeScript signatures, util-level parity tests are the right place to cover negative PHP runtime behavior without polluting generated public examples with invalid-input casts.
+  - Preserving the longstanding “JS object as PHP associative array” contract matters here; the fix should narrow scalar coercions without accidentally rejecting associative objects that happen to use a custom prototype.
