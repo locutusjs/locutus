@@ -230,7 +230,6 @@ src/php/filesystem/pathinfo.ts :: export function pathinfo(path: string, options
 src/php/filesystem/realpath.ts :: export function realpath(path: string): string
 src/php/funchand/call_user_func.ts :: export function call_user_func<TResult = FunctionArg, TArgs extends PhpCallableArgs = PhpCallableArgs>( cb: PhpCallableDescriptor<TArgs, TResult>, ...parameters: TArgs ): TResult
 src/php/funchand/call_user_func_array.ts :: export function call_user_func_array<TResult = FunctionValue, TArgs extends PhpCallableArgs = PhpCallableArgs>( cb: PhpCallableDescriptor<TArgs, TResult>, parameters: [...TArgs], ): TResult
-src/php/funchand/create_function.ts :: export function create_function(args: string, code: string): PhpCallable | false
 src/php/funchand/function_exists.ts :: export function function_exists(funcName: string): boolean
 src/php/funchand/get_defined_functions.ts :: export function get_defined_functions(): string[]
 src/php/i18n/i18n_loc_get_default.ts :: export function i18n_loc_get_default(): string
