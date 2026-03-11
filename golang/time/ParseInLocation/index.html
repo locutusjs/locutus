@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Go&#39;s time.ParseInLocation in TypeScript | Locutus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Here&#39;s what our current TypeScript equivalent to Go&#39;s time.ParseInLocation looks like.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Go&#39;s time.ParseInLocation in TypeScript">
+<meta property="og:url" content="https://locutus.io/golang/time/ParseInLocation/index.html">
+<meta property="og:site_name" content="Locutus">
+<meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to Go&#39;s time.ParseInLocation looks like.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2026-03-11T12:05:26.284Z">
+<meta property="article:modified_time" content="2026-03-11T12:05:26.284Z">
+<meta property="article:author" content="Kevin van Zonneveld">
+<meta name="twitter:card" content="summary">
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/vendor/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/locutus.css">
+
+
+    
+<script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+
+
+    
+    
+        
+<link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-63083-7', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="Locutus" type="application/atom+xml">
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Locutus</span>
+            </a>
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        x: 'en',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    console.log(INSIGHT_CONFIG)
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+</div>
+            
+                <nav id="top-page-nav">
+                    
+                        <a class="top-nav-link" href="/archives">Blog</a>
+                    
+                        <a class="top-nav-link" href="/authors">Authors</a>
+                    
+                </nav>
+            
+            
+        </div>
+    </div>
+    <div id="main-nav-desktop" class="header-sub header-inner">
+        <nav id="main-nav" class="outer">
+            
+              <a class="main-nav-link" href="/c">C</a>
+            
+              <a class="main-nav-link" href="/golang">Go</a>
+            
+              <a class="main-nav-link" href="/python">Python</a>
+            
+              <a class="main-nav-link" href="/ruby">Ruby</a>
+            
+              <a class="main-nav-link" href="/php">PHP</a>
+            
+              <a class="main-nav-link" href="/perl">Perl</a>
+            
+              <a class="main-nav-link" href="/lua">Lua</a>
+            
+              <a class="main-nav-link" href="/r">R</a>
+            
+              <a class="main-nav-link" href="/julia">Julia</a>
+            
+              <a class="main-nav-link" href="/elixir">Elixir</a>
+            
+              <a class="main-nav-link" href="/clojure">Clojure</a>
+            
+              <a class="main-nav-link" href="/awk">AWK</a>
+            
+              <a class="main-nav-link" href="/tcl">Tcl</a>
+            
+              <a class="main-nav-link" href="/powershell">PowerShell</a>
+            
+              <a class="main-nav-link" href="/rust">Rust</a>
+            
+              <a class="main-nav-link" href="/swift">Swift</a>
+            
+              <a class="main-nav-link" href="/kotlin">Kotlin</a>
+            
+              <a class="main-nav-link" href="/haskell">Haskell</a>
+            
+        </nav>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                  <td><a class="main-nav-link" href="/c">C</a></td>
+                
+                  <td><a class="main-nav-link" href="/golang">Go</a></td>
+                
+                  <td><a class="main-nav-link" href="/python">Python</a></td>
+                
+                  <td><a class="main-nav-link" href="/ruby">Ruby</a></td>
+                
+                  <td><a class="main-nav-link" href="/php">PHP</a></td>
+                
+                  <td><a class="main-nav-link" href="/perl">Perl</a></td>
+                
+                  <td><a class="main-nav-link" href="/lua">Lua</a></td>
+                
+                  <td><a class="main-nav-link" href="/r">R</a></td>
+                
+                  <td><a class="main-nav-link" href="/julia">Julia</a></td>
+                
+                  <td><a class="main-nav-link" href="/elixir">Elixir</a></td>
+                
+                  <td><a class="main-nav-link" href="/clojure">Clojure</a></td>
+                
+                  <td><a class="main-nav-link" href="/awk">AWK</a></td>
+                
+                  <td><a class="main-nav-link" href="/tcl">Tcl</a></td>
+                
+                  <td><a class="main-nav-link" href="/powershell">PowerShell</a></td>
+                
+                  <td><a class="main-nav-link" href="/rust">Rust</a></td>
+                
+                  <td><a class="main-nav-link" href="/swift">Swift</a></td>
+                
+                  <td><a class="main-nav-link" href="/kotlin">Kotlin</a></td>
+                
+                  <td><a class="main-nav-link" href="/haskell">Haskell</a></td>
+                
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            <section id="main">
+
+  
+
+
+
+
+<article class="article article-type-function" >
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title">Go&#39;s time.ParseInLocation in TypeScript</h1>
+      
+        <style>
+          .verified-container {
+            margin-top: 8px;
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .verified-badges {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+          }
+          .verified-badge {
+            display: inline-block;
+            background-color: #4c1;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: default;
+          }
+          .verified-tooltip {
+            position: absolute;
+            top: calc(100% + 2px);
+            left: 0;
+            z-index: 30;
+            width: max-content;
+            max-width: min(430px, calc(100vw - 56px));
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.28);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-5px) scale(0.98);
+            transform-origin: top left;
+            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+            color: #e2e8f0;
+            font-size: 12px;
+            line-height: 1.5;
+          }
+          .verified-tooltip::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 16px;
+            width: 10px;
+            height: 10px;
+            background: #0f172a;
+            border-left: 1px solid #334155;
+            border-top: 1px solid #334155;
+            transform: rotate(45deg);
+          }
+          .verified-container:hover .verified-tooltip,
+          .verified-container:focus-within .verified-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            transition-delay: 0s;
+          }
+        </style>
+        <div class="verified-container">
+          <div class="verified-badges">
+            
+              <span class="verified-badge">✓ Verified: Go 1.23</span>
+            
+          </div>
+          <div class="verified-tooltip">Examples tested against actual runtime. CI re-verifies continuously. Only documented examples are tested.</div>
+        </div>
+      
+
+      
+      
+    </header>
+
+    <div class="article-entry">
+      <h2>How to use</h2>
+      
+        <p>
+          Install via <code>yarn add locutus</code> and import:
+          <code>import { ParseInLocation } from 'locutus/golang/time/ParseInLocation'</code>.
+        </p>
+        <p style="margin-top: 4px; font-size: 13px; color: #888;">
+          Or with CommonJS: <code>const { ParseInLocation } = require('locutus/golang/time/ParseInLocation')</code>
+        </p>
+      
+      <p>
+        Use a bundler that supports tree-shaking so you only ship the functions you actually use.
+        <a href="https://vite.dev/" target="_blank" rel="external">Vite</a>,
+        <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a>,
+        <a href="https://rollupjs.org/" target="_blank" rel="external">Rollup</a>, and
+        <a href="https://parceljs.org/" target="_blank" rel="external">Parcel</a>
+        all handle this. For server-side use this is less of a concern.
+      </p>
+
+      
+        <h2>Examples</h2>
+        <p>
+          These examples are extracted from test cases that automatically verify our functions against their native counterparts.
+        </p>
+
+        <table>
+          <tr><th>#</th><th>code</th><th>expected result</th></tr>
+        
+          <tr><td>1</td><td><code>ParseInLocation(&#39;2006-01-02 15:04:05&#39;, &#39;2026-03-03 13:14:15&#39;, &#39;America/New_York&#39;)</code></td><td><code>new Date(&#39;2026-03-03T18:14:15.000Z&#39;)</code></td></tr>
+        
+          <tr><td>2</td><td><code>ParseInLocation(&#39;2006-01-02 15:04:05&#39;, &#39;2026-07-03 13:14:15&#39;, &#39;America/New_York&#39;)</code></td><td><code>new Date(&#39;2026-07-03T17:14:15.000Z&#39;)</code></td></tr>
+        
+          <tr><td>3</td><td><code>ParseInLocation(&#39;2006-01-02 15:04:05&#39;, &#39;2024-11-03 01:30:00&#39;, &#39;America/New_York&#39;)</code></td><td><code>new Date(&#39;2024-11-03T05:30:00.000Z&#39;)</code></td></tr>
+        
+          <tr><td>4</td><td><code>ParseInLocation(&#39;2006-01-02 15:04:05&#39;, &#39;2024-03-10 02:30:00&#39;, &#39;America/New_York&#39;)</code></td><td><code>new Date(&#39;2024-03-10T06:30:00.000Z&#39;)</code></td></tr>
+        
+          <tr><td>5</td><td><code>ParseInLocation(&#39;2006-01-02T15:04:05-07:00&#39;, &#39;2026-03-03T13:14:15+02:30&#39;, &#39;America/New_York&#39;)</code></td><td><code>new Date(&#39;2026-03-03T10:44:15.000Z&#39;)</code></td></tr>
+        
+          <tr><td>6</td><td><code>ParseInLocation(&#39;2006-01-02 15:04:05&#39;, &#39;2026-03-03 13:14:15&#39;, (&#39;America&#39; + &#39;/New_York&#39;))</code></td><td><code>new Date(&#39;2026-03-03T18:14:15.000Z&#39;)</code></td></tr>
+        
+        </table>
+      
+
+      
+
+      
+
+      
+
+      
+        <h2>Notes</h2>
+        <ul>
+        
+          <li><p>Supports the same focused layout-token subset as Parse.</p>
+</li>
+        
+          <li><p>Inputs without an explicit numeric offset are interpreted in the supplied IANA time zone.</p>
+</li>
+        
+          <li><p>Explicit numeric offsets still take precedence over the supplied location, matching Go’s absolute-time result.</p>
+</li>
+        
+        </ul>
+      
+
+      
+
+      <p>
+        Here's what our current TypeScript equivalent to <a target="_blank" rel="noopener" href="https://golang.org/pkg/time/#ParseInLocation">Go's time.ParseInLocation</a> looks like.
+      </p>
+
+      <!-- Code -->
+      
+        <style>
+          .code-tabs {
+            position: relative;
+          }
+          .code-tabs-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+          }
+          .code-tabs-left {
+            display: flex;
+            gap: 4px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            min-width: 0;
+            scrollbar-width: thin;
+          }
+          .code-tab-btn {
+            position: relative;
+            padding: 8px 10px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 8px 8px 0 0;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            line-height: 1.2;
+            flex: 0 0 auto;
+          }
+          .code-tab-btn:hover {
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.04);
+          }
+          .code-tab-btn.active {
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            border-radius: 2px 2px 0 0;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .code-tab-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+          }
+          .code-tab-btn[data-tab="ts"].active::after,
+          .code-tab-btn[data-tab="standalone-ts"].active::after {
+            background: #3178c6;
+          }
+          .code-tab-btn[data-tab="js"].active::after,
+          .code-tab-btn[data-tab="standalone-js"].active::after {
+            background: #f0db4f;
+          }
+          .code-tab-btn .tab-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            font-size: 9px;
+            font-weight: 900;
+            line-height: 16px;
+            text-align: center;
+            margin-right: 6px;
+            vertical-align: -2px;
+            letter-spacing: -0.5px;
+          }
+          .code-tab-btn[data-tab="ts"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-ts"] .tab-icon {
+            background: #3178c6;
+            color: #fff;
+          }
+          .code-tab-btn[data-tab="js"] .tab-icon,
+          .code-tab-btn[data-tab="standalone-js"] .tab-icon {
+            background: #f0db4f;
+            color: #323330;
+          }
+          .code-panels-wrap {
+            position: relative;
+          }
+          .code-tab-panel {
+            display: none;
+          }
+          .code-tab-panel.active {
+            display: block;
+          }
+          .code-tab-panel figure.highlight {
+            border-radius: 0 8px 8px 8px;
+            margin-top: 0 !important;
+          }
+          .code-copy-icon-btn {
+            align-items: center;
+            background: rgba(38, 38, 38, 0.95);
+            border: 1px solid #404040;
+            border-radius: 6px;
+            color: #cfcfcf;
+            cursor: pointer;
+            display: inline-flex;
+            height: 30px;
+            justify-content: center;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+            width: 30px;
+            z-index: 4;
+          }
+          .code-copy-icon-btn:hover {
+            border-color: #5a5a5a;
+            color: #fff;
+            background: #2d2d2d;
+          }
+          .code-copy-icon-btn svg {
+            display: block;
+            height: 16px;
+            width: 16px;
+          }
+          .code-copy-icon-btn[data-state='copied'] {
+            border-color: #22c55e;
+            color: #22c55e;
+          }
+          .code-copy-icon-btn[data-state='failed'] {
+            border-color: #ef4444;
+            color: #ef4444;
+          }
+          .code-copy-icon-btn .code-copy-success {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-default {
+            display: none;
+          }
+          .code-copy-icon-btn[data-state='copied'] .code-copy-success {
+            display: block;
+          }
+          .sr-only {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            clip-path: inset(50%);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+          }
+          @media (max-width: 640px) {
+            .code-tab-btn {
+              padding: 7px 8px;
+              font-size: 11px;
+            }
+          }
+        </style>
+        <div class="code-tabs">
+          <div class="code-tabs-header">
+            <div class="code-tabs-left">
+              <button class="code-tab-btn active" data-tab="ts" type="button">
+                <span class="tab-icon">TS</span><span class="tab-label">TypeScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="js" type="button">
+                <span class="tab-icon">JS</span><span class="tab-label">JavaScript</span>
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-ts" type="button">
+                <span class="tab-icon">TS</span>Standalone TS
+              </button>
+              <button class="code-tab-btn" data-tab="standalone-js" type="button">
+                <span class="tab-icon">JS</span>Standalone JS
+              </button>
+            </div>
+          </div>
+          <div class="code-panels-wrap">
+            <button class="code-copy-icon-btn" type="button" data-state="idle" aria-label="Copy code" title="Copy code">
+              <span class="sr-only">Copy code</span>
+              <svg class="code-copy-default" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
+                <path d="M5 15V6.5C5 5.67 5.67 5 6.5 5H15" stroke="currentColor" stroke-width="1.5"></path>
+              </svg>
+              <svg class="code-copy-success" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12.5L9.2 16.7L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <div class="code-tab-panel" data-lang="ts">
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">GoParseToken</span> = (<span class="keyword">typeof</span> <span class="variable constant_">GO_PARSE_TOKENS</span>)[<span class="built_in">number</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">GO_PARSE_TOKENS</span> = [</span><br><span class="line">  <span class="string">&#x27;Z07:00&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;-07:00&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;-0700&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;2006&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;PM&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;pm&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;15&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;06&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;01&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;02&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;03&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;04&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;05&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;3&#x27;</span>,</span><br><span class="line">] <span class="keyword">as</span> <span class="keyword">const</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">ParsedGoTime</span> = &#123;</span><br><span class="line">  <span class="attr">localMillis</span>: <span class="built_in">number</span></span><br><span class="line">  <span class="attr">hasOffset</span>: <span class="built_in">boolean</span></span><br><span class="line">  <span class="attr">offsetMinutes</span>: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> escapeRegex = (<span class="attr">value</span>: <span class="built_in">string</span>): <span class="function"><span class="params">string</span> =&gt;</span> value.<span class="title function_">replace</span>(<span class="regexp">/[.*+?^$&#123;&#125;()|[\]\\]/g</span>, <span class="string">&#x27;\\$&amp;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isTokenAt = (<span class="attr">layout</span>: <span class="built_in">string</span>, <span class="attr">index</span>: <span class="built_in">number</span>): <span class="title class_">GoParseToken</span> | <span class="function"><span class="params">undefined</span> =&gt;</span></span><br><span class="line">  <span class="variable constant_">GO_PARSE_TOKENS</span>.<span class="title function_">find</span>(<span class="function">(<span class="params">token</span>) =&gt;</span> layout.<span class="title function_">startsWith</span>(token, index))</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> tokenRegex = (<span class="attr">token</span>: <span class="title class_">GoParseToken</span>): <span class="function"><span class="params">string</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (token) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;2006&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(\\d&#123;4&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;06&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(\\d&#123;2&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;01&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(0[1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;02&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(0[1-9]|[12]\\d|3[01])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([1-9]|[12]\\d|3[01])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;15&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([01]\\d|2[0-3])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;03&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(0[1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;3&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;04&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([0-5]\\d)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;05&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([0-5]\\d)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;PM&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(AM|PM)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;pm&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(am|pm)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;-0700&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([+-]\\d&#123;4&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;-07:00&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([+-]\\d&#123;2&#125;:\\d&#123;2&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;Z07:00&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Z|[+-]\\d&#123;2&#125;:\\d&#123;2&#125;)&#x27;</span></span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">escapeRegex</span>(token)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> parseOffsetMinutes = (<span class="attr">offset</span>: <span class="built_in">string</span>): <span class="function"><span class="params">number</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (offset === <span class="string">&#x27;Z&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> compact = offset.<span class="title function_">match</span>(<span class="regexp">/^([+-])(\d&#123;2&#125;)(\d&#123;2&#125;)$/</span>)</span><br><span class="line">  <span class="keyword">if</span> (compact?.[<span class="number">1</span>] &amp;&amp; compact[<span class="number">2</span>] &amp;&amp; compact[<span class="number">3</span>]) &#123;</span><br><span class="line">    <span class="keyword">const</span> sign = compact[<span class="number">1</span>] === <span class="string">&#x27;-&#x27;</span> ? -<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> hours = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(compact[<span class="number">2</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">const</span> minutes = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(compact[<span class="number">3</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">if</span> (hours &gt; <span class="number">23</span> || minutes &gt; <span class="number">59</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid offset&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sign * (hours * <span class="number">60</span> + minutes)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> colon = offset.<span class="title function_">match</span>(<span class="regexp">/^([+-])(\d&#123;2&#125;):(\d&#123;2&#125;)$/</span>)</span><br><span class="line">  <span class="keyword">if</span> (colon?.[<span class="number">1</span>] &amp;&amp; colon[<span class="number">2</span>] &amp;&amp; colon[<span class="number">3</span>]) &#123;</span><br><span class="line">    <span class="keyword">const</span> sign = colon[<span class="number">1</span>] === <span class="string">&#x27;-&#x27;</span> ? -<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> hours = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(colon[<span class="number">2</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">const</span> minutes = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(colon[<span class="number">3</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">if</span> (hours &gt; <span class="number">23</span> || minutes &gt; <span class="number">59</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid offset&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sign * (hours * <span class="number">60</span> + minutes)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid offset&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> resolveTwoDigitYear = (<span class="attr">year</span>: <span class="built_in">number</span>): <span class="function"><span class="params">number</span> =&gt;</span> (year &gt;= <span class="number">69</span> ? <span class="number">1900</span> + year : <span class="number">2000</span> + year)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> createUtcDate = (</span><br><span class="line">  <span class="attr">year</span>: <span class="built_in">number</span>,</span><br><span class="line">  <span class="attr">month</span>: <span class="built_in">number</span>,</span><br><span class="line">  <span class="attr">day</span>: <span class="built_in">number</span>,</span><br><span class="line">  <span class="attr">hour</span>: <span class="built_in">number</span>,</span><br><span class="line">  <span class="attr">minute</span>: <span class="built_in">number</span>,</span><br><span class="line">  <span class="attr">second</span>: <span class="built_in">number</span>,</span><br><span class="line">): <span class="function"><span class="params">Date</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">0</span>)</span><br><span class="line">  date.<span class="title function_">setUTCFullYear</span>(year, month - <span class="number">1</span>, day)</span><br><span class="line">  date.<span class="title function_">setUTCHours</span>(hour, minute, second, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> date</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> parseGoTime = (<span class="attr">layout</span>: <span class="built_in">string</span>, <span class="attr">value</span>: <span class="built_in">string</span>): <span class="function"><span class="params">ParsedGoTime</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> resolvedLayout = <span class="title class_">String</span>(layout)</span><br><span class="line">  <span class="keyword">const</span> resolvedValue = <span class="title class_">String</span>(value)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">tokenOrder</span>: <span class="title class_">GoParseToken</span>[] = []</span><br><span class="line">  <span class="keyword">let</span> regexSource = <span class="string">&#x27;^&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; resolvedLayout.<span class="property">length</span>; ) &#123;</span><br><span class="line">    <span class="keyword">const</span> token = <span class="title function_">isTokenAt</span>(resolvedLayout, i)</span><br><span class="line">    <span class="keyword">if</span> (token) &#123;</span><br><span class="line">      regexSource += <span class="title function_">tokenRegex</span>(token)</span><br><span class="line">      tokenOrder.<span class="title function_">push</span>(token)</span><br><span class="line">      i += token.<span class="property">length</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> char = resolvedLayout[i]</span><br><span class="line">    <span class="keyword">if</span> (char === <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regexSource += <span class="title function_">escapeRegex</span>(char)</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  regexSource += <span class="string">&#x27;$&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> match = <span class="keyword">new</span> <span class="title class_">RegExp</span>(regexSource).<span class="title function_">exec</span>(resolvedValue)</span><br><span class="line">  <span class="keyword">if</span> (!match) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): input does not match layout&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> year = <span class="number">1970</span></span><br><span class="line">  <span class="keyword">let</span> month = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> day = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> hour24 = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> minute = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> second = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> <span class="attr">hour12</span>: <span class="built_in">number</span> | <span class="literal">undefined</span></span><br><span class="line">  <span class="keyword">let</span> <span class="attr">ampm</span>: <span class="string">&#x27;AM&#x27;</span> | <span class="string">&#x27;PM&#x27;</span> | <span class="literal">undefined</span></span><br><span class="line">  <span class="keyword">let</span> offsetMinutes = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hasOffset = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> matchIndex = <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> token <span class="keyword">of</span> tokenOrder) &#123;</span><br><span class="line">    <span class="keyword">const</span> raw = match[matchIndex]</span><br><span class="line">    matchIndex += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> (!raw) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (token) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;2006&#x27;</span>:</span><br><span class="line">        year = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;06&#x27;</span>:</span><br><span class="line">        year = <span class="title function_">resolveTwoDigitYear</span>(<span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>))</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;01&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">        month = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;02&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">        day = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;15&#x27;</span>:</span><br><span class="line">        hour24 = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;03&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;3&#x27;</span>:</span><br><span class="line">        hour12 = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;04&#x27;</span>:</span><br><span class="line">        minute = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;05&#x27;</span>:</span><br><span class="line">        second = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;PM&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;pm&#x27;</span>:</span><br><span class="line">        ampm = raw.<span class="title function_">toUpperCase</span>() === <span class="string">&#x27;PM&#x27;</span> ? <span class="string">&#x27;PM&#x27;</span> : <span class="string">&#x27;AM&#x27;</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;-0700&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;-07:00&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;Z07:00&#x27;</span>:</span><br><span class="line">        offsetMinutes = <span class="title function_">parseOffsetMinutes</span>(raw)</span><br><span class="line">        hasOffset = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="attr">default</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (hour12 !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ampm === <span class="string">&#x27;PM&#x27;</span> &amp;&amp; hour12 &lt; <span class="number">12</span>) &#123;</span><br><span class="line">      hour24 = hour12 + <span class="number">12</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ampm === <span class="string">&#x27;AM&#x27;</span> &amp;&amp; hour12 === <span class="number">12</span>) &#123;</span><br><span class="line">      hour24 = <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hour24 = hour12</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    month &lt; <span class="number">1</span> ||</span><br><span class="line">    month &gt; <span class="number">12</span> ||</span><br><span class="line">    day &lt; <span class="number">1</span> ||</span><br><span class="line">    day &gt; <span class="number">31</span> ||</span><br><span class="line">    hour24 &lt; <span class="number">0</span> ||</span><br><span class="line">    hour24 &gt; <span class="number">23</span> ||</span><br><span class="line">    minute &lt; <span class="number">0</span> ||</span><br><span class="line">    minute &gt; <span class="number">59</span> ||</span><br><span class="line">    second &lt; <span class="number">0</span> ||</span><br><span class="line">    second &gt; <span class="number">59</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid datetime components&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> localCheck = <span class="title function_">createUtcDate</span>(year, month, day, hour24, minute, second)</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    localCheck.<span class="title function_">getUTCFullYear</span>() !== year ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCMonth</span>() + <span class="number">1</span> !== month ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCDate</span>() !== day ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCHours</span>() !== hour24 ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCMinutes</span>() !== minute ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCSeconds</span>() !== second</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid datetime components&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> localMillis = localCheck.<span class="title function_">getTime</span>()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    localMillis,</span><br><span class="line">    hasOffset,</span><br><span class="line">    offsetMinutes,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zonedFormatterCache = <span class="keyword">new</span> <span class="title class_">Map</span>&lt;<span class="built_in">string</span>, <span class="title class_">Intl</span>.<span class="property">DateTimeFormat</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getZonedFormatter = (<span class="attr">timeZone</span>: <span class="built_in">string</span>): <span class="title class_">Intl</span>.<span class="property">DateTimeFormat</span> =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> formatter = zonedFormatterCache.<span class="title function_">get</span>(timeZone)</span><br><span class="line">  <span class="keyword">if</span> (!formatter) &#123;</span><br><span class="line">    formatter = <span class="keyword">new</span> <span class="title class_">Intl</span>.<span class="title class_">DateTimeFormat</span>(<span class="string">&#x27;en-CA&#x27;</span>, &#123;</span><br><span class="line">      timeZone,</span><br><span class="line">      <span class="attr">year</span>: <span class="string">&#x27;numeric&#x27;</span>,</span><br><span class="line">      <span class="attr">month</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">day</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">hour</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">minute</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">second</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">hourCycle</span>: <span class="string">&#x27;h23&#x27;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    zonedFormatterCache.<span class="title function_">set</span>(timeZone, formatter)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> formatter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> assertValidLocation = (<span class="attr">location</span>: <span class="built_in">string</span>): <span class="function"><span class="params">void</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">getZonedFormatter</span>(location).<span class="title function_">format</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">0</span>))</span><br><span class="line">  &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid location&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getOffsetMinutesAt = (<span class="attr">timeZone</span>: <span class="built_in">string</span>, <span class="attr">utcMillis</span>: <span class="built_in">number</span>): <span class="function"><span class="params">number</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> formatter = <span class="title function_">getZonedFormatter</span>(timeZone)</span><br><span class="line">  <span class="keyword">const</span> parts = formatter.<span class="title function_">formatToParts</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(utcMillis))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> year = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> month = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> day = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> hour = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> minute = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> second = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> part <span class="keyword">of</span> parts) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (part.<span class="property">type</span>) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;year&#x27;</span>:</span><br><span class="line">        year = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;month&#x27;</span>:</span><br><span class="line">        month = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;day&#x27;</span>:</span><br><span class="line">        day = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;hour&#x27;</span>:</span><br><span class="line">        hour = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;minute&#x27;</span>:</span><br><span class="line">        minute = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;second&#x27;</span>:</span><br><span class="line">        second = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="attr">default</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> zonedAsUtcMillis = <span class="title function_">createUtcDate</span>(year, month, day, hour, minute, second).<span class="title function_">getTime</span>()</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">round</span>((zonedAsUtcMillis - utcMillis) / <span class="number">60_000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> resolveWallTimeInLocation = (<span class="attr">timeZone</span>: <span class="built_in">string</span>, <span class="attr">localMillis</span>: <span class="built_in">number</span>): <span class="function"><span class="params">number</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> offsetMinutes = <span class="title function_">getOffsetMinutesAt</span>(timeZone, localMillis)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (offsetMinutes !== <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> utcMillis = localMillis - offsetMinutes * <span class="number">60_000</span></span><br><span class="line">    <span class="keyword">const</span> correctedOffsetMinutes = <span class="title function_">getOffsetMinutesAt</span>(timeZone, utcMillis)</span><br><span class="line">    <span class="keyword">if</span> (correctedOffsetMinutes !== offsetMinutes) &#123;</span><br><span class="line">      offsetMinutes = correctedOffsetMinutes</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> localMillis - offsetMinutes * <span class="number">60_000</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">ParseInLocation</span>(<span class="params"><span class="attr">layout</span>: <span class="built_in">string</span>, <span class="attr">value</span>: <span class="built_in">string</span>, <span class="attr">location</span>: <span class="built_in">string</span></span>): <span class="title class_">Date</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/golang/time/ParseInLocation</span></span><br><span class="line">  <span class="comment">// parity verified: Go 1.23</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Supports the same focused layout-token subset as Parse.</span></span><br><span class="line">  <span class="comment">//          note 2: Inputs without an explicit numeric offset are interpreted in the supplied IANA time zone.</span></span><br><span class="line">  <span class="comment">//          note 3: Explicit numeric offsets still take precedence over the supplied location, matching Go&#x27;s absolute-time result.</span></span><br><span class="line">  <span class="comment">//       example 1: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2026-03-03 13:14:15&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: new Date(&#x27;2026-03-03T18:14:15.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 2: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2026-07-03 13:14:15&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 2: new Date(&#x27;2026-07-03T17:14:15.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 3: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2024-11-03 01:30:00&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 3: new Date(&#x27;2024-11-03T05:30:00.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 4: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2024-03-10 02:30:00&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 4: new Date(&#x27;2024-03-10T06:30:00.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 5: ParseInLocation(&#x27;2006-01-02T15:04:05-07:00&#x27;, &#x27;2026-03-03T13:14:15+02:30&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 5: new Date(&#x27;2026-03-03T10:44:15.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 6: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2026-03-03 13:14:15&#x27;, (&#x27;America&#x27; + &#x27;/New_York&#x27;))</span></span><br><span class="line">  <span class="comment">//       returns 6: new Date(&#x27;2026-03-03T18:14:15.000Z&#x27;)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> resolvedLocation = <span class="title class_">String</span>(location)</span><br><span class="line">  <span class="title function_">assertValidLocation</span>(resolvedLocation)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> parsed = <span class="title function_">parseGoTime</span>(layout, value)</span><br><span class="line">  <span class="keyword">const</span> utcMillis = parsed.<span class="property">hasOffset</span></span><br><span class="line">    ? parsed.<span class="property">localMillis</span> - parsed.<span class="property">offsetMinutes</span> * <span class="number">60_000</span></span><br><span class="line">    : <span class="title function_">resolveWallTimeInLocation</span>(resolvedLocation, parsed.<span class="property">localMillis</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Date</span>(utcMillis)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+<div class="code-tab-panel" data-lang="js" style="display:none">
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">GO_PARSE_TOKENS</span> = [</span><br><span class="line">  <span class="string">&#x27;Z07:00&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;-07:00&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;-0700&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;2006&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;PM&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;pm&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;15&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;06&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;01&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;02&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;03&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;04&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;05&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;3&#x27;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">escapeRegex</span> = (<span class="params">value</span>) =&gt; value.<span class="title function_">replace</span>(<span class="regexp">/[.*+?^$&#123;&#125;()|[\]\\]/g</span>, <span class="string">&#x27;\\$&amp;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">isTokenAt</span> = (<span class="params">layout, index</span>) =&gt; <span class="variable constant_">GO_PARSE_TOKENS</span>.<span class="title function_">find</span>(<span class="function">(<span class="params">token</span>) =&gt;</span> layout.<span class="title function_">startsWith</span>(token, index))</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">tokenRegex</span> = (<span class="params">token</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">switch</span> (token) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;2006&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(\\d&#123;4&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;06&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(\\d&#123;2&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;01&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(0[1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;02&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(0[1-9]|[12]\\d|3[01])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([1-9]|[12]\\d|3[01])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;15&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([01]\\d|2[0-3])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;03&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(0[1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;3&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([1-9]|1[0-2])&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;04&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([0-5]\\d)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;05&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([0-5]\\d)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;PM&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(AM|PM)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;pm&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(am|pm)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;-0700&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([+-]\\d&#123;4&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;-07:00&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;([+-]\\d&#123;2&#125;:\\d&#123;2&#125;)&#x27;</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;Z07:00&#x27;</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;(Z|[+-]\\d&#123;2&#125;:\\d&#123;2&#125;)&#x27;</span></span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">escapeRegex</span>(token)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">parseOffsetMinutes</span> = (<span class="params">offset</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (offset === <span class="string">&#x27;Z&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> compact = offset.<span class="title function_">match</span>(<span class="regexp">/^([+-])(\d&#123;2&#125;)(\d&#123;2&#125;)$/</span>)</span><br><span class="line">  <span class="keyword">if</span> (compact?.[<span class="number">1</span>] &amp;&amp; compact[<span class="number">2</span>] &amp;&amp; compact[<span class="number">3</span>]) &#123;</span><br><span class="line">    <span class="keyword">const</span> sign = compact[<span class="number">1</span>] === <span class="string">&#x27;-&#x27;</span> ? -<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> hours = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(compact[<span class="number">2</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">const</span> minutes = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(compact[<span class="number">3</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">if</span> (hours &gt; <span class="number">23</span> || minutes &gt; <span class="number">59</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid offset&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sign * (hours * <span class="number">60</span> + minutes)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> colon = offset.<span class="title function_">match</span>(<span class="regexp">/^([+-])(\d&#123;2&#125;):(\d&#123;2&#125;)$/</span>)</span><br><span class="line">  <span class="keyword">if</span> (colon?.[<span class="number">1</span>] &amp;&amp; colon[<span class="number">2</span>] &amp;&amp; colon[<span class="number">3</span>]) &#123;</span><br><span class="line">    <span class="keyword">const</span> sign = colon[<span class="number">1</span>] === <span class="string">&#x27;-&#x27;</span> ? -<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">    <span class="keyword">const</span> hours = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(colon[<span class="number">2</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">const</span> minutes = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(colon[<span class="number">3</span>], <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">if</span> (hours &gt; <span class="number">23</span> || minutes &gt; <span class="number">59</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid offset&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sign * (hours * <span class="number">60</span> + minutes)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid offset&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">resolveTwoDigitYear</span> = (<span class="params">year</span>) =&gt; (year &gt;= <span class="number">69</span> ? <span class="number">1900</span> + year : <span class="number">2000</span> + year)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createUtcDate</span> = (<span class="params">year, month, day, hour, minute, second</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">0</span>)</span><br><span class="line">  date.<span class="title function_">setUTCFullYear</span>(year, month - <span class="number">1</span>, day)</span><br><span class="line">  date.<span class="title function_">setUTCHours</span>(hour, minute, second, <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> date</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">parseGoTime</span> = (<span class="params">layout, value</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> resolvedLayout = <span class="title class_">String</span>(layout)</span><br><span class="line">  <span class="keyword">const</span> resolvedValue = <span class="title class_">String</span>(value)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> tokenOrder = []</span><br><span class="line">  <span class="keyword">let</span> regexSource = <span class="string">&#x27;^&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; resolvedLayout.<span class="property">length</span>; ) &#123;</span><br><span class="line">    <span class="keyword">const</span> token = <span class="title function_">isTokenAt</span>(resolvedLayout, i)</span><br><span class="line">    <span class="keyword">if</span> (token) &#123;</span><br><span class="line">      regexSource += <span class="title function_">tokenRegex</span>(token)</span><br><span class="line">      tokenOrder.<span class="title function_">push</span>(token)</span><br><span class="line">      i += token.<span class="property">length</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> char = resolvedLayout[i]</span><br><span class="line">    <span class="keyword">if</span> (char === <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regexSource += <span class="title function_">escapeRegex</span>(char)</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  regexSource += <span class="string">&#x27;$&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> match = <span class="keyword">new</span> <span class="title class_">RegExp</span>(regexSource).<span class="title function_">exec</span>(resolvedValue)</span><br><span class="line">  <span class="keyword">if</span> (!match) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): input does not match layout&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> year = <span class="number">1970</span></span><br><span class="line">  <span class="keyword">let</span> month = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> day = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> hour24 = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> minute = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> second = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hour12</span><br><span class="line">  <span class="keyword">let</span> ampm</span><br><span class="line">  <span class="keyword">let</span> offsetMinutes = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> hasOffset = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> matchIndex = <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> token <span class="keyword">of</span> tokenOrder) &#123;</span><br><span class="line">    <span class="keyword">const</span> raw = match[matchIndex]</span><br><span class="line">    matchIndex += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> (!raw) &#123;</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (token) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;2006&#x27;</span>:</span><br><span class="line">        year = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;06&#x27;</span>:</span><br><span class="line">        year = <span class="title function_">resolveTwoDigitYear</span>(<span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>))</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;01&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">        month = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;02&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">        day = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;15&#x27;</span>:</span><br><span class="line">        hour24 = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;03&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;3&#x27;</span>:</span><br><span class="line">        hour12 = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;04&#x27;</span>:</span><br><span class="line">        minute = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;05&#x27;</span>:</span><br><span class="line">        second = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(raw, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;PM&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;pm&#x27;</span>:</span><br><span class="line">        ampm = raw.<span class="title function_">toUpperCase</span>() === <span class="string">&#x27;PM&#x27;</span> ? <span class="string">&#x27;PM&#x27;</span> : <span class="string">&#x27;AM&#x27;</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;-0700&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;-07:00&#x27;</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;Z07:00&#x27;</span>:</span><br><span class="line">        offsetMinutes = <span class="title function_">parseOffsetMinutes</span>(raw)</span><br><span class="line">        hasOffset = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="attr">default</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (hour12 !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (ampm === <span class="string">&#x27;PM&#x27;</span> &amp;&amp; hour12 &lt; <span class="number">12</span>) &#123;</span><br><span class="line">      hour24 = hour12 + <span class="number">12</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ampm === <span class="string">&#x27;AM&#x27;</span> &amp;&amp; hour12 === <span class="number">12</span>) &#123;</span><br><span class="line">      hour24 = <span class="number">0</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      hour24 = hour12</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    month &lt; <span class="number">1</span> ||</span><br><span class="line">    month &gt; <span class="number">12</span> ||</span><br><span class="line">    day &lt; <span class="number">1</span> ||</span><br><span class="line">    day &gt; <span class="number">31</span> ||</span><br><span class="line">    hour24 &lt; <span class="number">0</span> ||</span><br><span class="line">    hour24 &gt; <span class="number">23</span> ||</span><br><span class="line">    minute &lt; <span class="number">0</span> ||</span><br><span class="line">    minute &gt; <span class="number">59</span> ||</span><br><span class="line">    second &lt; <span class="number">0</span> ||</span><br><span class="line">    second &gt; <span class="number">59</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid datetime components&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> localCheck = <span class="title function_">createUtcDate</span>(year, month, day, hour24, minute, second)</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    localCheck.<span class="title function_">getUTCFullYear</span>() !== year ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCMonth</span>() + <span class="number">1</span> !== month ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCDate</span>() !== day ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCHours</span>() !== hour24 ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCMinutes</span>() !== minute ||</span><br><span class="line">    localCheck.<span class="title function_">getUTCSeconds</span>() !== second</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid datetime components&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> localMillis = localCheck.<span class="title function_">getTime</span>()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    localMillis,</span><br><span class="line">    hasOffset,</span><br><span class="line">    offsetMinutes,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zonedFormatterCache = <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getZonedFormatter</span> = (<span class="params">timeZone</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> formatter = zonedFormatterCache.<span class="title function_">get</span>(timeZone)</span><br><span class="line">  <span class="keyword">if</span> (!formatter) &#123;</span><br><span class="line">    formatter = <span class="keyword">new</span> <span class="title class_">Intl</span>.<span class="title class_">DateTimeFormat</span>(<span class="string">&#x27;en-CA&#x27;</span>, &#123;</span><br><span class="line">      timeZone,</span><br><span class="line">      <span class="attr">year</span>: <span class="string">&#x27;numeric&#x27;</span>,</span><br><span class="line">      <span class="attr">month</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">day</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">hour</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">minute</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">second</span>: <span class="string">&#x27;2-digit&#x27;</span>,</span><br><span class="line">      <span class="attr">hourCycle</span>: <span class="string">&#x27;h23&#x27;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    zonedFormatterCache.<span class="title function_">set</span>(timeZone, formatter)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> formatter</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">assertValidLocation</span> = (<span class="params">location</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="title function_">getZonedFormatter</span>(location).<span class="title function_">format</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">0</span>))</span><br><span class="line">  &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;ParseInLocation(): invalid location&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getOffsetMinutesAt</span> = (<span class="params">timeZone, utcMillis</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> formatter = <span class="title function_">getZonedFormatter</span>(timeZone)</span><br><span class="line">  <span class="keyword">const</span> parts = formatter.<span class="title function_">formatToParts</span>(<span class="keyword">new</span> <span class="title class_">Date</span>(utcMillis))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> year = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> month = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> day = <span class="number">1</span></span><br><span class="line">  <span class="keyword">let</span> hour = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> minute = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> second = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> part <span class="keyword">of</span> parts) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (part.<span class="property">type</span>) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;year&#x27;</span>:</span><br><span class="line">        year = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;month&#x27;</span>:</span><br><span class="line">        month = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;day&#x27;</span>:</span><br><span class="line">        day = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;hour&#x27;</span>:</span><br><span class="line">        hour = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;minute&#x27;</span>:</span><br><span class="line">        minute = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">&#x27;second&#x27;</span>:</span><br><span class="line">        second = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(part.<span class="property">value</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="attr">default</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> zonedAsUtcMillis = <span class="title function_">createUtcDate</span>(year, month, day, hour, minute, second).<span class="title function_">getTime</span>()</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">round</span>((zonedAsUtcMillis - utcMillis) / <span class="number">60_000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">resolveWallTimeInLocation</span> = (<span class="params">timeZone, localMillis</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> offsetMinutes = <span class="title function_">getOffsetMinutesAt</span>(timeZone, localMillis)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (offsetMinutes !== <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> utcMillis = localMillis - offsetMinutes * <span class="number">60_000</span></span><br><span class="line">    <span class="keyword">const</span> correctedOffsetMinutes = <span class="title function_">getOffsetMinutesAt</span>(timeZone, utcMillis)</span><br><span class="line">    <span class="keyword">if</span> (correctedOffsetMinutes !== offsetMinutes) &#123;</span><br><span class="line">      offsetMinutes = correctedOffsetMinutes</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> localMillis - offsetMinutes * <span class="number">60_000</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">ParseInLocation</span>(<span class="params">layout, value, location</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/golang/time/ParseInLocation</span></span><br><span class="line">  <span class="comment">// parity verified: Go 1.23</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Supports the same focused layout-token subset as Parse.</span></span><br><span class="line">  <span class="comment">//          note 2: Inputs without an explicit numeric offset are interpreted in the supplied IANA time zone.</span></span><br><span class="line">  <span class="comment">//          note 3: Explicit numeric offsets still take precedence over the supplied location, matching Go&#x27;s absolute-time result.</span></span><br><span class="line">  <span class="comment">//       example 1: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2026-03-03 13:14:15&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 1: new Date(&#x27;2026-03-03T18:14:15.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 2: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2026-07-03 13:14:15&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 2: new Date(&#x27;2026-07-03T17:14:15.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 3: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2024-11-03 01:30:00&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 3: new Date(&#x27;2024-11-03T05:30:00.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 4: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2024-03-10 02:30:00&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 4: new Date(&#x27;2024-03-10T06:30:00.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 5: ParseInLocation(&#x27;2006-01-02T15:04:05-07:00&#x27;, &#x27;2026-03-03T13:14:15+02:30&#x27;, &#x27;America/New_York&#x27;)</span></span><br><span class="line">  <span class="comment">//       returns 5: new Date(&#x27;2026-03-03T10:44:15.000Z&#x27;)</span></span><br><span class="line">  <span class="comment">//       example 6: ParseInLocation(&#x27;2006-01-02 15:04:05&#x27;, &#x27;2026-03-03 13:14:15&#x27;, (&#x27;America&#x27; + &#x27;/New_York&#x27;))</span></span><br><span class="line">  <span class="comment">//       returns 6: new Date(&#x27;2026-03-03T18:14:15.000Z&#x27;)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> resolvedLocation = <span class="title class_">String</span>(location)</span><br><span class="line">  <span class="title function_">assertValidLocation</span>(resolvedLocation)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> parsed = <span class="title function_">parseGoTime</span>(layout, value)</span><br><span class="line">  <span class="keyword">const</span> utcMillis = parsed.<span class="property">hasOffset</span></span><br><span class="line">    ? parsed.<span class="property">localMillis</span> - parsed.<span class="property">offsetMinutes</span> * <span class="number">60_000</span></span><br><span class="line">    : <span class="title function_">resolveWallTimeInLocation</span>(resolvedLocation, parsed.<span class="property">localMillis</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Date</span>(utcMillis)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+          </div>
+        </div>
+        <script>
+        (function() {
+          var STORAGE_KEY = 'locutus-code-variant';
+          var LEGACY_STORAGE_KEY = 'locutus-code-lang';
+          var saved = null;
+          try {
+            saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+          } catch(e) {}
+
+          if (saved === 'standalone') {
+            saved = 'standalone-js';
+          }
+
+          function getPanelCode(panel) {
+            if (!panel) {
+              return '';
+            }
+            var pre = panel.querySelector('pre');
+            if (pre) {
+              var preText = pre.innerText || pre.textContent || '';
+              if (preText) {
+                return preText.replace(/\u00a0/g, ' ').trimEnd();
+              }
+            }
+            var codeCell = panel.querySelector('figure.highlight .code');
+            if (codeCell) {
+              return (codeCell.textContent || '').replace(/\u00a0/g, ' ').trimEnd();
+            }
+            return '';
+          }
+
+          function copyText(value) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(value);
+            }
+            return new Promise(function(resolve, reject) {
+              try {
+                var textarea = document.createElement('textarea');
+                textarea.value = value;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '-9999px';
+                textarea.style.left = '-9999px';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                var ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (!ok) {
+                  reject(new Error('copy failed'));
+                  return;
+                }
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+          }
+
+          var tabGroups = document.querySelectorAll('.code-tabs');
+          tabGroups.forEach(function(group) {
+            var buttons = group.querySelectorAll('.code-tab-btn');
+            var panels = group.querySelectorAll('.code-tab-panel');
+            var copyButton = group.querySelector('.code-copy-icon-btn');
+            var validTabs = [];
+
+            buttons.forEach(function(btn) {
+              var tab = btn.getAttribute('data-tab');
+              var hasPanel = Array.prototype.some.call(panels, function(panel) {
+                return panel.getAttribute('data-lang') === tab;
+              });
+              if (!hasPanel) {
+                btn.style.display = 'none';
+                return;
+              }
+              validTabs.push(tab);
+            });
+
+            var hasStandaloneTabs =
+              validTabs.indexOf('standalone-ts') !== -1 || validTabs.indexOf('standalone-js') !== -1;
+            var tsLabel = group.querySelector('.code-tab-btn[data-tab=\"ts\"] .tab-label');
+            var jsLabel = group.querySelector('.code-tab-btn[data-tab=\"js\"] .tab-label');
+            if (tsLabel) {
+              tsLabel.textContent = hasStandaloneTabs ? 'Module TS' : 'TypeScript';
+            }
+            if (jsLabel) {
+              jsLabel.textContent = hasStandaloneTabs ? 'Module JS' : 'JavaScript';
+            }
+
+            function switchTab(lang) {
+              if (validTabs.indexOf(lang) === -1) {
+                return;
+              }
+              buttons.forEach(function(btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-tab') === lang);
+              });
+              panels.forEach(function(panel) {
+                panel.classList.toggle('active', panel.getAttribute('data-lang') === lang);
+                panel.style.display = panel.getAttribute('data-lang') === lang ? '' : 'none';
+              });
+              try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+            }
+
+            buttons.forEach(function(btn) {
+              btn.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-tab'));
+              });
+            });
+
+            if (copyButton) {
+              var copyTimer = null;
+              copyButton.addEventListener('click', function() {
+                var activePanel = group.querySelector('.code-tab-panel.active') || panels[0];
+                var code = getPanelCode(activePanel);
+                if (!code.trim()) {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'No code available');
+                  copyButton.setAttribute('title', 'No code available');
+                  return;
+                }
+                copyText(code).then(function() {
+                  copyButton.setAttribute('data-state', 'copied');
+                  copyButton.setAttribute('aria-label', 'Copied');
+                  copyButton.setAttribute('title', 'Copied');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1400);
+                }).catch(function() {
+                  copyButton.setAttribute('data-state', 'failed');
+                  copyButton.setAttribute('aria-label', 'Copy failed');
+                  copyButton.setAttribute('title', 'Copy failed');
+                  if (copyTimer) {
+                    clearTimeout(copyTimer);
+                  }
+                  copyTimer = setTimeout(function() {
+                    copyButton.setAttribute('data-state', 'idle');
+                    copyButton.setAttribute('aria-label', 'Copy code');
+                    copyButton.setAttribute('title', 'Copy code');
+                    copyTimer = null;
+                  }, 1600);
+                });
+              });
+            }
+
+            // Restore saved preference, default to TypeScript when available.
+            var defaultTab = validTabs.indexOf('ts') !== -1 ? 'ts' : validTabs[0];
+            if (saved && validTabs.indexOf(saved) !== -1) {
+              switchTab(saved);
+            } else if (defaultTab) {
+              switchTab(defaultTab);
+            }
+          });
+        })();
+        </script>
+      
+
+
+      <div class="clearfix"></div>
+
+      <h2>Improve this function</h2>
+      <p>
+        Locutus is a community effort following
+        <a target="_blank" rel="noopener" href="https://medium.com/what-i-learned-building/9216e1c9da7d">The McDonald's Theory</a>:
+        we ship first iterations, hoping others will improve them.
+        If you see something that could be better, we'd love your contribution.
+      </p>
+      <p>
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/src/golang/time/ParseInLocation.ts">View on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/edit/main/src/golang/time/ParseInLocation.ts">Edit on GitHub</a></strong>
+        &middot;
+        <strong><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/locutusjs/locutus/main/src/golang/time/ParseInLocation.ts">View Raw</a></strong>
+      </p>
+
+
+      <hr />
+      
+  
+
+  <h2>Help us add more</h2>
+  <p>
+    Got a rainy Sunday afternoon and a taste for a porting puzzle?
+  </p>
+  <ul>
+    <li>
+      Get inspiration from
+      <a target="_blank" rel="noopener" href="https://golang.org/pkg/strings/">Go strings documentation</a>, <a target="_blank" rel="noopener" href="https://golang.org/src/strings/strings.go">Go strings source</a>, <a target="_blank" rel="noopener" href="https://golang.org/src/strings/example_test.go">Go strings examples source</a>, <a target="_blank" rel="noopener" href="https://gophersjs.com">GopherJS</a>.
+    </li>
+    <li>
+      Click "New file" in the appropriate folder
+      <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/tree/main/src/golang/">on GitHub</a>.
+      This will fork the project to your account, directly add the file to it, and send a
+      Pull Request to us.
+    </li>
+  </ul>
+
+  <p>
+    We will then review it. If it's useful to the project and in line with our
+    <a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/blob/main/CONTRIBUTING.md">contributing guidelines</a>
+    your work will become part of Locutus and you'll be automatically credited
+    in the <a href="/authors">authors</a>
+    section accordingly.
+  </p>
+
+
+
+      <p>
+        <a href="/golang/time/">&laquo; More Go time functions</a>
+      </p>
+
+      <center>
+        <br>
+        <a class="github-button" target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+        <br>
+        <br>
+      </center>
+    </div>
+  </div>
+</article>
+</section>
+            
+                <aside id="sidebar">
+   
+        
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/locutus-alpha.png" />
+            <h2 id="name">Locutus</h2>
+            <h3 id="title">All your standard libraries will be assimilated into our <del>JavaScript</del> <a href="/2026/03/locutus-3-0/">TypeScript</a> collective. Resistance is futile.</h3>
+            <!-- <span id="location"><i class="fa fa-map-marker"></i>GitHub</span> -->
+            <!-- <a id="follow" target="_blank" href="https://github.com/locutusjs/locutus/stargazers">FOLLOW</a> -->
+
+            <br />
+            <div class="Social">
+              <a target="_blank" rel="noopener" href="https://twitter.com/locutus_io" class="twitter-follow-button" data-show-count="true" data-dnt="true">Follow @locutus_io</a>
+              <a class="github-button" target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus" data-size="large" data-show-count="true" aria-label="Star locutusjs/locutus on GitHub">Star</a>
+            </div>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+              18
+              <span>languages marked</span>
+            </div>
+            <div class="article-info-block">
+                672
+                <span>functions assimilated</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    
+                    <td>
+                        <a href="https://github.com/locutusjs/locutus" target="_blank" title="github">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                        </a>
+                    </td>
+                    
+                    
+                    
+                    <td>
+                        <a href="https://x.com/locutus_io" target="_blank" title="X">
+                            
+                                <svg class="social-icon-x" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                                    <path d="M12.6.75h2.34L9.82 6.57 15.84 14h-4.71L7.4 9.35 3.36 14H1.02l5.48-6.3L.76.75h4.83L8.97 5.1zm-.82 11.85h1.3L4.89 2.08H3.5z"/>
+                                </svg>
+                            
+                        </a>
+                    </td>
+                    
+                    
+                    
+                    <td>
+                        <a href="/atom.xml" target="_blank" title="rss">
+                            
+                                <i class="fa fa-rss"></i>
+                            
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+<div class="clear"></div>
+
+    
+        <div class="widget-wrap widget-list">
+  <h3 class="widget-title">on the githubs</h3>
+  <div class="widget widget-on_the_githubs">
+    <ul class="on-the-githubs">
+      <li class="otg-loading">Loading...</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CACHE_KEY = 'otg_events'
+  var CACHE_TTL = 15 * 60 * 1000 // 15 minutes
+  var MAX_EVENTS = 15
+
+  function timeAgo(dateStr) {
+    var seconds = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000)
+    if (seconds < 60) return 'just now'
+    var minutes = Math.floor(seconds / 60)
+    if (minutes < 60) return minutes + 'm ago'
+    var hours = Math.floor(minutes / 60)
+    if (hours < 24) return hours + 'h ago'
+    var days = Math.floor(hours / 24)
+    if (days < 30) return days + 'd ago'
+    return Math.floor(days / 30) + 'mo ago'
+  }
+
+  function escHtml(str) {
+    var div = document.createElement('div')
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML
+  }
+
+  function truncate(str, len) {
+    if (!str) return ''
+    return str.length > len ? str.substring(0, len) + '\u2026' : str
+  }
+
+  function describeEvent(ev) {
+    var p = ev.payload
+    switch (ev.type) {
+      case 'PushEvent':
+        var commits = p.commits || []
+        var branch = (p.ref || '').replace('refs/heads/', '')
+        var compareUrl = 'https://github.com/' + ev.repo.name + '/compare/' + p.before.substring(0, 10) + '...' + p.head.substring(0, 10)
+        if (commits.length === 1) return { text: truncate(commits[0].message.split('\n')[0], 60), url: 'https://github.com/' + ev.repo.name + '/commit/' + commits[0].sha }
+        if (commits.length > 1) return { text: 'pushed ' + commits.length + ' commits to ' + branch, url: compareUrl }
+        var size = p.size || p.distinct_size || 0
+        if (size > 0) return { text: 'pushed ' + size + ' commit' + (size !== 1 ? 's' : '') + ' to ' + branch, url: compareUrl }
+        return { text: 'pushed to ' + branch, url: compareUrl }
+      case 'PullRequestEvent':
+        var prUrl = (p.pull_request && p.pull_request.html_url) || 'https://github.com/' + ev.repo.name + '/pull/' + p.number
+        var prTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + p.number
+        return { text: p.action + ' PR: ' + prTitle, url: prUrl }
+      case 'IssuesEvent':
+        var issueTitle = (p.issue && p.issue.title) ? truncate(p.issue.title, 50) : '#' + (p.issue && p.issue.number)
+        return { text: p.action + ' issue: ' + issueTitle, url: (p.issue && p.issue.html_url) || 'https://github.com/' + ev.repo.name + '/issues' }
+      case 'IssueCommentEvent':
+        var commentTitle = (p.issue && p.issue.title) ? truncate(p.issue.title, 50) : '#' + (p.issue && p.issue.number)
+        return { text: 'commented on: ' + commentTitle, url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'CommitCommentEvent':
+        return { text: 'commented on commit', url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'PullRequestReviewEvent':
+        var reviewPrTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + (p.pull_request && p.pull_request.number)
+        return { text: 'reviewed PR: ' + reviewPrTitle, url: (p.review && p.review.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'PullRequestReviewCommentEvent':
+        var reviewCommentTitle = (p.pull_request && p.pull_request.title) ? truncate(p.pull_request.title, 50) : '#' + (p.pull_request && p.pull_request.number)
+        return { text: 'commented on PR: ' + reviewCommentTitle, url: (p.comment && p.comment.html_url) || 'https://github.com/' + ev.repo.name }
+      case 'CreateEvent':
+        if (p.ref_type === 'repository') return { text: 'created the repository', url: 'https://github.com/' + ev.repo.name }
+        return { text: 'created ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name + '/tree/' + p.ref }
+      case 'DeleteEvent':
+        return { text: 'deleted ' + p.ref_type + ': ' + p.ref, url: 'https://github.com/' + ev.repo.name }
+      case 'ForkEvent':
+        return { text: 'forked the repo', url: p.forkee.html_url }
+      case 'WatchEvent':
+        return { text: 'starred the repo', url: 'https://github.com/' + ev.repo.name }
+      case 'ReleaseEvent':
+        return { text: p.action + ' release: ' + p.release.tag_name, url: p.release.html_url }
+      case 'MemberEvent':
+        return { text: p.action + ' member: ' + p.member.login, url: 'https://github.com/' + p.member.login }
+      default:
+        return null
+    }
+  }
+
+  function render(events) {
+    var ul = document.querySelector('.on-the-githubs')
+    if (!ul) return
+    ul.innerHTML = ''
+    var shown = 0
+    for (var i = 0; i < events.length && shown < MAX_EVENTS; i++) {
+      var desc = describeEvent(events[i])
+      if (!desc) continue
+      var ev = events[i]
+      var li = document.createElement('li')
+      li.innerHTML =
+        '<img src="https://avatars.githubusercontent.com/u/' + ev.actor.id + '?s=32&v=4" alt="" />' +
+        '<a target="_blank" rel="noopener" href="https://github.com/' + escHtml(ev.actor.login) + '">' + escHtml(ev.actor.login) + '</a> ' +
+        '<a href="' + escHtml(desc.url) + '">' + escHtml(desc.text) + '</a> ' +
+        '<time>' + timeAgo(ev.created_at) + '</time>'
+      ul.appendChild(li)
+      shown++
+    }
+    if (shown === 0) {
+      ul.innerHTML = '<li>No recent activity</li>'
+    }
+  }
+
+  function showFallback() {
+    var ul = document.querySelector('.on-the-githubs')
+    if (ul) ul.innerHTML = '<li><a target="_blank" rel="noopener" href="https://github.com/locutusjs/locutus/activity">View recent activity on GitHub</a></li>'
+  }
+
+  function load() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')
+      if (cached.data && cached.ts && (Date.now() - cached.ts) < CACHE_TTL) {
+        render(cached.data)
+        return
+      }
+    } catch (e) { /* ignore */ }
+
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', 'https://api.github.com/repos/locutusjs/locutus/events?per_page=20')
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          var data = JSON.parse(xhr.responseText)
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, ts: Date.now() }))
+          render(data)
+        } catch (e) {
+          showFallback()
+        }
+      } else {
+        showFallback()
+      }
+    }
+    xhr.onerror = function () {
+      showFallback()
+    }
+    xhr.send()
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load)
+  } else {
+    load()
+  }
+})()
+</script>
+
+    
+        <div class="widget-wrap widget-list">
+    <h3 class="widget-title">all functions</h3>
+    <div class="widget">
+      <ul>
+      
+        <li><a href="/c/">
+          C
+          (20)
+        </a></li>
+        
+        <ul>
+          <li><a href="/c/ctype/">
+            ctype
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/math/">
+            math
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdio/">
+            stdio
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/stdlib/">
+            stdlib
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/c/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/golang/">
+          Go
+          (80)
+        </a></li>
+        
+        <ul>
+          <li><a href="/golang/net/">
+            net
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/path/">
+            path
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/sort/">
+            sort
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strconv/">
+            strconv
+            (10)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/strings/">
+            strings
+            (29)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/subtle/">
+            subtle
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/time/">
+            time
+            (16)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/golang/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/python/">
+          Python
+          (34)
+        </a></li>
+        
+        <ul>
+          <li><a href="/python/difflib/">
+            difflib
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/math/">
+            math
+            (20)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/re/">
+            re
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/string/">
+            string
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/ruby/">
+          Ruby
+          (40)
+        </a></li>
+        
+        <ul>
+          <li><a href="/ruby/Array/">
+            Array
+            (12)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/Math/">
+            Math
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/ruby/String/">
+            String
+            (13)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/php/">
+          PHP
+          (322)
+        </a></li>
+        
+        <ul>
+          <li><a href="/php/array/">
+            array
+            (73)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/bc/">
+            bc
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/ctype/">
+            ctype
+            (11)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/datetime/">
+            datetime
+            (15)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/exec/">
+            exec
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/filesystem/">
+            filesystem
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/funchand/">
+            funchand
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/i18n/">
+            i18n
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/info/">
+            info
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/json/">
+            json
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/math/">
+            math
+            (46)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/misc/">
+            misc
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/net-gopher/">
+            net-gopher
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/network/">
+            network
+            (6)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/pcre/">
+            pcre
+            (4)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/strings/">
+            strings
+            (91)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/url/">
+            url
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/var/">
+            var
+            (30)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xdiff/">
+            xdiff
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/php/xml/">
+            xml
+            (2)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/perl/">
+          Perl
+          (22)
+        </a></li>
+        
+        <ul>
+          <li><a href="/perl/POSIX/">
+            POSIX
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/perl/core/">
+            core
+            (20)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/lua/">
+          Lua
+          (14)
+        </a></li>
+        
+        <ul>
+          <li><a href="/lua/math/">
+            math
+            (8)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/lua/string/">
+            string
+            (6)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/r/">
+          R
+          (12)
+        </a></li>
+        
+        <ul>
+          <li><a href="/r/base/">
+            base
+            (12)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/julia/">
+          Julia
+          (11)
+        </a></li>
+        
+        <ul>
+          <li><a href="/julia/Base/">
+            Base
+            (11)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/elixir/">
+          Elixir
+          (12)
+        </a></li>
+        
+        <ul>
+          <li><a href="/elixir/Enum/">
+            Enum
+            (5)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/elixir/Float/">
+            Float
+            (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/elixir/Kernel/">
+            Kernel
+            (1)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/elixir/String/">
+            String
+            (4)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/clojure/">
+          Clojure
+          (15)
+        </a></li>
+        
+        <ul>
+          <li><a href="/clojure/Math/">
+            Math
+            (3)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/clojure/core/">
+            core
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/clojure/string/">
+            string
+            (5)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/awk/">
+          AWK
+          (10)
+        </a></li>
+        
+        <ul>
+          <li><a href="/awk/builtin/">
+            builtin
+            (10)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/tcl/">
+          Tcl
+          (15)
+        </a></li>
+        
+        <ul>
+          <li><a href="/tcl/string/">
+            string
+            (15)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/powershell/">
+          PowerShell
+          (16)
+        </a></li>
+        
+        <ul>
+          <li><a href="/powershell/string/">
+            string
+            (16)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/rust/">
+          Rust
+          (23)
+        </a></li>
+        
+        <ul>
+          <li><a href="/rust/str/">
+            str
+            (23)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/swift/">
+          Swift
+          (8)
+        </a></li>
+        
+        <ul>
+          <li><a href="/swift/String/">
+            String
+            (8)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/kotlin/">
+          Kotlin
+          (8)
+        </a></li>
+        
+        <ul>
+          <li><a href="/kotlin/collections/">
+            collections
+            (7)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/kotlin/text/">
+            text
+            (1)
+          </a></li>
+        </ul>
+        
+      
+        <li><a href="/haskell/">
+          Haskell
+          (10)
+        </a></li>
+        
+        <ul>
+          <li><a href="/haskell/list/">
+            list
+            (10)
+          </a></li>
+        </ul>
+        
+      
+      </ul>
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">recent posts</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2026/03/locutus-3-0/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-3-typescript.svg)" alt="Locutus 3.0: Fully Assimilated into TypeScript" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2026/03/locutus-3-0/" class="title">Locutus 3.0: Fully Assimilated into TypeScript</a></p>
+                            <p class="item-date"><time datetime="2026-03-02T00:00:00.000Z" itemprop="datePublished">2026-03-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2024/04/24-update/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/bunnies.webp)" alt="Easter Update" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2024/04/24-update/" class="title">Easter Update</a></p>
+                            <p class="item-date"><time datetime="2024-04-05T00:00:00.000Z" itemprop="datePublished">2024-04-05</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/announcing-locutus/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/css/images/locutus-alpha.png)" alt="php.js is Dead - Long Live Locutus" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/announcing-locutus/" class="title">php.js is Dead - Long Live Locutus</a></p>
+                            <p class="item-date"><time datetime="2016-05-02T00:00:00.000Z" itemprop="datePublished">2016-05-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2007-2026 Kevin van Zonneveld and <a href="/authors">authors</a>.<br>
+            Artwork by <a target="_blank" rel="noopener" href="https://troydodd.deviantart.com/art/Locutus-of-Borg-217586598">Troy Dodd</a>.
+
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+
+    
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<script src="/js/locutus.js"></script>
+
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    </div>
+</body>
+</html>
