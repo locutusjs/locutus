@@ -1641,3 +1641,30 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The highest-leverage security reduction here came from deleting stale packages first, then using exact descriptor-level Yarn resolutions for range-safe transitive updates.
   - `node-gyp@latest` was the decisive root override because it pulled the remaining `make-fetch-happen` / `cacache` / `tar` chain onto patched releases without changing Locutus source code.
+
+### Iteration 83
+
+2026-03-11
+
+- **Area: Expansion (Go time)**
+- Plan:
+  - Add a genuinely higher-leverage Go time helper instead of another easy string/category batch.
+  - Keep the runtime contract aligned with existing Locutus constraints by returning plain `Date` and relying on `Intl`, not `Temporal`.
+  - Verify the function against real Go behavior, especially around DST ambiguity and nonexistent local times.
+- Progress:
+  - Probed actual `time.ParseInLocation` behavior with local Go 1.26 to pin down DST edge semantics before coding.
+  - Added `src/golang/time/ParseInLocation.ts` as a self-contained parser so the public API surface stays limited to the intended exported function.
+  - Kept `golang/time/Parse` unchanged and mirrored its supported layout subset inside `ParseInLocation`, resolving naive wall-clock inputs in a supplied IANA time zone while preserving explicit numeric offsets when present.
+  - Implemented deterministic DST resolution that matches Go for the tested spring-forward and fall-back edge cases.
+  - Wired the new helper into `src/golang/time/index.ts`, Go parity lowering, Rosetta mappings, and the main changelog.
+- Validation:
+  - `corepack yarn exec vitest run test/util/parse-in-location.vitest.ts`
+  - `corepack yarn exec vitest run test/util/golang-parity.vitest.ts`
+  - `corepack yarn build:tests`
+  - `corepack yarn exec vitest run test/generated/golang/time/ParseInLocation.vitest.ts`
+  - `corepack yarn test:parity golang/time/ParseInLocation --no-cache`
+  - `corepack yarn fix:api:snapshot:nonphp`
+  - `corepack yarn fix:type:contracts`
+  - `corepack yarn check`
+- Key learnings:
+  - `Intl.DateTimeFormat` is enough to model location-aware Go parsing within Locutus’ current `Date`-based constraints, but getting DST behavior right required checking real Go outputs rather than relying on docs alone.

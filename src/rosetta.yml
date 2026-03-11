@@ -494,3 +494,6 @@ sprintf:
 date_format:
   - php/datetime/date
   - golang/time/Format
+
+date_parse_in_location:
+  - golang/time/ParseInLocation
