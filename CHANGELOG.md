@@ -24,7 +24,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.12...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.13...main).
+
+## v3.0.13
+
+Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.12...v3.0.13).
+Version rationale: `patch` for a scoped runtime parity fix without import-model or runtime floor changes.
 
 ### CI
 

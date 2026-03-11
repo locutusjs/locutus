@@ -1730,3 +1730,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - For PHP helpers with narrowed TypeScript signatures, util-level parity tests are the right place to cover negative PHP runtime behavior without polluting generated public examples with invalid-input casts.
   - Preserving the longstanding “JS object as PHP associative array” contract matters here; the fix should narrow scalar coercions without accidentally rejecting associative objects that happen to use a custom prototype.
+
+### Iteration 87
+
+2026-03-11
+
+- **Area: Release**
+- Plan:
+  - Merge the `php/array/array_values` parity fix after PR CI clears.
+  - Promote `## main` into a patch release and publish from clean `main`.
+  - Verify npm, GitHub release, and website deploy completion before closing the loop on the linked issue.
+- Progress:
+  - Squash-merged PR `#566` onto `main` as `32dbab47590cd1459ff31f49111259429b18e84c`.
+  - Prepared `v3.0.13` release metadata by promoting the changelog entry and bumping the package version.
+- Validation:
+  - Pending tag and `main` workflow completion.
+- Key learnings:
+  - This issue was small enough for a same-day merge-and-release, but still worth running through the standard `main` and tag workflow gates because it changes runtime error semantics in a verified function.
