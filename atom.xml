@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Kevin van Zonneveld</rights>
   <subtitle>All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.</subtitle>
   <title>Locutus</title>
-  <updated>2026-03-10T22:43:21.842Z</updated>
+  <updated>2026-03-11T07:29:48.768Z</updated>
   <entry>
     <author>
       <name>Kevin van Zonneveld</name>
@@ -33,7 +33,7 @@
       <![CDATA[<p>It’s been 18 years since I pushed the first commit to this project, and nearly 10 since we <a href="/2016/05/announcing-locutus/">renamed]]>
     </summary>
     <title>Locutus 3.0: Fully Assimilated into TypeScript</title>
-    <updated>2026-03-10T22:43:21.842Z</updated>
+    <updated>2026-03-11T07:29:48.768Z</updated>
   </entry>
   <entry>
     <author>
@@ -56,7 +56,7 @@
       <![CDATA[<p>It’s been 17 years since I started this project (!), and I have a few nice updates to talk about that I’ve been tinkering on over Easter+]]>
     </summary>
     <title>Easter Update</title>
-    <updated>2026-03-10T22:43:21.842Z</updated>
+    <updated>2026-03-11T07:29:48.768Z</updated>
   </entry>
   <entry>
     <author>
@@ -80,7 +80,7 @@
 I am launching a big iteration]]>
     </summary>
     <title>php.js is Dead - Long Live Locutus</title>
-    <updated>2026-03-10T22:43:21.842Z</updated>
+    <updated>2026-03-11T07:29:48.768Z</updated>
   </entry>
   <entry>
     <author>
@@ -99,7 +99,7 @@ I am launching a big iteration]]>
 <p>Among things, it w]]>
     </summary>
     <title>Breaking Backwards Compatibility</title>
-    <updated>2026-03-10T22:43:21.842Z</updated>
+    <updated>2026-03-11T07:29:48.767Z</updated>
   </entry>
   <entry>
     <author>
@@ -121,7 +121,7 @@ I am launching a big iteration]]>
 one built]]>
     </summary>
     <title>Switching to Jekyll</title>
-    <updated>2026-03-10T22:43:21.842Z</updated>
+    <updated>2026-03-11T07:29:48.767Z</updated>
   </entry>
   <entry>
     <author>
@@ -140,7 +140,7 @@ one built]]>
 for reasons outlined in the i]]>
     </summary>
     <title>Standard Coding Style</title>
-    <updated>2026-03-10T22:43:21.841Z</updated>
+    <updated>2026-03-11T07:29:48.767Z</updated>
   </entry>
   <entry>
     <author>
@@ -159,7 +159,7 @@ for reasons outlined in the i]]>
 we should re-invent as few wheels as po]]>
     </summary>
     <title>Coding Style</title>
-    <updated>2026-03-10T22:43:21.841Z</updated>
+    <updated>2026-03-11T07:29:48.767Z</updated>
   </entry>
   <entry>
     <author>
@@ -178,7 +178,7 @@ we should re-invent as few wheels as po]]>
 we generate HTML <a href="htt]]>
     </summary>
     <title>A Word on the Focus of php.js</title>
-    <updated>2026-03-10T22:43:21.841Z</updated>
+    <updated>2026-03-11T07:29:48.767Z</updated>
   </entry>
   <entry>
     <author>
@@ -200,6 +200,6 @@ The old one had a lot of dead weight that nobody used and was basically unmainta
 <]]>
     </summary>
     <title>New Site</title>
-    <updated>2026-03-10T22:43:21.841Z</updated>
+    <updated>2026-03-11T07:29:48.767Z</updated>
   </entry>
 </feed>
