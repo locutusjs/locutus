@@ -24,7 +24,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.13...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.14...main).
+
+## v3.0.14
+
+Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.13...v3.0.14).
+Version rationale: `patch` for a scoped PHP parity/security fix affecting one removed upstream function without package runtime or import-model changes.
 
 ### PHP
 

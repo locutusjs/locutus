@@ -1766,3 +1766,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Pending regeneration and test runs.
 - Key learnings:
   - For removed upstream APIs, parity should be handled with explicit deletion plus nearby cleanup, not by keeping a dangerous compatibility shim alive.
+
+### Iteration 89
+
+2026-03-11
+
+- **Area: Release + Security**
+- Plan:
+  - Merge the `create_function` removal once PR CI clears.
+  - Promote the PHP 8.3 parity/security fix into a patch release and verify npm, GitHub, and the live site.
+  - Hand back a maintainer-ready advisory reply plus the exact GitHub Security workflow to close the report cleanly.
+- Progress:
+  - Squash-merged PR `#568` onto `main` as `412fdb17b9b0138023eae0b32d2519ee6c547661`.
+  - Prepared `v3.0.14` release metadata by promoting the changelog entry and classifying it as a patch under the project’s pragmatic versioning rules.
+- Validation:
+  - Pending tag workflow and production verification.
+- Key learnings:
+  - Even when a fix intentionally removes one public helper, the project’s bump policy still treats isolated parity/security corrections as patch releases unless they change the package runtime/import model broadly.
