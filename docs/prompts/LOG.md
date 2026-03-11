@@ -1668,3 +1668,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check`
 - Key learnings:
   - `Intl.DateTimeFormat` is enough to model location-aware Go parsing within Locutus’ current `Date`-based constraints, but getting DST behavior right required checking real Go outputs rather than relying on docs alone.
+
+### Iteration 84
+
+2026-03-11
+
+- **Area: Release**
+- Plan:
+  - Confirm the merged Go time expansion is green on `main`.
+  - Promote the accumulated `## main` notes into the next patch release.
+  - Bump the published package version and tag from clean `main`.
+- Progress:
+  - Confirmed `Locutus CI` on `main` passed for merge commit `9aaab357043a2a2249394976f1125d7685823f47` (run `22950725579`), including full parity, website build, and website deploy.
+  - Updated `CHANGELOG.md` to promote the current `## main` notes into `## v3.0.12` with a patch-version rationale covering the Go runtime addition plus the website/dependency hardening work that landed since `v3.0.11`.
+  - Prepared the repo for the version bump/tag step from clean `main`.
+- Validation:
+  - `gh run view 22950725579 --json status,conclusion,jobs,url`
+  - `git status --short`
+- Key learnings:
+  - The current release shape is strongest when it bundles one clear runtime addition with the maintainer-facing hardening work that reduced deploy and advisory risk during the same stretch.
