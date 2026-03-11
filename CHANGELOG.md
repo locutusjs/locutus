@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.12...main).
 
+### CI
+
+- Refreshed GitHub Actions workflow pins to `checkout@v6`, `setup-node@v6`, and `cache@v5`, and replaced the Node 20-based Pages deploy action with a shell-based `gh-pages` deploy step ahead of the GitHub-hosted Node 24 cutoff.
+
 ## v3.0.12
 
 Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.11...v3.0.12).

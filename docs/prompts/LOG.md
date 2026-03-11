@@ -1687,3 +1687,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `git status --short`
 - Key learnings:
   - The current release shape is strongest when it bundles one clear runtime addition with the maintainer-facing hardening work that reduced deploy and advisory risk during the same stretch.
+
+### Iteration 85
+
+2026-03-11
+
+- **Area: CI maintenance**
+- Plan:
+  - Remove the GitHub Actions Node 20 runtime warning before the June 2026 runner cutoff.
+  - Upgrade first-party action pins where official Node 24-capable majors already exist.
+  - Replace the third-party Pages deploy action if it is still tied to Node 20.
+- Progress:
+  - Verified from the official action metadata that `actions/checkout@v6`, `actions/setup-node@v6`, and `actions/cache@v5` run on `node24`.
+  - Verified that `JamesIves/github-pages-deploy-action@v4.7.3` still declares `using: node20`, so a version bump alone would not solve the warning.
+  - Replaced the workflow's Pages publish step with a small shell deploy script that force-pushes the generated `website/public` output onto `gh-pages` via a temporary worktree, preserving the existing generated-branch deployment model without relying on a Node-based action runtime.
+  - Updated both `ci.yml` and `nightly-parity.yml` so the Node 24-capable action pins are used consistently across PR, `main`, tag, and nightly runs.
+- Validation:
+  - `bash -n scripts/deploy-gh-pages.sh`
+  - `ruby -e "require 'yaml'; YAML.load_file('.github/workflows/ci.yml'); YAML.load_file('.github/workflows/nightly-parity.yml')"`
+  - `DRY_RUN=1 ./scripts/deploy-gh-pages.sh`
+- Key learnings:
+  - The Pages deploy step was the only part of the workflow family that could not be fixed with a simple version bump; the actual Node 24-safe move was to replace the third-party action rather than shuffle to another Node 20-based deploy wrapper.
