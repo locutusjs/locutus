@@ -1599,3 +1599,45 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `~/code/dotfiles/bin/council.ts review`
 - Key learnings:
   - The new harness is strong enough to catch subtle feed-format regressions from dependency majors, not just missing files or broken pages.
+
+### Iteration 82
+
+2026-03-11
+
+- **Area: Security audit burn-down**
+- Plan:
+  - Reduce the remaining default-branch GitHub advisory noise without widening into another product or CI project.
+  - Remove website dependencies that are no longer part of the actual build/preview path before resorting to lockfile overrides.
+  - Use only range-safe transitive pins in both lockfiles, then revalidate with the website harness and full root checks.
+- Progress:
+  - Queried the open advisory set and split it by `yarn.lock` vs `website/yarn.lock` to avoid mixing root tooling work with Hexo-stack work.
+  - Removed stale website-only dependencies that were still pulling vulnerable trees despite not participating in normal site generation:
+    - `hexo-browsersync`
+    - `hexo-migrator-rss`
+    - `cross-spawn-async`
+  - Removed the unused `browsersync` block from `website/_config.yml` because local preview is already handled by `hexo server`.
+  - Added targeted `website/package.json` resolutions for patched transitive releases that fit the currently installed Hexo plugin ranges:
+    - `dompurify`
+    - `filelist`
+    - `minimatch`
+    - `tar`
+  - Added targeted root `package.json` resolutions for patched transitive releases in the current toolchain:
+    - `ansi-regex`
+    - `brace-expansion`
+    - `braces`
+    - `cross-spawn`
+    - `glob`
+    - `hosted-git-info`
+    - `minimatch`
+    - `node-gyp`
+    - `rollup`
+    - `semver`
+  - Re-resolved both lockfiles until `yarn npm audit --recursive` in each workspace no longer reported active GitHub advisories; the remaining findings are upstream deprecation notices (`glob`, `inflight`, `moize`, `whatwg-encoding`) rather than patched-security misses.
+- Validation:
+  - `cd website && corepack yarn npm audit --recursive`
+  - `corepack yarn npm audit --recursive`
+  - `corepack yarn website:ci`
+  - `corepack yarn check`
+- Key learnings:
+  - The highest-leverage security reduction here came from deleting stale packages first, then using exact descriptor-level Yarn resolutions for range-safe transitive updates.
+  - `node-gyp@latest` was the decisive root override because it pulled the remaining `make-fetch-happen` / `cacache` / `tar` chain onto patched releases without changing Locutus source code.

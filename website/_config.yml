@@ -15,9 +15,6 @@ feed:
   path: /atom.xml
   limit: 0
 
-browsersync:
-  open: true
-
 # Markdown
 ## https://github.com/chjj/marked
 marked:

@@ -318,6 +318,7 @@ Here's the flow that takes written functions to the website:
 
 Blog posts can be found in `website/source/_posts`.
 
-If you want to preview locally type `yarn website:start`.
+If you want to preview locally type `yarn website:start`. This opens the local Hexo preview in your browser; refresh
+the page after edits to see the latest generated output.
 
 Any change to `main` is deployed automatically onto GitHub Pages by CI.
