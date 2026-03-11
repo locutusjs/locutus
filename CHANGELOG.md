@@ -30,6 +30,10 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.12...mai
 
 - Refreshed GitHub Actions workflow pins to `checkout@v6`, `setup-node@v6`, and `cache@v5`, and replaced the Node 20-based Pages deploy action with a shell-based `gh-pages` deploy step ahead of the GitHub-hosted Node 24 cutoff.
 
+### Fixes
+
+- Fixed `php/array/array_values` so primitive string input now throws a PHP-style `TypeError` instead of coercing through `Object.values`, matching current PHP runtime behavior more closely.
+
 ## v3.0.12
 
 Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.11...v3.0.12).
