@@ -1747,3 +1747,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Pending tag and `main` workflow completion.
 - Key learnings:
   - This issue was small enough for a same-day merge-and-release, but still worth running through the standard `main` and tag workflow gates because it changes runtime error semantics in a verified function.
+
+### Iteration 88
+
+2026-03-11
+
+- **Area: CI release hardening**
+- Plan:
+  - Fix the tag-release workflow so rerunning a completed publish does not fail on npm duplicate-version errors.
+  - Keep first-run publish behavior unchanged.
+  - Validate the workflow syntax and the npm-version detection logic locally before opening a PR.
+- Progress:
+  - Investigated the failed `v3.0.13` tag rerun and confirmed the only failure was `npm publish` rejecting an already-published version after full parity had passed.
+  - Updated `.github/workflows/ci.yml` so the `Release` step checks whether `${name}@${version}` is already present on npm and exits successfully instead of retrying `npm publish`.
+- Validation:
+  - Pending local workflow validation and command-path verification.
+- Key learnings:
+  - Release reruns need idempotent external-side effects; package publication should be treated as “publish if missing” rather than “always publish.”

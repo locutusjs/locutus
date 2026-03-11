@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.13...main).
 
+### CI
+
+- Made tag-release reruns idempotent on npm by skipping `npm publish` when the tagged package version is already published, so recovery reruns do not fail on duplicate publish attempts.
+
 ## v3.0.13
 
 Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.12...v3.0.13).
