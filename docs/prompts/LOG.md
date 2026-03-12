@@ -1826,3 +1826,30 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The live PHP 8.3 container surface is already useful as both a guardrail and an idea backlog: this first pass found 24 intentional Locutus-only extras and 887 runtime-only functions worth treating as inspiration rather than failures.
   - Keeping the classification policy on the language adapter itself makes the system generic enough for other runtimes without locking us into PHP-specific filenames or one-off scripts.
+
+### Iteration 91
+
+2026-03-12
+
+- **Area: Parity infrastructure + Backlog curation**
+- Plan:
+  - Turn the raw runtime-surface output into a living inventory that distinguishes intentional extras from desired future ports and explicit non-goals.
+  - Keep CI fail conditions narrow by continuing to fail only on unclassified shipped extras or mapping/discovery problems.
+  - Move the classification data out of the PHP adapter and into a human-maintained generic policy file.
+- Progress:
+  - Added `docs/runtime-surface-policy.yml` as the first shared inventory for runtime-surface classifications.
+  - Added a generic loader/validator in `test/parity/lib/runtime-surface-policy.ts`.
+  - Moved PHP extra classification out of `test/parity/lib/languages/php.ts` and into the policy file.
+  - Extended the report to distinguish:
+    - classified Locutus extras by status
+    - classified runtime-only backlog entries by status
+    - remaining unclassified runtime-only ideas
+  - Seeded the PHP runtime-only backlog with a first split between:
+    - wanted: `array_is_list`, `array_key_first`, `array_key_last`
+    - out of scope: side-effectful/process/environment helpers like `chdir`, `chmod`, `chroot`, `assert`, and `class_alias`
+- Validation:
+  - `corepack yarn exec vitest run test/util/runtime-surface.vitest.ts`
+  - `corepack yarn test:runtime-surface php`
+- Key learnings:
+  - The inventory becomes much more useful once runtime-only functions are separated into “wanted”, “out_of_scope”, and “still unclassified” instead of appearing as one giant flat count.
+  - Keeping the policy file generic and human-readable makes it viable as a cross-language backlog without weakening the CI guardrail semantics.

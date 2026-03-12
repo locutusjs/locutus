@@ -7,11 +7,11 @@
  */
 
 import type {
-  FunctionInfo,
   LanguageHandler,
   RuntimeSurfaceAdapter,
-  RuntimeSurfaceExtra,
+  RuntimeSurfaceLanguagePolicy,
   RuntimeSurfaceLocutusFunction,
+  RuntimeSurfacePolicyEntry,
   RuntimeSurfaceSnapshot,
 } from './types.ts'
 
@@ -23,15 +23,22 @@ export interface RuntimeSurfaceCheckResult {
   locutusEntries: string[]
   ignoredFunctions: string[]
   duplicateEntries: string[]
-  allowedExtras: RuntimeSurfaceExtra[]
+  classifiedExtras: RuntimeSurfacePolicyMatch[]
   unexpectedExtras: string[]
-  runtimeOnly: string[]
+  classifiedRuntimeOnly: RuntimeSurfacePolicyMatch[]
+  unclassifiedRuntimeOnly: string[]
+  staleLocutusExtraPolicy: RuntimeSurfacePolicyMatch[]
+  staleRuntimeOnlyPolicy: RuntimeSurfacePolicyMatch[]
 }
 
 export interface RuntimeSurfaceLanguageResolution {
   selected: string[]
   unknown: string[]
   unavailable: string[]
+}
+
+export interface RuntimeSurfacePolicyMatch extends RuntimeSurfacePolicyEntry {
+  name: string
 }
 
 export function resolveRuntimeSurfaceLanguages(
@@ -109,6 +116,7 @@ export function compareRuntimeSurface(
   functions: RuntimeSurfaceLocutusFunction[],
   handler: LanguageHandler,
   runtimeSurface: RuntimeSurfaceSnapshot,
+  policy: RuntimeSurfaceLanguagePolicy = {},
 ): RuntimeSurfaceCheckResult {
   if (!handler.runtimeSurface) {
     throw new Error(`Language ${handler.displayName} does not define a runtime surface adapter`)
@@ -118,24 +126,53 @@ export function compareRuntimeSurface(
   const runtimeEntries = [...new Set(runtimeSurface.functions)].sort()
   const runtimeSet = new Set(runtimeEntries)
   const locutusSet = new Set(entries)
-  const allowedExtras: RuntimeSurfaceExtra[] = []
+  const classifiedExtras: RuntimeSurfacePolicyMatch[] = []
   const unexpectedExtras: string[] = []
+  const seenLocutusExtraPolicy = new Set<string>()
 
   for (const entry of entries) {
     if (runtimeSet.has(entry)) {
       continue
     }
 
-    const reason = handler.runtimeSurface.allowedExtras?.get(entry)
-    if (reason) {
-      allowedExtras.push({ name: entry, reason })
+    const policyEntry = policy.locutusExtras?.[entry]
+    if (policyEntry) {
+      seenLocutusExtraPolicy.add(entry)
+      classifiedExtras.push({ name: entry, ...policyEntry })
       continue
     }
 
     unexpectedExtras.push(entry)
   }
 
-  const runtimeOnly = runtimeEntries.filter((entry) => !locutusSet.has(entry))
+  const classifiedRuntimeOnly: RuntimeSurfacePolicyMatch[] = []
+  const unclassifiedRuntimeOnly: string[] = []
+  const seenRuntimeOnlyPolicy = new Set<string>()
+
+  for (const entry of runtimeEntries) {
+    if (locutusSet.has(entry)) {
+      continue
+    }
+
+    const policyEntry = policy.runtimeOnly?.[entry]
+    if (policyEntry) {
+      seenRuntimeOnlyPolicy.add(entry)
+      classifiedRuntimeOnly.push({ name: entry, ...policyEntry })
+      continue
+    }
+
+    unclassifiedRuntimeOnly.push(entry)
+  }
+
+  const staleLocutusExtraPolicy = Object.entries(policy.locutusExtras ?? {})
+    .filter(([name]) => !seenLocutusExtraPolicy.has(name))
+    .map(([name, entry]) => ({ name, ...entry }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+
+  const staleRuntimeOnlyPolicy = Object.entries(policy.runtimeOnly ?? {})
+    .filter(([name]) => !seenRuntimeOnlyPolicy.has(name))
+    .map(([name, entry]) => ({ name, ...entry }))
+    .sort((a, b) => a.name.localeCompare(b.name))
 
   return {
     language: runtimeSurface.language,
@@ -148,9 +185,12 @@ export function compareRuntimeSurface(
     locutusEntries: entries,
     ignoredFunctions,
     duplicateEntries: duplicates,
-    allowedExtras: allowedExtras.sort((a, b) => a.name.localeCompare(b.name)),
+    classifiedExtras: classifiedExtras.sort((a, b) => a.name.localeCompare(b.name)),
     unexpectedExtras,
-    runtimeOnly,
+    classifiedRuntimeOnly: classifiedRuntimeOnly.sort((a, b) => a.name.localeCompare(b.name)),
+    unclassifiedRuntimeOnly,
+    staleLocutusExtraPolicy,
+    staleRuntimeOnlyPolicy,
   }
 }
 
@@ -169,6 +209,33 @@ function formatList(name: string, values: string[], maxItems = 12): string[] {
   return lines
 }
 
+function formatPolicyMatches(label: string, matches: RuntimeSurfacePolicyMatch[], maxItems = 12): string[] {
+  if (!matches.length) {
+    return []
+  }
+
+  const grouped = new Map<string, RuntimeSurfacePolicyMatch[]>()
+  for (const match of matches) {
+    const existing = grouped.get(match.status) ?? []
+    existing.push(match)
+    grouped.set(match.status, existing)
+  }
+
+  const lines: string[] = []
+  for (const status of [...grouped.keys()].sort()) {
+    const entries = grouped.get(status)?.sort((left, right) => left.name.localeCompare(right.name)) ?? []
+    lines.push(`  ${label} [${status}]: ${entries.length}`)
+    for (const entry of entries.slice(0, maxItems)) {
+      lines.push(`    - ${entry.name} (${entry.reason})`)
+    }
+    if (entries.length > maxItems) {
+      lines.push(`    - ... (${entries.length - maxItems} more)`)
+    }
+  }
+
+  return lines
+}
+
 export function formatRuntimeSurfaceReport(result: RuntimeSurfaceCheckResult): string {
   const lines = [
     `${result.language} runtime surface (${result.target})`,
@@ -177,14 +244,12 @@ export function formatRuntimeSurfaceReport(result: RuntimeSurfaceCheckResult): s
     `  comparable entries: ${result.locutusEntries.length}`,
   ]
 
-  lines.push(
-    ...formatList(
-      'allowed extras',
-      result.allowedExtras.map((extra) => `${extra.name} (${extra.reason})`),
-    ),
-  )
+  lines.push(...formatPolicyMatches('locutus extras', result.classifiedExtras))
   lines.push(...formatList('unexpected extras', result.unexpectedExtras))
-  lines.push(...formatList('runtime-only ideas', result.runtimeOnly))
+  lines.push(...formatPolicyMatches('runtime-only backlog', result.classifiedRuntimeOnly))
+  lines.push(...formatList('runtime-only ideas', result.unclassifiedRuntimeOnly))
+  lines.push(...formatPolicyMatches('stale locutus-extra policy', result.staleLocutusExtraPolicy))
+  lines.push(...formatPolicyMatches('stale runtime-only policy', result.staleRuntimeOnlyPolicy))
   lines.push(...formatList('duplicate locutus entries', result.duplicateEntries))
   lines.push(...formatList('ignored locutus functions', result.ignoredFunctions))
 

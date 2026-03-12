@@ -132,5 +132,6 @@ describe('select-parity-targets', () => {
 
     expect(computeRuntimeSurfaceLanguages(['src/php/array/array_flip.ts'])).toEqual(['php'])
     expect(computeRuntimeSurfaceLanguages(['test/parity/lib/runtime-surface.ts'])).toEqual(['php'])
+    expect(computeRuntimeSurfaceLanguages(['docs/runtime-surface-policy.yml'])).toEqual(['php'])
   })
 })

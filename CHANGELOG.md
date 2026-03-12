@@ -29,6 +29,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.14...mai
 ### Infrastructure
 
 - Added a parity-adjacent runtime-surface guardrail that discovers callable functions from the target PHP 8.3 Docker image, compares them against Locutus' shipped PHP surface, hard-fails on unclassified Locutus-only extras, and reports runtime-only functions as inspiration rather than CI failures.
+- Added a shared runtime-surface policy inventory in `docs/runtime-surface-policy.yml` so intentional shipped extras, wanted runtime-only functions, and explicitly out-of-scope runtime functions are tracked separately from the CI hard-fail rules.
 
 ## v3.0.14
 

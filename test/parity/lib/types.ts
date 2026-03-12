@@ -62,6 +62,29 @@ export interface RuntimeSurfaceExtra {
   reason: string
 }
 
+export type RuntimeSurfaceLocutusExtraPolicyStatus =
+  | 'extension_dependent'
+  | 'keep'
+  | 'language_construct'
+  | 'legacy_keep'
+  | 'removed_upstream'
+
+export type RuntimeSurfaceRuntimeOnlyPolicyStatus = 'out_of_scope' | 'wanted'
+
+export type RuntimeSurfacePolicyStatus = RuntimeSurfaceLocutusExtraPolicyStatus | RuntimeSurfaceRuntimeOnlyPolicyStatus
+
+export interface RuntimeSurfacePolicyEntry<Status extends RuntimeSurfacePolicyStatus = RuntimeSurfacePolicyStatus> {
+  status: Status
+  reason: string
+}
+
+export interface RuntimeSurfaceLanguagePolicy {
+  locutusExtras?: Record<string, RuntimeSurfacePolicyEntry<RuntimeSurfaceLocutusExtraPolicyStatus>> | undefined
+  runtimeOnly?: Record<string, RuntimeSurfacePolicyEntry<RuntimeSurfaceRuntimeOnlyPolicyStatus>> | undefined
+}
+
+export type RuntimeSurfacePolicy = Record<string, RuntimeSurfaceLanguagePolicy>
+
 export interface RuntimeSurfaceLocutusFunction {
   path: string
   language: string
@@ -74,8 +97,6 @@ export interface RuntimeSurfaceAdapter {
   discover(): Promise<RuntimeSurfaceSnapshot> | RuntimeSurfaceSnapshot
   /** Map a Locutus function into the comparable runtime surface name, or null to ignore it. */
   getLocutusEntry(func: RuntimeSurfaceLocutusFunction): string | null
-  /** Intentional Locutus-only entries that should not fail the surface check. */
-  allowedExtras?: ReadonlyMap<string, string>
 }
 
 export interface LanguageHandler {

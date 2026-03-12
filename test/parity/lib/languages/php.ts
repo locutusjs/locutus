@@ -33,33 +33,6 @@ export const PHP_SKIP_LIST = new Set([
   'echo',
 ])
 
-const PHP_ALLOWED_RUNTIME_SURFACE_EXTRAS = new Map<string, string>([
-  ['bcadd', 'bcmath extension is not enabled in the base parity container'],
-  ['bccomp', 'bcmath extension is not enabled in the base parity container'],
-  ['bcdiv', 'bcmath extension is not enabled in the base parity container'],
-  ['bcmul', 'bcmath extension is not enabled in the base parity container'],
-  ['bcround', 'bcmath extension is not enabled in the base parity container'],
-  ['bcscale', 'bcmath extension is not enabled in the base parity container'],
-  ['bcsub', 'bcmath extension is not enabled in the base parity container'],
-  ['convert_cyr_string', 'removed in PHP 8.0 but intentionally retained as a legacy port'],
-  ['each', 'removed in PHP 8.0 but intentionally retained as a legacy port'],
-  ['echo', 'PHP language construct, not a callable runtime function'],
-  ['empty', 'PHP language construct, not a callable runtime function'],
-  ['gopher_parsedir', 'niche extension helper retained as an explicit Locutus port'],
-  ['i18n_loc_get_default', 'PECL intl helper retained as an explicit Locutus port'],
-  ['i18n_loc_set_default', 'PECL intl helper retained as an explicit Locutus port'],
-  ['is_binary', 'legacy PHP alias/helper retained as an explicit Locutus port'],
-  ['is_buffer', 'legacy PHP alias/helper retained as an explicit Locutus port'],
-  ['is_real', 'legacy PHP alias/helper retained as an explicit Locutus port'],
-  ['is_unicode', 'legacy PHP alias/helper retained as an explicit Locutus port'],
-  ['isset', 'PHP language construct, not a callable runtime function'],
-  ['money_format', 'removed in PHP 8.0 but intentionally retained as a legacy port'],
-  ['split', 'removed in PHP 7.0 but intentionally retained as a legacy port'],
-  ['sql_regcase', 'removed in PHP 7.0 but intentionally retained as a legacy port'],
-  ['xdiff_string_diff', 'xdiff extension is not enabled in the base parity container'],
-  ['xdiff_string_patch', 'xdiff extension is not enabled in the base parity container'],
-])
-
 function discoverPhpRuntimeSurface() {
   const result = runInDocker(PHP_DOCKER_IMAGE, [
     'php',
@@ -511,6 +484,5 @@ export const phpHandler: LanguageHandler = {
   runtimeSurface: {
     discover: discoverPhpRuntimeSurface,
     getLocutusEntry: (func) => func.name,
-    allowedExtras: PHP_ALLOWED_RUNTIME_SURFACE_EXTRAS,
   },
 }

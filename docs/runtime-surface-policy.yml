@@ -1,0 +1,108 @@
+php:
+  locutusExtras:
+    bcadd:
+      status: extension_dependent
+      reason: bcmath is not enabled in the base parity container, but the function remains a useful PHP port.
+    bccomp:
+      status: extension_dependent
+      reason: bcmath is not enabled in the base parity container, but the function remains a useful PHP port.
+    bcdiv:
+      status: extension_dependent
+      reason: bcmath is not enabled in the base parity container, but the function remains a useful PHP port.
+    bcmul:
+      status: extension_dependent
+      reason: bcmath is not enabled in the base parity container, but the function remains a useful PHP port.
+    bcround:
+      status: extension_dependent
+      reason: bcmath is not enabled in the base parity container, but the function remains a useful PHP port.
+    bcscale:
+      status: extension_dependent
+      reason: bcmath is not enabled in the base parity container, but the function remains a useful PHP port.
+    bcsub:
+      status: extension_dependent
+      reason: bcmath is not enabled in the base parity container, but the function remains a useful PHP port.
+    convert_cyr_string:
+      status: legacy_keep
+      reason: Removed upstream in PHP 8.0, but still retained as a legacy compatibility port.
+    each:
+      status: legacy_keep
+      reason: Removed upstream in PHP 8.0, but still retained as a legacy compatibility port.
+    echo:
+      status: language_construct
+      reason: Modeled pragmatically in Locutus even though it is a PHP language construct rather than a callable runtime function.
+    empty:
+      status: language_construct
+      reason: Modeled pragmatically in Locutus even though it is a PHP language construct rather than a callable runtime function.
+    gopher_parsedir:
+      status: keep
+      reason: Niche helper retained as an explicit Locutus port.
+    i18n_loc_get_default:
+      status: extension_dependent
+      reason: Intl helper retained even though it is not exposed by the base parity container.
+    i18n_loc_set_default:
+      status: extension_dependent
+      reason: Intl helper retained even though it is not exposed by the base parity container.
+    is_binary:
+      status: legacy_keep
+      reason: Legacy alias retained for compatibility with older PHP-oriented code.
+    is_buffer:
+      status: legacy_keep
+      reason: Legacy alias retained for compatibility with older PHP-oriented code.
+    is_real:
+      status: legacy_keep
+      reason: Legacy alias retained for compatibility with older PHP-oriented code.
+    is_unicode:
+      status: legacy_keep
+      reason: Legacy alias retained for compatibility with older PHP-oriented code.
+    isset:
+      status: language_construct
+      reason: Modeled pragmatically in Locutus even though it is a PHP language construct rather than a callable runtime function.
+    money_format:
+      status: legacy_keep
+      reason: Removed upstream in PHP 8.0, but still retained as a legacy compatibility port.
+    split:
+      status: legacy_keep
+      reason: Removed upstream in PHP 7.0, but still retained as a legacy compatibility port.
+    sql_regcase:
+      status: legacy_keep
+      reason: Removed upstream in PHP 7.0, but still retained as a legacy compatibility port.
+    xdiff_string_diff:
+      status: extension_dependent
+      reason: xdiff is not enabled in the base parity container, but the function remains a useful PHP port.
+    xdiff_string_patch:
+      status: extension_dependent
+      reason: xdiff is not enabled in the base parity container, but the function remains a useful PHP port.
+  runtimeOnly:
+    array_is_list:
+      status: wanted
+      reason: Modern PHP array helper with clear value and a clean JS runtime contract.
+    array_key_first:
+      status: wanted
+      reason: Frequently useful helper that fits Locutus' plain-object array model well.
+    array_key_last:
+      status: wanted
+      reason: Frequently useful helper that fits Locutus' plain-object array model well.
+    assert:
+      status: out_of_scope
+      reason: Runtime assertion and configuration behavior is not a good portability target for Locutus.
+    chdir:
+      status: out_of_scope
+      reason: Process-wide working-directory side effect is outside the project's plain-value portability focus.
+    checkdnsrr:
+      status: out_of_scope
+      reason: Network/environment-dependent behavior is outside the project's portability focus.
+    chgrp:
+      status: out_of_scope
+      reason: Filesystem ownership side effects are outside the project's portability focus.
+    chmod:
+      status: out_of_scope
+      reason: Filesystem permission side effects are outside the project's portability focus.
+    chown:
+      status: out_of_scope
+      reason: Filesystem ownership side effects are outside the project's portability focus.
+    chroot:
+      status: out_of_scope
+      reason: Process and filesystem sandbox side effects are outside the project's portability focus.
+    class_alias:
+      status: out_of_scope
+      reason: Runtime class table mutation is not a good fit for Locutus' plain-value portability model.

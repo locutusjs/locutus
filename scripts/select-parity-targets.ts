@@ -39,6 +39,7 @@ const FORCE_FULL_PATHS = new Set([
 
 const FORCE_FULL_PREFIXES = ['.github/workflows/', 'test/parity/lib/']
 const RUNTIME_SURFACE_FORCE_ALL_PATHS = new Set([
+  'docs/runtime-surface-policy.yml',
   'scripts/check-runtime-surface.ts',
   'test/parity/lib/runtime-surface.ts',
   'test/util/runtime-surface.vitest.ts',
