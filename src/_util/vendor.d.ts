@@ -15,6 +15,7 @@ declare module 'indent-string' {
 declare module 'js-yaml' {
   interface YamlApi {
     dump(value: unknown, options?: unknown): string
+    load(value: string, options?: unknown): unknown
   }
 
   const YAML: YamlApi

@@ -16,10 +16,12 @@ import {
   formatRuntimeSurfaceReport,
   resolveRuntimeSurfaceLanguages,
 } from '../test/parity/lib/runtime-surface.ts'
+import { getLanguageRuntimeSurfacePolicy, loadRuntimeSurfacePolicy } from '../test/parity/lib/runtime-surface-policy.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SRC = join(ROOT, 'src')
+const RUNTIME_SURFACE_POLICY_PATH = join(ROOT, 'docs', 'runtime-surface-policy.yml')
 
 async function main() {
   const filters = process.argv.slice(2)
@@ -46,6 +48,7 @@ async function main() {
   }
 
   const runnableLanguages = resolution.selected
+  const runtimeSurfacePolicy = loadRuntimeSurfacePolicy(RUNTIME_SURFACE_POLICY_PATH)
 
   if (!runnableLanguages.length) {
     const requested = filters.length ? filters.join(', ') : 'all supported languages'
@@ -69,7 +72,12 @@ async function main() {
 
     const functions = findFunctionSources(SRC, language)
     const runtimeSurface = await handler.runtimeSurface.discover()
-    const result = compareRuntimeSurface(functions, handler, runtimeSurface)
+    const result = compareRuntimeSurface(
+      functions,
+      handler,
+      runtimeSurface,
+      getLanguageRuntimeSurfacePolicy(runtimeSurfacePolicy, language),
+    )
 
     console.log(formatRuntimeSurfaceReport(result))
     console.log('')
