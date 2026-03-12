@@ -51,6 +51,33 @@ export interface DockerConfig {
   mountRepo?: boolean
 }
 
+export interface RuntimeSurfaceSnapshot {
+  language: string
+  target: string
+  functions: string[]
+}
+
+export interface RuntimeSurfaceExtra {
+  name: string
+  reason: string
+}
+
+export interface RuntimeSurfaceLocutusFunction {
+  path: string
+  language: string
+  category: string
+  name: string
+}
+
+export interface RuntimeSurfaceAdapter {
+  /** Discover the callable/runtime function surface from the target runtime. */
+  discover(): Promise<RuntimeSurfaceSnapshot> | RuntimeSurfaceSnapshot
+  /** Map a Locutus function into the comparable runtime surface name, or null to ignore it. */
+  getLocutusEntry(func: RuntimeSurfaceLocutusFunction): string | null
+  /** Intentional Locutus-only entries that should not fail the surface check. */
+  allowedExtras?: ReadonlyMap<string, string>
+}
+
 export interface LanguageHandler {
   /** Translate JS example code to native language code */
   translate(jsCode: string[], funcName: string, category?: string): string
@@ -70,6 +97,8 @@ export interface LanguageHandler {
   dockerCmd(code: string): string[]
   /** Whether to mount the repo in Docker */
   mountRepo?: boolean
+  /** Optional runtime surface discovery for guardrail checks. */
+  runtimeSurface?: RuntimeSurfaceAdapter
 }
 
 export interface VerifyOptions {

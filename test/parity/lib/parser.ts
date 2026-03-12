@@ -8,6 +8,14 @@ import type { Example, FunctionInfo } from './types.ts'
 
 const SOURCE_EXTENSIONS = ['.ts', '.js'] as const
 
+export interface FunctionSource {
+  path: string
+  language: string
+  category: string
+  name: string
+  fullPath: string
+}
+
 export function resolveFunctionSourcePath(srcDir: string, funcPath: string): string | null {
   for (const ext of SOURCE_EXTENSIONS) {
     const fullPath = join(srcDir, `${funcPath}${ext}`)
@@ -220,10 +228,11 @@ export async function parseFunctionWithUtil(
 }
 
 /**
- * Find all function files matching optional filter
+ * Find all function source files matching optional filter.
+ * Unlike `findFunctions`, this does not require examples to be present.
  */
-export function findFunctions(srcDir: string, filter?: string): FunctionInfo[] {
-  const functions: FunctionInfo[] = []
+export function findFunctionSources(srcDir: string, filter?: string): FunctionSource[] {
+  const functions: FunctionSource[] = []
 
   const languages = readdirSync(srcDir).filter((d) => {
     const stat = statSync(join(srcDir, d))
@@ -275,26 +284,44 @@ export function findFunctions(srcDir: string, filter?: string): FunctionInfo[] {
           continue
         }
 
-        const fullPath = join(catDir, file)
-        const examples = parseExamples(fullPath)
-        const dependsOn = parseDependsOn(fullPath)
-        const { verified, isImpossible } = parseVerified(fullPath)
-
-        if (examples.length > 0) {
-          functions.push({
-            path: funcPath,
-            language,
-            category,
-            name: funcName,
-            examples,
-            dependsOn,
-            verified,
-            isImpossible,
-          })
-        }
+        functions.push({
+          path: funcPath,
+          language,
+          category,
+          name: funcName,
+          fullPath: join(catDir, file),
+        })
       }
     }
   }
 
   return functions
+}
+
+/**
+ * Find all example-bearing functions matching optional filter.
+ */
+export function findFunctions(srcDir: string, filter?: string): FunctionInfo[] {
+  return findFunctionSources(srcDir, filter)
+    .map((func) => {
+      const examples = parseExamples(func.fullPath)
+      if (examples.length === 0) {
+        return null
+      }
+
+      const dependsOn = parseDependsOn(func.fullPath)
+      const { verified, isImpossible } = parseVerified(func.fullPath)
+
+      return {
+        path: func.path,
+        language: func.language,
+        category: func.category,
+        name: func.name,
+        examples,
+        dependsOn,
+        verified,
+        isImpossible,
+      }
+    })
+    .filter((func): func is FunctionInfo => func !== null)
 }

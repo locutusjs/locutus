@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url'
 import ts from 'typescript'
 
 import { Util } from '../src/_util/util.ts'
+import { getLanguageHandler, getSupportedLanguages } from '../test/parity/lib/languages/index.ts'
 import { findFunctions } from '../test/parity/lib/parser.ts'
 import type { FunctionInfo } from '../test/parity/lib/types.ts'
 
@@ -37,6 +38,11 @@ const FORCE_FULL_PATHS = new Set([
 ])
 
 const FORCE_FULL_PREFIXES = ['.github/workflows/', 'test/parity/lib/']
+const RUNTIME_SURFACE_FORCE_ALL_PATHS = new Set([
+  'scripts/check-runtime-surface.ts',
+  'test/parity/lib/runtime-surface.ts',
+  'test/util/runtime-surface.vitest.ts',
+])
 
 export interface ParitySelectionInput {
   changedFiles: string[]
@@ -205,6 +211,49 @@ function computeFullReasons(changedFiles: string[]): string[] {
   return [...new Set(reasons)]
 }
 
+function getRuntimeSurfaceLanguages(): string[] {
+  return getSupportedLanguages().filter((language) => {
+    const handler = getLanguageHandler(language)
+    return !!handler?.runtimeSurface
+  })
+}
+
+export function computeRuntimeSurfaceLanguages(changedFiles: string[]): string[] {
+  const normalized = [...new Set(changedFiles.map(normalizePath).filter(Boolean))].sort()
+  const allLanguages = getRuntimeSurfaceLanguages()
+
+  if (computeFullReasons(normalized).length > 0) {
+    return allLanguages
+  }
+
+  const selected = new Set<string>()
+
+  for (const changedFile of normalized) {
+    if (RUNTIME_SURFACE_FORCE_ALL_PATHS.has(changedFile)) {
+      return allLanguages
+    }
+
+    if (isLanguageHandlerPath(changedFile)) {
+      const language = changedFile.match(/^test\/parity\/lib\/languages\/([^/]+)\.ts$/)?.[1]
+      if (language && getLanguageHandler(language)?.runtimeSurface) {
+        selected.add(language)
+      }
+      continue
+    }
+
+    if (!isSourceModulePath(changedFile)) {
+      continue
+    }
+
+    const language = changedFile.split('/')[1]
+    if (language && getLanguageHandler(language)?.runtimeSurface) {
+      selected.add(language)
+    }
+  }
+
+  return [...selected].sort()
+}
+
 export function computeParitySelection(input: ParitySelectionInput): ParitySelection {
   const changedFiles = [...new Set(input.changedFiles.map(normalizePath).filter(Boolean))].sort()
   const functionInfos = input.functionInfos
@@ -318,11 +367,15 @@ export function formatSelection(selection: ParitySelection): string {
 }
 
 function writeGithubOutput(outputPath: string, selection: ParitySelection): void {
+  const runtimeSurfaceLanguages = computeRuntimeSurfaceLanguages(selection.changedFiles)
   const lines = [
     `mode=${selection.mode}`,
     `target_count=${selection.targets.length}`,
     'targets<<EOF',
     ...selection.targets,
+    'EOF',
+    'runtime_surface_languages<<EOF',
+    ...runtimeSurfaceLanguages,
     'EOF',
     'summary<<EOF',
     formatSelection(selection),

@@ -2,8 +2,14 @@
  * PHP language handler for verification
  */
 
+import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+
+const PHP_DISPLAY_NAME = 'PHP'
+const PHP_VERSION = '8.3'
+const PHP_DOCKER_IMAGE = 'php:8.3-cli'
+const PHP_PARITY_TARGET = `${PHP_DISPLAY_NAME} ${PHP_VERSION}`
 
 // Functions removed, deprecated, or unavailable in PHP 8.3 Docker image
 export const PHP_SKIP_LIST = new Set([
@@ -26,6 +32,58 @@ export const PHP_SKIP_LIST = new Set([
   // PHP language constructs (not callable as functions)
   'echo',
 ])
+
+const PHP_ALLOWED_RUNTIME_SURFACE_EXTRAS = new Map<string, string>([
+  ['bcadd', 'bcmath extension is not enabled in the base parity container'],
+  ['bccomp', 'bcmath extension is not enabled in the base parity container'],
+  ['bcdiv', 'bcmath extension is not enabled in the base parity container'],
+  ['bcmul', 'bcmath extension is not enabled in the base parity container'],
+  ['bcround', 'bcmath extension is not enabled in the base parity container'],
+  ['bcscale', 'bcmath extension is not enabled in the base parity container'],
+  ['bcsub', 'bcmath extension is not enabled in the base parity container'],
+  ['convert_cyr_string', 'removed in PHP 8.0 but intentionally retained as a legacy port'],
+  ['each', 'removed in PHP 8.0 but intentionally retained as a legacy port'],
+  ['echo', 'PHP language construct, not a callable runtime function'],
+  ['empty', 'PHP language construct, not a callable runtime function'],
+  ['gopher_parsedir', 'niche extension helper retained as an explicit Locutus port'],
+  ['i18n_loc_get_default', 'PECL intl helper retained as an explicit Locutus port'],
+  ['i18n_loc_set_default', 'PECL intl helper retained as an explicit Locutus port'],
+  ['is_binary', 'legacy PHP alias/helper retained as an explicit Locutus port'],
+  ['is_buffer', 'legacy PHP alias/helper retained as an explicit Locutus port'],
+  ['is_real', 'legacy PHP alias/helper retained as an explicit Locutus port'],
+  ['is_unicode', 'legacy PHP alias/helper retained as an explicit Locutus port'],
+  ['isset', 'PHP language construct, not a callable runtime function'],
+  ['money_format', 'removed in PHP 8.0 but intentionally retained as a legacy port'],
+  ['split', 'removed in PHP 7.0 but intentionally retained as a legacy port'],
+  ['sql_regcase', 'removed in PHP 7.0 but intentionally retained as a legacy port'],
+  ['xdiff_string_diff', 'xdiff extension is not enabled in the base parity container'],
+  ['xdiff_string_patch', 'xdiff extension is not enabled in the base parity container'],
+])
+
+function discoverPhpRuntimeSurface() {
+  const result = runInDocker(PHP_DOCKER_IMAGE, [
+    'php',
+    '-r',
+    'echo json_encode(array_values(get_defined_functions()["internal"]));',
+  ])
+
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover PHP runtime surface')
+  }
+
+  const parsed = JSON.parse(result.output) as unknown
+  if (!Array.isArray(parsed) || !parsed.every((value) => typeof value === 'string')) {
+    throw new Error('PHP runtime surface output was not a string array')
+  }
+
+  const functions = [...new Set(parsed)].sort()
+
+  return {
+    language: 'php',
+    target: PHP_PARITY_TARGET,
+    functions,
+  }
+}
 
 // PHP constants that should not be quoted when passed as string arguments
 const PHP_CONSTANTS = new Set([
@@ -442,12 +500,17 @@ export const phpHandler: LanguageHandler = {
   translate: jsToPhp,
   normalize: normalizePhpOutput,
   skipList: PHP_SKIP_LIST,
-  dockerImage: 'php:8.3-cli',
-  displayName: 'PHP',
-  version: '8.3',
+  dockerImage: PHP_DOCKER_IMAGE,
+  displayName: PHP_DISPLAY_NAME,
+  version: PHP_VERSION,
   get parityValue() {
-    return `${this.displayName} ${this.version}`
+    return PHP_PARITY_TARGET
   },
   dockerCmd: (code: string) => ['php', '-r', code],
   mountRepo: true,
+  runtimeSurface: {
+    discover: discoverPhpRuntimeSurface,
+    getLocutusEntry: (func) => func.name,
+    allowedExtras: PHP_ALLOWED_RUNTIME_SURFACE_EXTRAS,
+  },
 }

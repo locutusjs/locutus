@@ -1280,6 +1280,16 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Passing under `--all` is not enough for promotion; some functions still fail once native output shape and signature mismatches are exercised in the verified path.
   - The final bounded benefit here is small but real: keep the translator bug fix plus the three C functions that truly pass, and stop before this turns into a broader C/Perl parity project.
 
+### Iterations 71-80
+
+2026-03-10
+
+- Landed selective parity on PRs plus nightly full parity, and proved the selector behavior end-to-end with a dedicated follow-up PR.
+- Fixed the website `injectweb` case-insensitive path collision and released the result in `v3.0.10`.
+- Rebalanced from infrastructure into product work with a Rust `str` batch and a mixed hard-algorithms batch, then released `v3.0.11`.
+- Removed stale root dependencies, added a website-build verification harness, and upgraded the website feed stack under that new safety net.
+- Key pattern: use infra to buy confidence, then spend it quickly on product and release work instead of looping on tooling indefinitely.
+
 ### Iteration 71
 
 2026-03-06
@@ -1574,6 +1584,16 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The right way to de-risk website dependency upgrades is not a giant upgrade PR first; it is a narrow build/output contract that future website PRs must satisfy.
 
+### Iterations 81-90
+
+2026-03-12
+
+- Upgraded the remaining website feed dependency and then used that harness to burn down dependency and advisory debt across root and `website/`.
+- Added `golang/time/ParseInLocation`, released `v3.0.12`, fixed the GitHub Actions Node runtime deadline, and shipped an idempotent rerun-safe release workflow.
+- Fixed `php/array/array_values`, released `v3.0.13`, removed the PHP-8.3-incompatible `create_function`, released `v3.0.14`, and closed the linked GitHub advisory with the shipped fix.
+- Began the next parity-adjacent guardrail: runtime surface discovery from the parity container, with PHP 8.3 as the first live implementation.
+- Balance check: this block touched website, security, CI maintenance, releases, product expansion, and parity policy rather than over-concentrating on one backlog area.
+
 ### Iteration 81
 
 2026-03-10
@@ -1783,3 +1803,26 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Pending tag workflow and production verification.
 - Key learnings:
   - Even when a fix intentionally removes one public helper, the project’s bump policy still treats isolated parity/security corrections as patch releases unless they change the package runtime/import model broadly.
+
+### Iteration 90
+
+2026-03-12
+
+- **Area: Parity infrastructure**
+- Plan:
+  - Add a generic runtime-surface guardrail beside parity, with adapter-owned discovery and classification instead of a PHP-only special case.
+  - Discover the live callable surface from the same Docker image used for parity and compare it against Locutus' exported surface.
+  - Hard-fail on unclassified Locutus-only extras while reporting runtime-only functions as inspiration instead of CI failures.
+- Progress:
+  - Extended the parity handler types with an optional `runtimeSurface` adapter capability.
+  - Added a generic runtime-surface comparison module and `scripts/check-runtime-surface.ts`.
+  - Implemented the first adapter-backed discovery path in `test/parity/lib/languages/php.ts`, using `php:8.3-cli` and an explicit allowlist for current intentional Locutus-only PHP extras.
+  - Added focused unit coverage in `test/util/runtime-surface.vitest.ts`.
+  - Wired the new guardrail into both PR/push CI and nightly parity workflows as a separate step from behavior parity.
+- Validation:
+  - `corepack yarn exec vitest run test/util/runtime-surface.vitest.ts`
+  - `corepack yarn lint:ts`
+  - `corepack yarn test:runtime-surface php`
+- Key learnings:
+  - The live PHP 8.3 container surface is already useful as both a guardrail and an idea backlog: this first pass found 24 intentional Locutus-only extras and 887 runtime-only functions worth treating as inspiration rather than failures.
+  - Keeping the classification policy on the language adapter itself makes the system generic enough for other runtimes without locking us into PHP-specific filenames or one-off scripts.

@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.14...main).
 
+### Infrastructure
+
+- Added a parity-adjacent runtime-surface guardrail that discovers callable functions from the target PHP 8.3 Docker image, compares them against Locutus' shipped PHP surface, hard-fails on unclassified Locutus-only extras, and reports runtime-only functions as inspiration rather than CI failures.
+
 ## v3.0.14
 
 Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.13...v3.0.14).

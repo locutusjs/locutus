@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   buildReverseDependencies,
   computeParitySelection,
+  computeRuntimeSurfaceLanguages,
   SMOKE_PARITY_TARGETS,
 } from '../../scripts/select-parity-targets.ts'
 import type { FunctionInfo } from '../parity/lib/types.ts'
@@ -122,5 +123,14 @@ describe('select-parity-targets', () => {
     expect(selection.mode).toBe('selective')
     expect(selection.selectedTargets).toEqual([])
     expect(selection.targets).toEqual([...SMOKE_PARITY_TARGETS])
+  })
+
+  it('only requests runtime-surface checks for relevant PR changes', () => {
+    expect(
+      computeRuntimeSurfaceLanguages(['website/source/index.html', 'docs/prompts/selective-parity-ci-plan.md']),
+    ).toEqual([])
+
+    expect(computeRuntimeSurfaceLanguages(['src/php/array/array_flip.ts'])).toEqual(['php'])
+    expect(computeRuntimeSurfaceLanguages(['test/parity/lib/runtime-surface.ts'])).toEqual(['php'])
   })
 })
