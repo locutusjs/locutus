@@ -6,6 +6,20 @@ import { strnatcmp } from '../strings/strnatcmp.ts'
 type SortValue = PhpRuntimeValue
 type SortFlag = 'SORT_REGULAR' | 'SORT_NUMERIC' | 'SORT_STRING' | 'SORT_LOCALE_STRING'
 
+const isDenseArrayList = <T>(value: T[]): boolean => {
+  const keys = Object.keys(value)
+  return keys.length === value.length && keys.every((key, index) => key === String(index))
+}
+
+const setSortableEntry = <T>(target: Record<string, T> | T[], key: string, value: T): void => {
+  Object.defineProperty(target, key, {
+    value,
+    configurable: true,
+    enumerable: true,
+    writable: true,
+  })
+}
+
 const toSortablePrimitive = (value: SortValue): string | number | bigint | boolean => {
   if (
     typeof value === 'string' ||
@@ -19,10 +33,15 @@ const toSortablePrimitive = (value: SortValue): string | number | bigint | boole
   return String(value ?? '')
 }
 
+export function asort<T extends SortValue>(inputArr: T[], sortFlags?: SortFlag): boolean | T[]
 export function asort<T extends SortValue>(
   inputArr: Record<string, T>,
   sortFlags?: SortFlag,
-): boolean | Record<string, T> {
+): boolean | Record<string, T>
+export function asort<T extends SortValue>(
+  inputArr: Record<string, T> | T[],
+  sortFlags?: SortFlag,
+): boolean | Record<string, T> | T[] {
   //  discuss at: https://locutus.io/php/asort/
   // original by: Brett Zamir (https://brett-zamir.me)
   // improved by: Brett Zamir (https://brett-zamir.me)
@@ -93,19 +112,33 @@ export function asort<T extends SortValue>(
 
   const iniVal = String(runtime.ini['locutus.sortByReference']?.local_value ?? '') || 'on'
   const sortByReference = iniVal === 'on'
-  const populateArr: Record<string, T> = sortByReference ? inputArr : {}
+
+  if (Array.isArray(inputArr) && isDenseArrayList(inputArr)) {
+    const sortedValues = [...inputArr].sort(sorter)
+    const target = sortByReference ? inputArr : []
+    if (sortByReference) {
+      target.length = 0
+    }
+    for (const value of sortedValues) {
+      target.push(value)
+    }
+
+    return sortByReference ? true : target
+  }
 
   for (const [key, value] of Object.entries(inputArr)) {
     valArr.push([key, value])
     if (sortByReference) {
-      delete inputArr[key]
+      Reflect.deleteProperty(inputArr, key)
     }
   }
 
   valArr.sort((a, b) => sorter(a[1], b[1]))
 
+  const populateArr: Record<string, T> | T[] = sortByReference ? inputArr : Array.isArray(inputArr) ? [] : {}
+
   for (const [key, value] of valArr) {
-    populateArr[key] = value
+    setSortableEntry(populateArr, key, value)
   }
 
   return sortByReference || populateArr

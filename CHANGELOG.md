@@ -31,6 +31,10 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.14...mai
 - Added a parity-adjacent runtime-surface guardrail that discovers callable functions from the target PHP 8.3 Docker image, compares them against Locutus' shipped PHP surface, hard-fails on unclassified Locutus-only extras, and reports runtime-only functions as inspiration rather than CI failures.
 - Added a shared runtime-surface policy inventory in `docs/runtime-surface-policy.yml` so intentional shipped extras, wanted runtime-only functions, and explicitly out-of-scope runtime functions are tracked separately from the CI hard-fail rules.
 
+### Fixes
+
+- Fixed `php/array/asort` and `php/array/arsort` for real JavaScript arrays by degrading preserved-key sorts to reindexed array output where JS cannot represent PHP's numeric-key iteration order, and corrected `arsort(..., 'SORT_NUMERIC')` to actually sort descending.
+
 ## v3.0.14
 
 Released: 2026-03-11. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.13...v3.0.14).

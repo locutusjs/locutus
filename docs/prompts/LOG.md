@@ -1853,3 +1853,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The inventory becomes much more useful once runtime-only functions are separated into “wanted”, “out_of_scope”, and “still unclassified” instead of appearing as one giant flat count.
   - Keeping the policy file generic and human-readable makes it viable as a cross-language backlog without weakening the CI guardrail semantics.
+
+### Iteration 92
+
+2026-03-12
+
+- **Area: PHP runtime correctness**
+- Plan:
+  - Triage the actionable parts of issue `#569` instead of treating the whole report as one blob.
+  - Fix the concrete sort-family regression around `asort`/`arsort` on real JavaScript arrays.
+  - Keep the work focused and regression-driven before deciding whether the JSON-error-state issue from the same report deserves its own follow-up branch.
+- Progress:
+  - Reproduced that `asort([4, 1, 2, 3], 'SORT_NUMERIC')` and `arsort([4, 1, 2, 3], 'SORT_NUMERIC')` leave the original JS array unchanged in the default by-reference path.
+  - Confirmed a second sharp bug in the same area: `arsort(..., 'SORT_NUMERIC')` was using an ascending numeric comparator even for object input.
+  - Added focused custom regression coverage for:
+    - array-input reindexing in `asort` and `arsort`
+    - descending numeric semantics in `arsort`
+  - Updated `asort` and `arsort` so real JS arrays degrade to reindexed sorted arrays, since native arrays cannot preserve PHP-style numeric-key iteration order, and fixed `arsort`'s descending numeric comparator.
+- Validation:
+  - `corepack yarn exec vitest run test/custom/sort-regular-number-order.vitest.ts`
+- Key learnings:
+  - For PHP array helpers that preserve key order, native JavaScript arrays are a representational mismatch rather than just another input type; pragmatic degradation beats silently doing nothing.
+  - The omnibus `#569` issue contains at least two separate real bugs, so it should be handled as split follow-up work rather than one all-or-nothing change set.
