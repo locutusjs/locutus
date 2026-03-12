@@ -64,6 +64,7 @@
     "test:module": "npm-run-all --serial build:dist test:module:smoke",
     "test:parity": "node test/parity/index.ts",
     "test:parity:php": "node test/parity/index.ts php",
+    "test:runtime-surface": "node scripts/check-runtime-surface.ts",
     "test:util": "vitest run test/util/",
     "test": "npm-run-all test:languages test:module",
     "website:install": "cd website && yarn",

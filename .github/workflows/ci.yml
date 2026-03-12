@@ -77,6 +77,17 @@ jobs:
         id: parity-targets
         run: |
           corepack yarn select:parity --base-ref origin/${{ github.event.pull_request.base.ref }} --github-output "$GITHUB_OUTPUT"
+      - name: Runtime surface guardrail (selective)
+        if: github.event_name == 'pull_request' && steps.parity-targets.outputs.runtime_surface_languages != ''
+        run: |
+          mapfile -t languages < <(printf '%s\n' "${{ steps.parity-targets.outputs.runtime_surface_languages }}" | sed '/^$/d')
+          printf 'Running runtime surface guardrail on %s languages\n' "${#languages[@]}"
+          printf '  %s\n' "${languages[@]}"
+          corepack yarn test:runtime-surface "${languages[@]}"
+      - name: Runtime surface guardrail (full)
+        if: github.event_name != 'pull_request'
+        run: |
+          corepack yarn test:runtime-surface
       - name: Parity tests (selective)
         if: github.event_name == 'pull_request'
         run: |
