@@ -1911,3 +1911,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Shared PHP runtime flags need explicit success-path resets, not just failure writes, or parity helpers accumulate stale state across calls.
   - The remaining `#569` work is genuinely separable into small, releasable correctness fixes.
+
+### Iteration 95
+
+2026-03-13
+
+- **Area: Release management + PHP runtime correctness**
+- Progress:
+  - Merged PR `#573` (`fix/php-json-last-error-reset`) after green PR CI.
+  - Verified the post-merge `main` run completed successfully, including full parity and website deploy, before releasing.
+  - Promoted the current `## main` JSON correctness note into `v3.0.16`.
+- Release:
+  - Cut `v3.0.16` for the JSON runtime-state fix:
+    - successful `json_decode` / `json_encode` calls now clear stale error state
+    - `json_encode` still reports `JSON_ERROR_INF_OR_NAN` correctly for primitive, boxed, and `toJSON()`-introduced non-finite values
+- Key learnings:
+  - JSON state bugs are patch-worthy because they change observable runtime behavior across calls, not just edge-case docs or typing.
+  - The council-review loop was valuable here because it surfaced multiple concrete parity traps around `NaN`, boxed numbers, and `toJSON()` ordering before the PR landed.
