@@ -159,8 +159,12 @@ src/php/array/array_walk.ts :: export function array_walk< TValue extends ArrayW
 src/php/array/array_walk_recursive.ts :: export function array_walk_recursive< TValue extends RecursiveWalkInput = RecursiveWalkInput, TUserdata extends RecursiveWalkInput = RecursiveWalkInput, >( array: RecursiveWalkAssoc<TValue>, funcname: ArrayWalkRecursiveCallback<string, TValue, TUserdata>, userdata?: TUserdata, ): boolean
 src/php/array/array_walk_recursive.ts :: export function array_walk_recursive< TValue extends RecursiveWalkInput = RecursiveWalkInput, TUserdata extends RecursiveWalkInput = RecursiveWalkInput, >( array: RecursiveWalkCollection<TValue>, funcname: | ArrayWalkRecursiveCallback<number, TValue, TUserdata> | ArrayWalkRecursiveCallback<string, TValue, TUserdata>, userdata?: TUserdata, ): boolean
 src/php/array/array_walk_recursive.ts :: export function array_walk_recursive< TValue extends RecursiveWalkInput = RecursiveWalkInput, TUserdata extends RecursiveWalkInput = RecursiveWalkInput, >( array: RecursiveWalkList<TValue>, funcname: ArrayWalkRecursiveCallback<number, TValue, TUserdata>, userdata?: TUserdata, ): boolean
+src/php/array/arsort.ts :: export function arsort<T extends SortValue>( inputArr: Record<string, T> | T[], sortFlags?: SortFlag, ): boolean | Record<string, T> | T[]
 src/php/array/arsort.ts :: export function arsort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
+src/php/array/arsort.ts :: export function arsort<T extends SortValue>(inputArr: T[], sortFlags?: SortFlag): boolean | T[]
+src/php/array/asort.ts :: export function asort<T extends SortValue>( inputArr: Record<string, T> | T[], sortFlags?: SortFlag, ): boolean | Record<string, T> | T[]
 src/php/array/asort.ts :: export function asort<T extends SortValue>( inputArr: Record<string, T>, sortFlags?: SortFlag, ): boolean | Record<string, T>
+src/php/array/asort.ts :: export function asort<T extends SortValue>(inputArr: T[], sortFlags?: SortFlag): boolean | T[]
 src/php/array/count.ts :: export function count(mixedVar: Countable | null | undefined, mode: CountMode = 0): number
 src/php/array/count.ts :: export function count(mixedVar: Countable, mode?: CountMode): number
 src/php/array/count.ts :: export function count(mixedVar: null | undefined, mode?: CountMode): 0

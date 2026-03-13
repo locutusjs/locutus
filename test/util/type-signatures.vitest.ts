@@ -34,6 +34,8 @@ import { array_unique } from '../../src/php/array/array_unique.ts'
 import { array_values } from '../../src/php/array/array_values.ts'
 import { array_walk } from '../../src/php/array/array_walk.ts'
 import { array_walk_recursive } from '../../src/php/array/array_walk_recursive.ts'
+import { arsort } from '../../src/php/array/arsort.ts'
+import { asort } from '../../src/php/array/asort.ts'
 import { count } from '../../src/php/array/count.ts'
 import { sizeof } from '../../src/php/array/sizeof.ts'
 import { call_user_func } from '../../src/php/funchand/call_user_func.ts'
@@ -119,6 +121,14 @@ type ArrayRandSecondParam = Parameters<typeof array_rand>[1]
 type _ArrayRandRejectsStringCount = ExpectFalse<IsAssignable<string, ArrayRandSecondParam>>
 type _ArrayRandAcceptsNumericCount = ExpectTrue<IsAssignable<number, ArrayRandSecondParam>>
 const replacedTyped: { [key: string]: number | undefined } = array_replace({ 0: 1, 1: 2 }, { 1: 9, 2: 5 })
+const asortAssocInput = { a: 3, b: 1 }
+const arsortAssocInput = { a: 1, b: 3 }
+const asortArrayInput = [3, 1]
+const arsortArrayInput = [1, 3]
+const asortAssocTyped: boolean | { [key: string]: number } = asort(asortAssocInput, 'SORT_NUMERIC')
+const arsortAssocTyped: boolean | { [key: string]: number } = arsort(arsortAssocInput, 'SORT_NUMERIC')
+const asortArrayTyped: boolean | number[] = asort(asortArrayInput, 'SORT_NUMERIC')
+const arsortArrayTyped: boolean | number[] = arsort(arsortArrayInput, 'SORT_NUMERIC')
 const multisortNames = ['beta', 'alpha']
 const multisortRanks = [2, 1]
 const multisortTyped: boolean = array_multisort(multisortNames, 'SORT_ASC', multisortRanks, 'SORT_ASC')
@@ -209,6 +219,14 @@ describe('public type signatures', () => {
     expect(randTyped).toBe('0')
     expect(randManyTyped === null || Array.isArray(randManyTyped)).toBe(true)
     expect(replacedTyped).toEqual({ 0: 1, 1: 9, 2: 5 })
+    expect(asortAssocTyped).toBe(true)
+    expect(asortAssocInput).toEqual({ b: 1, a: 3 })
+    expect(arsortAssocTyped).toBe(true)
+    expect(arsortAssocInput).toEqual({ b: 3, a: 1 })
+    expect(asortArrayTyped).toBe(true)
+    expect(asortArrayInput).toEqual([1, 3])
+    expect(arsortArrayTyped).toBe(true)
+    expect(arsortArrayInput).toEqual([3, 1])
     expect(multisortTyped).toBe(true)
     expect(multisortNames).toEqual(['alpha', 'beta'])
     expect(multisortRanks).toEqual([1, 2])
