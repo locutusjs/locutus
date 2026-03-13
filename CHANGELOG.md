@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.15...main).
 
+### Fixes
+
+- Fixed `php/json/json_decode`, `php/json/json_encode`, and `php/json/json_last_error` interaction so successful JSON operations clear prior error state correctly while still preserving `JSON_ERROR_INF_OR_NAN` for primitive, boxed, and `toJSON()`-introduced non-finite numbers.
+
 ## v3.0.15
 
 Released: 2026-03-13. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.14...v3.0.15).

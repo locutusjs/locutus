@@ -5,9 +5,22 @@ type JsonPrimitive = string | number | boolean | null
 type JsonObject = { [key: string]: JsonValue }
 type JsonValue = JsonPrimitive | JsonValue[] | JsonObject
 type JsonEncodeInput = PhpRuntimeValue
+type JsonEncodingRuntimeValue = JsonEncodeInput | object | undefined
 
-const isJsonObject = (value: PhpRuntimeValue): value is JsonObject =>
-  typeof value === 'object' && value !== null && !Array.isArray(value)
+const isJsonObject = (value: object): value is JsonObject => !Array.isArray(value)
+
+const unwrapBoxedJsonScalar = (value: JsonEncodingRuntimeValue): JsonEncodingRuntimeValue => {
+  if (value instanceof Number) {
+    return Number(value.valueOf())
+  }
+  if (value instanceof String) {
+    return String(value.valueOf())
+  }
+  if (value instanceof Boolean) {
+    return Boolean(value.valueOf())
+  }
+  return value
+}
 
 export function json_encode(mixedVal: JsonEncodeInput): string | null {
   //       discuss at: https://phpjs.org/functions/json_encode/
@@ -34,11 +47,23 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
     if (typeof json === 'object' && json !== null) {
       const stringify = json.stringify
       if (typeof stringify === 'function') {
+        let hasNonFiniteNumber = false
+        const replacer = (_key: string, value: JsonEncodingRuntimeValue): JsonEncodingRuntimeValue => {
+          const normalizedValue = unwrapBoxedJsonScalar(value)
+          if (typeof normalizedValue === 'number' && !Number.isFinite(normalizedValue)) {
+            hasNonFiniteNumber = true
+          }
+          return normalizedValue
+        }
         // Errors will not be caught here if our own equivalent to resource
-        retVal = stringify.call(json, mixedVal)
+        retVal = json.stringify(mixedVal, replacer)
+        if (hasNonFiniteNumber) {
+          throw new SyntaxError('json_encode_inf_or_nan')
+        }
         if (retVal === undefined) {
           throw new SyntaxError('json_encode')
         }
+        setPhpRuntimeEntry('last_error_json', 0)
         return retVal
       }
     }
@@ -98,7 +123,7 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
       let length = 0
       const mind = gap
       let partial: string[] = []
-      let value = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
+      let value: JsonEncodingRuntimeValue = Array.isArray(holder) ? holder[Number(key)] : holder[String(key)]
 
       // If the value has a toJSON method, call it to obtain a replacement value.
       if (typeof value === 'object' && value !== null) {
@@ -106,6 +131,7 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
           value = value.toJSON.call(value, key)
         }
       }
+      value = unwrapBoxedJsonScalar(value)
 
       // What happens next depends on the value's type.
       switch (typeof value) {
@@ -113,8 +139,10 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
           return quote(value)
 
         case 'number':
-          // JSON numbers must be finite. Encode non-finite numbers as null.
-          return isFinite(value) ? String(value) : 'null'
+          if (!isFinite(value)) {
+            throw new SyntaxError('json_encode_inf_or_nan')
+          }
+          return String(value)
 
         case 'boolean':
           // If the value is a boolean or null, convert it to a string.
@@ -191,6 +219,7 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
     if (typeof encoded !== 'string') {
       throw new SyntaxError('json_encode')
     }
+    setPhpRuntimeEntry('last_error_json', 0)
     return encoded
   } catch (err) {
     // @todo: ensure error handling above throws a SyntaxError in all cases where it could
@@ -199,7 +228,7 @@ export function json_encode(mixedVal: JsonEncodeInput): string | null {
       throw new Error('Unexpected error type in json_encode()')
     }
     // usable by json_last_error()
-    setPhpRuntimeEntry('last_error_json', 4)
+    setPhpRuntimeEntry('last_error_json', err.message === 'json_encode_inf_or_nan' ? 7 : 4)
     return null
   }
 }
