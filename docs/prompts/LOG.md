@@ -1928,3 +1928,28 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - JSON state bugs are patch-worthy because they change observable runtime behavior across calls, not just edge-case docs or typing.
   - The council-review loop was valuable here because it surfaced multiple concrete parity traps around `NaN`, boxed numbers, and `toJSON()` ordering before the PR landed.
+
+### Iteration 96
+
+2026-03-13
+
+- **Area: Release management**
+- Plan:
+  - Remove the manual GitHub release-page cleanup step that still existed after successful tag publishes.
+  - Keep `CHANGELOG.md` as the single release-notes source of truth instead of introducing a heavier release-management layer.
+- Progress:
+  - Audited GitHub releases and backfilled missing release pages for older tags so the repo now has complete release metadata coverage.
+  - Corrected GitHub's `Latest` release marker after the historical backfill briefly promoted an older release page.
+  - Added a strict release-notes extractor script that reads the exact `## vX.Y.Z` section from `CHANGELOG.md` and hard-fails on missing, duplicated, or empty sections.
+  - Updated the tag workflow to:
+    - verify the pushed tag matches `package.json`
+    - validate release notes before `npm publish` when a GitHub release still needs to be created
+    - skip `npm publish` cleanly when the version already exists
+    - skip changelog parsing entirely on reruns when the GitHub release already exists
+    - create the GitHub release automatically when it does not already exist
+  - Updated maintainer docs so manual `gh release create` is now explicitly the fallback path rather than the normal release flow.
+- Validation:
+  - `corepack yarn exec vitest run test/util/extract-release-notes.vitest.ts`
+- Key learnings:
+  - This repo does not need Changesets for release-page automation; strict changelog extraction is enough as long as CI fails hard on malformed or missing version sections.
+  - Release reruns need idempotency both at npm publish time and at GitHub release creation time, or recovery attempts create misleading noise in Actions history.
