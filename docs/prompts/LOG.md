@@ -1893,3 +1893,21 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The sort-family fix is release-worthy because it changes shipped runtime behavior for real PHP parity mismatches, not just tests or tooling.
   - Keeping release notes aligned with the exact contents of `main` avoids dropping adjacent infrastructure work that is already merged and validated.
+
+### Iteration 94
+
+2026-03-13
+
+- **Area: PHP runtime correctness**
+- Plan:
+  - Pick up the remaining concrete bug from issue `#569`: stale JSON error state after a successful `json_encode` or `json_decode`.
+  - Keep the branch narrowly scoped to runtime behavior, with fail-first coverage before touching implementation.
+- Progress:
+  - Added focused util coverage proving that `json_last_error()` stayed stuck at `JSON_ERROR_SYNTAX` after a successful `json_decode` following invalid JSON and after a successful `json_encode` following an unsupported input.
+  - Updated `json_decode` to clear `last_error_json` on successful native `JSON.parse` and fallback `eval` decoding.
+  - Updated `json_encode` to clear `last_error_json` on successful native `JSON.stringify` and fallback encoder success.
+- Validation:
+  - `corepack yarn exec vitest run test/util/php-json-last-error.vitest.ts`
+- Key learnings:
+  - Shared PHP runtime flags need explicit success-path resets, not just failure writes, or parity helpers accumulate stale state across calls.
+  - The remaining `#569` work is genuinely separable into small, releasable correctness fixes.

@@ -16,6 +16,7 @@ export function json_last_error(): number {
   // JSON_ERROR_CTRL_CHAR = 3
   // but JSON functions auto-escape these, so error not possible in JavaScript
   // JSON_ERROR_SYNTAX = 4
+  // JSON_ERROR_INF_OR_NAN = 7
 
   return getPhpRuntimeNumber('last_error_json', 0)
 }

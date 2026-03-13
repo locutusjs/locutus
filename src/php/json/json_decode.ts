@@ -29,7 +29,9 @@ export function json_decode<T = JsonValue>(strJson: string): T | null {
     const parse = json.parse
     if (typeof parse === 'function') {
       try {
-        return parse.call(json, strJson)
+        const parsed = parse.call(json, strJson)
+        setPhpRuntimeEntry('last_error_json', 0)
+        return parsed
       } catch (err) {
         if (!(err instanceof SyntaxError)) {
           throw new Error('Unexpected error type in json_decode()')
@@ -94,6 +96,7 @@ export function json_decode<T = JsonValue>(strJson: string): T | null {
     // in parens to eliminate the ambiguity.
     // biome-ignore lint/security/noGlobalEval: needed for PHP port
     const parsed = eval('(' + text + ')')
+    setPhpRuntimeEntry('last_error_json', 0)
     return parsed
   }
 
