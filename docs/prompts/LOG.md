@@ -1875,3 +1875,21 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - For PHP array helpers that preserve key order, native JavaScript arrays are a representational mismatch rather than just another input type; pragmatic degradation beats silently doing nothing.
   - The omnibus `#569` issue contains at least two separate real bugs, so it should be handled as split follow-up work rather than one all-or-nothing change set.
+
+### Iteration 93
+
+2026-03-13
+
+- **Area: Release management + PHP runtime correctness**
+- Progress:
+  - Merged PR `#572` (`fix/php-sort-array-input`) after green PR CI.
+  - Verified the post-merge `main` run completed successfully, including full parity, before cutting the next patch release.
+  - Promoted the accumulated `## main` notes into `v3.0.15` so the release captures both the runtime-surface guardrail work and the PHP sort-family fix.
+- Release:
+  - Cut `v3.0.15` for:
+    - the `asort`/`arsort` dense-array runtime correctness fix
+    - the `arsort(..., 'SORT_NUMERIC')` descending comparator correction
+    - the runtime-surface guardrail and policy inventory additions that landed on `main`
+- Key learnings:
+  - The sort-family fix is release-worthy because it changes shipped runtime behavior for real PHP parity mismatches, not just tests or tooling.
+  - Keeping release notes aligned with the exact contents of `main` avoids dropping adjacent infrastructure work that is already merged and validated.

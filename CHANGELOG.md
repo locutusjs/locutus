@@ -24,7 +24,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.14...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.15...main).
+
+## v3.0.15
+
+Released: 2026-03-13. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.14...v3.0.15).
+Version rationale: `patch` for a scoped PHP runtime-correctness fix plus parity-surface inventory hardening without import-model or runtime floor changes.
 
 ### Infrastructure
 
