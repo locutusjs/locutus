@@ -248,19 +248,15 @@ Any Core contributor can let our GHA CI create an npm release via OIDC Trusted P
    npm version patch -m "Release v%s" && git push origin main --tags
    ```
 
-3. **Create GitHub Release**: After CI publishes to npm, create a GitHub release with notes from CHANGELOG:
+3. **Let CI publish and create the GitHub Release**:
+   - The tag workflow now publishes to npm and creates the GitHub release page automatically from the matching
+     `## vX.Y.Z` section in `CHANGELOG.md`.
+   - If the release job is rerun after publish, it skips already-published npm versions and already-created GitHub
+     releases cleanly.
+   - Manual fallback, only if the workflow fails after npm publish:
    ```bash
-   # Extract notes for version from CHANGELOG.md, then:
-   gh release create v2.0.35 --title "v2.0.35" --notes "$(cat <<'EOF'
-   ### New Features
-   - Feature description here
-
-   ### Bug Fixes
-   - Fix description here
-
-   Full changelog: https://github.com/locutusjs/locutus/blob/main/CHANGELOG.md
-   EOF
-   )"
+   node scripts/extract-release-notes.ts --version v2.0.35 > /tmp/locutus-release-notes.md
+   gh release create v2.0.35 --title "v2.0.35" --notes-file /tmp/locutus-release-notes.md
    ```
 
 ### Versioning

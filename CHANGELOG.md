@@ -26,6 +26,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.16...main).
 
+### CI
+
+- Automated GitHub release-page creation in the tag workflow by extracting notes from the matching `CHANGELOG.md` version section, while keeping reruns idempotent when npm or the GitHub release object already exists.
+
 ## v3.0.16
 
 Released: 2026-03-13. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.15...v3.0.16).
