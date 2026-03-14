@@ -25,7 +25,24 @@ describe('fix-cjs-exports script', function () {
       )
       fs.writeFileSync(cjsIndex2DtsPath, 'export declare function Index(): number\n', 'utf-8')
       fs.writeFileSync(esmIndex2JsPath, 'export function Index() { return 1 }\n', 'utf-8')
-      fs.writeFileSync(packageJsonPath, JSON.stringify({ name: 'locutus-dist-test', type: 'module' }, null, 2), 'utf-8')
+      fs.writeFileSync(
+        packageJsonPath,
+        JSON.stringify(
+          {
+            name: 'locutus-dist-test',
+            type: 'module',
+            browser: {
+              child_process: false,
+              crypto: false,
+              fs: false,
+              tls: false,
+            },
+          },
+          null,
+          2,
+        ),
+        'utf-8',
+      )
 
       execFileSync(process.execPath, [path.resolve('scripts/fix-cjs-exports.ts'), tmpDir], { stdio: 'pipe' })
 
@@ -33,11 +50,18 @@ describe('fix-cjs-exports script', function () {
       const esmCompatShimPath = path.join(esmTargetDir, 'Index.js')
       const compatDtsPath = path.join(cjsTargetDir, 'Index.d.ts')
       const esmPackageJsonPath = path.join(tmpDir, 'esm', 'package.json')
-      const updatedPackage = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8')) as { type?: string; main?: string }
+      const updatedPackage = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8')) as {
+        type?: string
+        main?: string
+        browser?: Record<string, boolean>
+      }
       const cjsShim = fs.readFileSync(cjsCompatShimPath, 'utf-8')
       const esmShim = fs.readFileSync(esmCompatShimPath, 'utf-8')
       const shimDts = fs.readFileSync(compatDtsPath, 'utf-8')
-      const esmPackage = JSON.parse(fs.readFileSync(esmPackageJsonPath, 'utf-8')) as { type?: string }
+      const esmPackage = JSON.parse(fs.readFileSync(esmPackageJsonPath, 'utf-8')) as {
+        type?: string
+        browser?: Record<string, boolean>
+      }
 
       expect(cjsShim).toContain("const mod = require('./Index2.js')")
       expect(cjsShim).toContain('exports.Index = mod.Index')
@@ -50,7 +74,14 @@ describe('fix-cjs-exports script', function () {
         module: './esm/index.js',
         types: './index.d.ts',
       })
+      expect(updatedPackage.browser).toEqual({
+        child_process: false,
+        crypto: false,
+        fs: false,
+        tls: false,
+      })
       expect(esmPackage.type).toBe('module')
+      expect(esmPackage.browser).toEqual(updatedPackage.browser)
     } finally {
       fs.rmSync(tmpDir, { recursive: true, force: true })
     }

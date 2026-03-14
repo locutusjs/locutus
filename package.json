@@ -24,6 +24,7 @@
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
   "browser": {
     "child_process": false,
+    "crypto": false,
     "fs": false
   },
   "scripts": {
