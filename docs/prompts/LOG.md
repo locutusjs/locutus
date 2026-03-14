@@ -1988,3 +1988,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
     - automatic GitHub release-page creation from `CHANGELOG.md`
 - Key learnings:
   - Full parity remains the dominant CI cost even when the normal dependency and browser setup steps are cached, so parity-specific optimization deserves to live on the roadmap instead of being rediscovered ad hoc.
+
+### Iteration 99
+
+2026-03-14
+
+- **Area: Issue triage**
+- Progress:
+  - Closed the umbrella bug report `#569` after the concrete shipped items were resolved across `v3.0.15`, `v3.0.16`, and `v3.0.17`.
+  - Documented in the issue that:
+    - the `asort` / `arsort` dense-array mutation bug shipped in `v3.0.15`
+    - the stale `json_last_error` state fix shipped in `v3.0.16`
+    - `array_key_first` / `array_key_last` shipped in `v3.0.17`
+  - Marked the remaining `md5` / `i18n_loc_get_default` points as non-blocking cleanup rather than open parity defects under that issue.
+  - Noted that the separate twig/Locutus bundle-size concern mentioned in the issue comments should be tracked independently if we decide to pursue it.
+- Key learnings:
+  - Umbrella issues are fine as initial signal, but once the real fix paths are known they should be closed with shipped-version references instead of left open as mixed-quality backlog.
