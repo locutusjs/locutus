@@ -47,6 +47,30 @@ console.log(Contains('Locutus', 'cut'))
 // true
 ```
 
+## Bundle Size
+
+For bundle-sensitive browser builds, prefer per-function deep imports over category index imports.
+
+Good:
+
+```typescript
+import { sprintf } from 'locutus/php/strings/sprintf'
+```
+
+Avoid in browser bundles:
+
+```typescript
+import { sprintf } from 'locutus/php/strings/index'
+```
+
+Why:
+
+- deep imports only pull the function you asked for and its real dependencies
+- category index imports can force bundlers to traverse many unrelated exports in the same namespace
+- this matters most in prebundled UMD/browser artifacts where downstream tree-shaking cannot recover later
+
+If you are publishing your own browser bundle on top of Locutus, treat deep imports as the default.
+
 ## Browser Compatibility (Copy-Paste Snippets)
 
 Code shown on function pages (`Module JS` / `Standalone JS`) targets:

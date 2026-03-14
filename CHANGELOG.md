@@ -27,6 +27,14 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.17...main).
 
+### Packaging
+
+- Added `crypto: false` to browser-facing package metadata and propagated browser fallbacks into `dist/esm/package.json` so ESM/browser bundlers keep the same builtin-module stubbing as the CommonJS dist package.
+
+### Docs
+
+- Documented that bundle-sensitive browser consumers should prefer per-function deep imports like `locutus/php/strings/sprintf` over category index imports like `locutus/php/strings/index`.
+
 ## v3.0.17
 
 Released: 2026-03-14. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.16...v3.0.17).

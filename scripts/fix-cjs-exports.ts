@@ -11,6 +11,25 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const distDir = process.argv[2] || 'dist'
+
+type PackageJson = {
+  browser?: Record<string, boolean>
+  exports?: Record<string, unknown>
+  main?: string
+  module?: string
+  type?: string
+  types?: string
+}
+
+const readPackageJson = (rootDir: string): PackageJson | undefined => {
+  const packageJsonPath = path.join(rootDir, 'package.json')
+  if (!fs.existsSync(packageJsonPath)) {
+    return undefined
+  }
+
+  return JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8')) as PackageJson
+}
+
 const writeGolangIndexCompatShim = (rootDir: string): void => {
   const cjsStringsDir = path.join(rootDir, 'golang', 'strings')
   const cjsIndex2JsPath = path.join(cjsStringsDir, 'Index2.js')
@@ -48,23 +67,24 @@ const writeEsmPackageJson = (rootDir: string): void => {
   }
 
   const esmPackageJsonPath = path.join(esmDir, 'package.json')
-  const esmPackageJson = { type: 'module' }
+  const rootPackageJson = readPackageJson(rootDir)
+  const esmPackageJson: { type: 'module'; browser?: Record<string, boolean> } = {
+    type: 'module',
+  }
+
+  if (rootPackageJson?.browser) {
+    esmPackageJson.browser = rootPackageJson.browser
+  }
+
   fs.writeFileSync(esmPackageJsonPath, `${JSON.stringify(esmPackageJson, null, 2)}\n`, 'utf-8')
 }
 
 const patchDistPackageJson = (rootDir: string): void => {
-  const packageJsonPath = path.join(rootDir, 'package.json')
-  if (!fs.existsSync(packageJsonPath)) {
+  const packageJson = readPackageJson(rootDir)
+  if (!packageJson) {
     return
   }
-
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8')) as {
-    exports?: Record<string, unknown>
-    type?: string
-    types?: string
-    module?: string
-    main?: string
-  }
+  const packageJsonPath = path.join(rootDir, 'package.json')
 
   packageJson.type = 'commonjs'
   packageJson.main = './index.js'

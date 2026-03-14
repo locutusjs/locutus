@@ -2004,3 +2004,21 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Noted that the separate twig/Locutus bundle-size concern mentioned in the issue comments should be tracked independently if we decide to pursue it.
 - Key learnings:
   - Umbrella issues are fine as initial signal, but once the real fix paths are known they should be closed with shipped-version references instead of left open as mixed-quality backlog.
+
+### Iteration 100
+
+2026-03-14
+
+- **Area: Packaging + docs**
+- Plan:
+  - Follow up on the downstream Twig bundle-size report with Locutus-side fixes we can point to publicly before proposing consumer changes upstream.
+  - Keep the scope on packaging metadata and guidance rather than consumer-specific compatibility shims.
+- Progress:
+  - Added `crypto: false` to root browser metadata so browser bundlers stub the same Node builtin that Twig already has to suppress manually.
+  - Updated `scripts/fix-cjs-exports.ts` so `dist/esm/package.json` now carries the same browser fallback metadata instead of only `{ \"type\": \"module\" }`.
+  - Added a regression assertion in `test/util/fix-cjs-exports.vitest.ts` to keep the root/ESM browser metadata aligned.
+  - Documented bundle-size guidance in `README.md`: per-function deep imports are the recommended path for browser bundles, while category index imports are convenience-oriented and can drag in unrelated exports.
+- Validation:
+  - `corepack yarn exec vitest run test/util/fix-cjs-exports.vitest.ts`
+- Key learnings:
+  - The most important bundle-size win still belongs on the consumer side when they import category indexes, but Locutus should not make browser bundlers rediscover Node builtin fallbacks differently between CommonJS and ESM publication layouts.
