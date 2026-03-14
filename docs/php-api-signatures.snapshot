@@ -102,6 +102,8 @@ src/php/array/array_intersect_key.ts :: export function array_intersect_key<TVal
 src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uassoc<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, callback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
 src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, callback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
 src/php/array/array_key_exists.ts :: export function array_key_exists<TValue>(key: string | number, search: PhpArrayLike<TValue>): boolean
+src/php/array/array_key_first.ts :: export function array_key_first<T>(input: PhpArrayLike<T>): string | number | null
+src/php/array/array_key_last.ts :: export function array_key_last<T>(input: PhpArrayLike<T>): string | number | null
 src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[]
 src/php/array/array_map.ts :: export function array_map<TInputs extends ArrayMapInputs, TResult>( callback: PhpCallableDescriptor<ArrayMapTupleArgs<TInputs>, TResult>, ...inputArrays: TInputs ): PhpList<TResult>
 src/php/array/array_map.ts :: export function array_map<TInputs extends ArrayMapInputs>( callback: null | undefined, ...inputArrays: TInputs ): PhpList<ArrayMapTupleArgs<TInputs>>

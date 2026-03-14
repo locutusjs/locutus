@@ -30,6 +30,10 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.16...mai
 
 - Automated GitHub release-page creation in the tag workflow by extracting notes from the matching `CHANGELOG.md` version section, while keeping reruns idempotent when npm or the GitHub release object already exists.
 
+### Expansion
+
+- Added `php/array/array_key_first` and `php/array/array_key_last`, including sparse-array behavior and pointer-neutral semantics that match current PHP more closely.
+
 ## v3.0.16
 
 Released: 2026-03-13. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.15...v3.0.16).

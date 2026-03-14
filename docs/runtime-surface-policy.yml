@@ -76,12 +76,6 @@ php:
     array_is_list:
       status: wanted
       reason: Modern PHP array helper with clear value and a clean JS runtime contract.
-    array_key_first:
-      status: wanted
-      reason: Frequently useful helper that fits Locutus' plain-object array model well.
-    array_key_last:
-      status: wanted
-      reason: Frequently useful helper that fits Locutus' plain-object array model well.
     assert:
       status: out_of_scope
       reason: Runtime assertion and configuration behavior is not a good portability target for Locutus.
