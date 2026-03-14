@@ -2039,3 +2039,17 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn exec vitest run test/util/php-array-keys.vitest.ts test/util/php-array-key-first-last.vitest.ts test/util/type-signatures.vitest.ts`
 - Key learnings:
   - Numeric key normalization is a real parity obligation for PHP array helpers, but mixed integer/string key insertion order on plain JS objects is still constrained by JS property enumeration rules and should be documented as such rather than silently promised.
+
+### Iteration 102
+
+2026-03-14 17:44 CET
+
+- **Area: Release management**
+- Progress:
+  - Merged `#578`, closing the real `array_keys` numeric-key parity bug while documenting the remaining mixed-key plain-object ordering limit as a JS data-model constraint.
+  - Closed out `#577` with the shipped-fix explanation and the explicit note that full PHP array insertion order cannot be represented with plain JS objects in mixed integer/string-key cases.
+  - Verified the post-merge `main` workflow completed successfully through full parity and website deploy, making the branch release-ready.
+- Release:
+  - Preparing `v3.0.18` for the `php/array/array_keys` runtime-correctness fix and the already-merged packaging/docs improvements.
+- Key learnings:
+  - When a report mixes one actionable parity defect with one underlying data-model limit, it is better to ship the real fix and close the issue with a crisp explanation than to leave it open as an ambiguous backlog item.
