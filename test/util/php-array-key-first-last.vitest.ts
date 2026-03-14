@@ -46,6 +46,16 @@ describe('php/array/array_key_first and array_key_last', () => {
     expect(array_key_last({ '-0': 'negativeZero' })).toBe('-0')
   })
 
+  it('keeps large integer keys as strings when JavaScript cannot represent them safely', () => {
+    const input = {
+      '9007199254740993': 'first',
+      '9007199254740995': 'last',
+    }
+
+    expect(array_key_first(input)).toBe('9007199254740993')
+    expect(array_key_last(input)).toBe('9007199254740995')
+  })
+
   it('does not mutate the internal array pointer', () => {
     const input = ['foot', 'bike', 'car']
 

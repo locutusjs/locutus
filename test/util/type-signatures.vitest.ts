@@ -171,7 +171,7 @@ const walkTyped: boolean = array_walk([1, 2], (value: number) => walked.push(val
 const walkedRecursive: number[] = []
 const walkRecursiveTyped: boolean = array_walk_recursive([1, [2]], (value: number) => walkedRecursive.push(value))
 const arrayReduceTyped: number = array_reduce([1, 2, 3, 4], (carry, value) => Number(carry) + Number(value), 0)
-const arrayKeysTyped: string[] = array_keys({ one: 1, two: 2 })
+const arrayKeysTyped: Array<string | number> = array_keys({ one: 1, two: 2 })
 const arrayFillKeysTyped: { [key: string]: string } = array_fill_keys({ first: 'a', second: 'b' }, 'x')
 const arrayCombineTyped: { [key: string]: string } | false = array_combine([1, 2], ['a', 'b'])
 const arrayMergeTyped: number[] | { [key: string]: number } = array_merge([1, 2], [3, 4])

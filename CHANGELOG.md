@@ -27,6 +27,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.17...main).
 
+### Fixes
+
+- Fixed `php/array/array_keys` so returned keys follow PHP-style numeric normalization for dense arrays and canonical integer-like keys on associative input, instead of returning every key as a string.
+
 ### Packaging
 
 - Added `crypto: false` to browser-facing package metadata and propagated browser fallbacks into `dist/esm/package.json` so ESM/browser bundlers keep the same builtin-module stubbing as the CommonJS dist package.

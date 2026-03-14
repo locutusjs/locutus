@@ -43,6 +43,7 @@ src/php/_helpers/_phpTypes.ts :: export function isPhpKey(value: PhpInput): valu
 src/php/_helpers/_phpTypes.ts :: export function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T>
 src/php/_helpers/_phpTypes.ts :: export function isPhpNullish(value: PhpInput): value is PhpNullish
 src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpInput): value is PhpScalar
+src/php/_helpers/_phpTypes.ts :: export function normalizeArrayKey(key: string): string | number
 src/php/_helpers/_phpTypes.ts :: export function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export interface PhpRecursiveAssoc { [key: string]: PhpRecursiveValue }
 src/php/_helpers/_phpTypes.ts :: export interface PhpRecursiveList extends Array<PhpRecursiveValue> {}
@@ -104,7 +105,7 @@ src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T>
 src/php/array/array_key_exists.ts :: export function array_key_exists<TValue>(key: string | number, search: PhpArrayLike<TValue>): boolean
 src/php/array/array_key_first.ts :: export function array_key_first<T>(input: PhpArrayLike<T>): string | number | null
 src/php/array/array_key_last.ts :: export function array_key_last<T>(input: PhpArrayLike<T>): string | number | null
-src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[]
+src/php/array/array_keys.ts :: export function array_keys<T>(input: PhpArrayLike<T>, searchValue?: T, argStrict?: boolean): PhpKey[]
 src/php/array/array_map.ts :: export function array_map<TInputs extends ArrayMapInputs, TResult>( callback: PhpCallableDescriptor<ArrayMapTupleArgs<TInputs>, TResult>, ...inputArrays: TInputs ): PhpList<TResult>
 src/php/array/array_map.ts :: export function array_map<TInputs extends ArrayMapInputs>( callback: null | undefined, ...inputArrays: TInputs ): PhpList<ArrayMapTupleArgs<TInputs>>
 src/php/array/array_map.ts :: export function array_map<TResult = ArrayMapValue>( callback: PhpCallableDescriptor<ArrayMapCallbackArgsVariadic, TResult> | null | undefined, ...inputArrays: ArrayMapInputs ): PhpList<TResult> | PhpList<ArrayMapCallbackArgsVariadic>
