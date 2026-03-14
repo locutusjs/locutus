@@ -43,6 +43,7 @@ src/php/_helpers/_phpTypes.ts :: export function isPhpKey(value: PhpInput): valu
 src/php/_helpers/_phpTypes.ts :: export function isPhpList<T = PhpInput>(value: PhpInput): value is PhpList<T>
 src/php/_helpers/_phpTypes.ts :: export function isPhpNullish(value: PhpInput): value is PhpNullish
 src/php/_helpers/_phpTypes.ts :: export function isPhpScalar(value: PhpInput): value is PhpScalar
+src/php/_helpers/_phpTypes.ts :: export function normalizeArrayKey(key: string): string | number
 src/php/_helpers/_phpTypes.ts :: export function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T>
 src/php/_helpers/_phpTypes.ts :: export interface PhpRecursiveAssoc { [key: string]: PhpRecursiveValue }
 src/php/_helpers/_phpTypes.ts :: export interface PhpRecursiveList extends Array<PhpRecursiveValue> {}
