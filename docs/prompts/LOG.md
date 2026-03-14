@@ -1971,3 +1971,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - These modern PHP array helpers fit Locutus well because they provide real value without requiring any mutable pointer state or runtime side effects.
   - The runtime-surface policy file is already paying off as a small, concrete roadmap for product work instead of just guardrail metadata.
+
+### Iteration 98
+
+2026-03-14
+
+- **Area: Release management + roadmap**
+- Progress:
+  - Added a rough roadmap note to keep parity-runtime optimization visible as future maintainer work, specifically around Docker image prewarming, caching, and sharding for full parity.
+  - Verified the post-merge `main` run for `array_key_first` / `array_key_last` completed successfully, including full parity and website deploy.
+  - Promoted the current `## main` notes into `v3.0.17`.
+- Release:
+  - Preparing `v3.0.17` for:
+    - `php/array/array_key_first`
+    - `php/array/array_key_last`
+    - automatic GitHub release-page creation from `CHANGELOG.md`
+- Key learnings:
+  - Full parity remains the dominant CI cost even when the normal dependency and browser setup steps are cached, so parity-specific optimization deserves to live on the roadmap instead of being rediscovered ad hoc.

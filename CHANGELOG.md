@@ -17,6 +17,7 @@ Ideas that will be planned and find their way into a release at one point
 - [ ] Expansion:
   - [ ] Continue porting additional functions in existing languages.
   - [ ] Expand parity coverage and edge-case coverage for generated tests.
+  - [ ] Reduce parity runtime cost with ideas like Docker image prewarming, smarter full-parity caching, and better sharding.
 - [ ] New language exploration (not yet in `src/`):
   - [ ] Bash
   - [ ] Java
@@ -24,7 +25,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.16...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.17...main).
+
+## v3.0.17
+
+Released: 2026-03-14. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.16...v3.0.17).
+Version rationale: `patch` for additive PHP array expansion plus release-flow automation without import-model or runtime floor changes.
 
 ### CI
 
