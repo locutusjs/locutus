@@ -2022,3 +2022,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn exec vitest run test/util/fix-cjs-exports.vitest.ts`
 - Key learnings:
   - The most important bundle-size win still belongs on the consumer side when they import category indexes, but Locutus should not make browser bundlers rediscover Node builtin fallbacks differently between CommonJS and ESM publication layouts.
+
+### Iteration 101
+
+2026-03-14 15:23 CET
+
+- **Area: PHP runtime correctness**
+- Plan:
+  - Investigate `#577` as a split between a real numeric-key parity bug in `array_keys` and a likely plain-object ordering limitation that JS cannot represent for mixed integer/string keys.
+  - Fix the numeric-key half fail-first without pretending Locutus can make plain objects preserve PHP array insertion order for integer-like keys.
+- Progress:
+  - Updated `php/array/array_keys` to accept PHP array-like input and normalize canonical integer keys in its returned key list, matching current PHP more closely for dense arrays and associative numeric keys.
+  - Extracted shared array-key normalization into `src/_util/_helpers/normalizePhpArrayKey.ts` so `array_key_first`, `array_key_last`, and `array_keys` stay aligned on what counts as a numeric PHP key without creating unrelated generated-test churn across the PHP surface.
+  - Added focused regression coverage for dense arrays, canonical integer-like associative keys, and non-canonical numeric-looking string keys.
+- Validation:
+  - `corepack yarn exec vitest run test/util/php-array-keys.vitest.ts test/util/php-array-key-first-last.vitest.ts test/util/type-signatures.vitest.ts`
+- Key learnings:
+  - Numeric key normalization is a real parity obligation for PHP array helpers, but mixed integer/string key insertion order on plain JS objects is still constrained by JS property enumeration rules and should be documented as such rather than silently promised.

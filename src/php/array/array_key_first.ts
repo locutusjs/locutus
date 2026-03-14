@@ -1,12 +1,5 @@
+import { normalizePhpArrayKey } from '../../_util/_helpers/normalizePhpArrayKey.ts'
 import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
-
-const normalizeArrayKey = (key: string): string | number => {
-  if (/^(0|-?[1-9]\d*)$/.test(key)) {
-    return Number(key)
-  }
-
-  return key
-}
 
 export function array_key_first<T>(input: PhpArrayLike<T>): string | number | null {
   //      discuss at: https://locutus.io/php/array_key_first/
@@ -20,5 +13,5 @@ export function array_key_first<T>(input: PhpArrayLike<T>): string | number | nu
   //       returns 3: null
 
   const [firstKey] = Object.keys(input)
-  return typeof firstKey === 'string' ? normalizeArrayKey(firstKey) : null
+  return typeof firstKey === 'string' ? normalizePhpArrayKey(firstKey) : null
 }

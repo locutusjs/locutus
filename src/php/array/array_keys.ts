@@ -1,6 +1,7 @@
-import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+import { normalizePhpArrayKey } from '../../_util/_helpers/normalizePhpArrayKey.ts'
+import type { PhpArrayLike, PhpKey } from '../_helpers/_phpTypes.ts'
 
-export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[] {
+export function array_keys<T>(input: PhpArrayLike<T>, searchValue?: T, argStrict?: boolean): PhpKey[] {
   //      discuss at: https://locutus.io/php/array_keys/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -14,7 +15,7 @@ export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: b
   //       returns 1: [ 'firstname', 'surname' ]
 
   const search = typeof searchValue !== 'undefined'
-  const tmpArr: string[] = []
+  const tmpArr: PhpKey[] = []
   const strict = !!argStrict
   let include = true
 
@@ -29,7 +30,7 @@ export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: b
     }
 
     if (include) {
-      tmpArr.push(key)
+      tmpArr.push(normalizePhpArrayKey(key))
     }
   }
 
