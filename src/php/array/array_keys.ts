@@ -1,5 +1,4 @@
-import { normalizePhpArrayKey } from '../../_util/_helpers/normalizePhpArrayKey.ts'
-import type { PhpArrayLike, PhpKey } from '../_helpers/_phpTypes.ts'
+import { normalizeArrayKey, type PhpArrayLike, type PhpKey } from '../_helpers/_phpTypes.ts'
 
 export function array_keys<T>(input: PhpArrayLike<T>, searchValue?: T, argStrict?: boolean): PhpKey[] {
   //      discuss at: https://locutus.io/php/array_keys/
@@ -30,7 +29,7 @@ export function array_keys<T>(input: PhpArrayLike<T>, searchValue?: T, argStrict
     }
 
     if (include) {
-      tmpArr.push(normalizePhpArrayKey(key))
+      tmpArr.push(normalizeArrayKey(key))
     }
   }
 

@@ -32,6 +32,17 @@ export const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => 
   return Object.entries(value)
 }
 
+export function normalizeArrayKey(key: string): string | number {
+  if (/^(0|-?[1-9]\d*)$/.test(key)) {
+    const numericKey = Number(key)
+    if (Number.isSafeInteger(numericKey)) {
+      return numericKey
+    }
+  }
+
+  return key
+}
+
 export type PhpCallableArgs = PhpInput[]
 export type PhpCallable<TArgs extends PhpCallableArgs = PhpCallableArgs, TResult = PhpInput> = (
   ...args: TArgs

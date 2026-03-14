@@ -1,4 +1,3 @@
-src/_util/_helpers/normalizePhpArrayKey.ts :: export function normalizePhpArrayKey(key: string): string | number
 src/_util/headerFormatter.ts :: export function checkAll(srcDir: string): CheckAllResult
 src/_util/headerFormatter.ts :: export function checkFile(filepath: string): CheckResult
 src/_util/headerFormatter.ts :: export function formatAll(srcDir: string): FormatAllResult

@@ -1,5 +1,4 @@
-import { normalizePhpArrayKey } from '../../_util/_helpers/normalizePhpArrayKey.ts'
-import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
+import { normalizeArrayKey, type PhpArrayLike } from '../_helpers/_phpTypes.ts'
 
 export function array_key_last<T>(input: PhpArrayLike<T>): string | number | null {
   //      discuss at: https://locutus.io/php/array_key_last/
@@ -14,5 +13,5 @@ export function array_key_last<T>(input: PhpArrayLike<T>): string | number | nul
 
   const keys = Object.keys(input)
   const lastKey = keys.at(-1)
-  return typeof lastKey === 'string' ? normalizePhpArrayKey(lastKey) : null
+  return typeof lastKey === 'string' ? normalizeArrayKey(lastKey) : null
 }

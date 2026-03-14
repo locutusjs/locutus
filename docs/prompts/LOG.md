@@ -2033,7 +2033,7 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Fix the numeric-key half fail-first without pretending Locutus can make plain objects preserve PHP array insertion order for integer-like keys.
 - Progress:
   - Updated `php/array/array_keys` to accept PHP array-like input and normalize canonical integer keys in its returned key list, matching current PHP more closely for dense arrays and associative numeric keys.
-  - Extracted shared array-key normalization into `src/_util/_helpers/normalizePhpArrayKey.ts` so `array_key_first`, `array_key_last`, and `array_keys` stay aligned on what counts as a numeric PHP key without creating unrelated generated-test churn across the PHP surface.
+  - Extracted shared array-key normalization into `src/php/_helpers/_phpTypes.ts` so `array_key_first`, `array_key_last`, and `array_keys` stay aligned on what counts as a numeric PHP key while still shipping correctly through `dist/`.
   - Added focused regression coverage for dense arrays, canonical integer-like associative keys, and non-canonical numeric-looking string keys.
 - Validation:
   - `corepack yarn exec vitest run test/util/php-array-keys.vitest.ts test/util/php-array-key-first-last.vitest.ts test/util/type-signatures.vitest.ts`
