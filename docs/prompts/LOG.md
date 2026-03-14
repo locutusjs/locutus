@@ -1953,3 +1953,21 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - This repo does not need Changesets for release-page automation; strict changelog extraction is enough as long as CI fails hard on malformed or missing version sections.
   - Release reruns need idempotency both at npm publish time and at GitHub release creation time, or recovery attempts create misleading noise in Actions history.
+
+### Iteration 97
+
+2026-03-14
+
+- **Area: PHP array expansion**
+- Plan:
+  - Pick up the two runtime-surface `wanted` helpers that fit Locutus' plain-value model cleanly: `array_key_first` and `array_key_last`.
+  - Keep the work scoped to current PHP semantics, including empty-input handling, sparse arrays, and no interaction with the legacy internal-pointer helpers.
+- Progress:
+  - Added `php/array/array_key_first` and `php/array/array_key_last` as PHP 8.3 parity-targeted helpers.
+  - Kept both helpers pointer-neutral so they report boundary keys without mutating the internal array cursor.
+  - Updated Rosetta mappings and removed the corresponding `wanted` entries from the runtime-surface policy inventory now that they are shipped.
+- Validation:
+  - `corepack yarn exec vitest run test/util/php-array-key-first-last.vitest.ts`
+- Key learnings:
+  - These modern PHP array helpers fit Locutus well because they provide real value without requiring any mutable pointer state or runtime side effects.
+  - The runtime-surface policy file is already paying off as a small, concrete roadmap for product work instead of just guardrail metadata.

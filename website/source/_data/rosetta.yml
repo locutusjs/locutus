@@ -190,6 +190,12 @@ collection_group_by:
 array_binary_search:
   - ruby/Array/bsearch
 
+array_first_key:
+  - php/array/array_key_first
+
+array_last_key:
+  - php/array/array_key_last
+
 sequence_partition_by:
   - clojure/core/partition_by
 
