@@ -73,6 +73,7 @@ const GO_PACKAGES: Record<string, string> = {
   Clean: 'path',
   Dir: 'path',
   Ext: 'path',
+  Rel: 'filepath',
   IsAbs: 'path',
   Match: 'path',
   // net/url package
@@ -921,6 +922,22 @@ function convertMatchCalls(code: string): string {
 }
 
 /**
+ * Convert Locutus filepath/Rel calls to helper calls.
+ * Go returns (string, error), while locutus Rel returns string.
+ */
+function convertRelCalls(code: string): string {
+  return replaceCallExpression(code, 'Rel', (argsStr, match) => {
+    const args = parseArguments(argsStr)
+    const basePath = args[0]
+    const targetPath = args[1]
+    if (!basePath || !targetPath) {
+      return match
+    }
+    return `locutusFilepathRel(${basePath}, ${targetPath})`
+  })
+}
+
+/**
  * Convert a single JS line to Go
  */
 function convertJsLineToGo(line: string, funcName: string, category?: string): string {
@@ -1022,6 +1039,8 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     go = convertParseCIDRCalls(go)
   } else if (funcName === 'Match') {
     go = convertMatchCalls(go)
+  } else if (funcName === 'Rel' && category === 'filepath') {
+    go = convertRelCalls(go)
   }
 
   // Handle function calls - prefix with package
@@ -1058,7 +1077,8 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
     funcName !== 'SplitHostPort' &&
     funcName !== 'ParseIP' &&
     funcName !== 'ParseCIDR' &&
-    funcName !== 'Match'
+    funcName !== 'Match' &&
+    !(funcName === 'Rel' && category === 'filepath')
   ) {
     // Index2 is our alias for Index
     const goFuncName = funcName === 'Index2' ? 'Index' : funcName
@@ -1096,6 +1116,9 @@ function getRequiredImports(goCode: string): string[] {
   }
   if (goCode.includes('path.') || goCode.includes('locutusPathMatch(')) {
     imports.add('path')
+  }
+  if (goCode.includes('filepath.') || goCode.includes('locutusFilepathRel(')) {
+    imports.add('path/filepath')
   }
   if (goCode.includes('sort.')) {
     imports.add('sort')
@@ -1508,7 +1531,17 @@ func locutusParseCIDR(value string) interface{} {
 }
 
 `
-                                                                      : ''
+                                                                      : funcName === 'Rel' && category === 'filepath'
+                                                                        ? `func locutusFilepathRel(basePath string, targetPath string) string {
+\trel, err := filepath.Rel(basePath, targetPath)
+\tif err != nil {
+\t\tpanic(err)
+\t}
+\treturn rel
+}
+
+`
+                                                                        : ''
 
   return `package main
 

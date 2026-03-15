@@ -2053,3 +2053,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Preparing `v3.0.18` for the `php/array/array_keys` runtime-correctness fix and the already-merged packaging/docs improvements.
 - Key learnings:
   - When a report mixes one actionable parity defect with one underlying data-model limit, it is better to ship the real fix and close the issue with a crisp explanation than to leave it open as an ambiguous backlog item.
+
+### Iteration 103
+
+2026-03-15
+
+- **Area: Go expansion**
+- Plan:
+  - Resume product work with a real Go path-relative helper after confirming the earlier `golang/path/Rel` idea was invalid because the stdlib exposes `filepath.Rel`, not `path.Rel`.
+  - Keep the implementation lexical and slash-based to match the Linux Go 1.23 parity target rather than Node's cwd-sensitive `path.relative` behavior.
+- Progress:
+  - Added `golang/filepath/Rel` as a new category-backed function and exported the new `golang/filepath` namespace.
+  - Wired Go parity translation/import handling so `Rel(...)` examples run through a `path/filepath.Rel` helper in the Go parity runtime.
+  - Added focused edge-case tests for cleaned inputs, rooted/relative mismatch errors, and Go's unresolved-`..` failure mode where the relative answer would otherwise depend on the current working directory.
+  - Fixed the Go parity rewrite for nested `Rel(...)` call expressions and kept invalid parity helper cases loud via `panic(err)` instead of flattening them into empty strings.
+  - Preserved the existing website Rosetta mappings while adding the new `path_relative` group, avoiding a regression in cross-language site links.
+- Validation:
+  - `corepack yarn exec vitest run test/util/filepath-rel.vitest.ts test/util/golang-parity.vitest.ts test/generated/golang/filepath/Rel.vitest.ts`
+  - `corepack yarn test:parity golang/filepath/Rel --no-cache`
+  - `corepack yarn fix:api:snapshot:nonphp`
+  - `corepack yarn fix:type:contracts`
+  - `~/code/dotfiles/bin/council.ts review`
+  - `corepack yarn check`
+- Key learnings:
+  - The earlier `golang/path/Rel` target was a category-selection mistake, not a bad feature idea; validating against the real upstream package surface before coding saved an avoidable false start.
