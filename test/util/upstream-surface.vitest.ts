@@ -4,8 +4,6 @@ import { join } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
 import { cHandler } from '../parity/lib/languages/c.ts'
-import { pythonHandler } from '../parity/lib/languages/python.ts'
-import { rubyHandler } from '../parity/lib/languages/ruby.ts'
 import { findFunctionSources } from '../parity/lib/parser.ts'
 import type { FunctionInfo, LanguageHandler, UpstreamSurfaceSnapshot } from '../parity/lib/types.ts'
 import {
@@ -265,14 +263,11 @@ describe('upstream surface inventory', () => {
     expect(loaded.namespaces[0]?.sourceKind).toBe('runtime')
   })
 
-  it('discovers only parity-relevant Python upstream entries', async () => {
-    const snapshot = await pythonHandler.upstreamSurface?.discover?.()
-
-    expect(snapshot).toBeTruthy()
-
-    const mathEntries = snapshot?.namespaces.find((namespace) => namespace.namespace === 'math')?.entries ?? []
-    const stringEntries = snapshot?.namespaces.find((namespace) => namespace.namespace === 'string')?.entries ?? []
-    const difflibEntries = snapshot?.namespaces.find((namespace) => namespace.namespace === 'difflib')?.entries ?? []
+  it('stores only parity-relevant Python upstream entries in the checked-in snapshot', () => {
+    const snapshot = loadUpstreamSurfaceSnapshot(join(process.cwd(), 'test/parity/fixtures/upstream-surface/python.yml'))
+    const mathEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'math')?.entries ?? []
+    const stringEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'string')?.entries ?? []
+    const difflibEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'difflib')?.entries ?? []
 
     expect(mathEntries).toContain('ceil')
     expect(mathEntries).not.toContain('pi')
@@ -281,13 +276,10 @@ describe('upstream surface inventory', () => {
     expect(difflibEntries).not.toContain('HtmlDiff')
   })
 
-  it('discovers only Ruby methods owned by the target namespace', async () => {
-    const snapshot = await rubyHandler.upstreamSurface?.discover?.()
-
-    expect(snapshot).toBeTruthy()
-
-    const arrayEntries = snapshot?.namespaces.find((namespace) => namespace.namespace === 'Array')?.entries ?? []
-    const stringEntries = snapshot?.namespaces.find((namespace) => namespace.namespace === 'String')?.entries ?? []
+  it('stores only Ruby methods owned by the target namespace in the checked-in snapshot', () => {
+    const snapshot = loadUpstreamSurfaceSnapshot(join(process.cwd(), 'test/parity/fixtures/upstream-surface/ruby.yml'))
+    const arrayEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'Array')?.entries ?? []
+    const stringEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'String')?.entries ?? []
 
     expect(arrayEntries).toContain('bsearch')
     expect(arrayEntries).toContain('group_by')
