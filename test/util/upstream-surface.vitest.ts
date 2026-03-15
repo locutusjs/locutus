@@ -264,7 +264,9 @@ describe('upstream surface inventory', () => {
   })
 
   it('stores only parity-relevant Python upstream entries in the checked-in snapshot', () => {
-    const snapshot = loadUpstreamSurfaceSnapshot(join(process.cwd(), 'test/parity/fixtures/upstream-surface/python.yml'))
+    const snapshot = loadUpstreamSurfaceSnapshot(
+      join(process.cwd(), 'test/parity/fixtures/upstream-surface/python.yml'),
+    )
     const mathEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'math')?.entries ?? []
     const stringEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'string')?.entries ?? []
     const difflibEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'difflib')?.entries ?? []
