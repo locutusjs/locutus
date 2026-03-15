@@ -1,30 +1,30 @@
-type ReSubReplacement = string | ((match: string, ...groups: Array<string | undefined>) => string)
-type ReSubFlags = number | string
+type ReSubnReplacement = string | ((match: string, ...groups: Array<string | undefined>) => string)
+type ReSubnFlags = number | string
 
 const PY_RE_IGNORECASE = 2
 const PY_RE_MULTILINE = 8
 const PY_RE_DOTALL = 16
 
-export function sub(
+export function subn(
   pattern: string | RegExp,
-  replacement: ReSubReplacement,
+  replacement: ReSubnReplacement,
   source: string,
   count: number = 0,
-  flags: ReSubFlags = 0,
-): string {
-  //      discuss at: https://locutus.io/python/re/sub/
+  flags: ReSubnFlags = 0,
+): [string, number] {
+  //      discuss at: https://locutus.io/python/re/subn/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
-  //          note 1: Replaces regex matches in a string, similar to Python's re.sub.
-  //          note 2: Supports count-limited substitution and a subset of numeric flags (IGNORECASE=2, MULTILINE=8, DOTALL=16).
-  //       example 1: sub('a+', '-', 'caaab')
-  //       returns 1: 'c-b'
-  //       example 2: sub('(\\d+)', '#', 'a1b22c333')
-  //       returns 2: 'a#b#c#'
-  //       example 3: sub('x', 'y', 'xxx', 2)
-  //       returns 3: 'yyx'
-  //       example 4: sub('abc', 'X', 'ABC abc', 0, 2)
-  //       returns 4: 'X X'
+  //          note 1: Returns the substituted string together with the number of replacements applied.
+  //          note 2: Supports a subset of numeric flags (IGNORECASE=2, MULTILINE=8, DOTALL=16).
+  //       example 1: subn('a+', '-', 'caaab')
+  //       returns 1: ['c-b', 1]
+  //       example 2: subn('(\\d+)', '#', 'a1b22c333')
+  //       returns 2: ['a#b#c#', 3]
+  //       example 3: subn('x', 'y', 'xxx', 2)
+  //       returns 3: ['yyx', 2]
+  //       example 4: subn('abc', 'X', 'ABC abc', 0, 2)
+  //       returns 4: ['X X', 2]
 
   const input = String(source)
   const maxCount = normalizeCount(count)
@@ -64,7 +64,7 @@ export function sub(
   }
 
   out += input.slice(lastIndex)
-  return replaced > 0 ? out : input
+  return [replaced > 0 ? out : input, replaced]
 }
 
 function normalizeCount(count: number): number {
@@ -75,7 +75,7 @@ function normalizeCount(count: number): number {
   return Math.floor(n)
 }
 
-function createGlobalRegex(pattern: string | RegExp, flags: ReSubFlags): RegExp {
+function createGlobalRegex(pattern: string | RegExp, flags: ReSubnFlags): RegExp {
   const source = pattern instanceof RegExp ? pattern.source : String(pattern)
   const base = pattern instanceof RegExp ? pattern.flags : ''
   const extra = normalizeRegexFlags(flags)
@@ -83,7 +83,7 @@ function createGlobalRegex(pattern: string | RegExp, flags: ReSubFlags): RegExp 
   return new RegExp(source, `${combined}g`)
 }
 
-function normalizeRegexFlags(flags: ReSubFlags): string {
+function normalizeRegexFlags(flags: ReSubnFlags): string {
   if (typeof flags === 'string') {
     return dedupeFlags(flags.replace(/[^dgimsuvy]/g, ''))
   }

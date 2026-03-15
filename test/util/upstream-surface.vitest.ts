@@ -159,7 +159,7 @@ describe('upstream surface inventory', () => {
 
     expect(loaded.php?.namespaces?.__global?.decisions?.money_format?.decision).toBe('keep_legacy')
     expect(loaded.php?.namespaces?.__global?.decisions?.array_is_list?.decision).toBe('wanted')
-    expect(loaded.golang?.namespaces?.filepath?.decisions?.Join?.decision).toBe('wanted')
+    expect(loaded.golang?.namespaces?.filepath?.decisions).toEqual({})
   })
 
   it('rejects unknown keys in namespace sections', () => {

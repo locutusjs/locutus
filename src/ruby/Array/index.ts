@@ -1,5 +1,7 @@
 export { bsearch } from './bsearch.ts'
+export { bsearch_index } from './bsearch_index.ts'
 export { compact } from './compact.ts'
+export { filter_map } from './filter_map.ts'
 export { first } from './first.ts'
 export { flatten } from './flatten.ts'
 export { group_by } from './group_by.ts'

@@ -1,1 +1,7 @@
+export { Base } from './Base.ts'
+export { Clean } from './Clean.ts'
+export { Dir } from './Dir.ts'
+export { Ext } from './Ext.ts'
+export { IsAbs } from './IsAbs.ts'
+export { Join } from './Join.ts'
 export { Rel } from './Rel.ts'

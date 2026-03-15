@@ -182,7 +182,7 @@ function main(): void {
     {
       path: 'golang/filepath/index.html',
       title: 'Go&#39;s filepath package  in TypeScript | Locutus',
-      includes: ['Namespace wishlist', 'Wanted ports', 'Join'],
+      includes: ['Namespace wishlist', 'Coverage', 'Untriaged upstream entries', 'Join'],
       ogUrl: 'https://locutus.io/golang/filepath/index.html',
     },
   ]
