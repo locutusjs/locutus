@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   buildReverseDependencies,
   computeParitySelection,
-  computeRuntimeSurfaceLanguages,
+  computeUpstreamSurfaceLanguages,
   SMOKE_PARITY_TARGETS,
 } from '../../scripts/select-parity-targets.ts'
 import type { FunctionInfo } from '../parity/lib/types.ts'
@@ -125,13 +125,46 @@ describe('select-parity-targets', () => {
     expect(selection.targets).toEqual([...SMOKE_PARITY_TARGETS])
   })
 
-  it('only requests runtime-surface checks for relevant PR changes', () => {
+  it('only requests upstream-surface checks for relevant PR changes', () => {
     expect(
-      computeRuntimeSurfaceLanguages(['website/source/index.html', 'docs/prompts/selective-parity-ci-plan.md']),
+      computeUpstreamSurfaceLanguages(['website/source/index.html', 'docs/prompts/selective-parity-ci-plan.md']),
     ).toEqual([])
 
-    expect(computeRuntimeSurfaceLanguages(['src/php/array/array_flip.ts'])).toEqual(['php'])
-    expect(computeRuntimeSurfaceLanguages(['test/parity/lib/runtime-surface.ts'])).toEqual(['php'])
-    expect(computeRuntimeSurfaceLanguages(['docs/runtime-surface-policy.yml'])).toEqual(['php'])
+    expect(computeUpstreamSurfaceLanguages(['src/php/array/array_flip.ts'])).toEqual(['php'])
+    expect(computeUpstreamSurfaceLanguages(['test/parity/lib/upstream-surface.ts'])).toEqual([
+      'awk',
+      'c',
+      'clojure',
+      'elixir',
+      'golang',
+      'julia',
+      'lua',
+      'perl',
+      'php',
+      'powershell',
+      'python',
+      'r',
+      'rust',
+      'ruby',
+      'tcl',
+    ])
+    expect(computeUpstreamSurfaceLanguages(['docs/upstream-surface-inventory.yml'])).toEqual([
+      'awk',
+      'c',
+      'clojure',
+      'elixir',
+      'golang',
+      'julia',
+      'lua',
+      'perl',
+      'php',
+      'powershell',
+      'python',
+      'r',
+      'rust',
+      'ruby',
+      'tcl',
+    ])
+    expect(computeUpstreamSurfaceLanguages(['test/parity/fixtures/upstream-surface/php.yml'])).toEqual(['php'])
   })
 })

@@ -98,7 +98,7 @@ export function bsearch<T>(values: T[] | unknown, callback: BsearchCallback<T>):
 
     mode = 'boolean'
 
-    if (Boolean(result)) {
+    if (result) {
       candidateIndex = mid
       high = mid - 1
     } else {
@@ -169,7 +169,7 @@ export function bsearch(values, callback) {
 
     mode = 'boolean'
 
-    if (Boolean(result)) {
+    if (result) {
       candidateIndex = mid
       high = mid - 1
     } else {

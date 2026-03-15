@@ -2,6 +2,7 @@
  * Lua language handler for verification
  */
 
+import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -9,6 +10,39 @@ import type { LanguageHandler } from '../types.ts'
 export const LUA_SKIP_LIST = new Set<string>([
   // None currently
 ])
+
+const LUA_DOCKER_IMAGE = 'nickblah/lua:5.4-alpine'
+
+function discoverLuaUpstreamSurface() {
+  const discoverNamespace = (namespace: 'math' | 'string', title: string) => {
+    const script = `for key, value in pairs(${namespace}) do if type(value) == "function" then print(key) end end`
+    const result = runInDocker(LUA_DOCKER_IMAGE, ['lua', '-e', script])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover Lua upstream surface for ${namespace}`)
+    }
+
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .sort()
+
+    return {
+      namespace,
+      title,
+      target: 'Lua 5.4',
+      sourceKind: 'runtime' as const,
+      sourceRef: LUA_DOCKER_IMAGE,
+      entries,
+    }
+  }
+
+  return {
+    language: 'lua',
+    namespaces: [discoverNamespace('math', 'math library'), discoverNamespace('string', 'string library')],
+  }
+}
 
 /**
  * Strip trailing JS comments (// ...) that are not inside strings
@@ -133,7 +167,7 @@ export const luaHandler: LanguageHandler = {
   translate: jsToLua,
   normalize: normalizeLuaOutput,
   skipList: LUA_SKIP_LIST,
-  dockerImage: 'nickblah/lua:5.4-alpine',
+  dockerImage: LUA_DOCKER_IMAGE,
   displayName: 'Lua',
   version: '5.4',
   get parityValue() {
@@ -141,4 +175,11 @@ export const luaHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['lua', '-e', code],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverLuaUpstreamSurface,
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

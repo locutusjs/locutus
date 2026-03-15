@@ -3,6 +3,7 @@
  */
 
 import ts from 'typescript'
+import { runInDocker } from '../docker.ts'
 
 import { type JsExpression, type JsObjectProperty, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
@@ -13,6 +14,54 @@ export const CLOJURE_SKIP_LIST = new Set<string>([
   // partition emits lazy seqs/lists; parity translator currently compares scalar/string-style outputs only.
   'partition',
 ])
+
+const CLOJURE_DOCKER_IMAGE = 'clojure:temurin-21-tools-deps'
+
+function discoverClojureUpstreamSurface() {
+  const discoverNamespace = (namespace: string, title: string, form: string) => {
+    const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', form])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover Clojure upstream surface for ${namespace}`)
+    }
+
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .sort()
+
+    return {
+      namespace,
+      title,
+      target: 'Clojure 1.12',
+      sourceKind: 'runtime' as const,
+      sourceRef: CLOJURE_DOCKER_IMAGE,
+      entries,
+    }
+  }
+
+  return {
+    language: 'clojure',
+    namespaces: [
+      discoverNamespace(
+        'core',
+        'clojure.core',
+        '(doseq [s (sort (map name (keys (ns-publics (quote clojure.core)))))] (println s))',
+      ),
+      discoverNamespace(
+        'string',
+        'clojure.string',
+        "(require '[clojure.string]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.string)))))] (println s))",
+      ),
+      discoverNamespace(
+        'Math',
+        'java.lang.Math',
+        '(doseq [s (sort (map #(.getName %) (filter #(java.lang.reflect.Modifier/isStatic (.getModifiers %)) (.getMethods java.lang.Math))))] (println s))',
+      ),
+    ],
+  }
+}
 
 const CLOJURE_PARITY_PRELUDE = `
 (require '[clojure.string :as clojure-string])
@@ -508,7 +557,7 @@ export const clojureHandler: LanguageHandler = {
   translate: jsToClojure,
   normalize: normalizeClojureOutput,
   skipList: CLOJURE_SKIP_LIST,
-  dockerImage: 'clojure:temurin-21-tools-deps',
+  dockerImage: CLOJURE_DOCKER_IMAGE,
   displayName: 'Clojure',
   version: '1.12',
   get parityValue() {
@@ -516,4 +565,14 @@ export const clojureHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['clojure', '-M', '-e', code],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverClojureUpstreamSurface,
+    getLocutusEntry: (func) => {
+      const translated = func.category === 'string' && func.name === 'blank' ? 'blank?' : func.name.replaceAll('_', '-')
+      return {
+        namespace: func.category,
+        name: translated,
+      }
+    },
+  },
 }

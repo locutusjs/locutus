@@ -1,0 +1,43 @@
+language: perl
+namespaces:
+  - namespace: POSIX
+    title: POSIX module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/POSIX
+    entries:
+      - ceil
+      - floor
+      - fmod
+      - frexp
+      - hypot
+      - modf
+      - pow
+      - strftime
+  - namespace: core
+    title: Perl core built-ins
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/functions
+    entries:
+      - abs
+      - chomp
+      - chop
+      - chr
+      - hex
+      - index
+      - int
+      - join
+      - lc
+      - lcfirst
+      - length
+      - ord
+      - pack
+      - quotemeta
+      - reverse
+      - rindex
+      - split
+      - sprintf
+      - substr
+      - uc
+      - ucfirst

@@ -2,6 +2,7 @@
  * Python language handler for verification
  */
 
+import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -22,6 +23,69 @@ const STRING_CONSTANTS = new Set([
 export const PYTHON_SKIP_LIST = new Set<string>([
   // None currently - all Python functions should be testable
 ])
+
+const PYTHON_DOCKER_IMAGE = 'python:3.12'
+function discoverPythonUpstreamSurface() {
+  const script = `
+import difflib
+import inspect
+import json
+import math
+import re
+import string
+
+modules = {
+  "math": math,
+  "re": re,
+  "string": string,
+  "difflib": difflib,
+}
+
+snapshots = []
+for namespace, module in modules.items():
+  entries = sorted(
+    name
+    for name in dir(module)
+    if not name.startswith("_")
+    and (
+      name in ${JSON.stringify([...STRING_CONSTANTS].sort())}
+      or inspect.isroutine(getattr(module, name))
+    )
+  )
+  snapshots.append({
+    "namespace": namespace,
+    "title": namespace,
+    "target": "Python 3.12",
+    "sourceKind": "runtime",
+    "sourceRef": "${PYTHON_DOCKER_IMAGE}",
+    "entries": entries,
+  })
+
+print(json.dumps({"language": "python", "namespaces": snapshots}))
+`.trim()
+  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script])
+
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Python upstream surface')
+  }
+
+  const parsed = JSON.parse(result.output) as unknown
+  if (!parsed || typeof parsed !== 'object') {
+    throw new Error('Python upstream surface output was not an object')
+  }
+
+  return parsed as {
+    language: string
+    namespaces: Array<{
+      namespace: string
+      title: string
+      target: string
+      sourceKind: 'runtime'
+      sourceRef: string
+      entries: string[]
+    }>
+  }
+}
 
 function splitArgs(argsText: string): string[] {
   const args: string[] = []
@@ -304,7 +368,7 @@ export const pythonHandler: LanguageHandler = {
   translate: jsToPython,
   normalize: normalizePythonOutput,
   skipList: PYTHON_SKIP_LIST,
-  dockerImage: 'python:3.12',
+  dockerImage: PYTHON_DOCKER_IMAGE,
   displayName: 'Python',
   version: '3.12',
   get parityValue() {
@@ -312,4 +376,11 @@ export const pythonHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['python3', '-c', code],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverPythonUpstreamSurface,
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

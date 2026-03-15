@@ -1,0 +1,335 @@
+awk:
+  title: AWK
+  namespaces:
+    builtin:
+      title: Built-in functions
+      decisions: {}
+
+c:
+  title: C
+  namespaces:
+    ctype:
+      title: ctype.h
+      decisions: {}
+    math:
+      title: math.h
+      decisions: {}
+    stdio:
+      title: stdio.h
+      decisions: {}
+    stdlib:
+      title: stdlib.h
+      decisions: {}
+    string:
+      title: string.h
+      decisions: {}
+
+php:
+  title: PHP
+  namespaces:
+    __global:
+      title: Global functions
+      decisions:
+        bcadd:
+          decision: keep_extension
+          note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
+        bccomp:
+          decision: keep_extension
+          note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
+        bcdiv:
+          decision: keep_extension
+          note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
+        bcmul:
+          decision: keep_extension
+          note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
+        bcround:
+          decision: keep_extension
+          note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
+        bcscale:
+          decision: keep_extension
+          note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
+        bcsub:
+          decision: keep_extension
+          note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
+        array_is_list:
+          decision: wanted
+          note: Modern PHP array helper with a clean plain-value contract.
+        assert:
+          decision: skip_runtime_model
+          note: Runtime assertion configuration is not a good portability target.
+        chdir:
+          decision: skip_side_effects
+          note: Process-wide working-directory mutation is outside Locutus' value-only model.
+        checkdnsrr:
+          decision: skip_environment
+          note: Network and environment dependent behavior is outside the portability focus.
+        chgrp:
+          decision: skip_side_effects
+          note: Filesystem ownership mutation is outside the portability focus.
+        chmod:
+          decision: skip_side_effects
+          note: Filesystem permission mutation is outside the portability focus.
+        chown:
+          decision: skip_side_effects
+          note: Filesystem ownership mutation is outside the portability focus.
+        chroot:
+          decision: skip_side_effects
+          note: Process and filesystem sandbox mutation is outside the portability focus.
+        class_alias:
+          decision: skip_runtime_model
+          note: Runtime class-table mutation is not a good fit for Locutus' plain-value model.
+        convert_cyr_string:
+          decision: keep_legacy
+          note: Removed upstream in PHP 8.0, but retained as a legacy compatibility port.
+        each:
+          decision: keep_legacy
+          note: Removed upstream in PHP 8.0, but retained as a legacy compatibility port.
+        echo:
+          decision: keep_language_construct
+          note: Modeled pragmatically even though it is a language construct rather than a callable function.
+        empty:
+          decision: keep_language_construct
+          note: Modeled pragmatically even though it is a language construct rather than a callable function.
+        gopher_parsedir:
+          decision: keep_locutus_only
+          note: Niche Locutus-only port intentionally retained.
+        i18n_loc_get_default:
+          decision: keep_extension
+          note: Intl helper retained even though it is not exposed by the base runtime target.
+        i18n_loc_set_default:
+          decision: keep_extension
+          note: Intl helper retained even though it is not exposed by the base runtime target.
+        is_binary:
+          decision: keep_legacy
+          note: Legacy alias retained for compatibility with older PHP-oriented code.
+        is_buffer:
+          decision: keep_legacy
+          note: Legacy alias retained for compatibility with older PHP-oriented code.
+        is_real:
+          decision: keep_legacy
+          note: Legacy alias retained for compatibility with older PHP-oriented code.
+        is_unicode:
+          decision: keep_legacy
+          note: Legacy alias retained for compatibility with older PHP-oriented code.
+        isset:
+          decision: keep_language_construct
+          note: Modeled pragmatically even though it is a language construct rather than a callable function.
+        money_format:
+          decision: keep_legacy
+          note: Removed upstream in PHP 8.0, but retained as a legacy compatibility port.
+        split:
+          decision: keep_legacy
+          note: Removed upstream in PHP 7.0, but retained as a legacy compatibility port.
+        sql_regcase:
+          decision: keep_legacy
+          note: Removed upstream in PHP 7.0, but retained as a legacy compatibility port.
+        xdiff_string_diff:
+          decision: keep_extension
+          note: xdiff is not available in the base PHP runtime target, but the port is still useful.
+        xdiff_string_patch:
+          decision: keep_extension
+          note: xdiff is not available in the base PHP runtime target, but the port is still useful.
+
+python:
+  title: Python
+  namespaces:
+    math:
+      title: math module
+      decisions:
+        isqrt:
+          decision: wanted
+          note: High-value integer helper with a clean plain-value contract.
+        prod:
+          decision: wanted
+          note: Useful aggregate helper with a clean array-to-number contract.
+    re:
+      title: re module
+      decisions:
+        subn:
+          decision: wanted
+          note: Natural follow-up to sub with a tuple-like plain-value result.
+    string:
+      title: string module
+      decisions: {}
+    difflib:
+      title: difflib module
+      decisions:
+        ndiff:
+          decision: wanted
+          note: Useful structured diff helper that still maps to plain arrays of strings.
+
+julia:
+  title: Julia
+  namespaces:
+    Base:
+      title: Base module
+      decisions: {}
+
+ruby:
+  title: Ruby
+  namespaces:
+    Array:
+      title: Array instance methods
+      decisions:
+        bsearch_index:
+          decision: wanted
+          note: Natural complement to bsearch with a plain numeric result.
+        filter_map:
+          decision: wanted
+          note: High-value collection helper that maps cleanly to JS arrays.
+    String:
+      title: String instance methods
+      decisions:
+        delete_prefix:
+          decision: wanted
+          note: Useful pair with existing prefix/suffix style helpers in other languages.
+        delete_suffix:
+          decision: wanted
+          note: Useful pair with existing prefix/suffix style helpers in other languages.
+    Math:
+      title: Math module methods
+      decisions: {}
+
+golang:
+  title: Go
+  namespaces:
+    net:
+      title: net package
+      decisions: {}
+    path:
+      title: path package
+      decisions: {}
+    sort:
+      title: sort package
+      decisions: {}
+    strconv:
+      title: strconv package
+      decisions: {}
+    strings:
+      title: strings package
+      decisions:
+        Clone:
+          decision: skip_low_value
+          note: A string clone helper adds little value in JavaScript.
+    subtle:
+      title: crypto/subtle package
+      decisions: {}
+    time:
+      title: time package
+      decisions: {}
+    filepath:
+      title: path/filepath package
+      decisions:
+        Clean:
+          decision: wanted
+          note: High-value lexical path normalization helper.
+        Join:
+          decision: wanted
+          note: Natural follow-up to Rel for path composition.
+    url:
+      title: net/url package
+      decisions: {}
+
+tcl:
+  title: Tcl
+  namespaces:
+    string:
+      title: string ensemble
+      decisions:
+        equal:
+          decision: wanted
+          note: High-value comparison helper with a direct boolean contract.
+
+lua:
+  title: Lua
+  namespaces:
+    math:
+      title: math library
+      decisions:
+        type:
+          decision: wanted
+          note: Useful numeric classification helper with a clean string result.
+    string:
+      title: string library
+      decisions:
+        gsub:
+          decision: wanted
+          note: High-value string replacement helper with a plain-value return shape.
+
+perl:
+  title: Perl
+  namespaces:
+    POSIX:
+      title: POSIX module
+      decisions: {}
+    core:
+      title: Core functions
+      decisions: {}
+
+powershell:
+  title: PowerShell
+  namespaces:
+    string:
+      title: System.String instance methods
+      decisions:
+        TrimStart:
+          decision: wanted
+          note: Useful counterpart to the existing trim helper.
+        TrimEnd:
+          decision: wanted
+          note: Useful counterpart to the existing trim helper.
+
+elixir:
+  title: Elixir
+  namespaces:
+    Enum:
+      title: Enum module
+      decisions:
+        zip:
+          decision: wanted
+          note: High-value collection helper that maps cleanly to arrays.
+    String:
+      title: String module
+      decisions:
+        replace:
+          decision: wanted
+          note: Common string helper with a clean plain-value contract.
+    Float:
+      title: Float module
+      decisions: {}
+    Kernel:
+      title: Kernel module
+      decisions: {}
+
+clojure:
+  title: Clojure
+  namespaces:
+    core:
+      title: clojure.core
+      decisions:
+        interpose:
+          decision: wanted
+          note: Useful sequence helper that still maps to plain arrays.
+    string:
+      title: clojure.string
+      decisions: {}
+    Math:
+      title: java.lang.Math
+      decisions: {}
+
+r:
+  title: R
+  namespaces:
+    base:
+      title: base package
+      decisions:
+        sign:
+          decision: wanted
+          note: Small but useful numeric helper with a direct number result.
+
+rust:
+  title: Rust
+  namespaces:
+    str:
+      title: std::str
+      decisions: {}

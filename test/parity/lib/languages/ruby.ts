@@ -3,6 +3,7 @@
  */
 
 import ts from 'typescript'
+import { runInDocker } from '../docker.ts'
 
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
@@ -54,6 +55,78 @@ export const RUBY_SKIP_LIST = new Set<string>([
   // acos example uses JS string concatenation (float + '') which doesn't work in Ruby
   'acos',
 ])
+
+const RUBY_DOCKER_IMAGE = 'ruby:3.3'
+
+function discoverRubyUpstreamSurface() {
+  const script = `
+def owned_instance_entries(klass)
+  generic = (
+    BasicObject.public_instance_methods(true) +
+    Object.public_instance_methods(true) +
+    Kernel.public_instance_methods(true)
+  ).map(&:to_s).uniq
+
+  klass.public_instance_methods(true)
+    .map(&:to_s)
+    .uniq
+    .reject { |entry| generic.include?(entry) }
+    .sort
+end
+
+snapshots = [
+  {
+    namespace: 'Array',
+    title: 'Array instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Array)
+  },
+  {
+    namespace: 'String',
+    title: 'String instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(String)
+  },
+  {
+    namespace: 'Math',
+    title: 'Math module methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: Math.singleton_methods(false).map(&:to_s).uniq.sort
+  }
+]
+
+require 'json'
+puts JSON.generate({ language: 'ruby', namespaces: snapshots })
+`.trim()
+
+  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Ruby upstream surface')
+  }
+
+  const parsed = JSON.parse(result.output) as unknown
+  if (!parsed || typeof parsed !== 'object') {
+    throw new Error('Ruby upstream surface output was not an object')
+  }
+
+  return parsed as {
+    language: string
+    namespaces: Array<{
+      namespace: string
+      title: string
+      target: string
+      sourceKind: 'runtime'
+      sourceRef: string
+      entries: string[]
+    }>
+  }
+}
 
 /**
  * Strip trailing JS comments (// ...) that are not inside strings
@@ -520,7 +593,7 @@ export const rubyHandler: LanguageHandler = {
   translate: jsToRuby,
   normalize: normalizeRubyOutput,
   skipList: RUBY_SKIP_LIST,
-  dockerImage: 'ruby:3.3',
+  dockerImage: RUBY_DOCKER_IMAGE,
   displayName: 'Ruby',
   version: '3.3',
   get parityValue() {
@@ -528,4 +601,19 @@ export const rubyHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['ruby', '-e', code],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverRubyUpstreamSurface,
+    getLocutusEntry: (func) => {
+      const methodInfo = RUBY_METHODS[func.name]
+      return methodInfo
+        ? {
+            namespace: methodInfo.category,
+            name: methodInfo.rubyMethod,
+          }
+        : {
+            namespace: func.category,
+            name: func.name,
+          }
+    },
+  },
 }

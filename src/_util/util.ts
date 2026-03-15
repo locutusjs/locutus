@@ -5,6 +5,15 @@ import Debug from 'debug'
 import YAML from 'js-yaml'
 import pMap from 'p-map'
 import ts from 'typescript'
+import { getLanguageHandler, getSupportedLanguages } from '../../test/parity/lib/languages/index.ts'
+import { findFunctionSources } from '../../test/parity/lib/parser.ts'
+import {
+  buildUpstreamSurfaceSiteData,
+  evaluateUpstreamSurface,
+  formatInventoryCoverageIssues,
+} from '../../test/parity/lib/upstream-surface.ts'
+import { loadUpstreamSurfaceInventory } from '../../test/parity/lib/upstream-surface-inventory.ts'
+import { loadUpstreamSurfaceSnapshots } from '../../test/parity/lib/upstream-surface-snapshots.ts'
 import { isValidHeaderKey, validateHeaderKeys } from './headerSchema.ts'
 
 const debug = Debug('locutus:utils')
@@ -381,6 +390,8 @@ class Util {
         debug('copied rosetta.yml to website')
       }
 
+      await this._injectUpstreamSurfaceData()
+
       // Write all buffered website source files
       let filesWritten = 0
       for (const outputPath in this._injectwebBuffer) {
@@ -674,6 +685,55 @@ class Util {
       }
       seen.set(normalizedPath, outputPath)
     }
+  }
+
+  async _injectUpstreamSurfaceData(): Promise<void> {
+    const websiteDataDir = path.join(this.__root, 'website', 'source', '_data')
+    const inventorySrc = path.join(this.__root, 'docs', 'upstream-surface-inventory.yml')
+    const inventoryDest = path.join(websiteDataDir, 'upstream_surface_inventory.yml')
+    const snapshotSrcDir = path.join(this.__root, 'test', 'parity', 'fixtures', 'upstream-surface')
+    const snapshotDestDir = path.join(websiteDataDir, 'upstream_surface_snapshots')
+    const combinedDest = path.join(websiteDataDir, 'upstream_surface.yml')
+
+    await fs.promises.mkdir(websiteDataDir, { recursive: true })
+
+    if (fs.existsSync(inventorySrc)) {
+      await fs.promises.copyFile(inventorySrc, inventoryDest)
+      debug('copied upstream-surface-inventory.yml to website')
+    }
+
+    await fs.promises.rm(snapshotDestDir, { recursive: true, force: true })
+    await fs.promises.mkdir(snapshotDestDir, { recursive: true })
+
+    for (const entry of fs.readdirSync(snapshotSrcDir)) {
+      if (!entry.endsWith('.yml') && !entry.endsWith('.yaml')) {
+        continue
+      }
+
+      await fs.promises.copyFile(path.join(snapshotSrcDir, entry), path.join(snapshotDestDir, entry))
+    }
+    debug('copied upstream surface snapshots to website')
+
+    const inventory = loadUpstreamSurfaceInventory(inventorySrc)
+    const snapshots = loadUpstreamSurfaceSnapshots(snapshotSrcDir)
+    const evaluation = evaluateUpstreamSurface({
+      languages: getSupportedLanguages(),
+      snapshots,
+      inventory,
+      getHandler: getLanguageHandler,
+      getFunctions: (language) => findFunctionSources(path.join(this.__root, 'src'), language),
+    })
+    const coverageIssues = evaluation.coverageIssues
+    if (coverageIssues.length > 0) {
+      throw new Error(formatInventoryCoverageIssues(coverageIssues))
+    }
+
+    const siteData = buildUpstreamSurfaceSiteData({
+      languages: evaluation.languages,
+    })
+
+    await fs.promises.writeFile(combinedDest, YAML.dump(siteData, { lineWidth: 120 }), 'utf8')
+    debug('wrote upstream_surface.yml for website')
   }
 
   _addRequire(name: string, relativeSrcForTest: string): string {

@@ -1,0 +1,32 @@
+language: tcl
+namespaces:
+  - namespace: string
+    title: string ensemble
+    target: Tcl 8.6
+    sourceKind: manual
+    sourceRef: https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm
+    entries:
+      - bytelength
+      - cat
+      - compare
+      - equal
+      - first
+      - index
+      - is
+      - last
+      - length
+      - map
+      - match
+      - range
+      - regsub
+      - repeat
+      - replace
+      - reverse
+      - tolower
+      - totitle
+      - toupper
+      - trim
+      - trimleft
+      - trimright
+      - wordend
+      - wordstart

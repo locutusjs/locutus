@@ -8,7 +8,8 @@ returns:
   - '''a'''
   - '0'
   - 'null'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -34,15 +35,7 @@ alias:
   - /functions/array_key_first/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpArrayLike } from '../_helpers/_phpTypes.ts'
-
-const normalizeArrayKey = (key: string): string | number => {
-  if (/^(0|-?[1-9]\d*)$/.test(key)) {
-    return Number(key)
-  }
-
-  return key
-}
+{% codeblock lang:typescript %}import { normalizeArrayKey, type PhpArrayLike } from '../_helpers/_phpTypes.ts'
 
 export function array_key_first<T>(input: PhpArrayLike<T>): string | number | null {
   //      discuss at: https://locutus.io/php/array_key_first/
@@ -61,16 +54,77 @@ export function array_key_first<T>(input: PhpArrayLike<T>): string | number | nu
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}
-const normalizeArrayKey = (key) => {
+{% codeblock lang:javascript %}import { normalizeArrayKey } from '../_helpers/_phpTypes.ts'
+
+export function array_key_first(input) {
+  //      discuss at: https://locutus.io/php/array_key_first/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: array_key_first({ a: 1, b: 2 })
+  //       returns 1: 'a'
+  //       example 2: array_key_first(['x', 'y'])
+  //       returns 2: 0
+  //       example 3: array_key_first([])
+  //       returns 3: null
+
+  const [firstKey] = Object.keys(input)
+  return typeof firstKey === 'string' ? normalizeArrayKey(firstKey) : null
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function normalizeArrayKey(key: string): string | number {
   if (/^(0|-?[1-9]\d*)$/.test(key)) {
-    return Number(key)
+    const numericKey = Number(key)
+    if (Number.isSafeInteger(numericKey)) {
+      return numericKey
+    }
   }
 
   return key
 }
 
-export function array_key_first(input) {
+// php/array/array_key_first (target function module)
+function array_key_first<T>(input: PhpArrayLike<T>): string | number | null {
+  //      discuss at: https://locutus.io/php/array_key_first/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //       example 1: array_key_first({ a: 1, b: 2 })
+  //       returns 1: 'a'
+  //       example 2: array_key_first(['x', 'y'])
+  //       returns 2: 0
+  //       example 3: array_key_first([])
+  //       returns 3: null
+
+  const [firstKey] = Object.keys(input)
+  return typeof firstKey === 'string' ? normalizeArrayKey(firstKey) : null
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+function normalizeArrayKey(key) {
+  if (/^(0|-?[1-9]\d*)$/.test(key)) {
+    const numericKey = Number(key)
+    if (Number.isSafeInteger(numericKey)) {
+      return numericKey
+    }
+  }
+
+  return key
+}
+
+// php/array/array_key_first (target function module)
+function array_key_first(input) {
   //      discuss at: https://locutus.io/php/array_key_first/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)

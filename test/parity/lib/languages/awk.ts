@@ -136,4 +136,10 @@ export const awkHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['awk', code, '/dev/null'],
   mountRepo: false,
+  upstreamSurface: {
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

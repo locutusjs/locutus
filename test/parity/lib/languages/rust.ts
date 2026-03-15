@@ -403,4 +403,10 @@ export const rustHandler: LanguageHandler = {
     `cat <<'__LOCUTUS_RS__' > /tmp/main.rs\n${code}\n__LOCUTUS_RS__\n/usr/local/cargo/bin/rustc /tmp/main.rs -O -o /tmp/main && /tmp/main`,
   ],
   mountRepo: false,
+  upstreamSurface: {
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

@@ -96,7 +96,7 @@ function matchingBlocks(a: string, b: string): Array<{ aIndex: number; bIndex: n
     }
   }
 
-  out.sort((left, right) => (left.aIndex - right.aIndex) || (left.bIndex - right.bIndex))
+  out.sort((left, right) => left.aIndex - right.aIndex || left.bIndex - right.bIndex)
 
   const merged: Array<{ aIndex: number; bIndex: number; size: number }> = []
   for (const block of out) {
@@ -130,7 +130,12 @@ function similarityRatio(left: string, right: string): number {
   return (2 * matches) / totalLength
 }
 
-export function get_close_matches(word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6): string[] {
+export function get_close_matches(
+  word: string,
+  possibilities: string[] | unknown,
+  n: number = 3,
+  cutoff: number = 0.6,
+): string[] {
   //      discuss at: https://locutus.io/python/difflib/get_close_matches/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)

@@ -3,6 +3,7 @@
  */
 
 import ts from 'typescript'
+import { runInDocker } from '../docker.ts'
 
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
@@ -10,6 +11,41 @@ import type { LanguageHandler } from '../types.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const JULIA_SKIP_LIST = new Set<string>([])
+
+const JULIA_DOCKER_IMAGE = 'julia:1.11'
+
+function discoverJuliaUpstreamSurface() {
+  const code = [
+    'entries = sort([String(name) for name in names(Base, all=false) if isdefined(Base, name) && getfield(Base, name) isa Function])',
+    'println(join(entries, "\\n"))',
+  ].join('; ')
+
+  const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Julia upstream surface')
+  }
+
+  const entries = result.output
+    .trim()
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .sort()
+
+  return {
+    language: 'julia',
+    namespaces: [
+      {
+        namespace: 'Base',
+        title: 'Base module',
+        target: 'Julia 1.11',
+        sourceKind: 'runtime' as const,
+        sourceRef: JULIA_DOCKER_IMAGE,
+        entries,
+      },
+    ],
+  }
+}
 
 function splitArgs(argsText: string): string[] {
   const args: string[] = []
@@ -384,7 +420,7 @@ export const juliaHandler: LanguageHandler = {
   translate: jsToJulia,
   normalize: normalizeJuliaOutput,
   skipList: JULIA_SKIP_LIST,
-  dockerImage: 'julia:1.11',
+  dockerImage: JULIA_DOCKER_IMAGE,
   displayName: 'Julia',
   version: '1.11',
   get parityValue() {
@@ -392,4 +428,11 @@ export const juliaHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['julia', '-e', code],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverJuliaUpstreamSurface,
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

@@ -9,6 +9,8 @@ export const TCL_SKIP_LIST = new Set<string>([
   // None currently
 ])
 
+const TCL_DOCKER_IMAGE = 'python:3.12'
+
 function stripTrailingComment(code: string): string {
   let inString: string | null = null
   let escaped = false
@@ -290,7 +292,7 @@ export const tclHandler: LanguageHandler = {
   normalize: normalizeTclOutput,
   skipList: TCL_SKIP_LIST,
   // python:3.12 includes tclsh (8.6.x) and is available on Docker Hub.
-  dockerImage: 'python:3.12',
+  dockerImage: TCL_DOCKER_IMAGE,
   displayName: 'Tcl',
   version: '8.6',
   get parityValue() {
@@ -298,4 +300,10 @@ export const tclHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['sh', '-lc', `cat <<'__LOCUTUS_TCL__' | tclsh\n${code}\n__LOCUTUS_TCL__`],
   mountRepo: false,
+  upstreamSurface: {
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

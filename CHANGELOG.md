@@ -25,6 +25,16 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
+### Infrastructure
+
+- Replaced the earlier PHP-only runtime-surface guardrail with a namespace-aware upstream-surface inventory across all supported languages, backed by checked-in snapshots, compact maintainer decisions, and strict Zod validation.
+- Added `scripts/check-upstream-surface.ts` and `scripts/refresh-upstream-surface.ts`, and wired CI plus nightly parity to use the new upstream-surface check path.
+
+### Website
+
+- Added upstream-surface inventory data to `injectweb`, copying the raw inventory/snapshot YAML into website data and generating a combined website artifact for page templates.
+- Updated language and category pages to show upstream coverage, wanted ports, intentional extras, explicit non-goals, and untriaged upstream entries directly on the public site.
+
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.19...main).
 
 ## v3.0.19

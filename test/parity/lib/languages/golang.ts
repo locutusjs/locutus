@@ -2,6 +2,7 @@
  * Go language handler for verification
  */
 
+import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -94,6 +95,97 @@ const GO_PACKAGES: Record<string, string> = {
   ConstantTimeCopy: 'subtle',
   ConstantTimeEq: 'subtle',
   ConstantTimeSelect: 'subtle',
+}
+
+const GO_DOCKER_IMAGE = 'golang:1.23'
+const GO_NAMESPACE_PACKAGES: Record<string, { packagePath: string; title: string }> = {
+  filepath: { packagePath: 'path/filepath', title: 'path/filepath package' },
+  net: { packagePath: 'net', title: 'net package' },
+  path: { packagePath: 'path', title: 'path package' },
+  sort: { packagePath: 'sort', title: 'sort package' },
+  strconv: { packagePath: 'strconv', title: 'strconv package' },
+  strings: { packagePath: 'strings', title: 'strings package' },
+  subtle: { packagePath: 'crypto/subtle', title: 'crypto/subtle package' },
+  time: { packagePath: 'time', title: 'time package' },
+  url: { packagePath: 'net/url', title: 'net/url package' },
+}
+
+function parseGoDocFunctions(output: string): string[] {
+  return output
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith('func '))
+    .map(
+      (line) =>
+        line
+          .replace(/^func\s+/, '')
+          .split('(')[0]
+          ?.trim() ?? '',
+    )
+    .filter(Boolean)
+    .sort()
+}
+
+function parseGoDocMethods(output: string): string[] {
+  return output
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith('func ('))
+    .map(
+      (line) =>
+        line
+          .replace(/^func\s+\([^)]*\)\s+/, '')
+          .split('(')[0]
+          ?.trim() ?? '',
+    )
+    .filter(Boolean)
+    .sort()
+}
+
+function discoverGoUpstreamSurface() {
+  const namespaces = Object.entries(GO_NAMESPACE_PACKAGES).map(([namespace, config]) => {
+    const result = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', config.packagePath])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover Go upstream surface for ${config.packagePath}`)
+    }
+
+    const entries = parseGoDocFunctions(result.output)
+
+    if (namespace === 'time') {
+      const methodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'time.Time'])
+      if (!methodResult.success) {
+        throw new Error(methodResult.error || 'Unable to discover Go time.Time methods')
+      }
+      entries.push(...parseGoDocMethods(methodResult.output))
+    }
+
+    if (namespace === 'url') {
+      const urlMethodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'net/url.URL'])
+      if (!urlMethodResult.success) {
+        throw new Error(urlMethodResult.error || 'Unable to discover Go net/url.URL methods')
+      }
+      const valuesMethodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'net/url.Values'])
+      if (!valuesMethodResult.success) {
+        throw new Error(valuesMethodResult.error || 'Unable to discover Go net/url.Values methods')
+      }
+      entries.push(...parseGoDocMethods(urlMethodResult.output))
+      entries.push(...parseGoDocMethods(valuesMethodResult.output))
+    }
+
+    return {
+      namespace,
+      title: config.title,
+      target: 'Go 1.23',
+      sourceKind: 'runtime' as const,
+      sourceRef: `${GO_DOCKER_IMAGE}:${config.packagePath}`,
+      entries: [...new Set(entries)].sort(),
+    }
+  })
+
+  return {
+    language: 'golang',
+    namespaces,
+  }
 }
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {
@@ -1575,7 +1667,7 @@ export const golangHandler: LanguageHandler = {
   translate: jsToGo,
   normalize: normalizeGoOutput,
   skipList: GO_SKIP_LIST,
-  dockerImage: 'golang:1.23',
+  dockerImage: GO_DOCKER_IMAGE,
   displayName: 'Go',
   version: '1.23',
   get parityValue() {
@@ -1587,4 +1679,11 @@ export const golangHandler: LanguageHandler = {
     `echo '${code.replace(/'/g, "'\\''")}' > /tmp/main.go && go run /tmp/main.go`,
   ],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverGoUpstreamSurface,
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name === 'Index2' ? 'Index' : func.name === 'EncodeQuery' ? 'Encode' : func.name,
+    }),
+  },
 }

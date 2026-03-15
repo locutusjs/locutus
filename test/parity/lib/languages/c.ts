@@ -367,4 +367,10 @@ export const cHandler: LanguageHandler = {
     ]
   },
   mountRepo: false,
+  upstreamSurface: {
+    getLocutusEntry: (func) => ({
+      namespace: func.name === 'abs' ? 'stdlib' : func.category,
+      name: func.name,
+    }),
+  },
 }

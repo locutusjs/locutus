@@ -9,20 +9,20 @@ parityVerified: null
 isTypescript: true
 type: function
 layout: function
-title: PHP's isPhpNullish in TypeScript
+title: PHP's normalizeArrayKey in TypeScript
 description: >-
   Here's what our current TypeScript equivalent to <a
-  href="https://php.net/manual/en/function.isPhpNullish.php">PHP's
-  isPhpNullish</a> looks like.
-function: isPhpNullish
+  href="https://php.net/manual/en/function.normalizeArrayKey.php">PHP's
+  normalizeArrayKey</a> looks like.
+function: normalizeArrayKey
 category: _helpers
 language: php
-permalink: php/_helpers/isPhpNullish/
+permalink: php/_helpers/normalizeArrayKey/
 alias:
-  - /functions/php/isPhpNullish/
-  - /functions/_helpers/isPhpNullish/
-  - /php/isPhpNullish/
-  - /functions/isPhpNullish/
+  - /functions/php/normalizeArrayKey/
+  - /functions/_helpers/normalizeArrayKey/
+  - /php/normalizeArrayKey/
+  - /functions/normalizeArrayKey/
 ---
 <div class="code-tab-panel" data-lang="ts">
 {% codeblock lang:typescript %}export type PhpNullish = null | undefined
@@ -57,6 +57,17 @@ export type PhpReadonlyArrayLike<T = PhpInput> = PhpReadonlyList<T> | PhpReadonl
 
 export const entriesOfPhpAssoc = <T>(value: PhpAssoc<T>): Array<[string, T]> => {
   return Object.entries(value)
+}
+
+export function normalizeArrayKey(key: string): string | number {
+  if (/^(0|-?[1-9]\d*)$/.test(key)) {
+    const numericKey = Number(key)
+    if (Number.isSafeInteger(numericKey)) {
+      return numericKey
+    }
+  }
+
+  return key
 }
 
 export type PhpCallableArgs = PhpInput[]
@@ -210,6 +221,17 @@ export function toPhpArrayObject<T = PhpInput>(value: PhpInput): PhpAssoc<T> {
 {% codeblock lang:javascript %}
 export const entriesOfPhpAssoc = (value) => {
   return Object.entries(value)
+}
+
+export function normalizeArrayKey(key) {
+  if (/^(0|-?[1-9]\d*)$/.test(key)) {
+    const numericKey = Number(key)
+    if (Number.isSafeInteger(numericKey)) {
+      return numericKey
+    }
+  }
+
+  return key
 }
 
 export function isPhpNullish(value) {

@@ -53,8 +53,16 @@ function discoverPhpRuntimeSurface() {
 
   return {
     language: 'php',
-    target: PHP_PARITY_TARGET,
-    functions,
+    namespaces: [
+      {
+        namespace: '__global',
+        title: 'Global functions',
+        target: PHP_PARITY_TARGET,
+        sourceKind: 'runtime' as const,
+        sourceRef: PHP_DOCKER_IMAGE,
+        entries: functions,
+      },
+    ],
   }
 }
 
@@ -481,8 +489,14 @@ export const phpHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['php', '-r', code],
   mountRepo: true,
-  runtimeSurface: {
+  upstreamSurface: {
     discover: discoverPhpRuntimeSurface,
-    getLocutusEntry: (func) => func.name,
+    getLocutusEntry: (func) =>
+      func.category === '_helpers'
+        ? null
+        : {
+            namespace: '__global',
+            name: func.name,
+          },
   },
 }
