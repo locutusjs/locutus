@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-15T07:39:32.033Z">
-<meta property="article:modified_time" content="2026-03-15T07:39:32.033Z">
+<meta property="article:published_time" content="2026-03-15T13:19:25.795Z">
+<meta property="article:modified_time" content="2026-03-15T13:19:25.795Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -232,6 +232,155 @@ ga('send', 'pageview');
         TypeScript implementations of 323 PHP standard library functions across 20 modules.
         Each function is individually importable and tree-shakeable.
       </p>
+
+      
+        <h2>Upstream surface inventory</h2>
+        <p>
+          This page also tracks the upstream namespace catalog we compare against, the functions we still want to port,
+          the ones we intentionally keep, and the ones we explicitly skip because they do not fit Locutus' plain-value model.
+        </p>
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag is-dark">Coverage</span>
+          <span class="tag is-info">25%</span>
+          <span class="tag is-dark">Shipped</span>
+          <span class="tag is-success">299/1184</span>
+          <span class="tag is-dark">Wanted</span>
+          <span class="tag is-warning">1</span>
+          <span class="tag is-dark">Untriaged</span>
+          <span class="tag is-light">876</span>
+          
+            <span class="tag is-dark">Intentional extras</span>
+            <span class="tag is-link">24</span>
+          
+        </div>
+
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>Global functions</p>
+              
+                <span>PHP 8.3</span>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">25%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">299/1184</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">1</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">8</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">876</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>php:8.3-cli</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/php/array/">array</a>, 
+                  
+                    <a href="/php/bc/">bc</a>, 
+                  
+                    <a href="/php/ctype/">ctype</a>, 
+                  
+                    <a href="/php/datetime/">datetime</a>, 
+                  
+                    <a href="/php/exec/">exec</a>, 
+                  
+                    <a href="/php/filesystem/">filesystem</a>, 
+                  
+                    <a href="/php/funchand/">funchand</a>, 
+                  
+                    <a href="/php/i18n/">i18n</a>, 
+                  
+                    <a href="/php/info/">info</a>, 
+                  
+                    <a href="/php/json/">json</a>, 
+                  
+                    <a href="/php/math/">math</a>, 
+                  
+                    <a href="/php/misc/">misc</a>, 
+                  
+                    <a href="/php/net-gopher/">net-gopher</a>, 
+                  
+                    <a href="/php/network/">network</a>, 
+                  
+                    <a href="/php/pcre/">pcre</a>, 
+                  
+                    <a href="/php/strings/">strings</a>, 
+                  
+                    <a href="/php/url/">url</a>, 
+                  
+                    <a href="/php/var/">var</a>, 
+                  
+                    <a href="/php/xdiff/">xdiff</a>, 
+                  
+                    <a href="/php/xml/">xml</a>
+                  
+                </p>
+              
+
+              
+                <p>
+                  <strong>Wanted ports:</strong>
+                  
+                    <code>array_is_list</code> (Modern PHP array helper with a clean plain-value contract.)
+                  
+                  .
+                </p>
+              
+
+              
+                <p>
+                  <strong>Intentional extras:</strong>
+                  
+                    <code>bcadd</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
+                  
+                    <code>bccomp</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
+                  
+                    <code>bcdiv</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
+                  
+                    <code>bcmul</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
+                  
+                    <code>bcround</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.)
+                  
+                   and 19 more.
+                </p>
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>array_uintersect_assoc</code>, 
+                  
+                    <code>class_exists</code>, 
+                  
+                    <code>class_implements</code>, 
+                  
+                    <code>class_parents</code>, 
+                  
+                    <code>class_uses</code>, 
+                  
+                    <code>clearstatcache</code>, 
+                  
+                    <code>cli_get_process_title</code>, 
+                  
+                    <code>cli_set_process_title</code>
+                  
+                   and 868 more.
+                </p>
+              
+            </div>
+          </div>
+        
+      
 
       
         <strong>array</strong>

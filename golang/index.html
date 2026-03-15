@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-15T07:39:32.010Z">
-<meta property="article:modified_time" content="2026-03-15T07:39:32.010Z">
+<meta property="article:published_time" content="2026-03-15T13:19:25.771Z">
+<meta property="article:modified_time" content="2026-03-15T13:19:25.771Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -232,6 +232,580 @@ ga('send', 'pageview');
         TypeScript implementations of 81 Go standard library functions across 9 modules.
         Each function is individually importable and tree-shakeable.
       </p>
+
+      
+        <h2>Upstream surface inventory</h2>
+        <p>
+          This page also tracks the upstream namespace catalog we compare against, the functions we still want to port,
+          the ones we intentionally keep, and the ones we explicitly skip because they do not fit Locutus' plain-value model.
+        </p>
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag is-dark">Coverage</span>
+          <span class="tag is-info">30%</span>
+          <span class="tag is-dark">Shipped</span>
+          <span class="tag is-success">81/272</span>
+          <span class="tag is-dark">Wanted</span>
+          <span class="tag is-warning">2</span>
+          <span class="tag is-dark">Untriaged</span>
+          <span class="tag is-light">188</span>
+          
+        </div>
+
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>path/filepath package</p>
+              
+                <a href="/golang/filepath/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">5%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">1/21</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">2</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">18</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:path/filepath</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/filepath/">filepath</a>
+                  
+                </p>
+              
+
+              
+                <p>
+                  <strong>Wanted ports:</strong>
+                  
+                    <code>Clean</code> (High-value lexical path normalization helper.), 
+                  
+                    <code>Join</code> (Natural follow-up to Rel for path composition.)
+                  
+                  .
+                </p>
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>Abs</code>, 
+                  
+                    <code>Base</code>, 
+                  
+                    <code>Dir</code>, 
+                  
+                    <code>EvalSymlinks</code>, 
+                  
+                    <code>Ext</code>, 
+                  
+                    <code>FromSlash</code>, 
+                  
+                    <code>Glob</code>, 
+                  
+                    <code>HasPrefix</code>
+                  
+                   and 10 more.
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>net package</p>
+              
+                <a href="/golang/net/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">9%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">4/45</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">41</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:net</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/net/">net</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>CIDRMask</code>, 
+                  
+                    <code>Dial</code>, 
+                  
+                    <code>DialIP</code>, 
+                  
+                    <code>DialTCP</code>, 
+                  
+                    <code>DialTimeout</code>, 
+                  
+                    <code>DialUDP</code>, 
+                  
+                    <code>DialUnix</code>, 
+                  
+                    <code>FileConn</code>
+                  
+                   and 33 more.
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>path package</p>
+              
+                <a href="/golang/path/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">88%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">7/8</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">1</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:path</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/path/">path</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>Split</code>
+                  
+                  .
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>sort package</p>
+              
+                <a href="/golang/sort/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">11%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">2/18</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">16</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:sort</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/sort/">sort</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>Find</code>, 
+                  
+                    <code>Float64s</code>, 
+                  
+                    <code>Float64sAreSorted</code>, 
+                  
+                    <code>Ints</code>, 
+                  
+                    <code>IntsAreSorted</code>, 
+                  
+                    <code>IsSorted</code>, 
+                  
+                    <code>Reverse</code>, 
+                  
+                    <code>Search</code>
+                  
+                   and 8 more.
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>strconv package</p>
+              
+                <a href="/golang/strconv/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">29%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">10/34</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">24</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:strconv</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/strconv/">strconv</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>AppendBool</code>, 
+                  
+                    <code>AppendFloat</code>, 
+                  
+                    <code>AppendInt</code>, 
+                  
+                    <code>AppendQuote</code>, 
+                  
+                    <code>AppendQuoteRune</code>, 
+                  
+                    <code>AppendQuoteRuneToASCII</code>, 
+                  
+                    <code>AppendQuoteRuneToGraphic</code>, 
+                  
+                    <code>AppendQuoteToASCII</code>
+                  
+                   and 16 more.
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>strings package</p>
+              
+                <a href="/golang/strings/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">56%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">29/52</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">1</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">22</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:strings</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/strings/">strings</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>ContainsFunc</code>, 
+                  
+                    <code>ContainsRune</code>, 
+                  
+                    <code>FieldsFunc</code>, 
+                  
+                    <code>IndexByte</code>, 
+                  
+                    <code>IndexFunc</code>, 
+                  
+                    <code>IndexRune</code>, 
+                  
+                    <code>LastIndexByte</code>, 
+                  
+                    <code>LastIndexFunc</code>
+                  
+                   and 14 more.
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>crypto/subtle package</p>
+              
+                <a href="/golang/subtle/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">57%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">4/7</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">3</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:crypto/subtle</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/subtle/">subtle</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>ConstantTimeByteEq</code>, 
+                  
+                    <code>ConstantTimeLessOrEq</code>, 
+                  
+                    <code>XORBytes</code>
+                  
+                  .
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>time package</p>
+              
+                <a href="/golang/time/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">27%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">16/59</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">43</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:time</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/time/">time</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>AfterFunc</code>, 
+                  
+                    <code>AppendFormat</code>, 
+                  
+                    <code>Clock</code>, 
+                  
+                    <code>Compare</code>, 
+                  
+                    <code>Day</code>, 
+                  
+                    <code>FixedZone</code>, 
+                  
+                    <code>GoString</code>, 
+                  
+                    <code>GobDecode</code>
+                  
+                   and 35 more.
+                </p>
+              
+            </div>
+          </div>
+        
+          <div class="message is-light" style="margin-bottom: 1rem;">
+            <div class="message-header">
+              <p>net/url package</p>
+              
+                <a href="/golang/url/">Open category</a>
+              
+            </div>
+            <div class="message-body">
+              <div class="tags" style="margin-bottom: 0.75rem;">
+                <span class="tag is-dark">Coverage</span>
+                <span class="tag is-info">29%</span>
+                <span class="tag is-dark">Shipped</span>
+                <span class="tag is-success">8/28</span>
+                <span class="tag is-dark">Wanted</span>
+                <span class="tag is-warning">0</span>
+                <span class="tag is-dark">Skipped</span>
+                <span class="tag is-light">0</span>
+                <span class="tag is-dark">Untriaged</span>
+                <span class="tag is-light">20</span>
+              </div>
+              <p style="margin-bottom: 0.75rem;">
+                Source: <code>runtime</code> <code>golang:1.23:net/url</code>.
+              </p>
+
+              
+                <p style="margin-bottom: 0.75rem;">
+                  Categories:
+                  
+                    <a href="/golang/url/">url</a>
+                  
+                </p>
+              
+
+              
+
+              
+
+              
+                <p>
+                  <strong>Untriaged upstream entries:</strong>
+                  
+                    <code>Add</code>, 
+                  
+                    <code>Del</code>, 
+                  
+                    <code>EscapedFragment</code>, 
+                  
+                    <code>EscapedPath</code>, 
+                  
+                    <code>Get</code>, 
+                  
+                    <code>Has</code>, 
+                  
+                    <code>Hostname</code>, 
+                  
+                    <code>IsAbs</code>
+                  
+                   and 12 more.
+                </p>
+              
+            </div>
+          </div>
+        
+      
 
       
         <strong>filepath</strong>
