@@ -2112,3 +2112,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `node scripts/check-upstream-surface.ts awk c clojure elixir golang julia lua perl php powershell python r ruby rust tcl`
 - Key learnings:
   - The right split is snapshot + decisions + derived website data: snapshots track upstream drift, decisions capture maintainer judgment, and the website can stay simple by consuming a combined artifact instead of re-implementing compare logic in templates.
+
+### Iteration 106
+
+2026-03-15
+
+- **Area: Multi-language expansion**
+- Plan:
+  - Use the new upstream-surface wishlist to batch a larger product PR so CI overhead is amortized across multiple high-value additions instead of single-function releases.
+  - Focus on coherent clusters with clean parity targets: Go `filepath`, Python `math`/`re`, and Ruby `Array`/`String`.
+- Progress:
+  - Added `golang/filepath/Base`, `Clean`, `Dir`, `Ext`, `IsAbs`, and `Join`, keeping their behavior aligned with the current slash-based Go 1.23 parity target and fixing the Go parity import detection so `filepath.*` no longer pulls an unused `path` import.
+  - Added `python/math/isqrt`, `python/math/prod`, and `python/re/subn`, including keyword-only `start=` parity translation for `math.prod`.
+  - Added `ruby/Array/bsearch_index`, `ruby/Array/filter_map`, `ruby/String/delete_prefix`, and `ruby/String/delete_suffix`, and extended the Ruby parity translator for callback-backed `bsearch_index` and `filter_map`.
+  - Updated both Rosetta files for every new function and removed the corresponding `wanted` entries from `docs/upstream-surface-inventory.yml` so the wishlist stays current.
+- Validation:
+  - `corepack yarn build:tests`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn exec vitest run test/generated/golang/filepath/*.vitest.ts test/generated/python/math/isqrt.vitest.ts test/generated/python/math/prod.vitest.ts test/generated/python/re/subn.vitest.ts test/generated/ruby/Array/bsearch_index.vitest.ts test/generated/ruby/Array/filter_map.vitest.ts test/generated/ruby/String/delete_prefix.vitest.ts test/generated/ruby/String/delete_suffix.vitest.ts`
+  - `corepack yarn test:parity golang/filepath/Base golang/filepath/Clean golang/filepath/Dir golang/filepath/Ext golang/filepath/IsAbs golang/filepath/Join python/math/isqrt python/math/prod python/re/subn ruby/Array/bsearch_index ruby/Array/filter_map ruby/String/delete_prefix ruby/String/delete_suffix --no-cache`
+- Key learnings:
+  - Cross-language harvest PRs work better when the wishlist is coupled to parity adapters: the backlog tells us what to build next, and the adapter layer tells us immediately where translation assumptions still need tightening.

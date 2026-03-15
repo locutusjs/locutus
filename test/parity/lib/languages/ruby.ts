@@ -23,6 +23,8 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   chop: { rubyMethod: 'chop', category: 'String', isInstanceMethod: true },
   downcase: { rubyMethod: 'downcase', category: 'String', isInstanceMethod: true },
   end_with: { rubyMethod: 'end_with?', category: 'String', isInstanceMethod: true },
+  delete_prefix: { rubyMethod: 'delete_prefix', category: 'String', isInstanceMethod: true },
+  delete_suffix: { rubyMethod: 'delete_suffix', category: 'String', isInstanceMethod: true },
   gsub: { rubyMethod: 'gsub', category: 'String', isInstanceMethod: true },
   include: { rubyMethod: 'include?', category: 'String', isInstanceMethod: true },
   length: { rubyMethod: 'length', category: 'String', isInstanceMethod: true },
@@ -33,6 +35,8 @@ const RUBY_METHODS: Record<string, RubyMethodInfo> = {
   upcase: { rubyMethod: 'upcase', category: 'String', isInstanceMethod: true },
   // Array methods (instance methods on Array)
   compact: { rubyMethod: 'compact', category: 'Array', isInstanceMethod: true },
+  bsearch_index: { rubyMethod: 'bsearch_index', category: 'Array', isInstanceMethod: true },
+  filter_map: { rubyMethod: 'filter_map', category: 'Array', isInstanceMethod: true },
   first: { rubyMethod: 'first', category: 'Array', isInstanceMethod: true },
   flatten: { rubyMethod: 'flatten', category: 'Array', isInstanceMethod: true },
   group_by: { rubyMethod: 'group_by', category: 'Array', isInstanceMethod: true },
@@ -356,7 +360,7 @@ function emitRubyArrow(sourceText: string): string {
   return `|${callback.params.join(', ')}| ${emitRubyExpression(callback.body)}`
 }
 
-function translateBsearchCall(line: string): string | null {
+function translateBsearchLikeCall(line: string, funcName: 'bsearch' | 'bsearch_index'): string | null {
   const sourceFile = ts.createSourceFile('example.ts', line, ts.ScriptTarget.ES2022, true, ts.ScriptKind.TS)
   const statement = sourceFile.statements[0]
   if (!statement) {
@@ -391,7 +395,7 @@ function translateBsearchCall(line: string): string | null {
     }
   }
 
-  if (!callExpression || !ts.isIdentifier(callExpression.expression) || callExpression.expression.text !== 'bsearch') {
+  if (!callExpression || !ts.isIdentifier(callExpression.expression) || callExpression.expression.text !== funcName) {
     return null
   }
 
@@ -401,7 +405,62 @@ function translateBsearchCall(line: string): string | null {
     return null
   }
 
-  const translated = `${emitRubyExpression(parseJsExpression(valuesArg.getText(sourceFile)))}.bsearch { ${emitRubyArrow(
+  const translated = `${emitRubyExpression(parseJsExpression(valuesArg.getText(sourceFile)))}.${funcName} { ${emitRubyArrow(
+    callbackArg.getText(sourceFile),
+  )} }`
+  return assignmentName ? `${assignmentName} = ${translated}` : translated
+}
+
+function translateFilterMapCall(line: string): string | null {
+  const sourceFile = ts.createSourceFile('example.ts', line, ts.ScriptTarget.ES2022, true, ts.ScriptKind.TS)
+  const statement = sourceFile.statements[0]
+  if (!statement) {
+    return null
+  }
+
+  let assignmentName: string | null = null
+  let callExpression: ts.CallExpression | null = null
+
+  if (ts.isVariableStatement(statement)) {
+    const declaration = statement.declarationList.declarations[0]
+    if (
+      declaration &&
+      ts.isIdentifier(declaration.name) &&
+      declaration.initializer &&
+      ts.isCallExpression(declaration.initializer)
+    ) {
+      assignmentName = declaration.name.text
+      callExpression = declaration.initializer
+    }
+  } else if (ts.isExpressionStatement(statement)) {
+    if (ts.isCallExpression(statement.expression)) {
+      callExpression = statement.expression
+    } else if (
+      ts.isBinaryExpression(statement.expression) &&
+      statement.expression.operatorToken.kind === ts.SyntaxKind.EqualsToken &&
+      ts.isIdentifier(statement.expression.left) &&
+      ts.isCallExpression(statement.expression.right)
+    ) {
+      assignmentName = statement.expression.left.text
+      callExpression = statement.expression.right
+    }
+  }
+
+  if (
+    !callExpression ||
+    !ts.isIdentifier(callExpression.expression) ||
+    callExpression.expression.text !== 'filter_map'
+  ) {
+    return null
+  }
+
+  const valuesArg = callExpression.arguments[0]
+  const callbackArg = callExpression.arguments[1]
+  if (!valuesArg || !callbackArg) {
+    return null
+  }
+
+  const translated = `${emitRubyExpression(parseJsExpression(valuesArg.getText(sourceFile)))}.filter_map { ${emitRubyArrow(
     callbackArg.getText(sourceFile),
   )} }`
   return assignmentName ? `${assignmentName} = ${translated}` : translated
@@ -475,10 +534,17 @@ function convertJsLineToRuby(line: string, funcName: string, category: string): 
   ruby = stripTrailingComment(ruby)
   ruby = ruby.replace(/;+$/, '')
 
-  if (funcName === 'bsearch') {
-    const translatedBsearch = translateBsearchCall(ruby)
+  if (funcName === 'bsearch' || funcName === 'bsearch_index') {
+    const translatedBsearch = translateBsearchLikeCall(ruby, funcName)
     if (translatedBsearch) {
       return translatedBsearch
+    }
+  }
+
+  if (funcName === 'filter_map') {
+    const translatedFilterMap = translateFilterMapCall(ruby)
+    if (translatedFilterMap) {
+      return translatedFilterMap
     }
   }
 

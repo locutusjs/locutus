@@ -279,6 +279,20 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
     return py
   }
 
+  if (funcName === 'prod') {
+    py = py.replace(/\bprod\s*\(([\s\S]*)\)$/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      if (args.length === 0) {
+        return `${module}.prod([])`
+      }
+      if (args.length === 1) {
+        return `${module}.prod(${args[0]})`
+      }
+      return `${module}.prod(${args[0]}, start=${args[1]})`
+    })
+    return py
+  }
+
   if (funcName === 'finditer') {
     py = py.replace(/\bfinditer\s*\(([\s\S]*)\)$/g, (match, argsText) => {
       const args = splitArgs(argsText)

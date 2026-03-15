@@ -189,6 +189,13 @@ function discoverGoUpstreamSurface() {
 }
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {
+  'filepath/Base': 'filepath',
+  'filepath/Clean': 'filepath',
+  'filepath/Dir': 'filepath',
+  'filepath/Ext': 'filepath',
+  'filepath/IsAbs': 'filepath',
+  'filepath/Join': 'filepath',
+  'filepath/Rel': 'filepath',
   'path/Join': 'path',
   'url/Parse': 'url',
 }
@@ -1190,8 +1197,10 @@ function convertJsLineToGo(line: string, funcName: string, category?: string): s
 function getRequiredImports(goCode: string): string[] {
   const imports: Set<string> = new Set(['fmt', 'encoding/json'])
 
+  const hasPackageCall = (pkg: string) => new RegExp(`\\b${pkg}\\.`, 'm').test(goCode)
+
   if (
-    goCode.includes('strings.') ||
+    hasPackageCall('strings') ||
     goCode.includes('locutusStringsCut(') ||
     goCode.includes('locutusStringsCutPrefix(') ||
     goCode.includes('locutusStringsCutSuffix(')
@@ -1199,24 +1208,24 @@ function getRequiredImports(goCode: string): string[] {
     imports.add('strings')
   }
   if (
-    goCode.includes('strconv.') ||
+    hasPackageCall('strconv') ||
     goCode.includes('locutusParseFloat(') ||
     goCode.includes('locutusFormatFloat(') ||
     goCode.includes('locutusUnquote(')
   ) {
     imports.add('strconv')
   }
-  if (goCode.includes('path.') || goCode.includes('locutusPathMatch(')) {
+  if (hasPackageCall('path') || goCode.includes('locutusPathMatch(')) {
     imports.add('path')
   }
-  if (goCode.includes('filepath.') || goCode.includes('locutusFilepathRel(')) {
+  if (hasPackageCall('filepath') || goCode.includes('locutusFilepathRel(')) {
     imports.add('path/filepath')
   }
-  if (goCode.includes('sort.')) {
+  if (hasPackageCall('sort')) {
     imports.add('sort')
   }
   if (
-    goCode.includes('url.') ||
+    hasPackageCall('url') ||
     goCode.includes('locutusQueryUnescape(') ||
     goCode.includes('locutusParseQuery(') ||
     goCode.includes('locutusEncodeQuery(') ||
@@ -1227,18 +1236,18 @@ function getRequiredImports(goCode: string): string[] {
     imports.add('net/url')
   }
   if (
-    goCode.includes('net.') ||
+    hasPackageCall('net') ||
     goCode.includes('locutusSplitHostPort(') ||
     goCode.includes('locutusParseIP(') ||
     goCode.includes('locutusParseCIDR(')
   ) {
     imports.add('net')
   }
-  if (goCode.includes('locutusConstantTimeCompare(') || goCode.includes('subtle.')) {
+  if (goCode.includes('locutusConstantTimeCompare(') || hasPackageCall('subtle')) {
     imports.add('crypto/subtle')
   }
   if (
-    goCode.includes('time.') ||
+    hasPackageCall('time') ||
     goCode.includes('locutusTimeFormat(') ||
     goCode.includes('locutusTimeParse(') ||
     goCode.includes('locutusTimeParseInLocation(') ||

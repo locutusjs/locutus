@@ -72,6 +72,12 @@ src/elixir/String/downcase.ts :: export function downcase(string: string): strin
 src/elixir/String/length.ts :: export function length(string: string): number
 src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
+src/golang/filepath/Base.ts :: export function Base(path: string): string
+src/golang/filepath/Clean.ts :: export function Clean(path: string): string
+src/golang/filepath/Dir.ts :: export function Dir(path: string): string
+src/golang/filepath/Ext.ts :: export function Ext(path: string): string
+src/golang/filepath/IsAbs.ts :: export function IsAbs(path: string): boolean
+src/golang/filepath/Join.ts :: export function Join(...elem: string[]): string
 src/golang/filepath/Rel.ts :: export function Rel(basePath: string, targetPath: string): string
 src/golang/net/JoinHostPort.ts :: export function JoinHostPort(host: string, port: string): string
 src/golang/net/ParseCIDR.ts :: export function ParseCIDR(value: string): ParsedCIDR | null
@@ -254,17 +260,20 @@ src/python/math/isclose.ts :: export function isclose( a: number | string, b: nu
 src/python/math/isfinite.ts :: export function isfinite(x: number): boolean
 src/python/math/isinf.ts :: export function isinf(x: number): boolean
 src/python/math/isnan.ts :: export function isnan(x: number): boolean
+src/python/math/isqrt.ts :: export function isqrt(n: number | string): number
 src/python/math/lcm.ts :: export function lcm(...values: Array<number | string>): number
 src/python/math/log.ts :: export function log(x: number, base: number): number
 src/python/math/log10.ts :: export function log10(x: number): number
 src/python/math/log2.ts :: export function log2(x: number): number
 src/python/math/pow.ts :: export function pow(x: number, y: number): number
+src/python/math/prod.ts :: export function prod(values: ProdValue[] | unknown, start: ProdValue = 1): ProdValue
 src/python/math/sqrt.ts :: export function sqrt(x: number): number
 src/python/math/trunc.ts :: export function trunc(x: number): number
 src/python/re/findall.ts :: export function findall(pattern: string | RegExp, source: string, flags: ReFindallFlags = 0): Array<string | string[]>
 src/python/re/finditer.ts :: export function finditer(pattern: string | RegExp, source: string, flags: ReFinditerFlags = 0): FinditerMatch[]
 src/python/re/finditer.ts :: export type FinditerMatch = { match: string index: number groups: string[] }
 src/python/re/sub.ts :: export function sub( pattern: string | RegExp, replacement: ReSubReplacement, source: string, count: number = 0, flags: ReSubFlags = 0, ): string
+src/python/re/subn.ts :: export function subn( pattern: string | RegExp, replacement: ReSubnReplacement, source: string, count: number = 0, flags: ReSubnFlags = 0, ): [string, number]
 src/python/string/ascii_letters.ts :: export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 src/python/string/ascii_lowercase.ts :: export function ascii_lowercase(): 'abcdefghijklmnopqrstuvwxyz'
 src/python/string/ascii_uppercase.ts :: export function ascii_uppercase(): 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -288,7 +297,9 @@ src/r/base/sqrt.ts :: export function sqrt(x: number): number
 src/r/base/tolower.ts :: export function tolower(x: string): string
 src/r/base/toupper.ts :: export function toupper(x: string): string
 src/ruby/Array/bsearch.ts :: export function bsearch<T>(values: T[] | unknown, callback: BsearchCallback<T>): T | null
+src/ruby/Array/bsearch_index.ts :: export function bsearch_index<T>(values: T[] | unknown, callback: BsearchIndexCallback<T>): number | null
 src/ruby/Array/compact.ts :: export function compact<T>(arr: Array<T | null | undefined> | unknown): T[]
+src/ruby/Array/filter_map.ts :: export function filter_map<T, U>(values: T[] | unknown, callback: FilterMapCallback<T, U>): U[]
 src/ruby/Array/first.ts :: export function first<T>(arr: T[] | unknown, n?: number): T | T[] | undefined
 src/ruby/Array/flatten.ts :: export function flatten(arr: unknown[] | unknown, depth?: number): unknown[]
 src/ruby/Array/group_by.ts :: export function group_by<T>(arr: T[] | unknown): Record<string, T[]>
@@ -317,6 +328,8 @@ src/ruby/Math/tanh.ts :: export function tanh(x: number): number
 src/ruby/String/capitalize.ts :: export function capitalize(str: string): string
 src/ruby/String/chomp.ts :: export function chomp(str: string, separator?: string): string
 src/ruby/String/chop.ts :: export function chop(str: string): string
+src/ruby/String/delete_prefix.ts :: export function delete_prefix(str: string, prefix: string): string
+src/ruby/String/delete_suffix.ts :: export function delete_suffix(str: string, suffix: string): string
 src/ruby/String/downcase.ts :: export function downcase(str: string): string
 src/ruby/String/end_with.ts :: export function end_with(str: string, suffix: string): boolean
 src/ruby/String/gsub.ts :: export function gsub(str: string, pattern: string | RegExp, replacement: string): string

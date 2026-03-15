@@ -133,9 +133,11 @@ string_rsplit_terminator:
 
 string_strip_prefix:
   - rust/str/strip_prefix
+  - ruby/String/delete_prefix
 
 string_strip_suffix:
   - rust/str/strip_suffix
+  - ruby/String/delete_suffix
 
 string_lines:
   - rust/str/lines
@@ -143,6 +145,10 @@ string_lines:
 string_join:
   - php/strings/implode
   - golang/strings/Join
+
+path_join:
+  - golang/path/Join
+  - golang/filepath/Join
 
 string_replace:
   - php/strings/str_replace
@@ -156,12 +162,21 @@ regex_replace:
   - ruby/String/gsub
   - python/re/sub
 
+regex_replace_with_count:
+  - python/re/subn
+
 collection_group_by:
   - ruby/Array/group_by
   - kotlin/collections/groupBy
 
 array_binary_search:
   - ruby/Array/bsearch
+
+array_binary_search_index:
+  - ruby/Array/bsearch_index
+
+array_filter_map:
+  - ruby/Array/filter_map
 
 array_first_key:
   - php/array/array_key_first
@@ -171,6 +186,33 @@ array_last_key:
 
 path_relative:
   - golang/filepath/Rel
+
+path_clean:
+  - golang/path/Clean
+  - golang/filepath/Clean
+
+path_base:
+  - golang/path/Base
+  - golang/filepath/Base
+
+path_dir:
+  - golang/path/Dir
+  - golang/filepath/Dir
+
+path_ext:
+  - golang/path/Ext
+  - golang/filepath/Ext
+
+path_is_abs:
+  - golang/path/IsAbs
+  - golang/filepath/IsAbs
+
+integer_square_root:
+  - python/math/isqrt
+
+numeric_product:
+  - php/array/array_product
+  - python/math/prod
 
 sequence_partition_by:
   - clojure/core/partition_by

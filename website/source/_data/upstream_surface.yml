@@ -1,4 +1,4 @@
-generatedAt: '2026-03-15T10:30:02.736Z'
+generatedAt: '2026-03-15T13:14:39.385Z'
 languages:
   awk:
     language: awk
@@ -2467,15 +2467,15 @@ languages:
   golang:
     language: golang
     title: Go
-    shippedCount: 81
+    shippedCount: 87
     catalogCount: 272
-    catalogShippedCount: 81
+    catalogShippedCount: 87
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 2
+    wantedCount: 0
     skippedCount: 1
-    untriagedCount: 188
-    coveragePercent: 30
+    untriagedCount: 184
+    coveragePercent: 32
     namespaces:
       - namespace: filepath
         title: path/filepath package
@@ -2505,29 +2505,25 @@ languages:
           - Walk
           - WalkDir
         shippedEntries:
+          - Base
+          - Clean
+          - Dir
+          - Ext
+          - IsAbs
+          - Join
           - Rel
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: Clean
-            decision: wanted
-            note: High-value lexical path normalization helper.
-          - name: Join
-            decision: wanted
-            note: Natural follow-up to Rel for path composition.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - Abs
-          - Base
-          - Dir
           - EvalSymlinks
-          - Ext
           - FromSlash
           - Glob
           - HasPrefix
-          - IsAbs
           - IsLocal
           - Localize
           - Match
@@ -2540,8 +2536,8 @@ languages:
         staleDecisions: []
         categories:
           - filepath
-        catalogShippedCount: 1
-        coveragePercent: 5
+        catalogShippedCount: 7
+        coveragePercent: 33
       - namespace: net
         title: net package
         target: Go 1.23
@@ -7816,15 +7812,15 @@ languages:
   python:
     language: python
     title: Python
-    shippedCount: 34
+    shippedCount: 37
     catalogCount: 86
-    catalogShippedCount: 34
+    catalogShippedCount: 37
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 4
+    wantedCount: 1
     skippedCount: 0
     untriagedCount: 48
-    coveragePercent: 40
+    coveragePercent: 43
     namespaces:
       - namespace: difflib
         title: difflib
@@ -7939,24 +7935,20 @@ languages:
           - isfinite
           - isinf
           - isnan
+          - isqrt
           - lcm
           - log
           - log10
           - log2
           - pow
+          - prod
           - sqrt
           - trunc
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: isqrt
-            decision: wanted
-            note: High-value integer helper with a clean plain-value contract.
-          - name: prod
-            decision: wanted
-            note: Useful aggregate helper with a clean array-to-number contract.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - acos
@@ -7996,8 +7988,8 @@ languages:
         staleDecisions: []
         categories:
           - math
-        catalogShippedCount: 20
-        coveragePercent: 36
+        catalogShippedCount: 22
+        coveragePercent: 39
       - namespace: re
         title: re
         target: Python 3.12
@@ -8020,14 +8012,12 @@ languages:
           - findall
           - finditer
           - sub
+          - subn
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: subn
-            decision: wanted
-            note: Natural follow-up to sub with a tuple-like plain-value result.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - compile
@@ -8041,8 +8031,8 @@ languages:
         staleDecisions: []
         categories:
           - re
-        catalogShippedCount: 3
-        coveragePercent: 25
+        catalogShippedCount: 4
+        coveragePercent: 33
       - namespace: string
         title: string
         target: Python 3.12
@@ -10759,15 +10749,15 @@ languages:
   ruby:
     language: ruby
     title: Ruby
-    shippedCount: 40
+    shippedCount: 44
     catalogCount: 290
-    catalogShippedCount: 40
+    catalogShippedCount: 44
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 4
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 246
-    coveragePercent: 14
+    coveragePercent: 15
     namespaces:
       - namespace: Array
         title: Array instance methods
@@ -10911,7 +10901,9 @@ languages:
           - '|'
         shippedEntries:
           - bsearch
+          - bsearch_index
           - compact
+          - filter_map
           - first
           - flatten
           - group_by
@@ -10926,13 +10918,7 @@ languages:
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: bsearch_index
-            decision: wanted
-            note: Natural complement to bsearch with a plain numeric result.
-          - name: filter_map
-            decision: wanted
-            note: High-value collection helper that maps cleanly to JS arrays.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - '&'
@@ -11058,8 +11044,8 @@ languages:
         staleDecisions: []
         categories:
           - Array
-        catalogShippedCount: 12
-        coveragePercent: 9
+        catalogShippedCount: 14
+        coveragePercent: 10
       - namespace: Math
         title: Math module methods
         target: Ruby 3.3
@@ -11271,6 +11257,8 @@ languages:
           - capitalize
           - chomp
           - chop
+          - delete_prefix
+          - delete_suffix
           - downcase
           - end_with?
           - gsub
@@ -11285,13 +11273,7 @@ languages:
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: delete_prefix
-            decision: wanted
-            note: Useful pair with existing prefix/suffix style helpers in other languages.
-          - name: delete_suffix
-            decision: wanted
-            note: Useful pair with existing prefix/suffix style helpers in other languages.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - '%'
@@ -11412,8 +11394,8 @@ languages:
         staleDecisions: []
         categories:
           - String
-        catalogShippedCount: 13
-        coveragePercent: 10
+        catalogShippedCount: 15
+        coveragePercent: 12
   tcl:
     language: tcl
     title: Tcl

@@ -135,19 +135,10 @@ python:
   namespaces:
     math:
       title: math module
-      decisions:
-        isqrt:
-          decision: wanted
-          note: High-value integer helper with a clean plain-value contract.
-        prod:
-          decision: wanted
-          note: Useful aggregate helper with a clean array-to-number contract.
+      decisions: {}
     re:
       title: re module
-      decisions:
-        subn:
-          decision: wanted
-          note: Natural follow-up to sub with a tuple-like plain-value result.
+      decisions: {}
     string:
       title: string module
       decisions: {}
@@ -170,22 +161,10 @@ ruby:
   namespaces:
     Array:
       title: Array instance methods
-      decisions:
-        bsearch_index:
-          decision: wanted
-          note: Natural complement to bsearch with a plain numeric result.
-        filter_map:
-          decision: wanted
-          note: High-value collection helper that maps cleanly to JS arrays.
+      decisions: {}
     String:
       title: String instance methods
-      decisions:
-        delete_prefix:
-          decision: wanted
-          note: Useful pair with existing prefix/suffix style helpers in other languages.
-        delete_suffix:
-          decision: wanted
-          note: Useful pair with existing prefix/suffix style helpers in other languages.
+      decisions: {}
     Math:
       title: Math module methods
       decisions: {}
@@ -219,13 +198,7 @@ golang:
       decisions: {}
     filepath:
       title: path/filepath package
-      decisions:
-        Clean:
-          decision: wanted
-          note: High-value lexical path normalization helper.
-        Join:
-          decision: wanted
-          note: Natural follow-up to Rel for path composition.
+      decisions: {}
     url:
       title: net/url package
       decisions: {}

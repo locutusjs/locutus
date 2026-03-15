@@ -35,6 +35,16 @@ Ideas that will be planned and find their way into a release at one point
 - Added upstream-surface inventory data to `injectweb`, copying the raw inventory/snapshot YAML into website data and generating a combined website artifact for page templates.
 - Updated language and category pages to show upstream coverage, wanted ports, intentional extras, explicit non-goals, and untriaged upstream entries directly on the public site.
 
+### Expansion
+
+- Added a larger wishlist harvest across Go, Python, and Ruby:
+  - `golang/filepath`: `Base`, `Clean`, `Dir`, `Ext`, `IsAbs`, `Join`
+  - `python/math`: `isqrt`, `prod`
+  - `python/re`: `subn`
+  - `ruby/Array`: `bsearch_index`, `filter_map`
+  - `ruby/String`: `delete_prefix`, `delete_suffix`
+- Cleared the corresponding `wanted` entries from the upstream-surface inventory so the public wishlist and CI inventory now reflect the newly shipped surface.
+
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.19...main).
 
 ## v3.0.19

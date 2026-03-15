@@ -1,6 +1,8 @@
 export { capitalize } from './capitalize.ts'
 export { chomp } from './chomp.ts'
 export { chop } from './chop.ts'
+export { delete_prefix } from './delete_prefix.ts'
+export { delete_suffix } from './delete_suffix.ts'
 export { downcase } from './downcase.ts'
 export { end_with } from './end_with.ts'
 export { gsub } from './gsub.ts'
