@@ -171,4 +171,10 @@ export const perlHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['perl', '-e', code],
   mountRepo: false,
+  upstreamSurface: {
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

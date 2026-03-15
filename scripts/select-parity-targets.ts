@@ -38,11 +38,14 @@ const FORCE_FULL_PATHS = new Set([
 ])
 
 const FORCE_FULL_PREFIXES = ['.github/workflows/', 'test/parity/lib/']
-const RUNTIME_SURFACE_FORCE_ALL_PATHS = new Set([
-  'docs/runtime-surface-policy.yml',
-  'scripts/check-runtime-surface.ts',
-  'test/parity/lib/runtime-surface.ts',
-  'test/util/runtime-surface.vitest.ts',
+const UPSTREAM_SURFACE_FORCE_ALL_PATHS = new Set([
+  'docs/upstream-surface-inventory.yml',
+  'scripts/check-upstream-surface.ts',
+  'scripts/refresh-upstream-surface.ts',
+  'test/parity/lib/upstream-surface.ts',
+  'test/parity/lib/upstream-surface-inventory.ts',
+  'test/parity/lib/upstream-surface-snapshots.ts',
+  'test/util/upstream-surface.vitest.ts',
 ])
 
 export interface ParitySelectionInput {
@@ -212,16 +215,16 @@ function computeFullReasons(changedFiles: string[]): string[] {
   return [...new Set(reasons)]
 }
 
-function getRuntimeSurfaceLanguages(): string[] {
+function getUpstreamSurfaceLanguages(): string[] {
   return getSupportedLanguages().filter((language) => {
     const handler = getLanguageHandler(language)
-    return !!handler?.runtimeSurface
+    return !!handler?.upstreamSurface
   })
 }
 
-export function computeRuntimeSurfaceLanguages(changedFiles: string[]): string[] {
+export function computeUpstreamSurfaceLanguages(changedFiles: string[]): string[] {
   const normalized = [...new Set(changedFiles.map(normalizePath).filter(Boolean))].sort()
-  const allLanguages = getRuntimeSurfaceLanguages()
+  const allLanguages = getUpstreamSurfaceLanguages()
 
   if (computeFullReasons(normalized).length > 0) {
     return allLanguages
@@ -230,13 +233,21 @@ export function computeRuntimeSurfaceLanguages(changedFiles: string[]): string[]
   const selected = new Set<string>()
 
   for (const changedFile of normalized) {
-    if (RUNTIME_SURFACE_FORCE_ALL_PATHS.has(changedFile)) {
+    if (UPSTREAM_SURFACE_FORCE_ALL_PATHS.has(changedFile)) {
       return allLanguages
+    }
+
+    const snapshotLanguage = changedFile.match(/^test\/parity\/fixtures\/upstream-surface\/([^/]+)\.ya?ml$/)?.[1]
+    if (snapshotLanguage) {
+      if (getLanguageHandler(snapshotLanguage)?.upstreamSurface) {
+        selected.add(snapshotLanguage)
+      }
+      continue
     }
 
     if (isLanguageHandlerPath(changedFile)) {
       const language = changedFile.match(/^test\/parity\/lib\/languages\/([^/]+)\.ts$/)?.[1]
-      if (language && getLanguageHandler(language)?.runtimeSurface) {
+      if (language && getLanguageHandler(language)?.upstreamSurface) {
         selected.add(language)
       }
       continue
@@ -247,7 +258,7 @@ export function computeRuntimeSurfaceLanguages(changedFiles: string[]): string[]
     }
 
     const language = changedFile.split('/')[1]
-    if (language && getLanguageHandler(language)?.runtimeSurface) {
+    if (language && getLanguageHandler(language)?.upstreamSurface) {
       selected.add(language)
     }
   }
@@ -368,15 +379,15 @@ export function formatSelection(selection: ParitySelection): string {
 }
 
 function writeGithubOutput(outputPath: string, selection: ParitySelection): void {
-  const runtimeSurfaceLanguages = computeRuntimeSurfaceLanguages(selection.changedFiles)
+  const upstreamSurfaceLanguages = computeUpstreamSurfaceLanguages(selection.changedFiles)
   const lines = [
     `mode=${selection.mode}`,
     `target_count=${selection.targets.length}`,
     'targets<<EOF',
     ...selection.targets,
     'EOF',
-    'runtime_surface_languages<<EOF',
-    ...runtimeSurfaceLanguages,
+    'upstream_surface_languages<<EOF',
+    ...upstreamSurfaceLanguages,
     'EOF',
     'summary<<EOF',
     formatSelection(selection),

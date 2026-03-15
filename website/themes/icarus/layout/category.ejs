@@ -10,11 +10,89 @@
     </header>
 
     <div class="article-entry">
+      <%
+      var surfaceLang = site.data && site.data.upstream_surface && site.data.upstream_surface.languages
+        ? site.data.upstream_surface.languages[page.language]
+        : null;
+      var surfaceNamespace = null;
+      if (surfaceLang && surfaceLang.namespaces) {
+        surfaceLang.namespaces.forEach(function (namespace) {
+          if (namespace.namespace === page.category) {
+            surfaceNamespace = namespace;
+          }
+        });
+      }
+      %>
       <ul>
         <% site.pages.find({ language: page.language, category: page.category, type: 'function' }).sort('function').each(function (func) { %>
           <li><a href="<%- url_for(func.path).replace('index.html', '') %>"><%- func.function %></a></li>
         <% }) %>
       </ul>
+
+      <% if (surfaceNamespace) { %>
+        <h2>Namespace wishlist</h2>
+        <p>
+          This namespace is tracked against <code><%= surfaceNamespace.target %></code> using
+          <code><%= surfaceNamespace.sourceKind %></code> source <code><%= surfaceNamespace.sourceRef %></code>.
+        </p>
+        <div class="tags" style="margin-bottom: 1rem;">
+          <span class="tag is-dark">Coverage</span>
+          <span class="tag is-info"><%= surfaceNamespace.coveragePercent === null ? 'n/a' : surfaceNamespace.coveragePercent + '%' %></span>
+          <span class="tag is-dark">Shipped</span>
+          <span class="tag is-success"><%= surfaceNamespace.catalogShippedCount %>/<%= surfaceNamespace.catalogEntries.length %></span>
+          <span class="tag is-dark">Wanted</span>
+          <span class="tag is-warning"><%= surfaceNamespace.wantedEntries.length %></span>
+          <span class="tag is-dark">Skipped</span>
+          <span class="tag is-light"><%= surfaceNamespace.skippedEntries.length %></span>
+          <span class="tag is-dark">Untriaged</span>
+          <span class="tag is-light"><%= surfaceNamespace.untriagedEntries.length %></span>
+        </div>
+
+        <% if (surfaceNamespace.wantedEntries.length > 0) { %>
+          <h3>Wanted ports</h3>
+          <ul>
+            <% surfaceNamespace.wantedEntries.forEach(function (entry) { %>
+              <li><code><%= entry.name %></code><%= entry.note ? ' — ' + entry.note : '' %></li>
+            <% }) %>
+          </ul>
+        <% } %>
+
+        <% if (surfaceNamespace.keptExtras.length > 0) { %>
+          <details style="margin-bottom: 1rem;">
+            <summary>Intentional extras (<%= surfaceNamespace.keptExtras.length %>)</summary>
+            <ul>
+              <% surfaceNamespace.keptExtras.forEach(function (entry) { %>
+                <li><code><%= entry.name %></code><%= entry.note ? ' — ' + entry.note : '' %></li>
+              <% }) %>
+            </ul>
+          </details>
+        <% } %>
+
+        <% if (surfaceNamespace.skippedEntries.length > 0) { %>
+          <details style="margin-bottom: 1rem;">
+            <summary>Explicit non-goals (<%= surfaceNamespace.skippedEntries.length %>)</summary>
+            <ul>
+              <% surfaceNamespace.skippedEntries.forEach(function (entry) { %>
+                <li><code><%= entry.name %></code><%= entry.note ? ' — ' + entry.note : '' %></li>
+              <% }) %>
+            </ul>
+          </details>
+        <% } %>
+
+        <% if (surfaceNamespace.untriagedEntries.length > 0) { %>
+          <details style="margin-bottom: 1rem;">
+            <summary>Untriaged upstream entries (<%= surfaceNamespace.untriagedEntries.length %>)</summary>
+            <ul>
+              <% surfaceNamespace.untriagedEntries.slice(0, 40).forEach(function (entry) { %>
+                <li><code><%= entry %></code></li>
+              <% }) %>
+            </ul>
+            <% if (surfaceNamespace.untriagedEntries.length > 40) { %>
+              <p>Showing the first 40 entries.</p>
+            <% } %>
+          </details>
+        <% } %>
+      <% } %>
 
       <hr />
       <%- partial('locutus/add_more', {curLang: curLang}) %>

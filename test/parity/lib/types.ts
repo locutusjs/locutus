@@ -57,33 +57,37 @@ export interface RuntimeSurfaceSnapshot {
   functions: string[]
 }
 
-export interface RuntimeSurfaceExtra {
-  name: string
-  reason: string
+export type UpstreamSurfaceSourceKind = 'runtime' | 'source_manifest' | 'manual'
+
+export type UpstreamSurfaceDecision =
+  | 'wanted'
+  | 'keep_extension'
+  | 'keep_language_construct'
+  | 'keep_legacy'
+  | 'keep_locutus_only'
+  | 'skip_environment'
+  | 'skip_low_value'
+  | 'skip_plain_value_mismatch'
+  | 'skip_runtime_model'
+  | 'skip_security'
+  | 'skip_side_effects'
+
+export interface UpstreamSurfaceDecisionEntry {
+  decision: UpstreamSurfaceDecision
+  note?: string | undefined
 }
 
-export type RuntimeSurfaceLocutusExtraPolicyStatus =
-  | 'extension_dependent'
-  | 'keep'
-  | 'language_construct'
-  | 'legacy_keep'
-  | 'removed_upstream'
-
-export type RuntimeSurfaceRuntimeOnlyPolicyStatus = 'out_of_scope' | 'wanted'
-
-export type RuntimeSurfacePolicyStatus = RuntimeSurfaceLocutusExtraPolicyStatus | RuntimeSurfaceRuntimeOnlyPolicyStatus
-
-export interface RuntimeSurfacePolicyEntry<Status extends RuntimeSurfacePolicyStatus = RuntimeSurfacePolicyStatus> {
-  status: Status
-  reason: string
+export interface UpstreamSurfaceNamespaceInventory {
+  title?: string | undefined
+  decisions?: Record<string, UpstreamSurfaceDecisionEntry> | undefined
 }
 
-export interface RuntimeSurfaceLanguagePolicy {
-  locutusExtras?: Record<string, RuntimeSurfacePolicyEntry<RuntimeSurfaceLocutusExtraPolicyStatus>> | undefined
-  runtimeOnly?: Record<string, RuntimeSurfacePolicyEntry<RuntimeSurfaceRuntimeOnlyPolicyStatus>> | undefined
+export interface UpstreamSurfaceLanguageInventory {
+  title?: string | undefined
+  namespaces?: Record<string, UpstreamSurfaceNamespaceInventory> | undefined
 }
 
-export type RuntimeSurfacePolicy = Record<string, RuntimeSurfaceLanguagePolicy>
+export type UpstreamSurfaceInventory = Record<string, UpstreamSurfaceLanguageInventory>
 
 export interface RuntimeSurfaceLocutusFunction {
   path: string
@@ -92,11 +96,30 @@ export interface RuntimeSurfaceLocutusFunction {
   name: string
 }
 
-export interface RuntimeSurfaceAdapter {
-  /** Discover the callable/runtime function surface from the target runtime. */
-  discover(): Promise<RuntimeSurfaceSnapshot> | RuntimeSurfaceSnapshot
-  /** Map a Locutus function into the comparable runtime surface name, or null to ignore it. */
-  getLocutusEntry(func: RuntimeSurfaceLocutusFunction): string | null
+export interface UpstreamSurfaceNamespaceSnapshot {
+  namespace: string
+  title?: string | undefined
+  target: string
+  sourceKind: UpstreamSurfaceSourceKind
+  sourceRef: string
+  entries: string[]
+}
+
+export interface UpstreamSurfaceSnapshot {
+  language: string
+  namespaces: UpstreamSurfaceNamespaceSnapshot[]
+}
+
+export interface UpstreamSurfaceLocutusEntry {
+  namespace: string
+  name: string
+}
+
+export interface UpstreamSurfaceAdapter {
+  /** Discover comparable upstream entries for one language. */
+  discover?: (() => Promise<UpstreamSurfaceSnapshot> | UpstreamSurfaceSnapshot) | undefined
+  /** Map a Locutus function into the comparable upstream namespace entry, or null to ignore it. */
+  getLocutusEntry(func: RuntimeSurfaceLocutusFunction): UpstreamSurfaceLocutusEntry | null
 }
 
 export interface LanguageHandler {
@@ -118,8 +141,8 @@ export interface LanguageHandler {
   dockerCmd(code: string): string[]
   /** Whether to mount the repo in Docker */
   mountRepo?: boolean
-  /** Optional runtime surface discovery for guardrail checks. */
-  runtimeSurface?: RuntimeSurfaceAdapter
+  /** Optional upstream surface discovery for guardrail and backlog checks. */
+  upstreamSurface?: UpstreamSurfaceAdapter
 }
 
 export interface VerifyOptions {

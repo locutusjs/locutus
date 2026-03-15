@@ -227,6 +227,7 @@ const findPointerIndex = (pointers: PhpList<PhpInput>, target: PhpInput): number
 function getPointerState<T>(target: PhpArrayLike<T>, initialize = true): PointerState | null {
   const runtime = ensurePhpRuntimeState()
   const pointers = runtime.pointers
+  // Store [target, cursor] pairs in one flat runtime list so pointer state stays bound to each array-like input.
   const pointerTarget: PhpInput = target
 
   let index = findPointerIndex(pointers, pointerTarget)
@@ -385,6 +386,7 @@ const findPointerIndex = (pointers, target) => {
 function getPointerState(target, initialize = true) {
   const runtime = ensurePhpRuntimeState()
   const pointers = runtime.pointers
+  // Store [target, cursor] pairs in one flat runtime list so pointer state stays bound to each array-like input.
   const pointerTarget = target
 
   let index = findPointerIndex(pointers, pointerTarget)

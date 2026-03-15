@@ -1,0 +1,32 @@
+language: awk
+namespaces:
+  - namespace: builtin
+    title: GNU AWK built-ins
+    target: GNU AWK 5.3
+    sourceKind: manual
+    sourceRef: https://www.gnu.org/software/gawk/manual/
+    entries:
+      - atan2
+      - close
+      - cos
+      - exp
+      - gensub
+      - gsub
+      - index
+      - int
+      - length
+      - log
+      - match
+      - patsplit
+      - rand
+      - sin
+      - split
+      - sprintf
+      - sqrt
+      - srand
+      - strtonum
+      - sub
+      - substr
+      - system
+      - tolower
+      - toupper

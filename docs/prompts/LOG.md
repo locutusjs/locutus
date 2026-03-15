@@ -2090,3 +2090,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Preparing `v3.0.19` for the new `golang/filepath/Rel` runtime addition.
 - Key learnings:
   - `filepath.Rel` is patch-worthy product work: it adds real user-facing surface area while staying inside the existing Go/plain-value model and parity target.
+
+### Iteration 105
+
+2026-03-15
+
+- **Area: Upstream surface inventory**
+- Plan:
+  - Replace the earlier PHP-only runtime-surface guardrail with a generic upstream-surface inventory that can act as both CI guardrail and wishlist across all supported languages.
+  - Reuse the parity adapter system and checked-in snapshots, then push the resulting inventory all the way through to website presentation instead of keeping it maintainer-only.
+- Progress:
+  - Added a compact, Zod-validated `docs/upstream-surface-inventory.yml` keyed by language and namespace, with explicit `wanted`, `keep_*`, and `skip_*` decisions.
+  - Added checked-in upstream surface snapshots for every currently supported parity language, using live runtime discovery where practical and curated manual/source-manifest snapshots where runtime discovery is not worth the complexity.
+  - Replaced the old runtime-surface CI path with `scripts/check-upstream-surface.ts`, `scripts/refresh-upstream-surface.ts`, and updated selective/nightly workflow wiring.
+  - Added strict inventory coverage checks so every snapshot-backed language and namespace must exist in the shared inventory file, even when the decision map is still empty.
+  - Extended `injectweb` to copy the raw inventory and snapshot YAML into website data and to generate a combined `website/source/_data/upstream_surface.yml` summary for templates.
+  - Updated language and category pages so the public website now shows upstream coverage, wanted ports, explicit non-goals, intentional extras, and untriaged upstream entries.
+  - Documented the system in `docs/upstream-surface-inventory.md`.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `node scripts/check-upstream-surface.ts awk c clojure elixir golang julia lua perl php powershell python r ruby rust tcl`
+- Key learnings:
+  - The right split is snapshot + decisions + derived website data: snapshots track upstream drift, decisions capture maintainer judgment, and the website can stay simple by consuming a combined artifact instead of re-implementing compare logic in templates.

@@ -1,0 +1,62 @@
+language: lua
+namespaces:
+  - namespace: math
+    title: math library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - abs
+      - acos
+      - asin
+      - atan
+      - atan2
+      - ceil
+      - cos
+      - cosh
+      - deg
+      - exp
+      - floor
+      - fmod
+      - frexp
+      - ldexp
+      - log
+      - log10
+      - max
+      - min
+      - modf
+      - pow
+      - rad
+      - random
+      - randomseed
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - tointeger
+      - type
+      - ult
+  - namespace: string
+    title: string library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - byte
+      - char
+      - dump
+      - find
+      - format
+      - gmatch
+      - gsub
+      - len
+      - lower
+      - match
+      - pack
+      - packsize
+      - rep
+      - reverse
+      - sub
+      - unpack
+      - upper

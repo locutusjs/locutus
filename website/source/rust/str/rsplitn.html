@@ -62,7 +62,13 @@ alias:
     if (parts.length <= limit) {
       return parts
     }
-    return [...parts.slice(0, limit - 1), parts.slice(limit - 1).reverse().join('')]
+    return [
+      ...parts.slice(0, limit - 1),
+      parts
+        .slice(limit - 1)
+        .reverse()
+        .join(''),
+    ]
   }
 
   const out: string[] = []

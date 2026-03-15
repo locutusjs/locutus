@@ -150,6 +150,12 @@ function main(): void {
 
   const pages: PageExpectation[] = [
     {
+      path: 'php/index.html',
+      title: 'PHP extensions  in TypeScript | Locutus',
+      includes: ['Upstream surface inventory', 'Wanted ports:', 'array_is_list'],
+      ogUrl: 'https://locutus.io/php/index.html',
+    },
+    {
       path: 'ruby/Array/bsearch/index.html',
       title: 'Ruby&#39;s Array.bsearch in TypeScript | Locutus',
       includes: ['Verified: Ruby', 'locutus/ruby/Array/bsearch'],
@@ -172,6 +178,12 @@ function main(): void {
       title: 'Go&#39;s strings.Index in TypeScript | Locutus',
       includes: ['locutus/golang/strings/Index', 'Verified: Go'],
       ogUrl: 'https://locutus.io/golang/strings/Index/index.html',
+    },
+    {
+      path: 'golang/filepath/index.html',
+      title: 'Go&#39;s filepath package  in TypeScript | Locutus',
+      includes: ['Namespace wishlist', 'Wanted ports', 'Join'],
+      ogUrl: 'https://locutus.io/golang/filepath/index.html',
     },
   ]
 

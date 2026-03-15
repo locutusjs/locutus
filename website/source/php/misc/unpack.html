@@ -75,8 +75,7 @@ function parseFormat(format: string): UnpackSegment[] | null {
     }
 
     const label = segment.slice(cursor)
-    const quantifier =
-      quantifierText === '' ? 1 : quantifierText === '*' ? '*' : Number.parseInt(quantifierText, 10)
+    const quantifier = quantifierText === '' ? 1 : quantifierText === '*' ? '*' : Number.parseInt(quantifierText, 10)
     if (typeof quantifier === 'number' && (!Number.isFinite(quantifier) || quantifier < 0)) {
       return null
     }
@@ -188,7 +187,8 @@ export function unpack(format: string, data: string): UnpackResult | false {
     if (STRING_CODES.has(code)) {
       const nibbleMode = code === 'h' || code === 'H'
       const unitSize = nibbleMode ? 0.5 : 1
-      const requested = quantifier === '*' ? (nibbleMode ? (bytes.length - cursor) * 2 : bytes.length - cursor) : quantifier
+      const requested =
+        quantifier === '*' ? (nibbleMode ? (bytes.length - cursor) * 2 : bytes.length - cursor) : quantifier
 
       if (!Number.isFinite(requested) || requested < 0) {
         return false

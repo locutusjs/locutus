@@ -1,0 +1,31 @@
+language: powershell
+namespaces:
+  - namespace: string
+    title: System.String instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.string
+    entries:
+      - Clone
+      - CompareTo
+      - Contains
+      - EndsWith
+      - Equals
+      - IndexOf
+      - Insert
+      - LastIndexOf
+      - Length
+      - PadLeft
+      - PadRight
+      - Remove
+      - Replace
+      - Split
+      - StartsWith
+      - Substring
+      - ToLower
+      - ToLowerInvariant
+      - ToUpper
+      - ToUpperInvariant
+      - Trim
+      - TrimEnd
+      - TrimStart

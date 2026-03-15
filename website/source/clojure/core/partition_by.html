@@ -67,7 +67,7 @@ function stablePartitionKey(value: unknown): string {
     return `array:[${value.map((item) => stablePartitionKey(item)).join(',')}]`
   }
   if (typeof value === 'object') {
-    const record = value as Record<string, unknown>
+    const record = value as { [key: string]: unknown }
     const entries = Object.keys(record)
       .sort()
       .map((key) => `${JSON.stringify(key)}:${stablePartitionKey(record[key])}`)

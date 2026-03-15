@@ -1,0 +1,115 @@
+language: c
+namespaces:
+  - namespace: ctype
+    title: ctype.h
+    target: C23
+    sourceKind: manual
+    sourceRef: https://en.cppreference.com/w/c/string/byte
+    entries:
+      - isalnum
+      - isalpha
+      - isblank
+      - iscntrl
+      - isdigit
+      - isgraph
+      - islower
+      - isprint
+      - ispunct
+      - isspace
+      - isupper
+      - isxdigit
+      - tolower
+      - toupper
+  - namespace: math
+    title: math.h
+    target: C23
+    sourceKind: manual
+    sourceRef: https://en.cppreference.com/w/c/numeric/math
+    entries:
+      - acos
+      - asin
+      - atan
+      - atan2
+      - ceil
+      - copysign
+      - cos
+      - exp
+      - fabs
+      - floor
+      - fmod
+      - frexp
+      - hypot
+      - log
+      - log10
+      - modf
+      - pow
+      - sin
+      - sqrt
+      - tan
+      - trunc
+  - namespace: stdio
+    title: stdio.h
+    target: C23
+    sourceKind: manual
+    sourceRef: https://en.cppreference.com/w/c/io
+    entries:
+      - fprintf
+      - fputs
+      - printf
+      - putchar
+      - puts
+      - snprintf
+      - sprintf
+      - vfprintf
+      - vprintf
+      - vsnprintf
+      - vsprintf
+  - namespace: stdlib
+    title: stdlib.h
+    target: C23
+    sourceKind: manual
+    sourceRef: https://en.cppreference.com/w/c/program
+    entries:
+      - abs
+      - atof
+      - atoi
+      - atol
+      - atoll
+      - bsearch
+      - getenv
+      - labs
+      - llabs
+      - qsort
+      - rand
+      - srand
+      - strtod
+      - strtof
+      - strtol
+      - strtoll
+      - strtoul
+      - strtoull
+  - namespace: string
+    title: string.h
+    target: C23
+    sourceKind: manual
+    sourceRef: https://en.cppreference.com/w/c/string/byte
+    entries:
+      - memchr
+      - memcmp
+      - memcpy
+      - memmove
+      - memset
+      - strcat
+      - strchr
+      - strcmp
+      - strcpy
+      - strcspn
+      - strlen
+      - strncat
+      - strncmp
+      - strncpy
+      - strpbrk
+      - strrchr
+      - strspn
+      - strstr
+      - strtok

@@ -1,0 +1,328 @@
+language: golang
+namespaces:
+  - namespace: filepath
+    title: path/filepath package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:path/filepath
+    entries:
+      - Abs
+      - Base
+      - Clean
+      - Dir
+      - EvalSymlinks
+      - Ext
+      - FromSlash
+      - Glob
+      - HasPrefix
+      - IsAbs
+      - IsLocal
+      - Join
+      - Localize
+      - Match
+      - Rel
+      - Split
+      - SplitList
+      - ToSlash
+      - VolumeName
+      - Walk
+      - WalkDir
+  - namespace: net
+    title: net package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net
+    entries:
+      - CIDRMask
+      - Dial
+      - DialIP
+      - DialTCP
+      - DialTimeout
+      - DialUDP
+      - DialUnix
+      - FileConn
+      - FileListener
+      - FilePacketConn
+      - IPv4
+      - IPv4Mask
+      - InterfaceAddrs
+      - InterfaceByIndex
+      - InterfaceByName
+      - Interfaces
+      - JoinHostPort
+      - Listen
+      - ListenIP
+      - ListenMulticastUDP
+      - ListenPacket
+      - ListenTCP
+      - ListenUDP
+      - ListenUnix
+      - ListenUnixgram
+      - LookupAddr
+      - LookupCNAME
+      - LookupHost
+      - LookupIP
+      - LookupMX
+      - LookupNS
+      - LookupPort
+      - LookupSRV
+      - LookupTXT
+      - ParseCIDR
+      - ParseIP
+      - ParseMAC
+      - Pipe
+      - ResolveIPAddr
+      - ResolveTCPAddr
+      - ResolveUDPAddr
+      - ResolveUnixAddr
+      - SplitHostPort
+      - TCPAddrFromAddrPort
+      - UDPAddrFromAddrPort
+  - namespace: path
+    title: path package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:path
+    entries:
+      - Base
+      - Clean
+      - Dir
+      - Ext
+      - IsAbs
+      - Join
+      - Match
+      - Split
+  - namespace: sort
+    title: sort package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:sort
+    entries:
+      - Find
+      - Float64s
+      - Float64sAreSorted
+      - Ints
+      - IntsAreSorted
+      - IsSorted
+      - Reverse
+      - Search
+      - SearchFloat64s
+      - SearchInts
+      - SearchStrings
+      - Slice
+      - SliceIsSorted
+      - SliceStable
+      - Sort
+      - Stable
+      - Strings
+      - StringsAreSorted
+  - namespace: strconv
+    title: strconv package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:strconv
+    entries:
+      - AppendBool
+      - AppendFloat
+      - AppendInt
+      - AppendQuote
+      - AppendQuoteRune
+      - AppendQuoteRuneToASCII
+      - AppendQuoteRuneToGraphic
+      - AppendQuoteToASCII
+      - AppendQuoteToGraphic
+      - AppendUint
+      - Atoi
+      - CanBackquote
+      - FormatBool
+      - FormatComplex
+      - FormatFloat
+      - FormatInt
+      - FormatUint
+      - IsGraphic
+      - IsPrint
+      - Itoa
+      - ParseBool
+      - ParseComplex
+      - ParseFloat
+      - ParseInt
+      - ParseUint
+      - Quote
+      - QuoteRune
+      - QuoteRuneToASCII
+      - QuoteRuneToGraphic
+      - QuoteToASCII
+      - QuoteToGraphic
+      - QuotedPrefix
+      - Unquote
+      - UnquoteChar
+  - namespace: strings
+    title: strings package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:strings
+    entries:
+      - Clone
+      - Compare
+      - Contains
+      - ContainsAny
+      - ContainsFunc
+      - ContainsRune
+      - Count
+      - Cut
+      - CutPrefix
+      - CutSuffix
+      - EqualFold
+      - Fields
+      - FieldsFunc
+      - HasPrefix
+      - HasSuffix
+      - Index
+      - IndexAny
+      - IndexByte
+      - IndexFunc
+      - IndexRune
+      - Join
+      - LastIndex
+      - LastIndexAny
+      - LastIndexByte
+      - LastIndexFunc
+      - Map
+      - NewReader
+      - NewReplacer
+      - Repeat
+      - Replace
+      - ReplaceAll
+      - Split
+      - SplitAfter
+      - SplitAfterN
+      - SplitN
+      - Title
+      - ToLower
+      - ToLowerSpecial
+      - ToTitle
+      - ToTitleSpecial
+      - ToUpper
+      - ToUpperSpecial
+      - ToValidUTF8
+      - Trim
+      - TrimFunc
+      - TrimLeft
+      - TrimLeftFunc
+      - TrimPrefix
+      - TrimRight
+      - TrimRightFunc
+      - TrimSpace
+      - TrimSuffix
+  - namespace: subtle
+    title: crypto/subtle package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/subtle
+    entries:
+      - ConstantTimeByteEq
+      - ConstantTimeCompare
+      - ConstantTimeCopy
+      - ConstantTimeEq
+      - ConstantTimeLessOrEq
+      - ConstantTimeSelect
+      - XORBytes
+  - namespace: time
+    title: time package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:time
+    entries:
+      - Add
+      - AddDate
+      - After
+      - AfterFunc
+      - AppendFormat
+      - Before
+      - Clock
+      - Compare
+      - Date
+      - Day
+      - Equal
+      - FixedZone
+      - Format
+      - GoString
+      - GobDecode
+      - GobEncode
+      - Hour
+      - ISOWeek
+      - In
+      - IsDST
+      - IsZero
+      - LoadLocation
+      - LoadLocationFromTZData
+      - Local
+      - Location
+      - MarshalBinary
+      - MarshalJSON
+      - MarshalText
+      - Minute
+      - Month
+      - Nanosecond
+      - NewTicker
+      - NewTimer
+      - Now
+      - Parse
+      - ParseDuration
+      - ParseInLocation
+      - Round
+      - Second
+      - Since
+      - Sleep
+      - String
+      - Sub
+      - Tick
+      - Truncate
+      - UTC
+      - Unix
+      - UnixMicro
+      - UnixMilli
+      - UnixNano
+      - UnmarshalBinary
+      - UnmarshalJSON
+      - UnmarshalText
+      - Until
+      - Weekday
+      - Year
+      - YearDay
+      - Zone
+      - ZoneBounds
+  - namespace: url
+    title: net/url package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/url
+    entries:
+      - Add
+      - Del
+      - Encode
+      - EscapedFragment
+      - EscapedPath
+      - Get
+      - Has
+      - Hostname
+      - IsAbs
+      - JoinPath
+      - MarshalBinary
+      - Parse
+      - ParseQuery
+      - ParseRequestURI
+      - PathEscape
+      - PathUnescape
+      - Port
+      - Query
+      - QueryEscape
+      - QueryUnescape
+      - Redacted
+      - RequestURI
+      - ResolveReference
+      - Set
+      - String
+      - UnmarshalBinary
+      - User
+      - UserPassword

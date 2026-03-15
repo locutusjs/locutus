@@ -2,6 +2,7 @@
  * R language handler for verification
  */
 
+import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -9,6 +10,42 @@ import type { LanguageHandler } from '../types.ts'
 export const R_SKIP_LIST = new Set<string>([
   // None currently
 ])
+
+const R_DOCKER_IMAGE = 'r-base:4.4.2'
+
+function discoverRUpstreamSurface() {
+  const code = [
+    'vals <- ls(baseenv())',
+    'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = baseenv())))])',
+    "cat(funs, sep='\\n')",
+  ].join('; ')
+
+  const result = runInDocker(R_DOCKER_IMAGE, ['Rscript', '-e', code])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover R upstream surface')
+  }
+
+  const entries = result.output
+    .trim()
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .sort()
+
+  return {
+    language: 'r',
+    namespaces: [
+      {
+        namespace: 'base',
+        title: 'base package',
+        target: 'R 4.4',
+        sourceKind: 'runtime' as const,
+        sourceRef: R_DOCKER_IMAGE,
+        entries,
+      },
+    ],
+  }
+}
 
 /**
  * Strip trailing JS comments (// ...) that are not inside strings
@@ -139,7 +176,7 @@ export const rHandler: LanguageHandler = {
   translate: jsToR,
   normalize: normalizeROutput,
   skipList: R_SKIP_LIST,
-  dockerImage: 'r-base:4.4.2',
+  dockerImage: R_DOCKER_IMAGE,
   displayName: 'R',
   version: '4.4',
   get parityValue() {
@@ -147,4 +184,11 @@ export const rHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['Rscript', '-e', code],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverRUpstreamSurface,
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

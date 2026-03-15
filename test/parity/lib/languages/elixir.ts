@@ -3,6 +3,7 @@
  */
 
 import ts from 'typescript'
+import { runInDocker } from '../docker.ts'
 
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
@@ -10,6 +11,46 @@ import type { LanguageHandler } from '../types.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const ELIXIR_SKIP_LIST = new Set<string>([])
+
+const ELIXIR_DOCKER_IMAGE = 'elixir:1.18'
+
+function discoverElixirUpstreamSurface() {
+  const discoverModule = (namespace: string, title: string) => {
+    const code = `Enum.each(Enum.sort(${namespace}.__info__(:functions)), fn {name, _arity} -> IO.puts(Atom.to_string(name)) end)`
+    const result = runInDocker(ELIXIR_DOCKER_IMAGE, ['elixir', '-e', code])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover Elixir upstream surface for ${namespace}`)
+    }
+
+    const entries = [
+      ...new Set(
+        result.output
+          .trim()
+          .split('\n')
+          .map((line) => line.trim())
+          .filter(Boolean),
+      ),
+    ].sort()
+    return {
+      namespace,
+      title,
+      target: 'Elixir 1.18',
+      sourceKind: 'runtime' as const,
+      sourceRef: ELIXIR_DOCKER_IMAGE,
+      entries,
+    }
+  }
+
+  return {
+    language: 'elixir',
+    namespaces: [
+      discoverModule('Enum', 'Enum module'),
+      discoverModule('Float', 'Float module'),
+      discoverModule('Kernel', 'Kernel module'),
+      discoverModule('String', 'String module'),
+    ],
+  }
+}
 
 const ELIXIR_PARITY_MODULE = `
 defmodule LocutusParity do
@@ -389,7 +430,7 @@ export const elixirHandler: LanguageHandler = {
   translate: jsToElixir,
   normalize: normalizeElixirOutput,
   skipList: ELIXIR_SKIP_LIST,
-  dockerImage: 'elixir:1.18',
+  dockerImage: ELIXIR_DOCKER_IMAGE,
   displayName: 'Elixir',
   version: '1.18',
   get parityValue() {
@@ -397,4 +438,11 @@ export const elixirHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['elixir', '-e', code],
   mountRepo: false,
+  upstreamSurface: {
+    discover: discoverElixirUpstreamSurface,
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: func.name,
+    }),
+  },
 }

@@ -4,7 +4,8 @@ examples:
   - 'array_keys( {firstname: ''Kevin'', surname: ''van Zonneveld''} )'
 returns:
   - '[ ''firstname'', ''surname'' ]'
-dependencies: []
+dependencies:
+  - php/_helpers/_phpTypes
 authors:
   original by:
     - Kevin van Zonneveld (https://kvz.io)
@@ -39,9 +40,9 @@ alias:
   - /functions/array_keys/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}import type { PhpAssoc } from '../_helpers/_phpTypes.ts'
+{% codeblock lang:typescript %}import { normalizeArrayKey, type PhpArrayLike, type PhpKey } from '../_helpers/_phpTypes.ts'
 
-export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: boolean): string[] {
+export function array_keys<T>(input: PhpArrayLike<T>, searchValue?: T, argStrict?: boolean): PhpKey[] {
   //      discuss at: https://locutus.io/php/array_keys/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -55,7 +56,7 @@ export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: b
   //       returns 1: [ 'firstname', 'surname' ]
 
   const search = typeof searchValue !== 'undefined'
-  const tmpArr: string[] = []
+  const tmpArr: PhpKey[] = []
   const strict = !!argStrict
   let include = true
 
@@ -70,7 +71,7 @@ export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: b
     }
 
     if (include) {
-      tmpArr.push(key)
+      tmpArr.push(normalizeArrayKey(key))
     }
   }
 
@@ -79,7 +80,8 @@ export function array_keys<T>(input: PhpAssoc<T>, searchValue?: T, argStrict?: b
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}
+{% codeblock lang:javascript %}import { normalizeArrayKey } from '../_helpers/_phpTypes.ts'
+
 export function array_keys(input, searchValue, argStrict) {
   //      discuss at: https://locutus.io/php/array_keys/
   // parity verified: PHP 8.3
@@ -109,7 +111,119 @@ export function array_keys(input, searchValue, argStrict) {
     }
 
     if (include) {
-      tmpArr.push(key)
+      tmpArr.push(normalizeArrayKey(key))
+    }
+  }
+
+  return tmpArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-ts" style="display:none">
+{% codeblock lang:typescript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+type PhpNullish = null | undefined
+
+type PhpInput = {} | PhpNullish
+
+type PhpKey = string | number
+
+type PhpList<T = PhpInput> = T[]
+
+type PhpAssoc<T = PhpInput> = { [key: string]: T }
+
+type PhpArrayLike<T = PhpInput> = PhpList<T> | PhpAssoc<T>
+
+function normalizeArrayKey(key: string): string | number {
+  if (/^(0|-?[1-9]\d*)$/.test(key)) {
+    const numericKey = Number(key)
+    if (Number.isSafeInteger(numericKey)) {
+      return numericKey
+    }
+  }
+
+  return key
+}
+
+// php/array/array_keys (target function module)
+function array_keys<T>(input: PhpArrayLike<T>, searchValue?: T, argStrict?: boolean): PhpKey[] {
+  //      discuss at: https://locutus.io/php/array_keys/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //        input by: P
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: jd
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
+  //       returns 1: [ 'firstname', 'surname' ]
+
+  const search = typeof searchValue !== 'undefined'
+  const tmpArr: PhpKey[] = []
+  const strict = !!argStrict
+  let include = true
+
+  for (const [key, value] of Object.entries(input)) {
+    include = true
+    if (search) {
+      if (strict && value !== searchValue) {
+        include = false
+      } else if (value !== searchValue) {
+        include = false
+      }
+    }
+
+    if (include) {
+      tmpArr.push(normalizeArrayKey(key))
+    }
+  }
+
+  return tmpArr
+}{% endcodeblock %}
+</div>
+<div class="code-tab-panel" data-lang="standalone-js" style="display:none">
+{% codeblock lang:javascript %}// php/_helpers/_phpTypes (Locutus helper dependency)
+function normalizeArrayKey(key) {
+  if (/^(0|-?[1-9]\d*)$/.test(key)) {
+    const numericKey = Number(key)
+    if (Number.isSafeInteger(numericKey)) {
+      return numericKey
+    }
+  }
+
+  return key
+}
+
+// php/array/array_keys (target function module)
+function array_keys(input, searchValue, argStrict) {
+  //      discuss at: https://locutus.io/php/array_keys/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //        input by: Brett Zamir (https://brett-zamir.me)
+  //        input by: P
+  //     bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     improved by: jd
+  //     improved by: Brett Zamir (https://brett-zamir.me)
+  //       example 1: array_keys( {firstname: 'Kevin', surname: 'van Zonneveld'} )
+  //       returns 1: [ 'firstname', 'surname' ]
+
+  const search = typeof searchValue !== 'undefined'
+  const tmpArr = []
+  const strict = !!argStrict
+  let include = true
+
+  for (const [key, value] of Object.entries(input)) {
+    include = true
+    if (search) {
+      if (strict && value !== searchValue) {
+        include = false
+      } else if (value !== searchValue) {
+        include = false
+      }
+    }
+
+    if (include) {
+      tmpArr.push(normalizeArrayKey(key))
     }
   }
 

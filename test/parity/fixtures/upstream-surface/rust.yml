@@ -1,0 +1,42 @@
+language: rust
+namespaces:
+  - namespace: str
+    title: str primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.str.html
+    entries:
+      - bytes
+      - char_indices
+      - chars
+      - contains
+      - ends_with
+      - find
+      - is_ascii
+      - len
+      - lines
+      - match_indices
+      - matches
+      - parse
+      - repeat
+      - replace
+      - rfind
+      - rmatch_indices
+      - rmatches
+      - rsplit_once
+      - rsplit_terminator
+      - rsplitn
+      - split_ascii_whitespace
+      - split_inclusive
+      - split_once
+      - split_terminator
+      - splitn
+      - starts_with
+      - strip_prefix
+      - strip_suffix
+      - to_lowercase
+      - to_uppercase
+      - trim
+      - trim_end
+      - trim_matches
+      - trim_start

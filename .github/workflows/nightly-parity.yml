@@ -33,9 +33,15 @@ jobs:
       - name: Install Dependencies
         run: |
           corepack yarn
-      - name: Runtime surface guardrail
+      - name: Refresh live upstream snapshots
         run: |
-          corepack yarn test:runtime-surface
+          corepack yarn refresh:upstream-surface
+      - name: Verify upstream snapshot drift
+        run: |
+          git diff --exit-code -- test/parity/fixtures/upstream-surface
+      - name: Upstream surface inventory
+        run: |
+          corepack yarn test:upstream-surface
       - name: Run full parity suite
         run: |
           corepack yarn test:parity

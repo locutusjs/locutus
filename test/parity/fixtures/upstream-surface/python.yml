@@ -1,0 +1,112 @@
+language: python
+namespaces:
+  - namespace: math
+    title: math
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - cbrt
+      - ceil
+      - comb
+      - copysign
+      - cos
+      - cosh
+      - degrees
+      - dist
+      - erf
+      - erfc
+      - exp
+      - exp2
+      - expm1
+      - fabs
+      - factorial
+      - floor
+      - fmod
+      - frexp
+      - fsum
+      - gamma
+      - gcd
+      - hypot
+      - isclose
+      - isfinite
+      - isinf
+      - isnan
+      - isqrt
+      - lcm
+      - ldexp
+      - lgamma
+      - log
+      - log10
+      - log1p
+      - log2
+      - modf
+      - nextafter
+      - perm
+      - pow
+      - prod
+      - radians
+      - remainder
+      - sin
+      - sinh
+      - sqrt
+      - sumprod
+      - tan
+      - tanh
+      - trunc
+      - ulp
+  - namespace: re
+    title: re
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - compile
+      - escape
+      - findall
+      - finditer
+      - fullmatch
+      - match
+      - purge
+      - search
+      - split
+      - sub
+      - subn
+      - template
+  - namespace: string
+    title: string
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - ascii_letters
+      - ascii_lowercase
+      - ascii_uppercase
+      - capwords
+      - digits
+      - hexdigits
+      - octdigits
+      - printable
+      - punctuation
+      - whitespace
+  - namespace: difflib
+    title: difflib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - IS_CHARACTER_JUNK
+      - IS_LINE_JUNK
+      - context_diff
+      - diff_bytes
+      - get_close_matches
+      - ndiff
+      - restore
+      - unified_diff

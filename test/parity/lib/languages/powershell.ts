@@ -9,6 +9,26 @@ export const POWERSHELL_SKIP_LIST = new Set<string>([
   // None currently
 ])
 
+const POWERSHELL_DOCKER_IMAGE = 'mcr.microsoft.com/powershell:7.4-ubuntu-22.04'
+const POWERSHELL_MEMBER_NAMES: Record<string, string> = {
+  contains: 'Contains',
+  endswith: 'EndsWith',
+  indexof: 'IndexOf',
+  insert: 'Insert',
+  lastindexof: 'LastIndexOf',
+  length: 'Length',
+  padleft: 'PadLeft',
+  padright: 'PadRight',
+  remove: 'Remove',
+  replace: 'Replace',
+  split: 'Split',
+  startswith: 'StartsWith',
+  substring: 'Substring',
+  tolower: 'ToLower',
+  toupper: 'ToUpper',
+  trim: 'Trim',
+}
+
 function stripTrailingComment(code: string): string {
   let inString: string | null = null
   let escaped = false
@@ -369,7 +389,7 @@ export const powershellHandler: LanguageHandler = {
   translate: jsToPowerShell,
   normalize: normalizePowerShellOutput,
   skipList: POWERSHELL_SKIP_LIST,
-  dockerImage: 'mcr.microsoft.com/powershell:7.4-ubuntu-22.04',
+  dockerImage: POWERSHELL_DOCKER_IMAGE,
   displayName: 'PowerShell',
   version: '7.4',
   get parityValue() {
@@ -377,4 +397,10 @@ export const powershellHandler: LanguageHandler = {
   },
   dockerCmd: (code: string) => ['pwsh', '-NoLogo', '-NoProfile', '-Command', code],
   mountRepo: false,
+  upstreamSurface: {
+    getLocutusEntry: (func) => ({
+      namespace: func.category,
+      name: POWERSHELL_MEMBER_NAMES[func.name] ?? func.name,
+    }),
+  },
 }

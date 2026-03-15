@@ -16,12 +16,16 @@ examples:
   - >-
     ParseInLocation('2006-01-02T15:04:05-07:00', '2026-03-03T13:14:15+02:30',
     'America/New_York')
+  - >-
+    ParseInLocation('2006-01-02 15:04:05', '2026-03-03 13:14:15', ('America' +
+    '/New_York'))
 returns:
   - new Date('2026-03-03T18:14:15.000Z')
   - new Date('2026-07-03T17:14:15.000Z')
   - new Date('2024-11-03T05:30:00.000Z')
   - new Date('2024-03-10T06:30:00.000Z')
   - new Date('2026-03-03T10:44:15.000Z')
+  - new Date('2026-03-03T18:14:15.000Z')
 dependencies: []
 authors:
   original by:
@@ -135,6 +139,9 @@ const parseOffsetMinutes = (offset: string): number => {
     const sign = compact[1] === '-' ? -1 : 1
     const hours = Number.parseInt(compact[2], 10)
     const minutes = Number.parseInt(compact[3], 10)
+    if (hours > 23 || minutes > 59) {
+      throw new TypeError('ParseInLocation(): invalid offset')
+    }
     return sign * (hours * 60 + minutes)
   }
 
@@ -143,6 +150,9 @@ const parseOffsetMinutes = (offset: string): number => {
     const sign = colon[1] === '-' ? -1 : 1
     const hours = Number.parseInt(colon[2], 10)
     const minutes = Number.parseInt(colon[3], 10)
+    if (hours > 23 || minutes > 59) {
+      throw new TypeError('ParseInLocation(): invalid offset')
+    }
     return sign * (hours * 60 + minutes)
   }
 
@@ -150,6 +160,20 @@ const parseOffsetMinutes = (offset: string): number => {
 }
 
 const resolveTwoDigitYear = (year: number): number => (year >= 69 ? 1900 + year : 2000 + year)
+
+const createUtcDate = (
+  year: number,
+  month: number,
+  day: number,
+  hour: number,
+  minute: number,
+  second: number,
+): Date => {
+  const date = new Date(0)
+  date.setUTCFullYear(year, month - 1, day)
+  date.setUTCHours(hour, minute, second, 0)
+  return date
+}
 
 const parseGoTime = (layout: string, value: string): ParsedGoTime => {
   const resolvedLayout = String(layout)
@@ -269,8 +293,7 @@ const parseGoTime = (layout: string, value: string): ParsedGoTime => {
     throw new TypeError('ParseInLocation(): invalid datetime components')
   }
 
-  const localMillis = Date.UTC(year, month - 1, day, hour24, minute, second)
-  const localCheck = new Date(localMillis)
+  const localCheck = createUtcDate(year, month, day, hour24, minute, second)
   if (
     localCheck.getUTCFullYear() !== year ||
     localCheck.getUTCMonth() + 1 !== month ||
@@ -281,6 +304,8 @@ const parseGoTime = (layout: string, value: string): ParsedGoTime => {
   ) {
     throw new TypeError('ParseInLocation(): invalid datetime components')
   }
+
+  const localMillis = localCheck.getTime()
 
   return {
     localMillis,
@@ -353,30 +378,22 @@ const getOffsetMinutesAt = (timeZone: string, utcMillis: number): number => {
     }
   }
 
-  const zonedAsUtcMillis = Date.UTC(year, month - 1, day, hour, minute, second)
+  const zonedAsUtcMillis = createUtcDate(year, month, day, hour, minute, second).getTime()
   return Math.round((zonedAsUtcMillis - utcMillis) / 60_000)
 }
 
 const resolveWallTimeInLocation = (timeZone: string, localMillis: number): number => {
-  let current = localMillis
-  let previous: number | undefined
+  let offsetMinutes = getOffsetMinutesAt(timeZone, localMillis)
 
-  for (let attempt = 0; attempt < 6; attempt += 1) {
-    const next = localMillis - getOffsetMinutesAt(timeZone, current) * 60_000
-
-    if (next === current) {
-      return next
+  if (offsetMinutes !== 0) {
+    const utcMillis = localMillis - offsetMinutes * 60_000
+    const correctedOffsetMinutes = getOffsetMinutesAt(timeZone, utcMillis)
+    if (correctedOffsetMinutes !== offsetMinutes) {
+      offsetMinutes = correctedOffsetMinutes
     }
-
-    if (previous !== undefined && next === previous) {
-      return Math.min(current, next)
-    }
-
-    previous = current
-    current = next
   }
 
-  return Math.min(current, previous ?? current)
+  return localMillis - offsetMinutes * 60_000
 }
 
 export function ParseInLocation(layout: string, value: string, location: string): Date {
@@ -396,6 +413,8 @@ export function ParseInLocation(layout: string, value: string, location: string)
   //       returns 4: new Date('2024-03-10T06:30:00.000Z')
   //       example 5: ParseInLocation('2006-01-02T15:04:05-07:00', '2026-03-03T13:14:15+02:30', 'America/New_York')
   //       returns 5: new Date('2026-03-03T10:44:15.000Z')
+  //       example 6: ParseInLocation('2006-01-02 15:04:05', '2026-03-03 13:14:15', ('America' + '/New_York'))
+  //       returns 6: new Date('2026-03-03T18:14:15.000Z')
 
   const resolvedLocation = String(location)
   assertValidLocation(resolvedLocation)
@@ -483,6 +502,9 @@ const parseOffsetMinutes = (offset) => {
     const sign = compact[1] === '-' ? -1 : 1
     const hours = Number.parseInt(compact[2], 10)
     const minutes = Number.parseInt(compact[3], 10)
+    if (hours > 23 || minutes > 59) {
+      throw new TypeError('ParseInLocation(): invalid offset')
+    }
     return sign * (hours * 60 + minutes)
   }
 
@@ -491,6 +513,9 @@ const parseOffsetMinutes = (offset) => {
     const sign = colon[1] === '-' ? -1 : 1
     const hours = Number.parseInt(colon[2], 10)
     const minutes = Number.parseInt(colon[3], 10)
+    if (hours > 23 || minutes > 59) {
+      throw new TypeError('ParseInLocation(): invalid offset')
+    }
     return sign * (hours * 60 + minutes)
   }
 
@@ -498,6 +523,13 @@ const parseOffsetMinutes = (offset) => {
 }
 
 const resolveTwoDigitYear = (year) => (year >= 69 ? 1900 + year : 2000 + year)
+
+const createUtcDate = (year, month, day, hour, minute, second) => {
+  const date = new Date(0)
+  date.setUTCFullYear(year, month - 1, day)
+  date.setUTCHours(hour, minute, second, 0)
+  return date
+}
 
 const parseGoTime = (layout, value) => {
   const resolvedLayout = String(layout)
@@ -617,8 +649,7 @@ const parseGoTime = (layout, value) => {
     throw new TypeError('ParseInLocation(): invalid datetime components')
   }
 
-  const localMillis = Date.UTC(year, month - 1, day, hour24, minute, second)
-  const localCheck = new Date(localMillis)
+  const localCheck = createUtcDate(year, month, day, hour24, minute, second)
   if (
     localCheck.getUTCFullYear() !== year ||
     localCheck.getUTCMonth() + 1 !== month ||
@@ -629,6 +660,8 @@ const parseGoTime = (layout, value) => {
   ) {
     throw new TypeError('ParseInLocation(): invalid datetime components')
   }
+
+  const localMillis = localCheck.getTime()
 
   return {
     localMillis,
@@ -701,30 +734,22 @@ const getOffsetMinutesAt = (timeZone, utcMillis) => {
     }
   }
 
-  const zonedAsUtcMillis = Date.UTC(year, month - 1, day, hour, minute, second)
+  const zonedAsUtcMillis = createUtcDate(year, month, day, hour, minute, second).getTime()
   return Math.round((zonedAsUtcMillis - utcMillis) / 60_000)
 }
 
 const resolveWallTimeInLocation = (timeZone, localMillis) => {
-  let current = localMillis
-  let previous
+  let offsetMinutes = getOffsetMinutesAt(timeZone, localMillis)
 
-  for (let attempt = 0; attempt < 6; attempt += 1) {
-    const next = localMillis - getOffsetMinutesAt(timeZone, current) * 60_000
-
-    if (next === current) {
-      return next
+  if (offsetMinutes !== 0) {
+    const utcMillis = localMillis - offsetMinutes * 60_000
+    const correctedOffsetMinutes = getOffsetMinutesAt(timeZone, utcMillis)
+    if (correctedOffsetMinutes !== offsetMinutes) {
+      offsetMinutes = correctedOffsetMinutes
     }
-
-    if (previous !== undefined && next === previous) {
-      return Math.min(current, next)
-    }
-
-    previous = current
-    current = next
   }
 
-  return Math.min(current, previous ?? current)
+  return localMillis - offsetMinutes * 60_000
 }
 
 export function ParseInLocation(layout, value, location) {
@@ -744,6 +769,8 @@ export function ParseInLocation(layout, value, location) {
   //       returns 4: new Date('2024-03-10T06:30:00.000Z')
   //       example 5: ParseInLocation('2006-01-02T15:04:05-07:00', '2026-03-03T13:14:15+02:30', 'America/New_York')
   //       returns 5: new Date('2026-03-03T10:44:15.000Z')
+  //       example 6: ParseInLocation('2006-01-02 15:04:05', '2026-03-03 13:14:15', ('America' + '/New_York'))
+  //       returns 6: new Date('2026-03-03T18:14:15.000Z')
 
   const resolvedLocation = String(location)
   assertValidLocation(resolvedLocation)
