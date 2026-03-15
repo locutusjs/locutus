@@ -2133,3 +2133,17 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn test:parity golang/filepath/Base golang/filepath/Clean golang/filepath/Dir golang/filepath/Ext golang/filepath/IsAbs golang/filepath/Join python/math/isqrt python/math/prod python/re/subn ruby/Array/bsearch_index ruby/Array/filter_map ruby/String/delete_prefix ruby/String/delete_suffix --no-cache`
 - Key learnings:
   - Cross-language harvest PRs work better when the wishlist is coupled to parity adapters: the backlog tells us what to build next, and the adapter layer tells us immediately where translation assumptions still need tightening.
+
+### Iteration 107
+
+2026-03-15
+
+- **Area: Release management**
+- Progress:
+  - Merged `#581` for the multi-language wishlist harvest across Go, Python, and Ruby.
+  - Started the post-merge `main` verification run and confirmed all pre-parity steps plus the full upstream-surface inventory gate passed before release preparation.
+  - Promoted the accumulated `## main` notes into `v3.0.20`, covering both the upstream-surface inventory rollout and the new function batch.
+- Release:
+  - Preparing `v3.0.20` pending the final `main` parity result.
+- Key learnings:
+  - Larger harvest PRs amortize CI well, but they should still ship promptly once `main` is green so the public wishlist and the published package stay aligned.

@@ -25,6 +25,13 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.20...main).
+
+## v3.0.20
+
+Released: 2026-03-15. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.19...v3.0.20).
+Version rationale: `patch` for additive multi-language expansion plus upstream-surface inventory tooling and website coverage without import-model or runtime floor changes.
+
 ### Infrastructure
 
 - Replaced the earlier PHP-only runtime-surface guardrail with a namespace-aware upstream-surface inventory across all supported languages, backed by checked-in snapshots, compact maintainer decisions, and strict Zod validation.
@@ -44,8 +51,6 @@ Ideas that will be planned and find their way into a release at one point
   - `ruby/Array`: `bsearch_index`, `filter_map`
   - `ruby/String`: `delete_prefix`, `delete_suffix`
 - Cleared the corresponding `wanted` entries from the upstream-surface inventory so the public wishlist and CI inventory now reflect the newly shipped surface.
-
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.19...main).
 
 ## v3.0.19
 
