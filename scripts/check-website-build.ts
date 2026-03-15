@@ -152,7 +152,7 @@ function main(): void {
     {
       path: 'php/index.html',
       title: 'PHP extensions  in TypeScript | Locutus',
-      includes: ['Upstream surface inventory', 'Wanted ports:', 'array_is_list'],
+      includes: ['Upstream surface inventory', 'Coverage', 'Intentional extras', 'array_is_list'],
       ogUrl: 'https://locutus.io/php/index.html',
     },
     {

@@ -158,7 +158,8 @@ describe('upstream surface inventory', () => {
     const loaded = loadUpstreamSurfaceInventory(join(process.cwd(), 'docs/upstream-surface-inventory.yml'))
 
     expect(loaded.php?.namespaces?.__global?.decisions?.money_format?.decision).toBe('keep_legacy')
-    expect(loaded.php?.namespaces?.__global?.decisions?.array_is_list?.decision).toBe('wanted')
+    expect(loaded.php?.namespaces?.__global?.decisions?.array_is_list).toBeUndefined()
+    expect(loaded.python?.namespaces?.difflib?.decisions?.ndiff?.decision).toBe('wanted')
     expect(loaded.golang?.namespaces?.filepath?.decisions).toEqual({})
   })
 

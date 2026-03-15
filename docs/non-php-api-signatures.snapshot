@@ -46,6 +46,9 @@ src/clojure/core/assoc_in.ts :: export function assoc_in(value: unknown, keys: P
 src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown): unknown
 src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue: unknown): unknown
 src/clojure/core/get_in.ts :: export function get_in(value: unknown, keys: PathKey[] | unknown, defaultValue?: unknown): unknown
+src/clojure/core/interpose.ts :: export function interpose<T, U>(separator: T, values: U[] | unknown): Array<T | U>
+src/clojure/core/interpose.ts :: export function interpose<T, U>(separator: T, values: U[]): Array<T | U>
+src/clojure/core/interpose.ts :: export function interpose<T>(separator: T, values: unknown): T[]
 src/clojure/core/merge_with.ts :: export function merge_with(combiner: MergeCombiner, ...maps: unknown[]): MergeRecord
 src/clojure/core/partition.ts :: export function partition<T>(n: number, values: T[] | unknown, step: number = n, pad: T[] | null = null): T[][]
 src/clojure/core/partition_by.ts :: export function partition_by<T, TKey>(selector: PartitionBySelector<T, TKey>, values: T[] | unknown): T[][]
@@ -65,11 +68,15 @@ src/elixir/Enum/reduce_while.ts :: export function reduce_while<TAccumulator, TV
 src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initial: TAccumulator, reducer: ScanReducer<TAccumulator, TValue>, ): TAccumulator[]
 src/elixir/Enum/scan.ts :: export function scan<TAccumulator, TValue>( values: TValue[] | unknown, initialOrReducer: TAccumulator | ScanReducer<TValue, TValue>, maybeReducer?: ScanReducer<TAccumulator, TValue>, ): Array<TAccumulator | TValue>
 src/elixir/Enum/scan.ts :: export function scan<TValue>(values: TValue[] | unknown, reducer: ScanReducer<TValue, TValue>): TValue[]
+src/elixir/Enum/zip.ts :: export function zip<T, U>(left: T[] | unknown, right: U[] | unknown): Array<[T, U]>
+src/elixir/Enum/zip.ts :: export function zip<T, U>(left: T[][] | T[] | unknown, right?: U[] | unknown): Array<T[] | [T, U]>
+src/elixir/Enum/zip.ts :: export function zip<T>(values: T[][] | unknown): T[][]
 src/elixir/Float/ceil.ts :: export function ceil(x: number): number
 src/elixir/Float/floor.ts :: export function floor(x: number): number
 src/elixir/Kernel/abs.ts :: export function abs(x: number): number
 src/elixir/String/downcase.ts :: export function downcase(string: string): string
 src/elixir/String/length.ts :: export function length(string: string): number
+src/elixir/String/replace.ts :: export function replace(string: string, pattern: string, replacement: string): string
 src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
 src/golang/filepath/Base.ts :: export function Base(path: string): string
@@ -202,6 +209,8 @@ src/lua/math/max.ts :: export function max(...args: number[]): number
 src/lua/math/min.ts :: export function min(...args: number[]): number
 src/lua/math/sin.ts :: export function sin(x: number): number
 src/lua/math/sqrt.ts :: export function sqrt(x: number): number
+src/lua/math/type.ts :: export function type(value: unknown): 'integer' | 'float' | null
+src/lua/string/gsub.ts :: export function gsub(source: string, pattern: string, replacement: string, limit?: number): [string, number]
 src/lua/string/len.ts :: export function len(s: string): number
 src/lua/string/lower.ts :: export function lower(s: string): string
 src/lua/string/rep.ts :: export function rep(s: string, n: number): string
@@ -246,6 +255,8 @@ src/powershell/string/substring.ts :: export function substring(str: string, sta
 src/powershell/string/tolower.ts :: export function tolower(str: string): string
 src/powershell/string/toupper.ts :: export function toupper(str: string): string
 src/powershell/string/trim.ts :: export function trim(str: string): string
+src/powershell/string/trimend.ts :: export function trimend(str: string, chars?: string): string
+src/powershell/string/trimstart.ts :: export function trimstart(str: string, chars?: string): string
 src/python/difflib/get_close_matches.ts :: export function get_close_matches( word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6, ): string[]
 src/python/math/ceil.ts :: export function ceil(x: number): number
 src/python/math/comb.ts :: export function comb(n: number | string, k: number | string): number
@@ -293,6 +304,7 @@ src/r/base/min.ts :: export function min(...args: number[]): number
 src/r/base/nchar.ts :: export function nchar(x: string): number
 src/r/base/round.ts :: export function round(x: number, digits?: number): number
 src/r/base/seq.ts :: export function seq(from: number, to?: number, by?: number, length_out?: number): number[]
+src/r/base/sign.ts :: export function sign(x: number): number
 src/r/base/sqrt.ts :: export function sqrt(x: number): number
 src/r/base/tolower.ts :: export function tolower(x: string): string
 src/r/base/toupper.ts :: export function toupper(x: string): string
@@ -373,6 +385,7 @@ src/swift/String/replacingOccurrences.ts :: export function replacingOccurrences
 src/swift/String/split.ts :: export function split( str: string, separator: string, maxSplits: number = Number.MAX_SAFE_INTEGER, omittingEmptySubsequences: boolean = true, ): string[]
 src/swift/String/trimmingCharacters.ts :: export function trimmingCharacters(str: string, characters: string = ' \n\r\t'): string
 src/tcl/string/compare.ts :: export function compare(str1: string, str2: string): number
+src/tcl/string/equal.ts :: export function equal(str1: string, str2: string): boolean
 src/tcl/string/first.ts :: export function first(needle: string, haystack: string, startIndex?: number): number
 src/tcl/string/last.ts :: export function last(needle: string, haystack: string, lastIndex?: number): number
 src/tcl/string/length.ts :: export function length(str: string): number

@@ -13,6 +13,50 @@ export const LUA_SKIP_LIST = new Set<string>([
 
 const LUA_DOCKER_IMAGE = 'nickblah/lua:5.4-alpine'
 
+const LUA_PARITY_PRELUDE = `
+local function locutus_escape_json_string(value)
+  local replacements = {
+    ['"'] = '\\"',
+    ['\\\\'] = '\\\\\\\\',
+    ['\\b'] = '\\\\b',
+    ['\\f'] = '\\\\f',
+    ['\\n'] = '\\\\n',
+    ['\\r'] = '\\\\r',
+    ['\\t'] = '\\\\t',
+  }
+
+  return '"' .. value:gsub('[%z\\1-\\31\\\\"]', function(char)
+    return replacements[char] or string.format('\\\\u%04x', string.byte(char))
+  end) .. '"'
+end
+
+local function locutus_json(value)
+  local kind = type(value)
+
+  if kind == "nil" then
+    return "null"
+  end
+
+  if kind == "boolean" or kind == "number" then
+    return tostring(value)
+  end
+
+  if kind == "string" then
+    return locutus_escape_json_string(value)
+  end
+
+  if kind == "table" then
+    local parts = {}
+    for i = 1, #value do
+      parts[#parts + 1] = locutus_json(value[i])
+    end
+    return "[" .. table.concat(parts, ",") .. "]"
+  end
+
+  return string.format("%q", tostring(value))
+end
+`.trim()
+
 function discoverLuaUpstreamSurface() {
   const discoverNamespace = (namespace: 'math' | 'string', title: string) => {
     const script = `for key, value in pairs(${namespace}) do if type(value) == "function" then print(key) end end`
@@ -126,22 +170,49 @@ function jsToLua(jsCode: string[], funcName: string, category?: string): string 
 
   let result: string
   if (assignedVar) {
-    result = `${lines.join('\n')}\nprint(${assignedVar})`
+    const setup = lines.slice(0, -1)
+    const lastLine = lines[lines.length - 1] ?? ''
+    if (funcName === 'gsub') {
+      const assignmentMatch = lastLine.match(/^(local\s+)?([A-Za-z_][\w]*)\s*=\s*(.+)$/)
+      if (assignmentMatch?.[2] && assignmentMatch[3]) {
+        const prefix = setup.length ? `${setup.join('\n')}\n` : ''
+        result = `${prefix}local ${assignmentMatch[2]} = {${assignmentMatch[3]}}\nprint(locutus_json(${assignmentMatch[2]}))`
+      } else {
+        result = `${lines.join('\n')}\nprint(locutus_json(${assignedVar}))`
+      }
+    } else {
+      result = `${lines.join('\n')}\nprint(locutus_json(${assignedVar}))`
+    }
   } else {
     const setup = lines.slice(0, -1)
     const lastExpr = lines[lines.length - 1]
     const prefix = setup.length ? `${setup.join('\n')}\n` : ''
-    result = `${prefix}print(${lastExpr})`
+    const valueExpression = funcName === 'gsub' ? `{${lastExpr}}` : lastExpr
+    result = `${prefix}print(locutus_json(${valueExpression}))`
   }
 
-  return result
+  return `${LUA_PARITY_PRELUDE}\n\n${result}`
 }
 
 /**
  * Normalize Lua output for comparison
  */
-function normalizeLuaOutput(output: string, expected?: string): string {
+export function normalizeLuaOutput(output: string, expected?: string): string {
   let result = output.trim()
+  try {
+    const parsed = JSON.parse(result)
+    return JSON.stringify(parsed)
+  } catch {
+    const repaired = result.replace(/\\\r?\n/g, '\\n')
+    if (repaired !== result) {
+      try {
+        const parsed = JSON.parse(repaired)
+        return JSON.stringify(parsed)
+      } catch {
+        // Keep legacy scalar normalization for non-JSON output.
+      }
+    }
+  }
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.0$/.test(result)) {
     result = result.replace(/\.0$/, '')

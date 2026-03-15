@@ -1,4 +1,4 @@
-generatedAt: '2026-03-15T13:14:39.385Z'
+generatedAt: '2026-03-15T17:58:30.434Z'
 languages:
   awk:
     language: awk
@@ -358,12 +358,12 @@ languages:
   clojure:
     language: clojure
     title: Clojure
-    shippedCount: 15
+    shippedCount: 16
     catalogCount: 758
-    catalogShippedCount: 15
+    catalogShippedCount: 16
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 1
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 742
     coveragePercent: 2
@@ -1056,6 +1056,7 @@ languages:
         shippedEntries:
           - assoc-in
           - get-in
+          - interpose
           - merge-with
           - partition
           - partition-by
@@ -1065,10 +1066,7 @@ languages:
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: interpose
-            decision: wanted
-            note: Useful sequence helper that still maps to plain arrays.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - '*'
@@ -1745,7 +1743,7 @@ languages:
         staleDecisions: []
         categories:
           - core
-        catalogShippedCount: 7
+        catalogShippedCount: 8
         coveragePercent: 1
       - namespace: Math
         title: java.lang.Math
@@ -1946,15 +1944,15 @@ languages:
   elixir:
     language: elixir
     title: Elixir
-    shippedCount: 12
+    shippedCount: 14
     catalogCount: 214
-    catalogShippedCount: 12
+    catalogShippedCount: 14
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 2
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 200
-    coveragePercent: 6
+    coveragePercent: 7
     namespaces:
       - namespace: Enum
         title: Enum module
@@ -2044,14 +2042,12 @@ languages:
           - group_by
           - reduce_while
           - scan
+          - zip
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: zip
-            decision: wanted
-            note: High-value collection helper that maps cleanly to arrays.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - all?
@@ -2127,8 +2123,8 @@ languages:
         staleDecisions: []
         categories:
           - Enum
-        catalogShippedCount: 5
-        coveragePercent: 7
+        catalogShippedCount: 6
+        coveragePercent: 8
       - namespace: Float
         title: Float module
         target: Elixir 1.18
@@ -2398,16 +2394,14 @@ languages:
         shippedEntries:
           - downcase
           - length
+          - replace
           - reverse
           - upcase
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: replace
-            decision: wanted
-            note: Common string helper with a clean plain-value contract.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - at
@@ -2462,8 +2456,8 @@ languages:
         staleDecisions: []
         categories:
           - String
-        catalogShippedCount: 4
-        coveragePercent: 7
+        catalogShippedCount: 5
+        coveragePercent: 9
   golang:
     language: golang
     title: Go
@@ -4937,15 +4931,15 @@ languages:
   lua:
     language: lua
     title: Lua
-    shippedCount: 14
+    shippedCount: 16
     catalogCount: 48
-    catalogShippedCount: 14
+    catalogShippedCount: 16
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 2
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 32
-    coveragePercent: 29
+    coveragePercent: 33
     namespaces:
       - namespace: math
         title: math library
@@ -4993,14 +4987,12 @@ languages:
           - min
           - sin
           - sqrt
+          - type
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: type
-            decision: wanted
-            note: Useful numeric classification helper with a clean string result.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - acos
@@ -5028,8 +5020,8 @@ languages:
         staleDecisions: []
         categories:
           - math
-        catalogShippedCount: 8
-        coveragePercent: 26
+        catalogShippedCount: 9
+        coveragePercent: 29
       - namespace: string
         title: string library
         target: Lua 5.4
@@ -5054,6 +5046,7 @@ languages:
           - unpack
           - upper
         shippedEntries:
+          - gsub
           - len
           - lower
           - rep
@@ -5064,10 +5057,7 @@ languages:
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: gsub
-            decision: wanted
-            note: High-value string replacement helper with a plain-value return shape.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - byte
@@ -5083,8 +5073,8 @@ languages:
         staleDecisions: []
         categories:
           - string
-        catalogShippedCount: 6
-        coveragePercent: 35
+        catalogShippedCount: 7
+        coveragePercent: 41
   perl:
     language: perl
     title: Perl
@@ -5197,12 +5187,12 @@ languages:
   php:
     language: php
     title: PHP
-    shippedCount: 323
+    shippedCount: 324
     catalogCount: 1184
-    catalogShippedCount: 299
+    catalogShippedCount: 300
     keptExtraCount: 24
     unexpectedExtraCount: 0
-    wantedCount: 1
+    wantedCount: 0
     skippedCount: 8
     untriagedCount: 876
     coveragePercent: 25
@@ -6422,6 +6412,7 @@ languages:
           - array_intersect_key
           - array_intersect_uassoc
           - array_intersect_ukey
+          - array_is_list
           - array_key_exists
           - array_key_first
           - array_key_last
@@ -6797,10 +6788,7 @@ languages:
             decision: keep_extension
             note: xdiff is not available in the base PHP runtime target, but the port is still useful.
         unexpectedExtras: []
-        wantedEntries:
-          - name: array_is_list
-            decision: wanted
-            note: Modern PHP array helper with a clean plain-value contract.
+        wantedEntries: []
         skippedEntries:
           - name: assert
             decision: skip_runtime_model
@@ -7725,20 +7713,20 @@ languages:
           - var
           - xdiff
           - xml
-        catalogShippedCount: 299
+        catalogShippedCount: 300
         coveragePercent: 25
   powershell:
     language: powershell
     title: PowerShell
-    shippedCount: 16
+    shippedCount: 18
     catalogCount: 23
-    catalogShippedCount: 16
+    catalogShippedCount: 18
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 2
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 5
-    coveragePercent: 70
+    coveragePercent: 78
     namespaces:
       - namespace: string
         title: System.String instance methods
@@ -7786,17 +7774,13 @@ languages:
           - ToLower
           - ToUpper
           - Trim
+          - TrimEnd
+          - TrimStart
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: TrimEnd
-            decision: wanted
-            note: Useful counterpart to the existing trim helper.
-          - name: TrimStart
-            decision: wanted
-            note: Useful counterpart to the existing trim helper.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - Clone
@@ -7807,8 +7791,8 @@ languages:
         staleDecisions: []
         categories:
           - string
-        catalogShippedCount: 16
-        coveragePercent: 70
+        catalogShippedCount: 18
+        coveragePercent: 78
   python:
     language: python
     title: Python
@@ -8075,12 +8059,12 @@ languages:
   r:
     language: r
     title: R
-    shippedCount: 12
+    shippedCount: 13
     catalogCount: 1270
-    catalogShippedCount: 12
+    catalogShippedCount: 13
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 1
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 1257
     coveragePercent: 1
@@ -9371,6 +9355,7 @@ languages:
           - nchar
           - round
           - seq
+          - sign
           - sqrt
           - tolower
           - toupper
@@ -9378,10 +9363,7 @@ languages:
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: sign
-            decision: wanted
-            note: Small but useful numeric helper with a direct number result.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - '!'
@@ -10644,7 +10626,7 @@ languages:
         staleDecisions: []
         categories:
           - base
-        catalogShippedCount: 12
+        catalogShippedCount: 13
         coveragePercent: 1
   rust:
     language: rust
@@ -11399,15 +11381,15 @@ languages:
   tcl:
     language: tcl
     title: Tcl
-    shippedCount: 15
+    shippedCount: 16
     catalogCount: 24
-    catalogShippedCount: 15
+    catalogShippedCount: 16
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 1
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 8
-    coveragePercent: 63
+    coveragePercent: 67
     namespaces:
       - namespace: string
         title: string ensemble
@@ -11441,6 +11423,7 @@ languages:
           - wordstart
         shippedEntries:
           - compare
+          - equal
           - first
           - last
           - length
@@ -11459,10 +11442,7 @@ languages:
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: equal
-            decision: wanted
-            note: High-value comparison helper with a direct boolean contract.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - bytelength
@@ -11476,5 +11456,5 @@ languages:
         staleDecisions: []
         categories:
           - string
-        catalogShippedCount: 15
-        coveragePercent: 63
+        catalogShippedCount: 16
+        coveragePercent: 67

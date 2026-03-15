@@ -27,6 +27,8 @@ const POWERSHELL_MEMBER_NAMES: Record<string, string> = {
   tolower: 'ToLower',
   toupper: 'ToUpper',
   trim: 'Trim',
+  trimend: 'TrimEnd',
+  trimstart: 'TrimStart',
 }
 
 function stripTrailingComment(code: string): string {
@@ -306,6 +308,22 @@ function buildNativeCall(funcName: string, args: string[]): string {
     case 'trim': {
       const value = args[0] ?? '$null'
       return `([string]${value}).Trim()`
+    }
+    case 'trimend': {
+      const value = args[0] ?? '$null'
+      const chars = args[1]
+      if (chars === undefined) {
+        return `([string]${value}).TrimEnd()`
+      }
+      return `([string]${value}).TrimEnd(([string]${chars}).ToCharArray())`
+    }
+    case 'trimstart': {
+      const value = args[0] ?? '$null'
+      const chars = args[1]
+      if (chars === undefined) {
+        return `([string]${value}).TrimStart()`
+      }
+      return `([string]${value}).TrimStart(([string]${chars}).ToCharArray())`
     }
     case 'substring': {
       const source = args[0] ?? '$null'

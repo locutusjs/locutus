@@ -36,7 +36,9 @@ alias:
   - /python/prod/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function prod(values: Array<number | string> | unknown, start: number | string = 1): number {
+{% codeblock lang:typescript %}type ProdValue = number | string
+
+export function prod(values: ProdValue[] | unknown, start: ProdValue = 1): ProdValue {
   //      discuss at: https://locutus.io/python/prod/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -52,17 +54,79 @@ alias:
     throw new TypeError('prod(): iterable must be an array')
   }
 
-  let result = Number(start)
+  let result: ProdValue = start
   for (const value of values) {
-    result *= Number(value)
+    result = multiplyProdValues(result, value)
   }
 
   return result
 }
+
+function multiplyProdValues(left: ProdValue, right: ProdValue): ProdValue {
+  if (typeof left === 'string' && typeof right !== 'string') {
+    return repeatString(left, right)
+  }
+
+  if (typeof right === 'string' && typeof left !== 'string') {
+    return repeatString(right, left)
+  }
+
+  if (typeof left !== 'number' || typeof right !== 'number') {
+    throw new TypeError('prod(): values must be numbers or repeatable strings')
+  }
+
+  const leftNumber = left
+  const rightNumber = right
+
+  if (Number.isInteger(leftNumber) && Number.isInteger(rightNumber)) {
+    if (leftNumber === 0 || rightNumber === 0) {
+      return 0
+    }
+    if (leftNumber === 1) {
+      return rightNumber
+    }
+    if (rightNumber === 1) {
+      return leftNumber
+    }
+    if (leftNumber === -1) {
+      return -rightNumber
+    }
+    if (rightNumber === -1) {
+      return -leftNumber
+    }
+
+    if (!Number.isSafeInteger(leftNumber) || !Number.isSafeInteger(rightNumber)) {
+      throw new RangeError('prod(): integer multiplication only supports JS safe integers')
+    }
+
+    const result = leftNumber * rightNumber
+    if (!Number.isSafeInteger(result)) {
+      throw new RangeError('prod(): integer multiplication only supports JS safe integers')
+    }
+
+    return result
+  }
+
+  return leftNumber * rightNumber
+}
+
+function repeatString(value: string, multiplier: ProdValue): string {
+  if (typeof multiplier !== 'number') {
+    throw new TypeError('prod(): string repetition requires a safe integer multiplier')
+  }
+
+  const count = multiplier
+  if (!Number.isInteger(count) || !Number.isSafeInteger(count)) {
+    throw new TypeError('prod(): string repetition requires a safe integer multiplier')
+  }
+
+  return count > 0 ? value.repeat(count) : ''
+}
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function prod(values, start = 1) {
+{% codeblock lang:javascript %}
+export function prod(values, start = 1) {
   //      discuss at: https://locutus.io/python/prod/
   // parity verified: Python 3.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -78,11 +142,72 @@ alias:
     throw new TypeError('prod(): iterable must be an array')
   }
 
-  let result = Number(start)
+  let result = start
   for (const value of values) {
-    result *= Number(value)
+    result = multiplyProdValues(result, value)
   }
 
   return result
+}
+
+function multiplyProdValues(left, right) {
+  if (typeof left === 'string' && typeof right !== 'string') {
+    return repeatString(left, right)
+  }
+
+  if (typeof right === 'string' && typeof left !== 'string') {
+    return repeatString(right, left)
+  }
+
+  if (typeof left !== 'number' || typeof right !== 'number') {
+    throw new TypeError('prod(): values must be numbers or repeatable strings')
+  }
+
+  const leftNumber = left
+  const rightNumber = right
+
+  if (Number.isInteger(leftNumber) && Number.isInteger(rightNumber)) {
+    if (leftNumber === 0 || rightNumber === 0) {
+      return 0
+    }
+    if (leftNumber === 1) {
+      return rightNumber
+    }
+    if (rightNumber === 1) {
+      return leftNumber
+    }
+    if (leftNumber === -1) {
+      return -rightNumber
+    }
+    if (rightNumber === -1) {
+      return -leftNumber
+    }
+
+    if (!Number.isSafeInteger(leftNumber) || !Number.isSafeInteger(rightNumber)) {
+      throw new RangeError('prod(): integer multiplication only supports JS safe integers')
+    }
+
+    const result = leftNumber * rightNumber
+    if (!Number.isSafeInteger(result)) {
+      throw new RangeError('prod(): integer multiplication only supports JS safe integers')
+    }
+
+    return result
+  }
+
+  return leftNumber * rightNumber
+}
+
+function repeatString(value, multiplier) {
+  if (typeof multiplier !== 'number') {
+    throw new TypeError('prod(): string repetition requires a safe integer multiplier')
+  }
+
+  const count = multiplier
+  if (!Number.isInteger(count) || !Number.isSafeInteger(count)) {
+    throw new TypeError('prod(): string repetition requires a safe integer multiplier')
+  }
+
+  return count > 0 ? value.repeat(count) : ''
 }{% endcodeblock %}
 </div>

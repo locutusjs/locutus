@@ -175,6 +175,18 @@ function applyPythonReplacementTemplate(
       continue
     }
 
+    if (next === '0') {
+      let token = '0'
+      let j = i + 2
+      while (j < template.length && /[0-7]/.test(template[j] ?? '') && token.length < 3) {
+        token += template[j]
+        j += 1
+      }
+      out += String.fromCharCode(Number.parseInt(token, 8))
+      i = j - 1
+      continue
+    }
+
     if (/\d/.test(next)) {
       let token = next
       let j = i + 2
@@ -192,7 +204,8 @@ function applyPythonReplacementTemplate(
       if (close > -1) {
         const token = template.slice(i + 3, close)
         if (/^\d+$/.test(token)) {
-          out += groups[Number.parseInt(token, 10) - 1] ?? ''
+          const index = Number.parseInt(token, 10)
+          out += index === 0 ? full : (groups[index - 1] ?? '')
         } else {
           out += named?.[token] ?? ''
         }
@@ -213,12 +226,6 @@ function applyPythonReplacementTemplate(
     }
     if (simpleEscapes[next] !== undefined) {
       out += simpleEscapes[next]
-      i += 1
-      continue
-    }
-
-    if (next === '0') {
-      out += full
       i += 1
       continue
     }
@@ -355,6 +362,18 @@ function applyPythonReplacementTemplate(template, full, groups, named) {
       continue
     }
 
+    if (next === '0') {
+      let token = '0'
+      let j = i + 2
+      while (j < template.length && /[0-7]/.test(template[j] ?? '') && token.length < 3) {
+        token += template[j]
+        j += 1
+      }
+      out += String.fromCharCode(Number.parseInt(token, 8))
+      i = j - 1
+      continue
+    }
+
     if (/\d/.test(next)) {
       let token = next
       let j = i + 2
@@ -372,7 +391,8 @@ function applyPythonReplacementTemplate(template, full, groups, named) {
       if (close > -1) {
         const token = template.slice(i + 3, close)
         if (/^\d+$/.test(token)) {
-          out += groups[Number.parseInt(token, 10) - 1] ?? ''
+          const index = Number.parseInt(token, 10)
+          out += index === 0 ? full : (groups[index - 1] ?? '')
         } else {
           out += named?.[token] ?? ''
         }
@@ -393,12 +413,6 @@ function applyPythonReplacementTemplate(template, full, groups, named) {
     }
     if (simpleEscapes[next] !== undefined) {
       out += simpleEscapes[next]
-      i += 1
-      continue
-    }
-
-    if (next === '0') {
-      out += full
       i += 1
       continue
     }

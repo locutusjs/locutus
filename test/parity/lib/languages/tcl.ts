@@ -281,6 +281,12 @@ function jsToTcl(jsCode: string[], funcName: string, _category?: string): string
 function normalizeTclOutput(output: string, expected?: string): string {
   // Tcl `puts` appends a trailing newline; preserve meaningful whitespace.
   const result = output.replace(/\r?\n+$/, '')
+  if (expected === 'true' && result === '1') {
+    return 'true'
+  }
+  if (expected === 'false' && result === '0') {
+    return 'false'
+  }
   if (expected && /^".*"$/.test(expected) && !/^".*"$/.test(result)) {
     return `"${result}"`
   }

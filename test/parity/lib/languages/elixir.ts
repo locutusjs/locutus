@@ -58,6 +58,10 @@ defmodule LocutusParity do
   def json(value) when is_boolean(value) or is_integer(value) or is_float(value), do: inspect(value)
   def json(value) when is_binary(value), do: inspect(value)
 
+  def json(value) when is_tuple(value) do
+    json(Tuple.to_list(value))
+  end
+
   def json(value) when is_list(value) do
     "[" <> Enum.map_join(value, ",", &json/1) <> "]"
   end
