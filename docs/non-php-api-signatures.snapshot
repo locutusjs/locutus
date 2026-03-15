@@ -72,6 +72,7 @@ src/elixir/String/downcase.ts :: export function downcase(string: string): strin
 src/elixir/String/length.ts :: export function length(string: string): number
 src/elixir/String/reverse.ts :: export function reverse(string: string): string
 src/elixir/String/upcase.ts :: export function upcase(string: string): string
+src/golang/filepath/Rel.ts :: export function Rel(basePath: string, targetPath: string): string
 src/golang/net/JoinHostPort.ts :: export function JoinHostPort(host: string, port: string): string
 src/golang/net/ParseCIDR.ts :: export function ParseCIDR(value: string): ParsedCIDR | null
 src/golang/net/ParseCIDR.ts :: export type ParsedCIDR = { ip: string maskBits: number }

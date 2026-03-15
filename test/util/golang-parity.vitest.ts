@@ -8,4 +8,16 @@ describe('golang parity translation', () => {
 
     expect(translated).toContain('locutusTimeParseInLocation(')
   })
+
+  it('rewrites filepath Rel calls to the parity helper', () => {
+    const translated = golangHandler.translate(["Rel('/a', '/b')"], 'Rel', 'filepath')
+
+    expect(translated).toContain('locutusFilepathRel(')
+  })
+
+  it('rewrites filepath Rel calls with nested expressions', () => {
+    const translated = golangHandler.translate(["Rel(Clean('/a'), '/b')"], 'Rel', 'filepath')
+
+    expect(translated).toContain(`locutusFilepathRel(Clean("/a"), "/b")`)
+  })
 })

@@ -27,6 +27,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.18...main).
 
+### Expansion
+
+- Added `golang/filepath/Rel`, covering Go's lexical relative-path calculation on slash-separated inputs and explicit rooted/relative mismatch handling.
+
 ## v3.0.18
 
 Released: 2026-03-14. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.17...v3.0.18).

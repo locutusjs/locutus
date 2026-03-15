@@ -169,6 +169,9 @@ array_first_key:
 array_last_key:
   - php/array/array_key_last
 
+path_relative:
+  - golang/filepath/Rel
+
 sequence_partition_by:
   - clojure/core/partition_by
 
