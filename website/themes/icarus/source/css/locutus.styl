@@ -115,3 +115,370 @@ section.authors
 
 .article-entry blockquote:before
   content: ""
+
+.surface-panel
+  margin: 2rem 0
+  padding: 1.5rem
+  border: 1px solid #e6ecf2
+  border-radius: 18px
+  background: linear-gradient(180deg, #fbfdff 0%, #f4f8fb 100%)
+
+.surface-panel--toggle
+  padding: 0
+  overflow: hidden
+
+.surface-panel__summary
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: 1rem
+  padding: 1rem 1.2rem
+  cursor: pointer
+  list-style: none
+
+.surface-panel__summary::-webkit-details-marker
+  display: none
+
+.surface-panel__summary-copy
+  display: flex
+  flex-direction: column
+  gap: 0.2rem
+  color: #506070
+  flex: 1 1 auto
+
+.surface-panel__summary-copy strong
+  color: #142436
+
+.surface-panel__summary-stack
+  display: block
+  max-width: 420px
+  margin-top: 0.25rem
+
+.surface-panel__summary-badge
+  flex-shrink: 0
+  padding: 0.35rem 0.65rem
+  border-radius: 999px
+  background: #142436
+  color: #fff
+  font-weight: 700
+
+.surface-panel__content
+  padding: 0 1.2rem 1.2rem
+
+.surface-panel__intro
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  gap: 1.5rem
+  margin-bottom: 1rem
+
+.surface-panel__intro h2
+  margin: 0 0 0.35rem
+
+.surface-panel__intro p
+  margin: 0
+  color: #506070
+
+.surface-coverage-badge
+  min-width: 122px
+  padding: 0.9rem 1rem
+  border-radius: 14px
+  background: #13233a
+  color: #f8fbff
+  text-align: center
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1)
+
+.surface-coverage-badge strong
+  display: block
+  font-size: 1.6rem
+  line-height: 1
+  color: #fff
+
+.surface-coverage-badge span
+  display: block
+  margin-top: 0.35rem
+  font-size: 0.78rem
+  letter-spacing: 0.04em
+  text-transform: uppercase
+  color: #c8d8e8
+
+.surface-stack
+  display: flex
+  width: 100%
+  height: 16px
+  overflow: hidden
+  border-radius: 999px
+  background: #e7edf3
+  box-shadow: inset 0 0 0 1px rgba(17, 24, 39, 0.04)
+
+.surface-stack--compact
+  height: 12px
+  margin-bottom: 0.75rem
+
+.surface-stack__segment
+  display: block
+  height: 100%
+
+.surface-stack__segment--shipped
+  background: linear-gradient(90deg, #1f9d63 0%, #27bf79 100%)
+
+.surface-stack__segment--wanted
+  background: linear-gradient(90deg, #f0b429 0%, #ffca55 100%)
+
+.surface-stack__segment--skipped
+  background: linear-gradient(90deg, #8a97a5 0%, #a8b3bf 100%)
+
+.surface-stack__segment--untriaged
+  background: linear-gradient(90deg, #dbe5ef 0%, #eef4f9 100%)
+
+.surface-legend
+  display: flex
+  flex-wrap: wrap
+  gap: 0.75rem 1rem
+  margin: 0.75rem 0 1rem
+  font-size: 0.9rem
+  color: #5a6773
+
+.surface-legend span
+  display: inline-flex
+  align-items: center
+  gap: 0.45rem
+
+.surface-legend__swatch
+  display: inline-block
+  width: 0.8rem
+  height: 0.8rem
+  border-radius: 999px
+  box-shadow: inset 0 0 0 1px rgba(17,24,39,0.08)
+
+.surface-legend__swatch--shipped
+  background: #27bf79
+
+.surface-legend__swatch--wanted
+  background: #ffca55
+
+.surface-legend__swatch--skipped
+  background: #a8b3bf
+
+.surface-legend__swatch--untriaged
+  background: #e8eff6
+
+.surface-kpis
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr))
+  gap: 0.8rem
+  margin-bottom: 1rem
+
+.surface-kpi
+  padding: 0.85rem 0.95rem
+  border-radius: 14px
+  border: 1px solid #e2e9f0
+  background: #fff
+
+.surface-kpi__label
+  display: block
+  font-size: 0.8rem
+  letter-spacing: 0.03em
+  text-transform: uppercase
+  color: #738090
+
+.surface-kpi__value
+  display: block
+  margin-top: 0.25rem
+  font-size: 1.15rem
+  line-height: 1.2
+  color: #172434
+
+.surface-summary
+  margin: 0 0 1rem
+  color: #435362
+
+.surface-card
+  margin-top: 1.1rem
+  padding: 1.2rem
+  border-radius: 16px
+  border: 1px solid #dfe8ef
+  background: #fff
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04)
+
+.surface-card__header
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  gap: 1rem
+
+.surface-card__title
+  margin: 0
+
+.surface-card__meta
+  margin: 0.35rem 0 0
+  font-size: 0.9rem
+  color: #607080
+  display: flex
+  flex-wrap: wrap
+  gap: 0.5rem
+  align-items: center
+
+.surface-card__coverage
+  flex-shrink: 0
+  text-align: right
+  color: #617284
+
+.surface-card__coverage strong
+  display: block
+  font-size: 1.35rem
+  line-height: 1
+  color: #142436
+
+.surface-card__coverage span
+  font-size: 0.8rem
+  text-transform: uppercase
+  letter-spacing: 0.04em
+
+.surface-card__stats
+  display: flex
+  flex-wrap: wrap
+  gap: 0.6rem 1rem
+  margin: 0 0 0.85rem
+  font-size: 0.92rem
+  color: #556574
+
+.surface-card__stats strong
+  color: #182534
+
+.surface-chip-row
+  display: flex
+  flex-wrap: wrap
+  gap: 0.5rem
+  margin: 0 0 1rem
+
+.surface-chip
+  display: inline-flex
+  align-items: center
+  gap: 0.35rem
+  padding: 0.35rem 0.65rem
+  border-radius: 999px
+  border: 1px solid #d9e3eb
+  background: #f7fafc
+  color: #405060
+  font-size: 0.88rem
+
+.surface-chip--link
+  text-decoration: none
+
+.surface-buckets
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+  gap: 1rem
+  margin-top: 1rem
+
+.surface-bucket
+  padding: 1rem
+  border-radius: 14px
+  border: 1px solid #e3ebf2
+  background: #fbfdff
+
+.surface-bucket h4
+  margin: 0 0 0.75rem
+
+.surface-bucket--next
+  background: linear-gradient(180deg, #fff8e8 0%, #fffdf6 100%)
+  border-color: #f3dd9b
+
+.surface-bucket--extras
+  background: linear-gradient(180deg, #eef7ff 0%, #fbfdff 100%)
+  border-color: #cfe0f2
+
+.surface-bucket__more
+  margin: 0.6rem 0 0
+  font-size: 0.85rem
+  color: #6a7887
+
+.surface-empty
+  margin: 0
+  color: #6b7784
+
+.surface-entry-list
+  margin: 0
+  padding: 0
+  list-style: none
+
+.surface-entry-list li
+  list-style: none
+  margin-bottom: 0.45rem
+  color: #425261
+
+.surface-entry-list--compact li
+  margin-bottom: 0.3rem
+
+.surface-entry-list li:last-child
+  margin-bottom: 0
+
+.surface-entry-list--spaced li
+  margin-bottom: 0.7rem
+
+.surface-entry-list--scroll
+  max-height: 300px
+  overflow-y: auto
+  padding-right: 0.35rem
+  scrollbar-width: thin
+
+.surface-entry-list__meta
+  display: inline-block
+  margin-left: 0.45rem
+  padding: 0.1rem 0.45rem
+  border-radius: 999px
+  background: #eff4f8
+  color: #627283
+  font-size: 0.76rem
+  text-transform: uppercase
+  letter-spacing: 0.03em
+
+.surface-entry-link
+  font-weight: 600
+
+.surface-entry-link code
+  color: inherit
+
+.surface-entry-link--external:after
+  content: "↗"
+  margin-left: 0.3rem
+  font-size: 0.8em
+  color: #6b7a89
+
+.surface-details-grid
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+  gap: 1rem
+  margin-top: 1rem
+
+.surface-details
+  padding: 0.9rem 1rem
+  border: 1px solid #e2e9f0
+  border-radius: 14px
+  background: #f9fbfd
+
+.surface-details summary
+  cursor: pointer
+  font-weight: 600
+
+.surface-details__intro
+  margin: 0.75rem 0
+  color: #617080
+
+.surface-chip-row--scroll
+  max-height: 300px
+  overflow-y: auto
+  align-content: flex-start
+  padding-right: 0.35rem
+
+@media (max-width: 768px)
+  .surface-panel
+    padding: 1.1rem
+
+  .surface-panel__intro,
+  .surface-card__header
+    flex-direction: column
+
+  .surface-card__coverage
+    text-align: left

@@ -1,0 +1,125 @@
+<%
+function surfacePercent(count, total) {
+  if (!total || total <= 0) {
+    return 0
+  }
+  return Math.max(0, Math.min(100, Math.round((count / total) * 1000) / 10))
+}
+%>
+<details class="surface-panel surface-panel-language surface-panel--toggle">
+  <summary class="surface-panel__summary">
+    <span class="surface-panel__summary-copy">
+      <strong>Upstream Surface Inventory</strong>
+      <span>
+        <%= surfaceLang.catalogShippedCount %>/<%= surfaceLang.catalogCount %> shipped
+        <% if (surfaceLang.wantedCount > 0) { %> • <%= surfaceLang.wantedCount %> next<% } %>
+        <% if (surfaceLang.untriagedCount > 0) { %> • <%= surfaceLang.untriagedCount %> need triage<% } %>
+      </span>
+      <span class="surface-panel__summary-stack">
+        <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
+          <% if (surfaceLang.catalogCount > 0) { %>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: <%= surfacePercent(surfaceLang.catalogShippedCount, surfaceLang.catalogCount) %>%"></span>
+            <% if (surfaceLang.wantedCount > 0) { %>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: <%= surfacePercent(surfaceLang.wantedCount, surfaceLang.catalogCount) %>%"></span>
+            <% } %>
+            <% if (surfaceLang.skippedCount > 0) { %>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: <%= surfacePercent(surfaceLang.skippedCount, surfaceLang.catalogCount) %>%"></span>
+            <% } %>
+            <% if (surfaceLang.untriagedCount > 0) { %>
+              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: <%= surfacePercent(surfaceLang.untriagedCount, surfaceLang.catalogCount) %>%"></span>
+            <% } %>
+          <% } %>
+        </span>
+      </span>
+    </span>
+    <span class="surface-panel__summary-badge"><%= surfaceLang.coveragePercent === null ? 'n/a' : surfaceLang.coveragePercent + '%' %></span>
+  </summary>
+
+  <div class="surface-panel__content">
+    <div class="surface-panel__intro">
+      <div>
+        <p>
+          Locutus tracks the upstream <%= surfaceLang.title || page.human || page.language %> catalog and sorts it into what is already shipped,
+          what we still want, what we intentionally keep, and what still needs a decision.
+        </p>
+      </div>
+      <div class="surface-coverage-badge">
+        <strong><%= surfaceLang.coveragePercent === null ? 'n/a' : surfaceLang.coveragePercent + '%' %></strong>
+        <span>catalog shipped</span>
+      </div>
+    </div>
+
+    <div class="surface-stack" aria-label="Upstream surface coverage">
+      <% if (surfaceLang.catalogCount > 0) { %>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: <%= surfacePercent(surfaceLang.catalogShippedCount, surfaceLang.catalogCount) %>%"></span>
+        <% if (surfaceLang.wantedCount > 0) { %>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: <%= surfacePercent(surfaceLang.wantedCount, surfaceLang.catalogCount) %>%"></span>
+        <% } %>
+        <% if (surfaceLang.skippedCount > 0) { %>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: <%= surfacePercent(surfaceLang.skippedCount, surfaceLang.catalogCount) %>%"></span>
+        <% } %>
+        <% if (surfaceLang.untriagedCount > 0) { %>
+          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: <%= surfacePercent(surfaceLang.untriagedCount, surfaceLang.catalogCount) %>%"></span>
+        <% } %>
+      <% } %>
+    </div>
+
+    <div class="surface-legend">
+      <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <% if (surfaceLang.wantedCount > 0) { %><span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span><% } %>
+      <% if (surfaceLang.skippedCount > 0) { %><span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span><% } %>
+      <% if (surfaceLang.untriagedCount > 0) { %><span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span><% } %>
+    </div>
+
+    <div class="surface-kpis">
+      <article class="surface-kpi">
+        <span class="surface-kpi__label">Shipped</span>
+        <strong class="surface-kpi__value"><%= surfaceLang.catalogShippedCount %>/<%= surfaceLang.catalogCount %></strong>
+      </article>
+      <% if (surfaceLang.wantedCount > 0) { %>
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value"><%= surfaceLang.wantedCount %></strong>
+        </article>
+      <% } %>
+      <% if (surfaceLang.untriagedCount > 0) { %>
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Needs triage</span>
+          <strong class="surface-kpi__value"><%= surfaceLang.untriagedCount %></strong>
+        </article>
+      <% } %>
+      <% if (surfaceLang.skippedCount > 0) { %>
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value"><%= surfaceLang.skippedCount %></strong>
+        </article>
+      <% } %>
+      <% if (surfaceLang.keptExtraCount > 0) { %>
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Intentional extras</span>
+          <strong class="surface-kpi__value"><%= surfaceLang.keptExtraCount %></strong>
+        </article>
+      <% } %>
+    </div>
+
+    <p class="surface-summary">
+      <% var languageBits = [] %>
+      <% languageBits.push(surfaceLang.catalogShippedCount + ' of ' + surfaceLang.catalogCount + ' upstream entries are already shipped') %>
+      <% if (surfaceLang.wantedCount > 0) { languageBits.push(surfaceLang.wantedCount + ' are explicitly on the shortlist') } %>
+      <% if (surfaceLang.untriagedCount > 0) { languageBits.push(surfaceLang.untriagedCount + ' still need a decision') } %>
+      <% if (surfaceLang.skippedCount > 0) { languageBits.push(surfaceLang.skippedCount + ' are explicit non-goals') } %>
+      <% if (surfaceLang.keptExtraCount > 0) { languageBits.push(surfaceLang.keptExtraCount + ' Locutus-only extras are intentionally retained') } %>
+      <%= languageBits.join('; ') %>.
+    </p>
+
+    <% surfaceLang.namespaces.forEach(function (namespace) { %>
+      <%- partial('locutus/upstream_surface_namespace', {
+        page: page,
+        namespace: namespace,
+        showTitleLink: namespace.categories.length === 1,
+        titleHref: namespace.categories.length === 1 ? url_for(page.language + '/' + namespace.categories[0] + '/') : null,
+        compact: false
+      }) %>
+    <% }) %>
+  </div>
+</details>

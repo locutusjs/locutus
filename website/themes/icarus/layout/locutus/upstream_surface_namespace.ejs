@@ -1,0 +1,261 @@
+<%
+function surfacePercent(count, total) {
+  if (!total || total <= 0) {
+    return 0
+  }
+  return Math.max(0, Math.min(100, Math.round((count / total) * 1000) / 10))
+}
+
+function surfaceSummaryBits(item) {
+  var bits = []
+  bits.push(item.catalogShippedCount + ' shipped')
+  if (item.wantedEntries && item.wantedEntries.length > 0) {
+    bits.push(item.wantedEntries.length + ' next')
+  }
+  if (item.skippedEntries && item.skippedEntries.length > 0) {
+    bits.push(item.skippedEntries.length + ' explicit non-goals')
+  }
+  if (item.untriagedEntries && item.untriagedEntries.length > 0) {
+    bits.push(item.untriagedEntries.length + ' still need triage')
+  }
+  if (item.keptExtras && item.keptExtras.length > 0) {
+    bits.push(item.keptExtras.length + ' intentional extras')
+  }
+  return bits
+}
+
+function surfaceDecisionLabel(entry) {
+  if (!entry || !entry.decision) {
+    return ''
+  }
+
+  var labels = {
+    keep_extension: 'Intentional extra',
+    keep_language_construct: 'Language construct',
+    keep_legacy: 'Legacy keep',
+    ship: 'Shipped',
+    skip_environment: 'Skip',
+    skip_low_value: 'Skip',
+    skip_plain_value_mismatch: 'Skip',
+    skip_removed_upstream: 'Removed upstream',
+    skip_runtime_model: 'Skip',
+    skip_security_sensitive: 'Skip',
+    skip_side_effects: 'Skip',
+    untriaged: 'Needs triage',
+    wanted_high_value: 'Wanted',
+    wanted_plain_value: 'Wanted',
+  }
+
+  return labels[entry.decision] || entry.decision
+}
+
+function surfaceSourceLabel(kind) {
+  var labels = {
+    runtime: 'live runtime snapshot',
+    source_manifest: 'version-pinned source manifest',
+    manual: 'manual inventory',
+  }
+  return labels[kind] || kind
+}
+
+function surfaceLocutusHref(language, entryName) {
+  var href = null
+  site.pages.find({ language: language, type: 'function', function: entryName }).each(function (func) {
+    if (!href) {
+      href = url_for(func.path).replace('index.html', '')
+    }
+  })
+  return href
+}
+
+function surfaceOfficialDocsHref(language, namespaceName, entryName) {
+  var encodedName = encodeURIComponent(entryName)
+
+  if (language === 'php') {
+    return 'https://www.php.net/manual/en/function.' + entryName.replace(/_/g, '-') + '.php'
+  }
+
+  if (language === 'python') {
+    return 'https://docs.python.org/3/library/' + namespaceName + '.html#' + namespaceName + '.' + entryName
+  }
+
+  if (language === 'golang') {
+    return 'https://pkg.go.dev/' + namespaceName + '#' + entryName
+  }
+
+  if (language === 'ruby') {
+    return 'https://docs.ruby-lang.org/en/master/' + namespaceName + '.html'
+  }
+
+  if (language === 'lua') {
+    return 'https://www.lua.org/manual/5.4/manual.html#pdf-' + namespaceName + '.' + entryName
+  }
+
+  if (language === 'powershell' && namespaceName === 'string') {
+    return 'https://learn.microsoft.com/en-us/dotnet/api/system.string.' + entryName + '?view=net-9.0'
+  }
+
+  if (language === 'tcl') {
+    return 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/' + namespaceName + '.htm'
+  }
+
+  if (language === 'elixir') {
+    return 'https://hexdocs.pm/elixir/' + namespaceName + '.html'
+  }
+
+  if (language === 'clojure') {
+    return 'https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/' + encodedName
+  }
+
+  if (language === 'r' && namespaceName === 'base') {
+    return 'https://stat.ethz.ch/R-manual/R-devel/library/base/html/' + encodedName + '.html'
+  }
+
+  if (language === 'perl') {
+    return 'https://perldoc.perl.org/functions/' + encodedName
+  }
+
+  if (language === 'rust' && namespaceName === 'str') {
+    return 'https://doc.rust-lang.org/std/primitive.str.html#method.' + entryName
+  }
+
+  if (language === 'c') {
+    return null
+  }
+
+  return null
+}
+%>
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        <% if (typeof showTitleLink !== 'undefined' && showTitleLink && titleHref) { %>
+          <a href="<%- titleHref %>"><%= namespace.title %></a>
+        <% } else { %>
+          <%= namespace.namespace === '__global' ? (page.human || page.language) + ' function catalog' : namespace.title %>
+        <% } %>
+      </h3>
+      <p class="surface-card__meta">
+        <code><%= namespace.target %></code>
+        <span>•</span>
+        <span>Catalog source: <%= surfaceSourceLabel(namespace.sourceKind) %> <code><%= namespace.sourceRef %></code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong><%= namespace.coveragePercent === null ? 'n/a' : namespace.coveragePercent + '%' %></strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    <% if (namespace.catalogEntries.length > 0) { %>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: <%= surfacePercent(namespace.catalogShippedCount, namespace.catalogEntries.length) %>%"></span>
+      <% if (namespace.wantedEntries.length > 0) { %>
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: <%= surfacePercent(namespace.wantedEntries.length, namespace.catalogEntries.length) %>%"></span>
+      <% } %>
+      <% if (namespace.skippedEntries.length > 0) { %>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: <%= surfacePercent(namespace.skippedEntries.length, namespace.catalogEntries.length) %>%"></span>
+      <% } %>
+      <% if (namespace.untriagedEntries.length > 0) { %>
+        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: <%= surfacePercent(namespace.untriagedEntries.length, namespace.catalogEntries.length) %>%"></span>
+      <% } %>
+    <% } %>
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong><%= namespace.catalogShippedCount %>/<%= namespace.catalogEntries.length %></strong> shipped</span>
+    <% if (namespace.wantedEntries.length > 0) { %><span><strong><%= namespace.wantedEntries.length %></strong> next</span><% } %>
+    <% if (namespace.skippedEntries.length > 0) { %><span><strong><%= namespace.skippedEntries.length %></strong> explicit non-goals</span><% } %>
+    <% if (namespace.untriagedEntries.length > 0) { %><span><strong><%= namespace.untriagedEntries.length %></strong> need triage</span><% } %>
+    <% if (namespace.keptExtras.length > 0) { %><span><strong><%= namespace.keptExtras.length %></strong> intentional extras</span><% } %>
+  </div>
+
+  <p class="surface-summary">
+    <%= surfaceSummaryBits(namespace).join(' • ') %>.
+  </p>
+
+  <% if (namespace.categories && namespace.categories.length > 0) { %>
+    <div class="surface-chip-row">
+      <% namespace.categories.forEach(function (category) { %>
+        <a class="surface-chip surface-chip--link" href="<%- url_for(page.language + '/' + category + '/') %>"><%= category %></a>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% if (namespace.wantedEntries.length > 0 || namespace.keptExtras.length > 0) { %>
+    <div class="surface-buckets">
+      <% if (namespace.wantedEntries.length > 0) { %>
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            <% namespace.wantedEntries.forEach(function (entry) { %>
+              <li>
+                <code><%= entry.name %></code>
+                <% if (entry.note) { %><span><%= entry.note %></span><% } %>
+              </li>
+            <% }) %>
+          </ul>
+        </section>
+      <% } %>
+
+      <% if (namespace.keptExtras.length > 0) { %>
+        <section class="surface-bucket surface-bucket--extras">
+          <h4>Intentional extras</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            <% namespace.keptExtras.forEach(function (entry) { %>
+              <% var locutusHref = surfaceLocutusHref(page.language, entry.name) %>
+              <li>
+                <% if (locutusHref) { %>
+                  <a class="surface-entry-link" href="<%- locutusHref %>"><code><%= entry.name %></code></a>
+                <% } else { %>
+                  <code><%= entry.name %></code>
+                <% } %>
+                <% if (entry.note) { %><span><%= entry.note %></span><% } %>
+              </li>
+            <% }) %>
+          </ul>
+        </section>
+      <% } %>
+    </div>
+  <% } %>
+
+  <% if (namespace.skippedEntries.length > 0 || namespace.untriagedEntries.length > 0) { %>
+    <div class="surface-details-grid">
+      <% if (namespace.skippedEntries.length > 0) { %>
+        <details class="surface-details">
+          <summary>Explicit non-goals (<%= namespace.skippedEntries.length %>)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            <% namespace.skippedEntries.forEach(function (entry) { %>
+              <% var officialDocsHref = surfaceOfficialDocsHref(page.language, namespace.namespace, entry.name) %>
+              <li>
+                <% if (officialDocsHref) { %>
+                  <a class="surface-entry-link surface-entry-link--external" href="<%- officialDocsHref %>" target="_blank" rel="noopener noreferrer"><code><%= entry.name %></code></a>
+                <% } else { %>
+                  <code><%= entry.name %></code>
+                <% } %>
+                <span class="surface-entry-list__meta"><%= surfaceDecisionLabel(entry) %></span>
+                <% if (entry.note) { %><span><%= entry.note %></span><% } %>
+              </li>
+            <% }) %>
+          </ul>
+        </details>
+      <% } %>
+
+      <% if (namespace.untriagedEntries.length > 0) { %>
+        <details class="surface-details">
+          <summary>Needs triage (<%= namespace.untriagedEntries.length %>)</summary>
+          <p class="surface-details__intro">
+            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
+          </p>
+          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+            <% namespace.untriagedEntries.forEach(function (entry) { %>
+              <li><code><%= entry %></code></li>
+            <% }) %>
+          </ul>
+        </details>
+      <% } %>
+    </div>
+  <% } %>
+</article>

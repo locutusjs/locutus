@@ -19,97 +19,6 @@
         Each function is individually importable and tree-shakeable.
       </p>
 
-      <% if (surfaceLang) { %>
-        <h2>Upstream surface inventory</h2>
-        <p>
-          This page also tracks the upstream namespace catalog we compare against, the functions we still want to port,
-          the ones we intentionally keep, and the ones we explicitly skip because they do not fit Locutus' plain-value model.
-        </p>
-        <div class="tags" style="margin-bottom: 1rem;">
-          <span class="tag is-dark">Coverage</span>
-          <span class="tag is-info"><%= surfaceLang.coveragePercent === null ? 'n/a' : surfaceLang.coveragePercent + '%' %></span>
-          <span class="tag is-dark">Shipped</span>
-          <span class="tag is-success"><%= surfaceLang.catalogShippedCount %>/<%= surfaceLang.catalogCount %></span>
-          <span class="tag is-dark">Wanted</span>
-          <span class="tag is-warning"><%= surfaceLang.wantedCount %></span>
-          <span class="tag is-dark">Untriaged</span>
-          <span class="tag is-light"><%= surfaceLang.untriagedCount %></span>
-          <% if (surfaceLang.keptExtraCount > 0) { %>
-            <span class="tag is-dark">Intentional extras</span>
-            <span class="tag is-link"><%= surfaceLang.keptExtraCount %></span>
-          <% } %>
-        </div>
-
-        <% surfaceLang.namespaces.forEach(function (namespace) { %>
-          <div class="message is-light" style="margin-bottom: 1rem;">
-            <div class="message-header">
-              <p><%= namespace.title %></p>
-              <% if (namespace.categories.length === 1) { %>
-                <a href="<%- url_for(page.language + '/' + namespace.categories[0] + '/') %>">Open category</a>
-              <% } else { %>
-                <span><%= namespace.target %></span>
-              <% } %>
-            </div>
-            <div class="message-body">
-              <div class="tags" style="margin-bottom: 0.75rem;">
-                <span class="tag is-dark">Coverage</span>
-                <span class="tag is-info"><%= namespace.coveragePercent === null ? 'n/a' : namespace.coveragePercent + '%' %></span>
-                <span class="tag is-dark">Shipped</span>
-                <span class="tag is-success"><%= namespace.catalogShippedCount %>/<%= namespace.catalogEntries.length %></span>
-                <span class="tag is-dark">Wanted</span>
-                <span class="tag is-warning"><%= namespace.wantedEntries.length %></span>
-                <span class="tag is-dark">Skipped</span>
-                <span class="tag is-light"><%= namespace.skippedEntries.length %></span>
-                <span class="tag is-dark">Untriaged</span>
-                <span class="tag is-light"><%= namespace.untriagedEntries.length %></span>
-              </div>
-              <p style="margin-bottom: 0.75rem;">
-                Source: <code><%= namespace.sourceKind %></code> <code><%= namespace.sourceRef %></code>.
-              </p>
-
-              <% if (namespace.categories.length > 0) { %>
-                <p style="margin-bottom: 0.75rem;">
-                  Categories:
-                  <% namespace.categories.forEach(function (category, index) { %>
-                    <a href="<%- url_for(page.language + '/' + category + '/') %>"><%= category %></a><%= index < namespace.categories.length - 1 ? ', ' : '' %>
-                  <% }) %>
-                </p>
-              <% } %>
-
-              <% if (namespace.wantedEntries.length > 0) { %>
-                <p>
-                  <strong>Wanted ports:</strong>
-                  <% namespace.wantedEntries.slice(0, 6).forEach(function (entry, index) { %>
-                    <code><%= entry.name %></code><%= entry.note ? ' (' + entry.note + ')' : '' %><%= index < Math.min(namespace.wantedEntries.length, 6) - 1 ? ', ' : '' %>
-                  <% }) %>
-                  <% if (namespace.wantedEntries.length > 6) { %> and <%= namespace.wantedEntries.length - 6 %> more<% } %>.
-                </p>
-              <% } %>
-
-              <% if (namespace.keptExtras.length > 0) { %>
-                <p>
-                  <strong>Intentional extras:</strong>
-                  <% namespace.keptExtras.slice(0, 5).forEach(function (entry, index) { %>
-                    <code><%= entry.name %></code><%= entry.note ? ' (' + entry.note + ')' : '' %><%= index < Math.min(namespace.keptExtras.length, 5) - 1 ? ', ' : '' %>
-                  <% }) %>
-                  <% if (namespace.keptExtras.length > 5) { %> and <%= namespace.keptExtras.length - 5 %> more<% } %>.
-                </p>
-              <% } %>
-
-              <% if (namespace.untriagedEntries.length > 0) { %>
-                <p>
-                  <strong>Untriaged upstream entries:</strong>
-                  <% namespace.untriagedEntries.slice(0, 8).forEach(function (entry, index) { %>
-                    <code><%= entry %></code><%= index < Math.min(namespace.untriagedEntries.length, 8) - 1 ? ', ' : '' %>
-                  <% }) %>
-                  <% if (namespace.untriagedEntries.length > 8) { %> and <%= namespace.untriagedEntries.length - 8 %> more<% } %>.
-                </p>
-              <% } %>
-            </div>
-          </div>
-        <% }) %>
-      <% } %>
-
       <% site.pages.find({ language: page.language, type: 'category'}).sort('category').each(function (cat) { %>
         <strong><%- cat.category %></strong>
         <ul>
@@ -121,6 +30,10 @@
 
       <hr />
       <%- partial('locutus/add_more', {curLang: curLang}) %>
+
+      <% if (surfaceLang) { %>
+        <%- partial('locutus/upstream_surface_language', { page: page, surfaceLang: surfaceLang }) %>
+      <% } %>
     </div>
   </div>
 </article>
