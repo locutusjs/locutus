@@ -2077,3 +2077,16 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check`
 - Key learnings:
   - The earlier `golang/path/Rel` target was a category-selection mistake, not a bad feature idea; validating against the real upstream package surface before coding saved an avoidable false start.
+
+### Iteration 104
+
+2026-03-15
+
+- **Area: Release management**
+- Progress:
+  - Merged `#579` for `golang/filepath/Rel` and verified the post-merge `main` workflow completed successfully through full parity, website build, and website deploy.
+  - Promoted the current `## main` notes into `v3.0.19`.
+- Release:
+  - Preparing `v3.0.19` for the new `golang/filepath/Rel` runtime addition.
+- Key learnings:
+  - `filepath.Rel` is patch-worthy product work: it adds real user-facing surface area while staying inside the existing Go/plain-value model and parity target.
