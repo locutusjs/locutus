@@ -46,9 +46,7 @@ interface MergeObject extends PhpAssoc<MergeValue> {}
 type MergeValue = PhpRuntimeValue | MergeValue[] | MergeObject
 
 function mergeInto(result: MergeObject, source: MergeObject): void {
-  let numericIdx = Object.keys(result)
-    .filter((key) => parseInt(key, 10) + '' === key + '')
-    .length
+  let numericIdx = Object.keys(result).filter((key) => parseInt(key, 10) + '' === key + '').length
 
   // Helper to check if a key is numeric (PHP integer-indexed)
   const isNumericKey = function (key: string): boolean {
@@ -197,9 +195,7 @@ interface MergeObject extends PhpAssoc<MergeValue> {}
 type MergeValue = PhpRuntimeValue | MergeValue[] | MergeObject
 
 function mergeInto(result: MergeObject, source: MergeObject): void {
-  let numericIdx = Object.keys(result)
-    .filter((key) => parseInt(key, 10) + '' === key + '')
-    .length
+  let numericIdx = Object.keys(result).filter((key) => parseInt(key, 10) + '' === key + '').length
 
   // Helper to check if a key is numeric (PHP integer-indexed)
   const isNumericKey = function (key: string): boolean {

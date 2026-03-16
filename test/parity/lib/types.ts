@@ -77,8 +77,14 @@ export interface UpstreamSurfaceDecisionEntry {
   note?: string | undefined
 }
 
+export interface UpstreamSurfaceCatalogDecisionRule extends UpstreamSurfaceDecisionEntry {
+  match: string
+}
+
 export interface UpstreamSurfaceNamespaceInventory {
   title?: string | undefined
+  default?: UpstreamSurfaceDecisionEntry | undefined
+  rules?: UpstreamSurfaceCatalogDecisionRule[] | undefined
   decisions?: Record<string, UpstreamSurfaceDecisionEntry> | undefined
 }
 

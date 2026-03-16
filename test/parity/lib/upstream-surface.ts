@@ -8,6 +8,7 @@
 import type {
   LanguageHandler,
   RuntimeSurfaceLocutusFunction,
+  UpstreamSurfaceCatalogDecisionRule,
   UpstreamSurfaceDecisionEntry,
   UpstreamSurfaceInventory,
   UpstreamSurfaceLanguageInventory,
@@ -112,6 +113,55 @@ interface NamespaceEntryCollection {
 
 interface NamespaceCategoryCollection {
   categories: string[]
+}
+
+function compileInventoryRulePattern(pattern: string): RegExp {
+  const escaped = pattern.replace(/[|\\{}()[\]^$+?.]/g, '\\$&').replace(/\*/g, '.*')
+  return new RegExp(`^${escaped}$`)
+}
+
+interface CatalogDecisionMatch {
+  entry: UpstreamSurfaceDecisionEntry
+  matchedRuleIndex?: number
+  usedDefault?: boolean
+}
+
+function findCatalogDecision(
+  name: string,
+  decisions: Record<string, UpstreamSurfaceDecisionEntry>,
+  rules: UpstreamSurfaceCatalogDecisionRule[],
+  defaultDecision: UpstreamSurfaceDecisionEntry | undefined,
+): CatalogDecisionMatch | undefined {
+  if (Object.prototype.hasOwnProperty.call(decisions, name)) {
+    const decision = decisions[name]
+    if (!decision) {
+      return undefined
+    }
+    return {
+      entry: decision,
+    }
+  }
+
+  for (const [index, rule] of rules.entries()) {
+    if (compileInventoryRulePattern(rule.match).test(name)) {
+      return {
+        entry: {
+          decision: rule.decision,
+          note: rule.note,
+        },
+        matchedRuleIndex: index,
+      }
+    }
+  }
+
+  if (!defaultDecision) {
+    return undefined
+  }
+
+  return {
+    entry: defaultDecision,
+    usedDefault: true,
+  }
 }
 
 export function resolveUpstreamSurfaceLanguages(
@@ -247,21 +297,22 @@ function compareNamespace(
   const shipped = shippedEntries?.entries ?? []
   const shippedSet = new Set(shipped)
   const decisions: Record<string, UpstreamSurfaceDecisionEntry> = namespaceInventory?.decisions ?? {}
+  const rules = namespaceInventory?.rules ?? []
+  const defaultDecision = namespaceInventory?.default
   const seenDecisionNames = new Set<string>()
+  const seenRuleIndexes = new Set<number>()
+  let usedDefaultDecision = false
   const keptExtras: UpstreamSurfaceNamespacePolicyMatch[] = []
   const unexpectedExtras: string[] = []
   const wantedEntries: UpstreamSurfaceNamespacePolicyMatch[] = []
   const skippedEntries: UpstreamSurfaceNamespacePolicyMatch[] = []
   const untriagedEntries: string[] = []
-  const getDecision = (name: string) =>
-    Object.prototype.hasOwnProperty.call(decisions, name) ? decisions[name] : undefined
-
   for (const entry of shipped) {
     if (catalogSet.has(entry)) {
       continue
     }
 
-    const decision = getDecision(entry)
+    const decision = Object.prototype.hasOwnProperty.call(decisions, entry) ? decisions[entry] : undefined
     if (!decision || !isKeepDecision(decision.decision)) {
       unexpectedExtras.push(entry)
       continue
@@ -276,13 +327,23 @@ function compareNamespace(
       continue
     }
 
-    const decision = getDecision(entry)
-    if (!decision) {
+    const match = findCatalogDecision(entry, decisions, rules, defaultDecision)
+    if (!match) {
       untriagedEntries.push(entry)
       continue
     }
 
-    seenDecisionNames.add(entry)
+    const decision = match.entry
+    if (match.matchedRuleIndex !== undefined) {
+      seenRuleIndexes.add(match.matchedRuleIndex)
+    }
+    if (match.usedDefault) {
+      usedDefaultDecision = true
+    }
+    if (Object.prototype.hasOwnProperty.call(decisions, entry)) {
+      seenDecisionNames.add(entry)
+    }
+
     if (isWantedDecision(decision.decision)) {
       wantedEntries.push({ name: entry, ...decision })
       continue
@@ -299,7 +360,26 @@ function compareNamespace(
   const staleDecisions = Object.entries(decisions)
     .filter(([name]) => !seenDecisionNames.has(name))
     .map(([name, entry]) => ({ name, ...entry }))
-    .sort((left, right) => left.name.localeCompare(right.name))
+
+  for (const [index, rule] of rules.entries()) {
+    if (!seenRuleIndexes.has(index)) {
+      staleDecisions.push({
+        name: `rule: ${rule.match}`,
+        decision: rule.decision,
+        note: rule.note,
+      })
+    }
+  }
+
+  if (defaultDecision && !usedDefaultDecision) {
+    staleDecisions.push({
+      name: 'default',
+      decision: defaultDecision.decision,
+      note: defaultDecision.note,
+    })
+  }
+
+  staleDecisions.sort((left, right) => left.name.localeCompare(right.name))
 
   return {
     namespace: namespaceSnapshot.namespace,

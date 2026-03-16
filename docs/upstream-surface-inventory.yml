@@ -3,33 +3,164 @@ awk:
   namespaces:
     builtin:
       title: Built-in functions
-      decisions: {}
+      default:
+        decision: wanted
+        note: AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.
+      decisions:
+        close:
+          decision: skip_side_effects
+          note: File and pipe handle lifecycle is outside Locutus' value-only model.
+        srand:
+          decision: skip_side_effects
+          note: Global RNG seeding mutates ambient runtime state.
+        system:
+          decision: skip_side_effects
+          note: Shell execution is outside Locutus' portability scope.
 
 c:
   title: C
   namespaces:
     ctype:
       title: ctype.h
-      decisions: {}
+      default:
+        decision: wanted
+        note: Character classification helpers map cleanly to plain strings and numbers.
     math:
       title: math.h
-      decisions: {}
+      default:
+        decision: wanted
+        note: Scalar math helpers are strong plain-value portability targets.
     stdio:
       title: stdio.h
-      decisions: {}
+      default:
+        decision: skip_side_effects
+        note: stdio printing APIs are primarily output sinks rather than plain-value helpers.
+      decisions:
+        snprintf:
+          decision: wanted
+          note: Sized string formatting still produces a plain string result.
+        vsnprintf:
+          decision: wanted
+          note: Variadic string formatting still yields a plain string result.
+        vsprintf:
+          decision: wanted
+          note: Variadic string formatting still yields a plain string result.
     stdlib:
       title: stdlib.h
-      decisions: {}
+      default:
+        decision: wanted
+        note: Scalar conversion and numeric helpers are good portability targets.
+      decisions:
+        getenv:
+          decision: skip_environment
+          note: Process environment lookup depends on host state outside Locutus' model.
+        qsort:
+          decision: skip_runtime_model
+          note: In-place comparator-driven sorting does not map cleanly to plain JS values.
+        srand:
+          decision: skip_side_effects
+          note: Global RNG seeding mutates ambient runtime state.
     string:
       title: string.h
-      decisions: {}
+      default:
+        decision: skip_plain_value_mismatch
+        note: C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.
+      decisions:
+        strncmp:
+          decision: wanted
+          note: Prefix-bounded string comparison still has a clean plain-value contract.
+        strcspn:
+          decision: wanted
+          note: Character-class span helpers are useful for string scanning.
+        strpbrk:
+          decision: wanted
+          note: Character-class search maps naturally to string scanning.
+        strrchr:
+          decision: wanted
+          note: Last-occurrence search maps naturally to string lookup.
+        strspn:
+          decision: wanted
+          note: Character-class span helpers are useful for string scanning.
+        strtok:
+          decision: skip_runtime_model
+          note: Stateful tokenizer semantics do not fit Locutus' plain-value model.
 
 php:
   title: PHP
   namespaces:
     __global:
       title: Global functions
+      default:
+        decision: skip_runtime_model
+        note: The PHP global surface is broad and many entries depend on runtime objects, host state, or side-effectful process behavior.
+      rules:
+        - match: 'curl_*'
+          decision: skip_environment
+          note: Network-bound cURL helpers depend on host I/O and runtime handles.
+        - match: 'header*'
+          decision: skip_side_effects
+          note: HTTP header emission mutates response state outside Locutus' model.
+        - match: 'http_response_*'
+          decision: skip_side_effects
+          note: Response-status mutation is outside Locutus' portability focus.
+        - match: 'image*'
+          decision: skip_plain_value_mismatch
+          note: GD image resources do not fit Locutus' plain-value model.
+        - match: 'mail'
+          decision: skip_side_effects
+          note: Mail dispatch is an external side effect.
+        - match: 'ob_*'
+          decision: skip_side_effects
+          note: Output buffering mutates ambient process output state.
+        - match: 'openssl_*'
+          decision: skip_security
+          note: OpenSSL resource and key-management helpers are security-sensitive and environment-bound.
+        - match: 'posix_*'
+          decision: skip_environment
+          note: POSIX process and host helpers depend on OS-specific state.
+        - match: 'proc_*'
+          decision: skip_side_effects
+          note: Process-spawning helpers are outside Locutus' portability scope.
+        - match: 'session_*'
+          decision: skip_side_effects
+          note: Session lifecycle helpers mutate ambient process or HTTP state.
+        - match: 'socket_*'
+          decision: skip_environment
+          note: Socket helpers depend on external network state and resource handles.
+        - match: 'stream_*'
+          decision: skip_environment
+          note: Stream resource helpers depend on host I/O handles and runtime state.
+        - match: 'symlink'
+          decision: skip_side_effects
+          note: Filesystem mutation is outside Locutus' portability focus.
+        - match: 'syslog'
+          decision: skip_side_effects
+          note: System logging is an external side effect.
+        - match: 'xml_*'
+          decision: skip_plain_value_mismatch
+          note: XML parser resources and callbacks do not fit Locutus' plain-value model.
+        - match: 'array_*'
+          decision: wanted
+          note: PHP array helpers are high-value portability targets and map well onto JS arrays and plain objects.
+        - match: 'date_*'
+          decision: wanted
+          note: Date helpers remain high-value portability targets within Locutus' Date-based model.
+        - match: 'hash_*'
+          decision: wanted
+          note: Hashing helpers are useful pure-value utilities.
+        - match: 'json_*'
+          decision: wanted
+          note: JSON helpers are strong plain-value portability targets.
+        - match: 'preg_*'
+          decision: wanted
+          note: Regular-expression helpers are high-value portability targets.
+        - match: 'str*'
+          decision: wanted
+          note: String helpers are core portability targets for Locutus.
       decisions:
+        assert:
+          decision: skip_runtime_model
+          note: Runtime assertion configuration is not a good portability target.
         bcadd:
           decision: keep_extension
           note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
@@ -51,9 +182,6 @@ php:
         bcsub:
           decision: keep_extension
           note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
-        assert:
-          decision: skip_runtime_model
-          note: Runtime assertion configuration is not a good portability target.
         chdir:
           decision: skip_side_effects
           note: Process-wide working-directory mutation is outside Locutus' value-only model.
@@ -75,9 +203,63 @@ php:
         class_alias:
           decision: skip_runtime_model
           note: Runtime class-table mutation is not a good fit for Locutus' plain-value model.
+        class_exists:
+          decision: skip_runtime_model
+          note: Class-table introspection depends on runtime object state.
+        class_implements:
+          decision: skip_runtime_model
+          note: Class-table introspection depends on runtime object state.
+        class_parents:
+          decision: skip_runtime_model
+          note: Class-table introspection depends on runtime object state.
+        class_uses:
+          decision: skip_runtime_model
+          note: Class-table introspection depends on runtime object state.
+        cli_get_process_title:
+          decision: skip_environment
+          note: Process metadata depends on host runtime state.
+        cli_set_process_title:
+          decision: skip_side_effects
+          note: Process metadata mutation is outside Locutus' value-only model.
+        compact:
+          decision: skip_runtime_model
+          note: Scope-variable extraction has no honest plain-value JS equivalent.
+        connection_aborted:
+          decision: skip_environment
+          note: HTTP connection state depends on runtime server environment.
+        connection_status:
+          decision: skip_environment
+          note: HTTP connection state depends on runtime server environment.
+        constant:
+          decision: skip_runtime_model
+          note: Runtime constant-table lookup depends on language environment state.
         convert_cyr_string:
           decision: keep_legacy
           note: Removed upstream in PHP 8.0, but retained as a legacy compatibility port.
+        curl_multi_select:
+          decision: skip_environment
+          note: Network multiplexing depends on runtime socket state.
+        disk_free_space:
+          decision: skip_environment
+          note: Filesystem capacity depends on host state.
+        disk_total_space:
+          decision: skip_environment
+          note: Filesystem capacity depends on host state.
+        diskfreespace:
+          decision: skip_environment
+          note: Filesystem capacity depends on host state.
+        dl:
+          decision: skip_security
+          note: Runtime extension loading is security-sensitive and host-dependent.
+        dns_check_record:
+          decision: skip_environment
+          note: DNS queries depend on external network state.
+        dns_get_mx:
+          decision: skip_environment
+          note: DNS queries depend on external network state.
+        dns_get_record:
+          decision: skip_environment
+          note: DNS queries depend on external network state.
         each:
           decision: keep_legacy
           note: Removed upstream in PHP 8.0, but retained as a legacy compatibility port.
@@ -87,9 +269,24 @@ php:
         empty:
           decision: keep_language_construct
           note: Modeled pragmatically even though it is a language construct rather than a callable function.
+        enum_exists:
+          decision: skip_runtime_model
+          note: Runtime enum-table introspection depends on language environment state.
+        exec:
+          decision: skip_security
+          note: Shell execution is outside Locutus' security model.
+        file_put_contents:
+          decision: skip_side_effects
+          note: Filesystem writes are side effects outside Locutus' portability focus.
+        fopen:
+          decision: skip_environment
+          note: Stream resource creation depends on host I/O state.
         gopher_parsedir:
           decision: keep_locutus_only
           note: Niche Locutus-only port intentionally retained.
+        hash:
+          decision: wanted
+          note: Generic hashing helpers are useful plain-value utilities.
         i18n_loc_get_default:
           decision: keep_extension
           note: Intl helper retained even though it is not exposed by the base runtime target.
@@ -114,12 +311,24 @@ php:
         money_format:
           decision: keep_legacy
           note: Removed upstream in PHP 8.0, but retained as a legacy compatibility port.
+        passthru:
+          decision: skip_security
+          note: Shell execution is outside Locutus' security model.
+        putenv:
+          decision: skip_side_effects
+          note: Process environment mutation is outside Locutus' portability focus.
+        shell_exec:
+          decision: skip_security
+          note: Shell execution is outside Locutus' security model.
         split:
           decision: keep_legacy
           note: Removed upstream in PHP 7.0, but retained as a legacy compatibility port.
         sql_regcase:
           decision: keep_legacy
           note: Removed upstream in PHP 7.0, but retained as a legacy compatibility port.
+        system:
+          decision: skip_security
+          note: Shell execution is outside Locutus' security model.
         xdiff_string_diff:
           decision: keep_extension
           note: xdiff is not available in the base PHP runtime target, but the port is still useful.
@@ -132,144 +341,734 @@ python:
   namespaces:
     math:
       title: math module
-      decisions: {}
+      default:
+        decision: wanted
+        note: Python math helpers map cleanly to JS numbers and arrays.
     re:
       title: re module
-      decisions: {}
+      default:
+        decision: wanted
+        note: Top-level regex helpers are high-value portability targets.
+      decisions:
+        compile:
+          decision: skip_runtime_model
+          note: Compiled regex objects are not a stable plain-value target.
+        purge:
+          decision: skip_runtime_model
+          note: Regex cache mutation is outside Locutus' portability scope.
+        template:
+          decision: skip_runtime_model
+          note: Template pattern objects are not a stable plain-value target.
     string:
       title: string module
       decisions: {}
     difflib:
       title: difflib module
-      decisions: {}
+      default:
+        decision: wanted
+        note: Sequence-diff helpers are high-value portability targets.
+      decisions:
+        diff_bytes:
+          decision: skip_plain_value_mismatch
+          note: Byte-oriented diffing does not fit Locutus' current plain-value model.
+        IS_CHARACTER_JUNK:
+          decision: skip_low_value
+          note: Exposing tiny constant predicates as standalone ports adds little value.
+        IS_LINE_JUNK:
+          decision: skip_low_value
+          note: Exposing tiny constant predicates as standalone ports adds little value.
 
 julia:
   title: Julia
   namespaces:
     Base:
       title: Base module
-      decisions: {}
+      default:
+        decision: skip_runtime_model
+        note: Julia Base is too broad and syntax- and runtime-heavy to treat as a general Locutus wishlist.
+      decisions:
+        clamp:
+          decision: wanted
+          note: Numeric boundary helpers have a clean plain-value contract.
+        contains:
+          decision: wanted
+          note: String containment helpers are useful plain-value targets.
+        replace:
+          decision: wanted
+          note: String replacement helpers are strong portability targets.
+        reverse:
+          decision: wanted
+          note: String and collection reversal fits Locutus' plain-value model.
+        split:
+          decision: wanted
+          note: String splitting is a high-value plain-value target.
+        sqrt:
+          decision: wanted
+          note: Scalar math helpers remain useful cross-language portability targets.
+        strip:
+          decision: wanted
+          note: Trimming helpers are strong plain-value targets.
 
 ruby:
   title: Ruby
   namespaces:
     Array:
       title: Array instance methods
-      decisions: {}
+      default:
+        decision: wanted
+        note: Most Ruby Array methods map naturally onto JS arrays and plain objects.
+      rules:
+        - match: 'each*'
+          decision: skip_runtime_model
+          note: Enumerator-driven iteration APIs are better expressed directly in JS.
+      decisions:
+        chain:
+          decision: skip_runtime_model
+          note: Lazy enumerator chaining is not a stable plain-value target.
+        lazy:
+          decision: skip_runtime_model
+          note: Lazy enumerators do not fit Locutus' plain-value model.
+        pack:
+          decision: skip_plain_value_mismatch
+          note: Binary packing semantics do not map cleanly to JS plain values.
+        to_set:
+          decision: skip_runtime_model
+          note: Ruby Set values are not a stable plain-value target for Locutus.
     String:
       title: String instance methods
-      decisions: {}
+      default:
+        decision: wanted
+        note: Most Ruby String methods are strong plain-value portability targets.
+      rules:
+        - match: 'byte*'
+          decision: skip_plain_value_mismatch
+          note: Byte-oriented string APIs do not fit Locutus' current plain-value model.
+        - match: 'each_*'
+          decision: skip_runtime_model
+          note: Enumerator-driven iteration APIs are better expressed directly in JS.
+        - match: 'encode*'
+          decision: skip_runtime_model
+          note: Encoding-object semantics do not fit Locutus' plain-value model.
+      decisions:
+        b:
+          decision: skip_low_value
+          note: Ruby's binary-string clone helper adds little value in JS.
+        crypt:
+          decision: skip_security
+          note: Password-hash wrappers are security-sensitive and not a good Locutus target.
+        encoding:
+          decision: skip_runtime_model
+          note: Encoding objects are not a stable plain-value target.
+        force_encoding:
+          decision: skip_runtime_model
+          note: Encoding mutation does not fit Locutus' plain-value model.
+        intern:
+          decision: skip_runtime_model
+          note: Symbol-table interning does not fit Locutus' plain-value model.
     Math:
       title: Math module methods
-      decisions: {}
+      default:
+        decision: wanted
+        note: Ruby Math helpers map cleanly to JS numbers.
 
 golang:
   title: Go
   namespaces:
     net:
       title: net package
-      decisions: {}
+      default:
+        decision: skip_environment
+        note: Most net helpers depend on sockets, DNS, or host network state.
+      decisions:
+        CIDRMask:
+          decision: wanted
+          note: IP mask construction has a clean plain-value contract.
+        IPv4:
+          decision: wanted
+          note: IPv4 construction has a clean plain-value contract.
+        IPv4Mask:
+          decision: wanted
+          note: IP mask construction has a clean plain-value contract.
+        ParseMAC:
+          decision: wanted
+          note: MAC parsing has a clean plain-value contract.
     path:
       title: path package
-      decisions: {}
+      default:
+        decision: wanted
+        note: Go path helpers are strong plain string portability targets.
     sort:
       title: sort package
-      decisions: {}
+      default:
+        decision: skip_runtime_model
+        note: Most sort APIs depend on mutable slices or callback-driven ordering.
+      rules:
+        - match: 'Search*'
+          decision: wanted
+          note: Search helpers have a clean plain-value contract.
+      decisions:
+        Find:
+          decision: wanted
+          note: Index search helpers are useful plain-value targets.
     strconv:
       title: strconv package
-      decisions: {}
+      default:
+        decision: wanted
+        note: Parse and format helpers are strong plain-value portability targets.
+      rules:
+        - match: 'Append*'
+          decision: skip_plain_value_mismatch
+          note: Byte-slice append APIs do not fit Locutus' current plain-value model.
+      decisions:
+        FormatComplex:
+          decision: skip_plain_value_mismatch
+          note: Complex-number formatting does not fit JS plain values.
+        ParseComplex:
+          decision: skip_plain_value_mismatch
+          note: Complex-number parsing does not fit JS plain values.
     strings:
       title: strings package
+      default:
+        decision: wanted
+        note: Go strings helpers are core portability targets for Locutus.
       decisions:
         Clone:
           decision: skip_low_value
           note: A string clone helper adds little value in JavaScript.
+        NewReader:
+          decision: skip_runtime_model
+          note: Reader objects are not a stable plain-value target.
+        NewReplacer:
+          decision: skip_runtime_model
+          note: Replacer objects are not a stable plain-value target.
     subtle:
       title: crypto/subtle package
-      decisions: {}
+      default:
+        decision: wanted
+        note: Constant-time scalar comparison helpers fit plain-value portability well.
+      decisions:
+        XORBytes:
+          decision: skip_plain_value_mismatch
+          note: Mutable byte-buffer APIs do not fit Locutus' current plain-value model.
     time:
       title: time package
-      decisions: {}
+      default:
+        decision: skip_runtime_model
+        note: Much of Go time depends on locations, timers, and rich time values beyond JS plain values.
+      rules:
+        - match: 'Unix*'
+          decision: wanted
+          note: Unix timestamp conversion has a clean plain-value contract.
+      decisions:
+        AfterFunc:
+          decision: skip_side_effects
+          note: Timer callbacks are side-effectful runtime scheduling APIs.
+        Compare:
+          decision: wanted
+          note: Time comparison has a clean plain-value contract.
+        LoadLocation:
+          decision: skip_environment
+          note: Timezone database loading depends on host runtime state.
+        LoadLocationFromTZData:
+          decision: skip_environment
+          note: Timezone database loading depends on host runtime state.
     filepath:
       title: path/filepath package
-      decisions: {}
+      default:
+        decision: wanted
+        note: Filepath helpers are high-value plain string portability targets.
+      decisions:
+        Abs:
+          decision: skip_environment
+          note: Absolute-path resolution depends on process working-directory state.
+        EvalSymlinks:
+          decision: skip_environment
+          note: Symlink resolution depends on filesystem state.
+        Glob:
+          decision: skip_environment
+          note: Filesystem globbing depends on host state.
+        HasPrefix:
+          decision: skip_low_value
+          note: Deprecated path-prefix checks add little value to the roadmap.
+        Localize:
+          decision: skip_environment
+          note: OS-specific path localization depends on host path semantics.
+        Walk:
+          decision: skip_side_effects
+          note: Filesystem traversal depends on host state and callback side effects.
+        WalkDir:
+          decision: skip_side_effects
+          note: Filesystem traversal depends on host state and callback side effects.
     url:
       title: net/url package
-      decisions: {}
+      default:
+        decision: skip_runtime_model
+        note: Much of net/url revolves around mutable URL and Values objects rather than plain values.
+      decisions:
+        EscapedFragment:
+          decision: wanted
+          note: Escaping helpers have a clean plain-value contract.
+        EscapedPath:
+          decision: wanted
+          note: Escaping helpers have a clean plain-value contract.
+        Hostname:
+          decision: wanted
+          note: URL host decomposition is a useful plain-value helper.
+        IsAbs:
+          decision: wanted
+          note: URL absolute checks have a clean plain-value contract.
+        ParseRequestURI:
+          decision: wanted
+          note: Request-URI parsing is a useful plain-value helper.
+        PathUnescape:
+          decision: wanted
+          note: URL escaping is a strong plain-value target.
+        Port:
+          decision: wanted
+          note: URL host decomposition is a useful plain-value helper.
+        RequestURI:
+          decision: wanted
+          note: Request-URI formatting is a useful plain-value helper.
 
 tcl:
   title: Tcl
   namespaces:
     string:
       title: string ensemble
-      decisions: {}
+      default:
+        decision: wanted
+        note: Tcl string subcommands map naturally onto JS string and array values.
+      decisions:
+        bytelength:
+          decision: skip_low_value
+          note: Byte-length helpers add little value in a UTF-16 JS runtime.
+        is:
+          decision: skip_runtime_model
+          note: Tcl classifier subcommands are too broad and type-system-specific for one clean port.
 
 lua:
   title: Lua
   namespaces:
     math:
       title: math library
-      decisions: {}
+      default:
+        decision: wanted
+        note: Lua math helpers map cleanly to JS numbers.
+      decisions:
+        randomseed:
+          decision: skip_side_effects
+          note: Global RNG seeding mutates ambient runtime state.
     string:
       title: string library
-      decisions: {}
+      default:
+        decision: wanted
+        note: Lua string helpers are strong plain-value portability targets.
+      decisions:
+        dump:
+          decision: skip_security
+          note: Bytecode dumping is not a good security or portability target.
+        gmatch:
+          decision: skip_runtime_model
+          note: Iterator-returning APIs do not fit Locutus' plain-value model.
+        pack:
+          decision: skip_plain_value_mismatch
+          note: Binary packing semantics do not map cleanly to JS plain values.
+        packsize:
+          decision: skip_plain_value_mismatch
+          note: Binary packing semantics do not map cleanly to JS plain values.
+        unpack:
+          decision: skip_plain_value_mismatch
+          note: Binary packing semantics do not map cleanly to JS plain values.
 
 perl:
   title: Perl
   namespaces:
     POSIX:
       title: POSIX module
-      decisions: {}
+      default:
+        decision: wanted
+        note: Numeric POSIX helpers are strong plain-value portability targets.
     core:
       title: Core functions
-      decisions: {}
+      default:
+        decision: wanted
+        note: Perl core scalar and string helpers are good portability targets.
 
 powershell:
   title: PowerShell
   namespaces:
     string:
       title: System.String instance methods
-      decisions: {}
+      default:
+        decision: wanted
+        note: Most System.String methods are strong plain-value portability targets.
+      decisions:
+        Clone:
+          decision: skip_low_value
+          note: Clone adds little value for immutable JS strings.
 
 elixir:
   title: Elixir
   namespaces:
     Enum:
       title: Enum module
-      decisions: {}
+      default:
+        decision: wanted
+        note: Enum helpers are a high-value functional portability surface for Locutus.
+      decisions:
+        each:
+          decision: skip_side_effects
+          note: Side-effect-driven iteration is not a good Locutus target.
+        random:
+          decision: skip_low_value
+          note: Randomized enumeration helpers are lower-value than deterministic collection transforms.
+        shuffle:
+          decision: skip_low_value
+          note: Randomized enumeration helpers are lower-value than deterministic collection transforms.
+        take_random:
+          decision: skip_low_value
+          note: Randomized enumeration helpers are lower-value than deterministic collection transforms.
     String:
       title: String module
-      decisions: {}
+      default:
+        decision: wanted
+        note: Elixir String helpers are strong plain-value portability targets.
+      decisions:
+        replace_invalid:
+          decision: skip_plain_value_mismatch
+          note: Invalid-binary replacement semantics do not map cleanly to JS strings.
     Float:
       title: Float module
-      decisions: {}
+      default:
+        decision: wanted
+        note: Elixir Float helpers are strong plain-value portability targets.
+      decisions:
+        to_char_list:
+          decision: skip_plain_value_mismatch
+          note: Charlist conversion does not fit Locutus' plain-value model.
+        to_charlist:
+          decision: skip_plain_value_mismatch
+          note: Charlist conversion does not fit Locutus' plain-value model.
     Kernel:
       title: Kernel module
-      decisions: {}
+      default:
+        decision: skip_runtime_model
+        note: Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.
+      rules:
+        - match: 'is_*'
+          decision: wanted
+          note: Type-predicate helpers have a clean plain-value contract.
+      decisions:
+        binary_part:
+          decision: wanted
+          note: Binary slicing is a useful plain-value helper.
+        binary_slice:
+          decision: wanted
+          note: Binary slicing is a useful plain-value helper.
+        bit_size:
+          decision: wanted
+          note: Size helpers have a clean plain-value contract.
+        byte_size:
+          decision: wanted
+          note: Size helpers have a clean plain-value contract.
+        ceil:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        div:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        elem:
+          decision: wanted
+          note: Tuple element access still has a clean plain-value contract.
+        floor:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        hd:
+          decision: wanted
+          note: Head access has a clean plain-value contract.
+        length:
+          decision: wanted
+          note: Size helpers have a clean plain-value contract.
+        map_size:
+          decision: wanted
+          note: Size helpers have a clean plain-value contract.
+        max:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        min:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        rem:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        round:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        tl:
+          decision: wanted
+          note: Tail access has a clean plain-value contract.
+        trunc:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        tuple_size:
+          decision: wanted
+          note: Size helpers have a clean plain-value contract.
 
 clojure:
   title: Clojure
   namespaces:
     core:
       title: clojure.core
-      decisions: {}
+      default:
+        decision: skip_runtime_model
+        note: clojure.core mixes macros, vars, lazy seqs, JVM interop, and runtime state too broadly for one direct Locutus wishlist.
+      decisions:
+        assoc:
+          decision: wanted
+          note: Persistent collection update helpers are valuable plain-value targets.
+        concat:
+          decision: wanted
+          note: Sequence concatenation has a clean plain-value contract.
+        contains?:
+          decision: wanted
+          note: Membership helpers are useful plain-value targets.
+        count:
+          decision: wanted
+          note: Collection size helpers are strong portability targets.
+        dedupe:
+          decision: wanted
+          note: Sequence de-duplication has a clean plain-value contract.
+        distinct:
+          decision: wanted
+          note: Sequence de-duplication has a clean plain-value contract.
+        drop:
+          decision: wanted
+          note: Sequence slicing helpers are valuable plain-value targets.
+        drop-while:
+          decision: wanted
+          note: Predicate-based slicing still has a clean plain-value contract.
+        filter:
+          decision: wanted
+          note: Sequence filtering is a strong portability target.
+        first:
+          decision: wanted
+          note: Head access has a clean plain-value contract.
+        frequencies:
+          decision: wanted
+          note: Frequency maps are high-value plain-value results.
+        get:
+          decision: wanted
+          note: Generic collection lookup is a useful portability target.
+        group-by:
+          decision: wanted
+          note: Grouping helpers are high-value plain-value targets.
+        interleave:
+          decision: wanted
+          note: Sequence weaving has a clean plain-value contract.
+        into:
+          decision: wanted
+          note: Collection materialization has a useful plain-value contract.
+        keep:
+          decision: wanted
+          note: Combined map-filter helpers are strong portability targets.
+        keys:
+          decision: wanted
+          note: Key extraction has a clean plain-value contract.
+        last:
+          decision: wanted
+          note: Tail access has a clean plain-value contract.
+        map:
+          decision: wanted
+          note: Sequence mapping is a strong portability target.
+        map-indexed:
+          decision: wanted
+          note: Indexed mapping is a strong portability target.
+        max:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        merge:
+          decision: wanted
+          note: Map merging is a strong plain-value portability target.
+        min:
+          decision: wanted
+          note: Scalar helpers have a clean plain-value contract.
+        nth:
+          decision: wanted
+          note: Indexed access has a clean plain-value contract.
+        partition-all:
+          decision: wanted
+          note: Sequence chunking is a useful plain-value target.
+        range:
+          decision: wanted
+          note: Numeric range generation has a clean plain-value contract.
+        reduce:
+          decision: wanted
+          note: Reduction helpers are high-value functional targets.
+        remove:
+          decision: wanted
+          note: Predicate-based filtering is a strong portability target.
+        repeat:
+          decision: wanted
+          note: Repetition helpers have a clean plain-value contract.
+        replace:
+          decision: wanted
+          note: Collection replacement helpers are useful plain-value targets.
+        rest:
+          decision: wanted
+          note: Tail access has a clean plain-value contract.
+        reverse:
+          decision: wanted
+          note: Sequence reversal is a useful plain-value target.
+        second:
+          decision: wanted
+          note: Indexed access has a clean plain-value contract.
+        shuffle:
+          decision: skip_low_value
+          note: Randomized sequence helpers are lower-value than deterministic transforms.
+        sort:
+          decision: wanted
+          note: Sequence sorting is a useful plain-value target.
+        sort-by:
+          decision: wanted
+          note: Keyed sequence sorting is a useful plain-value target.
+        take:
+          decision: wanted
+          note: Sequence slicing helpers are valuable plain-value targets.
+        take-while:
+          decision: wanted
+          note: Predicate-based slicing still has a clean plain-value contract.
+        vals:
+          decision: wanted
+          note: Value extraction has a clean plain-value contract.
+        zipmap:
+          decision: wanted
+          note: Pair-to-map helpers are strong plain-value targets.
     string:
       title: clojure.string
-      decisions: {}
+      default:
+        decision: wanted
+        note: clojure.string helpers are strong plain-value portability targets.
     Math:
       title: java.lang.Math
-      decisions: {}
+      default:
+        decision: wanted
+        note: java.lang.Math helpers map cleanly to JS numbers.
 
 r:
   title: R
   namespaces:
     base:
       title: base package
-      decisions: {}
+      default:
+        decision: skip_runtime_model
+        note: R base mixes language syntax, S3/S4 dispatch, environments, and host-runtime state too broadly for one direct Locutus wishlist.
+      decisions:
+        all:
+          decision: wanted
+          note: Aggregate predicate helpers are strong plain-value targets.
+        any:
+          decision: wanted
+          note: Aggregate predicate helpers are strong plain-value targets.
+        append:
+          decision: wanted
+          note: Vector concatenation helpers have a clean plain-value contract.
+        cos:
+          decision: wanted
+          note: Scalar math helpers remain useful plain-value targets.
+        diff:
+          decision: wanted
+          note: Sequence differencing has a clean plain-value contract.
+        duplicated:
+          decision: wanted
+          note: Duplicate detection is a strong plain-value target.
+        endsWith:
+          decision: wanted
+          note: String boundary helpers are strong portability targets.
+        grepl:
+          decision: wanted
+          note: Regex predicate helpers are strong portability targets.
+        gsub:
+          decision: wanted
+          note: Regex replacement helpers are strong portability targets.
+        mean:
+          decision: wanted
+          note: Aggregate math helpers remain useful portability targets.
+        order:
+          decision: wanted
+          note: Ordering helpers are useful plain-value targets.
+        pmax:
+          decision: wanted
+          note: Elementwise aggregate helpers have a clean plain-value contract.
+        pmin:
+          decision: wanted
+          note: Elementwise aggregate helpers have a clean plain-value contract.
+        rank:
+          decision: wanted
+          note: Ordering helpers are useful plain-value targets.
+        sample:
+          decision: skip_low_value
+          note: Randomized sampling is lower-value than deterministic transforms.
+        sin:
+          decision: wanted
+          note: Scalar math helpers remain useful plain-value targets.
+        sort:
+          decision: wanted
+          note: Ordering helpers are useful plain-value targets.
+        startsWith:
+          decision: wanted
+          note: String boundary helpers are strong portability targets.
+        sub:
+          decision: wanted
+          note: Regex replacement helpers are strong portability targets.
+        substr:
+          decision: wanted
+          note: String slicing helpers are strong portability targets.
+        trimws:
+          decision: wanted
+          note: Trimming helpers are strong plain-value targets.
+        unique:
+          decision: wanted
+          note: De-duplication has a clean plain-value contract.
+        which:
+          decision: wanted
+          note: Index selection helpers have a clean plain-value contract.
+        which.max:
+          decision: wanted
+          note: Index selection helpers have a clean plain-value contract.
+        which.min:
+          decision: wanted
+          note: Index selection helpers have a clean plain-value contract.
 
 rust:
   title: Rust
   namespaces:
     str:
       title: std::str
-      decisions: {}
+      default:
+        decision: wanted
+        note: Remaining string helpers are useful plain-value portability targets unless they depend on iterators or byte semantics.
+      decisions:
+        bytes:
+          decision: skip_plain_value_mismatch
+          note: Byte iterators do not fit Locutus' current plain-value model.
+        char_indices:
+          decision: skip_runtime_model
+          note: Iterator-returning APIs do not fit Locutus' plain-value model.
+        chars:
+          decision: skip_runtime_model
+          note: Iterator-returning APIs do not fit Locutus' plain-value model.
+        matches:
+          decision: skip_runtime_model
+          note: Iterator-returning APIs do not fit Locutus' plain-value model.
+        parse:
+          decision: skip_plain_value_mismatch
+          note: Generic trait-driven parsing does not map cleanly to JS plain values.
+        rmatch_indices:
+          decision: skip_runtime_model
+          note: Iterator-returning APIs do not fit Locutus' plain-value model.
+        rmatches:
+          decision: skip_runtime_model
+          note: Iterator-returning APIs do not fit Locutus' plain-value model.
+        trim_matches:
+          decision: skip_runtime_model
+          note: Pattern-driven trimming does not map cleanly to one stable plain-value contract.

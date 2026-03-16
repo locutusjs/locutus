@@ -27,6 +27,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.23...main).
 
+### Inventory
+
+- Reworked the upstream-surface inventory into a compact triage model with namespace defaults and wildcard rules, so we can classify large upstream catalogs without per-function noise.
+- Drove the checked-in upstream inventory to `untriaged: 0` across all current languages and namespaces, and surfaced the resulting keep/skip/wanted state more clearly on the website.
+
 ## v3.0.23
 
 Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.22...v3.0.23).

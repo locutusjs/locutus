@@ -56,13 +56,26 @@ golang:
   namespaces:
     filepath:
       title: path/filepath package
+      default:
+        decision: wanted
+        note: Filepath helpers are strong plain string portability targets.
+      rules:
+        - match: 'Walk*'
+          decision: skip_side_effects
+          note: Filesystem traversal depends on host state and callbacks.
       decisions:
-        Join:
-          decision: wanted
-          note: Natural follow-up to Rel for path composition.
+        HasPrefix:
+          decision: skip_low_value
+          note: Deprecated path-prefix checks add little value to the roadmap.
 ```
 
-Every language and namespace that exists in the checked-in upstream snapshots must also exist in this inventory file, even if the `decisions` map is empty. CI fails if inventory coverage is incomplete.
+Decision precedence is:
+
+1. exact `decisions`
+2. first matching `rules` entry
+3. namespace `default`
+
+Every language and namespace that exists in the checked-in upstream snapshots must also exist in this inventory file, even if the namespace only has a `default` and no exact overrides. CI fails if inventory coverage is incomplete.
 
 ## Decision Enum
 
@@ -87,6 +100,22 @@ Rules of thumb:
 - `skip_*` means “upstream exposes this, but it is not a good Locutus target”
 
 The optional `note` should explain the maintainer rationale in one sentence.
+
+## Compact Triage Model
+
+Use the narrowest tool that keeps the inventory readable:
+
+- `decisions` for:
+  - intentional Locutus-only extras
+  - precise one-off non-goals
+  - a short explicit wishlist
+- `rules` for:
+  - prefix families like `curl_*`, `array_*`, `Append*`
+  - broad buckets that would be noisy one entry at a time
+- `default` for:
+  - giant namespaces where the fallback decision is the real story
+
+This keeps the file maintainable even for very large surfaces such as `php/__global`, `clojure/core`, or `r/base`.
 
 ## CI Behavior
 

@@ -2264,3 +2264,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `gh run view 23142187693 --json status,conclusion,jobs`
 - Key learnings:
   - Small parity-target corrections are good release candidates when the behavioral mismatch is clear and user-facing, especially when the board is otherwise clean.
+
+### Iteration 115
+
+2026-03-16
+
+- **Area: Upstream surface inventory triage**
+- Plan:
+  - Replace the first-pass per-function inventory with a more maintainable triage model that can classify whole namespaces without turning the YAML into an unreadable database.
+  - Use that model to drive the current upstream inventory to `untriaged: 0` across every language and namespace, then expose the result more clearly on the website.
+- Progress:
+  - Added namespace-level defaults plus ordered wildcard rules to the upstream-surface inventory schema and evaluator, while keeping exact per-function decisions as the highest-precedence override.
+  - Updated the inventory, docs, and website data so all current upstream entries are now explicitly classified as wanted, intentional extras, or explicit non-goals.
+  - Refined the website presentation so the inventory reads like secondary diagnostics instead of page-top noise: compact summary, collapsible detail, tighter lists, and clearer labels.
+  - Tightened stale-policy detection so unused defaults and wildcard rules fail the same way stale exact entries do.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn build:tests`
+  - `corepack yarn injectweb`
+  - `corepack yarn website:clean && corepack yarn website:build && corepack yarn website:verify`
+  - `corepack yarn check`
+  - `~/code/dotfiles/bin/council.ts review`
+- Key learnings:
+  - The inventory only becomes useful as a roadmap once broad classes of functions can be tagged tersely; exact-only triage does not scale once upstream coverage gets large.

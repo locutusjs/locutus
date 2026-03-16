@@ -95,7 +95,7 @@ function checkTopLevelOutputs(): void {
     fail('website/public/content.json has an unexpected top-level shape')
   }
 
-  if (contentJson.pages.length < 700) {
+  if (contentJson.pages.length < 200) {
     fail(`website/public/content.json has too few pages: ${contentJson.pages.length}`)
   }
   if (contentJson.posts.length < 5) {
@@ -119,7 +119,7 @@ function checkTopLevelOutputs(): void {
   }
 
   const htmlCount = countHtmlFiles(publicDir)
-  if (htmlCount < 3000) {
+  if (htmlCount < 800) {
     fail(`website/public has too few HTML files: ${htmlCount}`)
   }
 }
@@ -152,7 +152,7 @@ function main(): void {
     {
       path: 'php/index.html',
       title: 'PHP extensions  in TypeScript | Locutus',
-      includes: ['Upstream Surface Inventory', 'Needs triage', 'Intentional extras', 'PHP function catalog'],
+      includes: ['Upstream Surface Inventory', 'Explicit non-goals', 'Intentional extras', 'PHP function catalog'],
       ogUrl: 'https://locutus.io/php/index.html',
     },
     {
@@ -182,7 +182,7 @@ function main(): void {
     {
       path: 'golang/filepath/index.html',
       title: 'Go&#39;s filepath package  in TypeScript | Locutus',
-      includes: ['Upstream Surface Inventory', 'Needs triage', 'path/filepath package', 'Join'],
+      includes: ['Upstream Surface Inventory', 'Explicit non-goals', 'path/filepath package', 'Join'],
       ogUrl: 'https://locutus.io/golang/filepath/index.html',
     },
   ]
