@@ -2288,3 +2288,21 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `~/code/dotfiles/bin/council.ts review`
 - Key learnings:
   - The inventory only becomes useful as a roadmap once broad classes of functions can be tagged tersely; exact-only triage does not scale once upstream coverage gets large.
+
+### Iteration 116
+
+2026-03-16
+
+- **Area: Python math expansion**
+- Plan:
+  - Use the newly cleaned upstream inventory as an actual roadmap and take the first sizeable harvest from a high-signal namespace rather than falling back into tiny one-function PRs.
+  - Start with `python/math`, where the remaining surface is mostly pure scalar helpers with low model friction and good parity value.
+- Progress:
+  - Added 18 `python/math` functions in one coherent batch: inverse trig, hyperbolic trig, angle conversion, `copysign`, `hypot`, and `expm1`.
+  - Extended Rosetta to connect the new Python helpers to existing PHP/Ruby math equivalents and new cross-language math groups where no mapping existed yet.
+  - Added focused util coverage for Python-specific edge cases around variadic `hypot` and `copysign` sign propagation, then verified the full batch against `python:3.12`.
+- Validation:
+  - `corepack yarn exec vitest run test/util/python-math-harvest-1.vitest.ts test/generated/python/math/{acos,acosh,asin,asinh,atan,atan2,atanh,copysign,cos,cosh,degrees,expm1,hypot,radians,sin,sinh,tan,tanh}.vitest.ts`
+  - `corepack yarn test:parity python/math/acos python/math/acosh python/math/asin python/math/asinh python/math/atan python/math/atan2 python/math/atanh python/math/copysign python/math/cos python/math/cosh python/math/degrees python/math/expm1 python/math/hypot python/math/radians python/math/sin python/math/sinh python/math/tan python/math/tanh --no-cache`
+- Key learnings:
+  - Local host Python and the parity-target Docker image can disagree by one ulp on floating-point outputs, so the target image remains the only release truth when examples are supposed to be parity-verified.

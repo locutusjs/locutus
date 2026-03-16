@@ -32,6 +32,11 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.23...mai
 - Reworked the upstream-surface inventory into a compact triage model with namespace defaults and wildcard rules, so we can classify large upstream catalogs without per-function noise.
 - Drove the checked-in upstream inventory to `untriaged: 0` across all current languages and namespaces, and surfaced the resulting keep/skip/wanted state more clearly on the website.
 
+### Expansion
+
+- Added a first `python/math` harvest focused on trigonometric and angle-conversion helpers:
+  `acos`, `acosh`, `asin`, `asinh`, `atan`, `atan2`, `atanh`, `copysign`, `cos`, `cosh`, `degrees`, `expm1`, `hypot`, `radians`, `sin`, `sinh`, `tan`, and `tanh`.
+
 ## v3.0.23
 
 Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.22...v3.0.23).

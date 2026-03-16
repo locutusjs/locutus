@@ -259,15 +259,28 @@ src/powershell/string/trimend.ts :: export function trimend(str: string, chars?:
 src/powershell/string/trimstart.ts :: export function trimstart(str: string, chars?: string): string
 src/python/difflib/get_close_matches.ts :: export function get_close_matches( word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6, ): string[]
 src/python/difflib/ndiff.ts :: export function ndiff( a: string[] | unknown, b: string[] | unknown, linejunk: LineJunkPredicate = null, charjunk: CharJunkPredicate = isCharacterJunk, ): string[]
+src/python/math/acos.ts :: export function acos(x: number): number
+src/python/math/acosh.ts :: export function acosh(x: number): number
+src/python/math/asin.ts :: export function asin(x: number): number
+src/python/math/asinh.ts :: export function asinh(x: number): number
+src/python/math/atan.ts :: export function atan(x: number): number
+src/python/math/atan2.ts :: export function atan2(y: number, x: number): number
+src/python/math/atanh.ts :: export function atanh(x: number): number
 src/python/math/ceil.ts :: export function ceil(x: number): number
 src/python/math/comb.ts :: export function comb(n: number | string, k: number | string): number
+src/python/math/copysign.ts :: export function copysign(x: number, y: number): number
+src/python/math/cos.ts :: export function cos(x: number): number
+src/python/math/cosh.ts :: export function cosh(x: number): number
+src/python/math/degrees.ts :: export function degrees(x: number): number
 src/python/math/dist.ts :: export function dist(p: number[] | unknown, q: number[] | unknown): number
 src/python/math/exp.ts :: export function exp(x: number): number
+src/python/math/expm1.ts :: export function expm1(x: number): number
 src/python/math/fabs.ts :: export function fabs(x: number): number
 src/python/math/factorial.ts :: export function factorial(n: number | string): number
 src/python/math/floor.ts :: export function floor(x: number): number
 src/python/math/fsum.ts :: export function fsum(...values: Array<number | string>): number
 src/python/math/gcd.ts :: export function gcd(a: number | string, b: number | string): number
+src/python/math/hypot.ts :: export function hypot(...coordinates: number[]): number
 src/python/math/isclose.ts :: export function isclose( a: number | string, b: number | string, relTol: number | string = 1e-9, absTol: number | string = 0, ): boolean
 src/python/math/isfinite.ts :: export function isfinite(x: number): boolean
 src/python/math/isinf.ts :: export function isinf(x: number): boolean
@@ -279,7 +292,12 @@ src/python/math/log10.ts :: export function log10(x: number): number
 src/python/math/log2.ts :: export function log2(x: number): number
 src/python/math/pow.ts :: export function pow(x: number, y: number): number
 src/python/math/prod.ts :: export function prod(values: ProdValue[] | unknown, start: ProdValue = 1): ProdValue
+src/python/math/radians.ts :: export function radians(x: number): number
+src/python/math/sin.ts :: export function sin(x: number): number
+src/python/math/sinh.ts :: export function sinh(x: number): number
 src/python/math/sqrt.ts :: export function sqrt(x: number): number
+src/python/math/tan.ts :: export function tan(x: number): number
+src/python/math/tanh.ts :: export function tanh(x: number): number
 src/python/math/trunc.ts :: export function trunc(x: number): number
 src/python/re/findall.ts :: export function findall(pattern: string | RegExp, source: string, flags: ReFindallFlags = 0): Array<string | string[]>
 src/python/re/finditer.ts :: export function finditer(pattern: string | RegExp, source: string, flags: ReFinditerFlags = 0): FinditerMatch[]
