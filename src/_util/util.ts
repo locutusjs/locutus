@@ -436,6 +436,15 @@ class Util {
     }
   }
 
+  async injectupstreamsurface(cb: Callback): Promise<void> {
+    try {
+      await this._injectUpstreamSurfaceData()
+      cb(null)
+    } catch (err) {
+      cb(err instanceof Error ? err : new Error(String(err)))
+    }
+  }
+
   async reindex(cb: Callback): Promise<void> {
     try {
       this._reindexBuffer = {}

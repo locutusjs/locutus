@@ -860,3 +860,22 @@ namespaces:
       - ⊻
       - ⊼
       - ⊽
+  - namespace: Statistics
+    title: Statistics module
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Statistics
+    entries:
+      - cor
+      - cov
+      - mean
+      - mean!
+      - median
+      - median!
+      - middle
+      - quantile
+      - quantile!
+      - std
+      - stdm
+      - var
+      - varm

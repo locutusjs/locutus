@@ -14,6 +14,6 @@ if (typeof util[command] === 'function') {
   })
 } else {
   console.error(`Unknown command: ${command}`)
-  console.error('Available commands: reindex, writetests, injectweb')
+  console.error('Available commands: reindex, writetests, injectweb, injectupstreamsurface')
   process.exit(1)
 }

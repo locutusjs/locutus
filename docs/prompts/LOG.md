@@ -2380,3 +2380,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Validation:
   - `corepack yarn test:upstream-surface`
   - `corepack yarn website:verify`
+
+### Iteration 121
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep broadening the most obviously subset-scoped languages only where the next namespace is standard-library, cheap to discover, and high-signal.
+  - Prefer stdlib modules with strong plain-value statistical/math surfaces over broader ecosystem/package explosions.
+- Progress:
+  - Added Julia `Statistics` runtime discovery and policy so Julia is no longer represented solely by `Base`.
+  - Added R `stats` runtime discovery and a narrow plain-value wishlist (`cor`, `cov`, `median`, `quantile`, `sd`, `var`, `weighted.mean`, `mad`, `fivenum`) instead of pretending the whole package is one broad target.
+  - Kept both scope notes explicit so the website now says these languages still track curated standard-library slices rather than full ecosystems.
+- Validation:
+  - `corepack yarn refresh:upstream-surface julia r`
+  - `corepack yarn test:upstream-surface`

@@ -15,34 +15,42 @@ export const JULIA_SKIP_LIST = new Set<string>([])
 const JULIA_DOCKER_IMAGE = 'julia:1.11'
 
 function discoverJuliaUpstreamSurface() {
-  const code = [
-    'entries = sort([String(name) for name in names(Base, all=false) if isdefined(Base, name) && getfield(Base, name) isa Function])',
-    'println(join(entries, "\\n"))',
-  ].join('; ')
+  const discoverNamespace = (namespace: string, title: string, setup: string) => {
+    const code = [
+      setup,
+      `entries = sort([String(name) for name in names(${namespace}, all=false) if isdefined(${namespace}, name) && getfield(${namespace}, name) isa Function])`,
+      'println(join(entries, "\\n"))',
+    ]
+      .filter(Boolean)
+      .join('; ')
 
-  const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code])
-  if (!result.success) {
-    throw new Error(result.error || 'Unable to discover Julia upstream surface')
+    const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover Julia upstream surface for ${namespace}`)
+    }
+
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .sort()
+
+    return {
+      namespace,
+      title,
+      target: 'Julia 1.11',
+      sourceKind: 'runtime' as const,
+      sourceRef: setup ? `${JULIA_DOCKER_IMAGE}:${namespace}` : JULIA_DOCKER_IMAGE,
+      entries,
+    }
   }
-
-  const entries = result.output
-    .trim()
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .sort()
 
   return {
     language: 'julia',
     namespaces: [
-      {
-        namespace: 'Base',
-        title: 'Base module',
-        target: 'Julia 1.11',
-        sourceKind: 'runtime' as const,
-        sourceRef: JULIA_DOCKER_IMAGE,
-        entries,
-      },
+      discoverNamespace('Base', 'Base module', ''),
+      discoverNamespace('Statistics', 'Statistics module', 'using Statistics'),
     ],
   }
 }

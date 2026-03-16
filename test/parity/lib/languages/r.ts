@@ -14,35 +14,51 @@ export const R_SKIP_LIST = new Set<string>([
 const R_DOCKER_IMAGE = 'r-base:4.4.2'
 
 function discoverRUpstreamSurface() {
-  const code = [
-    'vals <- ls(baseenv())',
-    'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = baseenv())))])',
-    "cat(funs, sep='\\n')",
-  ].join('; ')
+  const discoverNamespace = (namespace: string, title: string, code: string) => {
+    const result = runInDocker(R_DOCKER_IMAGE, ['Rscript', '-e', code])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover R upstream surface for ${namespace}`)
+    }
 
-  const result = runInDocker(R_DOCKER_IMAGE, ['Rscript', '-e', code])
-  if (!result.success) {
-    throw new Error(result.error || 'Unable to discover R upstream surface')
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .sort()
+
+    return {
+      namespace,
+      title,
+      target: 'R 4.4',
+      sourceKind: 'runtime' as const,
+      sourceRef: namespace === 'base' ? R_DOCKER_IMAGE : `${R_DOCKER_IMAGE}:${namespace}`,
+      entries,
+    }
   }
-
-  const entries = result.output
-    .trim()
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .sort()
 
   return {
     language: 'r',
     namespaces: [
-      {
-        namespace: 'base',
-        title: 'base package',
-        target: 'R 4.4',
-        sourceKind: 'runtime' as const,
-        sourceRef: R_DOCKER_IMAGE,
-        entries,
-      },
+      discoverNamespace(
+        'base',
+        'base package',
+        [
+          'vals <- ls(baseenv())',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = baseenv())))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'stats',
+        'stats package',
+        [
+          'library(stats)',
+          'vals <- ls(asNamespace("stats"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("stats"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
     ],
   }
 }

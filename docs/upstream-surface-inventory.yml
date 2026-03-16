@@ -731,7 +731,7 @@ python:
 
 julia:
   title: Julia
-  scopeNote: This inventory currently focuses on Julia Base rather than the broader package ecosystem.
+  scopeNote: This inventory currently focuses on Julia Base plus the plain-value `Statistics` standard-library module rather than the broader package ecosystem.
   namespaces:
     Base:
       title: Base module
@@ -760,6 +760,21 @@ julia:
         strip:
           decision: wanted
           note: Trimming helpers are strong plain-value targets.
+    Statistics:
+      title: Statistics module
+      default:
+        decision: wanted
+        note: Aggregate statistics helpers are strong plain-value portability targets in Julia.
+      decisions:
+        mean!:
+          decision: skip_side_effects
+          note: In-place statistics helpers mutate caller-owned arrays.
+        median!:
+          decision: skip_side_effects
+          note: In-place statistics helpers mutate caller-owned arrays.
+        quantile!:
+          decision: skip_side_effects
+          note: In-place statistics helpers mutate caller-owned arrays.
 
 ruby:
   title: Ruby
@@ -1605,6 +1620,7 @@ clojure:
 
 r:
   title: R
+  scopeNote: This inventory currently tracks R `base` plus a small plain-value slice of `stats`, not the broader package ecosystem.
   namespaces:
     base:
       title: base package
@@ -1687,6 +1703,39 @@ r:
         which.min:
           decision: wanted
           note: Index selection helpers have a clean plain-value contract.
+    stats:
+      title: stats package
+      default:
+        decision: skip_runtime_model
+        note: R stats mixes model objects, time-series structures, and formula-driven APIs too broadly for one direct Locutus wishlist.
+      decisions:
+        cor:
+          decision: wanted
+          note: Correlation helpers are strong plain-value statistical targets.
+        cov:
+          decision: wanted
+          note: Covariance helpers are strong plain-value statistical targets.
+        fivenum:
+          decision: wanted
+          note: Five-number summaries produce a clean numeric-array result.
+        mad:
+          decision: wanted
+          note: Robust scalar statistics are useful plain-value targets.
+        median:
+          decision: wanted
+          note: Aggregate statistics helpers are strong plain-value portability targets.
+        quantile:
+          decision: wanted
+          note: Quantile helpers return a clean numeric summary result.
+        sd:
+          decision: wanted
+          note: Aggregate statistics helpers are strong plain-value portability targets.
+        var:
+          decision: wanted
+          note: Aggregate statistics helpers are strong plain-value portability targets.
+        weighted.mean:
+          decision: wanted
+          note: Weighted aggregation has a clean plain-value contract.
 
 rust:
   title: Rust
