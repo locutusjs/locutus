@@ -338,7 +338,7 @@ php:
 
 python:
   title: Python
-  scopeNote: This inventory now tracks Python builtins plus selected plain-value standard-library modules, not the full standard library or object model.
+  scopeNote: This inventory now tracks Python builtins plus a broad plain-value slice of the standard library, not the full standard library or object model.
   namespaces:
     builtins:
       title: builtins module
@@ -728,6 +728,32 @@ python:
       default:
         decision: wanted
         note: Aggregate statistics helpers are strong plain-value portability targets.
+    heapq:
+      title: heapq module
+      default:
+        decision: wanted
+        note: Heap-based selection helpers still have a useful plain-value contract when modeled as array-returning utilities.
+      decisions:
+        heapify:
+          decision: skip_side_effects
+          note: In-place heap mutation is outside Locutus' value-only model.
+        heappush:
+          decision: skip_side_effects
+          note: In-place heap mutation is outside Locutus' value-only model.
+        heappop:
+          decision: skip_side_effects
+          note: In-place heap mutation is outside Locutus' value-only model.
+        heappushpop:
+          decision: skip_side_effects
+          note: In-place heap mutation is outside Locutus' value-only model.
+        heapreplace:
+          decision: skip_side_effects
+          note: In-place heap mutation is outside Locutus' value-only model.
+    textwrap:
+      title: textwrap module
+      default:
+        decision: wanted
+        note: Text formatting and wrapping helpers are strong plain-value portability targets.
 
 julia:
   title: Julia
@@ -778,7 +804,7 @@ julia:
 
 ruby:
   title: Ruby
-  scopeNote: This inventory currently tracks the highest-signal core collection, string, and math surfaces rather than all of Ruby.
+  scopeNote: This inventory currently tracks the highest-signal core collection, scalar, string, and math surfaces rather than all of Ruby.
   namespaces:
     Array:
       title: Array instance methods
@@ -924,10 +950,37 @@ ruby:
       default:
         decision: wanted
         note: Ruby Math helpers map cleanly to JS numbers.
+    Integer:
+      title: Integer instance methods
+      default:
+        decision: wanted
+        note: Ruby Integer helpers are strong scalar portability targets.
+      decisions:
+        downto:
+          decision: skip_runtime_model
+          note: Enumerator-style integer iteration does not fit Locutus' plain-value model.
+        times:
+          decision: skip_runtime_model
+          note: Enumerator-style integer iteration does not fit Locutus' plain-value model.
+        to_r:
+          decision: skip_plain_value_mismatch
+          note: Rational values do not fit Locutus' current plain-value model.
+        upto:
+          decision: skip_runtime_model
+          note: Enumerator-style integer iteration does not fit Locutus' plain-value model.
+    Float:
+      title: Float instance methods
+      default:
+        decision: wanted
+        note: Ruby Float helpers are strong scalar portability targets.
+      decisions:
+        to_r:
+          decision: skip_plain_value_mismatch
+          note: Rational values do not fit Locutus' current plain-value model.
 
 golang:
   title: Go
-  scopeNote: This inventory tracks selected high-value standard-library packages, not all of Go.
+  scopeNote: This inventory tracks a growing set of high-value standard-library packages, not all of Go.
   namespaces:
     net:
       title: net package
@@ -952,6 +1005,117 @@ golang:
       default:
         decision: wanted
         note: Go path helpers are strong plain string portability targets.
+    slices:
+      title: slices package
+      default:
+        decision: wanted
+        note: Pure slice transforms and search helpers are strong portability targets when they do not mutate caller-owned state.
+      decisions:
+        BinarySearchFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Chunk:
+          decision: wanted
+          note: Slice chunking has a clean plain-value contract.
+        Clip:
+          decision: skip_low_value
+          note: Capacity trimming does not matter in JS array semantics.
+        Clone:
+          decision: skip_low_value
+          note: Cloning alone adds little value for JS arrays.
+        Compact:
+          decision: wanted
+          note: Adjacent de-duplication has a clean plain-value contract.
+        CompactFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Compare:
+          decision: wanted
+          note: Lexicographic slice comparison has a clean plain-value contract.
+        CompareFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Concat:
+          decision: wanted
+          note: Slice concatenation maps naturally onto JS arrays.
+        Contains:
+          decision: wanted
+          note: Membership checks have a clean plain-value contract.
+        ContainsFunc:
+          decision: skip_runtime_model
+          note: Predicate-callback variants add more runtime-shape complexity than value.
+        Delete:
+          decision: wanted
+          note: Non-mutating delete semantics can be modeled as array slicing.
+        DeleteFunc:
+          decision: skip_runtime_model
+          note: Predicate-callback deletion adds more runtime-shape complexity than value.
+        Equal:
+          decision: wanted
+          note: Slice equality has a clean plain-value contract.
+        EqualFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Grow:
+          decision: skip_low_value
+          note: Capacity growth does not matter in JS array semantics.
+        Index:
+          decision: wanted
+          note: Membership search has a clean plain-value contract.
+        IndexFunc:
+          decision: skip_runtime_model
+          note: Predicate-callback variants add more runtime-shape complexity than value.
+        Insert:
+          decision: wanted
+          note: Pure slice insertion has a clean plain-value contract.
+        IsSorted:
+          decision: wanted
+          note: Order checks have a clean plain-value contract.
+        IsSortedFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Max:
+          decision: wanted
+          note: Aggregate scalar helpers have a clean plain-value contract.
+        MaxFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Min:
+          decision: wanted
+          note: Aggregate scalar helpers have a clean plain-value contract.
+        MinFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Repeat:
+          decision: wanted
+          note: Slice repetition maps naturally onto array repetition.
+        Replace:
+          decision: wanted
+          note: Pure slice replacement has a clean plain-value contract.
+        Reverse:
+          decision: wanted
+          note: Reversal has a clean plain-value contract.
+        Sort:
+          decision: wanted
+          note: Deterministic slice sorting is a strong portability target.
+        SortFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        SortStableFunc:
+          decision: skip_runtime_model
+          note: Comparator-callback variants add more runtime-shape complexity than value.
+        Sorted:
+          decision: skip_runtime_model
+          note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
+        SortedFunc:
+          decision: skip_runtime_model
+          note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
+        SortedStableFunc:
+          decision: skip_runtime_model
+          note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
+        Values:
+          decision: skip_runtime_model
+          note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
     sort:
       title: sort package
       default:
@@ -1316,7 +1480,7 @@ perl:
 
 powershell:
   title: PowerShell
-  scopeNote: This inventory currently tracks the highest-signal plain-value .NET surfaces for PowerShell first, starting with `System.String` and `System.Math`.
+  scopeNote: This inventory currently tracks the highest-signal plain-value .NET surfaces for PowerShell first, starting with `System.String`, `System.Math`, and `System.Char`.
   namespaces:
     string:
       title: System.String instance methods
@@ -1332,6 +1496,18 @@ powershell:
       default:
         decision: wanted
         note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+    char:
+      title: System.Char static methods
+      default:
+        decision: wanted
+        note: Character classification and case helpers are strong plain-value portability targets.
+      decisions:
+        GetNumericValue:
+          decision: wanted
+          note: Numeric codepoint classification has a clean plain-value contract.
+        GetUnicodeCategory:
+          decision: skip_runtime_model
+          note: .NET enum return values do not map cleanly onto one stable Locutus contract yet.
 
 elixir:
   title: Elixir
@@ -1476,6 +1652,11 @@ elixir:
         from_struct:
           decision: skip_runtime_model
           note: Struct-specific reflection does not fit Locutus' plain-value model.
+    Tuple:
+      title: Tuple module
+      default:
+        decision: wanted
+        note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
 
 clojure:
   title: Clojure
@@ -1739,13 +1920,37 @@ r:
 
 rust:
   title: Rust
-  scopeNote: This inventory currently tracks `str` plus the highest-signal `std::cmp` scalar helpers first, not the full Rust standard library.
+  scopeNote: This inventory currently tracks `str` plus the highest-signal scalar helpers from `std::cmp` and primitive `char`, not the full Rust standard library.
   namespaces:
     cmp:
       title: std::cmp
       default:
         decision: wanted
         note: Comparison helpers over plain values are strong Rust portability targets.
+    char:
+      title: char primitive methods
+      default:
+        decision: wanted
+        note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+      decisions:
+        encode_utf16:
+          decision: skip_runtime_model
+          note: Iterator-like encoding sinks do not fit Locutus' plain-value model.
+        escape_debug:
+          decision: skip_runtime_model
+          note: Escape iterators do not fit Locutus' plain-value model.
+        escape_default:
+          decision: skip_runtime_model
+          note: Escape iterators do not fit Locutus' plain-value model.
+        escape_unicode:
+          decision: skip_runtime_model
+          note: Escape iterators do not fit Locutus' plain-value model.
+        to_lowercase:
+          decision: skip_runtime_model
+          note: Multi-codepoint case iterators do not fit one stable plain-value contract.
+        to_uppercase:
+          decision: skip_runtime_model
+          note: Multi-codepoint case iterators do not fit one stable plain-value contract.
     str:
       title: std::str
       default:

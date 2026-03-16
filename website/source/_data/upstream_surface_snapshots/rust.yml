@@ -12,6 +12,43 @@ namespaces:
       - min
       - min_by
       - min_by_key
+  - namespace: char
+    title: char primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.char.html
+    entries:
+      - encode_utf16
+      - escape_debug
+      - escape_default
+      - escape_unicode
+      - from_digit
+      - is_alphabetic
+      - is_alphanumeric
+      - is_ascii
+      - is_ascii_alphabetic
+      - is_ascii_alphanumeric
+      - is_ascii_control
+      - is_ascii_digit
+      - is_ascii_graphic
+      - is_ascii_hexdigit
+      - is_ascii_lowercase
+      - is_ascii_punctuation
+      - is_ascii_uppercase
+      - is_ascii_whitespace
+      - is_control
+      - is_digit
+      - is_lowercase
+      - is_numeric
+      - is_uppercase
+      - is_whitespace
+      - len_utf8
+      - len_utf16
+      - to_ascii_lowercase
+      - to_ascii_uppercase
+      - to_digit
+      - to_lowercase
+      - to_uppercase
   - namespace: str
     title: str primitive methods
     target: Rust 1.85

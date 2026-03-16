@@ -1,4 +1,4 @@
-generatedAt: '2026-03-16T21:18:25.760Z'
+generatedAt: '2026-03-16T21:27:00.290Z'
 languages:
   awk:
     language: awk
@@ -4849,13 +4849,13 @@ languages:
     language: elixir
     title: Elixir
     scopeNote: This inventory currently tracks the most plain-value-friendly core modules first, not every Elixir or OTP module.
-    namespaceCount: 7
+    namespaceCount: 8
     shippedCount: 14
-    catalogCount: 295
+    catalogCount: 302
     catalogShippedCount: 14
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 229
+    wantedCount: 236
     skippedCount: 52
     untriagedCount: 0
     coveragePercent: 5
@@ -6220,20 +6220,66 @@ languages:
           - String
         catalogShippedCount: 5
         coveragePercent: 9
+      - namespace: Tuple
+        title: Tuple module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - append
+          - delete_at
+          - duplicate
+          - insert_at
+          - product
+          - sum
+          - to_list
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: append
+            decision: wanted
+            note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+          - name: delete_at
+            decision: wanted
+            note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+          - name: duplicate
+            decision: wanted
+            note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+          - name: insert_at
+            decision: wanted
+            note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+          - name: product
+            decision: wanted
+            note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+          - name: sum
+            decision: wanted
+            note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+          - name: to_list
+            decision: wanted
+            note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
   golang:
     language: golang
     title: Go
-    scopeNote: This inventory tracks selected high-value standard-library packages, not all of Go.
-    namespaceCount: 9
+    scopeNote: This inventory tracks a growing set of high-value standard-library packages, not all of Go.
+    namespaceCount: 10
     shippedCount: 87
-    catalogCount: 272
+    catalogCount: 312
     catalogShippedCount: 87
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 60
-    skippedCount: 125
+    wantedCount: 81
+    skippedCount: 144
     untriagedCount: 0
-    coveragePercent: 32
+    coveragePercent: 28
     namespaces:
       - namespace: filepath
         title: path/filepath package
@@ -6552,6 +6598,194 @@ languages:
           - path
         catalogShippedCount: 7
         coveragePercent: 88
+      - namespace: slices
+        title: slices package
+        target: Go 1.23
+        sourceKind: runtime
+        sourceRef: golang:1.23:slices
+        catalogEntries:
+          - All
+          - AppendSeq
+          - Backward
+          - BinarySearch
+          - BinarySearchFunc
+          - Chunk
+          - Clip
+          - Clone
+          - Collect
+          - Compact
+          - CompactFunc
+          - Compare
+          - CompareFunc
+          - Concat
+          - Contains
+          - ContainsFunc
+          - Delete
+          - DeleteFunc
+          - Equal
+          - EqualFunc
+          - Grow
+          - Index
+          - IndexFunc
+          - Insert
+          - IsSorted
+          - IsSortedFunc
+          - Max
+          - MaxFunc
+          - Min
+          - MinFunc
+          - Repeat
+          - Replace
+          - Reverse
+          - Sort
+          - SortFunc
+          - SortStableFunc
+          - Sorted
+          - SortedFunc
+          - SortedStableFunc
+          - Values
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: All
+            decision: wanted
+            note: >-
+              Pure slice transforms and search helpers are strong portability targets when they do not mutate
+              caller-owned state.
+          - name: AppendSeq
+            decision: wanted
+            note: >-
+              Pure slice transforms and search helpers are strong portability targets when they do not mutate
+              caller-owned state.
+          - name: Backward
+            decision: wanted
+            note: >-
+              Pure slice transforms and search helpers are strong portability targets when they do not mutate
+              caller-owned state.
+          - name: BinarySearch
+            decision: wanted
+            note: >-
+              Pure slice transforms and search helpers are strong portability targets when they do not mutate
+              caller-owned state.
+          - name: Chunk
+            decision: wanted
+            note: Slice chunking has a clean plain-value contract.
+          - name: Collect
+            decision: wanted
+            note: >-
+              Pure slice transforms and search helpers are strong portability targets when they do not mutate
+              caller-owned state.
+          - name: Compact
+            decision: wanted
+            note: Adjacent de-duplication has a clean plain-value contract.
+          - name: Compare
+            decision: wanted
+            note: Lexicographic slice comparison has a clean plain-value contract.
+          - name: Concat
+            decision: wanted
+            note: Slice concatenation maps naturally onto JS arrays.
+          - name: Contains
+            decision: wanted
+            note: Membership checks have a clean plain-value contract.
+          - name: Delete
+            decision: wanted
+            note: Non-mutating delete semantics can be modeled as array slicing.
+          - name: Equal
+            decision: wanted
+            note: Slice equality has a clean plain-value contract.
+          - name: Index
+            decision: wanted
+            note: Membership search has a clean plain-value contract.
+          - name: Insert
+            decision: wanted
+            note: Pure slice insertion has a clean plain-value contract.
+          - name: IsSorted
+            decision: wanted
+            note: Order checks have a clean plain-value contract.
+          - name: Max
+            decision: wanted
+            note: Aggregate scalar helpers have a clean plain-value contract.
+          - name: Min
+            decision: wanted
+            note: Aggregate scalar helpers have a clean plain-value contract.
+          - name: Repeat
+            decision: wanted
+            note: Slice repetition maps naturally onto array repetition.
+          - name: Replace
+            decision: wanted
+            note: Pure slice replacement has a clean plain-value contract.
+          - name: Reverse
+            decision: wanted
+            note: Reversal has a clean plain-value contract.
+          - name: Sort
+            decision: wanted
+            note: Deterministic slice sorting is a strong portability target.
+        skippedEntries:
+          - name: BinarySearchFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: Clip
+            decision: skip_low_value
+            note: Capacity trimming does not matter in JS array semantics.
+          - name: Clone
+            decision: skip_low_value
+            note: Cloning alone adds little value for JS arrays.
+          - name: CompactFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: CompareFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: ContainsFunc
+            decision: skip_runtime_model
+            note: Predicate-callback variants add more runtime-shape complexity than value.
+          - name: DeleteFunc
+            decision: skip_runtime_model
+            note: Predicate-callback deletion adds more runtime-shape complexity than value.
+          - name: EqualFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: Grow
+            decision: skip_low_value
+            note: Capacity growth does not matter in JS array semantics.
+          - name: IndexFunc
+            decision: skip_runtime_model
+            note: Predicate-callback variants add more runtime-shape complexity than value.
+          - name: IsSortedFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: MaxFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: MinFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: Sorted
+            decision: skip_runtime_model
+            note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
+          - name: SortedFunc
+            decision: skip_runtime_model
+            note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
+          - name: SortedStableFunc
+            decision: skip_runtime_model
+            note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
+          - name: SortFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: SortStableFunc
+            decision: skip_runtime_model
+            note: Comparator-callback variants add more runtime-shape complexity than value.
+          - name: Values
+            decision: skip_runtime_model
+            note: Iterator-oriented collection helpers do not map cleanly to Locutus today.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: sort
         title: sort package
         target: Go 1.23
@@ -17083,18 +17317,112 @@ languages:
     title: PowerShell
     scopeNote: >-
       This inventory currently tracks the highest-signal plain-value .NET surfaces for PowerShell first, starting with
-      `System.String` and `System.Math`.
-    namespaceCount: 2
+      `System.String`, `System.Math`, and `System.Char`.
+    namespaceCount: 3
     shippedCount: 18
-    catalogCount: 49
+    catalogCount: 68
     catalogShippedCount: 18
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 30
-    skippedCount: 1
+    wantedCount: 48
+    skippedCount: 2
     untriagedCount: 0
-    coveragePercent: 37
+    coveragePercent: 26
     namespaces:
+      - namespace: char
+        title: System.Char static methods
+        target: PowerShell 7.4
+        sourceKind: manual
+        sourceRef: https://learn.microsoft.com/dotnet/api/system.char
+        catalogEntries:
+          - ConvertFromUtf32
+          - ConvertToUtf32
+          - GetNumericValue
+          - GetUnicodeCategory
+          - IsAscii
+          - IsControl
+          - IsDigit
+          - IsLetter
+          - IsLetterOrDigit
+          - IsLower
+          - IsNumber
+          - IsPunctuation
+          - IsSeparator
+          - IsSymbol
+          - IsUpper
+          - IsWhiteSpace
+          - Parse
+          - ToLower
+          - ToUpper
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: ConvertFromUtf32
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: ConvertToUtf32
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: GetNumericValue
+            decision: wanted
+            note: Numeric codepoint classification has a clean plain-value contract.
+          - name: IsAscii
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsControl
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsDigit
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsLetter
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsLetterOrDigit
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsLower
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsNumber
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsPunctuation
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsSeparator
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsSymbol
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsUpper
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: IsWhiteSpace
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: Parse
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: ToLower
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+          - name: ToUpper
+            decision: wanted
+            note: Character classification and case helpers are strong plain-value portability targets.
+        skippedEntries:
+          - name: GetUnicodeCategory
+            decision: skip_runtime_model
+            note: .NET enum return values do not map cleanly onto one stable Locutus contract yet.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: math
         title: System.Math static methods
         target: PowerShell 7.4
@@ -17296,18 +17624,18 @@ languages:
     language: python
     title: Python
     scopeNote: >-
-      This inventory now tracks Python builtins plus selected plain-value standard-library modules, not the full
+      This inventory now tracks Python builtins plus a broad plain-value slice of the standard library, not the full
       standard library or object model.
-    namespaceCount: 10
+    namespaceCount: 12
     shippedCount: 56
-    catalogCount: 264
+    catalogCount: 277
     catalogShippedCount: 56
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 128
-    skippedCount: 80
+    wantedCount: 136
+    skippedCount: 85
     untriagedCount: 0
-    coveragePercent: 21
+    coveragePercent: 20
     namespaces:
       - namespace: bisect
         title: bisect
@@ -17745,6 +18073,62 @@ languages:
           - name: wraps
             decision: skip_runtime_model
             note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: heapq
+        title: heapq
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - heapify
+          - heappop
+          - heappush
+          - heappushpop
+          - heapreplace
+          - merge
+          - nlargest
+          - nsmallest
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: merge
+            decision: wanted
+            note: >-
+              Heap-based selection helpers still have a useful plain-value contract when modeled as array-returning
+              utilities.
+          - name: nlargest
+            decision: wanted
+            note: >-
+              Heap-based selection helpers still have a useful plain-value contract when modeled as array-returning
+              utilities.
+          - name: nsmallest
+            decision: wanted
+            note: >-
+              Heap-based selection helpers still have a useful plain-value contract when modeled as array-returning
+              utilities.
+        skippedEntries:
+          - name: heapify
+            decision: skip_side_effects
+            note: In-place heap mutation is outside Locutus' value-only model.
+          - name: heappop
+            decision: skip_side_effects
+            note: In-place heap mutation is outside Locutus' value-only model.
+          - name: heappush
+            decision: skip_side_effects
+            note: In-place heap mutation is outside Locutus' value-only model.
+          - name: heappushpop
+            decision: skip_side_effects
+            note: In-place heap mutation is outside Locutus' value-only model.
+          - name: heapreplace
+            decision: skip_side_effects
+            note: In-place heap mutation is outside Locutus' value-only model.
         untriagedEntries: []
         staleDecisions: []
         categories: []
@@ -18441,6 +18825,44 @@ languages:
           - string
         catalogShippedCount: 10
         coveragePercent: 100
+      - namespace: textwrap
+        title: textwrap
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - dedent
+          - fill
+          - indent
+          - shorten
+          - wrap
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: dedent
+            decision: wanted
+            note: Text formatting and wrapping helpers are strong plain-value portability targets.
+          - name: fill
+            decision: wanted
+            note: Text formatting and wrapping helpers are strong plain-value portability targets.
+          - name: indent
+            decision: wanted
+            note: Text formatting and wrapping helpers are strong plain-value portability targets.
+          - name: shorten
+            decision: wanted
+            note: Text formatting and wrapping helpers are strong plain-value portability targets.
+          - name: wrap
+            decision: wanted
+            note: Text formatting and wrapping helpers are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
   r:
     language: r
     title: R
@@ -31411,19 +31833,161 @@ languages:
     language: rust
     title: Rust
     scopeNote: >-
-      This inventory currently tracks `str` plus the highest-signal `std::cmp` scalar helpers first, not the full Rust
-      standard library.
-    namespaceCount: 2
+      This inventory currently tracks `str` plus the highest-signal scalar helpers from `std::cmp` and primitive `char`,
+      not the full Rust standard library.
+    namespaceCount: 3
     shippedCount: 23
-    catalogCount: 40
+    catalogCount: 71
     catalogShippedCount: 23
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 9
-    skippedCount: 8
+    wantedCount: 34
+    skippedCount: 14
     untriagedCount: 0
-    coveragePercent: 57
+    coveragePercent: 32
     namespaces:
+      - namespace: char
+        title: char primitive methods
+        target: Rust 1.85
+        sourceKind: manual
+        sourceRef: https://doc.rust-lang.org/std/primitive.char.html
+        catalogEntries:
+          - encode_utf16
+          - escape_debug
+          - escape_default
+          - escape_unicode
+          - from_digit
+          - is_alphabetic
+          - is_alphanumeric
+          - is_ascii
+          - is_ascii_alphabetic
+          - is_ascii_alphanumeric
+          - is_ascii_control
+          - is_ascii_digit
+          - is_ascii_graphic
+          - is_ascii_hexdigit
+          - is_ascii_lowercase
+          - is_ascii_punctuation
+          - is_ascii_uppercase
+          - is_ascii_whitespace
+          - is_control
+          - is_digit
+          - is_lowercase
+          - is_numeric
+          - is_uppercase
+          - is_whitespace
+          - len_utf16
+          - len_utf8
+          - to_ascii_lowercase
+          - to_ascii_uppercase
+          - to_digit
+          - to_lowercase
+          - to_uppercase
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: from_digit
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_alphabetic
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_alphanumeric
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_alphabetic
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_alphanumeric
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_control
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_digit
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_graphic
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_hexdigit
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_lowercase
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_punctuation
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_uppercase
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_ascii_whitespace
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_control
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_digit
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_lowercase
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_numeric
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_uppercase
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: is_whitespace
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: len_utf16
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: len_utf8
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: to_ascii_lowercase
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: to_ascii_uppercase
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+          - name: to_digit
+            decision: wanted
+            note: Character classification and ASCII-case helpers are strong plain-value portability targets.
+        skippedEntries:
+          - name: encode_utf16
+            decision: skip_runtime_model
+            note: Iterator-like encoding sinks do not fit Locutus' plain-value model.
+          - name: escape_debug
+            decision: skip_runtime_model
+            note: Escape iterators do not fit Locutus' plain-value model.
+          - name: escape_default
+            decision: skip_runtime_model
+            note: Escape iterators do not fit Locutus' plain-value model.
+          - name: escape_unicode
+            decision: skip_runtime_model
+            note: Escape iterators do not fit Locutus' plain-value model.
+          - name: to_lowercase
+            decision: skip_runtime_model
+            note: Multi-codepoint case iterators do not fit one stable plain-value contract.
+          - name: to_uppercase
+            decision: skip_runtime_model
+            note: Multi-codepoint case iterators do not fit one stable plain-value contract.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: cmp
         title: std::cmp functions
         target: Rust 1.85
@@ -31585,18 +32149,18 @@ languages:
     language: ruby
     title: Ruby
     scopeNote: >-
-      This inventory currently tracks the highest-signal core collection, string, and math surfaces rather than all of
-      Ruby.
-    namespaceCount: 5
+      This inventory currently tracks the highest-signal core collection, scalar, string, and math surfaces rather than
+      all of Ruby.
+    namespaceCount: 7
     shippedCount: 44
-    catalogCount: 470
+    catalogCount: 617
     catalogShippedCount: 44
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 355
-    skippedCount: 71
+    wantedCount: 497
+    skippedCount: 76
     untriagedCount: 0
-    coveragePercent: 9
+    coveragePercent: 7
     namespaces:
       - namespace: Array
         title: Array instance methods
@@ -32387,6 +32951,268 @@ languages:
         categories: []
         catalogShippedCount: 0
         coveragePercent: 0
+      - namespace: Float
+        title: Float instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - '%'
+          - '*'
+          - '**'
+          - +
+          - +@
+          - '-'
+          - '-@'
+          - /
+          - <
+          - <=
+          - '>'
+          - '>='
+          - abs
+          - abs2
+          - angle
+          - arg
+          - between?
+          - ceil
+          - clamp
+          - coerce
+          - conj
+          - conjugate
+          - denominator
+          - div
+          - divmod
+          - fdiv
+          - finite?
+          - floor
+          - i
+          - imag
+          - imaginary
+          - infinite?
+          - integer?
+          - magnitude
+          - modulo
+          - nan?
+          - negative?
+          - next_float
+          - nonzero?
+          - numerator
+          - phase
+          - polar
+          - positive?
+          - prev_float
+          - quo
+          - rationalize
+          - real
+          - real?
+          - rect
+          - rectangular
+          - remainder
+          - round
+          - singleton_method_added
+          - step
+          - to_c
+          - to_f
+          - to_i
+          - to_int
+          - to_r
+          - truncate
+          - zero?
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: '-'
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: '-@'
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: '*'
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: '**'
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: /
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: '%'
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: +
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: +@
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: <
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: <=
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: '>'
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: '>='
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: abs
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: abs2
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: angle
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: arg
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: between?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: ceil
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: clamp
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: coerce
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: conj
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: conjugate
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: denominator
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: div
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: divmod
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: fdiv
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: finite?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: floor
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: i
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: imag
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: imaginary
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: infinite?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: integer?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: magnitude
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: modulo
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: nan?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: negative?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: next_float
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: nonzero?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: numerator
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: phase
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: polar
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: positive?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: prev_float
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: quo
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: rationalize
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: real
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: real?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: rect
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: rectangular
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: remainder
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: round
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: singleton_method_added
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: step
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: to_c
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: to_f
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: to_i
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: to_int
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: truncate
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+          - name: zero?
+            decision: wanted
+            note: Ruby Float helpers are strong scalar portability targets.
+        skippedEntries:
+          - name: to_r
+            decision: skip_plain_value_mismatch
+            note: Rational values do not fit Locutus' current plain-value model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: Hash
         title: Hash instance methods
         target: Ruby 3.3
@@ -32876,6 +33702,368 @@ languages:
           - name: transform_values!
             decision: skip_side_effects
             note: Bang methods mutate caller-owned hash state.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: Integer
+        title: Integer instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - '%'
+          - '&'
+          - '*'
+          - '**'
+          - +
+          - +@
+          - '-'
+          - '-@'
+          - /
+          - <
+          - '<<'
+          - <=
+          - '>'
+          - '>='
+          - '>>'
+          - '[]'
+          - ^
+          - abs
+          - abs2
+          - allbits?
+          - angle
+          - anybits?
+          - arg
+          - between?
+          - bit_length
+          - ceil
+          - ceildiv
+          - chr
+          - clamp
+          - coerce
+          - conj
+          - conjugate
+          - denominator
+          - digits
+          - div
+          - divmod
+          - downto
+          - even?
+          - fdiv
+          - finite?
+          - floor
+          - gcd
+          - gcdlcm
+          - i
+          - imag
+          - imaginary
+          - infinite?
+          - integer?
+          - lcm
+          - magnitude
+          - modulo
+          - negative?
+          - next
+          - nobits?
+          - nonzero?
+          - numerator
+          - odd?
+          - ord
+          - phase
+          - polar
+          - positive?
+          - pow
+          - pred
+          - quo
+          - rationalize
+          - real
+          - real?
+          - rect
+          - rectangular
+          - remainder
+          - round
+          - singleton_method_added
+          - size
+          - step
+          - succ
+          - times
+          - to_c
+          - to_f
+          - to_i
+          - to_int
+          - to_r
+          - truncate
+          - upto
+          - zero?
+          - '|'
+          - '~'
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: '-'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '-@'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '[]'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '*'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '**'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: /
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '&'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '%'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: ^
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: +
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: +@
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: <
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '<<'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: <=
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '>'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '>='
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '>>'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '|'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: '~'
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: abs
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: abs2
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: allbits?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: angle
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: anybits?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: arg
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: between?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: bit_length
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: ceil
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: ceildiv
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: chr
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: clamp
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: coerce
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: conj
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: conjugate
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: denominator
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: digits
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: div
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: divmod
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: even?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: fdiv
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: finite?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: floor
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: gcd
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: gcdlcm
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: i
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: imag
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: imaginary
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: infinite?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: integer?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: lcm
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: magnitude
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: modulo
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: negative?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: next
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: nobits?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: nonzero?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: numerator
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: odd?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: ord
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: phase
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: polar
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: positive?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: pow
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: pred
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: quo
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: rationalize
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: real
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: real?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: rect
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: rectangular
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: remainder
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: round
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: singleton_method_added
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: size
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: step
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: succ
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: to_c
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: to_f
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: to_i
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: to_int
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: truncate
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+          - name: zero?
+            decision: wanted
+            note: Ruby Integer helpers are strong scalar portability targets.
+        skippedEntries:
+          - name: downto
+            decision: skip_runtime_model
+            note: Enumerator-style integer iteration does not fit Locutus' plain-value model.
+          - name: times
+            decision: skip_runtime_model
+            note: Enumerator-style integer iteration does not fit Locutus' plain-value model.
+          - name: to_r
+            decision: skip_plain_value_mismatch
+            note: Rational values do not fit Locutus' current plain-value model.
+          - name: upto
+            decision: skip_runtime_model
+            note: Enumerator-style integer iteration does not fit Locutus' plain-value model.
         untriagedEntries: []
         staleDecisions: []
         categories: []

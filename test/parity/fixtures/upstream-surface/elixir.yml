@@ -337,3 +337,16 @@ namespaces:
       - upcase
       - valid?
       - valid_character?
+  - namespace: Tuple
+    title: Tuple module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - append
+      - delete_at
+      - duplicate
+      - insert_at
+      - product
+      - sum
+      - to_list

@@ -31,6 +31,7 @@ import builtins
 import difflib
 import bisect
 import functools
+import heapq
 import inspect
 import itertools
 import json
@@ -39,17 +40,20 @@ import operator
 import re
 import statistics
 import string
+import textwrap
 
 modules = {
   "builtins": {"module": builtins, "allowedModules": ["builtins", "io"]},
   "bisect": {"module": bisect, "allowedModules": ["bisect", "_bisect"]},
   "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
+  "heapq": {"module": heapq, "allowedModules": ["heapq", "_heapq"]},
   "itertools": {"module": itertools, "allowedModules": ["itertools"]},
   "math": {"module": math, "allowedModules": ["math"]},
   "operator": {"module": operator, "allowedModules": ["operator", "_operator"]},
   "re": {"module": re, "allowedModules": ["re"]},
   "statistics": {"module": statistics, "allowedModules": ["statistics"]},
   "string": {"module": string, "allowedModules": ["string"]},
+  "textwrap": {"module": textwrap, "allowedModules": ["textwrap"]},
   "difflib": {"module": difflib, "allowedModules": ["difflib"]},
 }
 

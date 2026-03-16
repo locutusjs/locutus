@@ -51,6 +51,7 @@ function discoverElixirUpstreamSurface() {
       discoverModule('List', 'List module'),
       discoverModule('Map', 'Map module'),
       discoverModule('String', 'String module'),
+      discoverModule('Tuple', 'Tuple module'),
     ],
   }
 }

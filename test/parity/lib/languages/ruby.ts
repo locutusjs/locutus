@@ -12,7 +12,7 @@ import type { LanguageHandler } from '../types.ts'
 // Ruby method mapping: JS function name → Ruby method name and category
 interface RubyMethodInfo {
   rubyMethod: string
-  category: 'String' | 'Array' | 'Math'
+  category: 'String' | 'Array' | 'Math' | 'Integer' | 'Float'
   isInstanceMethod: boolean // true for str.method, false for Module.method(arg)
 }
 
@@ -118,6 +118,22 @@ snapshots = [
     sourceKind: 'runtime',
     sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: Math.singleton_methods(false).map(&:to_s).uniq.sort
+  },
+  {
+    namespace: 'Integer',
+    title: 'Integer instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Integer)
+  },
+  {
+    namespace: 'Float',
+    title: 'Float instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Float)
   }
 ]
 

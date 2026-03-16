@@ -104,6 +104,20 @@ namespaces:
       - total_ordering
       - update_wrapper
       - wraps
+  - namespace: heapq
+    title: heapq
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - heapify
+      - heappop
+      - heappush
+      - heappushpop
+      - heapreplace
+      - merge
+      - nlargest
+      - nsmallest
   - namespace: itertools
     title: itertools
     target: Python 3.12
@@ -312,6 +326,17 @@ namespaces:
       - printable
       - punctuation
       - whitespace
+  - namespace: textwrap
+    title: textwrap
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - dedent
+      - fill
+      - indent
+      - shorten
+      - wrap
   - namespace: difflib
     title: difflib
     target: Python 3.12

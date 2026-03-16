@@ -2396,3 +2396,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Validation:
   - `corepack yarn refresh:upstream-surface julia r`
   - `corepack yarn test:upstream-surface`
+
+### Iteration 122
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep the same atomic PR moving by widening the remaining narrowest standard-library slices rather than deepening one language too early.
+  - Use runtime discovery where it is cheap and trustworthy, and small manual catalogs where that is the cleaner option.
+- Progress:
+  - Added Python `heapq` and `textwrap`, Ruby `Integer` and `Float`, Go `slices`, and Elixir `Tuple` to the tracked upstream inventory.
+  - Added PowerShell `System.Char` and Rust primitive `char` as manual inventory surfaces so those languages are no longer represented by only one or two categories.
+  - Fixed Go `go doc` parsing for generic functions so package inventories like `slices` record clean symbol names instead of signature fragments.
+  - Regenerated the mirrored website `_data` inventory artifacts so the site now reflects the broader scope on the same PR.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python ruby golang elixir`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build && corepack yarn website:verify`
+  - `corepack yarn check`
+- Key learnings:
+  - Generic upstream docs and runtime introspection need namespace-specific normalization hooks; otherwise the inventory stays “green” only by encoding upstream noise instead of real symbols.

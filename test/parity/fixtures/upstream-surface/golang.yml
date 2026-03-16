@@ -92,6 +92,52 @@ namespaces:
       - Join
       - Match
       - Split
+  - namespace: slices
+    title: slices package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:slices
+    entries:
+      - All
+      - AppendSeq
+      - Backward
+      - BinarySearch
+      - BinarySearchFunc
+      - Chunk
+      - Clip
+      - Clone
+      - Collect
+      - Compact
+      - CompactFunc
+      - Compare
+      - CompareFunc
+      - Concat
+      - Contains
+      - ContainsFunc
+      - Delete
+      - DeleteFunc
+      - Equal
+      - EqualFunc
+      - Grow
+      - Index
+      - IndexFunc
+      - Insert
+      - IsSorted
+      - IsSortedFunc
+      - Max
+      - MaxFunc
+      - Min
+      - MinFunc
+      - Repeat
+      - Replace
+      - Reverse
+      - Sort
+      - SortFunc
+      - SortStableFunc
+      - Sorted
+      - SortedFunc
+      - SortedStableFunc
+      - Values
   - namespace: sort
     title: sort package
     target: Go 1.23

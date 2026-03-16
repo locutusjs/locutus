@@ -102,6 +102,7 @@ const GO_NAMESPACE_PACKAGES: Record<string, { packagePath: string; title: string
   filepath: { packagePath: 'path/filepath', title: 'path/filepath package' },
   net: { packagePath: 'net', title: 'net package' },
   path: { packagePath: 'path', title: 'path package' },
+  slices: { packagePath: 'slices', title: 'slices package' },
   sort: { packagePath: 'sort', title: 'sort package' },
   strconv: { packagePath: 'strconv', title: 'strconv package' },
   strings: { packagePath: 'strings', title: 'strings package' },
@@ -119,7 +120,7 @@ function parseGoDocFunctions(output: string): string[] {
       (line) =>
         line
           .replace(/^func\s+/, '')
-          .split('(')[0]
+          .split(/[[(]/)[0]
           ?.trim() ?? '',
     )
     .filter(Boolean)

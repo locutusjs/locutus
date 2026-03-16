@@ -61,3 +61,28 @@ namespaces:
       - Tan
       - Tanh
       - Truncate
+  - namespace: char
+    title: System.Char static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.char
+    entries:
+      - ConvertFromUtf32
+      - ConvertToUtf32
+      - GetNumericValue
+      - GetUnicodeCategory
+      - IsAscii
+      - IsControl
+      - IsDigit
+      - IsLetter
+      - IsLetterOrDigit
+      - IsLower
+      - IsNumber
+      - IsPunctuation
+      - IsSeparator
+      - IsSymbol
+      - IsUpper
+      - IsWhiteSpace
+      - Parse
+      - ToLower
+      - ToUpper
