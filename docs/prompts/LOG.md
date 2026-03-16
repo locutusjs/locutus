@@ -2201,3 +2201,21 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check`
 - Key learnings:
   - Large multi-language harvests are worth it, but parity normalization needs to be architecture-tolerant or the CI savings just get spent on cross-platform float noise.
+
+### Iteration 111
+
+2026-03-16
+
+- **Area: Python difflib expansion**
+- Plan:
+  - Finish the last explicit upstream-surface wishlist item with `python/difflib/ndiff`.
+  - Keep the implementation honest to Python's `Differ` behavior, including `?` intraline hint rows, instead of shipping a shallow line-only diff.
+- Progress:
+  - Added `python/difflib/ndiff` with a local `SequenceMatcher`/`Differ` helper that mirrors Python's opcode-driven replace handling and whitespace-preserving `?` formatting.
+  - Extended Python parity translation so `ndiff(...)` is materialized as `list(difflib.ndiff(...))` before JSON serialization.
+  - Removed the final explicit `wanted` inventory entry from `docs/upstream-surface-inventory.yml` and updated Rosetta to group `ndiff` under a new `string_diff` mapping.
+  - Added focused util coverage for intraline hint rows, tab-preserving whitespace markers, explicit `charjunk=null` behavior, and input validation.
+- Validation:
+  - Pending targeted parity/build validation after the implementation landed.
+- Key learnings:
+  - `ndiff` is the point where the Python wishlist stopped being a list of leaf helpers and started needing real upstream algorithm structure, so it was worth porting the matcher shape instead of approximating the output.

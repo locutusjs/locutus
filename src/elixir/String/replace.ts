@@ -16,6 +16,9 @@ export function replace(string: string, pattern: string, replacement: string): s
   const replacementText = String(replacement)
 
   if (needle === '') {
+    if (source === '') {
+      return replacementText
+    }
     return `${replacementText}${Array.from(source).join(replacementText)}${replacementText}`
   }
 

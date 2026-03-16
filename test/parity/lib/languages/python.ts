@@ -311,6 +311,14 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
     return py
   }
 
+  if (funcName === 'ndiff') {
+    py = py.replace(/\bndiff\s*\(([\s\S]*)\)$/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      return `list(${module}.ndiff(${args.join(', ')}))`
+    })
+    return py
+  }
+
   // Handle function calls - prefix with module (inferred from category/directory)
   if (STRING_CONSTANTS.has(funcName)) {
     // Constants like string.digits - replace funcName() with module.funcName

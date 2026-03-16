@@ -141,10 +141,7 @@ python:
       decisions: {}
     difflib:
       title: difflib module
-      decisions:
-        ndiff:
-          decision: wanted
-          note: Useful structured diff helper that still maps to plain arrays of strings.
+      decisions: {}
 
 julia:
   title: Julia

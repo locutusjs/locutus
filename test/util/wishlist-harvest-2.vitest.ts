@@ -35,6 +35,11 @@ describe('wishlist harvest 2 edge cases', () => {
     expect(gsub('a-b', '-', 'x')).toEqual(['axb', 1])
     expect(gsub('a^b a$b', 'a^b', 'x')).toEqual(['x a$b', 1])
     expect(gsub('a^b a$b', 'a$b', 'x')).toEqual(['a^b x', 1])
+    expect(gsub('a-z', '[a%-z]', 'x')).toEqual(['xxx', 3])
+    expect(gsub('m', '[a%-z]', 'x')).toEqual(['m', 0])
+    expect(gsub('A1-', '[^%A]', 'x')).toEqual(['x1-', 1])
+    expect(gsub('!5a', '[%w%D]', 'x')).toEqual(['xxx', 3])
+    expect(gsub('z-', '[z-%a]', 'x')).toEqual(['xx', 2])
   })
 
   it('throws for invalid Lua capture references in replacement strings', () => {
@@ -83,6 +88,7 @@ describe('wishlist harvest 2 edge cases', () => {
     expect(replace('aba', 'a', '$&$&')).toBe('$&$&b$&$&')
     expect(replace('aba', 'a', '$1')).toBe('$1b$1')
     expect(replace('abc', '', 'x')).toBe('xaxbxcx')
+    expect(replace('', '', 'x')).toBe('x')
   })
 
   it('rejects isqrt string inputs whose roots exceed JS safe integers', () => {

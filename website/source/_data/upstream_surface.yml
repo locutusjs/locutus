@@ -1,4 +1,4 @@
-generatedAt: '2026-03-15T17:58:30.434Z'
+generatedAt: '2026-03-16T09:26:22.325Z'
 languages:
   awk:
     language: awk
@@ -7796,15 +7796,15 @@ languages:
   python:
     language: python
     title: Python
-    shippedCount: 37
+    shippedCount: 38
     catalogCount: 86
-    catalogShippedCount: 37
+    catalogShippedCount: 38
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 1
+    wantedCount: 0
     skippedCount: 0
     untriagedCount: 48
-    coveragePercent: 43
+    coveragePercent: 44
     namespaces:
       - namespace: difflib
         title: difflib
@@ -7822,14 +7822,12 @@ languages:
           - unified_diff
         shippedEntries:
           - get_close_matches
+          - ndiff
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: ndiff
-            decision: wanted
-            note: Useful structured diff helper that still maps to plain arrays of strings.
+        wantedEntries: []
         skippedEntries: []
         untriagedEntries:
           - IS_CHARACTER_JUNK
@@ -7841,8 +7839,8 @@ languages:
         staleDecisions: []
         categories:
           - difflib
-        catalogShippedCount: 1
-        coveragePercent: 13
+        catalogShippedCount: 2
+        coveragePercent: 25
       - namespace: math
         title: math
         target: Python 3.12

@@ -33,7 +33,9 @@ alias:
   - /clojure/interpose/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function interpose<T>(separator: T, values: T[] | unknown): T[] {
+{% codeblock lang:typescript %}export function interpose<T, U>(separator: T, values: U[]): Array<T | U>
+export function interpose<T>(separator: T, values: unknown): T[]
+export function interpose<T, U>(separator: T, values: U[] | unknown): Array<T | U> {
   //      discuss at: https://locutus.io/clojure/interpose/
   // parity verified: Clojure 1.12
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -48,12 +50,12 @@ alias:
     return []
   }
 
-  const out: T[] = []
+  const out: Array<T | U> = []
   for (let i = 0; i < values.length; i++) {
     if (i > 0) {
       out.push(separator)
     }
-    out.push(values[i] as T)
+    out.push(values[i] as U)
   }
 
   return out
