@@ -3,8 +3,8 @@ namespaces:
   - namespace: string
     title: string ensemble
     target: Tcl 8.6
-    sourceKind: manual
-    sourceRef: https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm
+    sourceKind: runtime
+    sourceRef: python:3.12
     entries:
       - bytelength
       - cat
@@ -18,7 +18,6 @@ namespaces:
       - map
       - match
       - range
-      - regsub
       - repeat
       - replace
       - reverse
@@ -30,3 +29,29 @@ namespaces:
       - trimright
       - wordend
       - wordstart
+  - namespace: dict
+    title: dict ensemble
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - append
+      - create
+      - exists
+      - filter
+      - for
+      - get
+      - incr
+      - info
+      - keys
+      - lappend
+      - map
+      - merge
+      - remove
+      - replace
+      - set
+      - size
+      - unset
+      - update
+      - values
+      - with

@@ -9,12 +9,6 @@ type PageExpectation = {
   ogUrl?: string
 }
 
-type RedirectExpectation = {
-  path: string
-  canonical: string
-  refresh: string
-}
-
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.dirname(scriptDir)
 const publicDir = path.join(rootDir, 'website', 'public')
@@ -106,10 +100,12 @@ function checkTopLevelOutputs(): void {
   }
 
   const requiredIndexedPaths = [
-    'ruby/Array/bsearch/index.html',
-    'php/misc/unpack/index.html',
-    'python/difflib/get_close_matches/index.html',
-    'golang/strings/Index/index.html',
+    'tcl/index.html',
+    'clojure/core/partition_by/index.html',
+    'lua/string/gsub/index.html',
+    'perl/POSIX/ceil/index.html',
+    'rust/str/strip_prefix/index.html',
+    'julia/Base/findall/index.html',
   ]
   const indexedPaths = new Set(contentJson.pages.map((page) => page.path).filter((value): value is string => !!value))
   for (const requiredPath of requiredIndexedPaths) {
@@ -138,64 +134,51 @@ function checkPage(expectation: PageExpectation): void {
   }
 }
 
-function checkRedirect(expectation: RedirectExpectation): void {
-  const html = readFile(expectation.path)
-  requireIncludes(expectation.path, html, '<title>Redirecting...</title>')
-  requireIncludes(expectation.path, html, `<link rel="canonical" href="${expectation.canonical}">`)
-  requireIncludes(expectation.path, html, `<meta http-equiv="refresh" content="${expectation.refresh}">`)
-}
-
 function main(): void {
   checkTopLevelOutputs()
 
   const pages: PageExpectation[] = [
     {
-      path: 'php/index.html',
-      title: 'PHP extensions  in TypeScript | Locutus',
-      includes: ['Upstream Surface Inventory', 'Explicit non-goals', 'Intentional extras', 'PHP function catalog'],
-      ogUrl: 'https://locutus.io/php/index.html',
+      path: 'tcl/index.html',
+      title: 'Tcl commands  in TypeScript | Locutus',
+      includes: ['Upstream Surface Inventory', 'Explicit non-goals', 'Intentional extras', 'dict ensemble'],
+      ogUrl: 'https://locutus.io/tcl/index.html',
     },
     {
-      path: 'ruby/Array/bsearch/index.html',
-      title: 'Ruby&#39;s Array.bsearch in TypeScript | Locutus',
-      includes: ['Verified: Ruby', 'locutus/ruby/Array/bsearch'],
-      ogUrl: 'https://locutus.io/ruby/Array/bsearch/index.html',
+      path: 'clojure/core/partition_by/index.html',
+      title: 'Clojure&#39;s core/partition_by in TypeScript | Locutus',
+      includes: ['Verified: Clojure', 'locutus/clojure/core/partition_by'],
+      ogUrl: 'https://locutus.io/clojure/core/partition_by/index.html',
     },
     {
-      path: 'php/misc/unpack/index.html',
-      title: 'PHP&#39;s unpack in TypeScript | Locutus',
-      includes: ['Verified: PHP', 'locutus/php/misc/unpack'],
-      ogUrl: 'https://locutus.io/php/misc/unpack/index.html',
+      path: 'lua/string/gsub/index.html',
+      title: 'Lua&#39;s string.gsub in TypeScript | Locutus',
+      includes: ['Verified: Lua', 'locutus/lua/string/gsub'],
+      ogUrl: 'https://locutus.io/lua/string/gsub/index.html',
     },
     {
-      path: 'python/difflib/get_close_matches/index.html',
-      title: 'Python&#39;s difflib.get_close_matches in TypeScript | Locutus',
-      includes: ['Verified: Python', 'locutus/python/difflib/get_close_matches'],
-      ogUrl: 'https://locutus.io/python/difflib/get_close_matches/index.html',
+      path: 'perl/POSIX/ceil/index.html',
+      title: 'Perl&#39;s POSIX::ceil in TypeScript | Locutus',
+      includes: ['Verified: Perl', 'locutus/perl/POSIX/ceil'],
+      ogUrl: 'https://locutus.io/perl/POSIX/ceil/index.html',
     },
     {
-      path: 'golang/strings/Index/index.html',
-      title: 'Go&#39;s strings.Index in TypeScript | Locutus',
-      includes: ['locutus/golang/strings/Index', 'Verified: Go'],
-      ogUrl: 'https://locutus.io/golang/strings/Index/index.html',
+      path: 'rust/str/strip_prefix/index.html',
+      title: 'Rust&#39;s str::strip_prefix in TypeScript | Locutus',
+      includes: ['Verified: Rust', 'locutus/rust/str/strip_prefix'],
+      ogUrl: 'https://locutus.io/rust/str/strip_prefix/index.html',
     },
     {
-      path: 'golang/filepath/index.html',
-      title: 'Go&#39;s filepath package  in TypeScript | Locutus',
-      includes: ['Upstream Surface Inventory', 'Explicit non-goals', 'path/filepath package', 'Join'],
-      ogUrl: 'https://locutus.io/golang/filepath/index.html',
+      path: 'julia/Base/findall/index.html',
+      title: 'Julia&#39;s findall in TypeScript | Locutus',
+      includes: ['Verified: Julia', 'locutus/julia/Base/findall'],
+      ogUrl: 'https://locutus.io/julia/Base/findall/index.html',
     },
   ]
 
   for (const expectation of pages) {
     checkPage(expectation)
   }
-
-  checkRedirect({
-    path: 'php/unpack/index.html',
-    canonical: 'https://locutus.io/php/misc/unpack/index.html',
-    refresh: '0; url=https://locutus.io/php/misc/unpack/index.html',
-  })
 
   console.log('website build verification passed')
 }

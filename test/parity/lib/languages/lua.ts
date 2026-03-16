@@ -88,7 +88,10 @@ function normalizeLuaJsonValue(value: unknown, expected: unknown): unknown {
 }
 
 function discoverLuaUpstreamSurface() {
-  const discoverNamespace = (namespace: 'math' | 'string' | 'table', title: string) => {
+  const discoverNamespace = (
+    namespace: 'math' | 'string' | 'table' | 'utf8' | 'os' | 'io' | 'coroutine' | 'package' | 'debug',
+    title: string,
+  ) => {
     const script = `for key, value in pairs(${namespace}) do if type(value) == "function" then print(key) end end`
     const result = runInDocker(LUA_DOCKER_IMAGE, ['lua', '-e', script])
     if (!result.success) {
@@ -118,6 +121,12 @@ function discoverLuaUpstreamSurface() {
       discoverNamespace('math', 'math library'),
       discoverNamespace('string', 'string library'),
       discoverNamespace('table', 'table library'),
+      discoverNamespace('utf8', 'utf8 library'),
+      discoverNamespace('os', 'os library'),
+      discoverNamespace('io', 'io library'),
+      discoverNamespace('coroutine', 'coroutine library'),
+      discoverNamespace('package', 'package library'),
+      discoverNamespace('debug', 'debug library'),
     ],
   }
 }

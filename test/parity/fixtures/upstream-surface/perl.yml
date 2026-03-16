@@ -41,3 +41,56 @@ namespaces:
       - substr
       - uc
       - ucfirst
+  - namespace: List::Util
+    title: List::Util module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/List::Util
+    entries:
+      - all
+      - any
+      - first
+      - head
+      - max
+      - maxstr
+      - min
+      - minstr
+      - none
+      - notall
+      - pairfirst
+      - pairgrep
+      - pairkeys
+      - pairmap
+      - pairs
+      - pairvalues
+      - product
+      - reduce
+      - reductions
+      - sample
+      - shuffle
+      - sum
+      - sum0
+      - tail
+      - uniq
+      - uniqint
+      - uniqnum
+  - namespace: Scalar::Util
+    title: Scalar::Util module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Scalar::Util
+    entries:
+      - blessed
+      - dualvar
+      - isdual
+      - isvstring
+      - isweak
+      - looks_like_number
+      - openhandle
+      - readonly
+      - refaddr
+      - reftype
+      - set_prototype
+      - tainted
+      - unweaken
+      - weaken

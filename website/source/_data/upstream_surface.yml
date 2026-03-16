@@ -1,4 +1,4 @@
-generatedAt: '2026-03-16T20:06:37.116Z'
+generatedAt: '2026-03-16T20:30:15.674Z'
 languages:
   awk:
     language: awk
@@ -10751,18 +10751,218 @@ languages:
   lua:
     language: lua
     title: Lua
-    scopeNote: This inventory currently tracks Lua's core plain-value libraries first, not the full runtime environment.
-    namespaceCount: 3
+    scopeNote: >-
+      This inventory now tracks Lua's core plain-value libraries plus the environment-facing standard tables, not the
+      full host runtime.
+    namespaceCount: 9
     shippedCount: 16
-    catalogCount: 55
+    catalogCount: 109
     catalogShippedCount: 16
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 29
-    skippedCount: 10
+    wantedCount: 36
+    skippedCount: 57
     untriagedCount: 0
-    coveragePercent: 29
+    coveragePercent: 15
     namespaces:
+      - namespace: coroutine
+        title: coroutine library
+        target: Lua 5.4
+        sourceKind: runtime
+        sourceRef: nickblah/lua:5.4-alpine
+        catalogEntries:
+          - close
+          - create
+          - isyieldable
+          - resume
+          - running
+          - status
+          - wrap
+          - yield
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: close
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+          - name: create
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+          - name: isyieldable
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+          - name: resume
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+          - name: running
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+          - name: status
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+          - name: wrap
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+          - name: yield
+            decision: skip_runtime_model
+            note: Coroutine lifecycle helpers revolve around resumable execution state, not plain values.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: debug
+        title: debug library
+        target: Lua 5.4
+        sourceKind: runtime
+        sourceRef: nickblah/lua:5.4-alpine
+        catalogEntries:
+          - debug
+          - gethook
+          - getinfo
+          - getlocal
+          - getmetatable
+          - getregistry
+          - getupvalue
+          - getuservalue
+          - setcstacklimit
+          - sethook
+          - setlocal
+          - setmetatable
+          - setupvalue
+          - setuservalue
+          - traceback
+          - upvalueid
+          - upvaluejoin
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: debug
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: gethook
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: getinfo
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: getlocal
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: getmetatable
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: getregistry
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: getupvalue
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: getuservalue
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: setcstacklimit
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: sethook
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: setlocal
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: setmetatable
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: setupvalue
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: setuservalue
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: traceback
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: upvalueid
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+          - name: upvaluejoin
+            decision: skip_security
+            note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: io
+        title: io library
+        target: Lua 5.4
+        sourceKind: runtime
+        sourceRef: nickblah/lua:5.4-alpine
+        catalogEntries:
+          - close
+          - flush
+          - input
+          - lines
+          - open
+          - output
+          - popen
+          - read
+          - tmpfile
+          - type
+          - write
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: close
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: flush
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: input
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: lines
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: open
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: output
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: popen
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: read
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: tmpfile
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+          - name: type
+            decision: skip_runtime_model
+            note: Stream-handle inspection is not a plain-value portability target.
+          - name: write
+            decision: skip_environment
+            note: I/O handles and streams depend on host runtime state outside Locutus' model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: math
         title: math library
         target: Lua 5.4
@@ -10888,6 +11088,94 @@ languages:
           - math
         catalogShippedCount: 9
         coveragePercent: 29
+      - namespace: os
+        title: os library
+        target: Lua 5.4
+        sourceKind: runtime
+        sourceRef: nickblah/lua:5.4-alpine
+        catalogEntries:
+          - clock
+          - date
+          - difftime
+          - execute
+          - exit
+          - getenv
+          - remove
+          - rename
+          - setlocale
+          - time
+          - tmpname
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: date
+            decision: wanted
+            note: Date formatting and decomposition still have a useful plain-value contract.
+          - name: difftime
+            decision: wanted
+            note: Time-difference helpers have a clean plain-value contract.
+          - name: time
+            decision: wanted
+            note: Unix-time conversion has a clean plain-value contract.
+        skippedEntries:
+          - name: clock
+            decision: skip_environment
+            note: Most os helpers depend on host environment, clocks, or filesystem state.
+          - name: execute
+            decision: skip_side_effects
+            note: Process spawning is outside Locutus' portability scope.
+          - name: exit
+            decision: skip_side_effects
+            note: Process termination is outside Locutus' value-only model.
+          - name: getenv
+            decision: skip_environment
+            note: Environment lookup depends on host runtime state.
+          - name: remove
+            decision: skip_side_effects
+            note: Filesystem mutation is outside Locutus' portability scope.
+          - name: rename
+            decision: skip_side_effects
+            note: Filesystem mutation is outside Locutus' portability scope.
+          - name: setlocale
+            decision: skip_side_effects
+            note: Locale mutation changes ambient runtime behavior.
+          - name: tmpname
+            decision: skip_environment
+            note: Temporary-path generation depends on host state.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: package
+        title: package library
+        target: Lua 5.4
+        sourceKind: runtime
+        sourceRef: nickblah/lua:5.4-alpine
+        catalogEntries:
+          - loadlib
+          - searchpath
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: loadlib
+            decision: skip_security
+            note: Dynamic native-library loading is security-sensitive and out of scope.
+          - name: searchpath
+            decision: skip_environment
+            note: Module loading and package-path helpers depend on host runtime and filesystem state.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: string
         title: string library
         target: Lua 5.4
@@ -11007,20 +11295,60 @@ languages:
         categories: []
         catalogShippedCount: 0
         coveragePercent: 0
+      - namespace: utf8
+        title: utf8 library
+        target: Lua 5.4
+        sourceKind: runtime
+        sourceRef: nickblah/lua:5.4-alpine
+        catalogEntries:
+          - char
+          - codepoint
+          - codes
+          - len
+          - offset
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: char
+            decision: wanted
+            note: UTF-8 codepoint helpers have a strong plain-value string and numeric contract.
+          - name: codepoint
+            decision: wanted
+            note: UTF-8 codepoint helpers have a strong plain-value string and numeric contract.
+          - name: len
+            decision: wanted
+            note: UTF-8 codepoint helpers have a strong plain-value string and numeric contract.
+          - name: offset
+            decision: wanted
+            note: UTF-8 codepoint helpers have a strong plain-value string and numeric contract.
+        skippedEntries:
+          - name: codes
+            decision: skip_runtime_model
+            note: Iterator-returning APIs do not fit Locutus' current plain-value model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
   perl:
     language: perl
     title: Perl
-    scopeNote: This inventory currently focuses on core scalar/string helpers and POSIX numerics rather than all of Perl.
-    namespaceCount: 2
+    scopeNote: >-
+      This inventory now tracks Perl core built-ins plus POSIX and the most portable List::Util and Scalar::Util
+      helpers, not all of Perl.
+    namespaceCount: 4
     shippedCount: 22
-    catalogCount: 29
+    catalogCount: 70
     catalogShippedCount: 22
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 7
-    skippedCount: 0
+    wantedCount: 33
+    skippedCount: 15
     untriagedCount: 0
-    coveragePercent: 76
+    coveragePercent: 31
     namespaces:
       - namespace: core
         title: Perl core built-ins
@@ -11085,6 +11413,132 @@ languages:
           - core
         catalogShippedCount: 20
         coveragePercent: 95
+      - namespace: List::Util
+        title: List::Util module
+        target: Perl 5.40
+        sourceKind: manual
+        sourceRef: https://perldoc.perl.org/List::Util
+        catalogEntries:
+          - all
+          - any
+          - first
+          - head
+          - max
+          - maxstr
+          - min
+          - minstr
+          - none
+          - notall
+          - pairfirst
+          - pairgrep
+          - pairkeys
+          - pairmap
+          - pairs
+          - pairvalues
+          - product
+          - reduce
+          - reductions
+          - sample
+          - shuffle
+          - sum
+          - sum0
+          - tail
+          - uniq
+          - uniqint
+          - uniqnum
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: all
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: any
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: first
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: head
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: max
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: maxstr
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: min
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: minstr
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: none
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: notall
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: pairfirst
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: pairgrep
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: pairkeys
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: pairmap
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: pairs
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: pairvalues
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: product
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: reduce
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: reductions
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: sum
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: sum0
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: tail
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: uniq
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: uniqint
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+          - name: uniqnum
+            decision: wanted
+            note: List::Util exports are mostly strong plain-value collection helpers.
+        skippedEntries:
+          - name: sample
+            decision: skip_low_value
+            note: Randomized sampling is lower-value than deterministic collection transforms.
+          - name: shuffle
+            decision: skip_low_value
+            note: Randomized sampling is lower-value than deterministic collection transforms.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: POSIX
         title: POSIX module
         target: Perl 5.40
@@ -11132,6 +11586,80 @@ languages:
           - POSIX
         catalogShippedCount: 2
         coveragePercent: 25
+      - namespace: Scalar::Util
+        title: Scalar::Util module
+        target: Perl 5.40
+        sourceKind: manual
+        sourceRef: https://perldoc.perl.org/Scalar::Util
+        catalogEntries:
+          - blessed
+          - dualvar
+          - isdual
+          - isvstring
+          - isweak
+          - looks_like_number
+          - openhandle
+          - readonly
+          - refaddr
+          - reftype
+          - set_prototype
+          - tainted
+          - unweaken
+          - weaken
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: looks_like_number
+            decision: wanted
+            note: Numeric-shape predicates have a clean plain-value contract.
+        skippedEntries:
+          - name: blessed
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: dualvar
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: isdual
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: isvstring
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: isweak
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: openhandle
+            decision: skip_environment
+            note: Handle introspection depends on host I/O resources.
+          - name: readonly
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: refaddr
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: reftype
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: set_prototype
+            decision: skip_runtime_model
+            note: Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.
+          - name: tainted
+            decision: skip_security
+            note: Taint-mode inspection is security-sensitive and runtime-specific.
+          - name: unweaken
+            decision: skip_side_effects
+            note: Reference mutability helpers change ambient runtime state.
+          - name: weaken
+            decision: skip_side_effects
+            note: Reference mutability helpers change ambient runtime state.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
   php:
     language: php
     title: PHP
@@ -16571,17 +17099,19 @@ languages:
   python:
     language: python
     title: Python
-    scopeNote: This inventory currently tracks a growing plain-value slice of the Python standard library, not all of Python yet.
-    namespaceCount: 9
+    scopeNote: >-
+      This inventory now tracks Python builtins plus selected plain-value standard-library modules, not the full
+      standard library or object model.
+    namespaceCount: 10
     shippedCount: 56
-    catalogCount: 196
+    catalogCount: 264
     catalogShippedCount: 56
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 95
-    skippedCount: 45
+    wantedCount: 128
+    skippedCount: 80
     untriagedCount: 0
-    coveragePercent: 29
+    coveragePercent: 21
     namespaces:
       - namespace: bisect
         title: bisect
@@ -16620,6 +17150,300 @@ languages:
           - name: insort_right
             decision: skip_side_effects
             note: In-place list insertion mutates caller-owned state.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: builtins
+        title: builtins
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - abs
+          - aiter
+          - all
+          - anext
+          - any
+          - ascii
+          - bin
+          - bool
+          - breakpoint
+          - bytearray
+          - bytes
+          - callable
+          - chr
+          - classmethod
+          - compile
+          - complex
+          - delattr
+          - dict
+          - dir
+          - divmod
+          - enumerate
+          - eval
+          - exec
+          - filter
+          - float
+          - format
+          - frozenset
+          - getattr
+          - globals
+          - hasattr
+          - hash
+          - hex
+          - id
+          - input
+          - int
+          - isinstance
+          - issubclass
+          - iter
+          - len
+          - list
+          - locals
+          - map
+          - max
+          - memoryview
+          - min
+          - next
+          - object
+          - oct
+          - ord
+          - pow
+          - print
+          - property
+          - range
+          - repr
+          - reversed
+          - round
+          - set
+          - setattr
+          - slice
+          - sorted
+          - staticmethod
+          - str
+          - sum
+          - super
+          - tuple
+          - type
+          - vars
+          - zip
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: abs
+            decision: wanted
+            note: Scalar absolute-value helpers are strong plain-value targets.
+          - name: all
+            decision: wanted
+            note: Aggregate predicate helpers have a clean plain-value contract.
+          - name: any
+            decision: wanted
+            note: Aggregate predicate helpers have a clean plain-value contract.
+          - name: ascii
+            decision: wanted
+            note: ASCII-safe string representation is a useful plain-value helper.
+          - name: bin
+            decision: wanted
+            note: Integer base conversion has a clean plain-value contract.
+          - name: bool
+            decision: wanted
+            note: Boolean coercion remains a useful plain-value portability target.
+          - name: callable
+            decision: wanted
+            note: Callable predicates have a clean plain-value contract.
+          - name: chr
+            decision: wanted
+            note: Codepoint-to-string conversion is a strong portability target.
+          - name: dict
+            decision: wanted
+            note: Dictionary construction still has a clean plain-value contract.
+          - name: divmod
+            decision: wanted
+            note: Quotient-remainder helpers have a clean plain-value contract.
+          - name: enumerate
+            decision: wanted
+            note: Indexed sequence pairing can be represented as plain arrays.
+          - name: filter
+            decision: wanted
+            note: Predicate-based filtering remains a strong plain-value target.
+          - name: float
+            decision: wanted
+            note: Numeric coercion has a clean plain-value contract.
+          - name: format
+            decision: wanted
+            note: String formatting is a strong plain-value portability target.
+          - name: hex
+            decision: wanted
+            note: Integer base conversion has a clean plain-value contract.
+          - name: int
+            decision: wanted
+            note: Integer coercion is a strong plain-value portability target.
+          - name: len
+            decision: wanted
+            note: Size helpers are strong plain-value portability targets.
+          - name: list
+            decision: wanted
+            note: Sequence materialization has a clean plain-value contract.
+          - name: map
+            decision: wanted
+            note: Mapping over iterables can be represented as plain arrays.
+          - name: max
+            decision: wanted
+            note: Aggregate scalar helpers have a clean plain-value contract.
+          - name: min
+            decision: wanted
+            note: Aggregate scalar helpers have a clean plain-value contract.
+          - name: oct
+            decision: wanted
+            note: Integer base conversion has a clean plain-value contract.
+          - name: ord
+            decision: wanted
+            note: String-to-codepoint conversion is a strong portability target.
+          - name: pow
+            decision: wanted
+            note: Scalar exponentiation has a clean plain-value contract.
+          - name: range
+            decision: wanted
+            note: Numeric range generation can be represented as plain arrays.
+          - name: repr
+            decision: wanted
+            note: Representation helpers are useful plain-value string targets.
+          - name: reversed
+            decision: wanted
+            note: Reversal can be represented as a plain array result.
+          - name: round
+            decision: wanted
+            note: Scalar rounding remains a strong portability target.
+          - name: sorted
+            decision: wanted
+            note: Sequence sorting has a clean plain-value contract.
+          - name: str
+            decision: wanted
+            note: String coercion remains a strong plain-value portability target.
+          - name: sum
+            decision: wanted
+            note: Aggregation helpers are strong plain-value portability targets.
+          - name: tuple
+            decision: wanted
+            note: Sequence materialization has a clean plain-value contract.
+          - name: zip
+            decision: wanted
+            note: Sequence zipping can be represented as plain arrays.
+        skippedEntries:
+          - name: aiter
+            decision: skip_runtime_model
+            note: >-
+              Python builtins mix pure helpers with runtime introspection, evaluation, I/O, and rich container types too
+              broadly for one direct Locutus wishlist.
+          - name: anext
+            decision: skip_runtime_model
+            note: >-
+              Python builtins mix pure helpers with runtime introspection, evaluation, I/O, and rich container types too
+              broadly for one direct Locutus wishlist.
+          - name: breakpoint
+            decision: skip_side_effects
+            note: Debugger entry mutates runtime execution state.
+          - name: bytearray
+            decision: skip_plain_value_mismatch
+            note: Mutable byte buffers do not fit Locutus' current plain-value model.
+          - name: bytes
+            decision: skip_plain_value_mismatch
+            note: Byte strings do not fit Locutus' current plain-value model.
+          - name: classmethod
+            decision: skip_runtime_model
+            note: Descriptor factories are not plain-value targets.
+          - name: compile
+            decision: skip_security
+            note: Dynamic code compilation is security-sensitive and not a good Locutus target.
+          - name: complex
+            decision: skip_plain_value_mismatch
+            note: Complex numbers do not fit Locutus' current plain-value model.
+          - name: delattr
+            decision: skip_side_effects
+            note: Attribute mutation is outside Locutus' value-only model.
+          - name: dir
+            decision: skip_runtime_model
+            note: Runtime introspection depends on object model details outside Locutus' scope.
+          - name: eval
+            decision: skip_security
+            note: Dynamic code evaluation is security-sensitive and out of scope.
+          - name: exec
+            decision: skip_security
+            note: Dynamic code execution is security-sensitive and out of scope.
+          - name: frozenset
+            decision: skip_plain_value_mismatch
+            note: Set semantics do not map cleanly onto Locutus' plain-value model.
+          - name: getattr
+            decision: skip_runtime_model
+            note: Generic attribute lookup depends on host object semantics.
+          - name: globals
+            decision: skip_runtime_model
+            note: Runtime namespace introspection is outside Locutus' portability scope.
+          - name: hasattr
+            decision: skip_runtime_model
+            note: Generic attribute introspection depends on host object semantics.
+          - name: hash
+            decision: skip_runtime_model
+            note: Object-hash identity does not map cleanly to JS plain values.
+          - name: id
+            decision: skip_runtime_model
+            note: Object identity addresses are not a stable portability target.
+          - name: input
+            decision: skip_environment
+            note: Interactive stdin reads depend on host I/O.
+          - name: isinstance
+            decision: skip_runtime_model
+            note: Python class introspection does not fit Locutus' plain-value model.
+          - name: issubclass
+            decision: skip_runtime_model
+            note: Python class introspection does not fit Locutus' plain-value model.
+          - name: iter
+            decision: skip_runtime_model
+            note: Iterator objects are not direct plain-value results.
+          - name: locals
+            decision: skip_runtime_model
+            note: Stack-frame introspection is outside Locutus' portability scope.
+          - name: memoryview
+            decision: skip_plain_value_mismatch
+            note: Buffer-view semantics do not fit Locutus' current plain-value model.
+          - name: next
+            decision: skip_runtime_model
+            note: Iterator advancement APIs do not fit Locutus' plain-value model.
+          - name: object
+            decision: skip_runtime_model
+            note: Generic object construction has no meaningful plain-value portability target.
+          - name: print
+            decision: skip_side_effects
+            note: Output emission is outside Locutus' value-only model.
+          - name: property
+            decision: skip_runtime_model
+            note: Descriptor factories are not plain-value targets.
+          - name: set
+            decision: skip_plain_value_mismatch
+            note: Set semantics do not map cleanly onto Locutus' plain-value model.
+          - name: setattr
+            decision: skip_side_effects
+            note: Attribute mutation is outside Locutus' value-only model.
+          - name: slice
+            decision: skip_runtime_model
+            note: Slice objects are not direct plain-value results.
+          - name: staticmethod
+            decision: skip_runtime_model
+            note: Descriptor factories are not plain-value targets.
+          - name: super
+            decision: skip_runtime_model
+            note: Method-resolution proxies do not fit Locutus' plain-value model.
+          - name: type
+            decision: skip_runtime_model
+            note: Python class introspection does not fit Locutus' plain-value model.
+          - name: vars
+            decision: skip_runtime_model
+            note: Runtime namespace introspection is outside Locutus' portability scope.
         untriagedEntries: []
         staleDecisions: []
         categories: []
@@ -27007,23 +27831,121 @@ languages:
   tcl:
     language: tcl
     title: Tcl
-    scopeNote: This inventory currently tracks the `string` ensemble first, not the full Tcl command surface.
-    namespaceCount: 1
+    scopeNote: This inventory currently tracks Tcl's `string` and `dict` ensembles first, not the full command surface.
+    namespaceCount: 2
     shippedCount: 16
-    catalogCount: 24
-    catalogShippedCount: 16
-    keptExtraCount: 0
+    catalogCount: 43
+    catalogShippedCount: 15
+    keptExtraCount: 1
     unexpectedExtraCount: 0
-    wantedCount: 6
-    skippedCount: 2
+    wantedCount: 17
+    skippedCount: 11
     untriagedCount: 0
-    coveragePercent: 67
+    coveragePercent: 35
     namespaces:
+      - namespace: dict
+        title: dict ensemble
+        target: Tcl 8.6
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - append
+          - create
+          - exists
+          - filter
+          - for
+          - get
+          - incr
+          - info
+          - keys
+          - lappend
+          - map
+          - merge
+          - remove
+          - replace
+          - set
+          - size
+          - unset
+          - update
+          - values
+          - with
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: create
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: exists
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: filter
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: get
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: keys
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: map
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: merge
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: remove
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: replace
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: size
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+          - name: values
+            decision: wanted
+            note: Tcl dictionary transforms map naturally onto JS plain objects and arrays.
+        skippedEntries:
+          - name: append
+            decision: skip_side_effects
+            note: Variable-backed dictionary mutation is outside Locutus' value-only model.
+          - name: for
+            decision: skip_side_effects
+            note: Callback-style iteration is not a good Locutus portability target.
+          - name: incr
+            decision: skip_side_effects
+            note: Variable-backed numeric mutation is outside Locutus' value-only model.
+          - name: info
+            decision: skip_runtime_model
+            note: Internal representation details are not a stable plain-value target.
+          - name: lappend
+            decision: skip_side_effects
+            note: Variable-backed dictionary mutation is outside Locutus' value-only model.
+          - name: set
+            decision: skip_side_effects
+            note: Variable-backed dictionary mutation is outside Locutus' value-only model.
+          - name: unset
+            decision: skip_side_effects
+            note: Variable-backed dictionary mutation is outside Locutus' value-only model.
+          - name: update
+            decision: skip_side_effects
+            note: Variable-backed dictionary mutation is outside Locutus' value-only model.
+          - name: with
+            decision: skip_side_effects
+            note: Scoped variable mutation is outside Locutus' value-only model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: string
         title: string ensemble
         target: Tcl 8.6
-        sourceKind: manual
-        sourceRef: https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm
+        sourceKind: runtime
+        sourceRef: python:3.12
         catalogEntries:
           - bytelength
           - cat
@@ -27037,7 +27959,6 @@ languages:
           - map
           - match
           - range
-          - regsub
           - repeat
           - replace
           - reverse
@@ -27068,7 +27989,12 @@ languages:
           - trimright
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
-        keptExtras: []
+        keptExtras:
+          - name: regsub
+            decision: keep_locutus_only
+            note: >-
+              Locutus keeps `regsub` under the `string` category even though upstream exposes it as a standalone Tcl
+              command.
         unexpectedExtras: []
         wantedEntries:
           - name: cat
@@ -27100,5 +28026,5 @@ languages:
         staleDecisions: []
         categories:
           - string
-        catalogShippedCount: 16
-        coveragePercent: 67
+        catalogShippedCount: 15
+        coveragePercent: 65

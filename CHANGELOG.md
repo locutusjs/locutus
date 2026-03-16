@@ -29,8 +29,9 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 
 ### Inventory
 
-- Broadened the upstream-surface inventory beyond the first curated slice, adding new tracked namespaces for Python, Ruby, Elixir, and Lua while keeping the catalog at `untriaged: 0`.
+- Broadened the upstream-surface inventory beyond the first curated slice, adding new tracked namespaces for Python, Ruby, Elixir, Lua, Tcl, and Perl while keeping the catalog at `untriaged: 0`.
 - Added language-level scope notes and tracked-namespace counts to the website inventory panel so language pages no longer imply they cover an entire upstream language when they still track a deliberate subset.
+- Added Python `builtins`, Tcl `dict`, the remaining Lua core libraries, and Perl `List::Util` / `Scalar::Util` to the tracked upstream catalog so the language pages now reflect a much broader and more honest core-runtime roadmap.
 
 ## v3.0.24
 

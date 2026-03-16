@@ -2,6 +2,7 @@
  * Tcl language handler for verification
  */
 
+import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 
@@ -10,6 +11,44 @@ export const TCL_SKIP_LIST = new Set<string>([
 ])
 
 const TCL_DOCKER_IMAGE = 'python:3.12'
+
+function discoverTclUpstreamSurface() {
+  const discoverNamespace = (namespace: 'string' | 'dict', title: string) => {
+    const code = [
+      `set map [namespace ensemble configure ${namespace} -map]`,
+      'puts [join [lsort [dict keys $map]] "\\n"]',
+    ].join('\n')
+    const result = runInDocker(TCL_DOCKER_IMAGE, [
+      'sh',
+      '-lc',
+      `cat <<'__LOCUTUS_TCL__' | tclsh\n${code}\n__LOCUTUS_TCL__`,
+    ])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover Tcl upstream surface for ${namespace}`)
+    }
+
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .sort()
+
+    return {
+      namespace,
+      title,
+      target: 'Tcl 8.6',
+      sourceKind: 'runtime' as const,
+      sourceRef: TCL_DOCKER_IMAGE,
+      entries,
+    }
+  }
+
+  return {
+    language: 'tcl',
+    namespaces: [discoverNamespace('string', 'string ensemble'), discoverNamespace('dict', 'dict ensemble')],
+  }
+}
 
 function stripTrailingComment(code: string): string {
   let inString: string | null = null
@@ -307,6 +346,7 @@ export const tclHandler: LanguageHandler = {
   dockerCmd: (code: string) => ['sh', '-lc', `cat <<'__LOCUTUS_TCL__' | tclsh\n${code}\n__LOCUTUS_TCL__`],
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverTclUpstreamSurface,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

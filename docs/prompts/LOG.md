@@ -2342,3 +2342,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check`
 - Key learnings:
   - The scalable way to broaden this roadmap is not one-entry-at-a-time triage; it is honest scope labels plus aggressive namespace defaults, then selective exact overrides where the model really diverges.
+
+### Iteration 119
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Finish the current breadth-expansion PR as one atomic merge instead of treating the first broaden pass as a midpoint.
+  - Extend the cheapest remaining core namespaces so the language pages become materially more representative, not just more honest about being partial.
+- Progress:
+  - Added Python `builtins` to the tracked upstream surface with compact keep/skip/wanted decisions for pure coercion, collection, and formatting helpers versus introspection, evaluation, and I/O.
+  - Broadened Tcl from `string` only to `string` plus `dict`, and switched the Tcl snapshots from manual data to live runtime discovery from the parity container.
+  - Expanded Lua from `math`/`string`/`table` into the rest of the core standard tables: `utf8`, `os`, `io`, `coroutine`, `package`, and `debug`.
+  - Expanded Perl from `core`/`POSIX` into `List::Util` and `Scalar::Util`, with low-noise defaults for collection helpers versus runtime/reference introspection.
+  - Kept the Tcl `regsub` mismatch explicit as a scoped intentional extra under the existing `string` category, since upstream exposes it as a standalone command rather than a `string` ensemble subcommand.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python lua tcl`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+- Key learnings:
+  - The efficient path to “complete enough” inventory coverage is to keep broad root-language claims honest with scope notes, then spend real expansion effort only on namespaces whose discovery is cheap and whose backlog signal is strong.

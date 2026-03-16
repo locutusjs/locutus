@@ -27,6 +27,7 @@ export const PYTHON_SKIP_LIST = new Set<string>([
 const PYTHON_DOCKER_IMAGE = 'python:3.12'
 function discoverPythonUpstreamSurface() {
   const script = `
+import builtins
 import difflib
 import bisect
 import functools
@@ -40,6 +41,7 @@ import statistics
 import string
 
 modules = {
+  "builtins": {"module": builtins, "allowedModules": ["builtins", "io"]},
   "bisect": {"module": bisect, "allowedModules": ["bisect", "_bisect"]},
   "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
   "itertools": {"module": itertools, "allowedModules": ["itertools"]},
