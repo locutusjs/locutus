@@ -57,6 +57,36 @@ local function locutus_json(value)
 end
 `.trim()
 
+function normalizeLuaJsonValue(value: unknown, expected: unknown): unknown {
+  if (typeof value === 'number' && typeof expected === 'number') {
+    return Math.abs(value - expected) < 1e-10 ? expected : value
+  }
+
+  if (Array.isArray(value) && Array.isArray(expected) && value.length === expected.length) {
+    return value.map((item, index) => normalizeLuaJsonValue(item, expected[index]))
+  }
+
+  if (
+    value &&
+    expected &&
+    typeof value === 'object' &&
+    typeof expected === 'object' &&
+    !Array.isArray(value) &&
+    !Array.isArray(expected)
+  ) {
+    const normalized: Record<string, unknown> = {}
+    for (const key of Object.keys(value as Record<string, unknown>)) {
+      normalized[key] = normalizeLuaJsonValue(
+        (value as Record<string, unknown>)[key],
+        (expected as Record<string, unknown>)[key],
+      )
+    }
+    return normalized
+  }
+
+  return value
+}
+
 function discoverLuaUpstreamSurface() {
   const discoverNamespace = (namespace: 'math' | 'string', title: string) => {
     const script = `for key, value in pairs(${namespace}) do if type(value) == "function" then print(key) end end`
@@ -201,12 +231,28 @@ export function normalizeLuaOutput(output: string, expected?: string): string {
   let result = output.trim()
   try {
     const parsed = JSON.parse(result)
+    if (expected) {
+      try {
+        const parsedExpected = JSON.parse(expected)
+        return JSON.stringify(normalizeLuaJsonValue(parsed, parsedExpected))
+      } catch {
+        // Fall back to normalized parsed output when expected is not JSON-parseable.
+      }
+    }
     return JSON.stringify(parsed)
   } catch {
     const repaired = result.replace(/\\\r?\n/g, '\\n')
     if (repaired !== result) {
       try {
         const parsed = JSON.parse(repaired)
+        if (expected) {
+          try {
+            const parsedExpected = JSON.parse(expected)
+            return JSON.stringify(normalizeLuaJsonValue(parsed, parsedExpected))
+          } catch {
+            // Fall back to normalized parsed output when expected is not JSON-parseable.
+          }
+        }
         return JSON.stringify(parsed)
       } catch {
         // Keep legacy scalar normalization for non-JSON output.

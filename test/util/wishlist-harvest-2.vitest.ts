@@ -101,4 +101,15 @@ describe('wishlist harvest 2 edge cases', () => {
       JSON.stringify(['line1\nline2', 1]),
     )
   })
+
+  it('normalizes Lua numeric scalar precision drift against expected JSON numbers', () => {
+    expect(normalizeLuaOutput('0.54030230586814', '0.5403023058681398')).toBe('0.5403023058681398')
+    expect(normalizeLuaOutput('1.4142135623731', '1.4142135623730951')).toBe('1.4142135623730951')
+  })
+
+  it('normalizes Lua numeric precision drift inside JSON arrays', () => {
+    expect(normalizeLuaOutput('[0.8414709848079,1.4142135623731]', '[0.8414709848078965,1.4142135623730951]')).toBe(
+      '[0.8414709848078965,1.4142135623730951]',
+    )
+  })
 })
