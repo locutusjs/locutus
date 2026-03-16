@@ -3,20 +3,8 @@ import { isObjectLike, type PhpAssoc, type PhpRuntimeValue } from '../_helpers/_
 interface MergeObject extends PhpAssoc<MergeValue> {}
 type MergeValue = PhpRuntimeValue | MergeValue[] | MergeObject
 
-export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject {
-  //       discuss at: https://locutus.io/php/array_merge_recursive/
-  //      original by: Subhasis Deb
-  //         input by: Brett Zamir (https://brett-zamir.me)
-  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
-  // reimplemented by: Kevin van Zonneveld (https://kvz.io)
-  //           note 1: Numeric keys are renumbered starting from 0, string keys are preserved
-  //        example 1: var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
-  //        example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
-  //        example 1: array_merge_recursive($arr1, $arr2)
-  //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
-
-  const result: MergeObject = {}
-  let numericIdx = 0
+function mergeInto(result: MergeObject, source: MergeObject): void {
+  let numericIdx = Object.keys(result).filter((key) => parseInt(key, 10) + '' === key + '').length
 
   // Helper to check if a key is numeric (PHP integer-indexed)
   const isNumericKey = function (key: string): boolean {
@@ -28,36 +16,43 @@ export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): Mer
     return isObjectLike(val) && !Array.isArray(val)
   }
 
-  // Process arr1
-  for (const [key, value] of Object.entries(arr1)) {
+  for (const [key, sourceValue] of Object.entries(source)) {
     if (isNumericKey(key)) {
-      result[numericIdx++] = value
-    } else {
-      result[key] = value
-    }
-  }
-
-  // Process arr2
-  for (const [key, arr2Value] of Object.entries(arr2)) {
-    if (isNumericKey(key)) {
-      // Numeric keys always append
-      result[numericIdx++] = arr2Value
+      result[numericIdx++] = sourceValue
     } else if (key in result) {
-      // String key exists in both - need to merge
       const resultValue = result[key]
-      if (isPlainObject(resultValue) && isPlainObject(arr2Value)) {
-        // Both are objects - recurse
-        result[key] = array_merge_recursive(resultValue, arr2Value)
+      if (isPlainObject(resultValue) && isPlainObject(sourceValue)) {
+        result[key] = array_merge_recursive(resultValue, sourceValue)
       } else if (Array.isArray(resultValue)) {
-        // Result is already an array, push new value
-        resultValue.push(arr2Value)
+        resultValue.push(sourceValue)
       } else {
-        // Create array with both values
-        result[key] = [resultValue, arr2Value]
+        result[key] = [resultValue, sourceValue]
       }
     } else {
-      result[key] = arr2Value
+      result[key] = sourceValue
     }
+  }
+}
+
+export function array_merge_recursive(...arrays: MergeObject[]): MergeObject {
+  //       discuss at: https://locutus.io/php/array_merge_recursive/
+  //      original by: Subhasis Deb
+  //         input by: Brett Zamir (https://brett-zamir.me)
+  //      bugfixed by: Kevin van Zonneveld (https://kvz.io)
+  // reimplemented by: Kevin van Zonneveld (https://kvz.io)
+  //           note 1: Numeric keys are renumbered starting from 0, string keys are preserved
+  //        example 1: var $arr1 = {'color': {'favorite': 'red'}, 0: 5}
+  //        example 1: var $arr2 = {0: 10, 'color': {'favorite': 'green', 0: 'blue'}}
+  //        example 1: array_merge_recursive($arr1, $arr2)
+  //        returns 1: {'color': {'favorite': ['red', 'green'], 0: 'blue'}, 0: 5, 1: 10}
+
+  if (arrays.length === 0) {
+    return {}
+  }
+
+  const result: MergeObject = {}
+  for (const array of arrays) {
+    mergeInto(result, array)
   }
 
   return result

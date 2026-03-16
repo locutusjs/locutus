@@ -113,8 +113,10 @@ function translateLuaCharClass(chars: string): string {
 
     if (canRange) {
       const right = parseLuaClassToken(source, nextIndex)
-      if (right.literal !== null && right.rangeable) {
-        atoms.push(`[${escapeRegexClassLiteral(current.literal)}-${escapeRegexClassLiteral(right.literal)}]`)
+      if (current.literal !== null && right.literal !== null && right.rangeable) {
+        const leftLiteral = current.literal
+        const rightLiteral = right.literal
+        atoms.push(`[${escapeRegexClassLiteral(leftLiteral)}-${escapeRegexClassLiteral(rightLiteral)}]`)
         index = nextIndex + right.length
         continue
       }
@@ -124,11 +126,14 @@ function translateLuaCharClass(chars: string): string {
     index += current.length
   }
 
-  const union = atoms.length === 1 ? atoms[0] ?? '' : `(?:${atoms.join('|')})`
+  const union = atoms.length === 1 ? (atoms[0] ?? '') : `(?:${atoms.join('|')})`
   return negate ? `(?:(?!${union})[\\s\\S])` : union
 }
 
-function parseLuaClassToken(source: string, index: number): { atom: string; length: number; literal: string | null; rangeable: boolean } {
+function parseLuaClassToken(
+  source: string,
+  index: number,
+): { atom: string; length: number; literal: string | null; rangeable: boolean } {
   const char = source[index] ?? ''
   if (char === '%') {
     const next = source[index + 1] ?? ''
@@ -391,8 +396,10 @@ function translateLuaCharClass(chars) {
 
     if (canRange) {
       const right = parseLuaClassToken(source, nextIndex)
-      if (right.literal !== null && right.rangeable) {
-        atoms.push(`[${escapeRegexClassLiteral(current.literal)}-${escapeRegexClassLiteral(right.literal)}]`)
+      if (current.literal !== null && right.literal !== null && right.rangeable) {
+        const leftLiteral = current.literal
+        const rightLiteral = right.literal
+        atoms.push(`[${escapeRegexClassLiteral(leftLiteral)}-${escapeRegexClassLiteral(rightLiteral)}]`)
         index = nextIndex + right.length
         continue
       }

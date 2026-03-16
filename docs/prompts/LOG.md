@@ -2235,3 +2235,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `gh run view 23137677657 --json status,conclusion,jobs`
 - Key learnings:
   - The upstream-surface wishlist is now fully exhausted, so the next expansion batches can shift from explicit backlog harvesting to triaging the broader untriaged inventory by namespace.
+
+### Iteration 113
+
+2026-03-16
+
+- **Area: PHP parity fixes**
+- Progress:
+  - Took issue `#583` and verified the upstream PHP 8.3 behavior directly before changing code, since the report mixed real parity bugs with "friendliness" complaints.
+  - Fixed `trim(null)` to return `''`, matching PHP's current deprecated-but-still-coercing behavior rather than stringifying `null`.
+  - Added PHP-style missing-argument errors for `trim`, `ltrim`, `rtrim`, `strval`, `strtolower`, `strtoupper`, and `strlen`, replacing the previous `undefined` coercions.
+  - Reworked `array_merge_recursive` to support the actual variadic PHP contract, including `0`, `1`, and `3+` argument cases.
+- Validation:
+  - `corepack yarn exec vitest run test/util/php-issue-583.vitest.ts`
+  - `corepack yarn test:parity php/array/array_merge_recursive php/strings/trim php/strings/rtrim php/strings/ltrim php/var/strval php/strings/strtolower php/strings/strtoupper php/strings/strlen --no-cache`
+- Key learnings:
+  - Issue reports that cite "PHP versions" are worth checking against the exact parity target first; in this case PHP 8.3 had three distinct behaviors in one issue: deprecation-with-coercion, hard missing-arg errors, and true variadic support.

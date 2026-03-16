@@ -113,7 +113,7 @@ src/php/array/array_map.ts :: export function array_map<TResult = ArrayMapValue>
 src/php/array/array_merge.ts :: export function array_merge<T>( ...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>] ): PhpList<T> | AssociativeArray<T>
 src/php/array/array_merge.ts :: export function array_merge<T>(...args: [first: PhpArrayLike<T>, ...rest: Array<PhpArrayLike<T>>]): AssociativeArray<T>
 src/php/array/array_merge.ts :: export function array_merge<T>(...args: [first: PhpList<T>, ...rest: Array<PhpList<T>>]): PhpList<T>
-src/php/array/array_merge_recursive.ts :: export function array_merge_recursive(arr1: MergeObject, arr2: MergeObject): MergeObject
+src/php/array/array_merge_recursive.ts :: export function array_merge_recursive(...arrays: MergeObject[]): MergeObject
 src/php/array/array_multisort.ts :: export function array_multisort(arr: SortValue[] | SortableObject, ...rest: SortArg[]): boolean
 src/php/array/array_pad.ts :: export function array_pad<TInput extends PadValue, TPad extends PadValue>( input: TInput[] | NonArrayPadInput, padSize: number, padValue: TPad, ): Array<TInput | TPad>
 src/php/array/array_pad.ts :: export function array_pad<TInput extends PadValue, TPad extends PadValue>( input: TInput[], padSize: number, padValue: TPad, ): Array<TInput | TPad>
@@ -341,7 +341,7 @@ src/php/strings/join.ts :: export function join(glue: string, pieces: JoinValue[
 src/php/strings/lcfirst.ts :: export function lcfirst(str: string): string
 src/php/strings/levenshtein.ts :: export function levenshtein(s1: string, s2: string, costIns?: number, costRep?: number, costDel?: number): number
 src/php/strings/localeconv.ts :: export function localeconv(): LocaleValues
-src/php/strings/ltrim.ts :: export function ltrim(str: string, charlist: string): string
+src/php/strings/ltrim.ts :: export function ltrim(str?: string, charlist?: string): string
 src/php/strings/md5.ts :: export function md5(str: string): string
 src/php/strings/md5_file.ts :: export function md5_file(str_filename: string): string | false
 src/php/strings/metaphone.ts :: export function metaphone( word: MetaphoneValue, maxPhonemes?: string | number | boolean | null | undefined, ): string | false | null
@@ -355,7 +355,7 @@ src/php/strings/printf.ts :: export function printf(format: string, ...args: Pri
 src/php/strings/quoted_printable_decode.ts :: export function quoted_printable_decode(str: string): string
 src/php/strings/quoted_printable_encode.ts :: export function quoted_printable_encode(str: string): string
 src/php/strings/quotemeta.ts :: export function quotemeta(str: string): string
-src/php/strings/rtrim.ts :: export function rtrim(str: string, charlist: string): string
+src/php/strings/rtrim.ts :: export function rtrim(str?: string, charlist?: string): string
 src/php/strings/setlocale.ts :: export function setlocale(category: string, locale: LocaleInput): string | false
 src/php/strings/sha1.ts :: export function sha1(str: string): string
 src/php/strings/sha1_file.ts :: export function sha1_file(str_filename: string): string | false
@@ -383,7 +383,7 @@ src/php/strings/strip_tags.ts :: export function strip_tags(input: string | numb
 src/php/strings/stripos.ts :: export function stripos(fHaystack: string, fNeedle: string, fOffset?: number): number | false
 src/php/strings/stripslashes.ts :: export function stripslashes(str: string): string
 src/php/strings/stristr.ts :: export function stristr(haystack: string, needle: string, bool?: boolean): string | false
-src/php/strings/strlen.ts :: export function strlen(string: string): number
+src/php/strings/strlen.ts :: export function strlen(string?: string): number
 src/php/strings/strnatcasecmp.ts :: export function strnatcasecmp(...providedArgs: [a?: string | number, b?: string | number]): number | null
 src/php/strings/strnatcasecmp.ts :: export function strnatcasecmp(a: string | number, b: string | number): number
 src/php/strings/strnatcmp.ts :: export function strnatcmp(left: NatCmpValue, right: NatCmpValue): number
@@ -398,14 +398,14 @@ src/php/strings/strrpos.ts :: export function strrpos(haystack: string, needle: 
 src/php/strings/strspn.ts :: export function strspn(str1: string, str2: string, start?: number, lgth?: number): number
 src/php/strings/strstr.ts :: export function strstr(haystack: string, needle: string, bool?: boolean): string | false
 src/php/strings/strtok.ts :: export function strtok(str: string, tokens?: string): string | false
-src/php/strings/strtolower.ts :: export function strtolower(str: string): string
-src/php/strings/strtoupper.ts :: export function strtoupper(str: string): string
+src/php/strings/strtolower.ts :: export function strtolower(str?: string): string
+src/php/strings/strtoupper.ts :: export function strtoupper(str?: string): string
 src/php/strings/strtr.ts :: export function strtr(str: string, trFrom: string | ReplacementMap | string[], trTo?: string | StrtrValue[]): string
 src/php/strings/substr.ts :: export function substr(input: string | number, start: number, len?: number): string | false
 src/php/strings/substr_compare.ts :: export function substr_compare( mainStr: string, str: string, offset: number, length: number, caseInsensitivity?: boolean, ): number | false
 src/php/strings/substr_count.ts :: export function substr_count(haystack: string, needle: string, offset?: number, length?: number): number | false
 src/php/strings/substr_replace.ts :: export function substr_replace(str: string, replace: string, start: number, length?: number): string
-src/php/strings/trim.ts :: export function trim(str: string | number, charlist?: string | number): string
+src/php/strings/trim.ts :: export function trim(str?: string | number | null, charlist?: string | number): string
 src/php/strings/ucfirst.ts :: export function ucfirst(str: string): string
 src/php/strings/ucwords.ts :: export function ucwords(str: string): string
 src/php/strings/vprintf.ts :: export function vprintf(format: string, ...args: PrintfValue[]): number

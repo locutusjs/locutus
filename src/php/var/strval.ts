@@ -1,7 +1,7 @@
 import type { PhpRuntimeValue } from '../_helpers/_phpTypes.ts'
 import { gettype } from '../var/gettype.ts'
 
-type StringValue = PhpRuntimeValue
+type StringValue = PhpRuntimeValue | undefined
 
 export function strval(str: StringValue): string {
   //  discuss at: https://locutus.io/php/strval/
@@ -12,6 +12,10 @@ export function strval(str: StringValue): string {
   //   returns 1: 'Object'
 
   let type = ''
+
+  if (typeof str === 'undefined') {
+    throw new Error('strval() expects exactly 1 argument, 0 given')
+  }
 
   if (str === null) {
     return ''

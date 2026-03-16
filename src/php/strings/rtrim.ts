@@ -1,4 +1,4 @@
-export function rtrim(str: string, charlist: string): string {
+export function rtrim(str?: string, charlist?: string): string {
   //      discuss at: https://locutus.io/php/rtrim/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -9,6 +9,10 @@ export function rtrim(str: string, charlist: string): string {
   //     bugfixed by: Brett Zamir (https://brett-zamir.me)
   //       example 1: rtrim('    Kevin van Zonneveld    ')
   //       returns 1: '    Kevin van Zonneveld'
+
+  if (typeof str === 'undefined') {
+    throw new Error('rtrim() expects at least 1 argument, 0 given')
+  }
 
   charlist = !charlist ? ' \\s\u00A0' : (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '\\$1')
 
