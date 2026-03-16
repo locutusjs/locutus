@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-15T16:48:31.360Z">
-<meta property="article:modified_time" content="2026-03-15T16:48:31.360Z">
+<meta property="article:published_time" content="2026-03-16T07:06:30.121Z">
+<meta property="article:modified_time" content="2026-03-16T07:06:30.121Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,101 +229,9 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 12 R standard library functions across 1 module.
+        TypeScript implementations of 13 R standard library functions across 1 module.
         Each function is individually importable and tree-shakeable.
       </p>
-
-      
-        <h2>Upstream surface inventory</h2>
-        <p>
-          This page also tracks the upstream namespace catalog we compare against, the functions we still want to port,
-          the ones we intentionally keep, and the ones we explicitly skip because they do not fit Locutus' plain-value model.
-        </p>
-        <div class="tags" style="margin-bottom: 1rem;">
-          <span class="tag is-dark">Coverage</span>
-          <span class="tag is-info">1%</span>
-          <span class="tag is-dark">Shipped</span>
-          <span class="tag is-success">12/1270</span>
-          <span class="tag is-dark">Wanted</span>
-          <span class="tag is-warning">1</span>
-          <span class="tag is-dark">Untriaged</span>
-          <span class="tag is-light">1257</span>
-          
-        </div>
-
-        
-          <div class="message is-light" style="margin-bottom: 1rem;">
-            <div class="message-header">
-              <p>base package</p>
-              
-                <a href="/r/base/">Open category</a>
-              
-            </div>
-            <div class="message-body">
-              <div class="tags" style="margin-bottom: 0.75rem;">
-                <span class="tag is-dark">Coverage</span>
-                <span class="tag is-info">1%</span>
-                <span class="tag is-dark">Shipped</span>
-                <span class="tag is-success">12/1270</span>
-                <span class="tag is-dark">Wanted</span>
-                <span class="tag is-warning">1</span>
-                <span class="tag is-dark">Skipped</span>
-                <span class="tag is-light">0</span>
-                <span class="tag is-dark">Untriaged</span>
-                <span class="tag is-light">1257</span>
-              </div>
-              <p style="margin-bottom: 0.75rem;">
-                Source: <code>runtime</code> <code>r-base:4.4.2</code>.
-              </p>
-
-              
-                <p style="margin-bottom: 0.75rem;">
-                  Categories:
-                  
-                    <a href="/r/base/">base</a>
-                  
-                </p>
-              
-
-              
-                <p>
-                  <strong>Wanted ports:</strong>
-                  
-                    <code>sign</code> (Small but useful numeric helper with a direct number result.)
-                  
-                  .
-                </p>
-              
-
-              
-
-              
-                <p>
-                  <strong>Untriaged upstream entries:</strong>
-                  
-                    <code>!</code>, 
-                  
-                    <code>!.hexmode</code>, 
-                  
-                    <code>!.octmode</code>, 
-                  
-                    <code>!=</code>, 
-                  
-                    <code>$</code>, 
-                  
-                    <code>$.DLLInfo</code>, 
-                  
-                    <code>$.package_version</code>, 
-                  
-                    <code>$&lt;-</code>
-                  
-                   and 1249 more.
-                </p>
-              
-            </div>
-          </div>
-        
-      
 
       
         <strong>base</strong>
@@ -347,6 +255,8 @@ ga('send', 'pageview');
           
             <li><a href="/r/base/seq/">seq</a></li>
           
+            <li><a href="/r/base/sign/">sign</a></li>
+          
             <li><a href="/r/base/sqrt/">sqrt</a></li>
           
             <li><a href="/r/base/tolower/">tolower</a></li>
@@ -360,7 +270,7 @@ ga('send', 'pageview');
       
   
 
-  <h2>We have 12 R functions so far - help us add more</h2>
+  <h2>We have 13 R functions so far - help us add more</h2>
   <p>
     Got a rainy Sunday afternoon and a taste for a porting puzzle?
   </p>
@@ -387,6 +297,2686 @@ ga('send', 'pageview');
 
 
 
+
+      
+        
+<details class="surface-panel surface-panel-language surface-panel--toggle">
+  <summary class="surface-panel__summary">
+    <span class="surface-panel__summary-copy">
+      <strong>Upstream Surface Inventory</strong>
+      <span>
+        13/1270 shipped
+        
+         • 1257 need triage
+      </span>
+      <span class="surface-panel__summary-stack">
+        <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
+          
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1%"></span>
+            
+            
+            
+              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 99%"></span>
+            
+          
+        </span>
+      </span>
+    </span>
+    <span class="surface-panel__summary-badge">1%</span>
+  </summary>
+
+  <div class="surface-panel__content">
+    <div class="surface-panel__intro">
+      <div>
+        <p>
+          Locutus tracks the upstream R catalog and sorts it into what is already shipped,
+          what we still want, what we intentionally keep, and what still needs a decision.
+        </p>
+      </div>
+      <div class="surface-coverage-badge">
+        <strong>1%</strong>
+        <span>catalog shipped</span>
+      </div>
+    </div>
+
+    <div class="surface-stack" aria-label="Upstream surface coverage">
+      
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1%"></span>
+        
+        
+        
+          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 99%"></span>
+        
+      
+    </div>
+
+    <div class="surface-legend">
+      <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      
+      
+      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
+    </div>
+
+    <div class="surface-kpis">
+      <article class="surface-kpi">
+        <span class="surface-kpi__label">Shipped</span>
+        <strong class="surface-kpi__value">13/1270</strong>
+      </article>
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Needs triage</span>
+          <strong class="surface-kpi__value">1257</strong>
+        </article>
+      
+      
+      
+    </div>
+
+    <p class="surface-summary">
+      
+      
+      
+      
+      
+      
+      13 of 1270 upstream entries are already shipped; 1257 still need a decision.
+    </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/r/base/">base package</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>R 4.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>r-base:4.4.2</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>1%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1%"></span>
+      
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 99%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>13/1270</strong> shipped</span>
+    
+    
+    <span><strong>1257</strong> need triage</span>
+    
+  </div>
+
+  <p class="surface-summary">
+    13 shipped • 1257 still need triage.
+  </p>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/r/base/">base</a>
+      
+    </div>
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+
+      
+        <details class="surface-details">
+          <summary>Needs triage (1257)</summary>
+          <p class="surface-details__intro">
+            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
+          </p>
+          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+            
+              <li><code>!</code></li>
+            
+              <li><code>!.hexmode</code></li>
+            
+              <li><code>!.octmode</code></li>
+            
+              <li><code>!=</code></li>
+            
+              <li><code>$</code></li>
+            
+              <li><code>$.DLLInfo</code></li>
+            
+              <li><code>$.package_version</code></li>
+            
+              <li><code>$&lt;-</code></li>
+            
+              <li><code>$&lt;-.POSIXlt</code></li>
+            
+              <li><code>$&lt;-.data.frame</code></li>
+            
+              <li><code>%%</code></li>
+            
+              <li><code>%*%</code></li>
+            
+              <li><code>%/%</code></li>
+            
+              <li><code>%in%</code></li>
+            
+              <li><code>%o%</code></li>
+            
+              <li><code>%x%</code></li>
+            
+              <li><code>%||%</code></li>
+            
+              <li><code>&amp;</code></li>
+            
+              <li><code>&amp;&amp;</code></li>
+            
+              <li><code>&amp;.hexmode</code></li>
+            
+              <li><code>&amp;.octmode</code></li>
+            
+              <li><code>(</code></li>
+            
+              <li><code>*</code></li>
+            
+              <li><code>*.difftime</code></li>
+            
+              <li><code>+</code></li>
+            
+              <li><code>+.Date</code></li>
+            
+              <li><code>+.POSIXt</code></li>
+            
+              <li><code>-</code></li>
+            
+              <li><code>-.Date</code></li>
+            
+              <li><code>-.POSIXt</code></li>
+            
+              <li><code>/</code></li>
+            
+              <li><code>/.difftime</code></li>
+            
+              <li><code>:</code></li>
+            
+              <li><code>::</code></li>
+            
+              <li><code>:::</code></li>
+            
+              <li><code>&lt;</code></li>
+            
+              <li><code>&lt;-</code></li>
+            
+              <li><code>&lt;&lt;-</code></li>
+            
+              <li><code>&lt;=</code></li>
+            
+              <li><code>=</code></li>
+            
+              <li><code>==</code></li>
+            
+              <li><code>&gt;</code></li>
+            
+              <li><code>&gt;=</code></li>
+            
+              <li><code>@</code></li>
+            
+              <li><code>@&lt;-</code></li>
+            
+              <li><code>Arg</code></li>
+            
+              <li><code>Conj</code></li>
+            
+              <li><code>Cstack_info</code></li>
+            
+              <li><code>Encoding</code></li>
+            
+              <li><code>Encoding&lt;-</code></li>
+            
+              <li><code>Exec</code></li>
+            
+              <li><code>Filter</code></li>
+            
+              <li><code>Find</code></li>
+            
+              <li><code>I</code></li>
+            
+              <li><code>ISOdate</code></li>
+            
+              <li><code>ISOdatetime</code></li>
+            
+              <li><code>Im</code></li>
+            
+              <li><code>La.svd</code></li>
+            
+              <li><code>La_library</code></li>
+            
+              <li><code>La_version</code></li>
+            
+              <li><code>Map</code></li>
+            
+              <li><code>Math.Date</code></li>
+            
+              <li><code>Math.POSIXt</code></li>
+            
+              <li><code>Math.data.frame</code></li>
+            
+              <li><code>Math.difftime</code></li>
+            
+              <li><code>Math.factor</code></li>
+            
+              <li><code>Mod</code></li>
+            
+              <li><code>NCOL</code></li>
+            
+              <li><code>NROW</code></li>
+            
+              <li><code>Negate</code></li>
+            
+              <li><code>NextMethod</code></li>
+            
+              <li><code>OlsonNames</code></li>
+            
+              <li><code>Ops.Date</code></li>
+            
+              <li><code>Ops.POSIXt</code></li>
+            
+              <li><code>Ops.data.frame</code></li>
+            
+              <li><code>Ops.difftime</code></li>
+            
+              <li><code>Ops.factor</code></li>
+            
+              <li><code>Ops.numeric_version</code></li>
+            
+              <li><code>Ops.ordered</code></li>
+            
+              <li><code>Position</code></li>
+            
+              <li><code>R.Version</code></li>
+            
+              <li><code>R.home</code></li>
+            
+              <li><code>RNGkind</code></li>
+            
+              <li><code>RNGversion</code></li>
+            
+              <li><code>R_compiled_by</code></li>
+            
+              <li><code>R_system_version</code></li>
+            
+              <li><code>Re</code></li>
+            
+              <li><code>Recall</code></li>
+            
+              <li><code>Reduce</code></li>
+            
+              <li><code>Summary.Date</code></li>
+            
+              <li><code>Summary.POSIXct</code></li>
+            
+              <li><code>Summary.POSIXlt</code></li>
+            
+              <li><code>Summary.data.frame</code></li>
+            
+              <li><code>Summary.difftime</code></li>
+            
+              <li><code>Summary.factor</code></li>
+            
+              <li><code>Summary.numeric_version</code></li>
+            
+              <li><code>Summary.ordered</code></li>
+            
+              <li><code>Sys.Date</code></li>
+            
+              <li><code>Sys.chmod</code></li>
+            
+              <li><code>Sys.getenv</code></li>
+            
+              <li><code>Sys.getlocale</code></li>
+            
+              <li><code>Sys.getpid</code></li>
+            
+              <li><code>Sys.glob</code></li>
+            
+              <li><code>Sys.info</code></li>
+            
+              <li><code>Sys.localeconv</code></li>
+            
+              <li><code>Sys.readlink</code></li>
+            
+              <li><code>Sys.setFileTime</code></li>
+            
+              <li><code>Sys.setLanguage</code></li>
+            
+              <li><code>Sys.setenv</code></li>
+            
+              <li><code>Sys.setlocale</code></li>
+            
+              <li><code>Sys.sleep</code></li>
+            
+              <li><code>Sys.time</code></li>
+            
+              <li><code>Sys.timezone</code></li>
+            
+              <li><code>Sys.umask</code></li>
+            
+              <li><code>Sys.unsetenv</code></li>
+            
+              <li><code>Sys.which</code></li>
+            
+              <li><code>Tailcall</code></li>
+            
+              <li><code>UseMethod</code></li>
+            
+              <li><code>Vectorize</code></li>
+            
+              <li><code>[</code></li>
+            
+              <li><code>[.AsIs</code></li>
+            
+              <li><code>[.DLLInfoList</code></li>
+            
+              <li><code>[.Date</code></li>
+            
+              <li><code>[.Dlist</code></li>
+            
+              <li><code>[.POSIXct</code></li>
+            
+              <li><code>[.POSIXlt</code></li>
+            
+              <li><code>[.data.frame</code></li>
+            
+              <li><code>[.difftime</code></li>
+            
+              <li><code>[.factor</code></li>
+            
+              <li><code>[.hexmode</code></li>
+            
+              <li><code>[.listof</code></li>
+            
+              <li><code>[.noquote</code></li>
+            
+              <li><code>[.numeric_version</code></li>
+            
+              <li><code>[.octmode</code></li>
+            
+              <li><code>[.simple.list</code></li>
+            
+              <li><code>[.table</code></li>
+            
+              <li><code>[.warnings</code></li>
+            
+              <li><code>[&lt;-</code></li>
+            
+              <li><code>[&lt;-.Date</code></li>
+            
+              <li><code>[&lt;-.POSIXct</code></li>
+            
+              <li><code>[&lt;-.POSIXlt</code></li>
+            
+              <li><code>[&lt;-.data.frame</code></li>
+            
+              <li><code>[&lt;-.difftime</code></li>
+            
+              <li><code>[&lt;-.factor</code></li>
+            
+              <li><code>[&lt;-.numeric_version</code></li>
+            
+              <li><code>[[</code></li>
+            
+              <li><code>[[.Date</code></li>
+            
+              <li><code>[[.POSIXct</code></li>
+            
+              <li><code>[[.POSIXlt</code></li>
+            
+              <li><code>[[.data.frame</code></li>
+            
+              <li><code>[[.factor</code></li>
+            
+              <li><code>[[.numeric_version</code></li>
+            
+              <li><code>[[&lt;-</code></li>
+            
+              <li><code>[[&lt;-.POSIXlt</code></li>
+            
+              <li><code>[[&lt;-.data.frame</code></li>
+            
+              <li><code>[[&lt;-.factor</code></li>
+            
+              <li><code>[[&lt;-.numeric_version</code></li>
+            
+              <li><code>^</code></li>
+            
+              <li><code>abbreviate</code></li>
+            
+              <li><code>acos</code></li>
+            
+              <li><code>acosh</code></li>
+            
+              <li><code>activeBindingFunction</code></li>
+            
+              <li><code>addNA</code></li>
+            
+              <li><code>addTaskCallback</code></li>
+            
+              <li><code>agrep</code></li>
+            
+              <li><code>agrepl</code></li>
+            
+              <li><code>alist</code></li>
+            
+              <li><code>all</code></li>
+            
+              <li><code>all.equal</code></li>
+            
+              <li><code>all.equal.POSIXt</code></li>
+            
+              <li><code>all.equal.character</code></li>
+            
+              <li><code>all.equal.default</code></li>
+            
+              <li><code>all.equal.envRefClass</code></li>
+            
+              <li><code>all.equal.environment</code></li>
+            
+              <li><code>all.equal.factor</code></li>
+            
+              <li><code>all.equal.formula</code></li>
+            
+              <li><code>all.equal.function</code></li>
+            
+              <li><code>all.equal.language</code></li>
+            
+              <li><code>all.equal.list</code></li>
+            
+              <li><code>all.equal.numeric</code></li>
+            
+              <li><code>all.equal.raw</code></li>
+            
+              <li><code>all.names</code></li>
+            
+              <li><code>all.vars</code></li>
+            
+              <li><code>allowInterrupts</code></li>
+            
+              <li><code>any</code></li>
+            
+              <li><code>anyDuplicated</code></li>
+            
+              <li><code>anyDuplicated.array</code></li>
+            
+              <li><code>anyDuplicated.data.frame</code></li>
+            
+              <li><code>anyDuplicated.default</code></li>
+            
+              <li><code>anyDuplicated.matrix</code></li>
+            
+              <li><code>anyNA</code></li>
+            
+              <li><code>anyNA.POSIXlt</code></li>
+            
+              <li><code>anyNA.data.frame</code></li>
+            
+              <li><code>anyNA.numeric_version</code></li>
+            
+              <li><code>aperm</code></li>
+            
+              <li><code>aperm.default</code></li>
+            
+              <li><code>aperm.table</code></li>
+            
+              <li><code>append</code></li>
+            
+              <li><code>apply</code></li>
+            
+              <li><code>args</code></li>
+            
+              <li><code>array</code></li>
+            
+              <li><code>array2DF</code></li>
+            
+              <li><code>arrayInd</code></li>
+            
+              <li><code>as.Date</code></li>
+            
+              <li><code>as.Date.POSIXct</code></li>
+            
+              <li><code>as.Date.POSIXlt</code></li>
+            
+              <li><code>as.Date.character</code></li>
+            
+              <li><code>as.Date.default</code></li>
+            
+              <li><code>as.Date.factor</code></li>
+            
+              <li><code>as.Date.numeric</code></li>
+            
+              <li><code>as.POSIXct</code></li>
+            
+              <li><code>as.POSIXct.Date</code></li>
+            
+              <li><code>as.POSIXct.POSIXlt</code></li>
+            
+              <li><code>as.POSIXct.default</code></li>
+            
+              <li><code>as.POSIXct.numeric</code></li>
+            
+              <li><code>as.POSIXlt</code></li>
+            
+              <li><code>as.POSIXlt.Date</code></li>
+            
+              <li><code>as.POSIXlt.POSIXct</code></li>
+            
+              <li><code>as.POSIXlt.character</code></li>
+            
+              <li><code>as.POSIXlt.default</code></li>
+            
+              <li><code>as.POSIXlt.factor</code></li>
+            
+              <li><code>as.POSIXlt.numeric</code></li>
+            
+              <li><code>as.array</code></li>
+            
+              <li><code>as.array.default</code></li>
+            
+              <li><code>as.call</code></li>
+            
+              <li><code>as.character</code></li>
+            
+              <li><code>as.character.Date</code></li>
+            
+              <li><code>as.character.POSIXt</code></li>
+            
+              <li><code>as.character.condition</code></li>
+            
+              <li><code>as.character.default</code></li>
+            
+              <li><code>as.character.error</code></li>
+            
+              <li><code>as.character.factor</code></li>
+            
+              <li><code>as.character.hexmode</code></li>
+            
+              <li><code>as.character.numeric_version</code></li>
+            
+              <li><code>as.character.octmode</code></li>
+            
+              <li><code>as.character.srcref</code></li>
+            
+              <li><code>as.complex</code></li>
+            
+              <li><code>as.data.frame</code></li>
+            
+              <li><code>as.data.frame.AsIs</code></li>
+            
+              <li><code>as.data.frame.Date</code></li>
+            
+              <li><code>as.data.frame.POSIXct</code></li>
+            
+              <li><code>as.data.frame.POSIXlt</code></li>
+            
+              <li><code>as.data.frame.array</code></li>
+            
+              <li><code>as.data.frame.character</code></li>
+            
+              <li><code>as.data.frame.complex</code></li>
+            
+              <li><code>as.data.frame.data.frame</code></li>
+            
+              <li><code>as.data.frame.default</code></li>
+            
+              <li><code>as.data.frame.difftime</code></li>
+            
+              <li><code>as.data.frame.factor</code></li>
+            
+              <li><code>as.data.frame.integer</code></li>
+            
+              <li><code>as.data.frame.list</code></li>
+            
+              <li><code>as.data.frame.logical</code></li>
+            
+              <li><code>as.data.frame.matrix</code></li>
+            
+              <li><code>as.data.frame.model.matrix</code></li>
+            
+              <li><code>as.data.frame.noquote</code></li>
+            
+              <li><code>as.data.frame.numeric</code></li>
+            
+              <li><code>as.data.frame.numeric_version</code></li>
+            
+              <li><code>as.data.frame.ordered</code></li>
+            
+              <li><code>as.data.frame.raw</code></li>
+            
+              <li><code>as.data.frame.table</code></li>
+            
+              <li><code>as.data.frame.ts</code></li>
+            
+              <li><code>as.data.frame.vector</code></li>
+            
+              <li><code>as.difftime</code></li>
+            
+              <li><code>as.double</code></li>
+            
+              <li><code>as.double.POSIXlt</code></li>
+            
+              <li><code>as.double.difftime</code></li>
+            
+              <li><code>as.environment</code></li>
+            
+              <li><code>as.expression</code></li>
+            
+              <li><code>as.expression.default</code></li>
+            
+              <li><code>as.factor</code></li>
+            
+              <li><code>as.function</code></li>
+            
+              <li><code>as.function.default</code></li>
+            
+              <li><code>as.hexmode</code></li>
+            
+              <li><code>as.integer</code></li>
+            
+              <li><code>as.list</code></li>
+            
+              <li><code>as.list.Date</code></li>
+            
+              <li><code>as.list.POSIXct</code></li>
+            
+              <li><code>as.list.POSIXlt</code></li>
+            
+              <li><code>as.list.data.frame</code></li>
+            
+              <li><code>as.list.default</code></li>
+            
+              <li><code>as.list.difftime</code></li>
+            
+              <li><code>as.list.environment</code></li>
+            
+              <li><code>as.list.factor</code></li>
+            
+              <li><code>as.list.function</code></li>
+            
+              <li><code>as.list.numeric_version</code></li>
+            
+              <li><code>as.logical</code></li>
+            
+              <li><code>as.logical.factor</code></li>
+            
+              <li><code>as.matrix</code></li>
+            
+              <li><code>as.matrix.POSIXlt</code></li>
+            
+              <li><code>as.matrix.data.frame</code></li>
+            
+              <li><code>as.matrix.default</code></li>
+            
+              <li><code>as.matrix.noquote</code></li>
+            
+              <li><code>as.name</code></li>
+            
+              <li><code>as.null</code></li>
+            
+              <li><code>as.null.default</code></li>
+            
+              <li><code>as.numeric</code></li>
+            
+              <li><code>as.numeric_version</code></li>
+            
+              <li><code>as.octmode</code></li>
+            
+              <li><code>as.ordered</code></li>
+            
+              <li><code>as.package_version</code></li>
+            
+              <li><code>as.pairlist</code></li>
+            
+              <li><code>as.qr</code></li>
+            
+              <li><code>as.raw</code></li>
+            
+              <li><code>as.single</code></li>
+            
+              <li><code>as.single.default</code></li>
+            
+              <li><code>as.symbol</code></li>
+            
+              <li><code>as.table</code></li>
+            
+              <li><code>as.table.default</code></li>
+            
+              <li><code>as.vector</code></li>
+            
+              <li><code>as.vector.POSIXlt</code></li>
+            
+              <li><code>as.vector.data.frame</code></li>
+            
+              <li><code>as.vector.factor</code></li>
+            
+              <li><code>asNamespace</code></li>
+            
+              <li><code>asS3</code></li>
+            
+              <li><code>asS4</code></li>
+            
+              <li><code>asin</code></li>
+            
+              <li><code>asinh</code></li>
+            
+              <li><code>asplit</code></li>
+            
+              <li><code>assign</code></li>
+            
+              <li><code>atan</code></li>
+            
+              <li><code>atan2</code></li>
+            
+              <li><code>atanh</code></li>
+            
+              <li><code>attach</code></li>
+            
+              <li><code>attachNamespace</code></li>
+            
+              <li><code>attr</code></li>
+            
+              <li><code>attr.all.equal</code></li>
+            
+              <li><code>attr&lt;-</code></li>
+            
+              <li><code>attributes</code></li>
+            
+              <li><code>attributes&lt;-</code></li>
+            
+              <li><code>autoload</code></li>
+            
+              <li><code>autoloader</code></li>
+            
+              <li><code>backsolve</code></li>
+            
+              <li><code>balancePOSIXlt</code></li>
+            
+              <li><code>baseenv</code></li>
+            
+              <li><code>basename</code></li>
+            
+              <li><code>besselI</code></li>
+            
+              <li><code>besselJ</code></li>
+            
+              <li><code>besselK</code></li>
+            
+              <li><code>besselY</code></li>
+            
+              <li><code>beta</code></li>
+            
+              <li><code>bindingIsActive</code></li>
+            
+              <li><code>bindingIsLocked</code></li>
+            
+              <li><code>bindtextdomain</code></li>
+            
+              <li><code>bitwAnd</code></li>
+            
+              <li><code>bitwNot</code></li>
+            
+              <li><code>bitwOr</code></li>
+            
+              <li><code>bitwShiftL</code></li>
+            
+              <li><code>bitwShiftR</code></li>
+            
+              <li><code>bitwXor</code></li>
+            
+              <li><code>body</code></li>
+            
+              <li><code>body&lt;-</code></li>
+            
+              <li><code>bquote</code></li>
+            
+              <li><code>break</code></li>
+            
+              <li><code>browser</code></li>
+            
+              <li><code>browserCondition</code></li>
+            
+              <li><code>browserSetDebug</code></li>
+            
+              <li><code>browserText</code></li>
+            
+              <li><code>builtins</code></li>
+            
+              <li><code>by</code></li>
+            
+              <li><code>by.data.frame</code></li>
+            
+              <li><code>by.default</code></li>
+            
+              <li><code>bzfile</code></li>
+            
+              <li><code>c</code></li>
+            
+              <li><code>c.Date</code></li>
+            
+              <li><code>c.POSIXct</code></li>
+            
+              <li><code>c.POSIXlt</code></li>
+            
+              <li><code>c.difftime</code></li>
+            
+              <li><code>c.factor</code></li>
+            
+              <li><code>c.noquote</code></li>
+            
+              <li><code>c.numeric_version</code></li>
+            
+              <li><code>c.warnings</code></li>
+            
+              <li><code>call</code></li>
+            
+              <li><code>callCC</code></li>
+            
+              <li><code>capabilities</code></li>
+            
+              <li><code>casefold</code></li>
+            
+              <li><code>cat</code></li>
+            
+              <li><code>cbind</code></li>
+            
+              <li><code>cbind.data.frame</code></li>
+            
+              <li><code>char.expand</code></li>
+            
+              <li><code>charToRaw</code></li>
+            
+              <li><code>character</code></li>
+            
+              <li><code>charmatch</code></li>
+            
+              <li><code>chartr</code></li>
+            
+              <li><code>chkDots</code></li>
+            
+              <li><code>chol</code></li>
+            
+              <li><code>chol.default</code></li>
+            
+              <li><code>chol2inv</code></li>
+            
+              <li><code>choose</code></li>
+            
+              <li><code>chooseOpsMethod</code></li>
+            
+              <li><code>chooseOpsMethod.default</code></li>
+            
+              <li><code>class</code></li>
+            
+              <li><code>class&lt;-</code></li>
+            
+              <li><code>clearPushBack</code></li>
+            
+              <li><code>close</code></li>
+            
+              <li><code>close.connection</code></li>
+            
+              <li><code>close.srcfile</code></li>
+            
+              <li><code>close.srcfilealias</code></li>
+            
+              <li><code>closeAllConnections</code></li>
+            
+              <li><code>col</code></li>
+            
+              <li><code>colMeans</code></li>
+            
+              <li><code>colSums</code></li>
+            
+              <li><code>colnames</code></li>
+            
+              <li><code>colnames&lt;-</code></li>
+            
+              <li><code>commandArgs</code></li>
+            
+              <li><code>comment</code></li>
+            
+              <li><code>comment&lt;-</code></li>
+            
+              <li><code>complex</code></li>
+            
+              <li><code>computeRestarts</code></li>
+            
+              <li><code>conditionCall</code></li>
+            
+              <li><code>conditionCall.condition</code></li>
+            
+              <li><code>conditionMessage</code></li>
+            
+              <li><code>conditionMessage.condition</code></li>
+            
+              <li><code>conflictRules</code></li>
+            
+              <li><code>conflicts</code></li>
+            
+              <li><code>contributors</code></li>
+            
+              <li><code>cos</code></li>
+            
+              <li><code>cosh</code></li>
+            
+              <li><code>cospi</code></li>
+            
+              <li><code>crossprod</code></li>
+            
+              <li><code>cummax</code></li>
+            
+              <li><code>cummin</code></li>
+            
+              <li><code>cumprod</code></li>
+            
+              <li><code>cumsum</code></li>
+            
+              <li><code>curlGetHeaders</code></li>
+            
+              <li><code>cut</code></li>
+            
+              <li><code>cut.Date</code></li>
+            
+              <li><code>cut.POSIXt</code></li>
+            
+              <li><code>cut.default</code></li>
+            
+              <li><code>dQuote</code></li>
+            
+              <li><code>data.class</code></li>
+            
+              <li><code>data.frame</code></li>
+            
+              <li><code>data.matrix</code></li>
+            
+              <li><code>date</code></li>
+            
+              <li><code>debug</code></li>
+            
+              <li><code>debuggingState</code></li>
+            
+              <li><code>debugonce</code></li>
+            
+              <li><code>declare</code></li>
+            
+              <li><code>default.stringsAsFactors</code></li>
+            
+              <li><code>delayedAssign</code></li>
+            
+              <li><code>deparse</code></li>
+            
+              <li><code>deparse1</code></li>
+            
+              <li><code>det</code></li>
+            
+              <li><code>detach</code></li>
+            
+              <li><code>determinant</code></li>
+            
+              <li><code>determinant.matrix</code></li>
+            
+              <li><code>dget</code></li>
+            
+              <li><code>diag</code></li>
+            
+              <li><code>diag&lt;-</code></li>
+            
+              <li><code>diff</code></li>
+            
+              <li><code>diff.Date</code></li>
+            
+              <li><code>diff.POSIXt</code></li>
+            
+              <li><code>diff.default</code></li>
+            
+              <li><code>diff.difftime</code></li>
+            
+              <li><code>difftime</code></li>
+            
+              <li><code>digamma</code></li>
+            
+              <li><code>dim</code></li>
+            
+              <li><code>dim.data.frame</code></li>
+            
+              <li><code>dim&lt;-</code></li>
+            
+              <li><code>dimnames</code></li>
+            
+              <li><code>dimnames.data.frame</code></li>
+            
+              <li><code>dimnames&lt;-</code></li>
+            
+              <li><code>dimnames&lt;-.data.frame</code></li>
+            
+              <li><code>dir</code></li>
+            
+              <li><code>dir.create</code></li>
+            
+              <li><code>dir.exists</code></li>
+            
+              <li><code>dirname</code></li>
+            
+              <li><code>do.call</code></li>
+            
+              <li><code>dontCheck</code></li>
+            
+              <li><code>double</code></li>
+            
+              <li><code>dput</code></li>
+            
+              <li><code>drop</code></li>
+            
+              <li><code>droplevels</code></li>
+            
+              <li><code>droplevels.data.frame</code></li>
+            
+              <li><code>droplevels.factor</code></li>
+            
+              <li><code>dump</code></li>
+            
+              <li><code>duplicated</code></li>
+            
+              <li><code>duplicated.POSIXlt</code></li>
+            
+              <li><code>duplicated.array</code></li>
+            
+              <li><code>duplicated.data.frame</code></li>
+            
+              <li><code>duplicated.default</code></li>
+            
+              <li><code>duplicated.matrix</code></li>
+            
+              <li><code>duplicated.numeric_version</code></li>
+            
+              <li><code>duplicated.warnings</code></li>
+            
+              <li><code>dyn.load</code></li>
+            
+              <li><code>dyn.unload</code></li>
+            
+              <li><code>dynGet</code></li>
+            
+              <li><code>eapply</code></li>
+            
+              <li><code>eigen</code></li>
+            
+              <li><code>emptyenv</code></li>
+            
+              <li><code>enc2native</code></li>
+            
+              <li><code>enc2utf8</code></li>
+            
+              <li><code>encodeString</code></li>
+            
+              <li><code>endsWith</code></li>
+            
+              <li><code>enquote</code></li>
+            
+              <li><code>env.profile</code></li>
+            
+              <li><code>environment</code></li>
+            
+              <li><code>environment&lt;-</code></li>
+            
+              <li><code>environmentIsLocked</code></li>
+            
+              <li><code>environmentName</code></li>
+            
+              <li><code>errorCondition</code></li>
+            
+              <li><code>eval</code></li>
+            
+              <li><code>eval.parent</code></li>
+            
+              <li><code>evalq</code></li>
+            
+              <li><code>exists</code></li>
+            
+              <li><code>exp</code></li>
+            
+              <li><code>expand.grid</code></li>
+            
+              <li><code>expm1</code></li>
+            
+              <li><code>expression</code></li>
+            
+              <li><code>extSoftVersion</code></li>
+            
+              <li><code>factor</code></li>
+            
+              <li><code>factorial</code></li>
+            
+              <li><code>fifo</code></li>
+            
+              <li><code>file</code></li>
+            
+              <li><code>file.access</code></li>
+            
+              <li><code>file.append</code></li>
+            
+              <li><code>file.choose</code></li>
+            
+              <li><code>file.copy</code></li>
+            
+              <li><code>file.create</code></li>
+            
+              <li><code>file.exists</code></li>
+            
+              <li><code>file.info</code></li>
+            
+              <li><code>file.link</code></li>
+            
+              <li><code>file.mode</code></li>
+            
+              <li><code>file.mtime</code></li>
+            
+              <li><code>file.path</code></li>
+            
+              <li><code>file.remove</code></li>
+            
+              <li><code>file.rename</code></li>
+            
+              <li><code>file.show</code></li>
+            
+              <li><code>file.size</code></li>
+            
+              <li><code>file.symlink</code></li>
+            
+              <li><code>find.package</code></li>
+            
+              <li><code>findInterval</code></li>
+            
+              <li><code>findPackageEnv</code></li>
+            
+              <li><code>findRestart</code></li>
+            
+              <li><code>flush</code></li>
+            
+              <li><code>flush.connection</code></li>
+            
+              <li><code>for</code></li>
+            
+              <li><code>force</code></li>
+            
+              <li><code>forceAndCall</code></li>
+            
+              <li><code>formals</code></li>
+            
+              <li><code>formals&lt;-</code></li>
+            
+              <li><code>format</code></li>
+            
+              <li><code>format.AsIs</code></li>
+            
+              <li><code>format.Date</code></li>
+            
+              <li><code>format.POSIXct</code></li>
+            
+              <li><code>format.POSIXlt</code></li>
+            
+              <li><code>format.data.frame</code></li>
+            
+              <li><code>format.default</code></li>
+            
+              <li><code>format.difftime</code></li>
+            
+              <li><code>format.factor</code></li>
+            
+              <li><code>format.hexmode</code></li>
+            
+              <li><code>format.info</code></li>
+            
+              <li><code>format.libraryIQR</code></li>
+            
+              <li><code>format.numeric_version</code></li>
+            
+              <li><code>format.octmode</code></li>
+            
+              <li><code>format.packageInfo</code></li>
+            
+              <li><code>format.pval</code></li>
+            
+              <li><code>format.summaryDefault</code></li>
+            
+              <li><code>formatC</code></li>
+            
+              <li><code>formatDL</code></li>
+            
+              <li><code>forwardsolve</code></li>
+            
+              <li><code>function</code></li>
+            
+              <li><code>gamma</code></li>
+            
+              <li><code>gc</code></li>
+            
+              <li><code>gc.time</code></li>
+            
+              <li><code>gcinfo</code></li>
+            
+              <li><code>gctorture</code></li>
+            
+              <li><code>gctorture2</code></li>
+            
+              <li><code>get</code></li>
+            
+              <li><code>get0</code></li>
+            
+              <li><code>getAllConnections</code></li>
+            
+              <li><code>getCallingDLL</code></li>
+            
+              <li><code>getCallingDLLe</code></li>
+            
+              <li><code>getConnection</code></li>
+            
+              <li><code>getDLLRegisteredRoutines</code></li>
+            
+              <li><code>getDLLRegisteredRoutines.DLLInfo</code></li>
+            
+              <li><code>getDLLRegisteredRoutines.character</code></li>
+            
+              <li><code>getElement</code></li>
+            
+              <li><code>getExportedValue</code></li>
+            
+              <li><code>getHook</code></li>
+            
+              <li><code>getLoadedDLLs</code></li>
+            
+              <li><code>getNamespace</code></li>
+            
+              <li><code>getNamespaceExports</code></li>
+            
+              <li><code>getNamespaceImports</code></li>
+            
+              <li><code>getNamespaceInfo</code></li>
+            
+              <li><code>getNamespaceName</code></li>
+            
+              <li><code>getNamespaceUsers</code></li>
+            
+              <li><code>getNamespaceVersion</code></li>
+            
+              <li><code>getNativeSymbolInfo</code></li>
+            
+              <li><code>getOption</code></li>
+            
+              <li><code>getRversion</code></li>
+            
+              <li><code>getSrcLines</code></li>
+            
+              <li><code>getTaskCallbackNames</code></li>
+            
+              <li><code>geterrmessage</code></li>
+            
+              <li><code>gettext</code></li>
+            
+              <li><code>gettextf</code></li>
+            
+              <li><code>getwd</code></li>
+            
+              <li><code>gl</code></li>
+            
+              <li><code>globalCallingHandlers</code></li>
+            
+              <li><code>globalenv</code></li>
+            
+              <li><code>gregexec</code></li>
+            
+              <li><code>gregexpr</code></li>
+            
+              <li><code>grep</code></li>
+            
+              <li><code>grepRaw</code></li>
+            
+              <li><code>grepl</code></li>
+            
+              <li><code>grouping</code></li>
+            
+              <li><code>gsub</code></li>
+            
+              <li><code>gzcon</code></li>
+            
+              <li><code>gzfile</code></li>
+            
+              <li><code>iconv</code></li>
+            
+              <li><code>iconvlist</code></li>
+            
+              <li><code>icuGetCollate</code></li>
+            
+              <li><code>icuSetCollate</code></li>
+            
+              <li><code>identical</code></li>
+            
+              <li><code>identity</code></li>
+            
+              <li><code>if</code></li>
+            
+              <li><code>ifelse</code></li>
+            
+              <li><code>importIntoEnv</code></li>
+            
+              <li><code>infoRDS</code></li>
+            
+              <li><code>inherits</code></li>
+            
+              <li><code>intToBits</code></li>
+            
+              <li><code>intToUtf8</code></li>
+            
+              <li><code>integer</code></li>
+            
+              <li><code>interaction</code></li>
+            
+              <li><code>interactive</code></li>
+            
+              <li><code>intersect</code></li>
+            
+              <li><code>inverse.rle</code></li>
+            
+              <li><code>invisible</code></li>
+            
+              <li><code>invokeRestart</code></li>
+            
+              <li><code>invokeRestartInteractively</code></li>
+            
+              <li><code>is.R</code></li>
+            
+              <li><code>is.array</code></li>
+            
+              <li><code>is.atomic</code></li>
+            
+              <li><code>is.call</code></li>
+            
+              <li><code>is.character</code></li>
+            
+              <li><code>is.complex</code></li>
+            
+              <li><code>is.data.frame</code></li>
+            
+              <li><code>is.double</code></li>
+            
+              <li><code>is.element</code></li>
+            
+              <li><code>is.environment</code></li>
+            
+              <li><code>is.expression</code></li>
+            
+              <li><code>is.factor</code></li>
+            
+              <li><code>is.finite</code></li>
+            
+              <li><code>is.finite.POSIXlt</code></li>
+            
+              <li><code>is.function</code></li>
+            
+              <li><code>is.infinite</code></li>
+            
+              <li><code>is.infinite.POSIXlt</code></li>
+            
+              <li><code>is.integer</code></li>
+            
+              <li><code>is.language</code></li>
+            
+              <li><code>is.list</code></li>
+            
+              <li><code>is.loaded</code></li>
+            
+              <li><code>is.logical</code></li>
+            
+              <li><code>is.matrix</code></li>
+            
+              <li><code>is.na</code></li>
+            
+              <li><code>is.na.POSIXlt</code></li>
+            
+              <li><code>is.na.data.frame</code></li>
+            
+              <li><code>is.na.numeric_version</code></li>
+            
+              <li><code>is.na&lt;-</code></li>
+            
+              <li><code>is.na&lt;-.default</code></li>
+            
+              <li><code>is.na&lt;-.factor</code></li>
+            
+              <li><code>is.na&lt;-.numeric_version</code></li>
+            
+              <li><code>is.name</code></li>
+            
+              <li><code>is.nan</code></li>
+            
+              <li><code>is.nan.POSIXlt</code></li>
+            
+              <li><code>is.null</code></li>
+            
+              <li><code>is.numeric</code></li>
+            
+              <li><code>is.numeric.Date</code></li>
+            
+              <li><code>is.numeric.POSIXt</code></li>
+            
+              <li><code>is.numeric.difftime</code></li>
+            
+              <li><code>is.numeric_version</code></li>
+            
+              <li><code>is.object</code></li>
+            
+              <li><code>is.ordered</code></li>
+            
+              <li><code>is.package_version</code></li>
+            
+              <li><code>is.pairlist</code></li>
+            
+              <li><code>is.primitive</code></li>
+            
+              <li><code>is.qr</code></li>
+            
+              <li><code>is.raw</code></li>
+            
+              <li><code>is.recursive</code></li>
+            
+              <li><code>is.single</code></li>
+            
+              <li><code>is.symbol</code></li>
+            
+              <li><code>is.table</code></li>
+            
+              <li><code>is.unsorted</code></li>
+            
+              <li><code>is.vector</code></li>
+            
+              <li><code>isBaseNamespace</code></li>
+            
+              <li><code>isFALSE</code></li>
+            
+              <li><code>isIncomplete</code></li>
+            
+              <li><code>isNamespace</code></li>
+            
+              <li><code>isNamespaceLoaded</code></li>
+            
+              <li><code>isOpen</code></li>
+            
+              <li><code>isRestart</code></li>
+            
+              <li><code>isS4</code></li>
+            
+              <li><code>isSeekable</code></li>
+            
+              <li><code>isSymmetric</code></li>
+            
+              <li><code>isSymmetric.matrix</code></li>
+            
+              <li><code>isTRUE</code></li>
+            
+              <li><code>isa</code></li>
+            
+              <li><code>isatty</code></li>
+            
+              <li><code>isdebugged</code></li>
+            
+              <li><code>jitter</code></li>
+            
+              <li><code>julian</code></li>
+            
+              <li><code>julian.Date</code></li>
+            
+              <li><code>julian.POSIXt</code></li>
+            
+              <li><code>kappa</code></li>
+            
+              <li><code>kappa.default</code></li>
+            
+              <li><code>kappa.lm</code></li>
+            
+              <li><code>kappa.qr</code></li>
+            
+              <li><code>kronecker</code></li>
+            
+              <li><code>l10n_info</code></li>
+            
+              <li><code>labels</code></li>
+            
+              <li><code>labels.default</code></li>
+            
+              <li><code>lapply</code></li>
+            
+              <li><code>lazyLoad</code></li>
+            
+              <li><code>lazyLoadDBexec</code></li>
+            
+              <li><code>lazyLoadDBfetch</code></li>
+            
+              <li><code>lbeta</code></li>
+            
+              <li><code>lchoose</code></li>
+            
+              <li><code>length</code></li>
+            
+              <li><code>length.POSIXlt</code></li>
+            
+              <li><code>length&lt;-</code></li>
+            
+              <li><code>length&lt;-.Date</code></li>
+            
+              <li><code>length&lt;-.POSIXct</code></li>
+            
+              <li><code>length&lt;-.POSIXlt</code></li>
+            
+              <li><code>length&lt;-.difftime</code></li>
+            
+              <li><code>length&lt;-.factor</code></li>
+            
+              <li><code>lengths</code></li>
+            
+              <li><code>levels</code></li>
+            
+              <li><code>levels.default</code></li>
+            
+              <li><code>levels&lt;-</code></li>
+            
+              <li><code>levels&lt;-.factor</code></li>
+            
+              <li><code>lfactorial</code></li>
+            
+              <li><code>lgamma</code></li>
+            
+              <li><code>libcurlVersion</code></li>
+            
+              <li><code>library</code></li>
+            
+              <li><code>library.dynam</code></li>
+            
+              <li><code>library.dynam.unload</code></li>
+            
+              <li><code>licence</code></li>
+            
+              <li><code>license</code></li>
+            
+              <li><code>list</code></li>
+            
+              <li><code>list.dirs</code></li>
+            
+              <li><code>list.files</code></li>
+            
+              <li><code>list2DF</code></li>
+            
+              <li><code>list2env</code></li>
+            
+              <li><code>load</code></li>
+            
+              <li><code>loadNamespace</code></li>
+            
+              <li><code>loadedNamespaces</code></li>
+            
+              <li><code>loadingNamespaceInfo</code></li>
+            
+              <li><code>local</code></li>
+            
+              <li><code>lockBinding</code></li>
+            
+              <li><code>lockEnvironment</code></li>
+            
+              <li><code>log</code></li>
+            
+              <li><code>log10</code></li>
+            
+              <li><code>log1p</code></li>
+            
+              <li><code>log2</code></li>
+            
+              <li><code>logb</code></li>
+            
+              <li><code>logical</code></li>
+            
+              <li><code>lower.tri</code></li>
+            
+              <li><code>ls</code></li>
+            
+              <li><code>make.names</code></li>
+            
+              <li><code>make.unique</code></li>
+            
+              <li><code>makeActiveBinding</code></li>
+            
+              <li><code>mapply</code></li>
+            
+              <li><code>margin.table</code></li>
+            
+              <li><code>marginSums</code></li>
+            
+              <li><code>mat.or.vec</code></li>
+            
+              <li><code>match.arg</code></li>
+            
+              <li><code>match.call</code></li>
+            
+              <li><code>match.fun</code></li>
+            
+              <li><code>matrix</code></li>
+            
+              <li><code>max.col</code></li>
+            
+              <li><code>mean</code></li>
+            
+              <li><code>mean.Date</code></li>
+            
+              <li><code>mean.POSIXct</code></li>
+            
+              <li><code>mean.POSIXlt</code></li>
+            
+              <li><code>mean.default</code></li>
+            
+              <li><code>mean.difftime</code></li>
+            
+              <li><code>mem.maxNSize</code></li>
+            
+              <li><code>mem.maxVSize</code></li>
+            
+              <li><code>memCompress</code></li>
+            
+              <li><code>memDecompress</code></li>
+            
+              <li><code>memory.profile</code></li>
+            
+              <li><code>merge</code></li>
+            
+              <li><code>merge.data.frame</code></li>
+            
+              <li><code>merge.default</code></li>
+            
+              <li><code>message</code></li>
+            
+              <li><code>mget</code></li>
+            
+              <li><code>missing</code></li>
+            
+              <li><code>mode</code></li>
+            
+              <li><code>mode&lt;-</code></li>
+            
+              <li><code>months</code></li>
+            
+              <li><code>months.Date</code></li>
+            
+              <li><code>months.POSIXt</code></li>
+            
+              <li><code>mostattributes&lt;-</code></li>
+            
+              <li><code>mtfrm</code></li>
+            
+              <li><code>mtfrm.POSIXct</code></li>
+            
+              <li><code>mtfrm.POSIXlt</code></li>
+            
+              <li><code>mtfrm.default</code></li>
+            
+              <li><code>nameOfClass</code></li>
+            
+              <li><code>nameOfClass.default</code></li>
+            
+              <li><code>names</code></li>
+            
+              <li><code>names.POSIXlt</code></li>
+            
+              <li><code>names&lt;-</code></li>
+            
+              <li><code>names&lt;-.POSIXlt</code></li>
+            
+              <li><code>namespaceExport</code></li>
+            
+              <li><code>namespaceImport</code></li>
+            
+              <li><code>namespaceImportClasses</code></li>
+            
+              <li><code>namespaceImportFrom</code></li>
+            
+              <li><code>namespaceImportMethods</code></li>
+            
+              <li><code>nargs</code></li>
+            
+              <li><code>ncol</code></li>
+            
+              <li><code>new.env</code></li>
+            
+              <li><code>next</code></li>
+            
+              <li><code>ngettext</code></li>
+            
+              <li><code>nlevels</code></li>
+            
+              <li><code>noquote</code></li>
+            
+              <li><code>norm</code></li>
+            
+              <li><code>normalizePath</code></li>
+            
+              <li><code>nrow</code></li>
+            
+              <li><code>nullfile</code></li>
+            
+              <li><code>numToBits</code></li>
+            
+              <li><code>numToInts</code></li>
+            
+              <li><code>numeric</code></li>
+            
+              <li><code>numeric_version</code></li>
+            
+              <li><code>nzchar</code></li>
+            
+              <li><code>objects</code></li>
+            
+              <li><code>oldClass</code></li>
+            
+              <li><code>oldClass&lt;-</code></li>
+            
+              <li><code>on.exit</code></li>
+            
+              <li><code>open</code></li>
+            
+              <li><code>open.connection</code></li>
+            
+              <li><code>open.srcfile</code></li>
+            
+              <li><code>open.srcfilealias</code></li>
+            
+              <li><code>open.srcfilecopy</code></li>
+            
+              <li><code>options</code></li>
+            
+              <li><code>order</code></li>
+            
+              <li><code>ordered</code></li>
+            
+              <li><code>outer</code></li>
+            
+              <li><code>packBits</code></li>
+            
+              <li><code>packageEvent</code></li>
+            
+              <li><code>packageHasNamespace</code></li>
+            
+              <li><code>packageNotFoundError</code></li>
+            
+              <li><code>packageStartupMessage</code></li>
+            
+              <li><code>package_version</code></li>
+            
+              <li><code>pairlist</code></li>
+            
+              <li><code>parent.env</code></li>
+            
+              <li><code>parent.env&lt;-</code></li>
+            
+              <li><code>parent.frame</code></li>
+            
+              <li><code>parse</code></li>
+            
+              <li><code>parseNamespaceFile</code></li>
+            
+              <li><code>paste</code></li>
+            
+              <li><code>paste0</code></li>
+            
+              <li><code>path.expand</code></li>
+            
+              <li><code>path.package</code></li>
+            
+              <li><code>pcre_config</code></li>
+            
+              <li><code>pipe</code></li>
+            
+              <li><code>plot</code></li>
+            
+              <li><code>pmatch</code></li>
+            
+              <li><code>pmax</code></li>
+            
+              <li><code>pmax.int</code></li>
+            
+              <li><code>pmin</code></li>
+            
+              <li><code>pmin.int</code></li>
+            
+              <li><code>polyroot</code></li>
+            
+              <li><code>pos.to.env</code></li>
+            
+              <li><code>pretty</code></li>
+            
+              <li><code>pretty.default</code></li>
+            
+              <li><code>prettyNum</code></li>
+            
+              <li><code>print</code></li>
+            
+              <li><code>print.AsIs</code></li>
+            
+              <li><code>print.DLLInfo</code></li>
+            
+              <li><code>print.DLLInfoList</code></li>
+            
+              <li><code>print.DLLRegisteredRoutines</code></li>
+            
+              <li><code>print.Date</code></li>
+            
+              <li><code>print.Dlist</code></li>
+            
+              <li><code>print.NativeRoutineList</code></li>
+            
+              <li><code>print.POSIXct</code></li>
+            
+              <li><code>print.POSIXlt</code></li>
+            
+              <li><code>print.by</code></li>
+            
+              <li><code>print.condition</code></li>
+            
+              <li><code>print.connection</code></li>
+            
+              <li><code>print.data.frame</code></li>
+            
+              <li><code>print.default</code></li>
+            
+              <li><code>print.difftime</code></li>
+            
+              <li><code>print.eigen</code></li>
+            
+              <li><code>print.factor</code></li>
+            
+              <li><code>print.function</code></li>
+            
+              <li><code>print.hexmode</code></li>
+            
+              <li><code>print.libraryIQR</code></li>
+            
+              <li><code>print.listof</code></li>
+            
+              <li><code>print.noquote</code></li>
+            
+              <li><code>print.numeric_version</code></li>
+            
+              <li><code>print.octmode</code></li>
+            
+              <li><code>print.packageInfo</code></li>
+            
+              <li><code>print.proc_time</code></li>
+            
+              <li><code>print.restart</code></li>
+            
+              <li><code>print.rle</code></li>
+            
+              <li><code>print.simple.list</code></li>
+            
+              <li><code>print.srcfile</code></li>
+            
+              <li><code>print.srcref</code></li>
+            
+              <li><code>print.summary.table</code></li>
+            
+              <li><code>print.summary.warnings</code></li>
+            
+              <li><code>print.summaryDefault</code></li>
+            
+              <li><code>print.table</code></li>
+            
+              <li><code>print.warnings</code></li>
+            
+              <li><code>prmatrix</code></li>
+            
+              <li><code>proc.time</code></li>
+            
+              <li><code>prod</code></li>
+            
+              <li><code>prop.table</code></li>
+            
+              <li><code>proportions</code></li>
+            
+              <li><code>provideDimnames</code></li>
+            
+              <li><code>psigamma</code></li>
+            
+              <li><code>pushBack</code></li>
+            
+              <li><code>pushBackLength</code></li>
+            
+              <li><code>q</code></li>
+            
+              <li><code>qr</code></li>
+            
+              <li><code>qr.Q</code></li>
+            
+              <li><code>qr.R</code></li>
+            
+              <li><code>qr.X</code></li>
+            
+              <li><code>qr.coef</code></li>
+            
+              <li><code>qr.default</code></li>
+            
+              <li><code>qr.fitted</code></li>
+            
+              <li><code>qr.qty</code></li>
+            
+              <li><code>qr.qy</code></li>
+            
+              <li><code>qr.resid</code></li>
+            
+              <li><code>qr.solve</code></li>
+            
+              <li><code>quarters</code></li>
+            
+              <li><code>quarters.Date</code></li>
+            
+              <li><code>quarters.POSIXt</code></li>
+            
+              <li><code>quit</code></li>
+            
+              <li><code>quote</code></li>
+            
+              <li><code>range</code></li>
+            
+              <li><code>range.Date</code></li>
+            
+              <li><code>range.POSIXct</code></li>
+            
+              <li><code>range.default</code></li>
+            
+              <li><code>rank</code></li>
+            
+              <li><code>rapply</code></li>
+            
+              <li><code>raw</code></li>
+            
+              <li><code>rawConnection</code></li>
+            
+              <li><code>rawConnectionValue</code></li>
+            
+              <li><code>rawShift</code></li>
+            
+              <li><code>rawToBits</code></li>
+            
+              <li><code>rawToChar</code></li>
+            
+              <li><code>rbind</code></li>
+            
+              <li><code>rbind.data.frame</code></li>
+            
+              <li><code>rcond</code></li>
+            
+              <li><code>read.dcf</code></li>
+            
+              <li><code>readBin</code></li>
+            
+              <li><code>readChar</code></li>
+            
+              <li><code>readLines</code></li>
+            
+              <li><code>readRDS</code></li>
+            
+              <li><code>readRenviron</code></li>
+            
+              <li><code>readline</code></li>
+            
+              <li><code>reg.finalizer</code></li>
+            
+              <li><code>regexec</code></li>
+            
+              <li><code>regexpr</code></li>
+            
+              <li><code>registerS3method</code></li>
+            
+              <li><code>registerS3methods</code></li>
+            
+              <li><code>regmatches</code></li>
+            
+              <li><code>regmatches&lt;-</code></li>
+            
+              <li><code>remove</code></li>
+            
+              <li><code>removeTaskCallback</code></li>
+            
+              <li><code>rep</code></li>
+            
+              <li><code>rep.Date</code></li>
+            
+              <li><code>rep.POSIXct</code></li>
+            
+              <li><code>rep.POSIXlt</code></li>
+            
+              <li><code>rep.difftime</code></li>
+            
+              <li><code>rep.factor</code></li>
+            
+              <li><code>rep.int</code></li>
+            
+              <li><code>rep.numeric_version</code></li>
+            
+              <li><code>rep_len</code></li>
+            
+              <li><code>repeat</code></li>
+            
+              <li><code>replace</code></li>
+            
+              <li><code>replicate</code></li>
+            
+              <li><code>require</code></li>
+            
+              <li><code>requireNamespace</code></li>
+            
+              <li><code>restartDescription</code></li>
+            
+              <li><code>restartFormals</code></li>
+            
+              <li><code>retracemem</code></li>
+            
+              <li><code>return</code></li>
+            
+              <li><code>returnValue</code></li>
+            
+              <li><code>rev</code></li>
+            
+              <li><code>rev.default</code></li>
+            
+              <li><code>rle</code></li>
+            
+              <li><code>rm</code></li>
+            
+              <li><code>round.Date</code></li>
+            
+              <li><code>round.POSIXt</code></li>
+            
+              <li><code>row</code></li>
+            
+              <li><code>row.names</code></li>
+            
+              <li><code>row.names.data.frame</code></li>
+            
+              <li><code>row.names.default</code></li>
+            
+              <li><code>row.names&lt;-</code></li>
+            
+              <li><code>row.names&lt;-.data.frame</code></li>
+            
+              <li><code>row.names&lt;-.default</code></li>
+            
+              <li><code>rowMeans</code></li>
+            
+              <li><code>rowSums</code></li>
+            
+              <li><code>rownames</code></li>
+            
+              <li><code>rownames&lt;-</code></li>
+            
+              <li><code>rowsum</code></li>
+            
+              <li><code>rowsum.data.frame</code></li>
+            
+              <li><code>rowsum.default</code></li>
+            
+              <li><code>sQuote</code></li>
+            
+              <li><code>sample</code></li>
+            
+              <li><code>sample.int</code></li>
+            
+              <li><code>sapply</code></li>
+            
+              <li><code>save</code></li>
+            
+              <li><code>save.image</code></li>
+            
+              <li><code>saveRDS</code></li>
+            
+              <li><code>scale</code></li>
+            
+              <li><code>scale.default</code></li>
+            
+              <li><code>scan</code></li>
+            
+              <li><code>search</code></li>
+            
+              <li><code>searchpaths</code></li>
+            
+              <li><code>seek</code></li>
+            
+              <li><code>seek.connection</code></li>
+            
+              <li><code>seq.Date</code></li>
+            
+              <li><code>seq.POSIXt</code></li>
+            
+              <li><code>seq.default</code></li>
+            
+              <li><code>seq.int</code></li>
+            
+              <li><code>seq_along</code></li>
+            
+              <li><code>seq_len</code></li>
+            
+              <li><code>sequence</code></li>
+            
+              <li><code>sequence.default</code></li>
+            
+              <li><code>serialize</code></li>
+            
+              <li><code>serverSocket</code></li>
+            
+              <li><code>set.seed</code></li>
+            
+              <li><code>setHook</code></li>
+            
+              <li><code>setNamespaceInfo</code></li>
+            
+              <li><code>setSessionTimeLimit</code></li>
+            
+              <li><code>setTimeLimit</code></li>
+            
+              <li><code>setdiff</code></li>
+            
+              <li><code>setequal</code></li>
+            
+              <li><code>setwd</code></li>
+            
+              <li><code>shQuote</code></li>
+            
+              <li><code>showConnections</code></li>
+            
+              <li><code>signalCondition</code></li>
+            
+              <li><code>signif</code></li>
+            
+              <li><code>simpleCondition</code></li>
+            
+              <li><code>simpleError</code></li>
+            
+              <li><code>simpleMessage</code></li>
+            
+              <li><code>simpleWarning</code></li>
+            
+              <li><code>simplify2array</code></li>
+            
+              <li><code>sin</code></li>
+            
+              <li><code>single</code></li>
+            
+              <li><code>sinh</code></li>
+            
+              <li><code>sink</code></li>
+            
+              <li><code>sink.number</code></li>
+            
+              <li><code>sinpi</code></li>
+            
+              <li><code>slice.index</code></li>
+            
+              <li><code>socketAccept</code></li>
+            
+              <li><code>socketConnection</code></li>
+            
+              <li><code>socketSelect</code></li>
+            
+              <li><code>socketTimeout</code></li>
+            
+              <li><code>solve</code></li>
+            
+              <li><code>solve.default</code></li>
+            
+              <li><code>solve.qr</code></li>
+            
+              <li><code>sort</code></li>
+            
+              <li><code>sort.POSIXlt</code></li>
+            
+              <li><code>sort.default</code></li>
+            
+              <li><code>sort.int</code></li>
+            
+              <li><code>sort.list</code></li>
+            
+              <li><code>sort_by</code></li>
+            
+              <li><code>sort_by.data.frame</code></li>
+            
+              <li><code>sort_by.default</code></li>
+            
+              <li><code>source</code></li>
+            
+              <li><code>split</code></li>
+            
+              <li><code>split.Date</code></li>
+            
+              <li><code>split.POSIXct</code></li>
+            
+              <li><code>split.data.frame</code></li>
+            
+              <li><code>split.default</code></li>
+            
+              <li><code>split&lt;-</code></li>
+            
+              <li><code>split&lt;-.data.frame</code></li>
+            
+              <li><code>split&lt;-.default</code></li>
+            
+              <li><code>sprintf</code></li>
+            
+              <li><code>srcfile</code></li>
+            
+              <li><code>srcfilealias</code></li>
+            
+              <li><code>srcfilecopy</code></li>
+            
+              <li><code>srcref</code></li>
+            
+              <li><code>standardGeneric</code></li>
+            
+              <li><code>startsWith</code></li>
+            
+              <li><code>stderr</code></li>
+            
+              <li><code>stdin</code></li>
+            
+              <li><code>stdout</code></li>
+            
+              <li><code>stop</code></li>
+            
+              <li><code>stopifnot</code></li>
+            
+              <li><code>storage.mode</code></li>
+            
+              <li><code>storage.mode&lt;-</code></li>
+            
+              <li><code>str2expression</code></li>
+            
+              <li><code>str2lang</code></li>
+            
+              <li><code>strftime</code></li>
+            
+              <li><code>strptime</code></li>
+            
+              <li><code>strrep</code></li>
+            
+              <li><code>strsplit</code></li>
+            
+              <li><code>strtoi</code></li>
+            
+              <li><code>strtrim</code></li>
+            
+              <li><code>structure</code></li>
+            
+              <li><code>strwrap</code></li>
+            
+              <li><code>sub</code></li>
+            
+              <li><code>subset</code></li>
+            
+              <li><code>subset.data.frame</code></li>
+            
+              <li><code>subset.default</code></li>
+            
+              <li><code>subset.matrix</code></li>
+            
+              <li><code>substitute</code></li>
+            
+              <li><code>substr</code></li>
+            
+              <li><code>substr&lt;-</code></li>
+            
+              <li><code>substring</code></li>
+            
+              <li><code>substring&lt;-</code></li>
+            
+              <li><code>sum</code></li>
+            
+              <li><code>summary</code></li>
+            
+              <li><code>summary.Date</code></li>
+            
+              <li><code>summary.POSIXct</code></li>
+            
+              <li><code>summary.POSIXlt</code></li>
+            
+              <li><code>summary.connection</code></li>
+            
+              <li><code>summary.data.frame</code></li>
+            
+              <li><code>summary.default</code></li>
+            
+              <li><code>summary.factor</code></li>
+            
+              <li><code>summary.matrix</code></li>
+            
+              <li><code>summary.proc_time</code></li>
+            
+              <li><code>summary.srcfile</code></li>
+            
+              <li><code>summary.srcref</code></li>
+            
+              <li><code>summary.table</code></li>
+            
+              <li><code>summary.warnings</code></li>
+            
+              <li><code>suppressMessages</code></li>
+            
+              <li><code>suppressPackageStartupMessages</code></li>
+            
+              <li><code>suppressWarnings</code></li>
+            
+              <li><code>suspendInterrupts</code></li>
+            
+              <li><code>svd</code></li>
+            
+              <li><code>sweep</code></li>
+            
+              <li><code>switch</code></li>
+            
+              <li><code>sys.call</code></li>
+            
+              <li><code>sys.calls</code></li>
+            
+              <li><code>sys.frame</code></li>
+            
+              <li><code>sys.frames</code></li>
+            
+              <li><code>sys.function</code></li>
+            
+              <li><code>sys.load.image</code></li>
+            
+              <li><code>sys.nframe</code></li>
+            
+              <li><code>sys.on.exit</code></li>
+            
+              <li><code>sys.parent</code></li>
+            
+              <li><code>sys.parents</code></li>
+            
+              <li><code>sys.save.image</code></li>
+            
+              <li><code>sys.source</code></li>
+            
+              <li><code>sys.status</code></li>
+            
+              <li><code>system</code></li>
+            
+              <li><code>system.file</code></li>
+            
+              <li><code>system.time</code></li>
+            
+              <li><code>system2</code></li>
+            
+              <li><code>t</code></li>
+            
+              <li><code>t.data.frame</code></li>
+            
+              <li><code>t.default</code></li>
+            
+              <li><code>table</code></li>
+            
+              <li><code>tabulate</code></li>
+            
+              <li><code>tan</code></li>
+            
+              <li><code>tanh</code></li>
+            
+              <li><code>tanpi</code></li>
+            
+              <li><code>tapply</code></li>
+            
+              <li><code>taskCallbackManager</code></li>
+            
+              <li><code>tcrossprod</code></li>
+            
+              <li><code>tempdir</code></li>
+            
+              <li><code>tempfile</code></li>
+            
+              <li><code>textConnection</code></li>
+            
+              <li><code>textConnectionValue</code></li>
+            
+              <li><code>toString</code></li>
+            
+              <li><code>toString.default</code></li>
+            
+              <li><code>topenv</code></li>
+            
+              <li><code>trace</code></li>
+            
+              <li><code>traceback</code></li>
+            
+              <li><code>tracemem</code></li>
+            
+              <li><code>tracingState</code></li>
+            
+              <li><code>transform</code></li>
+            
+              <li><code>transform.data.frame</code></li>
+            
+              <li><code>transform.default</code></li>
+            
+              <li><code>trigamma</code></li>
+            
+              <li><code>trimws</code></li>
+            
+              <li><code>trunc</code></li>
+            
+              <li><code>trunc.Date</code></li>
+            
+              <li><code>trunc.POSIXt</code></li>
+            
+              <li><code>truncate</code></li>
+            
+              <li><code>truncate.connection</code></li>
+            
+              <li><code>try</code></li>
+            
+              <li><code>tryCatch</code></li>
+            
+              <li><code>tryInvokeRestart</code></li>
+            
+              <li><code>typeof</code></li>
+            
+              <li><code>unCfillPOSIXlt</code></li>
+            
+              <li><code>unclass</code></li>
+            
+              <li><code>undebug</code></li>
+            
+              <li><code>union</code></li>
+            
+              <li><code>unique</code></li>
+            
+              <li><code>unique.POSIXlt</code></li>
+            
+              <li><code>unique.array</code></li>
+            
+              <li><code>unique.data.frame</code></li>
+            
+              <li><code>unique.default</code></li>
+            
+              <li><code>unique.matrix</code></li>
+            
+              <li><code>unique.numeric_version</code></li>
+            
+              <li><code>unique.warnings</code></li>
+            
+              <li><code>units</code></li>
+            
+              <li><code>units.difftime</code></li>
+            
+              <li><code>units&lt;-</code></li>
+            
+              <li><code>units&lt;-.difftime</code></li>
+            
+              <li><code>unix.time</code></li>
+            
+              <li><code>unlink</code></li>
+            
+              <li><code>unlist</code></li>
+            
+              <li><code>unloadNamespace</code></li>
+            
+              <li><code>unlockBinding</code></li>
+            
+              <li><code>unname</code></li>
+            
+              <li><code>unserialize</code></li>
+            
+              <li><code>unsplit</code></li>
+            
+              <li><code>untrace</code></li>
+            
+              <li><code>untracemem</code></li>
+            
+              <li><code>unz</code></li>
+            
+              <li><code>upper.tri</code></li>
+            
+              <li><code>url</code></li>
+            
+              <li><code>use</code></li>
+            
+              <li><code>utf8ToInt</code></li>
+            
+              <li><code>validEnc</code></li>
+            
+              <li><code>validUTF8</code></li>
+            
+              <li><code>vapply</code></li>
+            
+              <li><code>vector</code></li>
+            
+              <li><code>warning</code></li>
+            
+              <li><code>warningCondition</code></li>
+            
+              <li><code>warnings</code></li>
+            
+              <li><code>weekdays</code></li>
+            
+              <li><code>weekdays.Date</code></li>
+            
+              <li><code>weekdays.POSIXt</code></li>
+            
+              <li><code>which</code></li>
+            
+              <li><code>which.max</code></li>
+            
+              <li><code>which.min</code></li>
+            
+              <li><code>while</code></li>
+            
+              <li><code>with</code></li>
+            
+              <li><code>with.default</code></li>
+            
+              <li><code>withAutoprint</code></li>
+            
+              <li><code>withCallingHandlers</code></li>
+            
+              <li><code>withRestarts</code></li>
+            
+              <li><code>withVisible</code></li>
+            
+              <li><code>within</code></li>
+            
+              <li><code>within.data.frame</code></li>
+            
+              <li><code>within.list</code></li>
+            
+              <li><code>write</code></li>
+            
+              <li><code>write.dcf</code></li>
+            
+              <li><code>writeBin</code></li>
+            
+              <li><code>writeChar</code></li>
+            
+              <li><code>writeLines</code></li>
+            
+              <li><code>xor</code></li>
+            
+              <li><code>xpdrows.data.frame</code></li>
+            
+              <li><code>xtfrm</code></li>
+            
+              <li><code>xtfrm.AsIs</code></li>
+            
+              <li><code>xtfrm.Date</code></li>
+            
+              <li><code>xtfrm.POSIXct</code></li>
+            
+              <li><code>xtfrm.POSIXlt</code></li>
+            
+              <li><code>xtfrm.data.frame</code></li>
+            
+              <li><code>xtfrm.default</code></li>
+            
+              <li><code>xtfrm.difftime</code></li>
+            
+              <li><code>xtfrm.factor</code></li>
+            
+              <li><code>xtfrm.numeric_version</code></li>
+            
+              <li><code>xzfile</code></li>
+            
+              <li><code>zapsmall</code></li>
+            
+              <li><code>{</code></li>
+            
+              <li><code>|</code></li>
+            
+              <li><code>|.hexmode</code></li>
+            
+              <li><code>|.octmode</code></li>
+            
+              <li><code>||</code></li>
+            
+              <li><code>~</code></li>
+            
+          </ul>
+        </details>
+      
+    </div>
+  
+</article>
+
+    
+  </div>
+</details>
+
+      
     </div>
   </div>
 </article>
@@ -417,7 +3007,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                687
+                697
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -799,13 +3389,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (323)
+          (324)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (75)
+            (76)
           </a></li>
         </ul>
         
@@ -965,33 +3555,33 @@ ga('send', 'pageview');
       
         <li><a href="/lua/">
           Lua
-          (14)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/lua/math/">
             math
-            (8)
+            (9)
           </a></li>
         </ul>
         
         <ul>
           <li><a href="/lua/string/">
             string
-            (6)
+            (7)
           </a></li>
         </ul>
         
       
         <li><a href="/r/">
           R
-          (12)
+          (13)
         </a></li>
         
         <ul>
           <li><a href="/r/base/">
             base
-            (12)
+            (13)
           </a></li>
         </ul>
         
@@ -1011,13 +3601,13 @@ ga('send', 'pageview');
       
         <li><a href="/elixir/">
           Elixir
-          (12)
+          (14)
         </a></li>
         
         <ul>
           <li><a href="/elixir/Enum/">
             Enum
-            (5)
+            (6)
           </a></li>
         </ul>
         
@@ -1038,14 +3628,14 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/elixir/String/">
             String
-            (4)
+            (5)
           </a></li>
         </ul>
         
       
         <li><a href="/clojure/">
           Clojure
-          (15)
+          (16)
         </a></li>
         
         <ul>
@@ -1058,7 +3648,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/clojure/core/">
             core
-            (7)
+            (8)
           </a></li>
         </ul>
         
@@ -1085,26 +3675,26 @@ ga('send', 'pageview');
       
         <li><a href="/tcl/">
           Tcl
-          (15)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/tcl/string/">
             string
-            (15)
+            (16)
           </a></li>
         </ul>
         
       
         <li><a href="/powershell/">
           PowerShell
-          (16)
+          (18)
         </a></li>
         
         <ul>
           <li><a href="/powershell/string/">
             string
-            (16)
+            (18)
           </a></li>
         </ul>
         

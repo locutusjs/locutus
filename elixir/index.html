@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-15T16:48:31.274Z">
-<meta property="article:modified_time" content="2026-03-15T16:48:31.274Z">
+<meta property="article:published_time" content="2026-03-16T07:06:30.038Z">
+<meta property="article:modified_time" content="2026-03-16T07:06:30.038Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,298 +229,9 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 12 Elixir standard library functions across 4 modules.
+        TypeScript implementations of 14 Elixir standard library functions across 4 modules.
         Each function is individually importable and tree-shakeable.
       </p>
-
-      
-        <h2>Upstream surface inventory</h2>
-        <p>
-          This page also tracks the upstream namespace catalog we compare against, the functions we still want to port,
-          the ones we intentionally keep, and the ones we explicitly skip because they do not fit Locutus' plain-value model.
-        </p>
-        <div class="tags" style="margin-bottom: 1rem;">
-          <span class="tag is-dark">Coverage</span>
-          <span class="tag is-info">6%</span>
-          <span class="tag is-dark">Shipped</span>
-          <span class="tag is-success">12/214</span>
-          <span class="tag is-dark">Wanted</span>
-          <span class="tag is-warning">2</span>
-          <span class="tag is-dark">Untriaged</span>
-          <span class="tag is-light">200</span>
-          
-        </div>
-
-        
-          <div class="message is-light" style="margin-bottom: 1rem;">
-            <div class="message-header">
-              <p>Enum module</p>
-              
-                <a href="/elixir/Enum/">Open category</a>
-              
-            </div>
-            <div class="message-body">
-              <div class="tags" style="margin-bottom: 0.75rem;">
-                <span class="tag is-dark">Coverage</span>
-                <span class="tag is-info">7%</span>
-                <span class="tag is-dark">Shipped</span>
-                <span class="tag is-success">5/76</span>
-                <span class="tag is-dark">Wanted</span>
-                <span class="tag is-warning">1</span>
-                <span class="tag is-dark">Skipped</span>
-                <span class="tag is-light">0</span>
-                <span class="tag is-dark">Untriaged</span>
-                <span class="tag is-light">70</span>
-              </div>
-              <p style="margin-bottom: 0.75rem;">
-                Source: <code>runtime</code> <code>elixir:1.18</code>.
-              </p>
-
-              
-                <p style="margin-bottom: 0.75rem;">
-                  Categories:
-                  
-                    <a href="/elixir/Enum/">Enum</a>
-                  
-                </p>
-              
-
-              
-                <p>
-                  <strong>Wanted ports:</strong>
-                  
-                    <code>zip</code> (High-value collection helper that maps cleanly to arrays.)
-                  
-                  .
-                </p>
-              
-
-              
-
-              
-                <p>
-                  <strong>Untriaged upstream entries:</strong>
-                  
-                    <code>all?</code>, 
-                  
-                    <code>any?</code>, 
-                  
-                    <code>at</code>, 
-                  
-                    <code>chunk</code>, 
-                  
-                    <code>chunk_by</code>, 
-                  
-                    <code>chunk_while</code>, 
-                  
-                    <code>concat</code>, 
-                  
-                    <code>count</code>
-                  
-                   and 62 more.
-                </p>
-              
-            </div>
-          </div>
-        
-          <div class="message is-light" style="margin-bottom: 1rem;">
-            <div class="message-header">
-              <p>Float module</p>
-              
-                <a href="/elixir/Float/">Open category</a>
-              
-            </div>
-            <div class="message-body">
-              <div class="tags" style="margin-bottom: 0.75rem;">
-                <span class="tag is-dark">Coverage</span>
-                <span class="tag is-info">18%</span>
-                <span class="tag is-dark">Shipped</span>
-                <span class="tag is-success">2/11</span>
-                <span class="tag is-dark">Wanted</span>
-                <span class="tag is-warning">0</span>
-                <span class="tag is-dark">Skipped</span>
-                <span class="tag is-light">0</span>
-                <span class="tag is-dark">Untriaged</span>
-                <span class="tag is-light">9</span>
-              </div>
-              <p style="margin-bottom: 0.75rem;">
-                Source: <code>runtime</code> <code>elixir:1.18</code>.
-              </p>
-
-              
-                <p style="margin-bottom: 0.75rem;">
-                  Categories:
-                  
-                    <a href="/elixir/Float/">Float</a>
-                  
-                </p>
-              
-
-              
-
-              
-
-              
-                <p>
-                  <strong>Untriaged upstream entries:</strong>
-                  
-                    <code>max_finite</code>, 
-                  
-                    <code>min_finite</code>, 
-                  
-                    <code>parse</code>, 
-                  
-                    <code>pow</code>, 
-                  
-                    <code>ratio</code>, 
-                  
-                    <code>round</code>, 
-                  
-                    <code>to_char_list</code>, 
-                  
-                    <code>to_charlist</code>
-                  
-                   and 1 more.
-                </p>
-              
-            </div>
-          </div>
-        
-          <div class="message is-light" style="margin-bottom: 1rem;">
-            <div class="message-header">
-              <p>Kernel module</p>
-              
-                <a href="/elixir/Kernel/">Open category</a>
-              
-            </div>
-            <div class="message-body">
-              <div class="tags" style="margin-bottom: 0.75rem;">
-                <span class="tag is-dark">Coverage</span>
-                <span class="tag is-info">1%</span>
-                <span class="tag is-dark">Shipped</span>
-                <span class="tag is-success">1/73</span>
-                <span class="tag is-dark">Wanted</span>
-                <span class="tag is-warning">0</span>
-                <span class="tag is-dark">Skipped</span>
-                <span class="tag is-light">0</span>
-                <span class="tag is-dark">Untriaged</span>
-                <span class="tag is-light">72</span>
-              </div>
-              <p style="margin-bottom: 0.75rem;">
-                Source: <code>runtime</code> <code>elixir:1.18</code>.
-              </p>
-
-              
-                <p style="margin-bottom: 0.75rem;">
-                  Categories:
-                  
-                    <a href="/elixir/Kernel/">Kernel</a>
-                  
-                </p>
-              
-
-              
-
-              
-
-              
-                <p>
-                  <strong>Untriaged upstream entries:</strong>
-                  
-                    <code>!=</code>, 
-                  
-                    <code>!==</code>, 
-                  
-                    <code>*</code>, 
-                  
-                    <code>**</code>, 
-                  
-                    <code>+</code>, 
-                  
-                    <code>++</code>, 
-                  
-                    <code>-</code>, 
-                  
-                    <code>--</code>
-                  
-                   and 64 more.
-                </p>
-              
-            </div>
-          </div>
-        
-          <div class="message is-light" style="margin-bottom: 1rem;">
-            <div class="message-header">
-              <p>String module</p>
-              
-                <a href="/elixir/String/">Open category</a>
-              
-            </div>
-            <div class="message-body">
-              <div class="tags" style="margin-bottom: 0.75rem;">
-                <span class="tag is-dark">Coverage</span>
-                <span class="tag is-info">7%</span>
-                <span class="tag is-dark">Shipped</span>
-                <span class="tag is-success">4/54</span>
-                <span class="tag is-dark">Wanted</span>
-                <span class="tag is-warning">1</span>
-                <span class="tag is-dark">Skipped</span>
-                <span class="tag is-light">0</span>
-                <span class="tag is-dark">Untriaged</span>
-                <span class="tag is-light">49</span>
-              </div>
-              <p style="margin-bottom: 0.75rem;">
-                Source: <code>runtime</code> <code>elixir:1.18</code>.
-              </p>
-
-              
-                <p style="margin-bottom: 0.75rem;">
-                  Categories:
-                  
-                    <a href="/elixir/String/">String</a>
-                  
-                </p>
-              
-
-              
-                <p>
-                  <strong>Wanted ports:</strong>
-                  
-                    <code>replace</code> (Common string helper with a clean plain-value contract.)
-                  
-                  .
-                </p>
-              
-
-              
-
-              
-                <p>
-                  <strong>Untriaged upstream entries:</strong>
-                  
-                    <code>at</code>, 
-                  
-                    <code>bag_distance</code>, 
-                  
-                    <code>byte_slice</code>, 
-                  
-                    <code>capitalize</code>, 
-                  
-                    <code>chunk</code>, 
-                  
-                    <code>codepoints</code>, 
-                  
-                    <code>contains?</code>, 
-                  
-                    <code>duplicate</code>
-                  
-                   and 41 more.
-                </p>
-              
-            </div>
-          </div>
-        
-      
 
       
         <strong>Enum</strong>
@@ -535,6 +246,8 @@ ga('send', 'pageview');
             <li><a href="/elixir/Enum/reduce_while/">reduce_while</a></li>
           
             <li><a href="/elixir/Enum/scan/">scan</a></li>
+          
+            <li><a href="/elixir/Enum/zip/">zip</a></li>
           
         </ul>
       
@@ -561,6 +274,8 @@ ga('send', 'pageview');
           
             <li><a href="/elixir/String/length/">length</a></li>
           
+            <li><a href="/elixir/String/replace/">replace</a></li>
+          
             <li><a href="/elixir/String/reverse/">reverse</a></li>
           
             <li><a href="/elixir/String/upcase/">upcase</a></li>
@@ -572,7 +287,7 @@ ga('send', 'pageview');
       
   
 
-  <h2>We have 12 Elixir functions so far - help us add more</h2>
+  <h2>We have 14 Elixir functions so far - help us add more</h2>
   <p>
     Got a rainy Sunday afternoon and a taste for a porting puzzle?
   </p>
@@ -599,6 +314,797 @@ ga('send', 'pageview');
 
 
 
+
+      
+        
+<details class="surface-panel surface-panel-language surface-panel--toggle">
+  <summary class="surface-panel__summary">
+    <span class="surface-panel__summary-copy">
+      <strong>Upstream Surface Inventory</strong>
+      <span>
+        14/214 shipped
+        
+         • 200 need triage
+      </span>
+      <span class="surface-panel__summary-stack">
+        <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
+          
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6.5%"></span>
+            
+            
+            
+              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 93.5%"></span>
+            
+          
+        </span>
+      </span>
+    </span>
+    <span class="surface-panel__summary-badge">7%</span>
+  </summary>
+
+  <div class="surface-panel__content">
+    <div class="surface-panel__intro">
+      <div>
+        <p>
+          Locutus tracks the upstream Elixir catalog and sorts it into what is already shipped,
+          what we still want, what we intentionally keep, and what still needs a decision.
+        </p>
+      </div>
+      <div class="surface-coverage-badge">
+        <strong>7%</strong>
+        <span>catalog shipped</span>
+      </div>
+    </div>
+
+    <div class="surface-stack" aria-label="Upstream surface coverage">
+      
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6.5%"></span>
+        
+        
+        
+          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 93.5%"></span>
+        
+      
+    </div>
+
+    <div class="surface-legend">
+      <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      
+      
+      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
+    </div>
+
+    <div class="surface-kpis">
+      <article class="surface-kpi">
+        <span class="surface-kpi__label">Shipped</span>
+        <strong class="surface-kpi__value">14/214</strong>
+      </article>
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Needs triage</span>
+          <strong class="surface-kpi__value">200</strong>
+        </article>
+      
+      
+      
+    </div>
+
+    <p class="surface-summary">
+      
+      
+      
+      
+      
+      
+      14 of 214 upstream entries are already shipped; 200 still need a decision.
+    </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/elixir/Enum/">Enum module</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>8%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 7.9%"></span>
+      
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 92.1%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>6/76</strong> shipped</span>
+    
+    
+    <span><strong>70</strong> need triage</span>
+    
+  </div>
+
+  <p class="surface-summary">
+    6 shipped • 70 still need triage.
+  </p>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/elixir/Enum/">Enum</a>
+      
+    </div>
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+
+      
+        <details class="surface-details">
+          <summary>Needs triage (70)</summary>
+          <p class="surface-details__intro">
+            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
+          </p>
+          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+            
+              <li><code>all?</code></li>
+            
+              <li><code>any?</code></li>
+            
+              <li><code>at</code></li>
+            
+              <li><code>chunk</code></li>
+            
+              <li><code>chunk_by</code></li>
+            
+              <li><code>chunk_while</code></li>
+            
+              <li><code>concat</code></li>
+            
+              <li><code>count</code></li>
+            
+              <li><code>count_until</code></li>
+            
+              <li><code>dedup</code></li>
+            
+              <li><code>dedup_by</code></li>
+            
+              <li><code>drop</code></li>
+            
+              <li><code>drop_every</code></li>
+            
+              <li><code>drop_while</code></li>
+            
+              <li><code>each</code></li>
+            
+              <li><code>empty?</code></li>
+            
+              <li><code>fetch</code></li>
+            
+              <li><code>fetch!</code></li>
+            
+              <li><code>filter</code></li>
+            
+              <li><code>filter_map</code></li>
+            
+              <li><code>find</code></li>
+            
+              <li><code>find_index</code></li>
+            
+              <li><code>find_value</code></li>
+            
+              <li><code>flat_map</code></li>
+            
+              <li><code>flat_map_reduce</code></li>
+            
+              <li><code>frequencies</code></li>
+            
+              <li><code>intersperse</code></li>
+            
+              <li><code>into</code></li>
+            
+              <li><code>join</code></li>
+            
+              <li><code>map</code></li>
+            
+              <li><code>map_every</code></li>
+            
+              <li><code>map_intersperse</code></li>
+            
+              <li><code>map_join</code></li>
+            
+              <li><code>map_reduce</code></li>
+            
+              <li><code>max</code></li>
+            
+              <li><code>max_by</code></li>
+            
+              <li><code>member?</code></li>
+            
+              <li><code>min</code></li>
+            
+              <li><code>min_by</code></li>
+            
+              <li><code>min_max</code></li>
+            
+              <li><code>min_max_by</code></li>
+            
+              <li><code>partition</code></li>
+            
+              <li><code>product</code></li>
+            
+              <li><code>product_by</code></li>
+            
+              <li><code>random</code></li>
+            
+              <li><code>reduce</code></li>
+            
+              <li><code>reject</code></li>
+            
+              <li><code>reverse</code></li>
+            
+              <li><code>reverse_slice</code></li>
+            
+              <li><code>shuffle</code></li>
+            
+              <li><code>slice</code></li>
+            
+              <li><code>slide</code></li>
+            
+              <li><code>sort</code></li>
+            
+              <li><code>sort_by</code></li>
+            
+              <li><code>split</code></li>
+            
+              <li><code>split_while</code></li>
+            
+              <li><code>split_with</code></li>
+            
+              <li><code>sum</code></li>
+            
+              <li><code>sum_by</code></li>
+            
+              <li><code>take</code></li>
+            
+              <li><code>take_every</code></li>
+            
+              <li><code>take_random</code></li>
+            
+              <li><code>take_while</code></li>
+            
+              <li><code>to_list</code></li>
+            
+              <li><code>uniq</code></li>
+            
+              <li><code>uniq_by</code></li>
+            
+              <li><code>unzip</code></li>
+            
+              <li><code>with_index</code></li>
+            
+              <li><code>zip_reduce</code></li>
+            
+              <li><code>zip_with</code></li>
+            
+          </ul>
+        </details>
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/elixir/Float/">Float module</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>18%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 18.2%"></span>
+      
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 81.8%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>2/11</strong> shipped</span>
+    
+    
+    <span><strong>9</strong> need triage</span>
+    
+  </div>
+
+  <p class="surface-summary">
+    2 shipped • 9 still need triage.
+  </p>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/elixir/Float/">Float</a>
+      
+    </div>
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+
+      
+        <details class="surface-details">
+          <summary>Needs triage (9)</summary>
+          <p class="surface-details__intro">
+            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
+          </p>
+          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+            
+              <li><code>max_finite</code></li>
+            
+              <li><code>min_finite</code></li>
+            
+              <li><code>parse</code></li>
+            
+              <li><code>pow</code></li>
+            
+              <li><code>ratio</code></li>
+            
+              <li><code>round</code></li>
+            
+              <li><code>to_char_list</code></li>
+            
+              <li><code>to_charlist</code></li>
+            
+              <li><code>to_string</code></li>
+            
+          </ul>
+        </details>
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/elixir/Kernel/">Kernel module</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>1%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.4%"></span>
+      
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 98.6%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>1/73</strong> shipped</span>
+    
+    
+    <span><strong>72</strong> need triage</span>
+    
+  </div>
+
+  <p class="surface-summary">
+    1 shipped • 72 still need triage.
+  </p>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/elixir/Kernel/">Kernel</a>
+      
+    </div>
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+
+      
+        <details class="surface-details">
+          <summary>Needs triage (72)</summary>
+          <p class="surface-details__intro">
+            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
+          </p>
+          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+            
+              <li><code>!=</code></li>
+            
+              <li><code>!==</code></li>
+            
+              <li><code>*</code></li>
+            
+              <li><code>**</code></li>
+            
+              <li><code>+</code></li>
+            
+              <li><code>++</code></li>
+            
+              <li><code>-</code></li>
+            
+              <li><code>--</code></li>
+            
+              <li><code>/</code></li>
+            
+              <li><code>&lt;</code></li>
+            
+              <li><code>&lt;=</code></li>
+            
+              <li><code>==</code></li>
+            
+              <li><code>===</code></li>
+            
+              <li><code>=~</code></li>
+            
+              <li><code>&gt;</code></li>
+            
+              <li><code>&gt;=</code></li>
+            
+              <li><code>apply</code></li>
+            
+              <li><code>binary_part</code></li>
+            
+              <li><code>binary_slice</code></li>
+            
+              <li><code>bit_size</code></li>
+            
+              <li><code>byte_size</code></li>
+            
+              <li><code>ceil</code></li>
+            
+              <li><code>div</code></li>
+            
+              <li><code>elem</code></li>
+            
+              <li><code>exit</code></li>
+            
+              <li><code>floor</code></li>
+            
+              <li><code>function_exported?</code></li>
+            
+              <li><code>get_and_update_in</code></li>
+            
+              <li><code>get_in</code></li>
+            
+              <li><code>hd</code></li>
+            
+              <li><code>inspect</code></li>
+            
+              <li><code>is_atom</code></li>
+            
+              <li><code>is_binary</code></li>
+            
+              <li><code>is_bitstring</code></li>
+            
+              <li><code>is_boolean</code></li>
+            
+              <li><code>is_float</code></li>
+            
+              <li><code>is_function</code></li>
+            
+              <li><code>is_integer</code></li>
+            
+              <li><code>is_list</code></li>
+            
+              <li><code>is_map</code></li>
+            
+              <li><code>is_map_key</code></li>
+            
+              <li><code>is_number</code></li>
+            
+              <li><code>is_pid</code></li>
+            
+              <li><code>is_port</code></li>
+            
+              <li><code>is_reference</code></li>
+            
+              <li><code>is_tuple</code></li>
+            
+              <li><code>length</code></li>
+            
+              <li><code>macro_exported?</code></li>
+            
+              <li><code>make_ref</code></li>
+            
+              <li><code>map_size</code></li>
+            
+              <li><code>max</code></li>
+            
+              <li><code>min</code></li>
+            
+              <li><code>node</code></li>
+            
+              <li><code>not</code></li>
+            
+              <li><code>pop_in</code></li>
+            
+              <li><code>put_elem</code></li>
+            
+              <li><code>put_in</code></li>
+            
+              <li><code>rem</code></li>
+            
+              <li><code>round</code></li>
+            
+              <li><code>self</code></li>
+            
+              <li><code>send</code></li>
+            
+              <li><code>spawn</code></li>
+            
+              <li><code>spawn_link</code></li>
+            
+              <li><code>spawn_monitor</code></li>
+            
+              <li><code>struct</code></li>
+            
+              <li><code>struct!</code></li>
+            
+              <li><code>throw</code></li>
+            
+              <li><code>tl</code></li>
+            
+              <li><code>to_timeout</code></li>
+            
+              <li><code>trunc</code></li>
+            
+              <li><code>tuple_size</code></li>
+            
+              <li><code>update_in</code></li>
+            
+          </ul>
+        </details>
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/elixir/String/">String module</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>9%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 9.3%"></span>
+      
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 90.7%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>5/54</strong> shipped</span>
+    
+    
+    <span><strong>49</strong> need triage</span>
+    
+  </div>
+
+  <p class="surface-summary">
+    5 shipped • 49 still need triage.
+  </p>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/elixir/String/">String</a>
+      
+    </div>
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+
+      
+        <details class="surface-details">
+          <summary>Needs triage (49)</summary>
+          <p class="surface-details__intro">
+            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
+          </p>
+          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+            
+              <li><code>at</code></li>
+            
+              <li><code>bag_distance</code></li>
+            
+              <li><code>byte_slice</code></li>
+            
+              <li><code>capitalize</code></li>
+            
+              <li><code>chunk</code></li>
+            
+              <li><code>codepoints</code></li>
+            
+              <li><code>contains?</code></li>
+            
+              <li><code>duplicate</code></li>
+            
+              <li><code>ends_with?</code></li>
+            
+              <li><code>equivalent?</code></li>
+            
+              <li><code>first</code></li>
+            
+              <li><code>graphemes</code></li>
+            
+              <li><code>jaro_distance</code></li>
+            
+              <li><code>last</code></li>
+            
+              <li><code>ljust</code></li>
+            
+              <li><code>lstrip</code></li>
+            
+              <li><code>match?</code></li>
+            
+              <li><code>myers_difference</code></li>
+            
+              <li><code>next_codepoint</code></li>
+            
+              <li><code>next_grapheme</code></li>
+            
+              <li><code>next_grapheme_size</code></li>
+            
+              <li><code>normalize</code></li>
+            
+              <li><code>pad_leading</code></li>
+            
+              <li><code>pad_trailing</code></li>
+            
+              <li><code>printable?</code></li>
+            
+              <li><code>replace_invalid</code></li>
+            
+              <li><code>replace_leading</code></li>
+            
+              <li><code>replace_prefix</code></li>
+            
+              <li><code>replace_suffix</code></li>
+            
+              <li><code>replace_trailing</code></li>
+            
+              <li><code>rjust</code></li>
+            
+              <li><code>rstrip</code></li>
+            
+              <li><code>slice</code></li>
+            
+              <li><code>split</code></li>
+            
+              <li><code>split_at</code></li>
+            
+              <li><code>splitter</code></li>
+            
+              <li><code>starts_with?</code></li>
+            
+              <li><code>strip</code></li>
+            
+              <li><code>to_atom</code></li>
+            
+              <li><code>to_char_list</code></li>
+            
+              <li><code>to_charlist</code></li>
+            
+              <li><code>to_existing_atom</code></li>
+            
+              <li><code>to_float</code></li>
+            
+              <li><code>to_integer</code></li>
+            
+              <li><code>trim</code></li>
+            
+              <li><code>trim_leading</code></li>
+            
+              <li><code>trim_trailing</code></li>
+            
+              <li><code>valid?</code></li>
+            
+              <li><code>valid_character?</code></li>
+            
+          </ul>
+        </details>
+      
+    </div>
+  
+</article>
+
+    
+  </div>
+</details>
+
+      
     </div>
   </div>
 </article>
@@ -629,7 +1135,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                687
+                697
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -1011,13 +1517,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (323)
+          (324)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (75)
+            (76)
           </a></li>
         </ul>
         
@@ -1177,33 +1683,33 @@ ga('send', 'pageview');
       
         <li><a href="/lua/">
           Lua
-          (14)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/lua/math/">
             math
-            (8)
+            (9)
           </a></li>
         </ul>
         
         <ul>
           <li><a href="/lua/string/">
             string
-            (6)
+            (7)
           </a></li>
         </ul>
         
       
         <li><a href="/r/">
           R
-          (12)
+          (13)
         </a></li>
         
         <ul>
           <li><a href="/r/base/">
             base
-            (12)
+            (13)
           </a></li>
         </ul>
         
@@ -1223,13 +1729,13 @@ ga('send', 'pageview');
       
         <li><a href="/elixir/">
           Elixir
-          (12)
+          (14)
         </a></li>
         
         <ul>
           <li><a href="/elixir/Enum/">
             Enum
-            (5)
+            (6)
           </a></li>
         </ul>
         
@@ -1250,14 +1756,14 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/elixir/String/">
             String
-            (4)
+            (5)
           </a></li>
         </ul>
         
       
         <li><a href="/clojure/">
           Clojure
-          (15)
+          (16)
         </a></li>
         
         <ul>
@@ -1270,7 +1776,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/clojure/core/">
             core
-            (7)
+            (8)
           </a></li>
         </ul>
         
@@ -1297,26 +1803,26 @@ ga('send', 'pageview');
       
         <li><a href="/tcl/">
           Tcl
-          (15)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/tcl/string/">
             string
-            (15)
+            (16)
           </a></li>
         </ul>
         
       
         <li><a href="/powershell/">
           PowerShell
-          (16)
+          (18)
         </a></li>
         
         <ul>
           <li><a href="/powershell/string/">
             string
-            (16)
+            (18)
           </a></li>
         </ul>
         

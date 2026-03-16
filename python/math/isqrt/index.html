@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="Here&#39;s what our current TypeScript equivalent to Python&#39;s math.isqrt looks like.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-15T16:48:31.357Z">
-<meta property="article:modified_time" content="2026-03-15T16:48:31.357Z">
+<meta property="article:published_time" content="2026-03-16T07:06:30.118Z">
+<meta property="article:modified_time" content="2026-03-16T07:06:30.118Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -567,10 +567,10 @@ ga('send', 'pageview');
               </svg>
             </button>
             <div class="code-tab-panel" data-lang="ts">
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">isqrt</span>(<span class="params"><span class="attr">n</span>: <span class="built_in">number</span> | <span class="built_in">string</span></span>): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/python/isqrt/</span></span><br><span class="line">  <span class="comment">// parity verified: Python 3.12</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Returns the integer square root, rounding down to the nearest whole number.</span></span><br><span class="line">  <span class="comment">//       example 1: isqrt(15)</span></span><br><span class="line">  <span class="comment">//       returns 1: 3</span></span><br><span class="line">  <span class="comment">//       example 2: isqrt(16)</span></span><br><span class="line">  <span class="comment">//       returns 2: 4</span></span><br><span class="line">  <span class="comment">//       example 3: isqrt(0)</span></span><br><span class="line">  <span class="comment">//       returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> n === <span class="string">&#x27;string&#x27;</span> &amp;&amp; <span class="regexp">/^[-+]?\d+$/</span>.<span class="title function_">test</span>(n.<span class="title function_">trim</span>())) &#123;</span><br><span class="line">    <span class="keyword">const</span> parsed = <span class="title class_">BigInt</span>(n)</span><br><span class="line">    <span class="keyword">if</span> (parsed &lt; <span class="number">0n</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> root = <span class="title function_">bigintSqrt</span>(parsed)</span><br><span class="line">    <span class="keyword">if</span> (root &gt; <span class="title class_">BigInt</span>(<span class="title class_">Number</span>.<span class="property">MAX_SAFE_INTEGER</span>)) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;isqrt() only supports roots within JS safe integer precision&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Number</span>(root)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> value = <span class="title class_">Number</span>(n)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title class_">Number</span>.<span class="built_in">isFinite</span>(value) || !<span class="title class_">Number</span>.<span class="title function_">isSafeInteger</span>(value) || value &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bigintSqrt</span>(<span class="params"><span class="attr">value</span>: <span class="built_in">bigint</span></span>): <span class="built_in">bigint</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (value &lt; <span class="number">2n</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> x0 = value</span><br><span class="line">  <span class="keyword">let</span> x1 = (x0 + <span class="number">1n</span>) &gt;&gt; <span class="number">1n</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (x1 &lt; x0) &#123;</span><br><span class="line">    x0 = x1</span><br><span class="line">    x1 = (x1 + value / x1) &gt;&gt; <span class="number">1n</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">MAX_SAFE_ROOT</span> = <span class="title class_">BigInt</span>(<span class="title class_">Number</span>.<span class="property">MAX_SAFE_INTEGER</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">FIRST_UNSAFE_ROOT_SQUARED</span> = (<span class="variable constant_">MAX_SAFE_ROOT</span> + <span class="number">1n</span>) * (<span class="variable constant_">MAX_SAFE_ROOT</span> + <span class="number">1n</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">isqrt</span>(<span class="params"><span class="attr">n</span>: <span class="built_in">number</span> | <span class="built_in">string</span></span>): <span class="built_in">number</span> &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/python/isqrt/</span></span><br><span class="line">  <span class="comment">// parity verified: Python 3.12</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Returns the integer square root, rounding down to the nearest whole number.</span></span><br><span class="line">  <span class="comment">//       example 1: isqrt(15)</span></span><br><span class="line">  <span class="comment">//       returns 1: 3</span></span><br><span class="line">  <span class="comment">//       example 2: isqrt(16)</span></span><br><span class="line">  <span class="comment">//       returns 2: 4</span></span><br><span class="line">  <span class="comment">//       example 3: isqrt(0)</span></span><br><span class="line">  <span class="comment">//       returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> n === <span class="string">&#x27;string&#x27;</span> &amp;&amp; <span class="regexp">/^[-+]?\d+$/</span>.<span class="title function_">test</span>(n.<span class="title function_">trim</span>())) &#123;</span><br><span class="line">    <span class="keyword">const</span> parsed = <span class="title class_">BigInt</span>(n)</span><br><span class="line">    <span class="keyword">if</span> (parsed &lt; <span class="number">0n</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (parsed &gt;= <span class="variable constant_">FIRST_UNSAFE_ROOT_SQUARED</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;isqrt() only supports roots within JS safe integer precision&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> root = <span class="title function_">bigintSqrt</span>(parsed)</span><br><span class="line">    <span class="keyword">if</span> (root &gt; <span class="variable constant_">MAX_SAFE_ROOT</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;isqrt() only supports roots within JS safe integer precision&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Number</span>(root)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> value = <span class="title class_">Number</span>(n)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title class_">Number</span>.<span class="built_in">isFinite</span>(value) || !<span class="title class_">Number</span>.<span class="title function_">isSafeInteger</span>(value) || value &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bigintSqrt</span>(<span class="params"><span class="attr">value</span>: <span class="built_in">bigint</span></span>): <span class="built_in">bigint</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (value &lt; <span class="number">2n</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> x0 = value</span><br><span class="line">  <span class="keyword">let</span> x1 = (x0 + <span class="number">1n</span>) &gt;&gt; <span class="number">1n</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (x1 &lt; x0) &#123;</span><br><span class="line">    x0 = x1</span><br><span class="line">    x1 = (x1 + value / x1) &gt;&gt; <span class="number">1n</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">isqrt</span>(<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/python/isqrt/</span></span><br><span class="line">  <span class="comment">// parity verified: Python 3.12</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Returns the integer square root, rounding down to the nearest whole number.</span></span><br><span class="line">  <span class="comment">//       example 1: isqrt(15)</span></span><br><span class="line">  <span class="comment">//       returns 1: 3</span></span><br><span class="line">  <span class="comment">//       example 2: isqrt(16)</span></span><br><span class="line">  <span class="comment">//       returns 2: 4</span></span><br><span class="line">  <span class="comment">//       example 3: isqrt(0)</span></span><br><span class="line">  <span class="comment">//       returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> n === <span class="string">&#x27;string&#x27;</span> &amp;&amp; <span class="regexp">/^[-+]?\d+$/</span>.<span class="title function_">test</span>(n.<span class="title function_">trim</span>())) &#123;</span><br><span class="line">    <span class="keyword">const</span> parsed = <span class="title class_">BigInt</span>(n)</span><br><span class="line">    <span class="keyword">if</span> (parsed &lt; <span class="number">0n</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> root = <span class="title function_">bigintSqrt</span>(parsed)</span><br><span class="line">    <span class="keyword">if</span> (root &gt; <span class="title class_">BigInt</span>(<span class="title class_">Number</span>.<span class="property">MAX_SAFE_INTEGER</span>)) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;isqrt() only supports roots within JS safe integer precision&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Number</span>(root)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> value = <span class="title class_">Number</span>(n)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title class_">Number</span>.<span class="built_in">isFinite</span>(value) || !<span class="title class_">Number</span>.<span class="title function_">isSafeInteger</span>(value) || value &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bigintSqrt</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (value &lt; <span class="number">2n</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> x0 = value</span><br><span class="line">  <span class="keyword">let</span> x1 = (x0 + <span class="number">1n</span>) &gt;&gt; <span class="number">1n</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (x1 &lt; x0) &#123;</span><br><span class="line">    x0 = x1</span><br><span class="line">    x1 = (x1 + value / x1) &gt;&gt; <span class="number">1n</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">MAX_SAFE_ROOT</span> = <span class="title class_">BigInt</span>(<span class="title class_">Number</span>.<span class="property">MAX_SAFE_INTEGER</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">FIRST_UNSAFE_ROOT_SQUARED</span> = (<span class="variable constant_">MAX_SAFE_ROOT</span> + <span class="number">1n</span>) * (<span class="variable constant_">MAX_SAFE_ROOT</span> + <span class="number">1n</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">isqrt</span>(<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="comment">//      discuss at: https://locutus.io/python/isqrt/</span></span><br><span class="line">  <span class="comment">// parity verified: Python 3.12</span></span><br><span class="line">  <span class="comment">//     original by: Kevin van Zonneveld (https://kvz.io)</span></span><br><span class="line">  <span class="comment">//          note 1: Returns the integer square root, rounding down to the nearest whole number.</span></span><br><span class="line">  <span class="comment">//       example 1: isqrt(15)</span></span><br><span class="line">  <span class="comment">//       returns 1: 3</span></span><br><span class="line">  <span class="comment">//       example 2: isqrt(16)</span></span><br><span class="line">  <span class="comment">//       returns 2: 4</span></span><br><span class="line">  <span class="comment">//       example 3: isqrt(0)</span></span><br><span class="line">  <span class="comment">//       returns 3: 0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> n === <span class="string">&#x27;string&#x27;</span> &amp;&amp; <span class="regexp">/^[-+]?\d+$/</span>.<span class="title function_">test</span>(n.<span class="title function_">trim</span>())) &#123;</span><br><span class="line">    <span class="keyword">const</span> parsed = <span class="title class_">BigInt</span>(n)</span><br><span class="line">    <span class="keyword">if</span> (parsed &lt; <span class="number">0n</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (parsed &gt;= <span class="variable constant_">FIRST_UNSAFE_ROOT_SQUARED</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;isqrt() only supports roots within JS safe integer precision&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> root = <span class="title function_">bigintSqrt</span>(parsed)</span><br><span class="line">    <span class="keyword">if</span> (root &gt; <span class="variable constant_">MAX_SAFE_ROOT</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RangeError</span>(<span class="string">&#x27;isqrt() only supports roots within JS safe integer precision&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Number</span>(root)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> value = <span class="title class_">Number</span>(n)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!<span class="title class_">Number</span>.<span class="built_in">isFinite</span>(value) || !<span class="title class_">Number</span>.<span class="title function_">isSafeInteger</span>(value) || value &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;isqrt() only accepts non-negative integers&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(value))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bigintSqrt</span>(<span class="params">value</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (value &lt; <span class="number">2n</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> x0 = value</span><br><span class="line">  <span class="keyword">let</span> x1 = (x0 + <span class="number">1n</span>) &gt;&gt; <span class="number">1n</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (x1 &lt; x0) &#123;</span><br><span class="line">    x0 = x1</span><br><span class="line">    x1 = (x1 + value / x1) &gt;&gt; <span class="number">1n</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> x0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </div>
 
           </div>
@@ -827,7 +827,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                687
+                697
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -1209,13 +1209,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (323)
+          (324)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (75)
+            (76)
           </a></li>
         </ul>
         
@@ -1375,33 +1375,33 @@ ga('send', 'pageview');
       
         <li><a href="/lua/">
           Lua
-          (14)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/lua/math/">
             math
-            (8)
+            (9)
           </a></li>
         </ul>
         
         <ul>
           <li><a href="/lua/string/">
             string
-            (6)
+            (7)
           </a></li>
         </ul>
         
       
         <li><a href="/r/">
           R
-          (12)
+          (13)
         </a></li>
         
         <ul>
           <li><a href="/r/base/">
             base
-            (12)
+            (13)
           </a></li>
         </ul>
         
@@ -1421,13 +1421,13 @@ ga('send', 'pageview');
       
         <li><a href="/elixir/">
           Elixir
-          (12)
+          (14)
         </a></li>
         
         <ul>
           <li><a href="/elixir/Enum/">
             Enum
-            (5)
+            (6)
           </a></li>
         </ul>
         
@@ -1448,14 +1448,14 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/elixir/String/">
             String
-            (4)
+            (5)
           </a></li>
         </ul>
         
       
         <li><a href="/clojure/">
           Clojure
-          (15)
+          (16)
         </a></li>
         
         <ul>
@@ -1468,7 +1468,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/clojure/core/">
             core
-            (7)
+            (8)
           </a></li>
         </ul>
         
@@ -1495,26 +1495,26 @@ ga('send', 'pageview');
       
         <li><a href="/tcl/">
           Tcl
-          (15)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/tcl/string/">
             string
-            (15)
+            (16)
           </a></li>
         </ul>
         
       
         <li><a href="/powershell/">
           PowerShell
-          (16)
+          (18)
         </a></li>
         
         <ul>
           <li><a href="/powershell/string/">
             string
-            (16)
+            (18)
           </a></li>
         </ul>
         

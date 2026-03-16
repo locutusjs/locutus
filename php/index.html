@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-15T16:48:31.302Z">
-<meta property="article:modified_time" content="2026-03-15T16:48:31.302Z">
+<meta property="article:published_time" content="2026-03-16T07:06:30.064Z">
+<meta property="article:modified_time" content="2026-03-16T07:06:30.064Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,158 +229,9 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 323 PHP standard library functions across 20 modules.
+        TypeScript implementations of 324 PHP standard library functions across 20 modules.
         Each function is individually importable and tree-shakeable.
       </p>
-
-      
-        <h2>Upstream surface inventory</h2>
-        <p>
-          This page also tracks the upstream namespace catalog we compare against, the functions we still want to port,
-          the ones we intentionally keep, and the ones we explicitly skip because they do not fit Locutus' plain-value model.
-        </p>
-        <div class="tags" style="margin-bottom: 1rem;">
-          <span class="tag is-dark">Coverage</span>
-          <span class="tag is-info">25%</span>
-          <span class="tag is-dark">Shipped</span>
-          <span class="tag is-success">299/1184</span>
-          <span class="tag is-dark">Wanted</span>
-          <span class="tag is-warning">1</span>
-          <span class="tag is-dark">Untriaged</span>
-          <span class="tag is-light">876</span>
-          
-            <span class="tag is-dark">Intentional extras</span>
-            <span class="tag is-link">24</span>
-          
-        </div>
-
-        
-          <div class="message is-light" style="margin-bottom: 1rem;">
-            <div class="message-header">
-              <p>Global functions</p>
-              
-                <span>PHP 8.3</span>
-              
-            </div>
-            <div class="message-body">
-              <div class="tags" style="margin-bottom: 0.75rem;">
-                <span class="tag is-dark">Coverage</span>
-                <span class="tag is-info">25%</span>
-                <span class="tag is-dark">Shipped</span>
-                <span class="tag is-success">299/1184</span>
-                <span class="tag is-dark">Wanted</span>
-                <span class="tag is-warning">1</span>
-                <span class="tag is-dark">Skipped</span>
-                <span class="tag is-light">8</span>
-                <span class="tag is-dark">Untriaged</span>
-                <span class="tag is-light">876</span>
-              </div>
-              <p style="margin-bottom: 0.75rem;">
-                Source: <code>runtime</code> <code>php:8.3-cli</code>.
-              </p>
-
-              
-                <p style="margin-bottom: 0.75rem;">
-                  Categories:
-                  
-                    <a href="/php/array/">array</a>, 
-                  
-                    <a href="/php/bc/">bc</a>, 
-                  
-                    <a href="/php/ctype/">ctype</a>, 
-                  
-                    <a href="/php/datetime/">datetime</a>, 
-                  
-                    <a href="/php/exec/">exec</a>, 
-                  
-                    <a href="/php/filesystem/">filesystem</a>, 
-                  
-                    <a href="/php/funchand/">funchand</a>, 
-                  
-                    <a href="/php/i18n/">i18n</a>, 
-                  
-                    <a href="/php/info/">info</a>, 
-                  
-                    <a href="/php/json/">json</a>, 
-                  
-                    <a href="/php/math/">math</a>, 
-                  
-                    <a href="/php/misc/">misc</a>, 
-                  
-                    <a href="/php/net-gopher/">net-gopher</a>, 
-                  
-                    <a href="/php/network/">network</a>, 
-                  
-                    <a href="/php/pcre/">pcre</a>, 
-                  
-                    <a href="/php/strings/">strings</a>, 
-                  
-                    <a href="/php/url/">url</a>, 
-                  
-                    <a href="/php/var/">var</a>, 
-                  
-                    <a href="/php/xdiff/">xdiff</a>, 
-                  
-                    <a href="/php/xml/">xml</a>
-                  
-                </p>
-              
-
-              
-                <p>
-                  <strong>Wanted ports:</strong>
-                  
-                    <code>array_is_list</code> (Modern PHP array helper with a clean plain-value contract.)
-                  
-                  .
-                </p>
-              
-
-              
-                <p>
-                  <strong>Intentional extras:</strong>
-                  
-                    <code>bcadd</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
-                  
-                    <code>bccomp</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
-                  
-                    <code>bcdiv</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
-                  
-                    <code>bcmul</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.), 
-                  
-                    <code>bcround</code> (bcmath is not enabled in the base PHP runtime target, but the port is still useful.)
-                  
-                   and 19 more.
-                </p>
-              
-
-              
-                <p>
-                  <strong>Untriaged upstream entries:</strong>
-                  
-                    <code>array_uintersect_assoc</code>, 
-                  
-                    <code>class_exists</code>, 
-                  
-                    <code>class_implements</code>, 
-                  
-                    <code>class_parents</code>, 
-                  
-                    <code>class_uses</code>, 
-                  
-                    <code>clearstatcache</code>, 
-                  
-                    <code>cli_get_process_title</code>, 
-                  
-                    <code>cli_set_process_title</code>
-                  
-                   and 868 more.
-                </p>
-              
-            </div>
-          </div>
-        
-      
 
       
         <strong>array</strong>
@@ -423,6 +274,8 @@ ga('send', 'pageview');
             <li><a href="/php/array/array_intersect_uassoc/">array_intersect_uassoc</a></li>
           
             <li><a href="/php/array/array_intersect_ukey/">array_intersect_ukey</a></li>
+          
+            <li><a href="/php/array/array_is_list/">array_is_list</a></li>
           
             <li><a href="/php/array/array_key_exists/">array_key_exists</a></li>
           
@@ -1133,6 +986,2262 @@ ga('send', 'pageview');
       <hr />
       
 
+
+      
+        
+<details class="surface-panel surface-panel-language surface-panel--toggle">
+  <summary class="surface-panel__summary">
+    <span class="surface-panel__summary-copy">
+      <strong>Upstream Surface Inventory</strong>
+      <span>
+        300/1184 shipped
+        
+         • 876 need triage
+      </span>
+      <span class="surface-panel__summary-stack">
+        <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
+          
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25.3%"></span>
+            
+            
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 0.7%"></span>
+            
+            
+              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 74%"></span>
+            
+          
+        </span>
+      </span>
+    </span>
+    <span class="surface-panel__summary-badge">25%</span>
+  </summary>
+
+  <div class="surface-panel__content">
+    <div class="surface-panel__intro">
+      <div>
+        <p>
+          Locutus tracks the upstream PHP catalog and sorts it into what is already shipped,
+          what we still want, what we intentionally keep, and what still needs a decision.
+        </p>
+      </div>
+      <div class="surface-coverage-badge">
+        <strong>25%</strong>
+        <span>catalog shipped</span>
+      </div>
+    </div>
+
+    <div class="surface-stack" aria-label="Upstream surface coverage">
+      
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25.3%"></span>
+        
+        
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 0.7%"></span>
+        
+        
+          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 74%"></span>
+        
+      
+    </div>
+
+    <div class="surface-legend">
+      <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
+    </div>
+
+    <div class="surface-kpis">
+      <article class="surface-kpi">
+        <span class="surface-kpi__label">Shipped</span>
+        <strong class="surface-kpi__value">300/1184</strong>
+      </article>
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Needs triage</span>
+          <strong class="surface-kpi__value">876</strong>
+        </article>
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">8</strong>
+        </article>
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Intentional extras</span>
+          <strong class="surface-kpi__value">24</strong>
+        </article>
+      
+    </div>
+
+    <p class="surface-summary">
+      
+      
+      
+      
+      
+      
+      300 of 1184 upstream entries are already shipped; 876 still need a decision; 8 are explicit non-goals; 24 Locutus-only extras are intentionally retained.
+    </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          PHP function catalog
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>PHP 8.3</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>php:8.3-cli</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>25%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25.3%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 0.7%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 74%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>300/1184</strong> shipped</span>
+    
+    <span><strong>8</strong> explicit non-goals</span>
+    <span><strong>876</strong> need triage</span>
+    <span><strong>24</strong> intentional extras</span>
+  </div>
+
+  <p class="surface-summary">
+    300 shipped • 8 explicit non-goals • 876 still need triage • 24 intentional extras.
+  </p>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/php/array/">array</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/bc/">bc</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/ctype/">ctype</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/datetime/">datetime</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/exec/">exec</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/filesystem/">filesystem</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/funchand/">funchand</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/i18n/">i18n</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/info/">info</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/json/">json</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/math/">math</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/misc/">misc</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/net-gopher/">net-gopher</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/network/">network</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/pcre/">pcre</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/strings/">strings</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/url/">url</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/var/">var</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/xdiff/">xdiff</a>
+      
+        <a class="surface-chip surface-chip--link" href="/php/xml/">xml</a>
+      
+    </div>
+  
+
+  
+    <div class="surface-buckets">
+      
+
+      
+        <section class="surface-bucket surface-bucket--extras">
+          <h4>Intentional extras</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/bc/bcadd/"><code>bcadd</code></a>
+                
+                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/bc/bccomp/"><code>bccomp</code></a>
+                
+                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/bc/bcdiv/"><code>bcdiv</code></a>
+                
+                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/bc/bcmul/"><code>bcmul</code></a>
+                
+                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/bc/bcround/"><code>bcround</code></a>
+                
+                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/bc/bcscale/"><code>bcscale</code></a>
+                
+                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/bc/bcsub/"><code>bcsub</code></a>
+                
+                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/strings/convert_cyr_string/"><code>convert_cyr_string</code></a>
+                
+                <span>Removed upstream in PHP 8.0, but retained as a legacy compatibility port.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/array/each/"><code>each</code></a>
+                
+                <span>Removed upstream in PHP 8.0, but retained as a legacy compatibility port.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/strings/echo/"><code>echo</code></a>
+                
+                <span>Modeled pragmatically even though it is a language construct rather than a callable function.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/var/empty/"><code>empty</code></a>
+                
+                <span>Modeled pragmatically even though it is a language construct rather than a callable function.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/net-gopher/gopher_parsedir/"><code>gopher_parsedir</code></a>
+                
+                <span>Niche Locutus-only port intentionally retained.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/i18n/i18n_loc_get_default/"><code>i18n_loc_get_default</code></a>
+                
+                <span>Intl helper retained even though it is not exposed by the base runtime target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/i18n/i18n_loc_set_default/"><code>i18n_loc_set_default</code></a>
+                
+                <span>Intl helper retained even though it is not exposed by the base runtime target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/var/is_binary/"><code>is_binary</code></a>
+                
+                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/var/is_buffer/"><code>is_buffer</code></a>
+                
+                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/var/is_real/"><code>is_real</code></a>
+                
+                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/var/is_unicode/"><code>is_unicode</code></a>
+                
+                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/var/isset/"><code>isset</code></a>
+                
+                <span>Modeled pragmatically even though it is a language construct rather than a callable function.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/strings/money_format/"><code>money_format</code></a>
+                
+                <span>Removed upstream in PHP 8.0, but retained as a legacy compatibility port.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/strings/split/"><code>split</code></a>
+                
+                <span>Removed upstream in PHP 7.0, but retained as a legacy compatibility port.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/pcre/sql_regcase/"><code>sql_regcase</code></a>
+                
+                <span>Removed upstream in PHP 7.0, but retained as a legacy compatibility port.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/xdiff/xdiff_string_diff/"><code>xdiff_string_diff</code></a>
+                
+                <span>xdiff is not available in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/php/xdiff/xdiff_string_patch/"><code>xdiff_string_patch</code></a>
+                
+                <span>xdiff is not available in the base PHP runtime target, but the port is still useful.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (8)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.assert.php" target="_blank" rel="noopener noreferrer"><code>assert</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Runtime assertion configuration is not a good portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.chdir.php" target="_blank" rel="noopener noreferrer"><code>chdir</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Process-wide working-directory mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.checkdnsrr.php" target="_blank" rel="noopener noreferrer"><code>checkdnsrr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Network and environment dependent behavior is outside the portability focus.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.chgrp.php" target="_blank" rel="noopener noreferrer"><code>chgrp</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem ownership mutation is outside the portability focus.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.chmod.php" target="_blank" rel="noopener noreferrer"><code>chmod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem permission mutation is outside the portability focus.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.chown.php" target="_blank" rel="noopener noreferrer"><code>chown</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem ownership mutation is outside the portability focus.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.chroot.php" target="_blank" rel="noopener noreferrer"><code>chroot</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Process and filesystem sandbox mutation is outside the portability focus.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.php.net/manual/en/function.class-alias.php" target="_blank" rel="noopener noreferrer"><code>class_alias</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Runtime class-table mutation is not a good fit for Locutus&#39; plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+        <details class="surface-details">
+          <summary>Needs triage (876)</summary>
+          <p class="surface-details__intro">
+            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
+          </p>
+          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+            
+              <li><code>array_uintersect_assoc</code></li>
+            
+              <li><code>class_exists</code></li>
+            
+              <li><code>class_implements</code></li>
+            
+              <li><code>class_parents</code></li>
+            
+              <li><code>class_uses</code></li>
+            
+              <li><code>clearstatcache</code></li>
+            
+              <li><code>cli_get_process_title</code></li>
+            
+              <li><code>cli_set_process_title</code></li>
+            
+              <li><code>closedir</code></li>
+            
+              <li><code>closelog</code></li>
+            
+              <li><code>compact</code></li>
+            
+              <li><code>connection_aborted</code></li>
+            
+              <li><code>connection_status</code></li>
+            
+              <li><code>constant</code></li>
+            
+              <li><code>convert_uudecode</code></li>
+            
+              <li><code>copy</code></li>
+            
+              <li><code>crypt</code></li>
+            
+              <li><code>curl_close</code></li>
+            
+              <li><code>curl_copy_handle</code></li>
+            
+              <li><code>curl_errno</code></li>
+            
+              <li><code>curl_error</code></li>
+            
+              <li><code>curl_escape</code></li>
+            
+              <li><code>curl_exec</code></li>
+            
+              <li><code>curl_file_create</code></li>
+            
+              <li><code>curl_getinfo</code></li>
+            
+              <li><code>curl_init</code></li>
+            
+              <li><code>curl_multi_add_handle</code></li>
+            
+              <li><code>curl_multi_close</code></li>
+            
+              <li><code>curl_multi_errno</code></li>
+            
+              <li><code>curl_multi_exec</code></li>
+            
+              <li><code>curl_multi_getcontent</code></li>
+            
+              <li><code>curl_multi_info_read</code></li>
+            
+              <li><code>curl_multi_init</code></li>
+            
+              <li><code>curl_multi_remove_handle</code></li>
+            
+              <li><code>curl_multi_select</code></li>
+            
+              <li><code>curl_multi_setopt</code></li>
+            
+              <li><code>curl_multi_strerror</code></li>
+            
+              <li><code>curl_pause</code></li>
+            
+              <li><code>curl_reset</code></li>
+            
+              <li><code>curl_setopt</code></li>
+            
+              <li><code>curl_setopt_array</code></li>
+            
+              <li><code>curl_share_close</code></li>
+            
+              <li><code>curl_share_errno</code></li>
+            
+              <li><code>curl_share_init</code></li>
+            
+              <li><code>curl_share_setopt</code></li>
+            
+              <li><code>curl_share_strerror</code></li>
+            
+              <li><code>curl_strerror</code></li>
+            
+              <li><code>curl_unescape</code></li>
+            
+              <li><code>curl_upkeep</code></li>
+            
+              <li><code>curl_version</code></li>
+            
+              <li><code>date_add</code></li>
+            
+              <li><code>date_create</code></li>
+            
+              <li><code>date_create_from_format</code></li>
+            
+              <li><code>date_create_immutable</code></li>
+            
+              <li><code>date_create_immutable_from_format</code></li>
+            
+              <li><code>date_date_set</code></li>
+            
+              <li><code>date_default_timezone_get</code></li>
+            
+              <li><code>date_default_timezone_set</code></li>
+            
+              <li><code>date_diff</code></li>
+            
+              <li><code>date_format</code></li>
+            
+              <li><code>date_get_last_errors</code></li>
+            
+              <li><code>date_interval_create_from_date_string</code></li>
+            
+              <li><code>date_interval_format</code></li>
+            
+              <li><code>date_isodate_set</code></li>
+            
+              <li><code>date_modify</code></li>
+            
+              <li><code>date_offset_get</code></li>
+            
+              <li><code>date_parse_from_format</code></li>
+            
+              <li><code>date_sub</code></li>
+            
+              <li><code>date_sun_info</code></li>
+            
+              <li><code>date_sunrise</code></li>
+            
+              <li><code>date_sunset</code></li>
+            
+              <li><code>date_time_set</code></li>
+            
+              <li><code>date_timestamp_get</code></li>
+            
+              <li><code>date_timestamp_set</code></li>
+            
+              <li><code>date_timezone_get</code></li>
+            
+              <li><code>date_timezone_set</code></li>
+            
+              <li><code>debug_backtrace</code></li>
+            
+              <li><code>debug_print_backtrace</code></li>
+            
+              <li><code>debug_zval_dump</code></li>
+            
+              <li><code>define</code></li>
+            
+              <li><code>defined</code></li>
+            
+              <li><code>deflate_add</code></li>
+            
+              <li><code>deflate_init</code></li>
+            
+              <li><code>dir</code></li>
+            
+              <li><code>disk_free_space</code></li>
+            
+              <li><code>disk_total_space</code></li>
+            
+              <li><code>diskfreespace</code></li>
+            
+              <li><code>dl</code></li>
+            
+              <li><code>dns_check_record</code></li>
+            
+              <li><code>dns_get_mx</code></li>
+            
+              <li><code>dns_get_record</code></li>
+            
+              <li><code>dom_import_simplexml</code></li>
+            
+              <li><code>enum_exists</code></li>
+            
+              <li><code>error_clear_last</code></li>
+            
+              <li><code>error_get_last</code></li>
+            
+              <li><code>error_log</code></li>
+            
+              <li><code>error_reporting</code></li>
+            
+              <li><code>escapeshellcmd</code></li>
+            
+              <li><code>exec</code></li>
+            
+              <li><code>extension_loaded</code></li>
+            
+              <li><code>extract</code></li>
+            
+              <li><code>fclose</code></li>
+            
+              <li><code>fdatasync</code></li>
+            
+              <li><code>fdiv</code></li>
+            
+              <li><code>feof</code></li>
+            
+              <li><code>fflush</code></li>
+            
+              <li><code>fgetc</code></li>
+            
+              <li><code>fgetcsv</code></li>
+            
+              <li><code>fgets</code></li>
+            
+              <li><code>file</code></li>
+            
+              <li><code>file_put_contents</code></li>
+            
+              <li><code>fileatime</code></li>
+            
+              <li><code>filectime</code></li>
+            
+              <li><code>filegroup</code></li>
+            
+              <li><code>fileinode</code></li>
+            
+              <li><code>filemtime</code></li>
+            
+              <li><code>fileowner</code></li>
+            
+              <li><code>fileperms</code></li>
+            
+              <li><code>filesize</code></li>
+            
+              <li><code>filetype</code></li>
+            
+              <li><code>filter_has_var</code></li>
+            
+              <li><code>filter_id</code></li>
+            
+              <li><code>filter_input</code></li>
+            
+              <li><code>filter_input_array</code></li>
+            
+              <li><code>filter_list</code></li>
+            
+              <li><code>filter_var</code></li>
+            
+              <li><code>filter_var_array</code></li>
+            
+              <li><code>finfo_buffer</code></li>
+            
+              <li><code>finfo_close</code></li>
+            
+              <li><code>finfo_file</code></li>
+            
+              <li><code>finfo_open</code></li>
+            
+              <li><code>finfo_set_flags</code></li>
+            
+              <li><code>flock</code></li>
+            
+              <li><code>flush</code></li>
+            
+              <li><code>fnmatch</code></li>
+            
+              <li><code>fopen</code></li>
+            
+              <li><code>forward_static_call</code></li>
+            
+              <li><code>forward_static_call_array</code></li>
+            
+              <li><code>fpassthru</code></li>
+            
+              <li><code>fprintf</code></li>
+            
+              <li><code>fputcsv</code></li>
+            
+              <li><code>fputs</code></li>
+            
+              <li><code>fread</code></li>
+            
+              <li><code>fscanf</code></li>
+            
+              <li><code>fseek</code></li>
+            
+              <li><code>fsockopen</code></li>
+            
+              <li><code>fstat</code></li>
+            
+              <li><code>fsync</code></li>
+            
+              <li><code>ftell</code></li>
+            
+              <li><code>ftok</code></li>
+            
+              <li><code>ftruncate</code></li>
+            
+              <li><code>func_get_arg</code></li>
+            
+              <li><code>func_get_args</code></li>
+            
+              <li><code>func_num_args</code></li>
+            
+              <li><code>fwrite</code></li>
+            
+              <li><code>gc_collect_cycles</code></li>
+            
+              <li><code>gc_disable</code></li>
+            
+              <li><code>gc_enable</code></li>
+            
+              <li><code>gc_enabled</code></li>
+            
+              <li><code>gc_mem_caches</code></li>
+            
+              <li><code>gc_status</code></li>
+            
+              <li><code>get_browser</code></li>
+            
+              <li><code>get_called_class</code></li>
+            
+              <li><code>get_cfg_var</code></li>
+            
+              <li><code>get_class</code></li>
+            
+              <li><code>get_class_methods</code></li>
+            
+              <li><code>get_class_vars</code></li>
+            
+              <li><code>get_current_user</code></li>
+            
+              <li><code>get_debug_type</code></li>
+            
+              <li><code>get_declared_classes</code></li>
+            
+              <li><code>get_declared_interfaces</code></li>
+            
+              <li><code>get_declared_traits</code></li>
+            
+              <li><code>get_defined_constants</code></li>
+            
+              <li><code>get_defined_vars</code></li>
+            
+              <li><code>get_extension_funcs</code></li>
+            
+              <li><code>get_headers</code></li>
+            
+              <li><code>get_include_path</code></li>
+            
+              <li><code>get_included_files</code></li>
+            
+              <li><code>get_loaded_extensions</code></li>
+            
+              <li><code>get_mangled_object_vars</code></li>
+            
+              <li><code>get_meta_tags</code></li>
+            
+              <li><code>get_object_vars</code></li>
+            
+              <li><code>get_parent_class</code></li>
+            
+              <li><code>get_required_files</code></li>
+            
+              <li><code>get_resource_id</code></li>
+            
+              <li><code>get_resource_type</code></li>
+            
+              <li><code>get_resources</code></li>
+            
+              <li><code>getcwd</code></li>
+            
+              <li><code>gethostbyaddr</code></li>
+            
+              <li><code>gethostbyname</code></li>
+            
+              <li><code>gethostbynamel</code></li>
+            
+              <li><code>gethostname</code></li>
+            
+              <li><code>getimagesize</code></li>
+            
+              <li><code>getimagesizefromstring</code></li>
+            
+              <li><code>getlastmod</code></li>
+            
+              <li><code>getmxrr</code></li>
+            
+              <li><code>getmygid</code></li>
+            
+              <li><code>getmyinode</code></li>
+            
+              <li><code>getmypid</code></li>
+            
+              <li><code>getmyuid</code></li>
+            
+              <li><code>getopt</code></li>
+            
+              <li><code>getprotobyname</code></li>
+            
+              <li><code>getprotobynumber</code></li>
+            
+              <li><code>getrusage</code></li>
+            
+              <li><code>getservbyname</code></li>
+            
+              <li><code>getservbyport</code></li>
+            
+              <li><code>glob</code></li>
+            
+              <li><code>gzclose</code></li>
+            
+              <li><code>gzcompress</code></li>
+            
+              <li><code>gzdecode</code></li>
+            
+              <li><code>gzdeflate</code></li>
+            
+              <li><code>gzencode</code></li>
+            
+              <li><code>gzeof</code></li>
+            
+              <li><code>gzfile</code></li>
+            
+              <li><code>gzgetc</code></li>
+            
+              <li><code>gzgets</code></li>
+            
+              <li><code>gzinflate</code></li>
+            
+              <li><code>gzopen</code></li>
+            
+              <li><code>gzpassthru</code></li>
+            
+              <li><code>gzputs</code></li>
+            
+              <li><code>gzread</code></li>
+            
+              <li><code>gzrewind</code></li>
+            
+              <li><code>gzseek</code></li>
+            
+              <li><code>gztell</code></li>
+            
+              <li><code>gzuncompress</code></li>
+            
+              <li><code>gzwrite</code></li>
+            
+              <li><code>hash</code></li>
+            
+              <li><code>hash_algos</code></li>
+            
+              <li><code>hash_copy</code></li>
+            
+              <li><code>hash_equals</code></li>
+            
+              <li><code>hash_file</code></li>
+            
+              <li><code>hash_final</code></li>
+            
+              <li><code>hash_hkdf</code></li>
+            
+              <li><code>hash_hmac</code></li>
+            
+              <li><code>hash_hmac_algos</code></li>
+            
+              <li><code>hash_hmac_file</code></li>
+            
+              <li><code>hash_init</code></li>
+            
+              <li><code>hash_pbkdf2</code></li>
+            
+              <li><code>hash_update</code></li>
+            
+              <li><code>hash_update_file</code></li>
+            
+              <li><code>hash_update_stream</code></li>
+            
+              <li><code>header</code></li>
+            
+              <li><code>header_register_callback</code></li>
+            
+              <li><code>header_remove</code></li>
+            
+              <li><code>headers_list</code></li>
+            
+              <li><code>headers_sent</code></li>
+            
+              <li><code>hebrev</code></li>
+            
+              <li><code>highlight_file</code></li>
+            
+              <li><code>highlight_string</code></li>
+            
+              <li><code>hrtime</code></li>
+            
+              <li><code>http_response_code</code></li>
+            
+              <li><code>iconv</code></li>
+            
+              <li><code>iconv_get_encoding</code></li>
+            
+              <li><code>iconv_mime_decode</code></li>
+            
+              <li><code>iconv_mime_decode_headers</code></li>
+            
+              <li><code>iconv_mime_encode</code></li>
+            
+              <li><code>iconv_set_encoding</code></li>
+            
+              <li><code>iconv_strlen</code></li>
+            
+              <li><code>iconv_strpos</code></li>
+            
+              <li><code>iconv_strrpos</code></li>
+            
+              <li><code>iconv_substr</code></li>
+            
+              <li><code>ignore_user_abort</code></li>
+            
+              <li><code>image_type_to_extension</code></li>
+            
+              <li><code>image_type_to_mime_type</code></li>
+            
+              <li><code>inflate_add</code></li>
+            
+              <li><code>inflate_get_read_len</code></li>
+            
+              <li><code>inflate_get_status</code></li>
+            
+              <li><code>inflate_init</code></li>
+            
+              <li><code>ini_alter</code></li>
+            
+              <li><code>ini_get_all</code></li>
+            
+              <li><code>ini_parse_quantity</code></li>
+            
+              <li><code>ini_restore</code></li>
+            
+              <li><code>intdiv</code></li>
+            
+              <li><code>interface_exists</code></li>
+            
+              <li><code>iptcembed</code></li>
+            
+              <li><code>iptcparse</code></li>
+            
+              <li><code>is_a</code></li>
+            
+              <li><code>is_countable</code></li>
+            
+              <li><code>is_dir</code></li>
+            
+              <li><code>is_executable</code></li>
+            
+              <li><code>is_file</code></li>
+            
+              <li><code>is_iterable</code></li>
+            
+              <li><code>is_link</code></li>
+            
+              <li><code>is_readable</code></li>
+            
+              <li><code>is_resource</code></li>
+            
+              <li><code>is_subclass_of</code></li>
+            
+              <li><code>is_uploaded_file</code></li>
+            
+              <li><code>is_writable</code></li>
+            
+              <li><code>is_writeable</code></li>
+            
+              <li><code>iterator_apply</code></li>
+            
+              <li><code>iterator_count</code></li>
+            
+              <li><code>iterator_to_array</code></li>
+            
+              <li><code>json_last_error_msg</code></li>
+            
+              <li><code>json_validate</code></li>
+            
+              <li><code>key_exists</code></li>
+            
+              <li><code>lchgrp</code></li>
+            
+              <li><code>lchown</code></li>
+            
+              <li><code>libxml_clear_errors</code></li>
+            
+              <li><code>libxml_disable_entity_loader</code></li>
+            
+              <li><code>libxml_get_errors</code></li>
+            
+              <li><code>libxml_get_external_entity_loader</code></li>
+            
+              <li><code>libxml_get_last_error</code></li>
+            
+              <li><code>libxml_set_external_entity_loader</code></li>
+            
+              <li><code>libxml_set_streams_context</code></li>
+            
+              <li><code>libxml_use_internal_errors</code></li>
+            
+              <li><code>link</code></li>
+            
+              <li><code>linkinfo</code></li>
+            
+              <li><code>localtime</code></li>
+            
+              <li><code>lstat</code></li>
+            
+              <li><code>mail</code></li>
+            
+              <li><code>mb_check_encoding</code></li>
+            
+              <li><code>mb_chr</code></li>
+            
+              <li><code>mb_convert_case</code></li>
+            
+              <li><code>mb_convert_encoding</code></li>
+            
+              <li><code>mb_convert_kana</code></li>
+            
+              <li><code>mb_convert_variables</code></li>
+            
+              <li><code>mb_decode_mimeheader</code></li>
+            
+              <li><code>mb_decode_numericentity</code></li>
+            
+              <li><code>mb_detect_encoding</code></li>
+            
+              <li><code>mb_detect_order</code></li>
+            
+              <li><code>mb_encode_mimeheader</code></li>
+            
+              <li><code>mb_encode_numericentity</code></li>
+            
+              <li><code>mb_encoding_aliases</code></li>
+            
+              <li><code>mb_ereg</code></li>
+            
+              <li><code>mb_ereg_match</code></li>
+            
+              <li><code>mb_ereg_replace</code></li>
+            
+              <li><code>mb_ereg_replace_callback</code></li>
+            
+              <li><code>mb_ereg_search</code></li>
+            
+              <li><code>mb_ereg_search_getpos</code></li>
+            
+              <li><code>mb_ereg_search_getregs</code></li>
+            
+              <li><code>mb_ereg_search_init</code></li>
+            
+              <li><code>mb_ereg_search_pos</code></li>
+            
+              <li><code>mb_ereg_search_regs</code></li>
+            
+              <li><code>mb_ereg_search_setpos</code></li>
+            
+              <li><code>mb_eregi</code></li>
+            
+              <li><code>mb_eregi_replace</code></li>
+            
+              <li><code>mb_get_info</code></li>
+            
+              <li><code>mb_http_input</code></li>
+            
+              <li><code>mb_http_output</code></li>
+            
+              <li><code>mb_internal_encoding</code></li>
+            
+              <li><code>mb_language</code></li>
+            
+              <li><code>mb_list_encodings</code></li>
+            
+              <li><code>mb_ord</code></li>
+            
+              <li><code>mb_output_handler</code></li>
+            
+              <li><code>mb_parse_str</code></li>
+            
+              <li><code>mb_preferred_mime_name</code></li>
+            
+              <li><code>mb_regex_encoding</code></li>
+            
+              <li><code>mb_regex_set_options</code></li>
+            
+              <li><code>mb_scrub</code></li>
+            
+              <li><code>mb_send_mail</code></li>
+            
+              <li><code>mb_split</code></li>
+            
+              <li><code>mb_str_pad</code></li>
+            
+              <li><code>mb_str_split</code></li>
+            
+              <li><code>mb_strcut</code></li>
+            
+              <li><code>mb_strimwidth</code></li>
+            
+              <li><code>mb_stripos</code></li>
+            
+              <li><code>mb_stristr</code></li>
+            
+              <li><code>mb_strlen</code></li>
+            
+              <li><code>mb_strpos</code></li>
+            
+              <li><code>mb_strrchr</code></li>
+            
+              <li><code>mb_strrichr</code></li>
+            
+              <li><code>mb_strripos</code></li>
+            
+              <li><code>mb_strrpos</code></li>
+            
+              <li><code>mb_strstr</code></li>
+            
+              <li><code>mb_strtolower</code></li>
+            
+              <li><code>mb_strtoupper</code></li>
+            
+              <li><code>mb_strwidth</code></li>
+            
+              <li><code>mb_substitute_character</code></li>
+            
+              <li><code>mb_substr</code></li>
+            
+              <li><code>mb_substr_count</code></li>
+            
+              <li><code>memory_get_peak_usage</code></li>
+            
+              <li><code>memory_get_usage</code></li>
+            
+              <li><code>memory_reset_peak_usage</code></li>
+            
+              <li><code>method_exists</code></li>
+            
+              <li><code>mhash</code></li>
+            
+              <li><code>mhash_count</code></li>
+            
+              <li><code>mhash_get_block_size</code></li>
+            
+              <li><code>mhash_get_hash_name</code></li>
+            
+              <li><code>mhash_keygen_s2k</code></li>
+            
+              <li><code>mime_content_type</code></li>
+            
+              <li><code>mkdir</code></li>
+            
+              <li><code>move_uploaded_file</code></li>
+            
+              <li><code>mt_srand</code></li>
+            
+              <li><code>net_get_interfaces</code></li>
+            
+              <li><code>ob_clean</code></li>
+            
+              <li><code>ob_end_clean</code></li>
+            
+              <li><code>ob_end_flush</code></li>
+            
+              <li><code>ob_flush</code></li>
+            
+              <li><code>ob_get_clean</code></li>
+            
+              <li><code>ob_get_contents</code></li>
+            
+              <li><code>ob_get_flush</code></li>
+            
+              <li><code>ob_get_length</code></li>
+            
+              <li><code>ob_get_level</code></li>
+            
+              <li><code>ob_get_status</code></li>
+            
+              <li><code>ob_gzhandler</code></li>
+            
+              <li><code>ob_implicit_flush</code></li>
+            
+              <li><code>ob_list_handlers</code></li>
+            
+              <li><code>ob_start</code></li>
+            
+              <li><code>opcache_compile_file</code></li>
+            
+              <li><code>opcache_get_configuration</code></li>
+            
+              <li><code>opcache_get_status</code></li>
+            
+              <li><code>opcache_invalidate</code></li>
+            
+              <li><code>opcache_is_script_cached</code></li>
+            
+              <li><code>opcache_reset</code></li>
+            
+              <li><code>opendir</code></li>
+            
+              <li><code>openlog</code></li>
+            
+              <li><code>openssl_cipher_iv_length</code></li>
+            
+              <li><code>openssl_cipher_key_length</code></li>
+            
+              <li><code>openssl_cms_decrypt</code></li>
+            
+              <li><code>openssl_cms_encrypt</code></li>
+            
+              <li><code>openssl_cms_read</code></li>
+            
+              <li><code>openssl_cms_sign</code></li>
+            
+              <li><code>openssl_cms_verify</code></li>
+            
+              <li><code>openssl_csr_export</code></li>
+            
+              <li><code>openssl_csr_export_to_file</code></li>
+            
+              <li><code>openssl_csr_get_public_key</code></li>
+            
+              <li><code>openssl_csr_get_subject</code></li>
+            
+              <li><code>openssl_csr_new</code></li>
+            
+              <li><code>openssl_csr_sign</code></li>
+            
+              <li><code>openssl_decrypt</code></li>
+            
+              <li><code>openssl_dh_compute_key</code></li>
+            
+              <li><code>openssl_digest</code></li>
+            
+              <li><code>openssl_encrypt</code></li>
+            
+              <li><code>openssl_error_string</code></li>
+            
+              <li><code>openssl_free_key</code></li>
+            
+              <li><code>openssl_get_cert_locations</code></li>
+            
+              <li><code>openssl_get_cipher_methods</code></li>
+            
+              <li><code>openssl_get_curve_names</code></li>
+            
+              <li><code>openssl_get_md_methods</code></li>
+            
+              <li><code>openssl_get_privatekey</code></li>
+            
+              <li><code>openssl_get_publickey</code></li>
+            
+              <li><code>openssl_open</code></li>
+            
+              <li><code>openssl_pbkdf2</code></li>
+            
+              <li><code>openssl_pkcs12_export</code></li>
+            
+              <li><code>openssl_pkcs12_export_to_file</code></li>
+            
+              <li><code>openssl_pkcs12_read</code></li>
+            
+              <li><code>openssl_pkcs7_decrypt</code></li>
+            
+              <li><code>openssl_pkcs7_encrypt</code></li>
+            
+              <li><code>openssl_pkcs7_read</code></li>
+            
+              <li><code>openssl_pkcs7_sign</code></li>
+            
+              <li><code>openssl_pkcs7_verify</code></li>
+            
+              <li><code>openssl_pkey_derive</code></li>
+            
+              <li><code>openssl_pkey_export</code></li>
+            
+              <li><code>openssl_pkey_export_to_file</code></li>
+            
+              <li><code>openssl_pkey_free</code></li>
+            
+              <li><code>openssl_pkey_get_details</code></li>
+            
+              <li><code>openssl_pkey_get_private</code></li>
+            
+              <li><code>openssl_pkey_get_public</code></li>
+            
+              <li><code>openssl_pkey_new</code></li>
+            
+              <li><code>openssl_private_decrypt</code></li>
+            
+              <li><code>openssl_private_encrypt</code></li>
+            
+              <li><code>openssl_public_decrypt</code></li>
+            
+              <li><code>openssl_public_encrypt</code></li>
+            
+              <li><code>openssl_random_pseudo_bytes</code></li>
+            
+              <li><code>openssl_seal</code></li>
+            
+              <li><code>openssl_sign</code></li>
+            
+              <li><code>openssl_spki_export</code></li>
+            
+              <li><code>openssl_spki_export_challenge</code></li>
+            
+              <li><code>openssl_spki_new</code></li>
+            
+              <li><code>openssl_spki_verify</code></li>
+            
+              <li><code>openssl_verify</code></li>
+            
+              <li><code>openssl_x509_check_private_key</code></li>
+            
+              <li><code>openssl_x509_checkpurpose</code></li>
+            
+              <li><code>openssl_x509_export</code></li>
+            
+              <li><code>openssl_x509_export_to_file</code></li>
+            
+              <li><code>openssl_x509_fingerprint</code></li>
+            
+              <li><code>openssl_x509_free</code></li>
+            
+              <li><code>openssl_x509_parse</code></li>
+            
+              <li><code>openssl_x509_read</code></li>
+            
+              <li><code>openssl_x509_verify</code></li>
+            
+              <li><code>output_add_rewrite_var</code></li>
+            
+              <li><code>output_reset_rewrite_vars</code></li>
+            
+              <li><code>parse_ini_file</code></li>
+            
+              <li><code>parse_ini_string</code></li>
+            
+              <li><code>passthru</code></li>
+            
+              <li><code>password_algos</code></li>
+            
+              <li><code>password_get_info</code></li>
+            
+              <li><code>password_hash</code></li>
+            
+              <li><code>password_needs_rehash</code></li>
+            
+              <li><code>password_verify</code></li>
+            
+              <li><code>pclose</code></li>
+            
+              <li><code>pdo_drivers</code></li>
+            
+              <li><code>pfsockopen</code></li>
+            
+              <li><code>php_ini_loaded_file</code></li>
+            
+              <li><code>php_ini_scanned_files</code></li>
+            
+              <li><code>php_sapi_name</code></li>
+            
+              <li><code>php_strip_whitespace</code></li>
+            
+              <li><code>php_uname</code></li>
+            
+              <li><code>phpcredits</code></li>
+            
+              <li><code>phpinfo</code></li>
+            
+              <li><code>phpversion</code></li>
+            
+              <li><code>popen</code></li>
+            
+              <li><code>posix_access</code></li>
+            
+              <li><code>posix_ctermid</code></li>
+            
+              <li><code>posix_eaccess</code></li>
+            
+              <li><code>posix_errno</code></li>
+            
+              <li><code>posix_fpathconf</code></li>
+            
+              <li><code>posix_get_last_error</code></li>
+            
+              <li><code>posix_getcwd</code></li>
+            
+              <li><code>posix_getegid</code></li>
+            
+              <li><code>posix_geteuid</code></li>
+            
+              <li><code>posix_getgid</code></li>
+            
+              <li><code>posix_getgrgid</code></li>
+            
+              <li><code>posix_getgrnam</code></li>
+            
+              <li><code>posix_getgroups</code></li>
+            
+              <li><code>posix_getlogin</code></li>
+            
+              <li><code>posix_getpgid</code></li>
+            
+              <li><code>posix_getpgrp</code></li>
+            
+              <li><code>posix_getpid</code></li>
+            
+              <li><code>posix_getppid</code></li>
+            
+              <li><code>posix_getpwnam</code></li>
+            
+              <li><code>posix_getpwuid</code></li>
+            
+              <li><code>posix_getrlimit</code></li>
+            
+              <li><code>posix_getsid</code></li>
+            
+              <li><code>posix_getuid</code></li>
+            
+              <li><code>posix_initgroups</code></li>
+            
+              <li><code>posix_isatty</code></li>
+            
+              <li><code>posix_kill</code></li>
+            
+              <li><code>posix_mkfifo</code></li>
+            
+              <li><code>posix_mknod</code></li>
+            
+              <li><code>posix_pathconf</code></li>
+            
+              <li><code>posix_setegid</code></li>
+            
+              <li><code>posix_seteuid</code></li>
+            
+              <li><code>posix_setgid</code></li>
+            
+              <li><code>posix_setpgid</code></li>
+            
+              <li><code>posix_setrlimit</code></li>
+            
+              <li><code>posix_setsid</code></li>
+            
+              <li><code>posix_setuid</code></li>
+            
+              <li><code>posix_strerror</code></li>
+            
+              <li><code>posix_sysconf</code></li>
+            
+              <li><code>posix_times</code></li>
+            
+              <li><code>posix_ttyname</code></li>
+            
+              <li><code>posix_uname</code></li>
+            
+              <li><code>preg_filter</code></li>
+            
+              <li><code>preg_grep</code></li>
+            
+              <li><code>preg_last_error</code></li>
+            
+              <li><code>preg_last_error_msg</code></li>
+            
+              <li><code>preg_match_all</code></li>
+            
+              <li><code>preg_replace_callback</code></li>
+            
+              <li><code>preg_replace_callback_array</code></li>
+            
+              <li><code>preg_split</code></li>
+            
+              <li><code>proc_close</code></li>
+            
+              <li><code>proc_get_status</code></li>
+            
+              <li><code>proc_nice</code></li>
+            
+              <li><code>proc_open</code></li>
+            
+              <li><code>proc_terminate</code></li>
+            
+              <li><code>property_exists</code></li>
+            
+              <li><code>putenv</code></li>
+            
+              <li><code>random_bytes</code></li>
+            
+              <li><code>random_int</code></li>
+            
+              <li><code>readdir</code></li>
+            
+              <li><code>readfile</code></li>
+            
+              <li><code>readgzfile</code></li>
+            
+              <li><code>readline</code></li>
+            
+              <li><code>readline_add_history</code></li>
+            
+              <li><code>readline_callback_handler_install</code></li>
+            
+              <li><code>readline_callback_handler_remove</code></li>
+            
+              <li><code>readline_callback_read_char</code></li>
+            
+              <li><code>readline_clear_history</code></li>
+            
+              <li><code>readline_completion_function</code></li>
+            
+              <li><code>readline_info</code></li>
+            
+              <li><code>readline_list_history</code></li>
+            
+              <li><code>readline_on_new_line</code></li>
+            
+              <li><code>readline_read_history</code></li>
+            
+              <li><code>readline_redisplay</code></li>
+            
+              <li><code>readline_write_history</code></li>
+            
+              <li><code>readlink</code></li>
+            
+              <li><code>realpath_cache_get</code></li>
+            
+              <li><code>realpath_cache_size</code></li>
+            
+              <li><code>register_shutdown_function</code></li>
+            
+              <li><code>register_tick_function</code></li>
+            
+              <li><code>rename</code></li>
+            
+              <li><code>restore_error_handler</code></li>
+            
+              <li><code>restore_exception_handler</code></li>
+            
+              <li><code>rewind</code></li>
+            
+              <li><code>rewinddir</code></li>
+            
+              <li><code>rmdir</code></li>
+            
+              <li><code>scandir</code></li>
+            
+              <li><code>session_abort</code></li>
+            
+              <li><code>session_cache_expire</code></li>
+            
+              <li><code>session_cache_limiter</code></li>
+            
+              <li><code>session_commit</code></li>
+            
+              <li><code>session_create_id</code></li>
+            
+              <li><code>session_decode</code></li>
+            
+              <li><code>session_destroy</code></li>
+            
+              <li><code>session_encode</code></li>
+            
+              <li><code>session_gc</code></li>
+            
+              <li><code>session_get_cookie_params</code></li>
+            
+              <li><code>session_id</code></li>
+            
+              <li><code>session_module_name</code></li>
+            
+              <li><code>session_name</code></li>
+            
+              <li><code>session_regenerate_id</code></li>
+            
+              <li><code>session_register_shutdown</code></li>
+            
+              <li><code>session_reset</code></li>
+            
+              <li><code>session_save_path</code></li>
+            
+              <li><code>session_set_cookie_params</code></li>
+            
+              <li><code>session_set_save_handler</code></li>
+            
+              <li><code>session_start</code></li>
+            
+              <li><code>session_status</code></li>
+            
+              <li><code>session_unset</code></li>
+            
+              <li><code>session_write_close</code></li>
+            
+              <li><code>set_error_handler</code></li>
+            
+              <li><code>set_exception_handler</code></li>
+            
+              <li><code>set_file_buffer</code></li>
+            
+              <li><code>set_include_path</code></li>
+            
+              <li><code>settype</code></li>
+            
+              <li><code>shell_exec</code></li>
+            
+              <li><code>show_source</code></li>
+            
+              <li><code>simplexml_import_dom</code></li>
+            
+              <li><code>simplexml_load_file</code></li>
+            
+              <li><code>simplexml_load_string</code></li>
+            
+              <li><code>sleep</code></li>
+            
+              <li><code>socket_get_status</code></li>
+            
+              <li><code>socket_set_blocking</code></li>
+            
+              <li><code>socket_set_timeout</code></li>
+            
+              <li><code>sodium_add</code></li>
+            
+              <li><code>sodium_base642bin</code></li>
+            
+              <li><code>sodium_bin2base64</code></li>
+            
+              <li><code>sodium_bin2hex</code></li>
+            
+              <li><code>sodium_compare</code></li>
+            
+              <li><code>sodium_crypto_aead_aes256gcm_is_available</code></li>
+            
+              <li><code>sodium_crypto_aead_chacha20poly1305_decrypt</code></li>
+            
+              <li><code>sodium_crypto_aead_chacha20poly1305_encrypt</code></li>
+            
+              <li><code>sodium_crypto_aead_chacha20poly1305_ietf_decrypt</code></li>
+            
+              <li><code>sodium_crypto_aead_chacha20poly1305_ietf_encrypt</code></li>
+            
+              <li><code>sodium_crypto_aead_chacha20poly1305_ietf_keygen</code></li>
+            
+              <li><code>sodium_crypto_aead_chacha20poly1305_keygen</code></li>
+            
+              <li><code>sodium_crypto_aead_xchacha20poly1305_ietf_decrypt</code></li>
+            
+              <li><code>sodium_crypto_aead_xchacha20poly1305_ietf_encrypt</code></li>
+            
+              <li><code>sodium_crypto_aead_xchacha20poly1305_ietf_keygen</code></li>
+            
+              <li><code>sodium_crypto_auth</code></li>
+            
+              <li><code>sodium_crypto_auth_keygen</code></li>
+            
+              <li><code>sodium_crypto_auth_verify</code></li>
+            
+              <li><code>sodium_crypto_box</code></li>
+            
+              <li><code>sodium_crypto_box_keypair</code></li>
+            
+              <li><code>sodium_crypto_box_keypair_from_secretkey_and_publickey</code></li>
+            
+              <li><code>sodium_crypto_box_open</code></li>
+            
+              <li><code>sodium_crypto_box_publickey</code></li>
+            
+              <li><code>sodium_crypto_box_publickey_from_secretkey</code></li>
+            
+              <li><code>sodium_crypto_box_seal</code></li>
+            
+              <li><code>sodium_crypto_box_seal_open</code></li>
+            
+              <li><code>sodium_crypto_box_secretkey</code></li>
+            
+              <li><code>sodium_crypto_box_seed_keypair</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_add</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_from_hash</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_is_valid_point</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_random</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_add</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_complement</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_invert</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_mul</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_negate</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_random</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_reduce</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_scalar_sub</code></li>
+            
+              <li><code>sodium_crypto_core_ristretto255_sub</code></li>
+            
+              <li><code>sodium_crypto_generichash</code></li>
+            
+              <li><code>sodium_crypto_generichash_final</code></li>
+            
+              <li><code>sodium_crypto_generichash_init</code></li>
+            
+              <li><code>sodium_crypto_generichash_keygen</code></li>
+            
+              <li><code>sodium_crypto_generichash_update</code></li>
+            
+              <li><code>sodium_crypto_kdf_derive_from_key</code></li>
+            
+              <li><code>sodium_crypto_kdf_keygen</code></li>
+            
+              <li><code>sodium_crypto_kx_client_session_keys</code></li>
+            
+              <li><code>sodium_crypto_kx_keypair</code></li>
+            
+              <li><code>sodium_crypto_kx_publickey</code></li>
+            
+              <li><code>sodium_crypto_kx_secretkey</code></li>
+            
+              <li><code>sodium_crypto_kx_seed_keypair</code></li>
+            
+              <li><code>sodium_crypto_kx_server_session_keys</code></li>
+            
+              <li><code>sodium_crypto_pwhash</code></li>
+            
+              <li><code>sodium_crypto_pwhash_scryptsalsa208sha256</code></li>
+            
+              <li><code>sodium_crypto_pwhash_scryptsalsa208sha256_str</code></li>
+            
+              <li><code>sodium_crypto_pwhash_scryptsalsa208sha256_str_verify</code></li>
+            
+              <li><code>sodium_crypto_pwhash_str</code></li>
+            
+              <li><code>sodium_crypto_pwhash_str_needs_rehash</code></li>
+            
+              <li><code>sodium_crypto_pwhash_str_verify</code></li>
+            
+              <li><code>sodium_crypto_scalarmult</code></li>
+            
+              <li><code>sodium_crypto_scalarmult_base</code></li>
+            
+              <li><code>sodium_crypto_scalarmult_ristretto255</code></li>
+            
+              <li><code>sodium_crypto_scalarmult_ristretto255_base</code></li>
+            
+              <li><code>sodium_crypto_secretbox</code></li>
+            
+              <li><code>sodium_crypto_secretbox_keygen</code></li>
+            
+              <li><code>sodium_crypto_secretbox_open</code></li>
+            
+              <li><code>sodium_crypto_secretstream_xchacha20poly1305_init_pull</code></li>
+            
+              <li><code>sodium_crypto_secretstream_xchacha20poly1305_init_push</code></li>
+            
+              <li><code>sodium_crypto_secretstream_xchacha20poly1305_keygen</code></li>
+            
+              <li><code>sodium_crypto_secretstream_xchacha20poly1305_pull</code></li>
+            
+              <li><code>sodium_crypto_secretstream_xchacha20poly1305_push</code></li>
+            
+              <li><code>sodium_crypto_secretstream_xchacha20poly1305_rekey</code></li>
+            
+              <li><code>sodium_crypto_shorthash</code></li>
+            
+              <li><code>sodium_crypto_shorthash_keygen</code></li>
+            
+              <li><code>sodium_crypto_sign</code></li>
+            
+              <li><code>sodium_crypto_sign_detached</code></li>
+            
+              <li><code>sodium_crypto_sign_ed25519_pk_to_curve25519</code></li>
+            
+              <li><code>sodium_crypto_sign_ed25519_sk_to_curve25519</code></li>
+            
+              <li><code>sodium_crypto_sign_keypair</code></li>
+            
+              <li><code>sodium_crypto_sign_keypair_from_secretkey_and_publickey</code></li>
+            
+              <li><code>sodium_crypto_sign_open</code></li>
+            
+              <li><code>sodium_crypto_sign_publickey</code></li>
+            
+              <li><code>sodium_crypto_sign_publickey_from_secretkey</code></li>
+            
+              <li><code>sodium_crypto_sign_secretkey</code></li>
+            
+              <li><code>sodium_crypto_sign_seed_keypair</code></li>
+            
+              <li><code>sodium_crypto_sign_verify_detached</code></li>
+            
+              <li><code>sodium_crypto_stream</code></li>
+            
+              <li><code>sodium_crypto_stream_keygen</code></li>
+            
+              <li><code>sodium_crypto_stream_xchacha20</code></li>
+            
+              <li><code>sodium_crypto_stream_xchacha20_keygen</code></li>
+            
+              <li><code>sodium_crypto_stream_xchacha20_xor</code></li>
+            
+              <li><code>sodium_crypto_stream_xchacha20_xor_ic</code></li>
+            
+              <li><code>sodium_crypto_stream_xor</code></li>
+            
+              <li><code>sodium_hex2bin</code></li>
+            
+              <li><code>sodium_increment</code></li>
+            
+              <li><code>sodium_memcmp</code></li>
+            
+              <li><code>sodium_memzero</code></li>
+            
+              <li><code>sodium_pad</code></li>
+            
+              <li><code>sodium_unpad</code></li>
+            
+              <li><code>spl_autoload</code></li>
+            
+              <li><code>spl_autoload_call</code></li>
+            
+              <li><code>spl_autoload_extensions</code></li>
+            
+              <li><code>spl_autoload_functions</code></li>
+            
+              <li><code>spl_autoload_register</code></li>
+            
+              <li><code>spl_autoload_unregister</code></li>
+            
+              <li><code>spl_classes</code></li>
+            
+              <li><code>spl_object_hash</code></li>
+            
+              <li><code>spl_object_id</code></li>
+            
+              <li><code>srand</code></li>
+            
+              <li><code>stat</code></li>
+            
+              <li><code>str_contains</code></li>
+            
+              <li><code>str_decrement</code></li>
+            
+              <li><code>str_ends_with</code></li>
+            
+              <li><code>str_increment</code></li>
+            
+              <li><code>str_starts_with</code></li>
+            
+              <li><code>stream_bucket_append</code></li>
+            
+              <li><code>stream_bucket_make_writeable</code></li>
+            
+              <li><code>stream_bucket_new</code></li>
+            
+              <li><code>stream_bucket_prepend</code></li>
+            
+              <li><code>stream_context_create</code></li>
+            
+              <li><code>stream_context_get_default</code></li>
+            
+              <li><code>stream_context_get_options</code></li>
+            
+              <li><code>stream_context_get_params</code></li>
+            
+              <li><code>stream_context_set_default</code></li>
+            
+              <li><code>stream_context_set_option</code></li>
+            
+              <li><code>stream_context_set_options</code></li>
+            
+              <li><code>stream_context_set_params</code></li>
+            
+              <li><code>stream_copy_to_stream</code></li>
+            
+              <li><code>stream_filter_append</code></li>
+            
+              <li><code>stream_filter_prepend</code></li>
+            
+              <li><code>stream_filter_register</code></li>
+            
+              <li><code>stream_filter_remove</code></li>
+            
+              <li><code>stream_get_contents</code></li>
+            
+              <li><code>stream_get_filters</code></li>
+            
+              <li><code>stream_get_line</code></li>
+            
+              <li><code>stream_get_meta_data</code></li>
+            
+              <li><code>stream_get_transports</code></li>
+            
+              <li><code>stream_get_wrappers</code></li>
+            
+              <li><code>stream_is_local</code></li>
+            
+              <li><code>stream_isatty</code></li>
+            
+              <li><code>stream_register_wrapper</code></li>
+            
+              <li><code>stream_resolve_include_path</code></li>
+            
+              <li><code>stream_select</code></li>
+            
+              <li><code>stream_set_blocking</code></li>
+            
+              <li><code>stream_set_chunk_size</code></li>
+            
+              <li><code>stream_set_read_buffer</code></li>
+            
+              <li><code>stream_set_timeout</code></li>
+            
+              <li><code>stream_set_write_buffer</code></li>
+            
+              <li><code>stream_socket_accept</code></li>
+            
+              <li><code>stream_socket_client</code></li>
+            
+              <li><code>stream_socket_enable_crypto</code></li>
+            
+              <li><code>stream_socket_get_name</code></li>
+            
+              <li><code>stream_socket_pair</code></li>
+            
+              <li><code>stream_socket_recvfrom</code></li>
+            
+              <li><code>stream_socket_sendto</code></li>
+            
+              <li><code>stream_socket_server</code></li>
+            
+              <li><code>stream_socket_shutdown</code></li>
+            
+              <li><code>stream_supports_lock</code></li>
+            
+              <li><code>stream_wrapper_register</code></li>
+            
+              <li><code>stream_wrapper_restore</code></li>
+            
+              <li><code>stream_wrapper_unregister</code></li>
+            
+              <li><code>stripcslashes</code></li>
+            
+              <li><code>symlink</code></li>
+            
+              <li><code>sys_get_temp_dir</code></li>
+            
+              <li><code>sys_getloadavg</code></li>
+            
+              <li><code>syslog</code></li>
+            
+              <li><code>system</code></li>
+            
+              <li><code>tempnam</code></li>
+            
+              <li><code>time_nanosleep</code></li>
+            
+              <li><code>time_sleep_until</code></li>
+            
+              <li><code>timezone_abbreviations_list</code></li>
+            
+              <li><code>timezone_identifiers_list</code></li>
+            
+              <li><code>timezone_location_get</code></li>
+            
+              <li><code>timezone_name_from_abbr</code></li>
+            
+              <li><code>timezone_name_get</code></li>
+            
+              <li><code>timezone_offset_get</code></li>
+            
+              <li><code>timezone_open</code></li>
+            
+              <li><code>timezone_transitions_get</code></li>
+            
+              <li><code>timezone_version_get</code></li>
+            
+              <li><code>tmpfile</code></li>
+            
+              <li><code>token_get_all</code></li>
+            
+              <li><code>token_name</code></li>
+            
+              <li><code>touch</code></li>
+            
+              <li><code>trait_exists</code></li>
+            
+              <li><code>trigger_error</code></li>
+            
+              <li><code>umask</code></li>
+            
+              <li><code>unlink</code></li>
+            
+              <li><code>unregister_tick_function</code></li>
+            
+              <li><code>user_error</code></li>
+            
+              <li><code>usleep</code></li>
+            
+              <li><code>vfprintf</code></li>
+            
+              <li><code>xml_error_string</code></li>
+            
+              <li><code>xml_get_current_byte_index</code></li>
+            
+              <li><code>xml_get_current_column_number</code></li>
+            
+              <li><code>xml_get_current_line_number</code></li>
+            
+              <li><code>xml_get_error_code</code></li>
+            
+              <li><code>xml_parse</code></li>
+            
+              <li><code>xml_parse_into_struct</code></li>
+            
+              <li><code>xml_parser_create</code></li>
+            
+              <li><code>xml_parser_create_ns</code></li>
+            
+              <li><code>xml_parser_free</code></li>
+            
+              <li><code>xml_parser_get_option</code></li>
+            
+              <li><code>xml_parser_set_option</code></li>
+            
+              <li><code>xml_set_character_data_handler</code></li>
+            
+              <li><code>xml_set_default_handler</code></li>
+            
+              <li><code>xml_set_element_handler</code></li>
+            
+              <li><code>xml_set_end_namespace_decl_handler</code></li>
+            
+              <li><code>xml_set_external_entity_ref_handler</code></li>
+            
+              <li><code>xml_set_notation_decl_handler</code></li>
+            
+              <li><code>xml_set_object</code></li>
+            
+              <li><code>xml_set_processing_instruction_handler</code></li>
+            
+              <li><code>xml_set_start_namespace_decl_handler</code></li>
+            
+              <li><code>xml_set_unparsed_entity_decl_handler</code></li>
+            
+              <li><code>xmlwriter_end_attribute</code></li>
+            
+              <li><code>xmlwriter_end_cdata</code></li>
+            
+              <li><code>xmlwriter_end_comment</code></li>
+            
+              <li><code>xmlwriter_end_document</code></li>
+            
+              <li><code>xmlwriter_end_dtd</code></li>
+            
+              <li><code>xmlwriter_end_dtd_attlist</code></li>
+            
+              <li><code>xmlwriter_end_dtd_element</code></li>
+            
+              <li><code>xmlwriter_end_dtd_entity</code></li>
+            
+              <li><code>xmlwriter_end_element</code></li>
+            
+              <li><code>xmlwriter_end_pi</code></li>
+            
+              <li><code>xmlwriter_flush</code></li>
+            
+              <li><code>xmlwriter_full_end_element</code></li>
+            
+              <li><code>xmlwriter_open_memory</code></li>
+            
+              <li><code>xmlwriter_open_uri</code></li>
+            
+              <li><code>xmlwriter_output_memory</code></li>
+            
+              <li><code>xmlwriter_set_indent</code></li>
+            
+              <li><code>xmlwriter_set_indent_string</code></li>
+            
+              <li><code>xmlwriter_start_attribute</code></li>
+            
+              <li><code>xmlwriter_start_attribute_ns</code></li>
+            
+              <li><code>xmlwriter_start_cdata</code></li>
+            
+              <li><code>xmlwriter_start_comment</code></li>
+            
+              <li><code>xmlwriter_start_document</code></li>
+            
+              <li><code>xmlwriter_start_dtd</code></li>
+            
+              <li><code>xmlwriter_start_dtd_attlist</code></li>
+            
+              <li><code>xmlwriter_start_dtd_element</code></li>
+            
+              <li><code>xmlwriter_start_dtd_entity</code></li>
+            
+              <li><code>xmlwriter_start_element</code></li>
+            
+              <li><code>xmlwriter_start_element_ns</code></li>
+            
+              <li><code>xmlwriter_start_pi</code></li>
+            
+              <li><code>xmlwriter_text</code></li>
+            
+              <li><code>xmlwriter_write_attribute</code></li>
+            
+              <li><code>xmlwriter_write_attribute_ns</code></li>
+            
+              <li><code>xmlwriter_write_cdata</code></li>
+            
+              <li><code>xmlwriter_write_comment</code></li>
+            
+              <li><code>xmlwriter_write_dtd</code></li>
+            
+              <li><code>xmlwriter_write_dtd_attlist</code></li>
+            
+              <li><code>xmlwriter_write_dtd_element</code></li>
+            
+              <li><code>xmlwriter_write_dtd_entity</code></li>
+            
+              <li><code>xmlwriter_write_element</code></li>
+            
+              <li><code>xmlwriter_write_element_ns</code></li>
+            
+              <li><code>xmlwriter_write_pi</code></li>
+            
+              <li><code>xmlwriter_write_raw</code></li>
+            
+              <li><code>zend_version</code></li>
+            
+              <li><code>zlib_decode</code></li>
+            
+              <li><code>zlib_encode</code></li>
+            
+              <li><code>zlib_get_coding_type</code></li>
+            
+          </ul>
+        </details>
+      
+    </div>
+  
+</article>
+
+    
+  </div>
+</details>
+
+      
     </div>
   </div>
 </article>
@@ -1163,7 +3272,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                687
+                697
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -1545,13 +3654,13 @@ ga('send', 'pageview');
       
         <li><a href="/php/">
           PHP
-          (323)
+          (324)
         </a></li>
         
         <ul>
           <li><a href="/php/array/">
             array
-            (75)
+            (76)
           </a></li>
         </ul>
         
@@ -1711,33 +3820,33 @@ ga('send', 'pageview');
       
         <li><a href="/lua/">
           Lua
-          (14)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/lua/math/">
             math
-            (8)
+            (9)
           </a></li>
         </ul>
         
         <ul>
           <li><a href="/lua/string/">
             string
-            (6)
+            (7)
           </a></li>
         </ul>
         
       
         <li><a href="/r/">
           R
-          (12)
+          (13)
         </a></li>
         
         <ul>
           <li><a href="/r/base/">
             base
-            (12)
+            (13)
           </a></li>
         </ul>
         
@@ -1757,13 +3866,13 @@ ga('send', 'pageview');
       
         <li><a href="/elixir/">
           Elixir
-          (12)
+          (14)
         </a></li>
         
         <ul>
           <li><a href="/elixir/Enum/">
             Enum
-            (5)
+            (6)
           </a></li>
         </ul>
         
@@ -1784,14 +3893,14 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/elixir/String/">
             String
-            (4)
+            (5)
           </a></li>
         </ul>
         
       
         <li><a href="/clojure/">
           Clojure
-          (15)
+          (16)
         </a></li>
         
         <ul>
@@ -1804,7 +3913,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/clojure/core/">
             core
-            (7)
+            (8)
           </a></li>
         </ul>
         
@@ -1831,26 +3940,26 @@ ga('send', 'pageview');
       
         <li><a href="/tcl/">
           Tcl
-          (15)
+          (16)
         </a></li>
         
         <ul>
           <li><a href="/tcl/string/">
             string
-            (15)
+            (16)
           </a></li>
         </ul>
         
       
         <li><a href="/powershell/">
           PowerShell
-          (16)
+          (18)
         </a></li>
         
         <ul>
           <li><a href="/powershell/string/">
             string
-            (16)
+            (18)
           </a></li>
         </ul>
         
