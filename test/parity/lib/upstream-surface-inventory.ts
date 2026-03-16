@@ -28,9 +28,34 @@ const upstreamSurfaceDecisionSchema = z.enum([
   'skip_side_effects',
 ])
 
+const upstreamSurfaceCatalogDecisionSchema = z.enum([
+  'wanted',
+  'skip_environment',
+  'skip_low_value',
+  'skip_plain_value_mismatch',
+  'skip_runtime_model',
+  'skip_security',
+  'skip_side_effects',
+])
+
 const upstreamSurfaceDecisionEntrySchema = z
   .object({
     decision: upstreamSurfaceDecisionSchema,
+    note: z.string().min(1).optional(),
+  })
+  .strict()
+
+const upstreamSurfaceCatalogDecisionEntrySchema = z
+  .object({
+    decision: upstreamSurfaceCatalogDecisionSchema,
+    note: z.string().min(1).optional(),
+  })
+  .strict()
+
+const upstreamSurfaceCatalogDecisionRuleSchema = z
+  .object({
+    match: z.string().min(1),
+    decision: upstreamSurfaceCatalogDecisionSchema,
     note: z.string().min(1).optional(),
   })
   .strict()
@@ -42,6 +67,8 @@ function optionalSection<T extends z.ZodType>(schema: T) {
 const upstreamSurfaceNamespaceInventorySchema = z
   .object({
     title: z.string().min(1).optional(),
+    default: optionalSection(upstreamSurfaceCatalogDecisionEntrySchema),
+    rules: optionalSection(z.array(upstreamSurfaceCatalogDecisionRuleSchema)),
     decisions: optionalSection(z.record(z.string(), upstreamSurfaceDecisionEntrySchema)),
   })
   .strict()

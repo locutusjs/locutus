@@ -106,6 +106,121 @@ describe('upstream surface inventory', () => {
     expect(result.namespaces[0]?.untriagedEntries).toEqual([])
   })
 
+  it('applies namespace rules and defaults before leaving upstream entries untriaged', () => {
+    const result = compareUpstreamSurface(
+      [makeFunction('php/array/array_values', 'array_values')],
+      handler,
+      {
+        language: 'php',
+        namespaces: [
+          {
+            namespace: '__global',
+            title: 'Global functions',
+            target: 'PHP 8.3',
+            sourceKind: 'runtime',
+            sourceRef: 'php:8.3-cli',
+            entries: ['array_chunk', 'curl_exec', 'sort'],
+          },
+        ],
+      },
+      {
+        namespaces: {
+          __global: {
+            default: {
+              decision: 'skip_runtime_model',
+              note: 'broad PHP runtime helper default',
+            },
+            rules: [
+              {
+                match: 'array_*',
+                decision: 'wanted',
+                note: 'array helpers stay on the shortlist',
+              },
+              {
+                match: 'curl_*',
+                decision: 'skip_environment',
+                note: 'network-bound runtime helpers are out of scope',
+              },
+            ],
+          },
+        },
+      },
+    )
+
+    expect(result.namespaces[0]?.wantedEntries).toEqual([
+      {
+        name: 'array_chunk',
+        decision: 'wanted',
+        note: 'array helpers stay on the shortlist',
+      },
+    ])
+    expect(result.namespaces[0]?.skippedEntries).toEqual([
+      {
+        name: 'curl_exec',
+        decision: 'skip_environment',
+        note: 'network-bound runtime helpers are out of scope',
+      },
+      {
+        name: 'sort',
+        decision: 'skip_runtime_model',
+        note: 'broad PHP runtime helper default',
+      },
+    ])
+    expect(result.namespaces[0]?.untriagedEntries).toEqual([])
+  })
+
+  it('lets explicit decisions override broader namespace rules', () => {
+    const result = compareUpstreamSurface(
+      [makeFunction('php/array/array_values', 'array_values')],
+      handler,
+      {
+        language: 'php',
+        namespaces: [
+          {
+            namespace: '__global',
+            title: 'Global functions',
+            target: 'PHP 8.3',
+            sourceKind: 'runtime',
+            sourceRef: 'php:8.3-cli',
+            entries: ['array_is_list'],
+          },
+        ],
+      },
+      {
+        namespaces: {
+          __global: {
+            default: {
+              decision: 'skip_runtime_model',
+              note: 'broad default',
+            },
+            rules: [
+              {
+                match: 'array_*',
+                decision: 'wanted',
+                note: 'array helpers stay on the shortlist',
+              },
+            ],
+            decisions: {
+              array_is_list: {
+                decision: 'skip_low_value',
+                note: 'explicit exact override wins over wildcard',
+              },
+            },
+          },
+        },
+      },
+    )
+
+    expect(result.namespaces[0]?.wantedEntries).toEqual([])
+    expect(result.namespaces[0]?.skippedEntries).toEqual([
+      {
+        name: 'array_is_list',
+        decision: 'skip_low_value',
+        note: 'explicit exact override wins over wildcard',
+      },
+    ])
+  })
+
   it('fails unclassified Locutus extras and reports untriaged upstream entries', () => {
     const result = compareUpstreamSurface(
       [
@@ -159,8 +274,11 @@ describe('upstream surface inventory', () => {
 
     expect(loaded.php?.namespaces?.__global?.decisions?.money_format?.decision).toBe('keep_legacy')
     expect(loaded.php?.namespaces?.__global?.decisions?.array_is_list).toBeUndefined()
-    expect(loaded.python?.namespaces?.difflib?.decisions).toEqual({})
-    expect(loaded.golang?.namespaces?.filepath?.decisions).toEqual({})
+    expect(loaded.php?.namespaces?.__global?.default?.decision).toBe('skip_runtime_model')
+    expect(loaded.php?.namespaces?.__global?.rules?.[0]?.match).toBe('curl_*')
+    expect(loaded.python?.namespaces?.difflib?.default?.decision).toBe('wanted')
+    expect(loaded.python?.namespaces?.difflib?.decisions?.diff_bytes?.decision).toBe('skip_plain_value_mismatch')
+    expect(loaded.golang?.namespaces?.filepath?.default?.decision).toBe('wanted')
   })
 
   it('rejects unknown keys in namespace sections', () => {
@@ -252,6 +370,61 @@ describe('upstream surface inventory', () => {
         name: 'create_function',
         decision: 'keep_legacy',
         note: 'stale extra should be reported',
+      },
+    ])
+  })
+
+  it('reports stale wildcard rules and unused defaults when they never match any upstream entry', () => {
+    const result = compareUpstreamSurface(
+      [makeFunction('php/array/array_values', 'array_values')],
+      handler,
+      {
+        language: 'php',
+        namespaces: [
+          {
+            namespace: '__global',
+            title: 'Global functions',
+            target: 'PHP 8.3',
+            sourceKind: 'runtime',
+            sourceRef: 'php:8.3-cli',
+            entries: ['array_chunk'],
+          },
+        ],
+      },
+      {
+        namespaces: {
+          __global: {
+            default: {
+              decision: 'skip_runtime_model',
+              note: 'unused fallback should be reported',
+            },
+            rules: [
+              {
+                match: 'curl_*',
+                decision: 'skip_environment',
+                note: 'unused wildcard should be reported',
+              },
+              {
+                match: 'array_*',
+                decision: 'wanted',
+                note: 'matched wildcard should not be reported',
+              },
+            ],
+          },
+        },
+      },
+    )
+
+    expect(result.namespaces[0]?.staleDecisions).toEqual([
+      {
+        name: 'default',
+        decision: 'skip_runtime_model',
+        note: 'unused fallback should be reported',
+      },
+      {
+        name: 'rule: curl_*',
+        decision: 'skip_environment',
+        note: 'unused wildcard should be reported',
       },
     ])
   })

@@ -32,18 +32,15 @@ function surfaceDecisionLabel(entry) {
   var labels = {
     keep_extension: 'Intentional extra',
     keep_language_construct: 'Language construct',
+    keep_locutus_only: 'Intentional extra',
     keep_legacy: 'Legacy keep',
-    ship: 'Shipped',
     skip_environment: 'Skip',
     skip_low_value: 'Skip',
     skip_plain_value_mismatch: 'Skip',
-    skip_removed_upstream: 'Removed upstream',
     skip_runtime_model: 'Skip',
-    skip_security_sensitive: 'Skip',
+    skip_security: 'Skip',
     skip_side_effects: 'Skip',
-    untriaged: 'Needs triage',
-    wanted_high_value: 'Wanted',
-    wanted_plain_value: 'Wanted',
+    wanted: 'Wanted',
   }
 
   return labels[entry.decision] || entry.decision
