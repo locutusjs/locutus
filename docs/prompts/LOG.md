@@ -2216,6 +2216,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Removed the final explicit `wanted` inventory entry from `docs/upstream-surface-inventory.yml` and updated Rosetta to group `ndiff` under a new `string_diff` mapping.
   - Added focused util coverage for intraline hint rows, tab-preserving whitespace markers, explicit `charjunk=null` behavior, and input validation.
 - Validation:
-  - Pending targeted parity/build validation after the implementation landed.
+  - `corepack yarn exec vitest run test/util/python-difflib-ndiff.vitest.ts`
+  - `corepack yarn exec vitest run test/generated/python/difflib/ndiff.vitest.ts test/generated/lua/string/gsub.vitest.ts test/generated/elixir/String/replace.vitest.ts`
+  - `corepack yarn test:parity python/difflib/ndiff --no-cache`
+  - `corepack yarn check`
 - Key learnings:
   - `ndiff` is the point where the Python wishlist stopped being a list of leaf helpers and started needing real upstream algorithm structure, so it was worth porting the matcher shape instead of approximating the output.
+
+### Iteration 112
+
+2026-03-16
+
+- **Area: Release management**
+- Progress:
+  - Merged `#584` for `python/difflib/ndiff` after the branch cleared CI and the post-merge `main` run passed full parity, website build, and deploy.
+  - Prepared `v3.0.22` as the patch release for the new Python surface plus the follow-up correctness fixes in `lua/string/gsub` and `elixir/String/replace`.
+- Validation:
+  - `gh run view 23137677657 --json status,conclusion,jobs`
+- Key learnings:
+  - The upstream-surface wishlist is now fully exhausted, so the next expansion batches can shift from explicit backlog harvesting to triaging the broader untriaged inventory by namespace.

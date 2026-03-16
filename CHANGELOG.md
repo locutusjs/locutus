@@ -25,12 +25,22 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.21...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.22...main).
+
+## v3.0.22
+
+Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.21...v3.0.22).
+Version rationale: `patch` for additive Python expansion plus follow-up correctness fixes in existing cross-language helpers without import-model or runtime floor changes.
 
 ### Expansion
 
 - Added `python/difflib/ndiff`, bringing a full `Differ`-style delta with intraline `?` hint lines to the Python surface.
 - Cleared the final explicit `wanted` entry from the upstream-surface inventory, so future expansion work can move from the hand-picked wishlist into broader untriaged inventory triage.
+
+### Fixes
+
+- Fixed `lua/string/gsub` character-class and escaped `-` handling so mixed Lua classes translate reliably to JS regexes across the recently added wishlist surface.
+- Fixed `elixir/String/replace` empty-string replacement semantics so `replace("", "", replacement)` returns the replacement once instead of duplicating it.
 
 ## v3.0.21
 
