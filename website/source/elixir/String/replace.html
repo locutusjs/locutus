@@ -31,7 +31,11 @@ alias:
   - /elixir/replace/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function replace(string: string, pattern: string, replacement: string): string {
+{% codeblock lang:typescript %}function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+export function replace(string: string, pattern: string, replacement: string): string {
   //      discuss at: https://locutus.io/elixir/replace/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -40,12 +44,27 @@ alias:
   //       example 2: replace('abcabc', 'ab', 'x')
   //       returns 2: 'xcxc'
 
-  return String(string).replaceAll(String(pattern), String(replacement))
+  const source = String(string)
+  const needle = String(pattern)
+  const replacementText = String(replacement)
+
+  if (needle === '') {
+    if (source === '') {
+      return replacementText
+    }
+    return `${replacementText}${Array.from(source).join(replacementText)}${replacementText}`
+  }
+
+  return source.replace(new RegExp(escapeRegExp(needle), 'g'), () => replacementText)
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function replace(string, pattern, replacement) {
+{% codeblock lang:javascript %}function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+export function replace(string, pattern, replacement) {
   //      discuss at: https://locutus.io/elixir/replace/
   // parity verified: Elixir 1.18
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -54,6 +73,17 @@ alias:
   //       example 2: replace('abcabc', 'ab', 'x')
   //       returns 2: 'xcxc'
 
-  return String(string).replaceAll(String(pattern), String(replacement))
+  const source = String(string)
+  const needle = String(pattern)
+  const replacementText = String(replacement)
+
+  if (needle === '') {
+    if (source === '') {
+      return replacementText
+    }
+    return `${replacementText}${Array.from(source).join(replacementText)}${replacementText}`
+  }
+
+  return source.replace(new RegExp(escapeRegExp(needle), 'g'), () => replacementText)
 }{% endcodeblock %}
 </div>

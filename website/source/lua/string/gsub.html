@@ -36,13 +36,13 @@ alias:
   - /lua/gsub/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}const LUA_CLASS_ESCAPES: Record<string, string> = {
+{% codeblock lang:typescript %}const LUA_PATTERN_ESCAPES: Record<string, string> = {
   a: '[A-Za-z]',
   A: '[^A-Za-z]',
   c: '[\\x00-\\x1F\\x7F]',
   C: '[^\\x00-\\x1F\\x7F]',
-  d: '\\d',
-  D: '\\D',
+  d: '[0-9]',
+  D: '[^0-9]',
   l: '[a-z]',
   L: '[^a-z]',
   p: '[!-/:-@[-`{-~]',
@@ -51,8 +51,31 @@ alias:
   S: '\\S',
   u: '[A-Z]',
   U: '[^A-Z]',
-  w: '[A-Za-z0-9_]',
-  W: '[^A-Za-z0-9_]',
+  w: '[A-Za-z0-9]',
+  W: '[^A-Za-z0-9]',
+  x: '[A-Fa-f0-9]',
+  X: '[^A-Fa-f0-9]',
+  z: '\\x00',
+  Z: '[^\\x00]',
+}
+
+const LUA_CHAR_CLASS_ATOMS: Record<string, string> = {
+  a: '[A-Za-z]',
+  A: '[^A-Za-z]',
+  c: '[\\x00-\\x1F\\x7F]',
+  C: '[^\\x00-\\x1F\\x7F]',
+  d: '[0-9]',
+  D: '[^0-9]',
+  l: '[a-z]',
+  L: '[^a-z]',
+  p: '[!-/:-@\\[-`\\{-~]',
+  P: '[^!-/:-@\\[-`\\{-~]',
+  s: '\\s',
+  S: '\\S',
+  u: '[A-Z]',
+  U: '[^A-Z]',
+  w: '[A-Za-z0-9]',
+  W: '[^A-Za-z0-9]',
   x: '[A-Fa-f0-9]',
   X: '[^A-Fa-f0-9]',
   z: '\\x00',
@@ -63,31 +86,78 @@ function escapeRegexLiteral(char: string): string {
   return /[\\^$.*+?()[\]{}|/]/.test(char) ? `\\${char}` : char
 }
 
+function escapeRegexClassLiteral(char: string): string {
+  return char === '\\' || char === ']' || char === '^' || char === '-' ? `\\${char}` : char
+}
+
 function translateLuaCharClass(chars: string): string {
-  let out = ''
-
-  for (let i = 0; i < chars.length; i++) {
-    const char = chars[i] ?? ''
-    if (char === '%') {
-      const next = chars[i + 1] ?? ''
-      i++
-      const mapped = LUA_CLASS_ESCAPES[next]
-      if (mapped) {
-        out += mapped
-        continue
-      }
-      out += escapeRegexLiteral(next)
-      continue
-    }
-
-    out += char === '\\' ? '\\\\' : char
+  let negate = false
+  let source = chars
+  if (source.startsWith('^')) {
+    negate = true
+    source = source.slice(1)
   }
 
-  return out
+  const atoms: string[] = []
+
+  for (let index = 0; index < source.length; ) {
+    const current = parseLuaClassToken(source, index)
+    const hyphen = source[index + current.length] ?? ''
+    const nextIndex = index + current.length + 1
+    const canRange =
+      hyphen === '-' &&
+      nextIndex < source.length &&
+      current.literal !== null &&
+      current.rangeable &&
+      source[nextIndex] !== ']'
+
+    if (canRange) {
+      const right = parseLuaClassToken(source, nextIndex)
+      if (right.literal !== null && right.rangeable) {
+        atoms.push(`[${escapeRegexClassLiteral(current.literal)}-${escapeRegexClassLiteral(right.literal)}]`)
+        index = nextIndex + right.length
+        continue
+      }
+    }
+
+    atoms.push(current.atom)
+    index += current.length
+  }
+
+  const union = atoms.length === 1 ? atoms[0] ?? '' : `(?:${atoms.join('|')})`
+  return negate ? `(?:(?!${union})[\\s\\S])` : union
+}
+
+function parseLuaClassToken(source: string, index: number): { atom: string; length: number; literal: string | null; rangeable: boolean } {
+  const char = source[index] ?? ''
+  if (char === '%') {
+    const next = source[index + 1] ?? ''
+    const mapped = LUA_CHAR_CLASS_ATOMS[next]
+    if (mapped) {
+      return { atom: mapped, length: 2, literal: null, rangeable: false }
+    }
+    return { atom: escapeRegexLiteral(next), length: 2, literal: next, rangeable: false }
+  }
+
+  return {
+    atom: escapeRegexLiteral(char),
+    length: 1,
+    literal: char,
+    rangeable: char !== '\\',
+  }
+}
+
+function canApplyLuaQuantifier(parts: string[]): boolean {
+  if (parts.length === 0) {
+    return false
+  }
+
+  const last = parts[parts.length - 1] ?? ''
+  return last !== '(' && last !== '^' && last !== '$'
 }
 
 function translateLuaPattern(pattern: string): RegExp {
-  let out = ''
+  const parts: string[] = []
 
   for (let i = 0; i < pattern.length; i++) {
     const char = pattern[i] ?? ''
@@ -95,7 +165,7 @@ function translateLuaPattern(pattern: string): RegExp {
     if (char === '%') {
       const next = pattern[i + 1] ?? ''
       if (next === '') {
-        out += '%'
+        parts.push('%')
         continue
       }
 
@@ -104,40 +174,69 @@ function translateLuaPattern(pattern: string): RegExp {
       }
 
       i++
-      out += LUA_CLASS_ESCAPES[next] ?? escapeRegexLiteral(next)
+      parts.push(LUA_PATTERN_ESCAPES[next] ?? escapeRegexLiteral(next))
       continue
     }
 
     if (char === '[') {
       let classBody = ''
+      let closed = false
       i++
+      if (i < pattern.length && pattern[i] === '^') {
+        classBody += '^'
+        i++
+      }
+      if (i < pattern.length && pattern[i] === ']') {
+        classBody += ']'
+        i++
+      }
       while (i < pattern.length && pattern[i] !== ']') {
         classBody += pattern[i] ?? ''
         i++
       }
-      out += `[${translateLuaCharClass(classBody)}]`
+      if (i < pattern.length && pattern[i] === ']') {
+        closed = true
+      }
+      if (!closed) {
+        throw new Error('gsub(): malformed Lua pattern')
+      }
+      parts.push(translateLuaCharClass(classBody))
       continue
     }
 
     if (char === '.') {
-      out += '[\\s\\S]'
+      parts.push('[\\s\\S]')
       continue
     }
 
-    if (char === '-') {
-      out += '*?'
+    if (char === '-' || char === '*' || char === '+' || char === '?') {
+      if (canApplyLuaQuantifier(parts)) {
+        parts[parts.length - 1] += char === '-' ? '*?' : char
+      } else {
+        parts.push(escapeRegexLiteral(char))
+      }
       continue
     }
 
-    if ('+*?^$()'.includes(char)) {
-      out += char
+    if (char === '^') {
+      parts.push(i === 0 ? '^' : '\\^')
       continue
     }
 
-    out += escapeRegexLiteral(char)
+    if (char === '$') {
+      parts.push(i === pattern.length - 1 ? '$' : '\\$')
+      continue
+    }
+
+    if ('()'.includes(char)) {
+      parts.push(char)
+      continue
+    }
+
+    parts.push(escapeRegexLiteral(char))
   }
 
-  return new RegExp(out, 'g')
+  return new RegExp(parts.join(''), 'g')
 }
 
 function applyLuaReplacement(template: string, match: string, captures: string[]): string {
@@ -162,7 +261,11 @@ function applyLuaReplacement(template: string, match: string, captures: string[]
       if (next === '0') {
         out += match
       } else {
-        out += captures[Number(next) - 1] ?? ''
+        const capture = captures[Number(next) - 1]
+        if (capture === undefined) {
+          throw new Error(`invalid capture index %${next}`)
+        }
+        out += capture
       }
       continue
     }
@@ -211,13 +314,13 @@ export function gsub(source: string, pattern: string, replacement: string, limit
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}const LUA_CLASS_ESCAPES = {
+{% codeblock lang:javascript %}const LUA_PATTERN_ESCAPES = {
   a: '[A-Za-z]',
   A: '[^A-Za-z]',
   c: '[\\x00-\\x1F\\x7F]',
   C: '[^\\x00-\\x1F\\x7F]',
-  d: '\\d',
-  D: '\\D',
+  d: '[0-9]',
+  D: '[^0-9]',
   l: '[a-z]',
   L: '[^a-z]',
   p: '[!-/:-@[-`{-~]',
@@ -226,8 +329,31 @@ export function gsub(source: string, pattern: string, replacement: string, limit
   S: '\\S',
   u: '[A-Z]',
   U: '[^A-Z]',
-  w: '[A-Za-z0-9_]',
-  W: '[^A-Za-z0-9_]',
+  w: '[A-Za-z0-9]',
+  W: '[^A-Za-z0-9]',
+  x: '[A-Fa-f0-9]',
+  X: '[^A-Fa-f0-9]',
+  z: '\\x00',
+  Z: '[^\\x00]',
+}
+
+const LUA_CHAR_CLASS_ATOMS = {
+  a: '[A-Za-z]',
+  A: '[^A-Za-z]',
+  c: '[\\x00-\\x1F\\x7F]',
+  C: '[^\\x00-\\x1F\\x7F]',
+  d: '[0-9]',
+  D: '[^0-9]',
+  l: '[a-z]',
+  L: '[^a-z]',
+  p: '[!-/:-@\\[-`\\{-~]',
+  P: '[^!-/:-@\\[-`\\{-~]',
+  s: '\\s',
+  S: '\\S',
+  u: '[A-Z]',
+  U: '[^A-Z]',
+  w: '[A-Za-z0-9]',
+  W: '[^A-Za-z0-9]',
   x: '[A-Fa-f0-9]',
   X: '[^A-Fa-f0-9]',
   z: '\\x00',
@@ -238,31 +364,78 @@ function escapeRegexLiteral(char) {
   return /[\\^$.*+?()[\]{}|/]/.test(char) ? `\\${char}` : char
 }
 
+function escapeRegexClassLiteral(char) {
+  return char === '\\' || char === ']' || char === '^' || char === '-' ? `\\${char}` : char
+}
+
 function translateLuaCharClass(chars) {
-  let out = ''
-
-  for (let i = 0; i < chars.length; i++) {
-    const char = chars[i] ?? ''
-    if (char === '%') {
-      const next = chars[i + 1] ?? ''
-      i++
-      const mapped = LUA_CLASS_ESCAPES[next]
-      if (mapped) {
-        out += mapped
-        continue
-      }
-      out += escapeRegexLiteral(next)
-      continue
-    }
-
-    out += char === '\\' ? '\\\\' : char
+  let negate = false
+  let source = chars
+  if (source.startsWith('^')) {
+    negate = true
+    source = source.slice(1)
   }
 
-  return out
+  const atoms = []
+
+  for (let index = 0; index < source.length; ) {
+    const current = parseLuaClassToken(source, index)
+    const hyphen = source[index + current.length] ?? ''
+    const nextIndex = index + current.length + 1
+    const canRange =
+      hyphen === '-' &&
+      nextIndex < source.length &&
+      current.literal !== null &&
+      current.rangeable &&
+      source[nextIndex] !== ']'
+
+    if (canRange) {
+      const right = parseLuaClassToken(source, nextIndex)
+      if (right.literal !== null && right.rangeable) {
+        atoms.push(`[${escapeRegexClassLiteral(current.literal)}-${escapeRegexClassLiteral(right.literal)}]`)
+        index = nextIndex + right.length
+        continue
+      }
+    }
+
+    atoms.push(current.atom)
+    index += current.length
+  }
+
+  const union = atoms.length === 1 ? (atoms[0] ?? '') : `(?:${atoms.join('|')})`
+  return negate ? `(?:(?!${union})[\\s\\S])` : union
+}
+
+function parseLuaClassToken(source, index) {
+  const char = source[index] ?? ''
+  if (char === '%') {
+    const next = source[index + 1] ?? ''
+    const mapped = LUA_CHAR_CLASS_ATOMS[next]
+    if (mapped) {
+      return { atom: mapped, length: 2, literal: null, rangeable: false }
+    }
+    return { atom: escapeRegexLiteral(next), length: 2, literal: next, rangeable: false }
+  }
+
+  return {
+    atom: escapeRegexLiteral(char),
+    length: 1,
+    literal: char,
+    rangeable: char !== '\\',
+  }
+}
+
+function canApplyLuaQuantifier(parts) {
+  if (parts.length === 0) {
+    return false
+  }
+
+  const last = parts[parts.length - 1] ?? ''
+  return last !== '(' && last !== '^' && last !== '$'
 }
 
 function translateLuaPattern(pattern) {
-  let out = ''
+  const parts = []
 
   for (let i = 0; i < pattern.length; i++) {
     const char = pattern[i] ?? ''
@@ -270,7 +443,7 @@ function translateLuaPattern(pattern) {
     if (char === '%') {
       const next = pattern[i + 1] ?? ''
       if (next === '') {
-        out += '%'
+        parts.push('%')
         continue
       }
 
@@ -279,40 +452,69 @@ function translateLuaPattern(pattern) {
       }
 
       i++
-      out += LUA_CLASS_ESCAPES[next] ?? escapeRegexLiteral(next)
+      parts.push(LUA_PATTERN_ESCAPES[next] ?? escapeRegexLiteral(next))
       continue
     }
 
     if (char === '[') {
       let classBody = ''
+      let closed = false
       i++
+      if (i < pattern.length && pattern[i] === '^') {
+        classBody += '^'
+        i++
+      }
+      if (i < pattern.length && pattern[i] === ']') {
+        classBody += ']'
+        i++
+      }
       while (i < pattern.length && pattern[i] !== ']') {
         classBody += pattern[i] ?? ''
         i++
       }
-      out += `[${translateLuaCharClass(classBody)}]`
+      if (i < pattern.length && pattern[i] === ']') {
+        closed = true
+      }
+      if (!closed) {
+        throw new Error('gsub(): malformed Lua pattern')
+      }
+      parts.push(translateLuaCharClass(classBody))
       continue
     }
 
     if (char === '.') {
-      out += '[\\s\\S]'
+      parts.push('[\\s\\S]')
       continue
     }
 
-    if (char === '-') {
-      out += '*?'
+    if (char === '-' || char === '*' || char === '+' || char === '?') {
+      if (canApplyLuaQuantifier(parts)) {
+        parts[parts.length - 1] += char === '-' ? '*?' : char
+      } else {
+        parts.push(escapeRegexLiteral(char))
+      }
       continue
     }
 
-    if ('+*?^$()'.includes(char)) {
-      out += char
+    if (char === '^') {
+      parts.push(i === 0 ? '^' : '\\^')
       continue
     }
 
-    out += escapeRegexLiteral(char)
+    if (char === '$') {
+      parts.push(i === pattern.length - 1 ? '$' : '\\$')
+      continue
+    }
+
+    if ('()'.includes(char)) {
+      parts.push(char)
+      continue
+    }
+
+    parts.push(escapeRegexLiteral(char))
   }
 
-  return new RegExp(out, 'g')
+  return new RegExp(parts.join(''), 'g')
 }
 
 function applyLuaReplacement(template, match, captures) {
@@ -337,7 +539,11 @@ function applyLuaReplacement(template, match, captures) {
       if (next === '0') {
         out += match
       } else {
-        out += captures[Number(next) - 1] ?? ''
+        const capture = captures[Number(next) - 1]
+        if (capture === undefined) {
+          throw new Error(`invalid capture index %${next}`)
+        }
+        out += capture
       }
       continue
     }

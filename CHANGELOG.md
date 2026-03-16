@@ -27,6 +27,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.21...main).
 
+### Expansion
+
+- Added `python/difflib/ndiff`, bringing a full `Differ`-style delta with intraline `?` hint lines to the Python surface.
+- Cleared the final explicit `wanted` entry from the upstream-surface inventory, so future expansion work can move from the hand-picked wishlist into broader untriaged inventory triage.
+
 ## v3.0.21
 
 Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.20...v3.0.21).

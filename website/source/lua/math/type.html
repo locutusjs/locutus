@@ -36,7 +36,10 @@ alias:
   - /lua/type/
 ---
 <div class="code-tab-panel" data-lang="ts">
-{% codeblock lang:typescript %}export function type(value: unknown): 'integer' | 'float' | null {
+{% codeblock lang:typescript %}const LUA_MIN_INTEGER = -(2 ** 63)
+const LUA_MAX_INTEGER = 2 ** 63 - 1
+
+export function type(value: unknown): 'integer' | 'float' | null {
   //      discuss at: https://locutus.io/lua/type/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -52,12 +55,15 @@ alias:
     return null
   }
 
-  return Number.isInteger(value) ? 'integer' : 'float'
+  return Number.isInteger(value) && value >= LUA_MIN_INTEGER && value <= LUA_MAX_INTEGER ? 'integer' : 'float'
 }
 {% endcodeblock %}
 </div>
 <div class="code-tab-panel" data-lang="js" style="display:none">
-{% codeblock lang:javascript %}export function type(value) {
+{% codeblock lang:javascript %}const LUA_MIN_INTEGER = -(2 ** 63)
+const LUA_MAX_INTEGER = 2 ** 63 - 1
+
+export function type(value) {
   //      discuss at: https://locutus.io/lua/type/
   // parity verified: Lua 5.4
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -73,6 +79,6 @@ alias:
     return null
   }
 
-  return Number.isInteger(value) ? 'integer' : 'float'
+  return Number.isInteger(value) && value >= LUA_MIN_INTEGER && value <= LUA_MAX_INTEGER ? 'integer' : 'float'
 }{% endcodeblock %}
 </div>

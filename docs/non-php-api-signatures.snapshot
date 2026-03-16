@@ -258,6 +258,7 @@ src/powershell/string/trim.ts :: export function trim(str: string): string
 src/powershell/string/trimend.ts :: export function trimend(str: string, chars?: string): string
 src/powershell/string/trimstart.ts :: export function trimstart(str: string, chars?: string): string
 src/python/difflib/get_close_matches.ts :: export function get_close_matches( word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6, ): string[]
+src/python/difflib/ndiff.ts :: export function ndiff( a: string[] | unknown, b: string[] | unknown, linejunk: LineJunkPredicate = null, charjunk: CharJunkPredicate = isCharacterJunk, ): string[]
 src/python/math/ceil.ts :: export function ceil(x: number): number
 src/python/math/comb.ts :: export function comb(n: number | string, k: number | string): number
 src/python/math/dist.ts :: export function dist(p: number[] | unknown, q: number[] | unknown): number

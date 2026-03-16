@@ -1,0 +1,553 @@
+type LineJunkPredicate = ((line: string) => boolean) | null
+type CharJunkPredicate = ((char: string) => boolean) | null
+type SequenceMatch = { aIndex: number; bIndex: number; size: number }
+type SequenceOpcodeTag = 'replace' | 'delete' | 'insert' | 'equal'
+type SequenceOpcode = [SequenceOpcodeTag, number, number, number, number]
+
+class SequenceMatcher<T> {
+  private a: T[] = []
+  private b: T[] = []
+  private b2j = new Map<T, number[]>()
+  private matchingBlocksCache: SequenceMatch[] | undefined
+  private opcodesCache: SequenceOpcode[] | undefined
+  private readonly isJunk: ((value: T) => boolean) | undefined
+
+  constructor(isJunk?: (value: T) => boolean) {
+    this.isJunk = isJunk
+  }
+
+  setSeqs(a: T[], b: T[]): void {
+    this.setSeq1(a)
+    this.setSeq2(b)
+  }
+
+  setSeq1(a: T[]): void {
+    this.a = [...a]
+    this.matchingBlocksCache = undefined
+    this.opcodesCache = undefined
+  }
+
+  setSeq2(b: T[]): void {
+    this.b = [...b]
+    this.b2j = new Map()
+    this.matchingBlocksCache = undefined
+    this.opcodesCache = undefined
+
+    for (let index = 0; index < this.b.length; index++) {
+      const value = this.b[index] as T
+      const existing = this.b2j.get(value)
+      if (existing) {
+        existing.push(index)
+        continue
+      }
+      this.b2j.set(value, [index])
+    }
+
+    if (this.isJunk) {
+      for (const [value] of this.b2j) {
+        if (this.isJunk(value)) {
+          this.b2j.delete(value)
+        }
+      }
+    }
+
+    if (this.b.length >= 200) {
+      const popularThreshold = Math.floor(this.b.length / 100) + 1
+      for (const [value, indexes] of this.b2j) {
+        if (indexes.length > popularThreshold) {
+          this.b2j.delete(value)
+        }
+      }
+    }
+  }
+
+  getOpcodes(): SequenceOpcode[] {
+    if (this.opcodesCache) {
+      return this.opcodesCache
+    }
+
+    const out: SequenceOpcode[] = []
+    let aIndex = 0
+    let bIndex = 0
+
+    for (const block of this.getMatchingBlocks()) {
+      const aStart = block.aIndex
+      const bStart = block.bIndex
+      let tag: SequenceOpcodeTag | null = null
+
+      if (aIndex < aStart && bIndex < bStart) {
+        tag = 'replace'
+      } else if (aIndex < aStart) {
+        tag = 'delete'
+      } else if (bIndex < bStart) {
+        tag = 'insert'
+      }
+
+      if (tag) {
+        out.push([tag, aIndex, aStart, bIndex, bStart])
+      }
+
+      if (block.size > 0) {
+        out.push(['equal', aStart, aStart + block.size, bStart, bStart + block.size])
+      }
+
+      aIndex = aStart + block.size
+      bIndex = bStart + block.size
+    }
+
+    this.opcodesCache = out
+    return out
+  }
+
+  ratio(): number {
+    const total = this.a.length + this.b.length
+    if (total === 0) {
+      return 1
+    }
+    const matches = this.getMatchingBlocks().reduce((sum, block) => sum + block.size, 0)
+    return (2 * matches) / total
+  }
+
+  quickRatio(): number {
+    const total = this.a.length + this.b.length
+    if (total === 0) {
+      return 1
+    }
+
+    const bCounts = new Map<T, number>()
+    for (const value of this.b) {
+      bCounts.set(value, (bCounts.get(value) ?? 0) + 1)
+    }
+
+    let matches = 0
+    for (const value of this.a) {
+      const count = bCounts.get(value) ?? 0
+      if (count > 0) {
+        matches += 1
+        bCounts.set(value, count - 1)
+      }
+    }
+
+    return (2 * matches) / total
+  }
+
+  realQuickRatio(): number {
+    const total = this.a.length + this.b.length
+    if (total === 0) {
+      return 1
+    }
+    return (2 * Math.min(this.a.length, this.b.length)) / total
+  }
+
+  private getMatchingBlocks(): SequenceMatch[] {
+    if (this.matchingBlocksCache) {
+      return this.matchingBlocksCache
+    }
+
+    const queue: Array<[number, number, number, number]> = [[0, this.a.length, 0, this.b.length]]
+    const out: SequenceMatch[] = []
+
+    while (queue.length > 0) {
+      const next = queue.pop()
+      if (!next) {
+        continue
+      }
+
+      const [alo, ahi, blo, bhi] = next
+      const match = this.findLongestMatch(alo, ahi, blo, bhi)
+      if (match.size === 0) {
+        continue
+      }
+
+      out.push(match)
+
+      if (alo < match.aIndex && blo < match.bIndex) {
+        queue.push([alo, match.aIndex, blo, match.bIndex])
+      }
+
+      const aMatchEnd = match.aIndex + match.size
+      const bMatchEnd = match.bIndex + match.size
+      if (aMatchEnd < ahi && bMatchEnd < bhi) {
+        queue.push([aMatchEnd, ahi, bMatchEnd, bhi])
+      }
+    }
+
+    out.sort((left, right) => left.aIndex - right.aIndex || left.bIndex - right.bIndex)
+
+    const merged: SequenceMatch[] = []
+    for (const block of out) {
+      const previous = merged.at(-1)
+      if (
+        previous &&
+        previous.aIndex + previous.size === block.aIndex &&
+        previous.bIndex + previous.size === block.bIndex
+      ) {
+        previous.size += block.size
+        continue
+      }
+      merged.push({ ...block })
+    }
+
+    merged.push({ aIndex: this.a.length, bIndex: this.b.length, size: 0 })
+    this.matchingBlocksCache = merged
+    return merged
+  }
+
+  private findLongestMatch(alo: number, ahi: number, blo: number, bhi: number): SequenceMatch {
+    let bestI = alo
+    let bestJ = blo
+    let bestSize = 0
+    let j2len = new Map<number, number>()
+
+    for (let i = alo; i < ahi; i++) {
+      const newj2len = new Map<number, number>()
+      const indexes = this.b2j.get(this.a[i] as T) ?? []
+
+      for (const j of indexes) {
+        if (j < blo) {
+          continue
+        }
+        if (j >= bhi) {
+          break
+        }
+        const size = (j2len.get(j - 1) ?? 0) + 1
+        newj2len.set(j, size)
+        if (size > bestSize) {
+          bestI = i - size + 1
+          bestJ = j - size + 1
+          bestSize = size
+        }
+      }
+
+      j2len = newj2len
+    }
+
+    while (
+      bestI > alo &&
+      bestJ > blo &&
+      !this.isJunk?.(this.b[bestJ - 1] as T) &&
+      this.a[bestI - 1] === this.b[bestJ - 1]
+    ) {
+      bestI -= 1
+      bestJ -= 1
+      bestSize += 1
+    }
+
+    while (
+      bestI + bestSize < ahi &&
+      bestJ + bestSize < bhi &&
+      !this.isJunk?.(this.b[bestJ + bestSize] as T) &&
+      this.a[bestI + bestSize] === this.b[bestJ + bestSize]
+    ) {
+      bestSize += 1
+    }
+
+    while (
+      bestI > alo &&
+      bestJ > blo &&
+      !!this.isJunk?.(this.b[bestJ - 1] as T) &&
+      this.a[bestI - 1] === this.b[bestJ - 1]
+    ) {
+      bestI -= 1
+      bestJ -= 1
+      bestSize += 1
+    }
+
+    while (
+      bestI + bestSize < ahi &&
+      bestJ + bestSize < bhi &&
+      !!this.isJunk?.(this.b[bestJ + bestSize] as T) &&
+      this.a[bestI + bestSize] === this.b[bestJ + bestSize]
+    ) {
+      bestSize += 1
+    }
+
+    return { aIndex: bestI, bIndex: bestJ, size: bestSize }
+  }
+}
+
+class Differ {
+  private readonly linejunk: ((line: string) => boolean) | undefined
+  private readonly charjunk: ((char: string) => boolean) | undefined
+
+  constructor(linejunk: ((line: string) => boolean) | undefined, charjunk: ((char: string) => boolean) | undefined) {
+    this.linejunk = linejunk
+    this.charjunk = charjunk
+  }
+
+  compare(a: string[], b: string[]): string[] {
+    const out: string[] = []
+    const cruncher = new SequenceMatcher<string>(this.linejunk)
+    cruncher.setSeqs(a, b)
+
+    for (const [tag, alo, ahi, blo, bhi] of cruncher.getOpcodes()) {
+      if (tag === 'replace') {
+        out.push(...this.fancyReplace(a, alo, ahi, b, blo, bhi))
+        continue
+      }
+      if (tag === 'delete') {
+        out.push(...this.dump('-', a, alo, ahi))
+        continue
+      }
+      if (tag === 'insert') {
+        out.push(...this.dump('+', b, blo, bhi))
+        continue
+      }
+      out.push(...this.dump(' ', a, alo, ahi))
+    }
+
+    return out
+  }
+
+  private dump(tag: '-' | '+' | ' ', source: string[], lo: number, hi: number): string[] {
+    const out: string[] = []
+    for (let index = lo; index < hi; index++) {
+      out.push(`${tag} ${source[index]}`)
+    }
+    return out
+  }
+
+  private plainReplace(a: string[], alo: number, ahi: number, b: string[], blo: number, bhi: number): string[] {
+    const first = bhi - blo < ahi - alo ? this.dump('+', b, blo, bhi) : this.dump('-', a, alo, ahi)
+    const second = bhi - blo < ahi - alo ? this.dump('-', a, alo, ahi) : this.dump('+', b, blo, bhi)
+    return [...first, ...second]
+  }
+
+  private fancyReplace(a: string[], alo: number, ahi: number, b: string[], blo: number, bhi: number): string[] {
+    let bestRatio = 0.74
+    const cutoff = 0.75
+    const cruncher = new SequenceMatcher<string>(this.charjunk)
+    let equalI: number | undefined
+    let equalJ: number | undefined
+    let bestI = alo
+    let bestJ = blo
+
+    for (let j = blo; j < bhi; j++) {
+      const right = b[j] ?? ''
+      cruncher.setSeq2(Array.from(right))
+
+      for (let i = alo; i < ahi; i++) {
+        const left = a[i] ?? ''
+        if (left === right) {
+          if (equalI === undefined) {
+            equalI = i
+            equalJ = j
+          }
+          continue
+        }
+
+        cruncher.setSeq1(Array.from(left))
+        if (cruncher.realQuickRatio() > bestRatio && cruncher.quickRatio() > bestRatio) {
+          const ratio = cruncher.ratio()
+          if (ratio > bestRatio) {
+            bestRatio = ratio
+            bestI = i
+            bestJ = j
+          }
+        }
+      }
+    }
+
+    if (bestRatio < cutoff) {
+      if (equalI === undefined || equalJ === undefined) {
+        return this.plainReplace(a, alo, ahi, b, blo, bhi)
+      }
+      bestI = equalI
+      bestJ = equalJ
+    } else {
+      equalI = undefined
+      equalJ = undefined
+    }
+
+    const out = this.fancyHelper(a, alo, bestI, b, blo, bestJ)
+    const leftLine = a[bestI] ?? ''
+    const rightLine = b[bestJ] ?? ''
+
+    if (equalI === undefined || equalJ === undefined) {
+      let leftTags = ''
+      let rightTags = ''
+      cruncher.setSeqs(Array.from(leftLine), Array.from(rightLine))
+
+      for (const [tag, ai1, ai2, bj1, bj2] of cruncher.getOpcodes()) {
+        const leftLength = ai2 - ai1
+        const rightLength = bj2 - bj1
+        if (tag === 'replace') {
+          leftTags += '^'.repeat(leftLength)
+          rightTags += '^'.repeat(rightLength)
+          continue
+        }
+        if (tag === 'delete') {
+          leftTags += '-'.repeat(leftLength)
+          continue
+        }
+        if (tag === 'insert') {
+          rightTags += '+'.repeat(rightLength)
+          continue
+        }
+        leftTags += ' '.repeat(leftLength)
+        rightTags += ' '.repeat(rightLength)
+      }
+
+      out.push(...this.qformat(leftLine, rightLine, leftTags, rightTags))
+    } else {
+      out.push(`  ${leftLine}`)
+    }
+
+    out.push(...this.fancyHelper(a, bestI + 1, ahi, b, bestJ + 1, bhi))
+    return out
+  }
+
+  private fancyHelper(a: string[], alo: number, ahi: number, b: string[], blo: number, bhi: number): string[] {
+    if (alo < ahi) {
+      if (blo < bhi) {
+        return this.fancyReplace(a, alo, ahi, b, blo, bhi)
+      }
+      return this.dump('-', a, alo, ahi)
+    }
+
+    if (blo < bhi) {
+      return this.dump('+', b, blo, bhi)
+    }
+
+    return []
+  }
+
+  private qformat(aline: string, bline: string, atags: string, btags: string): string[] {
+    const leftTags = rstripTrailingWhitespace(keepOriginalWhitespace(aline, atags))
+    const rightTags = rstripTrailingWhitespace(keepOriginalWhitespace(bline, btags))
+    const out = [`- ${aline}`]
+
+    if (leftTags) {
+      out.push(`? ${leftTags}\n`)
+    }
+
+    out.push(`+ ${bline}`)
+
+    if (rightTags) {
+      out.push(`? ${rightTags}\n`)
+    }
+
+    return out
+  }
+}
+
+export function ndiff(
+  a: string[] | unknown,
+  b: string[] | unknown,
+  linejunk: LineJunkPredicate = null,
+  charjunk: CharJunkPredicate = isCharacterJunk,
+): string[] {
+  //      discuss at: https://locutus.io/python/difflib/ndiff/
+  // parity verified: Python 3.12
+  //     original by: Python Software Foundation (https://www.python.org/)
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns a Differ-style delta with '-', '+', ' ', and '?' prefixed lines.
+  //          note 2: The default char junk filter ignores spaces and tabs, matching Python's difflib.
+  //       example 1: ndiff(['one', 'two', 'three'], ['ore', 'too', 'tree'])
+  //       returns 1: ['- one', '- two', '+ ore', '+ too', '- three', '?  -\n', '+ tree']
+  //       example 2: ndiff(['spam\n', 'ham\n', 'eggs\n'], ['spam\n', 'jam\n', 'eggs\n'])
+  //       returns 2: ['  spam\n', '- ham\n', '? ^\n', '+ jam\n', '? ^\n', '  eggs\n']
+  //       example 3: ndiff([], ['x'])
+  //       returns 3: ['+ x']
+
+  const left = normalizeLineSequence(a, 'a')
+  const right = normalizeLineSequence(b, 'b')
+  const lineFilter = normalizeJunkPredicate(linejunk, false)
+  const charFilter = normalizeJunkPredicate(charjunk, true)
+
+  return new Differ(lineFilter, charFilter).compare(left, right)
+}
+
+function normalizeLineSequence(value: string[] | unknown, paramName: string): string[] {
+  if (!Array.isArray(value)) {
+    throw new TypeError(`ndiff(): ${paramName} must be an array of strings`)
+  }
+
+  for (const line of value) {
+    if (typeof line !== 'string') {
+      throw new TypeError(`ndiff(): ${paramName} must be an array of strings`)
+    }
+  }
+
+  return [...value]
+}
+
+function isCharacterJunk(char: string): boolean {
+  return char === ' ' || char === '\t'
+}
+
+function normalizeJunkPredicate(
+  predicate: LineJunkPredicate | CharJunkPredicate | undefined,
+  useDefault: boolean,
+): ((value: string) => boolean) | undefined {
+  if (typeof predicate === 'undefined') {
+    return useDefault ? isCharacterJunk : undefined
+  }
+
+  if (predicate === null) {
+    return undefined
+  }
+
+  if (typeof predicate === 'function') {
+    return predicate
+  }
+
+  if (isPythonFalsy(predicate)) {
+    return undefined
+  }
+
+  throw new TypeError("'int' object is not callable")
+}
+
+function isPythonFalsy(value: unknown): boolean {
+  if (value === null || typeof value === 'undefined') {
+    return true
+  }
+
+  if (typeof value === 'boolean') {
+    return value === false
+  }
+
+  if (typeof value === 'number') {
+    return value === 0
+  }
+
+  if (typeof value === 'bigint') {
+    return value === 0n
+  }
+
+  if (typeof value === 'string') {
+    return value.length === 0
+  }
+
+  if (Array.isArray(value)) {
+    return value.length === 0
+  }
+
+  if (typeof value === 'object') {
+    const prototype = Object.getPrototypeOf(value)
+    if (prototype === Object.prototype || prototype === null) {
+      return Object.keys(value).length === 0
+    }
+  }
+
+  return false
+}
+
+function keepOriginalWhitespace(line: string, tags: string): string {
+  const lineChars = Array.from(line)
+  const tagChars = Array.from(tags)
+  const out: string[] = []
+
+  for (let index = 0; index < Math.min(lineChars.length, tagChars.length); index++) {
+    const lineChar = lineChars[index] ?? ''
+    const tagChar = tagChars[index] ?? ''
+    out.push(tagChar === ' ' && /\s/u.test(lineChar) ? lineChar : tagChar)
+  }
+
+  return out.join('')
+}
+
+function rstripTrailingWhitespace(value: string): string {
+  return value.replace(/\s+$/u, '')
+}

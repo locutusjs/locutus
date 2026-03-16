@@ -302,6 +302,9 @@ string_count:
 string_close_matches:
   - python/difflib/get_close_matches
 
+string_diff:
+  - python/difflib/ndiff
+
 string_substring:
   - php/strings/substr
   - awk/builtin/substr

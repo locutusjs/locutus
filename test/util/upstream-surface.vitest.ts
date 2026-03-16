@@ -159,7 +159,7 @@ describe('upstream surface inventory', () => {
 
     expect(loaded.php?.namespaces?.__global?.decisions?.money_format?.decision).toBe('keep_legacy')
     expect(loaded.php?.namespaces?.__global?.decisions?.array_is_list).toBeUndefined()
-    expect(loaded.python?.namespaces?.difflib?.decisions?.ndiff?.decision).toBe('wanted')
+    expect(loaded.python?.namespaces?.difflib?.decisions).toEqual({})
     expect(loaded.golang?.namespaces?.filepath?.decisions).toEqual({})
   })
 

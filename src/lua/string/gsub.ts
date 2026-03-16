@@ -21,27 +21,27 @@ const LUA_PATTERN_ESCAPES: Record<string, string> = {
   Z: '[^\\x00]',
 }
 
-const LUA_CHAR_CLASS_ESCAPES: Record<string, string> = {
-  a: 'A-Za-z',
-  A: '^A-Za-z',
-  c: '\\x00-\\x1F\\x7F',
-  C: '^\\x00-\\x1F\\x7F',
-  d: '0-9',
-  D: '^0-9',
-  l: 'a-z',
-  L: '^a-z',
-  p: '!-/:-@\\[-`\\{-~',
-  P: '^!-/:-@\\[-`\\{-~',
+const LUA_CHAR_CLASS_ATOMS: Record<string, string> = {
+  a: '[A-Za-z]',
+  A: '[^A-Za-z]',
+  c: '[\\x00-\\x1F\\x7F]',
+  C: '[^\\x00-\\x1F\\x7F]',
+  d: '[0-9]',
+  D: '[^0-9]',
+  l: '[a-z]',
+  L: '[^a-z]',
+  p: '[!-/:-@\\[-`\\{-~]',
+  P: '[^!-/:-@\\[-`\\{-~]',
   s: '\\s',
-  S: '^\\s',
-  u: 'A-Z',
-  U: '^A-Z',
-  w: 'A-Za-z0-9',
-  W: '^A-Za-z0-9',
-  x: 'A-Fa-f0-9',
-  X: '^A-Fa-f0-9',
+  S: '\\S',
+  u: '[A-Z]',
+  U: '[^A-Z]',
+  w: '[A-Za-z0-9]',
+  W: '[^A-Za-z0-9]',
+  x: '[A-Fa-f0-9]',
+  X: '[^A-Fa-f0-9]',
   z: '\\x00',
-  Z: '^\\x00',
+  Z: '[^\\x00]',
 }
 
 function escapeRegexLiteral(char: string): string {
@@ -49,7 +49,7 @@ function escapeRegexLiteral(char: string): string {
 }
 
 function escapeRegexClassLiteral(char: string): string {
-  return char === '\\' || char === ']' || char === '^' ? `\\${char}` : char
+  return char === '\\' || char === ']' || char === '^' || char === '-' ? `\\${char}` : char
 }
 
 function translateLuaCharClass(chars: string): string {
@@ -60,31 +60,58 @@ function translateLuaCharClass(chars: string): string {
     source = source.slice(1)
   }
 
-  let out = ''
+  const atoms: string[] = []
 
-  for (let i = 0; i < source.length; i++) {
-    const char = source[i] ?? ''
-    if (char === '%') {
-      const next = source[i + 1] ?? ''
-      i++
-      const mapped = LUA_CHAR_CLASS_ESCAPES[next]
-      if (mapped) {
-        out += mapped
+  for (let index = 0; index < source.length; ) {
+    const current = parseLuaClassToken(source, index)
+    const hyphen = source[index + current.length] ?? ''
+    const nextIndex = index + current.length + 1
+    const canRange =
+      hyphen === '-' &&
+      nextIndex < source.length &&
+      current.literal !== null &&
+      current.rangeable &&
+      source[nextIndex] !== ']'
+
+    if (canRange) {
+      const right = parseLuaClassToken(source, nextIndex)
+      if (current.literal !== null && right.literal !== null && right.rangeable) {
+        const leftLiteral = current.literal
+        const rightLiteral = right.literal
+        atoms.push(`[${escapeRegexClassLiteral(leftLiteral)}-${escapeRegexClassLiteral(rightLiteral)}]`)
+        index = nextIndex + right.length
         continue
       }
-      out += escapeRegexLiteral(next)
-      continue
     }
 
-    if (char === '-') {
-      out += i > 0 && i < source.length - 1 ? '-' : '\\-'
-      continue
-    }
-
-    out += escapeRegexClassLiteral(char)
+    atoms.push(current.atom)
+    index += current.length
   }
 
-  return negate ? `^${out}` : out
+  const union = atoms.length === 1 ? (atoms[0] ?? '') : `(?:${atoms.join('|')})`
+  return negate ? `(?:(?!${union})[\\s\\S])` : union
+}
+
+function parseLuaClassToken(
+  source: string,
+  index: number,
+): { atom: string; length: number; literal: string | null; rangeable: boolean } {
+  const char = source[index] ?? ''
+  if (char === '%') {
+    const next = source[index + 1] ?? ''
+    const mapped = LUA_CHAR_CLASS_ATOMS[next]
+    if (mapped) {
+      return { atom: mapped, length: 2, literal: null, rangeable: false }
+    }
+    return { atom: escapeRegexLiteral(next), length: 2, literal: next, rangeable: false }
+  }
+
+  return {
+    atom: escapeRegexLiteral(char),
+    length: 1,
+    literal: char,
+    rangeable: char !== '\\',
+  }
 }
 
 function canApplyLuaQuantifier(parts: string[]): boolean {
@@ -140,7 +167,7 @@ function translateLuaPattern(pattern: string): RegExp {
       if (!closed) {
         throw new Error('gsub(): malformed Lua pattern')
       }
-      parts.push(`[${translateLuaCharClass(classBody)}]`)
+      parts.push(translateLuaCharClass(classBody))
       continue
     }
 
