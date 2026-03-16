@@ -1,4 +1,4 @@
-generatedAt: '2026-03-16T21:27:00.290Z'
+generatedAt: '2026-03-16T22:08:25.181Z'
 languages:
   awk:
     language: awk
@@ -7554,6 +7554,98 @@ languages:
           - url
         catalogShippedCount: 8
         coveragePercent: 29
+  haskell:
+    language: haskell
+    title: Haskell
+    scopeNote: >-
+      This inventory currently tracks the `Data.List`-style list surface we already ship from, not the broader Haskell
+      ecosystem.
+    namespaceCount: 1
+    shippedCount: 10
+    catalogCount: 19
+    catalogShippedCount: 10
+    keptExtraCount: 0
+    unexpectedExtraCount: 0
+    wantedCount: 9
+    skippedCount: 0
+    untriagedCount: 0
+    coveragePercent: 53
+    namespaces:
+      - namespace: list
+        title: Data.List module
+        target: GHC base-4.21
+        sourceKind: manual
+        sourceRef: https://hackage.haskell.org/package/base/docs/Data-List.html
+        catalogEntries:
+          - group
+          - groupBy
+          - inits
+          - intercalate
+          - intersperse
+          - isInfixOf
+          - isPrefixOf
+          - isSubsequenceOf
+          - isSuffixOf
+          - nub
+          - nubBy
+          - permutations
+          - sort
+          - sortBy
+          - subsequences
+          - tails
+          - transpose
+          - union
+          - unionBy
+        shippedEntries:
+          - group
+          - groupBy
+          - inits
+          - intercalate
+          - intersperse
+          - nubBy
+          - permutations
+          - subsequences
+          - tails
+          - transpose
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: isInfixOf
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: isPrefixOf
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: isSubsequenceOf
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: isSuffixOf
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: nub
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: sort
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: sortBy
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: union
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+          - name: unionBy
+            decision: wanted
+            note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories:
+          - list
+        catalogShippedCount: 10
+        coveragePercent: 53
   julia:
     language: julia
     title: Julia
@@ -11054,6 +11146,193 @@ languages:
         categories: []
         catalogShippedCount: 0
         coveragePercent: 0
+  kotlin:
+    language: kotlin
+    title: Kotlin
+    scopeNote: >-
+      This inventory currently tracks the `kotlin.collections` and `kotlin.text` surfaces we already ship from, not the
+      broader Kotlin/JVM ecosystem.
+    namespaceCount: 2
+    shippedCount: 8
+    catalogCount: 37
+    catalogShippedCount: 8
+    keptExtraCount: 0
+    unexpectedExtraCount: 0
+    wantedCount: 29
+    skippedCount: 0
+    untriagedCount: 0
+    coveragePercent: 22
+    namespaces:
+      - namespace: collections
+        title: kotlin.collections package
+        target: Kotlin 2.2
+        sourceKind: manual
+        sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/
+        catalogEntries:
+          - associateBy
+          - chunked
+          - distinct
+          - distinctBy
+          - filter
+          - filterIndexed
+          - filterNot
+          - flatMap
+          - fold
+          - foldIndexed
+          - groupBy
+          - map
+          - mapIndexed
+          - partition
+          - runningFold
+          - runningReduce
+          - sorted
+          - sortedBy
+          - sortedDescending
+          - windowed
+          - zip
+          - zipWithNext
+        shippedEntries:
+          - associateBy
+          - chunked
+          - groupBy
+          - runningFold
+          - runningReduce
+          - windowed
+          - zipWithNext
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: distinct
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: distinctBy
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: filter
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: filterIndexed
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: filterNot
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: flatMap
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: fold
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: foldIndexed
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: map
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: mapIndexed
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: partition
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: sorted
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: sortedBy
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: sortedDescending
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+          - name: zip
+            decision: wanted
+            note: Collection transforms are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories:
+          - collections
+        catalogShippedCount: 7
+        coveragePercent: 32
+      - namespace: text
+        title: kotlin.text package
+        target: Kotlin 2.2
+        sourceKind: manual
+        sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/
+        catalogEntries:
+          - chunked
+          - endsWith
+          - lowercase
+          - padEnd
+          - padStart
+          - removePrefix
+          - removeSuffix
+          - replace
+          - replaceFirst
+          - split
+          - startsWith
+          - trim
+          - trimEnd
+          - trimStart
+          - uppercase
+        shippedEntries:
+          - chunked
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: endsWith
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: lowercase
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: padEnd
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: padStart
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: removePrefix
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: removeSuffix
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: replace
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: replaceFirst
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: split
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: startsWith
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: trim
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: trimEnd
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: trimStart
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+          - name: uppercase
+            decision: wanted
+            note: String transforms are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories:
+          - text
+        catalogShippedCount: 1
+        coveragePercent: 7
   lua:
     language: lua
     title: Lua
@@ -34671,6 +34950,78 @@ languages:
           - String
         catalogShippedCount: 15
         coveragePercent: 12
+  swift:
+    language: swift
+    title: Swift
+    scopeNote: >-
+      This inventory currently tracks the Swift `String` surface we already ship from, not the broader Foundation
+      ecosystem.
+    namespaceCount: 1
+    shippedCount: 8
+    catalogCount: 13
+    catalogShippedCount: 8
+    keptExtraCount: 0
+    unexpectedExtraCount: 0
+    wantedCount: 5
+    skippedCount: 0
+    untriagedCount: 0
+    coveragePercent: 62
+    namespaces:
+      - namespace: String
+        title: Swift.String
+        target: Swift 6
+        sourceKind: manual
+        sourceRef: https://developer.apple.com/documentation/swift/string
+        catalogEntries:
+          - componentsSeparatedBy
+          - contains
+          - hasPrefix
+          - hasSuffix
+          - lowercased
+          - padding
+          - prefix
+          - rangeOf
+          - replacingOccurrences
+          - split
+          - suffix
+          - trimmingCharacters
+          - uppercased
+        shippedEntries:
+          - componentsSeparatedBy
+          - hasPrefix
+          - hasSuffix
+          - padding
+          - rangeOf
+          - replacingOccurrences
+          - split
+          - trimmingCharacters
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: contains
+            decision: wanted
+            note: Swift String helpers are strong plain-value portability targets.
+          - name: lowercased
+            decision: wanted
+            note: Swift String helpers are strong plain-value portability targets.
+          - name: prefix
+            decision: wanted
+            note: Swift String helpers are strong plain-value portability targets.
+          - name: suffix
+            decision: wanted
+            note: Swift String helpers are strong plain-value portability targets.
+          - name: uppercased
+            decision: wanted
+            note: Swift String helpers are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories:
+          - String
+        catalogShippedCount: 8
+        coveragePercent: 62
   tcl:
     language: tcl
     title: Tcl

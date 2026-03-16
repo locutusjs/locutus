@@ -2418,3 +2418,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn check`
 - Key learnings:
   - Generic upstream docs and runtime introspection need namespace-specific normalization hooks; otherwise the inventory stays “green” only by encoding upstream noise instead of real symbols.
+
+### Iteration 123
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Close the last structural inventory holes by tracking every language/category that already exists under `src/`, even where parity execution is not implemented yet.
+  - Keep this as inventory-only work: add upstream coverage first, leave actual function implementation for later harvest PRs.
+- Progress:
+  - Added upstream-surface tracking for the last untracked project languages: Haskell `list`, Kotlin `collections` / `text`, and Swift `String`.
+  - Added inventory-only handlers for those languages so the shared surface tooling and website can reason about them without pretending parity support already exists.
+  - Added curated manual snapshots and policy defaults for those namespaces, which means every language/category currently shipped in `src/` now has upstream-surface coverage.
+- Validation:
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build && corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - Treating missing language coverage as an inventory problem first is the fastest way to make the roadmap complete; parity support can follow later without blocking the catalog itself.

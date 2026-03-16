@@ -33,6 +33,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 - Added language-level scope notes and tracked-namespace counts to the website inventory panel so language pages no longer imply they cover an entire upstream language when they still track a deliberate subset.
 - Added Python `builtins`, Tcl `dict` and standalone value commands, PowerShell `System.Math`, Rust `std::cmp`, Julia `Statistics`, R `stats`, the remaining Lua core libraries, and Perl `List::Util` / `Scalar::Util` to the tracked upstream catalog so the language pages now reflect a much broader and more honest core-runtime roadmap.
 - Continued broadening the same inventory in-flight with Python `heapq` / `textwrap`, Ruby `Integer` / `Float`, Go `slices`, Elixir `Tuple`, PowerShell `System.Char`, and Rust primitive `char`, plus a Go generic-symbol normalization fix so those inventories stay clean and comparable.
+- Closed the last structural gaps in the current project surface by adding upstream tracking for Haskell `list`, Kotlin `collections` / `text`, and Swift `String`, so every language/category currently shipped under `src/` is now represented in the upstream inventory.
 
 ## v3.0.24
 

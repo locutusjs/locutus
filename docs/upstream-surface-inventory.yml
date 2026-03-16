@@ -17,6 +17,16 @@ awk:
           decision: skip_side_effects
           note: Shell execution is outside Locutus' portability scope.
 
+haskell:
+  title: Haskell
+  scopeNote: This inventory currently tracks the `Data.List`-style list surface we already ship from, not the broader Haskell ecosystem.
+  namespaces:
+    list:
+      title: Data.List
+      default:
+        decision: wanted
+        note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
+
 c:
   title: C
   namespaces:
@@ -801,6 +811,21 @@ julia:
         quantile!:
           decision: skip_side_effects
           note: In-place statistics helpers mutate caller-owned arrays.
+
+kotlin:
+  title: Kotlin
+  scopeNote: This inventory currently tracks the `kotlin.collections` and `kotlin.text` surfaces we already ship from, not the broader Kotlin/JVM ecosystem.
+  namespaces:
+    collections:
+      title: kotlin.collections
+      default:
+        decision: wanted
+        note: Collection transforms are strong plain-value portability targets.
+    text:
+      title: kotlin.text
+      default:
+        decision: wanted
+        note: String transforms are strong plain-value portability targets.
 
 ruby:
   title: Ruby
@@ -1981,3 +2006,13 @@ rust:
         trim_matches:
           decision: skip_runtime_model
           note: Pattern-driven trimming does not map cleanly to one stable plain-value contract.
+
+swift:
+  title: Swift
+  scopeNote: This inventory currently tracks the Swift `String` surface we already ship from, not the broader Foundation ecosystem.
+  namespaces:
+    String:
+      title: Swift.String
+      default:
+        decision: wanted
+        note: Swift String helpers are strong plain-value portability targets.

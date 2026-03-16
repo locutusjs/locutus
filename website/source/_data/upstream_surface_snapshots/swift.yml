@@ -1,0 +1,21 @@
+language: swift
+namespaces:
+  - namespace: String
+    title: Swift.String
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/string
+    entries:
+      - componentsSeparatedBy
+      - contains
+      - hasPrefix
+      - hasSuffix
+      - lowercased
+      - padding
+      - prefix
+      - rangeOf
+      - replacingOccurrences
+      - split
+      - suffix
+      - trimmingCharacters
+      - uppercased

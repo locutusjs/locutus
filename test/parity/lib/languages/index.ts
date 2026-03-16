@@ -8,7 +8,9 @@ import { cHandler } from './c.ts'
 import { clojureHandler } from './clojure.ts'
 import { elixirHandler } from './elixir.ts'
 import { golangHandler } from './golang.ts'
+import { haskellHandler } from './haskell.ts'
 import { juliaHandler } from './julia.ts'
+import { kotlinHandler } from './kotlin.ts'
 import { luaHandler } from './lua.ts'
 import { perlHandler } from './perl.ts'
 import { phpHandler } from './php.ts'
@@ -17,6 +19,7 @@ import { pythonHandler } from './python.ts'
 import { rHandler } from './r.ts'
 import { rubyHandler } from './ruby.ts'
 import { rustHandler } from './rust.ts'
+import { swiftHandler } from './swift.ts'
 import { tclHandler } from './tcl.ts'
 
 const handlers: Record<string, LanguageHandler> = {
@@ -25,7 +28,9 @@ const handlers: Record<string, LanguageHandler> = {
   clojure: clojureHandler,
   elixir: elixirHandler,
   golang: golangHandler,
+  haskell: haskellHandler,
   julia: juliaHandler,
+  kotlin: kotlinHandler,
   lua: luaHandler,
   perl: perlHandler,
   php: phpHandler,
@@ -34,6 +39,7 @@ const handlers: Record<string, LanguageHandler> = {
   r: rHandler,
   rust: rustHandler,
   ruby: rubyHandler,
+  swift: swiftHandler,
   tcl: tclHandler,
 }
 

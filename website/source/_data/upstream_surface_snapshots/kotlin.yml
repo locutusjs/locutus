@@ -1,0 +1,51 @@
+language: kotlin
+namespaces:
+  - namespace: collections
+    title: kotlin.collections package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/
+    entries:
+      - associateBy
+      - chunked
+      - distinct
+      - distinctBy
+      - filter
+      - filterIndexed
+      - filterNot
+      - flatMap
+      - fold
+      - foldIndexed
+      - groupBy
+      - map
+      - mapIndexed
+      - partition
+      - runningFold
+      - runningReduce
+      - sorted
+      - sortedBy
+      - sortedDescending
+      - windowed
+      - zip
+      - zipWithNext
+  - namespace: text
+    title: kotlin.text package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/
+    entries:
+      - chunked
+      - endsWith
+      - lowercase
+      - padEnd
+      - padStart
+      - removePrefix
+      - removeSuffix
+      - replace
+      - replaceFirst
+      - split
+      - startsWith
+      - trim
+      - trimEnd
+      - trimStart
+      - uppercase

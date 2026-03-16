@@ -1,0 +1,27 @@
+language: haskell
+namespaces:
+  - namespace: list
+    title: Data.List module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-List.html
+    entries:
+      - group
+      - groupBy
+      - inits
+      - intercalate
+      - intersperse
+      - isInfixOf
+      - isPrefixOf
+      - isSubsequenceOf
+      - isSuffixOf
+      - nub
+      - nubBy
+      - permutations
+      - sort
+      - sortBy
+      - subsequences
+      - tails
+      - transpose
+      - union
+      - unionBy
