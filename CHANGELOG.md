@@ -25,7 +25,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.22...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.23...main).
+
+## v3.0.23
+
+Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.22...v3.0.23).
+Version rationale: `patch` for scoped PHP runtime-correctness fixes aligned to the PHP 8.3 parity target.
 
 ### Fixes
 

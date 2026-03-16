@@ -2251,3 +2251,16 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn test:parity php/array/array_merge_recursive php/strings/trim php/strings/rtrim php/strings/ltrim php/var/strval php/strings/strtolower php/strings/strtoupper php/strings/strlen --no-cache`
 - Key learnings:
   - Issue reports that cite "PHP versions" are worth checking against the exact parity target first; in this case PHP 8.3 had three distinct behaviors in one issue: deprecation-with-coercion, hard missing-arg errors, and true variadic support.
+
+### Iteration 114
+
+2026-03-16
+
+- **Area: Release management**
+- Progress:
+  - Merged `#585` after CI cleared and the post-merge `main` run passed full parity, website build, and deploy.
+  - Prepared `v3.0.23` as the patch release for the PHP 8.3 null/missing-argument parity fixes and the `array_merge_recursive` variadic correction.
+- Validation:
+  - `gh run view 23142187693 --json status,conclusion,jobs`
+- Key learnings:
+  - Small parity-target corrections are good release candidates when the behavioral mismatch is clear and user-facing, especially when the board is otherwise clean.
