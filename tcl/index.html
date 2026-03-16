@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.260Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.260Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.178Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.178Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -312,17 +312,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         16/24 shipped
+         • 6 next
         
-         • 8 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 66.7%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 25%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 33.3%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.3%"></span>
+            
             
           
         </span>
@@ -349,18 +351,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 66.7%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 25%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 33.3%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.3%"></span>
+        
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
-      
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
     </div>
 
     <div class="surface-kpis">
@@ -369,12 +373,17 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">16/24</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">8</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">6</strong>
         </article>
       
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">2</strong>
+        </article>
       
       
     </div>
@@ -386,7 +395,7 @@ ga('send', 'pageview');
       
       
       
-      16 of 24 upstream entries are already shipped; 8 still need a decision.
+      16 of 24 upstream entries are already shipped; 6 are explicitly on the shortlist; 2 are explicit non-goals.
     </p>
 
     
@@ -416,23 +425,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 66.7%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 25%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 33.3%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>16/24</strong> shipped</span>
+    <span><strong>6</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
     
-    
-    <span><strong>8</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    16 shipped • 8 still need triage.
+    16 shipped • 6 next • 2 explicit non-goals.
   </p>
 
   
@@ -444,37 +455,79 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>cat</code>
+                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
+              </li>
+            
+              <li>
+                <code>index</code>
+                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
+              </li>
+            
+              <li>
+                <code>replace</code>
+                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
+              </li>
+            
+              <li>
+                <code>totitle</code>
+                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
+              </li>
+            
+              <li>
+                <code>wordend</code>
+                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
+              </li>
+            
+              <li>
+                <code>wordstart</code>
+                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (8)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>bytelength</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/string.htm" target="_blank" rel="noopener noreferrer"><code>bytelength</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-length helpers add little value in a UTF-16 JS runtime.</span>
+              </li>
             
-              <li><code>cat</code></li>
-            
-              <li><code>index</code></li>
-            
-              <li><code>is</code></li>
-            
-              <li><code>replace</code></li>
-            
-              <li><code>totitle</code></li>
-            
-              <li><code>wordend</code></li>
-            
-              <li><code>wordstart</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/string.htm" target="_blank" rel="noopener noreferrer"><code>is</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl classifier subcommands are too broad and type-system-specific for one clean port.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

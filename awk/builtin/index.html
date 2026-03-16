@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.149Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.149Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.074Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.074Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -294,17 +294,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 10/24 shipped
+                 • 11 next
                 
-                 • 14 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 41.7%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 45.8%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 58.3%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 12.5%"></span>
+                    
                     
                   
                 </span>
@@ -343,23 +345,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 41.7%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 45.8%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 58.3%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 12.5%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>10/24</strong> shipped</span>
+    <span><strong>11</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
     
-    
-    <span><strong>14</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    10 shipped • 14 still need triage.
+    10 shipped • 11 next • 3 explicit non-goals.
   </p>
 
   
@@ -371,49 +375,113 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>atan2</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>gensub</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>gsub</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>index</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>match</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>patsplit</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>rand</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>sprintf</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>strtonum</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+              <li>
+                <code>sub</code>
+                <span>AWK built-ins are mostly pure text and numeric helpers with a good plain-value fit.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (14)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>atan2</code></li>
+              
+              <li>
+                
+                  <code>close</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>File and pipe handle lifecycle is outside Locutus&#39; value-only model.</span>
+              </li>
             
-              <li><code>close</code></li>
+              
+              <li>
+                
+                  <code>srand</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Global RNG seeding mutates ambient runtime state.</span>
+              </li>
             
-              <li><code>gensub</code></li>
-            
-              <li><code>gsub</code></li>
-            
-              <li><code>index</code></li>
-            
-              <li><code>match</code></li>
-            
-              <li><code>patsplit</code></li>
-            
-              <li><code>rand</code></li>
-            
-              <li><code>split</code></li>
-            
-              <li><code>sprintf</code></li>
-            
-              <li><code>srand</code></li>
-            
-              <li><code>strtonum</code></li>
-            
-              <li><code>sub</code></li>
-            
-              <li><code>system</code></li>
+              
+              <li>
+                
+                  <code>system</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Shell execution is outside Locutus&#39; portability scope.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

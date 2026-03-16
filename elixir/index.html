@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.168Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.168Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.083Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.083Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -323,17 +323,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         14/214 shipped
+         • 154 next
         
-         • 200 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6.5%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 72%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 93.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 21.5%"></span>
+            
             
           
         </span>
@@ -360,18 +362,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6.5%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 72%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 93.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 21.5%"></span>
+        
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
-      
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
     </div>
 
     <div class="surface-kpis">
@@ -380,12 +384,17 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">14/214</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">200</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">154</strong>
         </article>
       
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">46</strong>
+        </article>
       
       
     </div>
@@ -397,7 +406,7 @@ ga('send', 'pageview');
       
       
       
-      14 of 214 upstream entries are already shipped; 200 still need a decision.
+      14 of 214 upstream entries are already shipped; 154 are explicitly on the shortlist; 46 are explicit non-goals.
     </p>
 
     
@@ -427,23 +436,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 7.9%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 86.8%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 92.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 5.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>6/76</strong> shipped</span>
+    <span><strong>66</strong> next</span>
+    <span><strong>4</strong> explicit non-goals</span>
     
-    
-    <span><strong>70</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    6 shipped • 70 still need triage.
+    6 shipped • 66 next • 4 explicit non-goals.
   </p>
 
   
@@ -455,161 +466,397 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>all?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>any?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>at</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>chunk</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>chunk_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>chunk_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>concat</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>count</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>count_until</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>dedup</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>dedup_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>drop</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>drop_every</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>drop_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>empty?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>fetch</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>fetch!</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>filter</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>filter_map</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>find</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>find_index</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>find_value</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>flat_map</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>flat_map_reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>frequencies</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>intersperse</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>into</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>join</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_every</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_intersperse</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_join</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>max</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>max_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>member?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min_max</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min_max_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>partition</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>product</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>product_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reject</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reverse</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reverse_slice</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>slice</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>slide</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sort</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sort_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>split_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>split_with</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sum</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sum_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>take</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>take_every</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>take_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>to_list</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>uniq</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>uniq_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>unzip</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>with_index</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>zip_reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>zip_with</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (70)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
-            
-              <li><code>all?</code></li>
-            
-              <li><code>any?</code></li>
-            
-              <li><code>at</code></li>
-            
-              <li><code>chunk</code></li>
-            
-              <li><code>chunk_by</code></li>
-            
-              <li><code>chunk_while</code></li>
-            
-              <li><code>concat</code></li>
-            
-              <li><code>count</code></li>
-            
-              <li><code>count_until</code></li>
-            
-              <li><code>dedup</code></li>
-            
-              <li><code>dedup_by</code></li>
-            
-              <li><code>drop</code></li>
-            
-              <li><code>drop_every</code></li>
-            
-              <li><code>drop_while</code></li>
-            
-              <li><code>each</code></li>
-            
-              <li><code>empty?</code></li>
-            
-              <li><code>fetch</code></li>
-            
-              <li><code>fetch!</code></li>
-            
-              <li><code>filter</code></li>
-            
-              <li><code>filter_map</code></li>
-            
-              <li><code>find</code></li>
-            
-              <li><code>find_index</code></li>
-            
-              <li><code>find_value</code></li>
-            
-              <li><code>flat_map</code></li>
-            
-              <li><code>flat_map_reduce</code></li>
-            
-              <li><code>frequencies</code></li>
-            
-              <li><code>intersperse</code></li>
-            
-              <li><code>into</code></li>
-            
-              <li><code>join</code></li>
-            
-              <li><code>map</code></li>
-            
-              <li><code>map_every</code></li>
-            
-              <li><code>map_intersperse</code></li>
-            
-              <li><code>map_join</code></li>
-            
-              <li><code>map_reduce</code></li>
-            
-              <li><code>max</code></li>
-            
-              <li><code>max_by</code></li>
-            
-              <li><code>member?</code></li>
-            
-              <li><code>min</code></li>
-            
-              <li><code>min_by</code></li>
-            
-              <li><code>min_max</code></li>
-            
-              <li><code>min_max_by</code></li>
-            
-              <li><code>partition</code></li>
-            
-              <li><code>product</code></li>
-            
-              <li><code>product_by</code></li>
-            
-              <li><code>random</code></li>
-            
-              <li><code>reduce</code></li>
-            
-              <li><code>reject</code></li>
-            
-              <li><code>reverse</code></li>
-            
-              <li><code>reverse_slice</code></li>
-            
-              <li><code>shuffle</code></li>
-            
-              <li><code>slice</code></li>
-            
-              <li><code>slide</code></li>
-            
-              <li><code>sort</code></li>
-            
-              <li><code>sort_by</code></li>
-            
-              <li><code>split</code></li>
-            
-              <li><code>split_while</code></li>
-            
-              <li><code>split_with</code></li>
-            
-              <li><code>sum</code></li>
-            
-              <li><code>sum_by</code></li>
-            
-              <li><code>take</code></li>
-            
-              <li><code>take_every</code></li>
-            
-              <li><code>take_random</code></li>
-            
-              <li><code>take_while</code></li>
-            
-              <li><code>to_list</code></li>
-            
-              <li><code>uniq</code></li>
-            
-              <li><code>uniq_by</code></li>
-            
-              <li><code>unzip</code></li>
-            
-              <li><code>with_index</code></li>
-            
-              <li><code>zip_reduce</code></li>
-            
-              <li><code>zip_with</code></li>
+          <summary>Explicit non-goals (4)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>each</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Side-effect-driven iteration is not a good Locutus target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>random</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized enumeration helpers are lower-value than deterministic collection transforms.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>shuffle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized enumeration helpers are lower-value than deterministic collection transforms.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>take_random</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized enumeration helpers are lower-value than deterministic collection transforms.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -642,23 +889,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 18.2%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 63.6%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 81.8%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 18.2%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>2/11</strong> shipped</span>
+    <span><strong>7</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
     
-    
-    <span><strong>9</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    2 shipped • 9 still need triage.
+    2 shipped • 7 next • 2 explicit non-goals.
   </p>
 
   
@@ -670,39 +919,84 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>max_finite</code>
+                <span>Elixir Float helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>min_finite</code>
+                <span>Elixir Float helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>parse</code>
+                <span>Elixir Float helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pow</code>
+                <span>Elixir Float helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ratio</code>
+                <span>Elixir Float helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>round</code>
+                <span>Elixir Float helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_string</code>
+                <span>Elixir Float helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (9)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>max_finite</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Float.html" target="_blank" rel="noopener noreferrer"><code>to_char_list</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Charlist conversion does not fit Locutus&#39; plain-value model.</span>
+              </li>
             
-              <li><code>min_finite</code></li>
-            
-              <li><code>parse</code></li>
-            
-              <li><code>pow</code></li>
-            
-              <li><code>ratio</code></li>
-            
-              <li><code>round</code></li>
-            
-              <li><code>to_char_list</code></li>
-            
-              <li><code>to_charlist</code></li>
-            
-              <li><code>to_string</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Float.html" target="_blank" rel="noopener noreferrer"><code>to_charlist</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Charlist conversion does not fit Locutus&#39; plain-value model.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -735,23 +1029,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.4%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 45.2%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 98.6%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 53.4%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>1/73</strong> shipped</span>
+    <span><strong>33</strong> next</span>
+    <span><strong>39</strong> explicit non-goals</span>
     
-    
-    <span><strong>72</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    1 shipped • 72 still need triage.
+    1 shipped • 33 next • 39 explicit non-goals.
   </p>
 
   
@@ -763,165 +1059,547 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>binary_part</code>
+                <span>Binary slicing is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>binary_slice</code>
+                <span>Binary slicing is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>bit_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>byte_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>ceil</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>div</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>elem</code>
+                <span>Tuple element access still has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>floor</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>hd</code>
+                <span>Head access has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_atom</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_binary</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_bitstring</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_boolean</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_float</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_function</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_integer</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_list</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_map</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_map_key</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_number</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_pid</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_port</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_reference</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_tuple</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>length</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>map_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>max</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>min</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>rem</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>round</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>tl</code>
+                <span>Tail access has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>trunc</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>tuple_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (72)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
-            
-              <li><code>!=</code></li>
-            
-              <li><code>!==</code></li>
-            
-              <li><code>*</code></li>
-            
-              <li><code>**</code></li>
-            
-              <li><code>+</code></li>
-            
-              <li><code>++</code></li>
-            
-              <li><code>-</code></li>
-            
-              <li><code>--</code></li>
-            
-              <li><code>/</code></li>
-            
-              <li><code>&lt;</code></li>
-            
-              <li><code>&lt;=</code></li>
-            
-              <li><code>==</code></li>
-            
-              <li><code>===</code></li>
-            
-              <li><code>=~</code></li>
-            
-              <li><code>&gt;</code></li>
-            
-              <li><code>&gt;=</code></li>
-            
-              <li><code>apply</code></li>
-            
-              <li><code>binary_part</code></li>
-            
-              <li><code>binary_slice</code></li>
-            
-              <li><code>bit_size</code></li>
-            
-              <li><code>byte_size</code></li>
-            
-              <li><code>ceil</code></li>
-            
-              <li><code>div</code></li>
-            
-              <li><code>elem</code></li>
-            
-              <li><code>exit</code></li>
-            
-              <li><code>floor</code></li>
-            
-              <li><code>function_exported?</code></li>
-            
-              <li><code>get_and_update_in</code></li>
-            
-              <li><code>get_in</code></li>
-            
-              <li><code>hd</code></li>
-            
-              <li><code>inspect</code></li>
-            
-              <li><code>is_atom</code></li>
-            
-              <li><code>is_binary</code></li>
-            
-              <li><code>is_bitstring</code></li>
-            
-              <li><code>is_boolean</code></li>
-            
-              <li><code>is_float</code></li>
-            
-              <li><code>is_function</code></li>
-            
-              <li><code>is_integer</code></li>
-            
-              <li><code>is_list</code></li>
-            
-              <li><code>is_map</code></li>
-            
-              <li><code>is_map_key</code></li>
-            
-              <li><code>is_number</code></li>
-            
-              <li><code>is_pid</code></li>
-            
-              <li><code>is_port</code></li>
-            
-              <li><code>is_reference</code></li>
-            
-              <li><code>is_tuple</code></li>
-            
-              <li><code>length</code></li>
-            
-              <li><code>macro_exported?</code></li>
-            
-              <li><code>make_ref</code></li>
-            
-              <li><code>map_size</code></li>
-            
-              <li><code>max</code></li>
-            
-              <li><code>min</code></li>
-            
-              <li><code>node</code></li>
-            
-              <li><code>not</code></li>
-            
-              <li><code>pop_in</code></li>
-            
-              <li><code>put_elem</code></li>
-            
-              <li><code>put_in</code></li>
-            
-              <li><code>rem</code></li>
-            
-              <li><code>round</code></li>
-            
-              <li><code>self</code></li>
-            
-              <li><code>send</code></li>
-            
-              <li><code>spawn</code></li>
-            
-              <li><code>spawn_link</code></li>
-            
-              <li><code>spawn_monitor</code></li>
-            
-              <li><code>struct</code></li>
-            
-              <li><code>struct!</code></li>
-            
-              <li><code>throw</code></li>
-            
-              <li><code>tl</code></li>
-            
-              <li><code>to_timeout</code></li>
-            
-              <li><code>trunc</code></li>
-            
-              <li><code>tuple_size</code></li>
-            
-              <li><code>update_in</code></li>
+          <summary>Explicit non-goals (39)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>-</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>--</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>!=</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>!==</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>*</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>**</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>/</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>+</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>++</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&lt;</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&lt;=</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>==</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>===</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>=~</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&gt;</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&gt;=</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>apply</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>exit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>function_exported?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>get_and_update_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>get_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>inspect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>macro_exported?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>make_ref</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>node</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>not</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>pop_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>put_elem</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>put_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>self</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>send</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>spawn</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>spawn_link</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>spawn_monitor</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>struct</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>struct!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>throw</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>to_timeout</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>update_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -954,23 +1632,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 9.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 88.9%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 90.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 1.9%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>5/54</strong> shipped</span>
+    <span><strong>48</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
     
-    
-    <span><strong>49</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    5 shipped • 49 still need triage.
+    5 shipped • 48 next • 1 explicit non-goals.
   </p>
 
   
@@ -982,119 +1662,280 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>at</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>bag_distance</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>byte_slice</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>capitalize</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>chunk</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>codepoints</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>contains?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>duplicate</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ends_with?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>equivalent?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>first</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>graphemes</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>jaro_distance</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>last</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ljust</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>lstrip</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>match?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>myers_difference</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>next_codepoint</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>next_grapheme</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>next_grapheme_size</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>normalize</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pad_leading</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pad_trailing</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>printable?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace_leading</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace_prefix</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace_suffix</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace_trailing</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rjust</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rstrip</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>slice</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>split_at</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>splitter</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>starts_with?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>strip</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_atom</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_char_list</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_charlist</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_existing_atom</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_float</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_integer</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>trim</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>trim_leading</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>trim_trailing</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>valid_character?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>valid?</code>
+                <span>Elixir String helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (49)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>at</code></li>
-            
-              <li><code>bag_distance</code></li>
-            
-              <li><code>byte_slice</code></li>
-            
-              <li><code>capitalize</code></li>
-            
-              <li><code>chunk</code></li>
-            
-              <li><code>codepoints</code></li>
-            
-              <li><code>contains?</code></li>
-            
-              <li><code>duplicate</code></li>
-            
-              <li><code>ends_with?</code></li>
-            
-              <li><code>equivalent?</code></li>
-            
-              <li><code>first</code></li>
-            
-              <li><code>graphemes</code></li>
-            
-              <li><code>jaro_distance</code></li>
-            
-              <li><code>last</code></li>
-            
-              <li><code>ljust</code></li>
-            
-              <li><code>lstrip</code></li>
-            
-              <li><code>match?</code></li>
-            
-              <li><code>myers_difference</code></li>
-            
-              <li><code>next_codepoint</code></li>
-            
-              <li><code>next_grapheme</code></li>
-            
-              <li><code>next_grapheme_size</code></li>
-            
-              <li><code>normalize</code></li>
-            
-              <li><code>pad_leading</code></li>
-            
-              <li><code>pad_trailing</code></li>
-            
-              <li><code>printable?</code></li>
-            
-              <li><code>replace_invalid</code></li>
-            
-              <li><code>replace_leading</code></li>
-            
-              <li><code>replace_prefix</code></li>
-            
-              <li><code>replace_suffix</code></li>
-            
-              <li><code>replace_trailing</code></li>
-            
-              <li><code>rjust</code></li>
-            
-              <li><code>rstrip</code></li>
-            
-              <li><code>slice</code></li>
-            
-              <li><code>split</code></li>
-            
-              <li><code>split_at</code></li>
-            
-              <li><code>splitter</code></li>
-            
-              <li><code>starts_with?</code></li>
-            
-              <li><code>strip</code></li>
-            
-              <li><code>to_atom</code></li>
-            
-              <li><code>to_char_list</code></li>
-            
-              <li><code>to_charlist</code></li>
-            
-              <li><code>to_existing_atom</code></li>
-            
-              <li><code>to_float</code></li>
-            
-              <li><code>to_integer</code></li>
-            
-              <li><code>trim</code></li>
-            
-              <li><code>trim_leading</code></li>
-            
-              <li><code>trim_trailing</code></li>
-            
-              <li><code>valid?</code></li>
-            
-              <li><code>valid_character?</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/String.html" target="_blank" rel="noopener noreferrer"><code>replace_invalid</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Invalid-binary replacement semantics do not map cleanly to JS strings.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

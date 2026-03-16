@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.175Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.175Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.090Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.090Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -294,17 +294,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 10/34 shipped
+                 • 12 next
                 
-                 • 24 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 29.4%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 35.3%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 70.6%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 35.3%"></span>
+                    
                     
                   
                 </span>
@@ -343,23 +345,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 29.4%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 35.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 70.6%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 35.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>10/34</strong> shipped</span>
+    <span><strong>12</strong> next</span>
+    <span><strong>12</strong> explicit non-goals</span>
     
-    
-    <span><strong>24</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    10 shipped • 24 still need triage.
+    10 shipped • 12 next • 12 explicit non-goals.
   </p>
 
   
@@ -371,69 +375,199 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>CanBackquote</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>FormatUint</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsGraphic</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsPrint</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ParseUint</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuotedPrefix</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteRune</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteRuneToASCII</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteRuneToGraphic</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteToASCII</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteToGraphic</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>UnquoteChar</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (24)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (12)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>AppendBool</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendBool" target="_blank" rel="noopener noreferrer"><code>AppendBool</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendFloat</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendFloat" target="_blank" rel="noopener noreferrer"><code>AppendFloat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendInt</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendInt" target="_blank" rel="noopener noreferrer"><code>AppendInt</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuote</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuote" target="_blank" rel="noopener noreferrer"><code>AppendQuote</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteRune</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteRune" target="_blank" rel="noopener noreferrer"><code>AppendQuoteRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteRuneToASCII</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteRuneToASCII" target="_blank" rel="noopener noreferrer"><code>AppendQuoteRuneToASCII</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteRuneToGraphic</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteRuneToGraphic" target="_blank" rel="noopener noreferrer"><code>AppendQuoteRuneToGraphic</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteToASCII</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteToASCII" target="_blank" rel="noopener noreferrer"><code>AppendQuoteToASCII</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteToGraphic</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteToGraphic" target="_blank" rel="noopener noreferrer"><code>AppendQuoteToGraphic</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendUint</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendUint" target="_blank" rel="noopener noreferrer"><code>AppendUint</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>CanBackquote</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#FormatComplex" target="_blank" rel="noopener noreferrer"><code>FormatComplex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number formatting does not fit JS plain values.</span>
+              </li>
             
-              <li><code>FormatComplex</code></li>
-            
-              <li><code>FormatUint</code></li>
-            
-              <li><code>IsGraphic</code></li>
-            
-              <li><code>IsPrint</code></li>
-            
-              <li><code>ParseComplex</code></li>
-            
-              <li><code>ParseUint</code></li>
-            
-              <li><code>QuoteRune</code></li>
-            
-              <li><code>QuoteRuneToASCII</code></li>
-            
-              <li><code>QuoteRuneToGraphic</code></li>
-            
-              <li><code>QuoteToASCII</code></li>
-            
-              <li><code>QuoteToGraphic</code></li>
-            
-              <li><code>QuotedPrefix</code></li>
-            
-              <li><code>UnquoteChar</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#ParseComplex" target="_blank" rel="noopener noreferrer"><code>ParseComplex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number parsing does not fit JS plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.182Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.182Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.098Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.098Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -290,17 +290,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 8/28 shipped
+                 • 8 next
                 
-                 • 20 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 28.6%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 28.6%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 71.4%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 42.9%"></span>
+                    
                     
                   
                 </span>
@@ -339,23 +341,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 28.6%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 28.6%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 71.4%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 42.9%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>8/28</strong> shipped</span>
+    <span><strong>8</strong> next</span>
+    <span><strong>12</strong> explicit non-goals</span>
     
-    
-    <span><strong>20</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    8 shipped • 20 still need triage.
+    8 shipped • 8 next • 12 explicit non-goals.
   </p>
 
   
@@ -367,61 +371,179 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>EscapedFragment</code>
+                <span>Escaping helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>EscapedPath</code>
+                <span>Escaping helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Hostname</code>
+                <span>URL host decomposition is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>IsAbs</code>
+                <span>URL absolute checks have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>ParseRequestURI</code>
+                <span>Request-URI parsing is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>PathUnescape</code>
+                <span>URL escaping is a strong plain-value target.</span>
+              </li>
+            
+              <li>
+                <code>Port</code>
+                <span>URL host decomposition is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>RequestURI</code>
+                <span>Request-URI formatting is a useful plain-value helper.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (20)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (12)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>Add</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Add" target="_blank" rel="noopener noreferrer"><code>Add</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Del</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Del" target="_blank" rel="noopener noreferrer"><code>Del</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>EscapedFragment</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Get" target="_blank" rel="noopener noreferrer"><code>Get</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>EscapedPath</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Has" target="_blank" rel="noopener noreferrer"><code>Has</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Get</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#MarshalBinary" target="_blank" rel="noopener noreferrer"><code>MarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Has</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Query" target="_blank" rel="noopener noreferrer"><code>Query</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Hostname</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Redacted" target="_blank" rel="noopener noreferrer"><code>Redacted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>IsAbs</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Set" target="_blank" rel="noopener noreferrer"><code>Set</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>MarshalBinary</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#String" target="_blank" rel="noopener noreferrer"><code>String</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>ParseRequestURI</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#UnmarshalBinary" target="_blank" rel="noopener noreferrer"><code>UnmarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>PathUnescape</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#User" target="_blank" rel="noopener noreferrer"><code>User</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Port</code></li>
-            
-              <li><code>Query</code></li>
-            
-              <li><code>Redacted</code></li>
-            
-              <li><code>RequestURI</code></li>
-            
-              <li><code>Set</code></li>
-            
-              <li><code>String</code></li>
-            
-              <li><code>UnmarshalBinary</code></li>
-            
-              <li><code>User</code></li>
-            
-              <li><code>UserPassword</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#UserPassword" target="_blank" rel="noopener noreferrer"><code>UserPassword</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

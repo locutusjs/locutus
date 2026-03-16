@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.242Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.242Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.160Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.160Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -278,17 +278,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 2/8 shipped
+                 • 3 next
                 
-                 • 6 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 37.5%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 75%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 37.5%"></span>
+                    
                     
                   
                 </span>
@@ -327,23 +329,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 37.5%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 75%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 37.5%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>2/8</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
     
-    
-    <span><strong>6</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    2 shipped • 6 still need triage.
+    2 shipped • 3 next • 3 explicit non-goals.
   </p>
 
   
@@ -355,33 +359,73 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>context_diff</code>
+                <span>Sequence-diff helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>restore</code>
+                <span>Sequence-diff helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unified_diff</code>
+                <span>Sequence-diff helpers are high-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (6)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>IS_CHARACTER_JUNK</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.diff_bytes" target="_blank" rel="noopener noreferrer"><code>diff_bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented diffing does not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>IS_LINE_JUNK</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.IS_CHARACTER_JUNK" target="_blank" rel="noopener noreferrer"><code>IS_CHARACTER_JUNK</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Exposing tiny constant predicates as standalone ports adds little value.</span>
+              </li>
             
-              <li><code>context_diff</code></li>
-            
-              <li><code>diff_bytes</code></li>
-            
-              <li><code>restore</code></li>
-            
-              <li><code>unified_diff</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.IS_LINE_JUNK" target="_blank" rel="noopener noreferrer"><code>IS_LINE_JUNK</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Exposing tiny constant predicates as standalone ports adds little value.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

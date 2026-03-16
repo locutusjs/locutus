@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.158Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.158Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.079Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.079Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -276,17 +276,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 1/11 shipped
+                 • 3 next
                 
-                 • 10 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 9.1%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.3%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 90.9%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 63.6%"></span>
+                    
                     
                   
                 </span>
@@ -325,23 +327,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 9.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 90.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 63.6%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>1/11</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>7</strong> explicit non-goals</span>
     
-    
-    <span><strong>10</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    1 shipped • 10 still need triage.
+    1 shipped • 3 next • 7 explicit non-goals.
   </p>
 
   
@@ -353,41 +357,109 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>snprintf</code>
+                <span>Sized string formatting still produces a plain string result.</span>
+              </li>
+            
+              <li>
+                <code>vsnprintf</code>
+                <span>Variadic string formatting still yields a plain string result.</span>
+              </li>
+            
+              <li>
+                <code>vsprintf</code>
+                <span>Variadic string formatting still yields a plain string result.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (10)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (7)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>fprintf</code></li>
+              
+              <li>
+                
+                  <code>fprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>fputs</code></li>
+              
+              <li>
+                
+                  <code>fputs</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>printf</code></li>
+              
+              <li>
+                
+                  <code>printf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>putchar</code></li>
+              
+              <li>
+                
+                  <code>putchar</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>puts</code></li>
+              
+              <li>
+                
+                  <code>puts</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>snprintf</code></li>
+              
+              <li>
+                
+                  <code>vfprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>vfprintf</code></li>
-            
-              <li><code>vprintf</code></li>
-            
-              <li><code>vsnprintf</code></li>
-            
-              <li><code>vsprintf</code></li>
+              
+              <li>
+                
+                  <code>vprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

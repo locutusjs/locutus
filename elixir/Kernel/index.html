@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.170Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.170Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.084Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.084Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -276,17 +276,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 1/73 shipped
+                 • 33 next
                 
-                 • 72 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.4%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 45.2%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 98.6%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 53.4%"></span>
+                    
                     
                   
                 </span>
@@ -325,23 +327,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.4%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 45.2%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 98.6%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 53.4%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>1/73</strong> shipped</span>
+    <span><strong>33</strong> next</span>
+    <span><strong>39</strong> explicit non-goals</span>
     
-    
-    <span><strong>72</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    1 shipped • 72 still need triage.
+    1 shipped • 33 next • 39 explicit non-goals.
   </p>
 
   
@@ -353,165 +357,547 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>binary_part</code>
+                <span>Binary slicing is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>binary_slice</code>
+                <span>Binary slicing is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>bit_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>byte_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>ceil</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>div</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>elem</code>
+                <span>Tuple element access still has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>floor</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>hd</code>
+                <span>Head access has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_atom</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_binary</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_bitstring</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_boolean</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_float</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_function</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_integer</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_list</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_map</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_map_key</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_number</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_pid</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_port</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_reference</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>is_tuple</code>
+                <span>Type-predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>length</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>map_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>max</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>min</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>rem</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>round</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>tl</code>
+                <span>Tail access has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>trunc</code>
+                <span>Scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>tuple_size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (72)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
-            
-              <li><code>!=</code></li>
-            
-              <li><code>!==</code></li>
-            
-              <li><code>*</code></li>
-            
-              <li><code>**</code></li>
-            
-              <li><code>+</code></li>
-            
-              <li><code>++</code></li>
-            
-              <li><code>-</code></li>
-            
-              <li><code>--</code></li>
-            
-              <li><code>/</code></li>
-            
-              <li><code>&lt;</code></li>
-            
-              <li><code>&lt;=</code></li>
-            
-              <li><code>==</code></li>
-            
-              <li><code>===</code></li>
-            
-              <li><code>=~</code></li>
-            
-              <li><code>&gt;</code></li>
-            
-              <li><code>&gt;=</code></li>
-            
-              <li><code>apply</code></li>
-            
-              <li><code>binary_part</code></li>
-            
-              <li><code>binary_slice</code></li>
-            
-              <li><code>bit_size</code></li>
-            
-              <li><code>byte_size</code></li>
-            
-              <li><code>ceil</code></li>
-            
-              <li><code>div</code></li>
-            
-              <li><code>elem</code></li>
-            
-              <li><code>exit</code></li>
-            
-              <li><code>floor</code></li>
-            
-              <li><code>function_exported?</code></li>
-            
-              <li><code>get_and_update_in</code></li>
-            
-              <li><code>get_in</code></li>
-            
-              <li><code>hd</code></li>
-            
-              <li><code>inspect</code></li>
-            
-              <li><code>is_atom</code></li>
-            
-              <li><code>is_binary</code></li>
-            
-              <li><code>is_bitstring</code></li>
-            
-              <li><code>is_boolean</code></li>
-            
-              <li><code>is_float</code></li>
-            
-              <li><code>is_function</code></li>
-            
-              <li><code>is_integer</code></li>
-            
-              <li><code>is_list</code></li>
-            
-              <li><code>is_map</code></li>
-            
-              <li><code>is_map_key</code></li>
-            
-              <li><code>is_number</code></li>
-            
-              <li><code>is_pid</code></li>
-            
-              <li><code>is_port</code></li>
-            
-              <li><code>is_reference</code></li>
-            
-              <li><code>is_tuple</code></li>
-            
-              <li><code>length</code></li>
-            
-              <li><code>macro_exported?</code></li>
-            
-              <li><code>make_ref</code></li>
-            
-              <li><code>map_size</code></li>
-            
-              <li><code>max</code></li>
-            
-              <li><code>min</code></li>
-            
-              <li><code>node</code></li>
-            
-              <li><code>not</code></li>
-            
-              <li><code>pop_in</code></li>
-            
-              <li><code>put_elem</code></li>
-            
-              <li><code>put_in</code></li>
-            
-              <li><code>rem</code></li>
-            
-              <li><code>round</code></li>
-            
-              <li><code>self</code></li>
-            
-              <li><code>send</code></li>
-            
-              <li><code>spawn</code></li>
-            
-              <li><code>spawn_link</code></li>
-            
-              <li><code>spawn_monitor</code></li>
-            
-              <li><code>struct</code></li>
-            
-              <li><code>struct!</code></li>
-            
-              <li><code>throw</code></li>
-            
-              <li><code>tl</code></li>
-            
-              <li><code>to_timeout</code></li>
-            
-              <li><code>trunc</code></li>
-            
-              <li><code>tuple_size</code></li>
-            
-              <li><code>update_in</code></li>
+          <summary>Explicit non-goals (39)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>-</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>--</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>!=</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>!==</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>*</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>**</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>/</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>+</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>++</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&lt;</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&lt;=</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>==</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>===</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>=~</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&gt;</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>&gt;=</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>apply</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>exit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>function_exported?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>get_and_update_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>get_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>inspect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>macro_exported?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>make_ref</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>node</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>not</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>pop_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>put_elem</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>put_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>self</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>send</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>spawn</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>spawn_link</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>spawn_monitor</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>struct</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>struct!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>throw</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>to_timeout</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Kernel.html" target="_blank" rel="noopener noreferrer"><code>update_in</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

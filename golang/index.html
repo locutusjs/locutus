@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.171Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.171Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.086Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.086Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -494,19 +494,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         87/272 shipped
+         • 60 next
         
-         • 184 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 32%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.1%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 0.4%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 46%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 67.6%"></span>
             
           
         </span>
@@ -533,20 +533,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 32%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.1%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 0.4%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 46%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 67.6%"></span>
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
-      
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
       <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
+      
     </div>
 
     <div class="surface-kpis">
@@ -555,16 +555,16 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">87/272</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">184</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">60</strong>
         </article>
+      
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">1</strong>
+          <strong class="surface-kpi__value">125</strong>
         </article>
       
       
@@ -577,7 +577,7 @@ ga('send', 'pageview');
       
       
       
-      87 of 272 upstream entries are already shipped; 184 still need a decision; 1 are explicit non-goals.
+      87 of 272 upstream entries are already shipped; 60 are explicitly on the shortlist; 125 are explicit non-goals.
     </p>
 
     
@@ -607,23 +607,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 33.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 66.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 33.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>7/21</strong> shipped</span>
+    <span><strong>7</strong> next</span>
+    <span><strong>7</strong> explicit non-goals</span>
     
-    
-    <span><strong>14</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    7 shipped • 14 still need triage.
+    7 shipped • 7 next • 7 explicit non-goals.
   </p>
 
   
@@ -635,49 +637,129 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>FromSlash</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsLocal</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Match</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Split</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>SplitList</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ToSlash</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>VolumeName</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (14)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (7)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>Abs</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Abs" target="_blank" rel="noopener noreferrer"><code>Abs</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Absolute-path resolution depends on process working-directory state.</span>
+              </li>
             
-              <li><code>EvalSymlinks</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#EvalSymlinks" target="_blank" rel="noopener noreferrer"><code>EvalSymlinks</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Symlink resolution depends on filesystem state.</span>
+              </li>
             
-              <li><code>FromSlash</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Glob" target="_blank" rel="noopener noreferrer"><code>Glob</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem globbing depends on host state.</span>
+              </li>
             
-              <li><code>Glob</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#HasPrefix" target="_blank" rel="noopener noreferrer"><code>HasPrefix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Deprecated path-prefix checks add little value to the roadmap.</span>
+              </li>
             
-              <li><code>HasPrefix</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Localize" target="_blank" rel="noopener noreferrer"><code>Localize</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>OS-specific path localization depends on host path semantics.</span>
+              </li>
             
-              <li><code>IsLocal</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Walk" target="_blank" rel="noopener noreferrer"><code>Walk</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem traversal depends on host state and callback side effects.</span>
+              </li>
             
-              <li><code>Localize</code></li>
-            
-              <li><code>Match</code></li>
-            
-              <li><code>Split</code></li>
-            
-              <li><code>SplitList</code></li>
-            
-              <li><code>ToSlash</code></li>
-            
-              <li><code>VolumeName</code></li>
-            
-              <li><code>Walk</code></li>
-            
-              <li><code>WalkDir</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#WalkDir" target="_blank" rel="noopener noreferrer"><code>WalkDir</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem traversal depends on host state and callback side effects.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -710,23 +792,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 8.9%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 8.9%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 91.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 82.2%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>4/45</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>37</strong> explicit non-goals</span>
     
-    
-    <span><strong>41</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    4 shipped • 41 still need triage.
+    4 shipped • 4 next • 37 explicit non-goals.
   </p>
 
   
@@ -738,103 +822,384 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>CIDRMask</code>
+                <span>IP mask construction has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>IPv4</code>
+                <span>IPv4 construction has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>IPv4Mask</code>
+                <span>IP mask construction has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>ParseMAC</code>
+                <span>MAC parsing has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (41)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (37)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>CIDRMask</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#Dial" target="_blank" rel="noopener noreferrer"><code>Dial</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>Dial</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#DialIP" target="_blank" rel="noopener noreferrer"><code>DialIP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>DialIP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#DialTCP" target="_blank" rel="noopener noreferrer"><code>DialTCP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>DialTCP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#DialTimeout" target="_blank" rel="noopener noreferrer"><code>DialTimeout</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>DialTimeout</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#DialUDP" target="_blank" rel="noopener noreferrer"><code>DialUDP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>DialUDP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#DialUnix" target="_blank" rel="noopener noreferrer"><code>DialUnix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>DialUnix</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#FileConn" target="_blank" rel="noopener noreferrer"><code>FileConn</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>FileConn</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#FileListener" target="_blank" rel="noopener noreferrer"><code>FileListener</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>FileListener</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#FilePacketConn" target="_blank" rel="noopener noreferrer"><code>FilePacketConn</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>FilePacketConn</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#InterfaceAddrs" target="_blank" rel="noopener noreferrer"><code>InterfaceAddrs</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>IPv4</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#InterfaceByIndex" target="_blank" rel="noopener noreferrer"><code>InterfaceByIndex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>IPv4Mask</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#InterfaceByName" target="_blank" rel="noopener noreferrer"><code>InterfaceByName</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>InterfaceAddrs</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#Interfaces" target="_blank" rel="noopener noreferrer"><code>Interfaces</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>InterfaceByIndex</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#Listen" target="_blank" rel="noopener noreferrer"><code>Listen</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>InterfaceByName</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ListenIP" target="_blank" rel="noopener noreferrer"><code>ListenIP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>Interfaces</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ListenMulticastUDP" target="_blank" rel="noopener noreferrer"><code>ListenMulticastUDP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>Listen</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ListenPacket" target="_blank" rel="noopener noreferrer"><code>ListenPacket</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ListenIP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ListenTCP" target="_blank" rel="noopener noreferrer"><code>ListenTCP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ListenMulticastUDP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ListenUDP" target="_blank" rel="noopener noreferrer"><code>ListenUDP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ListenPacket</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ListenUnix" target="_blank" rel="noopener noreferrer"><code>ListenUnix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ListenTCP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ListenUnixgram" target="_blank" rel="noopener noreferrer"><code>ListenUnixgram</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ListenUDP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupAddr" target="_blank" rel="noopener noreferrer"><code>LookupAddr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ListenUnix</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupCNAME" target="_blank" rel="noopener noreferrer"><code>LookupCNAME</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ListenUnixgram</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupHost" target="_blank" rel="noopener noreferrer"><code>LookupHost</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupAddr</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupIP" target="_blank" rel="noopener noreferrer"><code>LookupIP</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupCNAME</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupMX" target="_blank" rel="noopener noreferrer"><code>LookupMX</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupHost</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupNS" target="_blank" rel="noopener noreferrer"><code>LookupNS</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupIP</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupPort" target="_blank" rel="noopener noreferrer"><code>LookupPort</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupMX</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupSRV" target="_blank" rel="noopener noreferrer"><code>LookupSRV</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupNS</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#LookupTXT" target="_blank" rel="noopener noreferrer"><code>LookupTXT</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupPort</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#Pipe" target="_blank" rel="noopener noreferrer"><code>Pipe</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupSRV</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ResolveIPAddr" target="_blank" rel="noopener noreferrer"><code>ResolveIPAddr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>LookupTXT</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ResolveTCPAddr" target="_blank" rel="noopener noreferrer"><code>ResolveTCPAddr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ParseMAC</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ResolveUDPAddr" target="_blank" rel="noopener noreferrer"><code>ResolveUDPAddr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>Pipe</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#ResolveUnixAddr" target="_blank" rel="noopener noreferrer"><code>ResolveUnixAddr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ResolveIPAddr</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#TCPAddrFromAddrPort" target="_blank" rel="noopener noreferrer"><code>TCPAddrFromAddrPort</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
-              <li><code>ResolveTCPAddr</code></li>
-            
-              <li><code>ResolveUDPAddr</code></li>
-            
-              <li><code>ResolveUnixAddr</code></li>
-            
-              <li><code>TCPAddrFromAddrPort</code></li>
-            
-              <li><code>UDPAddrFromAddrPort</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/net#UDPAddrFromAddrPort" target="_blank" rel="noopener noreferrer"><code>UDPAddrFromAddrPort</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most net helpers depend on sockets, DNS, or host network state.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -867,23 +1232,23 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 87.5%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 12.5%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 12.5%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>7/8</strong> shipped</span>
+    <span><strong>1</strong> next</span>
     
     
-    <span><strong>1</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    7 shipped • 1 still need triage.
+    7 shipped • 1 next.
   </p>
 
   
@@ -895,25 +1260,25 @@ ga('send', 'pageview');
   
 
   
-
-  
-    <div class="surface-details-grid">
+    <div class="surface-buckets">
       
-
-      
-        <details class="surface-details">
-          <summary>Needs triage (1)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
             
-              <li><code>Split</code></li>
+              <li>
+                <code>Split</code>
+                <span>Go path helpers are strong plain string portability targets.</span>
+              </li>
             
           </ul>
-        </details>
+        </section>
+      
+
       
     </div>
+  
+
   
 </article>
 
@@ -944,23 +1309,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 11.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.2%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 88.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 66.7%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>2/18</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>12</strong> explicit non-goals</span>
     
-    
-    <span><strong>16</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    2 shipped • 16 still need triage.
+    2 shipped • 4 next • 12 explicit non-goals.
   </p>
 
   
@@ -972,53 +1339,159 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Find</code>
+                <span>Index search helpers are useful plain-value targets.</span>
+              </li>
+            
+              <li>
+                <code>Search</code>
+                <span>Search helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>SearchFloat64s</code>
+                <span>Search helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>SearchInts</code>
+                <span>Search helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (16)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (12)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>Find</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Float64s" target="_blank" rel="noopener noreferrer"><code>Float64s</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Float64s</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Float64sAreSorted" target="_blank" rel="noopener noreferrer"><code>Float64sAreSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Float64sAreSorted</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Ints" target="_blank" rel="noopener noreferrer"><code>Ints</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Ints</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#IntsAreSorted" target="_blank" rel="noopener noreferrer"><code>IntsAreSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>IntsAreSorted</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#IsSorted" target="_blank" rel="noopener noreferrer"><code>IsSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>IsSorted</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Reverse" target="_blank" rel="noopener noreferrer"><code>Reverse</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Reverse</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Slice" target="_blank" rel="noopener noreferrer"><code>Slice</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Search</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#SliceIsSorted" target="_blank" rel="noopener noreferrer"><code>SliceIsSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>SearchFloat64s</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#SliceStable" target="_blank" rel="noopener noreferrer"><code>SliceStable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>SearchInts</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Sort" target="_blank" rel="noopener noreferrer"><code>Sort</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Slice</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Stable" target="_blank" rel="noopener noreferrer"><code>Stable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>SliceIsSorted</code></li>
-            
-              <li><code>SliceStable</code></li>
-            
-              <li><code>Sort</code></li>
-            
-              <li><code>Stable</code></li>
-            
-              <li><code>Strings</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Strings" target="_blank" rel="noopener noreferrer"><code>Strings</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -1051,23 +1524,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 29.4%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 35.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 70.6%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 35.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>10/34</strong> shipped</span>
+    <span><strong>12</strong> next</span>
+    <span><strong>12</strong> explicit non-goals</span>
     
-    
-    <span><strong>24</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    10 shipped • 24 still need triage.
+    10 shipped • 12 next • 12 explicit non-goals.
   </p>
 
   
@@ -1079,69 +1554,199 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>CanBackquote</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>FormatUint</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsGraphic</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsPrint</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ParseUint</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuotedPrefix</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteRune</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteRuneToASCII</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteRuneToGraphic</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteToASCII</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>QuoteToGraphic</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>UnquoteChar</code>
+                <span>Parse and format helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (24)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (12)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>AppendBool</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendBool" target="_blank" rel="noopener noreferrer"><code>AppendBool</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendFloat</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendFloat" target="_blank" rel="noopener noreferrer"><code>AppendFloat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendInt</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendInt" target="_blank" rel="noopener noreferrer"><code>AppendInt</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuote</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuote" target="_blank" rel="noopener noreferrer"><code>AppendQuote</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteRune</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteRune" target="_blank" rel="noopener noreferrer"><code>AppendQuoteRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteRuneToASCII</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteRuneToASCII" target="_blank" rel="noopener noreferrer"><code>AppendQuoteRuneToASCII</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteRuneToGraphic</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteRuneToGraphic" target="_blank" rel="noopener noreferrer"><code>AppendQuoteRuneToGraphic</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteToASCII</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteToASCII" target="_blank" rel="noopener noreferrer"><code>AppendQuoteToASCII</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendQuoteToGraphic</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendQuoteToGraphic" target="_blank" rel="noopener noreferrer"><code>AppendQuoteToGraphic</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>AppendUint</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#AppendUint" target="_blank" rel="noopener noreferrer"><code>AppendUint</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice append APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>CanBackquote</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#FormatComplex" target="_blank" rel="noopener noreferrer"><code>FormatComplex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number formatting does not fit JS plain values.</span>
+              </li>
             
-              <li><code>FormatComplex</code></li>
-            
-              <li><code>FormatUint</code></li>
-            
-              <li><code>IsGraphic</code></li>
-            
-              <li><code>IsPrint</code></li>
-            
-              <li><code>ParseComplex</code></li>
-            
-              <li><code>ParseUint</code></li>
-            
-              <li><code>QuoteRune</code></li>
-            
-              <li><code>QuoteRuneToASCII</code></li>
-            
-              <li><code>QuoteRuneToGraphic</code></li>
-            
-              <li><code>QuoteToASCII</code></li>
-            
-              <li><code>QuoteToGraphic</code></li>
-            
-              <li><code>QuotedPrefix</code></li>
-            
-              <li><code>UnquoteChar</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strconv#ParseComplex" target="_blank" rel="noopener noreferrer"><code>ParseComplex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number parsing does not fit JS plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -1174,25 +1779,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 55.8%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 38.5%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 1.9%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 5.8%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 42.3%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>29/52</strong> shipped</span>
+    <span><strong>20</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
     
-    <span><strong>1</strong> explicit non-goals</span>
-    <span><strong>22</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    29 shipped • 1 explicit non-goals • 22 still need triage.
+    29 shipped • 20 next • 3 explicit non-goals.
   </p>
 
   
@@ -1204,12 +1809,125 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>ContainsFunc</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>ContainsRune</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>FieldsFunc</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>IndexByte</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>IndexFunc</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>IndexRune</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>LastIndexByte</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>LastIndexFunc</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>Map</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>SplitAfter</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>SplitAfterN</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>Title</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>ToLowerSpecial</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>ToTitle</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>ToTitleSpecial</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>ToUpperSpecial</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>ToValidUTF8</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>TrimFunc</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>TrimLeftFunc</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>TrimRightFunc</code>
+                <span>Go strings helpers are core portability targets for Locutus.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (1)</summary>
+          <summary>Explicit non-goals (3)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
@@ -1221,64 +1939,28 @@ ga('send', 'pageview');
                 <span>A string clone helper adds little value in JavaScript.</span>
               </li>
             
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strings#NewReader" target="_blank" rel="noopener noreferrer"><code>NewReader</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader objects are not a stable plain-value target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/strings#NewReplacer" target="_blank" rel="noopener noreferrer"><code>NewReplacer</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Replacer objects are not a stable plain-value target.</span>
+              </li>
+            
           </ul>
         </details>
       
 
-      
-        <details class="surface-details">
-          <summary>Needs triage (22)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
-            
-              <li><code>ContainsFunc</code></li>
-            
-              <li><code>ContainsRune</code></li>
-            
-              <li><code>FieldsFunc</code></li>
-            
-              <li><code>IndexByte</code></li>
-            
-              <li><code>IndexFunc</code></li>
-            
-              <li><code>IndexRune</code></li>
-            
-              <li><code>LastIndexByte</code></li>
-            
-              <li><code>LastIndexFunc</code></li>
-            
-              <li><code>Map</code></li>
-            
-              <li><code>NewReader</code></li>
-            
-              <li><code>NewReplacer</code></li>
-            
-              <li><code>SplitAfter</code></li>
-            
-              <li><code>SplitAfterN</code></li>
-            
-              <li><code>Title</code></li>
-            
-              <li><code>ToLowerSpecial</code></li>
-            
-              <li><code>ToTitle</code></li>
-            
-              <li><code>ToTitleSpecial</code></li>
-            
-              <li><code>ToUpperSpecial</code></li>
-            
-              <li><code>ToValidUTF8</code></li>
-            
-              <li><code>TrimFunc</code></li>
-            
-              <li><code>TrimLeftFunc</code></li>
-            
-              <li><code>TrimRightFunc</code></li>
-            
-          </ul>
-        </details>
       
     </div>
   
@@ -1311,23 +1993,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 57.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 28.6%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 42.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 14.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>4/7</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
     
-    
-    <span><strong>3</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    4 shipped • 3 still need triage.
+    4 shipped • 2 next • 1 explicit non-goals.
   </p>
 
   
@@ -1339,27 +2023,50 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>ConstantTimeByteEq</code>
+                <span>Constant-time scalar comparison helpers fit plain-value portability well.</span>
+              </li>
+            
+              <li>
+                <code>ConstantTimeLessOrEq</code>
+                <span>Constant-time scalar comparison helpers fit plain-value portability well.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (3)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>ConstantTimeByteEq</code></li>
-            
-              <li><code>ConstantTimeLessOrEq</code></li>
-            
-              <li><code>XORBytes</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/subtle#XORBytes" target="_blank" rel="noopener noreferrer"><code>XORBytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mutable byte-buffer APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -1392,23 +2099,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 27.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 3.4%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 72.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 69.5%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>16/59</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>41</strong> explicit non-goals</span>
     
-    
-    <span><strong>43</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    16 shipped • 43 still need triage.
+    16 shipped • 2 next • 41 explicit non-goals.
   </p>
 
   
@@ -1420,107 +2129,410 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Compare</code>
+                <span>Time comparison has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>UnixNano</code>
+                <span>Unix timestamp conversion has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (43)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (41)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>AfterFunc</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#AfterFunc" target="_blank" rel="noopener noreferrer"><code>AfterFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timer callbacks are side-effectful runtime scheduling APIs.</span>
+              </li>
             
-              <li><code>AppendFormat</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#AppendFormat" target="_blank" rel="noopener noreferrer"><code>AppendFormat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Clock</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Clock" target="_blank" rel="noopener noreferrer"><code>Clock</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Compare</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Day" target="_blank" rel="noopener noreferrer"><code>Day</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Day</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#FixedZone" target="_blank" rel="noopener noreferrer"><code>FixedZone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>FixedZone</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#GobDecode" target="_blank" rel="noopener noreferrer"><code>GobDecode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>GoString</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#GobEncode" target="_blank" rel="noopener noreferrer"><code>GobEncode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>GobDecode</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#GoString" target="_blank" rel="noopener noreferrer"><code>GoString</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>GobEncode</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Hour" target="_blank" rel="noopener noreferrer"><code>Hour</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Hour</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#In" target="_blank" rel="noopener noreferrer"><code>In</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>ISOWeek</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#IsDST" target="_blank" rel="noopener noreferrer"><code>IsDST</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>In</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#ISOWeek" target="_blank" rel="noopener noreferrer"><code>ISOWeek</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>IsDST</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#IsZero" target="_blank" rel="noopener noreferrer"><code>IsZero</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>IsZero</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#LoadLocation" target="_blank" rel="noopener noreferrer"><code>LoadLocation</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone database loading depends on host runtime state.</span>
+              </li>
             
-              <li><code>LoadLocation</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#LoadLocationFromTZData" target="_blank" rel="noopener noreferrer"><code>LoadLocationFromTZData</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone database loading depends on host runtime state.</span>
+              </li>
             
-              <li><code>LoadLocationFromTZData</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Local" target="_blank" rel="noopener noreferrer"><code>Local</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Local</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Location" target="_blank" rel="noopener noreferrer"><code>Location</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Location</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#MarshalBinary" target="_blank" rel="noopener noreferrer"><code>MarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>MarshalBinary</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#MarshalJSON" target="_blank" rel="noopener noreferrer"><code>MarshalJSON</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>MarshalJSON</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#MarshalText" target="_blank" rel="noopener noreferrer"><code>MarshalText</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>MarshalText</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Minute" target="_blank" rel="noopener noreferrer"><code>Minute</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Minute</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Month" target="_blank" rel="noopener noreferrer"><code>Month</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Month</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Nanosecond" target="_blank" rel="noopener noreferrer"><code>Nanosecond</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Nanosecond</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#NewTicker" target="_blank" rel="noopener noreferrer"><code>NewTicker</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>NewTicker</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#NewTimer" target="_blank" rel="noopener noreferrer"><code>NewTimer</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>NewTimer</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Now" target="_blank" rel="noopener noreferrer"><code>Now</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Now</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Second" target="_blank" rel="noopener noreferrer"><code>Second</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Second</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Since" target="_blank" rel="noopener noreferrer"><code>Since</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Since</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Sleep" target="_blank" rel="noopener noreferrer"><code>Sleep</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Sleep</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#String" target="_blank" rel="noopener noreferrer"><code>String</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>String</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Tick" target="_blank" rel="noopener noreferrer"><code>Tick</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Tick</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UnmarshalBinary" target="_blank" rel="noopener noreferrer"><code>UnmarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UTC</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UnmarshalJSON" target="_blank" rel="noopener noreferrer"><code>UnmarshalJSON</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnixNano</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UnmarshalText" target="_blank" rel="noopener noreferrer"><code>UnmarshalText</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnmarshalBinary</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Until" target="_blank" rel="noopener noreferrer"><code>Until</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnmarshalJSON</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UTC" target="_blank" rel="noopener noreferrer"><code>UTC</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnmarshalText</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Weekday" target="_blank" rel="noopener noreferrer"><code>Weekday</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Until</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Year" target="_blank" rel="noopener noreferrer"><code>Year</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Weekday</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#YearDay" target="_blank" rel="noopener noreferrer"><code>YearDay</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Year</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Zone" target="_blank" rel="noopener noreferrer"><code>Zone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>YearDay</code></li>
-            
-              <li><code>Zone</code></li>
-            
-              <li><code>ZoneBounds</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#ZoneBounds" target="_blank" rel="noopener noreferrer"><code>ZoneBounds</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -1553,23 +2565,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 28.6%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 28.6%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 71.4%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 42.9%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>8/28</strong> shipped</span>
+    <span><strong>8</strong> next</span>
+    <span><strong>12</strong> explicit non-goals</span>
     
-    
-    <span><strong>20</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    8 shipped • 20 still need triage.
+    8 shipped • 8 next • 12 explicit non-goals.
   </p>
 
   
@@ -1581,61 +2595,179 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>EscapedFragment</code>
+                <span>Escaping helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>EscapedPath</code>
+                <span>Escaping helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Hostname</code>
+                <span>URL host decomposition is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>IsAbs</code>
+                <span>URL absolute checks have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>ParseRequestURI</code>
+                <span>Request-URI parsing is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>PathUnescape</code>
+                <span>URL escaping is a strong plain-value target.</span>
+              </li>
+            
+              <li>
+                <code>Port</code>
+                <span>URL host decomposition is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>RequestURI</code>
+                <span>Request-URI formatting is a useful plain-value helper.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (20)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (12)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>Add</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Add" target="_blank" rel="noopener noreferrer"><code>Add</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Del</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Del" target="_blank" rel="noopener noreferrer"><code>Del</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>EscapedFragment</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Get" target="_blank" rel="noopener noreferrer"><code>Get</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>EscapedPath</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Has" target="_blank" rel="noopener noreferrer"><code>Has</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Get</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#MarshalBinary" target="_blank" rel="noopener noreferrer"><code>MarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Has</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Query" target="_blank" rel="noopener noreferrer"><code>Query</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Hostname</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Redacted" target="_blank" rel="noopener noreferrer"><code>Redacted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>IsAbs</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#Set" target="_blank" rel="noopener noreferrer"><code>Set</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>MarshalBinary</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#String" target="_blank" rel="noopener noreferrer"><code>String</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>ParseRequestURI</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#UnmarshalBinary" target="_blank" rel="noopener noreferrer"><code>UnmarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>PathUnescape</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#User" target="_blank" rel="noopener noreferrer"><code>User</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
-              <li><code>Port</code></li>
-            
-              <li><code>Query</code></li>
-            
-              <li><code>Redacted</code></li>
-            
-              <li><code>RequestURI</code></li>
-            
-              <li><code>Set</code></li>
-            
-              <li><code>String</code></li>
-            
-              <li><code>UnmarshalBinary</code></li>
-            
-              <li><code>User</code></li>
-            
-              <li><code>UserPassword</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/url#UserPassword" target="_blank" rel="noopener noreferrer"><code>UserPassword</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

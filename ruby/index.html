@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.249Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.249Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.167Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.167Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -378,17 +378,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         44/290 shipped
+         • 217 next
         
-         • 246 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 15.2%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 74.8%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 84.8%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 10%"></span>
+            
             
           
         </span>
@@ -415,18 +417,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 15.2%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 74.8%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 84.8%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 10%"></span>
+        
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
-      
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
     </div>
 
     <div class="surface-kpis">
@@ -435,12 +439,17 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">44/290</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">246</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">217</strong>
         </article>
       
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">29</strong>
+        </article>
       
       
     </div>
@@ -452,7 +461,7 @@ ga('send', 'pageview');
       
       
       
-      44 of 290 upstream entries are already shipped; 246 still need a decision.
+      44 of 290 upstream entries are already shipped; 217 are explicitly on the shortlist; 29 are explicit non-goals.
     </p>
 
     
@@ -482,23 +491,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 10.4%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 81.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 89.6%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.2%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>14/134</strong> shipped</span>
+    <span><strong>109</strong> next</span>
+    <span><strong>11</strong> explicit non-goals</span>
     
-    
-    <span><strong>120</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    14 shipped • 120 still need triage.
+    14 shipped • 109 next • 11 explicit non-goals.
   </p>
 
   
@@ -510,261 +521,675 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>-</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>[]</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>[]=</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>*</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>&amp;</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>+</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>&lt;&lt;</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>|</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>all?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>any?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>append</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>assoc</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>at</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>chunk</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>chunk_while</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>clear</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>collect</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>collect_concat</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>collect!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>combination</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>compact!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>concat</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>count</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>cycle</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>deconstruct</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>delete</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>delete_at</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>delete_if</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>detect</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>difference</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>dig</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>drop</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>drop_while</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>empty?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>entries</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>fetch</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>fill</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>filter</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>filter!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>find</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>find_all</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>find_index</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>flat_map</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>flatten!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>grep</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>grep_v</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>include?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>index</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>inject</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>insert</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>intersect?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>intersection</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>join</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>keep_if</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>length</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>map</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>map!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>max</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>max_by</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>member?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>min</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>min_by</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>minmax</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>minmax_by</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>none?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>one?</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>partition</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>pop</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>prepend</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>product</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>push</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>rassoc</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>reduce</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>reject</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>reject!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>repeated_combination</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>repeated_permutation</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>replace</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>reverse</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>reverse_each</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>reverse!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>rindex</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>rotate</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>rotate!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>select</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>select!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>shift</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>shuffle</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>shuffle!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>size</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>slice</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>slice_after</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>slice_before</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>slice!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>sort</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>sort_by</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>sort_by!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>sort!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>sum</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>take</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>take_while</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>to_a</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>to_ary</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>to_h</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>transpose</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>union</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>uniq!</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>unshift</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>values_at</code>
+                <span>Most Ruby Array methods map naturally onto JS arrays and plain objects.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (120)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
-            
-              <li><code>&amp;</code></li>
-            
-              <li><code>*</code></li>
-            
-              <li><code>+</code></li>
-            
-              <li><code>-</code></li>
-            
-              <li><code>&lt;&lt;</code></li>
-            
-              <li><code>[]</code></li>
-            
-              <li><code>[]=</code></li>
-            
-              <li><code>all?</code></li>
-            
-              <li><code>any?</code></li>
-            
-              <li><code>append</code></li>
-            
-              <li><code>assoc</code></li>
-            
-              <li><code>at</code></li>
-            
-              <li><code>chain</code></li>
-            
-              <li><code>chunk</code></li>
-            
-              <li><code>chunk_while</code></li>
-            
-              <li><code>clear</code></li>
-            
-              <li><code>collect</code></li>
-            
-              <li><code>collect!</code></li>
-            
-              <li><code>collect_concat</code></li>
-            
-              <li><code>combination</code></li>
-            
-              <li><code>compact!</code></li>
-            
-              <li><code>concat</code></li>
-            
-              <li><code>count</code></li>
-            
-              <li><code>cycle</code></li>
-            
-              <li><code>deconstruct</code></li>
-            
-              <li><code>delete</code></li>
-            
-              <li><code>delete_at</code></li>
-            
-              <li><code>delete_if</code></li>
-            
-              <li><code>detect</code></li>
-            
-              <li><code>difference</code></li>
-            
-              <li><code>dig</code></li>
-            
-              <li><code>drop</code></li>
-            
-              <li><code>drop_while</code></li>
-            
-              <li><code>each</code></li>
-            
-              <li><code>each_cons</code></li>
-            
-              <li><code>each_entry</code></li>
-            
-              <li><code>each_index</code></li>
-            
-              <li><code>each_slice</code></li>
-            
-              <li><code>each_with_index</code></li>
-            
-              <li><code>each_with_object</code></li>
-            
-              <li><code>empty?</code></li>
-            
-              <li><code>entries</code></li>
-            
-              <li><code>fetch</code></li>
-            
-              <li><code>fill</code></li>
-            
-              <li><code>filter</code></li>
-            
-              <li><code>filter!</code></li>
-            
-              <li><code>find</code></li>
-            
-              <li><code>find_all</code></li>
-            
-              <li><code>find_index</code></li>
-            
-              <li><code>flat_map</code></li>
-            
-              <li><code>flatten!</code></li>
-            
-              <li><code>grep</code></li>
-            
-              <li><code>grep_v</code></li>
-            
-              <li><code>include?</code></li>
-            
-              <li><code>index</code></li>
-            
-              <li><code>inject</code></li>
-            
-              <li><code>insert</code></li>
-            
-              <li><code>intersect?</code></li>
-            
-              <li><code>intersection</code></li>
-            
-              <li><code>join</code></li>
-            
-              <li><code>keep_if</code></li>
-            
-              <li><code>lazy</code></li>
-            
-              <li><code>length</code></li>
-            
-              <li><code>map</code></li>
-            
-              <li><code>map!</code></li>
-            
-              <li><code>max</code></li>
-            
-              <li><code>max_by</code></li>
-            
-              <li><code>member?</code></li>
-            
-              <li><code>min</code></li>
-            
-              <li><code>min_by</code></li>
-            
-              <li><code>minmax</code></li>
-            
-              <li><code>minmax_by</code></li>
-            
-              <li><code>none?</code></li>
-            
-              <li><code>one?</code></li>
-            
-              <li><code>pack</code></li>
-            
-              <li><code>partition</code></li>
-            
-              <li><code>pop</code></li>
-            
-              <li><code>prepend</code></li>
-            
-              <li><code>product</code></li>
-            
-              <li><code>push</code></li>
-            
-              <li><code>rassoc</code></li>
-            
-              <li><code>reduce</code></li>
-            
-              <li><code>reject</code></li>
-            
-              <li><code>reject!</code></li>
-            
-              <li><code>repeated_combination</code></li>
-            
-              <li><code>repeated_permutation</code></li>
-            
-              <li><code>replace</code></li>
-            
-              <li><code>reverse</code></li>
-            
-              <li><code>reverse!</code></li>
-            
-              <li><code>reverse_each</code></li>
-            
-              <li><code>rindex</code></li>
-            
-              <li><code>rotate</code></li>
-            
-              <li><code>rotate!</code></li>
-            
-              <li><code>select</code></li>
-            
-              <li><code>select!</code></li>
-            
-              <li><code>shift</code></li>
-            
-              <li><code>shuffle</code></li>
-            
-              <li><code>shuffle!</code></li>
-            
-              <li><code>size</code></li>
-            
-              <li><code>slice</code></li>
-            
-              <li><code>slice!</code></li>
-            
-              <li><code>slice_after</code></li>
-            
-              <li><code>slice_before</code></li>
-            
-              <li><code>sort</code></li>
-            
-              <li><code>sort!</code></li>
-            
-              <li><code>sort_by</code></li>
-            
-              <li><code>sort_by!</code></li>
-            
-              <li><code>sum</code></li>
-            
-              <li><code>take</code></li>
-            
-              <li><code>take_while</code></li>
-            
-              <li><code>to_a</code></li>
-            
-              <li><code>to_ary</code></li>
-            
-              <li><code>to_h</code></li>
-            
-              <li><code>to_set</code></li>
-            
-              <li><code>transpose</code></li>
-            
-              <li><code>union</code></li>
-            
-              <li><code>uniq!</code></li>
-            
-              <li><code>unshift</code></li>
-            
-              <li><code>values_at</code></li>
-            
-              <li><code>|</code></li>
+          <summary>Explicit non-goals (11)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>chain</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Lazy enumerator chaining is not a stable plain-value target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>each</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>each_cons</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>each_entry</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>each_index</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>each_slice</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>each_with_index</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>each_with_object</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>lazy</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Lazy enumerators do not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>pack</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary packing semantics do not map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/Array.html" target="_blank" rel="noopener noreferrer"><code>to_set</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Ruby Set values are not a stable plain-value target for Locutus.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -797,23 +1222,23 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 57.7%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 42.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 42.3%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>15/26</strong> shipped</span>
+    <span><strong>11</strong> next</span>
     
     
-    <span><strong>11</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    15 shipped • 11 still need triage.
+    15 shipped • 11 next.
   </p>
 
   
@@ -825,45 +1250,75 @@ ga('send', 'pageview');
   
 
   
-
-  
-    <div class="surface-details-grid">
+    <div class="surface-buckets">
       
-
-      
-        <details class="surface-details">
-          <summary>Needs triage (11)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
             
-              <li><code>acosh</code></li>
+              <li>
+                <code>acosh</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>asinh</code></li>
+              <li>
+                <code>asinh</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>atan2</code></li>
+              <li>
+                <code>atan2</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>atanh</code></li>
+              <li>
+                <code>atanh</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>erf</code></li>
+              <li>
+                <code>erf</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>erfc</code></li>
+              <li>
+                <code>erfc</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>frexp</code></li>
+              <li>
+                <code>frexp</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>gamma</code></li>
+              <li>
+                <code>gamma</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>hypot</code></li>
+              <li>
+                <code>hypot</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>ldexp</code></li>
+              <li>
+                <code>ldexp</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
-              <li><code>lgamma</code></li>
+              <li>
+                <code>lgamma</code>
+                <span>Ruby Math helpers map cleanly to JS numbers.</span>
+              </li>
             
           </ul>
-        </details>
+        </section>
+      
+
       
     </div>
+  
+
   
 </article>
 
@@ -894,23 +1349,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 11.5%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 74.6%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 88.5%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 13.8%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>15/130</strong> shipped</span>
+    <span><strong>97</strong> next</span>
+    <span><strong>18</strong> explicit non-goals</span>
     
-    
-    <span><strong>115</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    15 shipped • 115 still need triage.
+    15 shipped • 97 next • 18 explicit non-goals.
   </p>
 
   
@@ -922,251 +1379,678 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>-@</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>[]</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>[]=</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>*</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>%</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>+</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>+@</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>&lt;</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>&lt;&lt;</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>&lt;=</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>=~</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>&gt;</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>&gt;=</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ascii_only?</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>between?</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>capitalize!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>casecmp</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>casecmp?</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>center</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>chars</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>chomp!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>chop!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>chr</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>clamp</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>clear</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>codepoints</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>concat</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>count</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>dedup</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>delete</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>delete_prefix!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>delete_suffix!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>delete!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>downcase!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>dump</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>empty?</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>getbyte</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>grapheme_clusters</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>gsub!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>hex</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>index</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>insert</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>lines</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ljust</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>lstrip</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>lstrip!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>match</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>match?</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>next</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>next!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>oct</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ord</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>partition</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>prepend</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>reverse!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rindex</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rjust</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rpartition</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rstrip</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rstrip!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>scan</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>scrub</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>scrub!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>setbyte</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>size</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>slice</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>slice!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>squeeze</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>squeeze!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>strip!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>sub</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>sub!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>succ</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>succ!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>sum</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>swapcase</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>swapcase!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_c</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_f</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_i</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_r</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_str</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_sym</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>tr_s</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>tr_s!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>tr!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>undump</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unicode_normalize</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unicode_normalize!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unicode_normalized?</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unpack</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unpack1</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>upcase!</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>upto</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>valid_encoding?</code>
+                <span>Most Ruby String methods are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (115)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
-            
-              <li><code>%</code></li>
-            
-              <li><code>*</code></li>
-            
-              <li><code>+</code></li>
-            
-              <li><code>+@</code></li>
-            
-              <li><code>-@</code></li>
-            
-              <li><code>&lt;</code></li>
-            
-              <li><code>&lt;&lt;</code></li>
-            
-              <li><code>&lt;=</code></li>
-            
-              <li><code>=~</code></li>
-            
-              <li><code>&gt;</code></li>
-            
-              <li><code>&gt;=</code></li>
-            
-              <li><code>[]</code></li>
-            
-              <li><code>[]=</code></li>
-            
-              <li><code>ascii_only?</code></li>
-            
-              <li><code>b</code></li>
-            
-              <li><code>between?</code></li>
-            
-              <li><code>byteindex</code></li>
-            
-              <li><code>byterindex</code></li>
-            
-              <li><code>bytes</code></li>
-            
-              <li><code>bytesize</code></li>
-            
-              <li><code>byteslice</code></li>
-            
-              <li><code>bytesplice</code></li>
-            
-              <li><code>capitalize!</code></li>
-            
-              <li><code>casecmp</code></li>
-            
-              <li><code>casecmp?</code></li>
-            
-              <li><code>center</code></li>
-            
-              <li><code>chars</code></li>
-            
-              <li><code>chomp!</code></li>
-            
-              <li><code>chop!</code></li>
-            
-              <li><code>chr</code></li>
-            
-              <li><code>clamp</code></li>
-            
-              <li><code>clear</code></li>
-            
-              <li><code>codepoints</code></li>
-            
-              <li><code>concat</code></li>
-            
-              <li><code>count</code></li>
-            
-              <li><code>crypt</code></li>
-            
-              <li><code>dedup</code></li>
-            
-              <li><code>delete</code></li>
-            
-              <li><code>delete!</code></li>
-            
-              <li><code>delete_prefix!</code></li>
-            
-              <li><code>delete_suffix!</code></li>
-            
-              <li><code>downcase!</code></li>
-            
-              <li><code>dump</code></li>
-            
-              <li><code>each_byte</code></li>
-            
-              <li><code>each_char</code></li>
-            
-              <li><code>each_codepoint</code></li>
-            
-              <li><code>each_grapheme_cluster</code></li>
-            
-              <li><code>each_line</code></li>
-            
-              <li><code>empty?</code></li>
-            
-              <li><code>encode</code></li>
-            
-              <li><code>encode!</code></li>
-            
-              <li><code>encoding</code></li>
-            
-              <li><code>force_encoding</code></li>
-            
-              <li><code>getbyte</code></li>
-            
-              <li><code>grapheme_clusters</code></li>
-            
-              <li><code>gsub!</code></li>
-            
-              <li><code>hex</code></li>
-            
-              <li><code>index</code></li>
-            
-              <li><code>insert</code></li>
-            
-              <li><code>intern</code></li>
-            
-              <li><code>lines</code></li>
-            
-              <li><code>ljust</code></li>
-            
-              <li><code>lstrip</code></li>
-            
-              <li><code>lstrip!</code></li>
-            
-              <li><code>match</code></li>
-            
-              <li><code>match?</code></li>
-            
-              <li><code>next</code></li>
-            
-              <li><code>next!</code></li>
-            
-              <li><code>oct</code></li>
-            
-              <li><code>ord</code></li>
-            
-              <li><code>partition</code></li>
-            
-              <li><code>prepend</code></li>
-            
-              <li><code>replace</code></li>
-            
-              <li><code>reverse!</code></li>
-            
-              <li><code>rindex</code></li>
-            
-              <li><code>rjust</code></li>
-            
-              <li><code>rpartition</code></li>
-            
-              <li><code>rstrip</code></li>
-            
-              <li><code>rstrip!</code></li>
-            
-              <li><code>scan</code></li>
-            
-              <li><code>scrub</code></li>
-            
-              <li><code>scrub!</code></li>
-            
-              <li><code>setbyte</code></li>
-            
-              <li><code>size</code></li>
-            
-              <li><code>slice</code></li>
-            
-              <li><code>slice!</code></li>
-            
-              <li><code>split</code></li>
-            
-              <li><code>squeeze</code></li>
-            
-              <li><code>squeeze!</code></li>
-            
-              <li><code>strip!</code></li>
-            
-              <li><code>sub</code></li>
-            
-              <li><code>sub!</code></li>
-            
-              <li><code>succ</code></li>
-            
-              <li><code>succ!</code></li>
-            
-              <li><code>sum</code></li>
-            
-              <li><code>swapcase</code></li>
-            
-              <li><code>swapcase!</code></li>
-            
-              <li><code>to_c</code></li>
-            
-              <li><code>to_f</code></li>
-            
-              <li><code>to_i</code></li>
-            
-              <li><code>to_r</code></li>
-            
-              <li><code>to_str</code></li>
-            
-              <li><code>to_sym</code></li>
-            
-              <li><code>tr!</code></li>
-            
-              <li><code>tr_s</code></li>
-            
-              <li><code>tr_s!</code></li>
-            
-              <li><code>undump</code></li>
-            
-              <li><code>unicode_normalize</code></li>
-            
-              <li><code>unicode_normalize!</code></li>
-            
-              <li><code>unicode_normalized?</code></li>
-            
-              <li><code>unpack</code></li>
-            
-              <li><code>unpack1</code></li>
-            
-              <li><code>upcase!</code></li>
-            
-              <li><code>upto</code></li>
-            
-              <li><code>valid_encoding?</code></li>
+          <summary>Explicit non-goals (18)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>b</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Ruby&#39;s binary-string clone helper adds little value in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>byteindex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented string APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>byterindex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented string APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented string APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>bytesize</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented string APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>byteslice</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented string APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>bytesplice</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented string APIs do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>crypt</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Password-hash wrappers are security-sensitive and not a good Locutus target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>each_byte</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>each_char</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>each_codepoint</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>each_grapheme_cluster</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>each_line</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enumerator-driven iteration APIs are better expressed directly in JS.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding-object semantics do not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>encode!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding-object semantics do not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>encoding</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding objects are not a stable plain-value target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>force_encoding</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding mutation does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.ruby-lang.org/en/master/String.html" target="_blank" rel="noopener noreferrer"><code>intern</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Symbol-table interning does not fit Locutus&#39; plain-value model.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

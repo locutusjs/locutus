@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.180Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.180Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.096Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.096Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -306,17 +306,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 16/59 shipped
+                 • 2 next
                 
-                 • 43 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 27.1%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 3.4%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 72.9%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 69.5%"></span>
+                    
                     
                   
                 </span>
@@ -355,23 +357,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 27.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 3.4%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 72.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 69.5%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>16/59</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>41</strong> explicit non-goals</span>
     
-    
-    <span><strong>43</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    16 shipped • 43 still need triage.
+    16 shipped • 2 next • 41 explicit non-goals.
   </p>
 
   
@@ -383,107 +387,410 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Compare</code>
+                <span>Time comparison has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>UnixNano</code>
+                <span>Unix timestamp conversion has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (43)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (41)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>AfterFunc</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#AfterFunc" target="_blank" rel="noopener noreferrer"><code>AfterFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timer callbacks are side-effectful runtime scheduling APIs.</span>
+              </li>
             
-              <li><code>AppendFormat</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#AppendFormat" target="_blank" rel="noopener noreferrer"><code>AppendFormat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Clock</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Clock" target="_blank" rel="noopener noreferrer"><code>Clock</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Compare</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Day" target="_blank" rel="noopener noreferrer"><code>Day</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Day</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#FixedZone" target="_blank" rel="noopener noreferrer"><code>FixedZone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>FixedZone</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#GobDecode" target="_blank" rel="noopener noreferrer"><code>GobDecode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>GoString</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#GobEncode" target="_blank" rel="noopener noreferrer"><code>GobEncode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>GobDecode</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#GoString" target="_blank" rel="noopener noreferrer"><code>GoString</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>GobEncode</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Hour" target="_blank" rel="noopener noreferrer"><code>Hour</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Hour</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#In" target="_blank" rel="noopener noreferrer"><code>In</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>ISOWeek</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#IsDST" target="_blank" rel="noopener noreferrer"><code>IsDST</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>In</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#ISOWeek" target="_blank" rel="noopener noreferrer"><code>ISOWeek</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>IsDST</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#IsZero" target="_blank" rel="noopener noreferrer"><code>IsZero</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>IsZero</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#LoadLocation" target="_blank" rel="noopener noreferrer"><code>LoadLocation</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone database loading depends on host runtime state.</span>
+              </li>
             
-              <li><code>LoadLocation</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#LoadLocationFromTZData" target="_blank" rel="noopener noreferrer"><code>LoadLocationFromTZData</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone database loading depends on host runtime state.</span>
+              </li>
             
-              <li><code>LoadLocationFromTZData</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Local" target="_blank" rel="noopener noreferrer"><code>Local</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Local</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Location" target="_blank" rel="noopener noreferrer"><code>Location</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Location</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#MarshalBinary" target="_blank" rel="noopener noreferrer"><code>MarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>MarshalBinary</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#MarshalJSON" target="_blank" rel="noopener noreferrer"><code>MarshalJSON</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>MarshalJSON</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#MarshalText" target="_blank" rel="noopener noreferrer"><code>MarshalText</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>MarshalText</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Minute" target="_blank" rel="noopener noreferrer"><code>Minute</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Minute</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Month" target="_blank" rel="noopener noreferrer"><code>Month</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Month</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Nanosecond" target="_blank" rel="noopener noreferrer"><code>Nanosecond</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Nanosecond</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#NewTicker" target="_blank" rel="noopener noreferrer"><code>NewTicker</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>NewTicker</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#NewTimer" target="_blank" rel="noopener noreferrer"><code>NewTimer</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>NewTimer</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Now" target="_blank" rel="noopener noreferrer"><code>Now</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Now</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Second" target="_blank" rel="noopener noreferrer"><code>Second</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Second</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Since" target="_blank" rel="noopener noreferrer"><code>Since</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Since</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Sleep" target="_blank" rel="noopener noreferrer"><code>Sleep</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Sleep</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#String" target="_blank" rel="noopener noreferrer"><code>String</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>String</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Tick" target="_blank" rel="noopener noreferrer"><code>Tick</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Tick</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UnmarshalBinary" target="_blank" rel="noopener noreferrer"><code>UnmarshalBinary</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UTC</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UnmarshalJSON" target="_blank" rel="noopener noreferrer"><code>UnmarshalJSON</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnixNano</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UnmarshalText" target="_blank" rel="noopener noreferrer"><code>UnmarshalText</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnmarshalBinary</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Until" target="_blank" rel="noopener noreferrer"><code>Until</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnmarshalJSON</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#UTC" target="_blank" rel="noopener noreferrer"><code>UTC</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>UnmarshalText</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Weekday" target="_blank" rel="noopener noreferrer"><code>Weekday</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Until</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Year" target="_blank" rel="noopener noreferrer"><code>Year</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Weekday</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#YearDay" target="_blank" rel="noopener noreferrer"><code>YearDay</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>Year</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#Zone" target="_blank" rel="noopener noreferrer"><code>Zone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
-              <li><code>YearDay</code></li>
-            
-              <li><code>Zone</code></li>
-            
-              <li><code>ZoneBounds</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/time#ZoneBounds" target="_blank" rel="noopener noreferrer"><code>ZoneBounds</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Much of Go time depends on locations, timers, and rich time values beyond JS plain values.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

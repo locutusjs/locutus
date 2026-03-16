@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.242Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.242Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.160Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.160Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -371,17 +371,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         38/86 shipped
+         • 42 next
         
-         • 48 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 44.2%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 48.8%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 55.8%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 7%"></span>
+            
             
           
         </span>
@@ -408,18 +410,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 44.2%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 48.8%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 55.8%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 7%"></span>
+        
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
-      
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
     </div>
 
     <div class="surface-kpis">
@@ -428,12 +432,17 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">38/86</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">48</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">42</strong>
         </article>
       
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">6</strong>
+        </article>
       
       
     </div>
@@ -445,7 +454,7 @@ ga('send', 'pageview');
       
       
       
-      38 of 86 upstream entries are already shipped; 48 still need a decision.
+      38 of 86 upstream entries are already shipped; 42 are explicitly on the shortlist; 6 are explicit non-goals.
     </p>
 
     
@@ -475,23 +484,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 37.5%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 75%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 37.5%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>2/8</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
     
-    
-    <span><strong>6</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    2 shipped • 6 still need triage.
+    2 shipped • 3 next • 3 explicit non-goals.
   </p>
 
   
@@ -503,33 +514,73 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>context_diff</code>
+                <span>Sequence-diff helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>restore</code>
+                <span>Sequence-diff helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unified_diff</code>
+                <span>Sequence-diff helpers are high-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (6)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>IS_CHARACTER_JUNK</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.diff_bytes" target="_blank" rel="noopener noreferrer"><code>diff_bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-oriented diffing does not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>IS_LINE_JUNK</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.IS_CHARACTER_JUNK" target="_blank" rel="noopener noreferrer"><code>IS_CHARACTER_JUNK</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Exposing tiny constant predicates as standalone ports adds little value.</span>
+              </li>
             
-              <li><code>context_diff</code></li>
-            
-              <li><code>diff_bytes</code></li>
-            
-              <li><code>restore</code></li>
-            
-              <li><code>unified_diff</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.IS_LINE_JUNK" target="_blank" rel="noopener noreferrer"><code>IS_LINE_JUNK</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Exposing tiny constant predicates as standalone ports adds little value.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -562,23 +613,23 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 39.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 60.7%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 60.7%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>22/56</strong> shipped</span>
+    <span><strong>34</strong> next</span>
     
     
-    <span><strong>34</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    22 shipped • 34 still need triage.
+    22 shipped • 34 next.
   </p>
 
   
@@ -590,91 +641,190 @@ ga('send', 'pageview');
   
 
   
-
-  
-    <div class="surface-details-grid">
+    <div class="surface-buckets">
       
-
-      
-        <details class="surface-details">
-          <summary>Needs triage (34)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
             
-              <li><code>acos</code></li>
+              <li>
+                <code>acos</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>acosh</code></li>
+              <li>
+                <code>acosh</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>asin</code></li>
+              <li>
+                <code>asin</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>asinh</code></li>
+              <li>
+                <code>asinh</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>atan</code></li>
+              <li>
+                <code>atan</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>atan2</code></li>
+              <li>
+                <code>atan2</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>atanh</code></li>
+              <li>
+                <code>atanh</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>cbrt</code></li>
+              <li>
+                <code>cbrt</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>copysign</code></li>
+              <li>
+                <code>copysign</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>cos</code></li>
+              <li>
+                <code>cos</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>cosh</code></li>
+              <li>
+                <code>cosh</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>degrees</code></li>
+              <li>
+                <code>degrees</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>erf</code></li>
+              <li>
+                <code>erf</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>erfc</code></li>
+              <li>
+                <code>erfc</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>exp2</code></li>
+              <li>
+                <code>exp2</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>expm1</code></li>
+              <li>
+                <code>expm1</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>fmod</code></li>
+              <li>
+                <code>fmod</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>frexp</code></li>
+              <li>
+                <code>frexp</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>gamma</code></li>
+              <li>
+                <code>gamma</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>hypot</code></li>
+              <li>
+                <code>hypot</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>ldexp</code></li>
+              <li>
+                <code>ldexp</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>lgamma</code></li>
+              <li>
+                <code>lgamma</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>log1p</code></li>
+              <li>
+                <code>log1p</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>modf</code></li>
+              <li>
+                <code>modf</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>nextafter</code></li>
+              <li>
+                <code>nextafter</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>perm</code></li>
+              <li>
+                <code>perm</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>radians</code></li>
+              <li>
+                <code>radians</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>remainder</code></li>
+              <li>
+                <code>remainder</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>sin</code></li>
+              <li>
+                <code>sin</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>sinh</code></li>
+              <li>
+                <code>sinh</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>sumprod</code></li>
+              <li>
+                <code>sumprod</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>tan</code></li>
+              <li>
+                <code>tan</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>tanh</code></li>
+              <li>
+                <code>tanh</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
-              <li><code>ulp</code></li>
+              <li>
+                <code>ulp</code>
+                <span>Python math helpers map cleanly to JS numbers and arrays.</span>
+              </li>
             
           </ul>
-        </details>
+        </section>
+      
+
       
     </div>
+  
+
   
 </article>
 
@@ -705,23 +855,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41.7%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 66.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 25%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>4/12</strong> shipped</span>
+    <span><strong>5</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
     
-    
-    <span><strong>8</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    4 shipped • 8 still need triage.
+    4 shipped • 5 next • 3 explicit non-goals.
   </p>
 
   
@@ -733,37 +885,83 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>escape</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>fullmatch</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>match</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>search</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (8)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>compile</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/re.html#re.compile" target="_blank" rel="noopener noreferrer"><code>compile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex objects are not a stable plain-value target.</span>
+              </li>
             
-              <li><code>escape</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/re.html#re.purge" target="_blank" rel="noopener noreferrer"><code>purge</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Regex cache mutation is outside Locutus&#39; portability scope.</span>
+              </li>
             
-              <li><code>fullmatch</code></li>
-            
-              <li><code>match</code></li>
-            
-              <li><code>purge</code></li>
-            
-              <li><code>search</code></li>
-            
-              <li><code>split</code></li>
-            
-              <li><code>template</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/re.html#re.template" target="_blank" rel="noopener noreferrer"><code>template</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Template pattern objects are not a stable plain-value target.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.255Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.255Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.174Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.174Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -326,17 +326,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         23/34 shipped
+         • 3 next
         
-         • 11 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 67.6%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 8.8%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 32.4%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 23.5%"></span>
+            
             
           
         </span>
@@ -363,18 +365,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 67.6%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 8.8%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 32.4%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 23.5%"></span>
+        
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
-      
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
     </div>
 
     <div class="surface-kpis">
@@ -383,12 +387,17 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">23/34</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">11</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">3</strong>
         </article>
       
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">8</strong>
+        </article>
       
       
     </div>
@@ -400,7 +409,7 @@ ga('send', 'pageview');
       
       
       
-      23 of 34 upstream entries are already shipped; 11 still need a decision.
+      23 of 34 upstream entries are already shipped; 3 are explicitly on the shortlist; 8 are explicit non-goals.
     </p>
 
     
@@ -430,23 +439,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 67.6%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 8.8%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 32.4%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 23.5%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>23/34</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>8</strong> explicit non-goals</span>
     
-    
-    <span><strong>11</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    23 shipped • 11 still need triage.
+    23 shipped • 3 next • 8 explicit non-goals.
   </p>
 
   
@@ -458,43 +469,118 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>is_ascii</code>
+                <span>Remaining string helpers are useful plain-value portability targets unless they depend on iterators or byte semantics.</span>
+              </li>
+            
+              <li>
+                <code>repeat</code>
+                <span>Remaining string helpers are useful plain-value portability targets unless they depend on iterators or byte semantics.</span>
+              </li>
+            
+              <li>
+                <code>split_ascii_whitespace</code>
+                <span>Remaining string helpers are useful plain-value portability targets unless they depend on iterators or byte semantics.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (11)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (8)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>bytes</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.bytes" target="_blank" rel="noopener noreferrer"><code>bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte iterators do not fit Locutus&#39; current plain-value model.</span>
+              </li>
             
-              <li><code>char_indices</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.char_indices" target="_blank" rel="noopener noreferrer"><code>char_indices</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-returning APIs do not fit Locutus&#39; plain-value model.</span>
+              </li>
             
-              <li><code>chars</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.chars" target="_blank" rel="noopener noreferrer"><code>chars</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-returning APIs do not fit Locutus&#39; plain-value model.</span>
+              </li>
             
-              <li><code>is_ascii</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.matches" target="_blank" rel="noopener noreferrer"><code>matches</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-returning APIs do not fit Locutus&#39; plain-value model.</span>
+              </li>
             
-              <li><code>matches</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.parse" target="_blank" rel="noopener noreferrer"><code>parse</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Generic trait-driven parsing does not map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>parse</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.rmatch_indices" target="_blank" rel="noopener noreferrer"><code>rmatch_indices</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-returning APIs do not fit Locutus&#39; plain-value model.</span>
+              </li>
             
-              <li><code>repeat</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.rmatches" target="_blank" rel="noopener noreferrer"><code>rmatches</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-returning APIs do not fit Locutus&#39; plain-value model.</span>
+              </li>
             
-              <li><code>rmatch_indices</code></li>
-            
-              <li><code>rmatches</code></li>
-            
-              <li><code>split_ascii_whitespace</code></li>
-            
-              <li><code>trim_matches</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://doc.rust-lang.org/std/primitive.str.html#method.trim_matches" target="_blank" rel="noopener noreferrer"><code>trim_matches</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Pattern-driven trimming does not map cleanly to one stable plain-value contract.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.175Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.175Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.089Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.089Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -278,17 +278,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 2/18 shipped
+                 • 4 next
                 
-                 • 16 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 11.1%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.2%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 88.9%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 66.7%"></span>
+                    
                     
                   
                 </span>
@@ -327,23 +329,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 11.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.2%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 88.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 66.7%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>2/18</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>12</strong> explicit non-goals</span>
     
-    
-    <span><strong>16</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    2 shipped • 16 still need triage.
+    2 shipped • 4 next • 12 explicit non-goals.
   </p>
 
   
@@ -355,53 +359,159 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Find</code>
+                <span>Index search helpers are useful plain-value targets.</span>
+              </li>
+            
+              <li>
+                <code>Search</code>
+                <span>Search helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>SearchFloat64s</code>
+                <span>Search helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>SearchInts</code>
+                <span>Search helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (16)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (12)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>Find</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Float64s" target="_blank" rel="noopener noreferrer"><code>Float64s</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Float64s</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Float64sAreSorted" target="_blank" rel="noopener noreferrer"><code>Float64sAreSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Float64sAreSorted</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Ints" target="_blank" rel="noopener noreferrer"><code>Ints</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Ints</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#IntsAreSorted" target="_blank" rel="noopener noreferrer"><code>IntsAreSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>IntsAreSorted</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#IsSorted" target="_blank" rel="noopener noreferrer"><code>IsSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>IsSorted</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Reverse" target="_blank" rel="noopener noreferrer"><code>Reverse</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Reverse</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Slice" target="_blank" rel="noopener noreferrer"><code>Slice</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Search</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#SliceIsSorted" target="_blank" rel="noopener noreferrer"><code>SliceIsSorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>SearchFloat64s</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#SliceStable" target="_blank" rel="noopener noreferrer"><code>SliceStable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>SearchInts</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Sort" target="_blank" rel="noopener noreferrer"><code>Sort</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>Slice</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Stable" target="_blank" rel="noopener noreferrer"><code>Stable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
-              <li><code>SliceIsSorted</code></li>
-            
-              <li><code>SliceStable</code></li>
-            
-              <li><code>Sort</code></li>
-            
-              <li><code>Stable</code></li>
-            
-              <li><code>Strings</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/sort#Strings" target="_blank" rel="noopener noreferrer"><code>Strings</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most sort APIs depend on mutable slices or callback-driven ordering.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

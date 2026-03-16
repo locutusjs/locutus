@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.245Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.245Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.164Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.164Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -282,17 +282,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 4/12 shipped
+                 • 5 next
                 
-                 • 8 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41.7%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 66.7%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 25%"></span>
+                    
                     
                   
                 </span>
@@ -331,23 +333,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41.7%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 66.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 25%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>4/12</strong> shipped</span>
+    <span><strong>5</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
     
-    
-    <span><strong>8</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    4 shipped • 8 still need triage.
+    4 shipped • 5 next • 3 explicit non-goals.
   </p>
 
   
@@ -359,37 +363,83 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>escape</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>fullmatch</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>match</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>search</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Top-level regex helpers are high-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (8)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>compile</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/re.html#re.compile" target="_blank" rel="noopener noreferrer"><code>compile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex objects are not a stable plain-value target.</span>
+              </li>
             
-              <li><code>escape</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/re.html#re.purge" target="_blank" rel="noopener noreferrer"><code>purge</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Regex cache mutation is outside Locutus&#39; portability scope.</span>
+              </li>
             
-              <li><code>fullmatch</code></li>
-            
-              <li><code>match</code></li>
-            
-              <li><code>purge</code></li>
-            
-              <li><code>search</code></li>
-            
-              <li><code>split</code></li>
-            
-              <li><code>template</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/re.html#re.template" target="_blank" rel="noopener noreferrer"><code>template</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Template pattern objects are not a stable plain-value target.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.172Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.172Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.086Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.086Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -288,17 +288,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 7/21 shipped
+                 • 7 next
                 
-                 • 14 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 33.3%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 66.7%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 33.3%"></span>
+                    
                     
                   
                 </span>
@@ -337,23 +339,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 33.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 66.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 33.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>7/21</strong> shipped</span>
+    <span><strong>7</strong> next</span>
+    <span><strong>7</strong> explicit non-goals</span>
     
-    
-    <span><strong>14</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    7 shipped • 14 still need triage.
+    7 shipped • 7 next • 7 explicit non-goals.
   </p>
 
   
@@ -365,49 +369,129 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>FromSlash</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsLocal</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Match</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Split</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>SplitList</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ToSlash</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>VolumeName</code>
+                <span>Filepath helpers are high-value plain string portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (14)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (7)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>Abs</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Abs" target="_blank" rel="noopener noreferrer"><code>Abs</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Absolute-path resolution depends on process working-directory state.</span>
+              </li>
             
-              <li><code>EvalSymlinks</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#EvalSymlinks" target="_blank" rel="noopener noreferrer"><code>EvalSymlinks</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Symlink resolution depends on filesystem state.</span>
+              </li>
             
-              <li><code>FromSlash</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Glob" target="_blank" rel="noopener noreferrer"><code>Glob</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem globbing depends on host state.</span>
+              </li>
             
-              <li><code>Glob</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#HasPrefix" target="_blank" rel="noopener noreferrer"><code>HasPrefix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Deprecated path-prefix checks add little value to the roadmap.</span>
+              </li>
             
-              <li><code>HasPrefix</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Localize" target="_blank" rel="noopener noreferrer"><code>Localize</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>OS-specific path localization depends on host path semantics.</span>
+              </li>
             
-              <li><code>IsLocal</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#Walk" target="_blank" rel="noopener noreferrer"><code>Walk</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem traversal depends on host state and callback side effects.</span>
+              </li>
             
-              <li><code>Localize</code></li>
-            
-              <li><code>Match</code></li>
-            
-              <li><code>Split</code></li>
-            
-              <li><code>SplitList</code></li>
-            
-              <li><code>ToSlash</code></li>
-            
-              <li><code>VolumeName</code></li>
-            
-              <li><code>Walk</code></li>
-            
-              <li><code>WalkDir</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/filepath#WalkDir" target="_blank" rel="noopener noreferrer"><code>WalkDir</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem traversal depends on host state and callback side effects.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

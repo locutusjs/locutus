@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.152Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.152Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.076Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.076Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -340,17 +340,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         20/83 shipped
+         • 44 next
         
-         • 63 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 24.1%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 53%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 75.9%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 22.9%"></span>
+            
             
           
         </span>
@@ -377,18 +379,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 24.1%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 53%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 75.9%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 22.9%"></span>
+        
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
-      
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
     </div>
 
     <div class="surface-kpis">
@@ -397,12 +401,17 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">20/83</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">63</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">44</strong>
         </article>
       
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">19</strong>
+        </article>
       
       
     </div>
@@ -414,7 +423,7 @@ ga('send', 'pageview');
       
       
       
-      20 of 83 upstream entries are already shipped; 63 still need a decision.
+      20 of 83 upstream entries are already shipped; 44 are explicitly on the shortlist; 19 are explicit non-goals.
     </p>
 
     
@@ -444,23 +453,23 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 57.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 42.9%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 42.9%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>8/14</strong> shipped</span>
+    <span><strong>6</strong> next</span>
     
     
-    <span><strong>6</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    8 shipped • 6 still need triage.
+    8 shipped • 6 next.
   </p>
 
   
@@ -472,35 +481,50 @@ ga('send', 'pageview');
   
 
   
-
-  
-    <div class="surface-details-grid">
+    <div class="surface-buckets">
       
-
-      
-        <details class="surface-details">
-          <summary>Needs triage (6)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
             
-              <li><code>isblank</code></li>
+              <li>
+                <code>isblank</code>
+                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
+              </li>
             
-              <li><code>iscntrl</code></li>
+              <li>
+                <code>iscntrl</code>
+                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
+              </li>
             
-              <li><code>isgraph</code></li>
+              <li>
+                <code>isgraph</code>
+                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
+              </li>
             
-              <li><code>isprint</code></li>
+              <li>
+                <code>isprint</code>
+                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
+              </li>
             
-              <li><code>ispunct</code></li>
+              <li>
+                <code>ispunct</code>
+                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
+              </li>
             
-              <li><code>isxdigit</code></li>
+              <li>
+                <code>isxdigit</code>
+                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
+              </li>
             
           </ul>
-        </details>
+        </section>
+      
+
       
     </div>
+  
+
   
 </article>
 
@@ -531,23 +555,23 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.8%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 95.2%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 95.2%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>1/21</strong> shipped</span>
+    <span><strong>20</strong> next</span>
     
     
-    <span><strong>20</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    1 shipped • 20 still need triage.
+    1 shipped • 20 next.
   </p>
 
   
@@ -559,63 +583,120 @@ ga('send', 'pageview');
   
 
   
-
-  
-    <div class="surface-details-grid">
+    <div class="surface-buckets">
       
-
-      
-        <details class="surface-details">
-          <summary>Needs triage (20)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
             
-              <li><code>acos</code></li>
+              <li>
+                <code>acos</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>asin</code></li>
+              <li>
+                <code>asin</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>atan</code></li>
+              <li>
+                <code>atan</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>atan2</code></li>
+              <li>
+                <code>atan2</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>ceil</code></li>
+              <li>
+                <code>ceil</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>copysign</code></li>
+              <li>
+                <code>copysign</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>cos</code></li>
+              <li>
+                <code>cos</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>exp</code></li>
+              <li>
+                <code>exp</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>fabs</code></li>
+              <li>
+                <code>fabs</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>floor</code></li>
+              <li>
+                <code>floor</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>fmod</code></li>
+              <li>
+                <code>fmod</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>hypot</code></li>
+              <li>
+                <code>hypot</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>log</code></li>
+              <li>
+                <code>log</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>log10</code></li>
+              <li>
+                <code>log10</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>modf</code></li>
+              <li>
+                <code>modf</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>pow</code></li>
+              <li>
+                <code>pow</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>sin</code></li>
+              <li>
+                <code>sin</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>sqrt</code></li>
+              <li>
+                <code>sqrt</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>tan</code></li>
+              <li>
+                <code>tan</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
-              <li><code>trunc</code></li>
+              <li>
+                <code>trunc</code>
+                <span>Scalar math helpers are strong plain-value portability targets.</span>
+              </li>
             
           </ul>
-        </details>
+        </section>
+      
+
       
     </div>
+  
+
   
 </article>
 
@@ -646,23 +727,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 9.1%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 90.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 63.6%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>1/11</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>7</strong> explicit non-goals</span>
     
-    
-    <span><strong>10</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    1 shipped • 10 still need triage.
+    1 shipped • 3 next • 7 explicit non-goals.
   </p>
 
   
@@ -674,41 +757,109 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>snprintf</code>
+                <span>Sized string formatting still produces a plain string result.</span>
+              </li>
+            
+              <li>
+                <code>vsnprintf</code>
+                <span>Variadic string formatting still yields a plain string result.</span>
+              </li>
+            
+              <li>
+                <code>vsprintf</code>
+                <span>Variadic string formatting still yields a plain string result.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (10)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (7)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>fprintf</code></li>
+              
+              <li>
+                
+                  <code>fprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>fputs</code></li>
+              
+              <li>
+                
+                  <code>fputs</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>printf</code></li>
+              
+              <li>
+                
+                  <code>printf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>putchar</code></li>
+              
+              <li>
+                
+                  <code>putchar</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>puts</code></li>
+              
+              <li>
+                
+                  <code>puts</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>snprintf</code></li>
+              
+              <li>
+                
+                  <code>vfprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
-              <li><code>vfprintf</code></li>
-            
-              <li><code>vprintf</code></li>
-            
-              <li><code>vsnprintf</code></li>
-            
-              <li><code>vsprintf</code></li>
+              
+              <li>
+                
+                  <code>vprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -741,23 +892,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 27.8%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 55.6%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 72.2%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 16.7%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>5/18</strong> shipped</span>
+    <span><strong>10</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
     
-    
-    <span><strong>13</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    5 shipped • 13 still need triage.
+    5 shipped • 10 next • 3 explicit non-goals.
   </p>
 
   
@@ -771,47 +924,108 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>atol</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>atoll</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>bsearch</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>labs</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>llabs</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rand</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>strtof</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>strtoll</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>strtoul</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+              <li>
+                <code>strtoull</code>
+                <span>Scalar conversion and numeric helpers are good portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (13)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>atol</code></li>
+              
+              <li>
+                
+                  <code>getenv</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Process environment lookup depends on host state outside Locutus&#39; model.</span>
+              </li>
             
-              <li><code>atoll</code></li>
+              
+              <li>
+                
+                  <code>qsort</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place comparator-driven sorting does not map cleanly to plain JS values.</span>
+              </li>
             
-              <li><code>bsearch</code></li>
-            
-              <li><code>getenv</code></li>
-            
-              <li><code>labs</code></li>
-            
-              <li><code>llabs</code></li>
-            
-              <li><code>qsort</code></li>
-            
-              <li><code>rand</code></li>
-            
-              <li><code>srand</code></li>
-            
-              <li><code>strtof</code></li>
-            
-              <li><code>strtoll</code></li>
-            
-              <li><code>strtoul</code></li>
-            
-              <li><code>strtoull</code></li>
+              
+              <li>
+                
+                  <code>srand</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Global RNG seeding mutates ambient runtime state.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
@@ -844,23 +1058,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 26.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 26.3%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 73.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 47.4%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>5/19</strong> shipped</span>
+    <span><strong>5</strong> next</span>
+    <span><strong>9</strong> explicit non-goals</span>
     
-    
-    <span><strong>14</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    5 shipped • 14 still need triage.
+    5 shipped • 5 next • 9 explicit non-goals.
   </p>
 
   
@@ -872,49 +1088,137 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>strcspn</code>
+                <span>Character-class span helpers are useful for string scanning.</span>
+              </li>
+            
+              <li>
+                <code>strncmp</code>
+                <span>Prefix-bounded string comparison still has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>strpbrk</code>
+                <span>Character-class search maps naturally to string scanning.</span>
+              </li>
+            
+              <li>
+                <code>strrchr</code>
+                <span>Last-occurrence search maps naturally to string lookup.</span>
+              </li>
+            
+              <li>
+                <code>strspn</code>
+                <span>Character-class span helpers are useful for string scanning.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (14)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (9)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>memchr</code></li>
+              
+              <li>
+                
+                  <code>memchr</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>memcmp</code></li>
+              
+              <li>
+                
+                  <code>memcmp</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>memcpy</code></li>
+              
+              <li>
+                
+                  <code>memcpy</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>memmove</code></li>
+              
+              <li>
+                
+                  <code>memmove</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>memset</code></li>
+              
+              <li>
+                
+                  <code>memset</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>strcpy</code></li>
+              
+              <li>
+                
+                  <code>strcpy</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>strcspn</code></li>
+              
+              <li>
+                
+                  <code>strncat</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>strncat</code></li>
+              
+              <li>
+                
+                  <code>strncpy</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
-              <li><code>strncmp</code></li>
-            
-              <li><code>strncpy</code></li>
-            
-              <li><code>strpbrk</code></li>
-            
-              <li><code>strrchr</code></li>
-            
-              <li><code>strspn</code></li>
-            
-              <li><code>strtok</code></li>
+              
+              <li>
+                
+                  <code>strtok</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful tokenizer semantics do not fit Locutus&#39; plain-value model.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

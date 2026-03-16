@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.169Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.169Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.083Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.083Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -286,17 +286,19 @@ ga('send', 'pageview');
               <strong>Upstream Surface Inventory</strong>
               <span>
                 6/76 shipped
+                 • 66 next
                 
-                 • 70 need triage
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
                     <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 7.9%"></span>
                     
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 86.8%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 92.1%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 5.3%"></span>
+                    
                     
                   
                 </span>
@@ -335,23 +337,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 7.9%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 86.8%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 92.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 5.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>6/76</strong> shipped</span>
+    <span><strong>66</strong> next</span>
+    <span><strong>4</strong> explicit non-goals</span>
     
-    
-    <span><strong>70</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    6 shipped • 70 still need triage.
+    6 shipped • 66 next • 4 explicit non-goals.
   </p>
 
   
@@ -363,161 +367,397 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>all?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>any?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>at</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>chunk</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>chunk_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>chunk_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>concat</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>count</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>count_until</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>dedup</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>dedup_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>drop</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>drop_every</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>drop_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>empty?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>fetch</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>fetch!</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>filter</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>filter_map</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>find</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>find_index</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>find_value</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>flat_map</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>flat_map_reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>frequencies</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>intersperse</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>into</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>join</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_every</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_intersperse</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_join</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>map_reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>max</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>max_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>member?</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min_max</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>min_max_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>partition</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>product</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>product_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reject</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reverse</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>reverse_slice</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>slice</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>slide</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sort</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sort_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>split_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>split_with</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sum</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>sum_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>take</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>take_every</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>take_while</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>to_list</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>uniq</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>uniq_by</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>unzip</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>with_index</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>zip_reduce</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+              <li>
+                <code>zip_with</code>
+                <span>Enum helpers are a high-value functional portability surface for Locutus.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (70)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
-            
-              <li><code>all?</code></li>
-            
-              <li><code>any?</code></li>
-            
-              <li><code>at</code></li>
-            
-              <li><code>chunk</code></li>
-            
-              <li><code>chunk_by</code></li>
-            
-              <li><code>chunk_while</code></li>
-            
-              <li><code>concat</code></li>
-            
-              <li><code>count</code></li>
-            
-              <li><code>count_until</code></li>
-            
-              <li><code>dedup</code></li>
-            
-              <li><code>dedup_by</code></li>
-            
-              <li><code>drop</code></li>
-            
-              <li><code>drop_every</code></li>
-            
-              <li><code>drop_while</code></li>
-            
-              <li><code>each</code></li>
-            
-              <li><code>empty?</code></li>
-            
-              <li><code>fetch</code></li>
-            
-              <li><code>fetch!</code></li>
-            
-              <li><code>filter</code></li>
-            
-              <li><code>filter_map</code></li>
-            
-              <li><code>find</code></li>
-            
-              <li><code>find_index</code></li>
-            
-              <li><code>find_value</code></li>
-            
-              <li><code>flat_map</code></li>
-            
-              <li><code>flat_map_reduce</code></li>
-            
-              <li><code>frequencies</code></li>
-            
-              <li><code>intersperse</code></li>
-            
-              <li><code>into</code></li>
-            
-              <li><code>join</code></li>
-            
-              <li><code>map</code></li>
-            
-              <li><code>map_every</code></li>
-            
-              <li><code>map_intersperse</code></li>
-            
-              <li><code>map_join</code></li>
-            
-              <li><code>map_reduce</code></li>
-            
-              <li><code>max</code></li>
-            
-              <li><code>max_by</code></li>
-            
-              <li><code>member?</code></li>
-            
-              <li><code>min</code></li>
-            
-              <li><code>min_by</code></li>
-            
-              <li><code>min_max</code></li>
-            
-              <li><code>min_max_by</code></li>
-            
-              <li><code>partition</code></li>
-            
-              <li><code>product</code></li>
-            
-              <li><code>product_by</code></li>
-            
-              <li><code>random</code></li>
-            
-              <li><code>reduce</code></li>
-            
-              <li><code>reject</code></li>
-            
-              <li><code>reverse</code></li>
-            
-              <li><code>reverse_slice</code></li>
-            
-              <li><code>shuffle</code></li>
-            
-              <li><code>slice</code></li>
-            
-              <li><code>slide</code></li>
-            
-              <li><code>sort</code></li>
-            
-              <li><code>sort_by</code></li>
-            
-              <li><code>split</code></li>
-            
-              <li><code>split_while</code></li>
-            
-              <li><code>split_with</code></li>
-            
-              <li><code>sum</code></li>
-            
-              <li><code>sum_by</code></li>
-            
-              <li><code>take</code></li>
-            
-              <li><code>take_every</code></li>
-            
-              <li><code>take_random</code></li>
-            
-              <li><code>take_while</code></li>
-            
-              <li><code>to_list</code></li>
-            
-              <li><code>uniq</code></li>
-            
-              <li><code>uniq_by</code></li>
-            
-              <li><code>unzip</code></li>
-            
-              <li><code>with_index</code></li>
-            
-              <li><code>zip_reduce</code></li>
-            
-              <li><code>zip_with</code></li>
+          <summary>Explicit non-goals (4)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>each</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Side-effect-driven iteration is not a good Locutus target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>random</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized enumeration helpers are lower-value than deterministic collection transforms.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>shuffle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized enumeration helpers are lower-value than deterministic collection transforms.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Enum.html" target="_blank" rel="noopener noreferrer"><code>take_random</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized enumeration helpers are lower-value than deterministic collection transforms.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   

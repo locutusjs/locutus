@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T12:51:02.239Z">
-<meta property="article:modified_time" content="2026-03-16T12:51:02.239Z">
+<meta property="article:published_time" content="2026-03-16T16:09:13.157Z">
+<meta property="article:modified_time" content="2026-03-16T16:09:13.157Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -316,17 +316,19 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         18/23 shipped
+         • 4 next
         
-         • 5 need triage
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 78.3%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 17.4%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 21.7%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 4.3%"></span>
+            
             
           
         </span>
@@ -353,18 +355,20 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 78.3%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 17.4%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 21.7%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 4.3%"></span>
+        
         
       
     </div>
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
-      
-      <span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span>
     </div>
 
     <div class="surface-kpis">
@@ -373,12 +377,17 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">18/23</strong>
       </article>
       
-      
         <article class="surface-kpi">
-          <span class="surface-kpi__label">Needs triage</span>
-          <strong class="surface-kpi__value">5</strong>
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">4</strong>
         </article>
       
+      
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">1</strong>
+        </article>
       
       
     </div>
@@ -390,7 +399,7 @@ ga('send', 'pageview');
       
       
       
-      18 of 23 upstream entries are already shipped; 5 still need a decision.
+      18 of 23 upstream entries are already shipped; 4 are explicitly on the shortlist; 1 are explicit non-goals.
     </p>
 
     
@@ -420,23 +429,25 @@ ga('send', 'pageview');
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 78.3%"></span>
       
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 17.4%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: 21.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 4.3%"></span>
+      
       
     
   </div>
 
   <div class="surface-card__stats">
     <span><strong>18/23</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
     
-    
-    <span><strong>5</strong> need triage</span>
     
   </div>
 
   <p class="surface-summary">
-    18 shipped • 5 still need triage.
+    18 shipped • 4 next • 1 explicit non-goals.
   </p>
 
   
@@ -448,31 +459,60 @@ ga('send', 'pageview');
   
 
   
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>CompareTo</code>
+                <span>Most System.String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Equals</code>
+                <span>Most System.String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ToLowerInvariant</code>
+                <span>Most System.String methods are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ToUpperInvariant</code>
+                <span>Most System.String methods are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
 
   
     <div class="surface-details-grid">
       
-
-      
         <details class="surface-details">
-          <summary>Needs triage (5)</summary>
-          <p class="surface-details__intro">
-            These upstream entries exist, but we have not yet decided whether they should be ported, skipped, or intentionally kept out of scope.
-          </p>
-          <ul class="surface-entry-list surface-entry-list--compact surface-entry-list--scroll">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
-              <li><code>Clone</code></li>
-            
-              <li><code>CompareTo</code></li>
-            
-              <li><code>Equals</code></li>
-            
-              <li><code>ToLowerInvariant</code></li>
-            
-              <li><code>ToUpperInvariant</code></li>
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://learn.microsoft.com/en-us/dotnet/api/system.string.Clone?view=net-9.0" target="_blank" rel="noopener noreferrer"><code>Clone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Clone adds little value for immutable JS strings.</span>
+              </li>
             
           </ul>
         </details>
+      
+
       
     </div>
   
