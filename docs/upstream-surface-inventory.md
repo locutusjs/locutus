@@ -53,6 +53,7 @@ The model is intentionally compact:
 ```yml
 golang:
   title: Go
+  scopeNote: This inventory grows namespace-by-namespace rather than pretending to cover every upstream surface at once.
   namespaces:
     filepath:
       title: path/filepath package
@@ -76,6 +77,8 @@ Decision precedence is:
 3. namespace `default`
 
 Every language and namespace that exists in the checked-in upstream snapshots must also exist in this inventory file, even if the namespace only has a `default` and no exact overrides. CI fails if inventory coverage is incomplete.
+
+`scopeNote` is optional, but useful when a language page only tracks a deliberate subset of the upstream language or standard library. That keeps the website honest while the inventory grows.
 
 ## Decision Enum
 
@@ -116,6 +119,17 @@ Use the narrowest tool that keeps the inventory readable:
   - giant namespaces where the fallback decision is the real story
 
 This keeps the file maintainable even for very large surfaces such as `php/__global`, `clojure/core`, or `r/base`.
+
+## Breadth Strategy
+
+We do not broaden every language in one giant invalidating sweep.
+
+- make tracked scope explicit on the website first
+- expand the cheapest trustworthy namespaces next
+- keep triage sparse with namespace defaults and wildcard rules
+- only add exact entries when they are real exceptions
+
+That lets language pages become progressively more representative without turning the inventory into a hand-maintained database of thousands of one-off lines.
 
 ## CI Behavior
 
@@ -178,7 +192,7 @@ The website consumes the combined artifact generated during `yarn injectweb`.
 
 Current presentation:
 
-- language pages show namespace-by-namespace upstream coverage, wanted ports, intentional extras, and untriaged counts
+- language pages show tracked namespace counts, optional scope notes, and namespace-by-namespace upstream coverage, wanted ports, intentional extras, and untriaged counts
 - category pages show namespace-specific wishlist / non-goal / untriaged detail when the category matches a tracked namespace
 
 That makes the wishlist visible to maintainers and users without inventing a separate admin-only interface.

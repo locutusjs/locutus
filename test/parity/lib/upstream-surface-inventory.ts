@@ -76,6 +76,7 @@ const upstreamSurfaceNamespaceInventorySchema = z
 const upstreamSurfaceLanguageInventorySchema = z
   .object({
     title: z.string().min(1).optional(),
+    scopeNote: z.string().min(1).optional(),
     namespaces: optionalSection(z.record(z.string(), upstreamSurfaceNamespaceInventorySchema)),
   })
   .strict()

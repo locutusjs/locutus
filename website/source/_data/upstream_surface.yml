@@ -1,8 +1,9 @@
-generatedAt: '2026-03-16T17:40:36.952Z'
+generatedAt: '2026-03-16T20:06:37.116Z'
 languages:
   awk:
     language: awk
     title: AWK
+    namespaceCount: 1
     shippedCount: 10
     catalogCount: 24
     catalogShippedCount: 10
@@ -111,6 +112,7 @@ languages:
   c:
     language: c
     title: C
+    namespaceCount: 5
     shippedCount: 20
     catalogCount: 83
     catalogShippedCount: 20
@@ -512,6 +514,8 @@ languages:
   clojure:
     language: clojure
     title: Clojure
+    scopeNote: This inventory currently tracks `clojure.core`, `clojure.string`, and `Math`, not the broader JVM ecosystem.
+    namespaceCount: 3
     shippedCount: 16
     catalogCount: 758
     catalogShippedCount: 16
@@ -4844,15 +4848,17 @@ languages:
   elixir:
     language: elixir
     title: Elixir
+    scopeNote: This inventory currently tracks the most plain-value-friendly core modules first, not every Elixir or OTP module.
+    namespaceCount: 7
     shippedCount: 14
-    catalogCount: 214
+    catalogCount: 295
     catalogShippedCount: 14
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 154
-    skippedCount: 46
+    wantedCount: 229
+    skippedCount: 52
     untriagedCount: 0
-    coveragePercent: 7
+    coveragePercent: 5
     namespaces:
       - namespace: Enum
         title: Enum module
@@ -5224,6 +5230,68 @@ languages:
           - Float
         catalogShippedCount: 2
         coveragePercent: 18
+      - namespace: Integer
+        title: Integer module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - digits
+          - extended_gcd
+          - floor_div
+          - gcd
+          - mod
+          - parse
+          - pow
+          - to_char_list
+          - to_charlist
+          - to_string
+          - undigits
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: digits
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: extended_gcd
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: floor_div
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: gcd
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: mod
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: parse
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: pow
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: to_string
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+          - name: undigits
+            decision: wanted
+            note: Integer helpers are strong plain-value portability targets.
+        skippedEntries:
+          - name: to_char_list
+            decision: skip_plain_value_mismatch
+            note: Charlist conversion does not fit Locutus' plain-value model.
+          - name: to_charlist
+            decision: skip_plain_value_mismatch
+            note: Charlist conversion does not fit Locutus' plain-value model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: Kernel
         title: Kernel module
         target: Elixir 1.18
@@ -5611,6 +5679,322 @@ languages:
           - Kernel
         catalogShippedCount: 1
         coveragePercent: 1
+      - namespace: List
+        title: List module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - ascii_printable?
+          - delete
+          - delete_at
+          - duplicate
+          - ends_with?
+          - first
+          - flatten
+          - foldl
+          - foldr
+          - improper?
+          - insert_at
+          - keydelete
+          - keyfind
+          - keyfind!
+          - keymember?
+          - keyreplace
+          - keysort
+          - keystore
+          - keytake
+          - last
+          - myers_difference
+          - pop_at
+          - replace_at
+          - starts_with?
+          - to_atom
+          - to_charlist
+          - to_existing_atom
+          - to_float
+          - to_integer
+          - to_string
+          - to_tuple
+          - update_at
+          - wrap
+          - zip
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: ascii_printable?
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: delete
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: delete_at
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: duplicate
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: ends_with?
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: first
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: flatten
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: foldl
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: foldr
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: improper?
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: insert_at
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keydelete
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keyfind
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keyfind!
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keymember?
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keyreplace
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keysort
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keystore
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: keytake
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: last
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: myers_difference
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: pop_at
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: replace_at
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: starts_with?
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: to_float
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: to_integer
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: to_string
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: to_tuple
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: update_at
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: wrap
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+          - name: zip
+            decision: wanted
+            note: Immutable list transforms are strong plain-value portability targets.
+        skippedEntries:
+          - name: to_atom
+            decision: skip_security
+            note: Atom creation can exhaust the VM atom table and is not a good portability target.
+          - name: to_charlist
+            decision: skip_plain_value_mismatch
+            note: Charlist conversion does not fit Locutus' plain-value model.
+          - name: to_existing_atom
+            decision: skip_security
+            note: Atom-table lookup is runtime-sensitive and not a good portability target.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: Map
+        title: Map module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - delete
+          - drop
+          - equal?
+          - fetch
+          - fetch!
+          - filter
+          - from_keys
+          - from_struct
+          - get
+          - get_and_update
+          - get_and_update!
+          - get_lazy
+          - has_key?
+          - intersect
+          - keys
+          - map
+          - merge
+          - new
+          - pop
+          - pop!
+          - pop_lazy
+          - put
+          - put_new
+          - put_new_lazy
+          - reject
+          - replace
+          - replace!
+          - replace_lazy
+          - size
+          - split
+          - split_with
+          - take
+          - to_list
+          - update
+          - update!
+          - values
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: delete
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: drop
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: equal?
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: fetch
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: fetch!
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: filter
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: from_keys
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: get
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: get_and_update
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: get_and_update!
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: get_lazy
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: has_key?
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: intersect
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: keys
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: map
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: merge
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: new
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: pop
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: pop_lazy
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: pop!
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: put
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: put_new
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: put_new_lazy
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: reject
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: replace
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: replace_lazy
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: replace!
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: size
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: split
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: split_with
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: take
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: to_list
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: update
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: update!
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+          - name: values
+            decision: wanted
+            note: Immutable map helpers are strong plain-value portability targets.
+        skippedEntries:
+          - name: from_struct
+            decision: skip_runtime_model
+            note: Struct-specific reflection does not fit Locutus' plain-value model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: String
         title: String module
         target: Elixir 1.18
@@ -5839,6 +6223,8 @@ languages:
   golang:
     language: golang
     title: Go
+    scopeNote: This inventory tracks selected high-value standard-library packages, not all of Go.
+    namespaceCount: 9
     shippedCount: 87
     catalogCount: 272
     catalogShippedCount: 87
@@ -6937,6 +7323,8 @@ languages:
   julia:
     language: julia
     title: Julia
+    scopeNote: This inventory currently focuses on Julia Base rather than the broader package ecosystem.
+    namespaceCount: 1
     shippedCount: 11
     catalogCount: 854
     catalogShippedCount: 11
@@ -10363,15 +10751,17 @@ languages:
   lua:
     language: lua
     title: Lua
+    scopeNote: This inventory currently tracks Lua's core plain-value libraries first, not the full runtime environment.
+    namespaceCount: 3
     shippedCount: 16
-    catalogCount: 48
+    catalogCount: 55
     catalogShippedCount: 16
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 26
-    skippedCount: 6
+    wantedCount: 29
+    skippedCount: 10
     untriagedCount: 0
-    coveragePercent: 33
+    coveragePercent: 29
     namespaces:
       - namespace: math
         title: math library
@@ -10571,9 +10961,57 @@ languages:
           - string
         catalogShippedCount: 7
         coveragePercent: 41
+      - namespace: table
+        title: table library
+        target: Lua 5.4
+        sourceKind: runtime
+        sourceRef: nickblah/lua:5.4-alpine
+        catalogEntries:
+          - concat
+          - insert
+          - move
+          - pack
+          - remove
+          - sort
+          - unpack
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: concat
+            decision: wanted
+            note: String joining over list-like tables has a clean plain-value contract.
+          - name: pack
+            decision: wanted
+            note: Packing variadic values into a list-like table is a useful portability target.
+          - name: unpack
+            decision: wanted
+            note: Table expansion still has a useful plain-value contract for parity and examples.
+        skippedEntries:
+          - name: insert
+            decision: skip_side_effects
+            note: Most table helpers mutate caller-owned tables rather than returning plain immutable values.
+          - name: move
+            decision: skip_side_effects
+            note: Most table helpers mutate caller-owned tables rather than returning plain immutable values.
+          - name: remove
+            decision: skip_side_effects
+            note: Most table helpers mutate caller-owned tables rather than returning plain immutable values.
+          - name: sort
+            decision: skip_side_effects
+            note: Most table helpers mutate caller-owned tables rather than returning plain immutable values.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
   perl:
     language: perl
     title: Perl
+    scopeNote: This inventory currently focuses on core scalar/string helpers and POSIX numerics rather than all of Perl.
+    namespaceCount: 2
     shippedCount: 22
     catalogCount: 29
     catalogShippedCount: 22
@@ -10697,6 +11135,7 @@ languages:
   php:
     language: php
     title: PHP
+    namespaceCount: 1
     shippedCount: 324
     catalogCount: 1184
     catalogShippedCount: 300
@@ -16042,6 +16481,8 @@ languages:
   powershell:
     language: powershell
     title: PowerShell
+    scopeNote: This inventory currently tracks `System.String`, not the full PowerShell or .NET surface.
+    namespaceCount: 1
     shippedCount: 18
     catalogCount: 23
     catalogShippedCount: 18
@@ -16130,24 +16571,66 @@ languages:
   python:
     language: python
     title: Python
+    scopeNote: This inventory currently tracks a growing plain-value slice of the Python standard library, not all of Python yet.
+    namespaceCount: 9
     shippedCount: 56
-    catalogCount: 86
+    catalogCount: 196
     catalogShippedCount: 56
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 24
-    skippedCount: 6
+    wantedCount: 95
+    skippedCount: 45
     untriagedCount: 0
-    coveragePercent: 65
+    coveragePercent: 29
     namespaces:
+      - namespace: bisect
+        title: bisect
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - bisect
+          - bisect_left
+          - bisect_right
+          - insort
+          - insort_left
+          - insort_right
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: bisect
+            decision: wanted
+            note: Binary-search helpers are strong plain-value portability targets.
+          - name: bisect_left
+            decision: wanted
+            note: Binary-search helpers are strong plain-value portability targets.
+          - name: bisect_right
+            decision: wanted
+            note: Binary-search helpers are strong plain-value portability targets.
+        skippedEntries:
+          - name: insort
+            decision: skip_side_effects
+            note: In-place list insertion mutates caller-owned state.
+          - name: insort_left
+            decision: skip_side_effects
+            note: In-place list insertion mutates caller-owned state.
+          - name: insort_right
+            decision: skip_side_effects
+            note: In-place list insertion mutates caller-owned state.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: difflib
         title: difflib
         target: Python 3.12
         sourceKind: runtime
         sourceRef: python:3.12
         catalogEntries:
-          - IS_CHARACTER_JUNK
-          - IS_LINE_JUNK
           - context_diff
           - diff_bytes
           - get_close_matches
@@ -16175,18 +16658,176 @@ languages:
           - name: diff_bytes
             decision: skip_plain_value_mismatch
             note: Byte-oriented diffing does not fit Locutus' current plain-value model.
-          - name: IS_CHARACTER_JUNK
-            decision: skip_low_value
-            note: Exposing tiny constant predicates as standalone ports adds little value.
-          - name: IS_LINE_JUNK
-            decision: skip_low_value
-            note: Exposing tiny constant predicates as standalone ports adds little value.
         untriagedEntries: []
         staleDecisions: []
         categories:
           - difflib
         catalogShippedCount: 2
-        coveragePercent: 25
+        coveragePercent: 33
+      - namespace: functools
+        title: functools
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - cache
+          - cached_property
+          - cmp_to_key
+          - lru_cache
+          - partial
+          - partialmethod
+          - reduce
+          - singledispatch
+          - singledispatchmethod
+          - total_ordering
+          - update_wrapper
+          - wraps
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: reduce
+            decision: wanted
+            note: Left-folding over plain iterables is a strong portability target.
+        skippedEntries:
+          - name: cache
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: cached_property
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: cmp_to_key
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: lru_cache
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: partial
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: partialmethod
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: singledispatch
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: singledispatchmethod
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: total_ordering
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: update_wrapper
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+          - name: wraps
+            decision: skip_runtime_model
+            note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: itertools
+        title: itertools
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - accumulate
+          - batched
+          - chain
+          - combinations
+          - combinations_with_replacement
+          - compress
+          - count
+          - cycle
+          - dropwhile
+          - filterfalse
+          - groupby
+          - islice
+          - pairwise
+          - permutations
+          - product
+          - repeat
+          - starmap
+          - takewhile
+          - tee
+          - zip_longest
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: accumulate
+            decision: wanted
+            note: Accumulation over plain iterables can be represented as arrays of intermediate results.
+          - name: batched
+            decision: wanted
+            note: Fixed-size chunking is a strong plain-value portability target.
+          - name: chain
+            decision: wanted
+            note: Sequence concatenation maps naturally onto arrays.
+          - name: combinations
+            decision: wanted
+            note: Finite combinatorics helpers can be represented as arrays of tuples.
+          - name: combinations_with_replacement
+            decision: wanted
+            note: Finite combinatorics helpers can be represented as arrays of tuples.
+          - name: compress
+            decision: wanted
+            note: Mask-based filtering has a clean plain-value contract.
+          - name: dropwhile
+            decision: wanted
+            note: Predicate-based slicing has a clean plain-value contract.
+          - name: filterfalse
+            decision: wanted
+            note: Predicate-based filtering has a clean plain-value contract.
+          - name: islice
+            decision: wanted
+            note: Iterator slicing maps naturally onto array slicing semantics.
+          - name: pairwise
+            decision: wanted
+            note: Adjacent-pair grouping can be represented as arrays of tuples.
+          - name: permutations
+            decision: wanted
+            note: Finite combinatorics helpers can be represented as arrays of tuples.
+          - name: product
+            decision: wanted
+            note: Cartesian products can be represented as arrays of tuples.
+          - name: starmap
+            decision: wanted
+            note: Spread-argument mapping still has a clean plain-value contract.
+          - name: takewhile
+            decision: wanted
+            note: Predicate-based slicing has a clean plain-value contract.
+          - name: zip_longest
+            decision: wanted
+            note: Sequence zipping has a strong plain-value contract.
+        skippedEntries:
+          - name: count
+            decision: skip_runtime_model
+            note: Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.
+          - name: cycle
+            decision: skip_runtime_model
+            note: Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.
+          - name: groupby
+            decision: skip_runtime_model
+            note: Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.
+          - name: repeat
+            decision: skip_runtime_model
+            note: Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.
+          - name: tee
+            decision: skip_runtime_model
+            note: Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: math
         title: math
         target: Python 3.12
@@ -16350,6 +16991,244 @@ languages:
           - math
         catalogShippedCount: 40
         coveragePercent: 71
+      - namespace: operator
+        title: operator
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - abs
+          - add
+          - and_
+          - attrgetter
+          - call
+          - concat
+          - contains
+          - countOf
+          - delitem
+          - eq
+          - floordiv
+          - ge
+          - getitem
+          - gt
+          - iadd
+          - iand
+          - iconcat
+          - ifloordiv
+          - ilshift
+          - imatmul
+          - imod
+          - imul
+          - index
+          - indexOf
+          - inv
+          - invert
+          - ior
+          - ipow
+          - irshift
+          - is_
+          - is_not
+          - isub
+          - itemgetter
+          - itruediv
+          - ixor
+          - le
+          - length_hint
+          - lshift
+          - lt
+          - matmul
+          - methodcaller
+          - mod
+          - mul
+          - ne
+          - neg
+          - not_
+          - or_
+          - pos
+          - pow
+          - rshift
+          - setitem
+          - sub
+          - truediv
+          - truth
+          - xor
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: abs
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: add
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: and_
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: concat
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: contains
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: countOf
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: eq
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: floordiv
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: ge
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: getitem
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: gt
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: index
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: indexOf
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: inv
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: invert
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: is_
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: is_not
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: le
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: lshift
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: lt
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: matmul
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: mod
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: mul
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: ne
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: neg
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: not_
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: or_
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: pos
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: pow
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: rshift
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: sub
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: truediv
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: truth
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+          - name: xor
+            decision: wanted
+            note: First-class operator helpers are strong plain-value portability targets.
+        skippedEntries:
+          - name: attrgetter
+            decision: skip_runtime_model
+            note: Getter factories return callable objects rather than plain values.
+          - name: call
+            decision: skip_runtime_model
+            note: Indirect call wrappers add little value beyond direct JS invocation.
+          - name: delitem
+            decision: skip_side_effects
+            note: Container mutation is outside Locutus' value-only model.
+          - name: iadd
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: iand
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: iconcat
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: ifloordiv
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: ilshift
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: imatmul
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: imod
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: imul
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: ior
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: ipow
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: irshift
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: isub
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: itemgetter
+            decision: skip_runtime_model
+            note: Getter factories return callable objects rather than plain values.
+          - name: itruediv
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: ixor
+            decision: skip_side_effects
+            note: In-place operator wrappers imply mutation semantics.
+          - name: length_hint
+            decision: skip_low_value
+            note: Size-hint probing adds little value beyond direct JS length checks.
+          - name: methodcaller
+            decision: skip_runtime_model
+            note: Method-caller factories return callable objects rather than plain values.
+          - name: setitem
+            decision: skip_side_effects
+            note: Container mutation is outside Locutus' value-only model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: re
         title: re
         target: Python 3.12
@@ -16357,6 +17236,7 @@ languages:
         sourceRef: python:3.12
         catalogEntries:
           - compile
+          - error
           - escape
           - findall
           - finditer
@@ -16397,6 +17277,9 @@ languages:
           - name: compile
             decision: skip_runtime_model
             note: Compiled regex objects are not a stable plain-value target.
+          - name: error
+            decision: skip_runtime_model
+            note: Exception types are not standalone plain-value portability targets.
           - name: purge
             decision: skip_runtime_model
             note: Regex cache mutation is outside Locutus' portability scope.
@@ -16408,7 +17291,97 @@ languages:
         categories:
           - re
         catalogShippedCount: 4
-        coveragePercent: 33
+        coveragePercent: 31
+      - namespace: statistics
+        title: statistics
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - correlation
+          - covariance
+          - fmean
+          - geometric_mean
+          - harmonic_mean
+          - linear_regression
+          - mean
+          - median
+          - median_grouped
+          - median_high
+          - median_low
+          - mode
+          - multimode
+          - pstdev
+          - pvariance
+          - quantiles
+          - stdev
+          - variance
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: correlation
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: covariance
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: fmean
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: geometric_mean
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: harmonic_mean
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: linear_regression
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: mean
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: median
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: median_grouped
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: median_high
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: median_low
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: mode
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: multimode
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: pstdev
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: pvariance
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: quantiles
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: stdev
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+          - name: variance
+            decision: wanted
+            note: Aggregate statistics helpers are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: string
         title: string
         target: Python 3.12
@@ -16451,6 +17424,7 @@ languages:
   r:
     language: r
     title: R
+    namespaceCount: 1
     shippedCount: 13
     catalogCount: 1270
     catalogShippedCount: 13
@@ -24001,6 +24975,8 @@ languages:
   rust:
     language: rust
     title: Rust
+    scopeNote: This inventory currently tracks `str` first, not the full Rust standard library.
+    namespaceCount: 1
     shippedCount: 23
     catalogCount: 34
     catalogShippedCount: 23
@@ -24129,15 +25105,19 @@ languages:
   ruby:
     language: ruby
     title: Ruby
+    scopeNote: >-
+      This inventory currently tracks the highest-signal core collection, string, and math surfaces rather than all of
+      Ruby.
+    namespaceCount: 5
     shippedCount: 44
-    catalogCount: 290
+    catalogCount: 470
     catalogShippedCount: 44
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 217
-    skippedCount: 29
+    wantedCount: 355
+    skippedCount: 71
     untriagedCount: 0
-    coveragePercent: 15
+    coveragePercent: 9
     namespaces:
       - namespace: Array
         title: Array instance methods
@@ -24666,6 +25646,762 @@ languages:
           - Array
         catalogShippedCount: 14
         coveragePercent: 10
+      - namespace: Enumerable
+        title: Enumerable instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - all?
+          - any?
+          - chain
+          - chunk
+          - chunk_while
+          - collect
+          - collect_concat
+          - compact
+          - count
+          - cycle
+          - detect
+          - drop
+          - drop_while
+          - each_cons
+          - each_entry
+          - each_slice
+          - each_with_index
+          - each_with_object
+          - entries
+          - filter
+          - filter_map
+          - find
+          - find_all
+          - find_index
+          - first
+          - flat_map
+          - grep
+          - grep_v
+          - group_by
+          - include?
+          - inject
+          - lazy
+          - map
+          - max
+          - max_by
+          - member?
+          - min
+          - min_by
+          - minmax
+          - minmax_by
+          - none?
+          - one?
+          - partition
+          - reduce
+          - reject
+          - reverse_each
+          - select
+          - slice_after
+          - slice_before
+          - slice_when
+          - sort
+          - sort_by
+          - sum
+          - take
+          - take_while
+          - tally
+          - to_a
+          - to_h
+          - to_set
+          - uniq
+          - zip
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: all?
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: any?
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: chunk
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: chunk_while
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: collect
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: collect_concat
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: compact
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: count
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: detect
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: drop
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: drop_while
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: entries
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: filter
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: filter_map
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: find
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: find_all
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: find_index
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: first
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: flat_map
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: grep
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: grep_v
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: group_by
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: include?
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: inject
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: map
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: max
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: max_by
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: member?
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: min
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: min_by
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: minmax
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: minmax_by
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: none?
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: one?
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: partition
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: reduce
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: reject
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: reverse_each
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: select
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: slice_after
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: slice_before
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: slice_when
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: sort
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: sort_by
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: sum
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: take
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: take_while
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: tally
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: to_a
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: to_h
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: uniq
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+          - name: zip
+            decision: wanted
+            note: Most Enumerable transforms can be represented over arrays and plain values.
+        skippedEntries:
+          - name: chain
+            decision: skip_runtime_model
+            note: Lazy enumerator chaining is not a stable plain-value target.
+          - name: cycle
+            decision: skip_runtime_model
+            note: Potentially unbounded iteration does not fit Locutus' plain-value model.
+          - name: each_cons
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_entry
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_slice
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_with_index
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_with_object
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: lazy
+            decision: skip_runtime_model
+            note: Lazy enumerators do not fit Locutus' plain-value model.
+          - name: to_set
+            decision: skip_runtime_model
+            note: Ruby Set values are not a stable plain-value target for Locutus.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: Hash
+        title: Hash instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - <
+          - <=
+          - '>'
+          - '>='
+          - '[]'
+          - '[]='
+          - all?
+          - any?
+          - assoc
+          - chain
+          - chunk
+          - chunk_while
+          - clear
+          - collect
+          - collect_concat
+          - compact
+          - compact!
+          - compare_by_identity
+          - compare_by_identity?
+          - count
+          - cycle
+          - deconstruct_keys
+          - default
+          - default=
+          - default_proc
+          - default_proc=
+          - delete
+          - delete_if
+          - detect
+          - dig
+          - drop
+          - drop_while
+          - each
+          - each_cons
+          - each_entry
+          - each_key
+          - each_pair
+          - each_slice
+          - each_value
+          - each_with_index
+          - each_with_object
+          - empty?
+          - entries
+          - except
+          - fetch
+          - fetch_values
+          - filter
+          - filter!
+          - filter_map
+          - find
+          - find_all
+          - find_index
+          - first
+          - flat_map
+          - flatten
+          - grep
+          - grep_v
+          - group_by
+          - has_key?
+          - has_value?
+          - include?
+          - inject
+          - invert
+          - keep_if
+          - key
+          - key?
+          - keys
+          - lazy
+          - length
+          - map
+          - max
+          - max_by
+          - member?
+          - merge
+          - merge!
+          - min
+          - min_by
+          - minmax
+          - minmax_by
+          - none?
+          - one?
+          - partition
+          - rassoc
+          - reduce
+          - rehash
+          - reject
+          - reject!
+          - replace
+          - reverse_each
+          - select
+          - select!
+          - shift
+          - size
+          - slice
+          - slice_after
+          - slice_before
+          - slice_when
+          - sort
+          - sort_by
+          - store
+          - sum
+          - take
+          - take_while
+          - tally
+          - to_a
+          - to_h
+          - to_hash
+          - to_proc
+          - to_set
+          - transform_keys
+          - transform_keys!
+          - transform_values
+          - transform_values!
+          - uniq
+          - update
+          - value?
+          - values
+          - values_at
+          - zip
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: '[]'
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: '[]='
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: <
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: <=
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: '>'
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: '>='
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: all?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: any?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: assoc
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: chunk
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: chunk_while
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: collect
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: collect_concat
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: compact
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: count
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: cycle
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: deconstruct_keys
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: detect
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: dig
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: drop
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: drop_while
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: empty?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: entries
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: except
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: fetch
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: fetch_values
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: filter
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: filter_map
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: find
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: find_all
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: find_index
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: first
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: flat_map
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: flatten
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: grep
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: grep_v
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: group_by
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: has_key?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: has_value?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: include?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: inject
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: invert
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: key
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: key?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: keys
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: length
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: map
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: max
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: max_by
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: member?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: merge
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: min
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: min_by
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: minmax
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: minmax_by
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: none?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: one?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: partition
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: rassoc
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: reduce
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: reject
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: reverse_each
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: select
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: size
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: slice
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: slice_after
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: slice_before
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: slice_when
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: sort
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: sort_by
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: sum
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: take
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: take_while
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: tally
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: to_a
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: to_h
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: to_hash
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: to_proc
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: transform_keys
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: transform_values
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: uniq
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: update
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: value?
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: values
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: values_at
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+          - name: zip
+            decision: wanted
+            note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+        skippedEntries:
+          - name: chain
+            decision: skip_runtime_model
+            note: Lazy enumerator chaining is not a stable plain-value target.
+          - name: clear
+            decision: skip_side_effects
+            note: Hash mutation is outside Locutus' value-only model.
+          - name: compact!
+            decision: skip_side_effects
+            note: Bang methods mutate caller-owned hash state.
+          - name: compare_by_identity
+            decision: skip_runtime_model
+            note: Identity-based key semantics do not match plain JS object behavior.
+          - name: compare_by_identity?
+            decision: skip_runtime_model
+            note: Identity-based key semantics do not match plain JS object behavior.
+          - name: default
+            decision: skip_runtime_model
+            note: Default-proc semantics depend on mutable hash behavior and callable state.
+          - name: default_proc
+            decision: skip_runtime_model
+            note: Default-proc semantics depend on callable runtime state.
+          - name: default_proc=
+            decision: skip_side_effects
+            note: Changing hash defaults mutates caller-owned state.
+          - name: default=
+            decision: skip_side_effects
+            note: Changing hash defaults mutates caller-owned state.
+          - name: delete
+            decision: skip_side_effects
+            note: Hash mutation is outside Locutus' value-only model.
+          - name: delete_if
+            decision: skip_side_effects
+            note: Hash mutation is outside Locutus' value-only model.
+          - name: each
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_cons
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_entry
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_key
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_pair
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_slice
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_value
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_with_index
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: each_with_object
+            decision: skip_runtime_model
+            note: Enumerator-driven iteration APIs are better expressed directly in JS.
+          - name: filter!
+            decision: skip_side_effects
+            note: Bang methods mutate caller-owned hash state.
+          - name: keep_if
+            decision: skip_side_effects
+            note: Hash mutation is outside Locutus' value-only model.
+          - name: lazy
+            decision: skip_runtime_model
+            note: Lazy enumerators do not fit Locutus' plain-value model.
+          - name: merge!
+            decision: skip_side_effects
+            note: Bang methods mutate caller-owned hash state.
+          - name: rehash
+            decision: skip_runtime_model
+            note: Hash rehashing depends on Ruby's mutable identity semantics.
+          - name: reject!
+            decision: skip_side_effects
+            note: Bang methods mutate caller-owned hash state.
+          - name: replace
+            decision: skip_side_effects
+            note: Hash mutation is outside Locutus' value-only model.
+          - name: select!
+            decision: skip_side_effects
+            note: Bang methods mutate caller-owned hash state.
+          - name: shift
+            decision: skip_side_effects
+            note: Hash mutation is outside Locutus' value-only model.
+          - name: store
+            decision: skip_side_effects
+            note: Hash mutation is outside Locutus' value-only model.
+          - name: to_set
+            decision: skip_runtime_model
+            note: Ruby Set values are not a stable plain-value target for Locutus.
+          - name: transform_keys!
+            decision: skip_side_effects
+            note: Bang methods mutate caller-owned hash state.
+          - name: transform_values!
+            decision: skip_side_effects
+            note: Bang methods mutate caller-owned hash state.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: Math
         title: Math module methods
         target: Ruby 3.3
@@ -25271,6 +27007,8 @@ languages:
   tcl:
     language: tcl
     title: Tcl
+    scopeNote: This inventory currently tracks the `string` ensemble first, not the full Tcl command surface.
+    namespaceCount: 1
     shippedCount: 16
     catalogCount: 24
     catalogShippedCount: 16

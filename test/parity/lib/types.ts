@@ -90,6 +90,7 @@ export interface UpstreamSurfaceNamespaceInventory {
 
 export interface UpstreamSurfaceLanguageInventory {
   title?: string | undefined
+  scopeNote?: string | undefined
   namespaces?: Record<string, UpstreamSurfaceNamespaceInventory> | undefined
 }
 

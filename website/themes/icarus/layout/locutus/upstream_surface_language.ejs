@@ -39,9 +39,13 @@ function surfacePercent(count, total) {
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream <%= surfaceLang.title || page.human || page.language %> catalog and sorts it into what is already shipped,
+          Locutus tracks <%= surfaceLang.namespaceCount %> upstream namespace<%= surfaceLang.namespaceCount === 1 ? '' : 's' %> for
+          <%= surfaceLang.title || page.human || page.language %> and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        <% if (surfaceLang.scopeNote) { %>
+          <p class="surface-summary"><%= surfaceLang.scopeNote %></p>
+        <% } %>
       </div>
       <div class="surface-coverage-badge">
         <strong><%= surfaceLang.coveragePercent === null ? 'n/a' : surfaceLang.coveragePercent + '%' %></strong>
@@ -72,6 +76,10 @@ function surfacePercent(count, total) {
     </div>
 
     <div class="surface-kpis">
+      <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value"><%= surfaceLang.namespaceCount %></strong>
+      </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
         <strong class="surface-kpi__value"><%= surfaceLang.catalogShippedCount %>/<%= surfaceLang.catalogCount %></strong>
@@ -104,6 +112,7 @@ function surfacePercent(count, total) {
 
     <p class="surface-summary">
       <% var languageBits = [] %>
+      <% languageBits.push(surfaceLang.namespaceCount + ' namespace' + (surfaceLang.namespaceCount === 1 ? '' : 's') + ' are currently tracked') %>
       <% languageBits.push(surfaceLang.catalogShippedCount + ' of ' + surfaceLang.catalogCount + ' upstream entries are already shipped') %>
       <% if (surfaceLang.wantedCount > 0) { languageBits.push(surfaceLang.wantedCount + ' are explicitly on the shortlist') } %>
       <% if (surfaceLang.untriagedCount > 0) { languageBits.push(surfaceLang.untriagedCount + ' still need a decision') } %>

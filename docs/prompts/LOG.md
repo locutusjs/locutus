@@ -2319,3 +2319,26 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `gh run view 23158185148 --json status,conclusion,jobs`
 - Key learnings:
   - Once the inventory is clean and website-backed, larger function harvests become operationally cheaper than many tiny PRs, even with long parity gates.
+
+### Iteration 118
+
+2026-03-16
+
+- **Area: Upstream surface breadth expansion**
+- Plan:
+  - Stop treating `untriaged: 0` as the same thing as full language coverage; keep the inventory honest about tracked scope while broadening it namespace-by-namespace.
+  - Expand the cheapest high-signal upstream namespaces first so language pages become more representative without exploding maintenance cost.
+  - Keep triage efficient by leaning on namespace defaults and wildcard rules, reserving exact entries for real exceptions.
+- Progress:
+  - Added language-level `scopeNote` support so inventory-backed pages can state when they only track a curated subset of the upstream surface.
+  - Broadened live-discovered inventories for Python (`bisect`, `functools`, `itertools`, `operator`, `statistics`), Ruby (`Enumerable`, `Hash`), Elixir (`Integer`, `List`, `Map`), and Lua (`table`).
+  - Classified the new namespaces with compact defaults and exception rules so the broadened inventory stays at `untriaged: 0` while becoming materially more representative.
+  - Updated the website inventory panel to show tracked namespace counts and scope notes instead of implying that every language page already reflects the full upstream language surface.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python ruby elixir lua`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn injectweb`
+  - `corepack yarn website:clean && corepack yarn website:build && corepack yarn website:verify`
+  - `corepack yarn check`
+- Key learnings:
+  - The scalable way to broaden this roadmap is not one-entry-at-a-time triage; it is honest scope labels plus aggressive namespace defaults, then selective exact overrides where the model really diverges.

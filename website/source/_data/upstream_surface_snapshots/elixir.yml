@@ -99,6 +99,23 @@ namespaces:
       - to_char_list
       - to_charlist
       - to_string
+  - namespace: Integer
+    title: Integer module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - digits
+      - extended_gcd
+      - floor_div
+      - gcd
+      - mod
+      - parse
+      - pow
+      - to_char_list
+      - to_charlist
+      - to_string
+      - undigits
   - namespace: Kernel
     title: Kernel module
     target: Elixir 1.18
@@ -178,6 +195,88 @@ namespaces:
       - trunc
       - tuple_size
       - update_in
+  - namespace: List
+    title: List module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - ascii_printable?
+      - delete
+      - delete_at
+      - duplicate
+      - ends_with?
+      - first
+      - flatten
+      - foldl
+      - foldr
+      - improper?
+      - insert_at
+      - keydelete
+      - keyfind
+      - keyfind!
+      - keymember?
+      - keyreplace
+      - keysort
+      - keystore
+      - keytake
+      - last
+      - myers_difference
+      - pop_at
+      - replace_at
+      - starts_with?
+      - to_atom
+      - to_charlist
+      - to_existing_atom
+      - to_float
+      - to_integer
+      - to_string
+      - to_tuple
+      - update_at
+      - wrap
+      - zip
+  - namespace: Map
+    title: Map module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - delete
+      - drop
+      - equal?
+      - fetch
+      - fetch!
+      - filter
+      - from_keys
+      - from_struct
+      - get
+      - get_and_update
+      - get_and_update!
+      - get_lazy
+      - has_key?
+      - intersect
+      - keys
+      - map
+      - merge
+      - new
+      - pop
+      - pop!
+      - pop_lazy
+      - put
+      - put_new
+      - put_new_lazy
+      - reject
+      - replace
+      - replace!
+      - replace_lazy
+      - size
+      - split
+      - split_with
+      - take
+      - to_list
+      - update
+      - update!
+      - values
   - namespace: String
     title: String module
     target: Elixir 1.18

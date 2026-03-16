@@ -27,6 +27,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...main).
 
+### Inventory
+
+- Broadened the upstream-surface inventory beyond the first curated slice, adding new tracked namespaces for Python, Ruby, Elixir, and Lua while keeping the catalog at `untriaged: 0`.
+- Added language-level scope notes and tracked-namespace counts to the website inventory panel so language pages no longer imply they cover an entire upstream language when they still track a deliberate subset.
+
 ## v3.0.24
 
 Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.23...v3.0.24).

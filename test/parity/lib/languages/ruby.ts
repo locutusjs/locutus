@@ -96,6 +96,22 @@ snapshots = [
     entries: owned_instance_entries(String)
   },
   {
+    namespace: 'Enumerable',
+    title: 'Enumerable instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: Enumerable.instance_methods(false).map(&:to_s).uniq.sort
+  },
+  {
+    namespace: 'Hash',
+    title: 'Hash instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Hash)
+  },
+  {
     namespace: 'Math',
     title: 'Math module methods',
     target: 'Ruby 3.3',

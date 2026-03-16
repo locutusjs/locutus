@@ -1,5 +1,61 @@
 language: python
 namespaces:
+  - namespace: bisect
+    title: bisect
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - bisect
+      - bisect_left
+      - bisect_right
+      - insort
+      - insort_left
+      - insort_right
+  - namespace: functools
+    title: functools
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - cache
+      - cached_property
+      - cmp_to_key
+      - lru_cache
+      - partial
+      - partialmethod
+      - reduce
+      - singledispatch
+      - singledispatchmethod
+      - total_ordering
+      - update_wrapper
+      - wraps
+  - namespace: itertools
+    title: itertools
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - accumulate
+      - batched
+      - chain
+      - combinations
+      - combinations_with_replacement
+      - compress
+      - count
+      - cycle
+      - dropwhile
+      - filterfalse
+      - groupby
+      - islice
+      - pairwise
+      - permutations
+      - product
+      - repeat
+      - starmap
+      - takewhile
+      - tee
+      - zip_longest
   - namespace: math
     title: math
     target: Python 3.12
@@ -62,6 +118,67 @@ namespaces:
       - tanh
       - trunc
       - ulp
+  - namespace: operator
+    title: operator
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abs
+      - add
+      - and_
+      - attrgetter
+      - call
+      - concat
+      - contains
+      - countOf
+      - delitem
+      - eq
+      - floordiv
+      - ge
+      - getitem
+      - gt
+      - iadd
+      - iand
+      - iconcat
+      - ifloordiv
+      - ilshift
+      - imatmul
+      - imod
+      - imul
+      - index
+      - indexOf
+      - inv
+      - invert
+      - ior
+      - ipow
+      - irshift
+      - is_
+      - is_not
+      - isub
+      - itemgetter
+      - itruediv
+      - ixor
+      - le
+      - length_hint
+      - lshift
+      - lt
+      - matmul
+      - methodcaller
+      - mod
+      - mul
+      - ne
+      - neg
+      - not_
+      - or_
+      - pos
+      - pow
+      - rshift
+      - setitem
+      - sub
+      - truediv
+      - truth
+      - xor
   - namespace: re
     title: re
     target: Python 3.12
@@ -69,6 +186,7 @@ namespaces:
     sourceRef: python:3.12
     entries:
       - compile
+      - error
       - escape
       - findall
       - finditer
@@ -80,6 +198,30 @@ namespaces:
       - sub
       - subn
       - template
+  - namespace: statistics
+    title: statistics
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - correlation
+      - covariance
+      - fmean
+      - geometric_mean
+      - harmonic_mean
+      - linear_regression
+      - mean
+      - median
+      - median_grouped
+      - median_high
+      - median_low
+      - mode
+      - multimode
+      - pstdev
+      - pvariance
+      - quantiles
+      - stdev
+      - variance
   - namespace: string
     title: string
     target: Python 3.12
@@ -102,8 +244,6 @@ namespaces:
     sourceKind: runtime
     sourceRef: python:3.12
     entries:
-      - IS_CHARACTER_JUNK
-      - IS_LINE_JUNK
       - context_diff
       - diff_bytes
       - get_close_matches

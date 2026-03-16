@@ -46,7 +46,10 @@ function discoverElixirUpstreamSurface() {
     namespaces: [
       discoverModule('Enum', 'Enum module'),
       discoverModule('Float', 'Float module'),
+      discoverModule('Integer', 'Integer module'),
       discoverModule('Kernel', 'Kernel module'),
+      discoverModule('List', 'List module'),
+      discoverModule('Map', 'Map module'),
       discoverModule('String', 'String module'),
     ],
   }

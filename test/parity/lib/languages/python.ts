@@ -28,28 +28,44 @@ const PYTHON_DOCKER_IMAGE = 'python:3.12'
 function discoverPythonUpstreamSurface() {
   const script = `
 import difflib
+import bisect
+import functools
 import inspect
+import itertools
 import json
 import math
+import operator
 import re
+import statistics
 import string
 
 modules = {
-  "math": math,
-  "re": re,
-  "string": string,
-  "difflib": difflib,
+  "bisect": {"module": bisect, "allowedModules": ["bisect", "_bisect"]},
+  "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
+  "itertools": {"module": itertools, "allowedModules": ["itertools"]},
+  "math": {"module": math, "allowedModules": ["math"]},
+  "operator": {"module": operator, "allowedModules": ["operator", "_operator"]},
+  "re": {"module": re, "allowedModules": ["re"]},
+  "statistics": {"module": statistics, "allowedModules": ["statistics"]},
+  "string": {"module": string, "allowedModules": ["string"]},
+  "difflib": {"module": difflib, "allowedModules": ["difflib"]},
 }
 
 snapshots = []
-for namespace, module in modules.items():
+for namespace, config in modules.items():
+  module = config["module"]
+  allowed_modules = set(config["allowedModules"])
   entries = sorted(
     name
     for name in dir(module)
     if not name.startswith("_")
     and (
       name in ${JSON.stringify([...STRING_CONSTANTS].sort())}
-      or inspect.isroutine(getattr(module, name))
+      or (
+        callable(getattr(module, name))
+        and not name[:1].isupper()
+        and getattr(getattr(module, name), "__module__", namespace) in allowed_modules
+      )
     )
   )
   snapshots.append({

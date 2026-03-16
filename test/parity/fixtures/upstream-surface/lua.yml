@@ -60,3 +60,16 @@ namespaces:
       - sub
       - unpack
       - upper
+  - namespace: table
+    title: table library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - concat
+      - insert
+      - move
+      - pack
+      - remove
+      - sort
+      - unpack

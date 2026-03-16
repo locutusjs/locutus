@@ -338,12 +338,157 @@ php:
 
 python:
   title: Python
+  scopeNote: This inventory currently tracks a growing plain-value slice of the Python standard library, not all of Python yet.
   namespaces:
+    bisect:
+      title: bisect module
+      default:
+        decision: wanted
+        note: Binary-search helpers are strong plain-value portability targets.
+      decisions:
+        insort:
+          decision: skip_side_effects
+          note: In-place list insertion mutates caller-owned state.
+        insort_left:
+          decision: skip_side_effects
+          note: In-place list insertion mutates caller-owned state.
+        insort_right:
+          decision: skip_side_effects
+          note: In-place list insertion mutates caller-owned state.
+    functools:
+      title: functools module
+      default:
+        decision: skip_runtime_model
+        note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
+      decisions:
+        reduce:
+          decision: wanted
+          note: Left-folding over plain iterables is a strong portability target.
+    itertools:
+      title: itertools module
+      default:
+        decision: skip_runtime_model
+        note: Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.
+      decisions:
+        accumulate:
+          decision: wanted
+          note: Accumulation over plain iterables can be represented as arrays of intermediate results.
+        batched:
+          decision: wanted
+          note: Fixed-size chunking is a strong plain-value portability target.
+        chain:
+          decision: wanted
+          note: Sequence concatenation maps naturally onto arrays.
+        combinations:
+          decision: wanted
+          note: Finite combinatorics helpers can be represented as arrays of tuples.
+        combinations_with_replacement:
+          decision: wanted
+          note: Finite combinatorics helpers can be represented as arrays of tuples.
+        compress:
+          decision: wanted
+          note: Mask-based filtering has a clean plain-value contract.
+        dropwhile:
+          decision: wanted
+          note: Predicate-based slicing has a clean plain-value contract.
+        filterfalse:
+          decision: wanted
+          note: Predicate-based filtering has a clean plain-value contract.
+        islice:
+          decision: wanted
+          note: Iterator slicing maps naturally onto array slicing semantics.
+        pairwise:
+          decision: wanted
+          note: Adjacent-pair grouping can be represented as arrays of tuples.
+        permutations:
+          decision: wanted
+          note: Finite combinatorics helpers can be represented as arrays of tuples.
+        product:
+          decision: wanted
+          note: Cartesian products can be represented as arrays of tuples.
+        starmap:
+          decision: wanted
+          note: Spread-argument mapping still has a clean plain-value contract.
+        takewhile:
+          decision: wanted
+          note: Predicate-based slicing has a clean plain-value contract.
+        zip_longest:
+          decision: wanted
+          note: Sequence zipping has a strong plain-value contract.
     math:
       title: math module
       default:
         decision: wanted
         note: Python math helpers map cleanly to JS numbers and arrays.
+    operator:
+      title: operator module
+      default:
+        decision: wanted
+        note: First-class operator helpers are strong plain-value portability targets.
+      decisions:
+        attrgetter:
+          decision: skip_runtime_model
+          note: Getter factories return callable objects rather than plain values.
+        call:
+          decision: skip_runtime_model
+          note: Indirect call wrappers add little value beyond direct JS invocation.
+        delitem:
+          decision: skip_side_effects
+          note: Container mutation is outside Locutus' value-only model.
+        iadd:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        iand:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        iconcat:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        ifloordiv:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        ilshift:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        imatmul:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        imod:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        imul:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        ior:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        ipow:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        irshift:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        isub:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        itemgetter:
+          decision: skip_runtime_model
+          note: Getter factories return callable objects rather than plain values.
+        itruediv:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        ixor:
+          decision: skip_side_effects
+          note: In-place operator wrappers imply mutation semantics.
+        length_hint:
+          decision: skip_low_value
+          note: Size-hint probing adds little value beyond direct JS length checks.
+        methodcaller:
+          decision: skip_runtime_model
+          note: Method-caller factories return callable objects rather than plain values.
+        setitem:
+          decision: skip_side_effects
+          note: Container mutation is outside Locutus' value-only model.
     re:
       title: re module
       default:
@@ -353,6 +498,9 @@ python:
         compile:
           decision: skip_runtime_model
           note: Compiled regex objects are not a stable plain-value target.
+        error:
+          decision: skip_runtime_model
+          note: Exception types are not standalone plain-value portability targets.
         purge:
           decision: skip_runtime_model
           note: Regex cache mutation is outside Locutus' portability scope.
@@ -371,15 +519,15 @@ python:
         diff_bytes:
           decision: skip_plain_value_mismatch
           note: Byte-oriented diffing does not fit Locutus' current plain-value model.
-        IS_CHARACTER_JUNK:
-          decision: skip_low_value
-          note: Exposing tiny constant predicates as standalone ports adds little value.
-        IS_LINE_JUNK:
-          decision: skip_low_value
-          note: Exposing tiny constant predicates as standalone ports adds little value.
+    statistics:
+      title: statistics module
+      default:
+        decision: wanted
+        note: Aggregate statistics helpers are strong plain-value portability targets.
 
 julia:
   title: Julia
+  scopeNote: This inventory currently focuses on Julia Base rather than the broader package ecosystem.
   namespaces:
     Base:
       title: Base module
@@ -411,6 +559,7 @@ julia:
 
 ruby:
   title: Ruby
+  scopeNote: This inventory currently tracks the highest-signal core collection, string, and math surfaces rather than all of Ruby.
   namespaces:
     Array:
       title: Array instance methods
@@ -431,6 +580,92 @@ ruby:
         pack:
           decision: skip_plain_value_mismatch
           note: Binary packing semantics do not map cleanly to JS plain values.
+        to_set:
+          decision: skip_runtime_model
+          note: Ruby Set values are not a stable plain-value target for Locutus.
+    Enumerable:
+      title: Enumerable instance methods
+      default:
+        decision: wanted
+        note: Most Enumerable transforms can be represented over arrays and plain values.
+      rules:
+        - match: 'each*'
+          decision: skip_runtime_model
+          note: Enumerator-driven iteration APIs are better expressed directly in JS.
+      decisions:
+        chain:
+          decision: skip_runtime_model
+          note: Lazy enumerator chaining is not a stable plain-value target.
+        cycle:
+          decision: skip_runtime_model
+          note: Potentially unbounded iteration does not fit Locutus' plain-value model.
+        lazy:
+          decision: skip_runtime_model
+          note: Lazy enumerators do not fit Locutus' plain-value model.
+        to_set:
+          decision: skip_runtime_model
+          note: Ruby Set values are not a stable plain-value target for Locutus.
+    Hash:
+      title: Hash instance methods
+      default:
+        decision: wanted
+        note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
+      rules:
+        - match: '*!'
+          decision: skip_side_effects
+          note: Bang methods mutate caller-owned hash state.
+        - match: 'each*'
+          decision: skip_runtime_model
+          note: Enumerator-driven iteration APIs are better expressed directly in JS.
+      decisions:
+        chain:
+          decision: skip_runtime_model
+          note: Lazy enumerator chaining is not a stable plain-value target.
+        clear:
+          decision: skip_side_effects
+          note: Hash mutation is outside Locutus' value-only model.
+        compare_by_identity:
+          decision: skip_runtime_model
+          note: Identity-based key semantics do not match plain JS object behavior.
+        compare_by_identity?:
+          decision: skip_runtime_model
+          note: Identity-based key semantics do not match plain JS object behavior.
+        default:
+          decision: skip_runtime_model
+          note: Default-proc semantics depend on mutable hash behavior and callable state.
+        default=:
+          decision: skip_side_effects
+          note: Changing hash defaults mutates caller-owned state.
+        default_proc:
+          decision: skip_runtime_model
+          note: Default-proc semantics depend on callable runtime state.
+        default_proc=:
+          decision: skip_side_effects
+          note: Changing hash defaults mutates caller-owned state.
+        delete:
+          decision: skip_side_effects
+          note: Hash mutation is outside Locutus' value-only model.
+        delete_if:
+          decision: skip_side_effects
+          note: Hash mutation is outside Locutus' value-only model.
+        keep_if:
+          decision: skip_side_effects
+          note: Hash mutation is outside Locutus' value-only model.
+        lazy:
+          decision: skip_runtime_model
+          note: Lazy enumerators do not fit Locutus' plain-value model.
+        rehash:
+          decision: skip_runtime_model
+          note: Hash rehashing depends on Ruby's mutable identity semantics.
+        replace:
+          decision: skip_side_effects
+          note: Hash mutation is outside Locutus' value-only model.
+        shift:
+          decision: skip_side_effects
+          note: Hash mutation is outside Locutus' value-only model.
+        store:
+          decision: skip_side_effects
+          note: Hash mutation is outside Locutus' value-only model.
         to_set:
           decision: skip_runtime_model
           note: Ruby Set values are not a stable plain-value target for Locutus.
@@ -473,6 +708,7 @@ ruby:
 
 golang:
   title: Go
+  scopeNote: This inventory tracks selected high-value standard-library packages, not all of Go.
   namespaces:
     net:
       title: net package
@@ -632,6 +868,7 @@ golang:
 
 tcl:
   title: Tcl
+  scopeNote: This inventory currently tracks the `string` ensemble first, not the full Tcl command surface.
   namespaces:
     string:
       title: string ensemble
@@ -648,6 +885,7 @@ tcl:
 
 lua:
   title: Lua
+  scopeNote: This inventory currently tracks Lua's core plain-value libraries first, not the full runtime environment.
   namespaces:
     math:
       title: math library
@@ -679,9 +917,25 @@ lua:
         unpack:
           decision: skip_plain_value_mismatch
           note: Binary packing semantics do not map cleanly to JS plain values.
+    table:
+      title: table library
+      default:
+        decision: skip_side_effects
+        note: Most table helpers mutate caller-owned tables rather than returning plain immutable values.
+      decisions:
+        concat:
+          decision: wanted
+          note: String joining over list-like tables has a clean plain-value contract.
+        pack:
+          decision: wanted
+          note: Packing variadic values into a list-like table is a useful portability target.
+        unpack:
+          decision: wanted
+          note: Table expansion still has a useful plain-value contract for parity and examples.
 
 perl:
   title: Perl
+  scopeNote: This inventory currently focuses on core scalar/string helpers and POSIX numerics rather than all of Perl.
   namespaces:
     POSIX:
       title: POSIX module
@@ -696,6 +950,7 @@ perl:
 
 powershell:
   title: PowerShell
+  scopeNote: This inventory currently tracks `System.String`, not the full PowerShell or .NET surface.
   namespaces:
     string:
       title: System.String instance methods
@@ -709,6 +964,7 @@ powershell:
 
 elixir:
   title: Elixir
+  scopeNote: This inventory currently tracks the most plain-value-friendly core modules first, not every Elixir or OTP module.
   namespaces:
     Enum:
       title: Enum module
@@ -742,6 +998,18 @@ elixir:
       default:
         decision: wanted
         note: Elixir Float helpers are strong plain-value portability targets.
+      decisions:
+        to_char_list:
+          decision: skip_plain_value_mismatch
+          note: Charlist conversion does not fit Locutus' plain-value model.
+        to_charlist:
+          decision: skip_plain_value_mismatch
+          note: Charlist conversion does not fit Locutus' plain-value model.
+    Integer:
+      title: Integer module
+      default:
+        decision: wanted
+        note: Integer helpers are strong plain-value portability targets.
       decisions:
         to_char_list:
           decision: skip_plain_value_mismatch
@@ -813,9 +1081,34 @@ elixir:
         tuple_size:
           decision: wanted
           note: Size helpers have a clean plain-value contract.
+    List:
+      title: List module
+      default:
+        decision: wanted
+        note: Immutable list transforms are strong plain-value portability targets.
+      decisions:
+        to_atom:
+          decision: skip_security
+          note: Atom creation can exhaust the VM atom table and is not a good portability target.
+        to_existing_atom:
+          decision: skip_security
+          note: Atom-table lookup is runtime-sensitive and not a good portability target.
+        to_charlist:
+          decision: skip_plain_value_mismatch
+          note: Charlist conversion does not fit Locutus' plain-value model.
+    Map:
+      title: Map module
+      default:
+        decision: wanted
+        note: Immutable map helpers are strong plain-value portability targets.
+      decisions:
+        from_struct:
+          decision: skip_runtime_model
+          note: Struct-specific reflection does not fit Locutus' plain-value model.
 
 clojure:
   title: Clojure
+  scopeNote: This inventory currently tracks `clojure.core`, `clojure.string`, and `Math`, not the broader JVM ecosystem.
   namespaces:
     core:
       title: clojure.core
@@ -1041,6 +1334,7 @@ r:
 
 rust:
   title: Rust
+  scopeNote: This inventory currently tracks `str` first, not the full Rust standard library.
   namespaces:
     str:
       title: std::str

@@ -66,6 +66,8 @@ export interface UpstreamSurfaceNamespaceSiteData extends UpstreamSurfaceNamespa
 export interface UpstreamSurfaceLanguageSiteData {
   language: string
   title: string
+  scopeNote?: string
+  namespaceCount: number
   shippedCount: number
   catalogCount: number
   catalogShippedCount: number
@@ -569,6 +571,8 @@ export function buildUpstreamSurfaceSiteData(input: {
     languages[item.language] = {
       language: item.language,
       title: item.inventory?.title ?? item.handler.displayName,
+      ...(item.inventory?.scopeNote ? { scopeNote: item.inventory.scopeNote } : {}),
+      namespaceCount: namespaces.length,
       shippedCount,
       catalogCount,
       catalogShippedCount,
