@@ -2306,3 +2306,16 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn test:parity python/math/acos python/math/acosh python/math/asin python/math/asinh python/math/atan python/math/atan2 python/math/atanh python/math/copysign python/math/cos python/math/cosh python/math/degrees python/math/expm1 python/math/hypot python/math/radians python/math/sin python/math/sinh python/math/tan python/math/tanh --no-cache`
 - Key learnings:
   - Local host Python and the parity-target Docker image can disagree by one ulp on floating-point outputs, so the target image remains the only release truth when examples are supposed to be parity-verified.
+
+### Iteration 117
+
+2026-03-16
+
+- **Area: Release management**
+- Progress:
+  - Merged `#588` after CI cleared and the post-merge `main` run passed full parity, website build, and deploy.
+  - Prepared `v3.0.24` as the patch release for the first large `python/math` harvest and the inventory work that made larger namespace-driven batches practical.
+- Validation:
+  - `gh run view 23158185148 --json status,conclusion,jobs`
+- Key learnings:
+  - Once the inventory is clean and website-backed, larger function harvests become operationally cheaper than many tiny PRs, even with long parity gates.

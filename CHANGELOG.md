@@ -25,7 +25,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.23...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...main).
+
+## v3.0.24
+
+Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.23...v3.0.24).
+Version rationale: `patch` for a large additive Python math expansion plus the upstream-inventory groundwork that now drives broader namespace harvests.
 
 ### Inventory
 
