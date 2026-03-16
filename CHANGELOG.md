@@ -25,7 +25,17 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.20...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.21...main).
+
+## v3.0.21
+
+Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.20...v3.0.21).
+Version rationale: `patch` for additive multi-language expansion plus parity and website inventory refinements without import-model or runtime floor changes.
+
+### Website
+
+- Refined the public upstream-surface inventory presentation on language and category pages by moving it below the main content, making it collapsible, surfacing coverage bars in the collapsed state, and linking intentional extras back to Locutus functions where possible.
+- Tightened the inventory buckets for readability with compact triage lists, scrollable long sections, and clearer catalog-source labelling.
 
 ### Expansion
 
@@ -40,6 +50,10 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.20...mai
   - `clojure/core`: `interpose`
   - `r/base`: `sign`
 - Cleared the corresponding `wanted` entries from the upstream-surface inventory, leaving `python/difflib/ndiff` as the only remaining explicitly tracked wanted port.
+
+### Parity
+
+- Made Lua parity normalization robust to cross-architecture float formatting drift by reconciling parsed native numeric output against the expected JS result before comparison.
 
 ## v3.0.20
 

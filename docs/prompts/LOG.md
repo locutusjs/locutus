@@ -2170,3 +2170,34 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `~/code/dotfiles/bin/council.ts review`
 - Key learnings:
   - The wishlist inventory is paying off: larger cross-language harvests amortize CI well, but they still need a tight review loop because adapter edges and replacement-template semantics are where subtle cross-runtime mismatches surface fastest.
+
+### Iteration 109
+
+2026-03-16
+
+- **Area: Website UX**
+- Progress:
+  - Refined the upstream-surface inventory UI on language and category pages after local review, moving it below the main function listings and making it collapsible so it stays available without dominating the page.
+  - Added collapsed-state coverage bars, compact triage lists, consistent scroll handling for long buckets, and direct links from intentional extras back into Locutus plus external docs links for explicit non-goals where official URLs are practical.
+  - Updated website verification expectations so the new inventory layout is exercised in CI.
+- Validation:
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - The inventory data is useful publicly, but only when it behaves like secondary diagnostics instead of the first thing a reader sees on a language page.
+
+### Iteration 110
+
+2026-03-16
+
+- **Area: Parity stability and release management**
+- Progress:
+  - Diagnosed the local PowerShell parity caveat more precisely: the selected PowerShell Docker tag is single-arch `amd64`, so local parity on this `arm64` host depends on external emulation support even though GitHub's `amd64` runners verify it successfully.
+  - Fixed Lua parity normalization so numeric JSON/scalar output is compared with tolerance before stringification, eliminating architecture-dependent float formatting regressions seen in CI for `lua/math/cos`, `sin`, and `sqrt`.
+  - Merged `#582` and prepared `v3.0.21` once the `main` batch was confirmed ready for release.
+- Validation:
+  - `corepack yarn exec vitest run test/util/wishlist-harvest-2.vitest.ts`
+  - `corepack yarn test:parity lua/math/cos lua/math/sin lua/math/sqrt --no-cache`
+  - `corepack yarn check`
+- Key learnings:
+  - Large multi-language harvests are worth it, but parity normalization needs to be architecture-tolerant or the CI savings just get spent on cross-platform float noise.
