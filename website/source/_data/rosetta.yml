@@ -346,43 +346,87 @@ math_log2:
 
 math_sin:
   - php/math/sin
+  - python/math/sin
   - ruby/Math/sin
   - lua/math/sin
   - awk/builtin/sin
 
 math_cos:
   - php/math/cos
+  - python/math/cos
   - ruby/Math/cos
   - lua/math/cos
   - awk/builtin/cos
 
 math_tan:
   - php/math/tan
+  - python/math/tan
   - ruby/Math/tan
 
 math_asin:
   - php/math/asin
+  - python/math/asin
   - ruby/Math/asin
 
 math_acos:
   - php/math/acos
+  - python/math/acos
   - ruby/Math/acos
 
 math_atan:
   - php/math/atan
+  - python/math/atan
   - ruby/Math/atan
+
+math_atan2:
+  - php/math/atan2
+  - python/math/atan2
+  - ruby/Math/atan2
+
+math_acosh:
+  - php/math/acosh
+  - python/math/acosh
+
+math_asinh:
+  - php/math/asinh
+  - python/math/asinh
+
+math_atanh:
+  - php/math/atanh
+  - python/math/atanh
 
 math_sinh:
   - php/math/sinh
+  - python/math/sinh
   - ruby/Math/sinh
 
 math_cosh:
   - php/math/cosh
+  - python/math/cosh
   - ruby/Math/cosh
 
 math_tanh:
   - php/math/tanh
+  - python/math/tanh
   - ruby/Math/tanh
+
+math_degrees:
+  - python/math/degrees
+
+math_radians:
+  - python/math/radians
+
+math_hypot:
+  - php/math/hypot
+  - python/math/hypot
+  - ruby/Math/hypot
+
+math_expm1:
+  - php/math/expm1
+  - python/math/expm1
+
+math_copysign:
+  - python/math/copysign
 
 math_ceil:
   - php/math/ceil

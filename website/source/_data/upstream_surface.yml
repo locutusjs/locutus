@@ -1,4 +1,4 @@
-generatedAt: '2026-03-16T13:50:23.331Z'
+generatedAt: '2026-03-16T17:40:36.952Z'
 languages:
   awk:
     language: awk
@@ -16130,15 +16130,15 @@ languages:
   python:
     language: python
     title: Python
-    shippedCount: 38
+    shippedCount: 56
     catalogCount: 86
-    catalogShippedCount: 38
+    catalogShippedCount: 56
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 42
+    wantedCount: 24
     skippedCount: 6
     untriagedCount: 0
-    coveragePercent: 44
+    coveragePercent: 65
     namespaces:
       - namespace: difflib
         title: difflib
@@ -16250,15 +16250,28 @@ languages:
           - trunc
           - ulp
         shippedEntries:
+          - acos
+          - acosh
+          - asin
+          - asinh
+          - atan
+          - atan2
+          - atanh
           - ceil
           - comb
+          - copysign
+          - cos
+          - cosh
+          - degrees
           - dist
           - exp
+          - expm1
           - fabs
           - factorial
           - floor
           - fsum
           - gcd
+          - hypot
           - isclose
           - isfinite
           - isinf
@@ -16270,47 +16283,19 @@ languages:
           - log2
           - pow
           - prod
+          - radians
+          - sin
+          - sinh
           - sqrt
+          - tan
+          - tanh
           - trunc
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
         wantedEntries:
-          - name: acos
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: acosh
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: asin
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: asinh
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: atan
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: atan2
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: atanh
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
           - name: cbrt
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: copysign
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: cos
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: cosh
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: degrees
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
           - name: erf
@@ -16322,9 +16307,6 @@ languages:
           - name: exp2
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: expm1
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
           - name: fmod
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
@@ -16332,9 +16314,6 @@ languages:
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
           - name: gamma
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: hypot
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
           - name: ldexp
@@ -16355,25 +16334,10 @@ languages:
           - name: perm
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: radians
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
           - name: remainder
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: sin
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: sinh
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
           - name: sumprod
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: tan
-            decision: wanted
-            note: Python math helpers map cleanly to JS numbers and arrays.
-          - name: tanh
             decision: wanted
             note: Python math helpers map cleanly to JS numbers and arrays.
           - name: ulp
@@ -16384,8 +16348,8 @@ languages:
         staleDecisions: []
         categories:
           - math
-        catalogShippedCount: 22
-        coveragePercent: 39
+        catalogShippedCount: 40
+        coveragePercent: 71
       - namespace: re
         title: re
         target: Python 3.12
