@@ -1,4 +1,4 @@
-export function trim(str: string | number, charlist?: string | number): string {
+export function trim(str?: string | number | null, charlist?: string | number): string {
   //      discuss at: https://locutus.io/php/trim/
   // parity verified: PHP 8.3
   //     original by: Kevin van Zonneveld (https://kvz.io)
@@ -16,6 +16,10 @@ export function trim(str: string | number, charlist?: string | number): string {
   //       returns 2: 'o Wor'
   //       example 3: trim(16, 1)
   //       returns 3: '6'
+
+  if (typeof str === 'undefined') {
+    throw new Error('trim() expects at least 1 argument, 0 given')
+  }
 
   let whitespace = [
     ' ',
@@ -43,7 +47,7 @@ export function trim(str: string | number, charlist?: string | number): string {
   ].join('')
   let l = 0
   let i = 0
-  let strValue = String(str)
+  let strValue = str === null ? '' : String(str)
 
   if (charlist) {
     whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1')

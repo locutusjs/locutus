@@ -1,6 +1,6 @@
 import { ini_get } from '../info/ini_get.ts'
 
-export function strlen(string: string): number {
+export function strlen(string?: string): number {
   //  discuss at: https://locutus.io/php/strlen/
   // original by: Kevin van Zonneveld (https://kvz.io)
   // improved by: Sakimori
@@ -16,6 +16,10 @@ export function strlen(string: string): number {
   //   example 2: ini_set('unicode.semantics', 'on')
   //   example 2: strlen('A\ud87e\udc04Z')
   //   returns 2: 3
+
+  if (typeof string === 'undefined') {
+    throw new Error('strlen() expects exactly 1 argument, 0 given')
+  }
 
   const str = string + ''
 

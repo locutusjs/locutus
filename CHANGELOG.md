@@ -27,6 +27,13 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.22...main).
 
+### Fixes
+
+- Fixed PHP 8.3 parity for several string helpers on null and missing-argument cases:
+  - `trim(null)` now returns `''` instead of `'null'`
+  - `trim`, `ltrim`, `rtrim`, `strval`, `strtolower`, `strtoupper`, and `strlen` now throw PHP-style missing-argument errors instead of coercing `undefined`
+- Fixed `php/array/array_merge_recursive` so it follows PHP's variadic contract, returning an empty array for zero arguments and merging more than two arrays correctly.
+
 ## v3.0.22
 
 Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.21...v3.0.22).
