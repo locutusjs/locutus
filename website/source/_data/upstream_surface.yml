@@ -1,4 +1,4 @@
-generatedAt: '2026-03-16T20:30:15.674Z'
+generatedAt: '2026-03-16T20:43:19.908Z'
 languages:
   awk:
     language: awk
@@ -17009,18 +17009,142 @@ languages:
   powershell:
     language: powershell
     title: PowerShell
-    scopeNote: This inventory currently tracks `System.String`, not the full PowerShell or .NET surface.
-    namespaceCount: 1
+    scopeNote: >-
+      This inventory currently tracks the highest-signal plain-value .NET surfaces for PowerShell first, starting with
+      `System.String` and `System.Math`.
+    namespaceCount: 2
     shippedCount: 18
-    catalogCount: 23
+    catalogCount: 49
     catalogShippedCount: 18
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 4
+    wantedCount: 30
     skippedCount: 1
     untriagedCount: 0
-    coveragePercent: 78
+    coveragePercent: 37
     namespaces:
+      - namespace: math
+        title: System.Math static methods
+        target: PowerShell 7.4
+        sourceKind: manual
+        sourceRef: https://learn.microsoft.com/dotnet/api/system.math
+        catalogEntries:
+          - Abs
+          - Acos
+          - Asin
+          - Atan
+          - Atan2
+          - Ceiling
+          - Clamp
+          - CopySign
+          - Cos
+          - Cosh
+          - Exp
+          - Floor
+          - Log
+          - Log10
+          - Log2
+          - Max
+          - Min
+          - Pow
+          - Round
+          - Sign
+          - Sin
+          - Sinh
+          - Sqrt
+          - Tan
+          - Tanh
+          - Truncate
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: Abs
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Acos
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Asin
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Atan
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Atan2
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Ceiling
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Clamp
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: CopySign
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Cos
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Cosh
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Exp
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Floor
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Log
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Log10
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Log2
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Max
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Min
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Pow
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Round
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Sign
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Sin
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Sinh
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Sqrt
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Tan
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Tanh
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+          - name: Truncate
+            decision: wanted
+            note: Scalar math helpers are strong plain-value portability targets for PowerShell.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: string
         title: System.String instance methods
         target: PowerShell 7.4
@@ -25799,18 +25923,62 @@ languages:
   rust:
     language: rust
     title: Rust
-    scopeNote: This inventory currently tracks `str` first, not the full Rust standard library.
-    namespaceCount: 1
+    scopeNote: >-
+      This inventory currently tracks `str` plus the highest-signal `std::cmp` scalar helpers first, not the full Rust
+      standard library.
+    namespaceCount: 2
     shippedCount: 23
-    catalogCount: 34
+    catalogCount: 40
     catalogShippedCount: 23
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 3
+    wantedCount: 9
     skippedCount: 8
     untriagedCount: 0
-    coveragePercent: 68
+    coveragePercent: 57
     namespaces:
+      - namespace: cmp
+        title: std::cmp functions
+        target: Rust 1.85
+        sourceKind: manual
+        sourceRef: https://doc.rust-lang.org/std/cmp/index.html
+        catalogEntries:
+          - max
+          - max_by
+          - max_by_key
+          - min
+          - min_by
+          - min_by_key
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: max
+            decision: wanted
+            note: Comparison helpers over plain values are strong Rust portability targets.
+          - name: max_by
+            decision: wanted
+            note: Comparison helpers over plain values are strong Rust portability targets.
+          - name: max_by_key
+            decision: wanted
+            note: Comparison helpers over plain values are strong Rust portability targets.
+          - name: min
+            decision: wanted
+            note: Comparison helpers over plain values are strong Rust portability targets.
+          - name: min_by
+            decision: wanted
+            note: Comparison helpers over plain values are strong Rust portability targets.
+          - name: min_by_key
+            decision: wanted
+            note: Comparison helpers over plain values are strong Rust portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: str
         title: str primitive methods
         target: Rust 1.85
@@ -27831,18 +27999,106 @@ languages:
   tcl:
     language: tcl
     title: Tcl
-    scopeNote: This inventory currently tracks Tcl's `string` and `dict` ensembles first, not the full command surface.
-    namespaceCount: 2
+    scopeNote: >-
+      This inventory currently tracks Tcl's `string` and `dict` ensembles plus the highest-signal standalone value
+      commands first, not the full command surface.
+    namespaceCount: 3
     shippedCount: 16
-    catalogCount: 43
+    catalogCount: 60
     catalogShippedCount: 15
     keptExtraCount: 1
     unexpectedExtraCount: 0
-    wantedCount: 17
+    wantedCount: 34
     skippedCount: 11
     untriagedCount: 0
-    coveragePercent: 35
+    coveragePercent: 25
     namespaces:
+      - namespace: core
+        title: standalone value commands
+        target: Tcl 8.6
+        sourceKind: manual
+        sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/contents.htm
+        catalogEntries:
+          - concat
+          - format
+          - join
+          - lindex
+          - linsert
+          - list
+          - llength
+          - lrange
+          - lrepeat
+          - lreplace
+          - lreverse
+          - lsearch
+          - lsort
+          - regexp
+          - regsub
+          - scan
+          - split
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: concat
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: format
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: join
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: lindex
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: linsert
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: list
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: llength
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: lrange
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: lrepeat
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: lreplace
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: lreverse
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: lsearch
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: lsort
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: regexp
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: regsub
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: scan
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+          - name: split
+            decision: wanted
+            note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: dict
         title: dict ensemble
         target: Tcl 8.6

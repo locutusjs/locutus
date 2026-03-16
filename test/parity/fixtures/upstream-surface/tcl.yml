@@ -1,5 +1,28 @@
 language: tcl
 namespaces:
+  - namespace: core
+    title: standalone value commands
+    target: Tcl 8.6
+    sourceKind: manual
+    sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/contents.htm
+    entries:
+      - concat
+      - format
+      - join
+      - lindex
+      - linsert
+      - list
+      - llength
+      - lrange
+      - lrepeat
+      - lreplace
+      - lreverse
+      - lsearch
+      - lsort
+      - regexp
+      - regsub
+      - scan
+      - split
   - namespace: string
     title: string ensemble
     target: Tcl 8.6

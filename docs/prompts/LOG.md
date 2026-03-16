@@ -2363,3 +2363,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
 - Key learnings:
   - The efficient path to “complete enough” inventory coverage is to keep broad root-language claims honest with scope notes, then spend real expansion effort only on namespaces whose discovery is cheap and whose backlog signal is strong.
+
+### Iteration 120
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep the same one-PR path open until the narrowest remaining language pages stop looking artificially single-namespace.
+  - Fill the cheapest remaining scope gaps with compact manual catalogs where live discovery is not worth the extra complexity yet.
+- Progress:
+  - Added PowerShell `System.Math` as the next tracked .NET surface so the language page is no longer only about `System.String`.
+  - Added Tcl standalone value commands as a `core` namespace to complement the `string` and `dict` ensembles.
+  - Added Rust `std::cmp` helper coverage so Rust is no longer represented only by `str`.
+  - Updated scope notes to make the remaining subset boundaries explicit rather than implying full ecosystem coverage.
+- Validation:
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn website:verify`

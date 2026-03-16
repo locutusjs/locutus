@@ -1,5 +1,17 @@
 language: rust
 namespaces:
+  - namespace: cmp
+    title: std::cmp functions
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/cmp/index.html
+    entries:
+      - max
+      - max_by
+      - max_by_key
+      - min
+      - min_by
+      - min_by_key
   - namespace: str
     title: str primitive methods
     target: Rust 1.85

@@ -1072,8 +1072,13 @@ golang:
 
 tcl:
   title: Tcl
-  scopeNote: This inventory currently tracks Tcl's `string` and `dict` ensembles first, not the full command surface.
+  scopeNote: This inventory currently tracks Tcl's `string` and `dict` ensembles plus the highest-signal standalone value commands first, not the full command surface.
   namespaces:
+    core:
+      title: standalone value commands
+      default:
+        decision: wanted
+        note: Tcl's standalone list, format, split, and regex commands are strong plain-value portability targets.
     string:
       title: string ensemble
       default:
@@ -1296,7 +1301,7 @@ perl:
 
 powershell:
   title: PowerShell
-  scopeNote: This inventory currently tracks `System.String`, not the full PowerShell or .NET surface.
+  scopeNote: This inventory currently tracks the highest-signal plain-value .NET surfaces for PowerShell first, starting with `System.String` and `System.Math`.
   namespaces:
     string:
       title: System.String instance methods
@@ -1307,6 +1312,11 @@ powershell:
         Clone:
           decision: skip_low_value
           note: Clone adds little value for immutable JS strings.
+    math:
+      title: System.Math static methods
+      default:
+        decision: wanted
+        note: Scalar math helpers are strong plain-value portability targets for PowerShell.
 
 elixir:
   title: Elixir
@@ -1680,8 +1690,13 @@ r:
 
 rust:
   title: Rust
-  scopeNote: This inventory currently tracks `str` first, not the full Rust standard library.
+  scopeNote: This inventory currently tracks `str` plus the highest-signal `std::cmp` scalar helpers first, not the full Rust standard library.
   namespaces:
+    cmp:
+      title: std::cmp
+      default:
+        decision: wanted
+        note: Comparison helpers over plain values are strong Rust portability targets.
     str:
       title: std::str
       default:

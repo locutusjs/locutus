@@ -29,3 +29,35 @@ namespaces:
       - Trim
       - TrimEnd
       - TrimStart
+  - namespace: math
+    title: System.Math static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.math
+    entries:
+      - Abs
+      - Acos
+      - Asin
+      - Atan
+      - Atan2
+      - Ceiling
+      - Clamp
+      - CopySign
+      - Cos
+      - Cosh
+      - Exp
+      - Floor
+      - Log
+      - Log10
+      - Log2
+      - Max
+      - Min
+      - Pow
+      - Round
+      - Sign
+      - Sin
+      - Sinh
+      - Sqrt
+      - Tan
+      - Tanh
+      - Truncate
