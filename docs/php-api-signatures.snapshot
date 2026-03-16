@@ -102,6 +102,7 @@ src/php/array/array_intersect_assoc.ts :: export function array_intersect_assoc<
 src/php/array/array_intersect_key.ts :: export function array_intersect_key<TValue>( arr1: PhpArrayLike<TValue>, ...arrays: Array<PhpArrayLike<TValue>> ): PhpAssoc<TValue>
 src/php/array/array_intersect_uassoc.ts :: export function array_intersect_uassoc<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, callback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
 src/php/array/array_intersect_ukey.ts :: export function array_intersect_ukey<T>( arr1: PhpAssoc<T>, ...arraysAndCallback: [ arr2: IntersectArray<T>, ...rest: Array<IntersectArray<T>>, callback: PhpKeyComparatorDescriptor, ] ): PhpAssoc<T>
+src/php/array/array_is_list.ts :: export function array_is_list<T>(input: PhpArrayLike<T>): boolean
 src/php/array/array_key_exists.ts :: export function array_key_exists<TValue>(key: string | number, search: PhpArrayLike<TValue>): boolean
 src/php/array/array_key_first.ts :: export function array_key_first<T>(input: PhpArrayLike<T>): string | number | null
 src/php/array/array_key_last.ts :: export function array_key_last<T>(input: PhpArrayLike<T>): string | number | null

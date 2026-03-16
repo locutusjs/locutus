@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { interpose } from '../../src/clojure/core/interpose.ts'
 import { Atoi } from '../../src/golang/strconv/Atoi.ts'
 import { ParseBool } from '../../src/golang/strconv/ParseBool.ts'
 import { ParseInt } from '../../src/golang/strconv/ParseInt.ts'
@@ -176,6 +177,9 @@ const arrayFillKeysTyped: { [key: string]: string } = array_fill_keys({ first: '
 const arrayCombineTyped: { [key: string]: string } | false = array_combine([1, 2], ['a', 'b'])
 const arrayMergeTyped: number[] | { [key: string]: number } = array_merge([1, 2], [3, 4])
 const arrayUniqueTyped: { [key: string]: string } | false = array_unique(['a', 'a', 'b'])
+const interposeMixedTyped = interpose('-', [1, 2, 3])
+type _InterposeMixedAcceptsUnion = ExpectTrue<IsAssignable<typeof interposeMixedTyped, Array<string | number>>>
+type _InterposeMixedRejectsStringOnly = ExpectFalse<IsAssignable<typeof interposeMixedTyped, string[]>>
 const jsonDecodeTyped: { foo: number } | null = json_decode<{ foo: number }>('{\"foo\":1}')
 const getenvTyped: string | false = getenv('LC_ALL')
 const maxTyped = max(1, 3, 2)
@@ -257,6 +261,7 @@ describe('public type signatures', () => {
     expect(arrayCombineTyped).toEqual({ 1: 'a', 2: 'b' })
     expect(arrayMergeTyped).toEqual([1, 2, 3, 4])
     expect(arrayUniqueTyped).toEqual({ 0: 'a', 2: 'b' })
+    expect(interposeMixedTyped).toEqual([1, '-', 2, '-', 3])
     expect(jsonDecodeTyped).toEqual({ foo: 1 })
     expect(getenvTyped).toBe(false)
     expect(maxTyped).toBe(3)

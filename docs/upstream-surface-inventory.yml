@@ -51,9 +51,6 @@ php:
         bcsub:
           decision: keep_extension
           note: bcmath is not enabled in the base PHP runtime target, but the port is still useful.
-        array_is_list:
-          decision: wanted
-          note: Modern PHP array helper with a clean plain-value contract.
         assert:
           decision: skip_runtime_model
           note: Runtime assertion configuration is not a good portability target.
@@ -208,26 +205,17 @@ tcl:
   namespaces:
     string:
       title: string ensemble
-      decisions:
-        equal:
-          decision: wanted
-          note: High-value comparison helper with a direct boolean contract.
+      decisions: {}
 
 lua:
   title: Lua
   namespaces:
     math:
       title: math library
-      decisions:
-        type:
-          decision: wanted
-          note: Useful numeric classification helper with a clean string result.
+      decisions: {}
     string:
       title: string library
-      decisions:
-        gsub:
-          decision: wanted
-          note: High-value string replacement helper with a plain-value return shape.
+      decisions: {}
 
 perl:
   title: Perl
@@ -244,29 +232,17 @@ powershell:
   namespaces:
     string:
       title: System.String instance methods
-      decisions:
-        TrimStart:
-          decision: wanted
-          note: Useful counterpart to the existing trim helper.
-        TrimEnd:
-          decision: wanted
-          note: Useful counterpart to the existing trim helper.
+      decisions: {}
 
 elixir:
   title: Elixir
   namespaces:
     Enum:
       title: Enum module
-      decisions:
-        zip:
-          decision: wanted
-          note: High-value collection helper that maps cleanly to arrays.
+      decisions: {}
     String:
       title: String module
-      decisions:
-        replace:
-          decision: wanted
-          note: Common string helper with a clean plain-value contract.
+      decisions: {}
     Float:
       title: Float module
       decisions: {}
@@ -279,10 +255,7 @@ clojure:
   namespaces:
     core:
       title: clojure.core
-      decisions:
-        interpose:
-          decision: wanted
-          note: Useful sequence helper that still maps to plain arrays.
+      decisions: {}
     string:
       title: clojure.string
       decisions: {}
@@ -295,10 +268,7 @@ r:
   namespaces:
     base:
       title: base package
-      decisions:
-        sign:
-          decision: wanted
-          note: Small but useful numeric helper with a direct number result.
+      decisions: {}
 
 rust:
   title: Rust

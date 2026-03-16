@@ -2147,3 +2147,26 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Preparing `v3.0.20` pending the final `main` parity result.
 - Key learnings:
   - Larger harvest PRs amortize CI well, but they should still ship promptly once `main` is green so the public wishlist and the published package stay aligned.
+
+### Iteration 108
+
+2026-03-15
+
+- **Area: Multi-language expansion**
+- Plan:
+  - Use the upstream-surface inventory to clear most of the remaining explicit `wanted` backlog in one larger, reviewable batch instead of falling back to single-function PRs.
+  - Keep the scope to plain-value-friendly additions with good parity stories, and leave `python/difflib/ndiff` for a later branch because it is the one materially heavier outlier.
+- Progress:
+  - Added `php/array/array_is_list`, `tcl/string/equal`, `lua/math/type`, `lua/string/gsub`, `powershell/string/trimstart`, `powershell/string/trimend`, `elixir/Enum/zip`, `elixir/String/replace`, `clojure/core/interpose`, and `r/base/sign`.
+  - Extended the parity adapters where needed: Elixir tuple JSON encoding for `Enum.zip`, Tcl boolean normalization for `string equal`, PowerShell member-call routing for `TrimStart`/`TrimEnd`, and Lua tuple/string JSON normalization for `gsub`.
+  - Tightened the implementations after `council-review`: fixed Lua pattern translation for `%w`, character classes, literal `-`, and mid-pattern `^`/`$`; made Elixir string replacements treat `$&`/`$1` literally for plain string patterns; pre-rejected oversized `isqrt` string inputs before expensive `BigInt` square-root work; and corrected `clojure/core/interpose` to expose a sound mixed-type return signature.
+  - Removed the corresponding `wanted` entries from `docs/upstream-surface-inventory.yml`, leaving `python/difflib/ndiff` as the only remaining explicitly tracked wanted port.
+- Validation:
+  - `corepack yarn exec vitest run test/util/wishlist-harvest-2.vitest.ts test/util/type-signatures.vitest.ts`
+  - `corepack yarn exec vitest run test/generated/lua/string/gsub.vitest.ts test/generated/elixir/String/replace.vitest.ts test/generated/clojure/core/interpose.vitest.ts test/generated/python/math/isqrt.vitest.ts`
+  - `corepack yarn test:parity lua/string/gsub elixir/String/replace clojure/core/interpose python/math/isqrt --no-cache`
+  - `corepack yarn fix:api:snapshot`
+  - `corepack yarn fix:type:contracts`
+  - `~/code/dotfiles/bin/council.ts review`
+- Key learnings:
+  - The wishlist inventory is paying off: larger cross-language harvests amortize CI well, but they still need a tight review loop because adapter edges and replacement-template semantics are where subtle cross-runtime mismatches surface fastest.

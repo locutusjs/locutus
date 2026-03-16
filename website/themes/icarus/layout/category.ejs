@@ -29,73 +29,54 @@
         <% }) %>
       </ul>
 
-      <% if (surfaceNamespace) { %>
-        <h2>Namespace wishlist</h2>
-        <p>
-          This namespace is tracked against <code><%= surfaceNamespace.target %></code> using
-          <code><%= surfaceNamespace.sourceKind %></code> source <code><%= surfaceNamespace.sourceRef %></code>.
-        </p>
-        <div class="tags" style="margin-bottom: 1rem;">
-          <span class="tag is-dark">Coverage</span>
-          <span class="tag is-info"><%= surfaceNamespace.coveragePercent === null ? 'n/a' : surfaceNamespace.coveragePercent + '%' %></span>
-          <span class="tag is-dark">Shipped</span>
-          <span class="tag is-success"><%= surfaceNamespace.catalogShippedCount %>/<%= surfaceNamespace.catalogEntries.length %></span>
-          <span class="tag is-dark">Wanted</span>
-          <span class="tag is-warning"><%= surfaceNamespace.wantedEntries.length %></span>
-          <span class="tag is-dark">Skipped</span>
-          <span class="tag is-light"><%= surfaceNamespace.skippedEntries.length %></span>
-          <span class="tag is-dark">Untriaged</span>
-          <span class="tag is-light"><%= surfaceNamespace.untriagedEntries.length %></span>
-        </div>
-
-        <% if (surfaceNamespace.wantedEntries.length > 0) { %>
-          <h3>Wanted ports</h3>
-          <ul>
-            <% surfaceNamespace.wantedEntries.forEach(function (entry) { %>
-              <li><code><%= entry.name %></code><%= entry.note ? ' — ' + entry.note : '' %></li>
-            <% }) %>
-          </ul>
-        <% } %>
-
-        <% if (surfaceNamespace.keptExtras.length > 0) { %>
-          <details style="margin-bottom: 1rem;">
-            <summary>Intentional extras (<%= surfaceNamespace.keptExtras.length %>)</summary>
-            <ul>
-              <% surfaceNamespace.keptExtras.forEach(function (entry) { %>
-                <li><code><%= entry.name %></code><%= entry.note ? ' — ' + entry.note : '' %></li>
-              <% }) %>
-            </ul>
-          </details>
-        <% } %>
-
-        <% if (surfaceNamespace.skippedEntries.length > 0) { %>
-          <details style="margin-bottom: 1rem;">
-            <summary>Explicit non-goals (<%= surfaceNamespace.skippedEntries.length %>)</summary>
-            <ul>
-              <% surfaceNamespace.skippedEntries.forEach(function (entry) { %>
-                <li><code><%= entry.name %></code><%= entry.note ? ' — ' + entry.note : '' %></li>
-              <% }) %>
-            </ul>
-          </details>
-        <% } %>
-
-        <% if (surfaceNamespace.untriagedEntries.length > 0) { %>
-          <details style="margin-bottom: 1rem;">
-            <summary>Untriaged upstream entries (<%= surfaceNamespace.untriagedEntries.length %>)</summary>
-            <ul>
-              <% surfaceNamespace.untriagedEntries.slice(0, 40).forEach(function (entry) { %>
-                <li><code><%= entry %></code></li>
-              <% }) %>
-            </ul>
-            <% if (surfaceNamespace.untriagedEntries.length > 40) { %>
-              <p>Showing the first 40 entries.</p>
-            <% } %>
-          </details>
-        <% } %>
-      <% } %>
-
       <hr />
       <%- partial('locutus/add_more', {curLang: curLang}) %>
+
+      <% if (surfaceNamespace) { %>
+        <details class="surface-panel surface-panel--toggle surface-panel--namespace">
+          <summary class="surface-panel__summary">
+            <span class="surface-panel__summary-copy">
+              <strong>Upstream Surface Inventory</strong>
+              <span>
+                <%= surfaceNamespace.catalogShippedCount %>/<%= surfaceNamespace.catalogEntries.length %> shipped
+                <% if (surfaceNamespace.wantedEntries.length > 0) { %> • <%= surfaceNamespace.wantedEntries.length %> next<% } %>
+                <% if (surfaceNamespace.untriagedEntries.length > 0) { %> • <%= surfaceNamespace.untriagedEntries.length %> need triage<% } %>
+              </span>
+              <span class="surface-panel__summary-stack">
+                <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+                  <% if (surfaceNamespace.catalogEntries.length > 0) { %>
+                    <span class="surface-stack__segment surface-stack__segment--shipped" style="width: <%= Math.max(0, Math.min(100, Math.round((surfaceNamespace.catalogShippedCount / surfaceNamespace.catalogEntries.length) * 1000) / 10)) %>%"></span>
+                    <% if (surfaceNamespace.wantedEntries.length > 0) { %>
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: <%= Math.max(0, Math.min(100, Math.round((surfaceNamespace.wantedEntries.length / surfaceNamespace.catalogEntries.length) * 1000) / 10)) %>%"></span>
+                    <% } %>
+                    <% if (surfaceNamespace.skippedEntries.length > 0) { %>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: <%= Math.max(0, Math.min(100, Math.round((surfaceNamespace.skippedEntries.length / surfaceNamespace.catalogEntries.length) * 1000) / 10)) %>%"></span>
+                    <% } %>
+                    <% if (surfaceNamespace.untriagedEntries.length > 0) { %>
+                      <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: <%= Math.max(0, Math.min(100, Math.round((surfaceNamespace.untriagedEntries.length / surfaceNamespace.catalogEntries.length) * 1000) / 10)) %>%"></span>
+                    <% } %>
+                  <% } %>
+                </span>
+              </span>
+            </span>
+            <span class="surface-panel__summary-badge"><%= surfaceNamespace.coveragePercent === null ? 'n/a' : surfaceNamespace.coveragePercent + '%' %></span>
+          </summary>
+          <div class="surface-panel__content">
+            <p class="surface-summary">
+              Namespace-level inventory for <code><%= surfaceNamespace.target %></code>: what we already ship, what we may still want,
+              and what we intentionally skip or keep.
+            </p>
+            <%- partial('locutus/upstream_surface_namespace', {
+              page: page,
+              namespace: surfaceNamespace,
+              showTitleLink: false,
+              titleHref: null,
+              compact: false
+            }) %>
+          </div>
+        </details>
+      <% } %>
+
       <p>
         <a href="/<%= page.language %>/">&laquo; More <%= curLang.human %> functions</a>
       </p>

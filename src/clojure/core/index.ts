@@ -1,5 +1,6 @@
 export { assoc_in } from './assoc_in.ts'
 export { get_in } from './get_in.ts'
+export { interpose } from './interpose.ts'
 export { merge_with } from './merge_with.ts'
 export { partition } from './partition.ts'
 export { partition_by } from './partition_by.ts'

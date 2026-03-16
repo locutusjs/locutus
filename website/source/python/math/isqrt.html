@@ -46,13 +46,43 @@ alias:
   //       example 3: isqrt(0)
   //       returns 3: 0
 
+  if (typeof n === 'string' && /^[-+]?\d+$/.test(n.trim())) {
+    const parsed = BigInt(n)
+    if (parsed < 0n) {
+      throw new Error('isqrt() only accepts non-negative integers')
+    }
+
+    const root = bigintSqrt(parsed)
+    if (root > BigInt(Number.MAX_SAFE_INTEGER)) {
+      throw new RangeError('isqrt() only supports roots within JS safe integer precision')
+    }
+
+    return Number(root)
+  }
+
   const value = Number(n)
 
-  if (!Number.isFinite(value) || !Number.isInteger(value) || value < 0) {
+  if (!Number.isFinite(value) || !Number.isSafeInteger(value) || value < 0) {
     throw new Error('isqrt() only accepts non-negative integers')
   }
 
   return Math.floor(Math.sqrt(value))
+}
+
+function bigintSqrt(value: bigint): bigint {
+  if (value < 2n) {
+    return value
+  }
+
+  let x0 = value
+  let x1 = (x0 + 1n) >> 1n
+
+  while (x1 < x0) {
+    x0 = x1
+    x1 = (x1 + value / x1) >> 1n
+  }
+
+  return x0
 }
 {% endcodeblock %}
 </div>
@@ -69,12 +99,42 @@ alias:
   //       example 3: isqrt(0)
   //       returns 3: 0
 
+  if (typeof n === 'string' && /^[-+]?\d+$/.test(n.trim())) {
+    const parsed = BigInt(n)
+    if (parsed < 0n) {
+      throw new Error('isqrt() only accepts non-negative integers')
+    }
+
+    const root = bigintSqrt(parsed)
+    if (root > BigInt(Number.MAX_SAFE_INTEGER)) {
+      throw new RangeError('isqrt() only supports roots within JS safe integer precision')
+    }
+
+    return Number(root)
+  }
+
   const value = Number(n)
 
-  if (!Number.isFinite(value) || !Number.isInteger(value) || value < 0) {
+  if (!Number.isFinite(value) || !Number.isSafeInteger(value) || value < 0) {
     throw new Error('isqrt() only accepts non-negative integers')
   }
 
   return Math.floor(Math.sqrt(value))
+}
+
+function bigintSqrt(value) {
+  if (value < 2n) {
+    return value
+  }
+
+  let x0 = value
+  let x1 = (x0 + 1n) >> 1n
+
+  while (x1 < x0) {
+    x0 = x1
+    x1 = (x1 + value / x1) >> 1n
+  }
+
+  return x0
 }{% endcodeblock %}
 </div>

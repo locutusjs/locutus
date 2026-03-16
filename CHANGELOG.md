@@ -27,6 +27,20 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.20...main).
 
+### Expansion
+
+- Added a second wishlist-harvest batch across PHP, Tcl, Lua, PowerShell, Elixir, Clojure, and R:
+  - `php/array`: `array_is_list`
+  - `tcl/string`: `equal`
+  - `lua/math`: `type`
+  - `lua/string`: `gsub`
+  - `powershell/string`: `trimstart`, `trimend`
+  - `elixir/Enum`: `zip`
+  - `elixir/String`: `replace`
+  - `clojure/core`: `interpose`
+  - `r/base`: `sign`
+- Cleared the corresponding `wanted` entries from the upstream-surface inventory, leaving `python/difflib/ndiff` as the only remaining explicitly tracked wanted port.
+
 ## v3.0.20
 
 Released: 2026-03-15. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.19...v3.0.20).

@@ -1,4 +1,5 @@
 export { compare } from './compare.ts'
+export { equal } from './equal.ts'
 export { first } from './first.ts'
 export { last } from './last.ts'
 export { length } from './length.ts'

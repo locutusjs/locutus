@@ -65,12 +65,14 @@ string_trim:
 
 string_ltrim:
   - php/strings/ltrim
+  - powershell/string/trimstart
   - tcl/string/trimleft
   - rust/str/trim_start
 
 string_rtrim:
   - php/strings/rtrim
   - php/strings/chop
+  - powershell/string/trimend
   - ruby/String/chop
   - ruby/String/chomp
   - tcl/string/trimright
@@ -156,6 +158,7 @@ string_replace:
   - rust/str/replace
   - golang/strings/Replace
   - swift/String/replacingOccurrences
+  - elixir/String/replace
 
 regex_replace:
   - php/pcre/preg_replace
@@ -183,6 +186,9 @@ array_first_key:
 
 array_last_key:
   - php/array/array_key_last
+
+array_is_list:
+  - php/array/array_is_list
 
 path_relative:
   - golang/filepath/Rel
@@ -217,8 +223,27 @@ numeric_product:
 sequence_partition_by:
   - clojure/core/partition_by
 
+sequence_interpose:
+  - clojure/core/interpose
+
 enumerable_reduce_while:
   - elixir/Enum/reduce_while
+
+enumerable_zip:
+  - ruby/Array/zip
+  - elixir/Enum/zip
+
+lua_string_replace_with_count:
+  - lua/string/gsub
+
+string_equal:
+  - tcl/string/equal
+
+numeric_sign:
+  - r/base/sign
+
+numeric_type:
+  - lua/math/type
 
 list_permutations:
   - ruby/Array/permutation

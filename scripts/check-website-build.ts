@@ -152,7 +152,7 @@ function main(): void {
     {
       path: 'php/index.html',
       title: 'PHP extensions  in TypeScript | Locutus',
-      includes: ['Upstream surface inventory', 'Wanted ports:', 'array_is_list'],
+      includes: ['Upstream Surface Inventory', 'Needs triage', 'Intentional extras', 'PHP function catalog'],
       ogUrl: 'https://locutus.io/php/index.html',
     },
     {
@@ -182,7 +182,7 @@ function main(): void {
     {
       path: 'golang/filepath/index.html',
       title: 'Go&#39;s filepath package  in TypeScript | Locutus',
-      includes: ['Namespace wishlist', 'Coverage', 'Untriaged upstream entries', 'Join'],
+      includes: ['Upstream Surface Inventory', 'Needs triage', 'path/filepath package', 'Join'],
       ogUrl: 'https://locutus.io/golang/filepath/index.html',
     },
   ]

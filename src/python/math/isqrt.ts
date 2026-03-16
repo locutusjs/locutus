@@ -1,3 +1,6 @@
+const MAX_SAFE_ROOT = BigInt(Number.MAX_SAFE_INTEGER)
+const FIRST_UNSAFE_ROOT_SQUARED = (MAX_SAFE_ROOT + 1n) * (MAX_SAFE_ROOT + 1n)
+
 export function isqrt(n: number | string): number {
   //      discuss at: https://locutus.io/python/isqrt/
   // parity verified: Python 3.12
@@ -16,8 +19,12 @@ export function isqrt(n: number | string): number {
       throw new Error('isqrt() only accepts non-negative integers')
     }
 
+    if (parsed >= FIRST_UNSAFE_ROOT_SQUARED) {
+      throw new RangeError('isqrt() only supports roots within JS safe integer precision')
+    }
+
     const root = bigintSqrt(parsed)
-    if (root > BigInt(Number.MAX_SAFE_INTEGER)) {
+    if (root > MAX_SAFE_ROOT) {
       throw new RangeError('isqrt() only supports roots within JS safe integer precision')
     }
 

@@ -52,7 +52,7 @@ alias:
   //       example 4: Join('', '')
   //       returns 4: ''
 
-  const parts = elem.map((value) => String(value))
+  const parts = elem.map((value) => String(value)).filter((value) => value !== '')
   if (parts.every((value) => value === '')) {
     return ''
   }
@@ -104,7 +104,7 @@ alias:
   //       example 4: Join('', '')
   //       returns 4: ''
 
-  const parts = elem.map((value) => String(value))
+  const parts = elem.map((value) => String(value)).filter((value) => value !== '')
   if (parts.every((value) => value === '')) {
     return ''
   }

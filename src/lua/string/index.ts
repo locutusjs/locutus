@@ -1,3 +1,4 @@
+export { gsub } from './gsub.ts'
 export { len } from './len.ts'
 export { lower } from './lower.ts'
 export { rep } from './rep.ts'
