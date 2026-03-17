@@ -2439,3 +2439,34 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn lint:ts`
 - Key learnings:
   - Treating missing language coverage as an inventory problem first is the fastest way to make the roadmap complete; parity support can follow later without blocking the catalog itself.
+
+### Iteration 124
+
+2026-03-17
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Treat “complete upstream tracking” as complete official core/stdlib scope per language, not the whole package ecosystem.
+  - Prefer live runtime discovery where it is reliable, and fall back to pinned upstream docs/source snapshots where runtime introspection is weak or impractical.
+  - Keep YAML cost low with namespace defaults and rules; only exceptions should need exact entries.
+- Progress:
+  - Reaffirmed the source-ordering rule for future breadth work: `runtime` first, then version-tagged docs/source manifests, then manual snapshots as the last resort.
+  - Confirmed the next real gap is no longer missing `src/<language>/<category>` coverage, but subset-scoped languages whose tracked surface still falls short of official core/stdlib scope.
+  - Chose the next efficient breadth wave accordingly: broaden runtime-discoverable standard-library modules first, while extending docs/source-driven languages via compact manual catalogs rather than waiting for parity support.
+  - Broadened Python again with `cmath`, `collections`, `decimal`, `random`, and `unicodedata`, while explicitly dropping `fractions` once runtime discovery showed it contributes no function surface worth cataloging.
+  - Broadened Ruby with `Comparable`, `Range`, `Regexp`, `Symbol`, and `Time`, so the inventory now covers a materially wider slice of Ruby core behavior than just collections, strings, and math.
+  - Broadened Elixir with `Base`, `Date`, `Keyword`, `NaiveDateTime`, and `URI`, keeping struct-heavy modules explicitly tracked but defaulted away from plain-value ports where appropriate.
+  - Broadened docs/manual languages with PowerShell `System.Convert` / `System.Array`, Rust primitive `f32` / `f64`, Kotlin `comparisons` / `math` / `ranges`, and Swift `Array` / `Character`.
+  - Kept the website mirror and website inventory views in sync through `injectupstreamsurface`, so the broader core/stdlib scope is visible without rerunning the full site-source generation path.
+- Validation:
+  - Inventory audit against current `src/` coverage and tracked scope notes before starting the next breadth wave.
+  - `corepack yarn refresh:upstream-surface python ruby elixir`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - “Untriaged: 0” only becomes strategically meaningful once the tracked scope is explicit and intentionally anchored to official core/stdlib boundaries.
+  - Runtime discovery is only worth keeping when it yields a real callable surface; empty or class-only modules like Python `fractions` should be dropped rather than preserved as misleading zero-entry namespaces.

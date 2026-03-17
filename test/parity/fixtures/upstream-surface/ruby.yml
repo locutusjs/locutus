@@ -659,3 +659,210 @@ namespaces:
       - to_r
       - truncate
       - zero?
+  - namespace: Comparable
+    title: Comparable instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - <
+      - <=
+      - '=='
+      - '>'
+      - '>='
+      - between?
+      - clamp
+  - namespace: Range
+    title: Range instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '%'
+      - all?
+      - any?
+      - begin
+      - bsearch
+      - chain
+      - chunk
+      - chunk_while
+      - collect
+      - collect_concat
+      - compact
+      - count
+      - cover?
+      - cycle
+      - detect
+      - drop
+      - drop_while
+      - each
+      - each_cons
+      - each_entry
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - end
+      - entries
+      - exclude_end?
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - last
+      - lazy
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - one?
+      - overlap?
+      - partition
+      - reduce
+      - reject
+      - reverse_each
+      - select
+      - size
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - step
+      - sum
+      - take
+      - take_while
+      - tally
+      - to_a
+      - to_h
+      - to_set
+      - uniq
+      - zip
+  - namespace: Regexp
+    title: Regexp instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '=~'
+      - casefold?
+      - encoding
+      - fixed_encoding?
+      - match
+      - match?
+      - named_captures
+      - names
+      - options
+      - source
+      - timeout
+      - '~'
+  - namespace: Symbol
+    title: Symbol instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - <
+      - <=
+      - '=~'
+      - '>'
+      - '>='
+      - '[]'
+      - between?
+      - capitalize
+      - casecmp
+      - casecmp?
+      - clamp
+      - downcase
+      - empty?
+      - encoding
+      - end_with?
+      - id2name
+      - intern
+      - length
+      - match
+      - match?
+      - name
+      - next
+      - size
+      - slice
+      - start_with?
+      - succ
+      - swapcase
+      - to_proc
+      - to_sym
+      - upcase
+  - namespace: Time
+    title: Time instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - +
+      - '-'
+      - <
+      - <=
+      - '>'
+      - '>='
+      - asctime
+      - between?
+      - ceil
+      - clamp
+      - ctime
+      - day
+      - deconstruct_keys
+      - dst?
+      - floor
+      - friday?
+      - getgm
+      - getlocal
+      - getutc
+      - gmt?
+      - gmt_offset
+      - gmtime
+      - gmtoff
+      - hour
+      - isdst
+      - localtime
+      - mday
+      - min
+      - mon
+      - monday?
+      - month
+      - nsec
+      - round
+      - saturday?
+      - sec
+      - strftime
+      - subsec
+      - sunday?
+      - thursday?
+      - to_a
+      - to_f
+      - to_i
+      - to_r
+      - tuesday?
+      - tv_nsec
+      - tv_sec
+      - tv_usec
+      - usec
+      - utc
+      - utc?
+      - utc_offset
+      - wday
+      - wednesday?
+      - yday
+      - year
+      - zone

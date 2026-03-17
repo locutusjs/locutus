@@ -1,5 +1,68 @@
 language: elixir
 namespaces:
+  - namespace: Base
+    title: Base module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - decode16
+      - decode16!
+      - decode32
+      - decode32!
+      - decode64
+      - decode64!
+      - encode16
+      - encode32
+      - encode64
+      - hex_decode32
+      - hex_decode32!
+      - hex_encode32
+      - url_decode64
+      - url_decode64!
+      - url_encode64
+  - namespace: Date
+    title: Date module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - beginning_of_month
+      - beginning_of_week
+      - compare
+      - convert
+      - convert!
+      - day_of_era
+      - day_of_week
+      - day_of_year
+      - days_in_month
+      - diff
+      - end_of_month
+      - end_of_week
+      - from_erl
+      - from_erl!
+      - from_gregorian_days
+      - from_iso8601
+      - from_iso8601!
+      - leap_year?
+      - months_in_year
+      - new
+      - new!
+      - quarter_of_year
+      - range
+      - shift
+      - to_erl
+      - to_gregorian_days
+      - to_iso8601
+      - to_iso_days
+      - to_string
+      - utc_today
+      - year_of_era
   - namespace: Enum
     title: Enum module
     target: Elixir 1.18
@@ -195,6 +258,54 @@ namespaces:
       - trunc
       - tuple_size
       - update_in
+  - namespace: Keyword
+    title: Keyword module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - delete
+      - delete_first
+      - drop
+      - equal?
+      - fetch
+      - fetch!
+      - filter
+      - from_keys
+      - get
+      - get_and_update
+      - get_and_update!
+      - get_lazy
+      - get_values
+      - has_key?
+      - intersect
+      - keys
+      - keyword?
+      - map
+      - merge
+      - new
+      - pop
+      - pop!
+      - pop_first
+      - pop_lazy
+      - pop_values
+      - put
+      - put_new
+      - put_new_lazy
+      - reject
+      - replace
+      - replace!
+      - replace_lazy
+      - size
+      - split
+      - split_with
+      - take
+      - to_list
+      - update
+      - update!
+      - validate
+      - validate!
+      - values
   - namespace: List
     title: List module
     target: Elixir 1.18
@@ -277,6 +388,40 @@ namespaces:
       - update
       - update!
       - values
+  - namespace: NaiveDateTime
+    title: NaiveDateTime module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - beginning_of_day
+      - compare
+      - convert
+      - convert!
+      - diff
+      - end_of_day
+      - from_erl
+      - from_erl!
+      - from_gregorian_seconds
+      - from_iso8601
+      - from_iso8601!
+      - local_now
+      - new
+      - new!
+      - shift
+      - to_date
+      - to_erl
+      - to_gregorian_seconds
+      - to_iso8601
+      - to_string
+      - to_time
+      - truncate
+      - utc_now
   - namespace: String
     title: String module
     target: Elixir 1.18
@@ -350,3 +495,28 @@ namespaces:
       - product
       - sum
       - to_list
+  - namespace: URI
+    title: URI module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - append_path
+      - append_query
+      - char_reserved?
+      - char_unescaped?
+      - char_unreserved?
+      - decode
+      - decode_query
+      - decode_www_form
+      - default_port
+      - encode
+      - encode_query
+      - encode_www_form
+      - merge
+      - new
+      - new!
+      - parse
+      - query_decoder
+      - to_string

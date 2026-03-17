@@ -1,5 +1,43 @@
 language: swift
 namespaces:
+  - namespace: Array
+    title: Swift.Array
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/array
+    entries:
+      - contains
+      - dropFirst
+      - dropLast
+      - elementsEqual
+      - filter
+      - first
+      - flatMap
+      - joined
+      - last
+      - map
+      - partition
+      - prefix
+      - reduce
+      - reversed
+      - suffix
+  - namespace: Character
+    title: Swift.Character
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/character
+    entries:
+      - asciiValue
+      - isASCII
+      - isLetter
+      - isLowercase
+      - isNumber
+      - isPunctuation
+      - isSymbol
+      - isUppercase
+      - isWhitespace
+      - lowercased
+      - uppercased
   - namespace: String
     title: Swift.String
     target: Swift 6

@@ -34,6 +34,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 - Added Python `builtins`, Tcl `dict` and standalone value commands, PowerShell `System.Math`, Rust `std::cmp`, Julia `Statistics`, R `stats`, the remaining Lua core libraries, and Perl `List::Util` / `Scalar::Util` to the tracked upstream catalog so the language pages now reflect a much broader and more honest core-runtime roadmap.
 - Continued broadening the same inventory in-flight with Python `heapq` / `textwrap`, Ruby `Integer` / `Float`, Go `slices`, Elixir `Tuple`, PowerShell `System.Char`, and Rust primitive `char`, plus a Go generic-symbol normalization fix so those inventories stay clean and comparable.
 - Closed the last structural gaps in the current project surface by adding upstream tracking for Haskell `list`, Kotlin `collections` / `text`, and Swift `String`, so every language/category currently shipped under `src/` is now represented in the upstream inventory.
+- Continued the same breadth wave toward official core/stdlib scope with Python `cmath` / `collections` / `decimal` / `random` / `unicodedata`, Ruby `Comparable` / `Range` / `Regexp` / `Symbol` / `Time`, Elixir `Base` / `Date` / `Keyword` / `NaiveDateTime` / `URI`, PowerShell `System.Convert` / `System.Array`, Rust primitive `f32` / `f64`, Kotlin `comparisons` / `math` / `ranges`, and Swift `Array` / `Character`.
 
 ## v3.0.24
 

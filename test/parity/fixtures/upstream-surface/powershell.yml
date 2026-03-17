@@ -86,3 +86,56 @@ namespaces:
       - Parse
       - ToLower
       - ToUpper
+  - namespace: convert
+    title: System.Convert static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.convert
+    entries:
+      - ChangeType
+      - FromBase64CharArray
+      - FromBase64String
+      - FromHexString
+      - GetTypeCode
+      - ToBase64CharArray
+      - ToBase64String
+      - ToBoolean
+      - ToByte
+      - ToChar
+      - ToDecimal
+      - ToDouble
+      - ToHexString
+      - ToInt16
+      - ToInt32
+      - ToInt64
+      - ToSByte
+      - ToSingle
+      - ToString
+      - ToUInt16
+      - ToUInt32
+      - ToUInt64
+  - namespace: array
+    title: System.Array static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.array
+    entries:
+      - BinarySearch
+      - Clear
+      - ConstrainedCopy
+      - ConvertAll
+      - Copy
+      - Empty
+      - Exists
+      - Fill
+      - Find
+      - FindAll
+      - FindIndex
+      - FindLast
+      - FindLastIndex
+      - ForEach
+      - IndexOf
+      - LastIndexOf
+      - Reverse
+      - Sort
+      - TrueForAll

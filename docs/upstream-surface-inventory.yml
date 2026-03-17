@@ -348,7 +348,7 @@ php:
 
 python:
   title: Python
-  scopeNote: This inventory now tracks Python builtins plus a broad plain-value slice of the standard library, not the full standard library or object model.
+  scopeNote: This inventory now targets a broad official core/stdlib slice first, using runtime discovery where possible, rather than the full Python object model or third-party ecosystem.
   namespaces:
     builtins:
       title: builtins module
@@ -721,6 +721,21 @@ python:
         template:
           decision: skip_runtime_model
           note: Template pattern objects are not a stable plain-value target.
+    cmath:
+      title: cmath module
+      default:
+        decision: skip_plain_value_mismatch
+        note: Complex-number helpers do not fit Locutus' current plain-value model.
+    collections:
+      title: collections module
+      default:
+        decision: skip_runtime_model
+        note: Most collections exports are container classes or factory helpers rather than direct plain-value functions.
+    decimal:
+      title: decimal module
+      default:
+        decision: skip_plain_value_mismatch
+        note: Arbitrary-precision decimal values do not fit Locutus' current plain-value model.
     string:
       title: string module
       decisions: {}
@@ -759,11 +774,21 @@ python:
         heapreplace:
           decision: skip_side_effects
           note: In-place heap mutation is outside Locutus' value-only model.
+    random:
+      title: random module
+      default:
+        decision: skip_low_value
+        note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
     textwrap:
       title: textwrap module
       default:
         decision: wanted
         note: Text formatting and wrapping helpers are strong plain-value portability targets.
+    unicodedata:
+      title: unicodedata module
+      default:
+        decision: wanted
+        note: Unicode classification and normalization helpers are strong plain-value portability targets.
 
 julia:
   title: Julia
@@ -814,13 +839,38 @@ julia:
 
 kotlin:
   title: Kotlin
-  scopeNote: This inventory currently tracks the `kotlin.collections` and `kotlin.text` surfaces we already ship from, not the broader Kotlin/JVM ecosystem.
+  scopeNote: This inventory now tracks a broader official Kotlin stdlib slice, using docs-backed catalogs for packages that do not introspect cleanly at runtime, not the wider JVM ecosystem.
   namespaces:
     collections:
       title: kotlin.collections
       default:
         decision: wanted
         note: Collection transforms are strong plain-value portability targets.
+    comparisons:
+      title: kotlin.comparisons
+      default:
+        decision: wanted
+        note: Comparison helpers over plain values are strong Kotlin portability targets.
+    math:
+      title: kotlin.math
+      default:
+        decision: wanted
+        note: Scalar math helpers are strong Kotlin portability targets.
+    ranges:
+      title: kotlin.ranges
+      default:
+        decision: skip_runtime_model
+        note: Range-construction APIs often return dedicated range objects rather than plain values.
+      decisions:
+        coerceAtLeast:
+          decision: wanted
+          note: Scalar clamping helpers have a clean plain-value contract.
+        coerceAtMost:
+          decision: wanted
+          note: Scalar clamping helpers have a clean plain-value contract.
+        coerceIn:
+          decision: wanted
+          note: Scalar clamping helpers have a clean plain-value contract.
     text:
       title: kotlin.text
       default:
@@ -829,7 +879,7 @@ kotlin:
 
 ruby:
   title: Ruby
-  scopeNote: This inventory currently tracks the highest-signal core collection, scalar, string, and math surfaces rather than all of Ruby.
+  scopeNote: This inventory now tracks a broader slice of official Ruby core and stdlib plain-value surfaces rather than the broader gem ecosystem.
   namespaces:
     Array:
       title: Array instance methods
@@ -1002,6 +1052,66 @@ ruby:
         to_r:
           decision: skip_plain_value_mismatch
           note: Rational values do not fit Locutus' current plain-value model.
+    Comparable:
+      title: Comparable instance methods
+      default:
+        decision: wanted
+        note: Comparable predicates over scalar values are strong Ruby portability targets.
+    Range:
+      title: Range instance methods
+      default:
+        decision: skip_runtime_model
+        note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+      decisions:
+        begin:
+          decision: wanted
+          note: Scalar boundary readers have a clean plain-value contract.
+        cover?:
+          decision: wanted
+          note: Membership predicates have a clean plain-value contract.
+        end:
+          decision: wanted
+          note: Scalar boundary readers have a clean plain-value contract.
+        first:
+          decision: wanted
+          note: Boundary readers have a clean plain-value contract.
+        include?:
+          decision: wanted
+          note: Membership predicates have a clean plain-value contract.
+        last:
+          decision: wanted
+          note: Boundary readers have a clean plain-value contract.
+        max:
+          decision: wanted
+          note: Scalar extrema readers have a clean plain-value contract.
+        min:
+          decision: wanted
+          note: Scalar extrema readers have a clean plain-value contract.
+        minmax:
+          decision: wanted
+          note: Scalar extrema readers have a clean plain-value contract.
+        size:
+          decision: wanted
+          note: Size helpers have a clean plain-value contract.
+    Regexp:
+      title: Regexp instance methods
+      default:
+        decision: skip_runtime_model
+        note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+      decisions:
+        source:
+          decision: wanted
+          note: Pattern-source readers have a clean plain-value contract.
+    Symbol:
+      title: Symbol instance methods
+      default:
+        decision: skip_plain_value_mismatch
+        note: Ruby symbol identity does not map cleanly onto JS plain strings.
+    Time:
+      title: Time instance methods
+      default:
+        decision: skip_runtime_model
+        note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
 
 golang:
   title: Go
@@ -1505,7 +1615,7 @@ perl:
 
 powershell:
   title: PowerShell
-  scopeNote: This inventory currently tracks the highest-signal plain-value .NET surfaces for PowerShell first, starting with `System.String`, `System.Math`, and `System.Char`.
+  scopeNote: This inventory now tracks a broader slice of official .NET core surfaces that are idiomatic in PowerShell, using manual docs-backed catalogs where runtime reflection is less convenient.
   namespaces:
     string:
       title: System.String instance methods
@@ -1533,11 +1643,48 @@ powershell:
         GetUnicodeCategory:
           decision: skip_runtime_model
           note: .NET enum return values do not map cleanly onto one stable Locutus contract yet.
+    convert:
+      title: System.Convert static methods
+      default:
+        decision: wanted
+        note: Scalar conversion helpers are strong PowerShell portability targets.
+      decisions:
+        ChangeType:
+          decision: skip_runtime_model
+          note: Type-descriptor-driven conversion depends on host runtime type metadata.
+        GetTypeCode:
+          decision: skip_runtime_model
+          note: Enum-style runtime type codes are not a stable plain-value portability target.
+    array:
+      title: System.Array static methods
+      default:
+        decision: skip_runtime_model
+        note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+      decisions:
+        BinarySearch:
+          decision: wanted
+          note: Search helpers over plain arrays have a clean plain-value contract.
+        IndexOf:
+          decision: wanted
+          note: Search helpers over plain arrays have a clean plain-value contract.
+        LastIndexOf:
+          decision: wanted
+          note: Search helpers over plain arrays have a clean plain-value contract.
 
 elixir:
   title: Elixir
-  scopeNote: This inventory currently tracks the most plain-value-friendly core modules first, not every Elixir or OTP module.
+  scopeNote: This inventory now tracks a broader official Elixir core/stdlib slice first, not the full OTP or Erlang ecosystem.
   namespaces:
+    Base:
+      title: Base module
+      default:
+        decision: wanted
+        note: Base encoding helpers are strong plain-value portability targets.
+    Date:
+      title: Date module
+      default:
+        decision: skip_runtime_model
+        note: Date structs do not fit Locutus' current plain-value model by default.
     Enum:
       title: Enum module
       default:
@@ -1653,6 +1800,11 @@ elixir:
         tuple_size:
           decision: wanted
           note: Size helpers have a clean plain-value contract.
+    Keyword:
+      title: Keyword module
+      default:
+        decision: wanted
+        note: Keyword-list helpers can be modeled over entry arrays and plain objects.
     List:
       title: List module
       default:
@@ -1677,11 +1829,28 @@ elixir:
         from_struct:
           decision: skip_runtime_model
           note: Struct-specific reflection does not fit Locutus' plain-value model.
+    NaiveDateTime:
+      title: NaiveDateTime module
+      default:
+        decision: skip_runtime_model
+        note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
     Tuple:
       title: Tuple module
       default:
         decision: wanted
         note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
+    URI:
+      title: URI module
+      default:
+        decision: skip_runtime_model
+        note: URI structs do not fit Locutus' current plain-value model by default.
+      rules:
+        - match: 'decode*'
+          decision: wanted
+          note: String-based encode/decode helpers have a clean plain-value contract.
+        - match: 'encode*'
+          decision: wanted
+          note: String-based encode/decode helpers have a clean plain-value contract.
 
 clojure:
   title: Clojure
@@ -1945,7 +2114,7 @@ r:
 
 rust:
   title: Rust
-  scopeNote: This inventory currently tracks `str` plus the highest-signal scalar helpers from `std::cmp` and primitive `char`, not the full Rust standard library.
+  scopeNote: This inventory now tracks a broader slice of Rust core/std primitives first, using docs-backed catalogs for stable primitive method surfaces, not the full crate ecosystem.
   namespaces:
     cmp:
       title: std::cmp
@@ -2006,11 +2175,31 @@ rust:
         trim_matches:
           decision: skip_runtime_model
           note: Pattern-driven trimming does not map cleanly to one stable plain-value contract.
+    f32:
+      title: f32 primitive methods
+      default:
+        decision: wanted
+        note: Scalar floating-point helpers are strong Rust portability targets.
+    f64:
+      title: f64 primitive methods
+      default:
+        decision: wanted
+        note: Scalar floating-point helpers are strong Rust portability targets.
 
 swift:
   title: Swift
-  scopeNote: This inventory currently tracks the Swift `String` surface we already ship from, not the broader Foundation ecosystem.
+  scopeNote: This inventory now tracks a broader Swift standard-library slice via docs-backed catalogs, not the broader Foundation ecosystem.
   namespaces:
+    Array:
+      title: Swift.Array
+      default:
+        decision: wanted
+        note: Array transforms are strong Swift plain-value portability targets.
+    Character:
+      title: Swift.Character
+      default:
+        decision: wanted
+        note: Character classification and case helpers are strong Swift plain-value portability targets.
     String:
       title: Swift.String
       default:

@@ -134,6 +134,46 @@ snapshots = [
     sourceKind: 'runtime',
     sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Float)
+  },
+  {
+    namespace: 'Comparable',
+    title: 'Comparable instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: Comparable.instance_methods(false).map(&:to_s).uniq.sort
+  },
+  {
+    namespace: 'Range',
+    title: 'Range instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Range)
+  },
+  {
+    namespace: 'Regexp',
+    title: 'Regexp instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Regexp)
+  },
+  {
+    namespace: 'Symbol',
+    title: 'Symbol instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Symbol)
+  },
+  {
+    namespace: 'Time',
+    title: 'Time instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(Time)
   }
 ]
 

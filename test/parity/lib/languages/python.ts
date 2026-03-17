@@ -30,6 +30,9 @@ function discoverPythonUpstreamSurface() {
 import builtins
 import difflib
 import bisect
+import cmath
+import collections
+import decimal
 import functools
 import heapq
 import inspect
@@ -37,23 +40,30 @@ import itertools
 import json
 import math
 import operator
+import random
 import re
 import statistics
 import string
 import textwrap
+import unicodedata
 
 modules = {
   "builtins": {"module": builtins, "allowedModules": ["builtins", "io"]},
   "bisect": {"module": bisect, "allowedModules": ["bisect", "_bisect"]},
+  "cmath": {"module": cmath, "allowedModules": ["cmath"]},
+  "collections": {"module": collections, "allowedModules": ["collections"]},
+  "decimal": {"module": decimal, "allowedModules": ["decimal"]},
   "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
   "heapq": {"module": heapq, "allowedModules": ["heapq", "_heapq"]},
   "itertools": {"module": itertools, "allowedModules": ["itertools"]},
   "math": {"module": math, "allowedModules": ["math"]},
   "operator": {"module": operator, "allowedModules": ["operator", "_operator"]},
+  "random": {"module": random, "allowedModules": ["random", "_random"]},
   "re": {"module": re, "allowedModules": ["re"]},
   "statistics": {"module": statistics, "allowedModules": ["statistics"]},
   "string": {"module": string, "allowedModules": ["string"]},
   "textwrap": {"module": textwrap, "allowedModules": ["textwrap"]},
+  "unicodedata": {"module": unicodedata, "allowedModules": ["unicodedata"]},
   "difflib": {"module": difflib, "allowedModules": ["difflib"]},
 }
 

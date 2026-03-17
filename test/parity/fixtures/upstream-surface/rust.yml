@@ -89,3 +89,107 @@ namespaces:
       - trim_end
       - trim_matches
       - trim_start
+  - namespace: f32
+    title: f32 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.f32.html
+    entries:
+      - abs
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - cbrt
+      - ceil
+      - clamp
+      - copysign
+      - cos
+      - cosh
+      - exp
+      - exp2
+      - exp_m1
+      - floor
+      - fract
+      - hypot
+      - is_finite
+      - is_infinite
+      - is_nan
+      - is_normal
+      - ln
+      - ln_1p
+      - log
+      - log10
+      - log2
+      - max
+      - min
+      - mul_add
+      - powf
+      - powi
+      - recip
+      - round
+      - signum
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - to_degrees
+      - to_radians
+      - total_cmp
+      - trunc
+  - namespace: f64
+    title: f64 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.f64.html
+    entries:
+      - abs
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - cbrt
+      - ceil
+      - clamp
+      - copysign
+      - cos
+      - cosh
+      - exp
+      - exp2
+      - exp_m1
+      - floor
+      - fract
+      - hypot
+      - is_finite
+      - is_infinite
+      - is_nan
+      - is_normal
+      - ln
+      - ln_1p
+      - log
+      - log10
+      - log2
+      - max
+      - min
+      - mul_add
+      - powf
+      - powi
+      - recip
+      - round
+      - signum
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - to_degrees
+      - to_radians
+      - total_cmp
+      - trunc

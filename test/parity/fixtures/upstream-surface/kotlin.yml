@@ -28,6 +28,77 @@ namespaces:
       - windowed
       - zip
       - zipWithNext
+  - namespace: comparisons
+    title: kotlin.comparisons package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.comparisons/
+    entries:
+      - compareBy
+      - compareByDescending
+      - compareValues
+      - compareValuesBy
+      - maxBy
+      - maxOf
+      - minBy
+      - minOf
+      - naturalOrder
+      - nullsFirst
+      - nullsLast
+      - reverseOrder
+      - thenBy
+      - thenByDescending
+  - namespace: math
+    title: kotlin.math package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.math/
+    entries:
+      - abs
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - ceil
+      - cos
+      - cosh
+      - exp
+      - expm1
+      - floor
+      - hypot
+      - ln
+      - ln1p
+      - log
+      - log10
+      - log2
+      - max
+      - min
+      - pow
+      - round
+      - sign
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - truncate
+  - namespace: ranges
+    title: kotlin.ranges package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/
+    entries:
+      - coerceAtLeast
+      - coerceAtMost
+      - coerceIn
+      - downTo
+      - rangeTo
+      - rangeUntil
+      - step
+      - until
   - namespace: text
     title: kotlin.text package
     target: Kotlin 2.2

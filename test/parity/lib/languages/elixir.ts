@@ -44,14 +44,19 @@ function discoverElixirUpstreamSurface() {
   return {
     language: 'elixir',
     namespaces: [
+      discoverModule('Base', 'Base module'),
+      discoverModule('Date', 'Date module'),
       discoverModule('Enum', 'Enum module'),
       discoverModule('Float', 'Float module'),
       discoverModule('Integer', 'Integer module'),
       discoverModule('Kernel', 'Kernel module'),
+      discoverModule('Keyword', 'Keyword module'),
       discoverModule('List', 'List module'),
       discoverModule('Map', 'Map module'),
+      discoverModule('NaiveDateTime', 'NaiveDateTime module'),
       discoverModule('String', 'String module'),
       discoverModule('Tuple', 'Tuple module'),
+      discoverModule('URI', 'URI module'),
     ],
   }
 }

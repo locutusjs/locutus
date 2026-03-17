@@ -1,4 +1,4 @@
-generatedAt: '2026-03-16T22:08:25.181Z'
+generatedAt: '2026-03-17T06:51:53.832Z'
 languages:
   awk:
     language: awk
@@ -4848,18 +4848,258 @@ languages:
   elixir:
     language: elixir
     title: Elixir
-    scopeNote: This inventory currently tracks the most plain-value-friendly core modules first, not every Elixir or OTP module.
-    namespaceCount: 8
+    scopeNote: This inventory now tracks a broader official Elixir core/stdlib slice first, not the full OTP or Erlang ecosystem.
+    namespaceCount: 13
     shippedCount: 14
-    catalogCount: 302
+    catalogCount: 442
     catalogShippedCount: 14
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 236
-    skippedCount: 52
+    wantedCount: 299
+    skippedCount: 129
     untriagedCount: 0
-    coveragePercent: 5
+    coveragePercent: 3
     namespaces:
+      - namespace: Base
+        title: Base module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - decode16
+          - decode16!
+          - decode32
+          - decode32!
+          - decode64
+          - decode64!
+          - encode16
+          - encode32
+          - encode64
+          - hex_decode32
+          - hex_decode32!
+          - hex_encode32
+          - url_decode64
+          - url_decode64!
+          - url_encode64
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: decode16
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: decode16!
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: decode32
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: decode32!
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: decode64
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: decode64!
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: encode16
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: encode32
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: encode64
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: hex_decode32
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: hex_decode32!
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: hex_encode32
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: url_decode64
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: url_decode64!
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+          - name: url_encode64
+            decision: wanted
+            note: Base encoding helpers are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: Date
+        title: Date module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - __duration__!
+          - __struct__
+          - add
+          - after?
+          - before?
+          - beginning_of_month
+          - beginning_of_week
+          - compare
+          - convert
+          - convert!
+          - day_of_era
+          - day_of_week
+          - day_of_year
+          - days_in_month
+          - diff
+          - end_of_month
+          - end_of_week
+          - from_erl
+          - from_erl!
+          - from_gregorian_days
+          - from_iso8601
+          - from_iso8601!
+          - leap_year?
+          - months_in_year
+          - new
+          - new!
+          - quarter_of_year
+          - range
+          - shift
+          - to_erl
+          - to_gregorian_days
+          - to_iso8601
+          - to_iso_days
+          - to_string
+          - utc_today
+          - year_of_era
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: __duration__!
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: __struct__
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: add
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: after?
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: before?
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: beginning_of_month
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: beginning_of_week
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: compare
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: convert
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: convert!
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: day_of_era
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: day_of_week
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: day_of_year
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: days_in_month
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: diff
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: end_of_month
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: end_of_week
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: from_erl
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: from_erl!
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: from_gregorian_days
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: from_iso8601
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: from_iso8601!
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: leap_year?
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: months_in_year
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: new
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: new!
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: quarter_of_year
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: range
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: shift
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: to_erl
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: to_gregorian_days
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: to_iso_days
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: to_iso8601
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: to_string
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: utc_today
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+          - name: year_of_era
+            decision: skip_runtime_model
+            note: Date structs do not fit Locutus' current plain-value model by default.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: Enum
         title: Enum module
         target: Elixir 1.18
@@ -5679,6 +5919,192 @@ languages:
           - Kernel
         catalogShippedCount: 1
         coveragePercent: 1
+      - namespace: Keyword
+        title: Keyword module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - delete
+          - delete_first
+          - drop
+          - equal?
+          - fetch
+          - fetch!
+          - filter
+          - from_keys
+          - get
+          - get_and_update
+          - get_and_update!
+          - get_lazy
+          - get_values
+          - has_key?
+          - intersect
+          - keys
+          - keyword?
+          - map
+          - merge
+          - new
+          - pop
+          - pop!
+          - pop_first
+          - pop_lazy
+          - pop_values
+          - put
+          - put_new
+          - put_new_lazy
+          - reject
+          - replace
+          - replace!
+          - replace_lazy
+          - size
+          - split
+          - split_with
+          - take
+          - to_list
+          - update
+          - update!
+          - validate
+          - validate!
+          - values
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: delete
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: delete_first
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: drop
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: equal?
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: fetch
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: fetch!
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: filter
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: from_keys
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: get
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: get_and_update
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: get_and_update!
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: get_lazy
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: get_values
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: has_key?
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: intersect
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: keys
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: keyword?
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: map
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: merge
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: new
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: pop
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: pop_first
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: pop_lazy
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: pop_values
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: pop!
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: put
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: put_new
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: put_new_lazy
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: reject
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: replace
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: replace_lazy
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: replace!
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: size
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: split
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: split_with
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: take
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: to_list
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: update
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: update!
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: validate
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: validate!
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+          - name: values
+            decision: wanted
+            note: Keyword-list helpers can be modeled over entry arrays and plain objects.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: List
         title: List module
         target: Elixir 1.18
@@ -5995,6 +6421,136 @@ languages:
         categories: []
         catalogShippedCount: 0
         coveragePercent: 0
+      - namespace: NaiveDateTime
+        title: NaiveDateTime module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - __duration__!
+          - __struct__
+          - add
+          - after?
+          - before?
+          - beginning_of_day
+          - compare
+          - convert
+          - convert!
+          - diff
+          - end_of_day
+          - from_erl
+          - from_erl!
+          - from_gregorian_seconds
+          - from_iso8601
+          - from_iso8601!
+          - local_now
+          - new
+          - new!
+          - shift
+          - to_date
+          - to_erl
+          - to_gregorian_seconds
+          - to_iso8601
+          - to_string
+          - to_time
+          - truncate
+          - utc_now
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: __duration__!
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: __struct__
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: add
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: after?
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: before?
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: beginning_of_day
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: compare
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: convert
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: convert!
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: diff
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: end_of_day
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: from_erl
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: from_erl!
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: from_gregorian_seconds
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: from_iso8601
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: from_iso8601!
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: local_now
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: new
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: new!
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: shift
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: to_date
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: to_erl
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: to_gregorian_seconds
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: to_iso8601
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: to_string
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: to_time
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: truncate
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+          - name: utc_now
+            decision: skip_runtime_model
+            note: NaiveDateTime structs do not fit Locutus' current plain-value model by default.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: String
         title: String module
         target: Elixir 1.18
@@ -6261,6 +6817,100 @@ languages:
             decision: wanted
             note: Tuple helpers still have a clean plain-value contract when modeled over arrays.
         skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: URI
+        title: URI module
+        target: Elixir 1.18
+        sourceKind: runtime
+        sourceRef: elixir:1.18
+        catalogEntries:
+          - __struct__
+          - append_path
+          - append_query
+          - char_reserved?
+          - char_unescaped?
+          - char_unreserved?
+          - decode
+          - decode_query
+          - decode_www_form
+          - default_port
+          - encode
+          - encode_query
+          - encode_www_form
+          - merge
+          - new
+          - new!
+          - parse
+          - query_decoder
+          - to_string
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: decode
+            decision: wanted
+            note: String-based encode/decode helpers have a clean plain-value contract.
+          - name: decode_query
+            decision: wanted
+            note: String-based encode/decode helpers have a clean plain-value contract.
+          - name: decode_www_form
+            decision: wanted
+            note: String-based encode/decode helpers have a clean plain-value contract.
+          - name: encode
+            decision: wanted
+            note: String-based encode/decode helpers have a clean plain-value contract.
+          - name: encode_query
+            decision: wanted
+            note: String-based encode/decode helpers have a clean plain-value contract.
+          - name: encode_www_form
+            decision: wanted
+            note: String-based encode/decode helpers have a clean plain-value contract.
+        skippedEntries:
+          - name: __struct__
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: append_path
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: append_query
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: char_reserved?
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: char_unescaped?
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: char_unreserved?
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: default_port
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: merge
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: new
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: new!
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: parse
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: query_decoder
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
+          - name: to_string
+            decision: skip_runtime_model
+            note: URI structs do not fit Locutus' current plain-value model by default.
         untriagedEntries: []
         staleDecisions: []
         categories: []
@@ -11150,18 +11800,18 @@ languages:
     language: kotlin
     title: Kotlin
     scopeNote: >-
-      This inventory currently tracks the `kotlin.collections` and `kotlin.text` surfaces we already ship from, not the
-      broader Kotlin/JVM ecosystem.
-    namespaceCount: 2
+      This inventory now tracks a broader official Kotlin stdlib slice, using docs-backed catalogs for packages that do
+      not introspect cleanly at runtime, not the wider JVM ecosystem.
+    namespaceCount: 5
     shippedCount: 8
-    catalogCount: 37
+    catalogCount: 90
     catalogShippedCount: 8
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 29
-    skippedCount: 0
+    wantedCount: 77
+    skippedCount: 5
     untriagedCount: 0
-    coveragePercent: 22
+    coveragePercent: 9
     namespaces:
       - namespace: collections
         title: kotlin.collections package
@@ -11256,6 +11906,272 @@ languages:
           - collections
         catalogShippedCount: 7
         coveragePercent: 32
+      - namespace: comparisons
+        title: kotlin.comparisons package
+        target: Kotlin 2.2
+        sourceKind: manual
+        sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.comparisons/
+        catalogEntries:
+          - compareBy
+          - compareByDescending
+          - compareValues
+          - compareValuesBy
+          - maxBy
+          - maxOf
+          - minBy
+          - minOf
+          - naturalOrder
+          - nullsFirst
+          - nullsLast
+          - reverseOrder
+          - thenBy
+          - thenByDescending
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: compareBy
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: compareByDescending
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: compareValues
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: compareValuesBy
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: maxBy
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: maxOf
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: minBy
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: minOf
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: naturalOrder
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: nullsFirst
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: nullsLast
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: reverseOrder
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: thenBy
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+          - name: thenByDescending
+            decision: wanted
+            note: Comparison helpers over plain values are strong Kotlin portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: math
+        title: kotlin.math package
+        target: Kotlin 2.2
+        sourceKind: manual
+        sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.math/
+        catalogEntries:
+          - abs
+          - acos
+          - acosh
+          - asin
+          - asinh
+          - atan
+          - atan2
+          - atanh
+          - ceil
+          - cos
+          - cosh
+          - exp
+          - expm1
+          - floor
+          - hypot
+          - ln
+          - ln1p
+          - log
+          - log10
+          - log2
+          - max
+          - min
+          - pow
+          - round
+          - sign
+          - sin
+          - sinh
+          - sqrt
+          - tan
+          - tanh
+          - truncate
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: abs
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: acos
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: acosh
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: asin
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: asinh
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: atan
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: atan2
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: atanh
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: ceil
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: cos
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: cosh
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: exp
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: expm1
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: floor
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: hypot
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: ln
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: ln1p
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: log
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: log10
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: log2
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: max
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: min
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: pow
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: round
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: sign
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: sin
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: sinh
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: sqrt
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: tan
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: tanh
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+          - name: truncate
+            decision: wanted
+            note: Scalar math helpers are strong Kotlin portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: ranges
+        title: kotlin.ranges package
+        target: Kotlin 2.2
+        sourceKind: manual
+        sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/
+        catalogEntries:
+          - coerceAtLeast
+          - coerceAtMost
+          - coerceIn
+          - downTo
+          - rangeTo
+          - rangeUntil
+          - step
+          - until
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: coerceAtLeast
+            decision: wanted
+            note: Scalar clamping helpers have a clean plain-value contract.
+          - name: coerceAtMost
+            decision: wanted
+            note: Scalar clamping helpers have a clean plain-value contract.
+          - name: coerceIn
+            decision: wanted
+            note: Scalar clamping helpers have a clean plain-value contract.
+        skippedEntries:
+          - name: downTo
+            decision: skip_runtime_model
+            note: Range-construction APIs often return dedicated range objects rather than plain values.
+          - name: rangeTo
+            decision: skip_runtime_model
+            note: Range-construction APIs often return dedicated range objects rather than plain values.
+          - name: rangeUntil
+            decision: skip_runtime_model
+            note: Range-construction APIs often return dedicated range objects rather than plain values.
+          - name: step
+            decision: skip_runtime_model
+            note: Range-construction APIs often return dedicated range objects rather than plain values.
+          - name: until
+            decision: skip_runtime_model
+            note: Range-construction APIs often return dedicated range objects rather than plain values.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: text
         title: kotlin.text package
         target: Kotlin 2.2
@@ -17595,19 +18511,113 @@ languages:
     language: powershell
     title: PowerShell
     scopeNote: >-
-      This inventory currently tracks the highest-signal plain-value .NET surfaces for PowerShell first, starting with
-      `System.String`, `System.Math`, and `System.Char`.
-    namespaceCount: 3
+      This inventory now tracks a broader slice of official .NET core surfaces that are idiomatic in PowerShell, using
+      manual docs-backed catalogs where runtime reflection is less convenient.
+    namespaceCount: 5
     shippedCount: 18
-    catalogCount: 68
+    catalogCount: 109
     catalogShippedCount: 18
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 48
-    skippedCount: 2
+    wantedCount: 71
+    skippedCount: 20
     untriagedCount: 0
-    coveragePercent: 26
+    coveragePercent: 17
     namespaces:
+      - namespace: array
+        title: System.Array static methods
+        target: PowerShell 7.4
+        sourceKind: manual
+        sourceRef: https://learn.microsoft.com/dotnet/api/system.array
+        catalogEntries:
+          - BinarySearch
+          - Clear
+          - ConstrainedCopy
+          - ConvertAll
+          - Copy
+          - Empty
+          - Exists
+          - Fill
+          - Find
+          - FindAll
+          - FindIndex
+          - FindLast
+          - FindLastIndex
+          - ForEach
+          - IndexOf
+          - LastIndexOf
+          - Reverse
+          - Sort
+          - TrueForAll
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: BinarySearch
+            decision: wanted
+            note: Search helpers over plain arrays have a clean plain-value contract.
+          - name: IndexOf
+            decision: wanted
+            note: Search helpers over plain arrays have a clean plain-value contract.
+          - name: LastIndexOf
+            decision: wanted
+            note: Search helpers over plain arrays have a clean plain-value contract.
+        skippedEntries:
+          - name: Clear
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: ConstrainedCopy
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: ConvertAll
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: Copy
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: Empty
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: Exists
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: Fill
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: Find
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: FindAll
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: FindIndex
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: FindLast
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: FindLastIndex
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: ForEach
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: Reverse
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: Sort
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+          - name: TrueForAll
+            decision: skip_runtime_model
+            note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: char
         title: System.Char static methods
         target: PowerShell 7.4
@@ -17697,6 +18707,112 @@ languages:
           - name: GetUnicodeCategory
             decision: skip_runtime_model
             note: .NET enum return values do not map cleanly onto one stable Locutus contract yet.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: convert
+        title: System.Convert static methods
+        target: PowerShell 7.4
+        sourceKind: manual
+        sourceRef: https://learn.microsoft.com/dotnet/api/system.convert
+        catalogEntries:
+          - ChangeType
+          - FromBase64CharArray
+          - FromBase64String
+          - FromHexString
+          - GetTypeCode
+          - ToBase64CharArray
+          - ToBase64String
+          - ToBoolean
+          - ToByte
+          - ToChar
+          - ToDecimal
+          - ToDouble
+          - ToHexString
+          - ToInt16
+          - ToInt32
+          - ToInt64
+          - ToSByte
+          - ToSingle
+          - ToString
+          - ToUInt16
+          - ToUInt32
+          - ToUInt64
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: FromBase64CharArray
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: FromBase64String
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: FromHexString
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToBase64CharArray
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToBase64String
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToBoolean
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToByte
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToChar
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToDecimal
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToDouble
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToHexString
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToInt16
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToInt32
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToInt64
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToSByte
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToSingle
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToString
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToUInt16
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToUInt32
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+          - name: ToUInt64
+            decision: wanted
+            note: Scalar conversion helpers are strong PowerShell portability targets.
+        skippedEntries:
+          - name: ChangeType
+            decision: skip_runtime_model
+            note: Type-descriptor-driven conversion depends on host runtime type metadata.
+          - name: GetTypeCode
+            decision: skip_runtime_model
+            note: Enum-style runtime type codes are not a stable plain-value portability target.
         untriagedEntries: []
         staleDecisions: []
         categories: []
@@ -17903,18 +19019,18 @@ languages:
     language: python
     title: Python
     scopeNote: >-
-      This inventory now tracks Python builtins plus a broad plain-value slice of the standard library, not the full
-      standard library or object model.
-    namespaceCount: 12
+      This inventory now targets a broad official core/stdlib slice first, using runtime discovery where possible,
+      rather than the full Python object model or third-party ecosystem.
+    namespaceCount: 17
     shippedCount: 56
-    catalogCount: 277
+    catalogCount: 341
     catalogShippedCount: 56
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 136
-    skippedCount: 85
+    wantedCount: 149
+    skippedCount: 136
     untriagedCount: 0
-    coveragePercent: 20
+    coveragePercent: 16
     namespaces:
       - namespace: bisect
         title: bisect
@@ -18247,6 +19363,182 @@ languages:
           - name: vars
             decision: skip_runtime_model
             note: Runtime namespace introspection is outside Locutus' portability scope.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: cmath
+        title: cmath
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - acos
+          - acosh
+          - asin
+          - asinh
+          - atan
+          - atanh
+          - cos
+          - cosh
+          - exp
+          - isclose
+          - isfinite
+          - isinf
+          - isnan
+          - log
+          - log10
+          - phase
+          - polar
+          - rect
+          - sin
+          - sinh
+          - sqrt
+          - tan
+          - tanh
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: acos
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: acosh
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: asin
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: asinh
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: atan
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: atanh
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: cos
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: cosh
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: exp
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: isclose
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: isfinite
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: isinf
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: isnan
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: log
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: log10
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: phase
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: polar
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: rect
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: sin
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: sinh
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: sqrt
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: tan
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+          - name: tanh
+            decision: skip_plain_value_mismatch
+            note: Complex-number helpers do not fit Locutus' current plain-value model.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: collections
+        title: collections
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - defaultdict
+          - deque
+          - namedtuple
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: defaultdict
+            decision: skip_runtime_model
+            note: >-
+              Most collections exports are container classes or factory helpers rather than direct plain-value
+              functions.
+          - name: deque
+            decision: skip_runtime_model
+            note: >-
+              Most collections exports are container classes or factory helpers rather than direct plain-value
+              functions.
+          - name: namedtuple
+            decision: skip_runtime_model
+            note: >-
+              Most collections exports are container classes or factory helpers rather than direct plain-value
+              functions.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: decimal
+        title: decimal
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - getcontext
+          - localcontext
+          - setcontext
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: getcontext
+            decision: skip_plain_value_mismatch
+            note: Arbitrary-precision decimal values do not fit Locutus' current plain-value model.
+          - name: localcontext
+            decision: skip_plain_value_mismatch
+            note: Arbitrary-precision decimal values do not fit Locutus' current plain-value model.
+          - name: setcontext
+            decision: skip_plain_value_mismatch
+            note: Arbitrary-precision decimal values do not fit Locutus' current plain-value model.
         untriagedEntries: []
         staleDecisions: []
         categories: []
@@ -18912,6 +20204,112 @@ languages:
         categories: []
         catalogShippedCount: 0
         coveragePercent: 0
+      - namespace: random
+        title: random
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - betavariate
+          - binomialvariate
+          - choice
+          - choices
+          - expovariate
+          - gammavariate
+          - gauss
+          - getstate
+          - lognormvariate
+          - normalvariate
+          - paretovariate
+          - randbytes
+          - randint
+          - randrange
+          - sample
+          - seed
+          - setstate
+          - shuffle
+          - triangular
+          - uniform
+          - vonmisesvariate
+          - weibullvariate
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: betavariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: binomialvariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: choice
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: choices
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: expovariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: gammavariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: gauss
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: getstate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: lognormvariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: normalvariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: paretovariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: randbytes
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: randint
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: randrange
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: sample
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: seed
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: setstate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: shuffle
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: triangular
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: uniform
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: vonmisesvariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+          - name: weibullvariate
+            decision: skip_low_value
+            note: Stateful pseudo-random helpers are lower-value than deterministic portability targets.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: re
         title: re
         target: Python 3.12
@@ -19136,6 +20534,76 @@ languages:
           - name: wrap
             decision: wanted
             note: Text formatting and wrapping helpers are strong plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: unicodedata
+        title: unicodedata
+        target: Python 3.12
+        sourceKind: runtime
+        sourceRef: python:3.12
+        catalogEntries:
+          - bidirectional
+          - category
+          - combining
+          - decimal
+          - decomposition
+          - digit
+          - east_asian_width
+          - is_normalized
+          - lookup
+          - mirrored
+          - name
+          - normalize
+          - numeric
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: bidirectional
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: category
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: combining
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: decimal
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: decomposition
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: digit
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: east_asian_width
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: is_normalized
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: lookup
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: mirrored
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: name
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: normalize
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
+          - name: numeric
+            decision: wanted
+            note: Unicode classification and normalization helpers are strong plain-value portability targets.
         skippedEntries: []
         untriagedEntries: []
         staleDecisions: []
@@ -32112,18 +33580,18 @@ languages:
     language: rust
     title: Rust
     scopeNote: >-
-      This inventory currently tracks `str` plus the highest-signal scalar helpers from `std::cmp` and primitive `char`,
-      not the full Rust standard library.
-    namespaceCount: 3
+      This inventory now tracks a broader slice of Rust core/std primitives first, using docs-backed catalogs for stable
+      primitive method surfaces, not the full crate ecosystem.
+    namespaceCount: 5
     shippedCount: 23
-    catalogCount: 71
+    catalogCount: 163
     catalogShippedCount: 23
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 34
+    wantedCount: 126
     skippedCount: 14
     untriagedCount: 0
-    coveragePercent: 32
+    coveragePercent: 14
     namespaces:
       - namespace: char
         title: char primitive methods
@@ -32309,6 +33777,410 @@ languages:
         categories: []
         catalogShippedCount: 0
         coveragePercent: 0
+      - namespace: f32
+        title: f32 primitive methods
+        target: Rust 1.85
+        sourceKind: manual
+        sourceRef: https://doc.rust-lang.org/std/primitive.f32.html
+        catalogEntries:
+          - abs
+          - acos
+          - acosh
+          - asin
+          - asinh
+          - atan
+          - atan2
+          - atanh
+          - cbrt
+          - ceil
+          - clamp
+          - copysign
+          - cos
+          - cosh
+          - exp
+          - exp2
+          - exp_m1
+          - floor
+          - fract
+          - hypot
+          - is_finite
+          - is_infinite
+          - is_nan
+          - is_normal
+          - ln
+          - ln_1p
+          - log
+          - log10
+          - log2
+          - max
+          - min
+          - mul_add
+          - powf
+          - powi
+          - recip
+          - round
+          - signum
+          - sin
+          - sinh
+          - sqrt
+          - tan
+          - tanh
+          - to_degrees
+          - to_radians
+          - total_cmp
+          - trunc
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: abs
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: acos
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: acosh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: asin
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: asinh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: atan
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: atan2
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: atanh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: cbrt
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: ceil
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: clamp
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: copysign
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: cos
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: cosh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: exp
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: exp_m1
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: exp2
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: floor
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: fract
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: hypot
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_finite
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_infinite
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_nan
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_normal
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: ln
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: ln_1p
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: log
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: log10
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: log2
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: max
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: min
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: mul_add
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: powf
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: powi
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: recip
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: round
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: signum
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: sin
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: sinh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: sqrt
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: tan
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: tanh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: to_degrees
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: to_radians
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: total_cmp
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: trunc
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: f64
+        title: f64 primitive methods
+        target: Rust 1.85
+        sourceKind: manual
+        sourceRef: https://doc.rust-lang.org/std/primitive.f64.html
+        catalogEntries:
+          - abs
+          - acos
+          - acosh
+          - asin
+          - asinh
+          - atan
+          - atan2
+          - atanh
+          - cbrt
+          - ceil
+          - clamp
+          - copysign
+          - cos
+          - cosh
+          - exp
+          - exp2
+          - exp_m1
+          - floor
+          - fract
+          - hypot
+          - is_finite
+          - is_infinite
+          - is_nan
+          - is_normal
+          - ln
+          - ln_1p
+          - log
+          - log10
+          - log2
+          - max
+          - min
+          - mul_add
+          - powf
+          - powi
+          - recip
+          - round
+          - signum
+          - sin
+          - sinh
+          - sqrt
+          - tan
+          - tanh
+          - to_degrees
+          - to_radians
+          - total_cmp
+          - trunc
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: abs
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: acos
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: acosh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: asin
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: asinh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: atan
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: atan2
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: atanh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: cbrt
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: ceil
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: clamp
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: copysign
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: cos
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: cosh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: exp
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: exp_m1
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: exp2
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: floor
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: fract
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: hypot
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_finite
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_infinite
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_nan
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: is_normal
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: ln
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: ln_1p
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: log
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: log10
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: log2
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: max
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: min
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: mul_add
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: powf
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: powi
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: recip
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: round
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: signum
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: sin
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: sinh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: sqrt
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: tan
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: tanh
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: to_degrees
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: to_radians
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: total_cmp
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+          - name: trunc
+            decision: wanted
+            note: Scalar floating-point helpers are strong Rust portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: str
         title: str primitive methods
         target: Rust 1.85
@@ -32428,18 +34300,18 @@ languages:
     language: ruby
     title: Ruby
     scopeNote: >-
-      This inventory currently tracks the highest-signal core collection, scalar, string, and math surfaces rather than
-      all of Ruby.
-    namespaceCount: 7
+      This inventory now tracks a broader slice of official Ruby core and stdlib plain-value surfaces rather than the
+      broader gem ecosystem.
+    namespaceCount: 12
     shippedCount: 44
-    catalogCount: 617
+    catalogCount: 794
     catalogShippedCount: 44
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 497
-    skippedCount: 76
+    wantedCount: 515
+    skippedCount: 235
     untriagedCount: 0
-    coveragePercent: 7
+    coveragePercent: 6
     namespaces:
       - namespace: Array
         title: Array instance methods
@@ -32968,6 +34840,52 @@ languages:
           - Array
         catalogShippedCount: 14
         coveragePercent: 10
+      - namespace: Comparable
+        title: Comparable instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - <
+          - <=
+          - '=='
+          - '>'
+          - '>='
+          - between?
+          - clamp
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: <
+            decision: wanted
+            note: Comparable predicates over scalar values are strong Ruby portability targets.
+          - name: <=
+            decision: wanted
+            note: Comparable predicates over scalar values are strong Ruby portability targets.
+          - name: '=='
+            decision: wanted
+            note: Comparable predicates over scalar values are strong Ruby portability targets.
+          - name: '>'
+            decision: wanted
+            note: Comparable predicates over scalar values are strong Ruby portability targets.
+          - name: '>='
+            decision: wanted
+            note: Comparable predicates over scalar values are strong Ruby portability targets.
+          - name: between?
+            decision: wanted
+            note: Comparable predicates over scalar values are strong Ruby portability targets.
+          - name: clamp
+            decision: wanted
+            note: Comparable predicates over scalar values are strong Ruby portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: Enumerable
         title: Enumerable instance methods
         target: Ruby 3.3
@@ -34441,6 +36359,378 @@ languages:
           - Math
         catalogShippedCount: 15
         coveragePercent: 58
+      - namespace: Range
+        title: Range instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - '%'
+          - all?
+          - any?
+          - begin
+          - bsearch
+          - chain
+          - chunk
+          - chunk_while
+          - collect
+          - collect_concat
+          - compact
+          - count
+          - cover?
+          - cycle
+          - detect
+          - drop
+          - drop_while
+          - each
+          - each_cons
+          - each_entry
+          - each_slice
+          - each_with_index
+          - each_with_object
+          - end
+          - entries
+          - exclude_end?
+          - filter
+          - filter_map
+          - find
+          - find_all
+          - find_index
+          - first
+          - flat_map
+          - grep
+          - grep_v
+          - group_by
+          - include?
+          - inject
+          - last
+          - lazy
+          - map
+          - max
+          - max_by
+          - member?
+          - min
+          - min_by
+          - minmax
+          - minmax_by
+          - none?
+          - one?
+          - overlap?
+          - partition
+          - reduce
+          - reject
+          - reverse_each
+          - select
+          - size
+          - slice_after
+          - slice_before
+          - slice_when
+          - sort
+          - sort_by
+          - step
+          - sum
+          - take
+          - take_while
+          - tally
+          - to_a
+          - to_h
+          - to_set
+          - uniq
+          - zip
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: begin
+            decision: wanted
+            note: Scalar boundary readers have a clean plain-value contract.
+          - name: cover?
+            decision: wanted
+            note: Membership predicates have a clean plain-value contract.
+          - name: end
+            decision: wanted
+            note: Scalar boundary readers have a clean plain-value contract.
+          - name: first
+            decision: wanted
+            note: Boundary readers have a clean plain-value contract.
+          - name: include?
+            decision: wanted
+            note: Membership predicates have a clean plain-value contract.
+          - name: last
+            decision: wanted
+            note: Boundary readers have a clean plain-value contract.
+          - name: max
+            decision: wanted
+            note: Scalar extrema readers have a clean plain-value contract.
+          - name: min
+            decision: wanted
+            note: Scalar extrema readers have a clean plain-value contract.
+          - name: minmax
+            decision: wanted
+            note: Scalar extrema readers have a clean plain-value contract.
+          - name: size
+            decision: wanted
+            note: Size helpers have a clean plain-value contract.
+        skippedEntries:
+          - name: '%'
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: all?
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: any?
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: bsearch
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: chain
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: chunk
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: chunk_while
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: collect
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: collect_concat
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: compact
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: count
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: cycle
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: detect
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: drop
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: drop_while
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: each
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: each_cons
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: each_entry
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: each_slice
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: each_with_index
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: each_with_object
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: entries
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: exclude_end?
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: filter
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: filter_map
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: find
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: find_all
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: find_index
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: flat_map
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: grep
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: grep_v
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: group_by
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: inject
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: lazy
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: map
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: max_by
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: member?
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: min_by
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: minmax_by
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: none?
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: one?
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: overlap?
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: partition
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: reduce
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: reject
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: reverse_each
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: select
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: slice_after
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: slice_before
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: slice_when
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: sort
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: sort_by
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: step
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: sum
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: take
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: take_while
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: tally
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: to_a
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: to_h
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: to_set
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: uniq
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+          - name: zip
+            decision: skip_runtime_model
+            note: Range iteration and object semantics do not map cleanly to plain JS values by default.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: Regexp
+        title: Regexp instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - '=~'
+          - casefold?
+          - encoding
+          - fixed_encoding?
+          - match
+          - match?
+          - named_captures
+          - names
+          - options
+          - source
+          - timeout
+          - '~'
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: source
+            decision: wanted
+            note: Pattern-source readers have a clean plain-value contract.
+        skippedEntries:
+          - name: '=~'
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: '~'
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: casefold?
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: encoding
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: fixed_encoding?
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: match
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: match?
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: named_captures
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: names
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: options
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+          - name: timeout
+            decision: skip_runtime_model
+            note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: String
         title: String instance methods
         target: Ruby 3.3
@@ -34950,23 +37240,543 @@ languages:
           - String
         catalogShippedCount: 15
         coveragePercent: 12
+      - namespace: Symbol
+        title: Symbol instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - <
+          - <=
+          - '=~'
+          - '>'
+          - '>='
+          - '[]'
+          - between?
+          - capitalize
+          - casecmp
+          - casecmp?
+          - clamp
+          - downcase
+          - empty?
+          - encoding
+          - end_with?
+          - id2name
+          - intern
+          - length
+          - match
+          - match?
+          - name
+          - next
+          - size
+          - slice
+          - start_with?
+          - succ
+          - swapcase
+          - to_proc
+          - to_sym
+          - upcase
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: '[]'
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: <
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: <=
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: '=~'
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: '>'
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: '>='
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: between?
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: capitalize
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: casecmp
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: casecmp?
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: clamp
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: downcase
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: empty?
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: encoding
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: end_with?
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: id2name
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: intern
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: length
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: match
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: match?
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: name
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: next
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: size
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: slice
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: start_with?
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: succ
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: swapcase
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: to_proc
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: to_sym
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+          - name: upcase
+            decision: skip_plain_value_mismatch
+            note: Ruby symbol identity does not map cleanly onto JS plain strings.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: Time
+        title: Time instance methods
+        target: Ruby 3.3
+        sourceKind: runtime
+        sourceRef: ruby:3.3
+        catalogEntries:
+          - +
+          - '-'
+          - <
+          - <=
+          - '>'
+          - '>='
+          - asctime
+          - between?
+          - ceil
+          - clamp
+          - ctime
+          - day
+          - deconstruct_keys
+          - dst?
+          - floor
+          - friday?
+          - getgm
+          - getlocal
+          - getutc
+          - gmt?
+          - gmt_offset
+          - gmtime
+          - gmtoff
+          - hour
+          - isdst
+          - localtime
+          - mday
+          - min
+          - mon
+          - monday?
+          - month
+          - nsec
+          - round
+          - saturday?
+          - sec
+          - strftime
+          - subsec
+          - sunday?
+          - thursday?
+          - to_a
+          - to_f
+          - to_i
+          - to_r
+          - tuesday?
+          - tv_nsec
+          - tv_sec
+          - tv_usec
+          - usec
+          - utc
+          - utc?
+          - utc_offset
+          - wday
+          - wednesday?
+          - yday
+          - year
+          - zone
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries: []
+        skippedEntries:
+          - name: '-'
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: +
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: <
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: <=
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: '>'
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: '>='
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: asctime
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: between?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: ceil
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: clamp
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: ctime
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: day
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: deconstruct_keys
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: dst?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: floor
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: friday?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: getgm
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: getlocal
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: getutc
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: gmt_offset
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: gmt?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: gmtime
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: gmtoff
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: hour
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: isdst
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: localtime
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: mday
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: min
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: mon
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: monday?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: month
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: nsec
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: round
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: saturday?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: sec
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: strftime
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: subsec
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: sunday?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: thursday?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: to_a
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: to_f
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: to_i
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: to_r
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: tuesday?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: tv_nsec
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: tv_sec
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: tv_usec
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: usec
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: utc
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: utc_offset
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: utc?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: wday
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: wednesday?
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: yday
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: year
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+          - name: zone
+            decision: skip_runtime_model
+            note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
   swift:
     language: swift
     title: Swift
     scopeNote: >-
-      This inventory currently tracks the Swift `String` surface we already ship from, not the broader Foundation
-      ecosystem.
-    namespaceCount: 1
+      This inventory now tracks a broader Swift standard-library slice via docs-backed catalogs, not the broader
+      Foundation ecosystem.
+    namespaceCount: 3
     shippedCount: 8
-    catalogCount: 13
+    catalogCount: 39
     catalogShippedCount: 8
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 5
+    wantedCount: 31
     skippedCount: 0
     untriagedCount: 0
-    coveragePercent: 62
+    coveragePercent: 21
     namespaces:
+      - namespace: Array
+        title: Swift.Array
+        target: Swift 6
+        sourceKind: manual
+        sourceRef: https://developer.apple.com/documentation/swift/array
+        catalogEntries:
+          - contains
+          - dropFirst
+          - dropLast
+          - elementsEqual
+          - filter
+          - first
+          - flatMap
+          - joined
+          - last
+          - map
+          - partition
+          - prefix
+          - reduce
+          - reversed
+          - suffix
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: contains
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: dropFirst
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: dropLast
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: elementsEqual
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: filter
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: first
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: flatMap
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: joined
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: last
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: map
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: partition
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: prefix
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: reduce
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: reversed
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+          - name: suffix
+            decision: wanted
+            note: Array transforms are strong Swift plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
+      - namespace: Character
+        title: Swift.Character
+        target: Swift 6
+        sourceKind: manual
+        sourceRef: https://developer.apple.com/documentation/swift/character
+        catalogEntries:
+          - asciiValue
+          - isASCII
+          - isLetter
+          - isLowercase
+          - isNumber
+          - isPunctuation
+          - isSymbol
+          - isUppercase
+          - isWhitespace
+          - lowercased
+          - uppercased
+        shippedEntries: []
+        ignoredLocutusFunctions: []
+        duplicateLocutusEntries: []
+        keptExtras: []
+        unexpectedExtras: []
+        wantedEntries:
+          - name: asciiValue
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isASCII
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isLetter
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isLowercase
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isNumber
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isPunctuation
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isSymbol
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isUppercase
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: isWhitespace
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: lowercased
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+          - name: uppercased
+            decision: wanted
+            note: Character classification and case helpers are strong Swift plain-value portability targets.
+        skippedEntries: []
+        untriagedEntries: []
+        staleDecisions: []
+        categories: []
+        catalogShippedCount: 0
+        coveragePercent: 0
       - namespace: String
         title: Swift.String
         target: Swift 6
