@@ -50,6 +50,16 @@ function discoverClojureUpstreamSurface() {
         '(doseq [s (sort (map name (keys (ns-publics (quote clojure.core)))))] (println s))',
       ),
       discoverNamespace(
+        'edn',
+        'clojure.edn',
+        "(require '[clojure.edn]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.edn)))))] (println s))",
+      ),
+      discoverNamespace(
+        'set',
+        'clojure.set',
+        "(require '[clojure.set]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.set)))))] (println s))",
+      ),
+      discoverNamespace(
         'string',
         'clojure.string',
         "(require '[clojure.string]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.string)))))] (println s))",

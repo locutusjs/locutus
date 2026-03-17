@@ -860,6 +860,93 @@ namespaces:
       - ⊻
       - ⊼
       - ⊽
+  - namespace: Dates
+    title: Dates module
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Dates
+    entries:
+      - '@dateformat_str'
+      - canonicalize
+      - datetime2julian
+      - datetime2rata
+      - datetime2unix
+      - day
+      - dayabbr
+      - dayname
+      - dayofmonth
+      - dayofquarter
+      - dayofweek
+      - dayofweekofmonth
+      - dayofyear
+      - daysinmonth
+      - daysinyear
+      - daysofweekinmonth
+      - firstdayofmonth
+      - firstdayofquarter
+      - firstdayofweek
+      - firstdayofyear
+      - format
+      - hour
+      - isleapyear
+      - julian2datetime
+      - lastdayofmonth
+      - lastdayofquarter
+      - lastdayofweek
+      - lastdayofyear
+      - microsecond
+      - millisecond
+      - minute
+      - month
+      - monthabbr
+      - monthday
+      - monthname
+      - nanosecond
+      - now
+      - quarterofyear
+      - rata2datetime
+      - second
+      - today
+      - tofirst
+      - tolast
+      - tonext
+      - toprev
+      - unix2datetime
+      - week
+      - year
+      - yearmonth
+      - yearmonthday
+  - namespace: Random
+    title: Random module
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Random
+    entries:
+      - bitrand
+      - default_rng
+      - rand!
+      - randcycle
+      - randcycle!
+      - randexp
+      - randexp!
+      - randn!
+      - randperm
+      - randperm!
+      - randstring
+      - randsubseq
+      - randsubseq!
+      - seed!
+      - shuffle
+      - shuffle!
+  - namespace: Printf
+    title: Printf module
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Printf
+    entries:
+      - '@printf'
+      - '@sprintf'
+      - format
   - namespace: Statistics
     title: Statistics module
     target: Julia 1.11
@@ -879,3 +966,11 @@ namespaces:
       - stdm
       - var
       - varm
+  - namespace: Unicode
+    title: Unicode module
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Unicode
+    entries:
+      - graphemes
+      - isequal_normalized

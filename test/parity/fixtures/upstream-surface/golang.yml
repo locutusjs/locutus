@@ -1,5 +1,75 @@
 language: golang
 namespaces:
+  - namespace: bytes
+    title: bytes package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:bytes
+    entries:
+      - Clone
+      - Compare
+      - Contains
+      - ContainsAny
+      - ContainsFunc
+      - ContainsRune
+      - Count
+      - Cut
+      - CutPrefix
+      - CutSuffix
+      - Equal
+      - EqualFold
+      - Fields
+      - FieldsFunc
+      - HasPrefix
+      - HasSuffix
+      - Index
+      - IndexAny
+      - IndexByte
+      - IndexFunc
+      - IndexRune
+      - Join
+      - LastIndex
+      - LastIndexAny
+      - LastIndexByte
+      - LastIndexFunc
+      - Map
+      - NewBuffer
+      - NewBufferString
+      - NewReader
+      - Repeat
+      - Replace
+      - ReplaceAll
+      - Runes
+      - Split
+      - SplitAfter
+      - SplitAfterN
+      - SplitN
+      - Title
+      - ToLower
+      - ToLowerSpecial
+      - ToTitle
+      - ToTitleSpecial
+      - ToUpper
+      - ToUpperSpecial
+      - ToValidUTF8
+      - Trim
+      - TrimFunc
+      - TrimLeft
+      - TrimLeftFunc
+      - TrimPrefix
+      - TrimRight
+      - TrimRightFunc
+      - TrimSpace
+      - TrimSuffix
+  - namespace: cmp
+    title: cmp package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:cmp
+    entries:
+      - Compare
+      - Less
+      - Or
   - namespace: filepath
     title: path/filepath package
     target: Go 1.23
@@ -27,6 +97,22 @@ namespaces:
       - VolumeName
       - Walk
       - WalkDir
+  - namespace: maps
+    title: maps package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:maps
+    entries:
+      - All
+      - Clone
+      - Collect
+      - Copy
+      - DeleteFunc
+      - Equal
+      - EqualFunc
+      - Insert
+      - Keys
+      - Values
   - namespace: net
     title: net package
     target: Go 1.23
@@ -338,6 +424,54 @@ namespaces:
       - YearDay
       - Zone
       - ZoneBounds
+  - namespace: unicode
+    title: unicode package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:unicode
+    entries:
+      - In
+      - Is
+      - IsControl
+      - IsDigit
+      - IsGraphic
+      - IsLetter
+      - IsLower
+      - IsMark
+      - IsNumber
+      - IsOneOf
+      - IsPrint
+      - IsPunct
+      - IsSpace
+      - IsSymbol
+      - IsTitle
+      - IsUpper
+      - SimpleFold
+      - To
+      - ToLower
+      - ToTitle
+      - ToUpper
+  - namespace: utf8
+    title: unicode/utf8 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:unicode/utf8
+    entries:
+      - AppendRune
+      - DecodeLastRune
+      - DecodeLastRuneInString
+      - DecodeRune
+      - DecodeRuneInString
+      - EncodeRune
+      - FullRune
+      - FullRuneInString
+      - RuneCount
+      - RuneCountInString
+      - RuneLen
+      - RuneStart
+      - Valid
+      - ValidRune
+      - ValidString
   - namespace: url
     title: net/url package
     target: Go 1.23

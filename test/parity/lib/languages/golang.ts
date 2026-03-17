@@ -99,7 +99,10 @@ const GO_PACKAGES: Record<string, string> = {
 
 const GO_DOCKER_IMAGE = 'golang:1.23'
 const GO_NAMESPACE_PACKAGES: Record<string, { packagePath: string; title: string }> = {
+  bytes: { packagePath: 'bytes', title: 'bytes package' },
+  cmp: { packagePath: 'cmp', title: 'cmp package' },
   filepath: { packagePath: 'path/filepath', title: 'path/filepath package' },
+  maps: { packagePath: 'maps', title: 'maps package' },
   net: { packagePath: 'net', title: 'net package' },
   path: { packagePath: 'path', title: 'path package' },
   slices: { packagePath: 'slices', title: 'slices package' },
@@ -108,6 +111,8 @@ const GO_NAMESPACE_PACKAGES: Record<string, { packagePath: string; title: string
   strings: { packagePath: 'strings', title: 'strings package' },
   subtle: { packagePath: 'crypto/subtle', title: 'crypto/subtle package' },
   time: { packagePath: 'time', title: 'time package' },
+  unicode: { packagePath: 'unicode', title: 'unicode package' },
+  utf8: { packagePath: 'unicode/utf8', title: 'unicode/utf8 package' },
   url: { packagePath: 'net/url', title: 'net/url package' },
 }
 

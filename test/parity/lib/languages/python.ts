@@ -28,6 +28,8 @@ const PYTHON_DOCKER_IMAGE = 'python:3.12'
 function discoverPythonUpstreamSurface() {
   const script = `
 import builtins
+import base64
+import calendar
 import difflib
 import bisect
 import cmath
@@ -35,6 +37,7 @@ import collections
 import decimal
 import functools
 import heapq
+import html
 import inspect
 import itertools
 import json
@@ -46,16 +49,21 @@ import statistics
 import string
 import textwrap
 import unicodedata
+import urllib.parse as urllib_parse
 
 modules = {
   "builtins": {"module": builtins, "allowedModules": ["builtins", "io"]},
+  "base64": {"module": base64, "allowedModules": ["base64"]},
   "bisect": {"module": bisect, "allowedModules": ["bisect", "_bisect"]},
+  "calendar": {"module": calendar, "allowedModules": ["calendar"]},
   "cmath": {"module": cmath, "allowedModules": ["cmath"]},
   "collections": {"module": collections, "allowedModules": ["collections"]},
   "decimal": {"module": decimal, "allowedModules": ["decimal"]},
   "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
   "heapq": {"module": heapq, "allowedModules": ["heapq", "_heapq"]},
+  "html": {"module": html, "allowedModules": ["html"]},
   "itertools": {"module": itertools, "allowedModules": ["itertools"]},
+  "json": {"module": json, "allowedModules": ["json"]},
   "math": {"module": math, "allowedModules": ["math"]},
   "operator": {"module": operator, "allowedModules": ["operator", "_operator"]},
   "random": {"module": random, "allowedModules": ["random", "_random"]},
@@ -64,6 +72,7 @@ modules = {
   "string": {"module": string, "allowedModules": ["string"]},
   "textwrap": {"module": textwrap, "allowedModules": ["textwrap"]},
   "unicodedata": {"module": unicodedata, "allowedModules": ["unicodedata"]},
+  "urllib.parse": {"module": urllib_parse, "allowedModules": ["urllib.parse"]},
   "difflib": {"module": difflib, "allowedModules": ["difflib"]},
 }
 

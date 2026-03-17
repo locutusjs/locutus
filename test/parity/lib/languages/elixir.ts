@@ -46,6 +46,7 @@ function discoverElixirUpstreamSurface() {
     namespaces: [
       discoverModule('Base', 'Base module'),
       discoverModule('Date', 'Date module'),
+      discoverModule('DateTime', 'DateTime module'),
       discoverModule('Enum', 'Enum module'),
       discoverModule('Float', 'Float module'),
       discoverModule('Integer', 'Integer module'),
@@ -53,10 +54,14 @@ function discoverElixirUpstreamSurface() {
       discoverModule('Keyword', 'Keyword module'),
       discoverModule('List', 'List module'),
       discoverModule('Map', 'Map module'),
+      discoverModule('MapSet', 'MapSet module'),
       discoverModule('NaiveDateTime', 'NaiveDateTime module'),
+      discoverModule('Regex', 'Regex module'),
       discoverModule('String', 'String module'),
+      discoverModule('Time', 'Time module'),
       discoverModule('Tuple', 'Tuple module'),
       discoverModule('URI', 'URI module'),
+      discoverModule('Version', 'Version module'),
     ],
   }
 }

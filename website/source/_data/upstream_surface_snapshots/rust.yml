@@ -1,5 +1,13 @@
 language: rust
 namespaces:
+  - namespace: bool
+    title: bool primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.bool.html
+    entries:
+      - then
+      - then_some
   - namespace: cmp
     title: std::cmp functions
     target: Rust 1.85
@@ -193,3 +201,23 @@ namespaces:
       - to_radians
       - total_cmp
       - trunc
+  - namespace: slice
+    title: slice primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.slice.html
+    entries:
+      - binary_search
+      - binary_search_by
+      - binary_search_by_key
+      - contains
+      - ends_with
+      - first
+      - get
+      - is_empty
+      - last
+      - len
+      - partition_point
+      - starts_with
+      - strip_prefix
+      - strip_suffix

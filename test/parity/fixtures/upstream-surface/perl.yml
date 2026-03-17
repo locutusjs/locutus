@@ -74,6 +74,52 @@ namespaces:
       - uniq
       - uniqint
       - uniqnum
+  - namespace: Math::Trig
+    title: Math::Trig module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Math::Trig
+    entries:
+      - acos
+      - asin
+      - atan
+      - atan2
+      - cartesian_to_cylindrical
+      - cartesian_to_spherical
+      - cylindrical_to_cartesian
+      - deg2rad
+      - great_circle_distance
+      - great_circle_direction
+      - pi
+      - rad2deg
+      - sec
+      - sin
+      - sinh
+      - spherical_to_cartesian
+      - tan
+      - tanh
+  - namespace: Math::Complex
+    title: Math::Complex module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Math::Complex
+    entries:
+      - Im
+      - Re
+      - abs
+      - acos
+      - asin
+      - atan2
+      - cplx
+      - cos
+      - exp
+      - log
+      - pi
+      - rho
+      - sin
+      - sqrt
+      - tan
+      - theta
   - namespace: Scalar::Util
     title: Scalar::Util module
     target: Perl 5.40
@@ -94,3 +140,35 @@ namespaces:
       - tainted
       - unweaken
       - weaken
+  - namespace: Encode
+    title: Encode module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Encode
+    entries:
+      - decode
+      - decode_utf8
+      - encode
+      - encode_utf8
+      - from_to
+      - is_utf8
+  - namespace: Text::ParseWords
+    title: Text::ParseWords module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Text::ParseWords
+    entries:
+      - nested_quotewords
+      - old_parse_line
+      - old_shellwords
+      - parse_line
+      - quotewords
+      - shellwords
+  - namespace: Text::Tabs
+    title: Text::Tabs module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Text::Tabs
+    entries:
+      - expand
+      - unexpand

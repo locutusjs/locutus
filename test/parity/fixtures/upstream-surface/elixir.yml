@@ -63,6 +63,43 @@ namespaces:
       - to_string
       - utc_today
       - year_of_era
+  - namespace: DateTime
+    title: DateTime module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - compare
+      - convert
+      - convert!
+      - diff
+      - from_gregorian_seconds
+      - from_iso8601
+      - from_naive
+      - from_naive!
+      - from_unix
+      - from_unix!
+      - new
+      - new!
+      - now
+      - now!
+      - shift
+      - shift_zone
+      - shift_zone!
+      - to_date
+      - to_gregorian_seconds
+      - to_iso8601
+      - to_naive
+      - to_string
+      - to_time
+      - to_unix
+      - truncate
+      - utc_now
   - namespace: Enum
     title: Enum module
     target: Elixir 1.18
@@ -388,6 +425,29 @@ namespaces:
       - update
       - update!
       - values
+  - namespace: MapSet
+    title: MapSet module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - delete
+      - difference
+      - disjoint?
+      - equal?
+      - filter
+      - intersection
+      - member?
+      - new
+      - put
+      - reject
+      - size
+      - split_with
+      - subset?
+      - symmetric_difference
+      - to_list
+      - union
   - namespace: NaiveDateTime
     title: NaiveDateTime module
     target: Elixir 1.18
@@ -422,6 +482,30 @@ namespaces:
       - to_time
       - truncate
       - utc_now
+  - namespace: Regex
+    title: Regex module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - compile
+      - compile!
+      - escape
+      - match?
+      - named_captures
+      - names
+      - opts
+      - re_pattern
+      - recompile
+      - recompile!
+      - regex?
+      - replace
+      - run
+      - scan
+      - source
+      - split
+      - version
   - namespace: String
     title: String module
     target: Elixir 1.18
@@ -482,6 +566,35 @@ namespaces:
       - upcase
       - valid?
       - valid_character?
+  - namespace: Time
+    title: Time module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - compare
+      - convert
+      - convert!
+      - diff
+      - from_erl
+      - from_erl!
+      - from_iso8601
+      - from_iso8601!
+      - from_seconds_after_midnight
+      - new
+      - new!
+      - shift
+      - to_erl
+      - to_iso8601
+      - to_seconds_after_midnight
+      - to_string
+      - truncate
+      - utc_now
   - namespace: Tuple
     title: Tuple module
     target: Elixir 1.18
@@ -519,4 +632,19 @@ namespaces:
       - new!
       - parse
       - query_decoder
+      - to_string
+  - namespace: Version
+    title: Version module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - compare
+      - compile_requirement
+      - match?
+      - parse
+      - parse!
+      - parse_requirement
+      - parse_requirement!
       - to_string

@@ -50,7 +50,11 @@ function discoverJuliaUpstreamSurface() {
     language: 'julia',
     namespaces: [
       discoverNamespace('Base', 'Base module', ''),
+      discoverNamespace('Dates', 'Dates module', 'using Dates'),
+      discoverNamespace('Random', 'Random module', 'using Random'),
+      discoverNamespace('Printf', 'Printf module', 'using Printf'),
       discoverNamespace('Statistics', 'Statistics module', 'using Statistics'),
+      discoverNamespace('Unicode', 'Unicode module', 'using Unicode'),
     ],
   }
 }

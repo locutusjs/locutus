@@ -139,3 +139,37 @@ namespaces:
       - Reverse
       - Sort
       - TrueForAll
+  - namespace: datetime
+    title: System.DateTime static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.datetime
+    entries:
+      - Add
+      - AddDays
+      - AddHours
+      - AddMilliseconds
+      - AddMinutes
+      - AddMonths
+      - AddSeconds
+      - AddYears
+      - Compare
+      - DaysInMonth
+      - IsLeapYear
+      - Parse
+      - ParseExact
+      - Subtract
+      - ToLocalTime
+      - ToUniversalTime
+  - namespace: uri
+    title: System.Uri static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.uri
+    entries:
+      - CheckHostName
+      - EscapeDataString
+      - EscapeUriString
+      - IsHexDigit
+      - IsHexEncoding
+      - UnescapeDataString

@@ -35,6 +35,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 - Continued broadening the same inventory in-flight with Python `heapq` / `textwrap`, Ruby `Integer` / `Float`, Go `slices`, Elixir `Tuple`, PowerShell `System.Char`, and Rust primitive `char`, plus a Go generic-symbol normalization fix so those inventories stay clean and comparable.
 - Closed the last structural gaps in the current project surface by adding upstream tracking for Haskell `list`, Kotlin `collections` / `text`, and Swift `String`, so every language/category currently shipped under `src/` is now represented in the upstream inventory.
 - Continued the same breadth wave toward official core/stdlib scope with Python `cmath` / `collections` / `decimal` / `random` / `unicodedata`, Ruby `Comparable` / `Range` / `Regexp` / `Symbol` / `Time`, Elixir `Base` / `Date` / `Keyword` / `NaiveDateTime` / `URI`, PowerShell `System.Convert` / `System.Array`, Rust primitive `f32` / `f64`, Kotlin `comparisons` / `math` / `ranges`, and Swift `Array` / `Character`.
+- Continued broadening toward official core/stdlib scope with Python `base64` / `calendar` / `html` / `json` / `urllib.parse`, Go `bytes` / `cmp` / `maps` / `unicode` / `utf8`, Tcl's broader core command and ensemble surface, R recommended packages (`utils`, `graphics`, `grDevices`, `methods`, `stats4`, `tools`), Julia `Random` / `Printf` / `Unicode`, Elixir `DateTime` / `MapSet` / `Regex` / `Time` / `Version`, and additional docs-backed Haskell, Perl, PowerShell, Rust, and Swift core namespaces.
 
 ## v3.0.24
 

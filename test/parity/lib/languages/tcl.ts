@@ -13,7 +13,7 @@ export const TCL_SKIP_LIST = new Set<string>([
 const TCL_DOCKER_IMAGE = 'python:3.12'
 
 function discoverTclUpstreamSurface() {
-  const discoverNamespace = (namespace: 'string' | 'dict', title: string) => {
+  const discoverNamespace = (namespace: string, title: string) => {
     const code = [
       `set map [namespace ensemble configure ${namespace} -map]`,
       'puts [join [lsort [dict keys $map]] "\\n"]',
@@ -44,9 +44,90 @@ function discoverTclUpstreamSurface() {
     }
   }
 
+  const discoverCoreCommands = () => {
+    const result = runInDocker(TCL_DOCKER_IMAGE, [
+      'sh',
+      '-lc',
+      'cat <<\'__LOCUTUS_TCL__\' | tclsh\nputs [join [lsort [info commands]] "\\n"]\n__LOCUTUS_TCL__',
+    ])
+    if (!result.success) {
+      throw new Error(result.error || 'Unable to discover Tcl upstream surface for core')
+    }
+
+    const excluded = new Set([
+      'array',
+      'binary',
+      'chan',
+      'clock',
+      'dict',
+      'encoding',
+      'file',
+      'info',
+      'namespace',
+      'package',
+      'string',
+      'zlib',
+    ])
+
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line && !excluded.has(line))
+      .sort()
+
+    return {
+      namespace: 'core',
+      title: 'standalone core commands',
+      target: 'Tcl 8.6',
+      sourceKind: 'runtime' as const,
+      sourceRef: TCL_DOCKER_IMAGE,
+      entries,
+    }
+  }
+
   return {
     language: 'tcl',
-    namespaces: [discoverNamespace('string', 'string ensemble'), discoverNamespace('dict', 'dict ensemble')],
+    namespaces: [
+      discoverCoreCommands(),
+      discoverNamespace('array', 'array ensemble'),
+      discoverNamespace('binary', 'binary ensemble'),
+      discoverNamespace('chan', 'chan ensemble'),
+      discoverNamespace('clock', 'clock ensemble'),
+      discoverNamespace('dict', 'dict ensemble'),
+      discoverNamespace('encoding', 'encoding ensemble'),
+      discoverNamespace('file', 'file ensemble'),
+      discoverNamespace('info', 'info ensemble'),
+      discoverNamespace('namespace', 'namespace ensemble'),
+      {
+        namespace: 'package',
+        title: 'package command family',
+        target: 'Tcl 8.6',
+        sourceKind: 'manual' as const,
+        sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm',
+        entries: [
+          'forget',
+          'ifneeded',
+          'names',
+          'present',
+          'provide',
+          'require',
+          'unknown',
+          'vcompare',
+          'versions',
+          'vsatisfies',
+        ],
+      },
+      discoverNamespace('string', 'string ensemble'),
+      {
+        namespace: 'zlib',
+        title: 'zlib command family',
+        target: 'Tcl 8.6',
+        sourceKind: 'manual' as const,
+        sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm',
+        entries: ['adler32', 'compress', 'crc32', 'decompress', 'deflate', 'gunzip', 'gzip', 'inflate', 'push'],
+      },
+    ],
   }
 }
 

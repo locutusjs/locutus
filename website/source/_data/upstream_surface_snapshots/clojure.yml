@@ -685,6 +685,32 @@ namespaces:
       - xml-seq
       - zero?
       - zipmap
+  - namespace: edn
+    title: clojure.edn
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - read
+      - read-string
+  - namespace: set
+    title: clojure.set
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - difference
+      - index
+      - intersection
+      - join
+      - map-invert
+      - project
+      - rename
+      - rename-keys
+      - select
+      - subset?
+      - superset?
+      - union
   - namespace: string
     title: clojure.string
     target: Clojure 1.12

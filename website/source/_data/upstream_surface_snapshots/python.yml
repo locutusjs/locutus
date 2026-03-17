@@ -74,6 +74,33 @@ namespaces:
       - type
       - vars
       - zip
+  - namespace: base64
+    title: base64
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - a85decode
+      - a85encode
+      - b16decode
+      - b16encode
+      - b32decode
+      - b32encode
+      - b32hexdecode
+      - b32hexencode
+      - b64decode
+      - b64encode
+      - b85decode
+      - b85encode
+      - decode
+      - decodebytes
+      - encode
+      - encodebytes
+      - main
+      - standard_b64decode
+      - standard_b64encode
+      - urlsafe_b64decode
+      - urlsafe_b64encode
   - namespace: bisect
     title: bisect
     target: Python 3.12
@@ -86,6 +113,31 @@ namespaces:
       - insort
       - insort_left
       - insort_right
+  - namespace: calendar
+    title: calendar
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - calendar
+      - different_locale
+      - firstweekday
+      - format
+      - formatstring
+      - isleap
+      - leapdays
+      - main
+      - month
+      - monthcalendar
+      - monthrange
+      - prcal
+      - prmonth
+      - prweek
+      - setfirstweekday
+      - timegm
+      - week
+      - weekday
+      - weekheader
   - namespace: cmath
     title: cmath
     target: Python 3.12
@@ -165,6 +217,14 @@ namespaces:
       - merge
       - nlargest
       - nsmallest
+  - namespace: html
+    title: html
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - escape
+      - unescape
   - namespace: itertools
     title: itertools
     target: Python 3.12
@@ -191,6 +251,17 @@ namespaces:
       - takewhile
       - tee
       - zip_longest
+  - namespace: json
+    title: json
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - detect_encoding
+      - dump
+      - dumps
+      - load
+      - loads
   - namespace: math
     title: math
     target: Python 3.12
@@ -431,6 +502,40 @@ namespaces:
       - name
       - normalize
       - numeric
+  - namespace: urllib.parse
+    title: urllib.parse
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - clear_cache
+      - parse_qs
+      - parse_qsl
+      - quote
+      - quote_from_bytes
+      - quote_plus
+      - splitattr
+      - splithost
+      - splitnport
+      - splitpasswd
+      - splitport
+      - splitquery
+      - splittag
+      - splittype
+      - splituser
+      - splitvalue
+      - to_bytes
+      - unquote
+      - unquote_plus
+      - unquote_to_bytes
+      - unwrap
+      - urldefrag
+      - urlencode
+      - urljoin
+      - urlparse
+      - urlsplit
+      - urlunparse
+      - urlunsplit
   - namespace: difflib
     title: difflib
     target: Python 3.12

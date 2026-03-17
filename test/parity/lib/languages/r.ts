@@ -59,6 +59,66 @@ function discoverRUpstreamSurface() {
           "cat(funs, sep='\\n')",
         ].join('; '),
       ),
+      discoverNamespace(
+        'utils',
+        'utils package',
+        [
+          'library(utils)',
+          'vals <- ls(asNamespace("utils"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("utils"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'graphics',
+        'graphics package',
+        [
+          'library(graphics)',
+          'vals <- ls(asNamespace("graphics"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("graphics"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'grDevices',
+        'grDevices package',
+        [
+          'library(grDevices)',
+          'vals <- ls(asNamespace("grDevices"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("grDevices"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'methods',
+        'methods package',
+        [
+          'library(methods)',
+          'vals <- ls(asNamespace("methods"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("methods"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'stats4',
+        'stats4 package',
+        [
+          'library(stats4)',
+          'vals <- ls(asNamespace("stats4"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("stats4"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'tools',
+        'tools package',
+        [
+          'library(tools)',
+          'vals <- ls(asNamespace("tools"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("tools"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
     ],
   }
 }

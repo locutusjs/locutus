@@ -1,5 +1,31 @@
 language: kotlin
 namespaces:
+  - namespace: arrays
+    title: kotlin.collections arrays
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/
+    entries:
+      - binarySearch
+      - binarySearchBy
+      - contentEquals
+      - distinct
+      - filter
+      - filterIndexed
+      - first
+      - flatMap
+      - groupBy
+      - last
+      - map
+      - mapIndexed
+      - partition
+      - reverse
+      - sliceArray
+      - sort
+      - sortDescending
+      - sorted
+      - sortedArray
+      - zip
   - namespace: collections
     title: kotlin.collections package
     target: Kotlin 2.2
@@ -99,6 +125,28 @@ namespaces:
       - rangeUntil
       - step
       - until
+  - namespace: sequences
+    title: kotlin.sequences package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.sequences/
+    entries:
+      - chunked
+      - distinct
+      - distinctBy
+      - filter
+      - filterIndexed
+      - filterNot
+      - flatMap
+      - fold
+      - groupBy
+      - joinToString
+      - map
+      - mapIndexed
+      - sorted
+      - sortedBy
+      - windowed
+      - zip
   - namespace: text
     title: kotlin.text package
     target: Kotlin 2.2

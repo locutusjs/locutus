@@ -2470,3 +2470,33 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - “Untriaged: 0” only becomes strategically meaningful once the tracked scope is explicit and intentionally anchored to official core/stdlib boundaries.
   - Runtime discovery is only worth keeping when it yields a real callable surface; empty or class-only modules like Python `fractions` should be dropped rather than preserved as misleading zero-entry namespaces.
+
+### Iteration 125
+
+2026-03-17
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep the completion bar sharp: official core/stdlib scope per supported language, with source ordering `runtime -> version-tagged docs/source -> manual snapshot`.
+  - Finish the most obviously undertracked standard-library areas first, especially where a single namespace/default can cheaply classify hundreds of upstream entries.
+- Progress:
+  - Logged the completion rule explicitly: “all surface-tracked” means complete official core/stdlib scope per language, not third-party ecosystems, and runtime-only empty modules should be dropped rather than kept as noise.
+  - Broadened Python again with `base64`, `calendar`, `html`, `json`, and `urllib.parse`, plus a broader URL/encoding wishlist and stricter plain-value skips around byte- and environment-heavy helpers.
+  - Broadened Go with `bytes`, `cmp`, `maps`, `unicode`, and `utf8`, and kept the `go doc` generic-symbol normalization in place so these packages compare cleanly.
+  - Broadened Tcl from a narrow `string`/`dict` slice to a much larger core command surface: standalone core commands plus `array`, `binary`, `chan`, `clock`, `encoding`, `file`, `info`, `namespace`, `package`, and `zlib`.
+  - Broadened R from `base` + `stats` to a broader official recommended-package surface by tracking `utils`, `graphics`, `grDevices`, `methods`, `stats4`, and `tools`.
+  - Broadened Julia with `Random`, `Printf`, and `Unicode`, Elixir with `DateTime`, `MapSet`, `Regex`, `Time`, and `Version`, and kept the struct-heavy/default-skip policy honest.
+  - Broadened docs-backed/manual languages further: Haskell `Data.Char` / `Data.Either` / `Data.Maybe` / `Numeric` / `Data.Tuple`, Perl `Math::Complex` / `Text::ParseWords` / `Text::Tabs`, PowerShell `System.DateTime` / `System.Uri`, Rust `bool` / `slice`, and Swift `Bool` / `Float` / `Int` / `Set`.
+  - Re-synced all mirrored website inventory artifacts through `injectupstreamsurface`, so the site now reflects these broader official core/stdlib catalogs without needing a full `injectweb`.
+- Validation:
+  - `corepack yarn refresh:upstream-surface tcl r julia elixir python golang clojure`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+  - `corepack yarn check`
+- Key learnings:
+  - The cheapest way to broaden language honesty is not deeper per-function policy, but adding official namespaces with sane defaults and only a handful of explicit exceptions.
+  - Tcl and R benefited most from switching from “high-signal subset” thinking to “full standard command/package surface with broad skip defaults”; that pattern is reusable for the remaining breadth waves too.

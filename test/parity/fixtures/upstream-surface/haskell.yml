@@ -1,5 +1,43 @@
 language: haskell
 namespaces:
+  - namespace: char
+    title: Data.Char module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Char.html
+    entries:
+      - chr
+      - digitToInt
+      - intToDigit
+      - isAlpha
+      - isAlphaNum
+      - isAscii
+      - isControl
+      - isDigit
+      - isHexDigit
+      - isLetter
+      - isLower
+      - isNumber
+      - isPrint
+      - isPunctuation
+      - isSeparator
+      - isSpace
+      - isUpper
+      - ord
+      - toLower
+      - toUpper
+  - namespace: either
+    title: Data.Either module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Either.html
+    entries:
+      - either
+      - isLeft
+      - isRight
+      - lefts
+      - partitionEithers
+      - rights
   - namespace: list
     title: Data.List module
     target: GHC base-4.21
@@ -25,3 +63,47 @@ namespaces:
       - transpose
       - union
       - unionBy
+  - namespace: maybe
+    title: Data.Maybe module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Maybe.html
+    entries:
+      - catMaybes
+      - fromJust
+      - fromMaybe
+      - isJust
+      - isNothing
+      - listToMaybe
+      - mapMaybe
+      - maybe
+      - maybeToList
+  - namespace: numeric
+    title: Numeric module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Numeric.html
+    entries:
+      - floatToDigits
+      - readDec
+      - readFloat
+      - readHex
+      - readInt
+      - showEFloat
+      - showFFloat
+      - showFloat
+      - showGFloat
+      - showHex
+      - showIntAtBase
+      - showOct
+  - namespace: tuple
+    title: Data.Tuple module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Tuple.html
+    entries:
+      - curry
+      - fst
+      - snd
+      - swap
+      - uncurry
