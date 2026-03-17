@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * Refresh only the live-discoverable upstream surface snapshots.
+ * Enumerate the full tracked upstream catalog across all language sources.
  *
- * For a full tracked-catalog enumeration across runtime, docs/source, and
- * manual snapshots, use `scripts/enumerate-upstream-surface.ts` instead.
+ * - runtime-discovered languages refresh from their parity target
+ * - docs/source/manual languages validate and reuse their checked-in snapshots
+ *
+ * This is the "full vision" command for inspecting tracked scope before
+ * deciding whether to narrow discovery or apply broader inventory defaults.
  */
 
 import { dirname, join } from 'node:path'
@@ -18,7 +21,7 @@ const ROOT = join(__dirname, '..')
 async function main() {
   await enumerateUpstreamSurfaceSnapshots({
     filters: process.argv.slice(2),
-    mode: 'discoverable',
+    mode: 'all',
     rootDir: ROOT,
   })
 }

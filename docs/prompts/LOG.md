@@ -2531,3 +2531,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The biggest remaining breadth wins now come from whole official namespaces, not from squeezing more nuance into already-tracked ones.
   - Empty runtime namespaces are worse than absent ones: they imply coverage while adding no roadmap signal, so they should be removed rather than classified.
+
+### Iteration 127
+
+2026-03-17
+
+- **Area: Upstream surface workflow**
+- Plan:
+  - Make the existing upstream-surface tooling explicit as a three-step maintainer loop: enumerate, scope, check.
+  - Reuse the current refresh/check engine rather than introducing a second inventory system.
+  - Ensure one command can materialize the full tracked catalog across runtime, docs/source, and manual snapshots so we stop discovering scope accidentally.
+- Progress:
+  - Added a new explicit `enumerate:upstream-surface` entrypoint that materializes the full tracked catalog for selected languages, refreshing runtime-backed catalogs while validating and reusing curated docs/manual snapshots.
+  - Refactored the old `refresh:upstream-surface` script into a live-discovery-only alias over the same enumeration engine, so the system stays unified instead of drifting into parallel codepaths.
+  - Documented the intended maintainer loop as `enumerate -> inspect -> narrow-or-default -> check`, including the two legitimate responses when a namespace feels too broad: exclude it from tracked scope or keep it with a namespace default.
+  - Tightened selective CI routing so edits to the new enumeration entrypoint still trigger the upstream-surface gate.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn enumerate:upstream-surface swift php`
+  - `corepack yarn refresh:upstream-surface php`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - The missing piece was not another data model; it was a first-class full-catalog materialization command that includes manual/docs-backed languages as well as runtime-backed ones.
+  - Once enumeration and tracked scope are separated cleanly, “unknown territory” stops being a structural problem and becomes a deliberate scope choice.

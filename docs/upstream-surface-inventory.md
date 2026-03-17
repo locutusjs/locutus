@@ -159,9 +159,34 @@ Informational only:
 
 That keeps CI sharp without turning the roadmap into a mandatory porting checklist.
 
-## Refresh Flow
+## Enumerate, Scope, Check
 
-Refresh live-discoverable snapshots with:
+The intended maintainer loop is:
+
+1. enumerate the full tracked upstream catalog
+2. inspect what looks too broad or too noisy
+3. either narrow tracked scope at the discovery/source layer, or keep the namespace and give it a broad inventory default
+4. rerun the check until tracked scope is fully classified
+
+Enumerate the full tracked catalog with:
+
+```bash
+corepack yarn enumerate:upstream-surface
+```
+
+Or limit it to specific languages:
+
+```bash
+corepack yarn enumerate:upstream-surface python ruby golang
+```
+
+This command is intentionally broader than refresh:
+
+- runtime-backed languages refresh from the parity target container
+- docs/source/manual languages validate and reuse their checked-in snapshots as the authoritative tracked catalog
+- the result is the full tracked upstream picture we want to inspect before triaging
+
+Refresh only the live-discoverable snapshots with:
 
 ```bash
 corepack yarn refresh:upstream-surface
@@ -176,8 +201,13 @@ corepack yarn refresh:upstream-surface php python ruby golang
 Notes:
 
 - languages with `discover()` adapters refresh from the parity target runtime or source-manifest extraction
-- languages without `discover()` keep curated manual snapshots
+- languages without `discover()` keep curated manual snapshots and still participate in full enumeration through `enumerate:upstream-surface`
 - on a parity-target bump, regenerate snapshots first, then review new `untriaged` entries and any affected shipped decisions
+
+When a freshly enumerated namespace feels like it is going overboard, prefer one of these two responses:
+
+- exclude or narrow that namespace at the discovery/source layer, then rerun enumeration
+- keep the namespace tracked, but give it a namespace-level `default` decision so the catalog stays visible without creating per-function noise
 
 Do not invalidate the entire inventory on target bumps. The workflow should be:
 

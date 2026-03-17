@@ -41,7 +41,9 @@ const FORCE_FULL_PREFIXES = ['.github/workflows/', 'test/parity/lib/']
 const UPSTREAM_SURFACE_FORCE_ALL_PATHS = new Set([
   'docs/upstream-surface-inventory.yml',
   'scripts/check-upstream-surface.ts',
+  'scripts/enumerate-upstream-surface.ts',
   'scripts/refresh-upstream-surface.ts',
+  'scripts/upstream-surface-enumeration.ts',
   'test/parity/lib/upstream-surface.ts',
   'test/parity/lib/upstream-surface-inventory.ts',
   'test/parity/lib/upstream-surface-snapshots.ts',

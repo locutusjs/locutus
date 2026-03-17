@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
+import { canEnumerateUpstreamSurfaceLanguage } from '../../scripts/upstream-surface-enumeration.ts'
 import { cHandler } from '../parity/lib/languages/c.ts'
 import { findFunctionSources } from '../parity/lib/parser.ts'
 import type { FunctionInfo, LanguageHandler, UpstreamSurfaceSnapshot } from '../parity/lib/types.ts'
@@ -246,6 +247,12 @@ describe('upstream surface inventory', () => {
     expect(resolution.selected).toEqual(['php'])
     expect(resolution.unknown).toEqual(['phpp'])
     expect(resolution.unavailable).toEqual(['python'])
+  })
+
+  it('treats manual snapshots as enumerable even when they are not live-discoverable', () => {
+    expect(canEnumerateUpstreamSurfaceLanguage('swift', 'all', process.cwd())).toBe(true)
+    expect(canEnumerateUpstreamSurfaceLanguage('swift', 'discoverable', process.cwd())).toBe(false)
+    expect(canEnumerateUpstreamSurfaceLanguage('php', 'all', process.cwd())).toBe(true)
   })
 
   it('includes source functions even when they do not define examples', () => {
