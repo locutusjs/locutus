@@ -2952,6 +2952,21 @@ r:
         tail:
           decision: wanted
           note: Sequence slicing helpers have a clean plain-value contract.
+    class:
+      title: class package
+      default:
+        decision: skip_runtime_model
+        note: Classification-model and nearest-neighbor helpers often return richer model outputs than one stable plain-value contract.
+    cluster:
+      title: cluster package
+      default:
+        decision: skip_runtime_model
+        note: Clustering and silhouette helpers usually revolve around richer statistical model objects.
+    foreign:
+      title: foreign package
+      default:
+        decision: skip_environment
+        note: Foreign-data import/export helpers are primarily file-backed I/O rather than plain-value computation.
     graphics:
       title: graphics package
       default:
@@ -2962,6 +2977,26 @@ r:
       default:
         decision: skip_runtime_model
         note: Byte-code compiler helpers operate on runtime language objects rather than plain values.
+    KernSmooth:
+      title: KernSmooth package
+      default:
+        decision: skip_runtime_model
+        note: Kernel-smoothing helpers generally return fitted-model structures rather than one stable plain-value contract.
+    lattice:
+      title: lattice package
+      default:
+        decision: skip_side_effects
+        note: lattice is primarily plotting and device output rather than plain-value computation.
+    MASS:
+      title: MASS package
+      default:
+        decision: skip_runtime_model
+        note: MASS mixes fitted models, formulas, and statistical helper objects too broadly for one direct Locutus wishlist.
+    Matrix:
+      title: Matrix package
+      default:
+        decision: skip_plain_value_mismatch
+        note: Sparse and structured matrix types do not fit Locutus' current plain-value model.
     grid:
       title: grid package
       default:
@@ -2996,21 +3031,51 @@ r:
       default:
         decision: skip_runtime_model
         note: S4 dispatch and class metadata depend on R's runtime object system.
+    mgcv:
+      title: mgcv package
+      default:
+        decision: skip_runtime_model
+        note: Generalized additive model helpers revolve around fitted-model objects rather than plain values.
+    nlme:
+      title: nlme package
+      default:
+        decision: skip_runtime_model
+        note: Mixed-effects modeling helpers revolve around fitted-model objects rather than plain values.
+    nnet:
+      title: nnet package
+      default:
+        decision: skip_runtime_model
+        note: Neural-network and multinomial model helpers revolve around fitted-model objects rather than plain values.
     parallel:
       title: parallel package
       default:
         decision: skip_environment
         note: Parallel worker and process helpers depend on host runtime resources.
+    rpart:
+      title: rpart package
+      default:
+        decision: skip_runtime_model
+        note: Recursive partitioning helpers revolve around fitted tree objects rather than plain values.
     splines:
       title: splines package
       default:
         decision: skip_plain_value_mismatch
         note: Spline basis and fitted-model objects do not fit one stable plain-value contract.
+    spatial:
+      title: spatial package
+      default:
+        decision: skip_runtime_model
+        note: Spatial statistics helpers mostly revolve around fitted models and structured outputs rather than plain values.
     stats4:
       title: stats4 package
       default:
         decision: skip_runtime_model
         note: S4 statistical model objects do not fit Locutus' plain-value model.
+    survival:
+      title: survival package
+      default:
+        decision: skip_runtime_model
+        note: Survival-analysis helpers revolve around fitted-model objects rather than plain values.
     tools:
       title: tools package
       default:

@@ -2517,6 +2517,7 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Broadened R further with `compiler`, `grid`, `parallel`, and `splines`, and explicitly dropped `datasets` again once runtime discovery showed it contributes no real callable helper surface worth tracking.
   - Broadened Julia with `DelimitedFiles` and `LinearAlgebra`, and broadened Clojure with `clojure.walk` and `clojure.zip`.
   - Broadened docs-backed/manual languages with PowerShell `System.Guid` / `System.Version` / `System.TimeSpan`, Rust `Option` / `Result` / `i32` / `u32` / `usize`, Swift `Optional` / `Substring` / `Unicode.Scalar`, Kotlin `kotlin.random`, Haskell `Data.Bool` / `Data.Function` / `Data.Ord`, and Perl `File::Basename` / `Unicode::Normalize`.
+  - Pulled R much closer to official recommended-package completion by tracking `class`, `cluster`, `foreign`, `KernSmooth`, `lattice`, `MASS`, `Matrix`, `mgcv`, `nlme`, `nnet`, `rpart`, `spatial`, and `survival`, mostly through broad defaults instead of noisy per-function exceptions.
   - Reaffirmed the “drop empty runtime-only modules” rule in code, not just in prose, by removing R `datasets` from the tracked scope instead of preserving a misleading zero-entry namespace.
 - Validation:
   - `corepack yarn refresh:upstream-surface python ruby golang r julia clojure`
