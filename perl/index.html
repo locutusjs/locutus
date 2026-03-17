@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T18:56:51.772Z">
-<meta property="article:modified_time" content="2026-03-16T18:56:51.772Z">
+<meta property="article:published_time" content="2026-03-17T14:57:27.122Z">
+<meta property="article:modified_time" content="2026-03-17T14:57:27.122Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -328,46 +328,54 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        22/29 shipped
-         • 7 next
+        22/126 shipped
+         • 72 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 75.9%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 17.5%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 24.1%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 57.1%"></span>
             
+            
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 25.4%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">76%</span>
+    <span class="surface-panel__summary-badge">17%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream Perl catalog and sorts it into what is already shipped,
+          Locutus tracks 11 upstream namespaces for
+          Perl and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        
+          <p class="surface-summary">This inventory now tracks a broader official Perl core-module slice, excluding the wider CPAN ecosystem.</p>
+        
       </div>
       <div class="surface-coverage-badge">
-        <strong>76%</strong>
+        <strong>17%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 75.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 17.5%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 24.1%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 57.1%"></span>
         
+        
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 25.4%"></span>
         
         
       
@@ -376,22 +384,31 @@ ga('send', 'pageview');
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
       <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
-      
+      <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
     </div>
 
     <div class="surface-kpis">
       <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value">11</strong>
+      </article>
+      <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">22/29</strong>
+        <strong class="surface-kpi__value">22/126</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">7</strong>
+          <strong class="surface-kpi__value">72</strong>
         </article>
       
       
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Explicit non-goals</span>
+          <strong class="surface-kpi__value">32</strong>
+        </article>
       
       
     </div>
@@ -403,7 +420,8 @@ ga('send', 'pageview');
       
       
       
-      22 of 29 upstream entries are already shipped; 7 are explicitly on the shortlist.
+      
+      11 namespaces are currently tracked; 22 of 126 upstream entries are already shipped; 72 are explicitly on the shortlist; 32 are explicit non-goals.
     </p>
 
     
@@ -470,6 +488,792 @@ ga('send', 'pageview');
               <li>
                 <code>index</code>
                 <span>Perl core scalar and string helpers are good portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Encode module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/Encode</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 83.3%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 16.7%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/6</strong> shipped</span>
+    <span><strong>5</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 5 next • 1 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>decode</code>
+                <span>Text encoding and decoding helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+              <li>
+                <code>decode_utf8</code>
+                <span>Text encoding and decoding helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+              <li>
+                <code>encode</code>
+                <span>Text encoding and decoding helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+              <li>
+                <code>encode_utf8</code>
+                <span>Text encoding and decoding helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+              <li>
+                <code>is_utf8</code>
+                <span>Text encoding and decoding helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/from_to" target="_blank" rel="noopener noreferrer"><code>from_to</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place string transcoding mutates caller-owned state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          File::Basename module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/File::Basename</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/3</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>basename</code>
+                <span>Path decomposition helpers are strong plain-string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>dirname</code>
+                <span>Path decomposition helpers are strong plain-string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>fileparse</code>
+                <span>Path decomposition helpers are strong plain-string portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          List::Util module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/List::Util</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 92.6%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 7.4%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/27</strong> shipped</span>
+    <span><strong>25</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 25 next • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>all</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>any</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>first</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>head</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>max</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>maxstr</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>min</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>minstr</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>none</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>notall</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>pairfirst</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>pairgrep</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>pairkeys</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>pairmap</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>pairs</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>pairvalues</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>product</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>reduce</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>reductions</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>sum</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>sum0</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>tail</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>uniq</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>uniqint</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+              <li>
+                <code>uniqnum</code>
+                <span>List::Util exports are mostly strong plain-value collection helpers.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/sample" target="_blank" rel="noopener noreferrer"><code>sample</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized sampling is lower-value than deterministic collection transforms.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/shuffle" target="_blank" rel="noopener noreferrer"><code>shuffle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Randomized sampling is lower-value than deterministic collection transforms.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Math::Complex module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/Math::Complex</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/16</strong> shipped</span>
+    
+    <span><strong>16</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 16 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (16)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/abs" target="_blank" rel="noopener noreferrer"><code>abs</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/acos" target="_blank" rel="noopener noreferrer"><code>acos</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/asin" target="_blank" rel="noopener noreferrer"><code>asin</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/atan2" target="_blank" rel="noopener noreferrer"><code>atan2</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/cos" target="_blank" rel="noopener noreferrer"><code>cos</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/cplx" target="_blank" rel="noopener noreferrer"><code>cplx</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/exp" target="_blank" rel="noopener noreferrer"><code>exp</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/Im" target="_blank" rel="noopener noreferrer"><code>Im</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/log" target="_blank" rel="noopener noreferrer"><code>log</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/pi" target="_blank" rel="noopener noreferrer"><code>pi</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/Re" target="_blank" rel="noopener noreferrer"><code>Re</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/rho" target="_blank" rel="noopener noreferrer"><code>rho</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/sin" target="_blank" rel="noopener noreferrer"><code>sin</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/sqrt" target="_blank" rel="noopener noreferrer"><code>sqrt</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/tan" target="_blank" rel="noopener noreferrer"><code>tan</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/theta" target="_blank" rel="noopener noreferrer"><code>theta</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Math::Trig module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/Math::Trig</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/18</strong> shipped</span>
+    <span><strong>18</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 18 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>acos</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>asin</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>atan</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>atan2</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>cartesian_to_cylindrical</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>cartesian_to_spherical</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>cylindrical_to_cartesian</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>deg2rad</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>great_circle_direction</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>great_circle_distance</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pi</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rad2deg</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>sec</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>sin</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>sinh</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>spherical_to_cartesian</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>tan</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>tanh</code>
+                <span>Trigonometric and angle-conversion helpers are strong scalar portability targets.</span>
               </li>
             
           </ul>
@@ -572,6 +1376,472 @@ ga('send', 'pageview');
               <li>
                 <code>strftime</code>
                 <span>Numeric POSIX helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Scalar::Util module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/Scalar::Util</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.1%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 92.9%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/14</strong> shipped</span>
+    <span><strong>1</strong> next</span>
+    <span><strong>13</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 1 next • 13 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>looks_like_number</code>
+                <span>Numeric-shape predicates have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (13)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/blessed" target="_blank" rel="noopener noreferrer"><code>blessed</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/dualvar" target="_blank" rel="noopener noreferrer"><code>dualvar</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/isdual" target="_blank" rel="noopener noreferrer"><code>isdual</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/isvstring" target="_blank" rel="noopener noreferrer"><code>isvstring</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/isweak" target="_blank" rel="noopener noreferrer"><code>isweak</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/openhandle" target="_blank" rel="noopener noreferrer"><code>openhandle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Handle introspection depends on host I/O resources.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/readonly" target="_blank" rel="noopener noreferrer"><code>readonly</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/refaddr" target="_blank" rel="noopener noreferrer"><code>refaddr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/reftype" target="_blank" rel="noopener noreferrer"><code>reftype</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/set_prototype" target="_blank" rel="noopener noreferrer"><code>set_prototype</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scalar::Util mostly exposes Perl runtime and reference-model introspection rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/tainted" target="_blank" rel="noopener noreferrer"><code>tainted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Taint-mode inspection is security-sensitive and runtime-specific.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/unweaken" target="_blank" rel="noopener noreferrer"><code>unweaken</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reference mutability helpers change ambient runtime state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://perldoc.perl.org/functions/weaken" target="_blank" rel="noopener noreferrer"><code>weaken</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reference mutability helpers change ambient runtime state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Text::ParseWords module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/Text::ParseWords</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/6</strong> shipped</span>
+    <span><strong>6</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 6 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>nested_quotewords</code>
+                <span>Shell-like tokenization helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>old_parse_line</code>
+                <span>Shell-like tokenization helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>old_shellwords</code>
+                <span>Shell-like tokenization helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>parse_line</code>
+                <span>Shell-like tokenization helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>quotewords</code>
+                <span>Shell-like tokenization helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>shellwords</code>
+                <span>Shell-like tokenization helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Text::Tabs module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/Text::Tabs</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/2</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>expand</code>
+                <span>Tab expansion helpers are useful plain-value string targets.</span>
+              </li>
+            
+              <li>
+                <code>unexpand</code>
+                <span>Tab expansion helpers are useful plain-value string targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Unicode::Normalize module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Perl 5.40</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://perldoc.perl.org/Unicode::Normalize</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/5</strong> shipped</span>
+    <span><strong>5</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 5 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>NFC</code>
+                <span>Unicode normalization helpers are strong plain-value string targets.</span>
+              </li>
+            
+              <li>
+                <code>NFD</code>
+                <span>Unicode normalization helpers are strong plain-value string targets.</span>
+              </li>
+            
+              <li>
+                <code>NFKC</code>
+                <span>Unicode normalization helpers are strong plain-value string targets.</span>
+              </li>
+            
+              <li>
+                <code>NFKD</code>
+                <span>Unicode normalization helpers are strong plain-value string targets.</span>
+              </li>
+            
+              <li>
+                <code>normalize</code>
+                <span>Unicode normalization helpers are strong plain-value string targets.</span>
               </li>
             
           </ul>

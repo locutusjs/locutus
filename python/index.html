@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T18:56:51.807Z">
-<meta property="article:modified_time" content="2026-03-16T18:56:51.807Z">
+<meta property="article:published_time" content="2026-03-17T14:57:27.171Z">
+<meta property="article:modified_time" content="2026-03-17T14:57:27.171Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -406,50 +406,54 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        56/86 shipped
-         • 24 next
+        56/444 shipped
+         • 181 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 65.1%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 12.6%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.9%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 40.8%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 7%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 46.6%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">65%</span>
+    <span class="surface-panel__summary-badge">13%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream Python catalog and sorts it into what is already shipped,
+          Locutus tracks 25 upstream namespaces for
+          Python and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        
+          <p class="surface-summary">This inventory now targets a broad official core/stdlib slice first, using runtime discovery where possible, rather than the full Python object model or third-party ecosystem.</p>
+        
       </div>
       <div class="surface-coverage-badge">
-        <strong>65%</strong>
+        <strong>13%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 65.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 12.6%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.9%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 40.8%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 7%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 46.6%"></span>
         
         
       
@@ -464,20 +468,24 @@ ga('send', 'pageview');
 
     <div class="surface-kpis">
       <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value">25</strong>
+      </article>
+      <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">56/86</strong>
+        <strong class="surface-kpi__value">56/444</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">24</strong>
+          <strong class="surface-kpi__value">181</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">6</strong>
+          <strong class="surface-kpi__value">207</strong>
         </article>
       
       
@@ -490,8 +498,1754 @@ ga('send', 'pageview');
       
       
       
-      56 of 86 upstream entries are already shipped; 24 are explicitly on the shortlist; 6 are explicit non-goals.
+      
+      25 namespaces are currently tracked; 56 of 444 upstream entries are already shipped; 181 are explicitly on the shortlist; 207 are explicit non-goals.
     </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          base64
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/21</strong> shipped</span>
+    
+    <span><strong>21</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 21 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (21)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.a85decode" target="_blank" rel="noopener noreferrer"><code>a85decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.a85encode" target="_blank" rel="noopener noreferrer"><code>a85encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b16decode" target="_blank" rel="noopener noreferrer"><code>b16decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b16encode" target="_blank" rel="noopener noreferrer"><code>b16encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b32decode" target="_blank" rel="noopener noreferrer"><code>b32decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b32encode" target="_blank" rel="noopener noreferrer"><code>b32encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b32hexdecode" target="_blank" rel="noopener noreferrer"><code>b32hexdecode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b32hexencode" target="_blank" rel="noopener noreferrer"><code>b32hexencode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b64decode" target="_blank" rel="noopener noreferrer"><code>b64decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b64encode" target="_blank" rel="noopener noreferrer"><code>b64encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b85decode" target="_blank" rel="noopener noreferrer"><code>b85decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.b85encode" target="_blank" rel="noopener noreferrer"><code>b85encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.decode" target="_blank" rel="noopener noreferrer"><code>decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.decodebytes" target="_blank" rel="noopener noreferrer"><code>decodebytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.encode" target="_blank" rel="noopener noreferrer"><code>encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.encodebytes" target="_blank" rel="noopener noreferrer"><code>encodebytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.main" target="_blank" rel="noopener noreferrer"><code>main</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.standard_b64decode" target="_blank" rel="noopener noreferrer"><code>standard_b64decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.standard_b64encode" target="_blank" rel="noopener noreferrer"><code>standard_b64encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.urlsafe_b64decode" target="_blank" rel="noopener noreferrer"><code>urlsafe_b64decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/base64.html#base64.urlsafe_b64encode" target="_blank" rel="noopener noreferrer"><code>urlsafe_b64encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most base64 helpers traffic in bytes rather than plain JS string values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          bisect
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 50%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/6</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next • 3 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>bisect</code>
+                <span>Binary-search helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>bisect_left</code>
+                <span>Binary-search helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>bisect_right</code>
+                <span>Binary-search helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/bisect.html#bisect.insort" target="_blank" rel="noopener noreferrer"><code>insort</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place list insertion mutates caller-owned state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/bisect.html#bisect.insort_left" target="_blank" rel="noopener noreferrer"><code>insort_left</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place list insertion mutates caller-owned state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/bisect.html#bisect.insort_right" target="_blank" rel="noopener noreferrer"><code>insort_right</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place list insertion mutates caller-owned state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          builtins
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 48.5%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 51.5%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/68</strong> shipped</span>
+    <span><strong>33</strong> next</span>
+    <span><strong>35</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 33 next • 35 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>abs</code>
+                <span>Scalar absolute-value helpers are strong plain-value targets.</span>
+              </li>
+            
+              <li>
+                <code>all</code>
+                <span>Aggregate predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>any</code>
+                <span>Aggregate predicate helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>ascii</code>
+                <span>ASCII-safe string representation is a useful plain-value helper.</span>
+              </li>
+            
+              <li>
+                <code>bin</code>
+                <span>Integer base conversion has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>bool</code>
+                <span>Boolean coercion remains a useful plain-value portability target.</span>
+              </li>
+            
+              <li>
+                <code>callable</code>
+                <span>Callable predicates have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>chr</code>
+                <span>Codepoint-to-string conversion is a strong portability target.</span>
+              </li>
+            
+              <li>
+                <code>dict</code>
+                <span>Dictionary construction still has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>divmod</code>
+                <span>Quotient-remainder helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>enumerate</code>
+                <span>Indexed sequence pairing can be represented as plain arrays.</span>
+              </li>
+            
+              <li>
+                <code>filter</code>
+                <span>Predicate-based filtering remains a strong plain-value target.</span>
+              </li>
+            
+              <li>
+                <code>float</code>
+                <span>Numeric coercion has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>format</code>
+                <span>String formatting is a strong plain-value portability target.</span>
+              </li>
+            
+              <li>
+                <code>hex</code>
+                <span>Integer base conversion has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>int</code>
+                <span>Integer coercion is a strong plain-value portability target.</span>
+              </li>
+            
+              <li>
+                <code>len</code>
+                <span>Size helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>list</code>
+                <span>Sequence materialization has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>map</code>
+                <span>Mapping over iterables can be represented as plain arrays.</span>
+              </li>
+            
+              <li>
+                <code>max</code>
+                <span>Aggregate scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>min</code>
+                <span>Aggregate scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>oct</code>
+                <span>Integer base conversion has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>ord</code>
+                <span>String-to-codepoint conversion is a strong portability target.</span>
+              </li>
+            
+              <li>
+                <code>pow</code>
+                <span>Scalar exponentiation has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>range</code>
+                <span>Numeric range generation can be represented as plain arrays.</span>
+              </li>
+            
+              <li>
+                <code>repr</code>
+                <span>Representation helpers are useful plain-value string targets.</span>
+              </li>
+            
+              <li>
+                <code>reversed</code>
+                <span>Reversal can be represented as a plain array result.</span>
+              </li>
+            
+              <li>
+                <code>round</code>
+                <span>Scalar rounding remains a strong portability target.</span>
+              </li>
+            
+              <li>
+                <code>sorted</code>
+                <span>Sequence sorting has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>str</code>
+                <span>String coercion remains a strong plain-value portability target.</span>
+              </li>
+            
+              <li>
+                <code>sum</code>
+                <span>Aggregation helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>tuple</code>
+                <span>Sequence materialization has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>zip</code>
+                <span>Sequence zipping can be represented as plain arrays.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (35)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.aiter" target="_blank" rel="noopener noreferrer"><code>aiter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Python builtins mix pure helpers with runtime introspection, evaluation, I/O, and rich container types too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.anext" target="_blank" rel="noopener noreferrer"><code>anext</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Python builtins mix pure helpers with runtime introspection, evaluation, I/O, and rich container types too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.breakpoint" target="_blank" rel="noopener noreferrer"><code>breakpoint</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debugger entry mutates runtime execution state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.bytearray" target="_blank" rel="noopener noreferrer"><code>bytearray</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mutable byte buffers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.bytes" target="_blank" rel="noopener noreferrer"><code>bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte strings do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.classmethod" target="_blank" rel="noopener noreferrer"><code>classmethod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Descriptor factories are not plain-value targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.compile" target="_blank" rel="noopener noreferrer"><code>compile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Dynamic code compilation is security-sensitive and not a good Locutus target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.complex" target="_blank" rel="noopener noreferrer"><code>complex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex numbers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.delattr" target="_blank" rel="noopener noreferrer"><code>delattr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Attribute mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.dir" target="_blank" rel="noopener noreferrer"><code>dir</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Runtime introspection depends on object model details outside Locutus&#39; scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.eval" target="_blank" rel="noopener noreferrer"><code>eval</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Dynamic code evaluation is security-sensitive and out of scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.exec" target="_blank" rel="noopener noreferrer"><code>exec</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Dynamic code execution is security-sensitive and out of scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.frozenset" target="_blank" rel="noopener noreferrer"><code>frozenset</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.getattr" target="_blank" rel="noopener noreferrer"><code>getattr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Generic attribute lookup depends on host object semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.globals" target="_blank" rel="noopener noreferrer"><code>globals</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Runtime namespace introspection is outside Locutus&#39; portability scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.hasattr" target="_blank" rel="noopener noreferrer"><code>hasattr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Generic attribute introspection depends on host object semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.hash" target="_blank" rel="noopener noreferrer"><code>hash</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Object-hash identity does not map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.id" target="_blank" rel="noopener noreferrer"><code>id</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Object identity addresses are not a stable portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.input" target="_blank" rel="noopener noreferrer"><code>input</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Interactive stdin reads depend on host I/O.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.isinstance" target="_blank" rel="noopener noreferrer"><code>isinstance</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Python class introspection does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.issubclass" target="_blank" rel="noopener noreferrer"><code>issubclass</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Python class introspection does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.iter" target="_blank" rel="noopener noreferrer"><code>iter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator objects are not direct plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.locals" target="_blank" rel="noopener noreferrer"><code>locals</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stack-frame introspection is outside Locutus&#39; portability scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.memoryview" target="_blank" rel="noopener noreferrer"><code>memoryview</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Buffer-view semantics do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.next" target="_blank" rel="noopener noreferrer"><code>next</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator advancement APIs do not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.object" target="_blank" rel="noopener noreferrer"><code>object</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Generic object construction has no meaningful plain-value portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.print" target="_blank" rel="noopener noreferrer"><code>print</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Output emission is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.property" target="_blank" rel="noopener noreferrer"><code>property</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Descriptor factories are not plain-value targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.set" target="_blank" rel="noopener noreferrer"><code>set</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.setattr" target="_blank" rel="noopener noreferrer"><code>setattr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Attribute mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.slice" target="_blank" rel="noopener noreferrer"><code>slice</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Slice objects are not direct plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.staticmethod" target="_blank" rel="noopener noreferrer"><code>staticmethod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Descriptor factories are not plain-value targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.super" target="_blank" rel="noopener noreferrer"><code>super</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Method-resolution proxies do not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.type" target="_blank" rel="noopener noreferrer"><code>type</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Python class introspection does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/builtins.html#builtins.vars" target="_blank" rel="noopener noreferrer"><code>vars</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Runtime namespace introspection is outside Locutus&#39; portability scope.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          calendar
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 94.7%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 5.3%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/19</strong> shipped</span>
+    <span><strong>18</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 18 next • 1 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>calendar</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>different_locale</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>firstweekday</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>format</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>formatstring</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>isleap</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>leapdays</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>main</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>month</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>monthcalendar</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>monthrange</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>prcal</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>prmonth</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>prweek</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>timegm</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>week</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>weekday</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+              <li>
+                <code>weekheader</code>
+                <span>Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/calendar.html#calendar.setfirstweekday" target="_blank" rel="noopener noreferrer"><code>setfirstweekday</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Global calendar configuration mutates ambient runtime state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          cmath
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/23</strong> shipped</span>
+    
+    <span><strong>23</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 23 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (23)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.acos" target="_blank" rel="noopener noreferrer"><code>acos</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.acosh" target="_blank" rel="noopener noreferrer"><code>acosh</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.asin" target="_blank" rel="noopener noreferrer"><code>asin</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.asinh" target="_blank" rel="noopener noreferrer"><code>asinh</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.atan" target="_blank" rel="noopener noreferrer"><code>atan</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.atanh" target="_blank" rel="noopener noreferrer"><code>atanh</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.cos" target="_blank" rel="noopener noreferrer"><code>cos</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.cosh" target="_blank" rel="noopener noreferrer"><code>cosh</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.exp" target="_blank" rel="noopener noreferrer"><code>exp</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.isclose" target="_blank" rel="noopener noreferrer"><code>isclose</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.isfinite" target="_blank" rel="noopener noreferrer"><code>isfinite</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.isinf" target="_blank" rel="noopener noreferrer"><code>isinf</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.isnan" target="_blank" rel="noopener noreferrer"><code>isnan</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.log" target="_blank" rel="noopener noreferrer"><code>log</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.log10" target="_blank" rel="noopener noreferrer"><code>log10</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.phase" target="_blank" rel="noopener noreferrer"><code>phase</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.polar" target="_blank" rel="noopener noreferrer"><code>polar</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.rect" target="_blank" rel="noopener noreferrer"><code>rect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.sin" target="_blank" rel="noopener noreferrer"><code>sin</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.sinh" target="_blank" rel="noopener noreferrer"><code>sinh</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.sqrt" target="_blank" rel="noopener noreferrer"><code>sqrt</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.tan" target="_blank" rel="noopener noreferrer"><code>tan</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/cmath.html#cmath.tanh" target="_blank" rel="noopener noreferrer"><code>tanh</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Complex-number helpers do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          collections
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/3</strong> shipped</span>
+    
+    <span><strong>3</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/collections.html#collections.defaultdict" target="_blank" rel="noopener noreferrer"><code>defaultdict</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most collections exports are container classes or factory helpers rather than direct plain-value functions.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/collections.html#collections.deque" target="_blank" rel="noopener noreferrer"><code>deque</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most collections exports are container classes or factory helpers rather than direct plain-value functions.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" target="_blank" rel="noopener noreferrer"><code>namedtuple</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most collections exports are container classes or factory helpers rather than direct plain-value functions.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          csv
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 10%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 90%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/10</strong> shipped</span>
+    <span><strong>1</strong> next</span>
+    <span><strong>9</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 1 next • 9 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>list_dialects</code>
+                <span>Dialect enumeration has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (9)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.excel" target="_blank" rel="noopener noreferrer"><code>excel</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.excel_tab" target="_blank" rel="noopener noreferrer"><code>excel_tab</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.field_size_limit" target="_blank" rel="noopener noreferrer"><code>field_size_limit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.get_dialect" target="_blank" rel="noopener noreferrer"><code>get_dialect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.reader" target="_blank" rel="noopener noreferrer"><code>reader</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.register_dialect" target="_blank" rel="noopener noreferrer"><code>register_dialect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.unix_dialect" target="_blank" rel="noopener noreferrer"><code>unix_dialect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.unregister_dialect" target="_blank" rel="noopener noreferrer"><code>unregister_dialect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/csv.html#csv.writer" target="_blank" rel="noopener noreferrer"><code>writer</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          decimal
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/3</strong> shipped</span>
+    
+    <span><strong>3</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/decimal.html#decimal.getcontext" target="_blank" rel="noopener noreferrer"><code>getcontext</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Arbitrary-precision decimal values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/decimal.html#decimal.localcontext" target="_blank" rel="noopener noreferrer"><code>localcontext</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Arbitrary-precision decimal values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/decimal.html#decimal.setcontext" target="_blank" rel="noopener noreferrer"><code>setcontext</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Arbitrary-precision decimal values do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
 
     
       
@@ -511,34 +2265,34 @@ ga('send', 'pageview');
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>25%</strong>
+      <strong>33%</strong>
       <span>shipped</span>
     </div>
   </div>
 
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 37.5%"></span>
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 37.5%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 16.7%"></span>
       
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>2/8</strong> shipped</span>
+    <span><strong>2/6</strong> shipped</span>
     <span><strong>3</strong> next</span>
-    <span><strong>3</strong> explicit non-goals</span>
+    <span><strong>1</strong> explicit non-goals</span>
     
     
   </div>
 
   <p class="surface-summary">
-    2 shipped • 3 next • 3 explicit non-goals.
+    2 shipped • 3 next • 1 explicit non-goals.
   </p>
 
   
@@ -583,7 +2337,7 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (3)</summary>
+          <summary>Explicit non-goals (1)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
@@ -595,22 +2349,1015 @@ ga('send', 'pageview');
                 <span>Byte-oriented diffing does not fit Locutus&#39; current plain-value model.</span>
               </li>
             
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          functools
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 8.3%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 91.7%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/12</strong> shipped</span>
+    <span><strong>1</strong> next</span>
+    <span><strong>11</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 1 next • 11 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>reduce</code>
+                <span>Left-folding over plain iterables is a strong portability target.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (11)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
               
               <li>
                 
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.IS_CHARACTER_JUNK" target="_blank" rel="noopener noreferrer"><code>IS_CHARACTER_JUNK</code></a>
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cache" target="_blank" rel="noopener noreferrer"><code>cache</code></a>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Exposing tiny constant predicates as standalone ports adds little value.</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
               </li>
             
               
               <li>
                 
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/difflib.html#difflib.IS_LINE_JUNK" target="_blank" rel="noopener noreferrer"><code>IS_LINE_JUNK</code></a>
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cached_property" target="_blank" rel="noopener noreferrer"><code>cached_property</code></a>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Exposing tiny constant predicates as standalone ports adds little value.</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cmp_to_key" target="_blank" rel="noopener noreferrer"><code>cmp_to_key</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.lru_cache" target="_blank" rel="noopener noreferrer"><code>lru_cache</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.partial" target="_blank" rel="noopener noreferrer"><code>partial</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.partialmethod" target="_blank" rel="noopener noreferrer"><code>partialmethod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.singledispatch" target="_blank" rel="noopener noreferrer"><code>singledispatch</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.singledispatchmethod" target="_blank" rel="noopener noreferrer"><code>singledispatchmethod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.total_ordering" target="_blank" rel="noopener noreferrer"><code>total_ordering</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.update_wrapper" target="_blank" rel="noopener noreferrer"><code>update_wrapper</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.wraps" target="_blank" rel="noopener noreferrer"><code>wraps</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          hashlib
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/16</strong> shipped</span>
+    
+    <span><strong>16</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 16 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (16)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.file_digest" target="_blank" rel="noopener noreferrer"><code>file_digest</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.md5" target="_blank" rel="noopener noreferrer"><code>md5</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.new" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.pbkdf2_hmac" target="_blank" rel="noopener noreferrer"><code>pbkdf2_hmac</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Password-derivation helpers are security-sensitive and not a normal portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.scrypt" target="_blank" rel="noopener noreferrer"><code>scrypt</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Password-derivation helpers are security-sensitive and not a normal portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha1" target="_blank" rel="noopener noreferrer"><code>sha1</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha224" target="_blank" rel="noopener noreferrer"><code>sha224</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha256" target="_blank" rel="noopener noreferrer"><code>sha256</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha3_224" target="_blank" rel="noopener noreferrer"><code>sha3_224</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha3_256" target="_blank" rel="noopener noreferrer"><code>sha3_256</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha3_384" target="_blank" rel="noopener noreferrer"><code>sha3_384</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha3_512" target="_blank" rel="noopener noreferrer"><code>sha3_512</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha384" target="_blank" rel="noopener noreferrer"><code>sha384</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.sha512" target="_blank" rel="noopener noreferrer"><code>sha512</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.shake_128" target="_blank" rel="noopener noreferrer"><code>shake_128</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hashlib.html#hashlib.shake_256" target="_blank" rel="noopener noreferrer"><code>shake_256</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hash object factories and incremental update APIs revolve around mutable digest objects rather than plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          heapq
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 37.5%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 62.5%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/8</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>5</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next • 5 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>merge</code>
+                <span>Heap-based selection helpers still have a useful plain-value contract when modeled as array-returning utilities.</span>
+              </li>
+            
+              <li>
+                <code>nlargest</code>
+                <span>Heap-based selection helpers still have a useful plain-value contract when modeled as array-returning utilities.</span>
+              </li>
+            
+              <li>
+                <code>nsmallest</code>
+                <span>Heap-based selection helpers still have a useful plain-value contract when modeled as array-returning utilities.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (5)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/heapq.html#heapq.heapify" target="_blank" rel="noopener noreferrer"><code>heapify</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place heap mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/heapq.html#heapq.heappop" target="_blank" rel="noopener noreferrer"><code>heappop</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place heap mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/heapq.html#heapq.heappush" target="_blank" rel="noopener noreferrer"><code>heappush</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place heap mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/heapq.html#heapq.heappushpop" target="_blank" rel="noopener noreferrer"><code>heappushpop</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place heap mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/heapq.html#heapq.heapreplace" target="_blank" rel="noopener noreferrer"><code>heapreplace</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place heap mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          hmac
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/2</strong> shipped</span>
+    
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hmac.html#hmac.digest" target="_blank" rel="noopener noreferrer"><code>digest</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>HMAC helpers are security-sensitive and mostly expose mutable digest-object workflows rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/hmac.html#hmac.new" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>HMAC helpers are security-sensitive and mostly expose mutable digest-object workflows rather than plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          html
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/2</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>escape</code>
+                <span>HTML escape and unescape helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unescape</code>
+                <span>HTML escape and unescape helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          itertools
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 75%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 25%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/20</strong> shipped</span>
+    <span><strong>15</strong> next</span>
+    <span><strong>5</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 15 next • 5 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>accumulate</code>
+                <span>Accumulation over plain iterables can be represented as arrays of intermediate results.</span>
+              </li>
+            
+              <li>
+                <code>batched</code>
+                <span>Fixed-size chunking is a strong plain-value portability target.</span>
+              </li>
+            
+              <li>
+                <code>chain</code>
+                <span>Sequence concatenation maps naturally onto arrays.</span>
+              </li>
+            
+              <li>
+                <code>combinations</code>
+                <span>Finite combinatorics helpers can be represented as arrays of tuples.</span>
+              </li>
+            
+              <li>
+                <code>combinations_with_replacement</code>
+                <span>Finite combinatorics helpers can be represented as arrays of tuples.</span>
+              </li>
+            
+              <li>
+                <code>compress</code>
+                <span>Mask-based filtering has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>dropwhile</code>
+                <span>Predicate-based slicing has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>filterfalse</code>
+                <span>Predicate-based filtering has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>islice</code>
+                <span>Iterator slicing maps naturally onto array slicing semantics.</span>
+              </li>
+            
+              <li>
+                <code>pairwise</code>
+                <span>Adjacent-pair grouping can be represented as arrays of tuples.</span>
+              </li>
+            
+              <li>
+                <code>permutations</code>
+                <span>Finite combinatorics helpers can be represented as arrays of tuples.</span>
+              </li>
+            
+              <li>
+                <code>product</code>
+                <span>Cartesian products can be represented as arrays of tuples.</span>
+              </li>
+            
+              <li>
+                <code>starmap</code>
+                <span>Spread-argument mapping still has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>takewhile</code>
+                <span>Predicate-based slicing has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>zip_longest</code>
+                <span>Sequence zipping has a strong plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (5)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.count" target="_blank" rel="noopener noreferrer"><code>count</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.cycle" target="_blank" rel="noopener noreferrer"><code>cycle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.groupby" target="_blank" rel="noopener noreferrer"><code>groupby</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.repeat" target="_blank" rel="noopener noreferrer"><code>repeat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.tee" target="_blank" rel="noopener noreferrer"><code>tee</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          json
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 60%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 40%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/5</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>detect_encoding</code>
+                <span>JSON encode/decode helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>dumps</code>
+                <span>JSON encode/decode helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>loads</code>
+                <span>JSON encode/decode helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/json.html#json.dump" target="_blank" rel="noopener noreferrer"><code>dump</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>File-backed JSON output depends on host I/O resources.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/json.html#json.load" target="_blank" rel="noopener noreferrer"><code>load</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>File-backed JSON input depends on host I/O resources.</span>
               </li>
             
           </ul>
@@ -782,6 +3529,710 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
+          operator
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 61.8%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 38.2%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/55</strong> shipped</span>
+    <span><strong>34</strong> next</span>
+    <span><strong>21</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 34 next • 21 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>abs</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>add</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>and_</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>concat</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>contains</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>countOf</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>eq</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>floordiv</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ge</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>getitem</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>gt</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>index</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>indexOf</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>inv</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>invert</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>is_</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>is_not</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>le</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>lshift</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>lt</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>matmul</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>mod</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>mul</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ne</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>neg</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>not_</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>or_</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pos</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pow</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>rshift</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>sub</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>truediv</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>truth</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>xor</code>
+                <span>First-class operator helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (21)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.attrgetter" target="_blank" rel="noopener noreferrer"><code>attrgetter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Getter factories return callable objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.call" target="_blank" rel="noopener noreferrer"><code>call</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Indirect call wrappers add little value beyond direct JS invocation.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.delitem" target="_blank" rel="noopener noreferrer"><code>delitem</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Container mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iadd" target="_blank" rel="noopener noreferrer"><code>iadd</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iand" target="_blank" rel="noopener noreferrer"><code>iand</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iconcat" target="_blank" rel="noopener noreferrer"><code>iconcat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ifloordiv" target="_blank" rel="noopener noreferrer"><code>ifloordiv</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ilshift" target="_blank" rel="noopener noreferrer"><code>ilshift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imatmul" target="_blank" rel="noopener noreferrer"><code>imatmul</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imod" target="_blank" rel="noopener noreferrer"><code>imod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imul" target="_blank" rel="noopener noreferrer"><code>imul</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ior" target="_blank" rel="noopener noreferrer"><code>ior</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ipow" target="_blank" rel="noopener noreferrer"><code>ipow</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.irshift" target="_blank" rel="noopener noreferrer"><code>irshift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.isub" target="_blank" rel="noopener noreferrer"><code>isub</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.itemgetter" target="_blank" rel="noopener noreferrer"><code>itemgetter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Getter factories return callable objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.itruediv" target="_blank" rel="noopener noreferrer"><code>itruediv</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ixor" target="_blank" rel="noopener noreferrer"><code>ixor</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.length_hint" target="_blank" rel="noopener noreferrer"><code>length_hint</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Size-hint probing adds little value beyond direct JS length checks.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.methodcaller" target="_blank" rel="noopener noreferrer"><code>methodcaller</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Method-caller factories return callable objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.setitem" target="_blank" rel="noopener noreferrer"><code>setitem</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Container mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          random
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/22</strong> shipped</span>
+    
+    <span><strong>22</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 22 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (22)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.betavariate" target="_blank" rel="noopener noreferrer"><code>betavariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.binomialvariate" target="_blank" rel="noopener noreferrer"><code>binomialvariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.choice" target="_blank" rel="noopener noreferrer"><code>choice</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.choices" target="_blank" rel="noopener noreferrer"><code>choices</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.expovariate" target="_blank" rel="noopener noreferrer"><code>expovariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.gammavariate" target="_blank" rel="noopener noreferrer"><code>gammavariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.gauss" target="_blank" rel="noopener noreferrer"><code>gauss</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.getstate" target="_blank" rel="noopener noreferrer"><code>getstate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.lognormvariate" target="_blank" rel="noopener noreferrer"><code>lognormvariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.normalvariate" target="_blank" rel="noopener noreferrer"><code>normalvariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.paretovariate" target="_blank" rel="noopener noreferrer"><code>paretovariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.randbytes" target="_blank" rel="noopener noreferrer"><code>randbytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.randint" target="_blank" rel="noopener noreferrer"><code>randint</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.randrange" target="_blank" rel="noopener noreferrer"><code>randrange</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.sample" target="_blank" rel="noopener noreferrer"><code>sample</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.seed" target="_blank" rel="noopener noreferrer"><code>seed</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.setstate" target="_blank" rel="noopener noreferrer"><code>setstate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.shuffle" target="_blank" rel="noopener noreferrer"><code>shuffle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.triangular" target="_blank" rel="noopener noreferrer"><code>triangular</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.uniform" target="_blank" rel="noopener noreferrer"><code>uniform</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.vonmisesvariate" target="_blank" rel="noopener noreferrer"><code>vonmisesvariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/random.html#random.weibullvariate" target="_blank" rel="noopener noreferrer"><code>weibullvariate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stateful pseudo-random helpers are lower-value than deterministic portability targets.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
           <a href="/python/re/">re</a>
         
       </h3>
@@ -792,34 +4243,34 @@ ga('send', 'pageview');
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>33%</strong>
+      <strong>31%</strong>
       <span>shipped</span>
     </div>
   </div>
 
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 30.8%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 38.5%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 25%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 30.8%"></span>
       
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>4/12</strong> shipped</span>
+    <span><strong>4/13</strong> shipped</span>
     <span><strong>5</strong> next</span>
-    <span><strong>3</strong> explicit non-goals</span>
+    <span><strong>4</strong> explicit non-goals</span>
     
     
   </div>
 
   <p class="surface-summary">
-    4 shipped • 5 next • 3 explicit non-goals.
+    4 shipped • 5 next • 4 explicit non-goals.
   </p>
 
   
@@ -874,7 +4325,7 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (3)</summary>
+          <summary>Explicit non-goals (4)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
@@ -884,6 +4335,15 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Compiled regex objects are not a stable plain-value target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/re.html#re.error" target="_blank" rel="noopener noreferrer"><code>error</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Exception types are not standalone plain-value portability targets.</span>
               </li>
             
               
@@ -910,6 +4370,162 @@ ga('send', 'pageview');
 
       
     </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          statistics
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/18</strong> shipped</span>
+    <span><strong>18</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 18 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>correlation</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>covariance</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>fmean</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>geometric_mean</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>harmonic_mean</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>linear_regression</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>mean</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>median</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>median_grouped</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>median_high</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>median_low</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>mode</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>multimode</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pstdev</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pvariance</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>quantiles</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>stdev</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>variance</code>
+                <span>Aggregate statistics helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
   
 </article>
 
@@ -967,6 +4583,529 @@ ga('send', 'pageview');
 
   
 
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          textwrap
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/5</strong> shipped</span>
+    <span><strong>5</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 5 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>dedent</code>
+                <span>Text formatting and wrapping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>fill</code>
+                <span>Text formatting and wrapping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>indent</code>
+                <span>Text formatting and wrapping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>shorten</code>
+                <span>Text formatting and wrapping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>wrap</code>
+                <span>Text formatting and wrapping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          unicodedata
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/13</strong> shipped</span>
+    <span><strong>13</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 13 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>bidirectional</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>category</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>combining</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>decimal</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>decomposition</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>digit</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>east_asian_width</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>is_normalized</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>lookup</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>mirrored</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>name</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>normalize</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>numeric</code>
+                <span>Unicode classification and normalization helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          urllib.parse
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 28.6%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 71.4%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/28</strong> shipped</span>
+    <span><strong>8</strong> next</span>
+    <span><strong>20</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 8 next • 20 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>parse_qs</code>
+                <span>Query parsing into plain objects and arrays has a clean portability contract.</span>
+              </li>
+            
+              <li>
+                <code>parse_qsl</code>
+                <span>Query parsing into key-value pairs has a clean portability contract.</span>
+              </li>
+            
+              <li>
+                <code>quote</code>
+                <span>URL escaping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>quote_plus</code>
+                <span>URL escaping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unquote</code>
+                <span>URL unescaping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>unquote_plus</code>
+                <span>URL unescaping helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>urlencode</code>
+                <span>Query encoding has a clean plain-value portability contract.</span>
+              </li>
+            
+              <li>
+                <code>urljoin</code>
+                <span>URL joining has a clean plain-value portability contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (20)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.clear_cache" target="_blank" rel="noopener noreferrer"><code>clear_cache</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.quote_from_bytes" target="_blank" rel="noopener noreferrer"><code>quote_from_bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splitattr" target="_blank" rel="noopener noreferrer"><code>splitattr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splithost" target="_blank" rel="noopener noreferrer"><code>splithost</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splitnport" target="_blank" rel="noopener noreferrer"><code>splitnport</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splitpasswd" target="_blank" rel="noopener noreferrer"><code>splitpasswd</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splitport" target="_blank" rel="noopener noreferrer"><code>splitport</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splitquery" target="_blank" rel="noopener noreferrer"><code>splitquery</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splittag" target="_blank" rel="noopener noreferrer"><code>splittag</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splittype" target="_blank" rel="noopener noreferrer"><code>splittype</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splituser" target="_blank" rel="noopener noreferrer"><code>splituser</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.splitvalue" target="_blank" rel="noopener noreferrer"><code>splitvalue</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.to_bytes" target="_blank" rel="noopener noreferrer"><code>to_bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.unquote_to_bytes" target="_blank" rel="noopener noreferrer"><code>unquote_to_bytes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.unwrap" target="_blank" rel="noopener noreferrer"><code>unwrap</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urldefrag" target="_blank" rel="noopener noreferrer"><code>urldefrag</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse" target="_blank" rel="noopener noreferrer"><code>urlparse</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlsplit" target="_blank" rel="noopener noreferrer"><code>urlsplit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlunparse" target="_blank" rel="noopener noreferrer"><code>urlunparse</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlunsplit" target="_blank" rel="noopener noreferrer"><code>urlunsplit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of urllib.parse return structured parse-result objects rather than one stable plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
   
 </article>
 

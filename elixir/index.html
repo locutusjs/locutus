@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T18:56:51.756Z">
-<meta property="article:modified_time" content="2026-03-16T18:56:51.756Z">
+<meta property="article:published_time" content="2026-03-17T14:57:27.099Z">
+<meta property="article:modified_time" content="2026-03-17T14:57:27.099Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -322,50 +322,54 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        14/214 shipped
-         • 154 next
+        14/540 shipped
+         • 310 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6.5%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2.6%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 72%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 57.4%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 21.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 40%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">7%</span>
+    <span class="surface-panel__summary-badge">3%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream Elixir catalog and sorts it into what is already shipped,
+          Locutus tracks 18 upstream namespaces for
+          Elixir and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        
+          <p class="surface-summary">This inventory now tracks a broader official Elixir core/stdlib slice, excluding the wider OTP and Erlang ecosystem.</p>
+        
       </div>
       <div class="surface-coverage-badge">
-        <strong>7%</strong>
+        <strong>3%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6.5%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2.6%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 72%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 57.4%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 21.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 40%"></span>
         
         
       
@@ -380,20 +384,24 @@ ga('send', 'pageview');
 
     <div class="surface-kpis">
       <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value">18</strong>
+      </article>
+      <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">14/214</strong>
+        <strong class="surface-kpi__value">14/540</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">154</strong>
+          <strong class="surface-kpi__value">310</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">46</strong>
+          <strong class="surface-kpi__value">216</strong>
         </article>
       
       
@@ -406,8 +414,885 @@ ga('send', 'pageview');
       
       
       
-      14 of 214 upstream entries are already shipped; 154 are explicitly on the shortlist; 46 are explicit non-goals.
+      
+      18 namespaces are currently tracked; 14 of 540 upstream entries are already shipped; 310 are explicitly on the shortlist; 216 are explicit non-goals.
     </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Base module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/15</strong> shipped</span>
+    <span><strong>15</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 15 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>decode16</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>decode16!</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>decode32</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>decode32!</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>decode64</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>decode64!</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>encode16</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>encode32</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>encode64</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>hex_decode32</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>hex_decode32!</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>hex_encode32</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>url_decode64</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>url_decode64!</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>url_encode64</code>
+                <span>Base encoding helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Date module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/36</strong> shipped</span>
+    
+    <span><strong>36</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 36 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (36)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>__duration__!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>__struct__</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>add</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>after?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>before?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>beginning_of_month</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>beginning_of_week</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>compare</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>convert</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>convert!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>day_of_era</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>day_of_week</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>day_of_year</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>days_in_month</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>diff</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>end_of_month</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>end_of_week</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>from_erl</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>from_erl!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>from_gregorian_days</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>from_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>from_iso8601!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>leap_year?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>months_in_year</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>new!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>quarter_of_year</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>range</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>shift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>to_erl</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>to_gregorian_days</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>to_iso_days</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>to_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>to_string</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>utc_today</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Date.html" target="_blank" rel="noopener noreferrer"><code>year_of_era</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Date structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          DateTime module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/31</strong> shipped</span>
+    
+    <span><strong>31</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 31 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (31)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>__duration__!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>__struct__</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>add</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>after?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>before?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>compare</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>convert</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>convert!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>diff</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>from_gregorian_seconds</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>from_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>from_naive</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>from_naive!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>from_unix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>from_unix!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>new!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>now</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>now!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>shift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>shift_zone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>shift_zone!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>to_date</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>to_gregorian_seconds</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>to_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>to_naive</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>to_string</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>to_time</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>to_unix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>truncate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/DateTime.html" target="_blank" rel="noopener noreferrer"><code>utc_now</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>DateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
 
     
       
@@ -988,6 +1873,150 @@ ga('send', 'pageview');
               <li>
                 
                   <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Float.html" target="_blank" rel="noopener noreferrer"><code>to_charlist</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Charlist conversion does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Integer module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 81.8%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 18.2%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/11</strong> shipped</span>
+    <span><strong>9</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 9 next • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>digits</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>extended_gcd</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>floor_div</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>gcd</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>mod</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>parse</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pow</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_string</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>undigits</code>
+                <span>Integer helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Integer.html" target="_blank" rel="noopener noreferrer"><code>to_char_list</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Charlist conversion does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Integer.html" target="_blank" rel="noopener noreferrer"><code>to_charlist</code></a>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Charlist conversion does not fit Locutus&#39; plain-value model.</span>
@@ -1613,6 +2642,1582 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
+          Keyword module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/42</strong> shipped</span>
+    <span><strong>42</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 42 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>delete</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>delete_first</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>drop</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>equal?</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>fetch</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>fetch!</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>filter</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>from_keys</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>get</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>get_and_update</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>get_and_update!</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>get_lazy</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>get_values</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>has_key?</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>intersect</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>keys</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>keyword?</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>map</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>merge</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>new</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>pop</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>pop_first</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>pop_lazy</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>pop_values</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>pop!</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>put</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>put_new</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>put_new_lazy</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>reject</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>replace</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>replace_lazy</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>replace!</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>size</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>split_with</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>take</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>to_list</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>update</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>update!</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>validate</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>validate!</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+              <li>
+                <code>values</code>
+                <span>Keyword-list helpers can be modeled over entry arrays and plain objects.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          List module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 91.2%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.8%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/34</strong> shipped</span>
+    <span><strong>31</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 31 next • 3 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>ascii_printable?</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>delete</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>delete_at</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>duplicate</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ends_with?</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>first</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>flatten</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>foldl</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>foldr</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>improper?</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>insert_at</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keydelete</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keyfind</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keyfind!</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keymember?</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keyreplace</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keysort</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keystore</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keytake</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>last</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>myers_difference</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pop_at</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace_at</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>starts_with?</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_float</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_integer</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_string</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_tuple</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>update_at</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>wrap</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>zip</code>
+                <span>Immutable list transforms are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/List.html" target="_blank" rel="noopener noreferrer"><code>to_atom</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Atom creation can exhaust the VM atom table and is not a good portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/List.html" target="_blank" rel="noopener noreferrer"><code>to_charlist</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Charlist conversion does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/List.html" target="_blank" rel="noopener noreferrer"><code>to_existing_atom</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Atom-table lookup is runtime-sensitive and not a good portability target.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Map module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 97.2%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 2.8%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/36</strong> shipped</span>
+    <span><strong>35</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 35 next • 1 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>delete</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>drop</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>equal?</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>fetch</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>fetch!</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>filter</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>from_keys</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>get</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>get_and_update</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>get_and_update!</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>get_lazy</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>has_key?</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>intersect</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>keys</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>map</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>merge</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>new</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pop</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pop_lazy</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>pop!</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>put</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>put_new</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>put_new_lazy</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>reject</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace_lazy</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>replace!</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>size</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>split_with</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>take</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>to_list</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>update</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>update!</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>values</code>
+                <span>Immutable map helpers are strong plain-value portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Map.html" target="_blank" rel="noopener noreferrer"><code>from_struct</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Struct-specific reflection does not fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          MapSet module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/17</strong> shipped</span>
+    
+    <span><strong>17</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 17 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (17)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>__struct__</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>delete</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>difference</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>disjoint?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>equal?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>filter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>intersection</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>member?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>put</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>reject</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>size</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>split_with</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>subset?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>symmetric_difference</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>to_list</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/MapSet.html" target="_blank" rel="noopener noreferrer"><code>union</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Set semantics do not map cleanly onto Locutus&#39; current plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          NaiveDateTime module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/28</strong> shipped</span>
+    
+    <span><strong>28</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 28 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (28)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>__duration__!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>__struct__</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>add</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>after?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>before?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>beginning_of_day</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>compare</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>convert</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>convert!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>diff</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>end_of_day</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>from_erl</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>from_erl!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>from_gregorian_seconds</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>from_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>from_iso8601!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>local_now</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>new!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>shift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>to_date</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>to_erl</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>to_gregorian_seconds</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>to_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>to_string</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>to_time</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>truncate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/NaiveDateTime.html" target="_blank" rel="noopener noreferrer"><code>utc_now</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>NaiveDateTime structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Regex module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 11.1%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 88.9%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/18</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>16</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next • 16 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>replace</code>
+                <span>Regex replacement still has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>run</code>
+                <span>Match extraction still has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (16)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>__struct__</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>compile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>compile!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>escape</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>match?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>named_captures</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>names</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>opts</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>re_pattern</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>recompile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>recompile!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>regex?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>scan</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>source</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>split</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Regex.html" target="_blank" rel="noopener noreferrer"><code>version</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Compiled regex structs do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
           <a href="/elixir/String/">String module</a>
         
       </h3>
@@ -1938,6 +4543,719 @@ ga('send', 'pageview');
 
       
     </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Time module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/23</strong> shipped</span>
+    
+    <span><strong>23</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 23 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (23)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>__duration__!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>__struct__</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>add</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>after?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>before?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>compare</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>convert</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>convert!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>diff</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>from_erl</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>from_erl!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>from_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>from_iso8601!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>from_seconds_after_midnight</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>new!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>shift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>to_erl</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>to_iso8601</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>to_seconds_after_midnight</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>to_string</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>truncate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/Time.html" target="_blank" rel="noopener noreferrer"><code>utc_now</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Time structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Tuple module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/7</strong> shipped</span>
+    <span><strong>7</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 7 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>append</code>
+                <span>Tuple helpers still have a clean plain-value contract when modeled over arrays.</span>
+              </li>
+            
+              <li>
+                <code>delete_at</code>
+                <span>Tuple helpers still have a clean plain-value contract when modeled over arrays.</span>
+              </li>
+            
+              <li>
+                <code>duplicate</code>
+                <span>Tuple helpers still have a clean plain-value contract when modeled over arrays.</span>
+              </li>
+            
+              <li>
+                <code>insert_at</code>
+                <span>Tuple helpers still have a clean plain-value contract when modeled over arrays.</span>
+              </li>
+            
+              <li>
+                <code>product</code>
+                <span>Tuple helpers still have a clean plain-value contract when modeled over arrays.</span>
+              </li>
+            
+              <li>
+                <code>sum</code>
+                <span>Tuple helpers still have a clean plain-value contract when modeled over arrays.</span>
+              </li>
+            
+              <li>
+                <code>to_list</code>
+                <span>Tuple helpers still have a clean plain-value contract when modeled over arrays.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          URI module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 31.6%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 68.4%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/19</strong> shipped</span>
+    <span><strong>6</strong> next</span>
+    <span><strong>13</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 6 next • 13 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>decode</code>
+                <span>String-based encode/decode helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>decode_query</code>
+                <span>String-based encode/decode helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>decode_www_form</code>
+                <span>String-based encode/decode helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>encode</code>
+                <span>String-based encode/decode helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>encode_query</code>
+                <span>String-based encode/decode helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>encode_www_form</code>
+                <span>String-based encode/decode helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (13)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>__struct__</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>append_path</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>append_query</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>char_reserved?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>char_unescaped?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>char_unreserved?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>default_port</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>merge</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>new</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>new!</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>parse</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>query_decoder</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://hexdocs.pm/elixir/URI.html" target="_blank" rel="noopener noreferrer"><code>to_string</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>URI structs do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Version module
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/9</strong> shipped</span>
+    <span><strong>9</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 9 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>__struct__</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>compare</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>compile_requirement</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>match?</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>parse</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>parse_requirement</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>parse_requirement!</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>parse!</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>to_string</code>
+                <span>Semantic-version parsing and comparison helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
   
 </article>
 

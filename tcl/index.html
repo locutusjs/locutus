@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T18:56:51.821Z">
-<meta property="article:modified_time" content="2026-03-16T18:56:51.821Z">
+<meta property="article:published_time" content="2026-03-17T14:57:27.192Z">
+<meta property="article:modified_time" content="2026-03-17T14:57:27.192Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -311,50 +311,54 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        16/24 shipped
-         • 6 next
+        15/277 shipped
+         • 68 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 66.7%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.4%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 25%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 24.5%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.3%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 70%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">67%</span>
+    <span class="surface-panel__summary-badge">5%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream Tcl catalog and sorts it into what is already shipped,
+          Locutus tracks 13 upstream namespaces for
+          Tcl and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        
+          <p class="surface-summary">This inventory now tracks Tcl&#39;s broader core command surface and standard ensembles first, excluding only host-specific extension ecosystems beyond core Tcl.</p>
+        
       </div>
       <div class="surface-coverage-badge">
-        <strong>67%</strong>
+        <strong>5%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 66.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.4%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 25%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 24.5%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.3%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 70%"></span>
         
         
       
@@ -369,22 +373,31 @@ ga('send', 'pageview');
 
     <div class="surface-kpis">
       <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value">13</strong>
+      </article>
+      <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">16/24</strong>
+        <strong class="surface-kpi__value">15/277</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">6</strong>
+          <strong class="surface-kpi__value">68</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">2</strong>
+          <strong class="surface-kpi__value">194</strong>
         </article>
       
+      
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Intentional extras</span>
+          <strong class="surface-kpi__value">1</strong>
+        </article>
       
     </div>
 
@@ -395,8 +408,2827 @@ ga('send', 'pageview');
       
       
       
-      16 of 24 upstream entries are already shipped; 6 are explicitly on the shortlist; 2 are explicit non-goals.
+      
+      13 namespaces are currently tracked; 15 of 277 upstream entries are already shipped; 68 are explicitly on the shortlist; 194 are explicit non-goals; 1 Locutus-only extras are intentionally retained.
     </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          array ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 36.4%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 63.6%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/11</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>7</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 4 next • 7 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>exists</code>
+                <span>Presence predicates have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>get</code>
+                <span>Whole-array extraction can be represented as plain objects or entry arrays.</span>
+              </li>
+            
+              <li>
+                <code>names</code>
+                <span>Key enumeration has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>size</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (7)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/array.htm" target="_blank" rel="noopener noreferrer"><code>anymore</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl arrays are variable-backed dictionaries rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/array.htm" target="_blank" rel="noopener noreferrer"><code>donesearch</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl arrays are variable-backed dictionaries rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/array.htm" target="_blank" rel="noopener noreferrer"><code>nextelement</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl arrays are variable-backed dictionaries rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/array.htm" target="_blank" rel="noopener noreferrer"><code>set</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl arrays are variable-backed dictionaries rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/array.htm" target="_blank" rel="noopener noreferrer"><code>startsearch</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl arrays are variable-backed dictionaries rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/array.htm" target="_blank" rel="noopener noreferrer"><code>statistics</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl arrays are variable-backed dictionaries rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/array.htm" target="_blank" rel="noopener noreferrer"><code>unset</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl arrays are variable-backed dictionaries rather than direct plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          binary ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 50%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/4</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>decode</code>
+                <span>Textual base64 and hex decoding still has a useful plain-string contract.</span>
+              </li>
+            
+              <li>
+                <code>encode</code>
+                <span>Textual base64 and hex encoding still has a useful plain-string contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/binary.htm" target="_blank" rel="noopener noreferrer"><code>format</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary packing and byte-oriented semantics do not generally fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/binary.htm" target="_blank" rel="noopener noreferrer"><code>scan</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary packing and byte-oriented semantics do not generally fit Locutus&#39; plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          chan ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/20</strong> shipped</span>
+    
+    <span><strong>20</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 20 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (20)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>blocked</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>close</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>configure</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>copy</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>create</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>eof</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>event</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>flush</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>gets</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>names</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>pending</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>pipe</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>pop</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>postevent</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>push</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>puts</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>read</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>seek</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>tell</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/chan.htm" target="_blank" rel="noopener noreferrer"><code>truncate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Channel and stream handles depend on host I/O state outside Locutus&#39; model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          clock ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/7</strong> shipped</span>
+    <span><strong>7</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 7 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>add</code>
+                <span>Clock formatting and conversion helpers still have a useful plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>clicks</code>
+                <span>Clock formatting and conversion helpers still have a useful plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>format</code>
+                <span>Clock formatting and conversion helpers still have a useful plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>microseconds</code>
+                <span>Clock formatting and conversion helpers still have a useful plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>milliseconds</code>
+                <span>Clock formatting and conversion helpers still have a useful plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>scan</code>
+                <span>Clock formatting and conversion helpers still have a useful plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>seconds</code>
+                <span>Clock formatting and conversion helpers still have a useful plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          standalone core commands
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 21.3%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 78.7%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/89</strong> shipped</span>
+    <span><strong>19</strong> next</span>
+    <span><strong>70</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 19 next • 70 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>concat</code>
+                <span>List/string concatenation has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>expr</code>
+                <span>Scalar expression helpers are useful portability targets.</span>
+              </li>
+            
+              <li>
+                <code>format</code>
+                <span>Formatting helpers are strong plain-value portability targets.</span>
+              </li>
+            
+              <li>
+                <code>join</code>
+                <span>Joining helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>lassign</code>
+                <span>List destructuring helpers can be represented as plain arrays.</span>
+              </li>
+            
+              <li>
+                <code>lindex</code>
+                <span>Indexed access has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>linsert</code>
+                <span>Pure list insertion has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>list</code>
+                <span>List construction has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>llength</code>
+                <span>Size helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>lrange</code>
+                <span>List slicing has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>lrepeat</code>
+                <span>Repetition helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>lreplace</code>
+                <span>Pure list replacement has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>lreverse</code>
+                <span>Reversal helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>lsearch</code>
+                <span>Search helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>lsort</code>
+                <span>Sorting helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>regexp</code>
+                <span>Regex matching is a strong plain-value portability target.</span>
+              </li>
+            
+              <li>
+                <code>regsub</code>
+                <span>Regex replacement is a strong plain-value portability target.</span>
+              </li>
+            
+              <li>
+                <code>scan</code>
+                <span>Parsing helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>String splitting is a strong plain-value portability target.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (70)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>after</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>append</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>apply</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>auto_execok</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>auto_import</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>auto_load</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>auto_load_index</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>auto_qualify</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>break</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>case</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>catch</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>cd</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>close</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>continue</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>coroutine</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>eof</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>error</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>eval</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>exec</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>exit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>fblocked</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>fconfigure</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>fcopy</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>fileevent</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>flush</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>for</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>foreach</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>gets</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>glob</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>global</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>history</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>if</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>incr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>interp</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>lappend</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed list mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>lmap</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Callback-driven mapping does not fit one stable Locutus contract yet.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>load</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>lset</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed list mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>open</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>pid</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>proc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>puts</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>pwd</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>read</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>rename</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>return</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>seek</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>set</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>socket</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>source</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>subst</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>switch</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>tailcall</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>tclLog</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>tell</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>throw</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>time</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>trace</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>try</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>unknown</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>unload</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>unset</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>update</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>uplevel</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>upvar</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>variable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>vwait</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>while</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>yield</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/core.htm" target="_blank" rel="noopener noreferrer"><code>yieldto</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl core commands mix control flow, procedures, namespace mutation, and environment access too broadly for one direct Locutus wishlist.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          dict ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 55%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 45%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/20</strong> shipped</span>
+    <span><strong>11</strong> next</span>
+    <span><strong>9</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 11 next • 9 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>create</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>exists</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>filter</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>get</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>keys</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>map</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>merge</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>remove</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>replace</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>size</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+              <li>
+                <code>values</code>
+                <span>Tcl dictionary transforms map naturally onto JS plain objects and arrays.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (9)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>append</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed dictionary mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>for</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Callback-style iteration is not a good Locutus portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>incr</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed numeric mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>info</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Internal representation details are not a stable plain-value target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>lappend</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed dictionary mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>set</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed dictionary mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>unset</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed dictionary mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>update</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Variable-backed dictionary mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/dict.htm" target="_blank" rel="noopener noreferrer"><code>with</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Scoped variable mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          encoding ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 60%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 40%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/5</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>convertfrom</code>
+                <span>Encoding conversion helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+              <li>
+                <code>convertto</code>
+                <span>Encoding conversion helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+              <li>
+                <code>names</code>
+                <span>Encoding conversion helpers are useful portability targets when kept in string space.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/encoding.htm" target="_blank" rel="noopener noreferrer"><code>dirs</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding search-path configuration depends on host runtime setup.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/encoding.htm" target="_blank" rel="noopener noreferrer"><code>system</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Changing system encoding mutates ambient runtime behavior.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          file ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 29.4%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 70.6%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/34</strong> shipped</span>
+    <span><strong>10</strong> next</span>
+    <span><strong>24</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 10 next • 24 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>dirname</code>
+                <span>Path decomposition helpers are strong plain-string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>extension</code>
+                <span>Path decomposition helpers are strong plain-string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>join</code>
+                <span>Path joining has a clean plain-string contract.</span>
+              </li>
+            
+              <li>
+                <code>nativename</code>
+                <span>Path normalization helpers have a useful plain-string contract.</span>
+              </li>
+            
+              <li>
+                <code>normalize</code>
+                <span>Path normalization helpers have a useful plain-string contract.</span>
+              </li>
+            
+              <li>
+                <code>pathtype</code>
+                <span>Path classification has a clean plain-string contract.</span>
+              </li>
+            
+              <li>
+                <code>rootname</code>
+                <span>Path decomposition helpers are strong plain-string portability targets.</span>
+              </li>
+            
+              <li>
+                <code>separator</code>
+                <span>Path metadata helpers have a clean plain-string contract.</span>
+              </li>
+            
+              <li>
+                <code>split</code>
+                <span>Path splitting has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>tail</code>
+                <span>Path decomposition helpers are strong plain-string portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (24)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>atime</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>attributes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>channels</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>copy</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>delete</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>executable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>exists</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>isdirectory</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>isfile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>link</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>lstat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>mkdir</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>mtime</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>owned</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>readable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>readlink</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>rename</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>size</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>stat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>system</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>tempfile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>type</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>volumes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/file.htm" target="_blank" rel="noopener noreferrer"><code>writable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most filesystem helpers depend on host state or mutate the filesystem.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          info ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.7%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 92.3%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/26</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>24</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next • 24 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>patchlevel</code>
+                <span>Runtime version reporting has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>tclversion</code>
+                <span>Runtime version reporting has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (24)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>args</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>body</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>class</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>cmdcount</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>commands</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>complete</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>coroutine</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>default</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>errorstack</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>exists</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>frame</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>functions</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>globals</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>hostname</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Hostname lookup depends on host environment.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>level</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>library</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>loaded</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>locals</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>nameofexecutable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>object</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>procs</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>script</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>sharedlibextension</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/info.htm" target="_blank" rel="noopener noreferrer"><code>vars</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Tcl introspection commands depend on runtime program state rather than plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          namespace ensemble
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 10.5%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.5%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/19</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>17</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next • 17 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>qualifiers</code>
+                <span>Namespace string decomposition has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>tail</code>
+                <span>Namespace string decomposition has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (17)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>children</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>code</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>current</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>delete</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>ensemble</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>eval</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>exists</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>export</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>forget</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>import</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>inscope</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>origin</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>parent</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>path</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>unknown</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>upvar</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/namespace.htm" target="_blank" rel="noopener noreferrer"><code>which</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Namespace mutation and introspection revolve around Tcl runtime program state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          package command family
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 20%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 80%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/10</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>8</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next • 8 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>vcompare</code>
+                <span>Version comparison has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>vsatisfies</code>
+                <span>Version constraint checks have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (8)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>forget</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>ifneeded</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>names</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>present</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>provide</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>require</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>unknown</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm" target="_blank" rel="noopener noreferrer"><code>versions</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Package loading and availability depend on the host runtime and install state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
 
     
       
@@ -412,38 +3244,38 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>Tcl 8.6</code>
         <span>•</span>
-        <span>Catalog source: manual inventory <code>https://www.tcl.tk/man/tcl8.6/TclCmd/string.htm</code></span>
+        <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>67%</strong>
+      <strong>65%</strong>
       <span>shipped</span>
     </div>
   </div>
 
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 66.7%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 65.2%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 25%"></span>
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 26.1%"></span>
       
       
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.3%"></span>
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.7%"></span>
       
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>16/24</strong> shipped</span>
+    <span><strong>15/23</strong> shipped</span>
     <span><strong>6</strong> next</span>
     <span><strong>2</strong> explicit non-goals</span>
     
-    
+    <span><strong>1</strong> intentional extras</span>
   </div>
 
   <p class="surface-summary">
-    16 shipped • 6 next • 2 explicit non-goals.
+    15 shipped • 6 next • 2 explicit non-goals • 1 intentional extras.
   </p>
 
   
@@ -496,6 +3328,21 @@ ga('send', 'pageview');
       
 
       
+        <section class="surface-bucket surface-bucket--extras">
+          <h4>Intentional extras</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link" href="/tcl/string/regsub/"><code>regsub</code></a>
+                
+                <span>Locutus keeps `regsub` under the `string` category even though upstream exposes it as a standalone Tcl command.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
     </div>
   
 
@@ -522,6 +3369,153 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Tcl classifier subcommands are too broad and type-system-specific for one clean port.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          zlib command family
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Tcl 8.6</code>
+        <span>•</span>
+        <span>Catalog source: manual inventory <code>https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/9</strong> shipped</span>
+    
+    <span><strong>9</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 9 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (9)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>adler32</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>compress</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>crc32</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>decompress</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>deflate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>gunzip</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>gzip</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>inflate</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm" target="_blank" rel="noopener noreferrer"><code>push</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Binary compression helpers generally do not fit Locutus&#39; current plain-value model.</span>
               </li>
             
           </ul>

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T18:56:51.758Z">
-<meta property="article:modified_time" content="2026-03-16T18:56:51.758Z">
+<meta property="article:published_time" content="2026-03-17T14:57:27.102Z">
+<meta property="article:modified_time" content="2026-03-17T14:57:27.102Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -493,50 +493,54 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        87/272 shipped
-         • 60 next
+        87/557 shipped
+         • 229 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 32%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 15.6%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.1%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41.1%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 46%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 43.3%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">32%</span>
+    <span class="surface-panel__summary-badge">16%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream Go catalog and sorts it into what is already shipped,
+          Locutus tracks 19 upstream namespaces for
+          Go and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        
+          <p class="surface-summary">This inventory now tracks a broader official Go stdlib slice, using `go doc` runtime/source discovery for packages whose exported function surface is stable and value-oriented.</p>
+        
       </div>
       <div class="surface-coverage-badge">
-        <strong>32%</strong>
+        <strong>16%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 32%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 15.6%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.1%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41.1%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 46%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 43.3%"></span>
         
         
       
@@ -551,20 +555,24 @@ ga('send', 'pageview');
 
     <div class="surface-kpis">
       <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value">19</strong>
+      </article>
+      <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">87/272</strong>
+        <strong class="surface-kpi__value">87/557</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">60</strong>
+          <strong class="surface-kpi__value">229</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">125</strong>
+          <strong class="surface-kpi__value">241</strong>
         </article>
       
       
@@ -577,8 +585,1145 @@ ga('send', 'pageview');
       
       
       
-      87 of 272 upstream entries are already shipped; 60 are explicitly on the shortlist; 125 are explicit non-goals.
+      
+      19 namespaces are currently tracked; 87 of 557 upstream entries are already shipped; 229 are explicitly on the shortlist; 241 are explicit non-goals.
     </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          encoding/base64 package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:encoding/base64</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/13</strong> shipped</span>
+    
+    <span><strong>13</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 13 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (13)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#AppendDecode" target="_blank" rel="noopener noreferrer"><code>AppendDecode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#AppendEncode" target="_blank" rel="noopener noreferrer"><code>AppendEncode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#Decode" target="_blank" rel="noopener noreferrer"><code>Decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#DecodedLen" target="_blank" rel="noopener noreferrer"><code>DecodedLen</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#DecodeString" target="_blank" rel="noopener noreferrer"><code>DecodeString</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#Encode" target="_blank" rel="noopener noreferrer"><code>Encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#EncodedLen" target="_blank" rel="noopener noreferrer"><code>EncodedLen</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#EncodeToString" target="_blank" rel="noopener noreferrer"><code>EncodeToString</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#NewDecoder" target="_blank" rel="noopener noreferrer"><code>NewDecoder</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#NewEncoder" target="_blank" rel="noopener noreferrer"><code>NewEncoder</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#NewEncoding" target="_blank" rel="noopener noreferrer"><code>NewEncoding</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#Strict" target="_blank" rel="noopener noreferrer"><code>Strict</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/base64#WithPadding" target="_blank" rel="noopener noreferrer"><code>WithPadding</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Encoding structs and stream-oriented helpers do not fit one stable plain-value contract by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          math/bits package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:math/bits</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/49</strong> shipped</span>
+    <span><strong>49</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 49 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Add</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Add32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Add64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Div</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Div32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Div64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>LeadingZeros</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>LeadingZeros16</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>LeadingZeros32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>LeadingZeros64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>LeadingZeros8</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Len</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Len16</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Len32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Len64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Len8</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Mul</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Mul32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Mul64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>OnesCount</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>OnesCount16</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>OnesCount32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>OnesCount64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>OnesCount8</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Rem</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Rem32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Rem64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Reverse</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Reverse16</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Reverse32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Reverse64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Reverse8</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ReverseBytes</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ReverseBytes16</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ReverseBytes32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>ReverseBytes64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>RotateLeft</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>RotateLeft16</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>RotateLeft32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>RotateLeft64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>RotateLeft8</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Sub</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Sub32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Sub64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>TrailingZeros</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>TrailingZeros16</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>TrailingZeros32</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>TrailingZeros64</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+              <li>
+                <code>TrailingZeros8</code>
+                <span>Bit-twiddling helpers over integers are strong scalar portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          bytes package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:bytes</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/55</strong> shipped</span>
+    
+    <span><strong>55</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 55 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (55)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Clone" target="_blank" rel="noopener noreferrer"><code>Clone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Compare" target="_blank" rel="noopener noreferrer"><code>Compare</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Contains" target="_blank" rel="noopener noreferrer"><code>Contains</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ContainsAny" target="_blank" rel="noopener noreferrer"><code>ContainsAny</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ContainsFunc" target="_blank" rel="noopener noreferrer"><code>ContainsFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ContainsRune" target="_blank" rel="noopener noreferrer"><code>ContainsRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Count" target="_blank" rel="noopener noreferrer"><code>Count</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Cut" target="_blank" rel="noopener noreferrer"><code>Cut</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#CutPrefix" target="_blank" rel="noopener noreferrer"><code>CutPrefix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#CutSuffix" target="_blank" rel="noopener noreferrer"><code>CutSuffix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Equal" target="_blank" rel="noopener noreferrer"><code>Equal</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#EqualFold" target="_blank" rel="noopener noreferrer"><code>EqualFold</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Fields" target="_blank" rel="noopener noreferrer"><code>Fields</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#FieldsFunc" target="_blank" rel="noopener noreferrer"><code>FieldsFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#HasPrefix" target="_blank" rel="noopener noreferrer"><code>HasPrefix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#HasSuffix" target="_blank" rel="noopener noreferrer"><code>HasSuffix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Index" target="_blank" rel="noopener noreferrer"><code>Index</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#IndexAny" target="_blank" rel="noopener noreferrer"><code>IndexAny</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#IndexByte" target="_blank" rel="noopener noreferrer"><code>IndexByte</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#IndexFunc" target="_blank" rel="noopener noreferrer"><code>IndexFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#IndexRune" target="_blank" rel="noopener noreferrer"><code>IndexRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Join" target="_blank" rel="noopener noreferrer"><code>Join</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#LastIndex" target="_blank" rel="noopener noreferrer"><code>LastIndex</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#LastIndexAny" target="_blank" rel="noopener noreferrer"><code>LastIndexAny</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#LastIndexByte" target="_blank" rel="noopener noreferrer"><code>LastIndexByte</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#LastIndexFunc" target="_blank" rel="noopener noreferrer"><code>LastIndexFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Map" target="_blank" rel="noopener noreferrer"><code>Map</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#NewBuffer" target="_blank" rel="noopener noreferrer"><code>NewBuffer</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#NewBufferString" target="_blank" rel="noopener noreferrer"><code>NewBufferString</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#NewReader" target="_blank" rel="noopener noreferrer"><code>NewReader</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Repeat" target="_blank" rel="noopener noreferrer"><code>Repeat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Replace" target="_blank" rel="noopener noreferrer"><code>Replace</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ReplaceAll" target="_blank" rel="noopener noreferrer"><code>ReplaceAll</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Runes" target="_blank" rel="noopener noreferrer"><code>Runes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Split" target="_blank" rel="noopener noreferrer"><code>Split</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#SplitAfter" target="_blank" rel="noopener noreferrer"><code>SplitAfter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#SplitAfterN" target="_blank" rel="noopener noreferrer"><code>SplitAfterN</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#SplitN" target="_blank" rel="noopener noreferrer"><code>SplitN</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Title" target="_blank" rel="noopener noreferrer"><code>Title</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ToLower" target="_blank" rel="noopener noreferrer"><code>ToLower</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ToLowerSpecial" target="_blank" rel="noopener noreferrer"><code>ToLowerSpecial</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ToTitle" target="_blank" rel="noopener noreferrer"><code>ToTitle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ToTitleSpecial" target="_blank" rel="noopener noreferrer"><code>ToTitleSpecial</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ToUpper" target="_blank" rel="noopener noreferrer"><code>ToUpper</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ToUpperSpecial" target="_blank" rel="noopener noreferrer"><code>ToUpperSpecial</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#ToValidUTF8" target="_blank" rel="noopener noreferrer"><code>ToValidUTF8</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#Trim" target="_blank" rel="noopener noreferrer"><code>Trim</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimFunc" target="_blank" rel="noopener noreferrer"><code>TrimFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimLeft" target="_blank" rel="noopener noreferrer"><code>TrimLeft</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimLeftFunc" target="_blank" rel="noopener noreferrer"><code>TrimLeftFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimPrefix" target="_blank" rel="noopener noreferrer"><code>TrimPrefix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimRight" target="_blank" rel="noopener noreferrer"><code>TrimRight</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimRightFunc" target="_blank" rel="noopener noreferrer"><code>TrimRightFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimSpace" target="_blank" rel="noopener noreferrer"><code>TrimSpace</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/bytes#TrimSuffix" target="_blank" rel="noopener noreferrer"><code>TrimSuffix</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most bytes helpers revolve around byte slices rather than Locutus&#39; current plain-value model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          cmp package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:cmp</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/3</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Compare</code>
+                <span>Generic comparison helpers over plain values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Less</code>
+                <span>Generic comparison helpers over plain values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Or</code>
+                <span>Generic comparison helpers over plain values are strong portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
 
     
       
@@ -762,6 +1907,755 @@ ga('send', 'pageview');
 
       
     </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          encoding/hex package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:encoding/hex</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 8.3%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 91.7%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/12</strong> shipped</span>
+    <span><strong>1</strong> next</span>
+    <span><strong>11</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 1 next • 11 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>EncodedLen</code>
+                <span>Encoded-length helpers have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (11)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#AppendDecode" target="_blank" rel="noopener noreferrer"><code>AppendDecode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#AppendEncode" target="_blank" rel="noopener noreferrer"><code>AppendEncode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#Decode" target="_blank" rel="noopener noreferrer"><code>Decode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#DecodedLen" target="_blank" rel="noopener noreferrer"><code>DecodedLen</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#DecodeString" target="_blank" rel="noopener noreferrer"><code>DecodeString</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#Dump" target="_blank" rel="noopener noreferrer"><code>Dump</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#Dumper" target="_blank" rel="noopener noreferrer"><code>Dumper</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#Encode" target="_blank" rel="noopener noreferrer"><code>Encode</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#EncodeToString" target="_blank" rel="noopener noreferrer"><code>EncodeToString</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#NewDecoder" target="_blank" rel="noopener noreferrer"><code>NewDecoder</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/hex#NewEncoder" target="_blank" rel="noopener noreferrer"><code>NewEncoder</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Byte-slice oriented hex helpers do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          maps package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:maps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 20%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 80%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/10</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>8</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 next • 8 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Clone</code>
+                <span>Plain map cloning maps naturally onto JS object copying.</span>
+              </li>
+            
+              <li>
+                <code>Equal</code>
+                <span>Plain map equality has a clean portability contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (8)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#All" target="_blank" rel="noopener noreferrer"><code>All</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#Collect" target="_blank" rel="noopener noreferrer"><code>Collect</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#Copy" target="_blank" rel="noopener noreferrer"><code>Copy</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#DeleteFunc" target="_blank" rel="noopener noreferrer"><code>DeleteFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#EqualFunc" target="_blank" rel="noopener noreferrer"><code>EqualFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#Insert" target="_blank" rel="noopener noreferrer"><code>Insert</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#Keys" target="_blank" rel="noopener noreferrer"><code>Keys</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/maps#Values" target="_blank" rel="noopener noreferrer"><code>Values</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Parts of maps revolve around iterators or callback-driven equality rather than one stable plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          math package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:math</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/67</strong> shipped</span>
+    <span><strong>67</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 67 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Abs</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Acos</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Acosh</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Asin</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Asinh</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Atan</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Atan2</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Atanh</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Cbrt</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Ceil</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Copysign</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Cos</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Cosh</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Dim</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Erf</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Erfc</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Erfcinv</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Erfinv</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Exp</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Exp2</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Expm1</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Float32bits</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Float32frombits</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Float64bits</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Float64frombits</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Floor</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>FMA</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Frexp</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Gamma</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Hypot</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Ilogb</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Inf</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsInf</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>IsNaN</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>J0</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>J1</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Jn</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Ldexp</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Lgamma</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Log</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Log10</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Log1p</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Log2</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Logb</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Max</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Min</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Mod</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Modf</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>NaN</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Nextafter</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Nextafter32</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Pow</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Pow10</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Remainder</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Round</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>RoundToEven</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Signbit</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Sin</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Sincos</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Sinh</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Sqrt</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Tan</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Tanh</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Trunc</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Y0</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Y1</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+              <li>
+                <code>Yn</code>
+                <span>Scalar math helpers are strong Go portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
   
 </article>
 
@@ -1279,6 +3173,363 @@ ga('send', 'pageview');
     </div>
   
 
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          slices package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:slices</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 52.5%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 47.5%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/40</strong> shipped</span>
+    <span><strong>21</strong> next</span>
+    <span><strong>19</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 21 next • 19 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>All</code>
+                <span>Pure slice transforms and search helpers are strong portability targets when they do not mutate caller-owned state.</span>
+              </li>
+            
+              <li>
+                <code>AppendSeq</code>
+                <span>Pure slice transforms and search helpers are strong portability targets when they do not mutate caller-owned state.</span>
+              </li>
+            
+              <li>
+                <code>Backward</code>
+                <span>Pure slice transforms and search helpers are strong portability targets when they do not mutate caller-owned state.</span>
+              </li>
+            
+              <li>
+                <code>BinarySearch</code>
+                <span>Pure slice transforms and search helpers are strong portability targets when they do not mutate caller-owned state.</span>
+              </li>
+            
+              <li>
+                <code>Chunk</code>
+                <span>Slice chunking has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Collect</code>
+                <span>Pure slice transforms and search helpers are strong portability targets when they do not mutate caller-owned state.</span>
+              </li>
+            
+              <li>
+                <code>Compact</code>
+                <span>Adjacent de-duplication has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Compare</code>
+                <span>Lexicographic slice comparison has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Concat</code>
+                <span>Slice concatenation maps naturally onto JS arrays.</span>
+              </li>
+            
+              <li>
+                <code>Contains</code>
+                <span>Membership checks have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Delete</code>
+                <span>Non-mutating delete semantics can be modeled as array slicing.</span>
+              </li>
+            
+              <li>
+                <code>Equal</code>
+                <span>Slice equality has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Index</code>
+                <span>Membership search has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Insert</code>
+                <span>Pure slice insertion has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>IsSorted</code>
+                <span>Order checks have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Max</code>
+                <span>Aggregate scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Min</code>
+                <span>Aggregate scalar helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Repeat</code>
+                <span>Slice repetition maps naturally onto array repetition.</span>
+              </li>
+            
+              <li>
+                <code>Replace</code>
+                <span>Pure slice replacement has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Reverse</code>
+                <span>Reversal has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>Sort</code>
+                <span>Deterministic slice sorting is a strong portability target.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (19)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#BinarySearchFunc" target="_blank" rel="noopener noreferrer"><code>BinarySearchFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#Clip" target="_blank" rel="noopener noreferrer"><code>Clip</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Capacity trimming does not matter in JS array semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#Clone" target="_blank" rel="noopener noreferrer"><code>Clone</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Cloning alone adds little value for JS arrays.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#CompactFunc" target="_blank" rel="noopener noreferrer"><code>CompactFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#CompareFunc" target="_blank" rel="noopener noreferrer"><code>CompareFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#ContainsFunc" target="_blank" rel="noopener noreferrer"><code>ContainsFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Predicate-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#DeleteFunc" target="_blank" rel="noopener noreferrer"><code>DeleteFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Predicate-callback deletion adds more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#EqualFunc" target="_blank" rel="noopener noreferrer"><code>EqualFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#Grow" target="_blank" rel="noopener noreferrer"><code>Grow</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Capacity growth does not matter in JS array semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#IndexFunc" target="_blank" rel="noopener noreferrer"><code>IndexFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Predicate-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#IsSortedFunc" target="_blank" rel="noopener noreferrer"><code>IsSortedFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#MaxFunc" target="_blank" rel="noopener noreferrer"><code>MaxFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#MinFunc" target="_blank" rel="noopener noreferrer"><code>MinFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#Sorted" target="_blank" rel="noopener noreferrer"><code>Sorted</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-oriented collection helpers do not map cleanly to Locutus today.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#SortedFunc" target="_blank" rel="noopener noreferrer"><code>SortedFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-oriented collection helpers do not map cleanly to Locutus today.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#SortedStableFunc" target="_blank" rel="noopener noreferrer"><code>SortedStableFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-oriented collection helpers do not map cleanly to Locutus today.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#SortFunc" target="_blank" rel="noopener noreferrer"><code>SortFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#SortStableFunc" target="_blank" rel="noopener noreferrer"><code>SortStableFunc</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Comparator-callback variants add more runtime-shape complexity than value.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/slices#Values" target="_blank" rel="noopener noreferrer"><code>Values</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-oriented collection helpers do not map cleanly to Locutus today.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
   
 </article>
 
@@ -2546,6 +4797,200 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
+          unicode package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:unicode</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 90.5%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 9.5%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/21</strong> shipped</span>
+    <span><strong>19</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 19 next • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>Is</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsControl</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsDigit</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsGraphic</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsLetter</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsLower</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsMark</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsNumber</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsOneOf</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsPrint</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsPunct</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsSpace</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsSymbol</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsTitle</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>IsUpper</code>
+                <span>Character classification helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>SimpleFold</code>
+                <span>Codepoint folding has a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>ToLower</code>
+                <span>Codepoint case conversion has a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>ToTitle</code>
+                <span>Codepoint case conversion has a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>ToUpper</code>
+                <span>Codepoint case conversion has a clean scalar portability contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/unicode#In" target="_blank" rel="noopener noreferrer"><code>In</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Some unicode helpers depend on range tables or special-case structs rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/unicode#To" target="_blank" rel="noopener noreferrer"><code>To</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Some unicode helpers depend on range tables or special-case structs rather than one stable plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
           <a href="/golang/url/">net/url package</a>
         
       </h3>
@@ -2762,6 +5207,194 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Much of net/url revolves around mutable URL and Values objects rather than plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          unicode/utf8 package
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Go 1.23</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>golang:1.23:unicode/utf8</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 46.7%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 53.3%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/15</strong> shipped</span>
+    <span><strong>7</strong> next</span>
+    <span><strong>8</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 7 next • 8 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>DecodeLastRuneInString</code>
+                <span>String-oriented rune decoding has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>DecodeRuneInString</code>
+                <span>String-oriented rune decoding has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>FullRuneInString</code>
+                <span>String-oriented UTF-8 validity checks have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>RuneCountInString</code>
+                <span>String-oriented UTF-8 counting has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>RuneLen</code>
+                <span>Rune-size helpers have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>ValidRune</code>
+                <span>Rune-validity checks have a clean scalar portability contract.</span>
+              </li>
+            
+              <li>
+                <code>ValidString</code>
+                <span>String-oriented UTF-8 validity checks have a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (8)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#AppendRune" target="_blank" rel="noopener noreferrer"><code>AppendRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#DecodeLastRune" target="_blank" rel="noopener noreferrer"><code>DecodeLastRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#DecodeRune" target="_blank" rel="noopener noreferrer"><code>DecodeRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#EncodeRune" target="_blank" rel="noopener noreferrer"><code>EncodeRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#FullRune" target="_blank" rel="noopener noreferrer"><code>FullRune</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#RuneCount" target="_blank" rel="noopener noreferrer"><code>RuneCount</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#RuneStart" target="_blank" rel="noopener noreferrer"><code>RuneStart</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://pkg.go.dev/utf8#Valid" target="_blank" rel="noopener noreferrer"><code>Valid</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many utf8 helpers operate on byte slices rather than plain JS values.</span>
               </li>
             
           </ul>

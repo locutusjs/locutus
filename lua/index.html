@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T18:56:51.770Z">
-<meta property="article:modified_time" content="2026-03-16T18:56:51.770Z">
+<meta property="article:published_time" content="2026-03-17T14:57:27.119Z">
+<meta property="article:modified_time" content="2026-03-17T14:57:27.119Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -316,50 +316,54 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        16/48 shipped
-         • 26 next
+        16/109 shipped
+         • 36 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 14.7%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 54.2%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 33%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 12.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 52.3%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">33%</span>
+    <span class="surface-panel__summary-badge">15%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream Lua catalog and sorts it into what is already shipped,
+          Locutus tracks 9 upstream namespaces for
+          Lua and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        
+          <p class="surface-summary">This inventory now tracks Lua&#39;s core plain-value libraries plus the environment-facing standard tables, not the full host runtime.</p>
+        
       </div>
       <div class="surface-coverage-badge">
-        <strong>33%</strong>
+        <strong>15%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 14.7%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 54.2%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 33%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 12.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 52.3%"></span>
         
         
       
@@ -374,20 +378,24 @@ ga('send', 'pageview');
 
     <div class="surface-kpis">
       <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value">9</strong>
+      </article>
+      <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">16/48</strong>
+        <strong class="surface-kpi__value">16/109</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">26</strong>
+          <strong class="surface-kpi__value">36</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">6</strong>
+          <strong class="surface-kpi__value">57</strong>
         </article>
       
       
@@ -400,8 +408,531 @@ ga('send', 'pageview');
       
       
       
-      16 of 48 upstream entries are already shipped; 26 are explicitly on the shortlist; 6 are explicit non-goals.
+      
+      9 namespaces are currently tracked; 16 of 109 upstream entries are already shipped; 36 are explicitly on the shortlist; 57 are explicit non-goals.
     </p>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          coroutine library
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Lua 5.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/8</strong> shipped</span>
+    
+    <span><strong>8</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 8 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (8)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.close" target="_blank" rel="noopener noreferrer"><code>close</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.create" target="_blank" rel="noopener noreferrer"><code>create</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.isyieldable" target="_blank" rel="noopener noreferrer"><code>isyieldable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.resume" target="_blank" rel="noopener noreferrer"><code>resume</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.running" target="_blank" rel="noopener noreferrer"><code>running</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.status" target="_blank" rel="noopener noreferrer"><code>status</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.wrap" target="_blank" rel="noopener noreferrer"><code>wrap</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-coroutine.yield" target="_blank" rel="noopener noreferrer"><code>yield</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Coroutine lifecycle helpers revolve around resumable execution state, not plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          debug library
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Lua 5.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/17</strong> shipped</span>
+    
+    <span><strong>17</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 17 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (17)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.debug" target="_blank" rel="noopener noreferrer"><code>debug</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.gethook" target="_blank" rel="noopener noreferrer"><code>gethook</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.getinfo" target="_blank" rel="noopener noreferrer"><code>getinfo</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.getlocal" target="_blank" rel="noopener noreferrer"><code>getlocal</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.getmetatable" target="_blank" rel="noopener noreferrer"><code>getmetatable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.getregistry" target="_blank" rel="noopener noreferrer"><code>getregistry</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.getupvalue" target="_blank" rel="noopener noreferrer"><code>getupvalue</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.getuservalue" target="_blank" rel="noopener noreferrer"><code>getuservalue</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.setcstacklimit" target="_blank" rel="noopener noreferrer"><code>setcstacklimit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.sethook" target="_blank" rel="noopener noreferrer"><code>sethook</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.setlocal" target="_blank" rel="noopener noreferrer"><code>setlocal</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.setmetatable" target="_blank" rel="noopener noreferrer"><code>setmetatable</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.setupvalue" target="_blank" rel="noopener noreferrer"><code>setupvalue</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.setuservalue" target="_blank" rel="noopener noreferrer"><code>setuservalue</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.traceback" target="_blank" rel="noopener noreferrer"><code>traceback</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.upvalueid" target="_blank" rel="noopener noreferrer"><code>upvalueid</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-debug.upvaluejoin" target="_blank" rel="noopener noreferrer"><code>upvaluejoin</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          io library
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Lua 5.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/11</strong> shipped</span>
+    
+    <span><strong>11</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 11 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (11)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.close" target="_blank" rel="noopener noreferrer"><code>close</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.flush" target="_blank" rel="noopener noreferrer"><code>flush</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.input" target="_blank" rel="noopener noreferrer"><code>input</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.lines" target="_blank" rel="noopener noreferrer"><code>lines</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.open" target="_blank" rel="noopener noreferrer"><code>open</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.output" target="_blank" rel="noopener noreferrer"><code>output</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.popen" target="_blank" rel="noopener noreferrer"><code>popen</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.read" target="_blank" rel="noopener noreferrer"><code>read</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.tmpfile" target="_blank" rel="noopener noreferrer"><code>tmpfile</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.type" target="_blank" rel="noopener noreferrer"><code>type</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stream-handle inspection is not a plain-value portability target.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-io.write" target="_blank" rel="noopener noreferrer"><code>write</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>I/O handles and streams depend on host runtime state outside Locutus&#39; model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
 
     
       
@@ -612,6 +1143,258 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
+          os library
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Lua 5.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.3%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 72.7%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/11</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>8</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next • 8 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>date</code>
+                <span>Date formatting and decomposition still have a useful plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>difftime</code>
+                <span>Time-difference helpers have a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>time</code>
+                <span>Unix-time conversion has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (8)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.clock" target="_blank" rel="noopener noreferrer"><code>clock</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most os helpers depend on host environment, clocks, or filesystem state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.execute" target="_blank" rel="noopener noreferrer"><code>execute</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Process spawning is outside Locutus&#39; portability scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.exit" target="_blank" rel="noopener noreferrer"><code>exit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Process termination is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.getenv" target="_blank" rel="noopener noreferrer"><code>getenv</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Environment lookup depends on host runtime state.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.remove" target="_blank" rel="noopener noreferrer"><code>remove</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem mutation is outside Locutus&#39; portability scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.rename" target="_blank" rel="noopener noreferrer"><code>rename</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Filesystem mutation is outside Locutus&#39; portability scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.setlocale" target="_blank" rel="noopener noreferrer"><code>setlocale</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Locale mutation changes ambient runtime behavior.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-os.tmpname" target="_blank" rel="noopener noreferrer"><code>tmpname</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Temporary-path generation depends on host state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          package library
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Lua 5.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/2</strong> shipped</span>
+    
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 2 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-package.loadlib" target="_blank" rel="noopener noreferrer"><code>loadlib</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Dynamic native-library loading is security-sensitive and out of scope.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-package.searchpath" target="_blank" rel="noopener noreferrer"><code>searchpath</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Module loading and package-path helpers depend on host runtime and filesystem state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
           <a href="/lua/string/">string library</a>
         
       </h3>
@@ -750,6 +1533,248 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Binary packing semantics do not map cleanly to JS plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          table library
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Lua 5.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 42.9%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 57.1%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/7</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>4</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 3 next • 4 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>concat</code>
+                <span>String joining over list-like tables has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>pack</code>
+                <span>Packing variadic values into a list-like table is a useful portability target.</span>
+              </li>
+            
+              <li>
+                <code>unpack</code>
+                <span>Table expansion still has a useful plain-value contract for parity and examples.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (4)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-table.insert" target="_blank" rel="noopener noreferrer"><code>insert</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most table helpers mutate caller-owned tables rather than returning plain immutable values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-table.move" target="_blank" rel="noopener noreferrer"><code>move</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most table helpers mutate caller-owned tables rather than returning plain immutable values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-table.remove" target="_blank" rel="noopener noreferrer"><code>remove</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most table helpers mutate caller-owned tables rather than returning plain immutable values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-table.sort" target="_blank" rel="noopener noreferrer"><code>sort</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most table helpers mutate caller-owned tables rather than returning plain immutable values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          utf8 library
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Lua 5.4</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 80%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 20%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/5</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 4 next • 1 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>char</code>
+                <span>UTF-8 codepoint helpers have a strong plain-value string and numeric contract.</span>
+              </li>
+            
+              <li>
+                <code>codepoint</code>
+                <span>UTF-8 codepoint helpers have a strong plain-value string and numeric contract.</span>
+              </li>
+            
+              <li>
+                <code>len</code>
+                <span>UTF-8 codepoint helpers have a strong plain-value string and numeric contract.</span>
+              </li>
+            
+              <li>
+                <code>offset</code>
+                <span>UTF-8 codepoint helpers have a strong plain-value string and numeric contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://www.lua.org/manual/5.4/manual.html#pdf-utf8.codes" target="_blank" rel="noopener noreferrer"><code>codes</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Iterator-returning APIs do not fit Locutus&#39; current plain-value model.</span>
               </li>
             
           </ul>

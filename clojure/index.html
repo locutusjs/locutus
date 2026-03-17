@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-16T18:56:51.737Z">
-<meta property="article:modified_time" content="2026-03-16T18:56:51.737Z">
+<meta property="article:published_time" content="2026-03-17T14:57:27.097Z">
+<meta property="article:modified_time" content="2026-03-17T14:57:27.097Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -321,19 +321,19 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        16/758 shipped
-         • 110 next
+        16/810 shipped
+         • 127 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2.1%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 14.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 15.7%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 83.4%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 82.3%"></span>
             
             
           
@@ -347,9 +347,13 @@ ga('send', 'pageview');
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks the upstream Clojure catalog and sorts it into what is already shipped,
+          Locutus tracks 7 upstream namespaces for
+          Clojure and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
+        
+          <p class="surface-summary">This inventory now tracks a broader official Clojure core slice, adding the most relevant standard namespaces while still excluding the broader JVM ecosystem.</p>
+        
       </div>
       <div class="surface-coverage-badge">
         <strong>2%</strong>
@@ -359,12 +363,12 @@ ga('send', 'pageview');
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 14.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 15.7%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 83.4%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 82.3%"></span>
         
         
       
@@ -379,20 +383,24 @@ ga('send', 'pageview');
 
     <div class="surface-kpis">
       <article class="surface-kpi">
+        <span class="surface-kpi__label">Tracked namespaces</span>
+        <strong class="surface-kpi__value">7</strong>
+      </article>
+      <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">16/758</strong>
+        <strong class="surface-kpi__value">16/810</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">110</strong>
+          <strong class="surface-kpi__value">127</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">632</strong>
+          <strong class="surface-kpi__value">667</strong>
         </article>
       
       
@@ -405,7 +413,8 @@ ga('send', 'pageview');
       
       
       
-      16 of 758 upstream entries are already shipped; 110 are explicitly on the shortlist; 632 are explicit non-goals.
+      
+      7 namespaces are currently tracked; 16 of 810 upstream entries are already shipped; 127 are explicitly on the shortlist; 667 are explicit non-goals.
     </p>
 
     
@@ -6386,6 +6395,101 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
+          clojure.edn
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Clojure 1.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 50%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/2</strong> shipped</span>
+    <span><strong>1</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 1 next • 1 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>read-string</code>
+                <span>Pure EDN parsing from strings has a clean plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/read" target="_blank" rel="noopener noreferrer"><code>read</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Stream-oriented EDN readers depend on host I/O rather than plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
           <a href="/clojure/Math/">java.lang.Math</a>
         
       </h3>
@@ -6733,6 +6837,171 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
+          clojure.set
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Clojure 1.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 50%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/12</strong> shipped</span>
+    <span><strong>6</strong> next</span>
+    <span><strong>6</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 6 next • 6 explicit non-goals.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>join</code>
+                <span>Relation joins can be modeled over arrays of plain objects.</span>
+              </li>
+            
+              <li>
+                <code>map-invert</code>
+                <span>Plain map inversion has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>project</code>
+                <span>Relation projection can be modeled over arrays of plain objects.</span>
+              </li>
+            
+              <li>
+                <code>rename</code>
+                <span>Relation key renaming has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>rename-keys</code>
+                <span>Plain map key renaming has a clean plain-value contract.</span>
+              </li>
+            
+              <li>
+                <code>select</code>
+                <span>Relation filtering can be modeled over arrays of plain objects.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (6)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/difference" target="_blank" rel="noopener noreferrer"><code>difference</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mathematical set semantics do not map cleanly to Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/index" target="_blank" rel="noopener noreferrer"><code>index</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mathematical set semantics do not map cleanly to Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/intersection" target="_blank" rel="noopener noreferrer"><code>intersection</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mathematical set semantics do not map cleanly to Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/subset%3F" target="_blank" rel="noopener noreferrer"><code>subset?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mathematical set semantics do not map cleanly to Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/superset%3F" target="_blank" rel="noopener noreferrer"><code>superset?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mathematical set semantics do not map cleanly to Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/union" target="_blank" rel="noopener noreferrer"><code>union</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Mathematical set semantics do not map cleanly to Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
           <a href="/clojure/string/">clojure.string</a>
         
       </h3>
@@ -6874,6 +7143,440 @@ ga('send', 'pageview');
     </div>
   
 
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          clojure.walk
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Clojure 1.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/10</strong> shipped</span>
+    <span><strong>10</strong> next</span>
+    
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 10 next.
+  </p>
+
+  
+
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          <ul class="surface-entry-list surface-entry-list--scroll">
+            
+              <li>
+                <code>keywordize-keys</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>macroexpand-all</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>postwalk</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>postwalk-demo</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>postwalk-replace</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>prewalk</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>prewalk-demo</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>prewalk-replace</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>stringify-keys</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+              <li>
+                <code>walk</code>
+                <span>Tree-walking helpers over plain nested values are strong portability targets.</span>
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+    
+      
+
+<article class="surface-card">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          clojure.zip
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Clojure 1.12</code>
+        <span>•</span>
+        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+      
+        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+      
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/28</strong> shipped</span>
+    
+    <span><strong>28</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  <p class="surface-summary">
+    0 shipped • 28 explicit non-goals.
+  </p>
+
+  
+
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (28)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/append-child" target="_blank" rel="noopener noreferrer"><code>append-child</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/branch%3F" target="_blank" rel="noopener noreferrer"><code>branch?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/children" target="_blank" rel="noopener noreferrer"><code>children</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/down" target="_blank" rel="noopener noreferrer"><code>down</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/edit" target="_blank" rel="noopener noreferrer"><code>edit</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/end%3F" target="_blank" rel="noopener noreferrer"><code>end?</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/insert-child" target="_blank" rel="noopener noreferrer"><code>insert-child</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/insert-left" target="_blank" rel="noopener noreferrer"><code>insert-left</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/insert-right" target="_blank" rel="noopener noreferrer"><code>insert-right</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/left" target="_blank" rel="noopener noreferrer"><code>left</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/leftmost" target="_blank" rel="noopener noreferrer"><code>leftmost</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/lefts" target="_blank" rel="noopener noreferrer"><code>lefts</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/make-node" target="_blank" rel="noopener noreferrer"><code>make-node</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/next" target="_blank" rel="noopener noreferrer"><code>next</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/node" target="_blank" rel="noopener noreferrer"><code>node</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/path" target="_blank" rel="noopener noreferrer"><code>path</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/prev" target="_blank" rel="noopener noreferrer"><code>prev</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/remove" target="_blank" rel="noopener noreferrer"><code>remove</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/replace" target="_blank" rel="noopener noreferrer"><code>replace</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/right" target="_blank" rel="noopener noreferrer"><code>right</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/rightmost" target="_blank" rel="noopener noreferrer"><code>rightmost</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/rights" target="_blank" rel="noopener noreferrer"><code>rights</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/root" target="_blank" rel="noopener noreferrer"><code>root</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/seq-zip" target="_blank" rel="noopener noreferrer"><code>seq-zip</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/up" target="_blank" rel="noopener noreferrer"><code>up</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/vector-zip" target="_blank" rel="noopener noreferrer"><code>vector-zip</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/xml-zip" target="_blank" rel="noopener noreferrer"><code>xml-zip</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/zipper" target="_blank" rel="noopener noreferrer"><code>zipper</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Zipper locators are navigation objects, not plain-value results.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
   
 </article>
 
