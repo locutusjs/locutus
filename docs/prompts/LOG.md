@@ -2555,3 +2555,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The missing piece was not another data model; it was a first-class full-catalog materialization command that includes manual/docs-backed languages as well as runtime-backed ones.
   - Once enumeration and tracked scope are separated cleanly, “unknown territory” stops being a structural problem and becomes a deliberate scope choice.
+
+### Iteration 128
+
+2026-03-17
+
+- **Area: Upstream surface canonical scope**
+- Plan:
+  - Add a separate canonical discovery-scope manifest so the system can prove whether namespace discovery itself is complete, not just whether currently tracked scope is fully triaged.
+  - Make enumeration and check fail on missing expected namespaces, unexpected namespaces, and source/ref drift.
+- Progress:
+  - Added a new Zod-validated canonical scope loader in `test/parity/lib/upstream-surface-scope.ts`.
+  - Extended the upstream-surface checker and enumeration flow so they now validate snapshots against a separate `docs/upstream-surface-scope.yml` contract before inventory triage is even considered.
+  - Made the distinction explicit in docs: canonical scope defines what official core/stdlib namespaces should exist; snapshots record what discovery found; inventory decides what to port, keep, or skip.
+  - Added unit coverage for scope loading plus missing/unexpected/source-mismatch detection.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn enumerate:upstream-surface swift php`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - “Tracked scope is complete” and “discovery is complete” are different guarantees; we now need both.
+  - The right canonical layer is namespace/source metadata, not more decisions in the triage file.

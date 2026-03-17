@@ -5,7 +5,12 @@ import YAML from 'js-yaml'
 
 import { checkDockerAvailable, ensureDockerImage } from '../test/parity/lib/docker.ts'
 import { getLanguageHandler, getSupportedLanguages } from '../test/parity/lib/languages/index.ts'
-import { resolveUpstreamSurfaceLanguages } from '../test/parity/lib/upstream-surface.ts'
+import {
+  findUpstreamSurfaceScopeCoverageIssues,
+  formatUpstreamSurfaceScopeIssues,
+  resolveUpstreamSurfaceLanguages,
+} from '../test/parity/lib/upstream-surface.ts'
+import { loadUpstreamSurfaceScope } from '../test/parity/lib/upstream-surface-scope.ts'
 import {
   getUpstreamSurfaceSnapshotPath,
   loadUpstreamSurfaceSnapshots,
@@ -41,7 +46,9 @@ export async function enumerateUpstreamSurfaceSnapshots({
   rootDir,
   logger = console,
 }: UpstreamSurfaceEnumerationOptions): Promise<void> {
+  const scopePath = join(rootDir, 'docs', 'upstream-surface-scope.yml')
   const snapshotDir = join(rootDir, 'test', 'parity', 'fixtures', 'upstream-surface')
+  const scope = loadUpstreamSurfaceScope(scopePath)
   const snapshots = loadUpstreamSurfaceSnapshots(snapshotDir)
   const supportedLanguages = getSupportedLanguages()
   const resolution = resolveUpstreamSurfaceLanguages(filters, supportedLanguages, (language) => {
@@ -80,6 +87,7 @@ export async function enumerateUpstreamSurfaceSnapshots({
   }
 
   mkdirSync(snapshotDir, { recursive: true })
+  const enumeratedSnapshots = new Map(snapshots)
 
   for (const language of resolution.selected) {
     const handler = getLanguageHandler(language)
@@ -93,6 +101,7 @@ export async function enumerateUpstreamSurfaceSnapshots({
 
       const snapshot = await handler.upstreamSurface.discover()
       writeFileSync(snapshotPath, YAML.dump(snapshot, { lineWidth: 120 }), 'utf8')
+      enumeratedSnapshots.set(language, snapshot)
       logger.log(`Wrote ${snapshotPath} (discovered from ${snapshot.namespaces[0]?.sourceKind ?? 'runtime'})`)
       continue
     }
@@ -103,6 +112,15 @@ export async function enumerateUpstreamSurfaceSnapshots({
       process.exit(1)
     }
 
+    enumeratedSnapshots.set(language, snapshot)
     logger.log(`Using ${snapshotPath} (kept ${snapshot.namespaces[0]?.sourceKind ?? 'manual'} snapshot)`)
+  }
+
+  const scopeIssues = findUpstreamSurfaceScopeCoverageIssues(enumeratedSnapshots, scope).filter((issue) =>
+    resolution.selected.includes(issue.language),
+  )
+  if (scopeIssues.length > 0) {
+    logger.error(formatUpstreamSurfaceScopeIssues(scopeIssues))
+    process.exit(1)
   }
 }

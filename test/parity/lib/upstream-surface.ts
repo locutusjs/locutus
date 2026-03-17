@@ -12,8 +12,11 @@ import type {
   UpstreamSurfaceDecisionEntry,
   UpstreamSurfaceInventory,
   UpstreamSurfaceLanguageInventory,
+  UpstreamSurfaceLanguageScope,
   UpstreamSurfaceNamespaceInventory,
+  UpstreamSurfaceNamespaceScope,
   UpstreamSurfaceNamespaceSnapshot,
+  UpstreamSurfaceScope,
   UpstreamSurfaceSnapshot,
 } from './types.ts'
 import { isKeepDecision, isSkipDecision, isWantedDecision } from './upstream-surface-inventory.ts'
@@ -55,6 +58,22 @@ export interface UpstreamSurfaceInventoryCoverageIssue {
   language: string
   missingLanguage: boolean
   missingNamespaces: string[]
+}
+
+export interface UpstreamSurfaceScopeSourceMismatch {
+  namespace: string
+  expectedSourceKind: string
+  actualSourceKind: string
+  expectedSourceRef: string
+  actualSourceRef: string
+}
+
+export interface UpstreamSurfaceScopeCoverageIssue {
+  language: string
+  missingLanguage: boolean
+  missingNamespaces: string[]
+  unexpectedNamespaces: string[]
+  sourceMismatches: UpstreamSurfaceScopeSourceMismatch[]
 }
 
 export interface UpstreamSurfaceNamespaceSiteData extends UpstreamSurfaceNamespaceResult {
@@ -103,6 +122,7 @@ export interface EvaluateUpstreamSurfaceInput {
 }
 
 export interface EvaluatedUpstreamSurface {
+  scopeIssues: UpstreamSurfaceScopeCoverageIssue[]
   coverageIssues: UpstreamSurfaceInventoryCoverageIssue[]
   languages: EvaluatedUpstreamSurfaceLanguage[]
 }
@@ -490,6 +510,71 @@ export function findUpstreamSurfaceInventoryCoverageIssues(
   return issues.sort((left, right) => left.language.localeCompare(right.language))
 }
 
+function compareNamespaceScope(
+  namespace: string,
+  snapshotNamespace: UpstreamSurfaceNamespaceSnapshot | undefined,
+  scopeNamespace: UpstreamSurfaceNamespaceScope | undefined,
+): UpstreamSurfaceScopeSourceMismatch | undefined {
+  if (!snapshotNamespace || !scopeNamespace) {
+    return undefined
+  }
+
+  if (
+    snapshotNamespace.sourceKind === scopeNamespace.sourceKind &&
+    snapshotNamespace.sourceRef === scopeNamespace.sourceRef
+  ) {
+    return undefined
+  }
+
+  return {
+    namespace,
+    expectedSourceKind: scopeNamespace.sourceKind,
+    actualSourceKind: snapshotNamespace.sourceKind,
+    expectedSourceRef: scopeNamespace.sourceRef,
+    actualSourceRef: snapshotNamespace.sourceRef,
+  }
+}
+
+export function findUpstreamSurfaceScopeCoverageIssues(
+  snapshots: Map<string, UpstreamSurfaceSnapshot>,
+  scope: UpstreamSurfaceScope,
+): UpstreamSurfaceScopeCoverageIssue[] {
+  const issues: UpstreamSurfaceScopeCoverageIssue[] = []
+  const allLanguages = [...new Set([...snapshots.keys(), ...Object.keys(scope)])].sort()
+
+  for (const language of allLanguages) {
+    const snapshot = snapshots.get(language)
+    const languageScope = scope[language]
+    const snapshotNamespaces = new Map(snapshot?.namespaces.map((namespace) => [namespace.namespace, namespace]) ?? [])
+    const scopeNamespaces = languageScope?.namespaces ?? {}
+
+    const missingNamespaces = Object.keys(scopeNamespaces)
+      .filter((namespace) => !snapshotNamespaces.has(namespace))
+      .sort()
+    const unexpectedNamespaces = [...snapshotNamespaces.keys()]
+      .filter((namespace) => !Object.prototype.hasOwnProperty.call(scopeNamespaces, namespace))
+      .sort()
+    const sourceMismatches = Object.keys(scopeNamespaces)
+      .map((namespace) =>
+        compareNamespaceScope(namespace, snapshotNamespaces.get(namespace), languageScope?.namespaces?.[namespace]),
+      )
+      .filter((issue): issue is UpstreamSurfaceScopeSourceMismatch => !!issue)
+      .sort((left, right) => left.namespace.localeCompare(right.namespace))
+
+    if (!languageScope || !snapshot || missingNamespaces.length || unexpectedNamespaces.length || sourceMismatches.length) {
+      issues.push({
+        language,
+        missingLanguage: !languageScope || !snapshot,
+        missingNamespaces,
+        unexpectedNamespaces,
+        sourceMismatches,
+      })
+    }
+  }
+
+  return issues
+}
+
 export function evaluateUpstreamSurface(input: EvaluateUpstreamSurfaceInput): EvaluatedUpstreamSurface {
   const coverageIssues = findUpstreamSurfaceInventoryCoverageIssues(input.snapshots, input.inventory)
   const languages = input.languages.map((language) => {
@@ -514,6 +599,7 @@ export function evaluateUpstreamSurface(input: EvaluateUpstreamSurfaceInput): Ev
   })
 
   return {
+    scopeIssues: [],
     coverageIssues,
     languages,
   }
@@ -669,6 +755,33 @@ export function formatInventoryCoverageIssues(issues: UpstreamSurfaceInventoryCo
     }
     for (const namespace of issue.missingNamespaces) {
       lines.push(`    - missing namespace section: ${namespace}`)
+    }
+  }
+
+  return lines.join('\n')
+}
+
+export function formatUpstreamSurfaceScopeIssues(issues: UpstreamSurfaceScopeCoverageIssue[]): string {
+  if (issues.length === 0) {
+    return ''
+  }
+
+  const lines = ['Upstream surface scope issues']
+  for (const issue of issues) {
+    lines.push(`  ${issue.language}`)
+    if (issue.missingLanguage) {
+      lines.push('    - missing language scope or snapshot')
+    }
+    for (const namespace of issue.missingNamespaces) {
+      lines.push(`    - missing namespace from snapshot: ${namespace}`)
+    }
+    for (const namespace of issue.unexpectedNamespaces) {
+      lines.push(`    - unexpected namespace in snapshot: ${namespace}`)
+    }
+    for (const mismatch of issue.sourceMismatches) {
+      lines.push(
+        `    - source mismatch for ${mismatch.namespace}: expected ${mismatch.expectedSourceKind} ${mismatch.expectedSourceRef}, got ${mismatch.actualSourceKind} ${mismatch.actualSourceRef}`,
+      )
     }
   }
 

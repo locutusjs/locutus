@@ -20,9 +20,13 @@ This replaces the older PHP-only runtime-surface guardrail with a namespace-awar
 
 ## Source Of Truth
 
-There are three layers:
+There are four layers:
 
-1. Checked-in upstream snapshots
+1. Canonical discovery scope
+   - Path: `docs/upstream-surface-scope.yml`
+   - Purpose: declare which official namespaces belong to the tracked core/stdlib scope for each language, and which source/ref is authoritative for discovering them
+
+2. Checked-in upstream snapshots
    - Path: `test/parity/fixtures/upstream-surface/*.yml`
    - Purpose: version-tagged upstream catalogs
    - Source kinds:
@@ -30,11 +34,11 @@ There are three layers:
      - `source_manifest`
      - `manual`
 
-2. Human-maintained inventory decisions
+3. Human-maintained inventory decisions
    - Path: `docs/upstream-surface-inventory.yml`
    - Purpose: compact decisions about what we want, keep, or skip
 
-3. Derived combined website data
+4. Derived combined website data
    - Path: `website/source/_data/upstream_surface.yml`
    - Produced during `yarn injectweb`
    - Purpose: easy website consumption of counts, coverage, wishlist, and non-goal summaries
@@ -47,6 +51,7 @@ The website also receives the raw YAML inputs:
 ## Inventory Shape
 
 The inventory is YAML, validated with Zod in `test/parity/lib/upstream-surface-inventory.ts`.
+The canonical discovery scope is separate YAML, validated in `test/parity/lib/upstream-surface-scope.ts`.
 
 The model is intentionally compact:
 
@@ -164,9 +169,10 @@ That keeps CI sharp without turning the roadmap into a mandatory porting checkli
 The intended maintainer loop is:
 
 1. enumerate the full tracked upstream catalog
-2. inspect what looks too broad or too noisy
-3. either narrow tracked scope at the discovery/source layer, or keep the namespace and give it a broad inventory default
-4. rerun the check until tracked scope is fully classified
+2. compare it against the canonical discovery scope
+3. inspect what looks too broad or too noisy
+4. either narrow tracked scope at the discovery/source layer, or keep the namespace and give it a broad inventory default
+5. rerun the check until tracked scope is fully classified
 
 Enumerate the full tracked catalog with:
 
@@ -185,6 +191,14 @@ This command is intentionally broader than refresh:
 - runtime-backed languages refresh from the parity target container
 - docs/source/manual languages validate and reuse their checked-in snapshots as the authoritative tracked catalog
 - the result is the full tracked upstream picture we want to inspect before triaging
+
+Enumeration is now also checked against the canonical scope manifest:
+
+- missing expected namespaces fail
+- unexpected namespaces fail
+- source-kind/source-ref mismatches fail
+
+That makes the discovery layer deterministic instead of relying on memory or ad hoc inspection.
 
 Refresh only the live-discoverable snapshots with:
 
@@ -215,6 +229,24 @@ Do not invalidate the entire inventory on target bumps. The workflow should be:
 2. review added / removed / changed surface entries
 3. update `wanted` / `skip_*` / `keep_*` decisions only where drift actually occurred
 4. rerun parity for shipped functions in affected namespaces
+
+## Canonical Scope
+
+`docs/upstream-surface-scope.yml` is the contract for surface discovery itself.
+
+It should answer:
+
+1. which namespaces belong to the tracked official core/stdlib scope
+2. which source kind is canonical for each namespace
+3. which exact source ref is canonical for the current parity target
+
+That means the system now distinguishes clearly between:
+
+- canonical discovery scope
+- discovered catalog snapshots
+- triage policy
+
+Snapshots can drift. The scope file is the thing that says what *should* exist.
 
 ## Website
 

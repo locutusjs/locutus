@@ -96,6 +96,18 @@ export interface UpstreamSurfaceLanguageInventory {
 
 export type UpstreamSurfaceInventory = Record<string, UpstreamSurfaceLanguageInventory>
 
+export interface UpstreamSurfaceNamespaceScope {
+  title?: string | undefined
+  sourceKind: UpstreamSurfaceSourceKind
+  sourceRef: string
+}
+
+export interface UpstreamSurfaceLanguageScope {
+  namespaces: Record<string, UpstreamSurfaceNamespaceScope>
+}
+
+export type UpstreamSurfaceScope = Record<string, UpstreamSurfaceLanguageScope>
+
 export interface RuntimeSurfaceLocutusFunction {
   path: string
   language: string

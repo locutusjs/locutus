@@ -10,10 +10,13 @@ import type { FunctionInfo, LanguageHandler, UpstreamSurfaceSnapshot } from '../
 import {
   buildUpstreamSurfaceSiteData,
   compareUpstreamSurface,
+  findUpstreamSurfaceScopeCoverageIssues,
   findUpstreamSurfaceInventoryCoverageIssues,
+  formatUpstreamSurfaceScopeIssues,
   resolveUpstreamSurfaceLanguages,
 } from '../parity/lib/upstream-surface.ts'
 import { loadUpstreamSurfaceInventory } from '../parity/lib/upstream-surface-inventory.ts'
+import { loadUpstreamSurfaceScope } from '../parity/lib/upstream-surface-scope.ts'
 import { loadUpstreamSurfaceSnapshot } from '../parity/lib/upstream-surface-snapshots.ts'
 
 function makeFunction(path: string, name: string): FunctionInfo {
@@ -288,6 +291,14 @@ describe('upstream surface inventory', () => {
     expect(loaded.golang?.namespaces?.filepath?.default?.decision).toBe('wanted')
   })
 
+  it('loads the shared upstream surface scope manifest', () => {
+    const loaded = loadUpstreamSurfaceScope(join(process.cwd(), 'docs/upstream-surface-scope.yml'))
+
+    expect(loaded.php?.namespaces?.__global?.sourceKind).toBe('runtime')
+    expect(loaded.python?.namespaces?.math?.sourceRef).toBe('python:3.12')
+    expect(loaded.swift?.namespaces?.String?.sourceKind).toBe('manual')
+  })
+
   it('rejects unknown keys in namespace sections', () => {
     const root = mkdtempSync(join(tmpdir(), 'locutus-upstream-surface-policy-'))
     const inventoryPath = join(root, 'upstream-surface-inventory.yml')
@@ -379,6 +390,74 @@ describe('upstream surface inventory', () => {
         note: 'stale extra should be reported',
       },
     ])
+  })
+
+  it('flags missing, unexpected, and mismatched namespaces against the canonical scope', () => {
+    const issues = findUpstreamSurfaceScopeCoverageIssues(
+      new Map([
+        [
+          'python',
+          {
+            language: 'python',
+            namespaces: [
+              {
+                namespace: 'math',
+                title: 'math',
+                target: 'Python 3.12',
+                sourceKind: 'runtime',
+                sourceRef: 'python:3.12',
+                entries: ['sin'],
+              },
+              {
+                namespace: 'random',
+                title: 'random',
+                target: 'Python 3.12',
+                sourceKind: 'runtime',
+                sourceRef: 'python:3.12',
+                entries: ['random'],
+              },
+            ],
+          },
+        ],
+      ]),
+      {
+        python: {
+          namespaces: {
+            math: {
+              sourceKind: 'runtime',
+              sourceRef: 'python:3.12',
+            },
+            statistics: {
+              sourceKind: 'runtime',
+              sourceRef: 'python:3.12',
+            },
+            random: {
+              sourceKind: 'source_manifest',
+              sourceRef: 'cpython/v3.12.0',
+            },
+          },
+        },
+      },
+    )
+
+    expect(issues).toEqual([
+      {
+        language: 'python',
+        missingLanguage: false,
+        missingNamespaces: ['statistics'],
+        unexpectedNamespaces: [],
+        sourceMismatches: [
+          {
+            namespace: 'random',
+            expectedSourceKind: 'source_manifest',
+            actualSourceKind: 'runtime',
+            expectedSourceRef: 'cpython/v3.12.0',
+            actualSourceRef: 'python:3.12',
+          },
+        ],
+      },
+    ])
+    expect(formatUpstreamSurfaceScopeIssues(issues)).toContain('missing namespace from snapshot: statistics')
   })
 
   it('reports stale wildcard rules and unused defaults when they never match any upstream entry', () => {

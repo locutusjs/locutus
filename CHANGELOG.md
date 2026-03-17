@@ -29,6 +29,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 
 ### Inventory
 
+- Added a separate canonical upstream-surface scope manifest and made enumeration/checking fail on missing expected namespaces, unexpected namespaces, and source-ref drift before triage policy is applied.
 - Added an explicit `enumerate:upstream-surface` maintainer flow that materializes the full tracked catalog across runtime, docs/source, and manual snapshots, while keeping `refresh:upstream-surface` as the live-discovery-only alias.
 - Broadened the upstream-surface inventory beyond the first curated slice, adding new tracked namespaces for Python, Ruby, Elixir, Lua, Tcl, and Perl while keeping the catalog at `untriaged: 0`.
 - Added language-level scope notes and tracked-namespace counts to the website inventory panel so language pages no longer imply they cover an entire upstream language when they still track a deliberate subset.
