@@ -10,8 +10,8 @@ import type { FunctionInfo, LanguageHandler, UpstreamSurfaceSnapshot } from '../
 import {
   buildUpstreamSurfaceSiteData,
   compareUpstreamSurface,
-  findUpstreamSurfaceScopeCoverageIssues,
   findUpstreamSurfaceInventoryCoverageIssues,
+  findUpstreamSurfaceScopeCoverageIssues,
   formatUpstreamSurfaceScopeIssues,
   resolveUpstreamSurfaceLanguages,
 } from '../parity/lib/upstream-surface.ts'
@@ -424,14 +424,17 @@ describe('upstream surface inventory', () => {
         python: {
           namespaces: {
             math: {
+              target: 'Python 3.12',
               sourceKind: 'runtime',
               sourceRef: 'python:3.12',
             },
             statistics: {
+              target: 'Python 3.12',
               sourceKind: 'runtime',
               sourceRef: 'python:3.12',
             },
             random: {
+              target: 'Python 3.12',
               sourceKind: 'source_manifest',
               sourceRef: 'cpython/v3.12.0',
             },

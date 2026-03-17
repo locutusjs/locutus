@@ -8,6 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const JULIA_SKIP_LIST = new Set<string>([])
@@ -15,7 +16,7 @@ export const JULIA_SKIP_LIST = new Set<string>([])
 const JULIA_DOCKER_IMAGE = 'julia:1.11'
 
 function discoverJuliaUpstreamSurface() {
-  const discoverNamespace = (namespace: string, title: string, setup: string) => {
+  const discoverNamespace = (namespace: string, setup: string) => {
     const code = [
       setup,
       `entries = sort([String(name) for name in names(${namespace}, all=false) if isdefined(${namespace}, name) && getfield(${namespace}, name) isa Function])`,
@@ -38,27 +39,20 @@ function discoverJuliaUpstreamSurface() {
 
     return {
       namespace,
-      title,
-      target: 'Julia 1.11',
-      sourceKind: 'runtime' as const,
-      sourceRef: setup ? `${JULIA_DOCKER_IMAGE}:${namespace}` : JULIA_DOCKER_IMAGE,
       entries,
     }
   }
 
-  return {
-    language: 'julia',
-    namespaces: [
-      discoverNamespace('Base', 'Base module', ''),
-      discoverNamespace('Dates', 'Dates module', 'using Dates'),
-      discoverNamespace('DelimitedFiles', 'DelimitedFiles module', 'using DelimitedFiles'),
-      discoverNamespace('LinearAlgebra', 'LinearAlgebra module', 'using LinearAlgebra'),
-      discoverNamespace('Random', 'Random module', 'using Random'),
-      discoverNamespace('Printf', 'Printf module', 'using Printf'),
-      discoverNamespace('Statistics', 'Statistics module', 'using Statistics'),
-      discoverNamespace('Unicode', 'Unicode module', 'using Unicode'),
-    ],
-  }
+  return buildScopedUpstreamSurfaceSnapshot('julia', [
+    discoverNamespace('Base', ''),
+    discoverNamespace('Dates', 'using Dates'),
+    discoverNamespace('DelimitedFiles', 'using DelimitedFiles'),
+    discoverNamespace('LinearAlgebra', 'using LinearAlgebra'),
+    discoverNamespace('Random', 'using Random'),
+    discoverNamespace('Printf', 'using Printf'),
+    discoverNamespace('Statistics', 'using Statistics'),
+    discoverNamespace('Unicode', 'using Unicode'),
+  ])
 }
 
 function splitArgs(argsText: string): string[] {

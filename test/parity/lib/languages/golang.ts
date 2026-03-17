@@ -5,6 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // Go package mapping: function name → Go package
 const GO_PACKAGES: Record<string, string> = {
@@ -192,18 +193,11 @@ function discoverGoUpstreamSurface() {
 
     return {
       namespace,
-      title: config.title,
-      target: 'Go 1.23',
-      sourceKind: 'runtime' as const,
-      sourceRef: `${GO_DOCKER_IMAGE}:${config.packagePath}`,
       entries: [...new Set(entries)].sort(),
     }
   })
 
-  return {
-    language: 'golang',
-    namespaces,
-  }
+  return buildScopedUpstreamSurfaceSnapshot('golang', namespaces)
 }
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {

@@ -5,26 +5,13 @@
  * upstream surface for the String namespace we ship from.
  */
 
-import type { LanguageHandler } from '../types.ts'
+import { createInventoryOnlyLanguageHandler } from '../upstream-surface-scope.ts'
 
 export const SWIFT_SKIP_LIST = new Set<string>([])
 
-export const swiftHandler: LanguageHandler = {
-  translate: () => '',
-  normalize: (output) => output.trim(),
-  skipList: SWIFT_SKIP_LIST,
+export const swiftHandler = createInventoryOnlyLanguageHandler({
   dockerImage: 'swift:6.0',
   displayName: 'Swift',
   version: '6.0',
-  get parityValue() {
-    return `${this.displayName} ${this.version}`
-  },
-  dockerCmd: () => ['sh', '-lc', 'exit 1'],
-  mountRepo: false,
-  upstreamSurface: {
-    getLocutusEntry: (func) => ({
-      namespace: func.category,
-      name: func.name,
-    }),
-  },
-}
+  skipList: SWIFT_SKIP_LIST,
+})

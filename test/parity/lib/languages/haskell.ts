@@ -5,26 +5,13 @@
  * upstream surface for the Data.List-derived Locutus namespace.
  */
 
-import type { LanguageHandler } from '../types.ts'
+import { createInventoryOnlyLanguageHandler } from '../upstream-surface-scope.ts'
 
 export const HASKELL_SKIP_LIST = new Set<string>([])
 
-export const haskellHandler: LanguageHandler = {
-  translate: () => '',
-  normalize: (output) => output.trim(),
-  skipList: HASKELL_SKIP_LIST,
+export const haskellHandler = createInventoryOnlyLanguageHandler({
   dockerImage: 'haskell:9.10',
   displayName: 'Haskell',
   version: '9.10',
-  get parityValue() {
-    return `${this.displayName} ${this.version}`
-  },
-  dockerCmd: () => ['sh', '-lc', 'exit 1'],
-  mountRepo: false,
-  upstreamSurface: {
-    getLocutusEntry: (func) => ({
-      namespace: func.category,
-      name: func.name,
-    }),
-  },
-}
+  skipList: HASKELL_SKIP_LIST,
+})

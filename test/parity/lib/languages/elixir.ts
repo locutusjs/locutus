@@ -8,6 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const ELIXIR_SKIP_LIST = new Set<string>([])
@@ -15,7 +16,7 @@ export const ELIXIR_SKIP_LIST = new Set<string>([])
 const ELIXIR_DOCKER_IMAGE = 'elixir:1.18'
 
 function discoverElixirUpstreamSurface() {
-  const discoverModule = (namespace: string, title: string) => {
+  const discoverModule = (namespace: string) => {
     const code = `Enum.each(Enum.sort(${namespace}.__info__(:functions)), fn {name, _arity} -> IO.puts(Atom.to_string(name)) end)`
     const result = runInDocker(ELIXIR_DOCKER_IMAGE, ['elixir', '-e', code])
     if (!result.success) {
@@ -33,37 +34,30 @@ function discoverElixirUpstreamSurface() {
     ].sort()
     return {
       namespace,
-      title,
-      target: 'Elixir 1.18',
-      sourceKind: 'runtime' as const,
-      sourceRef: ELIXIR_DOCKER_IMAGE,
       entries,
     }
   }
 
-  return {
-    language: 'elixir',
-    namespaces: [
-      discoverModule('Base', 'Base module'),
-      discoverModule('Date', 'Date module'),
-      discoverModule('DateTime', 'DateTime module'),
-      discoverModule('Enum', 'Enum module'),
-      discoverModule('Float', 'Float module'),
-      discoverModule('Integer', 'Integer module'),
-      discoverModule('Kernel', 'Kernel module'),
-      discoverModule('Keyword', 'Keyword module'),
-      discoverModule('List', 'List module'),
-      discoverModule('Map', 'Map module'),
-      discoverModule('MapSet', 'MapSet module'),
-      discoverModule('NaiveDateTime', 'NaiveDateTime module'),
-      discoverModule('Regex', 'Regex module'),
-      discoverModule('String', 'String module'),
-      discoverModule('Time', 'Time module'),
-      discoverModule('Tuple', 'Tuple module'),
-      discoverModule('URI', 'URI module'),
-      discoverModule('Version', 'Version module'),
-    ],
-  }
+  return buildScopedUpstreamSurfaceSnapshot('elixir', [
+    discoverModule('Base'),
+    discoverModule('Date'),
+    discoverModule('DateTime'),
+    discoverModule('Enum'),
+    discoverModule('Float'),
+    discoverModule('Integer'),
+    discoverModule('Kernel'),
+    discoverModule('Keyword'),
+    discoverModule('List'),
+    discoverModule('Map'),
+    discoverModule('MapSet'),
+    discoverModule('NaiveDateTime'),
+    discoverModule('Regex'),
+    discoverModule('String'),
+    discoverModule('Time'),
+    discoverModule('Tuple'),
+    discoverModule('URI'),
+    discoverModule('Version'),
+  ])
 }
 
 const ELIXIR_PARITY_MODULE = `

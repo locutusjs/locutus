@@ -8,6 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // Ruby method mapping: JS function name → Ruby method name and category
 interface RubyMethodInfo {
@@ -81,130 +82,66 @@ end
 snapshots = [
   {
     namespace: 'Array',
-    title: 'Array instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Array)
   },
   {
     namespace: 'String',
-    title: 'String instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(String)
   },
   {
     namespace: 'Enumerable',
-    title: 'Enumerable instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: Enumerable.instance_methods(false).map(&:to_s).uniq.sort
   },
   {
     namespace: 'Hash',
-    title: 'Hash instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Hash)
   },
   {
     namespace: 'Math',
-    title: 'Math module methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: Math.singleton_methods(false).map(&:to_s).uniq.sort
   },
   {
     namespace: 'Integer',
-    title: 'Integer instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Integer)
   },
   {
     namespace: 'Float',
-    title: 'Float instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Float)
   },
   {
     namespace: 'Comparable',
-    title: 'Comparable instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: Comparable.instance_methods(false).map(&:to_s).uniq.sort
   },
   {
     namespace: 'Range',
-    title: 'Range instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Range)
   },
   {
     namespace: 'Regexp',
-    title: 'Regexp instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Regexp)
   },
   {
     namespace: 'Symbol',
-    title: 'Symbol instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Symbol)
   },
   {
     namespace: 'Time',
-    title: 'Time instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Time)
   },
   {
     namespace: 'Dir',
-    title: 'Dir singleton methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: Dir.singleton_methods(false).map(&:to_s).uniq.sort
   },
   {
     namespace: 'File',
-    title: 'File singleton methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: File.singleton_methods(false).map(&:to_s).uniq.sort
   },
   {
     namespace: 'MatchData',
-    title: 'MatchData instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(MatchData)
   },
   {
     namespace: 'Numeric',
-    title: 'Numeric instance methods',
-    target: 'Ruby 3.3',
-    sourceKind: 'runtime',
-    sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: Numeric.instance_methods(false).map(&:to_s).uniq.sort
   }
 ]
@@ -223,17 +160,15 @@ puts JSON.generate({ language: 'ruby', namespaces: snapshots })
     throw new Error('Ruby upstream surface output was not an object')
   }
 
-  return parsed as {
+  const scoped = parsed as {
     language: string
     namespaces: Array<{
       namespace: string
-      title: string
-      target: string
-      sourceKind: 'runtime'
-      sourceRef: string
       entries: string[]
     }>
   }
+
+  return buildScopedUpstreamSurfaceSnapshot('ruby', scoped.namespaces)
 }
 
 /**

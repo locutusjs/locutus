@@ -6,9 +6,9 @@ import YAML from 'js-yaml'
 import { checkDockerAvailable, ensureDockerImage } from '../test/parity/lib/docker.ts'
 import { getLanguageHandler, getSupportedLanguages } from '../test/parity/lib/languages/index.ts'
 import {
-  findUpstreamSurfaceScopeCoverageIssues,
   formatUpstreamSurfaceScopeIssues,
   resolveUpstreamSurfaceLanguages,
+  selectUpstreamSurfaceScopeCoverageIssues,
 } from '../test/parity/lib/upstream-surface.ts'
 import { loadUpstreamSurfaceScope } from '../test/parity/lib/upstream-surface-scope.ts'
 import {
@@ -25,7 +25,11 @@ export interface UpstreamSurfaceEnumerationOptions {
   logger?: Pick<typeof console, 'log' | 'error'>
 }
 
-export function canEnumerateUpstreamSurfaceLanguage(language: string, mode: UpstreamSurfaceEnumerationMode, rootDir: string) {
+export function canEnumerateUpstreamSurfaceLanguage(
+  language: string,
+  mode: UpstreamSurfaceEnumerationMode,
+  rootDir: string,
+) {
   const handler = getLanguageHandler(language)
   if (handler?.upstreamSurface?.discover) {
     return true
@@ -116,9 +120,7 @@ export async function enumerateUpstreamSurfaceSnapshots({
     logger.log(`Using ${snapshotPath} (kept ${snapshot.namespaces[0]?.sourceKind ?? 'manual'} snapshot)`)
   }
 
-  const scopeIssues = findUpstreamSurfaceScopeCoverageIssues(enumeratedSnapshots, scope).filter((issue) =>
-    resolution.selected.includes(issue.language),
-  )
+  const scopeIssues = selectUpstreamSurfaceScopeCoverageIssues(enumeratedSnapshots, scope, resolution.selected)
   if (scopeIssues.length > 0) {
     logger.error(formatUpstreamSurfaceScopeIssues(scopeIssues))
     process.exit(1)

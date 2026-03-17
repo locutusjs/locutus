@@ -5,6 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const R_SKIP_LIST = new Set<string>([
@@ -14,7 +15,7 @@ export const R_SKIP_LIST = new Set<string>([
 const R_DOCKER_IMAGE = 'r-base:4.4.2'
 
 function discoverRUpstreamSurface() {
-  const discoverNamespace = (namespace: string, title: string, code: string) => {
+  const discoverNamespace = (namespace: string, code: string) => {
     const result = runInDocker(R_DOCKER_IMAGE, ['Rscript', '-e', code])
     if (!result.success) {
       throw new Error(result.error || `Unable to discover R upstream surface for ${namespace}`)
@@ -27,270 +28,235 @@ function discoverRUpstreamSurface() {
       .filter(Boolean)
       .sort()
 
-    return {
-      namespace,
-      title,
-      target: 'R 4.4',
-      sourceKind: 'runtime' as const,
-      sourceRef: namespace === 'base' ? R_DOCKER_IMAGE : `${R_DOCKER_IMAGE}:${namespace}`,
-      entries,
-    }
+    return { namespace, entries }
   }
 
-  return {
-    language: 'r',
-    namespaces: [
-      discoverNamespace(
-        'base',
-        'base package',
-        [
-          'vals <- ls(baseenv())',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = baseenv())))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'stats',
-        'stats package',
-        [
-          'library(stats)',
-          'vals <- ls(asNamespace("stats"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("stats"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'utils',
-        'utils package',
-        [
-          'library(utils)',
-          'vals <- ls(asNamespace("utils"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("utils"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'class',
-        'class package',
-        [
-          'suppressPackageStartupMessages(library(class))',
-          'vals <- ls(asNamespace("class"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("class"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'cluster',
-        'cluster package',
-        [
-          'suppressPackageStartupMessages(library(cluster))',
-          'vals <- ls(asNamespace("cluster"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("cluster"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'compiler',
-        'compiler package',
-        [
-          'library(compiler)',
-          'vals <- ls(asNamespace("compiler"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("compiler"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'foreign',
-        'foreign package',
-        [
-          'suppressPackageStartupMessages(library(foreign))',
-          'vals <- ls(asNamespace("foreign"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("foreign"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'graphics',
-        'graphics package',
-        [
-          'library(graphics)',
-          'vals <- ls(asNamespace("graphics"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("graphics"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'grid',
-        'grid package',
-        [
-          'library(grid)',
-          'vals <- ls(asNamespace("grid"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("grid"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'grDevices',
-        'grDevices package',
-        [
-          'library(grDevices)',
-          'vals <- ls(asNamespace("grDevices"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("grDevices"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'KernSmooth',
-        'KernSmooth package',
-        [
-          'suppressPackageStartupMessages(library(KernSmooth))',
-          'vals <- ls(asNamespace("KernSmooth"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("KernSmooth"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'lattice',
-        'lattice package',
-        [
-          'suppressPackageStartupMessages(library(lattice))',
-          'vals <- ls(asNamespace("lattice"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("lattice"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'MASS',
-        'MASS package',
-        [
-          'suppressPackageStartupMessages(library(MASS))',
-          'vals <- ls(asNamespace("MASS"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("MASS"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'Matrix',
-        'Matrix package',
-        [
-          'suppressPackageStartupMessages(library(Matrix))',
-          'vals <- ls(asNamespace("Matrix"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("Matrix"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'methods',
-        'methods package',
-        [
-          'library(methods)',
-          'vals <- ls(asNamespace("methods"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("methods"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'mgcv',
-        'mgcv package',
-        [
-          'suppressPackageStartupMessages(library(mgcv))',
-          'vals <- ls(asNamespace("mgcv"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("mgcv"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'nlme',
-        'nlme package',
-        [
-          'suppressPackageStartupMessages(library(nlme))',
-          'vals <- ls(asNamespace("nlme"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("nlme"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'nnet',
-        'nnet package',
-        [
-          'suppressPackageStartupMessages(library(nnet))',
-          'vals <- ls(asNamespace("nnet"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("nnet"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'parallel',
-        'parallel package',
-        [
-          'library(parallel)',
-          'vals <- ls(asNamespace("parallel"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("parallel"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'rpart',
-        'rpart package',
-        [
-          'suppressPackageStartupMessages(library(rpart))',
-          'vals <- ls(asNamespace("rpart"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("rpart"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'splines',
-        'splines package',
-        [
-          'library(splines)',
-          'vals <- ls(asNamespace("splines"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("splines"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'spatial',
-        'spatial package',
-        [
-          'suppressPackageStartupMessages(library(spatial))',
-          'vals <- ls(asNamespace("spatial"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("spatial"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'stats4',
-        'stats4 package',
-        [
-          'library(stats4)',
-          'vals <- ls(asNamespace("stats4"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("stats4"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'tools',
-        'tools package',
-        [
-          'library(tools)',
-          'vals <- ls(asNamespace("tools"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("tools"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-      discoverNamespace(
-        'survival',
-        'survival package',
-        [
-          'suppressPackageStartupMessages(library(survival))',
-          'vals <- ls(asNamespace("survival"))',
-          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("survival"))))])',
-          "cat(funs, sep='\\n')",
-        ].join('; '),
-      ),
-    ],
-  }
+  return buildScopedUpstreamSurfaceSnapshot('r', [
+    discoverNamespace(
+      'base',
+      [
+        'vals <- ls(baseenv())',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = baseenv())))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'stats',
+      [
+        'library(stats)',
+        'vals <- ls(asNamespace("stats"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("stats"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'utils',
+      [
+        'library(utils)',
+        'vals <- ls(asNamespace("utils"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("utils"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'class',
+      [
+        'suppressPackageStartupMessages(library(class))',
+        'vals <- ls(asNamespace("class"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("class"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'cluster',
+      [
+        'suppressPackageStartupMessages(library(cluster))',
+        'vals <- ls(asNamespace("cluster"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("cluster"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'compiler',
+      [
+        'library(compiler)',
+        'vals <- ls(asNamespace("compiler"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("compiler"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'foreign',
+      [
+        'suppressPackageStartupMessages(library(foreign))',
+        'vals <- ls(asNamespace("foreign"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("foreign"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'graphics',
+      [
+        'library(graphics)',
+        'vals <- ls(asNamespace("graphics"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("graphics"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'grid',
+      [
+        'library(grid)',
+        'vals <- ls(asNamespace("grid"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("grid"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'grDevices',
+      [
+        'library(grDevices)',
+        'vals <- ls(asNamespace("grDevices"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("grDevices"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'KernSmooth',
+      [
+        'suppressPackageStartupMessages(library(KernSmooth))',
+        'vals <- ls(asNamespace("KernSmooth"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("KernSmooth"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'lattice',
+      [
+        'suppressPackageStartupMessages(library(lattice))',
+        'vals <- ls(asNamespace("lattice"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("lattice"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'MASS',
+      [
+        'suppressPackageStartupMessages(library(MASS))',
+        'vals <- ls(asNamespace("MASS"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("MASS"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'Matrix',
+      [
+        'suppressPackageStartupMessages(library(Matrix))',
+        'vals <- ls(asNamespace("Matrix"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("Matrix"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'methods',
+      [
+        'library(methods)',
+        'vals <- ls(asNamespace("methods"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("methods"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'mgcv',
+      [
+        'suppressPackageStartupMessages(library(mgcv))',
+        'vals <- ls(asNamespace("mgcv"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("mgcv"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'nlme',
+      [
+        'suppressPackageStartupMessages(library(nlme))',
+        'vals <- ls(asNamespace("nlme"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("nlme"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'nnet',
+      [
+        'suppressPackageStartupMessages(library(nnet))',
+        'vals <- ls(asNamespace("nnet"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("nnet"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'parallel',
+      [
+        'library(parallel)',
+        'vals <- ls(asNamespace("parallel"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("parallel"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'rpart',
+      [
+        'suppressPackageStartupMessages(library(rpart))',
+        'vals <- ls(asNamespace("rpart"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("rpart"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'splines',
+      [
+        'library(splines)',
+        'vals <- ls(asNamespace("splines"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("splines"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'spatial',
+      [
+        'suppressPackageStartupMessages(library(spatial))',
+        'vals <- ls(asNamespace("spatial"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("spatial"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'stats4',
+      [
+        'library(stats4)',
+        'vals <- ls(asNamespace("stats4"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("stats4"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'tools',
+      [
+        'library(tools)',
+        'vals <- ls(asNamespace("tools"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("tools"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+    discoverNamespace(
+      'survival',
+      [
+        'suppressPackageStartupMessages(library(survival))',
+        'vals <- ls(asNamespace("survival"))',
+        'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("survival"))))])',
+        "cat(funs, sep='\\n')",
+      ].join('; '),
+    ),
+  ])
 }
 
 /**

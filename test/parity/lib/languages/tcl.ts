@@ -5,6 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 export const TCL_SKIP_LIST = new Set<string>([
   // None currently
@@ -13,7 +14,7 @@ export const TCL_SKIP_LIST = new Set<string>([
 const TCL_DOCKER_IMAGE = 'python:3.12'
 
 function discoverTclUpstreamSurface() {
-  const discoverNamespace = (namespace: string, title: string) => {
+  const discoverNamespace = (namespace: string) => {
     const code = [
       `set map [namespace ensemble configure ${namespace} -map]`,
       'puts [join [lsort [dict keys $map]] "\\n"]',
@@ -34,14 +35,7 @@ function discoverTclUpstreamSurface() {
       .filter(Boolean)
       .sort()
 
-    return {
-      namespace,
-      title,
-      target: 'Tcl 8.6',
-      sourceKind: 'runtime' as const,
-      sourceRef: TCL_DOCKER_IMAGE,
-      entries,
-    }
+    return { namespace, entries }
   }
 
   const discoverCoreCommands = () => {
@@ -76,59 +70,41 @@ function discoverTclUpstreamSurface() {
       .filter((line) => line && !excluded.has(line))
       .sort()
 
-    return {
-      namespace: 'core',
-      title: 'standalone core commands',
-      target: 'Tcl 8.6',
-      sourceKind: 'runtime' as const,
-      sourceRef: TCL_DOCKER_IMAGE,
-      entries,
-    }
+    return { namespace: 'core', entries }
   }
 
-  return {
-    language: 'tcl',
-    namespaces: [
-      discoverCoreCommands(),
-      discoverNamespace('array', 'array ensemble'),
-      discoverNamespace('binary', 'binary ensemble'),
-      discoverNamespace('chan', 'chan ensemble'),
-      discoverNamespace('clock', 'clock ensemble'),
-      discoverNamespace('dict', 'dict ensemble'),
-      discoverNamespace('encoding', 'encoding ensemble'),
-      discoverNamespace('file', 'file ensemble'),
-      discoverNamespace('info', 'info ensemble'),
-      discoverNamespace('namespace', 'namespace ensemble'),
-      {
-        namespace: 'package',
-        title: 'package command family',
-        target: 'Tcl 8.6',
-        sourceKind: 'manual' as const,
-        sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm',
-        entries: [
-          'forget',
-          'ifneeded',
-          'names',
-          'present',
-          'provide',
-          'require',
-          'unknown',
-          'vcompare',
-          'versions',
-          'vsatisfies',
-        ],
-      },
-      discoverNamespace('string', 'string ensemble'),
-      {
-        namespace: 'zlib',
-        title: 'zlib command family',
-        target: 'Tcl 8.6',
-        sourceKind: 'manual' as const,
-        sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm',
-        entries: ['adler32', 'compress', 'crc32', 'decompress', 'deflate', 'gunzip', 'gzip', 'inflate', 'push'],
-      },
-    ],
-  }
+  return buildScopedUpstreamSurfaceSnapshot('tcl', [
+    discoverCoreCommands(),
+    discoverNamespace('array'),
+    discoverNamespace('binary'),
+    discoverNamespace('chan'),
+    discoverNamespace('clock'),
+    discoverNamespace('dict'),
+    discoverNamespace('encoding'),
+    discoverNamespace('file'),
+    discoverNamespace('info'),
+    discoverNamespace('namespace'),
+    {
+      namespace: 'package',
+      entries: [
+        'forget',
+        'ifneeded',
+        'names',
+        'present',
+        'provide',
+        'require',
+        'unknown',
+        'vcompare',
+        'versions',
+        'vsatisfies',
+      ],
+    },
+    discoverNamespace('string'),
+    {
+      namespace: 'zlib',
+      entries: ['adler32', 'compress', 'crc32', 'decompress', 'deflate', 'gunzip', 'gzip', 'inflate', 'push'],
+    },
+  ])
 }
 
 function stripTrailingComment(code: string): string {

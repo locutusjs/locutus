@@ -1,872 +1,1081 @@
 awk:
   namespaces:
     builtin:
+      target: GNU AWK 5.3
       sourceKind: manual
       sourceRef: https://www.gnu.org/software/gawk/manual/
       title: GNU AWK built-ins
 c:
   namespaces:
     ctype:
+      target: C23
       sourceKind: manual
       sourceRef: https://en.cppreference.com/w/c/string/byte
       title: ctype.h
     math:
+      target: C23
       sourceKind: manual
       sourceRef: https://en.cppreference.com/w/c/numeric/math
       title: math.h
     stdio:
+      target: C23
       sourceKind: manual
       sourceRef: https://en.cppreference.com/w/c/io
       title: stdio.h
     stdlib:
+      target: C23
       sourceKind: manual
       sourceRef: https://en.cppreference.com/w/c/program
       title: stdlib.h
     string:
+      target: C23
       sourceKind: manual
       sourceRef: https://en.cppreference.com/w/c/string/byte
       title: string.h
 clojure:
   namespaces:
     core:
+      target: Clojure 1.12
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: clojure.core
     edn:
+      target: Clojure 1.12
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: clojure.edn
     set:
+      target: Clojure 1.12
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: clojure.set
     string:
+      target: Clojure 1.12
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: clojure.string
     walk:
+      target: Clojure 1.12
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: clojure.walk
     zip:
+      target: Clojure 1.12
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: clojure.zip
     Math:
+      target: Clojure 1.12
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: java.lang.Math
 elixir:
   namespaces:
     Base:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Base module
     Date:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Date module
     DateTime:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: DateTime module
     Enum:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Enum module
     Float:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Float module
     Integer:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Integer module
     Kernel:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Kernel module
     Keyword:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Keyword module
     List:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: List module
     Map:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Map module
     MapSet:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: MapSet module
     NaiveDateTime:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: NaiveDateTime module
     Regex:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Regex module
     String:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: String module
     Time:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Time module
     Tuple:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Tuple module
     URI:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: URI module
     Version:
+      target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Version module
 golang:
   namespaces:
     base64:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:encoding/base64
       title: encoding/base64 package
     bytes:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:bytes
       title: bytes package
     bits:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:math/bits
       title: math/bits package
     cmp:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:cmp
       title: cmp package
     hex:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:encoding/hex
       title: encoding/hex package
     filepath:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:path/filepath
       title: path/filepath package
     maps:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:maps
       title: maps package
     math:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:math
       title: math package
     net:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:net
       title: net package
     path:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:path
       title: path package
     slices:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:slices
       title: slices package
     sort:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:sort
       title: sort package
     strconv:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:strconv
       title: strconv package
     strings:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:strings
       title: strings package
     subtle:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:crypto/subtle
       title: crypto/subtle package
     time:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:time
       title: time package
     unicode:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:unicode
       title: unicode package
     utf8:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:unicode/utf8
       title: unicode/utf8 package
     url:
+      target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:net/url
       title: net/url package
 haskell:
   namespaces:
     char:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Char.html
       title: Data.Char module
     either:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Either.html
       title: Data.Either module
     list:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-List.html
       title: Data.List module
     maybe:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Maybe.html
       title: Data.Maybe module
     numeric:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Numeric.html
       title: Numeric module
     bool:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Bool.html
       title: Data.Bool module
     function:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Function.html
       title: Data.Function module
     ord:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Ord.html
       title: Data.Ord module
     tuple:
+      target: GHC base-4.21
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Tuple.html
       title: Data.Tuple module
 julia:
   namespaces:
     Base:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11
       title: Base module
     Dates:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Dates
       title: Dates module
     DelimitedFiles:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:DelimitedFiles
       title: DelimitedFiles module
     LinearAlgebra:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:LinearAlgebra
       title: LinearAlgebra module
     Random:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Random
       title: Random module
     Printf:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Printf
       title: Printf module
     Statistics:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Statistics
       title: Statistics module
     Unicode:
+      target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Unicode
       title: Unicode module
 kotlin:
   namespaces:
     arrays:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/
       title: kotlin.collections arrays
     collections:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/
       title: kotlin.collections package
     comparisons:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.comparisons/
       title: kotlin.comparisons package
     math:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.math/
       title: kotlin.math package
     ranges:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/
       title: kotlin.ranges package
     sequences:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.sequences/
       title: kotlin.sequences package
     random:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.random/
       title: kotlin.random package
     text:
+      target: Kotlin 2.2
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/
       title: kotlin.text package
 lua:
   namespaces:
     math:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: math library
     string:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: string library
     table:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: table library
     utf8:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: utf8 library
     os:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: os library
     io:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: io library
     coroutine:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: coroutine library
     package:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: package library
     debug:
+      target: Lua 5.4
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: debug library
 perl:
   namespaces:
     POSIX:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/POSIX
       title: POSIX module
     core:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/functions
       title: Perl core built-ins
     List::Util:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/List::Util
       title: List::Util module
     Math::Trig:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Math::Trig
       title: Math::Trig module
     Math::Complex:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Math::Complex
       title: Math::Complex module
     Scalar::Util:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Scalar::Util
       title: Scalar::Util module
     Encode:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Encode
       title: Encode module
     Text::ParseWords:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Text::ParseWords
       title: Text::ParseWords module
     Text::Tabs:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Text::Tabs
       title: Text::Tabs module
     File::Basename:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/File::Basename
       title: File::Basename module
     Unicode::Normalize:
+      target: Perl 5.40
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Unicode::Normalize
       title: Unicode::Normalize module
 php:
   namespaces:
     __global:
+      target: PHP 8.3
       sourceKind: runtime
       sourceRef: php:8.3-cli
       title: Global functions
 powershell:
   namespaces:
     string:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.string
       title: System.String instance methods
     math:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.math
       title: System.Math static methods
     char:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.char
       title: System.Char static methods
     convert:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.convert
       title: System.Convert static methods
     array:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.array
       title: System.Array static methods
     datetime:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.datetime
       title: System.DateTime static and instance methods
     uri:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.uri
       title: System.Uri static and instance methods
     guid:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.guid
       title: System.Guid static and instance methods
     version:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.version
       title: System.Version static and instance methods
     timespan:
+      target: PowerShell 7.4
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.timespan
       title: System.TimeSpan static and instance methods
 python:
   namespaces:
     builtins:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: builtins
     base64:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: base64
     bisect:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: bisect
     calendar:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: calendar
     cmath:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: cmath
     collections:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: collections
     csv:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: csv
     decimal:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: decimal
     functools:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: functools
     heapq:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: heapq
     hashlib:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: hashlib
     hmac:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: hmac
     html:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: html
     itertools:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: itertools
     json:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: json
     math:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: math
     operator:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: operator
     random:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: random
     re:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: re
     statistics:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: statistics
     string:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: string
     textwrap:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: textwrap
     unicodedata:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: unicodedata
     urllib.parse:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: urllib.parse
     difflib:
+      target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: difflib
 r:
   namespaces:
     base:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2
       title: base package
     stats:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:stats
       title: stats package
     utils:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:utils
       title: utils package
     class:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:class
       title: class package
     cluster:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:cluster
       title: cluster package
     compiler:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:compiler
       title: compiler package
     foreign:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:foreign
       title: foreign package
     graphics:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:graphics
       title: graphics package
     grid:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:grid
       title: grid package
     grDevices:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:grDevices
       title: grDevices package
     KernSmooth:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:KernSmooth
       title: KernSmooth package
     lattice:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:lattice
       title: lattice package
     MASS:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:MASS
       title: MASS package
     Matrix:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:Matrix
       title: Matrix package
     methods:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:methods
       title: methods package
     mgcv:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:mgcv
       title: mgcv package
     nlme:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:nlme
       title: nlme package
     nnet:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:nnet
       title: nnet package
     parallel:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:parallel
       title: parallel package
     rpart:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:rpart
       title: rpart package
     splines:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:splines
       title: splines package
     spatial:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:spatial
       title: spatial package
     stats4:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:stats4
       title: stats4 package
     tools:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:tools
       title: tools package
     survival:
+      target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:survival
       title: survival package
 ruby:
   namespaces:
     Array:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Array instance methods
     String:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: String instance methods
     Enumerable:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Enumerable instance methods
     Hash:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Hash instance methods
     Math:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Math module methods
     Integer:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Integer instance methods
     Float:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Float instance methods
     Comparable:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Comparable instance methods
     Range:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Range instance methods
     Regexp:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Regexp instance methods
     Symbol:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Symbol instance methods
     Time:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Time instance methods
     Dir:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Dir singleton methods
     File:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: File singleton methods
     MatchData:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: MatchData instance methods
     Numeric:
+      target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Numeric instance methods
 rust:
   namespaces:
     bool:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.bool.html
       title: bool primitive methods
     cmp:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/cmp/index.html
       title: std::cmp functions
     char:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.char.html
       title: char primitive methods
     str:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.str.html
       title: str primitive methods
     f32:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.f32.html
       title: f32 primitive methods
     f64:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.f64.html
       title: f64 primitive methods
     i32:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.i32.html
       title: i32 primitive methods
     option:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/option/enum.Option.html
       title: Option methods
     result:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/result/enum.Result.html
       title: Result methods
     slice:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.slice.html
       title: slice primitive methods
     u32:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.u32.html
       title: u32 primitive methods
     usize:
+      target: Rust 1.85
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.usize.html
       title: usize primitive methods
 swift:
   namespaces:
     Array:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/array
       title: Swift.Array
     Bool:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/bool
       title: Swift.Bool
     Character:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/character
       title: Swift.Character
     Dictionary:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/dictionary
       title: Swift.Dictionary
     Double:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/double
       title: Swift.Double
     Float:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/float
       title: Swift.Float
     Int:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/int
       title: Swift.Int
     Set:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/set
       title: Swift.Set
     String:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/string
       title: Swift.String
     Optional:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/optional
       title: Swift.Optional
     Substring:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/substring
       title: Swift.Substring
     UnicodeScalar:
+      target: Swift 6
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/unicode/scalar
       title: Swift.Unicode.Scalar
 tcl:
   namespaces:
     core:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: standalone core commands
     array:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: array ensemble
     binary:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: binary ensemble
     chan:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: chan ensemble
     clock:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: clock ensemble
     dict:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: dict ensemble
     encoding:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: encoding ensemble
     file:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: file ensemble
     info:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: info ensemble
     namespace:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: namespace ensemble
     package:
+      target: Tcl 8.6
       sourceKind: manual
       sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm
       title: package command family
     string:
+      target: Tcl 8.6
       sourceKind: runtime
       sourceRef: python:3.12
       title: string ensemble
     zlib:
+      target: Tcl 8.6
       sourceKind: manual
       sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm
       title: zlib command family

@@ -117,6 +117,7 @@ export interface EvaluateUpstreamSurfaceInput {
   languages: string[]
   snapshots: Map<string, UpstreamSurfaceSnapshot>
   inventory: UpstreamSurfaceInventory
+  scope?: UpstreamSurfaceScope
   getHandler: (language: string) => LanguageHandler | undefined
   getFunctions: (language: string) => RuntimeSurfaceLocutusFunction[]
 }
@@ -561,7 +562,13 @@ export function findUpstreamSurfaceScopeCoverageIssues(
       .filter((issue): issue is UpstreamSurfaceScopeSourceMismatch => !!issue)
       .sort((left, right) => left.namespace.localeCompare(right.namespace))
 
-    if (!languageScope || !snapshot || missingNamespaces.length || unexpectedNamespaces.length || sourceMismatches.length) {
+    if (
+      !languageScope ||
+      !snapshot ||
+      missingNamespaces.length ||
+      unexpectedNamespaces.length ||
+      sourceMismatches.length
+    ) {
       issues.push({
         language,
         missingLanguage: !languageScope || !snapshot,
@@ -575,7 +582,19 @@ export function findUpstreamSurfaceScopeCoverageIssues(
   return issues
 }
 
+export function selectUpstreamSurfaceScopeCoverageIssues(
+  snapshots: Map<string, UpstreamSurfaceSnapshot>,
+  scope: UpstreamSurfaceScope,
+  languages: string[],
+): UpstreamSurfaceScopeCoverageIssue[] {
+  const selected = new Set(languages)
+  return findUpstreamSurfaceScopeCoverageIssues(snapshots, scope).filter((issue) => selected.has(issue.language))
+}
+
 export function evaluateUpstreamSurface(input: EvaluateUpstreamSurfaceInput): EvaluatedUpstreamSurface {
+  const scopeIssues = input.scope
+    ? selectUpstreamSurfaceScopeCoverageIssues(input.snapshots, input.scope, input.languages)
+    : []
   const coverageIssues = findUpstreamSurfaceInventoryCoverageIssues(input.snapshots, input.inventory)
   const languages = input.languages.map((language) => {
     const handler = input.getHandler(language)
@@ -599,7 +618,7 @@ export function evaluateUpstreamSurface(input: EvaluateUpstreamSurfaceInput): Ev
   })
 
   return {
-    scopeIssues: [],
+    scopeIssues,
     coverageIssues,
     languages,
   }

@@ -98,6 +98,7 @@ export type UpstreamSurfaceInventory = Record<string, UpstreamSurfaceLanguageInv
 
 export interface UpstreamSurfaceNamespaceScope {
   title?: string | undefined
+  target: string
   sourceKind: UpstreamSurfaceSourceKind
   sourceRef: string
 }

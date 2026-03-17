@@ -5,26 +5,13 @@
  * upstream surface for the stdlib namespaces we ship from.
  */
 
-import type { LanguageHandler } from '../types.ts'
+import { createInventoryOnlyLanguageHandler } from '../upstream-surface-scope.ts'
 
 export const KOTLIN_SKIP_LIST = new Set<string>([])
 
-export const kotlinHandler: LanguageHandler = {
-  translate: () => '',
-  normalize: (output) => output.trim(),
-  skipList: KOTLIN_SKIP_LIST,
+export const kotlinHandler = createInventoryOnlyLanguageHandler({
   dockerImage: 'kotlin:2.2',
   displayName: 'Kotlin',
   version: '2.2',
-  get parityValue() {
-    return `${this.displayName} ${this.version}`
-  },
-  dockerCmd: () => ['sh', '-lc', 'exit 1'],
-  mountRepo: false,
-  upstreamSurface: {
-    getLocutusEntry: (func) => ({
-      namespace: func.category,
-      name: func.name,
-    }),
-  },
-}
+  skipList: KOTLIN_SKIP_LIST,
+})

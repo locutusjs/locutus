@@ -5,6 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // String module constants (called without parentheses in Python)
 const STRING_CONSTANTS = new Set([
@@ -101,10 +102,6 @@ for namespace, config in modules.items():
   )
   snapshots.append({
     "namespace": namespace,
-    "title": namespace,
-    "target": "Python 3.12",
-    "sourceKind": "runtime",
-    "sourceRef": "${PYTHON_DOCKER_IMAGE}",
     "entries": entries,
   })
 
@@ -121,17 +118,15 @@ print(json.dumps({"language": "python", "namespaces": snapshots}))
     throw new Error('Python upstream surface output was not an object')
   }
 
-  return parsed as {
+  const scoped = parsed as {
     language: string
     namespaces: Array<{
       namespace: string
-      title: string
-      target: string
-      sourceKind: 'runtime'
-      sourceRef: string
       entries: string[]
     }>
   }
+
+  return buildScopedUpstreamSurfaceSnapshot('python', scoped.namespaces)
 }
 
 function splitArgs(argsText: string): string[] {
