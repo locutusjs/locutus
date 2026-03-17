@@ -5,6 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // String module constants (called without parentheses in Python)
 const STRING_CONSTANTS = new Set([
@@ -27,37 +28,80 @@ export const PYTHON_SKIP_LIST = new Set<string>([
 const PYTHON_DOCKER_IMAGE = 'python:3.12'
 function discoverPythonUpstreamSurface() {
   const script = `
+import builtins
+import base64
+import csv
+import calendar
 import difflib
+import bisect
+import cmath
+import collections
+import decimal
+import functools
+import heapq
+import hashlib
+import hmac
+import html
 import inspect
+import itertools
 import json
 import math
+import operator
+import random
 import re
+import statistics
 import string
+import textwrap
+import unicodedata
+import urllib.parse as urllib_parse
 
 modules = {
-  "math": math,
-  "re": re,
-  "string": string,
-  "difflib": difflib,
+  "builtins": {"module": builtins, "allowedModules": ["builtins", "io"]},
+  "base64": {"module": base64, "allowedModules": ["base64"]},
+  "bisect": {"module": bisect, "allowedModules": ["bisect", "_bisect"]},
+  "calendar": {"module": calendar, "allowedModules": ["calendar"]},
+  "cmath": {"module": cmath, "allowedModules": ["cmath"]},
+  "collections": {"module": collections, "allowedModules": ["collections"]},
+  "csv": {"module": csv, "allowedModules": ["csv", "_csv"]},
+  "decimal": {"module": decimal, "allowedModules": ["decimal"]},
+  "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
+  "heapq": {"module": heapq, "allowedModules": ["heapq", "_heapq"]},
+  "hashlib": {"module": hashlib, "allowedModules": ["hashlib", "_hashlib"]},
+  "hmac": {"module": hmac, "allowedModules": ["hmac"]},
+  "html": {"module": html, "allowedModules": ["html"]},
+  "itertools": {"module": itertools, "allowedModules": ["itertools"]},
+  "json": {"module": json, "allowedModules": ["json"]},
+  "math": {"module": math, "allowedModules": ["math"]},
+  "operator": {"module": operator, "allowedModules": ["operator", "_operator"]},
+  "random": {"module": random, "allowedModules": ["random", "_random"]},
+  "re": {"module": re, "allowedModules": ["re"]},
+  "statistics": {"module": statistics, "allowedModules": ["statistics"]},
+  "string": {"module": string, "allowedModules": ["string"]},
+  "textwrap": {"module": textwrap, "allowedModules": ["textwrap"]},
+  "unicodedata": {"module": unicodedata, "allowedModules": ["unicodedata"]},
+  "urllib.parse": {"module": urllib_parse, "allowedModules": ["urllib.parse"]},
+  "difflib": {"module": difflib, "allowedModules": ["difflib"]},
 }
 
 snapshots = []
-for namespace, module in modules.items():
+for namespace, config in modules.items():
+  module = config["module"]
+  allowed_modules = set(config["allowedModules"])
   entries = sorted(
     name
     for name in dir(module)
     if not name.startswith("_")
     and (
       name in ${JSON.stringify([...STRING_CONSTANTS].sort())}
-      or inspect.isroutine(getattr(module, name))
+      or (
+        callable(getattr(module, name))
+        and not name[:1].isupper()
+        and getattr(getattr(module, name), "__module__", namespace) in allowed_modules
+      )
     )
   )
   snapshots.append({
     "namespace": namespace,
-    "title": namespace,
-    "target": "Python 3.12",
-    "sourceKind": "runtime",
-    "sourceRef": "${PYTHON_DOCKER_IMAGE}",
     "entries": entries,
   })
 
@@ -74,17 +118,15 @@ print(json.dumps({"language": "python", "namespaces": snapshots}))
     throw new Error('Python upstream surface output was not an object')
   }
 
-  return parsed as {
+  const scoped = parsed as {
     language: string
     namespaces: Array<{
       namespace: string
-      title: string
-      target: string
-      sourceKind: 'runtime'
-      sourceRef: string
       entries: string[]
     }>
   }
+
+  return buildScopedUpstreamSurfaceSnapshot('python', scoped.namespaces)
 }
 
 function splitArgs(argsText: string): string[] {

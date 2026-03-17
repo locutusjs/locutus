@@ -9,11 +9,10 @@ import { getLanguageHandler, getSupportedLanguages } from '../../test/parity/lib
 import { findFunctionSources } from '../../test/parity/lib/parser.ts'
 import {
   buildUpstreamSurfaceSiteData,
-  evaluateUpstreamSurface,
+  evaluateRepoUpstreamSurface,
   formatInventoryCoverageIssues,
+  formatUpstreamSurfaceScopeIssues,
 } from '../../test/parity/lib/upstream-surface.ts'
-import { loadUpstreamSurfaceInventory } from '../../test/parity/lib/upstream-surface-inventory.ts'
-import { loadUpstreamSurfaceSnapshots } from '../../test/parity/lib/upstream-surface-snapshots.ts'
 import { isValidHeaderKey, validateHeaderKeys } from './headerSchema.ts'
 
 const debug = Debug('locutus:utils')
@@ -436,6 +435,15 @@ class Util {
     }
   }
 
+  async injectupstreamsurface(cb: Callback): Promise<void> {
+    try {
+      await this._injectUpstreamSurfaceData()
+      cb(null)
+    } catch (err) {
+      cb(err instanceof Error ? err : new Error(String(err)))
+    }
+  }
+
   async reindex(cb: Callback): Promise<void> {
     try {
       this._reindexBuffer = {}
@@ -714,15 +722,15 @@ class Util {
     }
     debug('copied upstream surface snapshots to website')
 
-    const inventory = loadUpstreamSurfaceInventory(inventorySrc)
-    const snapshots = loadUpstreamSurfaceSnapshots(snapshotSrcDir)
-    const evaluation = evaluateUpstreamSurface({
+    const evaluation = evaluateRepoUpstreamSurface({
+      rootDir: this.__root,
       languages: getSupportedLanguages(),
-      snapshots,
-      inventory,
       getHandler: getLanguageHandler,
       getFunctions: (language) => findFunctionSources(path.join(this.__root, 'src'), language),
     })
+    if (evaluation.scopeIssues.length > 0) {
+      throw new Error(formatUpstreamSurfaceScopeIssues(evaluation.scopeIssues))
+    }
     const coverageIssues = evaluation.coverageIssues
     if (coverageIssues.length > 0) {
       throw new Error(formatInventoryCoverageIssues(coverageIssues))

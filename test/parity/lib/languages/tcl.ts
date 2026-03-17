@@ -2,14 +2,110 @@
  * Tcl language handler for verification
  */
 
+import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 export const TCL_SKIP_LIST = new Set<string>([
   // None currently
 ])
 
 const TCL_DOCKER_IMAGE = 'python:3.12'
+
+function discoverTclUpstreamSurface() {
+  const discoverNamespace = (namespace: string) => {
+    const code = [
+      `set map [namespace ensemble configure ${namespace} -map]`,
+      'puts [join [lsort [dict keys $map]] "\\n"]',
+    ].join('\n')
+    const result = runInDocker(TCL_DOCKER_IMAGE, [
+      'sh',
+      '-lc',
+      `cat <<'__LOCUTUS_TCL__' | tclsh\n${code}\n__LOCUTUS_TCL__`,
+    ])
+    if (!result.success) {
+      throw new Error(result.error || `Unable to discover Tcl upstream surface for ${namespace}`)
+    }
+
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .sort()
+
+    return { namespace, entries }
+  }
+
+  const discoverCoreCommands = () => {
+    const result = runInDocker(TCL_DOCKER_IMAGE, [
+      'sh',
+      '-lc',
+      'cat <<\'__LOCUTUS_TCL__\' | tclsh\nputs [join [lsort [info commands]] "\\n"]\n__LOCUTUS_TCL__',
+    ])
+    if (!result.success) {
+      throw new Error(result.error || 'Unable to discover Tcl upstream surface for core')
+    }
+
+    const excluded = new Set([
+      'array',
+      'binary',
+      'chan',
+      'clock',
+      'dict',
+      'encoding',
+      'file',
+      'info',
+      'namespace',
+      'package',
+      'string',
+      'zlib',
+    ])
+
+    const entries = result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line && !excluded.has(line))
+      .sort()
+
+    return { namespace: 'core', entries }
+  }
+
+  return buildScopedUpstreamSurfaceSnapshot('tcl', [
+    discoverCoreCommands(),
+    discoverNamespace('array'),
+    discoverNamespace('binary'),
+    discoverNamespace('chan'),
+    discoverNamespace('clock'),
+    discoverNamespace('dict'),
+    discoverNamespace('encoding'),
+    discoverNamespace('file'),
+    discoverNamespace('info'),
+    discoverNamespace('namespace'),
+    {
+      namespace: 'package',
+      entries: [
+        'forget',
+        'ifneeded',
+        'names',
+        'present',
+        'provide',
+        'require',
+        'unknown',
+        'vcompare',
+        'versions',
+        'vsatisfies',
+      ],
+    },
+    discoverNamespace('string'),
+    {
+      namespace: 'zlib',
+      entries: ['adler32', 'compress', 'crc32', 'decompress', 'deflate', 'gunzip', 'gzip', 'inflate', 'push'],
+    },
+  ])
+}
 
 function stripTrailingComment(code: string): string {
   let inString: string | null = null
@@ -307,6 +403,7 @@ export const tclHandler: LanguageHandler = {
   dockerCmd: (code: string) => ['sh', '-lc', `cat <<'__LOCUTUS_TCL__' | tclsh\n${code}\n__LOCUTUS_TCL__`],
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverTclUpstreamSurface,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

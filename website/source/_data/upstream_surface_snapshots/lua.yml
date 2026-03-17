@@ -60,3 +60,106 @@ namespaces:
       - sub
       - unpack
       - upper
+  - namespace: table
+    title: table library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - concat
+      - insert
+      - move
+      - pack
+      - remove
+      - sort
+      - unpack
+  - namespace: utf8
+    title: utf8 library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - char
+      - codepoint
+      - codes
+      - len
+      - offset
+  - namespace: os
+    title: os library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - clock
+      - date
+      - difftime
+      - execute
+      - exit
+      - getenv
+      - remove
+      - rename
+      - setlocale
+      - time
+      - tmpname
+  - namespace: io
+    title: io library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - close
+      - flush
+      - input
+      - lines
+      - open
+      - output
+      - popen
+      - read
+      - tmpfile
+      - type
+      - write
+  - namespace: coroutine
+    title: coroutine library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - close
+      - create
+      - isyieldable
+      - resume
+      - running
+      - status
+      - wrap
+      - yield
+  - namespace: package
+    title: package library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - loadlib
+      - searchpath
+  - namespace: debug
+    title: debug library
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine
+    entries:
+      - debug
+      - gethook
+      - getinfo
+      - getlocal
+      - getmetatable
+      - getregistry
+      - getupvalue
+      - getuservalue
+      - setcstacklimit
+      - sethook
+      - setlocal
+      - setmetatable
+      - setupvalue
+      - setuservalue
+      - traceback
+      - upvalueid
+      - upvaluejoin

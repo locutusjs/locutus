@@ -1,5 +1,167 @@
 language: golang
 namespaces:
+  - namespace: base64
+    title: encoding/base64 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/base64
+    entries:
+      - AppendDecode
+      - AppendEncode
+      - Decode
+      - DecodeString
+      - DecodedLen
+      - Encode
+      - EncodeToString
+      - EncodedLen
+      - NewDecoder
+      - NewEncoder
+      - NewEncoding
+      - Strict
+      - WithPadding
+  - namespace: bytes
+    title: bytes package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:bytes
+    entries:
+      - Clone
+      - Compare
+      - Contains
+      - ContainsAny
+      - ContainsFunc
+      - ContainsRune
+      - Count
+      - Cut
+      - CutPrefix
+      - CutSuffix
+      - Equal
+      - EqualFold
+      - Fields
+      - FieldsFunc
+      - HasPrefix
+      - HasSuffix
+      - Index
+      - IndexAny
+      - IndexByte
+      - IndexFunc
+      - IndexRune
+      - Join
+      - LastIndex
+      - LastIndexAny
+      - LastIndexByte
+      - LastIndexFunc
+      - Map
+      - NewBuffer
+      - NewBufferString
+      - NewReader
+      - Repeat
+      - Replace
+      - ReplaceAll
+      - Runes
+      - Split
+      - SplitAfter
+      - SplitAfterN
+      - SplitN
+      - Title
+      - ToLower
+      - ToLowerSpecial
+      - ToTitle
+      - ToTitleSpecial
+      - ToUpper
+      - ToUpperSpecial
+      - ToValidUTF8
+      - Trim
+      - TrimFunc
+      - TrimLeft
+      - TrimLeftFunc
+      - TrimPrefix
+      - TrimRight
+      - TrimRightFunc
+      - TrimSpace
+      - TrimSuffix
+  - namespace: bits
+    title: math/bits package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:math/bits
+    entries:
+      - Add
+      - Add32
+      - Add64
+      - Div
+      - Div32
+      - Div64
+      - LeadingZeros
+      - LeadingZeros16
+      - LeadingZeros32
+      - LeadingZeros64
+      - LeadingZeros8
+      - Len
+      - Len16
+      - Len32
+      - Len64
+      - Len8
+      - Mul
+      - Mul32
+      - Mul64
+      - OnesCount
+      - OnesCount16
+      - OnesCount32
+      - OnesCount64
+      - OnesCount8
+      - Rem
+      - Rem32
+      - Rem64
+      - Reverse
+      - Reverse16
+      - Reverse32
+      - Reverse64
+      - Reverse8
+      - ReverseBytes
+      - ReverseBytes16
+      - ReverseBytes32
+      - ReverseBytes64
+      - RotateLeft
+      - RotateLeft16
+      - RotateLeft32
+      - RotateLeft64
+      - RotateLeft8
+      - Sub
+      - Sub32
+      - Sub64
+      - TrailingZeros
+      - TrailingZeros16
+      - TrailingZeros32
+      - TrailingZeros64
+      - TrailingZeros8
+  - namespace: cmp
+    title: cmp package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:cmp
+    entries:
+      - Compare
+      - Less
+      - Or
+  - namespace: hex
+    title: encoding/hex package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/hex
+    entries:
+      - AppendDecode
+      - AppendEncode
+      - Decode
+      - DecodeString
+      - DecodedLen
+      - Dump
+      - Dumper
+      - Encode
+      - EncodeToString
+      - EncodedLen
+      - NewDecoder
+      - NewEncoder
   - namespace: filepath
     title: path/filepath package
     target: Go 1.23
@@ -27,6 +189,95 @@ namespaces:
       - VolumeName
       - Walk
       - WalkDir
+  - namespace: maps
+    title: maps package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:maps
+    entries:
+      - All
+      - Clone
+      - Collect
+      - Copy
+      - DeleteFunc
+      - Equal
+      - EqualFunc
+      - Insert
+      - Keys
+      - Values
+  - namespace: math
+    title: math package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:math
+    entries:
+      - Abs
+      - Acos
+      - Acosh
+      - Asin
+      - Asinh
+      - Atan
+      - Atan2
+      - Atanh
+      - Cbrt
+      - Ceil
+      - Copysign
+      - Cos
+      - Cosh
+      - Dim
+      - Erf
+      - Erfc
+      - Erfcinv
+      - Erfinv
+      - Exp
+      - Exp2
+      - Expm1
+      - FMA
+      - Float32bits
+      - Float32frombits
+      - Float64bits
+      - Float64frombits
+      - Floor
+      - Frexp
+      - Gamma
+      - Hypot
+      - Ilogb
+      - Inf
+      - IsInf
+      - IsNaN
+      - J0
+      - J1
+      - Jn
+      - Ldexp
+      - Lgamma
+      - Log
+      - Log10
+      - Log1p
+      - Log2
+      - Logb
+      - Max
+      - Min
+      - Mod
+      - Modf
+      - NaN
+      - Nextafter
+      - Nextafter32
+      - Pow
+      - Pow10
+      - Remainder
+      - Round
+      - RoundToEven
+      - Signbit
+      - Sin
+      - Sincos
+      - Sinh
+      - Sqrt
+      - Tan
+      - Tanh
+      - Trunc
+      - Y0
+      - Y1
+      - Yn
   - namespace: net
     title: net package
     target: Go 1.23
@@ -92,6 +343,52 @@ namespaces:
       - Join
       - Match
       - Split
+  - namespace: slices
+    title: slices package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:slices
+    entries:
+      - All
+      - AppendSeq
+      - Backward
+      - BinarySearch
+      - BinarySearchFunc
+      - Chunk
+      - Clip
+      - Clone
+      - Collect
+      - Compact
+      - CompactFunc
+      - Compare
+      - CompareFunc
+      - Concat
+      - Contains
+      - ContainsFunc
+      - Delete
+      - DeleteFunc
+      - Equal
+      - EqualFunc
+      - Grow
+      - Index
+      - IndexFunc
+      - Insert
+      - IsSorted
+      - IsSortedFunc
+      - Max
+      - MaxFunc
+      - Min
+      - MinFunc
+      - Repeat
+      - Replace
+      - Reverse
+      - Sort
+      - SortFunc
+      - SortStableFunc
+      - Sorted
+      - SortedFunc
+      - SortedStableFunc
+      - Values
   - namespace: sort
     title: sort package
     target: Go 1.23
@@ -292,6 +589,54 @@ namespaces:
       - YearDay
       - Zone
       - ZoneBounds
+  - namespace: unicode
+    title: unicode package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:unicode
+    entries:
+      - In
+      - Is
+      - IsControl
+      - IsDigit
+      - IsGraphic
+      - IsLetter
+      - IsLower
+      - IsMark
+      - IsNumber
+      - IsOneOf
+      - IsPrint
+      - IsPunct
+      - IsSpace
+      - IsSymbol
+      - IsTitle
+      - IsUpper
+      - SimpleFold
+      - To
+      - ToLower
+      - ToTitle
+      - ToUpper
+  - namespace: utf8
+    title: unicode/utf8 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:unicode/utf8
+    entries:
+      - AppendRune
+      - DecodeLastRune
+      - DecodeLastRuneInString
+      - DecodeRune
+      - DecodeRuneInString
+      - EncodeRune
+      - FullRune
+      - FullRuneInString
+      - RuneCount
+      - RuneCountInString
+      - RuneLen
+      - RuneStart
+      - Valid
+      - ValidRune
+      - ValidString
   - namespace: url
     title: net/url package
     target: Go 1.23

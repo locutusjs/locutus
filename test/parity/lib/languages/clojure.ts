@@ -8,6 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, type JsObjectProperty, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const CLOJURE_SKIP_LIST = new Set<string>([
@@ -18,7 +19,7 @@ export const CLOJURE_SKIP_LIST = new Set<string>([
 const CLOJURE_DOCKER_IMAGE = 'clojure:temurin-21-tools-deps'
 
 function discoverClojureUpstreamSurface() {
-  const discoverNamespace = (namespace: string, title: string, form: string) => {
+  const discoverNamespace = (namespace: string, form: string) => {
     const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', form])
     if (!result.success) {
       throw new Error(result.error || `Unable to discover Clojure upstream surface for ${namespace}`)
@@ -33,34 +34,37 @@ function discoverClojureUpstreamSurface() {
 
     return {
       namespace,
-      title,
-      target: 'Clojure 1.12',
-      sourceKind: 'runtime' as const,
-      sourceRef: CLOJURE_DOCKER_IMAGE,
       entries,
     }
   }
 
-  return {
-    language: 'clojure',
-    namespaces: [
-      discoverNamespace(
-        'core',
-        'clojure.core',
-        '(doseq [s (sort (map name (keys (ns-publics (quote clojure.core)))))] (println s))',
-      ),
-      discoverNamespace(
-        'string',
-        'clojure.string',
-        "(require '[clojure.string]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.string)))))] (println s))",
-      ),
-      discoverNamespace(
-        'Math',
-        'java.lang.Math',
-        '(doseq [s (sort (map #(.getName %) (filter #(java.lang.reflect.Modifier/isStatic (.getModifiers %)) (.getMethods java.lang.Math))))] (println s))',
-      ),
-    ],
-  }
+  return buildScopedUpstreamSurfaceSnapshot('clojure', [
+    discoverNamespace('core', '(doseq [s (sort (map name (keys (ns-publics (quote clojure.core)))))] (println s))'),
+    discoverNamespace(
+      'edn',
+      "(require '[clojure.edn]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.edn)))))] (println s))",
+    ),
+    discoverNamespace(
+      'set',
+      "(require '[clojure.set]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.set)))))] (println s))",
+    ),
+    discoverNamespace(
+      'string',
+      "(require '[clojure.string]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.string)))))] (println s))",
+    ),
+    discoverNamespace(
+      'walk',
+      "(require '[clojure.walk]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.walk)))))] (println s))",
+    ),
+    discoverNamespace(
+      'zip',
+      "(require '[clojure.zip]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.zip)))))] (println s))",
+    ),
+    discoverNamespace(
+      'Math',
+      '(doseq [s (sort (map #(.getName %) (filter #(java.lang.reflect.Modifier/isStatic (.getModifiers %)) (.getMethods java.lang.Math))))] (println s))',
+    ),
+  ])
 }
 
 const CLOJURE_PARITY_PRELUDE = `

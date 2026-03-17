@@ -2319,3 +2319,261 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `gh run view 23158185148 --json status,conclusion,jobs`
 - Key learnings:
   - Once the inventory is clean and website-backed, larger function harvests become operationally cheaper than many tiny PRs, even with long parity gates.
+
+### Iteration 118
+
+2026-03-16
+
+- **Area: Upstream surface breadth expansion**
+- Plan:
+  - Stop treating `untriaged: 0` as the same thing as full language coverage; keep the inventory honest about tracked scope while broadening it namespace-by-namespace.
+  - Expand the cheapest high-signal upstream namespaces first so language pages become more representative without exploding maintenance cost.
+  - Keep triage efficient by leaning on namespace defaults and wildcard rules, reserving exact entries for real exceptions.
+- Progress:
+  - Added language-level `scopeNote` support so inventory-backed pages can state when they only track a curated subset of the upstream surface.
+  - Broadened live-discovered inventories for Python (`bisect`, `functools`, `itertools`, `operator`, `statistics`), Ruby (`Enumerable`, `Hash`), Elixir (`Integer`, `List`, `Map`), and Lua (`table`).
+  - Classified the new namespaces with compact defaults and exception rules so the broadened inventory stays at `untriaged: 0` while becoming materially more representative.
+  - Updated the website inventory panel to show tracked namespace counts and scope notes instead of implying that every language page already reflects the full upstream language surface.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python ruby elixir lua`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn injectweb`
+  - `corepack yarn website:clean && corepack yarn website:build && corepack yarn website:verify`
+  - `corepack yarn check`
+- Key learnings:
+  - The scalable way to broaden this roadmap is not one-entry-at-a-time triage; it is honest scope labels plus aggressive namespace defaults, then selective exact overrides where the model really diverges.
+
+### Iteration 119
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Finish the current breadth-expansion PR as one atomic merge instead of treating the first broaden pass as a midpoint.
+  - Extend the cheapest remaining core namespaces so the language pages become materially more representative, not just more honest about being partial.
+- Progress:
+  - Added Python `builtins` to the tracked upstream surface with compact keep/skip/wanted decisions for pure coercion, collection, and formatting helpers versus introspection, evaluation, and I/O.
+  - Broadened Tcl from `string` only to `string` plus `dict`, and switched the Tcl snapshots from manual data to live runtime discovery from the parity container.
+  - Expanded Lua from `math`/`string`/`table` into the rest of the core standard tables: `utf8`, `os`, `io`, `coroutine`, `package`, and `debug`.
+  - Expanded Perl from `core`/`POSIX` into `List::Util` and `Scalar::Util`, with low-noise defaults for collection helpers versus runtime/reference introspection.
+  - Kept the Tcl `regsub` mismatch explicit as a scoped intentional extra under the existing `string` category, since upstream exposes it as a standalone command rather than a `string` ensemble subcommand.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python lua tcl`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+- Key learnings:
+  - The efficient path to “complete enough” inventory coverage is to keep broad root-language claims honest with scope notes, then spend real expansion effort only on namespaces whose discovery is cheap and whose backlog signal is strong.
+
+### Iteration 120
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep the same one-PR path open until the narrowest remaining language pages stop looking artificially single-namespace.
+  - Fill the cheapest remaining scope gaps with compact manual catalogs where live discovery is not worth the extra complexity yet.
+- Progress:
+  - Added PowerShell `System.Math` as the next tracked .NET surface so the language page is no longer only about `System.String`.
+  - Added Tcl standalone value commands as a `core` namespace to complement the `string` and `dict` ensembles.
+  - Added Rust `std::cmp` helper coverage so Rust is no longer represented only by `str`.
+  - Updated scope notes to make the remaining subset boundaries explicit rather than implying full ecosystem coverage.
+- Validation:
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn website:verify`
+
+### Iteration 121
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep broadening the most obviously subset-scoped languages only where the next namespace is standard-library, cheap to discover, and high-signal.
+  - Prefer stdlib modules with strong plain-value statistical/math surfaces over broader ecosystem/package explosions.
+- Progress:
+  - Added Julia `Statistics` runtime discovery and policy so Julia is no longer represented solely by `Base`.
+  - Added R `stats` runtime discovery and a narrow plain-value wishlist (`cor`, `cov`, `median`, `quantile`, `sd`, `var`, `weighted.mean`, `mad`, `fivenum`) instead of pretending the whole package is one broad target.
+  - Kept both scope notes explicit so the website now says these languages still track curated standard-library slices rather than full ecosystems.
+- Validation:
+  - `corepack yarn refresh:upstream-surface julia r`
+  - `corepack yarn test:upstream-surface`
+
+### Iteration 122
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep the same atomic PR moving by widening the remaining narrowest standard-library slices rather than deepening one language too early.
+  - Use runtime discovery where it is cheap and trustworthy, and small manual catalogs where that is the cleaner option.
+- Progress:
+  - Added Python `heapq` and `textwrap`, Ruby `Integer` and `Float`, Go `slices`, and Elixir `Tuple` to the tracked upstream inventory.
+  - Added PowerShell `System.Char` and Rust primitive `char` as manual inventory surfaces so those languages are no longer represented by only one or two categories.
+  - Fixed Go `go doc` parsing for generic functions so package inventories like `slices` record clean symbol names instead of signature fragments.
+  - Regenerated the mirrored website `_data` inventory artifacts so the site now reflects the broader scope on the same PR.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python ruby golang elixir`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build && corepack yarn website:verify`
+  - `corepack yarn check`
+- Key learnings:
+  - Generic upstream docs and runtime introspection need namespace-specific normalization hooks; otherwise the inventory stays “green” only by encoding upstream noise instead of real symbols.
+
+### Iteration 123
+
+2026-03-16
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Close the last structural inventory holes by tracking every language/category that already exists under `src/`, even where parity execution is not implemented yet.
+  - Keep this as inventory-only work: add upstream coverage first, leave actual function implementation for later harvest PRs.
+- Progress:
+  - Added upstream-surface tracking for the last untracked project languages: Haskell `list`, Kotlin `collections` / `text`, and Swift `String`.
+  - Added inventory-only handlers for those languages so the shared surface tooling and website can reason about them without pretending parity support already exists.
+  - Added curated manual snapshots and policy defaults for those namespaces, which means every language/category currently shipped in `src/` now has upstream-surface coverage.
+- Validation:
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build && corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - Treating missing language coverage as an inventory problem first is the fastest way to make the roadmap complete; parity support can follow later without blocking the catalog itself.
+
+### Iteration 124
+
+2026-03-17
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Treat “complete upstream tracking” as complete official core/stdlib scope per language, not the whole package ecosystem.
+  - Prefer live runtime discovery where it is reliable, and fall back to pinned upstream docs/source snapshots where runtime introspection is weak or impractical.
+  - Keep YAML cost low with namespace defaults and rules; only exceptions should need exact entries.
+- Progress:
+  - Reaffirmed the source-ordering rule for future breadth work: `runtime` first, then version-tagged docs/source manifests, then manual snapshots as the last resort.
+  - Confirmed the next real gap is no longer missing `src/<language>/<category>` coverage, but subset-scoped languages whose tracked surface still falls short of official core/stdlib scope.
+  - Chose the next efficient breadth wave accordingly: broaden runtime-discoverable standard-library modules first, while extending docs/source-driven languages via compact manual catalogs rather than waiting for parity support.
+  - Broadened Python again with `cmath`, `collections`, `decimal`, `random`, and `unicodedata`, while explicitly dropping `fractions` once runtime discovery showed it contributes no function surface worth cataloging.
+  - Broadened Ruby with `Comparable`, `Range`, `Regexp`, `Symbol`, and `Time`, so the inventory now covers a materially wider slice of Ruby core behavior than just collections, strings, and math.
+  - Broadened Elixir with `Base`, `Date`, `Keyword`, `NaiveDateTime`, and `URI`, keeping struct-heavy modules explicitly tracked but defaulted away from plain-value ports where appropriate.
+  - Broadened docs/manual languages with PowerShell `System.Convert` / `System.Array`, Rust primitive `f32` / `f64`, Kotlin `comparisons` / `math` / `ranges`, and Swift `Array` / `Character`.
+  - Kept the website mirror and website inventory views in sync through `injectupstreamsurface`, so the broader core/stdlib scope is visible without rerunning the full site-source generation path.
+- Validation:
+  - Inventory audit against current `src/` coverage and tracked scope notes before starting the next breadth wave.
+  - `corepack yarn refresh:upstream-surface python ruby elixir`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - “Untriaged: 0” only becomes strategically meaningful once the tracked scope is explicit and intentionally anchored to official core/stdlib boundaries.
+  - Runtime discovery is only worth keeping when it yields a real callable surface; empty or class-only modules like Python `fractions` should be dropped rather than preserved as misleading zero-entry namespaces.
+
+### Iteration 125
+
+2026-03-17
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep the completion bar sharp: official core/stdlib scope per supported language, with source ordering `runtime -> version-tagged docs/source -> manual snapshot`.
+  - Finish the most obviously undertracked standard-library areas first, especially where a single namespace/default can cheaply classify hundreds of upstream entries.
+- Progress:
+  - Logged the completion rule explicitly: “all surface-tracked” means complete official core/stdlib scope per language, not third-party ecosystems, and runtime-only empty modules should be dropped rather than kept as noise.
+  - Broadened Python again with `base64`, `calendar`, `html`, `json`, and `urllib.parse`, plus a broader URL/encoding wishlist and stricter plain-value skips around byte- and environment-heavy helpers.
+  - Broadened Go with `bytes`, `cmp`, `maps`, `unicode`, and `utf8`, and kept the `go doc` generic-symbol normalization in place so these packages compare cleanly.
+  - Broadened Tcl from a narrow `string`/`dict` slice to a much larger core command surface: standalone core commands plus `array`, `binary`, `chan`, `clock`, `encoding`, `file`, `info`, `namespace`, `package`, and `zlib`.
+  - Broadened R from `base` + `stats` to a broader official recommended-package surface by tracking `utils`, `graphics`, `grDevices`, `methods`, `stats4`, and `tools`.
+  - Broadened Julia with `Random`, `Printf`, and `Unicode`, Elixir with `DateTime`, `MapSet`, `Regex`, `Time`, and `Version`, and kept the struct-heavy/default-skip policy honest.
+  - Broadened docs-backed/manual languages further: Haskell `Data.Char` / `Data.Either` / `Data.Maybe` / `Numeric` / `Data.Tuple`, Perl `Math::Complex` / `Text::ParseWords` / `Text::Tabs`, PowerShell `System.DateTime` / `System.Uri`, Rust `bool` / `slice`, and Swift `Bool` / `Float` / `Int` / `Set`.
+  - Re-synced all mirrored website inventory artifacts through `injectupstreamsurface`, so the site now reflects these broader official core/stdlib catalogs without needing a full `injectweb`.
+- Validation:
+  - `corepack yarn refresh:upstream-surface tcl r julia elixir python golang clojure`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+  - `corepack yarn check`
+- Key learnings:
+  - The cheapest way to broaden language honesty is not deeper per-function policy, but adding official namespaces with sane defaults and only a handful of explicit exceptions.
+  - Tcl and R benefited most from switching from “high-signal subset” thinking to “full standard command/package surface with broad skip defaults”; that pattern is reusable for the remaining breadth waves too.
+
+### Iteration 126
+
+2026-03-17
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep pushing the same atomic PR until the tracked scope gets materially closer to official core/stdlib completion, especially for languages that still look obviously partial on the website.
+  - Prefer breadth waves that add whole namespaces with sane defaults, not more one-off per-function exceptions.
+  - Keep the completion rule explicit: runtime discovery first, then version-tagged docs/source catalogs, then manual snapshots only where the first two are impractical.
+- Progress:
+  - Broadened runtime-discovered Python again with `csv`, `hashlib`, and `hmac`, while tightening the `csv` discovery filter so `_csv`-backed callables stay visible instead of drifting into stale policy.
+  - Broadened Ruby with `Dir`, `File`, `MatchData`, and `Numeric`, which makes the Ruby page much more honest about core filesystem/path and regex-match surfaces without pretending they are all desirable ports.
+  - Broadened Go with `encoding/base64`, `encoding/hex`, `math`, and `math/bits`, plus the extra `Encoding` method discovery needed for `encoding/base64`.
+  - Broadened R further with `compiler`, `grid`, `parallel`, and `splines`, and explicitly dropped `datasets` again once runtime discovery showed it contributes no real callable helper surface worth tracking.
+  - Broadened Julia with `DelimitedFiles` and `LinearAlgebra`, and broadened Clojure with `clojure.walk` and `clojure.zip`.
+  - Broadened docs-backed/manual languages with PowerShell `System.Guid` / `System.Version` / `System.TimeSpan`, Rust `Option` / `Result` / `i32` / `u32` / `usize`, Swift `Optional` / `Substring` / `Unicode.Scalar`, Kotlin `kotlin.random`, Haskell `Data.Bool` / `Data.Function` / `Data.Ord`, and Perl `File::Basename` / `Unicode::Normalize`.
+  - Pulled R much closer to official recommended-package completion by tracking `class`, `cluster`, `foreign`, `KernSmooth`, `lattice`, `MASS`, `Matrix`, `mgcv`, `nlme`, `nnet`, `rpart`, `spatial`, and `survival`, mostly through broad defaults instead of noisy per-function exceptions.
+  - Reaffirmed the “drop empty runtime-only modules” rule in code, not just in prose, by removing R `datasets` from the tracked scope instead of preserving a misleading zero-entry namespace.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python ruby golang r julia clojure`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+  - `corepack yarn check`
+- Key learnings:
+  - The biggest remaining breadth wins now come from whole official namespaces, not from squeezing more nuance into already-tracked ones.
+  - Empty runtime namespaces are worse than absent ones: they imply coverage while adding no roadmap signal, so they should be removed rather than classified.
+
+### Iteration 127
+
+2026-03-17
+
+- **Area: Upstream surface workflow**
+- Plan:
+  - Make the existing upstream-surface tooling explicit as a three-step maintainer loop: enumerate, scope, check.
+  - Reuse the current refresh/check engine rather than introducing a second inventory system.
+  - Ensure one command can materialize the full tracked catalog across runtime, docs/source, and manual snapshots so we stop discovering scope accidentally.
+- Progress:
+  - Added a new explicit `enumerate:upstream-surface` entrypoint that materializes the full tracked catalog for selected languages, refreshing runtime-backed catalogs while validating and reusing curated docs/manual snapshots.
+  - Refactored the old `refresh:upstream-surface` script into a live-discovery-only alias over the same enumeration engine, so the system stays unified instead of drifting into parallel codepaths.
+  - Documented the intended maintainer loop as `enumerate -> inspect -> narrow-or-default -> check`, including the two legitimate responses when a namespace feels too broad: exclude it from tracked scope or keep it with a namespace default.
+  - Tightened selective CI routing so edits to the new enumeration entrypoint still trigger the upstream-surface gate.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn enumerate:upstream-surface swift php`
+  - `corepack yarn refresh:upstream-surface php`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - The missing piece was not another data model; it was a first-class full-catalog materialization command that includes manual/docs-backed languages as well as runtime-backed ones.
+  - Once enumeration and tracked scope are separated cleanly, “unknown territory” stops being a structural problem and becomes a deliberate scope choice.
+
+### Iteration 128
+
+2026-03-17
+
+- **Area: Upstream surface canonical scope**
+- Plan:
+  - Add a separate canonical discovery-scope manifest so the system can prove whether namespace discovery itself is complete, not just whether currently tracked scope is fully triaged.
+  - Make enumeration and check fail on missing expected namespaces, unexpected namespaces, and source/ref drift.
+- Progress:
+  - Added a new Zod-validated canonical scope loader in `test/parity/lib/upstream-surface-scope.ts`.
+  - Extended the upstream-surface checker and enumeration flow so they now validate snapshots against a separate `docs/upstream-surface-scope.yml` contract before inventory triage is even considered.
+  - Made the distinction explicit in docs: canonical scope defines what official core/stdlib namespaces should exist; snapshots record what discovery found; inventory decides what to port, keep, or skip.
+  - Added unit coverage for scope loading plus missing/unexpected/source-mismatch detection.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn enumerate:upstream-surface swift php`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - “Tracked scope is complete” and “discovery is complete” are different guarantees; we now need both.
+  - The right canonical layer is namespace/source metadata, not more decisions in the triage file.

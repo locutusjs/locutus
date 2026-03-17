@@ -1,5 +1,313 @@
 language: python
 namespaces:
+  - namespace: builtins
+    title: builtins
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abs
+      - aiter
+      - all
+      - anext
+      - any
+      - ascii
+      - bin
+      - bool
+      - breakpoint
+      - bytearray
+      - bytes
+      - callable
+      - chr
+      - classmethod
+      - compile
+      - complex
+      - delattr
+      - dict
+      - dir
+      - divmod
+      - enumerate
+      - eval
+      - exec
+      - filter
+      - float
+      - format
+      - frozenset
+      - getattr
+      - globals
+      - hasattr
+      - hash
+      - hex
+      - id
+      - input
+      - int
+      - isinstance
+      - issubclass
+      - iter
+      - len
+      - list
+      - locals
+      - map
+      - max
+      - memoryview
+      - min
+      - next
+      - object
+      - oct
+      - ord
+      - pow
+      - print
+      - property
+      - range
+      - repr
+      - reversed
+      - round
+      - set
+      - setattr
+      - slice
+      - sorted
+      - staticmethod
+      - str
+      - sum
+      - super
+      - tuple
+      - type
+      - vars
+      - zip
+  - namespace: base64
+    title: base64
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - a85decode
+      - a85encode
+      - b16decode
+      - b16encode
+      - b32decode
+      - b32encode
+      - b32hexdecode
+      - b32hexencode
+      - b64decode
+      - b64encode
+      - b85decode
+      - b85encode
+      - decode
+      - decodebytes
+      - encode
+      - encodebytes
+      - main
+      - standard_b64decode
+      - standard_b64encode
+      - urlsafe_b64decode
+      - urlsafe_b64encode
+  - namespace: bisect
+    title: bisect
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - bisect
+      - bisect_left
+      - bisect_right
+      - insort
+      - insort_left
+      - insort_right
+  - namespace: calendar
+    title: calendar
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - calendar
+      - different_locale
+      - firstweekday
+      - format
+      - formatstring
+      - isleap
+      - leapdays
+      - main
+      - month
+      - monthcalendar
+      - monthrange
+      - prcal
+      - prmonth
+      - prweek
+      - setfirstweekday
+      - timegm
+      - week
+      - weekday
+      - weekheader
+  - namespace: cmath
+    title: cmath
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atanh
+      - cos
+      - cosh
+      - exp
+      - isclose
+      - isfinite
+      - isinf
+      - isnan
+      - log
+      - log10
+      - phase
+      - polar
+      - rect
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+  - namespace: collections
+    title: collections
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - defaultdict
+      - deque
+      - namedtuple
+  - namespace: csv
+    title: csv
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - excel
+      - excel_tab
+      - field_size_limit
+      - get_dialect
+      - list_dialects
+      - reader
+      - register_dialect
+      - unix_dialect
+      - unregister_dialect
+      - writer
+  - namespace: decimal
+    title: decimal
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getcontext
+      - localcontext
+      - setcontext
+  - namespace: functools
+    title: functools
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - cache
+      - cached_property
+      - cmp_to_key
+      - lru_cache
+      - partial
+      - partialmethod
+      - reduce
+      - singledispatch
+      - singledispatchmethod
+      - total_ordering
+      - update_wrapper
+      - wraps
+  - namespace: heapq
+    title: heapq
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - heapify
+      - heappop
+      - heappush
+      - heappushpop
+      - heapreplace
+      - merge
+      - nlargest
+      - nsmallest
+  - namespace: hashlib
+    title: hashlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - file_digest
+      - md5
+      - new
+      - pbkdf2_hmac
+      - scrypt
+      - sha1
+      - sha224
+      - sha256
+      - sha384
+      - sha3_224
+      - sha3_256
+      - sha3_384
+      - sha3_512
+      - sha512
+      - shake_128
+      - shake_256
+  - namespace: hmac
+    title: hmac
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - digest
+      - new
+  - namespace: html
+    title: html
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - escape
+      - unescape
+  - namespace: itertools
+    title: itertools
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - accumulate
+      - batched
+      - chain
+      - combinations
+      - combinations_with_replacement
+      - compress
+      - count
+      - cycle
+      - dropwhile
+      - filterfalse
+      - groupby
+      - islice
+      - pairwise
+      - permutations
+      - product
+      - repeat
+      - starmap
+      - takewhile
+      - tee
+      - zip_longest
+  - namespace: json
+    title: json
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - detect_encoding
+      - dump
+      - dumps
+      - load
+      - loads
   - namespace: math
     title: math
     target: Python 3.12
@@ -62,6 +370,95 @@ namespaces:
       - tanh
       - trunc
       - ulp
+  - namespace: operator
+    title: operator
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abs
+      - add
+      - and_
+      - attrgetter
+      - call
+      - concat
+      - contains
+      - countOf
+      - delitem
+      - eq
+      - floordiv
+      - ge
+      - getitem
+      - gt
+      - iadd
+      - iand
+      - iconcat
+      - ifloordiv
+      - ilshift
+      - imatmul
+      - imod
+      - imul
+      - index
+      - indexOf
+      - inv
+      - invert
+      - ior
+      - ipow
+      - irshift
+      - is_
+      - is_not
+      - isub
+      - itemgetter
+      - itruediv
+      - ixor
+      - le
+      - length_hint
+      - lshift
+      - lt
+      - matmul
+      - methodcaller
+      - mod
+      - mul
+      - ne
+      - neg
+      - not_
+      - or_
+      - pos
+      - pow
+      - rshift
+      - setitem
+      - sub
+      - truediv
+      - truth
+      - xor
+  - namespace: random
+    title: random
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - betavariate
+      - binomialvariate
+      - choice
+      - choices
+      - expovariate
+      - gammavariate
+      - gauss
+      - getstate
+      - lognormvariate
+      - normalvariate
+      - paretovariate
+      - randbytes
+      - randint
+      - randrange
+      - sample
+      - seed
+      - setstate
+      - shuffle
+      - triangular
+      - uniform
+      - vonmisesvariate
+      - weibullvariate
   - namespace: re
     title: re
     target: Python 3.12
@@ -69,6 +466,7 @@ namespaces:
     sourceRef: python:3.12
     entries:
       - compile
+      - error
       - escape
       - findall
       - finditer
@@ -80,6 +478,30 @@ namespaces:
       - sub
       - subn
       - template
+  - namespace: statistics
+    title: statistics
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - correlation
+      - covariance
+      - fmean
+      - geometric_mean
+      - harmonic_mean
+      - linear_regression
+      - mean
+      - median
+      - median_grouped
+      - median_high
+      - median_low
+      - mode
+      - multimode
+      - pstdev
+      - pvariance
+      - quantiles
+      - stdev
+      - variance
   - namespace: string
     title: string
     target: Python 3.12
@@ -96,14 +518,76 @@ namespaces:
       - printable
       - punctuation
       - whitespace
+  - namespace: textwrap
+    title: textwrap
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - dedent
+      - fill
+      - indent
+      - shorten
+      - wrap
+  - namespace: unicodedata
+    title: unicodedata
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - bidirectional
+      - category
+      - combining
+      - decimal
+      - decomposition
+      - digit
+      - east_asian_width
+      - is_normalized
+      - lookup
+      - mirrored
+      - name
+      - normalize
+      - numeric
+  - namespace: urllib.parse
+    title: urllib.parse
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - clear_cache
+      - parse_qs
+      - parse_qsl
+      - quote
+      - quote_from_bytes
+      - quote_plus
+      - splitattr
+      - splithost
+      - splitnport
+      - splitpasswd
+      - splitport
+      - splitquery
+      - splittag
+      - splittype
+      - splituser
+      - splitvalue
+      - to_bytes
+      - unquote
+      - unquote_plus
+      - unquote_to_bytes
+      - unwrap
+      - urldefrag
+      - urlencode
+      - urljoin
+      - urlparse
+      - urlsplit
+      - urlunparse
+      - urlunsplit
   - namespace: difflib
     title: difflib
     target: Python 3.12
     sourceKind: runtime
     sourceRef: python:3.12
     entries:
-      - IS_CHARACTER_JUNK
-      - IS_LINE_JUNK
       - context_diff
       - diff_bytes
       - get_close_matches

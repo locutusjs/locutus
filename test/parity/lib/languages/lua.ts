@@ -5,6 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const LUA_SKIP_LIST = new Set<string>([
@@ -88,7 +89,9 @@ function normalizeLuaJsonValue(value: unknown, expected: unknown): unknown {
 }
 
 function discoverLuaUpstreamSurface() {
-  const discoverNamespace = (namespace: 'math' | 'string', title: string) => {
+  const discoverNamespace = (
+    namespace: 'math' | 'string' | 'table' | 'utf8' | 'os' | 'io' | 'coroutine' | 'package' | 'debug',
+  ) => {
     const script = `for key, value in pairs(${namespace}) do if type(value) == "function" then print(key) end end`
     const result = runInDocker(LUA_DOCKER_IMAGE, ['lua', '-e', script])
     if (!result.success) {
@@ -104,18 +107,21 @@ function discoverLuaUpstreamSurface() {
 
     return {
       namespace,
-      title,
-      target: 'Lua 5.4',
-      sourceKind: 'runtime' as const,
-      sourceRef: LUA_DOCKER_IMAGE,
       entries,
     }
   }
 
-  return {
-    language: 'lua',
-    namespaces: [discoverNamespace('math', 'math library'), discoverNamespace('string', 'string library')],
-  }
+  return buildScopedUpstreamSurfaceSnapshot('lua', [
+    discoverNamespace('math'),
+    discoverNamespace('string'),
+    discoverNamespace('table'),
+    discoverNamespace('utf8'),
+    discoverNamespace('os'),
+    discoverNamespace('io'),
+    discoverNamespace('coroutine'),
+    discoverNamespace('package'),
+    discoverNamespace('debug'),
+  ])
 }
 
 /**

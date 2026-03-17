@@ -20,9 +20,13 @@ This replaces the older PHP-only runtime-surface guardrail with a namespace-awar
 
 ## Source Of Truth
 
-There are three layers:
+There are four layers:
 
-1. Checked-in upstream snapshots
+1. Canonical discovery scope
+   - Path: `docs/upstream-surface-scope.yml`
+   - Purpose: declare which official namespaces belong to the tracked core/stdlib scope for each language, and which source/ref is authoritative for discovering them
+
+2. Checked-in upstream snapshots
    - Path: `test/parity/fixtures/upstream-surface/*.yml`
    - Purpose: version-tagged upstream catalogs
    - Source kinds:
@@ -30,11 +34,11 @@ There are three layers:
      - `source_manifest`
      - `manual`
 
-2. Human-maintained inventory decisions
+3. Human-maintained inventory decisions
    - Path: `docs/upstream-surface-inventory.yml`
    - Purpose: compact decisions about what we want, keep, or skip
 
-3. Derived combined website data
+4. Derived combined website data
    - Path: `website/source/_data/upstream_surface.yml`
    - Produced during `yarn injectweb`
    - Purpose: easy website consumption of counts, coverage, wishlist, and non-goal summaries
@@ -47,12 +51,14 @@ The website also receives the raw YAML inputs:
 ## Inventory Shape
 
 The inventory is YAML, validated with Zod in `test/parity/lib/upstream-surface-inventory.ts`.
+The canonical discovery scope is separate YAML, validated in `test/parity/lib/upstream-surface-scope.ts`.
 
 The model is intentionally compact:
 
 ```yml
 golang:
   title: Go
+  scopeNote: This inventory grows namespace-by-namespace rather than pretending to cover every upstream surface at once.
   namespaces:
     filepath:
       title: path/filepath package
@@ -76,6 +82,8 @@ Decision precedence is:
 3. namespace `default`
 
 Every language and namespace that exists in the checked-in upstream snapshots must also exist in this inventory file, even if the namespace only has a `default` and no exact overrides. CI fails if inventory coverage is incomplete.
+
+`scopeNote` is optional, but useful when a language page only tracks a deliberate subset of the upstream language or standard library. That keeps the website honest while the inventory grows.
 
 ## Decision Enum
 
@@ -117,6 +125,17 @@ Use the narrowest tool that keeps the inventory readable:
 
 This keeps the file maintainable even for very large surfaces such as `php/__global`, `clojure/core`, or `r/base`.
 
+## Breadth Strategy
+
+We do not broaden every language in one giant invalidating sweep.
+
+- make tracked scope explicit on the website first
+- expand the cheapest trustworthy namespaces next
+- keep triage sparse with namespace defaults and wildcard rules
+- only add exact entries when they are real exceptions
+
+That lets language pages become progressively more representative without turning the inventory into a hand-maintained database of thousands of one-off lines.
+
 ## CI Behavior
 
 Primary command:
@@ -145,9 +164,43 @@ Informational only:
 
 That keeps CI sharp without turning the roadmap into a mandatory porting checklist.
 
-## Refresh Flow
+## Enumerate, Scope, Check
 
-Refresh live-discoverable snapshots with:
+The intended maintainer loop is:
+
+1. enumerate the full tracked upstream catalog
+2. compare it against the canonical discovery scope
+3. inspect what looks too broad or too noisy
+4. either narrow tracked scope at the discovery/source layer, or keep the namespace and give it a broad inventory default
+5. rerun the check until tracked scope is fully classified
+
+Enumerate the full tracked catalog with:
+
+```bash
+corepack yarn enumerate:upstream-surface
+```
+
+Or limit it to specific languages:
+
+```bash
+corepack yarn enumerate:upstream-surface python ruby golang
+```
+
+This command is intentionally broader than refresh:
+
+- runtime-backed languages refresh from the parity target container
+- docs/source/manual languages validate and reuse their checked-in snapshots as the authoritative tracked catalog
+- the result is the full tracked upstream picture we want to inspect before triaging
+
+Enumeration is now also checked against the canonical scope manifest:
+
+- missing expected namespaces fail
+- unexpected namespaces fail
+- source-kind/source-ref mismatches fail
+
+That makes the discovery layer deterministic instead of relying on memory or ad hoc inspection.
+
+Refresh only the live-discoverable snapshots with:
 
 ```bash
 corepack yarn refresh:upstream-surface
@@ -162,8 +215,13 @@ corepack yarn refresh:upstream-surface php python ruby golang
 Notes:
 
 - languages with `discover()` adapters refresh from the parity target runtime or source-manifest extraction
-- languages without `discover()` keep curated manual snapshots
+- languages without `discover()` keep curated manual snapshots and still participate in full enumeration through `enumerate:upstream-surface`
 - on a parity-target bump, regenerate snapshots first, then review new `untriaged` entries and any affected shipped decisions
+
+When a freshly enumerated namespace feels like it is going overboard, prefer one of these two responses:
+
+- exclude or narrow that namespace at the discovery/source layer, then rerun enumeration
+- keep the namespace tracked, but give it a namespace-level `default` decision so the catalog stays visible without creating per-function noise
 
 Do not invalidate the entire inventory on target bumps. The workflow should be:
 
@@ -172,13 +230,31 @@ Do not invalidate the entire inventory on target bumps. The workflow should be:
 3. update `wanted` / `skip_*` / `keep_*` decisions only where drift actually occurred
 4. rerun parity for shipped functions in affected namespaces
 
+## Canonical Scope
+
+`docs/upstream-surface-scope.yml` is the contract for surface discovery itself.
+
+It should answer:
+
+1. which namespaces belong to the tracked official core/stdlib scope
+2. which source kind is canonical for each namespace
+3. which exact source ref is canonical for the current parity target
+
+That means the system now distinguishes clearly between:
+
+- canonical discovery scope
+- discovered catalog snapshots
+- triage policy
+
+Snapshots can drift. The scope file is the thing that says what *should* exist.
+
 ## Website
 
 The website consumes the combined artifact generated during `yarn injectweb`.
 
 Current presentation:
 
-- language pages show namespace-by-namespace upstream coverage, wanted ports, intentional extras, and untriaged counts
+- language pages show tracked namespace counts, optional scope notes, and namespace-by-namespace upstream coverage, wanted ports, intentional extras, and untriaged counts
 - category pages show namespace-specific wishlist / non-goal / untriaged detail when the category matches a tracked namespace
 
 That makes the wishlist visible to maintainers and users without inventing a separate admin-only interface.

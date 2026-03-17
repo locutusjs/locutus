@@ -29,3 +29,186 @@ namespaces:
       - Trim
       - TrimEnd
       - TrimStart
+  - namespace: math
+    title: System.Math static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.math
+    entries:
+      - Abs
+      - Acos
+      - Asin
+      - Atan
+      - Atan2
+      - Ceiling
+      - Clamp
+      - CopySign
+      - Cos
+      - Cosh
+      - Exp
+      - Floor
+      - Log
+      - Log10
+      - Log2
+      - Max
+      - Min
+      - Pow
+      - Round
+      - Sign
+      - Sin
+      - Sinh
+      - Sqrt
+      - Tan
+      - Tanh
+      - Truncate
+  - namespace: char
+    title: System.Char static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.char
+    entries:
+      - ConvertFromUtf32
+      - ConvertToUtf32
+      - GetNumericValue
+      - GetUnicodeCategory
+      - IsAscii
+      - IsControl
+      - IsDigit
+      - IsLetter
+      - IsLetterOrDigit
+      - IsLower
+      - IsNumber
+      - IsPunctuation
+      - IsSeparator
+      - IsSymbol
+      - IsUpper
+      - IsWhiteSpace
+      - Parse
+      - ToLower
+      - ToUpper
+  - namespace: convert
+    title: System.Convert static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.convert
+    entries:
+      - ChangeType
+      - FromBase64CharArray
+      - FromBase64String
+      - FromHexString
+      - GetTypeCode
+      - ToBase64CharArray
+      - ToBase64String
+      - ToBoolean
+      - ToByte
+      - ToChar
+      - ToDecimal
+      - ToDouble
+      - ToHexString
+      - ToInt16
+      - ToInt32
+      - ToInt64
+      - ToSByte
+      - ToSingle
+      - ToString
+      - ToUInt16
+      - ToUInt32
+      - ToUInt64
+  - namespace: array
+    title: System.Array static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.array
+    entries:
+      - BinarySearch
+      - Clear
+      - ConstrainedCopy
+      - ConvertAll
+      - Copy
+      - Empty
+      - Exists
+      - Fill
+      - Find
+      - FindAll
+      - FindIndex
+      - FindLast
+      - FindLastIndex
+      - ForEach
+      - IndexOf
+      - LastIndexOf
+      - Reverse
+      - Sort
+      - TrueForAll
+  - namespace: datetime
+    title: System.DateTime static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.datetime
+    entries:
+      - Add
+      - AddDays
+      - AddHours
+      - AddMilliseconds
+      - AddMinutes
+      - AddMonths
+      - AddSeconds
+      - AddYears
+      - Compare
+      - DaysInMonth
+      - IsLeapYear
+      - Parse
+      - ParseExact
+      - Subtract
+      - ToLocalTime
+      - ToUniversalTime
+  - namespace: uri
+    title: System.Uri static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.uri
+    entries:
+      - CheckHostName
+      - EscapeDataString
+      - EscapeUriString
+      - IsHexDigit
+      - IsHexEncoding
+      - UnescapeDataString
+  - namespace: guid
+    title: System.Guid static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.guid
+    entries:
+      - Empty
+      - NewGuid
+      - Parse
+      - ParseExact
+      - ToString
+      - TryParse
+      - TryParseExact
+  - namespace: version
+    title: System.Version static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.version
+    entries:
+      - CompareTo
+      - Parse
+      - Revision
+      - ToString
+      - TryFormat
+  - namespace: timespan
+    title: System.TimeSpan static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.timespan
+    entries:
+      - Compare
+      - FromDays
+      - FromHours
+      - FromMilliseconds
+      - FromMinutes
+      - FromSeconds
+      - Parse
+      - ParseExact
+      - ToString

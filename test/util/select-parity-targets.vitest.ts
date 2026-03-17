@@ -137,7 +137,9 @@ describe('select-parity-targets', () => {
       'clojure',
       'elixir',
       'golang',
+      'haskell',
       'julia',
+      'kotlin',
       'lua',
       'perl',
       'php',
@@ -146,6 +148,7 @@ describe('select-parity-targets', () => {
       'r',
       'rust',
       'ruby',
+      'swift',
       'tcl',
     ])
     expect(computeUpstreamSurfaceLanguages(['docs/upstream-surface-inventory.yml'])).toEqual([
@@ -154,7 +157,9 @@ describe('select-parity-targets', () => {
       'clojure',
       'elixir',
       'golang',
+      'haskell',
       'julia',
+      'kotlin',
       'lua',
       'perl',
       'php',
@@ -163,6 +168,7 @@ describe('select-parity-targets', () => {
       'r',
       'rust',
       'ruby',
+      'swift',
       'tcl',
     ])
     expect(computeUpstreamSurfaceLanguages(['test/parity/fixtures/upstream-surface/php.yml'])).toEqual(['php'])

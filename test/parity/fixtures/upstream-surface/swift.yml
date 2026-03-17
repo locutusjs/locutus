@@ -1,0 +1,178 @@
+language: swift
+namespaces:
+  - namespace: Array
+    title: Swift.Array
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/array
+    entries:
+      - contains
+      - dropFirst
+      - dropLast
+      - elementsEqual
+      - filter
+      - first
+      - flatMap
+      - joined
+      - last
+      - map
+      - partition
+      - prefix
+      - reduce
+      - reversed
+      - suffix
+  - namespace: Bool
+    title: Swift.Bool
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/bool
+    entries:
+      - description
+      - toggle
+  - namespace: Character
+    title: Swift.Character
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/character
+    entries:
+      - asciiValue
+      - isASCII
+      - isLetter
+      - isLowercase
+      - isNumber
+      - isPunctuation
+      - isSymbol
+      - isUppercase
+      - isWhitespace
+      - lowercased
+      - uppercased
+  - namespace: Dictionary
+    title: Swift.Dictionary
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/dictionary
+    entries:
+      - contains
+      - filter
+      - first
+      - mapValues
+      - merging
+      - removeValue
+      - updateValue
+      - values
+  - namespace: Double
+    title: Swift.Double
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/double
+    entries:
+      - acos
+      - asin
+      - atan
+      - cos
+      - exp
+      - isFinite
+      - isInfinite
+      - isNaN
+      - rounded
+      - sign
+      - sin
+      - sqrt
+      - tan
+  - namespace: Float
+    title: Swift.Float
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/float
+    entries:
+      - acos
+      - asin
+      - atan
+      - cos
+      - exp
+      - isFinite
+      - isInfinite
+      - isNaN
+      - rounded
+      - sign
+      - sin
+      - sqrt
+      - tan
+  - namespace: Int
+    title: Swift.Int
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/int
+    entries:
+      - isMultiple
+      - magnitude
+      - quotientAndRemainder
+      - signum
+  - namespace: Set
+    title: Swift.Set
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/set
+    entries:
+      - contains
+      - filter
+      - first
+      - intersection
+      - isDisjoint
+      - isSubset
+      - isSuperset
+      - subtracting
+      - symmetricDifference
+      - union
+  - namespace: String
+    title: Swift.String
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/string
+    entries:
+      - componentsSeparatedBy
+      - contains
+      - hasPrefix
+      - hasSuffix
+      - lowercased
+      - padding
+      - prefix
+      - rangeOf
+      - replacingOccurrences
+      - split
+      - suffix
+      - trimmingCharacters
+      - uppercased
+  - namespace: Optional
+    title: Swift.Optional
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/optional
+    entries:
+      - flatMap
+      - map
+    # Keep this sparse: the type mostly exposes wrapper semantics rather than plain-value helpers.
+  - namespace: Substring
+    title: Swift.Substring
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/substring
+    entries:
+      - contains
+      - hasPrefix
+      - hasSuffix
+      - lowercased
+      - prefix
+      - split
+      - suffix
+      - uppercased
+  - namespace: UnicodeScalar
+    title: Swift.Unicode.Scalar
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/unicode/scalar
+    entries:
+      - escaped
+      - isASCII
+      - properties
+      - value

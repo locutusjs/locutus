@@ -1,5 +1,62 @@
 language: rust
 namespaces:
+  - namespace: bool
+    title: bool primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.bool.html
+    entries:
+      - then
+      - then_some
+  - namespace: cmp
+    title: std::cmp functions
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/cmp/index.html
+    entries:
+      - max
+      - max_by
+      - max_by_key
+      - min
+      - min_by
+      - min_by_key
+  - namespace: char
+    title: char primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.char.html
+    entries:
+      - encode_utf16
+      - escape_debug
+      - escape_default
+      - escape_unicode
+      - from_digit
+      - is_alphabetic
+      - is_alphanumeric
+      - is_ascii
+      - is_ascii_alphabetic
+      - is_ascii_alphanumeric
+      - is_ascii_control
+      - is_ascii_digit
+      - is_ascii_graphic
+      - is_ascii_hexdigit
+      - is_ascii_lowercase
+      - is_ascii_punctuation
+      - is_ascii_uppercase
+      - is_ascii_whitespace
+      - is_control
+      - is_digit
+      - is_lowercase
+      - is_numeric
+      - is_uppercase
+      - is_whitespace
+      - len_utf8
+      - len_utf16
+      - to_ascii_lowercase
+      - to_ascii_uppercase
+      - to_digit
+      - to_lowercase
+      - to_uppercase
   - namespace: str
     title: str primitive methods
     target: Rust 1.85
@@ -40,3 +97,194 @@ namespaces:
       - trim_end
       - trim_matches
       - trim_start
+  - namespace: f32
+    title: f32 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.f32.html
+    entries:
+      - abs
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - cbrt
+      - ceil
+      - clamp
+      - copysign
+      - cos
+      - cosh
+      - exp
+      - exp2
+      - exp_m1
+      - floor
+      - fract
+      - hypot
+      - is_finite
+      - is_infinite
+      - is_nan
+      - is_normal
+      - ln
+      - ln_1p
+      - log
+      - log10
+      - log2
+      - max
+      - min
+      - mul_add
+      - powf
+      - powi
+      - recip
+      - round
+      - signum
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - to_degrees
+      - to_radians
+      - total_cmp
+      - trunc
+  - namespace: f64
+    title: f64 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.f64.html
+    entries:
+      - abs
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - cbrt
+      - ceil
+      - clamp
+      - copysign
+      - cos
+      - cosh
+      - exp
+      - exp2
+      - exp_m1
+      - floor
+      - fract
+      - hypot
+      - is_finite
+      - is_infinite
+      - is_nan
+      - is_normal
+      - ln
+      - ln_1p
+      - log
+      - log10
+      - log2
+      - max
+      - min
+      - mul_add
+      - powf
+      - powi
+      - recip
+      - round
+      - signum
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - to_degrees
+      - to_radians
+      - total_cmp
+      - trunc
+  - namespace: i32
+    title: i32 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.i32.html
+    entries:
+      - abs
+      - checked_abs
+      - checked_add
+      - checked_sub
+      - clamp
+      - is_negative
+      - is_positive
+      - max
+      - min
+      - pow
+      - signum
+  - namespace: option
+    title: Option methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/option/enum.Option.html
+    entries:
+      - is_none
+      - is_some
+      - map
+      - ok_or
+      - unwrap_or
+  - namespace: result
+    title: Result methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/result/enum.Result.html
+    entries:
+      - is_err
+      - is_ok
+      - map
+      - map_err
+      - unwrap_or
+  - namespace: slice
+    title: slice primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.slice.html
+    entries:
+      - binary_search
+      - binary_search_by
+      - binary_search_by_key
+      - contains
+      - ends_with
+      - first
+      - get
+      - is_empty
+      - last
+      - len
+      - partition_point
+      - starts_with
+      - strip_prefix
+      - strip_suffix
+  - namespace: u32
+    title: u32 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.u32.html
+    entries:
+      - checked_add
+      - checked_sub
+      - clamp
+      - is_power_of_two
+      - max
+      - min
+      - next_power_of_two
+      - pow
+  - namespace: usize
+    title: usize primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.usize.html
+    entries:
+      - checked_add
+      - checked_sub
+      - clamp
+      - is_power_of_two
+      - max
+      - min
+      - next_power_of_two
+      - pow

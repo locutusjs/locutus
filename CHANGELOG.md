@@ -27,6 +27,20 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...main).
 
+### Inventory
+
+- Added a separate canonical upstream-surface scope manifest and made enumeration/checking fail on missing expected namespaces, unexpected namespaces, and source-ref drift before triage policy is applied.
+- Added an explicit `enumerate:upstream-surface` maintainer flow that materializes the full tracked catalog across runtime, docs/source, and manual snapshots, while keeping `refresh:upstream-surface` as the live-discovery-only alias.
+- Broadened the upstream-surface inventory beyond the first curated slice, adding new tracked namespaces for Python, Ruby, Elixir, Lua, Tcl, and Perl while keeping the catalog at `untriaged: 0`.
+- Added language-level scope notes and tracked-namespace counts to the website inventory panel so language pages no longer imply they cover an entire upstream language when they still track a deliberate subset.
+- Added Python `builtins`, Tcl `dict` and standalone value commands, PowerShell `System.Math`, Rust `std::cmp`, Julia `Statistics`, R `stats`, the remaining Lua core libraries, and Perl `List::Util` / `Scalar::Util` to the tracked upstream catalog so the language pages now reflect a much broader and more honest core-runtime roadmap.
+- Continued broadening the same inventory in-flight with Python `heapq` / `textwrap`, Ruby `Integer` / `Float`, Go `slices`, Elixir `Tuple`, PowerShell `System.Char`, and Rust primitive `char`, plus a Go generic-symbol normalization fix so those inventories stay clean and comparable.
+- Closed the last structural gaps in the current project surface by adding upstream tracking for Haskell `list`, Kotlin `collections` / `text`, and Swift `String`, so every language/category currently shipped under `src/` is now represented in the upstream inventory.
+- Continued the same breadth wave toward official core/stdlib scope with Python `cmath` / `collections` / `decimal` / `random` / `unicodedata`, Ruby `Comparable` / `Range` / `Regexp` / `Symbol` / `Time`, Elixir `Base` / `Date` / `Keyword` / `NaiveDateTime` / `URI`, PowerShell `System.Convert` / `System.Array`, Rust primitive `f32` / `f64`, Kotlin `comparisons` / `math` / `ranges`, and Swift `Array` / `Character`.
+- Continued broadening toward official core/stdlib scope with Python `base64` / `calendar` / `html` / `json` / `urllib.parse`, Go `bytes` / `cmp` / `maps` / `unicode` / `utf8`, Tcl's broader core command and ensemble surface, R recommended packages (`utils`, `graphics`, `grDevices`, `methods`, `stats4`, `tools`), Julia `Random` / `Printf` / `Unicode`, Elixir `DateTime` / `MapSet` / `Regex` / `Time` / `Version`, and additional docs-backed Haskell, Perl, PowerShell, Rust, and Swift core namespaces.
+- Continued the same breadth push with Python `csv` / `hashlib` / `hmac`, Ruby `Dir` / `File` / `MatchData` / `Numeric`, Go `encoding/base64` / `encoding/hex` / `math` / `math/bits`, R `compiler` / `grid` / `parallel` / `splines`, Julia `DelimitedFiles` / `LinearAlgebra`, Clojure `walk` / `zip`, and more docs-backed core namespaces for PowerShell, Rust, Swift, Kotlin, Haskell, and Perl while dropping empty runtime-only catalogs like R `datasets`.
+- Extended the same R breadth wave across the official recommended packages with `class`, `cluster`, `foreign`, `KernSmooth`, `lattice`, `MASS`, `Matrix`, `mgcv`, `nlme`, `nnet`, `rpart`, `spatial`, and `survival`, keeping the policy sparse through namespace defaults rather than per-function bookkeeping.
+
 ## v3.0.24
 
 Released: 2026-03-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.23...v3.0.24).

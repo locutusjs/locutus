@@ -90,10 +90,24 @@ export interface UpstreamSurfaceNamespaceInventory {
 
 export interface UpstreamSurfaceLanguageInventory {
   title?: string | undefined
+  scopeNote?: string | undefined
   namespaces?: Record<string, UpstreamSurfaceNamespaceInventory> | undefined
 }
 
 export type UpstreamSurfaceInventory = Record<string, UpstreamSurfaceLanguageInventory>
+
+export interface UpstreamSurfaceNamespaceScope {
+  title?: string | undefined
+  target: string
+  sourceKind: UpstreamSurfaceSourceKind
+  sourceRef: string
+}
+
+export interface UpstreamSurfaceLanguageScope {
+  namespaces: Record<string, UpstreamSurfaceNamespaceScope>
+}
+
+export type UpstreamSurfaceScope = Record<string, UpstreamSurfaceLanguageScope>
 
 export interface RuntimeSurfaceLocutusFunction {
   path: string
@@ -129,6 +143,8 @@ export interface UpstreamSurfaceAdapter {
 }
 
 export interface LanguageHandler {
+  /** Whether this handler can execute real parity tests rather than inventory-only tracking. */
+  parityEnabled?: boolean
   /** Translate JS example code to native language code */
   translate(jsCode: string[], funcName: string, category?: string): string
   /** Normalize native output for comparison. Expected value provided for context-aware normalization. */

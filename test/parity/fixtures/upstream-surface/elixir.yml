@@ -1,5 +1,105 @@
 language: elixir
 namespaces:
+  - namespace: Base
+    title: Base module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - decode16
+      - decode16!
+      - decode32
+      - decode32!
+      - decode64
+      - decode64!
+      - encode16
+      - encode32
+      - encode64
+      - hex_decode32
+      - hex_decode32!
+      - hex_encode32
+      - url_decode64
+      - url_decode64!
+      - url_encode64
+  - namespace: Date
+    title: Date module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - beginning_of_month
+      - beginning_of_week
+      - compare
+      - convert
+      - convert!
+      - day_of_era
+      - day_of_week
+      - day_of_year
+      - days_in_month
+      - diff
+      - end_of_month
+      - end_of_week
+      - from_erl
+      - from_erl!
+      - from_gregorian_days
+      - from_iso8601
+      - from_iso8601!
+      - leap_year?
+      - months_in_year
+      - new
+      - new!
+      - quarter_of_year
+      - range
+      - shift
+      - to_erl
+      - to_gregorian_days
+      - to_iso8601
+      - to_iso_days
+      - to_string
+      - utc_today
+      - year_of_era
+  - namespace: DateTime
+    title: DateTime module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - compare
+      - convert
+      - convert!
+      - diff
+      - from_gregorian_seconds
+      - from_iso8601
+      - from_naive
+      - from_naive!
+      - from_unix
+      - from_unix!
+      - new
+      - new!
+      - now
+      - now!
+      - shift
+      - shift_zone
+      - shift_zone!
+      - to_date
+      - to_gregorian_seconds
+      - to_iso8601
+      - to_naive
+      - to_string
+      - to_time
+      - to_unix
+      - truncate
+      - utc_now
   - namespace: Enum
     title: Enum module
     target: Elixir 1.18
@@ -99,6 +199,23 @@ namespaces:
       - to_char_list
       - to_charlist
       - to_string
+  - namespace: Integer
+    title: Integer module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - digits
+      - extended_gcd
+      - floor_div
+      - gcd
+      - mod
+      - parse
+      - pow
+      - to_char_list
+      - to_charlist
+      - to_string
+      - undigits
   - namespace: Kernel
     title: Kernel module
     target: Elixir 1.18
@@ -178,6 +295,217 @@ namespaces:
       - trunc
       - tuple_size
       - update_in
+  - namespace: Keyword
+    title: Keyword module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - delete
+      - delete_first
+      - drop
+      - equal?
+      - fetch
+      - fetch!
+      - filter
+      - from_keys
+      - get
+      - get_and_update
+      - get_and_update!
+      - get_lazy
+      - get_values
+      - has_key?
+      - intersect
+      - keys
+      - keyword?
+      - map
+      - merge
+      - new
+      - pop
+      - pop!
+      - pop_first
+      - pop_lazy
+      - pop_values
+      - put
+      - put_new
+      - put_new_lazy
+      - reject
+      - replace
+      - replace!
+      - replace_lazy
+      - size
+      - split
+      - split_with
+      - take
+      - to_list
+      - update
+      - update!
+      - validate
+      - validate!
+      - values
+  - namespace: List
+    title: List module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - ascii_printable?
+      - delete
+      - delete_at
+      - duplicate
+      - ends_with?
+      - first
+      - flatten
+      - foldl
+      - foldr
+      - improper?
+      - insert_at
+      - keydelete
+      - keyfind
+      - keyfind!
+      - keymember?
+      - keyreplace
+      - keysort
+      - keystore
+      - keytake
+      - last
+      - myers_difference
+      - pop_at
+      - replace_at
+      - starts_with?
+      - to_atom
+      - to_charlist
+      - to_existing_atom
+      - to_float
+      - to_integer
+      - to_string
+      - to_tuple
+      - update_at
+      - wrap
+      - zip
+  - namespace: Map
+    title: Map module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - delete
+      - drop
+      - equal?
+      - fetch
+      - fetch!
+      - filter
+      - from_keys
+      - from_struct
+      - get
+      - get_and_update
+      - get_and_update!
+      - get_lazy
+      - has_key?
+      - intersect
+      - keys
+      - map
+      - merge
+      - new
+      - pop
+      - pop!
+      - pop_lazy
+      - put
+      - put_new
+      - put_new_lazy
+      - reject
+      - replace
+      - replace!
+      - replace_lazy
+      - size
+      - split
+      - split_with
+      - take
+      - to_list
+      - update
+      - update!
+      - values
+  - namespace: MapSet
+    title: MapSet module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - delete
+      - difference
+      - disjoint?
+      - equal?
+      - filter
+      - intersection
+      - member?
+      - new
+      - put
+      - reject
+      - size
+      - split_with
+      - subset?
+      - symmetric_difference
+      - to_list
+      - union
+  - namespace: NaiveDateTime
+    title: NaiveDateTime module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - beginning_of_day
+      - compare
+      - convert
+      - convert!
+      - diff
+      - end_of_day
+      - from_erl
+      - from_erl!
+      - from_gregorian_seconds
+      - from_iso8601
+      - from_iso8601!
+      - local_now
+      - new
+      - new!
+      - shift
+      - to_date
+      - to_erl
+      - to_gregorian_seconds
+      - to_iso8601
+      - to_string
+      - to_time
+      - truncate
+      - utc_now
+  - namespace: Regex
+    title: Regex module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - compile
+      - compile!
+      - escape
+      - match?
+      - named_captures
+      - names
+      - opts
+      - re_pattern
+      - recompile
+      - recompile!
+      - regex?
+      - replace
+      - run
+      - scan
+      - source
+      - split
+      - version
   - namespace: String
     title: String module
     target: Elixir 1.18
@@ -238,3 +566,85 @@ namespaces:
       - upcase
       - valid?
       - valid_character?
+  - namespace: Time
+    title: Time module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __duration__!
+      - __struct__
+      - add
+      - after?
+      - before?
+      - compare
+      - convert
+      - convert!
+      - diff
+      - from_erl
+      - from_erl!
+      - from_iso8601
+      - from_iso8601!
+      - from_seconds_after_midnight
+      - new
+      - new!
+      - shift
+      - to_erl
+      - to_iso8601
+      - to_seconds_after_midnight
+      - to_string
+      - truncate
+      - utc_now
+  - namespace: Tuple
+    title: Tuple module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - append
+      - delete_at
+      - duplicate
+      - insert_at
+      - product
+      - sum
+      - to_list
+  - namespace: URI
+    title: URI module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - append_path
+      - append_query
+      - char_reserved?
+      - char_unescaped?
+      - char_unreserved?
+      - decode
+      - decode_query
+      - decode_www_form
+      - default_port
+      - encode
+      - encode_query
+      - encode_www_form
+      - merge
+      - new
+      - new!
+      - parse
+      - query_decoder
+      - to_string
+  - namespace: Version
+    title: Version module
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18
+    entries:
+      - __struct__
+      - compare
+      - compile_requirement
+      - match?
+      - parse
+      - parse!
+      - parse_requirement
+      - parse_requirement!
+      - to_string
