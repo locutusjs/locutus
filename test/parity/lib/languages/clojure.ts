@@ -65,6 +65,16 @@ function discoverClojureUpstreamSurface() {
         "(require '[clojure.string]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.string)))))] (println s))",
       ),
       discoverNamespace(
+        'walk',
+        'clojure.walk',
+        "(require '[clojure.walk]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.walk)))))] (println s))",
+      ),
+      discoverNamespace(
+        'zip',
+        'clojure.zip',
+        "(require '[clojure.zip]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.zip)))))] (println s))",
+      ),
+      discoverNamespace(
         'Math',
         'java.lang.Math',
         '(doseq [s (sort (map #(.getName %) (filter #(java.lang.reflect.Modifier/isStatic (.getModifiers %)) (.getMethods java.lang.Math))))] (println s))',

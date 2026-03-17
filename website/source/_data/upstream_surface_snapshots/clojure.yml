@@ -738,6 +738,56 @@ namespaces:
       - triml
       - trimr
       - upper-case
+  - namespace: walk
+    title: clojure.walk
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - keywordize-keys
+      - macroexpand-all
+      - postwalk
+      - postwalk-demo
+      - postwalk-replace
+      - prewalk
+      - prewalk-demo
+      - prewalk-replace
+      - stringify-keys
+      - walk
+  - namespace: zip
+    title: clojure.zip
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - append-child
+      - branch?
+      - children
+      - down
+      - edit
+      - end?
+      - insert-child
+      - insert-left
+      - insert-right
+      - left
+      - leftmost
+      - lefts
+      - make-node
+      - next
+      - node
+      - path
+      - prev
+      - remove
+      - replace
+      - right
+      - rightmost
+      - rights
+      - root
+      - seq-zip
+      - up
+      - vector-zip
+      - xml-zip
+      - zipper
   - namespace: Math
     title: java.lang.Math
     target: Clojure 1.12

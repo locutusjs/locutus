@@ -201,6 +201,45 @@ namespaces:
       - to_radians
       - total_cmp
       - trunc
+  - namespace: i32
+    title: i32 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.i32.html
+    entries:
+      - abs
+      - checked_abs
+      - checked_add
+      - checked_sub
+      - clamp
+      - is_negative
+      - is_positive
+      - max
+      - min
+      - pow
+      - signum
+  - namespace: option
+    title: Option methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/option/enum.Option.html
+    entries:
+      - is_none
+      - is_some
+      - map
+      - ok_or
+      - unwrap_or
+  - namespace: result
+    title: Result methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/result/enum.Result.html
+    entries:
+      - is_err
+      - is_ok
+      - map
+      - map_err
+      - unwrap_or
   - namespace: slice
     title: slice primitive methods
     target: Rust 1.85
@@ -221,3 +260,31 @@ namespaces:
       - starts_with
       - strip_prefix
       - strip_suffix
+  - namespace: u32
+    title: u32 primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.u32.html
+    entries:
+      - checked_add
+      - checked_sub
+      - clamp
+      - is_power_of_two
+      - max
+      - min
+      - next_power_of_two
+      - pow
+  - namespace: usize
+    title: usize primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.usize.html
+    entries:
+      - checked_add
+      - checked_sub
+      - clamp
+      - is_power_of_two
+      - max
+      - min
+      - next_power_of_two
+      - pow

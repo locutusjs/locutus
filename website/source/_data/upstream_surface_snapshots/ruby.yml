@@ -866,3 +866,175 @@ namespaces:
       - yday
       - year
       - zone
+  - namespace: Dir
+    title: Dir singleton methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '[]'
+      - chdir
+      - children
+      - chroot
+      - delete
+      - each_child
+      - empty?
+      - entries
+      - exist?
+      - fchdir
+      - for_fd
+      - foreach
+      - getwd
+      - glob
+      - home
+      - mkdir
+      - open
+      - pwd
+      - rmdir
+      - unlink
+  - namespace: File
+    title: File singleton methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - absolute_path
+      - absolute_path?
+      - atime
+      - basename
+      - birthtime
+      - blockdev?
+      - chardev?
+      - chmod
+      - chown
+      - ctime
+      - delete
+      - directory?
+      - dirname
+      - empty?
+      - executable?
+      - executable_real?
+      - exist?
+      - expand_path
+      - extname
+      - file?
+      - fnmatch
+      - fnmatch?
+      - ftype
+      - grpowned?
+      - identical?
+      - join
+      - lchmod
+      - lchown
+      - link
+      - lstat
+      - lutime
+      - mkfifo
+      - mtime
+      - owned?
+      - path
+      - pipe?
+      - readable?
+      - readable_real?
+      - readlink
+      - realdirpath
+      - realpath
+      - rename
+      - setgid?
+      - setuid?
+      - size
+      - size?
+      - socket?
+      - split
+      - stat
+      - sticky?
+      - symlink
+      - symlink?
+      - truncate
+      - umask
+      - unlink
+      - utime
+      - world_readable?
+      - world_writable?
+      - writable?
+      - writable_real?
+      - zero?
+  - namespace: MatchData
+    title: MatchData instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '[]'
+      - begin
+      - byteoffset
+      - captures
+      - deconstruct
+      - deconstruct_keys
+      - end
+      - length
+      - match
+      - match_length
+      - named_captures
+      - names
+      - offset
+      - post_match
+      - pre_match
+      - regexp
+      - size
+      - string
+      - to_a
+      - values_at
+  - namespace: Numeric
+    title: Numeric instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '%'
+      - +@
+      - '-@'
+      - <=>
+      - abs
+      - abs2
+      - angle
+      - arg
+      - ceil
+      - clone
+      - coerce
+      - conj
+      - conjugate
+      - denominator
+      - div
+      - divmod
+      - dup
+      - eql?
+      - fdiv
+      - finite?
+      - floor
+      - i
+      - imag
+      - imaginary
+      - infinite?
+      - integer?
+      - magnitude
+      - modulo
+      - negative?
+      - nonzero?
+      - numerator
+      - phase
+      - polar
+      - positive?
+      - quo
+      - real
+      - real?
+      - rect
+      - rectangular
+      - remainder
+      - round
+      - singleton_method_added
+      - step
+      - to_c
+      - to_int
+      - truncate
+      - zero?

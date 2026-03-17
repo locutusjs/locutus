@@ -916,6 +916,121 @@ namespaces:
       - year
       - yearmonth
       - yearmonthday
+  - namespace: DelimitedFiles
+    title: DelimitedFiles module
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:DelimitedFiles
+    entries:
+      - readdlm
+      - writedlm
+  - namespace: LinearAlgebra
+    title: LinearAlgebra module
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:LinearAlgebra
+    entries:
+      - /
+      - \
+      - adjoint
+      - adjoint!
+      - axpby!
+      - axpy!
+      - bunchkaufman
+      - bunchkaufman!
+      - checksquare
+      - cholesky
+      - cholesky!
+      - cond
+      - condskeel
+      - convert
+      - copy_adjoint!
+      - copy_transpose!
+      - copyto!
+      - copytrito!
+      - cross
+      - det
+      - diag
+      - diagind
+      - diagm
+      - dot
+      - eigen
+      - eigen!
+      - eigmax
+      - eigmin
+      - eigvals
+      - eigvals!
+      - eigvecs
+      - factorize
+      - givens
+      - hermitian
+      - hermitian_type
+      - hermitianpart
+      - hermitianpart!
+      - hessenberg
+      - hessenberg!
+      - inertia
+      - isbanded
+      - isdiag
+      - ishermitian
+      - isposdef
+      - isposdef!
+      - issuccess
+      - issymmetric
+      - istril
+      - istriu
+      - kron
+      - kron!
+      - ldiv!
+      - ldlt
+      - ldlt!
+      - lmul!
+      - logabsdet
+      - logdet
+      - lowrankdowndate
+      - lowrankdowndate!
+      - lowrankupdate
+      - lowrankupdate!
+      - lq
+      - lq!
+      - lu
+      - lu!
+      - lyap
+      - mul!
+      - norm
+      - normalize
+      - normalize!
+      - nullspace
+      - opnorm
+      - ordschur
+      - ordschur!
+      - peakflops
+      - pinv
+      - qr
+      - qr!
+      - rank
+      - rdiv!
+      - reflect!
+      - rmul!
+      - rotate!
+      - schur
+      - schur!
+      - svd
+      - svd!
+      - svdvals
+      - svdvals!
+      - sylvester
+      - symmetric
+      - symmetric_type
+      - tr
+      - transpose
+      - transpose!
+      - tril
+      - tril!
+      - triu
+      - triu!
+      - ×
+      - ⋅
   - namespace: Random
     title: Random module
     target: Julia 1.11

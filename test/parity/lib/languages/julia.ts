@@ -51,6 +51,8 @@ function discoverJuliaUpstreamSurface() {
     namespaces: [
       discoverNamespace('Base', 'Base module', ''),
       discoverNamespace('Dates', 'Dates module', 'using Dates'),
+      discoverNamespace('DelimitedFiles', 'DelimitedFiles module', 'using DelimitedFiles'),
+      discoverNamespace('LinearAlgebra', 'LinearAlgebra module', 'using LinearAlgebra'),
       discoverNamespace('Random', 'Random module', 'using Random'),
       discoverNamespace('Printf', 'Printf module', 'using Printf'),
       discoverNamespace('Statistics', 'Statistics module', 'using Statistics'),

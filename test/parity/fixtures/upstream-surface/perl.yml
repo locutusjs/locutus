@@ -172,3 +172,23 @@ namespaces:
     entries:
       - expand
       - unexpand
+  - namespace: File::Basename
+    title: File::Basename module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/File::Basename
+    entries:
+      - basename
+      - dirname
+      - fileparse
+  - namespace: Unicode::Normalize
+    title: Unicode::Normalize module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Unicode::Normalize
+    entries:
+      - NFC
+      - NFD
+      - NFKC
+      - NFKD
+      - normalize

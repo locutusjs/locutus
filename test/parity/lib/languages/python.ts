@@ -29,6 +29,7 @@ function discoverPythonUpstreamSurface() {
   const script = `
 import builtins
 import base64
+import csv
 import calendar
 import difflib
 import bisect
@@ -37,6 +38,8 @@ import collections
 import decimal
 import functools
 import heapq
+import hashlib
+import hmac
 import html
 import inspect
 import itertools
@@ -58,9 +61,12 @@ modules = {
   "calendar": {"module": calendar, "allowedModules": ["calendar"]},
   "cmath": {"module": cmath, "allowedModules": ["cmath"]},
   "collections": {"module": collections, "allowedModules": ["collections"]},
+  "csv": {"module": csv, "allowedModules": ["csv", "_csv"]},
   "decimal": {"module": decimal, "allowedModules": ["decimal"]},
   "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
   "heapq": {"module": heapq, "allowedModules": ["heapq", "_heapq"]},
+  "hashlib": {"module": hashlib, "allowedModules": ["hashlib", "_hashlib"]},
+  "hmac": {"module": hmac, "allowedModules": ["hmac"]},
   "html": {"module": html, "allowedModules": ["html"]},
   "itertools": {"module": itertools, "allowedModules": ["itertools"]},
   "json": {"module": json, "allowedModules": ["json"]},

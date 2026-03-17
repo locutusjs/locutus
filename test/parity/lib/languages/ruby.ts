@@ -174,6 +174,38 @@ snapshots = [
     sourceKind: 'runtime',
     sourceRef: '${RUBY_DOCKER_IMAGE}',
     entries: owned_instance_entries(Time)
+  },
+  {
+    namespace: 'Dir',
+    title: 'Dir singleton methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: Dir.singleton_methods(false).map(&:to_s).uniq.sort
+  },
+  {
+    namespace: 'File',
+    title: 'File singleton methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: File.singleton_methods(false).map(&:to_s).uniq.sort
+  },
+  {
+    namespace: 'MatchData',
+    title: 'MatchData instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: owned_instance_entries(MatchData)
+  },
+  {
+    namespace: 'Numeric',
+    title: 'Numeric instance methods',
+    target: 'Ruby 3.3',
+    sourceKind: 'runtime',
+    sourceRef: '${RUBY_DOCKER_IMAGE}',
+    entries: Numeric.instance_methods(false).map(&:to_s).uniq.sort
   }
 ]
 

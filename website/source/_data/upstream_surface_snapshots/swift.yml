@@ -143,3 +143,36 @@ namespaces:
       - suffix
       - trimmingCharacters
       - uppercased
+  - namespace: Optional
+    title: Swift.Optional
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/optional
+    entries:
+      - flatMap
+      - map
+    # Keep this sparse: the type mostly exposes wrapper semantics rather than plain-value helpers.
+  - namespace: Substring
+    title: Swift.Substring
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/substring
+    entries:
+      - contains
+      - hasPrefix
+      - hasSuffix
+      - lowercased
+      - prefix
+      - split
+      - suffix
+      - uppercased
+  - namespace: UnicodeScalar
+    title: Swift.Unicode.Scalar
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/unicode/scalar
+    entries:
+      - escaped
+      - isASCII
+      - properties
+      - value

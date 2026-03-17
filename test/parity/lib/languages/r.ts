@@ -70,12 +70,32 @@ function discoverRUpstreamSurface() {
         ].join('; '),
       ),
       discoverNamespace(
+        'compiler',
+        'compiler package',
+        [
+          'library(compiler)',
+          'vals <- ls(asNamespace("compiler"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("compiler"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
         'graphics',
         'graphics package',
         [
           'library(graphics)',
           'vals <- ls(asNamespace("graphics"))',
           'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("graphics"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'grid',
+        'grid package',
+        [
+          'library(grid)',
+          'vals <- ls(asNamespace("grid"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("grid"))))])',
           "cat(funs, sep='\\n')",
         ].join('; '),
       ),
@@ -96,6 +116,26 @@ function discoverRUpstreamSurface() {
           'library(methods)',
           'vals <- ls(asNamespace("methods"))',
           'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("methods"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'parallel',
+        'parallel package',
+        [
+          'library(parallel)',
+          'vals <- ls(asNamespace("parallel"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("parallel"))))])',
+          "cat(funs, sep='\\n')",
+        ].join('; '),
+      ),
+      discoverNamespace(
+        'splines',
+        'splines package',
+        [
+          'library(splines)',
+          'vals <- ls(asNamespace("splines"))',
+          'funs <- sort(vals[sapply(vals, function(name) is.function(get(name, envir = asNamespace("splines"))))])',
           "cat(funs, sep='\\n')",
         ].join('; '),
       ),

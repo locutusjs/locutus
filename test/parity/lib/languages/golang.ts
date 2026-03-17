@@ -99,10 +99,14 @@ const GO_PACKAGES: Record<string, string> = {
 
 const GO_DOCKER_IMAGE = 'golang:1.23'
 const GO_NAMESPACE_PACKAGES: Record<string, { packagePath: string; title: string }> = {
+  base64: { packagePath: 'encoding/base64', title: 'encoding/base64 package' },
   bytes: { packagePath: 'bytes', title: 'bytes package' },
+  bits: { packagePath: 'math/bits', title: 'math/bits package' },
   cmp: { packagePath: 'cmp', title: 'cmp package' },
+  hex: { packagePath: 'encoding/hex', title: 'encoding/hex package' },
   filepath: { packagePath: 'path/filepath', title: 'path/filepath package' },
   maps: { packagePath: 'maps', title: 'maps package' },
+  math: { packagePath: 'math', title: 'math package' },
   net: { packagePath: 'net', title: 'net package' },
   path: { packagePath: 'path', title: 'path package' },
   slices: { packagePath: 'slices', title: 'slices package' },
@@ -176,6 +180,14 @@ function discoverGoUpstreamSurface() {
       }
       entries.push(...parseGoDocMethods(urlMethodResult.output))
       entries.push(...parseGoDocMethods(valuesMethodResult.output))
+    }
+
+    if (namespace === 'base64') {
+      const encodingMethodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'encoding/base64.Encoding'])
+      if (!encodingMethodResult.success) {
+        throw new Error(encodingMethodResult.error || 'Unable to discover Go encoding/base64.Encoding methods')
+      }
+      entries.push(...parseGoDocMethods(encodingMethodResult.output))
     }
 
     return {

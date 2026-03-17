@@ -176,6 +176,22 @@ namespaces:
       - defaultdict
       - deque
       - namedtuple
+  - namespace: csv
+    title: csv
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - excel
+      - excel_tab
+      - field_size_limit
+      - get_dialect
+      - list_dialects
+      - reader
+      - register_dialect
+      - unix_dialect
+      - unregister_dialect
+      - writer
   - namespace: decimal
     title: decimal
     target: Python 3.12
@@ -217,6 +233,36 @@ namespaces:
       - merge
       - nlargest
       - nsmallest
+  - namespace: hashlib
+    title: hashlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - file_digest
+      - md5
+      - new
+      - pbkdf2_hmac
+      - scrypt
+      - sha1
+      - sha224
+      - sha256
+      - sha384
+      - sha3_224
+      - sha3_256
+      - sha3_384
+      - sha3_512
+      - sha512
+      - shake_128
+      - shake_256
+  - namespace: hmac
+    title: hmac
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - digest
+      - new
   - namespace: html
     title: html
     target: Python 3.12

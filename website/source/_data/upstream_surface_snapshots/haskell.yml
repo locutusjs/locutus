@@ -96,6 +96,30 @@ namespaces:
       - showHex
       - showIntAtBase
       - showOct
+  - namespace: bool
+    title: Data.Bool module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Bool.html
+    entries:
+      - bool
+  - namespace: function
+    title: Data.Function module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Function.html
+    entries:
+      - fix
+      - on
+  - namespace: ord
+    title: Data.Ord module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Ord.html
+    entries:
+      - comparing
+      - max
+      - min
   - namespace: tuple
     title: Data.Tuple module
     target: GHC base-4.21

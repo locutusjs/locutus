@@ -147,6 +147,18 @@ namespaces:
       - sortedBy
       - windowed
       - zip
+  - namespace: random
+    title: kotlin.random package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.random/
+    entries:
+      - nextBits
+      - nextBoolean
+      - nextDouble
+      - nextFloat
+      - nextInt
+      - nextLong
   - namespace: text
     title: kotlin.text package
     target: Kotlin 2.2

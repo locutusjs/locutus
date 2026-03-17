@@ -2500,3 +2500,33 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The cheapest way to broaden language honesty is not deeper per-function policy, but adding official namespaces with sane defaults and only a handful of explicit exceptions.
   - Tcl and R benefited most from switching from “high-signal subset” thinking to “full standard command/package surface with broad skip defaults”; that pattern is reusable for the remaining breadth waves too.
+
+### Iteration 126
+
+2026-03-17
+
+- **Area: Upstream surface breadth completion**
+- Plan:
+  - Keep pushing the same atomic PR until the tracked scope gets materially closer to official core/stdlib completion, especially for languages that still look obviously partial on the website.
+  - Prefer breadth waves that add whole namespaces with sane defaults, not more one-off per-function exceptions.
+  - Keep the completion rule explicit: runtime discovery first, then version-tagged docs/source catalogs, then manual snapshots only where the first two are impractical.
+- Progress:
+  - Broadened runtime-discovered Python again with `csv`, `hashlib`, and `hmac`, while tightening the `csv` discovery filter so `_csv`-backed callables stay visible instead of drifting into stale policy.
+  - Broadened Ruby with `Dir`, `File`, `MatchData`, and `Numeric`, which makes the Ruby page much more honest about core filesystem/path and regex-match surfaces without pretending they are all desirable ports.
+  - Broadened Go with `encoding/base64`, `encoding/hex`, `math`, and `math/bits`, plus the extra `Encoding` method discovery needed for `encoding/base64`.
+  - Broadened R further with `compiler`, `grid`, `parallel`, and `splines`, and explicitly dropped `datasets` again once runtime discovery showed it contributes no real callable helper surface worth tracking.
+  - Broadened Julia with `DelimitedFiles` and `LinearAlgebra`, and broadened Clojure with `clojure.walk` and `clojure.zip`.
+  - Broadened docs-backed/manual languages with PowerShell `System.Guid` / `System.Version` / `System.TimeSpan`, Rust `Option` / `Result` / `i32` / `u32` / `usize`, Swift `Optional` / `Substring` / `Unicode.Scalar`, Kotlin `kotlin.random`, Haskell `Data.Bool` / `Data.Function` / `Data.Ord`, and Perl `File::Basename` / `Unicode::Normalize`.
+  - Reaffirmed the “drop empty runtime-only modules” rule in code, not just in prose, by removing R `datasets` from the tracked scope instead of preserving a misleading zero-entry namespace.
+- Validation:
+  - `corepack yarn refresh:upstream-surface python ruby golang r julia clojure`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/select-parity-targets.vitest.ts`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+  - `corepack yarn lint:ts`
+  - `corepack yarn check`
+- Key learnings:
+  - The biggest remaining breadth wins now come from whole official namespaces, not from squeezing more nuance into already-tracked ones.
+  - Empty runtime namespaces are worse than absent ones: they imply coverage while adding no roadmap signal, so they should be removed rather than classified.

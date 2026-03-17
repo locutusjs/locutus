@@ -173,3 +173,42 @@ namespaces:
       - IsHexDigit
       - IsHexEncoding
       - UnescapeDataString
+  - namespace: guid
+    title: System.Guid static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.guid
+    entries:
+      - Empty
+      - NewGuid
+      - Parse
+      - ParseExact
+      - ToString
+      - TryParse
+      - TryParseExact
+  - namespace: version
+    title: System.Version static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.version
+    entries:
+      - CompareTo
+      - Parse
+      - Revision
+      - ToString
+      - TryFormat
+  - namespace: timespan
+    title: System.TimeSpan static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.timespan
+    entries:
+      - Compare
+      - FromDays
+      - FromHours
+      - FromMilliseconds
+      - FromMinutes
+      - FromSeconds
+      - Parse
+      - ParseExact
+      - ToString
