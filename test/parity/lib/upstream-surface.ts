@@ -5,6 +5,8 @@
  * against a version-tagged upstream symbol catalog for that language.
  */
 
+import { join } from 'node:path'
+
 import type {
   LanguageHandler,
   RuntimeSurfaceLocutusFunction,
@@ -19,7 +21,14 @@ import type {
   UpstreamSurfaceScope,
   UpstreamSurfaceSnapshot,
 } from './types.ts'
-import { isKeepDecision, isSkipDecision, isWantedDecision } from './upstream-surface-inventory.ts'
+import {
+  isKeepDecision,
+  isSkipDecision,
+  isWantedDecision,
+  loadUpstreamSurfaceInventory,
+} from './upstream-surface-inventory.ts'
+import { loadUpstreamSurfaceScope } from './upstream-surface-scope.ts'
+import { loadUpstreamSurfaceSnapshots } from './upstream-surface-snapshots.ts'
 
 export interface UpstreamSurfaceNamespacePolicyMatch extends UpstreamSurfaceDecisionEntry {
   name: string
@@ -118,6 +127,13 @@ export interface EvaluateUpstreamSurfaceInput {
   snapshots: Map<string, UpstreamSurfaceSnapshot>
   inventory: UpstreamSurfaceInventory
   scope?: UpstreamSurfaceScope
+  getHandler: (language: string) => LanguageHandler | undefined
+  getFunctions: (language: string) => RuntimeSurfaceLocutusFunction[]
+}
+
+export interface EvaluateRepoUpstreamSurfaceInput {
+  rootDir: string
+  languages: string[]
   getHandler: (language: string) => LanguageHandler | undefined
   getFunctions: (language: string) => RuntimeSurfaceLocutusFunction[]
 }
@@ -622,6 +638,17 @@ export function evaluateUpstreamSurface(input: EvaluateUpstreamSurfaceInput): Ev
     coverageIssues,
     languages,
   }
+}
+
+export function evaluateRepoUpstreamSurface(input: EvaluateRepoUpstreamSurfaceInput): EvaluatedUpstreamSurface {
+  return evaluateUpstreamSurface({
+    languages: input.languages,
+    snapshots: loadUpstreamSurfaceSnapshots(join(input.rootDir, 'test', 'parity', 'fixtures', 'upstream-surface')),
+    inventory: loadUpstreamSurfaceInventory(join(input.rootDir, 'docs', 'upstream-surface-inventory.yml')),
+    scope: loadUpstreamSurfaceScope(join(input.rootDir, 'docs', 'upstream-surface-scope.yml')),
+    getHandler: input.getHandler,
+    getFunctions: input.getFunctions,
+  })
 }
 
 export function hasBlockingUpstreamSurfaceIssues(result: UpstreamSurfaceCheckResult): boolean {

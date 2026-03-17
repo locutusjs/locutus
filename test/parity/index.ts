@@ -27,7 +27,7 @@ import pMap from 'p-map'
 
 import { CACHE_VERSION, calculateHash, loadCache, saveCache } from './lib/cache.ts'
 import { checkDockerAvailable, ensureDockerImage, getDockerDigest, runInDocker } from './lib/docker.ts'
-import { getLanguageHandler, isLanguageSupported } from './lib/languages/index.ts'
+import { getParityLanguageHandler, isLanguageSupported } from './lib/languages/index.ts'
 import { findFunctions, parseFunctionWithUtil, resolveFunctionSourcePath } from './lib/parser.ts'
 import { evaluateExpected, runJs } from './lib/runner.ts'
 import type { FunctionInfo, ParitySummary, VerifyOptions, VerifyResult } from './lib/types.ts'
@@ -103,7 +103,7 @@ async function runParityTest(
   cacheMisses++
 
   const results: VerifyResult[] = []
-  const handler = getLanguageHandler(func.language)
+  const handler = getParityLanguageHandler(func.language)
 
   // If no handler, skip with a note
   if (!handler) {
@@ -405,7 +405,7 @@ async function main() {
       continue
     }
 
-    const handler = getLanguageHandler(func.language)
+    const handler = getParityLanguageHandler(func.language)
     if (!handler) {
       // Language not supported - treat as unverified
       unverifiedFunctions.push(func)
@@ -515,7 +515,7 @@ async function main() {
     if (category === 'impossible') {
       continue
     }
-    const handler = getLanguageHandler(func.language)
+    const handler = getParityLanguageHandler(func.language)
     if (handler) {
       requiredImages.add(handler.dockerImage)
       requiredLanguages.add(func.language)

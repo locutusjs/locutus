@@ -5,11 +5,13 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { canEnumerateUpstreamSurfaceLanguage } from '../../scripts/upstream-surface-enumeration.ts'
 import { cHandler } from '../parity/lib/languages/c.ts'
+import { getParitySupportedLanguages, isLanguageSupported } from '../parity/lib/languages/index.ts'
 import { findFunctionSources } from '../parity/lib/parser.ts'
 import type { FunctionInfo, LanguageHandler, UpstreamSurfaceSnapshot } from '../parity/lib/types.ts'
 import {
   buildUpstreamSurfaceSiteData,
   compareUpstreamSurface,
+  evaluateRepoUpstreamSurface,
   findUpstreamSurfaceInventoryCoverageIssues,
   findUpstreamSurfaceScopeCoverageIssues,
   formatUpstreamSurfaceScopeIssues,
@@ -258,6 +260,15 @@ describe('upstream surface inventory', () => {
     expect(canEnumerateUpstreamSurfaceLanguage('php', 'all', process.cwd())).toBe(true)
   })
 
+  it('keeps inventory-only languages out of parity support even while tracking their upstream surface', () => {
+    expect(getParitySupportedLanguages()).toContain('php')
+    expect(getParitySupportedLanguages()).not.toContain('swift')
+    expect(getParitySupportedLanguages()).not.toContain('kotlin')
+    expect(getParitySupportedLanguages()).not.toContain('haskell')
+    expect(isLanguageSupported('php')).toBe(true)
+    expect(isLanguageSupported('swift')).toBe(false)
+  })
+
   it('includes source functions even when they do not define examples', () => {
     const root = mkdtempSync(join(tmpdir(), 'locutus-upstream-surface-'))
     const srcDir = join(root, 'src')
@@ -461,6 +472,75 @@ describe('upstream surface inventory', () => {
       },
     ])
     expect(formatUpstreamSurfaceScopeIssues(issues)).toContain('missing namespace from snapshot: statistics')
+  })
+
+  it('includes canonical scope validation in the shared repository evaluation helper', () => {
+    const root = mkdtempSync(join(tmpdir(), 'locutus-upstream-surface-eval-'))
+    const docsDir = join(root, 'docs')
+    const fixturesDir = join(root, 'test', 'parity', 'fixtures', 'upstream-surface')
+
+    mkdirSync(docsDir, { recursive: true })
+    mkdirSync(fixturesDir, { recursive: true })
+
+    writeFileSync(
+      join(docsDir, 'upstream-surface-inventory.yml'),
+      ['python:', '  namespaces:', '    math:', '      default:', '        decision: wanted', ''].join('\n'),
+      'utf8',
+    )
+    writeFileSync(
+      join(docsDir, 'upstream-surface-scope.yml'),
+      [
+        'python:',
+        '  namespaces:',
+        '    math:',
+        '      target: Python 3.12',
+        '      sourceKind: runtime',
+        '      sourceRef: python:3.12',
+        '    statistics:',
+        '      target: Python 3.12',
+        '      sourceKind: runtime',
+        '      sourceRef: python:3.12',
+        '',
+      ].join('\n'),
+      'utf8',
+    )
+    writeFileSync(
+      join(fixturesDir, 'python.yml'),
+      [
+        'language: python',
+        'namespaces:',
+        '  - namespace: math',
+        '    title: math',
+        '    target: Python 3.12',
+        '    sourceKind: runtime',
+        '    sourceRef: python:3.12',
+        '    entries:',
+        '      - sin',
+        '',
+      ].join('\n'),
+      'utf8',
+    )
+
+    try {
+      const evaluation = evaluateRepoUpstreamSurface({
+        rootDir: root,
+        languages: ['python'],
+        getHandler: () => handler,
+        getFunctions: () => [],
+      })
+
+      expect(evaluation.scopeIssues).toEqual([
+        {
+          language: 'python',
+          missingLanguage: false,
+          missingNamespaces: ['statistics'],
+          unexpectedNamespaces: [],
+          sourceMismatches: [],
+        },
+      ])
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
   })
 
   it('reports stale wildcard rules and unused defaults when they never match any upstream entry', () => {

@@ -11,22 +11,18 @@ import { fileURLToPath } from 'node:url'
 import { getLanguageHandler, getSupportedLanguages } from '../test/parity/lib/languages/index.ts'
 import { findFunctionSources } from '../test/parity/lib/parser.ts'
 import {
-  evaluateUpstreamSurface,
+  evaluateRepoUpstreamSurface,
   formatInventoryCoverageIssues,
   formatUpstreamSurfaceReport,
   formatUpstreamSurfaceScopeIssues,
   hasBlockingUpstreamSurfaceIssues,
   resolveUpstreamSurfaceLanguages,
 } from '../test/parity/lib/upstream-surface.ts'
-import { loadUpstreamSurfaceInventory } from '../test/parity/lib/upstream-surface-inventory.ts'
-import { loadUpstreamSurfaceScope } from '../test/parity/lib/upstream-surface-scope.ts'
 import { loadUpstreamSurfaceSnapshots } from '../test/parity/lib/upstream-surface-snapshots.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SRC = join(ROOT, 'src')
-const INVENTORY_PATH = join(ROOT, 'docs', 'upstream-surface-inventory.yml')
-const SCOPE_PATH = join(ROOT, 'docs', 'upstream-surface-scope.yml')
 const SNAPSHOT_DIR = join(ROOT, 'test', 'parity', 'fixtures', 'upstream-surface')
 
 function main() {
@@ -55,13 +51,9 @@ function main() {
     process.exit(1)
   }
 
-  const inventory = loadUpstreamSurfaceInventory(INVENTORY_PATH)
-  const scope = loadUpstreamSurfaceScope(SCOPE_PATH)
-  const evaluation = evaluateUpstreamSurface({
+  const evaluation = evaluateRepoUpstreamSurface({
+    rootDir: ROOT,
     languages: resolution.selected,
-    snapshots,
-    inventory,
-    scope,
     getHandler: getLanguageHandler,
     getFunctions: (language) => findFunctionSources(SRC, language),
   })

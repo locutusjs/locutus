@@ -102,6 +102,7 @@ export function buildScopedUpstreamSurfaceSnapshot(
 
 export function createInventoryOnlyLanguageHandler(config: InventoryOnlyLanguageHandlerConfig): LanguageHandler {
   return {
+    parityEnabled: false,
     translate: () => '',
     normalize: (output) => output.trim(),
     skipList: config.skipList,

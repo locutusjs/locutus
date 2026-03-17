@@ -43,6 +43,10 @@ const handlers: Record<string, LanguageHandler> = {
   tcl: tclHandler,
 }
 
+function hasParitySupport(handler: LanguageHandler | undefined): boolean {
+  return !!handler && handler.parityEnabled !== false
+}
+
 /**
  * Get the language handler for a given language
  * Returns undefined if the language is not supported yet
@@ -52,10 +56,19 @@ export function getLanguageHandler(language: string): LanguageHandler | undefine
 }
 
 /**
+ * Get the language handler for a given language if it can execute parity tests.
+ * Returns undefined for inventory-only handlers.
+ */
+export function getParityLanguageHandler(language: string): LanguageHandler | undefined {
+  const handler = getLanguageHandler(language)
+  return hasParitySupport(handler) ? handler : undefined
+}
+
+/**
  * Check if a language has verification support
  */
 export function isLanguageSupported(language: string): boolean {
-  return language in handlers
+  return hasParitySupport(getLanguageHandler(language))
 }
 
 /**
@@ -63,4 +76,13 @@ export function isLanguageSupported(language: string): boolean {
  */
 export function getSupportedLanguages(): string[] {
   return Object.keys(handlers)
+}
+
+/**
+ * Get all languages that support executable parity tests.
+ */
+export function getParitySupportedLanguages(): string[] {
+  return Object.entries(handlers)
+    .filter(([, handler]) => hasParitySupport(handler))
+    .map(([language]) => language)
 }

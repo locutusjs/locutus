@@ -143,6 +143,8 @@ export interface UpstreamSurfaceAdapter {
 }
 
 export interface LanguageHandler {
+  /** Whether this handler can execute real parity tests rather than inventory-only tracking. */
+  parityEnabled?: boolean
   /** Translate JS example code to native language code */
   translate(jsCode: string[], funcName: string, category?: string): string
   /** Normalize native output for comparison. Expected value provided for context-aware normalization. */

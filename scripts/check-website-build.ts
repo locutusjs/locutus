@@ -134,6 +134,13 @@ function checkPage(expectation: PageExpectation): void {
   }
 }
 
+function checkRedirectPage(relativePath: string, canonicalUrl: string): void {
+  const html = readFile(relativePath)
+  requireIncludes(relativePath, html, '<title>Redirecting...</title>')
+  requireIncludes(relativePath, html, `<link rel="canonical" href="${canonicalUrl}">`)
+  requireIncludes(relativePath, html, `url=${canonicalUrl}`)
+}
+
 function main(): void {
   checkTopLevelOutputs()
 
@@ -179,6 +186,8 @@ function main(): void {
   for (const expectation of pages) {
     checkPage(expectation)
   }
+
+  checkRedirectPage('php/unpack/index.html', 'https://locutus.io/php/misc/unpack/index.html')
 
   console.log('website build verification passed')
 }
