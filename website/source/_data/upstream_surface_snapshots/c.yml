@@ -27,25 +27,71 @@ namespaces:
     sourceRef: https://en.cppreference.com/w/c/numeric/math
     entries:
       - acos
+      - acosh
       - asin
+      - asinh
       - atan
       - atan2
+      - atanh
+      - cbrt
       - ceil
       - copysign
       - cos
+      - cosh
+      - cospi
+      - div
+      - erf
+      - erfc
       - exp
+      - exp2
+      - expm1
       - fabs
+      - fdim
       - floor
+      - fma
+      - fmax
+      - fmin
       - fmod
+      - fpclassify
       - frexp
       - hypot
+      - ilogb
+      - isfinite
+      - isgreater
+      - isgreaterequal
+      - isinf
+      - isless
+      - islessequal
+      - islessgreater
+      - isnan
+      - isnormal
+      - isunordered
+      - ldexp
+      - lgamma
       - log
       - log10
+      - log1p
+      - log2
+      - logb
       - modf
+      - nan
+      - nearbyint
+      - nextafter
       - pow
+      - remainder
+      - remquo
+      - rint
+      - round
+      - roundeven
+      - scalbn
+      - signbit
       - sin
+      - sinh
+      - sinpi
       - sqrt
       - tan
+      - tanh
+      - tgamma
       - trunc
   - namespace: stdio
     title: stdio.h
@@ -53,47 +99,109 @@ namespaces:
     sourceKind: manual
     sourceRef: https://en.cppreference.com/w/c/io
     entries:
+      - clearerr
+      - fclose
+      - feof
+      - ferror
+      - fflush
+      - fgetc
+      - fgetpos
+      - fgets
+      - fgetwc
+      - fgetws
+      - fopen
       - fprintf
+      - fprintf_s
+      - fputc
       - fputs
+      - fputwc
+      - fputws
+      - fread
+      - freopen
+      - fscanf
+      - fseek
+      - fsetpos
+      - ftell
+      - fwide
+      - fwprintf
+      - fwrite
+      - fwscanf
+      - getchar
+      - gets
+      - getwchar
+      - perror
       - printf
+      - printf_s
       - putchar
       - puts
+      - putwchar
+      - remove
+      - rename
+      - rewind
+      - setbuf
+      - setvbuf
       - snprintf
+      - snprintf_s
       - sprintf
+      - sprintf_s
+      - tmpfile
+      - tmpnam
+      - ungetc
+      - ungetwc
       - vfprintf
+      - vfprintf_s
+      - vfscanf
+      - vfwprintf
+      - vfwscanf
       - vprintf
+      - vprintf_s
       - vsnprintf
+      - vsnprintf_s
       - vsprintf
+      - vsprintf_s
   - namespace: stdlib
     title: stdlib.h
     target: C23
     sourceKind: manual
     sourceRef: https://en.cppreference.com/w/c/program
     entries:
+      - abort
       - abs
+      - atexit
       - atof
       - atoi
       - atol
       - atoll
       - bsearch
+      - bsearch_s
+      - exit
       - getenv
-      - labs
-      - llabs
+      - getenv_s
+      - longjmp
+      - memalignment
       - qsort
+      - qsort_s
+      - raise
       - rand
+      - setjmp
+      - signal
       - srand
       - strtod
       - strtof
       - strtol
+      - strtold
       - strtoll
-      - strtoul
-      - strtoull
+      - system
+      - unreachable
   - namespace: string
     title: string.h
     target: C23
     sourceKind: manual
     sourceRef: https://en.cppreference.com/w/c/string/byte
     entries:
+      - atof
+      - atoi
+      - memccpy
       - memchr
       - memcmp
       - memcpy
@@ -102,14 +210,24 @@ namespaces:
       - strcat
       - strchr
       - strcmp
+      - strcoll
       - strcpy
       - strcspn
+      - strdup
+      - strerror
+      - strfromf
       - strlen
       - strncat
       - strncmp
       - strncpy
+      - strndup
       - strpbrk
       - strrchr
       - strspn
       - strstr
+      - strtof
+      - strtoimax
       - strtok
+      - strtol
+      - strtoul
+      - strxfrm

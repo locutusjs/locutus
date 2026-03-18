@@ -2401,6 +2401,9 @@ powershell:
           note: Exact string-to-date parsing is a useful portability target.
     uri:
       title: System.Uri static and instance methods
+      default:
+        decision: skip_runtime_model
+        note: Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.
       decisions:
         CheckHostName:
           decision: wanted
@@ -2422,6 +2425,9 @@ powershell:
           note: URL unescaping is a strong plain-value portability target.
     guid:
       title: System.Guid static and instance methods
+      default:
+        decision: skip_runtime_model
+        note: Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.
       decisions:
         Empty:
           decision: skip_runtime_model
@@ -3343,6 +3349,22 @@ swift:
       default:
         decision: wanted
         note: Swift String helpers are strong plain-value portability targets.
+      decisions:
+        componentsSeparatedBy:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though it is not a Swift.String member.
+        padding:
+          decision: keep_locutus_only
+          note: Locutus keeps this NSString-style alias even though native Swift uses padding(toLength:withPad:startingAt:).
+        rangeOf:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though native Swift.String uses range(of:).
+        replacingOccurrences:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though native Swift.String uses replacingOccurrences(of:with:).
+        trimmingCharacters:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though native Swift.String uses trimmingCharacters(in:).
     Optional:
       title: Swift.Optional
       default:

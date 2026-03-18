@@ -1,30 +1,87 @@
 language: haskell
 namespaces:
+  - namespace: bool
+    title: Data.Bool module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Bool.html
+    entries:
+      - 'False'
+      - SFalse
+      - STrue
+      - 'True'
+      - bool
+      - not
+      - otherwise
   - namespace: char
     title: Data.Char module
     target: GHC base-4.21
     sourceKind: manual
     sourceRef: https://hackage.haskell.org/package/base/docs/Data-Char.html
     entries:
+      - ClosePunctuation
+      - ConnectorPunctuation
+      - Control
+      - CurrencySymbol
+      - DashPunctuation
+      - DecimalNumber
+      - EnclosingMark
+      - FinalQuote
+      - Format
+      - InitialQuote
+      - LetterNumber
+      - LineSeparator
+      - LowercaseLetter
+      - MathSymbol
+      - ModifierLetter
+      - ModifierSymbol
+      - NonSpacingMark
+      - NotAssigned
+      - OpenPunctuation
+      - OtherLetter
+      - OtherNumber
+      - OtherPunctuation
+      - OtherSymbol
+      - ParagraphSeparator
+      - PrivateUse
+      - Space
+      - SpacingCombiningMark
+      - Surrogate
+      - TitlecaseLetter
+      - UChar
+      - UppercaseLetter
       - chr
       - digitToInt
+      - generalCategory
       - intToDigit
       - isAlpha
       - isAlphaNum
       - isAscii
+      - isAsciiLower
+      - isAsciiUpper
       - isControl
       - isDigit
       - isHexDigit
+      - isLatin1
       - isLetter
       - isLower
+      - isLowerCase
+      - isMark
       - isNumber
+      - isOctDigit
       - isPrint
       - isPunctuation
       - isSeparator
       - isSpace
+      - isSymbol
       - isUpper
+      - isUpperCase
+      - lexLitChar
       - ord
+      - readLitChar
+      - showLitChar
       - toLower
+      - toTitle
       - toUpper
   - namespace: either
     title: Data.Either module
@@ -32,43 +89,159 @@ namespaces:
     sourceKind: manual
     sourceRef: https://hackage.haskell.org/package/base/docs/Data-Either.html
     entries:
+      - Left
+      - Right
       - either
+      - fromLeft
+      - fromRight
       - isLeft
       - isRight
       - lefts
       - partitionEithers
       - rights
+  - namespace: function
+    title: Data.Function module
+    target: GHC base-4.21
+    sourceKind: manual
+    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Function.html
+    entries:
+      - applyWhen
+      - const
+      - fix
+      - flip
+      - id
+      - 'on'
   - namespace: list
     title: Data.List module
     target: GHC base-4.21
     sourceKind: manual
     sourceRef: https://hackage.haskell.org/package/base/docs/Data-List.html
     entries:
+      - all
+      - and
+      - any
+      - break
+      - compareLength
+      - concat
+      - concatMap
+      - cycle
+      - delete
+      - deleteBy
+      - deleteFirstsBy
+      - drop
+      - dropWhile
+      - dropWhileEnd
+      - elem
+      - elemIndex
+      - elemIndices
+      - filter
+      - find
+      - findIndex
+      - findIndices
+      - foldl
+      - foldl1
+      - foldr
+      - foldr1
+      - genericDrop
+      - genericIndex
+      - genericLength
+      - genericReplicate
+      - genericSplitAt
+      - genericTake
       - group
       - groupBy
+      - head
+      - init
       - inits
+      - inits1
+      - insert
+      - insertBy
       - intercalate
+      - intersect
+      - intersectBy
       - intersperse
       - isInfixOf
       - isPrefixOf
       - isSubsequenceOf
       - isSuffixOf
+      - iterate
+      - last
+      - length
+      - lines
+      - lookup
+      - map
+      - mapAccumL
+      - mapAccumR
+      - maximum
+      - maximumBy
+      - minimum
+      - minimumBy
+      - notElem
       - nub
       - nubBy
+      - 'null'
+      - or
+      - partition
       - permutations
+      - product
+      - repeat
+      - replicate
+      - reverse
+      - scanl
+      - scanl1
+      - scanr
+      - scanr1
+      - singleton
       - sort
       - sortBy
+      - sortOn
+      - span
+      - splitAt
+      - stripPrefix
       - subsequences
+      - sum
+      - tail
       - tails
+      - tails1
+      - take
+      - takeWhile
       - transpose
+      - uncons
+      - unfoldr
       - union
       - unionBy
+      - unlines
+      - unsnoc
+      - unwords
+      - unzip
+      - unzip3
+      - unzip4
+      - unzip5
+      - unzip6
+      - unzip7
+      - words
+      - zip
+      - zip3
+      - zip4
+      - zip5
+      - zip6
+      - zip7
+      - zipWith
+      - zipWith3
+      - zipWith4
+      - zipWith5
+      - zipWith6
+      - zipWith7
   - namespace: maybe
     title: Data.Maybe module
     target: GHC base-4.21
     sourceKind: manual
     sourceRef: https://hackage.haskell.org/package/base/docs/Data-Maybe.html
     entries:
+      - Just
+      - Nothing
+      - SJust
+      - SNothing
       - catMaybes
       - fromJust
       - fromMaybe
@@ -84,40 +257,64 @@ namespaces:
     sourceKind: manual
     sourceRef: https://hackage.haskell.org/package/base/docs/Numeric.html
     entries:
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atanh
+      - cos
+      - cosh
+      - exp
+      - expm1
       - floatToDigits
+      - fromRat
+      - lexDigits
+      - log
+      - log1mexp
+      - log1p
+      - log1pexp
+      - logBase
+      - pi
+      - readBin
       - readDec
       - readFloat
       - readHex
       - readInt
+      - readOct
+      - readSigned
+      - showBin
       - showEFloat
       - showFFloat
+      - showFFloatAlt
       - showFloat
       - showGFloat
+      - showGFloatAlt
+      - showHFloat
       - showHex
+      - showInt
       - showIntAtBase
       - showOct
-  - namespace: bool
-    title: Data.Bool module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Bool.html
-    entries:
-      - bool
-  - namespace: function
-    title: Data.Function module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Function.html
-    entries:
-      - fix
-      - on
+      - showSigned
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
   - namespace: ord
     title: Data.Ord module
     target: GHC base-4.21
     sourceKind: manual
     sourceRef: https://hackage.haskell.org/package/base/docs/Data-Ord.html
     entries:
+      - Down
+      - EQ
+      - GT
+      - LT
+      - clamp
+      - compare
       - comparing
+      - getDown
       - max
       - min
   - namespace: tuple
@@ -126,8 +323,11 @@ namespaces:
     sourceKind: manual
     sourceRef: https://hackage.haskell.org/package/base/docs/Data-Tuple.html
     entries:
+      - MkSolo
+      - Solo
       - curry
       - fst
+      - getSolo
       - snd
       - swap
       - uncurry

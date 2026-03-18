@@ -153,6 +153,8 @@ export interface UpstreamSurfaceAdapter {
   discover?: (() => Promise<UpstreamSurfaceSnapshot> | UpstreamSurfaceSnapshot) | undefined
   /** Whether discovery refreshes a canonical source live or reuses a checked-in snapshot. */
   discoverMode?: 'live' | 'snapshot' | undefined
+  /** Whether live discovery requires Docker rather than direct network/source fetches. */
+  discoverUsesDocker?: boolean | undefined
   /** Discover the canonical official namespace list for one language. */
   discoverNamespaceCatalog?:
     | (() => Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> | DiscoveredUpstreamSurfaceNamespaceCatalog)

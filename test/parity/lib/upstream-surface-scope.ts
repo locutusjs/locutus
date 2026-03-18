@@ -58,6 +58,7 @@ interface InventoryOnlyLanguageHandlerConfig {
   displayName: string
   version: string
   skipList: Set<string>
+  upstreamSurface?: LanguageHandler['upstreamSurface']
 }
 
 let cachedRepoScope:
@@ -177,7 +178,7 @@ export function createInventoryOnlyLanguageHandler(config: InventoryOnlyLanguage
     },
     dockerCmd: () => ['sh', '-lc', 'exit 1'],
     mountRepo: false,
-    upstreamSurface: {
+    upstreamSurface: config.upstreamSurface ?? {
       discover: () => loadRepoUpstreamSurfaceSnapshot(config.language),
       discoverMode: 'snapshot',
       discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope(config.language),

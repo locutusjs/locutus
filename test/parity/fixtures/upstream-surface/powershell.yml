@@ -1,91 +1,87 @@
 language: powershell
 namespaces:
-  - namespace: string
-    title: System.String instance methods
+  - namespace: array
+    title: System.Array static methods
     target: PowerShell 7.4
     sourceKind: manual
-    sourceRef: https://learn.microsoft.com/dotnet/api/system.string
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.array
     entries:
+      - BinarySearch
+      - Clear
       - Clone
-      - CompareTo
-      - Contains
-      - EndsWith
-      - Equals
+      - ConstrainedCopy
+      - Copy
+      - CopyTo
+      - CreateInstance
+      - CreateInstanceFromArrayType
+      - GetEnumerator
+      - GetLength
+      - GetLongLength
+      - GetLowerBound
+      - GetUpperBound
+      - GetValue
       - IndexOf
-      - Insert
+      - Initialize
+      - IsFixedSize
+      - IsReadOnly
+      - IsSynchronized
       - LastIndexOf
       - Length
-      - PadLeft
-      - PadRight
-      - Remove
-      - Replace
-      - Split
-      - StartsWith
-      - Substring
-      - ToLower
-      - ToLowerInvariant
-      - ToUpper
-      - ToUpperInvariant
-      - Trim
-      - TrimEnd
-      - TrimStart
-  - namespace: math
-    title: System.Math static methods
-    target: PowerShell 7.4
-    sourceKind: manual
-    sourceRef: https://learn.microsoft.com/dotnet/api/system.math
-    entries:
-      - Abs
-      - Acos
-      - Asin
-      - Atan
-      - Atan2
-      - Ceiling
-      - Clamp
-      - CopySign
-      - Cos
-      - Cosh
-      - Exp
-      - Floor
-      - Log
-      - Log10
-      - Log2
-      - Max
-      - Min
-      - Pow
-      - Round
-      - Sign
-      - Sin
-      - Sinh
-      - Sqrt
-      - Tan
-      - Tanh
-      - Truncate
+      - LongLength
+      - MaxLength
+      - Rank
+      - Reverse
+      - SetValue
+      - Sort
+      - SyncRoot
   - namespace: char
     title: System.Char static methods
     target: PowerShell 7.4
     sourceKind: manual
     sourceRef: https://learn.microsoft.com/dotnet/api/system.char
     entries:
+      - CompareTo
       - ConvertFromUtf32
       - ConvertToUtf32
+      - Equals
+      - GetHashCode
       - GetNumericValue
+      - GetTypeCode
       - GetUnicodeCategory
       - IsAscii
+      - IsAsciiDigit
+      - IsAsciiHexDigit
+      - IsAsciiHexDigitLower
+      - IsAsciiHexDigitUpper
+      - IsAsciiLetter
+      - IsAsciiLetterLower
+      - IsAsciiLetterOrDigit
+      - IsAsciiLetterUpper
+      - IsBetween
       - IsControl
       - IsDigit
+      - IsHighSurrogate
       - IsLetter
       - IsLetterOrDigit
+      - IsLowSurrogate
       - IsLower
       - IsNumber
       - IsPunctuation
       - IsSeparator
+      - IsSurrogate
+      - IsSurrogatePair
       - IsSymbol
       - IsUpper
       - IsWhiteSpace
+      - MaxValue
+      - MinValue
       - Parse
       - ToLower
+      - ToLowerInvariant
+      - ToString
       - ToUpper
+      - ToUpperInvariant
+      - TryParse
   - namespace: convert
     title: System.Convert static methods
     target: PowerShell 7.4
@@ -93,18 +89,22 @@ namespaces:
     sourceRef: https://learn.microsoft.com/dotnet/api/system.convert
     entries:
       - ChangeType
+      - DBNull
       - FromBase64CharArray
       - FromBase64String
       - FromHexString
       - GetTypeCode
+      - IsDBNull
       - ToBase64CharArray
       - ToBase64String
       - ToBoolean
       - ToByte
       - ToChar
+      - ToDateTime
       - ToDecimal
       - ToDouble
       - ToHexString
+      - ToHexStringLower
       - ToInt16
       - ToInt32
       - ToInt64
@@ -114,31 +114,11 @@ namespaces:
       - ToUInt16
       - ToUInt32
       - ToUInt64
-  - namespace: array
-    title: System.Array static methods
-    target: PowerShell 7.4
-    sourceKind: manual
-    sourceRef: https://learn.microsoft.com/dotnet/api/system.array
-    entries:
-      - BinarySearch
-      - Clear
-      - ConstrainedCopy
-      - ConvertAll
-      - Copy
-      - Empty
-      - Exists
-      - Fill
-      - Find
-      - FindAll
-      - FindIndex
-      - FindLast
-      - FindLastIndex
-      - ForEach
-      - IndexOf
-      - LastIndexOf
-      - Reverse
-      - Sort
-      - TrueForAll
+      - TryFromBase64Chars
+      - TryFromBase64String
+      - TryToBase64Chars
+      - TryToHexString
+      - TryToHexStringLower
   - namespace: datetime
     title: System.DateTime static and instance methods
     target: PowerShell 7.4
@@ -148,67 +128,405 @@ namespaces:
       - Add
       - AddDays
       - AddHours
+      - AddMicroseconds
       - AddMilliseconds
       - AddMinutes
       - AddMonths
       - AddSeconds
+      - AddTicks
       - AddYears
+      - Addition
       - Compare
+      - CompareTo
+      - Date
+      - DateTime
+      - Day
+      - DayOfWeek
+      - DayOfYear
       - DaysInMonth
+      - Deconstruct
+      - Equality
+      - Equals
+      - FromBinary
+      - FromFileTime
+      - FromFileTimeUtc
+      - FromOADate
+      - GetDateTimeFormats
+      - GetHashCode
+      - GetTypeCode
+      - GreaterThan
+      - GreaterThanOrEqual
+      - Hour
+      - Inequality
+      - IsDaylightSavingTime
       - IsLeapYear
+      - Kind
+      - LessThan
+      - LessThanOrEqual
+      - MaxValue
+      - Microsecond
+      - Millisecond
+      - MinValue
+      - Minute
+      - Month
+      - Nanosecond
+      - Now
       - Parse
       - ParseExact
+      - Second
+      - SpecifyKind
       - Subtract
+      - Subtraction
+      - Ticks
+      - TimeOfDay
+      - ToBinary
+      - ToFileTime
+      - ToFileTimeUtc
       - ToLocalTime
+      - ToLongDateString
+      - ToLongTimeString
+      - ToOADate
+      - ToShortDateString
+      - ToShortTimeString
+      - ToString
       - ToUniversalTime
-  - namespace: uri
-    title: System.Uri static and instance methods
-    target: PowerShell 7.4
-    sourceKind: manual
-    sourceRef: https://learn.microsoft.com/dotnet/api/system.uri
-    entries:
-      - CheckHostName
-      - EscapeDataString
-      - EscapeUriString
-      - IsHexDigit
-      - IsHexEncoding
-      - UnescapeDataString
+      - Today
+      - TryFormat
+      - TryParse
+      - TryParseExact
+      - UnixEpoch
+      - UtcNow
+      - Year
   - namespace: guid
     title: System.Guid static and instance methods
     target: PowerShell 7.4
     sourceKind: manual
     sourceRef: https://learn.microsoft.com/dotnet/api/system.guid
     entries:
+      - AllBitsSet
+      - CompareTo
+      - CreateVersion7
       - Empty
+      - Equality
+      - Equals
+      - GetHashCode
+      - GreaterThan
+      - GreaterThanOrEqual
+      - Guid
+      - Inequality
+      - LessThan
+      - LessThanOrEqual
       - NewGuid
       - Parse
       - ParseExact
-      - ToString
-      - TryParse
-      - TryParseExact
-  - namespace: version
-    title: System.Version static and instance methods
-    target: PowerShell 7.4
-    sourceKind: manual
-    sourceRef: https://learn.microsoft.com/dotnet/api/system.version
-    entries:
-      - CompareTo
-      - Parse
-      - Revision
+      - ToByteArray
       - ToString
       - TryFormat
+      - TryParse
+      - TryParseExact
+      - TryWriteBytes
+      - Variant
+      - Version
+  - namespace: math
+    title: System.Math static methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.math
+    entries:
+      - Abs
+      - Acos
+      - Acosh
+      - Asin
+      - Asinh
+      - Atan
+      - Atan2
+      - Atanh
+      - BigMul
+      - BitDecrement
+      - BitIncrement
+      - Cbrt
+      - Ceiling
+      - Clamp
+      - CopySign
+      - Cos
+      - Cosh
+      - DivRem
+      - E
+      - Exp
+      - Floor
+      - FusedMultiplyAdd
+      - IEEERemainder
+      - ILogB
+      - Log
+      - Log10
+      - Log2
+      - Max
+      - MaxMagnitude
+      - Min
+      - MinMagnitude
+      - PI
+      - Pow
+      - ReciprocalEstimate
+      - ReciprocalSqrtEstimate
+      - Round
+      - ScaleB
+      - Sign
+      - Sin
+      - SinCos
+      - Sinh
+      - Sqrt
+      - Tan
+      - Tanh
+      - Tau
+      - Truncate
+  - namespace: string
+    title: System.String instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.string
+    entries:
+      - Clone
+      - Compare
+      - CompareOrdinal
+      - CompareTo
+      - Concat
+      - Contains
+      - Copy
+      - CopyTo
+      - Create
+      - Empty
+      - EndsWith
+      - EnumerateRunes
+      - Equality
+      - Equals
+      - Format
+      - GetEnumerator
+      - GetHashCode
+      - GetPinnableReference
+      - GetTypeCode
+      - Implicit
+      - IndexOf
+      - IndexOfAny
+      - Inequality
+      - Insert
+      - Intern
+      - IsInterned
+      - IsNormalized
+      - IsNullOrEmpty
+      - IsNullOrWhiteSpace
+      - Join
+      - LastIndexOf
+      - LastIndexOfAny
+      - Length
+      - Normalize
+      - PadLeft
+      - PadRight
+      - Remove
+      - Replace
+      - ReplaceLineEndings
+      - Split
+      - StartsWith
+      - String
+      - Substring
+      - ToCharArray
+      - ToLower
+      - ToLowerInvariant
+      - ToString
+      - ToUpper
+      - ToUpperInvariant
+      - Trim
+      - TrimEnd
+      - TrimStart
+      - TryCopyTo
   - namespace: timespan
     title: System.TimeSpan static and instance methods
     target: PowerShell 7.4
     sourceKind: manual
     sourceRef: https://learn.microsoft.com/dotnet/api/system.timespan
     entries:
+      - Add
+      - Addition
       - Compare
+      - CompareTo
+      - Days
+      - Divide
+      - Division
+      - Duration
+      - Equality
+      - Equals
       - FromDays
       - FromHours
+      - FromMicroseconds
       - FromMilliseconds
       - FromMinutes
       - FromSeconds
+      - FromTicks
+      - GetHashCode
+      - GreaterThan
+      - GreaterThanOrEqual
+      - Hours
+      - HoursPerDay
+      - Inequality
+      - LessThan
+      - LessThanOrEqual
+      - MaxValue
+      - Microseconds
+      - MicrosecondsPerDay
+      - MicrosecondsPerHour
+      - MicrosecondsPerMillisecond
+      - MicrosecondsPerMinute
+      - MicrosecondsPerSecond
+      - Milliseconds
+      - MillisecondsPerDay
+      - MillisecondsPerHour
+      - MillisecondsPerMinute
+      - MillisecondsPerSecond
+      - MinValue
+      - Minutes
+      - MinutesPerDay
+      - MinutesPerHour
+      - Multiply
+      - Nanoseconds
+      - NanosecondsPerTick
+      - Negate
       - Parse
       - ParseExact
+      - Seconds
+      - SecondsPerDay
+      - SecondsPerHour
+      - SecondsPerMinute
+      - Subtract
+      - Subtraction
+      - Ticks
+      - TicksPerDay
+      - TicksPerHour
+      - TicksPerMicrosecond
+      - TicksPerMillisecond
+      - TicksPerMinute
+      - TicksPerSecond
+      - TimeSpan
       - ToString
+      - TotalDays
+      - TotalHours
+      - TotalMicroseconds
+      - TotalMilliseconds
+      - TotalMinutes
+      - TotalNanoseconds
+      - TotalSeconds
+      - TryFormat
+      - TryParse
+      - TryParseExact
+      - UnaryNegation
+      - UnaryPlus
+      - Zero
+  - namespace: uri
+    title: System.Uri static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.uri
+    entries:
+      - AbsolutePath
+      - AbsoluteUri
+      - Authority
+      - Canonicalize
+      - CheckHostName
+      - CheckSchemeName
+      - CheckSecurity
+      - Compare
+      - DnsSafeHost
+      - Equality
+      - Equals
+      - Escape
+      - EscapeDataString
+      - EscapeString
+      - EscapeUriString
+      - Fragment
+      - FromHex
+      - GetComponents
+      - GetHashCode
+      - GetLeftPart
+      - GetObjectData
+      - HexEscape
+      - HexUnescape
+      - Host
+      - HostNameType
+      - IdnHost
+      - Inequality
+      - IsAbsoluteUri
+      - IsBadFileSystemCharacter
+      - IsBaseOf
+      - IsDefaultPort
+      - IsExcludedCharacter
+      - IsFile
+      - IsHexDigit
+      - IsHexEncoding
+      - IsLoopback
+      - IsReservedCharacter
+      - IsUnc
+      - IsWellFormedOriginalString
+      - IsWellFormedUriString
+      - LocalPath
+      - MakeRelative
+      - MakeRelativeUri
+      - OriginalString
+      - Parse
+      - PathAndQuery
+      - Port
+      - Query
+      - Scheme
+      - SchemeDelimiter
+      - Segments
+      - ToString
+      - TryCreate
+      - TryEscapeDataString
+      - TryFormat
+      - TryUnescapeDataString
+      - Unescape
+      - UnescapeDataString
+      - Uri
+      - UriSchemeData
+      - UriSchemeFile
+      - UriSchemeFtp
+      - UriSchemeFtps
+      - UriSchemeGopher
+      - UriSchemeHttp
+      - UriSchemeHttps
+      - UriSchemeMailto
+      - UriSchemeNetPipe
+      - UriSchemeNetTcp
+      - UriSchemeNews
+      - UriSchemeNntp
+      - UriSchemeSftp
+      - UriSchemeSsh
+      - UriSchemeTelnet
+      - UriSchemeWs
+      - UriSchemeWss
+      - UserEscaped
+      - UserInfo
+  - namespace: version
+    title: System.Version static and instance methods
+    target: PowerShell 7.4
+    sourceKind: manual
+    sourceRef: https://learn.microsoft.com/dotnet/api/system.version
+    entries:
+      - Build
+      - Clone
+      - CompareTo
+      - Equality
+      - Equals
+      - GetHashCode
+      - GreaterThan
+      - GreaterThanOrEqual
+      - Inequality
+      - LessThan
+      - LessThanOrEqual
+      - Major
+      - MajorRevision
+      - Minor
+      - MinorRevision
+      - Parse
+      - Revision
+      - ToString
+      - TryFormat
+      - TryParse
+      - Version

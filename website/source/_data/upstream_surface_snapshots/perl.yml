@@ -1,46 +1,39 @@
 language: perl
 namespaces:
-  - namespace: POSIX
-    title: POSIX module
+  - namespace: Encode
+    title: Encode module
     target: Perl 5.40
     sourceKind: manual
-    sourceRef: https://perldoc.perl.org/POSIX
+    sourceRef: https://perldoc.perl.org/Encode
     entries:
-      - ceil
-      - floor
-      - fmod
-      - frexp
-      - hypot
-      - modf
-      - pow
-      - strftime
-  - namespace: core
-    title: Perl core built-ins
+      - FB_CROAK
+      - FB_DEFAULT
+      - FB_QUIET
+      - FB_WARN
+      - LEAVE_SRC
+      - _utf8_off
+      - _utf8_on
+      - byte
+      - character
+      - decode
+      - decode_utf8
+      - encode
+      - encode_utf8
+      - find_encoding
+      - find_mime_encoding
+      - from_to
+      - is_utf8
+      - octet
+  - namespace: File::Basename
+    title: File::Basename module
     target: Perl 5.40
     sourceKind: manual
-    sourceRef: https://perldoc.perl.org/functions
+    sourceRef: https://perldoc.perl.org/File::Basename
     entries:
-      - abs
-      - chomp
-      - chop
-      - chr
-      - hex
-      - index
-      - int
-      - join
-      - lc
-      - lcfirst
-      - length
-      - ord
-      - pack
-      - quotemeta
-      - reverse
-      - rindex
-      - split
-      - sprintf
-      - substr
-      - uc
-      - ucfirst
+      - basename
+      - dirname
+      - fileparse
+      - fileparse_set_fstype
   - namespace: List::Util
     title: List::Util module
     target: Perl 5.40
@@ -53,6 +46,7 @@ namespaces:
       - head
       - max
       - maxstr
+      - mesh
       - min
       - minstr
       - none
@@ -74,30 +68,9 @@ namespaces:
       - uniq
       - uniqint
       - uniqnum
-  - namespace: Math::Trig
-    title: Math::Trig module
-    target: Perl 5.40
-    sourceKind: manual
-    sourceRef: https://perldoc.perl.org/Math::Trig
-    entries:
-      - acos
-      - asin
-      - atan
-      - atan2
-      - cartesian_to_cylindrical
-      - cartesian_to_spherical
-      - cylindrical_to_cartesian
-      - deg2rad
-      - great_circle_distance
-      - great_circle_direction
-      - pi
-      - rad2deg
-      - sec
-      - sin
-      - sinh
-      - spherical_to_cartesian
-      - tan
-      - tanh
+      - uniqstr
+      - unpairs
+      - zip
   - namespace: Math::Complex
     title: Math::Complex module
     target: Perl 5.40
@@ -110,8 +83,8 @@ namespaces:
       - acos
       - asin
       - atan2
-      - cplx
       - cos
+      - cplx
       - exp
       - log
       - pi
@@ -120,6 +93,372 @@ namespaces:
       - sqrt
       - tan
       - theta
+  - namespace: Math::Trig
+    title: Math::Trig module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/Math::Trig
+    entries:
+      - acos_real
+      - asin_real
+      - cartesian_to_cylindrical
+      - cartesian_to_spherical
+      - cylindrical_to_cartesian
+      - cylindrical_to_spherical
+      - deg2deg
+      - deg2grad
+      - deg2rad
+      - grad2deg
+      - grad2grad
+      - grad2rad
+      - rad2deg
+      - rad2grad
+      - rad2rad
+      - spherical_to_cartesian
+      - spherical_to_cylindrical
+      - tan
+  - namespace: POSIX
+    title: POSIX module
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/POSIX
+    entries:
+      - Constants
+      - Constants1
+      - Constants10
+      - Constants11
+      - Constants12
+      - Constants13
+      - Constants14
+      - Constants15
+      - Constants16
+      - Constants17
+      - Constants18
+      - Constants2
+      - Constants3
+      - Constants4
+      - Constants5
+      - Constants6
+      - Constants7
+      - Constants8
+      - Constants9
+      - Inf
+      - Macros
+      - Macros1
+      - NaN
+      - SIGRTMAX
+      - SIGRTMIN
+      - WEXITSTATUS
+      - WIFEXITED
+      - WIFSIGNALED
+      - WIFSTOPPED
+      - WNOHANG
+      - WSTOPSIG
+      - WTERMSIG
+      - WUNTRACED
+      - _exit
+      - abort
+      - abs
+      - access
+      - acos
+      - acosh
+      - addset
+      - alarm
+      - asctime
+      - asin
+      - asinh
+      - assert
+      - atan
+      - atan2
+      - atanh
+      - atexit
+      - atof
+      - atoi
+      - atol
+      - bsearch
+      - calloc
+      - cbrt
+      - ceil
+      - chdir
+      - chmod
+      - chown
+      - clearerr
+      - clock
+      - close
+      - closedir
+      - copysign
+      - cos
+      - cosh
+      - creat
+      - ctermid
+      - ctime
+      - delset
+      - difftime
+      - div
+      - dup
+      - dup2
+      - emptyset
+      - erf
+      - erfc
+      - errno
+      - execl
+      - execle
+      - execlp
+      - execv
+      - execve
+      - execvp
+      - exit
+      - exp
+      - expm1
+      - fabs
+      - fcntl
+      - fdim
+      - fdopen
+      - fegetround
+      - feof
+      - ferror
+      - fesetround
+      - fflush
+      - fgetc
+      - fgetpos
+      - fgets
+      - fileno
+      - fillset
+      - flags
+      - floor
+      - fma
+      - fmax
+      - fmin
+      - fmod
+      - fopen
+      - fork
+      - fpathconf
+      - fpclassify
+      - fprintf
+      - fputc
+      - fputs
+      - fread
+      - free
+      - freopen
+      - frexp
+      - fscanf
+      - fseek
+      - fsetpos
+      - fstat
+      - fsync
+      - ftell
+      - fwrite
+      - getattr
+      - getc
+      - getcc
+      - getcflag
+      - getchar
+      - getcwd
+      - getegid
+      - getenv
+      - geteuid
+      - getgid
+      - getgrgid
+      - getgrnam
+      - getgroups
+      - getiflag
+      - getispeed
+      - getlflag
+      - getlogin
+      - getoflag
+      - getospeed
+      - getpayload
+      - getpgrp
+      - getpid
+      - getppid
+      - getpwnam
+      - getpwuid
+      - gets
+      - getuid
+      - gmtime
+      - handler
+      - hypot
+      - ilogb
+      - isalnum
+      - isalpha
+      - isatty
+      - iscntrl
+      - isdigit
+      - isfinite
+      - isgraph
+      - isgreater
+      - isinf
+      - islower
+      - ismember
+      - isnan
+      - isnormal
+      - isprint
+      - ispunct
+      - issignaling
+      - isspace
+      - isupper
+      - isxdigit
+      - j0
+      - j1
+      - jn
+      - kill
+      - labs
+      - lchown
+      - ldexp
+      - ldiv
+      - lgamma
+      - link
+      - localeconv
+      - localtime
+      - log
+      - log10
+      - log1p
+      - log2
+      - logb
+      - longjmp
+      - lrint
+      - lround
+      - lseek
+      - malloc
+      - mask
+      - mblen
+      - mbtowc
+      - memchr
+      - memcmp
+      - memcpy
+      - memmove
+      - memset
+      - mkdir
+      - mkfifo
+      - mktime
+      - modf
+      - nan
+      - nearbyint
+      - new
+      - new1
+      - new2
+      - nextafter
+      - nexttoward
+      - nice
+      - offsetof
+      - open
+      - opendir
+      - pathconf
+      - pause
+      - perror
+      - pipe
+      - pow
+      - printf
+      - putc
+      - putchar
+      - puts
+      - qsort
+      - raise
+      - rand
+      - read
+      - readdir
+      - realloc
+      - remainder
+      - remove
+      - remquo
+      - rename
+      - rewind
+      - rewinddir
+      - rint
+      - rmdir
+      - round
+      - safe
+      - scalbn
+      - scanf
+      - setattr
+      - setcc
+      - setcflag
+      - setgid
+      - setiflag
+      - setispeed
+      - setjmp
+      - setlflag
+      - setlocale
+      - setoflag
+      - setospeed
+      - setpayload
+      - setpayloadsig
+      - setpgid
+      - setsid
+      - setuid
+      - sigaction
+      - siglongjmp
+      - signbit
+      - sigpending
+      - sigprocmask
+      - sigsetjmp
+      - sigsuspend
+      - sin
+      - sinh
+      - sleep
+      - sprintf
+      - sqrt
+      - srand
+      - sscanf
+      - stat
+      - strcat
+      - strchr
+      - strcmp
+      - strcoll
+      - strcpy
+      - strcspn
+      - strerror
+      - strftime
+      - strlen
+      - strncat
+      - strncmp
+      - strncpy
+      - strpbrk
+      - strrchr
+      - strspn
+      - strstr
+      - strtod
+      - strtok
+      - strtol
+      - strtold
+      - strtoul
+      - strxfrm
+      - sysconf
+      - system
+      - tan
+      - tanh
+      - tcdrain
+      - tcflow
+      - tcflush
+      - tcgetpgrp
+      - tcsendbreak
+      - tcsetpgrp
+      - tgamma
+      - time
+      - times
+      - tmpfile
+      - tmpnam
+      - tolower
+      - toupper
+      - trunc
+      - ttyname
+      - tzname
+      - tzset
+      - umask
+      - uname
+      - ungetc
+      - unlink
+      - utime
+      - vfprintf
+      - vprintf
+      - vsprintf
+      - wait
+      - waitpid
+      - wctomb
+      - write
+      - y0
+      - y1
+      - yn
   - namespace: Scalar::Util
     title: Scalar::Util module
     target: Perl 5.40
@@ -140,18 +479,6 @@ namespaces:
       - tainted
       - unweaken
       - weaken
-  - namespace: Encode
-    title: Encode module
-    target: Perl 5.40
-    sourceKind: manual
-    sourceRef: https://perldoc.perl.org/Encode
-    entries:
-      - decode
-      - decode_utf8
-      - encode
-      - encode_utf8
-      - from_to
-      - is_utf8
   - namespace: Text::ParseWords
     title: Text::ParseWords module
     target: Perl 5.40
@@ -159,7 +486,6 @@ namespaces:
     sourceRef: https://perldoc.perl.org/Text::ParseWords
     entries:
       - nested_quotewords
-      - old_parse_line
       - old_shellwords
       - parse_line
       - quotewords
@@ -172,23 +498,317 @@ namespaces:
     entries:
       - expand
       - unexpand
-  - namespace: File::Basename
-    title: File::Basename module
-    target: Perl 5.40
-    sourceKind: manual
-    sourceRef: https://perldoc.perl.org/File::Basename
-    entries:
-      - basename
-      - dirname
-      - fileparse
   - namespace: Unicode::Normalize
     title: Unicode::Normalize module
     target: Perl 5.40
     sourceKind: manual
     sourceRef: https://perldoc.perl.org/Unicode::Normalize
     entries:
+      - FCC
+      - FCD
       - NFC
+      - NFC_partial
       - NFD
+      - NFD_partial
       - NFKC
+      - NFKC_partial
       - NFKD
+      - NFKD_partial
+      - check
+      - checkFCC
+      - checkFCD
+      - checkNFC
+      - checkNFD
+      - checkNFKC
+      - checkNFKD
+      - compose
+      - decompose
+      - getCanon
+      - getCombinClass
+      - getCompat
+      - getComposite
+      - isComp2nd
+      - isComp_Ex
+      - isExclusion
+      - isNFC_MAYBE
+      - isNFC_NO
+      - isNFD_NO
+      - isNFKC_MAYBE
+      - isNFKC_NO
+      - isNFKD_NO
+      - isNonStDecomp
+      - isSingleton
       - normalize
+      - normalize_partial
+      - reorder
+      - splitOnLastStarter
+  - namespace: core
+    title: Perl core built-ins
+    target: Perl 5.40
+    sourceKind: manual
+    sourceRef: https://perldoc.perl.org/functions
+    entries:
+      - ADJUST
+      - AUTOLOAD
+      - BEGIN
+      - CHECK
+      - CORE
+      - DESTROY
+      - END
+      - INIT
+      - UNITCHECK
+      - __CLASS__
+      - __DATA__
+      - __END__
+      - __FILE__
+      - __LINE__
+      - __PACKAGE__
+      - __SUB__
+      - abs
+      - accept
+      - alarm
+      - all
+      - and
+      - any
+      - atan2
+      - bind
+      - binmode
+      - bless
+      - break
+      - caller
+      - catch
+      - chdir
+      - chmod
+      - chomp
+      - chop
+      - chown
+      - chr
+      - chroot
+      - class
+      - close
+      - closedir
+      - cmp
+      - connect
+      - continue
+      - cos
+      - crypt
+      - dbmclose
+      - dbmopen
+      - default
+      - defer
+      - defined
+      - delete
+      - die
+      - do
+      - dump
+      - each
+      - else
+      - elseif
+      - elsif
+      - endgrent
+      - endhostent
+      - endnetent
+      - endprotoent
+      - endpwent
+      - endservent
+      - eof
+      - eq
+      - eval
+      - evalbytes
+      - exec
+      - exists
+      - exit
+      - exp
+      - fc
+      - fcntl
+      - field
+      - fileno
+      - finally
+      - flock
+      - for
+      - foreach
+      - fork
+      - format
+      - formline
+      - ge
+      - getc
+      - getgrent
+      - getgrgid
+      - getgrnam
+      - gethostbyaddr
+      - gethostbyname
+      - gethostent
+      - getlogin
+      - getnetbyaddr
+      - getnetbyname
+      - getnetent
+      - getpeername
+      - getpgrp
+      - getppid
+      - getpriority
+      - getprotobyname
+      - getprotobynumber
+      - getprotoent
+      - getpwent
+      - getpwnam
+      - getpwuid
+      - getservbyname
+      - getservbyport
+      - getservent
+      - getsockname
+      - getsockopt
+      - given
+      - glob
+      - gmtime
+      - goto
+      - grep
+      - gt
+      - hex
+      - if
+      - import
+      - index
+      - int
+      - ioctl
+      - isa
+      - join
+      - keys
+      - kill
+      - last
+      - lc
+      - lcfirst
+      - le
+      - length
+      - link
+      - listen
+      - local
+      - localtime
+      - lock
+      - log
+      - lstat
+      - lt
+      - m
+      - map
+      - method
+      - mkdir
+      - msgctl
+      - msgget
+      - msgrcv
+      - msgsnd
+      - my
+      - ne
+      - next
+      - 'no'
+      - not
+      - oct
+      - open
+      - opendir
+      - or
+      - ord
+      - our
+      - pack
+      - package
+      - pipe
+      - pop
+      - pos
+      - print
+      - printf
+      - prototype
+      - push
+      - quotemeta
+      - rand
+      - read
+      - readdir
+      - readline
+      - readlink
+      - readpipe
+      - recv
+      - redo
+      - ref
+      - rename
+      - require
+      - reset
+      - return
+      - reverse
+      - rewinddir
+      - rindex
+      - rmdir
+      - s
+      - say
+      - scalar
+      - seek
+      - seekdir
+      - select
+      - semctl
+      - semget
+      - semop
+      - send
+      - setgrent
+      - sethostent
+      - setnetent
+      - setpgrp
+      - setpriority
+      - setprotoent
+      - setpwent
+      - setservent
+      - setsockopt
+      - shift
+      - shmctl
+      - shmget
+      - shmread
+      - shmwrite
+      - shutdown
+      - sin
+      - sleep
+      - socket
+      - socketpair
+      - sort
+      - splice
+      - split
+      - sprintf
+      - sqrt
+      - srand
+      - stat
+      - state
+      - study
+      - sub
+      - substr
+      - symlink
+      - syscall
+      - sysopen
+      - sysread
+      - sysseek
+      - system
+      - syswrite
+      - tell
+      - telldir
+      - tie
+      - tied
+      - time
+      - times
+      - tr
+      - truncate
+      - try
+      - uc
+      - ucfirst
+      - umask
+      - undef
+      - unless
+      - unlink
+      - unpack
+      - unshift
+      - untie
+      - until
+      - use
+      - utime
+      - values
+      - vec
+      - wait
+      - waitpid
+      - wantarray
+      - warn
+      - when
+      - while
+      - write
+      - x
+      - xor
+      - 'y'

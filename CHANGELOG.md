@@ -44,6 +44,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 - Continued the same breadth push with Python `csv` / `hashlib` / `hmac`, Ruby `Dir` / `File` / `MatchData` / `Numeric`, Go `encoding/base64` / `encoding/hex` / `math` / `math/bits`, R `compiler` / `grid` / `parallel` / `splines`, Julia `DelimitedFiles` / `LinearAlgebra`, Clojure `walk` / `zip`, and more docs-backed core namespaces for PowerShell, Rust, Swift, Kotlin, Haskell, and Perl while dropping empty runtime-only catalogs like R `datasets`.
 - Extended the same R breadth wave across the official recommended packages with `class`, `cluster`, `foreign`, `KernSmooth`, `lattice`, `MASS`, `Matrix`, `mgcv`, `nlme`, `nnet`, `rpart`, `spatial`, and `survival`, keeping the policy sparse through namespace defaults rather than per-function bookkeeping.
 - Tightened the discovery contract again so every supported language now exposes both a canonical namespace catalog and a deterministic `discover()` path, with `enumerate:upstream-surface` running one unified codepath across runtime-backed and snapshot-backed languages instead of silently bypassing the latter.
+- Replaced the last snapshot-reuse discovery paths with real canonical extraction for AWK, C, Perl, PowerShell, Rust, Haskell, Kotlin, and Swift, so checked-in upstream snapshots are now discovery artifacts rather than hidden inputs.
 
 ## v3.0.24
 

@@ -90,7 +90,11 @@ export async function enumerateUpstreamSurfaceSnapshots({
 
   const needsDocker = resolution.selected.some((language) => {
     const handler = getLanguageHandler(language)
-    return !!handler?.upstreamSurface?.discover && handler.upstreamSurface.discoverMode !== 'snapshot'
+    return (
+      !!handler?.upstreamSurface?.discover &&
+      handler.upstreamSurface.discoverMode !== 'snapshot' &&
+      (handler.upstreamSurface.discoverUsesDocker ?? true)
+    )
   })
   if (needsDocker && !checkDockerAvailable()) {
     logger.error('Docker is required for upstream surface enumeration.')
@@ -105,7 +109,11 @@ export async function enumerateUpstreamSurfaceSnapshots({
     const snapshotPath = getUpstreamSurfaceSnapshotPath(snapshotDir, language)
 
     if (handler?.upstreamSurface?.discover) {
-      if (handler.upstreamSurface.discoverMode !== 'snapshot' && !ensureDockerImage(handler.dockerImage)) {
+      if (
+        handler.upstreamSurface.discoverMode !== 'snapshot' &&
+        (handler.upstreamSurface.discoverUsesDocker ?? true) &&
+        !ensureDockerImage(handler.dockerImage)
+      ) {
         logger.error(`Unable to pull Docker image for ${language}: ${handler.dockerImage}`)
         process.exit(1)
       }

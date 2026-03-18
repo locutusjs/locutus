@@ -6,28 +6,109 @@ namespaces:
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/array
     entries:
+      - Array.ArrayLiteralElement
+      - Array.Index
+      - Array.Indices
+      - Array.Iterator
+      - Array.Specification
+      - Array.SubSequence
+      - Array.UnderlyingSequence
+      - Array.UnwrappedType
+      - Array.ValueType
+      - allSatisfy
+      - append
+      - applying
+      - capacity
+      - compactMap
       - contains
+      - count
+      - customMirror
+      - debugDescription
+      - defaultResolverSpecification
+      - description
+      - difference
+      - distance
+      - drop
       - dropFirst
       - dropLast
       - elementsEqual
-      - filter
+      - encode
+      - endIndex
+      - enumerated
       - first
+      - firstIndex
       - flatMap
+      - forEach
+      - formIndex
+      - hash
+      - hashValue
+      - index
+      - init
+      - insert
+      - isEmpty
       - joined
       - last
-      - map
+      - lastIndex
+      - lazy
+      - lexicographicallyPrecedes
+      - makeIterator
+      - max
+      - min
+      - monoscopicForVideoOutput
+      - mutableSpan
       - partition
+      - popLast
       - prefix
+      - randomElement
       - reduce
+      - remove
+      - removeAll
+      - removeFirst
+      - removeLast
+      - removeSubrange
+      - replaceSubrange
+      - reserveCapacity
+      - reverse
       - reversed
+      - shuffle
+      - shuffled
+      - sort
+      - sorted
+      - span
+      - split
+      - startIndex
+      - starts
+      - stereoscopicForVideoOutput
+      - subscript
       - suffix
+      - swapAt
+      - underestimatedCount
+      - withContiguousMutableStorageIfAvailable
+      - withContiguousStorageIfAvailable
+      - withUnsafeBufferPointer
+      - withUnsafeBytes
+      - withUnsafeMutableBufferPointer
+      - withUnsafeMutableBytes
+      - withUnsafeTaggedBuffers
   - namespace: Bool
     title: Swift.Bool
     target: Swift 6
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/bool
     entries:
+      - Bool.IntentDisplayName
+      - Bool.Specification
+      - Bool.UnwrappedType
+      - Bool.ValueType
+      - customMirror
+      - customPlaygroundQuickLook
+      - defaultResolverSpecification
       - description
+      - encode
+      - hash
+      - hashValue
+      - init
+      - random
       - toggle
   - namespace: Character
     title: Swift.Character
@@ -35,29 +116,90 @@ namespaces:
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/character
     entries:
+      - Character.Output
+      - Character.UTF16View
+      - Character.UTF8View
+      - Character.UnicodeScalarView
       - asciiValue
+      - customMirror
+      - customPlaygroundQuickLook
+      - debugDescription
+      - description
+      - hash
+      - hexDigitValue
+      - init
       - isASCII
+      - isCased
+      - isCurrencySymbol
+      - isHexDigit
       - isLetter
       - isLowercase
+      - isMathSymbol
+      - isNewline
       - isNumber
       - isPunctuation
       - isSymbol
       - isUppercase
       - isWhitespace
+      - isWholeNumber
       - lowercased
+      - unicodeScalars
       - uppercased
+      - utf16
+      - utf8
+      - wholeNumberValue
+      - write
   - namespace: Dictionary
     title: Swift.Dictionary
     target: Swift 6
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/dictionary
     entries:
+      - Dictionary.Element
+      - Dictionary.Index
+      - Dictionary.Indices
+      - Dictionary.Iterator
+      - Dictionary.Keys
+      - Dictionary.Values
+      - allSatisfy
+      - capacity
+      - compactMap
+      - compactMapValues
       - contains
+      - count
+      - customMirror
+      - debugDescription
+      - description
+      - encode
+      - enumerated
       - filter
       - first
+      - firstIndex
+      - flatMap
+      - forEach
+      - hash
+      - hashValue
+      - index
+      - init
+      - isEmpty
+      - keys
+      - lazy
+      - makeIterator
       - mapValues
+      - max
+      - merge
       - merging
+      - min
+      - randomElement
+      - reduce
+      - remove
+      - removeAll
       - removeValue
+      - reserveCapacity
+      - shuffled
+      - sorted
+      - subscript
+      - underestimatedCount
       - updateValue
       - values
   - namespace: Double
@@ -66,112 +208,465 @@ namespaces:
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/double
     entries:
-      - acos
-      - asin
-      - atan
-      - cos
-      - exp
+      - Double.Exponent
+      - Double.FloatLiteralType
+      - Double.IntegerLiteralType
+      - Double.Magnitude
+      - Double.RawExponent
+      - Double.RawSignificand
+      - Double.SIMD16Storage
+      - Double.SIMD2Storage
+      - Double.SIMD32Storage
+      - Double.SIMD4Storage
+      - Double.SIMD64Storage
+      - Double.SIMD8Storage
+      - Double.SIMDMaskScalar
+      - Double.Specification
+      - Double.Stride
+      - Double.UnwrappedType
+      - Double.ValueType
+      - addProduct
+      - addingProduct
+      - advanced
+      - binade
+      - bitPattern
+      - customMirror
+      - customPlaygroundQuickLook
+      - debugDescription
+      - defaultResolverSpecification
+      - description
+      - distance
+      - encode
+      - exponent
+      - exponentBitCount
+      - exponentBitPattern
+      - floatingPointClass
+      - formRemainder
+      - formSquareRoot
+      - formTruncatingRemainder
+      - greatestFiniteMagnitude
+      - hash
+      - hashValue
+      - infinity
+      - init
+      - isCanonical
+      - isEqual
       - isFinite
       - isInfinite
+      - isLess
+      - isLessThanOrEqualTo
       - isNaN
+      - isNormal
+      - isSignalingNaN
+      - isSubnormal
+      - isTotallyOrdered
+      - isZero
+      - leastNonzeroMagnitude
+      - leastNormalMagnitude
+      - magnitude
+      - maximum
+      - maximumMagnitude
+      - minimum
+      - minimumMagnitude
+      - mlMultiArrayDataType
+      - nan
+      - negate
+      - nextDown
+      - nextUp
+      - pi
+      - radix
+      - random
+      - remainder
+      - round
       - rounded
       - sign
-      - sin
-      - sqrt
-      - tan
+      - signalingNaN
+      - significand
+      - significandBitCount
+      - significandBitPattern
+      - significandWidth
+      - squareRoot
+      - truncatingRemainder
+      - ulp
+      - ulpOfOne
+      - write
+      - zero
   - namespace: Float
     title: Swift.Float
     target: Swift 6
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/float
     entries:
-      - acos
-      - asin
-      - atan
-      - cos
-      - exp
+      - Float.Exponent
+      - Float.Magnitude
+      - Float.RawSignificand
+      - Float.SIMD16Storage
+      - Float.SIMD2Storage
+      - Float.SIMD32Storage
+      - Float.SIMD4Storage
+      - Float.SIMD64Storage
+      - Float.SIMD8Storage
+      - Float.SIMDMaskScalar
+      - addProduct
+      - addingProduct
+      - advanced
+      - binade
+      - bitPattern
+      - customMirror
+      - customPlaygroundQuickLook
+      - debugDescription
+      - description
+      - distance
+      - encode
+      - exponent
+      - exponentBitCount
+      - exponentBitPattern
+      - floatingPointClass
+      - formRemainder
+      - formSquareRoot
+      - formTruncatingRemainder
+      - greatestFiniteMagnitude
+      - hash
+      - hashValue
+      - infinity
+      - init
+      - isCanonical
+      - isEqual
       - isFinite
       - isInfinite
+      - isLess
+      - isLessThanOrEqualTo
       - isNaN
+      - isNormal
+      - isSignalingNaN
+      - isSubnormal
+      - isTotallyOrdered
+      - isZero
+      - leastNonzeroMagnitude
+      - leastNormalMagnitude
+      - magnitude
+      - maximum
+      - maximumMagnitude
+      - minimum
+      - minimumMagnitude
+      - mlMultiArrayDataType
+      - nan
+      - negate
+      - nextDown
+      - nextUp
+      - pi
+      - radix
+      - random
+      - remainder
+      - round
       - rounded
       - sign
-      - sin
-      - sqrt
-      - tan
+      - signalingNaN
+      - significand
+      - significandBitCount
+      - significandBitPattern
+      - significandWidth
+      - squareRoot
+      - truncatingRemainder
+      - ulp
+      - ulpOfOne
+      - write
+      - zero
   - namespace: Int
     title: Swift.Int
     target: Swift 6
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/int
     entries:
+      - Int.IntegerLiteralType
+      - Int.Magnitude
+      - Int.SIMD16Storage
+      - Int.SIMD2Storage
+      - Int.SIMD32Storage
+      - Int.SIMD4Storage
+      - Int.SIMD64Storage
+      - Int.SIMD8Storage
+      - Int.SIMDMaskScalar
+      - Int.Specification
+      - Int.Stride
+      - Int.UnwrappedType
+      - Int.ValueType
+      - Int.Words
+      - addingReportingOverflow
+      - advanced
+      - bigEndian
+      - bitWidth
+      - byteSwapped
+      - customMirror
+      - customPlaygroundQuickLook
+      - defaultResolverSpecification
+      - description
+      - distance
+      - dividedReportingOverflow
+      - dividingFullWidth
+      - encode
+      - hash
+      - hashValue
+      - init
       - isMultiple
+      - isSigned
+      - leadingZeroBitCount
+      - littleEndian
       - magnitude
+      - max
+      - min
+      - multipliedFullWidth
+      - multipliedReportingOverflow
+      - negate
+      - nonzeroBitCount
       - quotientAndRemainder
+      - random
+      - remainderReportingOverflow
       - signum
-  - namespace: Set
-    title: Swift.Set
-    target: Swift 6
-    sourceKind: manual
-    sourceRef: https://developer.apple.com/documentation/swift/set
-    entries:
-      - contains
-      - filter
-      - first
-      - intersection
-      - isDisjoint
-      - isSubset
-      - isSuperset
-      - subtracting
-      - symmetricDifference
-      - union
-  - namespace: String
-    title: Swift.String
-    target: Swift 6
-    sourceKind: manual
-    sourceRef: https://developer.apple.com/documentation/swift/string
-    entries:
-      - componentsSeparatedBy
-      - contains
-      - hasPrefix
-      - hasSuffix
-      - lowercased
-      - padding
-      - prefix
-      - rangeOf
-      - replacingOccurrences
-      - split
-      - suffix
-      - trimmingCharacters
-      - uppercased
+      - subtractingReportingOverflow
+      - trailingZeroBitCount
+      - words
+      - zero
   - namespace: Optional
     title: Swift.Optional
     target: Swift 6
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/optional
     entries:
+      - Optional.Body
+      - Optional.PartiallyGenerated
+      - Optional.Publisher
+      - Optional.Specification
+      - Optional.TableRowBody
+      - Optional.TicksCollection
+      - Optional.UnwrappedType
+      - Optional.ValueType
+      - Optional.none
+      - Optional.some
+      - customMirror
+      - debugDescription
+      - defaultResolverSpecification
+      - encode
       - flatMap
+      - hash
+      - hashValue
+      - init
       - map
+      - publisher
+      - take
+      - unsafelyUnwrapped
+  - namespace: Set
+    title: Swift.Set
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/set
+    entries:
+      - Set.Index
+      - Set.Iterator
+      - Set.Specification
+      - Set.UnderlyingSequence
+      - Set.UnwrappedType
+      - Set.ValueType
+      - allSatisfy
+      - capacity
+      - compactMap
+      - contains
+      - count
+      - customMirror
+      - debugDescription
+      - defaultResolverSpecification
+      - description
+      - encode
+      - enumerated
+      - filter
+      - first
+      - firstIndex
+      - flatMap
+      - forEach
+      - formIntersection
+      - formSymmetricDifference
+      - formUnion
+      - hash
+      - index
+      - init
+      - insert
+      - intersection
+      - isDisjoint
+      - isEmpty
+      - isStrictSubset
+      - isStrictSuperset
+      - isSubset
+      - isSuperset
+      - lazy
+      - makeIterator
+      - max
+      - min
+      - randomElement
+      - reduce
+      - remove
+      - removeAll
+      - removeFirst
+      - reserveCapacity
+      - shuffled
+      - sorted
+      - subscript
+      - subtract
+      - subtracting
+      - symmetricDifference
+      - underestimatedCount
+      - union
+      - update
+      - withContiguousStorageIfAvailable
+  - namespace: String
+    title: Swift.String
+    target: Swift 6
+    sourceKind: manual
+    sourceRef: https://developer.apple.com/documentation/swift/string
+    entries:
+      - String.CharacterView
+      - String.Comparator
+      - String.CompareOptions
+      - String.Encoding
+      - String.EncodingConversionOptions
+      - String.EnumerationOptions
+      - String.Index
+      - String.IndexDistance
+      - String.IntentInputOptions
+      - String.Iterator
+      - String.LocalizationOptions
+      - String.LocalizationValue
+      - String.Output
+      - String.Specification
+      - String.StandardComparator
+      - String.UTF16View
+      - String.UTF8View
+      - String.UnicodeScalarIndex
+      - String.UnicodeScalarView
+      - String.UnwrappedType
+      - String.ValueType
+      - allSatisfy
+      - append
+      - applying
+      - availableStringEncodings
+      - characters
+      - compactMap
+      - contains
+      - count
+      - customMirror
+      - customPlaygroundQuickLook
+      - data
+      - debugDescription
+      - decodeCString
+      - defaultCStringEncoding
+      - defaultResolverSpecification
+      - description
+      - difference
+      - distance
+      - drop
+      - dropFirst
+      - dropLast
+      - elementsEqual
+      - encode
+      - endIndex
+      - enumerated
+      - filter
+      - first
+      - firstIndex
+      - flatMap
+      - forEach
+      - formIndex
+      - hasPrefix
+      - hasSuffix
+      - hash
+      - hashValue
+      - index
+      - indices
+      - init
+      - insert
+      - isContiguousUTF8
+      - isEmpty
+      - last
+      - lastIndex
+      - lazy
+      - lexicographicallyPrecedes
+      - localizedName
+      - localizedStringWithFormat
+      - lowercased
+      - makeContiguousUTF8
+      - makeIterator
+      - max
+      - min
+      - popLast
+      - prefix
+      - randomElement
+      - reduce
+      - remove
+      - removeAll
+      - removeFirst
+      - removeLast
+      - removeSubrange
+      - replaceSubrange
+      - reserveCapacity
+      - reversed
+      - shuffled
+      - sorted
+      - split
+      - startIndex
+      - starts
+      - subscript
+      - suffix
+      - underestimatedCount
+      - unicodeScalars
+      - uppercased
+      - utf16
+      - utf8
+      - utf8CString
+      - utf8Span
+      - withCString
+      - withContiguousStorageIfAvailable
+      - withMutableCharacters
+      - withPlatformString
+      - withUTF8
+      - write
   - namespace: Substring
     title: Swift.Substring
     target: Swift 6
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/substring
     entries:
-      - contains
-      - hasPrefix
-      - hasSuffix
-      - lowercased
-      - prefix
-      - split
-      - suffix
-      - uppercased
+      - Substring.CharacterView
+      - Substring.Output
+      - base
+      - characters
+      - customPlaygroundQuickLook
+      - filter
+      - init
+      - isContiguousUTF8
+      - makeContiguousUTF8
+      - replaceSubrange
+      - utf8Span
+      - withMutableCharacters
+      - withUTF8
   - namespace: UnicodeScalar
     title: Swift.Unicode.Scalar
     target: Swift 6
     sourceKind: manual
     sourceRef: https://developer.apple.com/documentation/swift/unicode/scalar
     entries:
+      - Unicode.Scalar.Output
+      - Unicode.Scalar.Properties
+      - Unicode.Scalar.UTF16View
+      - Unicode.Scalar.UTF8View
+      - customMirror
+      - customPlaygroundQuickLook
+      - debugDescription
+      - description
       - escaped
+      - hash
+      - init
       - isASCII
       - properties
+      - utf16
+      - utf8
       - value
+      - write

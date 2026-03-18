@@ -397,9 +397,9 @@ describe('upstream surface inventory', () => {
     expect(resolution.unavailable).toEqual(['python'])
   })
 
-  it('treats manual snapshots as enumerable even when they are not live-discoverable', () => {
+  it('treats canonical source-backed languages as live-discoverable even without parity execution', () => {
     expect(canEnumerateUpstreamSurfaceLanguage('swift', 'all', process.cwd())).toBe(true)
-    expect(canEnumerateUpstreamSurfaceLanguage('swift', 'discoverable', process.cwd())).toBe(false)
+    expect(canEnumerateUpstreamSurfaceLanguage('swift', 'discoverable', process.cwd())).toBe(true)
     expect(canEnumerateUpstreamSurfaceLanguage('php', 'all', process.cwd())).toBe(true)
   })
 

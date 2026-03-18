@@ -2656,3 +2656,29 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - A discovery system is not really deterministic if part of the language set still uses a hidden fallback path.
   - Unifying the enumeration entrypoint matters more than whether a given language refreshes live from Docker or deterministically from a version-tagged canonical snapshot.
+
+### Iteration 132
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Remove the last fake-discovery layer so snapshot-backed languages also extract their members from canonical upstream sources instead of reloading checked-in snapshot files.
+  - Keep snapshots as checked-in artifacts only, not as the source of truth for discovery.
+- Progress:
+  - Added a shared canonical-source extraction layer for the previously snapshot-backed languages in `test/parity/lib/upstream-surface-canonical.ts`.
+  - Switched AWK, C, Perl, PowerShell, Rust, Haskell, Kotlin, and Swift upstream discovery over to real canonical extraction from runtime, official docs, or official source-backed JSON instead of repo snapshot reuse.
+  - Added `discoverUsesDocker` metadata so all-language enumeration can stay unified without forcing Docker for docs/source-backed discovery.
+  - Re-enumerated the affected upstream-surface snapshots from canonical sources and re-injected the mirrored website data.
+  - Tightened the C extractor so `abs` only lives under `stdlib`, matching our catalog mapping and comparison rules.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn audit:upstream-scope`
+  - `corepack yarn enumerate:upstream-surface`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - “Deterministic discovery” is only honest when canonical extraction is real for every supported language, not just for the runtime-backed ones.
+  - Checked-in snapshots are valuable build artifacts, but they must be the output of discovery, never its hidden input.
