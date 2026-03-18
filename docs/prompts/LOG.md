@@ -2708,6 +2708,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn discover:upstream-surface haskell swift`
   - `corepack yarn discover:upstream-surface kotlin`
   - `corepack yarn discover:upstream-surface perl powershell rust`
+
+### Iteration 134
+
+2026-03-18
+
+- **Area: Post-discovery contract cleanup**
+- Plan:
+  - Run council refactor ideas against the new raw discover -> fold architecture.
+  - Accept only the refactors that tighten the contract instead of pulling the design back toward scope-guided discovery.
+- Progress:
+  - Kept the inventory-only provenance fix: `buildInventoryOnlyUpstreamSurface()` now derives namespace-catalog metadata from the top-level discovered snapshot instead of fabricating language-level provenance from the first namespace entry.
+  - Rejected the suggestion to make `fold:upstream-surface` mechanically apply tracked scope, because under the new design fold is intentionally just the “accept this raw catalog into tracked snapshot YAML” step; tracked scope remains an audit/planning layer, not a discovery or fold filter.
+  - Updated `CORE_MAINTAINER.md` and `docs/upstream-surface-inventory.md` to reflect that contract more precisely.
+- Validation:
+  - `~/code/dotfiles/bin/council.ts refactor`
+  - `corepack yarn check`
 - Key learnings:
   - The reliable shape is `discover -> inspect/fix -> fold -> triage`; any saved list earlier than fold weakens the whole claim.
   - Broad raw discovery becomes workable once heavy languages reduce inside the container instead of streaming giant canonical artifacts back to Node.

@@ -738,9 +738,9 @@ export function buildInventoryOnlyUpstreamSurface(config: InventoryOnlyDiscovere
           throw new Error(`No upstream surface namespaces were discovered for ${config.language}.`)
         }
         return {
-          target: firstNamespace.target,
-          sourceKind: firstNamespace.sourceKind,
-          sourceRef: firstNamespace.sourceRef,
+          target: snapshot.catalog?.target ?? firstNamespace.target,
+          sourceKind: snapshot.catalog?.sourceKind ?? firstNamespace.sourceKind,
+          sourceRef: snapshot.catalog?.sourceRef ?? firstNamespace.sourceRef,
           namespaces: snapshot.namespaces.map((namespace) => namespace.namespace).sort((a, b) => a.localeCompare(b)),
         }
       }),

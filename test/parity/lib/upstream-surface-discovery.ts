@@ -25,6 +25,11 @@ export function buildDiscoveredUpstreamSurfaceSnapshot(input: {
 }): UpstreamSurfaceSnapshot {
   return {
     language: input.language,
+    catalog: {
+      target: input.catalog.target,
+      sourceKind: input.catalog.sourceKind,
+      sourceRef: input.catalog.sourceRef,
+    },
     namespaces: input.namespaces
       .map<UpstreamSurfaceNamespaceSnapshot>((namespace) => ({
         namespace: namespace.namespace,

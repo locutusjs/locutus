@@ -23,9 +23,9 @@ Note that for any task, it's important to first get ample context. Search past i
 5. Before any new product work, audit upstream discovery and tracked scope. The flow is:
    - run `corepack yarn discover:upstream-surface <language>` to materialize the raw canonical catalog from runtime/docs/source
    - inspect the raw diff and fix discovery first if it over- or under-shoots
-   - use `docs/upstream-surface-scope.yml` as the source of truth for what we deliberately fold into tracked scope
-   - run `corepack yarn fold:upstream-surface <language>` when the discovered catalog looks right
+   - run `corepack yarn fold:upstream-surface <language>` when the discovered catalog looks right and you want to accept it into the tracked snapshot YAML
    - run `corepack yarn audit:upstream-scope <language>` to compare tracked scope against raw canonical discovery
+   - use `docs/upstream-surface-scope.yml` as the explicit audit/planning contract for tracked scope, not as a discovery input
    - if official namespaces are missing from tracked scope, broaden scope first
    - if a namespace is too broad, either narrow/exclude it at the source layer or keep it with a broad inventory default after folding
    - only resume product work once raw discovery is trustworthy and the tracked target surface for the chosen area is explicit and sane

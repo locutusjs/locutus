@@ -140,6 +140,11 @@ export interface UpstreamSurfaceNamespaceSnapshot {
 
 export interface UpstreamSurfaceSnapshot {
   language: string
+  catalog?: {
+    target: string
+    sourceKind: UpstreamSurfaceSourceKind
+    sourceRef: string
+  }
   namespaces: UpstreamSurfaceNamespaceSnapshot[]
 }
 

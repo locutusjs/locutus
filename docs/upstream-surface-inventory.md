@@ -37,7 +37,7 @@ There are five layers:
 
 2. Canonical tracked scope
    - Path: `docs/upstream-surface-scope.yml`
-   - Purpose: declare which discovered namespaces we deliberately fold into the tracked core/stdlib scope, while preserving canonical provenance
+   - Purpose: declare the explicit tracked-scope/audit contract for official core/stdlib coverage, while preserving canonical provenance
 
 3. Checked-in tracked upstream snapshots
    - Path: `test/parity/fixtures/upstream-surface/*.yml`
@@ -206,7 +206,7 @@ The intended maintainer loop is:
 
 1. discover the full raw upstream catalog from canonical sources
 2. inspect the raw diff and fix discovery if it over- or under-shoots
-3. fold the accepted namespaces into tracked scope and tracked snapshots
+3. fold the accepted raw catalog into tracked snapshots
 4. triage the folded surface with inventory defaults, rules, and exact decisions
 5. rerun the check until tracked scope is fully classified
 
@@ -271,7 +271,7 @@ corepack yarn refresh:upstream-surface php python ruby golang
 Notes:
 
 - `discover:upstream-surface` is the raw, exhaustive stage
-- `fold:upstream-surface` is the explicit “accept this raw catalog into tracked scope” stage
+- `fold:upstream-surface` is the explicit “accept this raw catalog into tracked snapshot YAML” stage
 - `refresh:upstream-surface` is the live-only tracked-snapshot refresh helper
 - on a parity-target bump, discover first, inspect the raw diff, fold the accepted catalog, then review new `wanted` / `skip_*` / `keep_*` decisions
 
