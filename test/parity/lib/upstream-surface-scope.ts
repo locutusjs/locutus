@@ -12,7 +12,13 @@ import { join } from 'node:path'
 import YAML from 'js-yaml'
 import { z } from 'zod'
 
-import type { LanguageHandler, UpstreamSurfaceScope, UpstreamSurfaceSnapshot } from './types.ts'
+import type {
+  DiscoveredUpstreamSurfaceNamespaceCatalog,
+  LanguageHandler,
+  UpstreamSurfaceScope,
+  UpstreamSurfaceSnapshot,
+} from './types.ts'
+import { loadRepoUpstreamSurfaceSnapshot } from './upstream-surface-snapshots.ts'
 
 const upstreamSurfaceNamespaceScopeSchema = z
   .object({
@@ -47,6 +53,7 @@ export interface DiscoveredUpstreamSurfaceNamespace {
 }
 
 interface InventoryOnlyLanguageHandlerConfig {
+  language: string
   dockerImage: string
   displayName: string
   version: string
@@ -135,6 +142,27 @@ export function getUpstreamSurfaceNamespaceScope(language: string, namespace: st
   return namespaceScope
 }
 
+export function discoverUpstreamSurfaceNamespaceCatalogFromScope(
+  language: string,
+  rootDir = process.cwd(),
+): DiscoveredUpstreamSurfaceNamespaceCatalog {
+  const languageScope = getUpstreamSurfaceLanguageScope(language, rootDir)
+  if (!languageScope.namespaceCatalog) {
+    throw new Error(`No canonical namespace catalog is defined for ${language}.`)
+  }
+
+  return {
+    ...languageScope.namespaceCatalog,
+    namespaces: [
+      ...new Set(
+        Object.entries(languageScope.namespaces).map(
+          ([namespace, namespaceScope]) => namespaceScope.catalogNamespace ?? namespace,
+        ),
+      ),
+    ].sort(),
+  }
+}
+
 export function createInventoryOnlyLanguageHandler(config: InventoryOnlyLanguageHandlerConfig): LanguageHandler {
   return {
     parityEnabled: false,
@@ -150,6 +178,9 @@ export function createInventoryOnlyLanguageHandler(config: InventoryOnlyLanguage
     dockerCmd: () => ['sh', '-lc', 'exit 1'],
     mountRepo: false,
     upstreamSurface: {
+      discover: () => loadRepoUpstreamSurfaceSnapshot(config.language),
+      discoverMode: 'snapshot',
+      discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope(config.language),
       getLocutusEntry: (func) => ({
         namespace: func.category,
         name: func.name,

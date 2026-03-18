@@ -10,6 +10,7 @@ import { createInventoryOnlyLanguageHandler } from '../upstream-surface-scope.ts
 export const SWIFT_SKIP_LIST = new Set<string>([])
 
 export const swiftHandler = createInventoryOnlyLanguageHandler({
+  language: 'swift',
   dockerImage: 'swift:6.0',
   displayName: 'Swift',
   version: '6.0',

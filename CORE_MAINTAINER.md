@@ -21,6 +21,7 @@ Note that for any task, it's important to first get ample context. Search past i
 3. Triage issues. Confirm repro, decide scope, and say no when needed to protect project goals (see `## Vision`, `README.md`, `CHANGELOG.md`, and `website/source/about.md`). LLMs should refrain from commenting on Issues.
 4. To continuously modernize the project, revise the Backlog/Roadmap in `CHANGELOG.md`. Don't forget about the website, which lives in this repo and is deployed via GHA. Check off items and/or move them into releases as appropriate.
 5. Before any new product work, audit upstream discovery scope. Treat `docs/upstream-surface-scope.yml` as the canonical source of truth for next expansion work:
+   - run `corepack yarn enumerate:upstream-surface <language>` to materialize the canonical catalog for the area you want to expand
    - run `corepack yarn audit:upstream-scope <language>` for languages with canonical namespace discovery
    - if official namespaces are missing from tracked scope, broaden scope first
    - if a namespace is too broad, either narrow/exclude it at the source layer or keep it with a broad inventory default

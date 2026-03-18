@@ -8,7 +8,10 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, type JsObjectProperty, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import {
+  buildScopedUpstreamSurfaceSnapshot,
+  discoverUpstreamSurfaceNamespaceCatalogFromScope,
+} from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const CLOJURE_SKIP_LIST = new Set<string>([
@@ -571,6 +574,7 @@ export const clojureHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverClojureUpstreamSurface,
+    discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope('clojure'),
     getLocutusEntry: (func) => {
       const translated = func.category === 'string' && func.name === 'blank' ? 'blank?' : func.name.replaceAll('_', '-')
       return {

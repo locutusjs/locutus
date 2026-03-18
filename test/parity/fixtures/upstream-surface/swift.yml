@@ -151,7 +151,6 @@ namespaces:
     entries:
       - flatMap
       - map
-    # Keep this sparse: the type mostly exposes wrapper semantics rather than plain-value helpers.
   - namespace: Substring
     title: Swift.Substring
     target: Swift 6

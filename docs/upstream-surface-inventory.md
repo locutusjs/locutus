@@ -157,6 +157,14 @@ This audit is intentionally stronger than a plain name diff:
 - it validates the canonical `sourceKind`
 - it validates the canonical `sourceRef`
 
+Every supported language must now expose both:
+
+- a canonical namespace catalog via `discoverNamespaceCatalog`
+- a deterministic upstream-surface materialization path via `discover`
+
+For runtime-backed languages, `discover` refreshes directly from the parity target.
+For docs/source/manual languages, `discover` re-materializes the checked-in canonical snapshot for that target. This keeps `enumerate:upstream-surface` on one unified codepath across every supported language instead of silently bypassing non-runtime surfaces.
+
 Selective PR routing is driven by:
 
 - `scripts/select-parity-targets.ts`
@@ -208,7 +216,7 @@ corepack yarn audit:upstream-scope python
 This command is intentionally broader than refresh:
 
 - runtime-backed languages refresh from the parity target container
-- docs/source/manual languages validate and reuse their checked-in snapshots as the authoritative tracked catalog
+- docs/source/manual languages re-materialize their checked-in canonical snapshots through the same `discover` interface
 - the result is the full tracked upstream picture we want to inspect before triaging
 
 Enumeration is now also checked against the canonical scope manifest:

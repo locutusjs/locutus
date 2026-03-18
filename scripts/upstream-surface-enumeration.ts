@@ -31,7 +31,7 @@ export function canEnumerateUpstreamSurfaceLanguage(
   rootDir: string,
 ) {
   const handler = getLanguageHandler(language)
-  if (handler?.upstreamSurface?.discover) {
+  if (handler?.upstreamSurface?.discover && (mode === 'all' || handler.upstreamSurface.discoverMode !== 'snapshot')) {
     return true
   }
 
@@ -57,7 +57,11 @@ export async function enumerateUpstreamSurfaceSnapshots({
   const supportedLanguages = getSupportedLanguages()
   const resolution = resolveUpstreamSurfaceLanguages(filters, supportedLanguages, (language) => {
     const handler = getLanguageHandler(language)
-    return !!handler?.upstreamSurface?.discover || (mode === 'all' && snapshots.has(language))
+    return (
+      (!!handler?.upstreamSurface?.discover &&
+        (mode === 'all' || handler.upstreamSurface.discoverMode !== 'snapshot')) ||
+      (mode === 'all' && snapshots.has(language))
+    )
   })
 
   if (resolution.unknown.length) {
@@ -84,7 +88,10 @@ export async function enumerateUpstreamSurfaceSnapshots({
     process.exit(1)
   }
 
-  const needsDocker = resolution.selected.some((language) => !!getLanguageHandler(language)?.upstreamSurface?.discover)
+  const needsDocker = resolution.selected.some((language) => {
+    const handler = getLanguageHandler(language)
+    return !!handler?.upstreamSurface?.discover && handler.upstreamSurface.discoverMode !== 'snapshot'
+  })
   if (needsDocker && !checkDockerAvailable()) {
     logger.error('Docker is required for upstream surface enumeration.')
     process.exit(1)
@@ -98,7 +105,7 @@ export async function enumerateUpstreamSurfaceSnapshots({
     const snapshotPath = getUpstreamSurfaceSnapshotPath(snapshotDir, language)
 
     if (handler?.upstreamSurface?.discover) {
-      if (!ensureDockerImage(handler.dockerImage)) {
+      if (handler.upstreamSurface.discoverMode !== 'snapshot' && !ensureDockerImage(handler.dockerImage)) {
         logger.error(`Unable to pull Docker image for ${language}: ${handler.dockerImage}`)
         process.exit(1)
       }

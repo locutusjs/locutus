@@ -14,6 +14,8 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverUpstreamSurfaceNamespaceCatalogFromScope } from '../upstream-surface-scope.ts'
+import { loadRepoUpstreamSurfaceSnapshot } from '../upstream-surface-snapshots.ts'
 
 type ReturnType = 'bool' | 'int' | 'double' | 'string' | 'char'
 
@@ -368,6 +370,9 @@ export const cHandler: LanguageHandler = {
   },
   mountRepo: false,
   upstreamSurface: {
+    discover: () => loadRepoUpstreamSurfaceSnapshot('c'),
+    discoverMode: 'snapshot',
+    discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope('c'),
     getLocutusEntry: (func) => ({
       namespace: func.name === 'abs' ? 'stdlib' : func.category,
       name: func.name,

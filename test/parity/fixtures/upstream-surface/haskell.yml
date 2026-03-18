@@ -110,7 +110,7 @@ namespaces:
     sourceRef: https://hackage.haskell.org/package/base/docs/Data-Function.html
     entries:
       - fix
-      - on
+      - 'on'
   - namespace: ord
     title: Data.Ord module
     target: GHC base-4.21

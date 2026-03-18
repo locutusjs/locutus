@@ -4,6 +4,8 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverUpstreamSurfaceNamespaceCatalogFromScope } from '../upstream-surface-scope.ts'
+import { loadRepoUpstreamSurfaceSnapshot } from '../upstream-surface-snapshots.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const AWK_SKIP_LIST = new Set<string>([
@@ -137,6 +139,9 @@ export const awkHandler: LanguageHandler = {
   dockerCmd: (code: string) => ['awk', code, '/dev/null'],
   mountRepo: false,
   upstreamSurface: {
+    discover: () => loadRepoUpstreamSurfaceSnapshot('awk'),
+    discoverMode: 'snapshot',
+    discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope('awk'),
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

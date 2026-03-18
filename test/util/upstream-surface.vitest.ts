@@ -5,7 +5,12 @@ import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { canEnumerateUpstreamSurfaceLanguage } from '../../scripts/upstream-surface-enumeration.ts'
 import { cHandler } from '../parity/lib/languages/c.ts'
-import { getParitySupportedLanguages, isLanguageSupported } from '../parity/lib/languages/index.ts'
+import {
+  getLanguageHandler,
+  getParitySupportedLanguages,
+  getSupportedLanguages,
+  isLanguageSupported,
+} from '../parity/lib/languages/index.ts'
 import { findFunctionSources } from '../parity/lib/parser.ts'
 import type { FunctionInfo, LanguageHandler, UpstreamSurfaceSnapshot } from '../parity/lib/types.ts'
 import {
@@ -448,6 +453,28 @@ describe('upstream surface inventory', () => {
     expect(loaded.python?.namespaceCatalog?.sourceRef).toBe('python:3.12:pkgutil-stdlib-modules')
     expect(loaded.python?.namespaces?.['urllib.parse']?.catalogNamespace).toBe('urllib')
     expect(loaded.swift?.namespaces?.String?.sourceKind).toBe('manual')
+  })
+
+  it('defines a canonical namespace catalog for every supported language', () => {
+    const loaded = loadUpstreamSurfaceScope(join(process.cwd(), 'docs/upstream-surface-scope.yml'))
+
+    for (const language of getSupportedLanguages()) {
+      expect(loaded[language]?.namespaceCatalog).toBeDefined()
+    }
+  })
+
+  it('exposes namespace-catalog discovery for every supported language', () => {
+    for (const language of getSupportedLanguages()) {
+      const handler = getLanguageHandler(language)
+      expect(handler?.upstreamSurface?.discoverNamespaceCatalog).toBeTypeOf('function')
+    }
+  })
+
+  it('exposes upstream-surface discovery for every supported language', () => {
+    for (const language of getSupportedLanguages()) {
+      const handler = getLanguageHandler(language)
+      expect(handler?.upstreamSurface?.discover).toBeTypeOf('function')
+    }
   })
 
   it('keeps Go package snapshots limited to package-level functions', () => {

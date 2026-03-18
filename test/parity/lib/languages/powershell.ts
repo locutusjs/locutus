@@ -4,6 +4,8 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverUpstreamSurfaceNamespaceCatalogFromScope } from '../upstream-surface-scope.ts'
+import { loadRepoUpstreamSurfaceSnapshot } from '../upstream-surface-snapshots.ts'
 
 export const POWERSHELL_SKIP_LIST = new Set<string>([
   // None currently
@@ -416,6 +418,9 @@ export const powershellHandler: LanguageHandler = {
   dockerCmd: (code: string) => ['pwsh', '-NoLogo', '-NoProfile', '-Command', code],
   mountRepo: false,
   upstreamSurface: {
+    discover: () => loadRepoUpstreamSurfaceSnapshot('powershell'),
+    discoverMode: 'snapshot',
+    discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope('powershell'),
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: POWERSHELL_MEMBER_NAMES[func.name] ?? func.name,

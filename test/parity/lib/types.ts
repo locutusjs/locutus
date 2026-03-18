@@ -151,6 +151,8 @@ export interface UpstreamSurfaceLocutusEntry {
 export interface UpstreamSurfaceAdapter {
   /** Discover comparable upstream entries for one language. */
   discover?: (() => Promise<UpstreamSurfaceSnapshot> | UpstreamSurfaceSnapshot) | undefined
+  /** Whether discovery refreshes a canonical source live or reuses a checked-in snapshot. */
+  discoverMode?: 'live' | 'snapshot' | undefined
   /** Discover the canonical official namespace list for one language. */
   discoverNamespaceCatalog?:
     | (() => Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> | DiscoveredUpstreamSurfaceNamespaceCatalog)

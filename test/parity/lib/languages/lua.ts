@@ -5,7 +5,10 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import {
+  buildScopedUpstreamSurfaceSnapshot,
+  discoverUpstreamSurfaceNamespaceCatalogFromScope,
+} from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const LUA_SKIP_LIST = new Set<string>([
@@ -300,6 +303,7 @@ export const luaHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverLuaUpstreamSurface,
+    discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope('lua'),
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

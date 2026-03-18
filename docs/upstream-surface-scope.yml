@@ -5,6 +5,10 @@ awk:
       sourceKind: manual
       sourceRef: https://www.gnu.org/software/gawk/manual/
       title: GNU AWK built-ins
+  namespaceCatalog:
+    target: GNU AWK 5.3
+    sourceKind: manual
+    sourceRef: https://www.gnu.org/software/gawk/manual/
 c:
   namespaces:
     ctype:
@@ -32,6 +36,10 @@ c:
       sourceKind: manual
       sourceRef: https://en.cppreference.com/w/c/string/byte
       title: string.h
+  namespaceCatalog:
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c
 clojure:
   namespaces:
     core:
@@ -69,6 +77,10 @@ clojure:
       sourceKind: runtime
       sourceRef: clojure:temurin-21-tools-deps
       title: java.lang.Math
+  namespaceCatalog:
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: https://clojure.github.io/clojure/
 elixir:
   namespaces:
     Access:
@@ -2176,6 +2188,10 @@ haskell:
       sourceKind: manual
       sourceRef: https://hackage.haskell.org/package/base/docs/Data-Tuple.html
       title: Data.Tuple module
+  namespaceCatalog:
+    target: GHC base-4.21
+    sourceKind: source_manifest
+    sourceRef: https://hackage.haskell.org/package/base-4.20.0.0/docs/
 julia:
   namespaces:
     ArgTools:
@@ -2399,6 +2415,10 @@ kotlin:
       sourceKind: manual
       sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/
       title: kotlin.text package
+  namespaceCatalog:
+    target: Kotlin 2.2
+    sourceKind: source_manifest
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/
 lua:
   namespaces:
     math:
@@ -2446,6 +2466,10 @@ lua:
       sourceKind: runtime
       sourceRef: nickblah/lua:5.4-alpine
       title: debug library
+  namespaceCatalog:
+    target: Lua 5.4
+    sourceKind: manual
+    sourceRef: https://www.lua.org/manual/5.4/manual.html
 perl:
   namespaces:
     POSIX:
@@ -2503,6 +2527,10 @@ perl:
       sourceKind: manual
       sourceRef: https://perldoc.perl.org/Unicode::Normalize
       title: Unicode::Normalize module
+  namespaceCatalog:
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/
 php:
   namespaceCatalog:
     target: PHP 8.3
@@ -2566,6 +2594,10 @@ powershell:
       sourceKind: manual
       sourceRef: https://learn.microsoft.com/dotnet/api/system.timespan
       title: System.TimeSpan static and instance methods
+  namespaceCatalog:
+    target: PowerShell 7.4
+    sourceKind: source_manifest
+    sourceRef: https://learn.microsoft.com/powershell/
 python:
   namespaces:
     abc:
@@ -4297,6 +4329,10 @@ rust:
       sourceKind: manual
       sourceRef: https://doc.rust-lang.org/std/primitive.usize.html
       title: usize primitive methods
+  namespaceCatalog:
+    target: Rust 1.85
+    sourceKind: source_manifest
+    sourceRef: https://doc.rust-lang.org/std/
 swift:
   namespaces:
     Array:
@@ -4359,6 +4395,10 @@ swift:
       sourceKind: manual
       sourceRef: https://developer.apple.com/documentation/swift/unicode/scalar
       title: Swift.Unicode.Scalar
+  namespaceCatalog:
+    target: Swift 6
+    sourceKind: source_manifest
+    sourceRef: https://developer.apple.com/documentation/swift/swift-standard-library
 tcl:
   namespaceCatalog:
     target: Tcl 8.6

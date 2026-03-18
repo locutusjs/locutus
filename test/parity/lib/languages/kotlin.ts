@@ -10,6 +10,7 @@ import { createInventoryOnlyLanguageHandler } from '../upstream-surface-scope.ts
 export const KOTLIN_SKIP_LIST = new Set<string>([])
 
 export const kotlinHandler = createInventoryOnlyLanguageHandler({
+  language: 'kotlin',
   dockerImage: 'kotlin:2.2',
   displayName: 'Kotlin',
   version: '2.2',

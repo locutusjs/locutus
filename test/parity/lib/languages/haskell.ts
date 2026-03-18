@@ -10,6 +10,7 @@ import { createInventoryOnlyLanguageHandler } from '../upstream-surface-scope.ts
 export const HASKELL_SKIP_LIST = new Set<string>([])
 
 export const haskellHandler = createInventoryOnlyLanguageHandler({
+  language: 'haskell',
   dockerImage: 'haskell:9.10',
   displayName: 'Haskell',
   version: '9.10',

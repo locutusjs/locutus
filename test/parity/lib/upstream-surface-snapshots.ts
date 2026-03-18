@@ -57,3 +57,8 @@ export function getUpstreamSurfaceSnapshotPath(snapshotDir: string, language: st
 export function getSnapshotLanguageName(snapshotPath: string): string {
   return basename(snapshotPath, extname(snapshotPath))
 }
+
+export function loadRepoUpstreamSurfaceSnapshot(language: string, rootDir = process.cwd()): UpstreamSurfaceSnapshot {
+  const snapshotDir = join(rootDir, 'test', 'parity', 'fixtures', 'upstream-surface')
+  return loadUpstreamSurfaceSnapshot(getUpstreamSurfaceSnapshotPath(snapshotDir, language))
+}

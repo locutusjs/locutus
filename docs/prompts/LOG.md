@@ -2633,3 +2633,26 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - “Deterministic discovery” needs three properties at once: canonical source, side-effect-safe enumeration, and provenance checks; any one missing weakens the whole claim.
   - Broad runtime-backed catalog work becomes tractable once the expensive languages batch inside a single container session instead of paying container startup per namespace.
+
+### Iteration 131
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Remove the last split-brain in the discovery flow so every supported language has both a canonical namespace catalog and a deterministic `discover()` path.
+  - Keep `enumerate:upstream-surface` unified across runtime-backed and snapshot-backed languages without breaking the stricter live-only meaning of `refresh:upstream-surface`.
+- Progress:
+  - Added language-level `namespaceCatalog` metadata for every remaining supported language in `docs/upstream-surface-scope.yml`, so scope audit is now all-language rather than runtime-language-only.
+  - Added a shared `loadRepoUpstreamSurfaceSnapshot()` helper and wired snapshot-backed languages through real `upstreamSurface.discover()` implementations instead of the old snapshot bypass in the enumeration script.
+  - Added explicit `discoverMode` metadata so `enumerate:upstream-surface` can stay unified while `refresh:upstream-surface` still means live source refresh only.
+  - Extended unit coverage to require both `discoverNamespaceCatalog` and `discover` for every supported language.
+  - Re-ran full `enumerate:upstream-surface` successfully across all supported languages, proving the all-language discovery path now works end-to-end.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn audit:upstream-scope`
+  - `corepack yarn enumerate:upstream-surface`
+  - `corepack yarn test:upstream-surface`
+- Key learnings:
+  - A discovery system is not really deterministic if part of the language set still uses a hidden fallback path.
+  - Unifying the enumeration entrypoint matters more than whether a given language refreshes live from Docker or deterministically from a version-tagged canonical snapshot.
