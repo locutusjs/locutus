@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.104Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.104Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.550Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.550Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -309,7 +309,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="net">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -319,40 +321,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Go 1.23</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>golang:1.23:net</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>9%</strong>
+      <strong>50%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 8.9%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 50%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 8.9%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 82.2%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>4/45</strong> shipped</span>
+    <span><strong>4/8</strong> shipped</span>
     <span><strong>4</strong> next</span>
     <span><strong>37</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    4 shipped • 4 next • 37 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -363,33 +358,80 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (4)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/net/JoinHostPort/"><code>JoinHostPort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/net/ParseCIDR/"><code>ParseCIDR</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/net/ParseIP/"><code>ParseIP</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/net/SplitHostPort/"><code>SplitHostPort</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>CIDRMask</code>
-                <span>IP mask construction has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">IP mask construction has a clean plain-value contract.</p>
             
-              <li>
-                <code>IPv4</code>
-                <span>IPv4 construction has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>CIDRMask</code></li>
+              
+                <li><code>IPv4Mask</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>IPv4Mask</code>
-                <span>IP mask construction has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">IPv4 construction has a clean plain-value contract.</p>
             
-              <li>
-                <code>ParseMAC</code>
-                <span>MAC parsing has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>IPv4</code></li>
+              
+            </ul>
+          
             
-          </ul>
+              <p class="surface-bucket__group-note">MAC parsing has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>ParseMAC</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -745,6 +787,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

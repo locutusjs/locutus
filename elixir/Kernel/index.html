@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.101Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.101Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.547Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.547Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -303,7 +303,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="Kernel">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -313,40 +315,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Elixir 1.18</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>elixir:1.18</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>1%</strong>
+      <strong>3%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.4%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2.9%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 45.2%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 53.4%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 97.1%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>1/73</strong> shipped</span>
+    <span><strong>1/34</strong> shipped</span>
     <span><strong>33</strong> next</span>
     <span><strong>39</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    1 shipped • 33 next • 39 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -357,178 +352,145 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (1)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/elixir/Kernel/abs/"><code>abs</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>binary_part</code>
-                <span>Binary slicing is a useful plain-value helper.</span>
-              </li>
+              <p class="surface-bucket__group-note">Binary slicing is a useful plain-value helper.</p>
             
-              <li>
-                <code>binary_slice</code>
-                <span>Binary slicing is a useful plain-value helper.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>binary_part</code></li>
+              
+                <li><code>binary_slice</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>bit_size</code>
-                <span>Size helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Size helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>byte_size</code>
-                <span>Size helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>bit_size</code></li>
+              
+                <li><code>byte_size</code></li>
+              
+                <li><code>length</code></li>
+              
+                <li><code>map_size</code></li>
+              
+                <li><code>tuple_size</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>ceil</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Scalar helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>div</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>div</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>rem</code></li>
+              
+                <li><code>round</code></li>
+              
+                <li><code>trunc</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>elem</code>
-                <span>Tuple element access still has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Tuple element access still has a clean plain-value contract.</p>
             
-              <li>
-                <code>floor</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>elem</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>hd</code>
-                <span>Head access has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Head access has a clean plain-value contract.</p>
             
-              <li>
-                <code>is_atom</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>hd</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>is_binary</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Type-predicate helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>is_bitstring</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>is_atom</code></li>
+              
+                <li><code>is_binary</code></li>
+              
+                <li><code>is_bitstring</code></li>
+              
+                <li><code>is_boolean</code></li>
+              
+                <li><code>is_float</code></li>
+              
+                <li><code>is_function</code></li>
+              
+                <li><code>is_integer</code></li>
+              
+                <li><code>is_list</code></li>
+              
+                <li><code>is_map</code></li>
+              
+                <li><code>is_map_key</code></li>
+              
+                <li><code>is_number</code></li>
+              
+                <li><code>is_pid</code></li>
+              
+                <li><code>is_port</code></li>
+              
+                <li><code>is_reference</code></li>
+              
+                <li><code>is_tuple</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>is_boolean</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Tail access has a clean plain-value contract.</p>
             
-              <li>
-                <code>is_float</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_function</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_integer</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_list</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_map</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_map_key</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_number</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_pid</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_port</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_reference</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>is_tuple</code>
-                <span>Type-predicate helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>length</code>
-                <span>Size helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>map_size</code>
-                <span>Size helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>max</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>min</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>rem</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>round</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>tl</code>
-                <span>Tail access has a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>trunc</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
-            
-              <li>
-                <code>tuple_size</code>
-                <span>Size helpers have a clean plain-value contract.</span>
-              </li>
-            
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>tl</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -902,6 +864,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

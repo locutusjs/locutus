@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.125Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.125Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.575Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.575Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -995,7 +995,7 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         300/1184 shipped
-         • 58 next
+         &middot; 58 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -1052,6 +1052,30 @@ ga('send', 'pageview');
       
     </div>
 
+    
+    <div class="surface-minimap">
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="__global: 25% shipped"
+              data-ns="__global"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">__global</span>
+          <span class="surface-minimap__pct">25%</span>
+        </span>
+      
+    </div>
+
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
@@ -1082,21 +1106,39 @@ ga('send', 'pageview');
       
     </div>
 
-    <p class="surface-summary">
-      
-      
-      
-      
-      
-      
-      
-      1 namespace are currently tracked; 300 of 1184 upstream entries are already shipped; 58 are explicitly on the shortlist; 826 are explicit non-goals; 24 Locutus-only extras are intentionally retained.
-    </p>
+    
+    <div class="surface-filter">
+      <input type="text" class="surface-filter__input" placeholder="Filter namespaces..." oninput="(function(el){
+        var q = el.value.toLowerCase();
+        var cards = el.closest('.surface-panel__content').querySelectorAll('.surface-card, .surface-compact-row');
+        cards.forEach(function(c){
+          var name = (c.getAttribute('data-namespace') || '').toLowerCase();
+          c.style.display = (!q || name.indexOf(q) !== -1) ? '' : 'none';
+        });
+        var sections = el.closest('.surface-panel__content').querySelectorAll('.surface-ns-group');
+        sections.forEach(function(s) {
+          var visible = s.querySelectorAll('.surface-card:not([style*=&quot;display: none&quot;]), .surface-compact-row:not([style*=&quot;display: none&quot;])');
+          s.style.display = visible.length ? '' : 'none';
+        });
+        var tiles = el.closest('.surface-panel__content').querySelectorAll('.surface-minimap__tile');
+        tiles.forEach(function(t) {
+          var isActive = q && t.getAttribute('data-ns').toLowerCase() === q;
+          t.classList.toggle('surface-minimap__tile--active', isActive);
+        });
+      })(this)" />
+    </div>
 
     
-      
 
-<article class="surface-card">
+    
+      <div class="surface-ns-group">
+        
+        
+          
+
+
+
+<article class="surface-card" data-namespace="__global">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -1106,40 +1148,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>PHP 8.3</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>php:8.3-cli</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>25%</strong>
+      <strong>84%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25.3%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 83.8%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 4.9%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 69.8%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 16.2%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>300/1184</strong> shipped</span>
+    <span><strong>300/358</strong> shipped</span>
     <span><strong>58</strong> next</span>
     <span><strong>826</strong> explicit non-goals</span>
     
     <span><strong>24</strong> intentional extras</span>
   </div>
-
-  <p class="surface-summary">
-    300 shipped • 58 next • 826 explicit non-goals • 24 intentional extras.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -1188,317 +1223,2469 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (324)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/abs/"><code>abs</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/acos/"><code>acos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/acosh/"><code>acosh</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/addcslashes/"><code>addcslashes</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/addslashes/"><code>addslashes</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_change_key_case/"><code>array_change_key_case</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_chunk/"><code>array_chunk</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_column/"><code>array_column</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_combine/"><code>array_combine</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_count_values/"><code>array_count_values</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_diff/"><code>array_diff</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_diff_assoc/"><code>array_diff_assoc</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_diff_key/"><code>array_diff_key</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_diff_uassoc/"><code>array_diff_uassoc</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_diff_ukey/"><code>array_diff_ukey</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_fill/"><code>array_fill</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_fill_keys/"><code>array_fill_keys</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_filter/"><code>array_filter</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_flip/"><code>array_flip</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_intersect/"><code>array_intersect</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_intersect_assoc/"><code>array_intersect_assoc</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_intersect_key/"><code>array_intersect_key</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_intersect_uassoc/"><code>array_intersect_uassoc</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_intersect_ukey/"><code>array_intersect_ukey</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_is_list/"><code>array_is_list</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_key_exists/"><code>array_key_exists</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_key_first/"><code>array_key_first</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_key_last/"><code>array_key_last</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_keys/"><code>array_keys</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_map/"><code>array_map</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_merge/"><code>array_merge</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_merge_recursive/"><code>array_merge_recursive</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_multisort/"><code>array_multisort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_pad/"><code>array_pad</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_pop/"><code>array_pop</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_product/"><code>array_product</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_push/"><code>array_push</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_rand/"><code>array_rand</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_reduce/"><code>array_reduce</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_replace/"><code>array_replace</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_replace_recursive/"><code>array_replace_recursive</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_reverse/"><code>array_reverse</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_search/"><code>array_search</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_shift/"><code>array_shift</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_slice/"><code>array_slice</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_splice/"><code>array_splice</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_sum/"><code>array_sum</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_udiff/"><code>array_udiff</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_udiff_assoc/"><code>array_udiff_assoc</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_udiff_uassoc/"><code>array_udiff_uassoc</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_uintersect/"><code>array_uintersect</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_uintersect_uassoc/"><code>array_uintersect_uassoc</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_unique/"><code>array_unique</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_unshift/"><code>array_unshift</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_values/"><code>array_values</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_walk/"><code>array_walk</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/array_walk_recursive/"><code>array_walk_recursive</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/arsort/"><code>arsort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/asin/"><code>asin</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/asinh/"><code>asinh</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/asort/"><code>asort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/info/assert_options/"><code>assert_options</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/atan/"><code>atan</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/atan2/"><code>atan2</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/atanh/"><code>atanh</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/base64_decode/"><code>base64_decode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/base64_encode/"><code>base64_encode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/base_convert/"><code>base_convert</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/filesystem/basename/"><code>basename</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/bc/bcadd/"><code>bcadd</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/bc/bccomp/"><code>bccomp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/bc/bcdiv/"><code>bcdiv</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/bc/bcmul/"><code>bcmul</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/bc/bcround/"><code>bcround</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/bc/bcscale/"><code>bcscale</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/bc/bcsub/"><code>bcsub</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/bin2hex/"><code>bin2hex</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/bindec/"><code>bindec</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/boolval/"><code>boolval</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/funchand/call_user_func/"><code>call_user_func</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/funchand/call_user_func_array/"><code>call_user_func_array</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/ceil/"><code>ceil</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/checkdate/"><code>checkdate</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/chop/"><code>chop</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/chr/"><code>chr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/chunk_split/"><code>chunk_split</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/convert_cyr_string/"><code>convert_cyr_string</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/convert_uuencode/"><code>convert_uuencode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/cos/"><code>cos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/cosh/"><code>cosh</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/count/"><code>count</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/count_chars/"><code>count_chars</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/crc32/"><code>crc32</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_alnum/"><code>ctype_alnum</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_alpha/"><code>ctype_alpha</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_cntrl/"><code>ctype_cntrl</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_digit/"><code>ctype_digit</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_graph/"><code>ctype_graph</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_lower/"><code>ctype_lower</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_print/"><code>ctype_print</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_punct/"><code>ctype_punct</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_space/"><code>ctype_space</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_upper/"><code>ctype_upper</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/ctype/ctype_xdigit/"><code>ctype_xdigit</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/current/"><code>current</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/date/"><code>date</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/date_parse/"><code>date_parse</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/decbin/"><code>decbin</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/dechex/"><code>dechex</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/decoct/"><code>decoct</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/deg2rad/"><code>deg2rad</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/filesystem/dirname/"><code>dirname</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/doubleval/"><code>doubleval</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/each/"><code>each</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/echo/"><code>echo</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/empty/"><code>empty</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/end/"><code>end</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/exec/escapeshellarg/"><code>escapeshellarg</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/exp/"><code>exp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/explode/"><code>explode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/expm1/"><code>expm1</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/filesystem/file_exists/"><code>file_exists</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/filesystem/file_get_contents/"><code>file_get_contents</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/floatval/"><code>floatval</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/floor/"><code>floor</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/fmod/"><code>fmod</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/funchand/function_exists/"><code>function_exists</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/funchand/get_defined_functions/"><code>get_defined_functions</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/get_html_translation_table/"><code>get_html_translation_table</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/getdate/"><code>getdate</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/info/getenv/"><code>getenv</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/getrandmax/"><code>getrandmax</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/gettimeofday/"><code>gettimeofday</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/gettype/"><code>gettype</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/gmdate/"><code>gmdate</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/gmmktime/"><code>gmmktime</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/gmstrftime/"><code>gmstrftime</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/net-gopher/gopher_parsedir/"><code>gopher_parsedir</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/hex2bin/"><code>hex2bin</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/hexdec/"><code>hexdec</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/html_entity_decode/"><code>html_entity_decode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/htmlentities/"><code>htmlentities</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/htmlspecialchars/"><code>htmlspecialchars</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/htmlspecialchars_decode/"><code>htmlspecialchars_decode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/http_build_query/"><code>http_build_query</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/hypot/"><code>hypot</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/i18n/i18n_loc_get_default/"><code>i18n_loc_get_default</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/i18n/i18n_loc_set_default/"><code>i18n_loc_set_default</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/idate/"><code>idate</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/implode/"><code>implode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/in_array/"><code>in_array</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/network/inet_ntop/"><code>inet_ntop</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/network/inet_pton/"><code>inet_pton</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/info/ini_get/"><code>ini_get</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/info/ini_set/"><code>ini_set</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/intval/"><code>intval</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/network/ip2long/"><code>ip2long</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_array/"><code>is_array</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_binary/"><code>is_binary</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_bool/"><code>is_bool</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_buffer/"><code>is_buffer</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_callable/"><code>is_callable</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_double/"><code>is_double</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/is_finite/"><code>is_finite</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_float/"><code>is_float</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/is_infinite/"><code>is_infinite</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_int/"><code>is_int</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_integer/"><code>is_integer</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_long/"><code>is_long</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/is_nan/"><code>is_nan</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_null/"><code>is_null</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_numeric/"><code>is_numeric</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_object/"><code>is_object</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_real/"><code>is_real</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_scalar/"><code>is_scalar</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_string/"><code>is_string</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/is_unicode/"><code>is_unicode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/isset/"><code>isset</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/join/"><code>join</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/json/json_decode/"><code>json_decode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/json/json_encode/"><code>json_encode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/json/json_last_error/"><code>json_last_error</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/key/"><code>key</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/krsort/"><code>krsort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/ksort/"><code>ksort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/lcfirst/"><code>lcfirst</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/lcg_value/"><code>lcg_value</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/levenshtein/"><code>levenshtein</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/localeconv/"><code>localeconv</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/log/"><code>log</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/log10/"><code>log10</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/log1p/"><code>log1p</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/network/long2ip/"><code>long2ip</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/ltrim/"><code>ltrim</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/max/"><code>max</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/md5/"><code>md5</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/md5_file/"><code>md5_file</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/metaphone/"><code>metaphone</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/microtime/"><code>microtime</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/min/"><code>min</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/mktime/"><code>mktime</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/money_format/"><code>money_format</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/mt_getrandmax/"><code>mt_getrandmax</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/mt_rand/"><code>mt_rand</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/natcasesort/"><code>natcasesort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/natsort/"><code>natsort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/next/"><code>next</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/nl2br/"><code>nl2br</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/nl_langinfo/"><code>nl_langinfo</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/number_format/"><code>number_format</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/octdec/"><code>octdec</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/ord/"><code>ord</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/misc/pack/"><code>pack</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/parse_str/"><code>parse_str</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/parse_url/"><code>parse_url</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/filesystem/pathinfo/"><code>pathinfo</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/pi/"><code>pi</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/pos/"><code>pos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/pow/"><code>pow</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/pcre/preg_match/"><code>preg_match</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/pcre/preg_quote/"><code>preg_quote</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/pcre/preg_replace/"><code>preg_replace</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/prev/"><code>prev</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/print_r/"><code>print_r</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/printf/"><code>printf</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/quoted_printable_decode/"><code>quoted_printable_decode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/quoted_printable_encode/"><code>quoted_printable_encode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/quotemeta/"><code>quotemeta</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/rad2deg/"><code>rad2deg</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/rand/"><code>rand</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/range/"><code>range</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/rawurldecode/"><code>rawurldecode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/rawurlencode/"><code>rawurlencode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/filesystem/realpath/"><code>realpath</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/reset/"><code>reset</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/round/"><code>round</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/rsort/"><code>rsort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/rtrim/"><code>rtrim</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/serialize/"><code>serialize</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/info/set_time_limit/"><code>set_time_limit</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/network/setcookie/"><code>setcookie</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/setlocale/"><code>setlocale</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/network/setrawcookie/"><code>setrawcookie</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/sha1/"><code>sha1</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/sha1_file/"><code>sha1_file</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/shuffle/"><code>shuffle</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/similar_text/"><code>similar_text</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/sin/"><code>sin</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/sinh/"><code>sinh</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/sizeof/"><code>sizeof</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/sort/"><code>sort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/soundex/"><code>soundex</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/split/"><code>split</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/sprintf/"><code>sprintf</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/pcre/sql_regcase/"><code>sql_regcase</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/sqrt/"><code>sqrt</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/sscanf/"><code>sscanf</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_getcsv/"><code>str_getcsv</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_ireplace/"><code>str_ireplace</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_pad/"><code>str_pad</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_repeat/"><code>str_repeat</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_replace/"><code>str_replace</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_rot13/"><code>str_rot13</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_shuffle/"><code>str_shuffle</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_split/"><code>str_split</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/str_word_count/"><code>str_word_count</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strcasecmp/"><code>strcasecmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strchr/"><code>strchr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strcmp/"><code>strcmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strcoll/"><code>strcoll</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strcspn/"><code>strcspn</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/strftime/"><code>strftime</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strip_tags/"><code>strip_tags</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/stripos/"><code>stripos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/stripslashes/"><code>stripslashes</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/stristr/"><code>stristr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strlen/"><code>strlen</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strnatcasecmp/"><code>strnatcasecmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strnatcmp/"><code>strnatcmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strncasecmp/"><code>strncasecmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strncmp/"><code>strncmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strpbrk/"><code>strpbrk</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strpos/"><code>strpos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/strptime/"><code>strptime</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strrchr/"><code>strrchr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strrev/"><code>strrev</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strripos/"><code>strripos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strrpos/"><code>strrpos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strspn/"><code>strspn</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strstr/"><code>strstr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strtok/"><code>strtok</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strtolower/"><code>strtolower</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/strtotime/"><code>strtotime</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strtoupper/"><code>strtoupper</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/strtr/"><code>strtr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/strval/"><code>strval</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/substr/"><code>substr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/substr_compare/"><code>substr_compare</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/substr_count/"><code>substr_count</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/substr_replace/"><code>substr_replace</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/tan/"><code>tan</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/math/tanh/"><code>tanh</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/datetime/time/"><code>time</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/trim/"><code>trim</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/uasort/"><code>uasort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/ucfirst/"><code>ucfirst</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/ucwords/"><code>ucwords</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/uksort/"><code>uksort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/misc/uniqid/"><code>uniqid</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/misc/unpack/"><code>unpack</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/unserialize/"><code>unserialize</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/urldecode/"><code>urldecode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/url/urlencode/"><code>urlencode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/array/usort/"><code>usort</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/xml/utf8_decode/"><code>utf8_decode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/xml/utf8_encode/"><code>utf8_encode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/var_dump/"><code>var_dump</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/var/var_export/"><code>var_export</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/info/version_compare/"><code>version_compare</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/vprintf/"><code>vprintf</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/vsprintf/"><code>vsprintf</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/strings/wordwrap/"><code>wordwrap</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/xdiff/xdiff_string_diff/"><code>xdiff_string_diff</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/php/xdiff/xdiff_string_patch/"><code>xdiff_string_patch</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>array_uintersect_assoc</code>
-                <span>PHP array helpers are high-value portability targets and map well onto JS arrays and plain objects.</span>
-              </li>
+              <p class="surface-bucket__group-note">PHP array helpers are high-value portability targets and map well onto JS arrays and plain objects.</p>
             
-              <li>
-                <code>date_add</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>array_uintersect_assoc</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>date_create</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+              <p class="surface-bucket__group-note">Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</p>
             
-              <li>
-                <code>date_create_from_format</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>date_add</code></li>
+              
+                <li><code>date_create</code></li>
+              
+                <li><code>date_create_from_format</code></li>
+              
+                <li><code>date_create_immutable</code></li>
+              
+                <li><code>date_create_immutable_from_format</code></li>
+              
+                <li><code>date_date_set</code></li>
+              
+                <li><code>date_default_timezone_get</code></li>
+              
+                <li><code>date_default_timezone_set</code></li>
+              
+                <li><code>date_diff</code></li>
+              
+                <li><code>date_format</code></li>
+              
+                <li><code>date_get_last_errors</code></li>
+              
+                <li><code>date_interval_create_from_date_string</code></li>
+              
+                <li><code>date_interval_format</code></li>
+              
+                <li><code>date_isodate_set</code></li>
+              
+                <li><code>date_modify</code></li>
+              
+                <li><code>date_offset_get</code></li>
+              
+                <li><code>date_parse_from_format</code></li>
+              
+                <li><code>date_sub</code></li>
+              
+                <li><code>date_sun_info</code></li>
+              
+                <li><code>date_sunrise</code></li>
+              
+                <li><code>date_sunset</code></li>
+              
+                <li><code>date_time_set</code></li>
+              
+                <li><code>date_timestamp_get</code></li>
+              
+                <li><code>date_timestamp_set</code></li>
+              
+                <li><code>date_timezone_get</code></li>
+              
+                <li><code>date_timezone_set</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>date_create_immutable</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+              <p class="surface-bucket__group-note">Generic hashing helpers are useful plain-value utilities.</p>
             
-              <li>
-                <code>date_create_immutable_from_format</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>hash</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>date_date_set</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+              <p class="surface-bucket__group-note">Hashing helpers are useful pure-value utilities.</p>
             
-              <li>
-                <code>date_default_timezone_get</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>hash_algos</code></li>
+              
+                <li><code>hash_copy</code></li>
+              
+                <li><code>hash_equals</code></li>
+              
+                <li><code>hash_file</code></li>
+              
+                <li><code>hash_final</code></li>
+              
+                <li><code>hash_hkdf</code></li>
+              
+                <li><code>hash_hmac</code></li>
+              
+                <li><code>hash_hmac_algos</code></li>
+              
+                <li><code>hash_hmac_file</code></li>
+              
+                <li><code>hash_init</code></li>
+              
+                <li><code>hash_pbkdf2</code></li>
+              
+                <li><code>hash_update</code></li>
+              
+                <li><code>hash_update_file</code></li>
+              
+                <li><code>hash_update_stream</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>date_default_timezone_set</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+              <p class="surface-bucket__group-note">JSON helpers are strong plain-value portability targets.</p>
             
-              <li>
-                <code>date_diff</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>json_last_error_msg</code></li>
+              
+                <li><code>json_validate</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>date_format</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+              <p class="surface-bucket__group-note">Regular-expression helpers are high-value portability targets.</p>
             
-              <li>
-                <code>date_get_last_errors</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>preg_filter</code></li>
+              
+                <li><code>preg_grep</code></li>
+              
+                <li><code>preg_last_error</code></li>
+              
+                <li><code>preg_last_error_msg</code></li>
+              
+                <li><code>preg_match_all</code></li>
+              
+                <li><code>preg_replace_callback</code></li>
+              
+                <li><code>preg_replace_callback_array</code></li>
+              
+                <li><code>preg_split</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>date_interval_create_from_date_string</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
+              <p class="surface-bucket__group-note">String helpers are core portability targets for Locutus.</p>
             
-              <li>
-                <code>date_interval_format</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_isodate_set</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_modify</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_offset_get</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_parse_from_format</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_sub</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_sun_info</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_sunrise</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_sunset</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_time_set</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_timestamp_get</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_timestamp_set</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_timezone_get</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>date_timezone_set</code>
-                <span>Date helpers remain high-value portability targets within Locutus&#39; Date-based model.</span>
-              </li>
-            
-              <li>
-                <code>hash</code>
-                <span>Generic hashing helpers are useful plain-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_algos</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_copy</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_equals</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_file</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_final</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_hkdf</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_hmac</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_hmac_algos</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_hmac_file</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_init</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_pbkdf2</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_update</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_update_file</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>hash_update_stream</code>
-                <span>Hashing helpers are useful pure-value utilities.</span>
-              </li>
-            
-              <li>
-                <code>json_last_error_msg</code>
-                <span>JSON helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>json_validate</code>
-                <span>JSON helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_filter</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_grep</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_last_error</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_last_error_msg</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_match_all</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_replace_callback</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_replace_callback_array</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>preg_split</code>
-                <span>Regular-expression helpers are high-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>str_contains</code>
-                <span>String helpers are core portability targets for Locutus.</span>
-              </li>
-            
-              <li>
-                <code>str_decrement</code>
-                <span>String helpers are core portability targets for Locutus.</span>
-              </li>
-            
-              <li>
-                <code>str_ends_with</code>
-                <span>String helpers are core portability targets for Locutus.</span>
-              </li>
-            
-              <li>
-                <code>str_increment</code>
-                <span>String helpers are core portability targets for Locutus.</span>
-              </li>
-            
-              <li>
-                <code>str_starts_with</code>
-                <span>String helpers are core portability targets for Locutus.</span>
-              </li>
-            
-              <li>
-                <code>stripcslashes</code>
-                <span>String helpers are core portability targets for Locutus.</span>
-              </li>
-            
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>str_contains</code></li>
+              
+                <li><code>str_decrement</code></li>
+              
+                <li><code>str_ends_with</code></li>
+              
+                <li><code>str_increment</code></li>
+              
+                <li><code>str_starts_with</code></li>
+              
+                <li><code>stripcslashes</code></li>
+              
+            </ul>
+          
         </section>
       
 
       
         <section class="surface-bucket surface-bucket--extras">
           <h4>Intentional extras</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          <ul class="surface-entry-list surface-entry-list--flow">
             
               
               <li>
                 
                   <a class="surface-entry-link" href="/php/bc/bcadd/"><code>bcadd</code></a>
                 
-                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1506,7 +3693,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/bc/bccomp/"><code>bccomp</code></a>
                 
-                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1514,7 +3700,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/bc/bcdiv/"><code>bcdiv</code></a>
                 
-                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1522,7 +3707,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/bc/bcmul/"><code>bcmul</code></a>
                 
-                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1530,7 +3714,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/bc/bcround/"><code>bcround</code></a>
                 
-                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1538,7 +3721,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/bc/bcscale/"><code>bcscale</code></a>
                 
-                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1546,7 +3728,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/bc/bcsub/"><code>bcsub</code></a>
                 
-                <span>bcmath is not enabled in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1554,7 +3735,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/strings/convert_cyr_string/"><code>convert_cyr_string</code></a>
                 
-                <span>Removed upstream in PHP 8.0, but retained as a legacy compatibility port.</span>
               </li>
             
               
@@ -1562,7 +3742,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/array/each/"><code>each</code></a>
                 
-                <span>Removed upstream in PHP 8.0, but retained as a legacy compatibility port.</span>
               </li>
             
               
@@ -1570,7 +3749,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/strings/echo/"><code>echo</code></a>
                 
-                <span>Modeled pragmatically even though it is a language construct rather than a callable function.</span>
               </li>
             
               
@@ -1578,7 +3756,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/var/empty/"><code>empty</code></a>
                 
-                <span>Modeled pragmatically even though it is a language construct rather than a callable function.</span>
               </li>
             
               
@@ -1586,7 +3763,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/net-gopher/gopher_parsedir/"><code>gopher_parsedir</code></a>
                 
-                <span>Niche Locutus-only port intentionally retained.</span>
               </li>
             
               
@@ -1594,7 +3770,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/i18n/i18n_loc_get_default/"><code>i18n_loc_get_default</code></a>
                 
-                <span>Intl helper retained even though it is not exposed by the base runtime target.</span>
               </li>
             
               
@@ -1602,7 +3777,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/i18n/i18n_loc_set_default/"><code>i18n_loc_set_default</code></a>
                 
-                <span>Intl helper retained even though it is not exposed by the base runtime target.</span>
               </li>
             
               
@@ -1610,7 +3784,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/var/is_binary/"><code>is_binary</code></a>
                 
-                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
               </li>
             
               
@@ -1618,7 +3791,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/var/is_buffer/"><code>is_buffer</code></a>
                 
-                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
               </li>
             
               
@@ -1626,7 +3798,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/var/is_real/"><code>is_real</code></a>
                 
-                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
               </li>
             
               
@@ -1634,7 +3805,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/var/is_unicode/"><code>is_unicode</code></a>
                 
-                <span>Legacy alias retained for compatibility with older PHP-oriented code.</span>
               </li>
             
               
@@ -1642,7 +3812,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/var/isset/"><code>isset</code></a>
                 
-                <span>Modeled pragmatically even though it is a language construct rather than a callable function.</span>
               </li>
             
               
@@ -1650,7 +3819,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/strings/money_format/"><code>money_format</code></a>
                 
-                <span>Removed upstream in PHP 8.0, but retained as a legacy compatibility port.</span>
               </li>
             
               
@@ -1658,7 +3826,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/strings/split/"><code>split</code></a>
                 
-                <span>Removed upstream in PHP 7.0, but retained as a legacy compatibility port.</span>
               </li>
             
               
@@ -1666,7 +3833,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/pcre/sql_regcase/"><code>sql_regcase</code></a>
                 
-                <span>Removed upstream in PHP 7.0, but retained as a legacy compatibility port.</span>
               </li>
             
               
@@ -1674,7 +3840,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/xdiff/xdiff_string_diff/"><code>xdiff_string_diff</code></a>
                 
-                <span>xdiff is not available in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
               
@@ -1682,7 +3847,6 @@ ga('send', 'pageview');
                 
                   <a class="surface-entry-link" href="/php/xdiff/xdiff_string_patch/"><code>xdiff_string_patch</code></a>
                 
-                <span>xdiff is not available in the base PHP runtime target, but the port is still useful.</span>
               </li>
             
           </ul>
@@ -9140,6 +11304,14 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
+
+        
+      </div>
+    
+
+    
 
     
   </div>

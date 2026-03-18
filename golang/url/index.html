@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.113Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.113Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.560Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.560Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -317,7 +317,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="url">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -327,40 +329,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Go 1.23</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>golang:1.23:net/url</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>29%</strong>
+      <strong>50%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 28.6%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 50%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 28.6%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 42.9%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>8/28</strong> shipped</span>
+    <span><strong>8/16</strong> shipped</span>
     <span><strong>8</strong> next</span>
     <span><strong>12</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    8 shipped • 8 next • 12 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -371,53 +366,137 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (8)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <code>Encode</code>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/url/JoinPath/"><code>JoinPath</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Parse/"><code>Parse</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/url/ParseQuery/"><code>ParseQuery</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/url/PathEscape/"><code>PathEscape</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/url/QueryEscape/"><code>QueryEscape</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/url/QueryUnescape/"><code>QueryUnescape</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/url/ResolveReference/"><code>ResolveReference</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>EscapedFragment</code>
-                <span>Escaping helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Escaping helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>EscapedPath</code>
-                <span>Escaping helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>EscapedFragment</code></li>
+              
+                <li><code>EscapedPath</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>Hostname</code>
-                <span>URL host decomposition is a useful plain-value helper.</span>
-              </li>
+              <p class="surface-bucket__group-note">URL host decomposition is a useful plain-value helper.</p>
             
-              <li>
-                <code>IsAbs</code>
-                <span>URL absolute checks have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>Hostname</code></li>
+              
+                <li><code>Port</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>ParseRequestURI</code>
-                <span>Request-URI parsing is a useful plain-value helper.</span>
-              </li>
+              <p class="surface-bucket__group-note">URL absolute checks have a clean plain-value contract.</p>
             
-              <li>
-                <code>PathUnescape</code>
-                <span>URL escaping is a strong plain-value target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>IsAbs</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>Port</code>
-                <span>URL host decomposition is a useful plain-value helper.</span>
-              </li>
+              <p class="surface-bucket__group-note">Request-URI parsing is a useful plain-value helper.</p>
             
-              <li>
-                <code>RequestURI</code>
-                <span>Request-URI formatting is a useful plain-value helper.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>ParseRequestURI</code></li>
+              
+            </ul>
+          
             
-          </ul>
+              <p class="surface-bucket__group-note">URL escaping is a strong plain-value target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>PathUnescape</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Request-URI formatting is a useful plain-value helper.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>RequestURI</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -548,6 +627,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

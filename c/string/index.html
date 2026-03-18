@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.096Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.096Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.542Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.542Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -311,7 +311,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="string">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -321,40 +323,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>C23</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/string/byte</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>26%</strong>
+      <strong>50%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 26.3%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 50%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 26.3%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 47.4%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>5/19</strong> shipped</span>
+    <span><strong>5/10</strong> shipped</span>
     <span><strong>5</strong> next</span>
     <span><strong>9</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    5 shipped • 5 next • 9 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -365,38 +360,96 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (5)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strcat/"><code>strcat</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strchr/"><code>strchr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strcmp/"><code>strcmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strlen/"><code>strlen</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strstr/"><code>strstr</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>strcspn</code>
-                <span>Character-class span helpers are useful for string scanning.</span>
-              </li>
+              <p class="surface-bucket__group-note">Character-class span helpers are useful for string scanning.</p>
             
-              <li>
-                <code>strncmp</code>
-                <span>Prefix-bounded string comparison still has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strcspn</code></li>
+              
+                <li><code>strspn</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>strpbrk</code>
-                <span>Character-class search maps naturally to string scanning.</span>
-              </li>
+              <p class="surface-bucket__group-note">Prefix-bounded string comparison still has a clean plain-value contract.</p>
             
-              <li>
-                <code>strrchr</code>
-                <span>Last-occurrence search maps naturally to string lookup.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strncmp</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>strspn</code>
-                <span>Character-class span helpers are useful for string scanning.</span>
-              </li>
+              <p class="surface-bucket__group-note">Character-class search maps naturally to string scanning.</p>
             
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strpbrk</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Last-occurrence search maps naturally to string lookup.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strrchr</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -500,6 +553,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

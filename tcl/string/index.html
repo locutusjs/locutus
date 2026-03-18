@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.192Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.192Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.665Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.665Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -333,7 +333,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="string">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -343,40 +345,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Tcl 8.6</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>python:3.12</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>65%</strong>
+      <strong>71%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 65.2%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 71.4%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 26.1%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 8.7%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 28.6%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>15/23</strong> shipped</span>
+    <span><strong>15/21</strong> shipped</span>
     <span><strong>6</strong> next</span>
     <span><strong>2</strong> explicit non-goals</span>
     
     <span><strong>1</strong> intentional extras</span>
   </div>
-
-  <p class="surface-summary">
-    15 shipped • 6 next • 2 explicit non-goals • 1 intentional extras.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -387,57 +382,167 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (16)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/compare/"><code>compare</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/equal/"><code>equal</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/first/"><code>first</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/last/"><code>last</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/length/"><code>length</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/map/"><code>map</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/match/"><code>match</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/range/"><code>range</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/regsub/"><code>regsub</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/repeat/"><code>repeat</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/reverse/"><code>reverse</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/tolower/"><code>tolower</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/toupper/"><code>toupper</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/trim/"><code>trim</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/trimleft/"><code>trimleft</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/tcl/string/trimright/"><code>trimright</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>cat</code>
-                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
-              </li>
+              <p class="surface-bucket__group-note">Tcl string subcommands map naturally onto JS string and array values.</p>
             
-              <li>
-                <code>index</code>
-                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
-              </li>
-            
-              <li>
-                <code>replace</code>
-                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
-              </li>
-            
-              <li>
-                <code>totitle</code>
-                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
-              </li>
-            
-              <li>
-                <code>wordend</code>
-                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
-              </li>
-            
-              <li>
-                <code>wordstart</code>
-                <span>Tcl string subcommands map naturally onto JS string and array values.</span>
-              </li>
-            
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>cat</code></li>
+              
+                <li><code>index</code></li>
+              
+                <li><code>replace</code></li>
+              
+                <li><code>totitle</code></li>
+              
+                <li><code>wordend</code></li>
+              
+                <li><code>wordstart</code></li>
+              
+            </ul>
+          
         </section>
       
 
       
         <section class="surface-bucket surface-bucket--extras">
           <h4>Intentional extras</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          <ul class="surface-entry-list surface-entry-list--flow">
             
               
               <li>
                 
                   <a class="surface-entry-link" href="/tcl/string/regsub/"><code>regsub</code></a>
                 
-                <span>Locutus keeps `regsub` under the `string` category even though upstream exposes it as a standalone Tcl command.</span>
               </li>
             
           </ul>
@@ -479,6 +584,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

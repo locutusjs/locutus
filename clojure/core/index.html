@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.097Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.097Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.543Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.543Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -317,7 +317,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="core">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -327,40 +329,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Clojure 1.12</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>1%</strong>
+      <strong>17%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.2%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 17%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5.7%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 93.1%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 83%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>8/679</strong> shipped</span>
+    <span><strong>8/47</strong> shipped</span>
     <span><strong>39</strong> next</span>
     <span><strong>632</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    8 shipped • 39 next • 632 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -371,208 +366,388 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (8)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <code>assoc-in</code>
+            
+          </li>
+        
+          
+          <li>
+            
+              <code>get-in</code>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/clojure/core/interpose/"><code>interpose</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <code>merge-with</code>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/clojure/core/partition/"><code>partition</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <code>partition-by</code>
+            
+          </li>
+        
+          
+          <li>
+            
+              <code>reduce-kv</code>
+            
+          </li>
+        
+          
+          <li>
+            
+              <code>update-in</code>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>assoc</code>
-                <span>Persistent collection update helpers are valuable plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Persistent collection update helpers are valuable plain-value targets.</p>
             
-              <li>
-                <code>concat</code>
-                <span>Sequence concatenation has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>assoc</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>contains?</code>
-                <span>Membership helpers are useful plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Sequence concatenation has a clean plain-value contract.</p>
             
-              <li>
-                <code>count</code>
-                <span>Collection size helpers are strong portability targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>concat</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>dedupe</code>
-                <span>Sequence de-duplication has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Membership helpers are useful plain-value targets.</p>
             
-              <li>
-                <code>distinct</code>
-                <span>Sequence de-duplication has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>contains?</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>drop</code>
-                <span>Sequence slicing helpers are valuable plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Collection size helpers are strong portability targets.</p>
             
-              <li>
-                <code>drop-while</code>
-                <span>Predicate-based slicing still has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>count</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>filter</code>
-                <span>Sequence filtering is a strong portability target.</span>
-              </li>
+              <p class="surface-bucket__group-note">Sequence de-duplication has a clean plain-value contract.</p>
             
-              <li>
-                <code>first</code>
-                <span>Head access has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>dedupe</code></li>
+              
+                <li><code>distinct</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>frequencies</code>
-                <span>Frequency maps are high-value plain-value results.</span>
-              </li>
+              <p class="surface-bucket__group-note">Sequence slicing helpers are valuable plain-value targets.</p>
             
-              <li>
-                <code>get</code>
-                <span>Generic collection lookup is a useful portability target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>drop</code></li>
+              
+                <li><code>take</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>group-by</code>
-                <span>Grouping helpers are high-value plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Predicate-based slicing still has a clean plain-value contract.</p>
             
-              <li>
-                <code>interleave</code>
-                <span>Sequence weaving has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>drop-while</code></li>
+              
+                <li><code>take-while</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>into</code>
-                <span>Collection materialization has a useful plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Sequence filtering is a strong portability target.</p>
             
-              <li>
-                <code>keep</code>
-                <span>Combined map-filter helpers are strong portability targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>filter</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>keys</code>
-                <span>Key extraction has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Head access has a clean plain-value contract.</p>
             
-              <li>
-                <code>last</code>
-                <span>Tail access has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>first</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>map</code>
-                <span>Sequence mapping is a strong portability target.</span>
-              </li>
+              <p class="surface-bucket__group-note">Frequency maps are high-value plain-value results.</p>
             
-              <li>
-                <code>map-indexed</code>
-                <span>Indexed mapping is a strong portability target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>frequencies</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>max</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Generic collection lookup is a useful portability target.</p>
             
-              <li>
-                <code>merge</code>
-                <span>Map merging is a strong plain-value portability target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>get</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>min</code>
-                <span>Scalar helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Grouping helpers are high-value plain-value targets.</p>
             
-              <li>
-                <code>nth</code>
-                <span>Indexed access has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>group-by</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>partition-all</code>
-                <span>Sequence chunking is a useful plain-value target.</span>
-              </li>
+              <p class="surface-bucket__group-note">Sequence weaving has a clean plain-value contract.</p>
             
-              <li>
-                <code>range</code>
-                <span>Numeric range generation has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>interleave</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>reduce</code>
-                <span>Reduction helpers are high-value functional targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Collection materialization has a useful plain-value contract.</p>
             
-              <li>
-                <code>remove</code>
-                <span>Predicate-based filtering is a strong portability target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>into</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>repeat</code>
-                <span>Repetition helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Combined map-filter helpers are strong portability targets.</p>
             
-              <li>
-                <code>replace</code>
-                <span>Collection replacement helpers are useful plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>keep</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>rest</code>
-                <span>Tail access has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Key extraction has a clean plain-value contract.</p>
             
-              <li>
-                <code>reverse</code>
-                <span>Sequence reversal is a useful plain-value target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>keys</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>second</code>
-                <span>Indexed access has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Tail access has a clean plain-value contract.</p>
             
-              <li>
-                <code>sort</code>
-                <span>Sequence sorting is a useful plain-value target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>last</code></li>
+              
+                <li><code>rest</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>sort-by</code>
-                <span>Keyed sequence sorting is a useful plain-value target.</span>
-              </li>
+              <p class="surface-bucket__group-note">Sequence mapping is a strong portability target.</p>
             
-              <li>
-                <code>take</code>
-                <span>Sequence slicing helpers are valuable plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>map</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>take-while</code>
-                <span>Predicate-based slicing still has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Indexed mapping is a strong portability target.</p>
             
-              <li>
-                <code>vals</code>
-                <span>Value extraction has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>map-indexed</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>zipmap</code>
-                <span>Pair-to-map helpers are strong plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Scalar helpers have a clean plain-value contract.</p>
             
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>max</code></li>
+              
+                <li><code>min</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Map merging is a strong plain-value portability target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>merge</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Indexed access has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>nth</code></li>
+              
+                <li><code>second</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Sequence chunking is a useful plain-value target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>partition-all</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Numeric range generation has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>range</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Reduction helpers are high-value functional targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>reduce</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Predicate-based filtering is a strong portability target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>remove</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Repetition helpers have a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>repeat</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Collection replacement helpers are useful plain-value targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>replace</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Sequence reversal is a useful plain-value target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>reverse</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Sequence sorting is a useful plain-value target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>sort</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Keyed sequence sorting is a useful plain-value target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>sort-by</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Value extraction has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>vals</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Pair-to-map helpers are strong plain-value targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>zipmap</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -6283,6 +6458,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

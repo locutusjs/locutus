@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.179Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.179Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.649Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.649Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -327,7 +327,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="base">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -337,40 +339,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>R 4.4</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>r-base:4.4.2</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>1%</strong>
+      <strong>35%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 35.1%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 1.9%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 97.1%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 64.9%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>13/1270</strong> shipped</span>
+    <span><strong>13/37</strong> shipped</span>
     <span><strong>24</strong> next</span>
     <span><strong>1233</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    13 shipped • 24 next • 1233 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -381,133 +376,267 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (13)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/abs/"><code>abs</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/ceiling/"><code>ceiling</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/floor/"><code>floor</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/match/"><code>match</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/max/"><code>max</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/min/"><code>min</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/nchar/"><code>nchar</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/round/"><code>round</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/seq/"><code>seq</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/sign/"><code>sign</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/sqrt/"><code>sqrt</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/tolower/"><code>tolower</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/r/base/toupper/"><code>toupper</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>all</code>
-                <span>Aggregate predicate helpers are strong plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Aggregate predicate helpers are strong plain-value targets.</p>
             
-              <li>
-                <code>any</code>
-                <span>Aggregate predicate helpers are strong plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>all</code></li>
+              
+                <li><code>any</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>append</code>
-                <span>Vector concatenation helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Vector concatenation helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>cos</code>
-                <span>Scalar math helpers remain useful plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>append</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>diff</code>
-                <span>Sequence differencing has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Scalar math helpers remain useful plain-value targets.</p>
             
-              <li>
-                <code>duplicated</code>
-                <span>Duplicate detection is a strong plain-value target.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>cos</code></li>
+              
+                <li><code>sin</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>endsWith</code>
-                <span>String boundary helpers are strong portability targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Sequence differencing has a clean plain-value contract.</p>
             
-              <li>
-                <code>grepl</code>
-                <span>Regex predicate helpers are strong portability targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>diff</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>gsub</code>
-                <span>Regex replacement helpers are strong portability targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Duplicate detection is a strong plain-value target.</p>
             
-              <li>
-                <code>mean</code>
-                <span>Aggregate math helpers remain useful portability targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>duplicated</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>order</code>
-                <span>Ordering helpers are useful plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">String boundary helpers are strong portability targets.</p>
             
-              <li>
-                <code>pmax</code>
-                <span>Elementwise aggregate helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>endsWith</code></li>
+              
+                <li><code>startsWith</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>pmin</code>
-                <span>Elementwise aggregate helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Regex predicate helpers are strong portability targets.</p>
             
-              <li>
-                <code>rank</code>
-                <span>Ordering helpers are useful plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>grepl</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>sin</code>
-                <span>Scalar math helpers remain useful plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Regex replacement helpers are strong portability targets.</p>
             
-              <li>
-                <code>sort</code>
-                <span>Ordering helpers are useful plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>gsub</code></li>
+              
+                <li><code>sub</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>startsWith</code>
-                <span>String boundary helpers are strong portability targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Aggregate math helpers remain useful portability targets.</p>
             
-              <li>
-                <code>sub</code>
-                <span>Regex replacement helpers are strong portability targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>mean</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>substr</code>
-                <span>String slicing helpers are strong portability targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Ordering helpers are useful plain-value targets.</p>
             
-              <li>
-                <code>trimws</code>
-                <span>Trimming helpers are strong plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>order</code></li>
+              
+                <li><code>rank</code></li>
+              
+                <li><code>sort</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>unique</code>
-                <span>De-duplication has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Elementwise aggregate helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>which</code>
-                <span>Index selection helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>pmax</code></li>
+              
+                <li><code>pmin</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>which.max</code>
-                <span>Index selection helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">String slicing helpers are strong portability targets.</p>
             
-              <li>
-                <code>which.min</code>
-                <span>Index selection helpers have a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>substr</code></li>
+              
+            </ul>
+          
             
-          </ul>
+              <p class="surface-bucket__group-note">Trimming helpers are strong plain-value targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>trimws</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">De-duplication has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>unique</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Index selection helpers have a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>which</code></li>
+              
+                <li><code>which.max</code></li>
+              
+                <li><code>which.min</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -11627,6 +11756,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

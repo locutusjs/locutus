@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.092Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.092Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.539Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.539Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -340,7 +340,7 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         20/83 shipped
-         • 44 next
+         &middot; 44 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -397,6 +397,106 @@ ga('send', 'pageview');
       
     </div>
 
+    
+    <div class="surface-minimap">
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="ctype: 57% shipped"
+              data-ns="ctype"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">ctype</span>
+          <span class="surface-minimap__pct">57%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="stdlib: 28% shipped"
+              data-ns="stdlib"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdlib</span>
+          <span class="surface-minimap__pct">28%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="string: 26% shipped"
+              data-ns="string"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">string</span>
+          <span class="surface-minimap__pct">26%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--low"
+              title="stdio: 9% shipped"
+              data-ns="stdio"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdio</span>
+          <span class="surface-minimap__pct">9%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--low"
+              title="math: 5% shipped"
+              data-ns="math"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">math</span>
+          <span class="surface-minimap__pct">5%</span>
+        </span>
+      
+    </div>
+
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
@@ -422,21 +522,39 @@ ga('send', 'pageview');
       
     </div>
 
-    <p class="surface-summary">
-      
-      
-      
-      
-      
-      
-      
-      5 namespaces are currently tracked; 20 of 83 upstream entries are already shipped; 44 are explicitly on the shortlist; 19 are explicit non-goals.
-    </p>
+    
+    <div class="surface-filter">
+      <input type="text" class="surface-filter__input" placeholder="Filter namespaces..." oninput="(function(el){
+        var q = el.value.toLowerCase();
+        var cards = el.closest('.surface-panel__content').querySelectorAll('.surface-card, .surface-compact-row');
+        cards.forEach(function(c){
+          var name = (c.getAttribute('data-namespace') || '').toLowerCase();
+          c.style.display = (!q || name.indexOf(q) !== -1) ? '' : 'none';
+        });
+        var sections = el.closest('.surface-panel__content').querySelectorAll('.surface-ns-group');
+        sections.forEach(function(s) {
+          var visible = s.querySelectorAll('.surface-card:not([style*=&quot;display: none&quot;]), .surface-compact-row:not([style*=&quot;display: none&quot;])');
+          s.style.display = visible.length ? '' : 'none';
+        });
+        var tiles = el.closest('.surface-panel__content').querySelectorAll('.surface-minimap__tile');
+        tiles.forEach(function(t) {
+          var isActive = q && t.getAttribute('data-ns').toLowerCase() === q;
+          t.classList.toggle('surface-minimap__tile--active', isActive);
+        });
+      })(this)" />
+    </div>
 
     
-      
 
-<article class="surface-card">
+    
+      <div class="surface-ns-group">
+        
+        
+          
+
+
+
+<article class="surface-card" data-namespace="ctype">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -446,7 +564,7 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>C23</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/string/byte</code></span>
       </p>
     </div>
@@ -456,13 +574,12 @@ ga('send', 'pageview');
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 57.1%"></span>
       
         <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 42.9%"></span>
-      
-      
       
     
   </div>
@@ -475,10 +592,6 @@ ga('send', 'pageview');
     
   </div>
 
-  <p class="surface-summary">
-    8 shipped • 6 next.
-  </p>
-
   
     <div class="surface-chip-row">
       
@@ -488,43 +601,98 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (8)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/isalnum/"><code>isalnum</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/isalpha/"><code>isalpha</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/isdigit/"><code>isdigit</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/islower/"><code>islower</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/isspace/"><code>isspace</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/isupper/"><code>isupper</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/tolower/"><code>tolower</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/ctype/toupper/"><code>toupper</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>isblank</code>
-                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
-              </li>
+              <p class="surface-bucket__group-note">Character classification helpers map cleanly to plain strings and numbers.</p>
             
-              <li>
-                <code>iscntrl</code>
-                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
-              </li>
-            
-              <li>
-                <code>isgraph</code>
-                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
-              </li>
-            
-              <li>
-                <code>isprint</code>
-                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
-              </li>
-            
-              <li>
-                <code>ispunct</code>
-                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
-              </li>
-            
-              <li>
-                <code>isxdigit</code>
-                <span>Character classification helpers map cleanly to plain strings and numbers.</span>
-              </li>
-            
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>isblank</code></li>
+              
+                <li><code>iscntrl</code></li>
+              
+                <li><code>isgraph</code></li>
+              
+                <li><code>isprint</code></li>
+              
+                <li><code>ispunct</code></li>
+              
+                <li><code>isxdigit</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -535,347 +703,14 @@ ga('send', 'pageview');
   
 </article>
 
-    
-      
 
-<article class="surface-card">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
+
         
-          <a href="/c/math/">math.h</a>
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>C23</code>
-        <span>•</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/numeric/math</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>5%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
+          
 
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.8%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 95.2%"></span>
-      
-      
-      
-    
-  </div>
 
-  <div class="surface-card__stats">
-    <span><strong>1/21</strong> shipped</span>
-    <span><strong>20</strong> next</span>
-    
-    
-    
-  </div>
 
-  <p class="surface-summary">
-    1 shipped • 20 next.
-  </p>
-
-  
-    <div class="surface-chip-row">
-      
-        <a class="surface-chip surface-chip--link" href="/c/math/">math</a>
-      
-    </div>
-  
-
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
-            
-              <li>
-                <code>acos</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>asin</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>atan</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>atan2</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>ceil</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>copysign</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>cos</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>exp</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>fabs</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>floor</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>fmod</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>hypot</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>log</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>log10</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>modf</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>pow</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>sin</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>sqrt</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>tan</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>trunc</code>
-                <span>Scalar math helpers are strong plain-value portability targets.</span>
-              </li>
-            
-          </ul>
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-</article>
-
-    
-      
-
-<article class="surface-card">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          <a href="/c/stdio/">stdio.h</a>
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>C23</code>
-        <span>•</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/io</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>9%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 9.1%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.3%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 63.6%"></span>
-      
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>1/11</strong> shipped</span>
-    <span><strong>3</strong> next</span>
-    <span><strong>7</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  <p class="surface-summary">
-    1 shipped • 3 next • 7 explicit non-goals.
-  </p>
-
-  
-    <div class="surface-chip-row">
-      
-        <a class="surface-chip surface-chip--link" href="/c/stdio/">stdio</a>
-      
-    </div>
-  
-
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
-            
-              <li>
-                <code>snprintf</code>
-                <span>Sized string formatting still produces a plain string result.</span>
-              </li>
-            
-              <li>
-                <code>vsnprintf</code>
-                <span>Variadic string formatting still yields a plain string result.</span>
-              </li>
-            
-              <li>
-                <code>vsprintf</code>
-                <span>Variadic string formatting still yields a plain string result.</span>
-              </li>
-            
-          </ul>
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (7)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <code>fprintf</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>fputs</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>printf</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>putchar</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>puts</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>vfprintf</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>vprintf</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-    
-      
-
-<article class="surface-card">
+<article class="surface-card" data-namespace="stdlib">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -885,40 +720,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>C23</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/program</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>28%</strong>
+      <strong>33%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 27.8%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 55.6%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 16.7%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 66.7%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>5/18</strong> shipped</span>
+    <span><strong>5/15</strong> shipped</span>
     <span><strong>10</strong> next</span>
     <span><strong>3</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    5 shipped • 10 next • 3 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -931,63 +759,85 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (5)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/math/abs/"><code>abs</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/atof/"><code>atof</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/atoi/"><code>atoi</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/strtod/"><code>strtod</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/strtol/"><code>strtol</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>atol</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">Scalar conversion and numeric helpers are good portability targets.</p>
             
-              <li>
-                <code>atoll</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>bsearch</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>labs</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>llabs</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>rand</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>strtof</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>strtoll</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>strtoul</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-              <li>
-                <code>strtoull</code>
-                <span>Scalar conversion and numeric helpers are good portability targets.</span>
-              </li>
-            
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>atol</code></li>
+              
+                <li><code>atoll</code></li>
+              
+                <li><code>bsearch</code></li>
+              
+                <li><code>labs</code></li>
+              
+                <li><code>llabs</code></li>
+              
+                <li><code>rand</code></li>
+              
+                <li><code>strtof</code></li>
+              
+                <li><code>strtoll</code></li>
+              
+                <li><code>strtoul</code></li>
+              
+                <li><code>strtoull</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -1038,10 +888,14 @@ ga('send', 'pageview');
   
 </article>
 
-    
-      
 
-<article class="surface-card">
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="string">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -1051,40 +905,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>C23</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/string/byte</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>26%</strong>
+      <strong>50%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 26.3%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 50%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 26.3%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 47.4%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 50%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>5/19</strong> shipped</span>
+    <span><strong>5/10</strong> shipped</span>
     <span><strong>5</strong> next</span>
     <span><strong>9</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    5 shipped • 5 next • 9 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -1095,38 +942,96 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (5)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strcat/"><code>strcat</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strchr/"><code>strchr</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strcmp/"><code>strcmp</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strlen/"><code>strlen</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/string/strstr/"><code>strstr</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>strcspn</code>
-                <span>Character-class span helpers are useful for string scanning.</span>
-              </li>
+              <p class="surface-bucket__group-note">Character-class span helpers are useful for string scanning.</p>
             
-              <li>
-                <code>strncmp</code>
-                <span>Prefix-bounded string comparison still has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strcspn</code></li>
+              
+                <li><code>strspn</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>strpbrk</code>
-                <span>Character-class search maps naturally to string scanning.</span>
-              </li>
+              <p class="surface-bucket__group-note">Prefix-bounded string comparison still has a clean plain-value contract.</p>
             
-              <li>
-                <code>strrchr</code>
-                <span>Last-occurrence search maps naturally to string lookup.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strncmp</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>strspn</code>
-                <span>Character-class span helpers are useful for string scanning.</span>
-              </li>
+              <p class="surface-bucket__group-note">Character-class search maps naturally to string scanning.</p>
             
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strpbrk</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Last-occurrence search maps naturally to string lookup.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strrchr</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -1230,6 +1135,333 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="stdio">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/c/stdio/">stdio.h</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>C23</code>
+        <span>&middot;</span>
+        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/io</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>25%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 25%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 75%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>1/4</strong> shipped</span>
+    <span><strong>3</strong> next</span>
+    <span><strong>7</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/c/stdio/">stdio</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (1)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdio/sprintf/"><code>sprintf</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Sized string formatting still produces a plain string result.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>snprintf</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Variadic string formatting still yields a plain string result.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>vsnprintf</code></li>
+              
+                <li><code>vsprintf</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (7)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <code>fprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fputs</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>printf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>putchar</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>puts</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vfprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="math">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/c/math/">math.h</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>C23</code>
+        <span>&middot;</span>
+        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/numeric/math</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>5%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.8%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 95.2%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>1/21</strong> shipped</span>
+    <span><strong>20</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/c/math/">math</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (1)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/math/frexp/"><code>frexp</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Scalar math helpers are strong plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>acos</code></li>
+              
+                <li><code>asin</code></li>
+              
+                <li><code>atan</code></li>
+              
+                <li><code>atan2</code></li>
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>copysign</code></li>
+              
+                <li><code>cos</code></li>
+              
+                <li><code>exp</code></li>
+              
+                <li><code>fabs</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>fmod</code></li>
+              
+                <li><code>hypot</code></li>
+              
+                <li><code>log</code></li>
+              
+                <li><code>log10</code></li>
+              
+                <li><code>modf</code></li>
+              
+                <li><code>pow</code></li>
+              
+                <li><code>sin</code></li>
+              
+                <li><code>sqrt</code></li>
+              
+                <li><code>tan</code></li>
+              
+                <li><code>trunc</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+      </div>
+    
+
+    
 
     
   </div>

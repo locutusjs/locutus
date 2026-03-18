@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.115Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.115Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.563Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.563Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -302,7 +302,7 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         11/1041 shipped
-         • 20 next
+         &middot; 20 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -361,6 +361,163 @@ ga('send', 'pageview');
       
     </div>
 
+    
+    <div class="surface-minimap">
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--low"
+              title="Base: 1% shipped"
+              data-ns="Base"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Base</span>
+          <span class="surface-minimap__pct">1%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="Statistics: 0% shipped"
+              data-ns="Statistics"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Statistics</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="Printf: 0% shipped"
+              data-ns="Printf"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Printf</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Dates: 0% shipped"
+              data-ns="Dates"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Dates</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="DelimitedFiles: 0% shipped"
+              data-ns="DelimitedFiles"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">DelimitedFiles</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="LinearAlgebra: 0% shipped"
+              data-ns="LinearAlgebra"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">LinearAlgebra</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Random: 0% shipped"
+              data-ns="Random"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Random</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Unicode: 0% shipped"
+              data-ns="Unicode"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Unicode</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+    </div>
+
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
@@ -386,21 +543,41 @@ ga('send', 'pageview');
       
     </div>
 
-    <p class="surface-summary">
-      
-      
-      
-      
-      
-      
-      
-      8 namespaces are currently tracked; 11 of 1041 upstream entries are already shipped; 20 are explicitly on the shortlist; 1010 are explicit non-goals.
-    </p>
+    
+    <div class="surface-filter">
+      <input type="text" class="surface-filter__input" placeholder="Filter namespaces..." oninput="(function(el){
+        var q = el.value.toLowerCase();
+        var cards = el.closest('.surface-panel__content').querySelectorAll('.surface-card, .surface-compact-row');
+        cards.forEach(function(c){
+          var name = (c.getAttribute('data-namespace') || '').toLowerCase();
+          c.style.display = (!q || name.indexOf(q) !== -1) ? '' : 'none';
+        });
+        var sections = el.closest('.surface-panel__content').querySelectorAll('.surface-ns-group');
+        sections.forEach(function(s) {
+          var visible = s.querySelectorAll('.surface-card:not([style*=&quot;display: none&quot;]), .surface-compact-row:not([style*=&quot;display: none&quot;])');
+          s.style.display = visible.length ? '' : 'none';
+        });
+        var tiles = el.closest('.surface-panel__content').querySelectorAll('.surface-minimap__tile');
+        tiles.forEach(function(t) {
+          var isActive = q && t.getAttribute('data-ns').toLowerCase() === q;
+          t.classList.toggle('surface-minimap__tile--active', isActive);
+        });
+      })(this)" />
+    </div>
 
     
-      
 
-<article class="surface-card">
+    
+      <div class="surface-ns-group">
+        
+          <h3 class="surface-ns-group__title">In progress</h3>
+        
+        
+          
+
+
+
+<article class="surface-card" data-namespace="Base">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -410,40 +587,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Julia 1.11</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>julia:1.11</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>1%</strong>
+      <strong>61%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.3%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 61.1%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 0.8%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 97.9%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 38.9%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>11/854</strong> shipped</span>
+    <span><strong>11/18</strong> shipped</span>
     <span><strong>7</strong> next</span>
     <span><strong>836</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    11 shipped • 7 next • 836 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -454,48 +624,163 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (11)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/abs/"><code>abs</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/ceil/"><code>ceil</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/findall/"><code>findall</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/floor/"><code>floor</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/lowercase/"><code>lowercase</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/partialsortperm/"><code>partialsortperm</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/searchsorted/"><code>searchsorted</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/searchsortedfirst/"><code>searchsortedfirst</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/searchsortedlast/"><code>searchsortedlast</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/sortperm/"><code>sortperm</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/uppercase/"><code>uppercase</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>clamp</code>
-                <span>Numeric boundary helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Numeric boundary helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>contains</code>
-                <span>String containment helpers are useful plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>clamp</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>replace</code>
-                <span>String replacement helpers are strong portability targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">String containment helpers are useful plain-value targets.</p>
             
-              <li>
-                <code>reverse</code>
-                <span>String and collection reversal fits Locutus&#39; plain-value model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>contains</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>split</code>
-                <span>String splitting is a high-value plain-value target.</span>
-              </li>
+              <p class="surface-bucket__group-note">String replacement helpers are strong portability targets.</p>
             
-              <li>
-                <code>sqrt</code>
-                <span>Scalar math helpers remain useful cross-language portability targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>replace</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>strip</code>
-                <span>Trimming helpers are strong plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">String and collection reversal fits Locutus&#39; plain-value model.</p>
             
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>reverse</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">String splitting is a high-value plain-value target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>split</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Scalar math helpers remain useful cross-language portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>sqrt</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Trimming helpers are strong plain-value targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strip</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -8043,1876 +8328,14 @@ ga('send', 'pageview');
   
 </article>
 
-    
-      
 
-<article class="surface-card">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
+
         
-          Dates module
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Julia 1.11</code>
-        <span>•</span>
-        <span>Catalog source: live runtime snapshot <code>julia:1.11:Dates</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
+          
 
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-      
-      
-    
-  </div>
 
-  <div class="surface-card__stats">
-    <span><strong>0/50</strong> shipped</span>
-    
-    <span><strong>50</strong> explicit non-goals</span>
-    
-    
-  </div>
 
-  <p class="surface-summary">
-    0 shipped • 50 explicit non-goals.
-  </p>
-
-  
-
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (50)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <code>@dateformat_str</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>canonicalize</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>datetime2julian</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>datetime2rata</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>datetime2unix</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>day</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dayabbr</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dayname</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dayofmonth</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dayofquarter</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dayofweek</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dayofweekofmonth</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dayofyear</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>daysinmonth</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>daysinyear</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>daysofweekinmonth</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>firstdayofmonth</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>firstdayofquarter</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>firstdayofweek</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>firstdayofyear</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>format</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>hour</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>isleapyear</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>julian2datetime</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lastdayofmonth</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lastdayofquarter</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lastdayofweek</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lastdayofyear</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>microsecond</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>millisecond</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>minute</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>month</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>monthabbr</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>monthday</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>monthname</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>nanosecond</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>now</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>quarterofyear</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>rata2datetime</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>second</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>today</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>tofirst</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>tolast</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>tonext</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>toprev</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>unix2datetime</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>week</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>year</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>yearmonth</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>yearmonthday</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Julia date/time types do not map cleanly to one stable plain-value contract by default.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-    
-      
-
-<article class="surface-card">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          DelimitedFiles module
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Julia 1.11</code>
-        <span>•</span>
-        <span>Catalog source: live runtime snapshot <code>julia:1.11:DelimitedFiles</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-      
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/2</strong> shipped</span>
-    
-    <span><strong>2</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  <p class="surface-summary">
-    0 shipped • 2 explicit non-goals.
-  </p>
-
-  
-
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (2)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <code>readdlm</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>File-backed delimited input depends on host I/O resources.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>writedlm</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>File-backed delimited output is a side effect outside Locutus&#39; model.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-    
-      
-
-<article class="surface-card">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          LinearAlgebra module
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Julia 1.11</code>
-        <span>•</span>
-        <span>Catalog source: live runtime snapshot <code>julia:1.11:LinearAlgebra</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-      
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/101</strong> shipped</span>
-    
-    <span><strong>101</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  <p class="surface-summary">
-    0 shipped • 101 explicit non-goals.
-  </p>
-
-  
-
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (101)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <code>/</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>\</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>×</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>⋅</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>adjoint</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>adjoint!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>axpby!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>axpy!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>bunchkaufman</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>bunchkaufman!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>checksquare</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>cholesky</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>cholesky!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>cond</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>condskeel</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>convert</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>copy_adjoint!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>copy_transpose!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>copyto!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>copytrito!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>cross</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>det</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>diag</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>diagind</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>diagm</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>dot</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>eigen</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>eigen!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>eigmax</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>eigmin</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>eigvals</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>eigvals!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>eigvecs</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>factorize</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>givens</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>hermitian</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>hermitian_type</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>hermitianpart</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>hermitianpart!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>hessenberg</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>hessenberg!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>inertia</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>isbanded</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>isdiag</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>ishermitian</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>isposdef</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>isposdef!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>issuccess</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>issymmetric</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>istril</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>istriu</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>kron</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>kron!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>ldiv!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>ldlt</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>ldlt!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lmul!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>logabsdet</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>logdet</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lowrankdowndate</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lowrankdowndate!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lowrankupdate</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lowrankupdate!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lq</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lq!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lu</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lu!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>lyap</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>mul!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>norm</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>normalize</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>normalize!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>nullspace</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>opnorm</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>ordschur</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>ordschur!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>peakflops</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>pinv</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>qr</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>qr!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>rank</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>rdiv!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>reflect!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>rmul!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>rotate!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>schur</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>schur!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>svd</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>svd!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>svdvals</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>svdvals!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>sylvester</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>symmetric</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>symmetric_type</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>tr</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>transpose</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>transpose!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>tril</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>tril!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>triu</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>triu!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Matrix and factorization types do not fit Locutus&#39; current plain-value model.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-    
-      
-
-<article class="surface-card">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          Printf module
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Julia 1.11</code>
-        <span>•</span>
-        <span>Catalog source: live runtime snapshot <code>julia:1.11:Printf</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
-      
-      
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/3</strong> shipped</span>
-    <span><strong>3</strong> next</span>
-    
-    
-    
-  </div>
-
-  <p class="surface-summary">
-    0 shipped • 3 next.
-  </p>
-
-  
-
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
-            
-              <li>
-                <code>@printf</code>
-                <span>String formatting helpers are useful plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>@sprintf</code>
-                <span>String formatting helpers are useful plain-value portability targets.</span>
-              </li>
-            
-              <li>
-                <code>format</code>
-                <span>String formatting helpers are useful plain-value portability targets.</span>
-              </li>
-            
-          </ul>
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-</article>
-
-    
-      
-
-<article class="surface-card">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          Random module
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Julia 1.11</code>
-        <span>•</span>
-        <span>Catalog source: live runtime snapshot <code>julia:1.11:Random</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-      
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/16</strong> shipped</span>
-    
-    <span><strong>16</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  <p class="surface-summary">
-    0 shipped • 16 explicit non-goals.
-  </p>
-
-  
-
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (16)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <code>bitrand</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>default_rng</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>rand!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randcycle</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randcycle!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randexp</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randexp!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randn!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randperm</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randperm!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randstring</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randsubseq</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>randsubseq!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>seed!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>RNG seeding mutates ambient runtime state.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>shuffle</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>shuffle!</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most randomized helpers are lower-value than deterministic portability work.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-    
-      
-
-<article class="surface-card">
+<article class="surface-card" data-namespace="Statistics">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -9922,7 +8345,7 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Julia 1.11</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>julia:1.11:Statistics</code></span>
       </p>
     </div>
@@ -9932,91 +8355,64 @@ ga('send', 'pageview');
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 76.9%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 23.1%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>0/13</strong> shipped</span>
+    <span><strong>0/10</strong> shipped</span>
     <span><strong>10</strong> next</span>
     <span><strong>3</strong> explicit non-goals</span>
     
     
   </div>
 
-  <p class="surface-summary">
-    0 shipped • 10 next • 3 explicit non-goals.
-  </p>
-
   
 
+  
+  
+
+  
   
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>cor</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
+              <p class="surface-bucket__group-note">Aggregate statistics helpers are strong plain-value portability targets in Julia.</p>
             
-              <li>
-                <code>cov</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>mean</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>median</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>middle</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>quantile</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>std</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>stdm</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>var</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-              <li>
-                <code>varm</code>
-                <span>Aggregate statistics helpers are strong plain-value portability targets in Julia.</span>
-              </li>
-            
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>cor</code></li>
+              
+                <li><code>cov</code></li>
+              
+                <li><code>mean</code></li>
+              
+                <li><code>median</code></li>
+              
+                <li><code>middle</code></li>
+              
+                <li><code>quantile</code></li>
+              
+                <li><code>std</code></li>
+              
+                <li><code>stdm</code></li>
+              
+                <li><code>var</code></li>
+              
+                <li><code>varm</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -10067,21 +8463,25 @@ ga('send', 'pageview');
   
 </article>
 
-    
-      
 
-<article class="surface-card">
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="Printf">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
         
-          Unicode module
+          Printf module
         
       </h3>
       <p class="surface-card__meta">
         <code>Julia 1.11</code>
-        <span>•</span>
-        <span>Catalog source: live runtime snapshot <code>julia:1.11:Unicode</code></span>
+        <span>&middot;</span>
+        <span>Catalog source: live runtime snapshot <code>julia:1.11:Printf</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -10090,66 +8490,239 @@ ga('send', 'pageview');
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
       <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
       
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>0/2</strong> shipped</span>
+    <span><strong>0/3</strong> shipped</span>
+    <span><strong>3</strong> next</span>
     
-    <span><strong>2</strong> explicit non-goals</span>
     
     
   </div>
 
-  <p class="surface-summary">
-    0 shipped • 2 explicit non-goals.
-  </p>
-
   
 
   
+  
 
   
-    <div class="surface-details-grid">
+  
+    <div class="surface-buckets">
       
-        <details class="surface-details">
-          <summary>Explicit non-goals (2)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
             
+              <p class="surface-bucket__group-note">String formatting helpers are useful plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
               
-              <li>
-                
-                  <code>graphemes</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Unicode iteration and normalization helpers span richer text models than one stable JS plain-value contract by default.</span>
-              </li>
-            
+                <li><code>@printf</code></li>
               
-              <li>
-                
-                  <code>isequal_normalized</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Unicode iteration and normalization helpers span richer text models than one stable JS plain-value contract by default.</span>
-              </li>
-            
-          </ul>
-        </details>
+                <li><code>@sprintf</code></li>
+              
+                <li><code>format</code></li>
+              
+            </ul>
+          
+        </section>
       
 
       
     </div>
   
+
+  
 </article>
+
+
+
+        
+      </div>
+    
+
+    
+      <div class="surface-ns-group">
+        <h3 class="surface-ns-group__title">Triaged as out of scope</h3>
+        <div class="surface-compact-list">
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Dates">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Dates module
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">50 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="DelimitedFiles">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          DelimitedFiles module
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="LinearAlgebra">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          LinearAlgebra module
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">101 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Random">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Random module
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">16 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Unicode">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Unicode module
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+        </div>
+      </div>
+    
 
     
   </div>

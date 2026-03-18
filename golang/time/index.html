@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.111Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.111Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.557Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.557Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -333,7 +333,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="time">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -343,40 +345,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Go 1.23</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>golang:1.23:time</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>27%</strong>
+      <strong>89%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 27.1%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 88.9%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 3.4%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 69.5%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 11.1%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>16/59</strong> shipped</span>
+    <span><strong>16/18</strong> shipped</span>
     <span><strong>2</strong> next</span>
     <span><strong>41</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    16 shipped • 2 next • 41 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -387,23 +382,153 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (16)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Add/"><code>Add</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/AddDate/"><code>AddDate</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/After/"><code>After</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Before/"><code>Before</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Date/"><code>Date</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Equal/"><code>Equal</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Format/"><code>Format</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Parse/"><code>Parse</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/ParseDuration/"><code>ParseDuration</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/ParseInLocation/"><code>ParseInLocation</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Round/"><code>Round</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Sub/"><code>Sub</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Truncate/"><code>Truncate</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/Unix/"><code>Unix</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/UnixMicro/"><code>UnixMicro</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/golang/time/UnixMilli/"><code>UnixMilli</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>Compare</code>
-                <span>Time comparison has a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Time comparison has a clean plain-value contract.</p>
             
-              <li>
-                <code>UnixNano</code>
-                <span>Unix timestamp conversion has a clean plain-value contract.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>Compare</code></li>
+              
+            </ul>
+          
             
-          </ul>
+              <p class="surface-bucket__group-note">Unix timestamp conversion has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>UnixNano</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -795,6 +920,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>

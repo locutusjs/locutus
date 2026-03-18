@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-17T14:57:27.115Z">
-<meta property="article:modified_time" content="2026-03-17T14:57:27.115Z">
+<meta property="article:published_time" content="2026-03-18T11:13:40.563Z">
+<meta property="article:modified_time" content="2026-03-18T11:13:40.563Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -323,7 +323,9 @@ ga('send', 'pageview');
             </p>
             
 
-<article class="surface-card">
+
+
+<article class="surface-card" data-namespace="Base">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -333,40 +335,33 @@ ga('send', 'pageview');
       </h3>
       <p class="surface-card__meta">
         <code>Julia 1.11</code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: live runtime snapshot <code>julia:1.11</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>1%</strong>
+      <strong>61%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.3%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 61.1%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 0.8%"></span>
-      
-      
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 97.9%"></span>
-      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 38.9%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>11/854</strong> shipped</span>
+    <span><strong>11/18</strong> shipped</span>
     <span><strong>7</strong> next</span>
     <span><strong>836</strong> explicit non-goals</span>
     
     
   </div>
-
-  <p class="surface-summary">
-    11 shipped • 7 next • 836 explicit non-goals.
-  </p>
 
   
     <div class="surface-chip-row">
@@ -377,48 +372,163 @@ ga('send', 'pageview');
   
 
   
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (11)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/abs/"><code>abs</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/ceil/"><code>ceil</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/findall/"><code>findall</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/floor/"><code>floor</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/lowercase/"><code>lowercase</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/partialsortperm/"><code>partialsortperm</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/searchsorted/"><code>searchsorted</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/searchsortedfirst/"><code>searchsortedfirst</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/searchsortedlast/"><code>searchsortedlast</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/sortperm/"><code>sortperm</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/julia/Base/uppercase/"><code>uppercase</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
     <div class="surface-buckets">
       
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          
+          
             
-              <li>
-                <code>clamp</code>
-                <span>Numeric boundary helpers have a clean plain-value contract.</span>
-              </li>
+              <p class="surface-bucket__group-note">Numeric boundary helpers have a clean plain-value contract.</p>
             
-              <li>
-                <code>contains</code>
-                <span>String containment helpers are useful plain-value targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>clamp</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>replace</code>
-                <span>String replacement helpers are strong portability targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">String containment helpers are useful plain-value targets.</p>
             
-              <li>
-                <code>reverse</code>
-                <span>String and collection reversal fits Locutus&#39; plain-value model.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>contains</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>split</code>
-                <span>String splitting is a high-value plain-value target.</span>
-              </li>
+              <p class="surface-bucket__group-note">String replacement helpers are strong portability targets.</p>
             
-              <li>
-                <code>sqrt</code>
-                <span>Scalar math helpers remain useful cross-language portability targets.</span>
-              </li>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>replace</code></li>
+              
+            </ul>
+          
             
-              <li>
-                <code>strip</code>
-                <span>Trimming helpers are strong plain-value targets.</span>
-              </li>
+              <p class="surface-bucket__group-note">String and collection reversal fits Locutus&#39; plain-value model.</p>
             
-          </ul>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>reverse</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">String splitting is a high-value plain-value target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>split</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Scalar math helpers remain useful cross-language portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>sqrt</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Trimming helpers are strong plain-value targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>strip</code></li>
+              
+            </ul>
+          
         </section>
       
 
@@ -7965,6 +8075,8 @@ ga('send', 'pageview');
     </div>
   
 </article>
+
+
 
           </div>
         </details>
