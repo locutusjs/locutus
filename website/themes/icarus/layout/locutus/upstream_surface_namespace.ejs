@@ -6,24 +6,6 @@ function surfacePercent(count, total) {
   return Math.max(0, Math.min(100, Math.round((count / total) * 1000) / 10))
 }
 
-function surfaceSummaryBits(item) {
-  var bits = []
-  bits.push(item.catalogShippedCount + ' shipped')
-  if (item.wantedEntries && item.wantedEntries.length > 0) {
-    bits.push(item.wantedEntries.length + ' next')
-  }
-  if (item.skippedEntries && item.skippedEntries.length > 0) {
-    bits.push(item.skippedEntries.length + ' explicit non-goals')
-  }
-  if (item.untriagedEntries && item.untriagedEntries.length > 0) {
-    bits.push(item.untriagedEntries.length + ' still need triage')
-  }
-  if (item.keptExtras && item.keptExtras.length > 0) {
-    bits.push(item.keptExtras.length + ' intentional extras')
-  }
-  return bits
-}
-
 function surfaceDecisionLabel(entry) {
   if (!entry || !entry.decision) {
     return ''
@@ -122,9 +104,69 @@ function surfaceOfficialDocsHref(language, namespaceName, entryName) {
 
   return null
 }
+
+// Deduplicate notes: group wanted entries by note to avoid repeating the same text
+function groupEntriesByNote(entries) {
+  var groups = []
+  var groupMap = {}
+  entries.forEach(function (entry) {
+    var key = entry.note || ''
+    if (!groupMap[key]) {
+      groupMap[key] = { note: entry.note || null, entries: [] }
+      groups.push(groupMap[key])
+    }
+    groupMap[key].entries.push(entry)
+  })
+  return groups
+}
+
+// "Achievable" = shipped + wanted (excludes skipped/untriaged from denominator)
+function achievableCount(ns) {
+  return ns.catalogShippedCount + (ns.wantedEntries ? ns.wantedEntries.length : 0)
+}
+
+function achievablePercent(ns) {
+  var total = achievableCount(ns)
+  if (total <= 0) return ns.catalogShippedCount > 0 ? 100 : 0
+  return Math.round((ns.catalogShippedCount / total) * 100)
+}
 %>
 
-<article class="surface-card">
+<% if (typeof compact !== 'undefined' && compact) { %>
+  <%/* Compact single-row mode for 0% namespaces */ %>
+  <div class="surface-compact-row" data-namespace="<%= namespace.namespace %>">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        <% if (typeof showTitleLink !== 'undefined' && showTitleLink && titleHref) { %>
+          <a href="<%- titleHref %>"><%= namespace.namespace === '__global' ? (page.human || page.language) + ' function catalog' : namespace.title %></a>
+        <% } else { %>
+          <%= namespace.namespace === '__global' ? (page.human || page.language) + ' function catalog' : namespace.title %>
+        <% } %>
+      </strong>
+      <span class="surface-compact-row__meta"><code><%= namespace.target %></code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        <% if (namespace.catalogEntries.length > 0) { %>
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: <%= surfacePercent(namespace.catalogShippedCount, namespace.catalogEntries.length) %>%"></span>
+          <% if (namespace.wantedEntries.length > 0) { %>
+            <span class="surface-stack__segment surface-stack__segment--wanted" style="width: <%= surfacePercent(namespace.wantedEntries.length, namespace.catalogEntries.length) %>%"></span>
+          <% } %>
+          <% if (namespace.skippedEntries.length > 0) { %>
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: <%= surfacePercent(namespace.skippedEntries.length, namespace.catalogEntries.length) %>%"></span>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong><%= namespace.catalogShippedCount %>/<%= achievableCount(namespace) %></strong>
+      <% if (namespace.skippedEntries.length > 0) { %><span class="surface-compact-row__skip"><%= namespace.skippedEntries.length %> skipped</span><% } %>
+    </span>
+  </div>
+
+<% } else { %>
+
+<article class="surface-card" data-namespace="<%= namespace.namespace %>">
   <div class="surface-card__header">
     <div>
       <h3 class="surface-card__title">
@@ -136,42 +178,35 @@ function surfaceOfficialDocsHref(language, namespaceName, entryName) {
       </h3>
       <p class="surface-card__meta">
         <code><%= namespace.target %></code>
-        <span>•</span>
+        <span>&middot;</span>
         <span>Catalog source: <%= surfaceSourceLabel(namespace.sourceKind) %> <code><%= namespace.sourceRef %></code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong><%= namespace.coveragePercent === null ? 'n/a' : namespace.coveragePercent + '%' %></strong>
+      <strong><%= achievablePercent(namespace) %>%</strong>
       <span>shipped</span>
     </div>
   </div>
 
+  <%
+    var nsAchievable = achievableCount(namespace)
+  %>
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    <% if (namespace.catalogEntries.length > 0) { %>
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: <%= surfacePercent(namespace.catalogShippedCount, namespace.catalogEntries.length) %>%"></span>
+    <% if (nsAchievable > 0) { %>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: <%= surfacePercent(namespace.catalogShippedCount, nsAchievable) %>%"></span>
       <% if (namespace.wantedEntries.length > 0) { %>
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: <%= surfacePercent(namespace.wantedEntries.length, namespace.catalogEntries.length) %>%"></span>
-      <% } %>
-      <% if (namespace.skippedEntries.length > 0) { %>
-        <span class="surface-stack__segment surface-stack__segment--skipped" style="width: <%= surfacePercent(namespace.skippedEntries.length, namespace.catalogEntries.length) %>%"></span>
-      <% } %>
-      <% if (namespace.untriagedEntries.length > 0) { %>
-        <span class="surface-stack__segment surface-stack__segment--untriaged" style="width: <%= surfacePercent(namespace.untriagedEntries.length, namespace.catalogEntries.length) %>%"></span>
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: <%= surfacePercent(namespace.wantedEntries.length, nsAchievable) %>%"></span>
       <% } %>
     <% } %>
   </div>
 
   <div class="surface-card__stats">
-    <span><strong><%= namespace.catalogShippedCount %>/<%= namespace.catalogEntries.length %></strong> shipped</span>
+    <span><strong><%= namespace.catalogShippedCount %>/<%= nsAchievable %></strong> shipped</span>
     <% if (namespace.wantedEntries.length > 0) { %><span><strong><%= namespace.wantedEntries.length %></strong> next</span><% } %>
     <% if (namespace.skippedEntries.length > 0) { %><span><strong><%= namespace.skippedEntries.length %></strong> explicit non-goals</span><% } %>
     <% if (namespace.untriagedEntries.length > 0) { %><span><strong><%= namespace.untriagedEntries.length %></strong> need triage</span><% } %>
     <% if (namespace.keptExtras.length > 0) { %><span><strong><%= namespace.keptExtras.length %></strong> intentional extras</span><% } %>
   </div>
-
-  <p class="surface-summary">
-    <%= surfaceSummaryBits(namespace).join(' • ') %>.
-  </p>
 
   <% if (namespace.categories && namespace.categories.length > 0) { %>
     <div class="surface-chip-row">
@@ -181,26 +216,49 @@ function surfaceOfficialDocsHref(language, namespaceName, entryName) {
     </div>
   <% } %>
 
+  <%/* Shipped entries — collapsible, plain code list with links */ %>
+  <% if (namespace.shippedEntries && namespace.shippedEntries.length > 0) { %>
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (<%= namespace.shippedEntries.length %>)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        <% namespace.shippedEntries.forEach(function (entryName) { %>
+          <% var locutusHref = surfaceLocutusHref(page.language, entryName) %>
+          <li>
+            <% if (locutusHref) { %>
+              <a class="surface-entry-link" href="<%- locutusHref %>"><code><%= entryName %></code></a>
+            <% } else { %>
+              <code><%= entryName %></code>
+            <% } %>
+          </li>
+        <% }) %>
+      </ul>
+    </details>
+  <% } %>
+
+  <%/* Wanted / Extras buckets — deduplicated notes, plain code lists */ %>
   <% if (namespace.wantedEntries.length > 0 || namespace.keptExtras.length > 0) { %>
     <div class="surface-buckets">
       <% if (namespace.wantedEntries.length > 0) { %>
         <section class="surface-bucket surface-bucket--next">
           <h4>Next</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
-            <% namespace.wantedEntries.forEach(function (entry) { %>
-              <li>
-                <code><%= entry.name %></code>
-                <% if (entry.note) { %><span><%= entry.note %></span><% } %>
-              </li>
-            <% }) %>
-          </ul>
+          <% var wantedGroups = groupEntriesByNote(namespace.wantedEntries) %>
+          <% wantedGroups.forEach(function (group) { %>
+            <% if (group.note) { %>
+              <p class="surface-bucket__group-note"><%= group.note %></p>
+            <% } %>
+            <ul class="surface-entry-list surface-entry-list--flow">
+              <% group.entries.forEach(function (entry) { %>
+                <li><code><%= entry.name %></code></li>
+              <% }) %>
+            </ul>
+          <% }) %>
         </section>
       <% } %>
 
       <% if (namespace.keptExtras.length > 0) { %>
         <section class="surface-bucket surface-bucket--extras">
           <h4>Intentional extras</h4>
-          <ul class="surface-entry-list surface-entry-list--scroll">
+          <ul class="surface-entry-list surface-entry-list--flow">
             <% namespace.keptExtras.forEach(function (entry) { %>
               <% var locutusHref = surfaceLocutusHref(page.language, entry.name) %>
               <li>
@@ -209,7 +267,6 @@ function surfaceOfficialDocsHref(language, namespaceName, entryName) {
                 <% } else { %>
                   <code><%= entry.name %></code>
                 <% } %>
-                <% if (entry.note) { %><span><%= entry.note %></span><% } %>
               </li>
             <% }) %>
           </ul>
@@ -256,3 +313,5 @@ function surfaceOfficialDocsHref(language, namespaceName, entryName) {
     </div>
   <% } %>
 </article>
+
+<% } %>

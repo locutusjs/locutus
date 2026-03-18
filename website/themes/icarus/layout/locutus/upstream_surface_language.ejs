@@ -5,6 +5,40 @@ function surfacePercent(count, total) {
   }
   return Math.max(0, Math.min(100, Math.round((count / total) * 1000) / 10))
 }
+
+// Sort namespaces: highest coverage first, then by wanted count desc, then alphabetical
+var sortedNamespaces = surfaceLang.namespaces.slice().sort(function (a, b) {
+  var aCov = a.coveragePercent || 0
+  var bCov = b.coveragePercent || 0
+  if (aCov !== bCov) return bCov - aCov
+  var aWanted = a.wantedEntries ? a.wantedEntries.length : 0
+  var bWanted = b.wantedEntries ? b.wantedEntries.length : 0
+  if (aWanted !== bWanted) return bWanted - aWanted
+  return (a.namespace || '').localeCompare(b.namespace || '')
+})
+
+// Group namespaces into meaningful buckets
+var completeNamespaces = sortedNamespaces.filter(function (ns) {
+  return ns.coveragePercent === 100
+    || (ns.catalogShippedCount > 0 && (!ns.wantedEntries || ns.wantedEntries.length === 0) && (!ns.untriagedEntries || ns.untriagedEntries.length === 0))
+})
+var inProgressNamespaces = sortedNamespaces.filter(function (ns) {
+  if (ns.coveragePercent === 100) return false
+  if (ns.catalogShippedCount > 0 && (!ns.wantedEntries || ns.wantedEntries.length === 0) && (!ns.untriagedEntries || ns.untriagedEntries.length === 0)) return false
+  return (ns.coveragePercent && ns.coveragePercent > 0) || (ns.wantedEntries && ns.wantedEntries.length > 0)
+})
+var triagedNamespaces = sortedNamespaces.filter(function (ns) {
+  return (!ns.coveragePercent || ns.coveragePercent === 0)
+    && (!ns.wantedEntries || ns.wantedEntries.length === 0)
+    && (ns.skippedEntries && ns.skippedEntries.length > 0)
+})
+var untriagedNamespaces = sortedNamespaces.filter(function (ns) {
+  return (!ns.coveragePercent || ns.coveragePercent === 0)
+    && (!ns.wantedEntries || ns.wantedEntries.length === 0)
+    && (!ns.skippedEntries || ns.skippedEntries.length === 0)
+})
+var groupCount = (completeNamespaces.length > 0 ? 1 : 0) + (inProgressNamespaces.length > 0 ? 1 : 0) + (triagedNamespaces.length > 0 ? 1 : 0) + (untriagedNamespaces.length > 0 ? 1 : 0)
+var hasMultipleGroups = groupCount > 1
 %>
 <details class="surface-panel surface-panel-language surface-panel--toggle">
   <summary class="surface-panel__summary">
@@ -12,8 +46,8 @@ function surfacePercent(count, total) {
       <strong>Upstream Surface Inventory</strong>
       <span>
         <%= surfaceLang.catalogShippedCount %>/<%= surfaceLang.catalogCount %> shipped
-        <% if (surfaceLang.wantedCount > 0) { %> • <%= surfaceLang.wantedCount %> next<% } %>
-        <% if (surfaceLang.untriagedCount > 0) { %> • <%= surfaceLang.untriagedCount %> need triage<% } %>
+        <% if (surfaceLang.wantedCount > 0) { %> &middot; <%= surfaceLang.wantedCount %> next<% } %>
+        <% if (surfaceLang.untriagedCount > 0) { %> &middot; <%= surfaceLang.untriagedCount %> need triage<% } %>
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
@@ -75,6 +109,37 @@ function surfacePercent(count, total) {
       <% if (surfaceLang.untriagedCount > 0) { %><span><i class="surface-legend__swatch surface-legend__swatch--untriaged"></i>Needs triage</span><% } %>
     </div>
 
+    <%/* Namespace mini-map: clickable tiles that filter the list */ %>
+    <div class="surface-minimap">
+      <% sortedNamespaces.forEach(function (ns) { %>
+        <%
+          var covClass = 'surface-minimap__tile--empty'
+          var cov = ns.coveragePercent || 0
+          if (cov >= 75) covClass = 'surface-minimap__tile--high'
+          else if (cov >= 25) covClass = 'surface-minimap__tile--mid'
+          else if (cov > 0) covClass = 'surface-minimap__tile--low'
+          else if (ns.wantedEntries && ns.wantedEntries.length > 0) covClass = 'surface-minimap__tile--wanted'
+        %>
+        <span class="surface-minimap__tile <%= covClass %>"
+              title="<%= ns.namespace %>: <%= cov %>% shipped"
+              data-ns="<%= ns.namespace %>"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name"><%= ns.namespace %></span>
+          <span class="surface-minimap__pct"><%= cov %>%</span>
+        </span>
+      <% }) %>
+    </div>
+
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
@@ -110,25 +175,94 @@ function surfacePercent(count, total) {
       <% } %>
     </div>
 
-    <p class="surface-summary">
-      <% var languageBits = [] %>
-      <% languageBits.push(surfaceLang.namespaceCount + ' namespace' + (surfaceLang.namespaceCount === 1 ? '' : 's') + ' are currently tracked') %>
-      <% languageBits.push(surfaceLang.catalogShippedCount + ' of ' + surfaceLang.catalogCount + ' upstream entries are already shipped') %>
-      <% if (surfaceLang.wantedCount > 0) { languageBits.push(surfaceLang.wantedCount + ' are explicitly on the shortlist') } %>
-      <% if (surfaceLang.untriagedCount > 0) { languageBits.push(surfaceLang.untriagedCount + ' still need a decision') } %>
-      <% if (surfaceLang.skippedCount > 0) { languageBits.push(surfaceLang.skippedCount + ' are explicit non-goals') } %>
-      <% if (surfaceLang.keptExtraCount > 0) { languageBits.push(surfaceLang.keptExtraCount + ' Locutus-only extras are intentionally retained') } %>
-      <%= languageBits.join('; ') %>.
-    </p>
+    <%/* Filter input */ %>
+    <div class="surface-filter">
+      <input type="text" class="surface-filter__input" placeholder="Filter namespaces..." oninput="(function(el){
+        var q = el.value.toLowerCase();
+        var cards = el.closest('.surface-panel__content').querySelectorAll('.surface-card, .surface-compact-row');
+        cards.forEach(function(c){
+          var name = (c.getAttribute('data-namespace') || '').toLowerCase();
+          c.style.display = (!q || name.indexOf(q) !== -1) ? '' : 'none';
+        });
+        var sections = el.closest('.surface-panel__content').querySelectorAll('.surface-ns-group');
+        sections.forEach(function(s) {
+          var visible = s.querySelectorAll('.surface-card:not([style*=&quot;display: none&quot;]), .surface-compact-row:not([style*=&quot;display: none&quot;])');
+          s.style.display = visible.length ? '' : 'none';
+        });
+        var tiles = el.closest('.surface-panel__content').querySelectorAll('.surface-minimap__tile');
+        tiles.forEach(function(t) {
+          var isActive = q && t.getAttribute('data-ns').toLowerCase() === q;
+          t.classList.toggle('surface-minimap__tile--active', isActive);
+        });
+      })(this)" />
+    </div>
 
-    <% surfaceLang.namespaces.forEach(function (namespace) { %>
-      <%- partial('locutus/upstream_surface_namespace', {
-        page: page,
-        namespace: namespace,
-        showTitleLink: namespace.categories.length === 1,
-        titleHref: namespace.categories.length === 1 ? url_for(page.language + '/' + namespace.categories[0] + '/') : null,
-        compact: false
-      }) %>
-    <% }) %>
+    <% if (completeNamespaces.length > 0) { %>
+      <div class="surface-ns-group">
+        <% if (hasMultipleGroups) { %>
+          <h3 class="surface-ns-group__title">Complete</h3>
+        <% } %>
+        <% completeNamespaces.forEach(function (namespace) { %>
+          <%- partial('locutus/upstream_surface_namespace', {
+            page: page,
+            namespace: namespace,
+            showTitleLink: namespace.categories.length === 1,
+            titleHref: namespace.categories.length === 1 ? url_for(page.language + '/' + namespace.categories[0] + '/') : null,
+            compact: false
+          }) %>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <% if (inProgressNamespaces.length > 0) { %>
+      <div class="surface-ns-group">
+        <% if (hasMultipleGroups) { %>
+          <h3 class="surface-ns-group__title">In progress</h3>
+        <% } %>
+        <% inProgressNamespaces.forEach(function (namespace) { %>
+          <%- partial('locutus/upstream_surface_namespace', {
+            page: page,
+            namespace: namespace,
+            showTitleLink: namespace.categories.length === 1,
+            titleHref: namespace.categories.length === 1 ? url_for(page.language + '/' + namespace.categories[0] + '/') : null,
+            compact: false
+          }) %>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <% if (triagedNamespaces.length > 0) { %>
+      <div class="surface-ns-group">
+        <h3 class="surface-ns-group__title">Triaged as out of scope</h3>
+        <div class="surface-compact-list">
+          <% triagedNamespaces.forEach(function (namespace) { %>
+            <%- partial('locutus/upstream_surface_namespace', {
+              page: page,
+              namespace: namespace,
+              showTitleLink: namespace.categories.length === 1,
+              titleHref: namespace.categories.length === 1 ? url_for(page.language + '/' + namespace.categories[0] + '/') : null,
+              compact: true
+            }) %>
+          <% }) %>
+        </div>
+      </div>
+    <% } %>
+
+    <% if (untriagedNamespaces.length > 0) { %>
+      <div class="surface-ns-group">
+        <h3 class="surface-ns-group__title">Not yet triaged</h3>
+        <div class="surface-compact-list">
+          <% untriagedNamespaces.forEach(function (namespace) { %>
+            <%- partial('locutus/upstream_surface_namespace', {
+              page: page,
+              namespace: namespace,
+              showTitleLink: namespace.categories.length === 1,
+              titleHref: namespace.categories.length === 1 ? url_for(page.language + '/' + namespace.categories[0] + '/') : null,
+              compact: true
+            }) %>
+          <% }) %>
+        </div>
+      </div>
+    <% } %>
   </div>
 </details>
