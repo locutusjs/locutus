@@ -144,6 +144,19 @@ Primary command:
 corepack yarn test:upstream-surface
 ```
 
+Canonical namespace audit:
+
+```bash
+corepack yarn audit:upstream-scope
+```
+
+This audit is intentionally stronger than a plain name diff:
+
+- it validates the discovered namespace list
+- it validates the declared target version
+- it validates the canonical `sourceKind`
+- it validates the canonical `sourceRef`
+
 Selective PR routing is driven by:
 
 - `scripts/select-parity-targets.ts`
@@ -186,6 +199,12 @@ Or limit it to specific languages:
 corepack yarn enumerate:upstream-surface python ruby golang
 ```
 
+Audit canonical namespace coverage with:
+
+```bash
+corepack yarn audit:upstream-scope python
+```
+
 This command is intentionally broader than refresh:
 
 - runtime-backed languages refresh from the parity target container
@@ -197,8 +216,11 @@ Enumeration is now also checked against the canonical scope manifest:
 - missing expected namespaces fail
 - unexpected namespaces fail
 - source-kind/source-ref mismatches fail
+- target-version mismatches fail
 
 That makes the discovery layer deterministic instead of relying on memory or ad hoc inspection.
+
+Discovery should also stay side-effect-safe. If an official namespace can only be found through import-time behavior that mutates the host or opens external tools, prefer excluding that namespace at the source layer over silently keeping it in the canonical catalog.
 
 Refresh only the live-discoverable snapshots with:
 
@@ -230,6 +252,8 @@ Do not invalidate the entire inventory on target bumps. The workflow should be:
 3. update `wanted` / `skip_*` / `keep_*` decisions only where drift actually occurred
 4. rerun parity for shipped functions in affected namespaces
 
+Language-level `defaultNamespace` exists to keep broad scope expansions sane: new namespaces can enter under one conservative default, and only the real exceptions need explicit namespace sections.
+
 ## Canonical Scope
 
 `docs/upstream-surface-scope.yml` is the contract for surface discovery itself.
@@ -237,12 +261,14 @@ Do not invalidate the entire inventory on target bumps. The workflow should be:
 It should answer:
 
 1. which namespaces belong to the tracked official core/stdlib scope
-2. which source kind is canonical for each namespace
-3. which exact source ref is canonical for the current parity target
+2. which source kind is canonical for the language-level namespace catalog when discovery supports that
+3. which source kind is canonical for each namespace
+4. which exact source ref is canonical for the current parity target
 
 That means the system now distinguishes clearly between:
 
 - canonical discovery scope
+- canonical namespace catalogs
 - discovered catalog snapshots
 - triage policy
 
@@ -262,6 +288,7 @@ That makes the wishlist visible to maintainers and users without inventing a sep
 ## Adding A New Language Or Namespace
 
 1. Add or extend `handler.upstreamSurface` in `test/parity/lib/languages/<language>.ts`
+   - implement `discoverNamespaceCatalog()` when the language can expose its official namespace list from runtime or another deterministic source
 2. Add or refresh the snapshot in `test/parity/fixtures/upstream-surface/<language>.yml`
 3. Add the language and namespace entries to `docs/upstream-surface-inventory.yml`
 4. Run:

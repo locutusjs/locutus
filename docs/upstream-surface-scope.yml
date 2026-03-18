@@ -71,41 +71,731 @@ clojure:
       title: java.lang.Math
 elixir:
   namespaces:
+    Access:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Access
+      title: Access module
+    Agent:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Agent
+      title: Agent module
+    Agent.Server:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Agent.Server
+      title: Agent.Server module
+    Application:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Application
+      title: Application module
+    ArgumentError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:ArgumentError
+      title: ArgumentError module
+    ArithmeticError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:ArithmeticError
+      title: ArithmeticError module
+    Atom:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Atom
+      title: Atom module
+    BadArityError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:BadArityError
+      title: BadArityError module
+    BadBooleanError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:BadBooleanError
+      title: BadBooleanError module
+    BadFunctionError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:BadFunctionError
+      title: BadFunctionError module
+    BadMapError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:BadMapError
+      title: BadMapError module
+    BadStructError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:BadStructError
+      title: BadStructError module
     Base:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Base module
+    Behaviour:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Behaviour
+      title: Behaviour module
+    Bitwise:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Bitwise
+      title: Bitwise module
+    Calendar:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Calendar
+      title: Calendar module
+    Calendar.ISO:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Calendar.ISO
+      title: Calendar.ISO module
+    Calendar.TimeZoneDatabase:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Calendar.TimeZoneDatabase
+      title: Calendar.TimeZoneDatabase module
+    Calendar.UTCOnlyTimeZoneDatabase:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Calendar.UTCOnlyTimeZoneDatabase
+      title: Calendar.UTCOnlyTimeZoneDatabase module
+    CaseClauseError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:CaseClauseError
+      title: CaseClauseError module
+    Code:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Code
+      title: Code module
+    Code.Formatter:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Code.Formatter
+      title: Code.Formatter module
+    Code.Fragment:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Code.Fragment
+      title: Code.Fragment module
+    Code.Identifier:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Code.Identifier
+      title: Code.Identifier module
+    Code.LoadError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Code.LoadError
+      title: Code.LoadError module
+    Code.Normalizer:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Code.Normalizer
+      title: Code.Normalizer module
+    Code.Typespec:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Code.Typespec
+      title: Code.Typespec module
+    Collectable:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable
+      title: Collectable module
+    Collectable.BitString:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.BitString
+      title: Collectable.BitString module
+    Collectable.File.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.File.Stream
+      title: Collectable.File.Stream module
+    Collectable.HashDict:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.HashDict
+      title: Collectable.HashDict module
+    Collectable.HashSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.HashSet
+      title: Collectable.HashSet module
+    Collectable.IO.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.IO.Stream
+      title: Collectable.IO.Stream module
+    Collectable.List:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.List
+      title: Collectable.List module
+    Collectable.Map:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.Map
+      title: Collectable.Map module
+    Collectable.MapSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Collectable.MapSet
+      title: Collectable.MapSet module
+    CompileError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:CompileError
+      title: CompileError module
+    CondClauseError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:CondClauseError
+      title: CondClauseError module
+    Config:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Config
+      title: Config module
+    Config.Provider:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Config.Provider
+      title: Config.Provider module
+    Config.Reader:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Config.Reader
+      title: Config.Reader module
     Date:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Date module
+    Date.Range:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Date.Range
+      title: Date.Range module
     DateTime:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: DateTime module
+    Dict:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Dict
+      title: Dict module
+    Duration:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Duration
+      title: Duration module
+    DynamicSupervisor:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:DynamicSupervisor
+      title: DynamicSupervisor module
     Enum:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Enum module
+    Enum.EmptyError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enum.EmptyError
+      title: Enum.EmptyError module
+    Enum.OutOfBoundsError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enum.OutOfBoundsError
+      title: Enum.OutOfBoundsError module
+    Enumerable:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable
+      title: Enumerable module
+    Enumerable.Date.Range:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.Date.Range
+      title: Enumerable.Date.Range module
+    Enumerable.File.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.File.Stream
+      title: Enumerable.File.Stream module
+    Enumerable.Function:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.Function
+      title: Enumerable.Function module
+    Enumerable.GenEvent.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.GenEvent.Stream
+      title: Enumerable.GenEvent.Stream module
+    Enumerable.HashDict:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.HashDict
+      title: Enumerable.HashDict module
+    Enumerable.HashSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.HashSet
+      title: Enumerable.HashSet module
+    Enumerable.IO.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.IO.Stream
+      title: Enumerable.IO.Stream module
+    Enumerable.List:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.List
+      title: Enumerable.List module
+    Enumerable.Map:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.Map
+      title: Enumerable.Map module
+    Enumerable.MapSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.MapSet
+      title: Enumerable.MapSet module
+    Enumerable.Range:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.Range
+      title: Enumerable.Range module
+    Enumerable.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Enumerable.Stream
+      title: Enumerable.Stream module
+    ErlangError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:ErlangError
+      title: ErlangError module
+    Exception:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Exception
+      title: Exception module
+    File:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:File
+      title: File module
+    File.CopyError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:File.CopyError
+      title: File.CopyError module
+    File.Error:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:File.Error
+      title: File.Error module
+    File.LinkError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:File.LinkError
+      title: File.LinkError module
+    File.RenameError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:File.RenameError
+      title: File.RenameError module
+    File.Stat:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:File.Stat
+      title: File.Stat module
+    File.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:File.Stream
+      title: File.Stream module
     Float:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Float module
+    Function:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Function
+      title: Function module
+    FunctionClauseError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:FunctionClauseError
+      title: FunctionClauseError module
+    GenEvent:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:GenEvent
+      title: GenEvent module
+    GenEvent.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:GenEvent.Stream
+      title: GenEvent.Stream module
+    GenServer:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:GenServer
+      title: GenServer module
+    HashDict:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:HashDict
+      title: HashDict module
+    HashSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:HashSet
+      title: HashSet module
+    IO:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:IO
+      title: IO module
+    IO.ANSI:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:IO.ANSI
+      title: IO.ANSI module
+    IO.ANSI.Docs:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:IO.ANSI.Docs
+      title: IO.ANSI.Docs module
+    IO.ANSI.Sequence:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:IO.ANSI.Sequence
+      title: IO.ANSI.Sequence module
+    IO.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:IO.Stream
+      title: IO.Stream module
+    IO.StreamError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:IO.StreamError
+      title: IO.StreamError module
+    Inspect:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect
+      title: Inspect module
+    Inspect.Algebra:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Algebra
+      title: Inspect.Algebra module
+    Inspect.Any:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Any
+      title: Inspect.Any module
+    Inspect.Atom:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Atom
+      title: Inspect.Atom module
+    Inspect.BitString:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.BitString
+      title: Inspect.BitString module
+    Inspect.Date:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Date
+      title: Inspect.Date module
+    Inspect.Date.Range:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Date.Range
+      title: Inspect.Date.Range module
+    Inspect.DateTime:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.DateTime
+      title: Inspect.DateTime module
+    Inspect.Duration:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Duration
+      title: Inspect.Duration module
+    Inspect.Error:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Error
+      title: Inspect.Error module
+    Inspect.Float:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Float
+      title: Inspect.Float module
+    Inspect.Function:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Function
+      title: Inspect.Function module
+    Inspect.HashDict:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.HashDict
+      title: Inspect.HashDict module
+    Inspect.HashSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.HashSet
+      title: Inspect.HashSet module
+    Inspect.Inspect.Error:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Inspect.Error
+      title: Inspect.Inspect.Error module
+    Inspect.Integer:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Integer
+      title: Inspect.Integer module
+    Inspect.List:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.List
+      title: Inspect.List module
+    Inspect.Macro.Env:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Macro.Env
+      title: Inspect.Macro.Env module
+    Inspect.Map:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Map
+      title: Inspect.Map module
+    Inspect.MapSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.MapSet
+      title: Inspect.MapSet module
+    Inspect.NaiveDateTime:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.NaiveDateTime
+      title: Inspect.NaiveDateTime module
+    Inspect.Opts:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Opts
+      title: Inspect.Opts module
+    Inspect.PID:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.PID
+      title: Inspect.PID module
+    Inspect.Port:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Port
+      title: Inspect.Port module
+    Inspect.Range:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Range
+      title: Inspect.Range module
+    Inspect.Reference:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Reference
+      title: Inspect.Reference module
+    Inspect.Regex:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Regex
+      title: Inspect.Regex module
+    Inspect.Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Stream
+      title: Inspect.Stream module
+    Inspect.Time:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Time
+      title: Inspect.Time module
+    Inspect.Tuple:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Tuple
+      title: Inspect.Tuple module
+    Inspect.URI:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.URI
+      title: Inspect.URI module
+    Inspect.Version:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Version
+      title: Inspect.Version module
+    Inspect.Version.Requirement:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Inspect.Version.Requirement
+      title: Inspect.Version.Requirement module
     Integer:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Integer module
+    JSON:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON
+      title: JSON module
+    JSON.DecodeError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.DecodeError
+      title: JSON.DecodeError module
+    JSON.Encoder:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder
+      title: JSON.Encoder module
+    JSON.Encoder.Atom:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.Atom
+      title: JSON.Encoder.Atom module
+    JSON.Encoder.BitString:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.BitString
+      title: JSON.Encoder.BitString module
+    JSON.Encoder.Date:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.Date
+      title: JSON.Encoder.Date module
+    JSON.Encoder.DateTime:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.DateTime
+      title: JSON.Encoder.DateTime module
+    JSON.Encoder.Duration:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.Duration
+      title: JSON.Encoder.Duration module
+    JSON.Encoder.Float:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.Float
+      title: JSON.Encoder.Float module
+    JSON.Encoder.Integer:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.Integer
+      title: JSON.Encoder.Integer module
+    JSON.Encoder.List:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.List
+      title: JSON.Encoder.List module
+    JSON.Encoder.Map:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.Map
+      title: JSON.Encoder.Map module
+    JSON.Encoder.NaiveDateTime:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.NaiveDateTime
+      title: JSON.Encoder.NaiveDateTime module
+    JSON.Encoder.Time:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:JSON.Encoder.Time
+      title: JSON.Encoder.Time module
     Kernel:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Kernel module
+    Kernel.CLI:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.CLI
+      title: Kernel.CLI module
+    Kernel.ErrorHandler:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.ErrorHandler
+      title: Kernel.ErrorHandler module
+    Kernel.LexicalTracker:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.LexicalTracker
+      title: Kernel.LexicalTracker module
+    Kernel.ParallelCompiler:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.ParallelCompiler
+      title: Kernel.ParallelCompiler module
+    Kernel.ParallelRequire:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.ParallelRequire
+      title: Kernel.ParallelRequire module
+    Kernel.SpecialForms:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.SpecialForms
+      title: Kernel.SpecialForms module
+    Kernel.Typespec:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.Typespec
+      title: Kernel.Typespec module
+    Kernel.TypespecError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.TypespecError
+      title: Kernel.TypespecError module
+    Kernel.Utils:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Kernel.Utils
+      title: Kernel.Utils module
+    KeyError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:KeyError
+      title: KeyError module
     Keyword:
       target: Elixir 1.18
       sourceKind: runtime
@@ -116,6 +806,46 @@ elixir:
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: List module
+    List.Chars:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:List.Chars
+      title: List.Chars module
+    List.Chars.Atom:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:List.Chars.Atom
+      title: List.Chars.Atom module
+    List.Chars.BitString:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:List.Chars.BitString
+      title: List.Chars.BitString module
+    List.Chars.Float:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:List.Chars.Float
+      title: List.Chars.Float module
+    List.Chars.Integer:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:List.Chars.Integer
+      title: List.Chars.Integer module
+    List.Chars.List:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:List.Chars.List
+      title: List.Chars.List module
+    Macro:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Macro
+      title: Macro module
+    Macro.Env:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Macro.Env
+      title: Macro.Env module
     Map:
       target: Elixir 1.18
       sourceKind: runtime
@@ -126,26 +856,356 @@ elixir:
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: MapSet module
+    MatchError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:MatchError
+      title: MatchError module
+    MismatchedDelimiterError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:MismatchedDelimiterError
+      title: MismatchedDelimiterError module
+    MissingApplicationsError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:MissingApplicationsError
+      title: MissingApplicationsError module
+    Module:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module
+      title: Module module
+    Module.Behaviour:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Behaviour
+      title: Module.Behaviour module
+    Module.ParallelChecker:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.ParallelChecker
+      title: Module.ParallelChecker module
+    Module.Types:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Types
+      title: Module.Types module
+    Module.Types.Apply:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Types.Apply
+      title: Module.Types.Apply module
+    Module.Types.Descr:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Types.Descr
+      title: Module.Types.Descr module
+    Module.Types.Expr:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Types.Expr
+      title: Module.Types.Expr module
+    Module.Types.Helpers:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Types.Helpers
+      title: Module.Types.Helpers module
+    Module.Types.Of:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Types.Of
+      title: Module.Types.Of module
+    Module.Types.Pattern:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Module.Types.Pattern
+      title: Module.Types.Pattern module
     NaiveDateTime:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: NaiveDateTime module
+    Node:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Node
+      title: Node module
+    OptionParser:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:OptionParser
+      title: OptionParser module
+    OptionParser.ParseError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:OptionParser.ParseError
+      title: OptionParser.ParseError module
+    PartitionSupervisor:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:PartitionSupervisor
+      title: PartitionSupervisor module
+    Path:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Path
+      title: Path module
+    Path.Wildcard:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Path.Wildcard
+      title: Path.Wildcard module
+    Port:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Port
+      title: Port module
+    Process:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Process
+      title: Process module
+    Protocol:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Protocol
+      title: Protocol module
+    Protocol.UndefinedError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Protocol.UndefinedError
+      title: Protocol.UndefinedError module
+    Range:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Range
+      title: Range module
+    Record:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Record
+      title: Record module
+    Record.Extractor:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Record.Extractor
+      title: Record.Extractor module
     Regex:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Regex module
+    Regex.CompileError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Regex.CompileError
+      title: Regex.CompileError module
+    Registry:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Registry
+      title: Registry module
+    Registry.Partition:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Registry.Partition
+      title: Registry.Partition module
+    Registry.Supervisor:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Registry.Supervisor
+      title: Registry.Supervisor module
+    RuntimeError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:RuntimeError
+      title: RuntimeError module
+    Set:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Set
+      title: Set module
+    Stream:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Stream
+      title: Stream module
+    Stream.Reducers:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Stream.Reducers
+      title: Stream.Reducers module
     String:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: String module
+    String.Break:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Break
+      title: String.Break module
+    String.Chars:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars
+      title: String.Chars module
+    String.Chars.Atom:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.Atom
+      title: String.Chars.Atom module
+    String.Chars.BitString:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.BitString
+      title: String.Chars.BitString module
+    String.Chars.Date:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.Date
+      title: String.Chars.Date module
+    String.Chars.DateTime:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.DateTime
+      title: String.Chars.DateTime module
+    String.Chars.Float:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.Float
+      title: String.Chars.Float module
+    String.Chars.Integer:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.Integer
+      title: String.Chars.Integer module
+    String.Chars.List:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.List
+      title: String.Chars.List module
+    String.Chars.NaiveDateTime:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.NaiveDateTime
+      title: String.Chars.NaiveDateTime module
+    String.Chars.Time:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.Time
+      title: String.Chars.Time module
+    String.Chars.URI:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.URI
+      title: String.Chars.URI module
+    String.Chars.Version:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.Version
+      title: String.Chars.Version module
+    String.Chars.Version.Requirement:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Chars.Version.Requirement
+      title: String.Chars.Version.Requirement module
+    String.Tokenizer:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Tokenizer
+      title: String.Tokenizer module
+    String.Tokenizer.ScriptSet:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Tokenizer.ScriptSet
+      title: String.Tokenizer.ScriptSet module
+    String.Tokenizer.Security:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Tokenizer.Security
+      title: String.Tokenizer.Security module
+    String.Unicode:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:String.Unicode
+      title: String.Unicode module
+    StringIO:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:StringIO
+      title: StringIO module
+    Supervisor:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Supervisor
+      title: Supervisor module
+    Supervisor.Default:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Supervisor.Default
+      title: Supervisor.Default module
+    Supervisor.Spec:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Supervisor.Spec
+      title: Supervisor.Spec module
+    SyntaxError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:SyntaxError
+      title: SyntaxError module
+    System:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:System
+      title: System module
+    System.EnvError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:System.EnvError
+      title: System.EnvError module
+    System.SignalHandler:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:System.SignalHandler
+      title: System.SignalHandler module
+    SystemLimitError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:SystemLimitError
+      title: SystemLimitError module
+    Task:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Task
+      title: Task module
+    Task.Supervised:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Task.Supervised
+      title: Task.Supervised module
+    Task.Supervisor:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Task.Supervisor
+      title: Task.Supervisor module
     Time:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Time module
+    TokenMissingError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:TokenMissingError
+      title: TokenMissingError module
+    TryClauseError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:TryClauseError
+      title: TryClauseError module
     Tuple:
       target: Elixir 1.18
       sourceKind: runtime
@@ -156,43 +1216,562 @@ elixir:
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: URI module
+    URI.Error:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:URI.Error
+      title: URI.Error module
+    UndefinedFunctionError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:UndefinedFunctionError
+      title: UndefinedFunctionError module
+    UnicodeConversionError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:UnicodeConversionError
+      title: UnicodeConversionError module
     Version:
       target: Elixir 1.18
       sourceKind: runtime
       sourceRef: elixir:1.18
       title: Version module
+    Version.InvalidRequirementError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Version.InvalidRequirementError
+      title: Version.InvalidRequirementError module
+    Version.InvalidVersionError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Version.InvalidVersionError
+      title: Version.InvalidVersionError module
+    Version.Parser:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Version.Parser
+      title: Version.Parser module
+    Version.Requirement:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:Version.Requirement
+      title: Version.Requirement module
+    WithClauseError:
+      target: Elixir 1.18
+      sourceKind: runtime
+      sourceRef: elixir:1.18:WithClauseError
+      title: WithClauseError module
+  namespaceCatalog:
+    target: Elixir 1.18
+    sourceKind: runtime
+    sourceRef: elixir:1.18:application-modules
 golang:
   namespaces:
+    archive/tar:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:archive/tar
+      title: archive/tar package
+    archive/zip:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:archive/zip
+      title: archive/zip package
     base64:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:encoding/base64
       title: encoding/base64 package
-    bytes:
-      target: Go 1.23
-      sourceKind: runtime
-      sourceRef: golang:1.23:bytes
-      title: bytes package
     bits:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:math/bits
       title: math/bits package
+    bufio:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:bufio
+      title: bufio package
+    bytes:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:bytes
+      title: bytes package
     cmp:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:cmp
       title: cmp package
-    hex:
+    compress/bzip2:
       target: Go 1.23
       sourceKind: runtime
-      sourceRef: golang:1.23:encoding/hex
-      title: encoding/hex package
+      sourceRef: golang:1.23:compress/bzip2
+      title: compress/bzip2 package
+    compress/flate:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:compress/flate
+      title: compress/flate package
+    compress/gzip:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:compress/gzip
+      title: compress/gzip package
+    compress/lzw:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:compress/lzw
+      title: compress/lzw package
+    compress/zlib:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:compress/zlib
+      title: compress/zlib package
+    container/heap:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:container/heap
+      title: container/heap package
+    container/list:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:container/list
+      title: container/list package
+    container/ring:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:container/ring
+      title: container/ring package
+    context:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:context
+      title: context package
+    crypto:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto
+      title: crypto package
+    crypto/aes:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/aes
+      title: crypto/aes package
+    crypto/cipher:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/cipher
+      title: crypto/cipher package
+    crypto/des:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/des
+      title: crypto/des package
+    crypto/dsa:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/dsa
+      title: crypto/dsa package
+    crypto/ecdh:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/ecdh
+      title: crypto/ecdh package
+    crypto/ecdsa:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/ecdsa
+      title: crypto/ecdsa package
+    crypto/ed25519:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/ed25519
+      title: crypto/ed25519 package
+    crypto/elliptic:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/elliptic
+      title: crypto/elliptic package
+    crypto/hmac:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/hmac
+      title: crypto/hmac package
+    crypto/md5:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/md5
+      title: crypto/md5 package
+    crypto/rand:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/rand
+      title: crypto/rand package
+    crypto/rc4:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/rc4
+      title: crypto/rc4 package
+    crypto/rsa:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/rsa
+      title: crypto/rsa package
+    crypto/sha1:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/sha1
+      title: crypto/sha1 package
+    crypto/sha256:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/sha256
+      title: crypto/sha256 package
+    crypto/sha512:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/sha512
+      title: crypto/sha512 package
+    crypto/tls:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/tls
+      title: crypto/tls package
+    crypto/x509:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/x509
+      title: crypto/x509 package
+    crypto/x509/pkix:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:crypto/x509/pkix
+      title: crypto/x509/pkix package
+    database/sql:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:database/sql
+      title: database/sql package
+    database/sql/driver:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:database/sql/driver
+      title: database/sql/driver package
+    debug/buildinfo:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:debug/buildinfo
+      title: debug/buildinfo package
+    debug/dwarf:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:debug/dwarf
+      title: debug/dwarf package
+    debug/elf:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:debug/elf
+      title: debug/elf package
+    debug/gosym:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:debug/gosym
+      title: debug/gosym package
+    debug/macho:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:debug/macho
+      title: debug/macho package
+    debug/pe:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:debug/pe
+      title: debug/pe package
+    debug/plan9obj:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:debug/plan9obj
+      title: debug/plan9obj package
+    embed:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:embed
+      title: embed package
+    encoding:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding
+      title: encoding package
+    encoding/ascii85:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/ascii85
+      title: encoding/ascii85 package
+    encoding/asn1:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/asn1
+      title: encoding/asn1 package
+    encoding/base32:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/base32
+      title: encoding/base32 package
+    encoding/binary:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/binary
+      title: encoding/binary package
+    encoding/csv:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/csv
+      title: encoding/csv package
+    encoding/gob:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/gob
+      title: encoding/gob package
+    encoding/json:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/json
+      title: encoding/json package
+    encoding/pem:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/pem
+      title: encoding/pem package
+    encoding/xml:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/xml
+      title: encoding/xml package
+    errors:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:errors
+      title: errors package
+    expvar:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:expvar
+      title: expvar package
     filepath:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:path/filepath
       title: path/filepath package
+    flag:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:flag
+      title: flag package
+    fmt:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:fmt
+      title: fmt package
+    go/ast:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/ast
+      title: go/ast package
+    go/build:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/build
+      title: go/build package
+    go/build/constraint:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/build/constraint
+      title: go/build/constraint package
+    go/constant:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/constant
+      title: go/constant package
+    go/doc:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/doc
+      title: go/doc package
+    go/doc/comment:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/doc/comment
+      title: go/doc/comment package
+    go/format:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/format
+      title: go/format package
+    go/importer:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/importer
+      title: go/importer package
+    go/parser:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/parser
+      title: go/parser package
+    go/printer:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/printer
+      title: go/printer package
+    go/scanner:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/scanner
+      title: go/scanner package
+    go/token:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/token
+      title: go/token package
+    go/types:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/types
+      title: go/types package
+    go/version:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:go/version
+      title: go/version package
+    hash:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:hash
+      title: hash package
+    hash/adler32:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:hash/adler32
+      title: hash/adler32 package
+    hash/crc32:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:hash/crc32
+      title: hash/crc32 package
+    hash/crc64:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:hash/crc64
+      title: hash/crc64 package
+    hash/fnv:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:hash/fnv
+      title: hash/fnv package
+    hash/maphash:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:hash/maphash
+      title: hash/maphash package
+    hex:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:encoding/hex
+      title: encoding/hex package
+    html:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:html
+      title: html package
+    html/template:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:html/template
+      title: html/template package
+    image:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:image
+      title: image package
+    image/color:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:image/color
+      title: image/color package
+    image/color/palette:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:image/color/palette
+      title: image/color/palette package
+    image/draw:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:image/draw
+      title: image/draw package
+    image/gif:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:image/gif
+      title: image/gif package
+    image/jpeg:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:image/jpeg
+      title: image/jpeg package
+    image/png:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:image/png
+      title: image/png package
+    index/suffixarray:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:index/suffixarray
+      title: index/suffixarray package
+    io:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:io
+      title: io package
+    io/fs:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:io/fs
+      title: io/fs package
+    io/ioutil:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:io/ioutil
+      title: io/ioutil package
+    iter:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:iter
+      title: iter package
+    log:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:log
+      title: log package
+    log/internal:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:log/internal
+      title: log/internal package
+    log/slog:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:log/slog
+      title: log/slog package
+    log/slog/internal:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:log/slog/internal
+      title: log/slog/internal package
+    log/syslog:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:log/syslog
+      title: log/syslog package
     maps:
       target: Go 1.23
       sourceKind: runtime
@@ -203,16 +1782,206 @@ golang:
       sourceKind: runtime
       sourceRef: golang:1.23:math
       title: math package
+    math/big:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:math/big
+      title: math/big package
+    math/cmplx:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:math/cmplx
+      title: math/cmplx package
+    math/rand:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:math/rand
+      title: math/rand package
+    math/rand/v2:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:math/rand/v2
+      title: math/rand/v2 package
+    mime:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:mime
+      title: mime package
+    mime/multipart:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:mime/multipart
+      title: mime/multipart package
+    mime/quotedprintable:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:mime/quotedprintable
+      title: mime/quotedprintable package
     net:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:net
       title: net package
+    net/http:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http
+      title: net/http package
+    net/http/cgi:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/cgi
+      title: net/http/cgi package
+    net/http/cookiejar:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/cookiejar
+      title: net/http/cookiejar package
+    net/http/fcgi:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/fcgi
+      title: net/http/fcgi package
+    net/http/httptest:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/httptest
+      title: net/http/httptest package
+    net/http/httptrace:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/httptrace
+      title: net/http/httptrace package
+    net/http/httputil:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/httputil
+      title: net/http/httputil package
+    net/http/internal:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/internal
+      title: net/http/internal package
+    net/http/pprof:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/http/pprof
+      title: net/http/pprof package
+    net/mail:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/mail
+      title: net/mail package
+    net/netip:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/netip
+      title: net/netip package
+    net/rpc:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/rpc
+      title: net/rpc package
+    net/rpc/jsonrpc:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/rpc/jsonrpc
+      title: net/rpc/jsonrpc package
+    net/smtp:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/smtp
+      title: net/smtp package
+    net/textproto:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/textproto
+      title: net/textproto package
+    os:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:os
+      title: os package
+    os/exec:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:os/exec
+      title: os/exec package
+    os/signal:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:os/signal
+      title: os/signal package
+    os/user:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:os/user
+      title: os/user package
     path:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:path
       title: path package
+    plugin:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:plugin
+      title: plugin package
+    reflect:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:reflect
+      title: reflect package
+    regexp:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:regexp
+      title: regexp package
+    regexp/syntax:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:regexp/syntax
+      title: regexp/syntax package
+    runtime:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime
+      title: runtime package
+    runtime/cgo:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime/cgo
+      title: runtime/cgo package
+    runtime/coverage:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime/coverage
+      title: runtime/coverage package
+    runtime/debug:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime/debug
+      title: runtime/debug package
+    runtime/metrics:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime/metrics
+      title: runtime/metrics package
+    runtime/pprof:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime/pprof
+      title: runtime/pprof package
+    runtime/race:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime/race
+      title: runtime/race package
+    runtime/trace:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:runtime/trace
+      title: runtime/trace package
     slices:
       target: Go 1.23
       sourceKind: runtime
@@ -233,31 +2002,133 @@ golang:
       sourceKind: runtime
       sourceRef: golang:1.23:strings
       title: strings package
+    structs:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:structs
+      title: structs package
     subtle:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:crypto/subtle
       title: crypto/subtle package
+    sync:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:sync
+      title: sync package
+    sync/atomic:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:sync/atomic
+      title: sync/atomic package
+    syscall:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:syscall
+      title: syscall package
+    testing:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:testing
+      title: testing package
+    testing/fstest:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:testing/fstest
+      title: testing/fstest package
+    testing/iotest:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:testing/iotest
+      title: testing/iotest package
+    testing/quick:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:testing/quick
+      title: testing/quick package
+    testing/slogtest:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:testing/slogtest
+      title: testing/slogtest package
+    text/scanner:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:text/scanner
+      title: text/scanner package
+    text/tabwriter:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:text/tabwriter
+      title: text/tabwriter package
+    text/template:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:text/template
+      title: text/template package
+    text/template/parse:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:text/template/parse
+      title: text/template/parse package
     time:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:time
       title: time package
+    time.Time:
+      catalogNamespace: time
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:time.Time
+      title: time.Time methods
+    time/tzdata:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:time/tzdata
+      title: time/tzdata package
     unicode:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:unicode
       title: unicode package
-    utf8:
+    unicode/utf16:
       target: Go 1.23
       sourceKind: runtime
-      sourceRef: golang:1.23:unicode/utf8
-      title: unicode/utf8 package
+      sourceRef: golang:1.23:unicode/utf16
+      title: unicode/utf16 package
+    unique:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:unique
+      title: unique package
     url:
       target: Go 1.23
       sourceKind: runtime
       sourceRef: golang:1.23:net/url
       title: net/url package
+    url.URL:
+      catalogNamespace: url
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/url.URL
+      title: net/url URL methods
+    url.Values:
+      catalogNamespace: url
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:net/url.Values
+      title: net/url Values methods
+    utf8:
+      target: Go 1.23
+      sourceKind: runtime
+      sourceRef: golang:1.23:unicode/utf8
+      title: unicode/utf8 package
+  namespaceCatalog:
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go-list-std
 haskell:
   namespaces:
     char:
@@ -307,11 +2178,31 @@ haskell:
       title: Data.Tuple module
 julia:
   namespaces:
+    ArgTools:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:ArgTools
+      title: ArgTools module
+    Artifacts:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Artifacts
+      title: Artifacts module
     Base:
       target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11
       title: Base module
+    Base64:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Base64
+      title: Base64 module
+    CRC32c:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:CRC32c
+      title: CRC32c module
     Dates:
       target: Julia 1.11
       sourceKind: runtime
@@ -322,31 +2213,150 @@ julia:
       sourceKind: runtime
       sourceRef: julia:1.11:DelimitedFiles
       title: DelimitedFiles module
+    Distributed:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Distributed
+      title: Distributed module
+    Downloads:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Downloads
+      title: Downloads module
+    FileWatching:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:FileWatching
+      title: FileWatching module
+    Future:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Future
+      title: Future module
+    InteractiveUtils:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:InteractiveUtils
+      title: InteractiveUtils module
+    LazyArtifacts:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:LazyArtifacts
+      title: LazyArtifacts module
+    LibCURL:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:LibCURL
+      title: LibCURL module
+    LibGit2:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:LibGit2
+      title: LibGit2 module
+    Libdl:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Libdl
+      title: Libdl module
     LinearAlgebra:
       target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:LinearAlgebra
       title: LinearAlgebra module
-    Random:
+    Logging:
       target: Julia 1.11
       sourceKind: runtime
-      sourceRef: julia:1.11:Random
-      title: Random module
+      sourceRef: julia:1.11:Logging
+      title: Logging module
+    Markdown:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Markdown
+      title: Markdown module
+    Mmap:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Mmap
+      title: Mmap module
+    NetworkOptions:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:NetworkOptions
+      title: NetworkOptions module
+    Pkg:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Pkg
+      title: Pkg module
     Printf:
       target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Printf
       title: Printf module
+    Random:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Random
+      title: Random module
+    SHA:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:SHA
+      title: SHA module
+    Serialization:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Serialization
+      title: Serialization module
+    Sockets:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Sockets
+      title: Sockets module
+    SparseArrays:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:SparseArrays
+      title: SparseArrays module
     Statistics:
       target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Statistics
       title: Statistics module
+    StyledStrings:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:StyledStrings
+      title: StyledStrings module
+    SuiteSparse:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:SuiteSparse
+      title: SuiteSparse module
+    TOML:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:TOML
+      title: TOML module
+    Tar:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:Tar
+      title: Tar module
+    UUIDs:
+      target: Julia 1.11
+      sourceKind: runtime
+      sourceRef: julia:1.11:UUIDs
+      title: UUIDs module
     Unicode:
       target: Julia 1.11
       sourceKind: runtime
       sourceRef: julia:1.11:Unicode
       title: Unicode module
+  namespaceCatalog:
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:stdlib-modules
 kotlin:
   namespaces:
     arrays:
@@ -494,6 +2504,10 @@ perl:
       sourceRef: https://perldoc.perl.org/Unicode::Normalize
       title: Unicode::Normalize module
 php:
+  namespaceCatalog:
+    target: PHP 8.3
+    sourceKind: runtime
+    sourceRef: php:8.3-cli:get_defined_functions
   namespaces:
     __global:
       target: PHP 8.3
@@ -554,61 +2568,346 @@ powershell:
       title: System.TimeSpan static and instance methods
 python:
   namespaces:
-    builtins:
+    abc:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
-      title: builtins
+      title: abc
+    aifc:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: aifc
+    argparse:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: argparse
+    array:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: array
+    ast:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ast
+    asyncio:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: asyncio
+    atexit:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: atexit
+    audioop:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: audioop
     base64:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: base64
+    bdb:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: bdb
+    binascii:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: binascii
     bisect:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: bisect
+    builtins:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: builtins
+    bz2:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: bz2
+    cProfile:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: cProfile
     calendar:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: calendar
+    cgi:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: cgi
+    cgitb:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: cgitb
+    chunk:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: chunk
     cmath:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: cmath
+    cmd:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: cmd
+    code:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: code
+    codecs:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: codecs
+    codeop:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: codeop
     collections:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: collections
+    colorsys:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: colorsys
+    compileall:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: compileall
+    concurrent:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: concurrent
+    configparser:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: configparser
+    contextlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: contextlib
+    contextvars:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: contextvars
+    copy:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: copy
+    copyreg:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: copyreg
+    crypt:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: crypt
     csv:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: csv
+    ctypes:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ctypes
+    curses:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: curses
+    dataclasses:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: dataclasses
+    datetime:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: datetime
+    dbm:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: dbm
     decimal:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: decimal
+    difflib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: difflib
+    dis:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: dis
+    doctest:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: doctest
+    email:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: email
+    encodings:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: encodings
+    ensurepip:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ensurepip
+    enum:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: enum
+    errno:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: errno
+    faulthandler:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: faulthandler
+    fcntl:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: fcntl
+    filecmp:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: filecmp
+    fileinput:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: fileinput
+    fnmatch:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: fnmatch
+    fractions:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: fractions
+    ftplib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ftplib
     functools:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: functools
-    heapq:
+    gc:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
-      title: heapq
+      title: gc
+    genericpath:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: genericpath
+    getopt:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: getopt
+    getpass:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: getpass
+    gettext:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: gettext
+    glob:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: glob
+    graphlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: graphlib
+    grp:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: grp
+    gzip:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: gzip
     hashlib:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: hashlib
+    heapq:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: heapq
     hmac:
       target: Python 3.12
       sourceKind: runtime
@@ -619,6 +2918,46 @@ python:
       sourceKind: runtime
       sourceRef: python:3.12
       title: html
+    http:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: http
+    idlelib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: idlelib
+    imaplib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: imaplib
+    imghdr:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: imghdr
+    importlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: importlib
+    inspect:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: inspect
+    io:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: io
+    ipaddress:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ipaddress
     itertools:
       target: Python 3.12
       sourceKind: runtime
@@ -629,16 +2968,241 @@ python:
       sourceKind: runtime
       sourceRef: python:3.12
       title: json
+    keyword:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: keyword
+    lib2to3:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: lib2to3
+    linecache:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: linecache
+    locale:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: locale
+    logging:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: logging
+    lzma:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: lzma
+    mailbox:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: mailbox
+    mailcap:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: mailcap
+    marshal:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: marshal
     math:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: math
+    mimetypes:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: mimetypes
+    mmap:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: mmap
+    modulefinder:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: modulefinder
+    multiprocessing:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: multiprocessing
+    netrc:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: netrc
+    nntplib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: nntplib
+    ntpath:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ntpath
+    nturl2path:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: nturl2path
+    numbers:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: numbers
+    opcode:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: opcode
     operator:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: operator
+    optparse:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: optparse
+    os:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: os
+    ossaudiodev:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ossaudiodev
+    pathlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pathlib
+    pdb:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pdb
+    pickle:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pickle
+    pickletools:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pickletools
+    pipes:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pipes
+    pkgutil:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pkgutil
+    platform:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: platform
+    plistlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: plistlib
+    poplib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: poplib
+    posix:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: posix
+    posixpath:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: posixpath
+    pprint:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pprint
+    profile:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: profile
+    pstats:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pstats
+    pty:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pty
+    pwd:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pwd
+    py_compile:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: py_compile
+    pyclbr:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pyclbr
+    pydoc:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pydoc
+    pydoc_data:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pydoc_data
+    pyexpat:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: pyexpat
+    queue:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: queue
+    quopri:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: quopri
     random:
       target: Python 3.12
       sourceKind: runtime
@@ -649,6 +3213,131 @@ python:
       sourceKind: runtime
       sourceRef: python:3.12
       title: re
+    readline:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: readline
+    reprlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: reprlib
+    resource:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: resource
+    rlcompleter:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: rlcompleter
+    runpy:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: runpy
+    sched:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sched
+    secrets:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: secrets
+    select:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: select
+    selectors:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: selectors
+    shelve:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: shelve
+    shlex:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: shlex
+    shutil:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: shutil
+    signal:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: signal
+    site:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: site
+    smtplib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: smtplib
+    sndhdr:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sndhdr
+    socket:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: socket
+    socketserver:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: socketserver
+    spwd:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: spwd
+    sqlite3:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sqlite3
+    sre_compile:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sre_compile
+    sre_constants:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sre_constants
+    sre_parse:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sre_parse
+    ssl:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: ssl
+    stat:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: stat
     statistics:
       target: Python 3.12
       sourceKind: runtime
@@ -659,88 +3348,268 @@ python:
       sourceKind: runtime
       sourceRef: python:3.12
       title: string
+    stringprep:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: stringprep
+    struct:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: struct
+    subprocess:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: subprocess
+    sunau:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sunau
+    symtable:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: symtable
+    sys:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sys
+    sysconfig:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: sysconfig
+    syslog:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: syslog
+    tabnanny:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tabnanny
+    tarfile:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tarfile
+    telnetlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: telnetlib
+    tempfile:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tempfile
+    termios:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: termios
     textwrap:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: textwrap
+    this:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: this
+    threading:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: threading
+    time:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: time
+    timeit:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: timeit
+    tkinter:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tkinter
+    token:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: token
+    tokenize:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tokenize
+    tomllib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tomllib
+    trace:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: trace
+    traceback:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: traceback
+    tracemalloc:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tracemalloc
+    tty:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: tty
+    turtle:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: turtle
+    turtledemo:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: turtledemo
+    types:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: types
+    typing:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: typing
     unicodedata:
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: unicodedata
+    unittest:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: unittest
+    urllib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: urllib
+    uu:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: uu
+    uuid:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: uuid
+    venv:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: venv
+    warnings:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: warnings
+    wave:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: wave
+    weakref:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: weakref
+    webbrowser:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: webbrowser
+    wsgiref:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: wsgiref
+    xdrlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: xdrlib
+    xml:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: xml
+    xmlrpc:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: xmlrpc
+    zipapp:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: zipapp
+    zipfile:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: zipfile
+    zipimport:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: zipimport
+    zlib:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: zlib
+    zoneinfo:
+      target: Python 3.12
+      sourceKind: runtime
+      sourceRef: python:3.12
+      title: zoneinfo
     urllib.parse:
+      catalogNamespace: urllib
       target: Python 3.12
       sourceKind: runtime
       sourceRef: python:3.12
       title: urllib.parse
-    difflib:
-      target: Python 3.12
-      sourceKind: runtime
-      sourceRef: python:3.12
-      title: difflib
+  namespaceCatalog:
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12:pkgutil-stdlib-modules
 r:
   namespaces:
-    base:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2
-      title: base package
-    stats:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:stats
-      title: stats package
-    utils:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:utils
-      title: utils package
-    class:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:class
-      title: class package
-    cluster:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:cluster
-      title: cluster package
-    compiler:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:compiler
-      title: compiler package
-    foreign:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:foreign
-      title: foreign package
-    graphics:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:graphics
-      title: graphics package
-    grid:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:grid
-      title: grid package
-    grDevices:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:grDevices
-      title: grDevices package
     KernSmooth:
       target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:KernSmooth
       title: KernSmooth package
-    lattice:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:lattice
-      title: lattice package
     MASS:
       target: R 4.4
       sourceKind: runtime
@@ -751,6 +3620,66 @@ r:
       sourceKind: runtime
       sourceRef: r-base:4.4.2:Matrix
       title: Matrix package
+    base:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2
+      title: base package
+    boot:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:boot
+      title: boot package
+    class:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:class
+      title: class package
+    cluster:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:cluster
+      title: cluster package
+    codetools:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:codetools
+      title: codetools package
+    compiler:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:compiler
+      title: compiler package
+    datasets:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:datasets
+      title: datasets package
+    foreign:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:foreign
+      title: foreign package
+    grDevices:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:grDevices
+      title: grDevices package
+    graphics:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:graphics
+      title: graphics package
+    grid:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:grid
+      title: grid package
+    lattice:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:lattice
+      title: lattice package
     methods:
       target: R 4.4
       sourceKind: runtime
@@ -781,113 +3710,531 @@ r:
       sourceKind: runtime
       sourceRef: r-base:4.4.2:rpart
       title: rpart package
-    splines:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:splines
-      title: splines package
     spatial:
       target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:spatial
       title: spatial package
+    splines:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:splines
+      title: splines package
+    stats:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:stats
+      title: stats package
     stats4:
       target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:stats4
       title: stats4 package
-    tools:
-      target: R 4.4
-      sourceKind: runtime
-      sourceRef: r-base:4.4.2:tools
-      title: tools package
     survival:
       target: R 4.4
       sourceKind: runtime
       sourceRef: r-base:4.4.2:survival
       title: survival package
+    tcltk:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:tcltk
+      title: tcltk package
+    tools:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:tools
+      title: tools package
+    utils:
+      target: R 4.4
+      sourceKind: runtime
+      sourceRef: r-base:4.4.2:utils
+      title: utils package
+  namespaceCatalog:
+    target: R 4.4
+    sourceKind: runtime
+    sourceRef: r-base:4.4.2:priority-base-recommended-packages
 ruby:
   namespaces:
+    ArgumentError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: ArgumentError methods
     Array:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Array instance methods
-    String:
+    BasicObject:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
-      title: String instance methods
-    Enumerable:
+      title: BasicObject methods
+    Binding:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
-      title: Enumerable instance methods
-    Hash:
+      title: Binding methods
+    Class:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
-      title: Hash instance methods
-    Math:
+      title: Class methods
+    ClosedQueueError:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
-      title: Math module methods
-    Integer:
-      target: Ruby 3.3
-      sourceKind: runtime
-      sourceRef: ruby:3.3
-      title: Integer instance methods
-    Float:
-      target: Ruby 3.3
-      sourceKind: runtime
-      sourceRef: ruby:3.3
-      title: Float instance methods
+      title: ClosedQueueError methods
     Comparable:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Comparable instance methods
-    Range:
+    Complex:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
-      title: Range instance methods
-    Regexp:
+      title: Complex methods
+    Data:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
-      title: Regexp instance methods
-    Symbol:
+      title: Data methods
+    DidYouMean:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
-      title: Symbol instance methods
-    Time:
-      target: Ruby 3.3
-      sourceKind: runtime
-      sourceRef: ruby:3.3
-      title: Time instance methods
+      title: DidYouMean methods
     Dir:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Dir singleton methods
+    EOFError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: EOFError methods
+    Encoding:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Encoding methods
+    EncodingError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: EncodingError methods
+    Enumerable:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Enumerable instance methods
+    Enumerator:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Enumerator methods
+    Errno:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Errno methods
+    ErrorHighlight:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: ErrorHighlight methods
+    Exception:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Exception methods
+    FalseClass:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: FalseClass methods
+    Fiber:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Fiber methods
+    FiberError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: FiberError methods
     File:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: File singleton methods
+    FileTest:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: FileTest methods
+    Float:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Float instance methods
+    FloatDomainError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: FloatDomainError methods
+    FrozenError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: FrozenError methods
+    GC:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: GC methods
+    Gem:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Gem methods
+    Hash:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Hash instance methods
+    IO:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: IO methods
+    IOError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: IOError methods
+    IndexError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: IndexError methods
+    Integer:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Integer instance methods
+    Interrupt:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Interrupt methods
+    Kernel:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Kernel methods
+    KeyError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: KeyError methods
+    LoadError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: LoadError methods
+    LocalJumpError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: LocalJumpError methods
+    Marshal:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Marshal methods
     MatchData:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: MatchData instance methods
+    Math:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Math module methods
+    Method:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Method methods
+    Module:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Module methods
+    Monitor:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Monitor methods
+    MonitorMixin:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: MonitorMixin methods
+    NameError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: NameError methods
+    NilClass:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: NilClass methods
+    NoMatchingPatternError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: NoMatchingPatternError methods
+    NoMatchingPatternKeyError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: NoMatchingPatternKeyError methods
+    NoMemoryError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: NoMemoryError methods
+    NoMethodError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: NoMethodError methods
+    NotImplementedError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: NotImplementedError methods
     Numeric:
       target: Ruby 3.3
       sourceKind: runtime
       sourceRef: ruby:3.3
       title: Numeric instance methods
+    Object:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Object methods
+    ObjectSpace:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: ObjectSpace methods
+    Proc:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Proc methods
+    Process:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Process methods
+    Ractor:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Ractor methods
+    Random:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Random methods
+    Range:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Range instance methods
+    RangeError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: RangeError methods
+    Rational:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Rational methods
+    RbConfig:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: RbConfig methods
+    Refinement:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Refinement methods
+    Regexp:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Regexp instance methods
+    RegexpError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: RegexpError methods
+    RubyVM:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: RubyVM methods
+    RuntimeError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: RuntimeError methods
+    ScriptError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: ScriptError methods
+    SecurityError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: SecurityError methods
+    Signal:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Signal methods
+    SignalException:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: SignalException methods
+    StandardError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: StandardError methods
+    StopIteration:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: StopIteration methods
+    String:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: String instance methods
+    Struct:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Struct methods
+    Symbol:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Symbol instance methods
+    SyntaxError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: SyntaxError methods
+    SyntaxSuggest:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: SyntaxSuggest methods
+    SystemCallError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: SystemCallError methods
+    SystemExit:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: SystemExit methods
+    SystemStackError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: SystemStackError methods
+    Thread:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Thread methods
+    ThreadError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: ThreadError methods
+    ThreadGroup:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: ThreadGroup methods
+    Time:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Time instance methods
+    TracePoint:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: TracePoint methods
+    TrueClass:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: TrueClass methods
+    TypeError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: TypeError methods
+    UnboundMethod:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: UnboundMethod methods
+    UncaughtThrowError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: UncaughtThrowError methods
+    UnicodeNormalize:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: UnicodeNormalize methods
+    Warning:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: Warning methods
+    ZeroDivisionError:
+      target: Ruby 3.3
+      sourceKind: runtime
+      sourceRef: ruby:3.3
+      title: ZeroDivisionError methods
+  namespaceCatalog:
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3:objectspace-top-level-modules
 rust:
   namespaces:
     bool:
@@ -1013,6 +4360,10 @@ swift:
       sourceRef: https://developer.apple.com/documentation/swift/unicode/scalar
       title: Swift.Unicode.Scalar
 tcl:
+  namespaceCatalog:
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:tclsh-info-commands
   namespaces:
     core:
       target: Tcl 8.6

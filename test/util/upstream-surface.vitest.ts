@@ -13,6 +13,7 @@ import {
   compareUpstreamSurface,
   evaluateRepoUpstreamSurface,
   findUpstreamSurfaceInventoryCoverageIssues,
+  findUpstreamSurfaceNamespaceCatalogIssues,
   findUpstreamSurfaceScopeCoverageIssues,
   formatUpstreamSurfaceScopeIssues,
   resolveUpstreamSurfaceLanguages,
@@ -175,6 +176,41 @@ describe('upstream surface inventory', () => {
     expect(result.namespaces[0]?.untriagedEntries).toEqual([])
   })
 
+  it('allows missing namespace inventory entries when the language defines a default namespace policy', () => {
+    const issues = findUpstreamSurfaceInventoryCoverageIssues(
+      new Map([
+        [
+          'python',
+          {
+            language: 'python',
+            namespaces: [
+              {
+                namespace: 'datetime',
+                title: 'datetime module',
+                target: 'Python 3.12',
+                sourceKind: 'runtime',
+                sourceRef: 'python:3.12',
+                entries: ['date', 'datetime', 'time', 'timedelta'],
+              },
+            ],
+          },
+        ],
+      ]),
+      {
+        python: {
+          defaultNamespace: {
+            default: {
+              decision: 'skip_runtime_model',
+              note: 'new stdlib namespaces default conservative until explicitly triaged',
+            },
+          },
+        },
+      },
+    )
+
+    expect(issues).toEqual([])
+  })
+
   it('lets explicit decisions override broader namespace rules', () => {
     const result = compareUpstreamSurface(
       [makeFunction('php/array/array_values', 'array_values')],
@@ -242,6 +278,108 @@ describe('upstream surface inventory', () => {
     expect(result.namespaces[0]?.untriagedEntries).toEqual(['sort'])
   })
 
+  it('reports missing namespaces from canonical namespace discovery separately from per-namespace snapshots', () => {
+    const issues = findUpstreamSurfaceNamespaceCatalogIssues(
+      new Map([
+        [
+          'python',
+          {
+            target: 'Python 3.12',
+            sourceKind: 'runtime',
+            sourceRef: 'python:3.12:pkgutil-stdlib-modules',
+            namespaces: ['builtins', 'datetime', 'math', 'urllib'],
+          },
+        ],
+      ]),
+      {
+        python: {
+          namespaceCatalog: {
+            target: 'Python 3.12',
+            sourceKind: 'runtime',
+            sourceRef: 'python:3.12:sys.stdlib_module_names',
+          },
+          namespaces: {
+            builtins: {
+              target: 'Python 3.12',
+              sourceKind: 'runtime',
+              sourceRef: 'python:3.12',
+            },
+            math: {
+              target: 'Python 3.12',
+              sourceKind: 'runtime',
+              sourceRef: 'python:3.12',
+            },
+            'urllib.parse': {
+              catalogNamespace: 'urllib',
+              target: 'Python 3.12',
+              sourceKind: 'runtime',
+              sourceRef: 'python:3.12',
+            },
+            random: {
+              target: 'Python 3.12',
+              sourceKind: 'runtime',
+              sourceRef: 'python:3.12',
+            },
+          },
+        },
+      },
+    )
+
+    expect(issues).toEqual([
+      {
+        language: 'python',
+        missingLanguageCatalog: false,
+        missingNamespaces: ['datetime'],
+        unexpectedNamespaces: ['random'],
+        sourceRefMismatch: {
+          expected: 'python:3.12:sys.stdlib_module_names',
+          actual: 'python:3.12:pkgutil-stdlib-modules',
+        },
+      },
+    ])
+  })
+
+  it('does not let discovered parent namespaces hide missing scoped child namespaces without explicit catalogNamespace mapping', () => {
+    const issues = findUpstreamSurfaceNamespaceCatalogIssues(
+      new Map([
+        [
+          'python',
+          {
+            target: 'Python 3.12',
+            sourceKind: 'runtime',
+            sourceRef: 'python:3.12:pkgutil-stdlib-modules',
+            namespaces: ['urllib'],
+          },
+        ],
+      ]),
+      {
+        python: {
+          namespaceCatalog: {
+            target: 'Python 3.12',
+            sourceKind: 'runtime',
+            sourceRef: 'python:3.12:pkgutil-stdlib-modules',
+          },
+          namespaces: {
+            'urllib.parse': {
+              target: 'Python 3.12',
+              sourceKind: 'runtime',
+              sourceRef: 'python:3.12',
+            },
+          },
+        },
+      },
+    )
+
+    expect(issues).toEqual([
+      {
+        language: 'python',
+        missingLanguageCatalog: false,
+        missingNamespaces: ['urllib'],
+        unexpectedNamespaces: ['urllib.parse'],
+      },
+    ])
+  })
+
   it('rejects mistyped or unsupported requested languages instead of silently ignoring them', () => {
     const resolution = resolveUpstreamSurfaceLanguages(
       ['php', 'phpp', 'python'],
@@ -307,7 +445,41 @@ describe('upstream surface inventory', () => {
 
     expect(loaded.php?.namespaces?.__global?.sourceKind).toBe('runtime')
     expect(loaded.python?.namespaces?.math?.sourceRef).toBe('python:3.12')
+    expect(loaded.python?.namespaceCatalog?.sourceRef).toBe('python:3.12:pkgutil-stdlib-modules')
+    expect(loaded.python?.namespaces?.['urllib.parse']?.catalogNamespace).toBe('urllib')
     expect(loaded.swift?.namespaces?.String?.sourceKind).toBe('manual')
+  })
+
+  it('keeps Go package snapshots limited to package-level functions', () => {
+    const loaded = loadUpstreamSurfaceSnapshot(join(process.cwd(), 'test/parity/fixtures/upstream-surface/golang.yml'))
+    const bytesEntries = loaded.namespaces.find((namespace) => namespace.namespace === 'bytes')?.entries ?? []
+    const bufioEntries = loaded.namespaces.find((namespace) => namespace.namespace === 'bufio')?.entries ?? []
+
+    expect(bytesEntries).not.toContain('Available')
+    expect(bytesEntries).not.toContain('Len')
+    expect(bytesEntries).not.toContain('Read')
+    expect(bytesEntries).not.toContain('Write')
+    expect(bufioEntries).not.toContain('Available')
+    expect(bufioEntries).not.toContain('Read')
+    expect(bufioEntries).not.toContain('Write')
+  })
+
+  it('stores Go type namespaces as receiver methods instead of package functions', () => {
+    const loaded = loadUpstreamSurfaceSnapshot(join(process.cwd(), 'test/parity/fixtures/upstream-surface/golang.yml'))
+    const timeEntries = loaded.namespaces.find((namespace) => namespace.namespace === 'time.Time')?.entries ?? []
+    const urlEntries = loaded.namespaces.find((namespace) => namespace.namespace === 'url.URL')?.entries ?? []
+    const valuesEntries = loaded.namespaces.find((namespace) => namespace.namespace === 'url.Values')?.entries ?? []
+
+    expect(timeEntries).toContain('Add')
+    expect(timeEntries).toContain('Format')
+    expect(timeEntries).not.toContain('Now')
+    expect(timeEntries).not.toContain('Parse')
+    expect(urlEntries).toContain('ResolveReference')
+    expect(urlEntries).toContain('RequestURI')
+    expect(urlEntries).not.toContain('ParseRequestURI')
+    expect(valuesEntries).toContain('Encode')
+    expect(valuesEntries).toContain('Get')
+    expect(valuesEntries).not.toContain('ParseQuery')
   })
 
   it('rejects unknown keys in namespace sections', () => {
@@ -613,23 +785,32 @@ describe('upstream surface inventory', () => {
     const mathEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'math')?.entries ?? []
     const stringEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'string')?.entries ?? []
     const difflibEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'difflib')?.entries ?? []
+    const asyncioEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'asyncio')?.entries ?? []
+    const unittestEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'unittest')?.entries ?? []
 
     expect(mathEntries).toContain('ceil')
     expect(mathEntries).not.toContain('pi')
     expect(stringEntries).toContain('ascii_letters')
     expect(difflibEntries).toContain('get_close_matches')
     expect(difflibEntries).not.toContain('HtmlDiff')
+    expect(asyncioEntries).toContain('run')
+    expect(unittestEntries).toContain('main')
   })
 
   it('stores only Ruby methods owned by the target namespace in the checked-in snapshot', () => {
     const snapshot = loadUpstreamSurfaceSnapshot(join(process.cwd(), 'test/parity/fixtures/upstream-surface/ruby.yml'))
     const arrayEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'Array')?.entries ?? []
+    const dirEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'Dir')?.entries ?? []
     const stringEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'String')?.entries ?? []
 
     expect(arrayEntries).toContain('bsearch')
     expect(arrayEntries).toContain('group_by')
     expect(arrayEntries).not.toContain('class')
     expect(arrayEntries).not.toContain('dup')
+    expect(arrayEntries).not.toContain('new')
+    expect(arrayEntries).not.toContain('try_convert')
+    expect(dirEntries).toContain('pwd')
+    expect(dirEntries).not.toContain('close')
     expect(stringEntries).toContain('downcase')
     expect(stringEntries).not.toContain('clone')
   })

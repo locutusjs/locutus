@@ -30,7 +30,10 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 ### Inventory
 
 - Added a separate canonical upstream-surface scope manifest and made enumeration/checking fail on missing expected namespaces, unexpected namespaces, and source-ref drift before triage policy is applied.
+- Upgraded canonical namespace discovery from a bare name list into a self-describing namespace-catalog contract, so scope audit now validates namespace names, target version, source kind, and source ref together.
 - Added an explicit `enumerate:upstream-surface` maintainer flow that materializes the full tracked catalog across runtime, docs/source, and manual snapshots, while keeping `refresh:upstream-surface` as the live-discovery-only alias.
+- Broadened canonical namespace-audit coverage across the runtime-backed languages by adding catalog discovery for Go, Julia, R, Elixir, Ruby, PHP, and Tcl, and made the maintainer flow treat `docs/upstream-surface-scope.yml` as the planning source of truth before new expansion work begins.
+- Made runtime catalog discovery safer and more reliable by excluding Python's side-effectful `antigravity` module from canonical scope and by batching Go package discovery inside one container run with a larger Docker output buffer.
 - Broadened the upstream-surface inventory beyond the first curated slice, adding new tracked namespaces for Python, Ruby, Elixir, Lua, Tcl, and Perl while keeping the catalog at `untriaged: 0`.
 - Added language-level scope notes and tracked-namespace counts to the website inventory panel so language pages no longer imply they cover an entire upstream language when they still track a deliberate subset.
 - Added Python `builtins`, Tcl `dict` and standalone value commands, PowerShell `System.Math`, Rust `std::cmp`, Julia `Statistics`, R `stats`, the remaining Lua core libraries, and Perl `List::Util` / `Scalar::Util` to the tracked upstream catalog so the language pages now reflect a much broader and more honest core-runtime roadmap.

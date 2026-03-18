@@ -91,6 +91,7 @@ export interface UpstreamSurfaceNamespaceInventory {
 export interface UpstreamSurfaceLanguageInventory {
   title?: string | undefined
   scopeNote?: string | undefined
+  defaultNamespace?: UpstreamSurfaceNamespaceInventory | undefined
   namespaces?: Record<string, UpstreamSurfaceNamespaceInventory> | undefined
 }
 
@@ -98,12 +99,24 @@ export type UpstreamSurfaceInventory = Record<string, UpstreamSurfaceLanguageInv
 
 export interface UpstreamSurfaceNamespaceScope {
   title?: string | undefined
+  catalogNamespace?: string | undefined
   target: string
   sourceKind: UpstreamSurfaceSourceKind
   sourceRef: string
 }
 
+export interface UpstreamSurfaceLanguageNamespaceCatalog {
+  target: string
+  sourceKind: UpstreamSurfaceSourceKind
+  sourceRef: string
+}
+
+export interface DiscoveredUpstreamSurfaceNamespaceCatalog extends UpstreamSurfaceLanguageNamespaceCatalog {
+  namespaces: string[]
+}
+
 export interface UpstreamSurfaceLanguageScope {
+  namespaceCatalog?: UpstreamSurfaceLanguageNamespaceCatalog | undefined
   namespaces: Record<string, UpstreamSurfaceNamespaceScope>
 }
 
@@ -138,6 +151,10 @@ export interface UpstreamSurfaceLocutusEntry {
 export interface UpstreamSurfaceAdapter {
   /** Discover comparable upstream entries for one language. */
   discover?: (() => Promise<UpstreamSurfaceSnapshot> | UpstreamSurfaceSnapshot) | undefined
+  /** Discover the canonical official namespace list for one language. */
+  discoverNamespaceCatalog?:
+    | (() => Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> | DiscoveredUpstreamSurfaceNamespaceCatalog)
+    | undefined
   /** Map a Locutus function into the comparable upstream namespace entry, or null to ignore it. */
   getLocutusEntry(func: RuntimeSurfaceLocutusFunction): UpstreamSurfaceLocutusEntry | null
 }

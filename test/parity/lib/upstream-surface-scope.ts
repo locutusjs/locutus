@@ -17,6 +17,15 @@ import type { LanguageHandler, UpstreamSurfaceScope, UpstreamSurfaceSnapshot } f
 const upstreamSurfaceNamespaceScopeSchema = z
   .object({
     title: z.string().min(1).optional(),
+    catalogNamespace: z.string().min(1).optional(),
+    target: z.string().min(1),
+    sourceKind: z.enum(['runtime', 'source_manifest', 'manual']),
+    sourceRef: z.string().min(1),
+  })
+  .strict()
+
+const upstreamSurfaceLanguageNamespaceCatalogSchema = z
+  .object({
     target: z.string().min(1),
     sourceKind: z.enum(['runtime', 'source_manifest', 'manual']),
     sourceRef: z.string().min(1),
@@ -25,6 +34,7 @@ const upstreamSurfaceNamespaceScopeSchema = z
 
 const upstreamSurfaceLanguageScopeSchema = z
   .object({
+    namespaceCatalog: upstreamSurfaceLanguageNamespaceCatalogSchema.optional(),
     namespaces: z.record(z.string(), upstreamSurfaceNamespaceScopeSchema),
   })
   .strict()
@@ -98,6 +108,31 @@ export function buildScopedUpstreamSurfaceSnapshot(
       }
     }),
   }
+}
+
+export function getUpstreamSurfaceLanguageScope(
+  language: string,
+  rootDir = process.cwd(),
+): UpstreamSurfaceScope[string] {
+  const scope = loadRepoUpstreamSurfaceScope(rootDir)
+  const languageScope = scope[language]
+  if (!languageScope) {
+    throw new Error(`No canonical upstream surface scope is defined for ${language}.`)
+  }
+  return languageScope
+}
+
+export function getUpstreamSurfaceScopeNamespaceNames(language: string, rootDir = process.cwd()): string[] {
+  return Object.keys(getUpstreamSurfaceLanguageScope(language, rootDir).namespaces).sort()
+}
+
+export function getUpstreamSurfaceNamespaceScope(language: string, namespace: string, rootDir = process.cwd()) {
+  const languageScope = getUpstreamSurfaceLanguageScope(language, rootDir)
+  const namespaceScope = languageScope.namespaces[namespace]
+  if (!namespaceScope) {
+    throw new Error(`No canonical upstream surface scope is defined for ${language}/${namespace}.`)
+  }
+  return namespaceScope
 }
 
 export function createInventoryOnlyLanguageHandler(config: InventoryOnlyLanguageHandlerConfig): LanguageHandler {

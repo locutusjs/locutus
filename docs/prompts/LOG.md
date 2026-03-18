@@ -2577,3 +2577,59 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - “Tracked scope is complete” and “discovery is complete” are different guarantees; we now need both.
   - The right canonical layer is namespace/source metadata, not more decisions in the triage file.
+
+### Iteration 129
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Stop product work until target-surface discovery is exhaustive and sane for the next language areas we want to expand.
+  - Make `docs/upstream-surface-scope.yml` the explicit planning source for future expansion work, not just a passive validation file.
+  - Add a canonical namespace-audit layer so we can prove when a language scope is missing official core/stdlib namespaces before we debate implementation.
+- Progress:
+  - Added language-level namespace-catalog metadata to the upstream-scope model and a new `audit:upstream-scope` command for languages that can discover their official namespace list directly.
+  - Added language-level `defaultNamespace` support to the inventory so broad scope expansions can stay sane without one handwritten namespace block per module.
+  - Refactored Python upstream discovery to derive its tracked namespace list from `docs/upstream-surface-scope.yml` instead of a hardcoded module table, keeping only a small config map for import-path/module-owner quirks.
+  - Tightened Python canonical namespace discovery from raw `sys.stdlib_module_names` to `importable-stdlib-modules` in the parity target container, which avoids platform-specific false positives like `msilib` on Linux.
+  - Backfilled Python scope from that canonical runtime source, which brought in a broad stdlib module surface including long-missing namespaces such as `datetime`, while keeping `urllib.parse` as an explicitly tracked submodule.
+  - Regenerated the checked-in Python upstream snapshot from the broadened scope and confirmed the full Python upstream-surface check stays green under the new language-level default.
+  - Updated `CORE_MAINTAINER.md` so maintainers are now supposed to audit `docs/upstream-surface-scope.yml` before resuming product work, and updated the upstream-surface docs with the new scope-audit step.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn audit:upstream-scope python`
+  - `corepack yarn enumerate:upstream-surface python`
+  - `corepack yarn test:upstream-surface python`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - The missing piece was not better per-function discovery inside already tracked namespaces; it was a first-class audit over official namespace catalogs.
+  - Language-level namespace defaults are the practical tool that makes “track everything, then triage sanely” feasible without turning the inventory into pure clerical work.
+
+### Iteration 130
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Make canonical namespace discovery self-describing and enforce its provenance, not just the discovered names.
+  - Remove unsafe runtime side effects from discovery itself so “canonical” does not mean “import arbitrary modules and hope”.
+  - Fix the remaining performance bottlenecks in batched discovery so broad core/stdlib audits stay practical.
+- Progress:
+  - Reworked canonical namespace discovery to use an explicit namespace-catalog contract rather than a bare string list, so audit now validates the discovered `target`, `sourceKind`, and `sourceRef` alongside namespace names.
+  - Updated the runtime-backed catalog adapters for Python, Go, Julia, R, Elixir, Ruby, PHP, and Tcl to expose that richer namespace-catalog metadata directly instead of relying on the scope file alone.
+  - Removed Python `antigravity` from canonical scope and runtime namespace discovery so upstream enumeration stays side-effect-safe instead of importing a module that can open a browser during catalog generation.
+  - Batched Go upstream surface discovery into one container run and raised the generic Docker output buffer, eliminating the old “one container per namespace” cost and the new `ENOBUFS` failure mode for large package sets.
+  - Added canonical namespace catalogs for PHP and Tcl as well, bringing more of the already-shipped/runtime-backed languages under the same `audit:upstream-scope` discipline.
+  - Re-enumerated the runtime-backed snapshots for Python, Go, Julia, R, Elixir, Ruby, PHP, and Tcl, then re-injected the mirrored website data so the checked-in artifacts match the new canonical discovery layer again.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn lint:ts`
+  - `corepack yarn audit:upstream-scope python golang julia r elixir ruby php tcl`
+  - `corepack yarn enumerate:upstream-surface python golang julia r elixir ruby php tcl`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - “Deterministic discovery” needs three properties at once: canonical source, side-effect-safe enumeration, and provenance checks; any one missing weakens the whole claim.
+  - Broad runtime-backed catalog work becomes tractable once the expensive languages batch inside a single container session instead of paying container startup per namespace.

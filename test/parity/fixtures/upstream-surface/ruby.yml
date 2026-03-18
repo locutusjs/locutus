@@ -1,5 +1,19 @@
 language: ruby
 namespaces:
+  - namespace: ArgumentError
+    title: ArgumentError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
   - namespace: Array
     title: Array instance methods
     target: Ruby 3.3
@@ -140,6 +154,2111 @@ namespaces:
       - values_at
       - zip
       - '|'
+  - namespace: BasicObject
+    title: BasicObject methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries: []
+  - namespace: Binding
+    title: Binding methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - eval
+      - irb
+      - local_variable_defined?
+      - local_variable_get
+      - local_variable_set
+      - local_variables
+      - receiver
+      - source_location
+  - namespace: Class
+    title: Class methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - <
+      - <=
+      - '>'
+      - '>='
+      - alias_method
+      - allocate
+      - ancestors
+      - attached_object
+      - attr
+      - attr_accessor
+      - attr_reader
+      - attr_writer
+      - autoload
+      - autoload?
+      - class_eval
+      - class_exec
+      - class_variable_defined?
+      - class_variable_get
+      - class_variable_set
+      - class_variables
+      - const_defined?
+      - const_get
+      - const_missing
+      - const_set
+      - const_source_location
+      - constants
+      - define_method
+      - deprecate_constant
+      - include
+      - include?
+      - included_modules
+      - instance_method
+      - instance_methods
+      - method_defined?
+      - module_eval
+      - module_exec
+      - name
+      - new
+      - prepend
+      - private_class_method
+      - private_constant
+      - private_instance_methods
+      - private_method_defined?
+      - protected_instance_methods
+      - protected_method_defined?
+      - public_class_method
+      - public_constant
+      - public_instance_method
+      - public_instance_methods
+      - public_method_defined?
+      - refinements
+      - remove_class_variable
+      - remove_method
+      - set_temporary_name
+      - singleton_class?
+      - subclasses
+      - superclass
+      - undef_method
+      - undefined_instance_methods
+  - namespace: ClosedQueueError
+    title: ClosedQueueError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - result
+      - set_backtrace
+  - namespace: Comparable
+    title: Comparable instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - <
+      - <=
+      - '=='
+      - '>'
+      - '>='
+      - between?
+      - clamp
+  - namespace: Complex
+    title: Complex methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '*'
+      - '**'
+      - +
+      - +@
+      - '-'
+      - '-@'
+      - /
+      - abs
+      - abs2
+      - angle
+      - arg
+      - coerce
+      - conj
+      - conjugate
+      - denominator
+      - fdiv
+      - finite?
+      - imag
+      - imaginary
+      - infinite?
+      - integer?
+      - magnitude
+      - nonzero?
+      - numerator
+      - phase
+      - polar
+      - quo
+      - rationalize
+      - real
+      - real?
+      - rect
+      - rectangular
+      - singleton_method_added
+      - to_c
+      - to_f
+      - to_i
+      - to_int
+      - to_r
+      - zero?
+  - namespace: Data
+    title: Data methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - deconstruct
+      - deconstruct_keys
+      - members
+      - to_h
+      - with
+  - namespace: DidYouMean
+    title: DidYouMean methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - correct_error
+      - formatter
+      - formatter=
+      - spell_checkers
+  - namespace: Dir
+    title: Dir singleton methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '[]'
+      - chdir
+      - children
+      - chroot
+      - delete
+      - each_child
+      - empty?
+      - entries
+      - exist?
+      - fchdir
+      - for_fd
+      - foreach
+      - getwd
+      - glob
+      - home
+      - mkdir
+      - open
+      - pwd
+      - rmdir
+      - unlink
+  - namespace: EOFError
+    title: EOFError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: Encoding
+    title: Encoding methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - _dump
+      - ascii_compatible?
+      - dummy?
+      - name
+      - names
+  - namespace: EncodingError
+    title: EncodingError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: Enumerable
+    title: Enumerable instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - all?
+      - any?
+      - chain
+      - chunk
+      - chunk_while
+      - collect
+      - collect_concat
+      - compact
+      - count
+      - cycle
+      - detect
+      - drop
+      - drop_while
+      - each_cons
+      - each_entry
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - entries
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - lazy
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - one?
+      - partition
+      - reduce
+      - reject
+      - reverse_each
+      - select
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - sum
+      - take
+      - take_while
+      - tally
+      - to_a
+      - to_h
+      - to_set
+      - uniq
+      - zip
+  - namespace: Enumerator
+    title: Enumerator methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - +
+      - all?
+      - any?
+      - chain
+      - chunk
+      - chunk_while
+      - collect
+      - collect_concat
+      - compact
+      - count
+      - cycle
+      - detect
+      - drop
+      - drop_while
+      - each
+      - each_cons
+      - each_entry
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - entries
+      - feed
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - lazy
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - next
+      - next_values
+      - none?
+      - one?
+      - partition
+      - peek
+      - peek_values
+      - reduce
+      - reject
+      - reverse_each
+      - rewind
+      - select
+      - size
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - sum
+      - take
+      - take_while
+      - tally
+      - to_a
+      - to_h
+      - to_set
+      - uniq
+      - with_index
+      - with_object
+      - zip
+  - namespace: Errno
+    title: Errno methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries: []
+  - namespace: ErrorHighlight
+    title: ErrorHighlight methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - formatter
+      - formatter=
+      - spot
+  - namespace: Exception
+    title: Exception methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: FalseClass
+    title: FalseClass methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '&'
+      - ^
+      - '|'
+  - namespace: Fiber
+    title: Fiber methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - alive?
+      - backtrace
+      - backtrace_locations
+      - blocking?
+      - kill
+      - raise
+      - resume
+      - storage
+      - storage=
+      - transfer
+  - namespace: FiberError
+    title: FiberError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: File
+    title: File singleton methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - absolute_path
+      - absolute_path?
+      - atime
+      - basename
+      - birthtime
+      - blockdev?
+      - chardev?
+      - chmod
+      - chown
+      - ctime
+      - delete
+      - directory?
+      - dirname
+      - empty?
+      - executable?
+      - executable_real?
+      - exist?
+      - expand_path
+      - extname
+      - file?
+      - fnmatch
+      - fnmatch?
+      - ftype
+      - grpowned?
+      - identical?
+      - join
+      - lchmod
+      - lchown
+      - link
+      - lstat
+      - lutime
+      - mkfifo
+      - mtime
+      - owned?
+      - path
+      - pipe?
+      - readable?
+      - readable_real?
+      - readlink
+      - realdirpath
+      - realpath
+      - rename
+      - setgid?
+      - setuid?
+      - size
+      - size?
+      - socket?
+      - split
+      - stat
+      - sticky?
+      - symlink
+      - symlink?
+      - truncate
+      - umask
+      - unlink
+      - utime
+      - world_readable?
+      - world_writable?
+      - writable?
+      - writable_real?
+      - zero?
+  - namespace: FileTest
+    title: FileTest methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - blockdev?
+      - chardev?
+      - directory?
+      - empty?
+      - executable?
+      - executable_real?
+      - exist?
+      - file?
+      - grpowned?
+      - identical?
+      - owned?
+      - pipe?
+      - readable?
+      - readable_real?
+      - setgid?
+      - setuid?
+      - size
+      - size?
+      - socket?
+      - sticky?
+      - symlink?
+      - world_readable?
+      - world_writable?
+      - writable?
+      - writable_real?
+      - zero?
+  - namespace: Float
+    title: Float instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '%'
+      - '*'
+      - '**'
+      - +
+      - +@
+      - '-'
+      - '-@'
+      - /
+      - <
+      - <=
+      - '>'
+      - '>='
+      - abs
+      - abs2
+      - angle
+      - arg
+      - between?
+      - ceil
+      - clamp
+      - coerce
+      - conj
+      - conjugate
+      - denominator
+      - div
+      - divmod
+      - fdiv
+      - finite?
+      - floor
+      - i
+      - imag
+      - imaginary
+      - infinite?
+      - integer?
+      - magnitude
+      - modulo
+      - nan?
+      - negative?
+      - next_float
+      - nonzero?
+      - numerator
+      - phase
+      - polar
+      - positive?
+      - prev_float
+      - quo
+      - rationalize
+      - real
+      - real?
+      - rect
+      - rectangular
+      - remainder
+      - round
+      - singleton_method_added
+      - step
+      - to_c
+      - to_f
+      - to_i
+      - to_int
+      - to_r
+      - truncate
+      - zero?
+  - namespace: FloatDomainError
+    title: FloatDomainError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: FrozenError
+    title: FrozenError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - receiver
+      - set_backtrace
+  - namespace: GC
+    title: GC methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - auto_compact
+      - auto_compact=
+      - compact
+      - count
+      - disable
+      - enable
+      - latest_compact_info
+      - latest_gc_info
+      - measure_total_time
+      - measure_total_time=
+      - start
+      - stat
+      - stat_heap
+      - stress
+      - stress=
+      - total_time
+      - verify_compaction_references
+      - verify_internal_consistency
+  - namespace: Gem
+    title: Gem methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - activate_bin_path
+      - activated_gem_paths
+      - add_to_load_path
+      - bin_path
+      - binary_mode
+      - bindir
+      - cache_home
+      - clear_default_specs
+      - clear_paths
+      - config_file
+      - config_home
+      - configuration
+      - configuration=
+      - data_home
+      - default_bindir
+      - default_cert_path
+      - default_dir
+      - default_exec_format
+      - default_ext_dir_for
+      - default_key_path
+      - default_path
+      - default_rubygems_dirs
+      - default_sources
+      - default_spec_cache_dir
+      - default_specifications_dir
+      - default_user_install
+      - deflate
+      - dir
+      - disable_system_update_message
+      - disable_system_update_message=
+      - discover_gems_on_require
+      - discover_gems_on_require=
+      - done_installing
+      - done_installing_hooks
+      - dynamic_library_suffixes
+      - ensure_default_gem_subdirectories
+      - ensure_gem_subdirectories
+      - ensure_subdirectories
+      - env_requirement
+      - extension_api_version
+      - find_config_file
+      - find_default_spec
+      - find_files
+      - find_files_from_load_path
+      - find_latest_files
+      - find_unresolved_default_spec
+      - finish_resolve
+      - freebsd_platform?
+      - gemdeps
+      - host
+      - host=
+      - install
+      - install_extension_in_lib
+      - java_platform?
+      - latest_rubygems_version
+      - latest_spec_for
+      - latest_version_for
+      - load_env_plugins
+      - load_path_insert_index
+      - load_plugin_files
+      - load_plugins
+      - load_safe_marshal
+      - load_yaml
+      - loaded_specs
+      - location_of_caller
+      - marshal_version
+      - needs
+      - open_file
+      - open_file_with_flock
+      - open_file_with_lock
+      - operating_system_defaults
+      - path
+      - path_separator
+      - paths
+      - paths=
+      - platform_defaults
+      - platforms
+      - platforms=
+      - plugin_suffix_pattern
+      - plugin_suffix_regexp
+      - plugindir
+      - post_build
+      - post_build_hooks
+      - post_install
+      - post_install_hooks
+      - post_reset
+      - post_reset_hooks
+      - post_uninstall
+      - post_uninstall_hooks
+      - pre_install
+      - pre_install_hooks
+      - pre_reset
+      - pre_reset_hooks
+      - pre_uninstall
+      - pre_uninstall_hooks
+      - prefix
+      - read_binary
+      - refresh
+      - register_default_spec
+      - ruby
+      - ruby_api_version
+      - ruby_engine
+      - ruby_version
+      - rubygems_version
+      - solaris_platform?
+      - source_date_epoch
+      - source_date_epoch_string
+      - sources
+      - sources=
+      - spec_cache_dir
+      - state_file
+      - state_home
+      - suffix_pattern
+      - suffix_regexp
+      - suffixes
+      - time
+      - try_activate
+      - ui
+      - use_gemdeps
+      - use_paths
+      - user_dir
+      - user_home
+      - vendor_dir
+      - win_platform?
+      - write_binary
+  - namespace: Hash
+    title: Hash instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - <
+      - <=
+      - '>'
+      - '>='
+      - '[]'
+      - '[]='
+      - all?
+      - any?
+      - assoc
+      - chain
+      - chunk
+      - chunk_while
+      - clear
+      - collect
+      - collect_concat
+      - compact
+      - compact!
+      - compare_by_identity
+      - compare_by_identity?
+      - count
+      - cycle
+      - deconstruct_keys
+      - default
+      - default=
+      - default_proc
+      - default_proc=
+      - delete
+      - delete_if
+      - detect
+      - dig
+      - drop
+      - drop_while
+      - each
+      - each_cons
+      - each_entry
+      - each_key
+      - each_pair
+      - each_slice
+      - each_value
+      - each_with_index
+      - each_with_object
+      - empty?
+      - entries
+      - except
+      - fetch
+      - fetch_values
+      - filter
+      - filter!
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flatten
+      - grep
+      - grep_v
+      - group_by
+      - has_key?
+      - has_value?
+      - include?
+      - inject
+      - invert
+      - keep_if
+      - key
+      - key?
+      - keys
+      - lazy
+      - length
+      - map
+      - max
+      - max_by
+      - member?
+      - merge
+      - merge!
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - one?
+      - partition
+      - rassoc
+      - reduce
+      - rehash
+      - reject
+      - reject!
+      - replace
+      - reverse_each
+      - select
+      - select!
+      - shift
+      - size
+      - slice
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - store
+      - sum
+      - take
+      - take_while
+      - tally
+      - to_a
+      - to_h
+      - to_hash
+      - to_proc
+      - to_set
+      - transform_keys
+      - transform_keys!
+      - transform_values
+      - transform_values!
+      - uniq
+      - update
+      - value?
+      - values
+      - values_at
+      - zip
+  - namespace: IO
+    title: IO methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '<<'
+      - advise
+      - all?
+      - any?
+      - autoclose=
+      - autoclose?
+      - binmode
+      - binmode?
+      - chain
+      - chunk
+      - chunk_while
+      - close
+      - close_on_exec=
+      - close_on_exec?
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - count
+      - cycle
+      - detect
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - entries
+      - eof
+      - eof?
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - gets
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - one?
+      - partition
+      - path
+      - pid
+      - pos
+      - pos=
+      - pread
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - reduce
+      - reject
+      - reopen
+      - reverse_each
+      - rewind
+      - seek
+      - select
+      - set_encoding
+      - set_encoding_by_bom
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - write
+      - write_nonblock
+      - zip
+  - namespace: IOError
+    title: IOError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: IndexError
+    title: IndexError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: Integer
+    title: Integer instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '%'
+      - '&'
+      - '*'
+      - '**'
+      - +
+      - +@
+      - '-'
+      - '-@'
+      - /
+      - <
+      - '<<'
+      - <=
+      - '>'
+      - '>='
+      - '>>'
+      - '[]'
+      - ^
+      - abs
+      - abs2
+      - allbits?
+      - angle
+      - anybits?
+      - arg
+      - between?
+      - bit_length
+      - ceil
+      - ceildiv
+      - chr
+      - clamp
+      - coerce
+      - conj
+      - conjugate
+      - denominator
+      - digits
+      - div
+      - divmod
+      - downto
+      - even?
+      - fdiv
+      - finite?
+      - floor
+      - gcd
+      - gcdlcm
+      - i
+      - imag
+      - imaginary
+      - infinite?
+      - integer?
+      - lcm
+      - magnitude
+      - modulo
+      - negative?
+      - next
+      - nobits?
+      - nonzero?
+      - numerator
+      - odd?
+      - ord
+      - phase
+      - polar
+      - positive?
+      - pow
+      - pred
+      - quo
+      - rationalize
+      - real
+      - real?
+      - rect
+      - rectangular
+      - remainder
+      - round
+      - singleton_method_added
+      - size
+      - step
+      - succ
+      - times
+      - to_c
+      - to_f
+      - to_i
+      - to_int
+      - to_r
+      - truncate
+      - upto
+      - zero?
+      - '|'
+      - '~'
+  - namespace: Interrupt
+    title: Interrupt methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+      - signm
+      - signo
+  - namespace: Kernel
+    title: Kernel methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - Array
+      - Complex
+      - Float
+      - Hash
+      - Integer
+      - Rational
+      - String
+      - __callee__
+      - __dir__
+      - __method__
+      - '`'
+      - abort
+      - at_exit
+      - autoload
+      - autoload?
+      - binding
+      - block_given?
+      - caller
+      - caller_locations
+      - catch
+      - eval
+      - exec
+      - exit
+      - exit!
+      - fail
+      - fork
+      - format
+      - gets
+      - global_variables
+      - iterator?
+      - lambda
+      - load
+      - local_variables
+      - loop
+      - open
+      - p
+      - print
+      - printf
+      - proc
+      - putc
+      - puts
+      - raise
+      - rand
+      - readline
+      - readlines
+      - require
+      - require_relative
+      - select
+      - set_trace_func
+      - sleep
+      - spawn
+      - sprintf
+      - srand
+      - syscall
+      - system
+      - test
+      - throw
+      - trace_var
+      - trap
+      - untrace_var
+      - warn
+  - namespace: KeyError
+    title: KeyError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - corrections
+      - detailed_message
+      - exception
+      - full_message
+      - key
+      - message
+      - original_message
+      - receiver
+      - set_backtrace
+      - spell_checker
+  - namespace: LoadError
+    title: LoadError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - corrections
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - original_message
+      - path
+      - set_backtrace
+      - spell_checker
+  - namespace: LocalJumpError
+    title: LocalJumpError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - exit_value
+      - full_message
+      - message
+      - reason
+      - set_backtrace
+  - namespace: Marshal
+    title: Marshal methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - dump
+      - load
+      - restore
+  - namespace: MatchData
+    title: MatchData instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '[]'
+      - begin
+      - byteoffset
+      - captures
+      - deconstruct
+      - deconstruct_keys
+      - end
+      - length
+      - match
+      - match_length
+      - named_captures
+      - names
+      - offset
+      - post_match
+      - pre_match
+      - regexp
+      - size
+      - string
+      - to_a
+      - values_at
+  - namespace: Math
+    title: Math module methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - cbrt
+      - cos
+      - cosh
+      - erf
+      - erfc
+      - exp
+      - frexp
+      - gamma
+      - hypot
+      - ldexp
+      - lgamma
+      - log
+      - log10
+      - log2
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+  - namespace: Method
+    title: Method methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '<<'
+      - '>>'
+      - '[]'
+      - arity
+      - call
+      - curry
+      - name
+      - original_name
+      - owner
+      - parameters
+      - receiver
+      - source_location
+      - super_method
+      - to_proc
+      - unbind
+  - namespace: Module
+    title: Module methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - constants
+      - nesting
+      - used_modules
+      - used_refinements
+  - namespace: Monitor
+    title: Monitor methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - enter
+      - exit
+      - mon_check_owner
+      - mon_enter
+      - mon_exit
+      - mon_locked?
+      - mon_owned?
+      - mon_synchronize
+      - mon_try_enter
+      - new_cond
+      - synchronize
+      - try_enter
+      - try_mon_enter
+      - wait_for_cond
+  - namespace: MonitorMixin
+    title: MonitorMixin methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - extend_object
+  - namespace: NameError
+    title: NameError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - corrections
+      - detailed_message
+      - exception
+      - full_message
+      - local_variables
+      - message
+      - name
+      - original_message
+      - receiver
+      - set_backtrace
+      - spell_checker
+  - namespace: NilClass
+    title: NilClass methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '&'
+      - '=~'
+      - ^
+      - rationalize
+      - to_a
+      - to_c
+      - to_f
+      - to_h
+      - to_i
+      - to_r
+      - '|'
+  - namespace: NoMatchingPatternError
+    title: NoMatchingPatternError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: NoMatchingPatternKeyError
+    title: NoMatchingPatternKeyError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - corrections
+      - detailed_message
+      - exception
+      - full_message
+      - key
+      - matchee
+      - message
+      - original_message
+      - set_backtrace
+      - spell_checker
+  - namespace: NoMemoryError
+    title: NoMemoryError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: NoMethodError
+    title: NoMethodError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - args
+      - backtrace
+      - backtrace_locations
+      - cause
+      - corrections
+      - detailed_message
+      - exception
+      - full_message
+      - local_variables
+      - message
+      - name
+      - original_message
+      - private_call?
+      - receiver
+      - set_backtrace
+      - spell_checker
+  - namespace: NotImplementedError
+    title: NotImplementedError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: Numeric
+    title: Numeric instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '%'
+      - +@
+      - '-@'
+      - <
+      - <=
+      - '>'
+      - '>='
+      - abs
+      - abs2
+      - angle
+      - arg
+      - between?
+      - ceil
+      - clamp
+      - coerce
+      - conj
+      - conjugate
+      - denominator
+      - div
+      - divmod
+      - fdiv
+      - finite?
+      - floor
+      - i
+      - imag
+      - imaginary
+      - infinite?
+      - integer?
+      - magnitude
+      - modulo
+      - negative?
+      - nonzero?
+      - numerator
+      - phase
+      - polar
+      - positive?
+      - quo
+      - real
+      - real?
+      - rect
+      - rectangular
+      - remainder
+      - round
+      - singleton_method_added
+      - step
+      - to_c
+      - to_int
+      - truncate
+      - zero?
+  - namespace: Object
+    title: Object methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries: []
+  - namespace: ObjectSpace
+    title: ObjectSpace methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - _id2ref
+      - count_objects
+      - define_finalizer
+      - each_object
+      - garbage_collect
+      - undefine_finalizer
+  - namespace: Proc
+    title: Proc methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '<<'
+      - '>>'
+      - '[]'
+      - arity
+      - binding
+      - call
+      - curry
+      - lambda?
+      - parameters
+      - ruby2_keywords
+      - source_location
+      - to_proc
+      - yield
+  - namespace: Process
+    title: Process methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - _fork
+      - abort
+      - argv0
+      - clock_getres
+      - clock_gettime
+      - daemon
+      - detach
+      - egid
+      - egid=
+      - euid
+      - euid=
+      - exec
+      - exit
+      - exit!
+      - fork
+      - getpgid
+      - getpgrp
+      - getpriority
+      - getrlimit
+      - getsid
+      - gid
+      - gid=
+      - groups
+      - groups=
+      - initgroups
+      - kill
+      - last_status
+      - maxgroups
+      - maxgroups=
+      - pid
+      - ppid
+      - setpgid
+      - setpgrp
+      - setpriority
+      - setproctitle
+      - setrlimit
+      - setsid
+      - spawn
+      - times
+      - uid
+      - uid=
+      - wait
+      - wait2
+      - waitall
+      - waitpid
+      - waitpid2
+      - warmup
+  - namespace: Ractor
+    title: Ractor methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '<<'
+      - '[]'
+      - '[]='
+      - close_incoming
+      - close_outgoing
+      - name
+      - take
+  - namespace: Random
+    title: Random methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - bytes
+      - rand
+      - random_number
+      - seed
+  - namespace: Range
+    title: Range instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '%'
+      - all?
+      - any?
+      - begin
+      - bsearch
+      - chain
+      - chunk
+      - chunk_while
+      - collect
+      - collect_concat
+      - compact
+      - count
+      - cover?
+      - cycle
+      - detect
+      - drop
+      - drop_while
+      - each
+      - each_cons
+      - each_entry
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - end
+      - entries
+      - exclude_end?
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - last
+      - lazy
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - one?
+      - overlap?
+      - partition
+      - reduce
+      - reject
+      - reverse_each
+      - select
+      - size
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - step
+      - sum
+      - take
+      - take_while
+      - tally
+      - to_a
+      - to_h
+      - to_set
+      - uniq
+      - zip
+  - namespace: RangeError
+    title: RangeError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: Rational
+    title: Rational methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '%'
+      - '*'
+      - '**'
+      - +
+      - +@
+      - '-'
+      - '-@'
+      - /
+      - <
+      - <=
+      - '>'
+      - '>='
+      - abs
+      - abs2
+      - angle
+      - arg
+      - between?
+      - ceil
+      - clamp
+      - coerce
+      - conj
+      - conjugate
+      - denominator
+      - div
+      - divmod
+      - fdiv
+      - finite?
+      - floor
+      - i
+      - imag
+      - imaginary
+      - infinite?
+      - integer?
+      - magnitude
+      - modulo
+      - negative?
+      - nonzero?
+      - numerator
+      - phase
+      - polar
+      - positive?
+      - quo
+      - rationalize
+      - real
+      - real?
+      - rect
+      - rectangular
+      - remainder
+      - round
+      - singleton_method_added
+      - step
+      - to_c
+      - to_f
+      - to_i
+      - to_int
+      - to_r
+      - truncate
+      - zero?
+  - namespace: RbConfig
+    title: RbConfig methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - expand
+      - fire_update!
+      - ruby
+  - namespace: Refinement
+    title: Refinement methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - <
+      - <=
+      - '>'
+      - '>='
+      - alias_method
+      - ancestors
+      - attr
+      - attr_accessor
+      - attr_reader
+      - attr_writer
+      - autoload
+      - autoload?
+      - class_eval
+      - class_exec
+      - class_variable_defined?
+      - class_variable_get
+      - class_variable_set
+      - class_variables
+      - const_defined?
+      - const_get
+      - const_missing
+      - const_set
+      - const_source_location
+      - constants
+      - define_method
+      - deprecate_constant
+      - include
+      - include?
+      - included_modules
+      - instance_method
+      - instance_methods
+      - method_defined?
+      - module_eval
+      - module_exec
+      - name
+      - prepend
+      - private_class_method
+      - private_constant
+      - private_instance_methods
+      - private_method_defined?
+      - protected_instance_methods
+      - protected_method_defined?
+      - public_class_method
+      - public_constant
+      - public_instance_method
+      - public_instance_methods
+      - public_method_defined?
+      - refined_class
+      - refinements
+      - remove_class_variable
+      - remove_method
+      - set_temporary_name
+      - singleton_class?
+      - target
+      - undef_method
+      - undefined_instance_methods
+  - namespace: Regexp
+    title: Regexp instance methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '=~'
+      - casefold?
+      - encoding
+      - fixed_encoding?
+      - match
+      - match?
+      - named_captures
+      - names
+      - options
+      - source
+      - timeout
+      - '~'
+  - namespace: RegexpError
+    title: RegexpError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: RubyVM
+    title: RubyVM methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries: []
+  - namespace: RuntimeError
+    title: RuntimeError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: ScriptError
+    title: ScriptError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: SecurityError
+    title: SecurityError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: Signal
+    title: Signal methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - list
+      - signame
+      - trap
+  - namespace: SignalException
+    title: SignalException methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+      - signm
+      - signo
+  - namespace: StandardError
+    title: StandardError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: StopIteration
+    title: StopIteration methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - result
+      - set_backtrace
   - namespace: String
     title: String instance methods
     target: Ruby 3.3
@@ -276,107 +2395,26 @@ namespaces:
       - upcase!
       - upto
       - valid_encoding?
-  - namespace: Enumerable
-    title: Enumerable instance methods
+  - namespace: Struct
+    title: Struct methods
     target: Ruby 3.3
     sourceKind: runtime
     sourceRef: ruby:3.3
     entries:
-      - all?
-      - any?
-      - chain
-      - chunk
-      - chunk_while
-      - collect
-      - collect_concat
-      - compact
-      - count
-      - cycle
-      - detect
-      - drop
-      - drop_while
-      - each_cons
-      - each_entry
-      - each_slice
-      - each_with_index
-      - each_with_object
-      - entries
-      - filter
-      - filter_map
-      - find
-      - find_all
-      - find_index
-      - first
-      - flat_map
-      - grep
-      - grep_v
-      - group_by
-      - include?
-      - inject
-      - lazy
-      - map
-      - max
-      - max_by
-      - member?
-      - min
-      - min_by
-      - minmax
-      - minmax_by
-      - none?
-      - one?
-      - partition
-      - reduce
-      - reject
-      - reverse_each
-      - select
-      - slice_after
-      - slice_before
-      - slice_when
-      - sort
-      - sort_by
-      - sum
-      - take
-      - take_while
-      - tally
-      - to_a
-      - to_h
-      - to_set
-      - uniq
-      - zip
-  - namespace: Hash
-    title: Hash instance methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - <
-      - <=
-      - '>'
-      - '>='
       - '[]'
       - '[]='
       - all?
       - any?
-      - assoc
       - chain
       - chunk
       - chunk_while
-      - clear
       - collect
       - collect_concat
       - compact
-      - compact!
-      - compare_by_identity
-      - compare_by_identity?
       - count
       - cycle
+      - deconstruct
       - deconstruct_keys
-      - default
-      - default=
-      - default_proc
-      - default_proc=
-      - delete
-      - delete_if
       - detect
       - dig
       - drop
@@ -384,46 +2422,30 @@ namespaces:
       - each
       - each_cons
       - each_entry
-      - each_key
       - each_pair
       - each_slice
-      - each_value
       - each_with_index
       - each_with_object
-      - empty?
       - entries
-      - except
-      - fetch
-      - fetch_values
       - filter
-      - filter!
       - filter_map
       - find
       - find_all
       - find_index
       - first
       - flat_map
-      - flatten
       - grep
       - grep_v
       - group_by
-      - has_key?
-      - has_value?
       - include?
       - inject
-      - invert
-      - keep_if
-      - key
-      - key?
-      - keys
       - lazy
       - length
       - map
       - max
       - max_by
       - member?
-      - merge
-      - merge!
+      - members
       - min
       - min_by
       - minmax
@@ -431,343 +2453,27 @@ namespaces:
       - none?
       - one?
       - partition
-      - rassoc
       - reduce
-      - rehash
       - reject
-      - reject!
-      - replace
       - reverse_each
       - select
-      - select!
-      - shift
       - size
-      - slice
       - slice_after
       - slice_before
       - slice_when
       - sort
       - sort_by
-      - store
       - sum
       - take
       - take_while
       - tally
       - to_a
       - to_h
-      - to_hash
-      - to_proc
       - to_set
-      - transform_keys
-      - transform_keys!
-      - transform_values
-      - transform_values!
       - uniq
-      - update
-      - value?
       - values
       - values_at
       - zip
-  - namespace: Math
-    title: Math module methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - acos
-      - acosh
-      - asin
-      - asinh
-      - atan
-      - atan2
-      - atanh
-      - cbrt
-      - cos
-      - cosh
-      - erf
-      - erfc
-      - exp
-      - frexp
-      - gamma
-      - hypot
-      - ldexp
-      - lgamma
-      - log
-      - log10
-      - log2
-      - sin
-      - sinh
-      - sqrt
-      - tan
-      - tanh
-  - namespace: Integer
-    title: Integer instance methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - '%'
-      - '&'
-      - '*'
-      - '**'
-      - +
-      - +@
-      - '-'
-      - '-@'
-      - /
-      - <
-      - '<<'
-      - <=
-      - '>'
-      - '>='
-      - '>>'
-      - '[]'
-      - ^
-      - abs
-      - abs2
-      - allbits?
-      - angle
-      - anybits?
-      - arg
-      - between?
-      - bit_length
-      - ceil
-      - ceildiv
-      - chr
-      - clamp
-      - coerce
-      - conj
-      - conjugate
-      - denominator
-      - digits
-      - div
-      - divmod
-      - downto
-      - even?
-      - fdiv
-      - finite?
-      - floor
-      - gcd
-      - gcdlcm
-      - i
-      - imag
-      - imaginary
-      - infinite?
-      - integer?
-      - lcm
-      - magnitude
-      - modulo
-      - negative?
-      - next
-      - nobits?
-      - nonzero?
-      - numerator
-      - odd?
-      - ord
-      - phase
-      - polar
-      - positive?
-      - pow
-      - pred
-      - quo
-      - rationalize
-      - real
-      - real?
-      - rect
-      - rectangular
-      - remainder
-      - round
-      - singleton_method_added
-      - size
-      - step
-      - succ
-      - times
-      - to_c
-      - to_f
-      - to_i
-      - to_int
-      - to_r
-      - truncate
-      - upto
-      - zero?
-      - '|'
-      - '~'
-  - namespace: Float
-    title: Float instance methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - '%'
-      - '*'
-      - '**'
-      - +
-      - +@
-      - '-'
-      - '-@'
-      - /
-      - <
-      - <=
-      - '>'
-      - '>='
-      - abs
-      - abs2
-      - angle
-      - arg
-      - between?
-      - ceil
-      - clamp
-      - coerce
-      - conj
-      - conjugate
-      - denominator
-      - div
-      - divmod
-      - fdiv
-      - finite?
-      - floor
-      - i
-      - imag
-      - imaginary
-      - infinite?
-      - integer?
-      - magnitude
-      - modulo
-      - nan?
-      - negative?
-      - next_float
-      - nonzero?
-      - numerator
-      - phase
-      - polar
-      - positive?
-      - prev_float
-      - quo
-      - rationalize
-      - real
-      - real?
-      - rect
-      - rectangular
-      - remainder
-      - round
-      - singleton_method_added
-      - step
-      - to_c
-      - to_f
-      - to_i
-      - to_int
-      - to_r
-      - truncate
-      - zero?
-  - namespace: Comparable
-    title: Comparable instance methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - <
-      - <=
-      - '=='
-      - '>'
-      - '>='
-      - between?
-      - clamp
-  - namespace: Range
-    title: Range instance methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - '%'
-      - all?
-      - any?
-      - begin
-      - bsearch
-      - chain
-      - chunk
-      - chunk_while
-      - collect
-      - collect_concat
-      - compact
-      - count
-      - cover?
-      - cycle
-      - detect
-      - drop
-      - drop_while
-      - each
-      - each_cons
-      - each_entry
-      - each_slice
-      - each_with_index
-      - each_with_object
-      - end
-      - entries
-      - exclude_end?
-      - filter
-      - filter_map
-      - find
-      - find_all
-      - find_index
-      - first
-      - flat_map
-      - grep
-      - grep_v
-      - group_by
-      - include?
-      - inject
-      - last
-      - lazy
-      - map
-      - max
-      - max_by
-      - member?
-      - min
-      - min_by
-      - minmax
-      - minmax_by
-      - none?
-      - one?
-      - overlap?
-      - partition
-      - reduce
-      - reject
-      - reverse_each
-      - select
-      - size
-      - slice_after
-      - slice_before
-      - slice_when
-      - sort
-      - sort_by
-      - step
-      - sum
-      - take
-      - take_while
-      - tally
-      - to_a
-      - to_h
-      - to_set
-      - uniq
-      - zip
-  - namespace: Regexp
-    title: Regexp instance methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - '=~'
-      - casefold?
-      - encoding
-      - fixed_encoding?
-      - match
-      - match?
-      - named_captures
-      - names
-      - options
-      - source
-      - timeout
-      - '~'
   - namespace: Symbol
     title: Symbol instance methods
     target: Ruby 3.3
@@ -804,6 +2510,138 @@ namespaces:
       - to_proc
       - to_sym
       - upcase
+  - namespace: SyntaxError
+    title: SyntaxError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - path
+      - set_backtrace
+  - namespace: SyntaxSuggest
+    title: SyntaxSuggest methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - module_for_detailed_message
+  - namespace: SystemCallError
+    title: SystemCallError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - errno
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: SystemExit
+    title: SystemExit methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+      - status
+      - success?
+  - namespace: SystemStackError
+    title: SystemStackError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: Thread
+    title: Thread methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '[]'
+      - '[]='
+      - abort_on_exception
+      - abort_on_exception=
+      - add_trace_func
+      - alive?
+      - backtrace
+      - backtrace_locations
+      - exit
+      - fetch
+      - group
+      - join
+      - key?
+      - keys
+      - kill
+      - name
+      - name=
+      - native_thread_id
+      - pending_interrupt?
+      - priority
+      - priority=
+      - raise
+      - report_on_exception
+      - report_on_exception=
+      - run
+      - set_trace_func
+      - status
+      - stop?
+      - terminate
+      - thread_variable?
+      - thread_variable_get
+      - thread_variable_set
+      - thread_variables
+      - value
+      - wakeup
+  - namespace: ThreadError
+    title: ThreadError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: ThreadGroup
+    title: ThreadGroup methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - add
+      - enclose
+      - enclosed?
+      - list
   - namespace: Time
     title: Time instance methods
     target: Ruby 3.3
@@ -866,175 +2704,107 @@ namespaces:
       - yday
       - year
       - zone
-  - namespace: Dir
-    title: Dir singleton methods
+  - namespace: TracePoint
+    title: TracePoint methods
     target: Ruby 3.3
     sourceKind: runtime
     sourceRef: ruby:3.3
     entries:
-      - '[]'
-      - chdir
-      - children
-      - chroot
-      - delete
-      - each_child
-      - empty?
-      - entries
-      - exist?
-      - fchdir
-      - for_fd
-      - foreach
-      - getwd
-      - glob
-      - home
-      - mkdir
-      - open
-      - pwd
-      - rmdir
-      - unlink
-  - namespace: File
-    title: File singleton methods
-    target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3
-    entries:
-      - absolute_path
-      - absolute_path?
-      - atime
-      - basename
-      - birthtime
-      - blockdev?
-      - chardev?
-      - chmod
-      - chown
-      - ctime
-      - delete
-      - directory?
-      - dirname
-      - empty?
-      - executable?
-      - executable_real?
-      - exist?
-      - expand_path
-      - extname
-      - file?
-      - fnmatch
-      - fnmatch?
-      - ftype
-      - grpowned?
-      - identical?
-      - join
-      - lchmod
-      - lchown
-      - link
-      - lstat
-      - lutime
-      - mkfifo
-      - mtime
-      - owned?
+      - binding
+      - callee_id
+      - defined_class
+      - disable
+      - enable
+      - enabled?
+      - eval_script
+      - event
+      - instruction_sequence
+      - lineno
+      - method_id
+      - parameters
       - path
-      - pipe?
-      - readable?
-      - readable_real?
-      - readlink
-      - realdirpath
-      - realpath
-      - rename
-      - setgid?
-      - setuid?
-      - size
-      - size?
-      - socket?
-      - split
-      - stat
-      - sticky?
-      - symlink
-      - symlink?
-      - truncate
-      - umask
-      - unlink
-      - utime
-      - world_readable?
-      - world_writable?
-      - writable?
-      - writable_real?
-      - zero?
-  - namespace: MatchData
-    title: MatchData instance methods
+      - raised_exception
+      - return_value
+      - self
+  - namespace: TrueClass
+    title: TrueClass methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - '&'
+      - ^
+      - '|'
+  - namespace: TypeError
+    title: TypeError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: UnboundMethod
+    title: UnboundMethod methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - arity
+      - bind
+      - bind_call
+      - name
+      - original_name
+      - owner
+      - parameters
+      - source_location
+      - super_method
+  - namespace: UncaughtThrowError
+    title: UncaughtThrowError methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+      - tag
+      - value
+  - namespace: UnicodeNormalize
+    title: UnicodeNormalize methods
+    target: Ruby 3.3
+    sourceKind: runtime
+    sourceRef: ruby:3.3
+    entries: []
+  - namespace: Warning
+    title: Warning methods
     target: Ruby 3.3
     sourceKind: runtime
     sourceRef: ruby:3.3
     entries:
       - '[]'
-      - begin
-      - byteoffset
-      - captures
-      - deconstruct
-      - deconstruct_keys
-      - end
-      - length
-      - match
-      - match_length
-      - named_captures
-      - names
-      - offset
-      - post_match
-      - pre_match
-      - regexp
-      - size
-      - string
-      - to_a
-      - values_at
-  - namespace: Numeric
-    title: Numeric instance methods
+      - '[]='
+  - namespace: ZeroDivisionError
+    title: ZeroDivisionError methods
     target: Ruby 3.3
     sourceKind: runtime
     sourceRef: ruby:3.3
     entries:
-      - '%'
-      - +@
-      - '-@'
-      - <=>
-      - abs
-      - abs2
-      - angle
-      - arg
-      - ceil
-      - clone
-      - coerce
-      - conj
-      - conjugate
-      - denominator
-      - div
-      - divmod
-      - dup
-      - eql?
-      - fdiv
-      - finite?
-      - floor
-      - i
-      - imag
-      - imaginary
-      - infinite?
-      - integer?
-      - magnitude
-      - modulo
-      - negative?
-      - nonzero?
-      - numerator
-      - phase
-      - polar
-      - positive?
-      - quo
-      - real
-      - real?
-      - rect
-      - rectangular
-      - remainder
-      - round
-      - singleton_method_added
-      - step
-      - to_c
-      - to_int
-      - truncate
-      - zero?
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace

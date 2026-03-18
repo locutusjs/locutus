@@ -42,6 +42,7 @@
     "fix:headers": "node src/_util/formatHeaders.ts fix",
     "lint:headers": "node src/_util/formatHeaders.ts check",
     "enumerate:upstream-surface": "node scripts/enumerate-upstream-surface.ts",
+    "audit:upstream-scope": "node scripts/audit-upstream-scope.ts",
     "refresh:upstream-surface": "node scripts/refresh-upstream-surface.ts",
     "compare:dt:signatures": "node scripts/compare-definitelytyped-signatures.ts",
     "select:parity": "node scripts/select-parity-targets.ts",

@@ -8,7 +8,11 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import {
+  buildScopedUpstreamSurfaceSnapshot,
+  getUpstreamSurfaceNamespaceScope,
+  getUpstreamSurfaceScopeNamespaceNames,
+} from '../upstream-surface-scope.ts'
 
 // Ruby method mapping: JS function name → Ruby method name and category
 interface RubyMethodInfo {
@@ -62,8 +66,63 @@ export const RUBY_SKIP_LIST = new Set<string>([
 ])
 
 const RUBY_DOCKER_IMAGE = 'ruby:3.3'
+const RUBY_NAMESPACE_CATALOG_TARGET = 'Ruby 3.3'
+const RUBY_NAMESPACE_CATALOG_SOURCE_REF = 'ruby:3.3:objectspace-top-level-modules'
+
+function discoverRubyUpstreamNamespaces() {
+  const script = `
+names =
+  ObjectSpace.each_object(Module)
+    .map(&:name)
+    .compact
+    .select { |name| !name.empty? && name.match?(/\\A[A-Z]/) && !name.include?("::") && !name.include?(".") }
+    .uniq
+    .sort
+
+puts names
+`.trim()
+
+  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Ruby upstream namespaces')
+  }
+
+  return [
+    ...new Set(
+      result.output
+        .trim()
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    ),
+  ].sort()
+}
+
+function discoverRubyUpstreamNamespaceCatalog() {
+  return {
+    target: RUBY_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'runtime' as const,
+    sourceRef: RUBY_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: discoverRubyUpstreamNamespaces(),
+  }
+}
+
+function getRubyNamespaceDiscoveryMode(namespace: string): 'instance' | 'singleton' | undefined {
+  const title = getUpstreamSurfaceNamespaceScope('ruby', namespace).title?.toLowerCase() ?? ''
+  if (title.includes('instance methods')) {
+    return 'instance'
+  }
+  if (title.includes('singleton methods') || title.includes('module methods')) {
+    return 'singleton'
+  }
+  return undefined
+}
 
 function discoverRubyUpstreamSurface() {
+  const namespaceConfigs = getUpstreamSurfaceScopeNamespaceNames('ruby').map((namespace) => ({
+    namespace,
+    mode: getRubyNamespaceDiscoveryMode(namespace),
+  }))
   const script = `
 def owned_instance_entries(klass)
   generic = (
@@ -79,72 +138,36 @@ def owned_instance_entries(klass)
     .sort
 end
 
-snapshots = [
+def discover_entries(name, configured_mode)
+  object = Object.const_get(name)
+  mode =
+    configured_mode ||
+      if object.is_a?(Module) && !object.is_a?(Class)
+        "singleton"
+      else
+        "instance"
+      end
+  entries = []
+
+  if mode == "instance"
+    entries.concat(owned_instance_entries(object)) if object.is_a?(Class)
+    entries.concat(object.instance_methods(false).map(&:to_s)) if object.is_a?(Module) && !object.is_a?(Class)
+  end
+
+  entries.concat(object.singleton_methods(false).map(&:to_s)) if mode == "singleton"
+
+  entries.uniq.sort
+end
+
+namespaces = ${JSON.stringify(namespaceConfigs)}
+snapshots = namespaces.map do |config|
+  namespace = config["namespace"] || config[:namespace]
+  mode = config["mode"] || config[:mode]
   {
-    namespace: 'Array',
-    entries: owned_instance_entries(Array)
-  },
-  {
-    namespace: 'String',
-    entries: owned_instance_entries(String)
-  },
-  {
-    namespace: 'Enumerable',
-    entries: Enumerable.instance_methods(false).map(&:to_s).uniq.sort
-  },
-  {
-    namespace: 'Hash',
-    entries: owned_instance_entries(Hash)
-  },
-  {
-    namespace: 'Math',
-    entries: Math.singleton_methods(false).map(&:to_s).uniq.sort
-  },
-  {
-    namespace: 'Integer',
-    entries: owned_instance_entries(Integer)
-  },
-  {
-    namespace: 'Float',
-    entries: owned_instance_entries(Float)
-  },
-  {
-    namespace: 'Comparable',
-    entries: Comparable.instance_methods(false).map(&:to_s).uniq.sort
-  },
-  {
-    namespace: 'Range',
-    entries: owned_instance_entries(Range)
-  },
-  {
-    namespace: 'Regexp',
-    entries: owned_instance_entries(Regexp)
-  },
-  {
-    namespace: 'Symbol',
-    entries: owned_instance_entries(Symbol)
-  },
-  {
-    namespace: 'Time',
-    entries: owned_instance_entries(Time)
-  },
-  {
-    namespace: 'Dir',
-    entries: Dir.singleton_methods(false).map(&:to_s).uniq.sort
-  },
-  {
-    namespace: 'File',
-    entries: File.singleton_methods(false).map(&:to_s).uniq.sort
-  },
-  {
-    namespace: 'MatchData',
-    entries: owned_instance_entries(MatchData)
-  },
-  {
-    namespace: 'Numeric',
-    entries: Numeric.instance_methods(false).map(&:to_s).uniq.sort
+    namespace: namespace,
+    entries: discover_entries(namespace, mode)
   }
-]
+end
 
 require 'json'
 puts JSON.generate({ language: 'ruby', namespaces: snapshots })
@@ -708,6 +731,7 @@ export const rubyHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverRubyUpstreamSurface,
+    discoverNamespaceCatalog: discoverRubyUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => {
       const methodInfo = RUBY_METHODS[func.name]
       return methodInfo

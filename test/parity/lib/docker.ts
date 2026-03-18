@@ -92,9 +92,9 @@ export function getDockerDigest(image: string): string {
 export function runInDocker(
   image: string,
   cmd: string[],
-  options: { mountRepo?: boolean; repoPath?: string; timeout?: number } = {},
+  options: { mountRepo?: boolean; repoPath?: string; timeout?: number; maxBuffer?: number } = {},
 ): DockerRunResult {
-  const { mountRepo = false, repoPath, timeout = 10000 } = options
+  const { mountRepo = false, repoPath, timeout = 10000, maxBuffer = 16 * 1024 * 1024 } = options
 
   try {
     const dockerArgs = ['run', '--rm', '-i']
@@ -105,6 +105,7 @@ export function runInDocker(
     const result = spawnSync('docker', [...dockerArgs, image, ...cmd], {
       encoding: 'utf8',
       timeout,
+      maxBuffer,
     })
 
     if (result.error) {

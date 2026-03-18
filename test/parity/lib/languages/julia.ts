@@ -8,51 +8,122 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { buildScopedUpstreamSurfaceSnapshot, getUpstreamSurfaceScopeNamespaceNames } from '../upstream-surface-scope.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const JULIA_SKIP_LIST = new Set<string>([])
 
 const JULIA_DOCKER_IMAGE = 'julia:1.11'
+const JULIA_NAMESPACE_CATALOG_TARGET = 'Julia 1.11'
+const JULIA_NAMESPACE_CATALOG_SOURCE_REF = 'julia:1.11:stdlib-modules'
+const JULIA_NAMESPACE_EXCLUDES = new Set([
+  'CompilerSupportLibraries_jll',
+  'GMP_jll',
+  'LLD_jll',
+  'LLVMLibUnwind_jll',
+  'LibCURL_jll',
+  'LibGit2_jll',
+  'LibSSH2_jll',
+  'LibUV_jll',
+  'LibUnwind_jll',
+  'MPFR_jll',
+  'MbedTLS_jll',
+  'MozillaCACerts_jll',
+  'OpenBLAS_jll',
+  'OpenLibm_jll',
+  'PCRE2_jll',
+  'Profile',
+  'REPL',
+  'SharedArrays',
+  'SuiteSparse_jll',
+  'Test',
+  'Zlib_jll',
+  'dSFMT_jll',
+  'libLLVM_jll',
+  'libblastrampoline_jll',
+  'nghttp2_jll',
+  'p7zip_jll',
+])
+
+function discoverJuliaUpstreamNamespaces() {
+  const code = `
+modules = sort!(unique(vcat(
+  ["Base"],
+  [splitext(f)[1] for f in readdir(Sys.STDLIB) if endswith(f, ".jl")],
+  [basename(p) for p in readdir(Sys.STDLIB, join=true) if isdir(p)]
+)))
+println(join(modules, "\\n"))
+`.trim()
+
+  const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Julia upstream namespaces')
+  }
+
+  return [
+    ...new Set(
+      result.output
+        .trim()
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .filter((namespace) => !JULIA_NAMESPACE_EXCLUDES.has(namespace)),
+    ),
+  ].sort()
+}
+
+function discoverJuliaUpstreamNamespaceCatalog() {
+  return {
+    target: JULIA_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'runtime' as const,
+    sourceRef: JULIA_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: discoverJuliaUpstreamNamespaces(),
+  }
+}
 
 function discoverJuliaUpstreamSurface() {
-  const discoverNamespace = (namespace: string, setup: string) => {
-    const code = [
-      setup,
-      `entries = sort([String(name) for name in names(${namespace}, all=false) if isdefined(${namespace}, name) && getfield(${namespace}, name) isa Function])`,
-      'println(join(entries, "\\n"))',
-    ]
-      .filter(Boolean)
-      .join('; ')
+  const namespaces = getUpstreamSurfaceScopeNamespaceNames('julia')
+  const code = `
+modules = ${JSON.stringify(namespaces)}
 
-    const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code])
-    if (!result.success) {
-      throw new Error(result.error || `Unable to discover Julia upstream surface for ${namespace}`)
-    }
+for namespace in modules
+    if namespace == "Base"
+        target_module = Base
+    else
+        @eval using $(Symbol(namespace))
+        target_module = getfield(Main, Symbol(namespace))
+    end
 
-    const entries = result.output
+    entries = sort([String(name) for name in names(target_module, all=false) if isdefined(target_module, name) && getfield(target_module, name) isa Function])
+    println(namespace * "\\t" * join(entries, "\\u001f"))
+end
+`.trim()
+
+  const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code], {
+    timeout: 120000,
+  })
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Julia upstream surface')
+  }
+
+  return buildScopedUpstreamSurfaceSnapshot(
+    'julia',
+    result.output
       .trim()
       .split('\n')
       .map((line) => line.trim())
       .filter(Boolean)
-      .sort()
-
-    return {
-      namespace,
-      entries,
-    }
-  }
-
-  return buildScopedUpstreamSurfaceSnapshot('julia', [
-    discoverNamespace('Base', ''),
-    discoverNamespace('Dates', 'using Dates'),
-    discoverNamespace('DelimitedFiles', 'using DelimitedFiles'),
-    discoverNamespace('LinearAlgebra', 'using LinearAlgebra'),
-    discoverNamespace('Random', 'using Random'),
-    discoverNamespace('Printf', 'using Printf'),
-    discoverNamespace('Statistics', 'using Statistics'),
-    discoverNamespace('Unicode', 'using Unicode'),
-  ])
+      .map((line) => {
+        const [namespace, encodedEntries = ''] = line.split('\t')
+        if (!namespace) {
+          throw new Error('Unable to parse Julia upstream surface row')
+        }
+        return {
+          namespace,
+          entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
+        }
+      }),
+  )
 }
 
 function splitArgs(argsText: string): string[] {
@@ -438,6 +509,7 @@ export const juliaHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverJuliaUpstreamSurface,
+    discoverNamespaceCatalog: discoverJuliaUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,
