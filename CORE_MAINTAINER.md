@@ -20,12 +20,15 @@ Note that for any task, it's important to first get ample context. Search past i
 2. Use `gh` to check on pending PRs. First run `gh auth status` to understand what our GitHub identity is. Make sure all PRs have reviews by other people than our identity (fixable only when PRs are submitted by others), that PRs pass (fixable only if they were submitted by US), fix what can be fixed, then re-check next iteration. If all is green, merge. LLMs should refrain from commenting on PRs, but deep reviews on PRs by others are allowed.
 3. Triage issues. Confirm repro, decide scope, and say no when needed to protect project goals (see `## Vision`, `README.md`, `CHANGELOG.md`, and `website/source/about.md`). LLMs should refrain from commenting on Issues.
 4. To continuously modernize the project, revise the Backlog/Roadmap in `CHANGELOG.md`. Don't forget about the website, which lives in this repo and is deployed via GHA. Check off items and/or move them into releases as appropriate.
-5. Before any new product work, audit upstream discovery scope. Treat `docs/upstream-surface-scope.yml` as the canonical source of truth for next expansion work:
-   - run `corepack yarn enumerate:upstream-surface <language>` to materialize the canonical catalog for the area you want to expand
-   - run `corepack yarn audit:upstream-scope <language>` for languages with canonical namespace discovery
+5. Before any new product work, audit upstream discovery and tracked scope. The flow is:
+   - run `corepack yarn discover:upstream-surface <language>` to materialize the raw canonical catalog from runtime/docs/source
+   - inspect the raw diff and fix discovery first if it over- or under-shoots
+   - use `docs/upstream-surface-scope.yml` as the source of truth for what we deliberately fold into tracked scope
+   - run `corepack yarn fold:upstream-surface <language>` when the discovered catalog looks right
+   - run `corepack yarn audit:upstream-scope <language>` to compare tracked scope against raw canonical discovery
    - if official namespaces are missing from tracked scope, broaden scope first
-   - if a namespace is too broad, either narrow/exclude it at the source layer or keep it with a broad inventory default
-   - only resume product work once the target surface for the chosen area is explicit and sane
+   - if a namespace is too broad, either narrow/exclude it at the source layer or keep it with a broad inventory default after folding
+   - only resume product work once raw discovery is trustworthy and the tracked target surface for the chosen area is explicit and sane
 6. Decide an issue to work on. **Before starting, check:** What areas have received attention in the last 5 iterations? Prioritize neglected areas. Balance time across: verification (all languages), modernization, TypeScript, website, dependencies.
 
     It could come from:

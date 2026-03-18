@@ -5,7 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot, getUpstreamSurfaceScopeNamespaceNames } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // String module constants (called without parentheses in Python)
 const STRING_CONSTANTS = new Set([
@@ -49,7 +49,8 @@ const PYTHON_NAMESPACE_CONFIG: Record<
 }
 
 function discoverPythonUpstreamSurface() {
-  const namespaces = getUpstreamSurfaceScopeNamespaceNames('python')
+  const catalog = discoverPythonUpstreamNamespaceCatalog()
+  const namespaces = catalog.namespaces
   const namespaceConfigs = namespaces.map((namespace) => {
     const config = PYTHON_NAMESPACE_CONFIG[namespace] ?? {}
     return {
@@ -105,7 +106,10 @@ for config in modules:
 
 print(json.dumps({"language": "python", "namespaces": snapshots}))
 `.trim()
-  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script])
+  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script], {
+    timeout: 120000,
+    maxBuffer: 32 * 1024 * 1024,
+  })
 
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Python upstream surface')
@@ -124,7 +128,19 @@ print(json.dumps({"language": "python", "namespaces": snapshots}))
     }>
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('python', scoped.namespaces)
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'python',
+    catalog,
+    namespaces: scoped.namespaces.map((namespace) => {
+      const config = PYTHON_NAMESPACE_CONFIG[namespace.namespace] ?? {}
+      return {
+        namespace: namespace.namespace,
+        title: namespace.namespace,
+        sourceRef: `${PYTHON_DOCKER_IMAGE}:${config.importName ?? namespace.namespace}`,
+        entries: namespace.entries,
+      }
+    }),
+  })
 }
 
 function discoverPythonUpstreamNamespaces() {
@@ -152,7 +168,10 @@ namespaces = sorted({
 
 print(json.dumps(namespaces))
 `.trim()
-  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script])
+  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script], {
+    timeout: 120000,
+    maxBuffer: 8 * 1024 * 1024,
+  })
 
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Python upstream namespaces')

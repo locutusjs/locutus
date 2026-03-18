@@ -1,0 +1,225 @@
+language: lua
+namespaces:
+  - namespace: _G
+    title: _G
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:_G
+    entries:
+      - assert
+      - collectgarbage
+      - dofile
+      - error
+      - getmetatable
+      - ipairs
+      - load
+      - loadfile
+      - next
+      - pairs
+      - pcall
+      - print
+      - rawequal
+      - rawget
+      - rawlen
+      - rawset
+      - require
+      - select
+      - setmetatable
+      - tonumber
+      - tostring
+      - type
+      - warn
+      - xpcall
+  - namespace: core
+    title: core
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:core
+    entries:
+      - assert
+      - collectgarbage
+      - dofile
+      - error
+      - getmetatable
+      - ipairs
+      - load
+      - loadfile
+      - next
+      - pairs
+      - pcall
+      - print
+      - rawequal
+      - rawget
+      - rawlen
+      - rawset
+      - require
+      - select
+      - setmetatable
+      - tonumber
+      - tostring
+      - type
+      - warn
+      - xpcall
+  - namespace: coroutine
+    title: coroutine
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:coroutine
+    entries:
+      - close
+      - create
+      - isyieldable
+      - resume
+      - running
+      - status
+      - wrap
+      - yield
+  - namespace: debug
+    title: debug
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:debug
+    entries:
+      - debug
+      - gethook
+      - getinfo
+      - getlocal
+      - getmetatable
+      - getregistry
+      - getupvalue
+      - getuservalue
+      - setcstacklimit
+      - sethook
+      - setlocal
+      - setmetatable
+      - setupvalue
+      - setuservalue
+      - traceback
+      - upvalueid
+      - upvaluejoin
+  - namespace: io
+    title: io
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:io
+    entries:
+      - close
+      - flush
+      - input
+      - lines
+      - open
+      - output
+      - popen
+      - read
+      - tmpfile
+      - type
+      - write
+  - namespace: math
+    title: math
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:math
+    entries:
+      - abs
+      - acos
+      - asin
+      - atan
+      - atan2
+      - ceil
+      - cos
+      - cosh
+      - deg
+      - exp
+      - floor
+      - fmod
+      - frexp
+      - ldexp
+      - log
+      - log10
+      - max
+      - min
+      - modf
+      - pow
+      - rad
+      - random
+      - randomseed
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - tointeger
+      - type
+      - ult
+  - namespace: os
+    title: os
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:os
+    entries:
+      - clock
+      - date
+      - difftime
+      - execute
+      - exit
+      - getenv
+      - remove
+      - rename
+      - setlocale
+      - time
+      - tmpname
+  - namespace: package
+    title: package
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:package
+    entries:
+      - loadlib
+      - searchpath
+  - namespace: string
+    title: string
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:string
+    entries:
+      - byte
+      - char
+      - dump
+      - find
+      - format
+      - gmatch
+      - gsub
+      - len
+      - lower
+      - match
+      - pack
+      - packsize
+      - rep
+      - reverse
+      - sub
+      - unpack
+      - upper
+  - namespace: table
+    title: table
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:table
+    entries:
+      - concat
+      - insert
+      - move
+      - pack
+      - remove
+      - sort
+      - unpack
+  - namespace: utf8
+    title: utf8
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:utf8
+    entries:
+      - char
+      - codepoint
+      - codes
+      - len
+      - offset

@@ -8,7 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot, getUpstreamSurfaceScopeNamespaceNames } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const JULIA_SKIP_LIST = new Set<string>([])
@@ -55,7 +55,10 @@ modules = sort!(unique(vcat(
 println(join(modules, "\\n"))
 `.trim()
 
-  const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code])
+  const result = runInDocker(JULIA_DOCKER_IMAGE, ['julia', '-e', code], {
+    timeout: 120000,
+    maxBuffer: 8 * 1024 * 1024,
+  })
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Julia upstream namespaces')
   }
@@ -82,7 +85,8 @@ function discoverJuliaUpstreamNamespaceCatalog() {
 }
 
 function discoverJuliaUpstreamSurface() {
-  const namespaces = getUpstreamSurfaceScopeNamespaceNames('julia')
+  const catalog = discoverJuliaUpstreamNamespaceCatalog()
+  const namespaces = catalog.namespaces
   const code = `
 modules = ${JSON.stringify(namespaces)}
 
@@ -106,9 +110,10 @@ end
     throw new Error(result.error || 'Unable to discover Julia upstream surface')
   }
 
-  return buildScopedUpstreamSurfaceSnapshot(
-    'julia',
-    result.output
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'julia',
+    catalog,
+    namespaces: result.output
       .trim()
       .split('\n')
       .map((line) => line.trim())
@@ -120,10 +125,12 @@ end
         }
         return {
           namespace,
+          title: namespace,
+          sourceRef: `${JULIA_DOCKER_IMAGE}:${namespace}`,
           entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
         }
       }),
-  )
+  })
 }
 
 function splitArgs(argsText: string): string[] {

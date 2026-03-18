@@ -1,0 +1,357 @@
+language: tcl
+namespaces:
+  - namespace: array
+    title: array
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:array
+    entries:
+      - anymore
+      - donesearch
+      - exists
+      - get
+      - names
+      - nextelement
+      - set
+      - size
+      - startsearch
+      - statistics
+      - unset
+  - namespace: binary
+    title: binary
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:binary
+    entries:
+      - decode
+      - encode
+      - format
+      - scan
+  - namespace: chan
+    title: chan
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:chan
+    entries:
+      - blocked
+      - close
+      - configure
+      - copy
+      - create
+      - eof
+      - event
+      - flush
+      - gets
+      - names
+      - pending
+      - pipe
+      - pop
+      - postevent
+      - push
+      - puts
+      - read
+      - seek
+      - tell
+      - truncate
+  - namespace: clock
+    title: clock
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:clock
+    entries:
+      - add
+      - clicks
+      - format
+      - microseconds
+      - milliseconds
+      - scan
+      - seconds
+  - namespace: core
+    title: core
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:core
+    entries:
+      - after
+      - append
+      - apply
+      - auto_execok
+      - auto_import
+      - auto_load
+      - auto_load_index
+      - auto_qualify
+      - break
+      - case
+      - catch
+      - cd
+      - close
+      - concat
+      - continue
+      - coroutine
+      - eof
+      - error
+      - eval
+      - exec
+      - exit
+      - expr
+      - fblocked
+      - fconfigure
+      - fcopy
+      - fileevent
+      - flush
+      - for
+      - foreach
+      - format
+      - gets
+      - glob
+      - global
+      - history
+      - if
+      - incr
+      - interp
+      - join
+      - lappend
+      - lassign
+      - lindex
+      - linsert
+      - list
+      - llength
+      - lmap
+      - load
+      - lrange
+      - lrepeat
+      - lreplace
+      - lreverse
+      - lsearch
+      - lset
+      - lsort
+      - open
+      - pid
+      - proc
+      - puts
+      - pwd
+      - read
+      - regexp
+      - regsub
+      - rename
+      - return
+      - scan
+      - seek
+      - set
+      - socket
+      - source
+      - split
+      - subst
+      - switch
+      - tailcall
+      - tclLog
+      - tell
+      - throw
+      - time
+      - trace
+      - try
+      - unknown
+      - unload
+      - unset
+      - update
+      - uplevel
+      - upvar
+      - variable
+      - vwait
+      - while
+      - yield
+      - yieldto
+  - namespace: dict
+    title: dict
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:dict
+    entries:
+      - append
+      - create
+      - exists
+      - filter
+      - for
+      - get
+      - incr
+      - info
+      - keys
+      - lappend
+      - map
+      - merge
+      - remove
+      - replace
+      - set
+      - size
+      - unset
+      - update
+      - values
+      - with
+  - namespace: encoding
+    title: encoding
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:encoding
+    entries:
+      - convertfrom
+      - convertto
+      - dirs
+      - names
+      - system
+  - namespace: file
+    title: file
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:file
+    entries:
+      - atime
+      - attributes
+      - channels
+      - copy
+      - delete
+      - dirname
+      - executable
+      - exists
+      - extension
+      - isdirectory
+      - isfile
+      - join
+      - link
+      - lstat
+      - mkdir
+      - mtime
+      - nativename
+      - normalize
+      - owned
+      - pathtype
+      - readable
+      - readlink
+      - rename
+      - rootname
+      - separator
+      - size
+      - split
+      - stat
+      - system
+      - tail
+      - tempfile
+      - type
+      - volumes
+      - writable
+  - namespace: info
+    title: info
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:info
+    entries:
+      - args
+      - body
+      - class
+      - cmdcount
+      - commands
+      - complete
+      - coroutine
+      - default
+      - errorstack
+      - exists
+      - frame
+      - functions
+      - globals
+      - hostname
+      - level
+      - library
+      - loaded
+      - locals
+      - nameofexecutable
+      - object
+      - patchlevel
+      - procs
+      - script
+      - sharedlibextension
+      - tclversion
+      - vars
+  - namespace: namespace
+    title: namespace
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:namespace
+    entries:
+      - children
+      - code
+      - current
+      - delete
+      - ensemble
+      - eval
+      - exists
+      - export
+      - forget
+      - import
+      - inscope
+      - origin
+      - parent
+      - path
+      - qualifiers
+      - tail
+      - unknown
+      - upvar
+      - which
+  - namespace: package
+    title: package
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm
+    entries:
+      - forget
+      - ifneeded
+      - names
+      - present
+      - provide
+      - require
+      - unknown
+      - vcompare
+      - versions
+      - vsatisfies
+  - namespace: string
+    title: string
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:string
+    entries:
+      - bytelength
+      - cat
+      - compare
+      - equal
+      - first
+      - index
+      - is
+      - last
+      - length
+      - map
+      - match
+      - range
+      - repeat
+      - replace
+      - reverse
+      - tolower
+      - totitle
+      - toupper
+      - trim
+      - trimleft
+      - trimright
+      - wordend
+      - wordstart
+  - namespace: zlib
+    title: zlib
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm
+    entries:
+      - adler32
+      - compress
+      - crc32
+      - decompress
+      - deflate
+      - gunzip
+      - gzip
+      - inflate
+      - push

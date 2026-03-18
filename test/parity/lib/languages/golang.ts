@@ -5,11 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import {
-  buildScopedUpstreamSurfaceSnapshot,
-  getUpstreamSurfaceNamespaceScope,
-  getUpstreamSurfaceScopeNamespaceNames,
-} from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Go package mapping: function name → Go package
 const GO_PACKAGES: Record<string, string> = {
@@ -123,17 +119,12 @@ function normalizeGoNamespace(packagePath: string): string {
   return GO_NAMESPACE_ALIASES[packagePath] ?? packagePath
 }
 
-function parseGoDocTarget(sourceRef: string): string {
-  const parts = sourceRef.split(':')
-  return parts.slice(2).join(':')
+function goPackagePathFromNamespace(namespace: string): string {
+  const aliasEntry = Object.entries(GO_NAMESPACE_ALIASES).find(([, alias]) => alias === namespace)
+  return aliasEntry?.[0] ?? namespace
 }
 
 type GoDocEntryKind = 'package' | 'method'
-
-function parseGoDocEntryKind(docTarget: string): GoDocEntryKind {
-  const lastSegment = docTarget.split('/').pop() ?? docTarget
-  return lastSegment.includes('.') ? 'method' : 'package'
-}
 
 function parseGoDocEntries(output: string, entryKind: GoDocEntryKind): string[] {
   return output
@@ -197,13 +188,13 @@ function shellQuote(value: string): string {
 }
 
 function discoverGoUpstreamSurface() {
-  const namespaceConfigs = getUpstreamSurfaceScopeNamespaceNames('golang').map((namespace) => {
-    const scopeNamespace = getUpstreamSurfaceNamespaceScope('golang', namespace)
-    const docTarget = parseGoDocTarget(scopeNamespace.sourceRef)
+  const catalog = discoverGoUpstreamNamespaceCatalog()
+  const namespaceConfigs = catalog.namespaces.map((namespace) => {
+    const docTarget = goPackagePathFromNamespace(namespace)
     return {
       namespace,
       docTarget,
-      entryKind: parseGoDocEntryKind(docTarget),
+      entryKind: 'package' as const,
     }
   })
   const beginMarker = '__LOCUTUS_NAMESPACE__ '
@@ -260,7 +251,15 @@ function discoverGoUpstreamSurface() {
     throw new Error(`Malformed Go upstream surface output: missing end marker for ${currentNamespace}`)
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('golang', namespaces)
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'golang',
+    catalog,
+    namespaces: namespaces.map((namespace) => ({
+      ...namespace,
+      title: namespace.namespace,
+      sourceRef: `${GO_DOCKER_IMAGE}:${goPackagePathFromNamespace(namespace.namespace)}`,
+    })),
+  })
 }
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {

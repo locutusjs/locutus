@@ -2682,3 +2682,32 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - “Deterministic discovery” is only honest when canonical extraction is real for every supported language, not just for the runtime-backed ones.
   - Checked-in snapshots are valuable build artifacts, but they must be the output of discovery, never its hidden input.
+
+### Iteration 133
+
+2026-03-18
+
+- **Area: Raw discover -> fold split**
+- Plan:
+  - Remove the last architectural mistake where saved scope still constrained raw discovery.
+  - Make `discover:upstream-surface` materialize raw canonical catalogs directly from runtime/docs/source, then keep `fold:upstream-surface` as the explicit step that updates tracked snapshots.
+- Progress:
+  - Added a raw discovery builder in `test/parity/lib/upstream-surface-discovery.ts` and an explicit fold command in `scripts/fold-upstream-surface.ts`.
+  - Reworked `scripts/upstream-surface-enumeration.ts` so raw discovery writes into `test/parity/fixtures/upstream-surface-discovered` without reading tracked scope.
+  - Removed saved-scope namespace dependence from the remaining canonical extractors and handlers:
+    - `awk`, `c`, `perl`, `rust`, `powershell`
+    - `clojure`, `haskell`, `swift`
+    - `kotlin` now derives a broad raw stdlib catalog from the official Kotlin all-types index
+  - Switched Clojure namespace discovery to actual `ns` declarations from the official jar instead of path guessing.
+  - Switched Haskell discovery to one batched `ghci` session and Swift discovery to an in-container symbolgraph reduction step, so raw discovery stays deterministic without turning into a timeout or `ENOBUFS` problem.
+  - Updated `docs/upstream-surface-inventory.md` and `CORE_MAINTAINER.md` so `docs/upstream-surface-scope.yml` is now explicitly the tracked fold layer, not the thing that defines what raw discovery is allowed to see.
+- Validation:
+  - `corepack yarn lint:ts`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn discover:upstream-surface awk c clojure`
+  - `corepack yarn discover:upstream-surface haskell swift`
+  - `corepack yarn discover:upstream-surface kotlin`
+  - `corepack yarn discover:upstream-surface perl powershell rust`
+- Key learnings:
+  - The reliable shape is `discover -> inspect/fix -> fold -> triage`; any saved list earlier than fold weakens the whole claim.
+  - Broad raw discovery becomes workable once heavy languages reduce inside the container instead of streaming giant canonical artifacts back to Node.

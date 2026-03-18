@@ -8,10 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, type JsObjectProperty, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import {
-  buildScopedUpstreamSurfaceSnapshot,
-  discoverUpstreamSurfaceNamespaceCatalogFromScope,
-} from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const CLOJURE_SKIP_LIST = new Set<string>([
@@ -20,54 +17,108 @@ export const CLOJURE_SKIP_LIST = new Set<string>([
 ])
 
 const CLOJURE_DOCKER_IMAGE = 'clojure:temurin-21-tools-deps'
+const CLOJURE_NAMESPACE_CATALOG_TARGET = 'Clojure 1.12'
+const CLOJURE_NAMESPACE_CATALOG_SOURCE_REF = 'clojure:1.12:jar-namespaces'
+
+function discoverClojureUpstreamNamespaces() {
+  const script = `
+(require '[clojure.string :as string])
+
+(let [classpath (string/split (System/getProperty "java.class.path") #":")
+      jar-path (first (filter #(re-find #"/clojure-[0-9].*\\.jar$" %) classpath))]
+  (when-not jar-path
+    (throw (ex-info "Unable to locate clojure jar" {})))
+  (with-open [zip (java.util.zip.ZipFile. jar-path)]
+    (->> (enumeration-seq (.entries zip))
+         (map #(.getName %))
+         (filter #(re-matches #"clojure/.*\\.clj[cs]?" %))
+         (remove #(or (= % "clojure/core_deftype.clj") (= % "clojure/genclass.clj")))
+         (map #(.getEntry zip %))
+         (map (fn [entry]
+                (with-open [reader (java.io.BufferedReader.
+                                     (java.io.InputStreamReader. (.getInputStream zip entry)))]
+                  (loop [lines []]
+                    (if-let [line (.readLine reader)]
+                      (let [updated (conj lines line)
+                            text (string/join "\n" updated)
+                            match (re-find (re-pattern "\\\\(ns\\\\s+([^\\\\s\\\\)\\\\[]+)") text)]
+                        (if match
+                          (second match)
+                          (recur updated)))
+                      nil)))))
+         (filter some?)
+         sort
+         distinct
+         (run! println))))
+  `.trim()
+
+  const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', script], { timeout: 120000 })
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Clojure upstream namespaces')
+  }
+
+  return result.output
+    .trim()
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith('clojure.'))
+    .sort()
+}
+
+function discoverClojureUpstreamNamespaceCatalog() {
+  return {
+    target: CLOJURE_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'runtime' as const,
+    sourceRef: CLOJURE_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: discoverClojureUpstreamNamespaces(),
+  }
+}
 
 function discoverClojureUpstreamSurface() {
-  const discoverNamespace = (namespace: string, form: string) => {
-    const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', form])
-    if (!result.success) {
-      throw new Error(result.error || `Unable to discover Clojure upstream surface for ${namespace}`)
-    }
+  const catalog = discoverClojureUpstreamNamespaceCatalog()
+  const script = `
+(require 'clojure.string)
 
-    const entries = result.output
+(def namespaces ${JSON.stringify(catalog.namespaces)})
+
+(doseq [namespace namespaces]
+  (let [symbol (symbol namespace)]
+    (require symbol)
+    (->> (ns-publics symbol)
+         keys
+         (map name)
+         sort
+         (clojure.string/join "\\u001f")
+         (str namespace "\\t")
+         println)))
+  `.trim()
+
+  const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', script], { timeout: 120000 })
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Clojure upstream surface')
+  }
+
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'clojure',
+    catalog,
+    namespaces: result.output
       .trim()
       .split('\n')
       .map((line) => line.trim())
       .filter(Boolean)
-      .sort()
-
-    return {
-      namespace,
-      entries,
-    }
-  }
-
-  return buildScopedUpstreamSurfaceSnapshot('clojure', [
-    discoverNamespace('core', '(doseq [s (sort (map name (keys (ns-publics (quote clojure.core)))))] (println s))'),
-    discoverNamespace(
-      'edn',
-      "(require '[clojure.edn]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.edn)))))] (println s))",
-    ),
-    discoverNamespace(
-      'set',
-      "(require '[clojure.set]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.set)))))] (println s))",
-    ),
-    discoverNamespace(
-      'string',
-      "(require '[clojure.string]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.string)))))] (println s))",
-    ),
-    discoverNamespace(
-      'walk',
-      "(require '[clojure.walk]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.walk)))))] (println s))",
-    ),
-    discoverNamespace(
-      'zip',
-      "(require '[clojure.zip]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.zip)))))] (println s))",
-    ),
-    discoverNamespace(
-      'Math',
-      '(doseq [s (sort (map #(.getName %) (filter #(java.lang.reflect.Modifier/isStatic (.getModifiers %)) (.getMethods java.lang.Math))))] (println s))',
-    ),
-  ])
+      .map((line) => {
+        const [namespace, encodedEntries = ''] = line.split('\t')
+        if (!namespace) {
+          throw new Error('Unable to parse Clojure upstream surface row')
+        }
+        return {
+          namespace,
+          title: namespace,
+          sourceRef: `${CLOJURE_DOCKER_IMAGE}:${namespace}`,
+          entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
+        }
+      }),
+  })
 }
 
 const CLOJURE_PARITY_PRELUDE = `
@@ -574,7 +625,7 @@ export const clojureHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverClojureUpstreamSurface,
-    discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope('clojure'),
+    discoverNamespaceCatalog: discoverClojureUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => {
       const translated = func.category === 'string' && func.name === 'blank' ? 'blank?' : func.name.replaceAll('_', '-')
       return {

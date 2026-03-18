@@ -5,7 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 export const TCL_SKIP_LIST = new Set<string>([
   // None currently
@@ -60,6 +60,12 @@ function discoverTclUpstreamNamespaceCatalog() {
 }
 
 function discoverTclUpstreamSurface() {
+  const catalog = discoverTclUpstreamNamespaceCatalog()
+  type TclDiscoveredNamespace = {
+    namespace: string
+    entries: string[]
+    sourceRef?: string
+  }
   const discoverNamespace = (namespace: string) => {
     const code = [
       `set map [namespace ensemble configure ${namespace} -map]`,
@@ -119,7 +125,7 @@ function discoverTclUpstreamSurface() {
     return { namespace: 'core', entries }
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('tcl', [
+  const namespaces: TclDiscoveredNamespace[] = [
     discoverCoreCommands(),
     discoverNamespace('array'),
     discoverNamespace('binary'),
@@ -132,6 +138,7 @@ function discoverTclUpstreamSurface() {
     discoverNamespace('namespace'),
     {
       namespace: 'package',
+      sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm',
       entries: [
         'forget',
         'ifneeded',
@@ -148,9 +155,20 @@ function discoverTclUpstreamSurface() {
     discoverNamespace('string'),
     {
       namespace: 'zlib',
+      sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm',
       entries: ['adler32', 'compress', 'crc32', 'decompress', 'deflate', 'gunzip', 'gzip', 'inflate', 'push'],
     },
-  ])
+  ]
+
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'tcl',
+    catalog,
+    namespaces: namespaces.map((namespace) => ({
+      ...namespace,
+      title: namespace.namespace,
+      sourceRef: namespace.sourceRef ?? `${TCL_DOCKER_IMAGE}:${namespace.namespace}`,
+    })),
+  })
 }
 
 function stripTrailingComment(code: string): string {

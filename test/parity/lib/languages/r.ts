@@ -5,7 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot, getUpstreamSurfaceScopeNamespaceNames } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const R_SKIP_LIST = new Set<string>([
@@ -17,11 +17,18 @@ const R_NAMESPACE_CATALOG_TARGET = 'R 4.4'
 const R_NAMESPACE_CATALOG_SOURCE_REF = 'r-base:4.4.2:priority-base-recommended-packages'
 
 function discoverRUpstreamNamespaces() {
-  const result = runInDocker(R_DOCKER_IMAGE, [
-    'Rscript',
-    '-e',
-    "ip <- installed.packages(priority = c('base','recommended'))[, 'Package']; cat(sort(unique(ip)), sep='\\n')",
-  ])
+  const result = runInDocker(
+    R_DOCKER_IMAGE,
+    [
+      'Rscript',
+      '-e',
+      "ip <- installed.packages(priority = c('base','recommended'))[, 'Package']; cat(sort(unique(ip)), sep='\\n')",
+    ],
+    {
+      timeout: 120000,
+      maxBuffer: 8 * 1024 * 1024,
+    },
+  )
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover R upstream namespaces')
   }
@@ -47,7 +54,8 @@ function discoverRUpstreamNamespaceCatalog() {
 }
 
 function discoverRUpstreamSurface() {
-  const namespaces = getUpstreamSurfaceScopeNamespaceNames('r')
+  const catalog = discoverRUpstreamNamespaceCatalog()
+  const namespaces = catalog.namespaces
   const quotedNamespaces = namespaces.map((namespace) => `"${namespace}"`).join(', ')
   const code = `
 packages <- c(${quotedNamespaces})
@@ -86,9 +94,10 @@ for (pkg in packages) {
     throw new Error(result.error || 'Unable to discover R upstream surface')
   }
 
-  return buildScopedUpstreamSurfaceSnapshot(
-    'r',
-    result.output
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'r',
+    catalog,
+    namespaces: result.output
       .trim()
       .split('\n')
       .map((line) => line.trim())
@@ -100,10 +109,12 @@ for (pkg in packages) {
         }
         return {
           namespace,
+          title: namespace,
+          sourceRef: `${R_DOCKER_IMAGE}:${namespace}`,
           entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
         }
       }),
-  )
+  })
 }
 
 /**

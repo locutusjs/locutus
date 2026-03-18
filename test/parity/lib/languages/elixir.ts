@@ -8,7 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot, getUpstreamSurfaceScopeNamespaceNames } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const ELIXIR_SKIP_LIST = new Set<string>([])
@@ -31,7 +31,10 @@ function discoverElixirUpstreamNamespaces() {
     'IO.puts(Enum.join(modules, "\\n"))',
   ].join('\n')
 
-  const result = runInDocker(ELIXIR_DOCKER_IMAGE, ['elixir', '-e', code])
+  const result = runInDocker(ELIXIR_DOCKER_IMAGE, ['elixir', '-e', code], {
+    timeout: 120000,
+    maxBuffer: 8 * 1024 * 1024,
+  })
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Elixir upstream namespaces')
   }
@@ -57,7 +60,8 @@ function discoverElixirUpstreamNamespaceCatalog() {
 }
 
 function discoverElixirUpstreamSurface() {
-  const namespaces = getUpstreamSurfaceScopeNamespaceNames('elixir')
+  const catalog = discoverElixirUpstreamNamespaceCatalog()
+  const namespaces = catalog.namespaces
   const code = `
 modules = ${JSON.stringify(namespaces)}
 
@@ -88,9 +92,10 @@ end)
     throw new Error(result.error || 'Unable to discover Elixir upstream surface')
   }
 
-  return buildScopedUpstreamSurfaceSnapshot(
-    'elixir',
-    result.output
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'elixir',
+    catalog,
+    namespaces: result.output
       .trim()
       .split('\n')
       .map((line) => line.trim())
@@ -102,10 +107,12 @@ end)
         }
         return {
           namespace,
+          title: namespace,
+          sourceRef: `${ELIXIR_DOCKER_IMAGE}:${namespace}`,
           entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
         }
       }),
-  )
+  })
 }
 
 const ELIXIR_PARITY_MODULE = `

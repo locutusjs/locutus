@@ -19,5 +19,6 @@ export const swiftHandler = createInventoryOnlyLanguageHandler({
   upstreamSurface: buildInventoryOnlyUpstreamSurface({
     language: 'swift',
     discover: discoverSwiftUpstreamSurface,
+    discoverUsesDocker: true,
   }),
 })

@@ -8,11 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import {
-  buildScopedUpstreamSurfaceSnapshot,
-  getUpstreamSurfaceNamespaceScope,
-  getUpstreamSurfaceScopeNamespaceNames,
-} from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Ruby method mapping: JS function name → Ruby method name and category
 interface RubyMethodInfo {
@@ -82,7 +78,10 @@ names =
 puts names
 `.trim()
 
-  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script])
+  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script], {
+    timeout: 120000,
+    maxBuffer: 8 * 1024 * 1024,
+  })
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Ruby upstream namespaces')
   }
@@ -107,21 +106,10 @@ function discoverRubyUpstreamNamespaceCatalog() {
   }
 }
 
-function getRubyNamespaceDiscoveryMode(namespace: string): 'instance' | 'singleton' | undefined {
-  const title = getUpstreamSurfaceNamespaceScope('ruby', namespace).title?.toLowerCase() ?? ''
-  if (title.includes('instance methods')) {
-    return 'instance'
-  }
-  if (title.includes('singleton methods') || title.includes('module methods')) {
-    return 'singleton'
-  }
-  return undefined
-}
-
 function discoverRubyUpstreamSurface() {
-  const namespaceConfigs = getUpstreamSurfaceScopeNamespaceNames('ruby').map((namespace) => ({
+  const catalog = discoverRubyUpstreamNamespaceCatalog()
+  const namespaceConfigs = catalog.namespaces.map((namespace) => ({
     namespace,
-    mode: getRubyNamespaceDiscoveryMode(namespace),
   }))
   const script = `
 def owned_instance_entries(klass)
@@ -138,23 +126,13 @@ def owned_instance_entries(klass)
     .sort
 end
 
-def discover_entries(name, configured_mode)
+def discover_entries(name)
   object = Object.const_get(name)
-  mode =
-    configured_mode ||
-      if object.is_a?(Module) && !object.is_a?(Class)
-        "singleton"
-      else
-        "instance"
-      end
   entries = []
 
-  if mode == "instance"
-    entries.concat(owned_instance_entries(object)) if object.is_a?(Class)
-    entries.concat(object.instance_methods(false).map(&:to_s)) if object.is_a?(Module) && !object.is_a?(Class)
-  end
-
-  entries.concat(object.singleton_methods(false).map(&:to_s)) if mode == "singleton"
+  entries.concat(owned_instance_entries(object)) if object.is_a?(Class)
+  entries.concat(object.instance_methods(false).map(&:to_s)) if object.is_a?(Module) && !object.is_a?(Class)
+  entries.concat(object.singleton_methods(false).map(&:to_s))
 
   entries.uniq.sort
 end
@@ -162,10 +140,9 @@ end
 namespaces = ${JSON.stringify(namespaceConfigs)}
 snapshots = namespaces.map do |config|
   namespace = config["namespace"] || config[:namespace]
-  mode = config["mode"] || config[:mode]
   {
     namespace: namespace,
-    entries: discover_entries(namespace, mode)
+    entries: discover_entries(namespace)
   }
 end
 
@@ -173,7 +150,10 @@ require 'json'
 puts JSON.generate({ language: 'ruby', namespaces: snapshots })
 `.trim()
 
-  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script])
+  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script], {
+    timeout: 120000,
+    maxBuffer: 32 * 1024 * 1024,
+  })
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Ruby upstream surface')
   }
@@ -191,7 +171,16 @@ puts JSON.generate({ language: 'ruby', namespaces: snapshots })
     }>
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('ruby', scoped.namespaces)
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'ruby',
+    catalog,
+    namespaces: scoped.namespaces.map((namespace) => ({
+      namespace: namespace.namespace,
+      title: namespace.namespace,
+      sourceRef: `${RUBY_DOCKER_IMAGE}:${namespace.namespace}`,
+      entries: namespace.entries,
+    })),
+  })
 }
 
 /**

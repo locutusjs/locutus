@@ -19,5 +19,6 @@ export const haskellHandler = createInventoryOnlyLanguageHandler({
   upstreamSurface: buildInventoryOnlyUpstreamSurface({
     language: 'haskell',
     discover: discoverHaskellUpstreamSurface,
+    discoverUsesDocker: true,
   }),
 })

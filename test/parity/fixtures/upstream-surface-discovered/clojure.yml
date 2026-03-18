@@ -1,0 +1,90 @@
+language: clojure
+namespaces:
+  - namespace: '#''user/namespaces'
+    title: '#''user/namespaces'
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:#'user/namespaces
+    entries: []
+  - namespace: clojure.core.protocols
+    title: clojure.core.protocols
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.core.protocols
+    entries:
+      - coll-reduce
+      - CollReduce
+      - Datafiable
+      - datafy
+      - IKVReduce
+      - internal-reduce
+      - InternalReduce
+      - iterator-reduce!
+      - kv-reduce
+      - nav
+      - Navigable
+  - namespace: clojure.instant
+    title: clojure.instant
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.instant
+    entries:
+      - parse-timestamp
+      - read-instant-calendar
+      - read-instant-date
+      - read-instant-timestamp
+      - validated
+  - namespace: clojure.java.basis
+    title: clojure.java.basis
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.java.basis
+    entries:
+      - current-basis
+      - initial-basis
+  - namespace: clojure.java.basis.impl
+    title: clojure.java.basis.impl
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.java.basis.impl
+    entries:
+      - init-basis
+      - the-basis
+      - update-basis!
+  - namespace: clojure.java.process
+    title: clojure.java.process
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.java.process
+    entries:
+      - exec
+      - exit-ref
+      - from-file
+      - io-task
+      - start
+      - stderr
+      - stdin
+      - stdout
+      - to-file
+  - namespace: clojure.repl.deps
+    title: clojure.repl.deps
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.repl.deps
+    entries:
+      - add-lib
+      - add-libs
+      - sync-deps
+  - namespace: clojure.tools.deps.interop
+    title: clojure.tools.deps.interop
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.tools.deps.interop
+    entries:
+      - invoke-tool
+  - namespace: clojure.uuid
+    title: clojure.uuid
+    target: Clojure 1.12
+    sourceKind: runtime
+    sourceRef: clojure:temurin-21-tools-deps:clojure.uuid
+    entries: []

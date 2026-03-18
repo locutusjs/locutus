@@ -92,12 +92,15 @@ export function getDockerDigest(image: string): string {
 export function runInDocker(
   image: string,
   cmd: string[],
-  options: { mountRepo?: boolean; repoPath?: string; timeout?: number; maxBuffer?: number } = {},
+  options: { mountRepo?: boolean; repoPath?: string; timeout?: number; maxBuffer?: number; platform?: string } = {},
 ): DockerRunResult {
-  const { mountRepo = false, repoPath, timeout = 10000, maxBuffer = 16 * 1024 * 1024 } = options
+  const { mountRepo = false, repoPath, timeout = 10000, maxBuffer = 16 * 1024 * 1024, platform } = options
 
   try {
     const dockerArgs = ['run', '--rm', '-i']
+    if (platform) {
+      dockerArgs.push('--platform', platform)
+    }
     if (mountRepo && repoPath) {
       dockerArgs.push('-v', `${repoPath}:/work`, '-w', '/work')
     }

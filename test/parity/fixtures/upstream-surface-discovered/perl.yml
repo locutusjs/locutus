@@ -1,0 +1,5234 @@
+language: perl
+namespaces:
+  - namespace: App::Cpan
+    title: App::Cpan
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/App::Cpan
+    entries:
+      - Examples
+      - Methods
+      - Options
+  - namespace: App::Prove
+    title: App::Prove
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/App::Prove
+    entries:
+      - Attributes
+  - namespace: App::Prove::State
+    title: App::Prove::State
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/App::Prove::State
+    entries:
+      - commit
+      - extensions
+      - result_class
+      - results
+  - namespace: App::Prove::State::Result
+    title: App::Prove::State::Result
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/App::Prove::State::Result
+    entries:
+      - state_version
+      - test_class
+  - namespace: App::Prove::State::Result::Test
+    title: App::Prove::State::Result::Test
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/App::Prove::State::Result::Test
+    entries: []
+  - namespace: Archive::Tar
+    title: Archive::Tar
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Archive::Tar
+    entries: []
+  - namespace: Archive::Tar::File
+    title: Archive::Tar::File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Archive::Tar::File
+    entries:
+      - Accessors
+  - namespace: Attribute::Handlers
+    title: Attribute::Handlers
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Attribute::Handlers
+    entries: []
+  - namespace: autodie::exception
+    title: autodie::exception
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/autodie::exception
+    entries: []
+  - namespace: autodie::exception::system
+    title: autodie::exception::system
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/autodie::exception::system
+    entries:
+      - stringify
+  - namespace: autodie::hints
+    title: autodie::hints
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/autodie::hints
+    entries:
+      - Introduction
+  - namespace: autodie::Scope::Guard
+    title: autodie::Scope::Guard
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/autodie::Scope::Guard
+    entries:
+      - Methods
+  - namespace: autodie::Scope::GuardStack
+    title: autodie::Scope::GuardStack
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/autodie::Scope::GuardStack
+    entries:
+      - Methods
+  - namespace: autodie::skip
+    title: autodie::skip
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/autodie::skip
+    entries: []
+  - namespace: autodie::Util
+    title: autodie::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/autodie::Util
+    entries:
+      - Methods
+  - namespace: B::Concise
+    title: B::Concise
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/B::Concise
+    entries:
+      - Errors
+  - namespace: B::Deparse
+    title: B::Deparse
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/B::Deparse
+    entries:
+      - ambient_pragmas
+      - coderef2text
+      - Description
+      - new
+      - Synopsis
+  - namespace: B::Op_private
+    title: B::Op_private
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/B::Op_private
+    entries: []
+  - namespace: B::Showlex
+    title: B::Showlex
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/B::Showlex
+    entries:
+      - OPTIONS
+  - namespace: B::Terse
+    title: B::Terse
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/B::Terse
+    entries: []
+  - namespace: B::Xref
+    title: B::Xref
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/B::Xref
+    entries: []
+  - namespace: Class::Struct
+    title: Class::Struct
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Class::Struct
+    entries: []
+  - namespace: Compress::Raw::Bzip2
+    title: Compress::Raw::Bzip2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Compress::Raw::Bzip2
+    entries:
+      - Example
+  - namespace: Compress::Raw::Zlib
+    title: Compress::Raw::Zlib
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Compress::Raw::Zlib
+    entries:
+      - Example
+      - Examples
+  - namespace: Compress::Zlib
+    title: Compress::Zlib
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Compress::Zlib
+    entries:
+      - Compress::Zlib::memGunzip
+      - Compress::Zlib::memGzip
+      - Example
+      - Example1
+      - Examples
+  - namespace: Config::Extensions
+    title: Config::Extensions
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Config::Extensions
+    entries: []
+  - namespace: Config::Perl::V
+    title: Config::Perl::V
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Config::Perl::V
+    entries: []
+  - namespace: core
+    title: core
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/functions
+    entries:
+      - __CLASS__
+      - __DATA__
+      - __END__
+      - __FILE__
+      - __LINE__
+      - __PACKAGE__
+      - __SUB__
+      - abs
+      - accept
+      - ADJUST
+      - alarm
+      - all
+      - and
+      - any
+      - atan2
+      - AUTOLOAD
+      - BEGIN
+      - bind
+      - binmode
+      - bless
+      - break
+      - caller
+      - catch
+      - chdir
+      - CHECK
+      - chmod
+      - chomp
+      - chop
+      - chown
+      - chr
+      - chroot
+      - class
+      - close
+      - closedir
+      - cmp
+      - connect
+      - continue
+      - CORE
+      - cos
+      - crypt
+      - dbmclose
+      - dbmopen
+      - default
+      - defer
+      - defined
+      - delete
+      - DESTROY
+      - die
+      - do
+      - dump
+      - each
+      - else
+      - elseif
+      - elsif
+      - END
+      - endgrent
+      - endhostent
+      - endnetent
+      - endprotoent
+      - endpwent
+      - endservent
+      - eof
+      - eq
+      - eval
+      - evalbytes
+      - exec
+      - exists
+      - exit
+      - exp
+      - fc
+      - fcntl
+      - field
+      - fileno
+      - finally
+      - flock
+      - for
+      - foreach
+      - fork
+      - format
+      - formline
+      - ge
+      - getc
+      - getgrent
+      - getgrgid
+      - getgrnam
+      - gethostbyaddr
+      - gethostbyname
+      - gethostent
+      - getlogin
+      - getnetbyaddr
+      - getnetbyname
+      - getnetent
+      - getpeername
+      - getpgrp
+      - getppid
+      - getpriority
+      - getprotobyname
+      - getprotobynumber
+      - getprotoent
+      - getpwent
+      - getpwnam
+      - getpwuid
+      - getservbyname
+      - getservbyport
+      - getservent
+      - getsockname
+      - getsockopt
+      - given
+      - glob
+      - gmtime
+      - goto
+      - grep
+      - gt
+      - hex
+      - if
+      - import
+      - index
+      - INIT
+      - int
+      - ioctl
+      - isa
+      - join
+      - keys
+      - kill
+      - last
+      - lc
+      - lcfirst
+      - le
+      - length
+      - link
+      - listen
+      - local
+      - localtime
+      - lock
+      - log
+      - lstat
+      - lt
+      - m
+      - map
+      - method
+      - mkdir
+      - msgctl
+      - msgget
+      - msgrcv
+      - msgsnd
+      - my
+      - ne
+      - next
+      - 'no'
+      - not
+      - oct
+      - open
+      - opendir
+      - or
+      - ord
+      - our
+      - pack
+      - package
+      - pipe
+      - pop
+      - pos
+      - print
+      - printf
+      - prototype
+      - push
+      - quotemeta
+      - rand
+      - read
+      - readdir
+      - readline
+      - readlink
+      - readpipe
+      - recv
+      - redo
+      - ref
+      - rename
+      - require
+      - reset
+      - return
+      - reverse
+      - rewinddir
+      - rindex
+      - rmdir
+      - s
+      - say
+      - scalar
+      - seek
+      - seekdir
+      - select
+      - semctl
+      - semget
+      - semop
+      - send
+      - setgrent
+      - sethostent
+      - setnetent
+      - setpgrp
+      - setpriority
+      - setprotoent
+      - setpwent
+      - setservent
+      - setsockopt
+      - shift
+      - shmctl
+      - shmget
+      - shmread
+      - shmwrite
+      - shutdown
+      - sin
+      - sleep
+      - socket
+      - socketpair
+      - sort
+      - splice
+      - split
+      - sprintf
+      - sqrt
+      - srand
+      - stat
+      - state
+      - study
+      - sub
+      - substr
+      - symlink
+      - syscall
+      - sysopen
+      - sysread
+      - sysseek
+      - system
+      - syswrite
+      - tell
+      - telldir
+      - tie
+      - tied
+      - time
+      - times
+      - tr
+      - truncate
+      - try
+      - uc
+      - ucfirst
+      - umask
+      - undef
+      - UNITCHECK
+      - unless
+      - unlink
+      - unpack
+      - unshift
+      - untie
+      - until
+      - use
+      - utime
+      - values
+      - vec
+      - wait
+      - waitpid
+      - wantarray
+      - warn
+      - when
+      - while
+      - write
+      - x
+      - xor
+      - 'y'
+  - namespace: CPAN::API::HOWTO
+    title: CPAN::API::HOWTO
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::API::HOWTO
+    entries: []
+  - namespace: CPAN::Debug
+    title: CPAN::Debug
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Debug
+    entries: []
+  - namespace: CPAN::Distroprefs
+    title: CPAN::Distroprefs
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Distroprefs
+    entries:
+      - Common
+      - Errors
+      - Successes
+  - namespace: CPAN::FirstTime
+    title: CPAN::FirstTime
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::FirstTime
+    entries: []
+  - namespace: CPAN::HandleConfig
+    title: CPAN::HandleConfig
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::HandleConfig
+    entries: []
+  - namespace: CPAN::Kwalify
+    title: CPAN::Kwalify
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Kwalify
+    entries: []
+  - namespace: CPAN::Meta
+    title: CPAN::Meta
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta
+    entries:
+      - as_string
+      - as_struct
+      - create
+      - effective_prereqs
+      - feature
+      - features
+      - load_file
+      - load_json_string
+      - load_string
+      - load_yaml_string
+      - meta_spec_version
+      - new
+      - save
+      - should_index_file
+      - should_index_package
+  - namespace: CPAN::Meta::Converter
+    title: CPAN::Meta::Converter
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Converter
+    entries:
+      - convert
+      - new
+      - upgrade_fragment
+  - namespace: CPAN::Meta::Feature
+    title: CPAN::Meta::Feature
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Feature
+    entries:
+      - description
+      - identifier
+      - new
+      - prereqs
+  - namespace: CPAN::Meta::History
+    title: CPAN::Meta::History
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::History
+    entries: []
+  - namespace: CPAN::Meta::History::Meta_1_0
+    title: CPAN::Meta::History::Meta_1_0
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::History::Meta_1_0
+    entries: []
+  - namespace: CPAN::Meta::History::Meta_1_1
+    title: CPAN::Meta::History::Meta_1_1
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::History::Meta_1_1
+    entries: []
+  - namespace: CPAN::Meta::History::Meta_1_2
+    title: CPAN::Meta::History::Meta_1_2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::History::Meta_1_2
+    entries:
+      - abstract
+      - author
+      - build_requires
+      - conflicts
+      - distribution_type
+      - dynamic_config
+      - generated_by
+      - keywords
+      - license
+      - name
+      - no_index
+      - private
+      - provides
+      - recommends
+      - requires
+      - resources
+      - version
+  - namespace: CPAN::Meta::History::Meta_1_3
+    title: CPAN::Meta::History::Meta_1_3
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::History::Meta_1_3
+    entries:
+      - abstract
+      - author
+      - build_requires
+      - conflicts
+      - distribution_type
+      - dynamic_config
+      - generated_by
+      - keywords
+      - license
+      - name
+      - no_index
+      - private
+      - provides
+      - recommends
+      - requires
+      - resources
+      - version
+  - namespace: CPAN::Meta::History::Meta_1_4
+    title: CPAN::Meta::History::Meta_1_4
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::History::Meta_1_4
+    entries:
+      - abstract
+      - author
+      - build_requires
+      - configure_requires
+      - conflicts
+      - distribution_type
+      - dynamic_config
+      - generated_by
+      - keywords
+      - license
+      - name
+      - no_index
+      - private
+      - provides
+      - recommends
+      - requires
+      - resources
+      - version
+  - namespace: CPAN::Meta::Merge
+    title: CPAN::Meta::Merge
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Merge
+    entries:
+      - new
+  - namespace: CPAN::Meta::Prereqs
+    title: CPAN::Meta::Prereqs
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Prereqs
+    entries:
+      - as_string_hash
+      - clone
+      - finalize
+      - is_finalized
+      - merged_requirements
+      - new
+      - phases
+      - requirements_for
+      - types_in
+      - with_merged_prereqs
+  - namespace: CPAN::Meta::Requirements
+    title: CPAN::Meta::Requirements
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Requirements
+    entries:
+      - accepts_module
+      - add_exclusion
+      - add_maximum
+      - add_minimum
+      - add_requirements
+      - add_string_requirement
+      - as_string_hash
+      - clear_requirement
+      - clone
+      - exact_version
+      - finalize
+      - from_string_hash
+      - is_finalized
+      - is_simple
+      - new
+      - required_modules
+      - requirements_for_module
+      - structured_requirements_for_module
+      - version_range_for_module
+  - namespace: CPAN::Meta::Requirements::Range
+    title: CPAN::Meta::Requirements::Range
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Requirements::Range
+    entries:
+      - accepts
+      - as_string
+      - as_struct
+      - is_simple
+      - with_exact_version
+      - with_exclusion
+      - with_maximum
+      - with_minimum
+      - with_range
+      - with_string_requirement
+  - namespace: CPAN::Meta::Spec
+    title: CPAN::Meta::Spec
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Spec
+    entries:
+      - Boolean
+      - List
+      - Map
+      - String
+      - URL
+      - Version
+  - namespace: CPAN::Meta::Validator
+    title: CPAN::Meta::Validator
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::Validator
+    entries:
+      - errors
+      - is_valid
+      - new
+  - namespace: CPAN::Meta::YAML
+    title: CPAN::Meta::YAML
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Meta::YAML
+    entries: []
+  - namespace: CPAN::Nox
+    title: CPAN::Nox
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Nox
+    entries: []
+  - namespace: CPAN::Plugin
+    title: CPAN::Plugin
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Plugin
+    entries:
+      - build_dir
+      - distribution
+      - distribution_info
+      - distribution_object
+      - is_xs
+      - plugin_requires
+  - namespace: CPAN::Plugin::Specfile
+    title: CPAN::Plugin::Specfile
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Plugin::Specfile
+    entries:
+      - OPTIONS
+  - namespace: CPAN::Queue
+    title: CPAN::Queue
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Queue
+    entries: []
+  - namespace: CPAN::Tarzip
+    title: CPAN::Tarzip
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Tarzip
+    entries: []
+  - namespace: CPAN::Version
+    title: CPAN::Version
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/CPAN::Version
+    entries: []
+  - namespace: Data::Dumper
+    title: Data::Dumper
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Data::Dumper
+    entries:
+      - Exports
+      - Functions
+      - Methods
+      - NOTE
+  - namespace: DBM_Filter::compress
+    title: DBM_Filter::compress
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/DBM_Filter::compress
+    entries: []
+  - namespace: DBM_Filter::encode
+    title: DBM_Filter::encode
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/DBM_Filter::encode
+    entries: []
+  - namespace: DBM_Filter::int32
+    title: DBM_Filter::int32
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/DBM_Filter::int32
+    entries: []
+  - namespace: DBM_Filter::null
+    title: DBM_Filter::null
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/DBM_Filter::null
+    entries: []
+  - namespace: DBM_Filter::utf8
+    title: DBM_Filter::utf8
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/DBM_Filter::utf8
+    entries: []
+  - namespace: Devel::Peek
+    title: Devel::Peek
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Devel::Peek
+    entries: []
+  - namespace: Devel::PPPort
+    title: Devel::PPPort
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Devel::PPPort
+    entries:
+      - GetFileContents
+      - WriteFile
+  - namespace: Devel::SelfStubber
+    title: Devel::SelfStubber
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Devel::SelfStubber
+    entries: []
+  - namespace: Digest::base
+    title: Digest::base
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Digest::base
+    entries: []
+  - namespace: Digest::file
+    title: Digest::file
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Digest::file
+    entries: []
+  - namespace: Digest::MD5
+    title: Digest::MD5
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Digest::MD5
+    entries: []
+  - namespace: Digest::SHA
+    title: Digest::SHA
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Digest::SHA
+    entries: []
+  - namespace: Encode
+    title: Encode
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode
+    entries:
+      - _utf8_off
+      - _utf8_on
+      - byte
+      - character
+      - decode
+      - decode_utf8
+      - encode
+      - encode_utf8
+      - FB_CROAK
+      - FB_DEFAULT
+      - FB_QUIET
+      - FB_WARN
+      - find_encoding
+      - find_mime_encoding
+      - from_to
+      - is_utf8
+      - LEAVE_SRC
+      - octet
+  - namespace: Encode::Alias
+    title: Encode::Alias
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Alias
+    entries: []
+  - namespace: Encode::Byte
+    title: Encode::Byte
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Byte
+    entries: []
+  - namespace: Encode::CJKConstants
+    title: Encode::CJKConstants
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::CJKConstants
+    entries: []
+  - namespace: Encode::CN
+    title: Encode::CN
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::CN
+    entries: []
+  - namespace: Encode::CN::HZ
+    title: Encode::CN::HZ
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::CN::HZ
+    entries: []
+  - namespace: Encode::Config
+    title: Encode::Config
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Config
+    entries: []
+  - namespace: Encode::EBCDIC
+    title: Encode::EBCDIC
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::EBCDIC
+    entries: []
+  - namespace: Encode::Encoder
+    title: Encode::Encoder
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Encoder
+    entries: []
+  - namespace: Encode::Encoding
+    title: Encode::Encoding
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Encoding
+    entries: []
+  - namespace: Encode::GSM0338
+    title: Encode::GSM0338
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::GSM0338
+    entries:
+      - Septets
+  - namespace: Encode::Guess
+    title: Encode::Guess
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Guess
+    entries: []
+  - namespace: Encode::JP
+    title: Encode::JP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::JP
+    entries: []
+  - namespace: Encode::JP::H2Z
+    title: Encode::JP::H2Z
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::JP::H2Z
+    entries: []
+  - namespace: Encode::JP::JIS7
+    title: Encode::JP::JIS7
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::JP::JIS7
+    entries: []
+  - namespace: Encode::KR
+    title: Encode::KR
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::KR
+    entries: []
+  - namespace: Encode::KR::2022_KR
+    title: Encode::KR::2022_KR
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::KR::2022_KR
+    entries: []
+  - namespace: Encode::MIME::Header
+    title: Encode::MIME::Header
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::MIME::Header
+    entries: []
+  - namespace: Encode::MIME::Name
+    title: Encode::MIME::Name
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::MIME::Name
+    entries: []
+  - namespace: Encode::PerlIO
+    title: Encode::PerlIO
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::PerlIO
+    entries: []
+  - namespace: Encode::Supported
+    title: Encode::Supported
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Supported
+    entries: []
+  - namespace: Encode::Symbol
+    title: Encode::Symbol
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Symbol
+    entries: []
+  - namespace: Encode::TW
+    title: Encode::TW
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::TW
+    entries: []
+  - namespace: Encode::Unicode
+    title: Encode::Unicode
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Unicode
+    entries: []
+  - namespace: Encode::Unicode::UTF7
+    title: Encode::Unicode::UTF7
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Encode::Unicode::UTF7
+    entries: []
+  - namespace: encoding::warnings
+    title: encoding::warnings
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/encoding::warnings
+    entries: []
+  - namespace: Exporter::Heavy
+    title: Exporter::Heavy
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Exporter::Heavy
+    entries: []
+  - namespace: ExtUtils::CBuilder
+    title: ExtUtils::CBuilder
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::CBuilder
+    entries: []
+  - namespace: ExtUtils::CBuilder::Platform::Windows
+    title: ExtUtils::CBuilder::Platform::Windows
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::CBuilder::Platform::Windows
+    entries: []
+  - namespace: ExtUtils::Command
+    title: ExtUtils::Command
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Command
+    entries:
+      - FUNCTIONS
+  - namespace: ExtUtils::Command::MM
+    title: ExtUtils::Command::MM
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Command::MM
+    entries: []
+  - namespace: ExtUtils::Constant
+    title: ExtUtils::Constant
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Constant
+    entries: []
+  - namespace: ExtUtils::Constant::Base
+    title: ExtUtils::Constant::Base
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Constant::Base
+    entries: []
+  - namespace: ExtUtils::Constant::Utils
+    title: ExtUtils::Constant::Utils
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Constant::Utils
+    entries: []
+  - namespace: ExtUtils::Constant::XS
+    title: ExtUtils::Constant::XS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Constant::XS
+    entries: []
+  - namespace: ExtUtils::Embed
+    title: ExtUtils::Embed
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Embed
+    entries: []
+  - namespace: ExtUtils::Install
+    title: ExtUtils::Install
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Install
+    entries:
+      - install
+      - install_default
+      - pm_to_blib
+      - uninstall
+  - namespace: ExtUtils::Installed
+    title: ExtUtils::Installed
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Installed
+    entries: []
+  - namespace: ExtUtils::Liblist
+    title: ExtUtils::Liblist
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Liblist
+    entries:
+      - BSLOADLIBS
+      - EXTRALIBS
+  - namespace: ExtUtils::MakeMaker
+    title: ExtUtils::MakeMaker
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MakeMaker
+    entries:
+      - INSTALL_BASE
+  - namespace: ExtUtils::MakeMaker::Config
+    title: ExtUtils::MakeMaker::Config
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MakeMaker::Config
+    entries: []
+  - namespace: ExtUtils::MakeMaker::FAQ
+    title: ExtUtils::MakeMaker::FAQ
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MakeMaker::FAQ
+    entries:
+      - XS
+  - namespace: ExtUtils::MakeMaker::Locale
+    title: ExtUtils::MakeMaker::Locale
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MakeMaker::Locale
+    entries:
+      - Windows
+  - namespace: ExtUtils::MakeMaker::Tutorial
+    title: ExtUtils::MakeMaker::Tutorial
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MakeMaker::Tutorial
+    entries: []
+  - namespace: ExtUtils::Manifest
+    title: ExtUtils::Manifest
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Manifest
+    entries:
+      - EXPORT_OK
+      - filecheck
+      - fullcheck
+      - maniadd
+      - manicheck
+      - manicopy
+      - MANIFEST
+      - manifind
+      - maniread
+      - maniskip
+      - mkmanifest
+      - skipcheck
+  - namespace: ExtUtils::Miniperl
+    title: ExtUtils::Miniperl
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Miniperl
+    entries: []
+  - namespace: ExtUtils::Mkbootstrap
+    title: ExtUtils::Mkbootstrap
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Mkbootstrap
+    entries: []
+  - namespace: ExtUtils::Mksymlists
+    title: ExtUtils::Mksymlists
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Mksymlists
+    entries: []
+  - namespace: ExtUtils::MM
+    title: ExtUtils::MM
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM
+    entries: []
+  - namespace: ExtUtils::MM_AIX
+    title: ExtUtils::MM_AIX
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_AIX
+    entries: []
+  - namespace: ExtUtils::MM_Any
+    title: ExtUtils::MM_Any
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_Any
+    entries:
+      - Misc
+      - Targets
+      - Tools
+  - namespace: ExtUtils::MM_BeOS
+    title: ExtUtils::MM_BeOS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_BeOS
+    entries: []
+  - namespace: ExtUtils::MM_Cygwin
+    title: ExtUtils::MM_Cygwin
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_Cygwin
+    entries: []
+  - namespace: ExtUtils::MM_Darwin
+    title: ExtUtils::MM_Darwin
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_Darwin
+    entries: []
+  - namespace: ExtUtils::MM_DOS
+    title: ExtUtils::MM_DOS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_DOS
+    entries: []
+  - namespace: ExtUtils::MM_MacOS
+    title: ExtUtils::MM_MacOS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_MacOS
+    entries: []
+  - namespace: ExtUtils::MM_NW5
+    title: ExtUtils::MM_NW5
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_NW5
+    entries: []
+  - namespace: ExtUtils::MM_OS2
+    title: ExtUtils::MM_OS2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_OS2
+    entries: []
+  - namespace: ExtUtils::MM_OS390
+    title: ExtUtils::MM_OS390
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_OS390
+    entries: []
+  - namespace: ExtUtils::MM_QNX
+    title: ExtUtils::MM_QNX
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_QNX
+    entries: []
+  - namespace: ExtUtils::MM_Unix
+    title: ExtUtils::MM_Unix
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_Unix
+    entries:
+      - Methods
+  - namespace: ExtUtils::MM_UWIN
+    title: ExtUtils::MM_UWIN
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_UWIN
+    entries: []
+  - namespace: ExtUtils::MM_VMS
+    title: ExtUtils::MM_VMS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_VMS
+    entries:
+      - Methods
+  - namespace: ExtUtils::MM_VOS
+    title: ExtUtils::MM_VOS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_VOS
+    entries: []
+  - namespace: ExtUtils::MM_Win32
+    title: ExtUtils::MM_Win32
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_Win32
+    entries: []
+  - namespace: ExtUtils::MM_Win95
+    title: ExtUtils::MM_Win95
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MM_Win95
+    entries: []
+  - namespace: ExtUtils::MY
+    title: ExtUtils::MY
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::MY
+    entries: []
+  - namespace: ExtUtils::Packlist
+    title: ExtUtils::Packlist
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Packlist
+    entries: []
+  - namespace: ExtUtils::ParseXS
+    title: ExtUtils::ParseXS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::ParseXS
+    entries: []
+  - namespace: ExtUtils::ParseXS::Constants
+    title: ExtUtils::ParseXS::Constants
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::ParseXS::Constants
+    entries: []
+  - namespace: ExtUtils::ParseXS::Eval
+    title: ExtUtils::ParseXS::Eval
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::ParseXS::Eval
+    entries: []
+  - namespace: ExtUtils::ParseXS::Node
+    title: ExtUtils::ParseXS::Node
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::ParseXS::Node
+    entries: []
+  - namespace: ExtUtils::ParseXS::Utilities
+    title: ExtUtils::ParseXS::Utilities
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::ParseXS::Utilities
+    entries:
+      - report_typemap_failure
+  - namespace: ExtUtils::PL2Bat
+    title: ExtUtils::PL2Bat
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::PL2Bat
+    entries: []
+  - namespace: ExtUtils::testlib
+    title: ExtUtils::testlib
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::testlib
+    entries: []
+  - namespace: ExtUtils::Typemaps
+    title: ExtUtils::Typemaps
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Typemaps
+    entries:
+      - _get_inputmap_hash
+      - _get_outputmap_hash
+      - _get_prototype_hash
+      - _get_typemap_hash
+      - add_inputmap
+      - add_outputmap
+      - add_string
+      - add_typemap
+      - as_embedded_typemap
+      - as_string
+      - clone
+      - file
+      - get_inputmap
+      - get_outputmap
+      - get_typemap
+      - is_empty
+      - list_mapped_ctypes
+      - merge
+      - new
+      - remove_inputmap
+      - remove_outputmap
+      - remove_typemap
+      - tidy_type
+      - write
+  - namespace: ExtUtils::Typemaps::Cmd
+    title: ExtUtils::Typemaps::Cmd
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Typemaps::Cmd
+    entries:
+      - embeddable_typemap
+  - namespace: ExtUtils::Typemaps::InputMap
+    title: ExtUtils::Typemaps::InputMap
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Typemaps::InputMap
+    entries:
+      - cleaned_code
+      - code
+      - new
+      - xstype
+  - namespace: ExtUtils::Typemaps::OutputMap
+    title: ExtUtils::Typemaps::OutputMap
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Typemaps::OutputMap
+    entries:
+      - cleaned_code
+      - code
+      - new
+      - targetable
+      - targetable_legacy
+      - xstype
+  - namespace: ExtUtils::Typemaps::Type
+    title: ExtUtils::Typemaps::Type
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/ExtUtils::Typemaps::Type
+    entries:
+      - ctype
+      - new
+      - proto
+      - tidy_ctype
+      - xstype
+  - namespace: File::Basename
+    title: File::Basename
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Basename
+    entries:
+      - basename
+      - dirname
+      - fileparse
+      - fileparse_set_fstype
+  - namespace: File::Compare
+    title: File::Compare
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Compare
+    entries: []
+  - namespace: File::Copy
+    title: File::Copy
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Copy
+    entries: []
+  - namespace: File::DosGlob
+    title: File::DosGlob
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::DosGlob
+    entries: []
+  - namespace: File::Fetch
+    title: File::Fetch
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Fetch
+    entries: []
+  - namespace: File::Find
+    title: File::Find
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Find
+    entries: []
+  - namespace: File::Glob
+    title: File::Glob
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Glob
+    entries:
+      - EXPORTS
+  - namespace: File::GlobMapper
+    title: File::GlobMapper
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::GlobMapper
+    entries:
+      - Limitations
+  - namespace: File::Path
+    title: File::Path
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Path
+    entries:
+      - NOTES
+  - namespace: File::Spec
+    title: File::Spec
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec
+    entries: []
+  - namespace: File::Spec::AmigaOS
+    title: File::Spec::AmigaOS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::AmigaOS
+    entries: []
+  - namespace: File::Spec::Cygwin
+    title: File::Spec::Cygwin
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::Cygwin
+    entries: []
+  - namespace: File::Spec::Epoc
+    title: File::Spec::Epoc
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::Epoc
+    entries: []
+  - namespace: File::Spec::Functions
+    title: File::Spec::Functions
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::Functions
+    entries:
+      - Exports
+  - namespace: File::Spec::Mac
+    title: File::Spec::Mac
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::Mac
+    entries: []
+  - namespace: File::Spec::OS2
+    title: File::Spec::OS2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::OS2
+    entries: []
+  - namespace: File::Spec::Unix
+    title: File::Spec::Unix
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::Unix
+    entries: []
+  - namespace: File::Spec::VMS
+    title: File::Spec::VMS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::VMS
+    entries: []
+  - namespace: File::Spec::Win32
+    title: File::Spec::Win32
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Spec::Win32
+    entries: []
+  - namespace: File::stat
+    title: File::stat
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::stat
+    entries: []
+  - namespace: File::Temp
+    title: File::Temp
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/File::Temp
+    entries:
+      - BINMODE
+      - Forking
+  - namespace: Filter::Simple
+    title: Filter::Simple
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Filter::Simple
+    entries: []
+  - namespace: Filter::Util::Call
+    title: Filter::Util::Call
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Filter::Util::Call
+    entries: []
+  - namespace: Getopt::Long
+    title: Getopt::Long
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Getopt::Long
+    entries:
+      - Bundling
+  - namespace: Getopt::Long::Parser
+    title: Getopt::Long::Parser
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Getopt::Long::Parser
+    entries:
+      - configure
+      - getoptions
+      - getoptionsfromarray
+  - namespace: Getopt::Std
+    title: Getopt::Std
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Getopt::Std
+    entries: []
+  - namespace: Hash::Util
+    title: Hash::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Hash::Util
+    entries: []
+  - namespace: Hash::Util::FieldHash
+    title: Hash::Util::FieldHash
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Hash::Util::FieldHash
+    entries:
+      - Solutions
+  - namespace: HTTP::Tiny
+    title: HTTP::Tiny
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/HTTP::Tiny
+    entries:
+      - can_ssl
+      - connected
+      - mirror
+      - new
+      - post_form
+      - request
+      - www_form_urlencode
+  - namespace: I18N::Collate
+    title: I18N::Collate
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/I18N::Collate
+    entries: []
+  - namespace: I18N::Langinfo
+    title: I18N::Langinfo
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/I18N::Langinfo
+    entries:
+      - EXPORT
+  - namespace: I18N::LangTags
+    title: I18N::LangTags
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/I18N::LangTags
+    entries: []
+  - namespace: I18N::LangTags::Detect
+    title: I18N::LangTags::Detect
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/I18N::LangTags::Detect
+    entries: []
+  - namespace: I18N::LangTags::List
+    title: I18N::LangTags::List
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/I18N::LangTags::List
+    entries: []
+  - namespace: IO::Compress
+    title: IO::Compress
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress
+    entries: []
+  - namespace: IO::Compress::Base
+    title: IO::Compress::Base
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress::Base
+    entries: []
+  - namespace: IO::Compress::Bzip2
+    title: IO::Compress::Bzip2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress::Bzip2
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - Examples
+      - fileno
+      - flush
+      - input_line_number
+      - Notes
+      - opened
+      - print
+      - printf
+      - seek
+      - syswrite
+      - tell
+      - write
+  - namespace: IO::Compress::Deflate
+    title: IO::Compress::Deflate
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress::Deflate
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - deflateParams
+      - eof
+      - Examples
+      - fileno
+      - flush
+      - input_line_number
+      - Notes
+      - opened
+      - print
+      - printf
+      - seek
+      - syswrite
+      - tell
+      - write
+  - namespace: IO::Compress::FAQ
+    title: IO::Compress::FAQ
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress::FAQ
+    entries: []
+  - namespace: IO::Compress::Gzip
+    title: IO::Compress::Gzip
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress::Gzip
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - deflateParams
+      - eof
+      - Examples
+      - fileno
+      - flush
+      - input_line_number
+      - Notes
+      - opened
+      - print
+      - printf
+      - seek
+      - syswrite
+      - tell
+      - write
+  - namespace: IO::Compress::RawDeflate
+    title: IO::Compress::RawDeflate
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress::RawDeflate
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - deflateParams
+      - eof
+      - Examples
+      - fileno
+      - flush
+      - input_line_number
+      - Notes
+      - opened
+      - print
+      - printf
+      - seek
+      - syswrite
+      - tell
+      - write
+  - namespace: IO::Compress::Zip
+    title: IO::Compress::Zip
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Compress::Zip
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - deflateParams
+      - eof
+      - Examples
+      - fileno
+      - flush
+      - input_line_number
+      - Notes
+      - opened
+      - print
+      - printf
+      - seek
+      - syswrite
+      - tell
+      - write
+  - namespace: IO::Dir
+    title: IO::Dir
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Dir
+    entries: []
+  - namespace: IO::File
+    title: IO::File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::File
+    entries: []
+  - namespace: IO::Handle
+    title: IO::Handle
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Handle
+    entries: []
+  - namespace: IO::Pipe
+    title: IO::Pipe
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Pipe
+    entries: []
+  - namespace: IO::Poll
+    title: IO::Poll
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Poll
+    entries: []
+  - namespace: IO::Seekable
+    title: IO::Seekable
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Seekable
+    entries: []
+  - namespace: IO::Select
+    title: IO::Select
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Select
+    entries: []
+  - namespace: IO::Socket
+    title: IO::Socket
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Socket
+    entries:
+      - accept
+      - atmark
+      - autoflush
+      - bind
+      - Blocking
+      - connected
+      - Domain
+      - getsockopt
+      - listen
+      - Listen
+      - new
+      - peername
+      - protocol
+      - recv
+      - send
+      - setsockopt
+      - shutdown
+      - sockdomain
+      - socket
+      - socketpair
+      - sockname
+      - sockopt
+      - socktype
+      - timeout
+      - Timeout
+      - Type
+  - namespace: IO::Socket::INET
+    title: IO::Socket::INET
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Socket::INET
+    entries:
+      - METHODS
+  - namespace: IO::Socket::IP
+    title: IO::Socket::IP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Socket::IP
+    entries:
+      - as_inet
+      - join_addr
+      - new
+      - peeraddr
+      - peerhost
+      - peerhost_service
+      - peerhostname
+      - peerport
+      - peerservice
+      - sockaddr
+      - sockhost
+      - sockhost_service
+      - sockhostname
+      - sockport
+      - sockservice
+      - split_addr
+  - namespace: IO::Socket::UNIX
+    title: IO::Socket::UNIX
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Socket::UNIX
+    entries: []
+  - namespace: IO::Uncompress::AnyInflate
+    title: IO::Uncompress::AnyInflate
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::AnyInflate
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - fileno
+      - getc
+      - getHeaderInfo
+      - getline
+      - inflateSync
+      - input_line_number
+      - nextStream
+      - Notes
+      - opened
+      - read
+      - read1
+      - seek
+      - tell
+      - trailingData
+      - ungetc
+  - namespace: IO::Uncompress::AnyUncompress
+    title: IO::Uncompress::AnyUncompress
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::AnyUncompress
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - fileno
+      - getc
+      - getHeaderInfo
+      - getline
+      - input_line_number
+      - nextStream
+      - Notes
+      - opened
+      - read
+      - read1
+      - seek
+      - tell
+      - trailingData
+      - ungetc
+  - namespace: IO::Uncompress::Base
+    title: IO::Uncompress::Base
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::Base
+    entries: []
+  - namespace: IO::Uncompress::Bunzip2
+    title: IO::Uncompress::Bunzip2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::Bunzip2
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - fileno
+      - getc
+      - getHeaderInfo
+      - getline
+      - input_line_number
+      - nextStream
+      - Notes
+      - opened
+      - read
+      - read1
+      - seek
+      - tell
+      - trailingData
+      - ungetc
+  - namespace: IO::Uncompress::Gunzip
+    title: IO::Uncompress::Gunzip
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::Gunzip
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - fileno
+      - getc
+      - getHeaderInfo
+      - getline
+      - inflateSync
+      - input_line_number
+      - nextStream
+      - Notes
+      - opened
+      - read
+      - read1
+      - seek
+      - tell
+      - trailingData
+      - ungetc
+  - namespace: IO::Uncompress::Inflate
+    title: IO::Uncompress::Inflate
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::Inflate
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - fileno
+      - getc
+      - getHeaderInfo
+      - getline
+      - inflateSync
+      - input_line_number
+      - nextStream
+      - Notes
+      - opened
+      - read
+      - read1
+      - seek
+      - tell
+      - trailingData
+      - ungetc
+  - namespace: IO::Uncompress::RawInflate
+    title: IO::Uncompress::RawInflate
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::RawInflate
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - fileno
+      - getc
+      - getHeaderInfo
+      - getline
+      - inflateSync
+      - input_line_number
+      - nextStream
+      - Notes
+      - opened
+      - read
+      - read1
+      - seek
+      - tell
+      - trailingData
+      - ungetc
+  - namespace: IO::Uncompress::Unzip
+    title: IO::Uncompress::Unzip
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Uncompress::Unzip
+    entries:
+      - autoflush
+      - binmode
+      - close
+      - Constructor
+      - eof
+      - fileno
+      - getc
+      - getHeaderInfo
+      - getline
+      - inflateSync
+      - input_line_number
+      - nextStream
+      - Notes
+      - opened
+      - read
+      - read1
+      - seek
+      - tell
+      - trailingData
+      - ungetc
+  - namespace: IO::Zlib
+    title: IO::Zlib
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IO::Zlib
+    entries: []
+  - namespace: IPC::Cmd
+    title: IPC::Cmd
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IPC::Cmd
+    entries: []
+  - namespace: IPC::Msg
+    title: IPC::Msg
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IPC::Msg
+    entries: []
+  - namespace: IPC::Open2
+    title: IPC::Open2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IPC::Open2
+    entries: []
+  - namespace: IPC::Open3
+    title: IPC::Open3
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IPC::Open3
+    entries: []
+  - namespace: IPC::Semaphore
+    title: IPC::Semaphore
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IPC::Semaphore
+    entries: []
+  - namespace: IPC::SharedMem
+    title: IPC::SharedMem
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IPC::SharedMem
+    entries: []
+  - namespace: IPC::SysV
+    title: IPC::SysV
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/IPC::SysV
+    entries: []
+  - namespace: JSON::PP
+    title: JSON::PP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/JSON::PP
+    entries:
+      - allow_barekey
+      - allow_bignum
+      - allow_blessed
+      - allow_nonref
+      - allow_singlequote
+      - allow_tags
+      - allow_unknown
+      - ascii
+      - boolean_values
+      - canonical
+      - convert_blessed
+      - core_bools
+      - decode
+      - decode_json
+      - decode_prefix
+      - encode
+      - encode_json
+      - escape_slash
+      - filter_json_object
+      - filter_json_single_key_object
+      - incr_parse
+      - incr_reset
+      - incr_skip
+      - incr_text
+      - indent
+      - indent_length
+      - JSON::PP::is_bool
+      - latin1
+      - loose
+      - max_depth
+      - max_size
+      - new
+      - pretty
+      - relaxed
+      - shrink
+      - sort_by
+      - space_after
+      - space_before
+      - utf8
+  - namespace: JSON::PP::Boolean
+    title: JSON::PP::Boolean
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/JSON::PP::Boolean
+    entries: []
+  - namespace: List::Util
+    title: List::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/List::Util
+    entries:
+      - all
+      - any
+      - first
+      - head
+      - max
+      - maxstr
+      - mesh
+      - min
+      - minstr
+      - none
+      - notall
+      - pairfirst
+      - pairgrep
+      - pairkeys
+      - pairmap
+      - pairs
+      - pairvalues
+      - product
+      - reduce
+      - reductions
+      - sample
+      - shuffle
+      - sum
+      - sum0
+      - tail
+      - uniq
+      - uniqint
+      - uniqnum
+      - uniqstr
+      - unpairs
+      - zip
+  - namespace: List::Util::XS
+    title: List::Util::XS
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/List::Util::XS
+    entries: []
+  - namespace: Locale::Maketext
+    title: Locale::Maketext
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Locale::Maketext
+    entries: []
+  - namespace: Locale::Maketext::Cookbook
+    title: Locale::Maketext::Cookbook
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Locale::Maketext::Cookbook
+    entries: []
+  - namespace: Locale::Maketext::Guts
+    title: Locale::Maketext::Guts
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Locale::Maketext::Guts
+    entries: []
+  - namespace: Locale::Maketext::GutsLoader
+    title: Locale::Maketext::GutsLoader
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Locale::Maketext::GutsLoader
+    entries: []
+  - namespace: Locale::Maketext::Simple
+    title: Locale::Maketext::Simple
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Locale::Maketext::Simple
+    entries:
+      - Class
+      - Decode
+      - Encoding
+      - Export
+      - Path
+      - Style
+      - Subclass
+  - namespace: Locale::Maketext::TPJ13
+    title: Locale::Maketext::TPJ13
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Locale::Maketext::TPJ13
+    entries:
+      - References
+  - namespace: Math::BigFloat
+    title: Math::BigFloat
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::BigFloat
+    entries:
+      - Input
+      - Output
+      - Rounding
+  - namespace: Math::BigInt
+    title: Math::BigInt
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::BigInt
+    entries:
+      - Input
+      - Output
+      - Sign
+  - namespace: Math::BigInt::Calc
+    title: Math::BigInt::Calc
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::BigInt::Calc
+    entries: []
+  - namespace: Math::BigInt::FastCalc
+    title: Math::BigInt::FastCalc
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::BigInt::FastCalc
+    entries: []
+  - namespace: Math::BigInt::Lib
+    title: Math::BigInt::Lib
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::BigInt::Lib
+    entries: []
+  - namespace: Math::BigRat
+    title: Math::BigRat
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::BigRat
+    entries: []
+  - namespace: Math::Complex
+    title: Math::Complex
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::Complex
+    entries:
+      - abs
+      - acos
+      - asin
+      - atan2
+      - cos
+      - cplx
+      - exp
+      - Im
+      - log
+      - pi
+      - Re
+      - rho
+      - sin
+      - sqrt
+      - tan
+      - theta
+  - namespace: Math::Trig
+    title: Math::Trig
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Math::Trig
+    entries:
+      - acos_real
+      - asin_real
+      - cartesian_to_cylindrical
+      - cartesian_to_spherical
+      - cylindrical_to_cartesian
+      - cylindrical_to_spherical
+      - deg2deg
+      - deg2grad
+      - deg2rad
+      - grad2deg
+      - grad2grad
+      - grad2rad
+      - rad2deg
+      - rad2grad
+      - rad2rad
+      - spherical_to_cartesian
+      - spherical_to_cylindrical
+      - tan
+  - namespace: Memoize::AnyDBM_File
+    title: Memoize::AnyDBM_File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Memoize::AnyDBM_File
+    entries: []
+  - namespace: Memoize::Expire
+    title: Memoize::Expire
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Memoize::Expire
+    entries: []
+  - namespace: Memoize::NDBM_File
+    title: Memoize::NDBM_File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Memoize::NDBM_File
+    entries: []
+  - namespace: Memoize::SDBM_File
+    title: Memoize::SDBM_File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Memoize::SDBM_File
+    entries: []
+  - namespace: Memoize::Storable
+    title: Memoize::Storable
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Memoize::Storable
+    entries: []
+  - namespace: MIME::Base64
+    title: MIME::Base64
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/MIME::Base64
+    entries: []
+  - namespace: MIME::QuotedPrint
+    title: MIME::QuotedPrint
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/MIME::QuotedPrint
+    entries: []
+  - namespace: Module::CoreList
+    title: Module::CoreList
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Module::CoreList
+    entries: []
+  - namespace: Module::CoreList::Utils
+    title: Module::CoreList::Utils
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Module::CoreList::Utils
+    entries: []
+  - namespace: Module::Load
+    title: Module::Load
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Module::Load
+    entries: []
+  - namespace: Module::Load::Conditional
+    title: Module::Load::Conditional
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Module::Load::Conditional
+    entries: []
+  - namespace: Module::Loaded
+    title: Module::Loaded
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Module::Loaded
+    entries: []
+  - namespace: Module::Metadata
+    title: Module::Metadata
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Module::Metadata
+    entries: []
+  - namespace: Net::Cmd
+    title: Net::Cmd
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::Cmd
+    entries: []
+  - namespace: Net::Config
+    title: Net::Config
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::Config
+    entries: []
+  - namespace: Net::Domain
+    title: Net::Domain
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::Domain
+    entries:
+      - Functions
+  - namespace: Net::FTP
+    title: Net::FTP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::FTP
+    entries:
+      - Overview
+      - Unimplemented
+  - namespace: Net::FTP::dataconn
+    title: Net::FTP::dataconn
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::FTP::dataconn
+    entries: []
+  - namespace: Net::hostent
+    title: Net::hostent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::hostent
+    entries: []
+  - namespace: Net::libnetFAQ
+    title: Net::libnetFAQ
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::libnetFAQ
+    entries:
+      - Disclaimer
+  - namespace: Net::netent
+    title: Net::netent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::netent
+    entries: []
+  - namespace: Net::Netrc
+    title: Net::Netrc
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::Netrc
+    entries: []
+  - namespace: Net::NNTP
+    title: Net::NNTP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::NNTP
+    entries:
+      - Definitions
+      - Unsupported
+  - namespace: Net::Ping
+    title: Net::Ping
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::Ping
+    entries:
+      - Functions
+  - namespace: Net::POP3
+    title: Net::POP3
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::POP3
+    entries:
+      - Notes
+  - namespace: Net::protoent
+    title: Net::protoent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::protoent
+    entries: []
+  - namespace: Net::servent
+    title: Net::servent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::servent
+    entries: []
+  - namespace: Net::SMTP
+    title: Net::SMTP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::SMTP
+    entries:
+      - Addresses
+  - namespace: Net::Time
+    title: Net::Time
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Net::Time
+    entries:
+      - Functions
+  - namespace: Params::Check
+    title: Params::Check
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Params::Check
+    entries: []
+  - namespace: Parse::CPAN::Meta
+    title: Parse::CPAN::Meta
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Parse::CPAN::Meta
+    entries:
+      - CPAN_META_JSON_BACKEND
+      - CPAN_META_JSON_DECODER
+      - json_backend
+      - json_decoder
+      - Load
+      - load_file
+      - load_json_string
+      - load_string
+      - load_yaml_string
+      - LoadFile
+      - PERL_JSON_BACKEND
+      - PERL_YAML_BACKEND
+      - yaml_backend
+  - namespace: Perl::OSType
+    title: Perl::OSType
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Perl::OSType
+    entries: []
+  - namespace: PerlIO::encoding
+    title: PerlIO::encoding
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/PerlIO::encoding
+    entries: []
+  - namespace: PerlIO::mmap
+    title: PerlIO::mmap
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/PerlIO::mmap
+    entries: []
+  - namespace: PerlIO::scalar
+    title: PerlIO::scalar
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/PerlIO::scalar
+    entries: []
+  - namespace: PerlIO::via
+    title: PerlIO::via
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/PerlIO::via
+    entries: []
+  - namespace: PerlIO::via::QuotedPrint
+    title: PerlIO::via::QuotedPrint
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/PerlIO::via::QuotedPrint
+    entries: []
+  - namespace: Pod::Checker
+    title: Pod::Checker
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Checker
+    entries:
+      - Errors
+      - Hyperlinks
+      - Warnings
+  - namespace: Pod::Escapes
+    title: Pod::Escapes
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Escapes
+    entries: []
+  - namespace: Pod::Functions
+    title: Pod::Functions
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Functions
+    entries: []
+  - namespace: Pod::Html
+    title: Pod::Html
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Html
+    entries:
+      - pod2html
+  - namespace: Pod::Html::Util
+    title: Pod::Html::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Html::Util
+    entries: []
+  - namespace: Pod::Man
+    title: Pod::Man
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Man
+    entries:
+      - History
+  - namespace: Pod::ParseLink
+    title: Pod::ParseLink
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::ParseLink
+    entries: []
+  - namespace: Pod::Perldoc
+    title: Pod::Perldoc
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc
+    entries: []
+  - namespace: Pod::Perldoc::BaseTo
+    title: Pod::Perldoc::BaseTo
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::BaseTo
+    entries: []
+  - namespace: Pod::Perldoc::GetOptsOO
+    title: Pod::Perldoc::GetOptsOO
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::GetOptsOO
+    entries: []
+  - namespace: Pod::Perldoc::ToANSI
+    title: Pod::Perldoc::ToANSI
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToANSI
+    entries: []
+  - namespace: Pod::Perldoc::ToChecker
+    title: Pod::Perldoc::ToChecker
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToChecker
+    entries: []
+  - namespace: Pod::Perldoc::ToMan
+    title: Pod::Perldoc::ToMan
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToMan
+    entries: []
+  - namespace: Pod::Perldoc::ToNroff
+    title: Pod::Perldoc::ToNroff
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToNroff
+    entries: []
+  - namespace: Pod::Perldoc::ToPod
+    title: Pod::Perldoc::ToPod
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToPod
+    entries: []
+  - namespace: Pod::Perldoc::ToRtf
+    title: Pod::Perldoc::ToRtf
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToRtf
+    entries: []
+  - namespace: Pod::Perldoc::ToTerm
+    title: Pod::Perldoc::ToTerm
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToTerm
+    entries: []
+  - namespace: Pod::Perldoc::ToText
+    title: Pod::Perldoc::ToText
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToText
+    entries: []
+  - namespace: Pod::Perldoc::ToTk
+    title: Pod::Perldoc::ToTk
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToTk
+    entries: []
+  - namespace: Pod::Perldoc::ToXml
+    title: Pod::Perldoc::ToXml
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Perldoc::ToXml
+    entries: []
+  - namespace: Pod::Simple
+    title: Pod::Simple
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple
+    entries: []
+  - namespace: Pod::Simple::Checker
+    title: Pod::Simple::Checker
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::Checker
+    entries: []
+  - namespace: Pod::Simple::Debug
+    title: Pod::Simple::Debug
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::Debug
+    entries: []
+  - namespace: Pod::Simple::DumpAsText
+    title: Pod::Simple::DumpAsText
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::DumpAsText
+    entries: []
+  - namespace: Pod::Simple::DumpAsXML
+    title: Pod::Simple::DumpAsXML
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::DumpAsXML
+    entries: []
+  - namespace: Pod::Simple::HTML
+    title: Pod::Simple::HTML
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::HTML
+    entries:
+      - html_css
+      - html_footer
+      - html_h_level
+      - html_header_after_title
+      - html_header_before_title
+      - html_javascript
+      - index
+      - title_postfix
+      - title_prefix
+      - top_anchor
+  - namespace: Pod::Simple::HTMLBatch
+    title: Pod::Simple::HTMLBatch
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::HTMLBatch
+    entries: []
+  - namespace: Pod::Simple::JustPod
+    title: Pod::Simple::JustPod
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::JustPod
+    entries: []
+  - namespace: Pod::Simple::LinkSection
+    title: Pod::Simple::LinkSection
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::LinkSection
+    entries: []
+  - namespace: Pod::Simple::Methody
+    title: Pod::Simple::Methody
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::Methody
+    entries: []
+  - namespace: Pod::Simple::PullParser
+    title: Pod::Simple::PullParser
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::PullParser
+    entries: []
+  - namespace: Pod::Simple::PullParserEndToken
+    title: Pod::Simple::PullParserEndToken
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::PullParserEndToken
+    entries: []
+  - namespace: Pod::Simple::PullParserStartToken
+    title: Pod::Simple::PullParserStartToken
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::PullParserStartToken
+    entries: []
+  - namespace: Pod::Simple::PullParserTextToken
+    title: Pod::Simple::PullParserTextToken
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::PullParserTextToken
+    entries: []
+  - namespace: Pod::Simple::PullParserToken
+    title: Pod::Simple::PullParserToken
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::PullParserToken
+    entries: []
+  - namespace: Pod::Simple::RTF
+    title: Pod::Simple::RTF
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::RTF
+    entries: []
+  - namespace: Pod::Simple::Search
+    title: Pod::Simple::Search
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::Search
+    entries: []
+  - namespace: Pod::Simple::SimpleTree
+    title: Pod::Simple::SimpleTree
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::SimpleTree
+    entries: []
+  - namespace: Pod::Simple::Subclassing
+    title: Pod::Simple::Subclassing
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::Subclassing
+    entries: []
+  - namespace: Pod::Simple::Text
+    title: Pod::Simple::Text
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::Text
+    entries: []
+  - namespace: Pod::Simple::TextContent
+    title: Pod::Simple::TextContent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::TextContent
+    entries: []
+  - namespace: Pod::Simple::XHTML
+    title: Pod::Simple::XHTML
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::XHTML
+    entries:
+      - accept_targets_as_html
+      - anchor_items
+      - backlink
+      - batch_mode_page_object_init
+      - default_title
+      - force_title
+      - handle_code
+      - handle_text
+      - html_charset
+      - html_css
+      - html_doctype
+      - html_h_level
+      - html_header_tags
+      - html_javascript
+      - idify
+      - index
+      - man_url_postfix
+      - man_url_prefix
+      - perldoc_url_postfix
+      - perldoc_url_prefix
+      - resolve_man_page_link
+      - resolve_pod_page_link
+  - namespace: Pod::Simple::XMLOutStream
+    title: Pod::Simple::XMLOutStream
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Simple::XMLOutStream
+    entries: []
+  - namespace: Pod::Text
+    title: Pod::Text
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Text
+    entries:
+      - Encoding
+  - namespace: Pod::Text::Color
+    title: Pod::Text::Color
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Text::Color
+    entries: []
+  - namespace: Pod::Text::Overstrike
+    title: Pod::Text::Overstrike
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Text::Overstrike
+    entries: []
+  - namespace: Pod::Text::Termcap
+    title: Pod::Text::Termcap
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Text::Termcap
+    entries: []
+  - namespace: Pod::Usage
+    title: Pod::Usage
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Pod::Usage
+    entries:
+      - Scripts
+  - namespace: POSIX
+    title: POSIX
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/POSIX
+    entries:
+      - _exit
+      - abort
+      - abs
+      - access
+      - acos
+      - acosh
+      - addset
+      - alarm
+      - asctime
+      - asin
+      - asinh
+      - assert
+      - atan
+      - atan2
+      - atanh
+      - atexit
+      - atof
+      - atoi
+      - atol
+      - bsearch
+      - calloc
+      - cbrt
+      - ceil
+      - chdir
+      - chmod
+      - chown
+      - clearerr
+      - clock
+      - close
+      - closedir
+      - Constants
+      - Constants1
+      - Constants10
+      - Constants11
+      - Constants12
+      - Constants13
+      - Constants14
+      - Constants15
+      - Constants16
+      - Constants17
+      - Constants18
+      - Constants2
+      - Constants3
+      - Constants4
+      - Constants5
+      - Constants6
+      - Constants7
+      - Constants8
+      - Constants9
+      - copysign
+      - cos
+      - cosh
+      - creat
+      - ctermid
+      - ctime
+      - delset
+      - difftime
+      - div
+      - dup
+      - dup2
+      - emptyset
+      - erf
+      - erfc
+      - errno
+      - execl
+      - execle
+      - execlp
+      - execv
+      - execve
+      - execvp
+      - exit
+      - exp
+      - expm1
+      - fabs
+      - fcntl
+      - fdim
+      - fdopen
+      - fegetround
+      - feof
+      - ferror
+      - fesetround
+      - fflush
+      - fgetc
+      - fgetpos
+      - fgets
+      - fileno
+      - fillset
+      - flags
+      - floor
+      - fma
+      - fmax
+      - fmin
+      - fmod
+      - fopen
+      - fork
+      - fpathconf
+      - fpclassify
+      - fprintf
+      - fputc
+      - fputs
+      - fread
+      - free
+      - freopen
+      - frexp
+      - fscanf
+      - fseek
+      - fsetpos
+      - fstat
+      - fsync
+      - ftell
+      - fwrite
+      - getattr
+      - getc
+      - getcc
+      - getcflag
+      - getchar
+      - getcwd
+      - getegid
+      - getenv
+      - geteuid
+      - getgid
+      - getgrgid
+      - getgrnam
+      - getgroups
+      - getiflag
+      - getispeed
+      - getlflag
+      - getlogin
+      - getoflag
+      - getospeed
+      - getpayload
+      - getpgrp
+      - getpid
+      - getppid
+      - getpwnam
+      - getpwuid
+      - gets
+      - getuid
+      - gmtime
+      - handler
+      - hypot
+      - ilogb
+      - Inf
+      - isalnum
+      - isalpha
+      - isatty
+      - iscntrl
+      - isdigit
+      - isfinite
+      - isgraph
+      - isgreater
+      - isinf
+      - islower
+      - ismember
+      - isnan
+      - isnormal
+      - isprint
+      - ispunct
+      - issignaling
+      - isspace
+      - isupper
+      - isxdigit
+      - j0
+      - j1
+      - jn
+      - kill
+      - labs
+      - lchown
+      - ldexp
+      - ldiv
+      - lgamma
+      - link
+      - localeconv
+      - localtime
+      - log
+      - log10
+      - log1p
+      - log2
+      - logb
+      - longjmp
+      - lrint
+      - lround
+      - lseek
+      - Macros
+      - Macros1
+      - malloc
+      - mask
+      - mblen
+      - mbtowc
+      - memchr
+      - memcmp
+      - memcpy
+      - memmove
+      - memset
+      - mkdir
+      - mkfifo
+      - mktime
+      - modf
+      - nan
+      - NaN
+      - nearbyint
+      - new
+      - new1
+      - new2
+      - nextafter
+      - nexttoward
+      - nice
+      - offsetof
+      - open
+      - opendir
+      - pathconf
+      - pause
+      - perror
+      - pipe
+      - pow
+      - printf
+      - putc
+      - putchar
+      - puts
+      - qsort
+      - raise
+      - rand
+      - read
+      - readdir
+      - realloc
+      - remainder
+      - remove
+      - remquo
+      - rename
+      - rewind
+      - rewinddir
+      - rint
+      - rmdir
+      - round
+      - safe
+      - scalbn
+      - scanf
+      - setattr
+      - setcc
+      - setcflag
+      - setgid
+      - setiflag
+      - setispeed
+      - setjmp
+      - setlflag
+      - setlocale
+      - setoflag
+      - setospeed
+      - setpayload
+      - setpayloadsig
+      - setpgid
+      - setsid
+      - setuid
+      - sigaction
+      - siglongjmp
+      - signbit
+      - sigpending
+      - sigprocmask
+      - SIGRTMAX
+      - SIGRTMIN
+      - sigsetjmp
+      - sigsuspend
+      - sin
+      - sinh
+      - sleep
+      - sprintf
+      - sqrt
+      - srand
+      - sscanf
+      - stat
+      - strcat
+      - strchr
+      - strcmp
+      - strcoll
+      - strcpy
+      - strcspn
+      - strerror
+      - strftime
+      - strlen
+      - strncat
+      - strncmp
+      - strncpy
+      - strpbrk
+      - strrchr
+      - strspn
+      - strstr
+      - strtod
+      - strtok
+      - strtol
+      - strtold
+      - strtoul
+      - strxfrm
+      - sysconf
+      - system
+      - tan
+      - tanh
+      - tcdrain
+      - tcflow
+      - tcflush
+      - tcgetpgrp
+      - tcsendbreak
+      - tcsetpgrp
+      - tgamma
+      - time
+      - times
+      - tmpfile
+      - tmpnam
+      - tolower
+      - toupper
+      - trunc
+      - ttyname
+      - tzname
+      - tzset
+      - umask
+      - uname
+      - ungetc
+      - unlink
+      - utime
+      - vfprintf
+      - vprintf
+      - vsprintf
+      - wait
+      - waitpid
+      - wctomb
+      - WEXITSTATUS
+      - WIFEXITED
+      - WIFSIGNALED
+      - WIFSTOPPED
+      - WNOHANG
+      - write
+      - WSTOPSIG
+      - WTERMSIG
+      - WUNTRACED
+      - y0
+      - y1
+      - yn
+  - namespace: Scalar::List::Utils
+    title: Scalar::List::Utils
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Scalar::List::Utils
+    entries:
+      - List::Util
+      - Scalar::Util
+      - Sub::Util
+  - namespace: Scalar::Util
+    title: Scalar::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Scalar::Util
+    entries:
+      - blessed
+      - dualvar
+      - isdual
+      - isvstring
+      - isweak
+      - looks_like_number
+      - openhandle
+      - readonly
+      - refaddr
+      - reftype
+      - set_prototype
+      - tainted
+      - unweaken
+      - weaken
+  - namespace: Search::Dict
+    title: Search::Dict
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Search::Dict
+    entries: []
+  - namespace: source::encoding
+    title: source::encoding
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/source::encoding
+    entries: []
+  - namespace: Sub::Util
+    title: Sub::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Sub::Util
+    entries:
+      - prototype
+      - set_prototype
+      - set_subname
+      - subname
+  - namespace: Sys::Hostname
+    title: Sys::Hostname
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Sys::Hostname
+    entries: []
+  - namespace: Sys::Syslog
+    title: Sys::Syslog
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Sys::Syslog
+    entries:
+      - Articles
+      - Facilities
+      - Levels
+      - RFCs
+  - namespace: TAP::Base
+    title: TAP::Base
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Base
+    entries: []
+  - namespace: TAP::Formatter::Base
+    title: TAP::Formatter::Base
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::Base
+    entries: []
+  - namespace: TAP::Formatter::Color
+    title: TAP::Formatter::Color
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::Color
+    entries: []
+  - namespace: TAP::Formatter::Console
+    title: TAP::Formatter::Console
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::Console
+    entries:
+      - open_test
+  - namespace: TAP::Formatter::Console::ParallelSession
+    title: TAP::Formatter::Console::ParallelSession
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::Console::ParallelSession
+    entries: []
+  - namespace: TAP::Formatter::Console::Session
+    title: TAP::Formatter::Console::Session
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::Console::Session
+    entries:
+      - clear_for_close
+      - close_test
+      - header
+      - result
+  - namespace: TAP::Formatter::File
+    title: TAP::Formatter::File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::File
+    entries:
+      - open_test
+  - namespace: TAP::Formatter::File::Session
+    title: TAP::Formatter::File::Session
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::File::Session
+    entries:
+      - close_test
+      - result
+  - namespace: TAP::Formatter::Session
+    title: TAP::Formatter::Session
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Formatter::Session
+    entries: []
+  - namespace: TAP::Harness
+    title: TAP::Harness
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Harness
+    entries:
+      - ExtUtils::MakeMaker
+      - Methods
+      - Module::Build
+      - Plugins
+      - prove
+  - namespace: TAP::Harness::Env
+    title: TAP::Harness::Env
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Harness::Env
+    entries: []
+  - namespace: TAP::Object
+    title: TAP::Object
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Object
+    entries: []
+  - namespace: TAP::Parser
+    title: TAP::Parser
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser
+    entries:
+      - Differences
+      - ignore_exit
+      - Pragmas
+  - namespace: TAP::Parser::Aggregator
+    title: TAP::Parser::Aggregator
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Aggregator
+    entries: []
+  - namespace: TAP::Parser::Grammar
+    title: TAP::Parser::Grammar
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Grammar
+    entries: []
+  - namespace: TAP::Parser::Iterator
+    title: TAP::Parser::Iterator
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Iterator
+    entries:
+      - Example
+  - namespace: TAP::Parser::Iterator::Array
+    title: TAP::Parser::Iterator::Array
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Iterator::Array
+    entries: []
+  - namespace: TAP::Parser::Iterator::Process
+    title: TAP::Parser::Iterator::Process
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Iterator::Process
+    entries: []
+  - namespace: TAP::Parser::Iterator::Stream
+    title: TAP::Parser::Iterator::Stream
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Iterator::Stream
+    entries: []
+  - namespace: TAP::Parser::IteratorFactory
+    title: TAP::Parser::IteratorFactory
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::IteratorFactory
+    entries:
+      - Example
+  - namespace: TAP::Parser::Multiplexer
+    title: TAP::Parser::Multiplexer
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Multiplexer
+    entries: []
+  - namespace: TAP::Parser::Result
+    title: TAP::Parser::Result
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result
+    entries:
+      - DESCRIPTION
+      - Example
+      - METHODS
+  - namespace: TAP::Parser::Result::Bailout
+    title: TAP::Parser::Result::Bailout
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::Bailout
+    entries: []
+  - namespace: TAP::Parser::Result::Comment
+    title: TAP::Parser::Result::Comment
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::Comment
+    entries: []
+  - namespace: TAP::Parser::Result::Plan
+    title: TAP::Parser::Result::Plan
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::Plan
+    entries: []
+  - namespace: TAP::Parser::Result::Pragma
+    title: TAP::Parser::Result::Pragma
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::Pragma
+    entries: []
+  - namespace: TAP::Parser::Result::Test
+    title: TAP::Parser::Result::Test
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::Test
+    entries: []
+  - namespace: TAP::Parser::Result::Unknown
+    title: TAP::Parser::Result::Unknown
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::Unknown
+    entries: []
+  - namespace: TAP::Parser::Result::Version
+    title: TAP::Parser::Result::Version
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::Version
+    entries: []
+  - namespace: TAP::Parser::Result::YAML
+    title: TAP::Parser::Result::YAML
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Result::YAML
+    entries: []
+  - namespace: TAP::Parser::ResultFactory
+    title: TAP::Parser::ResultFactory
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::ResultFactory
+    entries:
+      - DESCRIPTION
+      - Example
+      - METHODS
+  - namespace: TAP::Parser::Scheduler
+    title: TAP::Parser::Scheduler
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Scheduler
+    entries: []
+  - namespace: TAP::Parser::Scheduler::Job
+    title: TAP::Parser::Scheduler::Job
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Scheduler::Job
+    entries:
+      - Attributes
+  - namespace: TAP::Parser::Scheduler::Spinner
+    title: TAP::Parser::Scheduler::Spinner
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Scheduler::Spinner
+    entries: []
+  - namespace: TAP::Parser::Source
+    title: TAP::Parser::Source
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::Source
+    entries: []
+  - namespace: TAP::Parser::SourceHandler
+    title: TAP::Parser::SourceHandler
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::SourceHandler
+    entries:
+      - Example
+  - namespace: TAP::Parser::SourceHandler::Executable
+    title: TAP::Parser::SourceHandler::Executable
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::SourceHandler::Executable
+    entries:
+      - Example
+  - namespace: TAP::Parser::SourceHandler::File
+    title: TAP::Parser::SourceHandler::File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::SourceHandler::File
+    entries: []
+  - namespace: TAP::Parser::SourceHandler::Handle
+    title: TAP::Parser::SourceHandler::Handle
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::SourceHandler::Handle
+    entries: []
+  - namespace: TAP::Parser::SourceHandler::Perl
+    title: TAP::Parser::SourceHandler::Perl
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::SourceHandler::Perl
+    entries:
+      - Example
+  - namespace: TAP::Parser::SourceHandler::RawTAP
+    title: TAP::Parser::SourceHandler::RawTAP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::SourceHandler::RawTAP
+    entries: []
+  - namespace: TAP::Parser::YAMLish::Reader
+    title: TAP::Parser::YAMLish::Reader
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::YAMLish::Reader
+    entries: []
+  - namespace: TAP::Parser::YAMLish::Writer
+    title: TAP::Parser::YAMLish::Writer
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/TAP::Parser::YAMLish::Writer
+    entries: []
+  - namespace: Term::ANSIColor
+    title: Term::ANSIColor
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::ANSIColor
+    entries: []
+  - namespace: Term::Cap
+    title: Term::Cap
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Cap
+    entries:
+      - METHODS
+  - namespace: Term::Complete
+    title: Term::Complete
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Complete
+    entries: []
+  - namespace: Term::ReadLine
+    title: Term::ReadLine
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::ReadLine
+    entries: []
+  - namespace: Term::Table
+    title: Term::Table
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Table
+    entries:
+      - OPTIONS
+  - namespace: Term::Table::Cell
+    title: Term::Table::Cell
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Table::Cell
+    entries: []
+  - namespace: Term::Table::CellStack
+    title: Term::Table::CellStack
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Table::CellStack
+    entries: []
+  - namespace: Term::Table::HashBase
+    title: Term::Table::HashBase
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Table::HashBase
+    entries:
+      - HOOKS
+  - namespace: Term::Table::LineBreak
+    title: Term::Table::LineBreak
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Table::LineBreak
+    entries: []
+  - namespace: Term::Table::Util
+    title: Term::Table::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Term::Table::Util
+    entries:
+      - CONSTANTS
+      - UTILITIES
+  - namespace: Test::Builder
+    title: Test::Builder
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Builder
+    entries:
+      - Construction
+      - EXTERNAL
+      - INTERNALS
+      - LEGACY
+      - Output
+  - namespace: Test::Builder::Formatter
+    title: Test::Builder::Formatter
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Builder::Formatter
+    entries: []
+  - namespace: Test::Builder::Module
+    title: Test::Builder::Module
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Builder::Module
+    entries:
+      - Builder
+      - Importing
+  - namespace: Test::Builder::Tester
+    title: Test::Builder::Tester
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Builder::Tester
+    entries:
+      - Functions
+  - namespace: Test::Builder::Tester::Color
+    title: Test::Builder::Tester::Color
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Builder::Tester::Color
+    entries: []
+  - namespace: Test::Builder::TodoDiag
+    title: Test::Builder::TodoDiag
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Builder::TodoDiag
+    entries: []
+  - namespace: Test::Harness
+    title: Test::Harness
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Harness
+    entries: []
+  - namespace: Test::More
+    title: Test::More
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::More
+    entries:
+      - ALTERNATIVES
+      - BUNDLES
+      - Diagnostics
+  - namespace: Test::Simple
+    title: Test::Simple
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Simple
+    entries: []
+  - namespace: Test::Tester
+    title: Test::Tester
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Tester
+    entries: []
+  - namespace: Test::Tester::Capture
+    title: Test::Tester::Capture
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Tester::Capture
+    entries: []
+  - namespace: Test::Tester::CaptureRunner
+    title: Test::Tester::CaptureRunner
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Tester::CaptureRunner
+    entries: []
+  - namespace: Test::Tutorial
+    title: Test::Tutorial
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::Tutorial
+    entries:
+      - Names
+  - namespace: Test::use::ok
+    title: Test::use::ok
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test::use::ok
+    entries: []
+  - namespace: Test2::API
+    title: Test2::API
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API
+    entries: []
+  - namespace: Test2::API::Breakage
+    title: Test2::API::Breakage
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::Breakage
+    entries: []
+  - namespace: Test2::API::Context
+    title: Test2::API::Context
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::Context
+    entries: []
+  - namespace: Test2::API::Instance
+    title: Test2::API::Instance
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::Instance
+    entries: []
+  - namespace: Test2::API::InterceptResult
+    title: Test2::API::InterceptResult
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::InterceptResult
+    entries:
+      - CONSTRUCTION
+      - FILTERING
+      - MAPPING
+      - NORMALIZATION
+  - namespace: Test2::API::InterceptResult::Event
+    title: Test2::API::InterceptResult::Event
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::InterceptResult::Event
+    entries:
+      - ATTRIBUTES
+      - DUPLICATION
+  - namespace: Test2::API::InterceptResult::Hub
+    title: Test2::API::InterceptResult::Hub
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::InterceptResult::Hub
+    entries: []
+  - namespace: Test2::API::InterceptResult::Squasher
+    title: Test2::API::InterceptResult::Squasher
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::InterceptResult::Squasher
+    entries: []
+  - namespace: Test2::API::Stack
+    title: Test2::API::Stack
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::API::Stack
+    entries: []
+  - namespace: Test2::AsyncSubtest
+    title: Test2::AsyncSubtest
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::AsyncSubtest
+    entries:
+      - INTERFACE
+  - namespace: Test2::AsyncSubtest::Event::Attach
+    title: Test2::AsyncSubtest::Event::Attach
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::AsyncSubtest::Event::Attach
+    entries: []
+  - namespace: Test2::AsyncSubtest::Event::Detach
+    title: Test2::AsyncSubtest::Event::Detach
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::AsyncSubtest::Event::Detach
+    entries: []
+  - namespace: Test2::AsyncSubtest::Hub
+    title: Test2::AsyncSubtest::Hub
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::AsyncSubtest::Hub
+    entries: []
+  - namespace: Test2::Bundle
+    title: Test2::Bundle
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Bundle
+    entries: []
+  - namespace: Test2::Bundle::Extended
+    title: Test2::Bundle::Extended
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Bundle::Extended
+    entries:
+      - BASIC
+      - CLASS
+      - COMPARE
+      - DEFER
+      - ENCODING
+      - EXCEPTION
+      - EXPORTS
+      - MOCK
+      - REF
+      - SRAND
+      - STRICT
+      - SUBTEST
+      - TAGS
+      - TARGET
+      - UTF8
+      - UTF81
+      - WARNINGS
+      - WARNINGS1
+  - namespace: Test2::Bundle::More
+    title: Test2::Bundle::More
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Bundle::More
+    entries: []
+  - namespace: Test2::Bundle::Simple
+    title: Test2::Bundle::Simple
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Bundle::Simple
+    entries: []
+  - namespace: Test2::Compare
+    title: Test2::Compare
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare
+    entries: []
+  - namespace: Test2::Compare::Array
+    title: Test2::Compare::Array
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Array
+    entries: []
+  - namespace: Test2::Compare::Bag
+    title: Test2::Compare::Bag
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Bag
+    entries: []
+  - namespace: Test2::Compare::Base
+    title: Test2::Compare::Base
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Base
+    entries: []
+  - namespace: Test2::Compare::Bool
+    title: Test2::Compare::Bool
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Bool
+    entries: []
+  - namespace: Test2::Compare::Custom
+    title: Test2::Compare::Custom
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Custom
+    entries: []
+  - namespace: Test2::Compare::DeepRef
+    title: Test2::Compare::DeepRef
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::DeepRef
+    entries: []
+  - namespace: Test2::Compare::Delta
+    title: Test2::Compare::Delta
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Delta
+    entries:
+      - ATTRIBUTES
+      - OTHER
+  - namespace: Test2::Compare::Event
+    title: Test2::Compare::Event
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Event
+    entries: []
+  - namespace: Test2::Compare::EventMeta
+    title: Test2::Compare::EventMeta
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::EventMeta
+    entries: []
+  - namespace: Test2::Compare::Float
+    title: Test2::Compare::Float
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Float
+    entries: []
+  - namespace: Test2::Compare::Hash
+    title: Test2::Compare::Hash
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Hash
+    entries: []
+  - namespace: Test2::Compare::Isa
+    title: Test2::Compare::Isa
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Isa
+    entries: []
+  - namespace: Test2::Compare::Meta
+    title: Test2::Compare::Meta
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Meta
+    entries: []
+  - namespace: Test2::Compare::Negatable
+    title: Test2::Compare::Negatable
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Negatable
+    entries: []
+  - namespace: Test2::Compare::Number
+    title: Test2::Compare::Number
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Number
+    entries: []
+  - namespace: Test2::Compare::Object
+    title: Test2::Compare::Object
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Object
+    entries: []
+  - namespace: Test2::Compare::OrderedSubset
+    title: Test2::Compare::OrderedSubset
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::OrderedSubset
+    entries: []
+  - namespace: Test2::Compare::Pattern
+    title: Test2::Compare::Pattern
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Pattern
+    entries: []
+  - namespace: Test2::Compare::Ref
+    title: Test2::Compare::Ref
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Ref
+    entries: []
+  - namespace: Test2::Compare::Regex
+    title: Test2::Compare::Regex
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Regex
+    entries: []
+  - namespace: Test2::Compare::Scalar
+    title: Test2::Compare::Scalar
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Scalar
+    entries: []
+  - namespace: Test2::Compare::Set
+    title: Test2::Compare::Set
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Set
+    entries: []
+  - namespace: Test2::Compare::String
+    title: Test2::Compare::String
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::String
+    entries: []
+  - namespace: Test2::Compare::Undef
+    title: Test2::Compare::Undef
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Undef
+    entries: []
+  - namespace: Test2::Compare::Wildcard
+    title: Test2::Compare::Wildcard
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Compare::Wildcard
+    entries: []
+  - namespace: Test2::Env
+    title: Test2::Env
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Env
+    entries: []
+  - namespace: Test2::Event
+    title: Test2::Event
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event
+    entries:
+      - GENERAL
+  - namespace: Test2::Event::Bail
+    title: Test2::Event::Bail
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Bail
+    entries: []
+  - namespace: Test2::Event::Diag
+    title: Test2::Event::Diag
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Diag
+    entries: []
+  - namespace: Test2::Event::Encoding
+    title: Test2::Event::Encoding
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Encoding
+    entries: []
+  - namespace: Test2::Event::Exception
+    title: Test2::Event::Exception
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Exception
+    entries: []
+  - namespace: Test2::Event::Fail
+    title: Test2::Event::Fail
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Fail
+    entries: []
+  - namespace: Test2::Event::Generic
+    title: Test2::Event::Generic
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Generic
+    entries: []
+  - namespace: Test2::Event::Note
+    title: Test2::Event::Note
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Note
+    entries: []
+  - namespace: Test2::Event::Ok
+    title: Test2::Event::Ok
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Ok
+    entries: []
+  - namespace: Test2::Event::Pass
+    title: Test2::Event::Pass
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Pass
+    entries: []
+  - namespace: Test2::Event::Plan
+    title: Test2::Event::Plan
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Plan
+    entries: []
+  - namespace: Test2::Event::Skip
+    title: Test2::Event::Skip
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Skip
+    entries: []
+  - namespace: Test2::Event::Subtest
+    title: Test2::Event::Subtest
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Subtest
+    entries: []
+  - namespace: Test2::Event::TAP::Version
+    title: Test2::Event::TAP::Version
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::TAP::Version
+    entries: []
+  - namespace: Test2::Event::V2
+    title: Test2::Event::V2
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::V2
+    entries:
+      - MUTATION
+  - namespace: Test2::Event::Waiting
+    title: Test2::Event::Waiting
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Event::Waiting
+    entries: []
+  - namespace: Test2::EventFacet
+    title: Test2::EventFacet
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet
+    entries: []
+  - namespace: Test2::EventFacet::About
+    title: Test2::EventFacet::About
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::About
+    entries: []
+  - namespace: Test2::EventFacet::Amnesty
+    title: Test2::EventFacet::Amnesty
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Amnesty
+    entries: []
+  - namespace: Test2::EventFacet::Assert
+    title: Test2::EventFacet::Assert
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Assert
+    entries: []
+  - namespace: Test2::EventFacet::Control
+    title: Test2::EventFacet::Control
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Control
+    entries: []
+  - namespace: Test2::EventFacet::Error
+    title: Test2::EventFacet::Error
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Error
+    entries: []
+  - namespace: Test2::EventFacet::Hub
+    title: Test2::EventFacet::Hub
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Hub
+    entries: []
+  - namespace: Test2::EventFacet::Info
+    title: Test2::EventFacet::Info
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Info
+    entries: []
+  - namespace: Test2::EventFacet::Info::Table
+    title: Test2::EventFacet::Info::Table
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Info::Table
+    entries: []
+  - namespace: Test2::EventFacet::Meta
+    title: Test2::EventFacet::Meta
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Meta
+    entries: []
+  - namespace: Test2::EventFacet::Parent
+    title: Test2::EventFacet::Parent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Parent
+    entries: []
+  - namespace: Test2::EventFacet::Plan
+    title: Test2::EventFacet::Plan
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Plan
+    entries: []
+  - namespace: Test2::EventFacet::Render
+    title: Test2::EventFacet::Render
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Render
+    entries: []
+  - namespace: Test2::EventFacet::Trace
+    title: Test2::EventFacet::Trace
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::EventFacet::Trace
+    entries: []
+  - namespace: Test2::Formatter
+    title: Test2::Formatter
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Formatter
+    entries: []
+  - namespace: Test2::Formatter::TAP
+    title: Test2::Formatter::TAP
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Formatter::TAP
+    entries: []
+  - namespace: Test2::Hub
+    title: Test2::Hub
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Hub
+    entries: []
+  - namespace: Test2::Hub::Interceptor
+    title: Test2::Hub::Interceptor
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Hub::Interceptor
+    entries: []
+  - namespace: Test2::Hub::Interceptor::Terminator
+    title: Test2::Hub::Interceptor::Terminator
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Hub::Interceptor::Terminator
+    entries: []
+  - namespace: Test2::Hub::Subtest
+    title: Test2::Hub::Subtest
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Hub::Subtest
+    entries: []
+  - namespace: Test2::IPC
+    title: Test2::IPC
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::IPC
+    entries: []
+  - namespace: Test2::IPC::Driver
+    title: Test2::IPC::Driver
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::IPC::Driver
+    entries: []
+  - namespace: Test2::IPC::Driver::Files
+    title: Test2::IPC::Driver::Files
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::IPC::Driver::Files
+    entries: []
+  - namespace: Test2::Manual
+    title: Test2::Manual
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual
+    entries: []
+  - namespace: Test2::Manual::Anatomy
+    title: Test2::Manual::Anatomy
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy
+    entries: []
+  - namespace: Test2::Manual::Anatomy::API
+    title: Test2::Manual::Anatomy::API
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy::API
+    entries:
+      - Test2::API
+      - Test2::API::Instance
+  - namespace: Test2::Manual::Anatomy::Context
+    title: Test2::Manual::Anatomy::Context
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy::Context
+    entries: []
+  - namespace: Test2::Manual::Anatomy::EndToEnd
+    title: Test2::Manual::Anatomy::EndToEnd
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy::EndToEnd
+    entries: []
+  - namespace: Test2::Manual::Anatomy::Event
+    title: Test2::Manual::Anatomy::Event
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy::Event
+    entries: []
+  - namespace: Test2::Manual::Anatomy::Hubs
+    title: Test2::Manual::Anatomy::Hubs
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy::Hubs
+    entries: []
+  - namespace: Test2::Manual::Anatomy::IPC
+    title: Test2::Manual::Anatomy::IPC
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy::IPC
+    entries: []
+  - namespace: Test2::Manual::Anatomy::Utilities
+    title: Test2::Manual::Anatomy::Utilities
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Anatomy::Utilities
+    entries: []
+  - namespace: Test2::Manual::Concurrency
+    title: Test2::Manual::Concurrency
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Concurrency
+    entries:
+      - Others
+      - Test::Builder
+      - Test::Builder1
+      - Test::SharedFork
+      - Test2
+      - Test2::Suite
+      - Test2::Suite1
+      - Test21
+  - namespace: Test2::Manual::Contributing
+    title: Test2::Manual::Contributing
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Contributing
+    entries: []
+  - namespace: Test2::Manual::Testing
+    title: Test2::Manual::Testing
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Testing
+    entries:
+      - COMPARISONS
+      - SUBTESTS
+      - TRAPPING
+  - namespace: Test2::Manual::Testing::Introduction
+    title: Test2::Manual::Testing::Introduction
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Testing::Introduction
+    entries: []
+  - namespace: Test2::Manual::Testing::Migrating
+    title: Test2::Manual::Testing::Migrating
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Testing::Migrating
+    entries: []
+  - namespace: Test2::Manual::Testing::Planning
+    title: Test2::Manual::Testing::Planning
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Testing::Planning
+    entries: []
+  - namespace: Test2::Manual::Testing::Todo
+    title: Test2::Manual::Testing::Todo
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Testing::Todo
+    entries: []
+  - namespace: Test2::Manual::Tooling
+    title: Test2::Manual::Tooling
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling
+    entries: []
+  - namespace: Test2::Manual::Tooling::FirstTool
+    title: Test2::Manual::Tooling::FirstTool
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::FirstTool
+    entries: []
+  - namespace: Test2::Manual::Tooling::Formatter
+    title: Test2::Manual::Tooling::Formatter
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Formatter
+    entries: []
+  - namespace: Test2::Manual::Tooling::Nesting
+    title: Test2::Manual::Tooling::Nesting
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Nesting
+    entries: []
+  - namespace: Test2::Manual::Tooling::Plugin::TestExit
+    title: Test2::Manual::Tooling::Plugin::TestExit
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Plugin::TestExit
+    entries: []
+  - namespace: Test2::Manual::Tooling::Plugin::TestingDone
+    title: Test2::Manual::Tooling::Plugin::TestingDone
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Plugin::TestingDone
+    entries: []
+  - namespace: Test2::Manual::Tooling::Plugin::ToolCompletes
+    title: Test2::Manual::Tooling::Plugin::ToolCompletes
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Plugin::ToolCompletes
+    entries: []
+  - namespace: Test2::Manual::Tooling::Plugin::ToolStarts
+    title: Test2::Manual::Tooling::Plugin::ToolStarts
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Plugin::ToolStarts
+    entries: []
+  - namespace: Test2::Manual::Tooling::Subtest
+    title: Test2::Manual::Tooling::Subtest
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Subtest
+    entries: []
+  - namespace: Test2::Manual::Tooling::TestBuilder
+    title: Test2::Manual::Tooling::TestBuilder
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::TestBuilder
+    entries: []
+  - namespace: Test2::Manual::Tooling::Testing
+    title: Test2::Manual::Tooling::Testing
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Manual::Tooling::Testing
+    entries:
+      - Test2::Tools::Compare
+      - Test2::Tools::HarnessTester
+      - Test2::Tools::Tester
+  - namespace: Test2::Mock
+    title: Test2::Mock
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Mock
+    entries: []
+  - namespace: Test2::Plugin
+    title: Test2::Plugin
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Plugin
+    entries: []
+  - namespace: Test2::Plugin::BailOnFail
+    title: Test2::Plugin::BailOnFail
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Plugin::BailOnFail
+    entries: []
+  - namespace: Test2::Plugin::DieOnFail
+    title: Test2::Plugin::DieOnFail
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Plugin::DieOnFail
+    entries: []
+  - namespace: Test2::Plugin::ExitSummary
+    title: Test2::Plugin::ExitSummary
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Plugin::ExitSummary
+    entries: []
+  - namespace: Test2::Plugin::SRand
+    title: Test2::Plugin::SRand
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Plugin::SRand
+    entries: []
+  - namespace: Test2::Plugin::Times
+    title: Test2::Plugin::Times
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Plugin::Times
+    entries: []
+  - namespace: Test2::Plugin::UTF8
+    title: Test2::Plugin::UTF8
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Plugin::UTF8
+    entries:
+      - encoding_only
+  - namespace: Test2::Require
+    title: Test2::Require
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require
+    entries: []
+  - namespace: Test2::Require::AuthorTesting
+    title: Test2::Require::AuthorTesting
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::AuthorTesting
+    entries: []
+  - namespace: Test2::Require::AutomatedTesting
+    title: Test2::Require::AutomatedTesting
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::AutomatedTesting
+    entries: []
+  - namespace: Test2::Require::EnvVar
+    title: Test2::Require::EnvVar
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::EnvVar
+    entries: []
+  - namespace: Test2::Require::ExtendedTesting
+    title: Test2::Require::ExtendedTesting
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::ExtendedTesting
+    entries: []
+  - namespace: Test2::Require::Fork
+    title: Test2::Require::Fork
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::Fork
+    entries: []
+  - namespace: Test2::Require::Module
+    title: Test2::Require::Module
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::Module
+    entries: []
+  - namespace: Test2::Require::NonInteractiveTesting
+    title: Test2::Require::NonInteractiveTesting
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::NonInteractiveTesting
+    entries: []
+  - namespace: Test2::Require::Perl
+    title: Test2::Require::Perl
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::Perl
+    entries: []
+  - namespace: Test2::Require::RealFork
+    title: Test2::Require::RealFork
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::RealFork
+    entries: []
+  - namespace: Test2::Require::ReleaseTesting
+    title: Test2::Require::ReleaseTesting
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::ReleaseTesting
+    entries: []
+  - namespace: Test2::Require::Threads
+    title: Test2::Require::Threads
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Require::Threads
+    entries: []
+  - namespace: Test2::Suite
+    title: Test2::Suite
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Suite
+    entries: []
+  - namespace: Test2::Todo
+    title: Test2::Todo
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Todo
+    entries: []
+  - namespace: Test2::Tools
+    title: Test2::Tools
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools
+    entries: []
+  - namespace: Test2::Tools::AsyncSubtest
+    title: Test2::Tools::AsyncSubtest
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::AsyncSubtest
+    entries: []
+  - namespace: Test2::Tools::Basic
+    title: Test2::Tools::Basic
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Basic
+    entries:
+      - ASSERTIONS
+      - DIAGNOSTICS
+      - META
+      - PLANNING
+  - namespace: Test2::Tools::Class
+    title: Test2::Tools::Class
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Class
+    entries: []
+  - namespace: Test2::Tools::ClassicCompare
+    title: Test2::Tools::ClassicCompare
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::ClassicCompare
+    entries: []
+  - namespace: Test2::Tools::Compare
+    title: Test2::Tools::Compare
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Compare
+    entries:
+      - ADVANCED
+  - namespace: Test2::Tools::Defer
+    title: Test2::Tools::Defer
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Defer
+    entries: []
+  - namespace: Test2::Tools::Encoding
+    title: Test2::Tools::Encoding
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Encoding
+    entries: []
+  - namespace: Test2::Tools::Event
+    title: Test2::Tools::Event
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Event
+    entries: []
+  - namespace: Test2::Tools::Exception
+    title: Test2::Tools::Exception
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Exception
+    entries: []
+  - namespace: Test2::Tools::Exports
+    title: Test2::Tools::Exports
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Exports
+    entries: []
+  - namespace: Test2::Tools::GenTemp
+    title: Test2::Tools::GenTemp
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::GenTemp
+    entries: []
+  - namespace: Test2::Tools::Grab
+    title: Test2::Tools::Grab
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Grab
+    entries: []
+  - namespace: Test2::Tools::Mock
+    title: Test2::Tools::Mock
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Mock
+    entries:
+      - DEFAULT
+  - namespace: Test2::Tools::Ref
+    title: Test2::Tools::Ref
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Ref
+    entries: []
+  - namespace: Test2::Tools::Refcount
+    title: Test2::Tools::Refcount
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Refcount
+    entries:
+      - is_oneref
+      - is_refcount
+      - refcount
+  - namespace: Test2::Tools::Spec
+    title: Test2::Tools::Spec
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Spec
+    entries:
+      - ESSENTIALS
+      - SHORTCUTS
+  - namespace: Test2::Tools::Subtest
+    title: Test2::Tools::Subtest
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Subtest
+    entries:
+      - BUFFERED
+      - STREAMED
+  - namespace: Test2::Tools::Target
+    title: Test2::Tools::Target
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Target
+    entries: []
+  - namespace: Test2::Tools::Tester
+    title: Test2::Tools::Tester
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Tester
+    entries: []
+  - namespace: Test2::Tools::Tiny
+    title: Test2::Tools::Tiny
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Tiny
+    entries: []
+  - namespace: Test2::Tools::Warnings
+    title: Test2::Tools::Warnings
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Tools::Warnings
+    entries: []
+  - namespace: Test2::Transition
+    title: Test2::Transition
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Transition
+    entries:
+      - LEGACY
+      - LEGACY1
+      - LEGACY2
+      - TEST2
+      - TEST21
+      - TEST22
+  - namespace: Test2::Util
+    title: Test2::Util
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util
+    entries: []
+  - namespace: Test2::Util::ExternalMeta
+    title: Test2::Util::ExternalMeta
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::ExternalMeta
+    entries: []
+  - namespace: Test2::Util::Facets2Legacy
+    title: Test2::Util::Facets2Legacy
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Facets2Legacy
+    entries: []
+  - namespace: Test2::Util::Grabber
+    title: Test2::Util::Grabber
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Grabber
+    entries: []
+  - namespace: Test2::Util::Guard
+    title: Test2::Util::Guard
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Guard
+    entries: []
+  - namespace: Test2::Util::HashBase
+    title: Test2::Util::HashBase
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::HashBase
+    entries:
+      - HOOKS
+  - namespace: Test2::Util::Importer
+    title: Test2::Util::Importer
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Importer
+    entries: []
+  - namespace: Test2::Util::Ref
+    title: Test2::Util::Ref
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Ref
+    entries: []
+  - namespace: Test2::Util::Sig
+    title: Test2::Util::Sig
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Sig
+    entries: []
+  - namespace: Test2::Util::Stash
+    title: Test2::Util::Stash
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Stash
+    entries: []
+  - namespace: Test2::Util::Sub
+    title: Test2::Util::Sub
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Sub
+    entries: []
+  - namespace: Test2::Util::Table
+    title: Test2::Util::Table
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Table
+    entries: []
+  - namespace: Test2::Util::Table::LineBreak
+    title: Test2::Util::Table::LineBreak
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Table::LineBreak
+    entries: []
+  - namespace: Test2::Util::Times
+    title: Test2::Util::Times
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Times
+    entries: []
+  - namespace: Test2::Util::Trace
+    title: Test2::Util::Trace
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Util::Trace
+    entries: []
+  - namespace: Test2::V0
+    title: Test2::V0
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::V0
+    entries:
+      - BASIC
+      - CLASS
+      - COMPARE
+      - DEFER
+      - ENCODING
+      - EXCEPTION
+      - EXPORTS
+      - MOCK
+      - REF
+      - SRAND
+      - STRICT
+      - SUBTEST
+      - TAGS
+      - TARGET
+      - UTF8
+      - UTF81
+      - WARNINGS
+      - WARNINGS1
+  - namespace: Test2::Workflow
+    title: Test2::Workflow
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Workflow
+    entries:
+      - BUILD
+      - RUNNER
+      - TASK
+  - namespace: Test2::Workflow::BlockBase
+    title: Test2::Workflow::BlockBase
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Workflow::BlockBase
+    entries: []
+  - namespace: Test2::Workflow::Build
+    title: Test2::Workflow::Build
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Workflow::Build
+    entries: []
+  - namespace: Test2::Workflow::Runner
+    title: Test2::Workflow::Runner
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Workflow::Runner
+    entries: []
+  - namespace: Test2::Workflow::Task
+    title: Test2::Workflow::Task
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Workflow::Task
+    entries: []
+  - namespace: Test2::Workflow::Task::Action
+    title: Test2::Workflow::Task::Action
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Workflow::Task::Action
+    entries: []
+  - namespace: Test2::Workflow::Task::Group
+    title: Test2::Workflow::Task::Group
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Test2::Workflow::Task::Group
+    entries: []
+  - namespace: Text::Abbrev
+    title: Text::Abbrev
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Text::Abbrev
+    entries: []
+  - namespace: Text::Balanced
+    title: Text::Balanced
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Text::Balanced
+    entries:
+      - Functions
+  - namespace: Text::ParseWords
+    title: Text::ParseWords
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Text::ParseWords
+    entries:
+      - nested_quotewords
+      - old_shellwords
+      - parse_line
+      - quotewords
+      - shellwords
+  - namespace: Text::Tabs
+    title: Text::Tabs
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Text::Tabs
+    entries:
+      - expand
+      - unexpand
+  - namespace: Text::Wrap
+    title: Text::Wrap
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Text::Wrap
+    entries: []
+  - namespace: Thread::Queue
+    title: Thread::Queue
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Thread::Queue
+    entries: []
+  - namespace: Thread::Semaphore
+    title: Thread::Semaphore
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Thread::Semaphore
+    entries: []
+  - namespace: threads::shared
+    title: threads::shared
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/threads::shared
+    entries: []
+  - namespace: Tie::Array
+    title: Tie::Array
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::Array
+    entries: []
+  - namespace: Tie::File
+    title: Tie::File
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::File
+    entries:
+      - autochomp
+      - autochomp1
+      - Autodeferring
+      - dw_size
+      - flock
+      - memory
+      - mode
+      - offset
+      - recsep
+      - unicode
+  - namespace: Tie::Handle
+    title: Tie::Handle
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::Handle
+    entries: []
+  - namespace: Tie::Hash
+    title: Tie::Hash
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::Hash
+    entries: []
+  - namespace: Tie::Hash::NamedCapture
+    title: Tie::Hash::NamedCapture
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::Hash::NamedCapture
+    entries: []
+  - namespace: Tie::Memoize
+    title: Tie::Memoize
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::Memoize
+    entries: []
+  - namespace: Tie::RefHash
+    title: Tie::RefHash
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::RefHash
+    entries: []
+  - namespace: Tie::Scalar
+    title: Tie::Scalar
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::Scalar
+    entries: []
+  - namespace: Tie::StdHandle
+    title: Tie::StdHandle
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::StdHandle
+    entries: []
+  - namespace: Tie::SubstrHash
+    title: Tie::SubstrHash
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Tie::SubstrHash
+    entries: []
+  - namespace: Time::gmtime
+    title: Time::gmtime
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Time::gmtime
+    entries: []
+  - namespace: Time::HiRes
+    title: Time::HiRes
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Time::HiRes
+    entries: []
+  - namespace: Time::Local
+    title: Time::Local
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Time::Local
+    entries: []
+  - namespace: Time::localtime
+    title: Time::localtime
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Time::localtime
+    entries: []
+  - namespace: Time::Piece
+    title: Time::Piece
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Time::Piece
+    entries:
+      - Truncation
+  - namespace: Time::Seconds
+    title: Time::Seconds
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Time::Seconds
+    entries: []
+  - namespace: Time::tm
+    title: Time::tm
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Time::tm
+    entries: []
+  - namespace: Unicode::Collate
+    title: Unicode::Collate
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate
+    entries: []
+  - namespace: Unicode::Collate::CJK::Big5
+    title: Unicode::Collate::CJK::Big5
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::CJK::Big5
+    entries: []
+  - namespace: Unicode::Collate::CJK::GB2312
+    title: Unicode::Collate::CJK::GB2312
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::CJK::GB2312
+    entries: []
+  - namespace: Unicode::Collate::CJK::JISX0208
+    title: Unicode::Collate::CJK::JISX0208
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::CJK::JISX0208
+    entries: []
+  - namespace: Unicode::Collate::CJK::Korean
+    title: Unicode::Collate::CJK::Korean
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::CJK::Korean
+    entries: []
+  - namespace: Unicode::Collate::CJK::Pinyin
+    title: Unicode::Collate::CJK::Pinyin
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::CJK::Pinyin
+    entries: []
+  - namespace: Unicode::Collate::CJK::Stroke
+    title: Unicode::Collate::CJK::Stroke
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::CJK::Stroke
+    entries: []
+  - namespace: Unicode::Collate::CJK::Zhuyin
+    title: Unicode::Collate::CJK::Zhuyin
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::CJK::Zhuyin
+    entries: []
+  - namespace: Unicode::Collate::Locale
+    title: Unicode::Collate::Locale
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Collate::Locale
+    entries:
+      - Constructor
+      - Methods
+      - Reference
+  - namespace: Unicode::Normalize
+    title: Unicode::Normalize
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::Normalize
+    entries:
+      - check
+      - checkFCC
+      - checkFCD
+      - checkNFC
+      - checkNFD
+      - checkNFKC
+      - checkNFKD
+      - compose
+      - decompose
+      - FCC
+      - FCD
+      - getCanon
+      - getCombinClass
+      - getCompat
+      - getComposite
+      - isComp_Ex
+      - isComp2nd
+      - isExclusion
+      - isNFC_MAYBE
+      - isNFC_NO
+      - isNFD_NO
+      - isNFKC_MAYBE
+      - isNFKC_NO
+      - isNFKD_NO
+      - isNonStDecomp
+      - isSingleton
+      - NFC
+      - NFC_partial
+      - NFD
+      - NFD_partial
+      - NFKC
+      - NFKC_partial
+      - NFKD
+      - NFKD_partial
+      - normalize
+      - normalize_partial
+      - reorder
+      - splitOnLastStarter
+  - namespace: Unicode::UCD
+    title: Unicode::UCD
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/Unicode::UCD
+    entries:
+      - Unicode::UCD::UnicodeVersion
+  - namespace: User::grent
+    title: User::grent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/User::grent
+    entries: []
+  - namespace: User::pwent
+    title: User::pwent
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/User::pwent
+    entries: []
+  - namespace: version::Internals
+    title: version::Internals
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/version::Internals
+    entries: []
+  - namespace: warnings::register
+    title: warnings::register
+    target: Perl 5.40
+    sourceKind: source_manifest
+    sourceRef: https://perldoc.perl.org/warnings::register
+    entries: []

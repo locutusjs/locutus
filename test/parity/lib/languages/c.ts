@@ -14,8 +14,7 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { discoverCUpstreamSurface } from '../upstream-surface-canonical.ts'
-import { discoverUpstreamSurfaceNamespaceCatalogFromScope } from '../upstream-surface-scope.ts'
+import { discoverCUpstreamNamespaceCatalog, discoverCUpstreamSurface } from '../upstream-surface-canonical.ts'
 
 type ReturnType = 'bool' | 'int' | 'double' | 'string' | 'char'
 
@@ -373,7 +372,7 @@ export const cHandler: LanguageHandler = {
     discover: discoverCUpstreamSurface,
     discoverMode: 'live',
     discoverUsesDocker: false,
-    discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope('c'),
+    discoverNamespaceCatalog: discoverCUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.name === 'abs' ? 'stdlib' : func.category,
       name: func.name,
