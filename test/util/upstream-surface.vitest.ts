@@ -637,12 +637,34 @@ describe('upstream surface inventory', () => {
   })
 
   it('keeps the Go namespace catalog on package namespaces instead of receiver types', async () => {
-    const catalog = await getLanguageHandler('golang')?.upstreamSurface?.discoverNamespaceCatalog?.()
+    const runInDocker = vi.fn().mockReturnValue({
+      success: true,
+      output: ['time', 'net/url', 'path/filepath', 'unsafe'].join('\n'),
+    })
 
-    expect(catalog?.namespaces).toEqual(expect.arrayContaining(['time', 'url']))
-    expect(catalog?.namespaces).not.toContain('time.Time')
-    expect(catalog?.namespaces).not.toContain('url.URL')
-    expect(catalog?.namespaces).not.toContain('url.Values')
+    try {
+      vi.resetModules()
+      vi.doMock('../parity/lib/docker.ts', async () => {
+        const actual = await vi.importActual<typeof import('../parity/lib/docker.ts')>('../parity/lib/docker.ts')
+        return {
+          ...actual,
+          runInDocker,
+        }
+      })
+
+      const { golangHandler } = await import('../parity/lib/languages/golang.ts')
+      const catalog = await golangHandler.upstreamSurface?.discoverNamespaceCatalog?.()
+
+      expect(runInDocker).toHaveBeenCalledWith('golang:1.23', ['go', 'list', 'std'])
+      expect(catalog?.namespaces).toEqual(expect.arrayContaining(['time', 'url', 'filepath']))
+      expect(catalog?.namespaces).not.toContain('time.Time')
+      expect(catalog?.namespaces).not.toContain('url.URL')
+      expect(catalog?.namespaces).not.toContain('url.Values')
+      expect(catalog?.namespaces).not.toContain('unsafe')
+    } finally {
+      vi.doUnmock('../parity/lib/docker.ts')
+      vi.resetModules()
+    }
   })
 
   it('keeps raw discovered PowerShell catalogs on comparable type namespaces instead of module names', () => {
