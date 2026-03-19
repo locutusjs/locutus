@@ -1,4 +1,8 @@
 language: julia
+catalog:
+  target: Julia 1.11
+  sourceKind: runtime
+  sourceRef: julia:1.11:stdlib-modules
 namespaces:
   - namespace: ArgTools
     title: ArgTools

@@ -1,4 +1,8 @@
 language: tcl
+catalog:
+  target: Tcl 8.6
+  sourceKind: runtime
+  sourceRef: python:3.12:tclsh-info-commands
 namespaces:
   - namespace: array
     title: array

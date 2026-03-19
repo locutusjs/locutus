@@ -159,9 +159,70 @@ const KOTLIN_CATALOG_SOURCE_REF = 'https://kotlinlang.org/api/core/kotlin-stdlib
 const SWIFT_DOCKER_IMAGE = 'swift:6.0'
 const SWIFT_CATALOG_TARGET = 'Swift 6.0'
 const SWIFT_CATALOG_SOURCE_REF = 'swift:6.0:symbolgraph-extract'
-const POWERSHELL_DOCKER_IMAGE = 'mcr.microsoft.com/powershell:7.4-ubuntu-22.04'
 const POWERSHELL_CATALOG_TARGET = 'PowerShell 7.4'
-const POWERSHELL_CATALOG_SOURCE_REF = 'powershell:7.4:get-command'
+const POWERSHELL_CATALOG_SOURCE_REF = 'https://learn.microsoft.com/dotnet/api/'
+const POWERSHELL_TYPE_NAMESPACES = [
+  {
+    namespace: 'string',
+    title: 'System.String instance methods',
+    typeName: 'System.String',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.string',
+  },
+  {
+    namespace: 'math',
+    title: 'System.Math static methods',
+    typeName: 'System.Math',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.math',
+  },
+  {
+    namespace: 'char',
+    title: 'System.Char static methods',
+    typeName: 'System.Char',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.char',
+  },
+  {
+    namespace: 'convert',
+    title: 'System.Convert static methods',
+    typeName: 'System.Convert',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.convert',
+  },
+  {
+    namespace: 'array',
+    title: 'System.Array static methods',
+    typeName: 'System.Array',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.array',
+  },
+  {
+    namespace: 'datetime',
+    title: 'System.DateTime static and instance methods',
+    typeName: 'System.DateTime',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.datetime',
+  },
+  {
+    namespace: 'uri',
+    title: 'System.Uri static and instance methods',
+    typeName: 'System.Uri',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.uri',
+  },
+  {
+    namespace: 'guid',
+    title: 'System.Guid static and instance methods',
+    typeName: 'System.Guid',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.guid',
+  },
+  {
+    namespace: 'version',
+    title: 'System.Version static and instance methods',
+    typeName: 'System.Version',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.version',
+  },
+  {
+    namespace: 'timespan',
+    title: 'System.TimeSpan static and instance methods',
+    typeName: 'System.TimeSpan',
+    sourceRef: 'https://learn.microsoft.com/dotnet/api/system.timespan',
+  },
+] as const
 
 export function discoverAwkUpstreamNamespaceCatalog(): DiscoveredUpstreamSurfaceNamespaceCatalog {
   return {
@@ -188,19 +249,26 @@ function cHeaderSourceRef(namespace: string): string {
 }
 
 function discoverCHeaderEntries(namespace: string, html: string): string[] {
-  const titlePattern = /title="c\/[^"]+\/([A-Za-z_][A-Za-z0-9_]*)"/g
-  const names = extractMatches(html, titlePattern, normalizeCFunctionName)
-
-  if (namespace === 'stdio') {
-    const special = extractMatches(html, /title="c\/io\/v?fprintf"[^>]*>([\s\S]*?)<\/a>/g, (block) =>
-      uniqueSorted(extractMatches(block, /<span>([^<]+)<\/span>/g, normalizeCFunctionName)).join('\n'),
-    )
-      .flatMap((block) => block.split('\n'))
-      .filter(Boolean)
-    return uniqueSorted([...names, ...special])
+  const synopsisMatch = html.match(
+    /<span class="mw-headline" id="Synopsis">Synopsis<\/span><\/h3>([\s\S]*?)(?:<!--|<h[23])/,
+  )
+  if (!synopsisMatch?.[1]) {
+    return []
   }
 
-  return names
+  const synopsis = decodeHtmlEntities(synopsisMatch[1]).replace(/<[^>]+>/g, '')
+  return uniqueSorted(
+    synopsis
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .filter((line) => !line.startsWith('#'))
+      .flatMap((line) => {
+        const match = line.match(/([A-Za-z_][A-Za-z0-9_]*)\s*\([^;]*\)\s*;/)
+        const name = match?.[1]
+        return name && normalizeCFunctionName(name) ? [name] : []
+      }),
+  )
 }
 
 export function discoverPerlUpstreamNamespaceCatalog(): Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> {
@@ -379,28 +447,11 @@ function discoverHaskellUpstreamSurfaceRuntime(): UpstreamSurfaceSnapshot {
 }
 
 export function discoverPowerShellUpstreamNamespaceCatalog(): DiscoveredUpstreamSurfaceNamespaceCatalog {
-  const script = [
-    '$mods = Get-Module -ListAvailable Microsoft.PowerShell.* | Select-Object -ExpandProperty Name -Unique | Sort-Object',
-    '$mods | ForEach-Object { $_ }',
-  ].join('; ')
-  const result = runInDocker(POWERSHELL_DOCKER_IMAGE, ['pwsh', '-NoLogo', '-NoProfile', '-Command', script], {
-    platform: 'linux/amd64',
-    timeout: 120000,
-  })
-  if (!result.success) {
-    throw new Error(result.error || 'Unable to discover PowerShell modules')
-  }
-
   return {
     target: POWERSHELL_CATALOG_TARGET,
-    sourceKind: 'runtime',
+    sourceKind: 'source_manifest',
     sourceRef: POWERSHELL_CATALOG_SOURCE_REF,
-    namespaces: uniqueSorted(
-      result.output
-        .split('\n')
-        .map((line) => line.trim())
-        .filter(Boolean),
-    ),
+    namespaces: POWERSHELL_TYPE_NAMESPACES.map((namespace) => namespace.namespace),
   }
 }
 
@@ -538,22 +589,42 @@ export function discoverRustUpstreamSurface(): Promise<UpstreamSurfaceSnapshot> 
 
 export function discoverKotlinUpstreamSurface(): Promise<UpstreamSurfaceSnapshot> {
   return fetchText(KOTLIN_CATALOG_SOURCE_REF).then((html) => {
-    const namespaces = new Map<string, Set<string>>()
+    const namespaces = new Map<string, { entries: Set<string>; packagePath: string }>()
+    const catalogBaseUrl = new URL(KOTLIN_CATALOG_SOURCE_REF)
+    const catalogPathPrefix = '/api/core/kotlin-stdlib/'
 
     for (const href of extractMatches(html, /href="([^"]+)"/g, (value) => stripHtml(value).trim() || null)) {
-      if (!href.endsWith('.html') || href.startsWith('http') || href.startsWith('/')) {
+      let url: URL
+      try {
+        url = new URL(href, KOTLIN_CATALOG_SOURCE_REF)
+      } catch {
         continue
       }
 
-      const segments = href.split('/').filter(Boolean)
+      if (url.origin !== catalogBaseUrl.origin || !url.pathname.startsWith(catalogPathPrefix)) {
+        continue
+      }
+
+      const relativePath = url.pathname.slice(catalogPathPrefix.length)
+      if (!relativePath.endsWith('.html')) {
+        continue
+      }
+
+      const segments = relativePath.split('/').filter(Boolean)
       if (!segments.length) {
         continue
       }
 
       const packageSegments: string[] = []
       const entrySegments: string[] = []
+      let isInvalidPath = false
 
       for (const segment of segments) {
+        if (segment === '.' || segment === '..') {
+          isInvalidPath = true
+          break
+        }
+
         if (segment.endsWith('.html')) {
           const normalized = normalizeKotlinDocIdentifier(segment)
           if (normalized && segment !== 'index.html') {
@@ -573,16 +644,17 @@ export function discoverKotlinUpstreamSurface(): Promise<UpstreamSurfaceSnapshot
         packageSegments.push(segment)
       }
 
-      if (!packageSegments.length) {
+      if (!packageSegments.length || isInvalidPath) {
         continue
       }
 
       const namespace = packageSegments.join('.')
-      const entries = namespaces.get(namespace) ?? new Set<string>()
+      const packagePath = packageSegments.join('/')
+      const namespaceData = namespaces.get(namespace) ?? { entries: new Set<string>(), packagePath }
       for (const entry of entrySegments) {
-        entries.add(entry)
+        namespaceData.entries.add(entry)
       }
-      namespaces.set(namespace, entries)
+      namespaces.set(namespace, namespaceData)
     }
 
     return buildDiscoveredUpstreamSurfaceSnapshot({
@@ -592,11 +664,11 @@ export function discoverKotlinUpstreamSurface(): Promise<UpstreamSurfaceSnapshot
         sourceKind: 'source_manifest',
         sourceRef: KOTLIN_CATALOG_SOURCE_REF,
       },
-      namespaces: [...namespaces.entries()].map(([namespace, entries]) => ({
+      namespaces: [...namespaces.entries()].map(([namespace, data]) => ({
         namespace,
         title: namespace,
-        sourceRef: `https://kotlinlang.org/api/core/kotlin-stdlib/${namespace}/`,
-        entries: [...entries],
+        sourceRef: `https://kotlinlang.org/api/core/kotlin-stdlib/${data.packagePath}/`,
+        entries: [...data.entries],
       })),
     })
   })
@@ -646,7 +718,7 @@ for namespace in namespaces.keys.sorted() {
 __LOCUTUS_SWIFT__
 swift "$tmp/reduce.swift" "$tmp/Swift.symbols.json"`,
     ],
-    { timeout: 120000, maxBuffer: 16 * 1024 * 1024 },
+    { timeout: 120000, maxBuffer: 16 * 1024 * 1024, platform: 'linux/arm64' },
   )
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Swift upstream surface')
@@ -683,30 +755,41 @@ swift "$tmp/reduce.swift" "$tmp/Swift.symbols.json"`,
 
 export function discoverPowerShellUpstreamSurface(): Promise<UpstreamSurfaceSnapshot> {
   const catalog = discoverPowerShellUpstreamNamespaceCatalog()
-  const namespaces = catalog.namespaces.map((namespace) => {
-    const script = [
-      `$cmds = Get-Command -Module '${namespace}' | Select-Object -ExpandProperty Name -Unique | Sort-Object`,
-      '$cmds | ForEach-Object { $_ }',
-    ].join('; ')
-    const result = runInDocker(POWERSHELL_DOCKER_IMAGE, ['pwsh', '-NoLogo', '-NoProfile', '-Command', script], {
-      platform: 'linux/amd64',
-      timeout: 120000,
-    })
-    if (!result.success) {
-      throw new Error(result.error || `Unable to discover PowerShell upstream surface for ${namespace}`)
-    }
-    return {
-      namespace,
-      title: namespace,
-      sourceRef: `${POWERSHELL_DOCKER_IMAGE}:${namespace}`,
-      entries: result.output
-        .split('\n')
-        .map((line) => line.trim())
-        .filter(Boolean),
-    }
-  })
+  return Promise.all(
+    POWERSHELL_TYPE_NAMESPACES.map(async (metadata) => {
+      const html = await fetchText(metadata.sourceRef)
+      const memberPrefix = `${metadata.typeName.toLowerCase()}.`
+      const constructorPrefix = `${metadata.typeName.toLowerCase()}.-ctor`
+      const memberEntries = extractMatches(html, /href="([^"]+)\?view=[^"]+"/g, (href) => {
+        const normalizedHref = stripHtml(href).trim().toLowerCase()
+        if (!normalizedHref.startsWith(memberPrefix)) {
+          return null
+        }
 
-  return Promise.resolve(
+        const memberName = stripHtml(href)
+          .trim()
+          .slice(memberPrefix.length)
+          .replace(/\?view=.*$/, '')
+          .split('#')[0]
+        const normalizedMemberName = memberName ?? ''
+        if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(normalizedMemberName)) {
+          return null
+        }
+        return normalizedMemberName
+      })
+      const constructorName = metadata.typeName.split('.').pop()
+      const constructorEntries =
+        constructorName && html.toLowerCase().includes(constructorPrefix) ? [constructorName] : []
+
+      return {
+        namespace: metadata.namespace,
+        title: metadata.title,
+        sourceKind: 'source_manifest' as const,
+        sourceRef: metadata.sourceRef,
+        entries: uniqueSorted([...memberEntries, ...constructorEntries].filter((entry): entry is string => !!entry)),
+      }
+    }),
+  ).then((namespaces) =>
     buildDiscoveredUpstreamSurfaceSnapshot({
       language: 'powershell',
       catalog,

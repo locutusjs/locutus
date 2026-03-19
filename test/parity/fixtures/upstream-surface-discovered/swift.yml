@@ -1,4 +1,8 @@
 language: swift
+catalog:
+  target: Swift 6.0
+  sourceKind: runtime
+  sourceRef: swift:6.0:symbolgraph-extract
 namespaces:
   - namespace: AdditiveArithmetic
     title: AdditiveArithmetic

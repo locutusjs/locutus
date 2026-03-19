@@ -1,4 +1,8 @@
 language: haskell
+catalog:
+  target: Haskell 9.10 base
+  sourceKind: runtime
+  sourceRef: haskell:9.10:base-exposed-modules
 namespaces:
   - namespace: Control.Applicative
     title: Control.Applicative

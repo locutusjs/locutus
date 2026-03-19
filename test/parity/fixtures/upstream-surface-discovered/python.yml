@@ -1,4 +1,8 @@
 language: python
+catalog:
+  target: Python 3.12
+  sourceKind: runtime
+  sourceRef: python:3.12:pkgutil-stdlib-modules
 namespaces:
   - namespace: abc
     title: abc

@@ -1,4 +1,8 @@
 language: rust
+catalog:
+  target: Rust 1.85
+  sourceKind: source_manifest
+  sourceRef: https://doc.rust-lang.org/std/index.html
 namespaces:
   - namespace: enum:Option:option
     title: enum Option:option

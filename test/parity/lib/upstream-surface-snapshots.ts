@@ -28,6 +28,13 @@ const upstreamSurfaceNamespaceSnapshotSchema = z
 const upstreamSurfaceSnapshotSchema = z
   .object({
     language: z.string().min(1),
+    catalog: z
+      .object({
+        target: z.string().min(1),
+        sourceKind: z.enum(['runtime', 'source_manifest', 'manual']),
+        sourceRef: z.string().min(1),
+      })
+      .optional(),
     namespaces: z.array(upstreamSurfaceNamespaceSnapshotSchema).min(1),
   })
   .strict()
@@ -35,7 +42,18 @@ const upstreamSurfaceSnapshotSchema = z
 export function loadUpstreamSurfaceSnapshot(snapshotPath: string): UpstreamSurfaceSnapshot {
   const raw = readFileSync(snapshotPath, 'utf8')
   const parsed = YAML.load(raw) ?? {}
-  return upstreamSurfaceSnapshotSchema.parse(parsed)
+  const snapshot = upstreamSurfaceSnapshotSchema.parse(parsed)
+  if (snapshot.catalog) {
+    return {
+      language: snapshot.language,
+      catalog: snapshot.catalog,
+      namespaces: snapshot.namespaces,
+    }
+  }
+  return {
+    language: snapshot.language,
+    namespaces: snapshot.namespaces,
+  }
 }
 
 export function loadUpstreamSurfaceSnapshots(snapshotDir: string): Map<string, UpstreamSurfaceSnapshot> {

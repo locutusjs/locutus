@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { canEnumerateUpstreamSurfaceLanguage } from '../../scripts/upstream-surface-enumeration.ts'
 import { cHandler } from '../parity/lib/languages/c.ts'
 import {
@@ -403,6 +403,122 @@ describe('upstream surface inventory', () => {
     expect(canEnumerateUpstreamSurfaceLanguage('php', 'all', process.cwd())).toBe(true)
   })
 
+  it('audits canonical namespace scope after enumeration writes discovered snapshots', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'locutus-upstream-enumeration-'))
+    const snapshotDir = join(root, 'snapshots')
+    const logger = { log: vi.fn(), error: vi.fn() }
+    const auditUpstreamSurfaceScope = vi.fn().mockResolvedValue(undefined)
+
+    try {
+      vi.resetModules()
+      vi.doMock('../../scripts/upstream-surface-scope-audit.ts', () => ({
+        auditUpstreamSurfaceScope,
+      }))
+      vi.doMock('../parity/lib/languages/index.ts', () => ({
+        getSupportedLanguages: () => ['swift'],
+        getLanguageHandler: () => ({
+          dockerImage: 'swift:6.0',
+          upstreamSurface: {
+            discover: async () => ({
+              language: 'swift',
+              namespaces: [
+                {
+                  namespace: 'Swift',
+                  title: 'Swift',
+                  target: 'Swift 6.0',
+                  sourceKind: 'runtime',
+                  sourceRef: 'swift:6.0',
+                  entries: ['String'],
+                },
+              ],
+            }),
+            discoverMode: 'live',
+            discoverUsesDocker: false,
+          },
+        }),
+      }))
+      vi.doMock('../parity/lib/upstream-surface.ts', async () => {
+        const actual = await vi.importActual<typeof import('../parity/lib/upstream-surface.ts')>(
+          '../parity/lib/upstream-surface.ts',
+        )
+        return {
+          ...actual,
+          resolveUpstreamSurfaceLanguages: () => ({
+            unknown: [],
+            unavailable: [],
+            selected: ['swift'],
+          }),
+        }
+      })
+      vi.doMock('../parity/lib/docker.ts', async () => {
+        const actual = await vi.importActual<typeof import('../parity/lib/docker.ts')>('../parity/lib/docker.ts')
+        return {
+          ...actual,
+          checkDockerAvailable: () => true,
+          ensureDockerImage: () => true,
+        }
+      })
+
+      const { enumerateUpstreamSurfaceSnapshots } = await import('../../scripts/upstream-surface-enumeration.ts')
+      await enumerateUpstreamSurfaceSnapshots({
+        filters: [],
+        mode: 'all',
+        rootDir: root,
+        snapshotDir,
+        logger,
+      })
+
+      expect(auditUpstreamSurfaceScope).toHaveBeenCalledWith({
+        logger,
+        rootDir: root,
+        selectedLanguages: ['swift'],
+      })
+    } finally {
+      vi.doUnmock('../../scripts/upstream-surface-scope-audit.ts')
+      vi.doUnmock('../parity/lib/languages/index.ts')
+      vi.doUnmock('../parity/lib/upstream-surface.ts')
+      vi.doUnmock('../parity/lib/docker.ts')
+      vi.resetModules()
+      rmSync(root, { recursive: true, force: true })
+    }
+  })
+
+  it('pins Swift discovery to linux/arm64 to match the extracted symbolgraph target', async () => {
+    const runInDocker = vi.fn().mockReturnValue({
+      success: true,
+      output: 'Swift\tString\u001fSubstring\n',
+    })
+
+    try {
+      vi.resetModules()
+      vi.doMock('../parity/lib/docker.ts', async () => {
+        const actual = await vi.importActual<typeof import('../parity/lib/docker.ts')>('../parity/lib/docker.ts')
+        return {
+          ...actual,
+          runInDocker,
+        }
+      })
+
+      const { discoverSwiftUpstreamSurface } = await import('../parity/lib/upstream-surface-canonical.ts')
+      const snapshot = await discoverSwiftUpstreamSurface()
+
+      expect(runInDocker).toHaveBeenCalledWith(
+        'swift:6.0',
+        expect.any(Array),
+        expect.objectContaining({ platform: 'linux/arm64' }),
+      )
+      expect(snapshot.namespaces).toEqual([
+        expect.objectContaining({
+          namespace: 'Swift',
+          entries: ['String', 'Substring'],
+        }),
+      ])
+    } finally {
+      vi.doUnmock('../parity/lib/docker.ts')
+      vi.resetModules()
+    }
+  })
+
   it('keeps inventory-only languages out of parity support even while tracking their upstream surface', () => {
     expect(getParitySupportedLanguages()).toContain('php')
     expect(getParitySupportedLanguages()).not.toContain('swift')
@@ -449,10 +565,10 @@ describe('upstream surface inventory', () => {
     const loaded = loadUpstreamSurfaceScope(join(process.cwd(), 'docs/upstream-surface-scope.yml'))
 
     expect(loaded.php?.namespaces?.__global?.sourceKind).toBe('runtime')
-    expect(loaded.python?.namespaces?.math?.sourceRef).toBe('python:3.12')
+    expect(loaded.python?.namespaces?.math?.sourceRef).toBe('python:3.12:math')
     expect(loaded.python?.namespaceCatalog?.sourceRef).toBe('python:3.12:pkgutil-stdlib-modules')
-    expect(loaded.python?.namespaces?.['urllib.parse']?.catalogNamespace).toBe('urllib')
-    expect(loaded.swift?.namespaces?.String?.sourceKind).toBe('manual')
+    expect(loaded.python?.namespaces?.urllib?.sourceRef).toBe('python:3.12:urllib')
+    expect(loaded.swift?.namespaces?.String?.sourceKind).toBe('runtime')
   })
 
   it('defines a canonical namespace catalog for every supported language', () => {
@@ -507,6 +623,100 @@ describe('upstream surface inventory', () => {
     expect(valuesEntries).toContain('Encode')
     expect(valuesEntries).toContain('Get')
     expect(valuesEntries).not.toContain('ParseQuery')
+  })
+
+  it('keeps raw discovered Go catalogs aware of receiver-method namespaces', () => {
+    const loaded = loadUpstreamSurfaceSnapshot(
+      join(process.cwd(), 'test/parity/fixtures/upstream-surface-discovered/golang.yml'),
+    )
+    const namespaces = loaded.namespaces.map((namespace) => namespace.namespace)
+
+    expect(namespaces).toContain('time.Time')
+    expect(namespaces).toContain('url.URL')
+    expect(namespaces).toContain('url.Values')
+  })
+
+  it('keeps the Go namespace catalog on package namespaces instead of receiver types', async () => {
+    const catalog = await getLanguageHandler('golang')?.upstreamSurface?.discoverNamespaceCatalog?.()
+
+    expect(catalog?.namespaces).toEqual(expect.arrayContaining(['time', 'url']))
+    expect(catalog?.namespaces).not.toContain('time.Time')
+    expect(catalog?.namespaces).not.toContain('url.URL')
+    expect(catalog?.namespaces).not.toContain('url.Values')
+  })
+
+  it('keeps raw discovered PowerShell catalogs on comparable type namespaces instead of module names', () => {
+    const loaded = loadUpstreamSurfaceSnapshot(
+      join(process.cwd(), 'test/parity/fixtures/upstream-surface-discovered/powershell.yml'),
+    )
+    const namespaces = loaded.namespaces.map((namespace) => namespace.namespace)
+
+    expect(namespaces).toEqual(expect.arrayContaining(['string', 'math', 'char', 'convert']))
+    expect(namespaces).not.toContain('Microsoft.PowerShell.Utility')
+    expect(namespaces).not.toContain('Microsoft.PowerShell.Management')
+  })
+
+  it('keeps raw discovered Clojure catalogs aligned with the comparable scope contract', () => {
+    const loaded = loadUpstreamSurfaceSnapshot(
+      join(process.cwd(), 'test/parity/fixtures/upstream-surface-discovered/clojure.yml'),
+    )
+    const namespaces = loaded.namespaces.map((namespace) => namespace.namespace)
+
+    expect(loaded.catalog?.sourceKind).toBe('source_manifest')
+    expect(loaded.catalog?.sourceRef).toBe('https://clojure.github.io/clojure/')
+    expect(namespaces).toContain('Math')
+    expect(namespaces).toContain('core')
+    expect(namespaces).not.toContain('clojure.core')
+    expect(namespaces).not.toContain("#'user/namespaces")
+  })
+
+  it('keeps raw discovered Kotlin catalogs free of version and parent-path pseudo namespaces', () => {
+    const loaded = loadUpstreamSurfaceSnapshot(
+      join(process.cwd(), 'test/parity/fixtures/upstream-surface-discovered/kotlin.yml'),
+    )
+    const namespaces = loaded.namespaces.map((namespace) => namespace.namespace)
+
+    expect(namespaces).toContain('kotlin.text')
+    expect(namespaces).not.toContain('..')
+    expect(namespaces).not.toEqual(expect.arrayContaining(['...1.0.kotlin-stdlib', '...2.2.kotlin-stdlib']))
+  })
+
+  it('keeps raw discovered C catalogs limited to real synopsis functions', () => {
+    const loaded = loadUpstreamSurfaceSnapshot(
+      join(process.cwd(), 'test/parity/fixtures/upstream-surface-discovered/c.yml'),
+    )
+    const byNamespace = new Map(loaded.namespaces.map((namespace) => [namespace.namespace, namespace.entries]))
+
+    expect(byNamespace.get('assert')).toEqual([])
+    expect(byNamespace.get('complex')).toContain('cacos')
+    expect(byNamespace.get('complex')).not.toEqual(expect.arrayContaining(['complex', 'imaginary', 'ctype']))
+    expect(byNamespace.get('ctype')).toContain('isalnum')
+    expect(byNamespace.get('ctype')).not.toEqual(expect.arrayContaining(['assert', 'byte', 'complex']))
+  })
+
+  it('keeps the checked-in scope aligned with raw discovered C and Clojure namespace catalogs', () => {
+    const scope = loadUpstreamSurfaceScope(join(process.cwd(), 'docs/upstream-surface-scope.yml'))
+    const buildCatalog = (language: 'c' | 'clojure') => {
+      const snapshot = loadUpstreamSurfaceSnapshot(
+        join(process.cwd(), `test/parity/fixtures/upstream-surface-discovered/${language}.yml`),
+      )
+      return {
+        target: snapshot.catalog?.target ?? snapshot.namespaces[0]?.target ?? '',
+        sourceKind: snapshot.catalog?.sourceKind ?? snapshot.namespaces[0]?.sourceKind ?? 'runtime',
+        sourceRef: snapshot.catalog?.sourceRef ?? snapshot.namespaces[0]?.sourceRef ?? '',
+        namespaces: snapshot.namespaces.map((namespace) => namespace.namespace),
+      }
+    }
+
+    const issues = findUpstreamSurfaceNamespaceCatalogIssues(
+      new Map([
+        ['c', buildCatalog('c')],
+        ['clojure', buildCatalog('clojure')],
+      ]),
+      scope,
+    )
+
+    expect(issues.filter((issue) => issue.language === 'c' || issue.language === 'clojure')).toEqual([])
   })
 
   it('rejects unknown keys in namespace sections', () => {

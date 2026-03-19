@@ -1,4 +1,8 @@
 language: ruby
+catalog:
+  target: Ruby 3.3
+  sourceKind: runtime
+  sourceRef: ruby:3.3:objectspace-top-level-modules
 namespaces:
   - namespace: ArgumentError
     title: ArgumentError

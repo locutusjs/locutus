@@ -18,79 +18,65 @@ export const CLOJURE_SKIP_LIST = new Set<string>([
 
 const CLOJURE_DOCKER_IMAGE = 'clojure:temurin-21-tools-deps'
 const CLOJURE_NAMESPACE_CATALOG_TARGET = 'Clojure 1.12'
-const CLOJURE_NAMESPACE_CATALOG_SOURCE_REF = 'clojure:1.12:jar-namespaces'
+const CLOJURE_NAMESPACE_CATALOG_SOURCE_REF = 'https://clojure.github.io/clojure/'
 
-function discoverClojureUpstreamNamespaces() {
-  const script = `
-(require '[clojure.string :as string])
-
-(let [classpath (string/split (System/getProperty "java.class.path") #":")
-      jar-path (first (filter #(re-find #"/clojure-[0-9].*\\.jar$" %) classpath))]
-  (when-not jar-path
-    (throw (ex-info "Unable to locate clojure jar" {})))
-  (with-open [zip (java.util.zip.ZipFile. jar-path)]
-    (->> (enumeration-seq (.entries zip))
-         (map #(.getName %))
-         (filter #(re-matches #"clojure/.*\\.clj[cs]?" %))
-         (remove #(or (= % "clojure/core_deftype.clj") (= % "clojure/genclass.clj")))
-         (map #(.getEntry zip %))
-         (map (fn [entry]
-                (with-open [reader (java.io.BufferedReader.
-                                     (java.io.InputStreamReader. (.getInputStream zip entry)))]
-                  (loop [lines []]
-                    (if-let [line (.readLine reader)]
-                      (let [updated (conj lines line)
-                            text (string/join "\n" updated)
-                            match (re-find (re-pattern "\\\\(ns\\\\s+([^\\\\s\\\\)\\\\[]+)") text)]
-                        (if match
-                          (second match)
-                          (recur updated)))
-                      nil)))))
-         (filter some?)
-         sort
-         distinct
-         (run! println))))
-  `.trim()
-
-  const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', script], { timeout: 120000 })
-  if (!result.success) {
-    throw new Error(result.error || 'Unable to discover Clojure upstream namespaces')
-  }
-
-  return result.output
-    .trim()
-    .split('\n')
-    .map((line) => line.trim())
-    .filter((line) => line.startsWith('clojure.'))
-    .sort()
+function normalizeClojureNamespace(namespace: string): string {
+  return namespace.startsWith('clojure.') ? namespace.slice('clojure.'.length) : namespace
 }
 
-function discoverClojureUpstreamNamespaceCatalog() {
+function catalogClojureNamespace(namespace: string): string {
+  return namespace === 'Math' ? namespace : `clojure.${namespace}`
+}
+
+async function discoverClojureUpstreamNamespaces() {
+  const html = await fetch(CLOJURE_NAMESPACE_CATALOG_SOURCE_REF).then(async (response) => {
+    if (!response.ok) {
+      throw new Error(`Unable to discover Clojure upstream namespaces: ${response.status} ${response.statusText}`)
+    }
+    return await response.text()
+  })
+
+  const docNamespaces = [...new Set([...html.matchAll(/href="([a-z0-9.]+)-api\.html"/g)].map((match) => match[1]))]
+    .filter((namespace): namespace is string => !!namespace)
+    .map((namespace) => normalizeClojureNamespace(namespace))
+    .sort((left, right) => left.localeCompare(right))
+
+  return [...docNamespaces, 'Math'].sort((left, right) => left.localeCompare(right))
+}
+
+async function discoverClojureUpstreamNamespaceCatalog() {
   return {
     target: CLOJURE_NAMESPACE_CATALOG_TARGET,
-    sourceKind: 'runtime' as const,
+    sourceKind: 'source_manifest' as const,
     sourceRef: CLOJURE_NAMESPACE_CATALOG_SOURCE_REF,
-    namespaces: discoverClojureUpstreamNamespaces(),
+    namespaces: await discoverClojureUpstreamNamespaces(),
   }
 }
 
-function discoverClojureUpstreamSurface() {
-  const catalog = discoverClojureUpstreamNamespaceCatalog()
+async function discoverClojureUpstreamSurface() {
+  const catalog = await discoverClojureUpstreamNamespaceCatalog()
   const script = `
-(require 'clojure.string)
-
-(def namespaces ${JSON.stringify(catalog.namespaces)})
-
-(doseq [namespace namespaces]
-  (let [symbol (symbol namespace)]
-    (require symbol)
-    (->> (ns-publics symbol)
-         keys
-         (map name)
-         sort
-         (clojure.string/join "\\u001f")
-         (str namespace "\\t")
-         println)))
+(do
+  (require 'clojure.string)
+  (let [namespaces ${JSON.stringify(catalog.namespaces)}]
+    (doseq [namespace namespaces]
+      (if (= namespace "Math")
+        (->> (.getDeclaredMethods java.lang.Math)
+             (map #(.getName %))
+             sort
+             distinct
+             (clojure.string/join "\\u001f")
+             (str namespace "\\t")
+             println)
+        (let [symbol (symbol (str "clojure." namespace))]
+          (require symbol)
+          (->> (ns-publics symbol)
+               keys
+               (map name)
+               sort
+               (clojure.string/join "\\u001f")
+               (str namespace "\\t")
+               println))))))
   `.trim()
 
   const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', script], { timeout: 120000 })
@@ -111,10 +97,11 @@ function discoverClojureUpstreamSurface() {
         if (!namespace) {
           throw new Error('Unable to parse Clojure upstream surface row')
         }
+        const catalogNamespace = catalogClojureNamespace(namespace)
         return {
           namespace,
-          title: namespace,
-          sourceRef: `${CLOJURE_DOCKER_IMAGE}:${namespace}`,
+          title: namespace === 'Math' ? 'java.lang.Math' : catalogNamespace,
+          sourceRef: CLOJURE_DOCKER_IMAGE,
           entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
         }
       }),

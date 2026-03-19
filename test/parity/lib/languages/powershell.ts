@@ -422,7 +422,7 @@ export const powershellHandler: LanguageHandler = {
   upstreamSurface: {
     discover: discoverPowerShellUpstreamSurface,
     discoverMode: 'live',
-    discoverUsesDocker: true,
+    discoverUsesDocker: false,
     discoverNamespaceCatalog: discoverPowerShellUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,

@@ -1,4 +1,8 @@
 language: elixir
+catalog:
+  target: Elixir 1.18
+  sourceKind: runtime
+  sourceRef: elixir:1.18:application-modules
 namespaces:
   - namespace: Access
     title: Access

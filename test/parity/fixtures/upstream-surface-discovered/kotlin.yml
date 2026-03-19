@@ -1,129 +1,9 @@
 language: kotlin
+catalog:
+  target: Kotlin 2.2 stdlib
+  sourceKind: source_manifest
+  sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/all-types.html
 namespaces:
-  - namespace: ..
-    title: ..
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/../
-    entries: []
-  - namespace: ...1.0.kotlin-stdlib
-    title: ...1.0.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.0.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.1.kotlin-stdlib
-    title: ...1.1.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.1.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.2.kotlin-stdlib
-    title: ...1.2.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.2.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.3.kotlin-stdlib
-    title: ...1.3.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.3.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.4.kotlin-stdlib
-    title: ...1.4.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.4.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.5.kotlin-stdlib
-    title: ...1.5.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.5.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.6.kotlin-stdlib
-    title: ...1.6.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.6.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.7.kotlin-stdlib
-    title: ...1.7.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.7.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.8.kotlin-stdlib
-    title: ...1.8.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.8.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...1.9.kotlin-stdlib
-    title: ...1.9.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...1.9.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...2.0.kotlin-stdlib
-    title: ...2.0.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...2.0.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...2.1.kotlin-stdlib
-    title: ...2.1.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...2.1.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...2.2.kotlin-stdlib
-    title: ...2.2.kotlin-stdlib
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...2.2.kotlin-stdlib/
-    entries:
-      - allTypes
-  - namespace: ...kotlin-stdlib.kotlin
-    title: ...kotlin-stdlib.kotlin
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...kotlin-stdlib.kotlin/
-    entries:
-      - DeprecatedSinceKotlin
-      - JsFun
-      - Root
-  - namespace: ...kotlin-stdlib.kotlin.time
-    title: ...kotlin-stdlib.kotlin.time
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...kotlin-stdlib.kotlin.time/
-    entries:
-      - AbstractDoubleTimeSource
-      - AbstractLongTimeSource
-      - Root
-  - namespace: ...kotlin-stdlib.kotlin.wasm
-    title: ...kotlin-stdlib.kotlin.wasm
-    target: Kotlin 2.2 stdlib
-    sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/...kotlin-stdlib.kotlin.wasm/
-    entries:
-      - Root
-      - WasmExport
-      - WasmImport
   - namespace: kotlin
     title: kotlin
     target: Kotlin 2.2 stdlib
@@ -214,6 +94,7 @@ namespaces:
       - ReplaceWith
       - RequiresOptIn
       - Result
+      - Root
       - RuntimeException
       - Short
       - ShortArray
@@ -487,19 +368,19 @@ namespaces:
     title: kotlin.js.native-getter
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js.native-getter/
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/native-getter/
     entries: []
   - namespace: kotlin.js.native-invoke
     title: kotlin.js.native-invoke
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js.native-invoke/
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/native-invoke/
     entries: []
   - namespace: kotlin.js.native-setter
     title: kotlin.js.native-setter
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js.native-setter/
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/native-setter/
     entries: []
   - namespace: kotlin.jvm
     title: kotlin.jvm
@@ -715,6 +596,7 @@ namespaces:
       - elapsedNow
       - ExperimentalTime
       - Instant
+      - Root
       - TestTimeSource
       - TimedValue
       - TimeMark
@@ -735,6 +617,7 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.wasm/
     entries:
       - ExperimentalWasmInterop
+      - Root
       - WasmExport
       - WasmImport
   - namespace: kotlin.wasm.unsafe
@@ -848,7 +731,7 @@ namespaces:
     title: kotlinx.cinterop.native-heap
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop.native-heap/
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/native-heap/
     entries: []
   - namespace: org.w3c.dom
     title: org.w3c.dom

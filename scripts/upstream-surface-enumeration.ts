@@ -7,6 +7,7 @@ import { checkDockerAvailable, ensureDockerImage } from '../test/parity/lib/dock
 import { getLanguageHandler, getSupportedLanguages } from '../test/parity/lib/languages/index.ts'
 import { resolveUpstreamSurfaceLanguages } from '../test/parity/lib/upstream-surface.ts'
 import { getUpstreamSurfaceSnapshotPath } from '../test/parity/lib/upstream-surface-snapshots.ts'
+import { auditUpstreamSurfaceScope } from './upstream-surface-scope-audit.ts'
 
 export type UpstreamSurfaceEnumerationMode = 'all' | 'discoverable'
 
@@ -94,4 +95,10 @@ export async function enumerateUpstreamSurfaceSnapshots({
       continue
     }
   }
+
+  await auditUpstreamSurfaceScope({
+    logger,
+    rootDir,
+    selectedLanguages: resolution.selected,
+  })
 }

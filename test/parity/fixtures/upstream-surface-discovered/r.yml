@@ -1,4 +1,8 @@
 language: r
+catalog:
+  target: R 4.4
+  sourceKind: runtime
+  sourceRef: r-base:4.4.2:priority-base-recommended-packages
 namespaces:
   - namespace: base
     title: base

@@ -1,4 +1,8 @@
 language: perl
+catalog:
+  target: Perl 5.40
+  sourceKind: source_manifest
+  sourceRef: https://perldoc.perl.org/modules
 namespaces:
   - namespace: App::Cpan
     title: App::Cpan

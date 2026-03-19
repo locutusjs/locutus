@@ -1,4 +1,8 @@
 language: lua
+catalog:
+  target: Lua 5.4
+  sourceKind: runtime
+  sourceRef: lua:5.4:_G-and-library-tables
 namespaces:
   - namespace: _G
     title: _G
