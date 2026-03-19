@@ -6,8 +6,143 @@ namespaces:
     sourceKind: manual
     sourceRef: https://doc.rust-lang.org/std/primitive.bool.html
     entries:
+      - bitand
+      - bitand_assign
+      - bitor
+      - bitor_assign
+      - bitxor
+      - bitxor_assign
+      - borrow
+      - borrow_mut
+      - clamp
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cmp
+      - default
+      - disjoint_bitor
+      - eq
+      - fmt
+      - from
+      - from_str
+      - ge
+      - gt
+      - hash
+      - hash_slice
+      - into
+      - le
+      - lt
+      - max
+      - min
+      - ne
+      - not
+      - ok_or
+      - ok_or_else
+      - partial_cmp
+      - sample
       - then
       - then_some
+      - to_owned
+      - to_string
+      - try_from
+      - try_into
+      - type_id
+  - namespace: char
+    title: char primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.char.html
+    entries:
+      - as_ascii
+      - as_ascii_unchecked
+      - as_utf8_pattern
+      - backward
+      - backward_checked
+      - backward_unchecked
+      - borrow
+      - borrow_mut
+      - clamp
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cmp
+      - decode_utf16
+      - default
+      - encode_utf16
+      - encode_utf8
+      - eq
+      - eq_ignore_ascii_case
+      - escape_debug
+      - escape_default
+      - escape_unicode
+      - extend
+      - extend_one
+      - extend_reserve
+      - fmt
+      - forward
+      - forward_checked
+      - forward_unchecked
+      - from
+      - from_digit
+      - from_iter
+      - from_str
+      - from_u32
+      - from_u32_unchecked
+      - ge
+      - gt
+      - hash
+      - hash_slice
+      - into
+      - into_searcher
+      - is_alphabetic
+      - is_alphanumeric
+      - is_ascii
+      - is_ascii_alphabetic
+      - is_ascii_alphanumeric
+      - is_ascii_control
+      - is_ascii_digit
+      - is_ascii_graphic
+      - is_ascii_hexdigit
+      - is_ascii_lowercase
+      - is_ascii_octdigit
+      - is_ascii_punctuation
+      - is_ascii_uppercase
+      - is_ascii_whitespace
+      - is_contained_in
+      - is_control
+      - is_digit
+      - is_lowercase
+      - is_numeric
+      - is_prefix_of
+      - is_suffix_of
+      - is_uppercase
+      - is_whitespace
+      - le
+      - len_utf16
+      - len_utf8
+      - lt
+      - make_ascii_lowercase
+      - make_ascii_uppercase
+      - max
+      - min
+      - ne
+      - partial_cmp
+      - steps_between
+      - strip_prefix_of
+      - strip_suffix_of
+      - sub_one
+      - to_ascii_lowercase
+      - to_ascii_uppercase
+      - to_digit
+      - to_lowercase
+      - to_owned
+      - to_string
+      - to_uppercase
+      - try_from
+      - try_into
+      - type_id
   - namespace: cmp
     title: std::cmp functions
     target: Rust 1.85
@@ -20,83 +155,9 @@ namespaces:
       - min
       - min_by
       - min_by_key
-  - namespace: char
-    title: char primitive methods
-    target: Rust 1.85
-    sourceKind: manual
-    sourceRef: https://doc.rust-lang.org/std/primitive.char.html
-    entries:
-      - encode_utf16
-      - escape_debug
-      - escape_default
-      - escape_unicode
-      - from_digit
-      - is_alphabetic
-      - is_alphanumeric
-      - is_ascii
-      - is_ascii_alphabetic
-      - is_ascii_alphanumeric
-      - is_ascii_control
-      - is_ascii_digit
-      - is_ascii_graphic
-      - is_ascii_hexdigit
-      - is_ascii_lowercase
-      - is_ascii_punctuation
-      - is_ascii_uppercase
-      - is_ascii_whitespace
-      - is_control
-      - is_digit
-      - is_lowercase
-      - is_numeric
-      - is_uppercase
-      - is_whitespace
-      - len_utf8
-      - len_utf16
-      - to_ascii_lowercase
-      - to_ascii_uppercase
-      - to_digit
-      - to_lowercase
-      - to_uppercase
-  - namespace: str
-    title: str primitive methods
-    target: Rust 1.85
-    sourceKind: manual
-    sourceRef: https://doc.rust-lang.org/std/primitive.str.html
-    entries:
-      - bytes
-      - char_indices
-      - chars
-      - contains
-      - ends_with
-      - find
-      - is_ascii
-      - len
-      - lines
-      - match_indices
-      - matches
-      - parse
-      - repeat
-      - replace
-      - rfind
-      - rmatch_indices
-      - rmatches
-      - rsplit_once
-      - rsplit_terminator
-      - rsplitn
-      - split_ascii_whitespace
-      - split_inclusive
-      - split_once
-      - split_terminator
-      - splitn
-      - starts_with
-      - strip_prefix
-      - strip_suffix
-      - to_lowercase
-      - to_uppercase
-      - trim
-      - trim_end
-      - trim_matches
-      - trim_start
+      - minmax
+      - minmax_by
+      - minmax_by_key
   - namespace: f32
     title: f32 primitive methods
     target: Rust 1.85
@@ -104,51 +165,120 @@ namespaces:
     sourceRef: https://doc.rust-lang.org/std/primitive.f32.html
     entries:
       - abs
+      - abs_sub
       - acos
       - acosh
+      - add
+      - add_assign
+      - algebraic_add
+      - algebraic_div
+      - algebraic_mul
+      - algebraic_rem
+      - algebraic_sub
       - asin
       - asinh
       - atan
       - atan2
       - atanh
+      - borrow
+      - borrow_mut
       - cbrt
       - ceil
       - clamp
+      - clamp_magnitude
+      - classify
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
       - copysign
       - cos
       - cosh
+      - default
+      - div
+      - div_assign
+      - div_euclid
+      - eq
+      - erf
+      - erfc
       - exp
       - exp2
       - exp_m1
       - floor
+      - fmt
       - fract
+      - from
+      - from_be_bytes
+      - from_bits
+      - from_le_bytes
+      - from_ne_bytes
+      - from_str
+      - gamma
+      - ge
+      - gt
       - hypot
+      - into
       - is_finite
       - is_infinite
       - is_nan
       - is_normal
+      - is_sign_negative
+      - is_sign_positive
+      - is_subnormal
+      - le
       - ln
       - ln_1p
+      - ln_gamma
       - log
       - log10
       - log2
+      - lt
       - max
+      - maximum
+      - midpoint
       - min
+      - minimum
+      - mul
       - mul_add
+      - mul_assign
+      - ne
+      - neg
+      - next_down
+      - next_up
+      - partial_cmp
       - powf
       - powi
+      - product
       - recip
+      - rem
+      - rem_assign
+      - rem_euclid
       - round
+      - round_ties_even
       - signum
       - sin
+      - sin_cos
       - sinh
       - sqrt
+      - sub
+      - sub_assign
+      - sum
       - tan
       - tanh
+      - to_be_bytes
+      - to_bits
       - to_degrees
+      - to_int_unchecked
+      - to_le_bytes
+      - to_ne_bytes
+      - to_owned
       - to_radians
+      - to_string
       - total_cmp
       - trunc
+      - try_from
+      - try_into
+      - type_id
   - namespace: f64
     title: f64 primitive methods
     target: Rust 1.85
@@ -156,51 +286,120 @@ namespaces:
     sourceRef: https://doc.rust-lang.org/std/primitive.f64.html
     entries:
       - abs
+      - abs_sub
       - acos
       - acosh
+      - add
+      - add_assign
+      - algebraic_add
+      - algebraic_div
+      - algebraic_mul
+      - algebraic_rem
+      - algebraic_sub
       - asin
       - asinh
       - atan
       - atan2
       - atanh
+      - borrow
+      - borrow_mut
       - cbrt
       - ceil
       - clamp
+      - clamp_magnitude
+      - classify
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
       - copysign
       - cos
       - cosh
+      - default
+      - div
+      - div_assign
+      - div_euclid
+      - eq
+      - erf
+      - erfc
       - exp
       - exp2
       - exp_m1
       - floor
+      - fmt
       - fract
+      - from
+      - from_be_bytes
+      - from_bits
+      - from_le_bytes
+      - from_ne_bytes
+      - from_str
+      - gamma
+      - ge
+      - gt
       - hypot
+      - into
       - is_finite
       - is_infinite
       - is_nan
       - is_normal
+      - is_sign_negative
+      - is_sign_positive
+      - is_subnormal
+      - le
       - ln
       - ln_1p
+      - ln_gamma
       - log
       - log10
       - log2
+      - lt
       - max
+      - maximum
+      - midpoint
       - min
+      - minimum
+      - mul
       - mul_add
+      - mul_assign
+      - ne
+      - neg
+      - next_down
+      - next_up
+      - partial_cmp
       - powf
       - powi
+      - product
       - recip
+      - rem
+      - rem_assign
+      - rem_euclid
       - round
+      - round_ties_even
       - signum
       - sin
+      - sin_cos
       - sinh
       - sqrt
+      - sub
+      - sub_assign
+      - sum
       - tan
       - tanh
+      - to_be_bytes
+      - to_bits
       - to_degrees
+      - to_int_unchecked
+      - to_le_bytes
+      - to_ne_bytes
+      - to_owned
       - to_radians
+      - to_string
       - total_cmp
       - trunc
+      - try_from
+      - try_into
+      - type_id
   - namespace: i32
     title: i32 primitive methods
     target: Rust 1.85
@@ -208,83 +407,1168 @@ namespaces:
     sourceRef: https://doc.rust-lang.org/std/primitive.i32.html
     entries:
       - abs
+      - abs_diff
+      - add
+      - add_assign
+      - backward
+      - backward_checked
+      - backward_unchecked
+      - bitand
+      - bitand_assign
+      - bitor
+      - bitor_assign
+      - bitxor
+      - bitxor_assign
+      - borrow
+      - borrow_mut
+      - borrowing_sub
+      - carrying_add
+      - carrying_mul
+      - carrying_mul_add
+      - cast_unsigned
       - checked_abs
       - checked_add
+      - checked_add_unsigned
+      - checked_div
+      - checked_div_euclid
+      - checked_div_exact
+      - checked_ilog
+      - checked_ilog10
+      - checked_ilog2
+      - checked_isqrt
+      - checked_mul
+      - checked_neg
+      - checked_next_multiple_of
+      - checked_pow
+      - checked_rem
+      - checked_rem_euclid
+      - checked_shl
+      - checked_shr
       - checked_sub
+      - checked_sub_unsigned
       - clamp
+      - clamp_magnitude
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cmp
+      - count_ones
+      - count_zeros
+      - default
+      - disjoint_bitor
+      - div
+      - div_assign
+      - div_ceil
+      - div_euclid
+      - div_exact
+      - div_floor
+      - eq
+      - fmt
+      - format_into
+      - forward
+      - forward_checked
+      - forward_unchecked
+      - from
+      - from_ascii
+      - from_ascii_radix
+      - from_be
+      - from_be_bytes
+      - from_le
+      - from_le_bytes
+      - from_ne_bytes
+      - from_str
+      - from_str_radix
+      - ge
+      - gt
+      - hash
+      - hash_slice
+      - highest_one
+      - ilog
+      - ilog10
+      - ilog2
+      - into
       - is_negative
       - is_positive
+      - isolate_highest_one
+      - isolate_lowest_one
+      - isqrt
+      - le
+      - leading_ones
+      - leading_zeros
+      - lowest_one
+      - lt
       - max
+      - max_value
+      - midpoint
       - min
+      - min_value
+      - mul
+      - mul_assign
+      - ne
+      - neg
+      - next_multiple_of
+      - not
+      - overflowing_abs
+      - overflowing_add
+      - overflowing_add_unsigned
+      - overflowing_div
+      - overflowing_div_euclid
+      - overflowing_mul
+      - overflowing_neg
+      - overflowing_pow
+      - overflowing_rem
+      - overflowing_rem_euclid
+      - overflowing_shl
+      - overflowing_shr
+      - overflowing_sub
+      - overflowing_sub_unsigned
+      - partial_cmp
       - pow
+      - product
+      - rem
+      - rem_assign
+      - rem_euclid
+      - reverse_bits
+      - rotate_left
+      - rotate_right
+      - sample
+      - saturating_abs
+      - saturating_add
+      - saturating_add_unsigned
+      - saturating_div
+      - saturating_mul
+      - saturating_neg
+      - saturating_pow
+      - saturating_sub
+      - saturating_sub_unsigned
+      - shl
+      - shl_assign
+      - shl_exact
+      - shr
+      - shr_assign
+      - shr_exact
       - signum
+      - steps_between
+      - strict_abs
+      - strict_add
+      - strict_add_unsigned
+      - strict_div
+      - strict_div_euclid
+      - strict_mul
+      - strict_neg
+      - strict_pow
+      - strict_rem
+      - strict_rem_euclid
+      - strict_shl
+      - strict_shr
+      - strict_sub
+      - strict_sub_unsigned
+      - sub
+      - sub_assign
+      - sub_one
+      - sum
+      - swap_bytes
+      - to_be
+      - to_be_bytes
+      - to_le
+      - to_le_bytes
+      - to_ne_bytes
+      - to_owned
+      - to_string
+      - trailing_ones
+      - trailing_zeros
+      - try_from
+      - try_into
+      - type_id
+      - unbounded_shl
+      - unbounded_shr
+      - unchecked_add
+      - unchecked_div_exact
+      - unchecked_mul
+      - unchecked_neg
+      - unchecked_shl
+      - unchecked_shl_exact
+      - unchecked_shr
+      - unchecked_shr_exact
+      - unchecked_sub
+      - unsigned_abs
+      - widening_mul
+      - wrapping_abs
+      - wrapping_add
+      - wrapping_add_unsigned
+      - wrapping_div
+      - wrapping_div_euclid
+      - wrapping_mul
+      - wrapping_neg
+      - wrapping_pow
+      - wrapping_rem
+      - wrapping_rem_euclid
+      - wrapping_shl
+      - wrapping_shr
+      - wrapping_sub
+      - wrapping_sub_unsigned
   - namespace: option
     title: Option methods
     target: Rust 1.85
     sourceKind: manual
     sourceRef: https://doc.rust-lang.org/std/option/enum.Option.html
     entries:
+      - and
+      - and_then
+      - as_deref
+      - as_deref_mut
+      - as_mut
+      - as_mut_slice
+      - as_pin_mut
+      - as_pin_ref
+      - as_ref
+      - as_slice
+      - borrow
+      - borrow_mut
+      - branch
+      - clamp
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cloned
+      - cmp
+      - copied
+      - default
+      - eq
+      - expect
+      - filter
+      - flatten
+      - flatten_mut
+      - flatten_ref
+      - fmt
+      - from
+      - from_iter
+      - from_output
+      - from_residual
+      - ge
+      - get_or_insert
+      - get_or_insert_default
+      - get_or_insert_with
+      - gt
+      - hash
+      - hash_slice
+      - insert
+      - inspect
+      - into
+      - into_flat_iter
+      - into_iter
       - is_none
+      - is_none_or
       - is_some
+      - is_some_and
+      - iter
+      - iter_mut
+      - le
+      - lt
       - map
+      - map_or
+      - map_or_default
+      - map_or_else
+      - max
+      - min
+      - ne
       - ok_or
+      - ok_or_else
+      - or
+      - or_else
+      - partial_cmp
+      - product
+      - reduce
+      - replace
+      - sum
+      - take
+      - take_if
+      - to_owned
+      - transpose
+      - try_from
+      - try_into
+      - type_id
+      - unwrap
       - unwrap_or
+      - unwrap_or_default
+      - unwrap_or_else
+      - unwrap_unchecked
+      - unzip
+      - xor
+      - zip
+      - zip_with
   - namespace: result
     title: Result methods
     target: Rust 1.85
     sourceKind: manual
     sourceRef: https://doc.rust-lang.org/std/result/enum.Result.html
     entries:
+      - and
+      - and_then
+      - as_deref
+      - as_deref_mut
+      - as_mut
+      - as_ref
+      - borrow
+      - borrow_mut
+      - branch
+      - clamp
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cloned
+      - cmp
+      - copied
+      - eq
+      - err
+      - expect
+      - expect_err
+      - flatten
+      - fmt
+      - from
+      - from_iter
+      - from_output
+      - from_residual
+      - ge
+      - gt
+      - hash
+      - hash_slice
+      - inspect
+      - inspect_err
+      - into
+      - into_err
+      - into_iter
+      - into_ok
       - is_err
+      - is_err_and
       - is_ok
+      - is_ok_and
+      - iter
+      - iter_mut
+      - le
+      - lt
       - map
       - map_err
+      - map_or
+      - map_or_default
+      - map_or_else
+      - max
+      - min
+      - ne
+      - ok
+      - or
+      - or_else
+      - partial_cmp
+      - product
+      - report
+      - sum
+      - to_owned
+      - transpose
+      - try_from
+      - try_into
+      - type_id
+      - unwrap
+      - unwrap_err
+      - unwrap_err_unchecked
       - unwrap_or
+      - unwrap_or_default
+      - unwrap_or_else
+      - unwrap_unchecked
   - namespace: slice
     title: slice primitive methods
     target: Rust 1.85
     sourceKind: manual
     sourceRef: https://doc.rust-lang.org/std/primitive.slice.html
     entries:
+      - align_to
+      - align_to_mut
+      - align_to_uninit_mut
+      - array_windows
+      - as_array
+      - as_ascii
+      - as_ascii_unchecked
+      - as_bytes
+      - as_bytes_mut
+      - as_chunks
+      - as_chunks_mut
+      - as_chunks_unchecked
+      - as_chunks_unchecked_mut
+      - as_flattened
+      - as_flattened_mut
+      - as_mut
+      - as_mut_array
+      - as_mut_ptr
+      - as_mut_ptr_range
+      - as_mut_slice
+      - as_ptr
+      - as_ptr_range
+      - as_rchunks
+      - as_rchunks_mut
+      - as_ref
+      - as_simd
+      - as_simd_mut
+      - as_slice
+      - as_str
+      - as_utf8_pattern
+      - assume_init
+      - assume_init_drop
+      - assume_init_mut
+      - assume_init_ref
       - binary_search
       - binary_search_by
       - binary_search_by_key
+      - borrow
+      - borrow_mut
+      - by_ref
+      - bytes
+      - chain
+      - chunk_by
+      - chunk_by_mut
+      - chunks
+      - chunks_exact
+      - chunks_exact_mut
+      - chunks_mut
+      - clone
+      - clone_from
+      - clone_from_slice
+      - clone_into
+      - clone_to_uninit
+      - cmp
+      - concat
+      - connect
+      - consume
       - contains
+      - copy_from_slice
+      - copy_within
+      - default
+      - element_offset
       - ends_with
+      - eq
+      - eq_ignore_ascii_case
+      - escape_ascii
+      - fill
+      - fill_buf
+      - fill_with
       - first
+      - first_chunk
+      - first_chunk_mut
+      - first_mut
+      - flush
+      - fmt
+      - from
+      - from_iter
+      - ge
       - get
+      - get_disjoint_mut
+      - get_disjoint_unchecked_mut
+      - get_mut
+      - get_unchecked
+      - get_unchecked_mut
+      - gt
+      - has_data_left
+      - hash
+      - index
+      - index_mut
+      - into_array
+      - into_iter
+      - into_searcher
+      - into_vec
+      - is_ascii
+      - is_contained_in
       - is_empty
+      - is_prefix_of
+      - is_read_vectored
+      - is_sorted
+      - is_sorted_by
+      - is_sorted_by_key
+      - is_suffix_of
+      - is_write_vectored
+      - iter
+      - iter_mut
+      - join
       - last
+      - last_chunk
+      - last_chunk_mut
+      - last_mut
+      - le
       - len
+      - lines
+      - lt
+      - make_ascii_lowercase
+      - make_ascii_uppercase
+      - ne
+      - new_uninit_slice
+      - new_uninit_slice_in
+      - new_zeroed_slice
+      - new_zeroed_slice_in
+      - partial_cmp
+      - partial_sort_unstable
+      - partial_sort_unstable_by
+      - partial_sort_unstable_by_key
+      - partition_dedup
+      - partition_dedup_by
+      - partition_dedup_by_key
       - partition_point
+      - rchunks
+      - rchunks_exact
+      - rchunks_exact_mut
+      - rchunks_mut
+      - read
+      - read_array
+      - read_buf
+      - read_buf_exact
+      - read_exact
+      - read_line
+      - read_to_end
+      - read_to_string
+      - read_until
+      - read_vectored
+      - repeat
+      - reverse
+      - rotate_left
+      - rotate_right
+      - rsplit
+      - rsplit_mut
+      - rsplit_once
+      - rsplitn
+      - rsplitn_mut
+      - select_nth_unstable
+      - select_nth_unstable_by
+      - select_nth_unstable_by_key
+      - skip_until
+      - sort
+      - sort_by
+      - sort_by_cached_key
+      - sort_by_key
+      - sort_floats
+      - sort_unstable
+      - sort_unstable_by
+      - sort_unstable_by_key
+      - split
+      - split_at
+      - split_at_checked
+      - split_at_mut
+      - split_at_mut_checked
+      - split_at_mut_unchecked
+      - split_at_unchecked
+      - split_first
+      - split_first_chunk
+      - split_first_chunk_mut
+      - split_first_mut
+      - split_inclusive
+      - split_inclusive_mut
+      - split_last
+      - split_last_chunk
+      - split_last_chunk_mut
+      - split_last_mut
+      - split_mut
+      - split_off
+      - split_off_first
+      - split_off_first_mut
+      - split_off_last
+      - split_off_last_mut
+      - split_off_mut
+      - split_once
+      - splitn
+      - splitn_mut
       - starts_with
+      - strip_circumfix
       - strip_prefix
+      - strip_prefix_of
       - strip_suffix
+      - strip_suffix_of
+      - subslice_range
+      - swap
+      - swap_unchecked
+      - swap_with_slice
+      - take
+      - to_ascii_lowercase
+      - to_ascii_uppercase
+      - to_owned
+      - to_socket_addrs
+      - to_vec
+      - to_vec_in
+      - trim_ascii
+      - trim_ascii_end
+      - trim_ascii_start
+      - trim_prefix
+      - trim_suffix
+      - try_from
+      - try_new_uninit_slice
+      - try_new_uninit_slice_in
+      - try_new_zeroed_slice
+      - try_new_zeroed_slice_in
+      - type_id
+      - utf8_chunks
+      - windows
+      - write
+      - write_all
+      - write_all_vectored
+      - write_clone_of_slice
+      - write_copy_of_slice
+      - write_filled
+      - write_fmt
+      - write_iter
+      - write_vectored
+      - write_with
+  - namespace: str
+    title: str primitive methods
+    target: Rust 1.85
+    sourceKind: manual
+    sourceRef: https://doc.rust-lang.org/std/primitive.str.html
+    entries:
+      - add
+      - add_assign
+      - as_ascii
+      - as_ascii_unchecked
+      - as_bytes
+      - as_bytes_mut
+      - as_mut
+      - as_mut_ptr
+      - as_ptr
+      - as_ref
+      - as_str
+      - as_utf8_pattern
+      - borrow
+      - borrow_mut
+      - bytes
+      - ceil_char_boundary
+      - char_indices
+      - chars
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cmp
+      - concat
+      - contains
+      - default
+      - encode_utf16
+      - ends_with
+      - eq
+      - eq_ignore_ascii_case
+      - escape_debug
+      - escape_default
+      - escape_unicode
+      - extend
+      - extend_one
+      - extend_reserve
+      - find
+      - floor_char_boundary
+      - fmt
+      - from
+      - from_iter
+      - from_utf8
+      - from_utf8_mut
+      - from_utf8_unchecked
+      - from_utf8_unchecked_mut
+      - ge
+      - get
+      - get_mut
+      - get_unchecked
+      - get_unchecked_mut
+      - gt
+      - hash
+      - index
+      - index_mut
+      - into_boxed_bytes
+      - into_searcher
+      - into_string
+      - is_ascii
+      - is_char_boundary
+      - is_contained_in
+      - is_empty
+      - is_prefix_of
+      - is_suffix_of
+      - join
+      - le
+      - len
+      - lines
+      - lines_any
+      - lt
+      - make_ascii_lowercase
+      - make_ascii_uppercase
+      - match_indices
+      - matches
+      - ne
+      - parse
+      - partial_cmp
+      - repeat
+      - replace
+      - replacen
+      - rfind
+      - rmatch_indices
+      - rmatches
+      - rsplit
+      - rsplit_once
+      - rsplit_terminator
+      - rsplitn
+      - slice_mut_unchecked
+      - slice_unchecked
+      - split
+      - split_ascii_whitespace
+      - split_at
+      - split_at_checked
+      - split_at_mut
+      - split_at_mut_checked
+      - split_inclusive
+      - split_once
+      - split_terminator
+      - split_whitespace
+      - splitn
+      - starts_with
+      - strip_circumfix
+      - strip_prefix
+      - strip_prefix_of
+      - strip_suffix
+      - strip_suffix_of
+      - substr_range
+      - to_ascii_lowercase
+      - to_ascii_uppercase
+      - to_lowercase
+      - to_owned
+      - to_socket_addrs
+      - to_string
+      - to_uppercase
+      - trim
+      - trim_ascii
+      - trim_ascii_end
+      - trim_ascii_start
+      - trim_end
+      - trim_end_matches
+      - trim_left
+      - trim_left_matches
+      - trim_matches
+      - trim_prefix
+      - trim_right
+      - trim_right_matches
+      - trim_start
+      - trim_start_matches
+      - trim_suffix
+      - try_from
+      - type_id
   - namespace: u32
     title: u32 primitive methods
     target: Rust 1.85
     sourceKind: manual
     sourceRef: https://doc.rust-lang.org/std/primitive.u32.html
     entries:
+      - abs_diff
+      - add
+      - add_assign
+      - backward
+      - backward_checked
+      - backward_unchecked
+      - bit_width
+      - bitand
+      - bitand_assign
+      - bitor
+      - bitor_assign
+      - bitxor
+      - bitxor_assign
+      - borrow
+      - borrow_mut
+      - borrowing_sub
+      - carrying_add
+      - carrying_mul
+      - carrying_mul_add
+      - cast_signed
       - checked_add
+      - checked_add_signed
+      - checked_div
+      - checked_div_euclid
+      - checked_div_exact
+      - checked_ilog
+      - checked_ilog10
+      - checked_ilog2
+      - checked_mul
+      - checked_neg
+      - checked_next_multiple_of
+      - checked_next_power_of_two
+      - checked_pow
+      - checked_rem
+      - checked_rem_euclid
+      - checked_shl
+      - checked_shr
+      - checked_signed_diff
       - checked_sub
+      - checked_sub_signed
       - clamp
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cmp
+      - count_ones
+      - count_zeros
+      - default
+      - disjoint_bitor
+      - div
+      - div_assign
+      - div_ceil
+      - div_euclid
+      - div_exact
+      - div_floor
+      - eq
+      - fmt
+      - format_into
+      - forward
+      - forward_checked
+      - forward_unchecked
+      - from
+      - from_ascii
+      - from_ascii_radix
+      - from_be
+      - from_be_bytes
+      - from_le
+      - from_le_bytes
+      - from_ne_bytes
+      - from_str
+      - from_str_radix
+      - funnel_shl
+      - funnel_shr
+      - gather_bits
+      - ge
+      - gt
+      - hash
+      - hash_slice
+      - highest_one
+      - ilog
+      - ilog10
+      - ilog2
+      - into
+      - is_multiple_of
       - is_power_of_two
+      - isolate_highest_one
+      - isolate_lowest_one
+      - isqrt
+      - le
+      - leading_ones
+      - leading_zeros
+      - lowest_one
+      - lt
       - max
+      - max_value
+      - midpoint
       - min
+      - min_value
+      - mul
+      - mul_assign
+      - ne
+      - next_multiple_of
       - next_power_of_two
+      - not
+      - overflowing_add
+      - overflowing_add_signed
+      - overflowing_div
+      - overflowing_div_euclid
+      - overflowing_mul
+      - overflowing_neg
+      - overflowing_pow
+      - overflowing_rem
+      - overflowing_rem_euclid
+      - overflowing_shl
+      - overflowing_shr
+      - overflowing_sub
+      - overflowing_sub_signed
+      - partial_cmp
       - pow
+      - product
+      - rem
+      - rem_assign
+      - rem_euclid
+      - reverse_bits
+      - rotate_left
+      - rotate_right
+      - sample
+      - saturating_add
+      - saturating_add_signed
+      - saturating_div
+      - saturating_mul
+      - saturating_pow
+      - saturating_sub
+      - saturating_sub_signed
+      - scatter_bits
+      - shl
+      - shl_assign
+      - shl_exact
+      - shr
+      - shr_assign
+      - shr_exact
+      - steps_between
+      - strict_add
+      - strict_add_signed
+      - strict_div
+      - strict_div_euclid
+      - strict_mul
+      - strict_neg
+      - strict_pow
+      - strict_rem
+      - strict_rem_euclid
+      - strict_shl
+      - strict_shr
+      - strict_sub
+      - strict_sub_signed
+      - sub
+      - sub_assign
+      - sub_one
+      - sum
+      - swap_bytes
+      - to_be
+      - to_be_bytes
+      - to_le
+      - to_le_bytes
+      - to_ne_bytes
+      - to_owned
+      - to_string
+      - trailing_ones
+      - trailing_zeros
+      - try_from
+      - try_into
+      - type_id
+      - unbounded_shl
+      - unbounded_shr
+      - unchecked_add
+      - unchecked_disjoint_bitor
+      - unchecked_div_exact
+      - unchecked_funnel_shl
+      - unchecked_funnel_shr
+      - unchecked_mul
+      - unchecked_shl
+      - unchecked_shl_exact
+      - unchecked_shr
+      - unchecked_shr_exact
+      - unchecked_sub
+      - widening_mul
+      - wrapping_add
+      - wrapping_add_signed
+      - wrapping_div
+      - wrapping_div_euclid
+      - wrapping_mul
+      - wrapping_neg
+      - wrapping_next_power_of_two
+      - wrapping_pow
+      - wrapping_rem
+      - wrapping_rem_euclid
+      - wrapping_shl
+      - wrapping_shr
+      - wrapping_sub
+      - wrapping_sub_signed
   - namespace: usize
     title: usize primitive methods
     target: Rust 1.85
     sourceKind: manual
     sourceRef: https://doc.rust-lang.org/std/primitive.usize.html
     entries:
+      - abs_diff
+      - add
+      - add_assign
+      - backward
+      - backward_checked
+      - backward_unchecked
+      - bit_width
+      - bitand
+      - bitand_assign
+      - bitor
+      - bitor_assign
+      - bitxor
+      - bitxor_assign
+      - borrow
+      - borrow_mut
+      - borrowing_sub
+      - carrying_add
+      - carrying_mul
+      - carrying_mul_add
+      - cast_signed
       - checked_add
+      - checked_add_signed
+      - checked_div
+      - checked_div_euclid
+      - checked_div_exact
+      - checked_ilog
+      - checked_ilog10
+      - checked_ilog2
+      - checked_mul
+      - checked_neg
+      - checked_next_multiple_of
+      - checked_next_power_of_two
+      - checked_pow
+      - checked_rem
+      - checked_rem_euclid
+      - checked_shl
+      - checked_shr
+      - checked_signed_diff
       - checked_sub
+      - checked_sub_signed
       - clamp
+      - clone
+      - clone_from
+      - clone_into
+      - clone_to_uninit
+      - cmp
+      - count_ones
+      - count_zeros
+      - default
+      - disjoint_bitor
+      - div
+      - div_assign
+      - div_ceil
+      - div_euclid
+      - div_exact
+      - div_floor
+      - eq
+      - fmt
+      - format_into
+      - forward
+      - forward_checked
+      - forward_unchecked
+      - from
+      - from_ascii
+      - from_ascii_radix
+      - from_be
+      - from_be_bytes
+      - from_le
+      - from_le_bytes
+      - from_ne_bytes
+      - from_str
+      - from_str_radix
+      - funnel_shl
+      - funnel_shr
+      - gather_bits
+      - ge
+      - get
+      - get_mut
+      - get_unchecked
+      - get_unchecked_mut
+      - gt
+      - hash
+      - hash_slice
+      - highest_one
+      - ilog
+      - ilog10
+      - ilog2
+      - index
+      - index_mut
+      - into
+      - is_in_bounds
+      - is_multiple_of
+      - is_overlapping
       - is_power_of_two
+      - isolate_highest_one
+      - isolate_lowest_one
+      - isqrt
+      - le
+      - leading_ones
+      - leading_zeros
+      - lowest_one
+      - lt
       - max
+      - max_value
+      - midpoint
       - min
+      - min_value
+      - mul
+      - mul_assign
+      - ne
+      - next_multiple_of
       - next_power_of_two
+      - not
+      - overflowing_add
+      - overflowing_add_signed
+      - overflowing_div
+      - overflowing_div_euclid
+      - overflowing_mul
+      - overflowing_neg
+      - overflowing_pow
+      - overflowing_rem
+      - overflowing_rem_euclid
+      - overflowing_shl
+      - overflowing_shr
+      - overflowing_sub
+      - overflowing_sub_signed
+      - partial_cmp
       - pow
+      - product
+      - rem
+      - rem_assign
+      - rem_euclid
+      - reverse_bits
+      - rotate_left
+      - rotate_right
+      - sample
+      - saturating_add
+      - saturating_add_signed
+      - saturating_div
+      - saturating_mul
+      - saturating_pow
+      - saturating_sub
+      - saturating_sub_signed
+      - scatter_bits
+      - shl
+      - shl_assign
+      - shl_exact
+      - shr
+      - shr_assign
+      - shr_exact
+      - steps_between
+      - strict_add
+      - strict_add_signed
+      - strict_div
+      - strict_div_euclid
+      - strict_mul
+      - strict_neg
+      - strict_pow
+      - strict_rem
+      - strict_rem_euclid
+      - strict_shl
+      - strict_shr
+      - strict_sub
+      - strict_sub_signed
+      - sub
+      - sub_assign
+      - sub_one
+      - sum
+      - swap_bytes
+      - to_be
+      - to_be_bytes
+      - to_le
+      - to_le_bytes
+      - to_ne_bytes
+      - to_owned
+      - to_string
+      - trailing_ones
+      - trailing_zeros
+      - try_from
+      - try_into
+      - type_id
+      - unbounded_shl
+      - unbounded_shr
+      - unchecked_add
+      - unchecked_disjoint_bitor
+      - unchecked_div_exact
+      - unchecked_funnel_shl
+      - unchecked_funnel_shr
+      - unchecked_mul
+      - unchecked_shl
+      - unchecked_shl_exact
+      - unchecked_shr
+      - unchecked_shr_exact
+      - unchecked_sub
+      - widening_mul
+      - wrapping_add
+      - wrapping_add_signed
+      - wrapping_div
+      - wrapping_div_euclid
+      - wrapping_mul
+      - wrapping_neg
+      - wrapping_next_power_of_two
+      - wrapping_pow
+      - wrapping_rem
+      - wrapping_rem_euclid
+      - wrapping_shl
+      - wrapping_shr
+      - wrapping_sub
+      - wrapping_sub_signed

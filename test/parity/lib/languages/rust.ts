@@ -4,6 +4,7 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverRustUpstreamNamespaceCatalog, discoverRustUpstreamSurface } from '../upstream-surface-canonical.ts'
 
 export const RUST_SKIP_LIST = new Set<string>([
   // None currently
@@ -404,6 +405,10 @@ export const rustHandler: LanguageHandler = {
   ],
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverRustUpstreamSurface,
+    discoverMode: 'live',
+    discoverUsesDocker: false,
+    discoverNamespaceCatalog: discoverRustUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

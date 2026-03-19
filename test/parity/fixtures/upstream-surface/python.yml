@@ -1,5 +1,223 @@
 language: python
 namespaces:
+  - namespace: abc
+    title: abc
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abstractclassmethod
+      - abstractmethod
+      - abstractproperty
+      - abstractstaticmethod
+      - update_abstractmethods
+  - namespace: aifc
+    title: aifc
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - open
+  - namespace: argparse
+    title: argparse
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: array
+    title: array
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - array
+  - namespace: ast
+    title: ast
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - alias
+      - arg
+      - arguments
+      - boolop
+      - cmpop
+      - comprehension
+      - copy_location
+      - dump
+      - excepthandler
+      - expr
+      - expr_context
+      - fix_missing_locations
+      - get_docstring
+      - get_source_segment
+      - increment_lineno
+      - iter_child_nodes
+      - iter_fields
+      - keyword
+      - literal_eval
+      - main
+      - match_case
+      - mod
+      - operator
+      - parse
+      - pattern
+      - slice
+      - stmt
+      - type_ignore
+      - type_param
+      - unaryop
+      - unparse
+      - walk
+      - withitem
+  - namespace: asyncio
+    title: asyncio
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - all_tasks
+      - as_completed
+      - create_eager_task_factory
+      - create_subprocess_exec
+      - create_subprocess_shell
+      - create_task
+      - eager_task_factory
+      - ensure_future
+      - gather
+      - get_child_watcher
+      - get_event_loop_policy
+      - iscoroutine
+      - iscoroutinefunction
+      - isfuture
+      - new_event_loop
+      - open_connection
+      - open_unix_connection
+      - run
+      - run_coroutine_threadsafe
+      - set_child_watcher
+      - set_event_loop
+      - set_event_loop_policy
+      - shield
+      - sleep
+      - start_server
+      - start_unix_server
+      - timeout
+      - timeout_at
+      - to_thread
+      - wait
+      - wait_for
+      - wrap_future
+  - namespace: atexit
+    title: atexit
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - register
+      - unregister
+  - namespace: audioop
+    title: audioop
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - add
+      - adpcm2lin
+      - alaw2lin
+      - avg
+      - avgpp
+      - bias
+      - byteswap
+      - cross
+      - error
+      - findfactor
+      - findfit
+      - findmax
+      - getsample
+      - lin2adpcm
+      - lin2alaw
+      - lin2lin
+      - lin2ulaw
+      - max
+      - maxpp
+      - minmax
+      - mul
+      - ratecv
+      - reverse
+      - rms
+      - tomono
+      - tostereo
+      - ulaw2lin
+  - namespace: base64
+    title: base64
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - a85decode
+      - a85encode
+      - b16decode
+      - b16encode
+      - b32decode
+      - b32encode
+      - b32hexdecode
+      - b32hexencode
+      - b64decode
+      - b64encode
+      - b85decode
+      - b85encode
+      - decode
+      - decodebytes
+      - encode
+      - encodebytes
+      - main
+      - standard_b64decode
+      - standard_b64encode
+      - urlsafe_b64decode
+      - urlsafe_b64encode
+  - namespace: bdb
+    title: bdb
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - bar
+      - checkfuncname
+      - effective
+      - foo
+      - set_trace
+      - test
+  - namespace: binascii
+    title: binascii
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - a2b_base64
+      - a2b_hex
+      - a2b_qp
+      - a2b_uu
+      - b2a_base64
+      - b2a_hex
+      - b2a_qp
+      - b2a_uu
+      - crc32
+      - crc_hqx
+      - hexlify
+      - unhexlify
+  - namespace: bisect
+    title: bisect
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - bisect
+      - bisect_left
+      - bisect_right
+      - insort
+      - insort_left
+      - insort_right
   - namespace: builtins
     title: builtins
     target: Python 3.12
@@ -74,45 +292,25 @@ namespaces:
       - type
       - vars
       - zip
-  - namespace: base64
-    title: base64
+  - namespace: bz2
+    title: bz2
     target: Python 3.12
     sourceKind: runtime
     sourceRef: python:3.12
     entries:
-      - a85decode
-      - a85encode
-      - b16decode
-      - b16encode
-      - b32decode
-      - b32encode
-      - b32hexdecode
-      - b32hexencode
-      - b64decode
-      - b64encode
-      - b85decode
-      - b85encode
-      - decode
-      - decodebytes
-      - encode
-      - encodebytes
+      - compress
+      - decompress
+      - open
+  - namespace: cProfile
+    title: cProfile
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - label
       - main
-      - standard_b64decode
-      - standard_b64encode
-      - urlsafe_b64decode
-      - urlsafe_b64encode
-  - namespace: bisect
-    title: bisect
-    target: Python 3.12
-    sourceKind: runtime
-    sourceRef: python:3.12
-    entries:
-      - bisect
-      - bisect_left
-      - bisect_right
-      - insort
-      - insort_left
-      - insort_right
+      - run
+      - runctx
   - namespace: calendar
     title: calendar
     target: Python 3.12
@@ -138,6 +336,50 @@ namespaces:
       - week
       - weekday
       - weekheader
+  - namespace: cgi
+    title: cgi
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - closelog
+      - dolog
+      - initlog
+      - log
+      - nolog
+      - parse
+      - parse_header
+      - parse_multipart
+      - print_arguments
+      - print_directory
+      - print_environ
+      - print_environ_usage
+      - print_exception
+      - print_form
+      - test
+      - valid_boundary
+  - namespace: cgitb
+    title: cgitb
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - enable
+      - grey
+      - handler
+      - html
+      - lookup
+      - reset
+      - scanvars
+      - small
+      - strong
+      - text
+  - namespace: chunk
+    title: chunk
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
   - namespace: cmath
     title: cmath
     target: Python 3.12
@@ -167,6 +409,43 @@ namespaces:
       - sqrt
       - tan
       - tanh
+  - namespace: cmd
+    title: cmd
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: code
+    title: code
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - interact
+  - namespace: codecs
+    title: codecs
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getdecoder
+      - getencoder
+      - getincrementaldecoder
+      - getincrementalencoder
+      - getreader
+      - getwriter
+      - iterdecode
+      - iterencode
+      - make_encoding_map
+      - make_identity_dict
+      - open
+  - namespace: codeop
+    title: codeop
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - compile_command
   - namespace: collections
     title: collections
     target: Python 3.12
@@ -176,6 +455,91 @@ namespaces:
       - defaultdict
       - deque
       - namedtuple
+  - namespace: colorsys
+    title: colorsys
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - hls_to_rgb
+      - hsv_to_rgb
+      - rgb_to_hls
+      - rgb_to_hsv
+      - rgb_to_yiq
+      - yiq_to_rgb
+  - namespace: compileall
+    title: compileall
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - compile_dir
+      - compile_file
+      - compile_path
+      - main
+  - namespace: concurrent
+    title: concurrent
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: configparser
+    title: configparser
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: contextlib
+    title: contextlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - aclosing
+      - asynccontextmanager
+      - chdir
+      - closing
+      - contextmanager
+      - nullcontext
+      - redirect_stderr
+      - redirect_stdout
+      - suppress
+  - namespace: contextvars
+    title: contextvars
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: copy
+    title: copy
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - copy
+      - deepcopy
+      - error
+  - namespace: copyreg
+    title: copyreg
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - add_extension
+      - clear_extension_cache
+      - constructor
+      - pickle
+      - pickle_complex
+      - pickle_union
+      - remove_extension
+  - namespace: crypt
+    title: crypt
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - crypt
+      - mksalt
   - namespace: csv
     title: csv
     target: Python 3.12
@@ -192,6 +556,95 @@ namespaces:
       - unix_dialect
       - unregister_dialect
       - writer
+  - namespace: ctypes
+    title: ctypes
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - c_bool
+      - c_buffer
+      - c_byte
+      - c_char
+      - c_char_p
+      - c_double
+      - c_float
+      - c_int
+      - c_int16
+      - c_int32
+      - c_int64
+      - c_int8
+      - c_long
+      - c_longdouble
+      - c_longlong
+      - c_short
+      - c_size_t
+      - c_ssize_t
+      - c_time_t
+      - c_ubyte
+      - c_uint
+      - c_uint16
+      - c_uint32
+      - c_uint64
+      - c_uint8
+      - c_ulong
+      - c_ulonglong
+      - c_ushort
+      - c_void_p
+      - c_voidp
+      - c_wchar
+      - c_wchar_p
+      - cast
+      - create_string_buffer
+      - create_unicode_buffer
+      - memmove
+      - memset
+      - py_object
+      - string_at
+      - wstring_at
+  - namespace: curses
+    title: curses
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - initscr
+      - start_color
+      - wrapper
+  - namespace: dataclasses
+    title: dataclasses
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - asdict
+      - astuple
+      - dataclass
+      - field
+      - fields
+      - is_dataclass
+      - make_dataclass
+      - replace
+  - namespace: datetime
+    title: datetime
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - date
+      - datetime
+      - time
+      - timedelta
+      - timezone
+      - tzinfo
+  - namespace: dbm
+    title: dbm
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - open
+      - whichdb
   - namespace: decimal
     title: decimal
     target: Python 3.12
@@ -201,6 +654,188 @@ namespaces:
       - getcontext
       - localcontext
       - setcontext
+  - namespace: difflib
+    title: difflib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - context_diff
+      - diff_bytes
+      - get_close_matches
+      - ndiff
+      - restore
+      - unified_diff
+  - namespace: dis
+    title: dis
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - code_info
+      - dis
+      - disassemble
+      - disco
+      - distb
+      - findlabels
+      - findlinestarts
+      - get_instructions
+      - main
+      - pretty_flags
+      - show_code
+  - namespace: doctest
+    title: doctest
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - debug
+      - debug_script
+      - debug_src
+      - register_optionflag
+      - run_docstring_examples
+      - script_from_examples
+      - set_unittest_reportflags
+      - testfile
+      - testmod
+      - testsource
+  - namespace: email
+    title: email
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - message_from_binary_file
+      - message_from_bytes
+      - message_from_file
+      - message_from_string
+  - namespace: encodings
+    title: encodings
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - normalize_encoding
+      - search_function
+  - namespace: ensurepip
+    title: ensurepip
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - bootstrap
+      - version
+  - namespace: enum
+    title: enum
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - auto
+      - bin
+      - global_enum
+      - global_enum_repr
+      - global_flag_repr
+      - global_str
+      - member
+      - nonmember
+      - pickle_by_enum_name
+      - pickle_by_global_name
+      - property
+      - show_flag_values
+      - unique
+      - verify
+  - namespace: errno
+    title: errno
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: faulthandler
+    title: faulthandler
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - cancel_dump_traceback_later
+      - disable
+      - dump_traceback
+      - dump_traceback_later
+      - enable
+      - is_enabled
+      - register
+      - unregister
+  - namespace: fcntl
+    title: fcntl
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - fcntl
+      - flock
+      - ioctl
+      - lockf
+  - namespace: filecmp
+    title: filecmp
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - clear_cache
+      - cmp
+      - cmpfiles
+      - demo
+      - dircmp
+  - namespace: fileinput
+    title: fileinput
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - close
+      - filelineno
+      - filename
+      - fileno
+      - hook_compressed
+      - hook_encoded
+      - input
+      - isfirstline
+      - isstdin
+      - lineno
+      - nextfile
+  - namespace: fnmatch
+    title: fnmatch
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - filter
+      - fnmatch
+      - fnmatchcase
+      - translate
+  - namespace: fractions
+    title: fractions
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: ftplib
+    title: ftplib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - error_perm
+      - error_proto
+      - error_reply
+      - error_temp
+      - ftpcp
+      - parse150
+      - parse227
+      - parse229
+      - parse257
+      - print_line
+      - test
   - namespace: functools
     title: functools
     target: Python 3.12
@@ -219,20 +854,131 @@ namespaces:
       - total_ordering
       - update_wrapper
       - wraps
-  - namespace: heapq
-    title: heapq
+  - namespace: gc
+    title: gc
     target: Python 3.12
     sourceKind: runtime
     sourceRef: python:3.12
     entries:
-      - heapify
-      - heappop
-      - heappush
-      - heappushpop
-      - heapreplace
-      - merge
-      - nlargest
-      - nsmallest
+      - collect
+      - disable
+      - enable
+      - freeze
+      - get_count
+      - get_debug
+      - get_freeze_count
+      - get_objects
+      - get_referents
+      - get_referrers
+      - get_stats
+      - get_threshold
+      - is_finalized
+      - is_tracked
+      - isenabled
+      - set_debug
+      - set_threshold
+      - unfreeze
+  - namespace: genericpath
+    title: genericpath
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - commonprefix
+      - exists
+      - getatime
+      - getctime
+      - getmtime
+      - getsize
+      - isdir
+      - isfile
+      - islink
+      - samefile
+      - sameopenfile
+      - samestat
+  - namespace: getopt
+    title: getopt
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - do_longs
+      - do_shorts
+      - error
+      - getopt
+      - gnu_getopt
+      - long_has_args
+      - short_has_arg
+  - namespace: getpass
+    title: getpass
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - fallback_getpass
+      - getpass
+      - getuser
+      - unix_getpass
+      - win_getpass
+  - namespace: gettext
+    title: gettext
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - bindtextdomain
+      - c2py
+      - dgettext
+      - dngettext
+      - dnpgettext
+      - dpgettext
+      - find
+      - gettext
+      - install
+      - ngettext
+      - npgettext
+      - pgettext
+      - textdomain
+      - translation
+  - namespace: glob
+    title: glob
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - escape
+      - glob
+      - glob0
+      - glob1
+      - has_magic
+      - iglob
+  - namespace: graphlib
+    title: graphlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: grp
+    title: grp
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getgrall
+      - getgrgid
+      - getgrnam
+      - struct_group
+  - namespace: gzip
+    title: gzip
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - compress
+      - decompress
+      - main
+      - open
+      - write32u
   - namespace: hashlib
     title: hashlib
     target: Python 3.12
@@ -255,6 +1001,20 @@ namespaces:
       - sha512
       - shake_128
       - shake_256
+  - namespace: heapq
+    title: heapq
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - heapify
+      - heappop
+      - heappush
+      - heappushpop
+      - heapreplace
+      - merge
+      - nlargest
+      - nsmallest
   - namespace: hmac
     title: hmac
     target: Python 3.12
@@ -271,6 +1031,148 @@ namespaces:
     entries:
       - escape
       - unescape
+  - namespace: http
+    title: http
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: idlelib
+    title: idlelib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: imaplib
+    title: imaplib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: imghdr
+    title: imghdr
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - test
+      - test_bmp
+      - test_exr
+      - test_gif
+      - test_jpeg
+      - test_pbm
+      - test_pgm
+      - test_png
+      - test_ppm
+      - test_rast
+      - test_rgb
+      - test_tiff
+      - test_webp
+      - test_xbm
+      - testall
+      - what
+  - namespace: importlib
+    title: importlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - import_module
+      - invalidate_caches
+      - reload
+  - namespace: inspect
+    title: inspect
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - classify_class_attrs
+      - cleandoc
+      - currentframe
+      - findsource
+      - formatannotation
+      - formatannotationrelativeto
+      - formatargvalues
+      - get_annotations
+      - getabsfile
+      - getargs
+      - getargvalues
+      - getasyncgenlocals
+      - getasyncgenstate
+      - getattr_static
+      - getblock
+      - getcallargs
+      - getclasstree
+      - getclosurevars
+      - getcomments
+      - getcoroutinelocals
+      - getcoroutinestate
+      - getdoc
+      - getfile
+      - getframeinfo
+      - getfullargspec
+      - getgeneratorlocals
+      - getgeneratorstate
+      - getinnerframes
+      - getlineno
+      - getmembers
+      - getmembers_static
+      - getmodule
+      - getmodulename
+      - getmro
+      - getouterframes
+      - getsource
+      - getsourcefile
+      - getsourcelines
+      - indentsize
+      - isabstract
+      - isasyncgen
+      - isasyncgenfunction
+      - isawaitable
+      - isbuiltin
+      - isclass
+      - iscode
+      - iscoroutine
+      - iscoroutinefunction
+      - isdatadescriptor
+      - isframe
+      - isfunction
+      - isgenerator
+      - isgeneratorfunction
+      - isgetsetdescriptor
+      - ismemberdescriptor
+      - ismethod
+      - ismethoddescriptor
+      - ismethodwrapper
+      - ismodule
+      - isroutine
+      - istraceback
+      - markcoroutinefunction
+      - signature
+      - stack
+      - trace
+      - unwrap
+      - walktree
+  - namespace: io
+    title: io
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: ipaddress
+    title: ipaddress
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - collapse_addresses
+      - get_mixed_type_key
+      - ip_address
+      - ip_interface
+      - ip_network
+      - summarize_address_range
+      - v4_int_to_packed
+      - v6_int_to_packed
   - namespace: itertools
     title: itertools
     target: Python 3.12
@@ -304,6 +1206,125 @@ namespaces:
     sourceRef: python:3.12
     entries:
       - detect_encoding
+      - dump
+      - dumps
+      - load
+      - loads
+  - namespace: keyword
+    title: keyword
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: lib2to3
+    title: lib2to3
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: linecache
+    title: linecache
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - checkcache
+      - clearcache
+      - getline
+      - getlines
+      - lazycache
+      - updatecache
+  - namespace: locale
+    title: locale
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - atof
+      - atoi
+      - currency
+      - delocalize
+      - format_string
+      - getdefaultlocale
+      - getlocale
+      - getpreferredencoding
+      - localize
+      - normalize
+      - resetlocale
+      - setlocale
+      - str
+  - namespace: logging
+    title: logging
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - addLevelName
+      - basicConfig
+      - captureWarnings
+      - critical
+      - currentframe
+      - debug
+      - disable
+      - error
+      - exception
+      - fatal
+      - getHandlerByName
+      - getHandlerNames
+      - getLevelName
+      - getLevelNamesMapping
+      - getLogRecordFactory
+      - getLogger
+      - getLoggerClass
+      - info
+      - log
+      - makeLogRecord
+      - setLogRecordFactory
+      - setLoggerClass
+      - shutdown
+      - warn
+      - warning
+  - namespace: lzma
+    title: lzma
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - compress
+      - decompress
+      - open
+  - namespace: mailbox
+    title: mailbox
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - mbox
+      - mboxMessage
+  - namespace: mailcap
+    title: mailcap
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - findmatch
+      - findparam
+      - getcaps
+      - lineno_sort_key
+      - listmailcapfiles
+      - lookup
+      - parsefield
+      - parseline
+      - readmailcapfile
+      - show
+      - subst
+      - test
+  - namespace: marshal
+    title: marshal
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
       - dump
       - dumps
       - load
@@ -370,6 +1391,113 @@ namespaces:
       - tanh
       - trunc
       - ulp
+  - namespace: mimetypes
+    title: mimetypes
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - add_type
+      - guess_all_extensions
+      - guess_extension
+      - guess_type
+      - init
+      - read_mime_types
+  - namespace: mmap
+    title: mmap
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - mmap
+  - namespace: modulefinder
+    title: modulefinder
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - test
+  - namespace: multiprocessing
+    title: multiprocessing
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - active_children
+      - allow_connection_pickling
+      - cpu_count
+      - current_process
+      - freeze_support
+      - get_all_start_methods
+      - get_context
+      - get_logger
+      - get_start_method
+      - log_to_stderr
+      - parent_process
+      - set_executable
+      - set_forkserver_preload
+      - set_start_method
+  - namespace: netrc
+    title: netrc
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - netrc
+  - namespace: nntplib
+    title: nntplib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - decode_header
+  - namespace: ntpath
+    title: ntpath
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abspath
+      - basename
+      - commonpath
+      - dirname
+      - expanduser
+      - expandvars
+      - isabs
+      - isdevdrive
+      - isjunction
+      - ismount
+      - join
+      - lexists
+      - normcase
+      - normpath
+      - realpath
+      - relpath
+      - split
+      - splitdrive
+      - splitext
+      - splitroot
+  - namespace: nturl2path
+    title: nturl2path
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - pathname2url
+      - url2pathname
+  - namespace: numbers
+    title: numbers
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: opcode
+    title: opcode
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - is_pseudo
   - namespace: operator
     title: operator
     target: Python 3.12
@@ -431,6 +1559,535 @@ namespaces:
       - truediv
       - truth
       - xor
+  - namespace: optparse
+    title: optparse
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - check_builtin
+      - check_choice
+      - make_option
+  - namespace: os
+    title: os
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - execl
+      - execle
+      - execlp
+      - execlpe
+      - execvp
+      - execvpe
+      - fdopen
+      - fsdecode
+      - fsencode
+      - fwalk
+      - get_exec_path
+      - getenv
+      - getenvb
+      - makedirs
+      - popen
+      - removedirs
+      - renames
+      - spawnl
+      - spawnle
+      - spawnlp
+      - spawnlpe
+      - spawnv
+      - spawnve
+      - spawnvp
+      - spawnvpe
+      - stat_result
+      - statvfs_result
+      - terminal_size
+      - walk
+  - namespace: ossaudiodev
+    title: ossaudiodev
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - error
+      - open
+      - openmixer
+  - namespace: pathlib
+    title: pathlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: pdb
+    title: pdb
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - find_function
+      - help
+      - lasti2lineno
+      - main
+      - pm
+      - post_mortem
+      - run
+      - runcall
+      - runctx
+      - runeval
+      - set_trace
+      - test
+  - namespace: pickle
+    title: pickle
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - decode_long
+      - encode_long
+      - whichmodule
+  - namespace: pickletools
+    title: pickletools
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - dis
+      - genops
+      - optimize
+      - read_bytearray8
+      - read_bytes1
+      - read_bytes4
+      - read_bytes8
+      - read_decimalnl_long
+      - read_decimalnl_short
+      - read_float8
+      - read_floatnl
+      - read_int4
+      - read_long1
+      - read_long4
+      - read_string1
+      - read_string4
+      - read_stringnl
+      - read_stringnl_noescape
+      - read_stringnl_noescape_pair
+      - read_uint1
+      - read_uint2
+      - read_uint4
+      - read_uint8
+      - read_unicodestring1
+      - read_unicodestring4
+      - read_unicodestring8
+      - read_unicodestringnl
+  - namespace: pipes
+    title: pipes
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - makepipeline
+  - namespace: pkgutil
+    title: pkgutil
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - extend_path
+      - find_loader
+      - get_data
+      - get_importer
+      - get_loader
+      - iter_importer_modules
+      - iter_importers
+      - iter_modules
+      - iter_zipimport_modules
+      - read_code
+      - resolve_name
+      - walk_packages
+  - namespace: platform
+    title: platform
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - architecture
+      - freedesktop_os_release
+      - java_ver
+      - libc_ver
+      - mac_ver
+      - machine
+      - node
+      - platform
+      - processor
+      - python_branch
+      - python_build
+      - python_compiler
+      - python_implementation
+      - python_revision
+      - python_version
+      - python_version_tuple
+      - release
+      - system
+      - system_alias
+      - uname
+      - uname_result
+      - version
+      - win32_edition
+      - win32_is_iot
+      - win32_ver
+  - namespace: plistlib
+    title: plistlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - dump
+      - dumps
+      - load
+      - loads
+  - namespace: poplib
+    title: poplib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - error_proto
+  - namespace: posix
+    title: posix
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abort
+      - access
+      - chdir
+      - chmod
+      - chown
+      - chroot
+      - close
+      - closerange
+      - confstr
+      - copy_file_range
+      - cpu_count
+      - ctermid
+      - device_encoding
+      - dup
+      - dup2
+      - eventfd
+      - eventfd_read
+      - eventfd_write
+      - execv
+      - execve
+      - fchdir
+      - fchmod
+      - fchown
+      - fdatasync
+      - fork
+      - forkpty
+      - fpathconf
+      - fspath
+      - fstat
+      - fstatvfs
+      - fsync
+      - ftruncate
+      - get_blocking
+      - get_inheritable
+      - get_terminal_size
+      - getcwd
+      - getcwdb
+      - getegid
+      - geteuid
+      - getgid
+      - getgrouplist
+      - getgroups
+      - getloadavg
+      - getlogin
+      - getpgid
+      - getpgrp
+      - getpid
+      - getppid
+      - getpriority
+      - getrandom
+      - getresgid
+      - getresuid
+      - getsid
+      - getuid
+      - getxattr
+      - initgroups
+      - isatty
+      - kill
+      - killpg
+      - lchown
+      - link
+      - listdir
+      - listxattr
+      - lockf
+      - login_tty
+      - lseek
+      - lstat
+      - major
+      - makedev
+      - memfd_create
+      - minor
+      - mkdir
+      - mkfifo
+      - mknod
+      - nice
+      - open
+      - openpty
+      - pathconf
+      - pidfd_open
+      - pipe
+      - pipe2
+      - posix_fadvise
+      - posix_fallocate
+      - posix_spawn
+      - posix_spawnp
+      - pread
+      - preadv
+      - putenv
+      - pwrite
+      - pwritev
+      - read
+      - readlink
+      - readv
+      - register_at_fork
+      - remove
+      - removexattr
+      - rename
+      - replace
+      - rmdir
+      - scandir
+      - sched_get_priority_max
+      - sched_get_priority_min
+      - sched_getaffinity
+      - sched_getparam
+      - sched_getscheduler
+      - sched_param
+      - sched_rr_get_interval
+      - sched_setaffinity
+      - sched_setparam
+      - sched_setscheduler
+      - sched_yield
+      - sendfile
+      - set_blocking
+      - set_inheritable
+      - setegid
+      - seteuid
+      - setgid
+      - setgroups
+      - setns
+      - setpgid
+      - setpgrp
+      - setpriority
+      - setregid
+      - setresgid
+      - setresuid
+      - setreuid
+      - setsid
+      - setuid
+      - setxattr
+      - splice
+      - stat
+      - statvfs
+      - strerror
+      - symlink
+      - sync
+      - sysconf
+      - system
+      - tcgetpgrp
+      - tcsetpgrp
+      - times
+      - times_result
+      - truncate
+      - ttyname
+      - umask
+      - uname
+      - uname_result
+      - unlink
+      - unsetenv
+      - unshare
+      - urandom
+      - utime
+      - wait
+      - wait3
+      - wait4
+      - waitid
+      - waitid_result
+      - waitpid
+      - waitstatus_to_exitcode
+      - write
+      - writev
+  - namespace: posixpath
+    title: posixpath
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abspath
+      - basename
+      - commonpath
+      - dirname
+      - expanduser
+      - expandvars
+      - isabs
+      - isjunction
+      - ismount
+      - join
+      - lexists
+      - normcase
+      - realpath
+      - relpath
+      - split
+      - splitdrive
+      - splitext
+      - splitroot
+  - namespace: pprint
+    title: pprint
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - isreadable
+      - isrecursive
+      - pformat
+      - pp
+      - pprint
+      - saferepr
+  - namespace: profile
+    title: profile
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - main
+      - run
+      - runctx
+  - namespace: pstats
+    title: pstats
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - add_callers
+      - add_func_stats
+      - count_calls
+      - f8
+      - func_get_function_name
+      - func_std_string
+      - func_strip_path
+  - namespace: pty
+    title: pty
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - fork
+      - master_open
+      - openpty
+      - slave_open
+      - spawn
+  - namespace: pwd
+    title: pwd
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getpwall
+      - getpwnam
+      - getpwuid
+      - struct_passwd
+  - namespace: py_compile
+    title: py_compile
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - compile
+      - main
+  - namespace: pyclbr
+    title: pyclbr
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - readmodule
+      - readmodule_ex
+  - namespace: pydoc
+    title: pydoc
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - allmethods
+      - apropos
+      - browse
+      - classify_class_attrs
+      - classname
+      - cli
+      - cram
+      - describe
+      - doc
+      - getdoc
+      - getpager
+      - help
+      - importfile
+      - isdata
+      - ispackage
+      - ispath
+      - locate
+      - pager
+      - parentname
+      - pathdirs
+      - pipepager
+      - plain
+      - plainpager
+      - render_doc
+      - replace
+      - resolve
+      - safeimport
+      - sort_attributes
+      - source_synopsis
+      - splitdoc
+      - stripid
+      - synopsis
+      - tempfilepager
+      - ttypager
+      - visiblename
+      - writedoc
+      - writedocs
+  - namespace: pydoc_data
+    title: pydoc_data
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: pyexpat
+    title: pyexpat
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: queue
+    title: queue
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: quopri
+    title: quopri
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - decode
+      - decodestring
+      - encode
+      - encodestring
+      - ishex
+      - main
+      - needsquoting
+      - quote
+      - unhex
   - namespace: random
     title: random
     target: Python 3.12
@@ -478,6 +2135,293 @@ namespaces:
       - sub
       - subn
       - template
+  - namespace: readline
+    title: readline
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - add_history
+      - append_history_file
+      - clear_history
+      - get_begidx
+      - get_completer
+      - get_completer_delims
+      - get_completion_type
+      - get_current_history_length
+      - get_endidx
+      - get_history_item
+      - get_history_length
+      - get_line_buffer
+      - insert_text
+      - parse_and_bind
+      - read_history_file
+      - read_init_file
+      - redisplay
+      - remove_history_item
+      - replace_history_item
+      - set_auto_history
+      - set_completer
+      - set_completer_delims
+      - set_completion_display_matches_hook
+      - set_history_length
+      - set_pre_input_hook
+      - set_startup_hook
+      - write_history_file
+  - namespace: reprlib
+    title: reprlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - recursive_repr
+      - repr
+  - namespace: resource
+    title: resource
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getpagesize
+      - getrlimit
+      - getrusage
+      - prlimit
+      - setrlimit
+      - struct_rusage
+  - namespace: rlcompleter
+    title: rlcompleter
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - get_class_members
+  - namespace: runpy
+    title: runpy
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - run_module
+      - run_path
+  - namespace: sched
+    title: sched
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - scheduler
+  - namespace: secrets
+    title: secrets
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - randbelow
+      - token_bytes
+      - token_hex
+      - token_urlsafe
+  - namespace: select
+    title: select
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - epoll
+      - poll
+      - select
+  - namespace: selectors
+    title: selectors
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: shelve
+    title: shelve
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - open
+  - namespace: shlex
+    title: shlex
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - join
+      - quote
+      - shlex
+      - split
+  - namespace: shutil
+    title: shutil
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - chown
+      - copy
+      - copy2
+      - copyfile
+      - copyfileobj
+      - copymode
+      - copystat
+      - copytree
+      - disk_usage
+      - get_archive_formats
+      - get_terminal_size
+      - get_unpack_formats
+      - ignore_patterns
+      - make_archive
+      - move
+      - register_archive_format
+      - register_unpack_format
+      - rmtree
+      - unpack_archive
+      - unregister_archive_format
+      - unregister_unpack_format
+      - which
+  - namespace: signal
+    title: signal
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getsignal
+      - pthread_sigmask
+      - signal
+      - sigpending
+      - sigwait
+      - struct_siginfo
+      - valid_signals
+  - namespace: site
+    title: site
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - abs_paths
+      - addpackage
+      - addsitedir
+      - addsitepackages
+      - addusersitepackages
+      - check_enableusersite
+      - enablerlcompleter
+      - execsitecustomize
+      - execusercustomize
+      - getsitepackages
+      - getuserbase
+      - getusersitepackages
+      - main
+      - makepath
+      - removeduppaths
+      - setcopyright
+      - sethelper
+      - setquit
+      - venv
+  - namespace: smtplib
+    title: smtplib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - quoteaddr
+      - quotedata
+  - namespace: sndhdr
+    title: sndhdr
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - get_long_be
+      - get_long_le
+      - get_short_be
+      - get_short_le
+      - test
+      - test_8svx
+      - test_aifc
+      - test_au
+      - test_hcom
+      - test_sndr
+      - test_sndt
+      - test_voc
+      - test_wav
+      - testall
+      - what
+      - whathdr
+  - namespace: socket
+    title: socket
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - create_connection
+      - create_server
+      - fromfd
+      - gaierror
+      - getaddrinfo
+      - getfqdn
+      - has_dualstack_ipv6
+      - herror
+      - recv_fds
+      - send_fds
+      - socket
+      - socketpair
+  - namespace: socketserver
+    title: socketserver
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: spwd
+    title: spwd
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getspall
+      - getspnam
+      - struct_spwd
+  - namespace: sqlite3
+    title: sqlite3
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: sre_compile
+    title: sre_compile
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: sre_constants
+    title: sre_constants
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: sre_parse
+    title: sre_parse
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: ssl
+    title: ssl
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - cert_time_to_seconds
+      - create_default_context
+      - get_default_verify_paths
+      - get_protocol_name
+      - get_server_certificate
+  - namespace: stat
+    title: stat
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
   - namespace: statistics
     title: statistics
     target: Python 3.12
@@ -518,6 +2462,204 @@ namespaces:
       - printable
       - punctuation
       - whitespace
+  - namespace: stringprep
+    title: stringprep
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - in_table_a1
+      - in_table_b1
+      - in_table_c11
+      - in_table_c11_c12
+      - in_table_c12
+      - in_table_c21
+      - in_table_c21_c22
+      - in_table_c22
+      - in_table_c3
+      - in_table_c4
+      - in_table_c5
+      - in_table_c6
+      - in_table_c7
+      - in_table_c8
+      - in_table_c9
+      - in_table_d1
+      - in_table_d2
+      - map_table_b2
+      - map_table_b3
+  - namespace: struct
+    title: struct
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - error
+  - namespace: subprocess
+    title: subprocess
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - call
+      - check_call
+      - check_output
+      - getoutput
+      - getstatusoutput
+      - list2cmdline
+      - run
+  - namespace: sunau
+    title: sunau
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - open
+  - namespace: symtable
+    title: symtable
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - symtable
+  - namespace: sys
+    title: sys
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - activate_stack_trampoline
+      - addaudithook
+      - audit
+      - breakpointhook
+      - call_tracing
+      - deactivate_stack_trampoline
+      - displayhook
+      - exc_info
+      - excepthook
+      - exception
+      - exit
+      - get_asyncgen_hooks
+      - get_coroutine_origin_tracking_depth
+      - get_int_max_str_digits
+      - getallocatedblocks
+      - getdefaultencoding
+      - getdlopenflags
+      - getfilesystemencodeerrors
+      - getfilesystemencoding
+      - getprofile
+      - getrecursionlimit
+      - getrefcount
+      - getsizeof
+      - getswitchinterval
+      - gettrace
+      - getunicodeinternedsize
+      - intern
+      - is_finalizing
+      - is_stack_trampoline_active
+      - set_asyncgen_hooks
+      - set_coroutine_origin_tracking_depth
+      - set_int_max_str_digits
+      - setdlopenflags
+      - setprofile
+      - setrecursionlimit
+      - setswitchinterval
+      - settrace
+      - unraisablehook
+  - namespace: sysconfig
+    title: sysconfig
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - expand_makefile_vars
+      - get_config_h_filename
+      - get_config_var
+      - get_config_vars
+      - get_default_scheme
+      - get_makefile_filename
+      - get_path
+      - get_path_names
+      - get_paths
+      - get_platform
+      - get_preferred_scheme
+      - get_python_version
+      - get_scheme_names
+      - is_python_build
+      - parse_config_h
+  - namespace: syslog
+    title: syslog
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - closelog
+      - openlog
+      - setlogmask
+      - syslog
+  - namespace: tabnanny
+    title: tabnanny
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - check
+      - errprint
+      - format_witnesses
+      - main
+      - process_tokens
+  - namespace: tarfile
+    title: tarfile
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - calc_chksums
+      - copyfileobj
+      - data_filter
+      - fully_trusted_filter
+      - is_tarfile
+      - itn
+      - main
+      - nti
+      - nts
+      - open
+      - stn
+      - tar_filter
+  - namespace: telnetlib
+    title: telnetlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - test
+  - namespace: tempfile
+    title: tempfile
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - gettempdir
+      - gettempdirb
+      - gettempprefix
+      - gettempprefixb
+      - mkdtemp
+      - mkstemp
+      - mktemp
+  - namespace: termios
+    title: termios
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - error
+      - tcdrain
+      - tcflow
+      - tcflush
+      - tcgetattr
+      - tcgetwinsize
+      - tcsendbreak
+      - tcsetattr
+      - tcsetwinsize
   - namespace: textwrap
     title: textwrap
     target: Python 3.12
@@ -529,6 +2671,325 @@ namespaces:
       - indent
       - shorten
       - wrap
+  - namespace: this
+    title: this
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: threading
+    title: threading
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - activeCount
+      - active_count
+      - currentThread
+      - current_thread
+      - enumerate
+      - getprofile
+      - gettrace
+      - main_thread
+      - setprofile
+      - setprofile_all_threads
+      - settrace
+      - settrace_all_threads
+  - namespace: time
+    title: time
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - asctime
+      - clock_getres
+      - clock_gettime
+      - clock_gettime_ns
+      - clock_settime
+      - clock_settime_ns
+      - ctime
+      - get_clock_info
+      - gmtime
+      - localtime
+      - mktime
+      - monotonic
+      - monotonic_ns
+      - perf_counter
+      - perf_counter_ns
+      - process_time
+      - process_time_ns
+      - pthread_getcpuclockid
+      - sleep
+      - strftime
+      - strptime
+      - struct_time
+      - thread_time
+      - thread_time_ns
+      - time
+      - time_ns
+      - tzset
+  - namespace: timeit
+    title: timeit
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - main
+      - reindent
+      - repeat
+      - timeit
+  - namespace: tkinter
+    title: tkinter
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getboolean
+      - image_names
+      - image_types
+      - mainloop
+  - namespace: token
+    title: token
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: tokenize
+    title: tokenize
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - any
+      - detect_encoding
+      - generate_tokens
+      - group
+      - main
+      - maybe
+      - open
+      - tokenize
+      - untokenize
+  - namespace: tomllib
+    title: tomllib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - load
+      - loads
+  - namespace: trace
+    title: trace
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - main
+  - namespace: traceback
+    title: traceback
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - clear_frames
+      - extract_stack
+      - extract_tb
+      - format_exc
+      - format_exception
+      - format_exception_only
+      - format_list
+      - format_stack
+      - format_tb
+      - print_exc
+      - print_exception
+      - print_last
+      - print_list
+      - print_stack
+      - print_tb
+      - walk_stack
+      - walk_tb
+  - namespace: tracemalloc
+    title: tracemalloc
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - get_object_traceback
+      - take_snapshot
+  - namespace: tty
+    title: tty
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - cfmakecbreak
+      - cfmakeraw
+      - setcbreak
+      - setraw
+  - namespace: turtle
+    title: turtle
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - addshape
+      - back
+      - backward
+      - begin_fill
+      - begin_poly
+      - bgcolor
+      - bgpic
+      - bk
+      - bye
+      - circle
+      - clear
+      - clearscreen
+      - clearstamp
+      - clearstamps
+      - clone
+      - color
+      - colormode
+      - config_dict
+      - degrees
+      - delay
+      - distance
+      - done
+      - dot
+      - down
+      - end_fill
+      - end_poly
+      - exitonclick
+      - fd
+      - fillcolor
+      - filling
+      - forward
+      - get_poly
+      - get_shapepoly
+      - getcanvas
+      - getmethparlist
+      - getpen
+      - getscreen
+      - getshapes
+      - getturtle
+      - goto
+      - heading
+      - hideturtle
+      - home
+      - ht
+      - isdown
+      - isvisible
+      - left
+      - listen
+      - lt
+      - mainloop
+      - mode
+      - numinput
+      - onclick
+      - ondrag
+      - onkey
+      - onkeypress
+      - onkeyrelease
+      - onrelease
+      - onscreenclick
+      - ontimer
+      - pd
+      - pen
+      - pencolor
+      - pendown
+      - pensize
+      - penup
+      - pos
+      - position
+      - pu
+      - radians
+      - read_docstrings
+      - readconfig
+      - register_shape
+      - reset
+      - resetscreen
+      - resizemode
+      - right
+      - rt
+      - screensize
+      - seth
+      - setheading
+      - setpos
+      - setposition
+      - settiltangle
+      - setundobuffer
+      - setup
+      - setworldcoordinates
+      - setx
+      - sety
+      - shape
+      - shapesize
+      - shapetransform
+      - shearfactor
+      - showturtle
+      - speed
+      - st
+      - stamp
+      - teleport
+      - textinput
+      - tilt
+      - tiltangle
+      - title
+      - towards
+      - tracer
+      - turtles
+      - turtlesize
+      - undo
+      - undobufferentries
+      - up
+      - update
+      - width
+      - window_height
+      - window_width
+      - write
+      - write_docstringdict
+      - xcor
+      - ycor
+  - namespace: turtledemo
+    title: turtledemo
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: types
+    title: types
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - coroutine
+      - get_original_bases
+      - new_class
+      - prepare_class
+      - resolve_bases
+  - namespace: typing
+    title: typing
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - assert_never
+      - assert_type
+      - cast
+      - clear_overloads
+      - dataclass_transform
+      - final
+      - get_args
+      - get_origin
+      - get_overloads
+      - get_type_hints
+      - io
+      - is_typeddict
+      - no_type_check
+      - no_type_check_decorator
+      - overload
+      - override
+      - re
+      - reveal_type
+      - runtime_checkable
   - namespace: unicodedata
     title: unicodedata
     target: Python 3.12
@@ -548,6 +3009,33 @@ namespaces:
       - name
       - normalize
       - numeric
+  - namespace: unittest
+    title: unittest
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - addModuleCleanup
+      - doModuleCleanups
+      - enterModuleContext
+      - expectedFailure
+      - findTestCases
+      - getTestCaseNames
+      - installHandler
+      - main
+      - makeSuite
+      - registerResult
+      - removeHandler
+      - removeResult
+      - skip
+      - skipIf
+      - skipUnless
+  - namespace: urllib
+    title: urllib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
   - namespace: urllib.parse
     title: urllib.parse
     target: Python 3.12
@@ -582,15 +3070,144 @@ namespaces:
       - urlsplit
       - urlunparse
       - urlunsplit
-  - namespace: difflib
-    title: difflib
+  - namespace: uu
+    title: uu
     target: Python 3.12
     sourceKind: runtime
     sourceRef: python:3.12
     entries:
-      - context_diff
-      - diff_bytes
-      - get_close_matches
-      - ndiff
-      - restore
-      - unified_diff
+      - decode
+      - encode
+      - test
+  - namespace: uuid
+    title: uuid
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - getnode
+      - main
+      - uuid1
+      - uuid3
+      - uuid4
+      - uuid5
+  - namespace: venv
+    title: venv
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - create
+      - main
+  - namespace: warnings
+    title: warnings
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - catch_warnings
+      - filterwarnings
+      - formatwarning
+      - resetwarnings
+      - showwarning
+      - simplefilter
+  - namespace: wave
+    title: wave
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - open
+  - namespace: weakref
+    title: weakref
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - finalize
+      - ref
+  - namespace: webbrowser
+    title: webbrowser
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - get
+      - main
+      - open
+      - open_new
+      - open_new_tab
+      - register
+      - register_X_browsers
+      - register_standard_browsers
+  - namespace: wsgiref
+    title: wsgiref
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: xdrlib
+    title: xdrlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - raise_conversion_error
+  - namespace: xml
+    title: xml
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: xmlrpc
+    title: xmlrpc
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries: []
+  - namespace: zipapp
+    title: zipapp
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - create_archive
+      - get_interpreter
+      - main
+  - namespace: zipfile
+    title: zipfile
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - error
+      - is_zipfile
+      - main
+  - namespace: zipimport
+    title: zipimport
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - zipimporter
+  - namespace: zlib
+    title: zlib
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - adler32
+      - compress
+      - compressobj
+      - crc32
+      - decompress
+      - decompressobj
+      - error
+  - namespace: zoneinfo
+    title: zoneinfo
+    target: Python 3.12
+    sourceKind: runtime
+    sourceRef: python:3.12
+    entries:
+      - available_timezones
+      - reset_tzpath

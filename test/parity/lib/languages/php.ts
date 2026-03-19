@@ -10,6 +10,7 @@ const PHP_DISPLAY_NAME = 'PHP'
 const PHP_VERSION = '8.3'
 const PHP_DOCKER_IMAGE = 'php:8.3-cli'
 const PHP_PARITY_TARGET = `${PHP_DISPLAY_NAME} ${PHP_VERSION}`
+const PHP_NAMESPACE_CATALOG_SOURCE_REF = 'php:8.3-cli:get_defined_functions'
 
 // Functions removed, deprecated, or unavailable in PHP 8.3 Docker image
 export const PHP_SKIP_LIST = new Set([
@@ -63,6 +64,15 @@ function discoverPhpRuntimeSurface() {
         entries: functions,
       },
     ],
+  }
+}
+
+function discoverPhpNamespaceCatalog() {
+  return {
+    target: PHP_PARITY_TARGET,
+    sourceKind: 'runtime' as const,
+    sourceRef: PHP_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: ['__global'],
   }
 }
 
@@ -491,6 +501,7 @@ export const phpHandler: LanguageHandler = {
   mountRepo: true,
   upstreamSurface: {
     discover: discoverPhpRuntimeSurface,
+    discoverNamespaceCatalog: discoverPhpNamespaceCatalog,
     getLocutusEntry: (func) =>
       func.category === '_helpers'
         ? null

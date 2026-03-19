@@ -6,27 +6,45 @@ namespaces:
     sourceKind: manual
     sourceRef: https://www.gnu.org/software/gawk/manual/
     entries:
+      - and
+      - asort
+      - asorti
       - atan2
+      - bindtextdomain
       - close
+      - compl
       - cos
+      - dcgettext
+      - dcngettext
       - exp
+      - fflush
       - gensub
       - gsub
       - index
       - int
+      - isarray
       - length
       - log
+      - lshift
       - match
+      - mkbool
+      - mktime
+      - or
       - patsplit
       - rand
+      - rshift
       - sin
       - split
       - sprintf
       - sqrt
       - srand
+      - strftime
       - strtonum
       - sub
       - substr
       - system
+      - systime
       - tolower
       - toupper
+      - typeof
+      - xor

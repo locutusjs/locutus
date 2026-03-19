@@ -1,24 +1,106 @@
 language: golang
 namespaces:
+  - namespace: archive/tar
+    title: archive/tar package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:archive/tar
+    entries:
+      - FileInfoHeader
+      - NewReader
+      - NewWriter
+  - namespace: archive/zip
+    title: archive/zip package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:archive/zip
+    entries:
+      - FileInfoHeader
+      - NewReader
+      - NewWriter
+      - OpenReader
+      - RegisterCompressor
+      - RegisterDecompressor
   - namespace: base64
     title: encoding/base64 package
     target: Go 1.23
     sourceKind: runtime
     sourceRef: golang:1.23:encoding/base64
     entries:
-      - AppendDecode
-      - AppendEncode
-      - Decode
-      - DecodeString
-      - DecodedLen
-      - Encode
-      - EncodeToString
-      - EncodedLen
       - NewDecoder
       - NewEncoder
       - NewEncoding
-      - Strict
-      - WithPadding
+  - namespace: bits
+    title: math/bits package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:math/bits
+    entries:
+      - Add
+      - Add32
+      - Add64
+      - Div
+      - Div32
+      - Div64
+      - LeadingZeros
+      - LeadingZeros16
+      - LeadingZeros32
+      - LeadingZeros64
+      - LeadingZeros8
+      - Len
+      - Len16
+      - Len32
+      - Len64
+      - Len8
+      - Mul
+      - Mul32
+      - Mul64
+      - OnesCount
+      - OnesCount16
+      - OnesCount32
+      - OnesCount64
+      - OnesCount8
+      - Rem
+      - Rem32
+      - Rem64
+      - Reverse
+      - Reverse16
+      - Reverse32
+      - Reverse64
+      - Reverse8
+      - ReverseBytes
+      - ReverseBytes16
+      - ReverseBytes32
+      - ReverseBytes64
+      - RotateLeft
+      - RotateLeft16
+      - RotateLeft32
+      - RotateLeft64
+      - RotateLeft8
+      - Sub
+      - Sub32
+      - Sub64
+      - TrailingZeros
+      - TrailingZeros16
+      - TrailingZeros32
+      - TrailingZeros64
+      - TrailingZeros8
+  - namespace: bufio
+    title: bufio package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:bufio
+    entries:
+      - NewReadWriter
+      - NewReader
+      - NewReaderSize
+      - NewScanner
+      - NewWriter
+      - NewWriterSize
+      - ScanBytes
+      - ScanLines
+      - ScanRunes
+      - ScanWords
   - namespace: bytes
     title: bytes package
     target: Go 1.23
@@ -80,61 +162,6 @@ namespaces:
       - TrimRightFunc
       - TrimSpace
       - TrimSuffix
-  - namespace: bits
-    title: math/bits package
-    target: Go 1.23
-    sourceKind: runtime
-    sourceRef: golang:1.23:math/bits
-    entries:
-      - Add
-      - Add32
-      - Add64
-      - Div
-      - Div32
-      - Div64
-      - LeadingZeros
-      - LeadingZeros16
-      - LeadingZeros32
-      - LeadingZeros64
-      - LeadingZeros8
-      - Len
-      - Len16
-      - Len32
-      - Len64
-      - Len8
-      - Mul
-      - Mul32
-      - Mul64
-      - OnesCount
-      - OnesCount16
-      - OnesCount32
-      - OnesCount64
-      - OnesCount8
-      - Rem
-      - Rem32
-      - Rem64
-      - Reverse
-      - Reverse16
-      - Reverse32
-      - Reverse64
-      - Reverse8
-      - ReverseBytes
-      - ReverseBytes16
-      - ReverseBytes32
-      - ReverseBytes64
-      - RotateLeft
-      - RotateLeft16
-      - RotateLeft32
-      - RotateLeft64
-      - RotateLeft8
-      - Sub
-      - Sub32
-      - Sub64
-      - TrailingZeros
-      - TrailingZeros16
-      - TrailingZeros32
-      - TrailingZeros64
-      - TrailingZeros8
   - namespace: cmp
     title: cmp package
     target: Go 1.23
@@ -144,24 +171,564 @@ namespaces:
       - Compare
       - Less
       - Or
-  - namespace: hex
-    title: encoding/hex package
+  - namespace: compress/bzip2
+    title: compress/bzip2 package
     target: Go 1.23
     sourceKind: runtime
-    sourceRef: golang:1.23:encoding/hex
+    sourceRef: golang:1.23:compress/bzip2
     entries:
-      - AppendDecode
-      - AppendEncode
+      - NewReader
+  - namespace: compress/flate
+    title: compress/flate package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:compress/flate
+    entries:
+      - NewReader
+      - NewReaderDict
+      - NewWriter
+      - NewWriterDict
+  - namespace: compress/gzip
+    title: compress/gzip package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:compress/gzip
+    entries:
+      - NewReader
+      - NewWriter
+      - NewWriterLevel
+  - namespace: compress/lzw
+    title: compress/lzw package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:compress/lzw
+    entries:
+      - NewReader
+      - NewWriter
+  - namespace: compress/zlib
+    title: compress/zlib package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:compress/zlib
+    entries:
+      - NewReader
+      - NewReaderDict
+      - NewWriter
+      - NewWriterLevel
+      - NewWriterLevelDict
+  - namespace: container/heap
+    title: container/heap package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:container/heap
+    entries:
+      - Fix
+      - Init
+      - Pop
+      - Push
+      - Remove
+  - namespace: container/list
+    title: container/list package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:container/list
+    entries:
+      - New
+  - namespace: container/ring
+    title: container/ring package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:container/ring
+    entries:
+      - New
+  - namespace: context
+    title: context package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:context
+    entries:
+      - AfterFunc
+      - Background
+      - Cause
+      - DoSomething
+      - TODO
+      - WithCancel
+      - WithCancelCause
+      - WithDeadline
+      - WithDeadlineCause
+      - WithTimeout
+      - WithTimeoutCause
+      - WithValue
+      - WithoutCancel
+      - slowOperationWithTimeout
+  - namespace: crypto
+    title: crypto package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto
+    entries:
+      - RegisterHash
+  - namespace: crypto/aes
+    title: crypto/aes package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/aes
+    entries:
+      - NewCipher
+  - namespace: crypto/cipher
+    title: crypto/cipher package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/cipher
+    entries:
+      - NewCBCDecrypter
+      - NewCBCEncrypter
+      - NewCFBDecrypter
+      - NewCFBEncrypter
+      - NewCTR
+      - NewGCM
+      - NewGCMWithNonceSize
+      - NewGCMWithTagSize
+      - NewOFB
+  - namespace: crypto/des
+    title: crypto/des package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/des
+    entries:
+      - NewCipher
+      - NewTripleDESCipher
+  - namespace: crypto/dsa
+    title: crypto/dsa package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/dsa
+    entries:
+      - GenerateKey
+      - GenerateParameters
+      - Sign
+      - Verify
+  - namespace: crypto/ecdh
+    title: crypto/ecdh package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/ecdh
+    entries:
+      - P256
+      - P384
+      - P521
+      - X25519
+  - namespace: crypto/ecdsa
+    title: crypto/ecdsa package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/ecdsa
+    entries:
+      - GenerateKey
+      - Sign
+      - SignASN1
+      - Verify
+      - VerifyASN1
+  - namespace: crypto/ed25519
+    title: crypto/ed25519 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/ed25519
+    entries:
+      - GenerateKey
+      - NewKeyFromSeed
+      - Sign
+      - Verify
+      - VerifyWithOptions
+  - namespace: crypto/elliptic
+    title: crypto/elliptic package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/elliptic
+    entries:
+      - GenerateKey
+      - Marshal
+      - MarshalCompressed
+      - P224
+      - P256
+      - P384
+      - P521
+      - Unmarshal
+      - UnmarshalCompressed
+  - namespace: crypto/hmac
+    title: crypto/hmac package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/hmac
+    entries:
+      - Equal
+      - New
+      - ValidMAC
+  - namespace: crypto/md5
+    title: crypto/md5 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/md5
+    entries:
+      - New
+      - Sum
+  - namespace: crypto/rand
+    title: crypto/rand package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/rand
+    entries:
+      - Int
+      - Prime
+      - Read
+  - namespace: crypto/rc4
+    title: crypto/rc4 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/rc4
+    entries:
+      - NewCipher
+  - namespace: crypto/rsa
+    title: crypto/rsa package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/rsa
+    entries:
+      - DecryptOAEP
+      - DecryptPKCS1v15
+      - DecryptPKCS1v15SessionKey
+      - EncryptOAEP
+      - EncryptPKCS1v15
+      - GenerateKey
+      - GenerateMultiPrimeKey
+      - SignPKCS1v15
+      - SignPSS
+      - VerifyPKCS1v15
+      - VerifyPSS
+  - namespace: crypto/sha1
+    title: crypto/sha1 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/sha1
+    entries:
+      - New
+      - Sum
+  - namespace: crypto/sha256
+    title: crypto/sha256 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/sha256
+    entries:
+      - New
+      - New224
+      - Sum224
+      - Sum256
+  - namespace: crypto/sha512
+    title: crypto/sha512 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/sha512
+    entries:
+      - New
+      - New384
+      - New512_224
+      - New512_256
+      - Sum384
+      - Sum512
+      - Sum512_224
+      - Sum512_256
+  - namespace: crypto/tls
+    title: crypto/tls package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/tls
+    entries:
+      - CipherSuiteName
+      - CipherSuites
+      - Client
+      - Dial
+      - DialWithDialer
+      - InsecureCipherSuites
+      - Listen
+      - LoadX509KeyPair
+      - NewLRUClientSessionCache
+      - NewListener
+      - NewResumptionState
+      - ParseSessionState
+      - QUICClient
+      - QUICServer
+      - Server
+      - VersionName
+      - X509KeyPair
+  - namespace: crypto/x509
+    title: crypto/x509 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/x509
+    entries:
+      - CreateCertificate
+      - CreateCertificateRequest
+      - CreateRevocationList
+      - DecryptPEMBlock
+      - EncryptPEMBlock
+      - IsEncryptedPEMBlock
+      - MarshalECPrivateKey
+      - MarshalPKCS1PrivateKey
+      - MarshalPKCS1PublicKey
+      - MarshalPKCS8PrivateKey
+      - MarshalPKIXPublicKey
+      - NewCertPool
+      - OIDFromInts
+      - ParseCRL
+      - ParseCertificate
+      - ParseCertificateRequest
+      - ParseCertificates
+      - ParseDERCRL
+      - ParseECPrivateKey
+      - ParseOID
+      - ParsePKCS1PrivateKey
+      - ParsePKCS1PublicKey
+      - ParsePKCS8PrivateKey
+      - ParsePKIXPublicKey
+      - ParseRevocationList
+      - SetFallbackRoots
+      - SystemCertPool
+  - namespace: crypto/x509/pkix
+    title: crypto/x509/pkix package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:crypto/x509/pkix
+    entries: []
+  - namespace: database/sql
+    title: database/sql package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:database/sql
+    entries:
+      - Drivers
+      - Named
+      - Open
+      - OpenDB
+      - Register
+  - namespace: database/sql/driver
+    title: database/sql/driver package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:database/sql/driver
+    entries:
+      - IsScanValue
+      - IsValue
+  - namespace: debug/buildinfo
+    title: debug/buildinfo package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:debug/buildinfo
+    entries:
+      - Read
+      - ReadFile
+  - namespace: debug/dwarf
+    title: debug/dwarf package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:debug/dwarf
+    entries:
+      - New
+  - namespace: debug/elf
+    title: debug/elf package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:debug/elf
+    entries:
+      - NewFile
+      - Open
+      - R_INFO
+      - R_INFO32
+      - R_SYM32
+      - R_SYM64
+      - R_TYPE32
+      - R_TYPE64
+      - ST_BIND
+      - ST_INFO
+      - ST_TYPE
+      - ST_VISIBILITY
+  - namespace: debug/gosym
+    title: debug/gosym package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:debug/gosym
+    entries:
+      - NewLineTable
+      - NewTable
+  - namespace: debug/macho
+    title: debug/macho package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:debug/macho
+    entries:
+      - NewFatFile
+      - NewFile
+      - Open
+      - OpenFat
+  - namespace: debug/pe
+    title: debug/pe package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:debug/pe
+    entries:
+      - NewFile
+      - Open
+  - namespace: debug/plan9obj
+    title: debug/plan9obj package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:debug/plan9obj
+    entries:
+      - NewFile
+      - Open
+  - namespace: embed
+    title: embed package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:embed
+    entries: []
+  - namespace: encoding
+    title: encoding package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding
+    entries: []
+  - namespace: encoding/ascii85
+    title: encoding/ascii85 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/ascii85
+    entries:
       - Decode
-      - DecodeString
-      - DecodedLen
-      - Dump
-      - Dumper
       - Encode
-      - EncodeToString
-      - EncodedLen
+      - MaxEncodedLen
       - NewDecoder
       - NewEncoder
+  - namespace: encoding/asn1
+    title: encoding/asn1 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/asn1
+    entries:
+      - Marshal
+      - MarshalWithParams
+      - Unmarshal
+      - UnmarshalWithParams
+  - namespace: encoding/base32
+    title: encoding/base32 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/base32
+    entries:
+      - NewDecoder
+      - NewEncoder
+      - NewEncoding
+  - namespace: encoding/binary
+    title: encoding/binary package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/binary
+    entries:
+      - Append
+      - AppendUvarint
+      - AppendVarint
+      - Decode
+      - Encode
+      - PutUvarint
+      - PutVarint
+      - Read
+      - ReadUvarint
+      - ReadVarint
+      - Size
+      - Uvarint
+      - Varint
+      - Write
+  - namespace: encoding/csv
+    title: encoding/csv package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/csv
+    entries:
+      - NewReader
+      - NewWriter
+  - namespace: encoding/gob
+    title: encoding/gob package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/gob
+    entries:
+      - NewDecoder
+      - NewEncoder
+      - Register
+      - RegisterName
+  - namespace: encoding/json
+    title: encoding/json package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/json
+    entries:
+      - Compact
+      - HTMLEscape
+      - Indent
+      - Marshal
+      - MarshalIndent
+      - NewDecoder
+      - NewEncoder
+      - Unmarshal
+      - Valid
+  - namespace: encoding/pem
+    title: encoding/pem package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/pem
+    entries:
+      - Decode
+      - Encode
+      - EncodeToMemory
+  - namespace: encoding/xml
+    title: encoding/xml package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/xml
+    entries:
+      - CopyToken
+      - Escape
+      - EscapeText
+      - Marshal
+      - MarshalIndent
+      - NewDecoder
+      - NewEncoder
+      - NewTokenDecoder
+      - Unmarshal
+  - namespace: errors
+    title: errors package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:errors
+    entries:
+      - As
+      - Is
+      - Join
+      - New
+      - Unwrap
+  - namespace: expvar
+    title: expvar package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:expvar
+    entries:
+      - Do
+      - Get
+      - Handler
+      - NewFloat
+      - NewInt
+      - NewMap
+      - NewString
+      - Publish
   - namespace: filepath
     title: path/filepath package
     target: Go 1.23
@@ -189,6 +756,643 @@ namespaces:
       - VolumeName
       - Walk
       - WalkDir
+  - namespace: flag
+    title: flag package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:flag
+    entries:
+      - Arg
+      - Args
+      - Bool
+      - BoolFunc
+      - BoolVar
+      - Duration
+      - DurationVar
+      - Float64
+      - Float64Var
+      - Func
+      - Int
+      - Int64
+      - Int64Var
+      - IntVar
+      - Lookup
+      - NArg
+      - NFlag
+      - NewFlagSet
+      - Parse
+      - Parsed
+      - PrintDefaults
+      - Set
+      - String
+      - StringVar
+      - TextVar
+      - Uint
+      - Uint64
+      - Uint64Var
+      - UintVar
+      - UnquoteUsage
+      - Var
+      - Visit
+      - VisitAll
+      - init
+  - namespace: fmt
+    title: fmt package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:fmt
+    entries:
+      - Append
+      - Appendf
+      - Appendln
+      - Errorf
+      - FormatString
+      - Fprint
+      - Fprintf
+      - Fprintln
+      - Fscan
+      - Fscanf
+      - Fscanln
+      - Print
+      - Printf
+      - Println
+      - Scan
+      - Scanf
+      - Scanln
+      - Sprint
+      - Sprintf
+      - Sprintln
+      - Sscan
+      - Sscanf
+      - Sscanln
+  - namespace: go/ast
+    title: go/ast package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/ast
+    entries:
+      - FileExports
+      - FilterDecl
+      - FilterFile
+      - FilterPackage
+      - Fprint
+      - Inspect
+      - IsExported
+      - IsGenerated
+      - MergePackageFiles
+      - NewCommentMap
+      - NewIdent
+      - NewObj
+      - NewPackage
+      - NewScope
+      - NotNilFilter
+      - PackageExports
+      - Preorder
+      - Print
+      - SortImports
+      - Unparen
+      - Walk
+  - namespace: go/build
+    title: go/build package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/build
+    entries:
+      - ArchChar
+      - Import
+      - ImportDir
+      - IsLocalImport
+  - namespace: go/build/constraint
+    title: go/build/constraint package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/build/constraint
+    entries:
+      - GoVersion
+      - IsGoBuild
+      - IsPlusBuild
+      - Parse
+      - PlusBuildLines
+  - namespace: go/constant
+    title: go/constant package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/constant
+    entries:
+      - BinaryOp
+      - BitLen
+      - BoolVal
+      - Bytes
+      - Compare
+      - Denom
+      - Float32Val
+      - Float64Val
+      - Imag
+      - Int64Val
+      - Make
+      - MakeBool
+      - MakeFloat64
+      - MakeFromBytes
+      - MakeFromLiteral
+      - MakeImag
+      - MakeInt64
+      - MakeString
+      - MakeUint64
+      - MakeUnknown
+      - Num
+      - Real
+      - Shift
+      - Sign
+      - StringVal
+      - ToComplex
+      - ToFloat
+      - ToInt
+      - Uint64Val
+      - UnaryOp
+      - Val
+  - namespace: go/doc
+    title: go/doc package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/doc
+    entries:
+      - Examples
+      - IsPredeclared
+      - New
+      - NewFromFiles
+      - Synopsis
+      - ToHTML
+      - ToText
+  - namespace: go/doc/comment
+    title: go/doc/comment package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/doc/comment
+    entries:
+      - DefaultLookupPackage
+  - namespace: go/format
+    title: go/format package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/format
+    entries:
+      - Node
+      - Source
+  - namespace: go/importer
+    title: go/importer package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/importer
+    entries:
+      - Default
+      - For
+      - ForCompiler
+  - namespace: go/parser
+    title: go/parser package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/parser
+    entries:
+      - ParseDir
+      - ParseExpr
+      - ParseExprFrom
+      - ParseFile
+  - namespace: go/printer
+    title: go/printer package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/printer
+    entries:
+      - Fprint
+  - namespace: go/scanner
+    title: go/scanner package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/scanner
+    entries:
+      - PrintError
+  - namespace: go/token
+    title: go/token package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/token
+    entries:
+      - IsExported
+      - IsIdentifier
+      - IsKeyword
+      - Lookup
+      - NewFileSet
+  - namespace: go/types
+    title: go/types package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/types
+    entries:
+      - AssertableTo
+      - AssignableTo
+      - CheckExpr
+      - Comparable
+      - ConvertibleTo
+      - DefPredeclaredTestFuncs
+      - Default
+      - Eval
+      - ExprString
+      - Id
+      - Identical
+      - IdenticalIgnoreTags
+      - Implements
+      - Instantiate
+      - IsInterface
+      - LookupFieldOrMethod
+      - MissingMethod
+      - NewAlias
+      - NewArray
+      - NewChan
+      - NewChecker
+      - NewConst
+      - NewContext
+      - NewField
+      - NewFunc
+      - NewInterface
+      - NewInterfaceType
+      - NewLabel
+      - NewMap
+      - NewMethodSet
+      - NewNamed
+      - NewPackage
+      - NewParam
+      - NewPkgName
+      - NewPointer
+      - NewScope
+      - NewSignature
+      - NewSignatureType
+      - NewSlice
+      - NewStruct
+      - NewTerm
+      - NewTuple
+      - NewTypeName
+      - NewTypeParam
+      - NewUnion
+      - NewVar
+      - ObjectString
+      - RelativeTo
+      - Satisfies
+      - SelectionString
+      - SizesFor
+      - TypeString
+      - Unalias
+      - WriteExpr
+      - WriteSignature
+      - WriteType
+  - namespace: go/version
+    title: go/version package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:go/version
+    entries:
+      - Compare
+      - IsValid
+      - Lang
+  - namespace: hash
+    title: hash package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:hash
+    entries: []
+  - namespace: hash/adler32
+    title: hash/adler32 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:hash/adler32
+    entries:
+      - Checksum
+      - New
+  - namespace: hash/crc32
+    title: hash/crc32 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:hash/crc32
+    entries:
+      - Checksum
+      - ChecksumIEEE
+      - MakeTable
+      - New
+      - NewIEEE
+      - Update
+  - namespace: hash/crc64
+    title: hash/crc64 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:hash/crc64
+    entries:
+      - Checksum
+      - MakeTable
+      - New
+      - Update
+  - namespace: hash/fnv
+    title: hash/fnv package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:hash/fnv
+    entries:
+      - New128
+      - New128a
+      - New32
+      - New32a
+      - New64
+      - New64a
+  - namespace: hash/maphash
+    title: hash/maphash package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:hash/maphash
+    entries:
+      - Bytes
+      - MakeSeed
+      - String
+  - namespace: hex
+    title: encoding/hex package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:encoding/hex
+    entries:
+      - AppendDecode
+      - AppendEncode
+      - Decode
+      - DecodeString
+      - DecodedLen
+      - Dump
+      - Dumper
+      - Encode
+      - EncodeToString
+      - EncodedLen
+      - NewDecoder
+      - NewEncoder
+  - namespace: html
+    title: html package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:html
+    entries:
+      - EscapeString
+      - UnescapeString
+  - namespace: html/template
+    title: html/template package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:html/template
+    entries:
+      - HTMLEscape
+      - HTMLEscapeString
+      - HTMLEscaper
+      - IsTrue
+      - JSEscape
+      - JSEscapeString
+      - JSEscaper
+      - Must
+      - New
+      - ParseFS
+      - ParseFiles
+      - ParseGlob
+      - URLQueryEscaper
+  - namespace: image
+    title: image package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:image
+    entries:
+      - Decode
+      - DecodeConfig
+      - NewAlpha
+      - NewAlpha16
+      - NewCMYK
+      - NewGray
+      - NewGray16
+      - NewNRGBA
+      - NewNRGBA64
+      - NewNYCbCrA
+      - NewPaletted
+      - NewRGBA
+      - NewRGBA64
+      - NewUniform
+      - NewYCbCr
+      - Pt
+      - Rect
+      - RegisterFormat
+  - namespace: image/color
+    title: image/color package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:image/color
+    entries:
+      - CMYKToRGB
+      - ModelFunc
+      - RGBToCMYK
+      - RGBToYCbCr
+      - YCbCrToRGB
+  - namespace: image/color/palette
+    title: image/color/palette package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:image/color/palette
+    entries: []
+  - namespace: image/draw
+    title: image/draw package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:image/draw
+    entries:
+      - Draw
+      - DrawMask
+  - namespace: image/gif
+    title: image/gif package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:image/gif
+    entries:
+      - Decode
+      - DecodeAll
+      - DecodeConfig
+      - Encode
+      - EncodeAll
+  - namespace: image/jpeg
+    title: image/jpeg package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:image/jpeg
+    entries:
+      - Decode
+      - DecodeConfig
+      - Encode
+  - namespace: image/png
+    title: image/png package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:image/png
+    entries:
+      - Decode
+      - DecodeConfig
+      - Encode
+  - namespace: index/suffixarray
+    title: index/suffixarray package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:index/suffixarray
+    entries:
+      - New
+  - namespace: io
+    title: io package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:io
+    entries:
+      - Copy
+      - CopyBuffer
+      - CopyN
+      - LimitReader
+      - MultiReader
+      - MultiWriter
+      - NewOffsetWriter
+      - NewSectionReader
+      - NopCloser
+      - Pipe
+      - ReadAll
+      - ReadAtLeast
+      - ReadFull
+      - TeeReader
+      - WriteString
+  - namespace: io/fs
+    title: io/fs package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:io/fs
+    entries:
+      - FileInfoToDirEntry
+      - FormatDirEntry
+      - FormatFileInfo
+      - Glob
+      - ReadDir
+      - ReadFile
+      - Stat
+      - Sub
+      - ValidPath
+      - WalkDir
+  - namespace: io/ioutil
+    title: io/ioutil package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:io/ioutil
+    entries:
+      - NopCloser
+      - ReadAll
+      - ReadDir
+      - ReadFile
+      - TempDir
+      - TempFile
+      - WriteFile
+  - namespace: iter
+    title: iter package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:iter
+    entries:
+      - Pairs
+      - Preorder
+      - PrintAll
+      - Pull
+      - Pull2
+      - Split
+  - namespace: log
+    title: log package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:log
+    entries:
+      - Default
+      - Fatal
+      - Fatalf
+      - Fatalln
+      - Flags
+      - New
+      - Output
+      - Panic
+      - Panicf
+      - Panicln
+      - Prefix
+      - Print
+      - Printf
+      - Println
+      - SetFlags
+      - SetOutput
+      - SetPrefix
+      - Writer
+  - namespace: log/internal
+    title: log/internal package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:log/internal
+    entries: []
+  - namespace: log/slog
+    title: log/slog package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:log/slog
+    entries:
+      - Any
+      - AnyValue
+      - Bool
+      - BoolValue
+      - Debug
+      - DebugContext
+      - Default
+      - Duration
+      - DurationValue
+      - Error
+      - ErrorContext
+      - Float64
+      - Float64Value
+      - Group
+      - GroupValue
+      - Info
+      - InfoContext
+      - Infof
+      - Int
+      - Int64
+      - Int64Value
+      - IntValue
+      - Log
+      - LogAttrs
+      - New
+      - NewJSONHandler
+      - NewLogLogger
+      - NewRecord
+      - NewTextHandler
+      - SetDefault
+      - SetLogLoggerLevel
+      - String
+      - StringValue
+      - Time
+      - TimeValue
+      - Uint64
+      - Uint64Value
+      - Warn
+      - WarnContext
+      - With
+  - namespace: log/slog/internal
+    title: log/slog/internal package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:log/slog/internal
+    entries: []
+  - namespace: log/syslog
+    title: log/syslog package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:log/syslog
+    entries:
+      - Dial
+      - New
+      - NewLogger
   - namespace: maps
     title: maps package
     target: Go 1.23
@@ -278,6 +1482,132 @@ namespaces:
       - Y0
       - Y1
       - Yn
+  - namespace: math/big
+    title: math/big package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:math/big
+    entries:
+      - Jacobi
+      - NewFloat
+      - NewInt
+      - NewRat
+      - NewT
+      - ParseFloat
+  - namespace: math/cmplx
+    title: math/cmplx package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:math/cmplx
+    entries:
+      - Abs
+      - Acos
+      - Acosh
+      - Asin
+      - Asinh
+      - Atan
+      - Atanh
+      - Conj
+      - Cos
+      - Cosh
+      - Cot
+      - Exp
+      - Inf
+      - IsInf
+      - IsNaN
+      - Log
+      - Log10
+      - NaN
+      - Phase
+      - Polar
+      - Pow
+      - Rect
+      - Sin
+      - Sinh
+      - Sqrt
+      - Tan
+      - Tanh
+  - namespace: math/rand
+    title: math/rand package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:math/rand
+    entries:
+      - ExpFloat64
+      - Float32
+      - Float64
+      - Int
+      - Int31
+      - Int31n
+      - Int63
+      - Int63n
+      - Intn
+      - New
+      - NewSource
+      - NewZipf
+      - NormFloat64
+      - Perm
+      - Read
+      - Seed
+      - Shuffle
+      - Uint32
+      - Uint64
+  - namespace: math/rand/v2
+    title: math/rand/v2 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:math/rand/v2
+    entries:
+      - ExpFloat64
+      - Float32
+      - Float64
+      - Int
+      - Int32
+      - Int32N
+      - Int64
+      - Int64N
+      - IntN
+      - 'N'
+      - New
+      - NewChaCha8
+      - NewPCG
+      - NewZipf
+      - NormFloat64
+      - Perm
+      - Shuffle
+      - Uint
+      - Uint32
+      - Uint32N
+      - Uint64
+      - Uint64N
+      - UintN
+  - namespace: mime
+    title: mime package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:mime
+    entries:
+      - AddExtensionType
+      - ExtensionsByType
+      - FormatMediaType
+      - ParseMediaType
+      - TypeByExtension
+  - namespace: mime/multipart
+    title: mime/multipart package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:mime/multipart
+    entries:
+      - NewReader
+      - NewWriter
+  - namespace: mime/quotedprintable
+    title: mime/quotedprintable package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:mime/quotedprintable
+    entries:
+      - NewReader
+      - NewWriter
   - namespace: net
     title: net package
     target: Go 1.23
@@ -329,6 +1659,320 @@ namespaces:
       - SplitHostPort
       - TCPAddrFromAddrPort
       - UDPAddrFromAddrPort
+  - namespace: net/http
+    title: net/http package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http
+    entries:
+      - AllowQuerySemicolons
+      - CanonicalHeaderKey
+      - DetectContentType
+      - Error
+      - FS
+      - FileServer
+      - FileServerFS
+      - Get
+      - Handle
+      - HandleFunc
+      - Head
+      - ListenAndServe
+      - ListenAndServeTLS
+      - MaxBytesHandler
+      - MaxBytesReader
+      - NewFileTransport
+      - NewFileTransportFS
+      - NewRequest
+      - NewRequestWithContext
+      - NewResponseController
+      - NewServeMux
+      - NotFound
+      - NotFoundHandler
+      - ParseCookie
+      - ParseHTTPVersion
+      - ParseSetCookie
+      - ParseTime
+      - Post
+      - PostForm
+      - ProxyFromEnvironment
+      - ProxyURL
+      - ReadRequest
+      - ReadResponse
+      - Redirect
+      - RedirectHandler
+      - Serve
+      - ServeContent
+      - ServeFile
+      - ServeFileFS
+      - ServeTLS
+      - SetCookie
+      - StatusText
+      - StripPrefix
+      - TimeoutHandler
+  - namespace: net/http/cgi
+    title: net/http/cgi package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/cgi
+    entries:
+      - Request
+      - RequestFromMap
+      - Serve
+  - namespace: net/http/cookiejar
+    title: net/http/cookiejar package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/cookiejar
+    entries:
+      - New
+  - namespace: net/http/fcgi
+    title: net/http/fcgi package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/fcgi
+    entries:
+      - ProcessEnv
+      - Serve
+  - namespace: net/http/httptest
+    title: net/http/httptest package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/httptest
+    entries:
+      - NewRecorder
+      - NewRequest
+      - NewRequestWithContext
+      - NewServer
+      - NewTLSServer
+      - NewUnstartedServer
+  - namespace: net/http/httptrace
+    title: net/http/httptrace package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/httptrace
+    entries:
+      - ContextClientTrace
+      - WithClientTrace
+  - namespace: net/http/httputil
+    title: net/http/httputil package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/httputil
+    entries:
+      - DumpRequest
+      - DumpRequestOut
+      - DumpResponse
+      - NewChunkedReader
+      - NewChunkedWriter
+      - NewClientConn
+      - NewProxyClientConn
+      - NewServerConn
+      - NewSingleHostReverseProxy
+  - namespace: net/http/internal
+    title: net/http/internal package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/internal
+    entries:
+      - NewChunkedReader
+      - NewChunkedWriter
+  - namespace: net/http/pprof
+    title: net/http/pprof package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/http/pprof
+    entries:
+      - Cmdline
+      - Handler
+      - Index
+      - Profile
+      - Symbol
+      - Trace
+  - namespace: net/mail
+    title: net/mail package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/mail
+    entries:
+      - ParseAddress
+      - ParseAddressList
+      - ParseDate
+      - ReadMessage
+  - namespace: net/netip
+    title: net/netip package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/netip
+    entries:
+      - AddrFrom16
+      - AddrFrom4
+      - AddrFromSlice
+      - AddrPortFrom
+      - IPv4Unspecified
+      - IPv6LinkLocalAllNodes
+      - IPv6LinkLocalAllRouters
+      - IPv6Loopback
+      - IPv6Unspecified
+      - MustParseAddr
+      - MustParseAddrPort
+      - MustParsePrefix
+      - ParseAddr
+      - ParseAddrPort
+      - ParsePrefix
+      - PrefixFrom
+  - namespace: net/rpc
+    title: net/rpc package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/rpc
+    entries:
+      - Accept
+      - Dial
+      - DialHTTP
+      - DialHTTPPath
+      - HandleHTTP
+      - NewClient
+      - NewClientWithCodec
+      - NewServer
+      - Register
+      - RegisterName
+      - ServeCodec
+      - ServeConn
+      - ServeRequest
+  - namespace: net/rpc/jsonrpc
+    title: net/rpc/jsonrpc package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/rpc/jsonrpc
+    entries:
+      - Dial
+      - NewClient
+      - NewClientCodec
+      - NewServerCodec
+      - ServeConn
+  - namespace: net/smtp
+    title: net/smtp package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/smtp
+    entries:
+      - CRAMMD5Auth
+      - Dial
+      - NewClient
+      - PlainAuth
+      - SendMail
+  - namespace: net/textproto
+    title: net/textproto package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/textproto
+    entries:
+      - CanonicalMIMEHeaderKey
+      - Dial
+      - NewConn
+      - NewReader
+      - NewWriter
+      - TrimBytes
+      - TrimString
+  - namespace: os
+    title: os package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:os
+    entries:
+      - Chdir
+      - Chmod
+      - Chown
+      - Chtimes
+      - Clearenv
+      - CopyFS
+      - Create
+      - CreateTemp
+      - DirFS
+      - Environ
+      - Executable
+      - Exit
+      - Expand
+      - ExpandEnv
+      - FindProcess
+      - Getegid
+      - Getenv
+      - Geteuid
+      - Getgid
+      - Getgroups
+      - Getpagesize
+      - Getpid
+      - Getppid
+      - Getuid
+      - Getwd
+      - Hostname
+      - IsExist
+      - IsNotExist
+      - IsPathSeparator
+      - IsPermission
+      - IsTimeout
+      - Lchown
+      - Link
+      - LookupEnv
+      - Lstat
+      - Mkdir
+      - MkdirAll
+      - MkdirTemp
+      - NewFile
+      - NewSyscallError
+      - Open
+      - OpenFile
+      - Pipe
+      - ReadDir
+      - ReadFile
+      - Readlink
+      - Remove
+      - RemoveAll
+      - Rename
+      - SameFile
+      - Setenv
+      - StartProcess
+      - Stat
+      - Symlink
+      - TempDir
+      - Truncate
+      - Unsetenv
+      - UserCacheDir
+      - UserConfigDir
+      - UserHomeDir
+      - WriteFile
+  - namespace: os/exec
+    title: os/exec package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:os/exec
+    entries:
+      - Command
+      - CommandContext
+      - LookPath
+  - namespace: os/signal
+    title: os/signal package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:os/signal
+    entries:
+      - Ignore
+      - Ignored
+      - Notify
+      - NotifyContext
+      - Reset
+      - Stop
+  - namespace: os/user
+    title: os/user package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:os/user
+    entries:
+      - Current
+      - Lookup
+      - LookupGroup
+      - LookupGroupId
+      - LookupId
   - namespace: path
     title: path package
     target: Go 1.23
@@ -343,6 +1987,199 @@ namespaces:
       - Join
       - Match
       - Split
+  - namespace: plugin
+    title: plugin package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:plugin
+    entries:
+      - F
+      - Open
+  - namespace: reflect
+    title: reflect package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:reflect
+    entries:
+      - Append
+      - AppendSlice
+      - ArrayOf
+      - ChanOf
+      - Copy
+      - DeepEqual
+      - FuncOf
+      - Indirect
+      - MakeChan
+      - MakeFunc
+      - MakeMap
+      - MakeMapWithSize
+      - MakeSlice
+      - MapOf
+      - New
+      - NewAt
+      - PointerTo
+      - PtrTo
+      - Select
+      - SliceAt
+      - SliceOf
+      - StructOf
+      - Swapper
+      - TypeFor
+      - TypeOf
+      - ValueOf
+      - VisibleFields
+      - Zero
+  - namespace: regexp
+    title: regexp package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:regexp
+    entries:
+      - Compile
+      - CompilePOSIX
+      - Match
+      - MatchReader
+      - MatchString
+      - MustCompile
+      - MustCompilePOSIX
+      - QuoteMeta
+  - namespace: regexp/syntax
+    title: regexp/syntax package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:regexp/syntax
+    entries:
+      - Compile
+      - EmptyOpContext
+      - IsWordChar
+      - Parse
+  - namespace: runtime
+    title: runtime package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime
+    entries:
+      - BlockProfile
+      - Breakpoint
+      - CPUProfile
+      - Caller
+      - Callers
+      - CallersFrames
+      - FuncForPC
+      - GC
+      - GOMAXPROCS
+      - GOROOT
+      - Goexit
+      - GoroutineProfile
+      - Gosched
+      - KeepAlive
+      - LockOSThread
+      - MemProfile
+      - MutexProfile
+      - NumCPU
+      - NumCgoCall
+      - NumGoroutine
+      - ReadMemStats
+      - ReadTrace
+      - SetBlockProfileRate
+      - SetCPUProfileRate
+      - SetCgoTraceback
+      - SetFinalizer
+      - SetMutexProfileFraction
+      - Stack
+      - StartTrace
+      - StopTrace
+      - ThreadCreateProfile
+      - UnlockOSThread
+      - Version
+      - main returning. Since func main has not returned, the program continues
+  - namespace: runtime/cgo
+    title: runtime/cgo package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime/cgo
+    entries:
+      - MyGoPrint
+      - NewHandle
+      - main
+  - namespace: runtime/coverage
+    title: runtime/coverage package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime/coverage
+    entries:
+      - ClearCounters
+      - WriteCounters
+      - WriteCountersDir
+      - WriteMeta
+      - WriteMetaDir
+  - namespace: runtime/debug
+    title: runtime/debug package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime/debug
+    entries:
+      - FreeOSMemory
+      - ParseBuildInfo
+      - PrintStack
+      - ReadBuildInfo
+      - ReadGCStats
+      - SetCrashOutput
+      - SetGCPercent
+      - SetMaxStack
+      - SetMaxThreads
+      - SetMemoryLimit
+      - SetPanicOnFault
+      - SetTraceback
+      - Stack
+      - WriteHeapDump
+  - namespace: runtime/metrics
+    title: runtime/metrics package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime/metrics
+    entries:
+      - All
+      - Read
+  - namespace: runtime/pprof
+    title: runtime/pprof package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime/pprof
+    entries:
+      - Do
+      - ForLabels
+      - Label
+      - Labels
+      - Lookup
+      - NewProfile
+      - Profiles
+      - SetGoroutineLabels
+      - StartCPUProfile
+      - StopCPUProfile
+      - WithLabels
+      - WriteHeapProfile
+      - main
+  - namespace: runtime/race
+    title: runtime/race package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime/race
+    entries: []
+  - namespace: runtime/trace
+    title: runtime/trace package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:runtime/trace
+    entries:
+      - IsEnabled
+      - Log
+      - Logf
+      - NewTask
+      - Start
+      - StartRegion
+      - Stop
+      - WithRegion
   - namespace: slices
     title: slices package
     target: Go 1.23
@@ -398,6 +2235,7 @@ namespaces:
       - Find
       - Float64s
       - Float64sAreSorted
+      - GuessingGame
       - Ints
       - IntsAreSorted
       - IsSorted
@@ -511,6 +2349,12 @@ namespaces:
       - TrimRightFunc
       - TrimSpace
       - TrimSuffix
+  - namespace: structs
+    title: structs package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:structs
+    entries: []
   - namespace: subtle
     title: crypto/subtle package
     target: Go 1.23
@@ -524,16 +2368,457 @@ namespaces:
       - ConstantTimeLessOrEq
       - ConstantTimeSelect
       - XORBytes
+  - namespace: sync
+    title: sync package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:sync
+    entries:
+      - NewCond
+      - OnceFunc
+      - OnceValue
+      - OnceValues
+  - namespace: sync/atomic
+    title: sync/atomic package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:sync/atomic
+    entries:
+      - AddInt32
+      - AddInt64
+      - AddUint32
+      - AddUint64
+      - AddUintptr
+      - AndInt32
+      - AndInt64
+      - AndUint32
+      - AndUint64
+      - AndUintptr
+      - CompareAndSwapInt32
+      - CompareAndSwapInt64
+      - CompareAndSwapPointer
+      - CompareAndSwapUint32
+      - CompareAndSwapUint64
+      - CompareAndSwapUintptr
+      - LoadInt32
+      - LoadInt64
+      - LoadPointer
+      - LoadUint32
+      - LoadUint64
+      - LoadUintptr
+      - OrInt32
+      - OrInt64
+      - OrUint32
+      - OrUint64
+      - OrUintptr
+      - StoreInt32
+      - StoreInt64
+      - StorePointer
+      - StoreUint32
+      - StoreUint64
+      - StoreUintptr
+      - SwapInt32
+      - SwapInt64
+      - SwapPointer
+      - SwapUint32
+      - SwapUint64
+      - SwapUintptr
+  - namespace: syscall
+    title: syscall package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:syscall
+    entries:
+      - Accept
+      - Accept4
+      - Access
+      - Acct
+      - Adjtimex
+      - AllThreadsSyscall
+      - AllThreadsSyscall6
+      - AttachLsf
+      - Bind
+      - BindToDevice
+      - BytePtrFromString
+      - ByteSliceFromString
+      - Chdir
+      - Chmod
+      - Chown
+      - Chroot
+      - Clearenv
+      - Close
+      - CloseOnExec
+      - CmsgLen
+      - CmsgSpace
+      - Connect
+      - Creat
+      - DetachLsf
+      - Dup
+      - Dup3
+      - Environ
+      - EpollCreate
+      - EpollCreate1
+      - EpollCtl
+      - EpollWait
+      - Exec
+      - Exit
+      - Faccessat
+      - Fallocate
+      - Fchdir
+      - Fchmod
+      - Fchmodat
+      - Fchown
+      - Fchownat
+      - FcntlFlock
+      - Fdatasync
+      - Flock
+      - ForkExec
+      - Fstat
+      - Fstatat
+      - Fstatfs
+      - Fsync
+      - Ftruncate
+      - Futimes
+      - Futimesat
+      - Getcwd
+      - Getdents
+      - Getegid
+      - Getenv
+      - Geteuid
+      - Getgid
+      - Getgroups
+      - Getpagesize
+      - Getpeername
+      - Getpgid
+      - Getpgrp
+      - Getpid
+      - Getppid
+      - Getpriority
+      - Getrlimit
+      - Getrusage
+      - Getsockname
+      - GetsockoptICMPv6Filter
+      - GetsockoptIPMreq
+      - GetsockoptIPMreqn
+      - GetsockoptIPv6MTUInfo
+      - GetsockoptIPv6Mreq
+      - GetsockoptInet4Addr
+      - GetsockoptInt
+      - GetsockoptUcred
+      - Gettid
+      - Gettimeofday
+      - Getuid
+      - Getwd
+      - Getxattr
+      - InotifyAddWatch
+      - InotifyInit
+      - InotifyInit1
+      - InotifyRmWatch
+      - Kill
+      - Klogctl
+      - Lchown
+      - Link
+      - Listen
+      - Listxattr
+      - LsfJump
+      - LsfSocket
+      - LsfStmt
+      - Lstat
+      - Madvise
+      - Mkdir
+      - Mkdirat
+      - Mkfifo
+      - Mknod
+      - Mknodat
+      - Mlock
+      - Mlockall
+      - Mmap
+      - Mount
+      - Mprotect
+      - Munlock
+      - Munlockall
+      - Munmap
+      - Nanosleep
+      - NetlinkRIB
+      - NsecToTimespec
+      - NsecToTimeval
+      - Open
+      - Openat
+      - ParseDirent
+      - ParseNetlinkMessage
+      - ParseNetlinkRouteAttr
+      - ParseSocketControlMessage
+      - ParseUnixCredentials
+      - ParseUnixRights
+      - Pause
+      - Pipe
+      - Pipe2
+      - PivotRoot
+      - Pread
+      - PtraceAttach
+      - PtraceCont
+      - PtraceDetach
+      - PtraceGetEventMsg
+      - PtraceGetRegs
+      - PtracePeekData
+      - PtracePeekText
+      - PtracePokeData
+      - PtracePokeText
+      - PtraceSetOptions
+      - PtraceSetRegs
+      - PtraceSingleStep
+      - PtraceSyscall
+      - Pwrite
+      - RawSyscall
+      - RawSyscall6
+      - Read
+      - ReadDirent
+      - Readlink
+      - Reboot
+      - Recvfrom
+      - Recvmsg
+      - Removexattr
+      - Rename
+      - Renameat
+      - Rmdir
+      - Seek
+      - Select
+      - Sendfile
+      - Sendmsg
+      - SendmsgN
+      - Sendto
+      - SetLsfPromisc
+      - SetNonblock
+      - Setdomainname
+      - Setegid
+      - Setenv
+      - Seteuid
+      - Setfsgid
+      - Setfsuid
+      - Setgid
+      - Setgroups
+      - Sethostname
+      - Setpgid
+      - Setpriority
+      - Setregid
+      - Setresgid
+      - Setresuid
+      - Setreuid
+      - Setrlimit
+      - Setsid
+      - SetsockoptByte
+      - SetsockoptICMPv6Filter
+      - SetsockoptIPMreq
+      - SetsockoptIPMreqn
+      - SetsockoptIPv6Mreq
+      - SetsockoptInet4Addr
+      - SetsockoptInt
+      - SetsockoptLinger
+      - SetsockoptString
+      - SetsockoptTimeval
+      - Settimeofday
+      - Setuid
+      - Setxattr
+      - Shutdown
+      - SlicePtrFromStrings
+      - Socket
+      - Socketpair
+      - Splice
+      - StartProcess
+      - Stat
+      - Statfs
+      - StringBytePtr
+      - StringByteSlice
+      - StringSlicePtr
+      - Symlink
+      - Sync
+      - SyncFileRange
+      - Syscall
+      - Syscall6
+      - Sysinfo
+      - Tee
+      - Tgkill
+      - Time
+      - Times
+      - TimespecToNsec
+      - TimevalToNsec
+      - Truncate
+      - Umask
+      - Uname
+      - UnixCredentials
+      - UnixRights
+      - Unlink
+      - Unlinkat
+      - Unmount
+      - Unsetenv
+      - Unshare
+      - Utime
+      - Utimes
+      - UtimesNano
+      - Wait4
+      - Write
+  - namespace: testing
+    title: testing package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:testing
+    entries:
+      - AllocsPerRun
+      - Benchmark
+      - BenchmarkBigLen
+      - BenchmarkRandInt
+      - BenchmarkTemplateParallel
+      - BenchmarkXxx
+      - CoverMode
+      - Coverage
+      - Example
+      - ExampleF
+      - ExampleF_suffix
+      - ExampleHello
+      - ExamplePerm
+      - ExampleSalutations
+      - ExampleT
+      - ExampleT_M
+      - ExampleT_M_suffix
+      - ExampleT_suffix
+      - Example_suffix
+      - FuzzHex
+      - FuzzJSONMarshaling
+      - FuzzXxx
+      - Init
+      - Main
+      - MainStart
+      - RegisterCover
+      - RunBenchmarks
+      - RunExamples
+      - RunTests
+      - Short
+      - TestAbs
+      - TestFoo
+      - TestGroupedParallel
+      - TestMain
+      - TestTeardownParallel
+      - TestTimeConsuming
+      - TestXxx
+      - Testing
+      - Verbose
+  - namespace: testing/fstest
+    title: testing/fstest package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:testing/fstest
+    entries:
+      - TestFS
+  - namespace: testing/iotest
+    title: testing/iotest package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:testing/iotest
+    entries:
+      - DataErrReader
+      - ErrReader
+      - HalfReader
+      - NewReadLogger
+      - NewWriteLogger
+      - OneByteReader
+      - TestReader
+      - TimeoutReader
+      - TruncateWriter
+  - namespace: testing/quick
+    title: testing/quick package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:testing/quick
+    entries:
+      - Check
+      - CheckEqual
+      - TestOddMultipleOfThree
+      - Value
+  - namespace: testing/slogtest
+    title: testing/slogtest package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:testing/slogtest
+    entries:
+      - Run
+      - TestHandler
+  - namespace: text/scanner
+    title: text/scanner package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:text/scanner
+    entries:
+      - TokenString
+  - namespace: text/tabwriter
+    title: text/tabwriter package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:text/tabwriter
+    entries:
+      - NewWriter
+  - namespace: text/template
+    title: text/template package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:text/template
+    entries:
+      - HTMLEscape
+      - HTMLEscapeString
+      - HTMLEscaper
+      - IsTrue
+      - JSEscape
+      - JSEscapeString
+      - JSEscaper
+      - Must
+      - New
+      - ParseFS
+      - ParseFiles
+      - ParseGlob
+      - URLQueryEscaper
+  - namespace: text/template/parse
+    title: text/template/parse package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:text/template/parse
+    entries:
+      - IsEmptyTree
+      - New
+      - NewIdentifier
+      - Parse
   - namespace: time
     title: time package
     target: Go 1.23
     sourceKind: runtime
     sourceRef: golang:1.23:time
     entries:
+      - After
+      - AfterFunc
+      - Date
+      - FixedZone
+      - LoadLocation
+      - LoadLocationFromTZData
+      - NewTicker
+      - NewTimer
+      - Now
+      - Parse
+      - ParseDuration
+      - ParseInLocation
+      - Since
+      - Sleep
+      - Tick
+      - Unix
+      - UnixMicro
+      - UnixMilli
+      - Until
+  - namespace: time.Time
+    title: time.Time methods
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:time.Time
+    entries:
       - Add
       - AddDate
       - After
-      - AfterFunc
       - AppendFormat
       - Before
       - Clock
@@ -541,7 +2826,6 @@ namespaces:
       - Date
       - Day
       - Equal
-      - FixedZone
       - Format
       - GoString
       - GobDecode
@@ -551,8 +2835,6 @@ namespaces:
       - In
       - IsDST
       - IsZero
-      - LoadLocation
-      - LoadLocationFromTZData
       - Local
       - Location
       - MarshalBinary
@@ -561,19 +2843,10 @@ namespaces:
       - Minute
       - Month
       - Nanosecond
-      - NewTicker
-      - NewTimer
-      - Now
-      - Parse
-      - ParseDuration
-      - ParseInLocation
       - Round
       - Second
-      - Since
-      - Sleep
       - String
       - Sub
-      - Tick
       - Truncate
       - UTC
       - Unix
@@ -583,12 +2856,17 @@ namespaces:
       - UnmarshalBinary
       - UnmarshalJSON
       - UnmarshalText
-      - Until
       - Weekday
       - Year
       - YearDay
       - Zone
       - ZoneBounds
+  - namespace: time/tzdata
+    title: time/tzdata package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:time/tzdata
+    entries: []
   - namespace: unicode
     title: unicode package
     target: Go 1.23
@@ -616,6 +2894,74 @@ namespaces:
       - ToLower
       - ToTitle
       - ToUpper
+  - namespace: unicode/utf16
+    title: unicode/utf16 package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:unicode/utf16
+    entries:
+      - AppendRune
+      - Decode
+      - DecodeRune
+      - Encode
+      - EncodeRune
+      - IsSurrogate
+      - RuneLen
+  - namespace: unique
+    title: unique package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:unique
+    entries:
+      - Make
+  - namespace: url
+    title: net/url package
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/url
+    entries:
+      - JoinPath
+      - Parse
+      - ParseQuery
+      - ParseRequestURI
+      - PathEscape
+      - PathUnescape
+      - QueryEscape
+      - QueryUnescape
+      - User
+      - UserPassword
+  - namespace: url.URL
+    title: net/url URL methods
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/url.URL
+    entries:
+      - EscapedFragment
+      - EscapedPath
+      - Hostname
+      - IsAbs
+      - JoinPath
+      - MarshalBinary
+      - Parse
+      - Port
+      - Query
+      - Redacted
+      - RequestURI
+      - ResolveReference
+      - String
+      - UnmarshalBinary
+  - namespace: url.Values
+    title: net/url Values methods
+    target: Go 1.23
+    sourceKind: runtime
+    sourceRef: golang:1.23:net/url.Values
+    entries:
+      - Add
+      - Del
+      - Encode
+      - Get
+      - Has
+      - Set
   - namespace: utf8
     title: unicode/utf8 package
     target: Go 1.23
@@ -637,37 +2983,3 @@ namespaces:
       - Valid
       - ValidRune
       - ValidString
-  - namespace: url
-    title: net/url package
-    target: Go 1.23
-    sourceKind: runtime
-    sourceRef: golang:1.23:net/url
-    entries:
-      - Add
-      - Del
-      - Encode
-      - EscapedFragment
-      - EscapedPath
-      - Get
-      - Has
-      - Hostname
-      - IsAbs
-      - JoinPath
-      - MarshalBinary
-      - Parse
-      - ParseQuery
-      - ParseRequestURI
-      - PathEscape
-      - PathUnescape
-      - Port
-      - Query
-      - QueryEscape
-      - QueryUnescape
-      - Redacted
-      - RequestURI
-      - ResolveReference
-      - Set
-      - String
-      - UnmarshalBinary
-      - User
-      - UserPassword

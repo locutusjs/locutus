@@ -8,6 +8,7 @@
 import { join } from 'node:path'
 
 import type {
+  DiscoveredUpstreamSurfaceNamespaceCatalog,
   LanguageHandler,
   RuntimeSurfaceLocutusFunction,
   UpstreamSurfaceCatalogDecisionRule,
@@ -61,6 +62,25 @@ export interface UpstreamSurfaceLanguageResolution {
   selected: string[]
   unknown: string[]
   unavailable: string[]
+}
+
+export interface UpstreamSurfaceNamespaceCatalogIssue {
+  language: string
+  missingLanguageCatalog: boolean
+  missingNamespaces: string[]
+  unexpectedNamespaces: string[]
+  targetMismatch?: {
+    expected: string
+    actual: string
+  }
+  sourceKindMismatch?: {
+    expected: string
+    actual: string
+  }
+  sourceRefMismatch?: {
+    expected: string
+    actual: string
+  }
 }
 
 export interface UpstreamSurfaceInventoryCoverageIssue {
@@ -330,6 +350,7 @@ function compareNamespace(
   namespaceSnapshot: UpstreamSurfaceNamespaceSnapshot,
   shippedEntries: NamespaceEntryCollection | undefined,
   namespaceInventory: UpstreamSurfaceNamespaceInventory | undefined,
+  inheritedLanguageDefault = false,
 ): UpstreamSurfaceNamespaceResult {
   const catalogEntries = [...new Set(namespaceSnapshot.entries)].sort()
   const catalogSet = new Set(catalogEntries)
@@ -348,6 +369,16 @@ function compareNamespace(
   const untriagedEntries: string[] = []
   for (const entry of shipped) {
     if (catalogSet.has(entry)) {
+      const match = findCatalogDecision(entry, decisions, rules, defaultDecision)
+      if (match?.matchedRuleIndex !== undefined) {
+        seenRuleIndexes.add(match.matchedRuleIndex)
+      }
+      if (match?.usedDefault) {
+        usedDefaultDecision = true
+      }
+      if (Object.prototype.hasOwnProperty.call(decisions, entry)) {
+        seenDecisionNames.add(entry)
+      }
       continue
     }
 
@@ -410,7 +441,7 @@ function compareNamespace(
     }
   }
 
-  if (defaultDecision && !usedDefaultDecision) {
+  if (defaultDecision && !usedDefaultDecision && !inheritedLanguageDefault) {
     staleDecisions.push({
       name: 'default',
       decision: defaultDecision.decision,
@@ -460,13 +491,19 @@ export function compareUpstreamSurface(
   snapshot: UpstreamSurfaceSnapshot,
   inventory: UpstreamSurfaceLanguageInventory = {},
 ): UpstreamSurfaceCheckResult {
+  const hasExplicitNamespaceInventory = (namespace: string) =>
+    !!inventory.namespaces && Object.prototype.hasOwnProperty.call(inventory.namespaces, namespace)
+  const resolveNamespaceInventory = (namespace: string): UpstreamSurfaceNamespaceInventory | undefined =>
+    (hasExplicitNamespaceInventory(namespace) ? inventory.namespaces?.[namespace] : undefined) ??
+    inventory.defaultNamespace
   const locutusEntries = collectLocutusNamespaceEntries(functions, handler)
   const namespaces = snapshot.namespaces
     .map((namespaceSnapshot) =>
       compareNamespace(
         namespaceSnapshot,
         locutusEntries.get(namespaceSnapshot.namespace),
-        inventory.namespaces?.[namespaceSnapshot.namespace],
+        resolveNamespaceInventory(namespaceSnapshot.namespace),
+        !hasExplicitNamespaceInventory(namespaceSnapshot.namespace) && !!inventory.defaultNamespace,
       ),
     )
     .sort((left, right) => left.namespace.localeCompare(right.namespace))
@@ -485,9 +522,10 @@ export function compareUpstreamSurface(
 
     namespaces.push(
       compareNamespace(
-        createLocutusOnlyNamespaceSnapshot(namespace, inventory.namespaces?.[namespace]),
+        createLocutusOnlyNamespaceSnapshot(namespace, resolveNamespaceInventory(namespace)),
         shippedEntries,
-        inventory.namespaces?.[namespace],
+        resolveNamespaceInventory(namespace),
+        !hasExplicitNamespaceInventory(namespace) && !!inventory.defaultNamespace,
       ),
     )
   }
@@ -510,8 +548,9 @@ export function findUpstreamSurfaceInventoryCoverageIssues(
       .map((namespace) => namespace.namespace)
       .filter(
         (namespace) =>
-          !languageInventory?.namespaces ||
-          !Object.prototype.hasOwnProperty.call(languageInventory.namespaces, namespace),
+          (!languageInventory?.namespaces ||
+            !Object.prototype.hasOwnProperty.call(languageInventory.namespaces, namespace)) &&
+          !languageInventory?.defaultNamespace,
       )
       .sort()
 
@@ -525,6 +564,71 @@ export function findUpstreamSurfaceInventoryCoverageIssues(
   }
 
   return issues.sort((left, right) => left.language.localeCompare(right.language))
+}
+
+export function findUpstreamSurfaceNamespaceCatalogIssues(
+  discoveredCatalogs: Map<string, DiscoveredUpstreamSurfaceNamespaceCatalog>,
+  scope: UpstreamSurfaceScope,
+): UpstreamSurfaceNamespaceCatalogIssue[] {
+  const issues: UpstreamSurfaceNamespaceCatalogIssue[] = []
+  const allLanguages = [...new Set([...discoveredCatalogs.keys(), ...Object.keys(scope)])].sort()
+
+  for (const language of allLanguages) {
+    const discoveredCatalog = discoveredCatalogs.get(language)
+    const discovered = new Set(discoveredCatalog?.namespaces ?? [])
+    const languageScope = scope[language]
+    const scoped = new Set(
+      Object.entries(languageScope?.namespaces ?? {}).map(
+        ([namespace, scopeNamespace]) => scopeNamespace.catalogNamespace ?? namespace,
+      ),
+    )
+    const catalogScope = languageScope?.namespaceCatalog
+
+    const missingNamespaces = [...discovered].filter((namespace) => !scoped.has(namespace)).sort()
+    const unexpectedNamespaces = [...scoped].filter((namespace) => !discovered.has(namespace)).sort()
+    const targetMismatch =
+      catalogScope && discoveredCatalog && catalogScope.target !== discoveredCatalog.target
+        ? {
+            expected: catalogScope.target,
+            actual: discoveredCatalog.target,
+          }
+        : undefined
+    const sourceKindMismatch =
+      catalogScope && discoveredCatalog && catalogScope.sourceKind !== discoveredCatalog.sourceKind
+        ? {
+            expected: catalogScope.sourceKind,
+            actual: discoveredCatalog.sourceKind,
+          }
+        : undefined
+    const sourceRefMismatch =
+      catalogScope && discoveredCatalog && catalogScope.sourceRef !== discoveredCatalog.sourceRef
+        ? {
+            expected: catalogScope.sourceRef,
+            actual: discoveredCatalog.sourceRef,
+          }
+        : undefined
+
+    if (
+      !discoveredCatalogs.has(language) ||
+      missingNamespaces.length > 0 ||
+      unexpectedNamespaces.length > 0 ||
+      targetMismatch ||
+      sourceKindMismatch ||
+      sourceRefMismatch
+    ) {
+      issues.push({
+        language,
+        missingLanguageCatalog: !discoveredCatalogs.has(language),
+        missingNamespaces,
+        unexpectedNamespaces,
+        ...(targetMismatch ? { targetMismatch } : {}),
+        ...(sourceKindMismatch ? { sourceKindMismatch } : {}),
+        ...(sourceRefMismatch ? { sourceRefMismatch } : {}),
+      })
+    }
+  }
+
+  return issues
 }
 
 function compareNamespaceScope(
@@ -829,6 +933,34 @@ export function formatUpstreamSurfaceScopeIssues(issues: UpstreamSurfaceScopeCov
         `    - source mismatch for ${mismatch.namespace}: expected ${mismatch.expectedSourceKind} ${mismatch.expectedSourceRef}, got ${mismatch.actualSourceKind} ${mismatch.actualSourceRef}`,
       )
     }
+  }
+
+  return lines.join('\n')
+}
+
+export function formatUpstreamSurfaceNamespaceCatalogIssues(issues: UpstreamSurfaceNamespaceCatalogIssue[]): string {
+  const lines = ['Upstream surface namespace catalog drift detected:']
+
+  for (const issue of issues.sort((left, right) => left.language.localeCompare(right.language))) {
+    lines.push(`  - ${issue.language}`)
+    if (issue.missingLanguageCatalog) {
+      lines.push('    - missing namespace catalog discovery')
+    }
+    if (issue.targetMismatch) {
+      lines.push(`    - target mismatch: expected ${issue.targetMismatch.expected}, got ${issue.targetMismatch.actual}`)
+    }
+    if (issue.sourceKindMismatch) {
+      lines.push(
+        `    - source kind mismatch: expected ${issue.sourceKindMismatch.expected}, got ${issue.sourceKindMismatch.actual}`,
+      )
+    }
+    if (issue.sourceRefMismatch) {
+      lines.push(
+        `    - source ref mismatch: expected ${issue.sourceRefMismatch.expected}, got ${issue.sourceRefMismatch.actual}`,
+      )
+    }
+    lines.push(...formatList('missing namespaces from scope', issue.missingNamespaces))
+    lines.push(...formatList('unexpected namespaces in scope', issue.unexpectedNamespaces))
   }
 
   return lines.join('\n')

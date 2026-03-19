@@ -6,52 +6,558 @@ namespaces:
     sourceKind: manual
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/
     entries:
+      - Iterable
+      - List
+      - MutableList
+      - addAll
+      - aggregate
+      - aggregateTo
+      - all
+      - any
+      - arrayListOf
+      - asByteArray
+      - asIntArray
+      - asIterable
+      - asList
+      - asLongArray
+      - asReversed
+      - asSequence
+      - asShortArray
+      - asUByteArray
+      - asUIntArray
+      - asULongArray
+      - asUShortArray
+      - associate
+      - associateBy
+      - associateByTo
+      - associateTo
+      - associateWith
+      - associateWithTo
+      - average
       - binarySearch
       - binarySearchBy
+      - buildList
+      - buildMap
+      - buildSet
+      - chunked
+      - component1
+      - component2
+      - component3
+      - component4
+      - component5
+      - contains
+      - containsAll
+      - containsKey
+      - containsValue
+      - contentDeepEquals
+      - contentDeepHashCode
+      - contentDeepToString
       - contentEquals
+      - contentHashCode
+      - contentToString
+      - copy
+      - copyInto
+      - copyOf
+      - copyOfRange
+      - count
       - distinct
+      - distinctBy
+      - drop
+      - dropLast
+      - dropLastWhile
+      - dropWhile
+      - eachCount
+      - eachCountTo
+      - elementAt
+      - elementAtOrElse
+      - elementAtOrNull
+      - emptyList
+      - emptyMap
+      - emptySet
+      - fill
       - filter
       - filterIndexed
+      - filterIndexedTo
+      - filterIsInstance
+      - filterIsInstanceTo
+      - filterKeys
+      - filterNot
+      - filterNotNull
+      - filterNotNullTo
+      - filterNotTo
+      - filterTo
+      - filterValues
+      - find
+      - findLast
       - first
+      - firstNotNullOf
+      - firstNotNullOfOrNull
+      - firstOrNull
       - flatMap
+      - flatMapIndexed
+      - flatMapIndexedTo
+      - flatMapTo
+      - flatten
+      - fold
+      - foldIndexed
+      - foldRight
+      - foldRightIndexed
+      - foldTo
+      - forEach
+      - forEachIndexed
+      - get
+      - getOrDefault
+      - getOrElse
+      - getOrNull
+      - getOrPut
+      - getValue
       - groupBy
+      - groupByTo
+      - groupingBy
+      - hashMapOf
+      - hashSetOf
+      - ifEmpty
+      - indexOf
+      - indexOfFirst
+      - indexOfLast
+      - intersect
+      - isEmpty
+      - isNotEmpty
+      - isNullOrEmpty
+      - iterator
+      - joinTo
+      - joinToString
       - last
+      - lastIndexOf
+      - lastOrNull
+      - linkedMapOf
+      - linkedSetOf
+      - linkedStringMapOf
+      - linkedStringSetOf
+      - listOf
+      - listOfNotNull
       - map
       - mapIndexed
+      - mapIndexedNotNull
+      - mapIndexedNotNullTo
+      - mapIndexedTo
+      - mapKeys
+      - mapKeysTo
+      - mapNotNull
+      - mapNotNullTo
+      - mapOf
+      - mapTo
+      - mapValues
+      - mapValuesTo
+      - max
+      - maxBy
+      - maxByOrNull
+      - maxOf
+      - maxOfOrNull
+      - maxOfWith
+      - maxOfWithOrNull
+      - maxOrNull
+      - maxWith
+      - maxWithOrNull
+      - min
+      - minBy
+      - minByOrNull
+      - minOf
+      - minOfOrNull
+      - minOfWith
+      - minOfWithOrNull
+      - minOrNull
+      - minWith
+      - minWithOrNull
+      - minus
+      - minusAssign
+      - minusElement
+      - mutableListOf
+      - mutableMapOf
+      - mutableSetOf
+      - none
+      - onEach
+      - onEachIndexed
+      - orEmpty
       - partition
+      - plus
+      - plusAssign
+      - plusElement
+      - putAll
+      - random
+      - randomOrNull
+      - reduce
+      - reduceIndexed
+      - reduceIndexedOrNull
+      - reduceOrNull
+      - reduceRight
+      - reduceRightIndexed
+      - reduceRightIndexedOrNull
+      - reduceRightOrNull
+      - reduceTo
+      - remove
+      - removeAll
+      - removeFirst
+      - removeFirstOrNull
+      - removeLast
+      - removeLastOrNull
+      - replaceAll
+      - requireNoNulls
+      - retainAll
       - reverse
+      - reversed
+      - reversedArray
+      - runningFold
+      - runningFoldIndexed
+      - runningReduce
+      - runningReduceIndexed
+      - scan
+      - scanIndexed
+      - set
+      - setOf
+      - setOfNotNull
+      - setValue
+      - shuffle
+      - shuffled
+      - single
+      - singleOrNull
+      - slice
       - sliceArray
       - sort
+      - sortBy
+      - sortByDescending
       - sortDescending
+      - sortWith
       - sorted
       - sortedArray
+      - sortedArrayDescending
+      - sortedArrayWith
+      - sortedBy
+      - sortedByDescending
+      - sortedDescending
+      - sortedMapOf
+      - sortedSetOf
+      - sortedWith
+      - stringMapOf
+      - stringSetOf
+      - subtract
+      - sum
+      - sumOf
+      - take
+      - takeLast
+      - takeLastWhile
+      - takeWhile
+      - toBooleanArray
+      - toByteArray
+      - toCharArray
+      - toCollection
+      - toDoubleArray
+      - toFloatArray
+      - toHashSet
+      - toIntArray
+      - toList
+      - toLongArray
+      - toMap
+      - toMutableList
+      - toMutableMap
+      - toMutableSet
+      - toPair
+      - toProperties
+      - toSet
+      - toShortArray
+      - toSortedMap
+      - toSortedSet
+      - toString
+      - toTypedArray
+      - toUByteArray
+      - toUIntArray
+      - toULongArray
+      - toUShortArray
+      - union
+      - unzip
+      - windowed
+      - withDefault
+      - withIndex
       - zip
+      - zipWithNext
   - namespace: collections
     title: kotlin.collections package
     target: Kotlin 2.2
     sourceKind: manual
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/
     entries:
+      - Iterable
+      - List
+      - MutableList
+      - addAll
+      - aggregate
+      - aggregateTo
+      - all
+      - any
+      - arrayListOf
+      - asByteArray
+      - asIntArray
+      - asIterable
+      - asList
+      - asLongArray
+      - asReversed
+      - asSequence
+      - asShortArray
+      - asUByteArray
+      - asUIntArray
+      - asULongArray
+      - asUShortArray
+      - associate
       - associateBy
+      - associateByTo
+      - associateTo
+      - associateWith
+      - associateWithTo
+      - average
+      - binarySearch
+      - binarySearchBy
+      - buildList
+      - buildMap
+      - buildSet
       - chunked
+      - component1
+      - component2
+      - component3
+      - component4
+      - component5
+      - contains
+      - containsAll
+      - containsKey
+      - containsValue
+      - contentDeepEquals
+      - contentDeepHashCode
+      - contentDeepToString
+      - contentEquals
+      - contentHashCode
+      - contentToString
+      - copy
+      - copyInto
+      - copyOf
+      - copyOfRange
+      - count
       - distinct
       - distinctBy
+      - drop
+      - dropLast
+      - dropLastWhile
+      - dropWhile
+      - eachCount
+      - eachCountTo
+      - elementAt
+      - elementAtOrElse
+      - elementAtOrNull
+      - emptyList
+      - emptyMap
+      - emptySet
+      - fill
       - filter
       - filterIndexed
+      - filterIndexedTo
+      - filterIsInstance
+      - filterIsInstanceTo
+      - filterKeys
       - filterNot
+      - filterNotNull
+      - filterNotNullTo
+      - filterNotTo
+      - filterTo
+      - filterValues
+      - find
+      - findLast
+      - first
+      - firstNotNullOf
+      - firstNotNullOfOrNull
+      - firstOrNull
       - flatMap
+      - flatMapIndexed
+      - flatMapIndexedTo
+      - flatMapTo
+      - flatten
       - fold
       - foldIndexed
+      - foldRight
+      - foldRightIndexed
+      - foldTo
+      - forEach
+      - forEachIndexed
+      - get
+      - getOrDefault
+      - getOrElse
+      - getOrNull
+      - getOrPut
+      - getValue
       - groupBy
+      - groupByTo
+      - groupingBy
+      - hashMapOf
+      - hashSetOf
+      - ifEmpty
+      - indexOf
+      - indexOfFirst
+      - indexOfLast
+      - intersect
+      - isEmpty
+      - isNotEmpty
+      - isNullOrEmpty
+      - iterator
+      - joinTo
+      - joinToString
+      - last
+      - lastIndexOf
+      - lastOrNull
+      - linkedMapOf
+      - linkedSetOf
+      - linkedStringMapOf
+      - linkedStringSetOf
+      - listOf
+      - listOfNotNull
       - map
       - mapIndexed
+      - mapIndexedNotNull
+      - mapIndexedNotNullTo
+      - mapIndexedTo
+      - mapKeys
+      - mapKeysTo
+      - mapNotNull
+      - mapNotNullTo
+      - mapOf
+      - mapTo
+      - mapValues
+      - mapValuesTo
+      - max
+      - maxBy
+      - maxByOrNull
+      - maxOf
+      - maxOfOrNull
+      - maxOfWith
+      - maxOfWithOrNull
+      - maxOrNull
+      - maxWith
+      - maxWithOrNull
+      - min
+      - minBy
+      - minByOrNull
+      - minOf
+      - minOfOrNull
+      - minOfWith
+      - minOfWithOrNull
+      - minOrNull
+      - minWith
+      - minWithOrNull
+      - minus
+      - minusAssign
+      - minusElement
+      - mutableListOf
+      - mutableMapOf
+      - mutableSetOf
+      - none
+      - onEach
+      - onEachIndexed
+      - orEmpty
       - partition
+      - plus
+      - plusAssign
+      - plusElement
+      - putAll
+      - random
+      - randomOrNull
+      - reduce
+      - reduceIndexed
+      - reduceIndexedOrNull
+      - reduceOrNull
+      - reduceRight
+      - reduceRightIndexed
+      - reduceRightIndexedOrNull
+      - reduceRightOrNull
+      - reduceTo
+      - remove
+      - removeAll
+      - removeFirst
+      - removeFirstOrNull
+      - removeLast
+      - removeLastOrNull
+      - replaceAll
+      - requireNoNulls
+      - retainAll
+      - reverse
+      - reversed
+      - reversedArray
       - runningFold
+      - runningFoldIndexed
       - runningReduce
+      - runningReduceIndexed
+      - scan
+      - scanIndexed
+      - set
+      - setOf
+      - setOfNotNull
+      - setValue
+      - shuffle
+      - shuffled
+      - single
+      - singleOrNull
+      - slice
+      - sliceArray
+      - sort
+      - sortBy
+      - sortByDescending
+      - sortDescending
+      - sortWith
       - sorted
+      - sortedArray
+      - sortedArrayDescending
+      - sortedArrayWith
       - sortedBy
+      - sortedByDescending
       - sortedDescending
+      - sortedMapOf
+      - sortedSetOf
+      - sortedWith
+      - stringMapOf
+      - stringSetOf
+      - subtract
+      - sum
+      - sumOf
+      - take
+      - takeLast
+      - takeLastWhile
+      - takeWhile
+      - toBooleanArray
+      - toByteArray
+      - toCharArray
+      - toCollection
+      - toDoubleArray
+      - toFloatArray
+      - toHashSet
+      - toIntArray
+      - toList
+      - toLongArray
+      - toMap
+      - toMutableList
+      - toMutableMap
+      - toMutableSet
+      - toPair
+      - toProperties
+      - toSet
+      - toShortArray
+      - toSortedMap
+      - toSortedSet
+      - toString
+      - toTypedArray
+      - toUByteArray
+      - toUIntArray
+      - toULongArray
+      - toUShortArray
+      - union
+      - unzip
       - windowed
+      - withDefault
+      - withIndex
       - zip
       - zipWithNext
   - namespace: comparisons
@@ -64,22 +570,25 @@ namespaces:
       - compareByDescending
       - compareValues
       - compareValuesBy
-      - maxBy
       - maxOf
-      - minBy
       - minOf
       - naturalOrder
       - nullsFirst
       - nullsLast
       - reverseOrder
+      - reversed
+      - then
       - thenBy
       - thenByDescending
+      - thenComparator
+      - thenDescending
   - namespace: math
     title: kotlin.math package
     target: Kotlin 2.2
     sourceKind: manual
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.math/
     entries:
+      - IEEErem
       - abs
       - acos
       - acosh
@@ -88,6 +597,7 @@ namespaces:
       - atan
       - atan2
       - atanh
+      - cbrt
       - ceil
       - cos
       - cosh
@@ -102,8 +612,13 @@ namespaces:
       - log2
       - max
       - min
+      - nextDown
+      - nextTowards
+      - nextUp
       - pow
       - round
+      - roundToInt
+      - roundToLong
       - sign
       - sin
       - sinh
@@ -111,6 +626,21 @@ namespaces:
       - tan
       - tanh
       - truncate
+      - withSign
+  - namespace: random
+    title: kotlin.random package
+    target: Kotlin 2.2
+    sourceKind: manual
+    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.random/
+    entries:
+      - Random
+      - asJavaRandom
+      - asKotlinRandom
+      - nextInt
+      - nextLong
+      - nextUBytes
+      - nextUInt
+      - nextULong
   - namespace: ranges
     title: kotlin.ranges package
     target: Kotlin 2.2
@@ -120,9 +650,17 @@ namespaces:
       - coerceAtLeast
       - coerceAtMost
       - coerceIn
+      - contains
       - downTo
+      - first
+      - firstOrNull
+      - last
+      - lastOrNull
+      - random
+      - randomOrNull
       - rangeTo
       - rangeUntil
+      - reversed
       - step
       - until
   - namespace: sequences
@@ -131,52 +669,421 @@ namespaces:
     sourceKind: manual
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.sequences/
     entries:
+      - Sequence
+      - all
+      - any
+      - asIterable
+      - asSequence
+      - associate
+      - associateBy
+      - associateByTo
+      - associateTo
+      - associateWith
+      - associateWithTo
+      - average
       - chunked
+      - constrainOnce
+      - contains
+      - count
       - distinct
       - distinctBy
+      - drop
+      - dropWhile
+      - elementAt
+      - elementAtOrElse
+      - elementAtOrNull
+      - emptySequence
       - filter
       - filterIndexed
+      - filterIndexedTo
+      - filterIsInstance
+      - filterIsInstanceTo
       - filterNot
+      - filterNotNull
+      - filterNotNullTo
+      - filterNotTo
+      - filterTo
+      - find
+      - findLast
+      - first
+      - firstNotNullOf
+      - firstNotNullOfOrNull
+      - firstOrNull
       - flatMap
+      - flatMapIndexed
+      - flatMapIndexedTo
+      - flatMapTo
+      - flatten
       - fold
+      - foldIndexed
+      - forEach
+      - forEachIndexed
+      - generateSequence
       - groupBy
+      - groupByTo
+      - groupingBy
+      - ifEmpty
+      - indexOf
+      - indexOfFirst
+      - indexOfLast
+      - iterator
+      - joinTo
       - joinToString
+      - last
+      - lastIndexOf
+      - lastOrNull
       - map
       - mapIndexed
+      - mapIndexedNotNull
+      - mapIndexedNotNullTo
+      - mapIndexedTo
+      - mapNotNull
+      - mapNotNullTo
+      - mapTo
+      - max
+      - maxBy
+      - maxByOrNull
+      - maxOf
+      - maxOfOrNull
+      - maxOfWith
+      - maxOfWithOrNull
+      - maxOrNull
+      - maxWith
+      - maxWithOrNull
+      - min
+      - minBy
+      - minByOrNull
+      - minOf
+      - minOfOrNull
+      - minOfWith
+      - minOfWithOrNull
+      - minOrNull
+      - minWith
+      - minWithOrNull
+      - minus
+      - minusElement
+      - none
+      - onEach
+      - onEachIndexed
+      - orEmpty
+      - partition
+      - plus
+      - plusElement
+      - reduce
+      - reduceIndexed
+      - reduceIndexedOrNull
+      - reduceOrNull
+      - requireNoNulls
+      - runningFold
+      - runningFoldIndexed
+      - runningReduce
+      - runningReduceIndexed
+      - scan
+      - scanIndexed
+      - sequence
+      - sequenceOf
+      - shuffled
+      - single
+      - singleOrNull
       - sorted
       - sortedBy
+      - sortedByDescending
+      - sortedDescending
+      - sortedWith
+      - sum
+      - sumOf
+      - take
+      - takeWhile
+      - toCollection
+      - toHashSet
+      - toList
+      - toMutableList
+      - toMutableSet
+      - toSet
+      - toSortedSet
+      - unzip
       - windowed
+      - withIndex
       - zip
-  - namespace: random
-    title: kotlin.random package
-    target: Kotlin 2.2
-    sourceKind: manual
-    sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.random/
-    entries:
-      - nextBits
-      - nextBoolean
-      - nextDouble
-      - nextFloat
-      - nextInt
-      - nextLong
+      - zipWithNext
   - namespace: text
     title: kotlin.text package
     target: Kotlin 2.2
     sourceKind: manual
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/
     entries:
+      - HexFormat
+      - String
+      - all
+      - any
+      - append
+      - appendLine
+      - appendRange
+      - asIterable
+      - asSequence
+      - associate
+      - associateBy
+      - associateByTo
+      - associateTo
+      - associateWith
+      - associateWithTo
+      - buildString
+      - charset
       - chunked
+      - chunkedSequence
+      - clear
+      - codePointAt
+      - codePointBefore
+      - codePointCount
+      - commonPrefixWith
+      - commonSuffixWith
+      - compareTo
+      - concatToString
+      - contains
+      - contentEquals
+      - count
+      - decodeToString
+      - deleteAt
+      - deleteRange
+      - digitToChar
+      - digitToInt
+      - digitToIntOrNull
+      - drop
+      - dropLast
+      - dropLastWhile
+      - dropWhile
+      - elementAt
+      - elementAtOrElse
+      - elementAtOrNull
+      - encodeToByteArray
       - endsWith
+      - equals
+      - filter
+      - filterIndexed
+      - filterIndexedTo
+      - filterNot
+      - filterNotTo
+      - filterTo
+      - find
+      - findAnyOf
+      - findLast
+      - findLastAnyOf
+      - first
+      - firstNotNullOf
+      - firstNotNullOfOrNull
+      - firstOrNull
+      - flatMap
+      - flatMapIndexed
+      - flatMapIndexedTo
+      - flatMapTo
+      - fold
+      - foldIndexed
+      - foldRight
+      - foldRightIndexed
+      - forEach
+      - forEachIndexed
+      - format
+      - get
+      - getOrElse
+      - getOrNull
+      - groupBy
+      - groupByTo
+      - groupingBy
+      - hasSurrogatePairAt
+      - hexToByte
+      - hexToByteArray
+      - hexToInt
+      - hexToLong
+      - hexToShort
+      - hexToUByte
+      - hexToUByteArray
+      - hexToUInt
+      - hexToULong
+      - hexToUShort
+      - ifBlank
+      - ifEmpty
+      - indexOf
+      - indexOfAny
+      - indexOfFirst
+      - indexOfLast
+      - insert
+      - insertRange
+      - intern
+      - isBlank
+      - isDefined
+      - isDigit
+      - isEmpty
+      - isHighSurrogate
+      - isISOControl
+      - isIdentifierIgnorable
+      - isJavaIdentifierPart
+      - isJavaIdentifierStart
+      - isLetter
+      - isLetterOrDigit
+      - isLowSurrogate
+      - isLowerCase
+      - isNotBlank
+      - isNotEmpty
+      - isNullOrBlank
+      - isNullOrEmpty
+      - isSupplementaryCodePoint
+      - isSurrogate
+      - isSurrogatePair
+      - isTitleCase
+      - isUpperCase
+      - isWhitespace
+      - iterator
+      - last
+      - lastIndexOf
+      - lastIndexOfAny
+      - lastOrNull
+      - lineSequence
+      - lines
       - lowercase
+      - lowercaseChar
+      - map
+      - mapIndexed
+      - mapIndexedNotNull
+      - mapIndexedNotNullTo
+      - mapIndexedTo
+      - mapNotNull
+      - mapNotNullTo
+      - mapTo
+      - matches
+      - max
+      - maxBy
+      - maxByOrNull
+      - maxOf
+      - maxOfOrNull
+      - maxOfWith
+      - maxOfWithOrNull
+      - maxOrNull
+      - maxWith
+      - maxWithOrNull
+      - min
+      - minBy
+      - minByOrNull
+      - minOf
+      - minOfOrNull
+      - minOfWith
+      - minOfWithOrNull
+      - minOrNull
+      - minWith
+      - minWithOrNull
+      - none
+      - offsetByCodePoints
+      - onEach
+      - onEachIndexed
+      - orEmpty
       - padEnd
       - padStart
+      - partition
+      - plus
+      - prependIndent
+      - random
+      - randomOrNull
+      - reduce
+      - reduceIndexed
+      - reduceIndexedOrNull
+      - reduceOrNull
+      - reduceRight
+      - reduceRightIndexed
+      - reduceRightIndexedOrNull
+      - reduceRightOrNull
+      - regionMatches
       - removePrefix
+      - removeRange
       - removeSuffix
+      - removeSurrounding
+      - repeat
       - replace
+      - replaceAfter
+      - replaceAfterLast
+      - replaceBefore
+      - replaceBeforeLast
       - replaceFirst
+      - replaceFirstChar
+      - replaceIndent
+      - replaceIndentByMargin
+      - replaceRange
+      - reversed
+      - runningFold
+      - runningFoldIndexed
+      - runningReduce
+      - runningReduceIndexed
+      - scan
+      - scanIndexed
+      - set
+      - setRange
+      - single
+      - singleOrNull
+      - slice
       - split
+      - splitToSequence
       - startsWith
+      - subSequence
+      - substring
+      - substringAfter
+      - substringAfterLast
+      - substringBefore
+      - substringBeforeLast
+      - sumOf
+      - take
+      - takeLast
+      - takeLastWhile
+      - takeWhile
+      - titlecase
+      - titlecaseChar
+      - toBigDecimal
+      - toBigDecimalOrNull
+      - toBigInteger
+      - toBigIntegerOrNull
+      - toBoolean
+      - toBooleanStrict
+      - toBooleanStrictOrNull
+      - toByte
+      - toByteArray
+      - toByteOrNull
+      - toCharArray
+      - toChars
+      - toCodePoint
+      - toCollection
+      - toDouble
+      - toDoubleOrNull
+      - toFloat
+      - toFloatOrNull
+      - toHashSet
+      - toHexString
+      - toInt
+      - toIntOrNull
+      - toList
+      - toLong
+      - toLongOrNull
+      - toMutableList
+      - toPattern
+      - toRegex
+      - toSet
+      - toShort
+      - toShortOrNull
+      - toSortedSet
+      - toString
+      - toUByte
+      - toUByteOrNull
+      - toUInt
+      - toUIntOrNull
+      - toULong
+      - toULongOrNull
+      - toUShort
+      - toUShortOrNull
       - trim
       - trimEnd
+      - trimIndent
+      - trimMargin
       - trimStart
       - uppercase
+      - uppercaseChar
+      - windowed
+      - windowedSequence
+      - withIndex
+      - zip
+      - zipWithNext

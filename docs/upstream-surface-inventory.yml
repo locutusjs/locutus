@@ -16,7 +16,6 @@ awk:
         system:
           decision: skip_side_effects
           note: Shell execution is outside Locutus' portability scope.
-
 haskell:
   title: Haskell
   scopeNote: This inventory now tracks a broader official `base` module slice for Haskell's core plain-value helpers, not the wider Hackage ecosystem.
@@ -99,7 +98,6 @@ haskell:
       default:
         decision: wanted
         note: Ordering helpers over plain values are strong Haskell portability targets.
-
 c:
   title: C
   namespaces:
@@ -167,7 +165,6 @@ c:
         strtok:
           decision: skip_runtime_model
           note: Stateful tokenizer semantics do not fit Locutus' plain-value model.
-
 php:
   title: PHP
   namespaces:
@@ -177,67 +174,67 @@ php:
         decision: skip_runtime_model
         note: The PHP global surface is broad and many entries depend on runtime objects, host state, or side-effectful process behavior.
       rules:
-        - match: 'curl_*'
+        - match: curl_*
           decision: skip_environment
           note: Network-bound cURL helpers depend on host I/O and runtime handles.
-        - match: 'header*'
+        - match: header*
           decision: skip_side_effects
           note: HTTP header emission mutates response state outside Locutus' model.
-        - match: 'http_response_*'
+        - match: http_response_*
           decision: skip_side_effects
           note: Response-status mutation is outside Locutus' portability focus.
-        - match: 'image*'
+        - match: image*
           decision: skip_plain_value_mismatch
           note: GD image resources do not fit Locutus' plain-value model.
-        - match: 'mail'
+        - match: mail
           decision: skip_side_effects
           note: Mail dispatch is an external side effect.
-        - match: 'ob_*'
+        - match: ob_*
           decision: skip_side_effects
           note: Output buffering mutates ambient process output state.
-        - match: 'openssl_*'
+        - match: openssl_*
           decision: skip_security
           note: OpenSSL resource and key-management helpers are security-sensitive and environment-bound.
-        - match: 'posix_*'
+        - match: posix_*
           decision: skip_environment
           note: POSIX process and host helpers depend on OS-specific state.
-        - match: 'proc_*'
+        - match: proc_*
           decision: skip_side_effects
           note: Process-spawning helpers are outside Locutus' portability scope.
-        - match: 'session_*'
+        - match: session_*
           decision: skip_side_effects
           note: Session lifecycle helpers mutate ambient process or HTTP state.
-        - match: 'socket_*'
+        - match: socket_*
           decision: skip_environment
           note: Socket helpers depend on external network state and resource handles.
-        - match: 'stream_*'
+        - match: stream_*
           decision: skip_environment
           note: Stream resource helpers depend on host I/O handles and runtime state.
-        - match: 'symlink'
+        - match: symlink
           decision: skip_side_effects
           note: Filesystem mutation is outside Locutus' portability focus.
-        - match: 'syslog'
+        - match: syslog
           decision: skip_side_effects
           note: System logging is an external side effect.
-        - match: 'xml_*'
+        - match: xml_*
           decision: skip_plain_value_mismatch
           note: XML parser resources and callbacks do not fit Locutus' plain-value model.
-        - match: 'array_*'
+        - match: array_*
           decision: wanted
           note: PHP array helpers are high-value portability targets and map well onto JS arrays and plain objects.
-        - match: 'date_*'
+        - match: date_*
           decision: wanted
           note: Date helpers remain high-value portability targets within Locutus' Date-based model.
-        - match: 'hash_*'
+        - match: hash_*
           decision: wanted
           note: Hashing helpers are useful pure-value utilities.
-        - match: 'json_*'
+        - match: json_*
           decision: wanted
           note: JSON helpers are strong plain-value portability targets.
-        - match: 'preg_*'
+        - match: preg_*
           decision: wanted
           note: Regular-expression helpers are high-value portability targets.
-        - match: 'str*'
+        - match: str*
           decision: wanted
           note: String helpers are core portability targets for Locutus.
       decisions:
@@ -418,10 +415,9 @@ php:
         xdiff_string_patch:
           decision: keep_extension
           note: xdiff is not available in the base PHP runtime target, but the port is still useful.
-
 python:
   title: Python
-  scopeNote: This inventory now targets a broad official core/stdlib slice first, using runtime discovery where possible, rather than the full Python object model or third-party ecosystem.
+  scopeNote: This inventory now targets Python's broad official stdlib module surface first, using runtime discovery where possible, rather than the full Python object model or third-party ecosystem.
   namespaces:
     builtins:
       title: builtins module
@@ -949,10 +945,13 @@ python:
         urljoin:
           decision: wanted
           note: URL joining has a clean plain-value portability contract.
-
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
 julia:
   title: Julia
-  scopeNote: This inventory now tracks a broader official Julia stdlib/core slice, using runtime discovery for standard modules while excluding the wider package ecosystem.
+  scopeNote: This inventory now tracks Julia's sane official stdlib/core module surface, excluding binary wrapper modules and tooling-only modules that are not realistic Locutus targets.
   namespaces:
     Base:
       title: Base module
@@ -1034,7 +1033,10 @@ julia:
       default:
         decision: skip_runtime_model
         note: Unicode iteration and normalization helpers span richer text models than one stable JS plain-value contract by default.
-
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Julia core/stdlib modules default conservative until their plain-value portability story is explicitly reviewed.
 kotlin:
   title: Kotlin
   scopeNote: This inventory now tracks a broader official Kotlin stdlib slice, using docs-backed catalogs for packages that do not introspect cleanly at runtime, not the wider JVM ecosystem.
@@ -1089,10 +1091,9 @@ kotlin:
       default:
         decision: wanted
         note: String transforms are strong plain-value portability targets.
-
 ruby:
   title: Ruby
-  scopeNote: This inventory now tracks a broader slice of official Ruby core and stdlib plain-value surfaces rather than the broader gem ecosystem.
+  scopeNote: This inventory now tracks Ruby's full runtime-loaded core class/module surface, with selected stdlib-adjacent namespaces folded into the same review model.
   namespaces:
     Array:
       title: Array instance methods
@@ -1100,7 +1101,7 @@ ruby:
         decision: wanted
         note: Most Ruby Array methods map naturally onto JS arrays and plain objects.
       rules:
-        - match: 'each*'
+        - match: each*
           decision: skip_runtime_model
           note: Enumerator-driven iteration APIs are better expressed directly in JS.
       decisions:
@@ -1122,7 +1123,7 @@ ruby:
         decision: wanted
         note: Most Enumerable transforms can be represented over arrays and plain values.
       rules:
-        - match: 'each*'
+        - match: each*
           decision: skip_runtime_model
           note: Enumerator-driven iteration APIs are better expressed directly in JS.
       decisions:
@@ -1144,10 +1145,10 @@ ruby:
         decision: wanted
         note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
       rules:
-        - match: '*!'
+        - match: "*!"
           decision: skip_side_effects
           note: Bang methods mutate caller-owned hash state.
-        - match: 'each*'
+        - match: each*
           decision: skip_runtime_model
           note: Enumerator-driven iteration APIs are better expressed directly in JS.
       decisions:
@@ -1208,13 +1209,13 @@ ruby:
         decision: wanted
         note: Most Ruby String methods are strong plain-value portability targets.
       rules:
-        - match: 'byte*'
+        - match: byte*
           decision: skip_plain_value_mismatch
           note: Byte-oriented string APIs do not fit Locutus' current plain-value model.
-        - match: 'each_*'
+        - match: each_*
           decision: skip_runtime_model
           note: Enumerator-driven iteration APIs are better expressed directly in JS.
-        - match: 'encode*'
+        - match: encode*
           decision: skip_runtime_model
           note: Encoding-object semantics do not fit Locutus' plain-value model.
       decisions:
@@ -1423,10 +1424,13 @@ ruby:
       default:
         decision: wanted
         note: Scalar numeric helpers are strong Ruby portability targets.
-
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
 golang:
   title: Go
-  scopeNote: This inventory now tracks a broader official Go stdlib slice, using `go doc` runtime/source discovery for packages whose exported function surface is stable and value-oriented.
+  scopeNote: This inventory now tracks Go's full public stdlib package surface, using `go list std` for package discovery and `go doc -all` for callable entry discovery.
   namespaces:
     base64:
       title: encoding/base64 package
@@ -1614,7 +1618,7 @@ golang:
         decision: skip_runtime_model
         note: Most sort APIs depend on mutable slices or callback-driven ordering.
       rules:
-        - match: 'Search*'
+        - match: Search*
           decision: wanted
           note: Search helpers have a clean plain-value contract.
       decisions:
@@ -1627,7 +1631,7 @@ golang:
         decision: wanted
         note: Parse and format helpers are strong plain-value portability targets.
       rules:
-        - match: 'Append*'
+        - match: Append*
           decision: skip_plain_value_mismatch
           note: Byte-slice append APIs do not fit Locutus' current plain-value model.
       decisions:
@@ -1667,22 +1671,58 @@ golang:
         decision: skip_runtime_model
         note: Much of Go time depends on locations, timers, and rich time values beyond JS plain values.
       rules:
-        - match: 'Unix*'
+        - match: Unix*
           decision: wanted
           note: Unix timestamp conversion has a clean plain-value contract.
       decisions:
         AfterFunc:
           decision: skip_side_effects
           note: Timer callbacks are side-effectful runtime scheduling APIs.
-        Compare:
-          decision: wanted
-          note: Time comparison has a clean plain-value contract.
         LoadLocation:
           decision: skip_environment
           note: Timezone database loading depends on host runtime state.
         LoadLocationFromTZData:
           decision: skip_environment
           note: Timezone database loading depends on host runtime state.
+    time.Time:
+      title: time.Time methods
+      default:
+        decision: skip_runtime_model
+        note: Many time.Time methods revolve around rich time values, locations, or serialization details beyond one stable plain-value contract.
+      decisions:
+        Add:
+          decision: wanted
+          note: Time arithmetic over plain instants has a clean portability contract.
+        AddDate:
+          decision: wanted
+          note: Calendar arithmetic over plain instants has a useful portability contract.
+        After:
+          decision: wanted
+          note: Time comparison has a clean plain-value contract.
+        Before:
+          decision: wanted
+          note: Time comparison has a clean plain-value contract.
+        Compare:
+          decision: wanted
+          note: Time comparison has a clean plain-value contract.
+        Equal:
+          decision: wanted
+          note: Time comparison has a clean plain-value contract.
+        Format:
+          decision: wanted
+          note: Deterministic layout formatting is a strong portability target.
+        IsZero:
+          decision: wanted
+          note: Zero-time checks have a clean plain-value contract.
+        Round:
+          decision: wanted
+          note: Time rounding over plain instants has a clean portability contract.
+        Sub:
+          decision: wanted
+          note: Duration differences map cleanly to scalar results.
+        Truncate:
+          decision: wanted
+          note: Time truncation over plain instants has a clean portability contract.
     filepath:
       title: path/filepath package
       default:
@@ -1716,7 +1756,7 @@ golang:
         decision: skip_runtime_model
         note: Some unicode helpers depend on range tables or special-case structs rather than one stable plain-value contract.
       rules:
-        - match: 'Is*'
+        - match: Is*
           decision: wanted
           note: Character classification helpers have a clean scalar portability contract.
       decisions:
@@ -1765,6 +1805,18 @@ golang:
         decision: skip_runtime_model
         note: Much of net/url revolves around mutable URL and Values objects rather than plain values.
       decisions:
+        ParseRequestURI:
+          decision: wanted
+          note: Request-URI parsing is a useful plain-value helper.
+        PathUnescape:
+          decision: wanted
+          note: URL escaping is a strong plain-value target.
+    url.URL:
+      title: net/url URL methods
+      default:
+        decision: skip_runtime_model
+        note: URL object methods often revolve around structured URL state rather than one plain-value contract.
+      decisions:
         EscapedFragment:
           decision: wanted
           note: Escaping helpers have a clean plain-value contract.
@@ -1777,19 +1829,34 @@ golang:
         IsAbs:
           decision: wanted
           note: URL absolute checks have a clean plain-value contract.
-        ParseRequestURI:
-          decision: wanted
-          note: Request-URI parsing is a useful plain-value helper.
-        PathUnescape:
-          decision: wanted
-          note: URL escaping is a strong plain-value target.
         Port:
           decision: wanted
           note: URL host decomposition is a useful plain-value helper.
         RequestURI:
           decision: wanted
           note: Request-URI formatting is a useful plain-value helper.
-
+        ResolveReference:
+          decision: wanted
+          note: URL reference resolution has a useful plain-value contract.
+    url.Values:
+      title: net/url Values methods
+      default:
+        decision: skip_runtime_model
+        note: URL values methods revolve around mutable multi-value maps rather than one plain-value contract.
+      decisions:
+        Encode:
+          decision: wanted
+          note: Canonical query-string encoding has a clean plain-value contract.
+        Get:
+          decision: wanted
+          note: Query-value lookup has a useful plain-value contract.
+        Has:
+          decision: wanted
+          note: Query-value membership checks have a useful plain-value contract.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Go stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
 tcl:
   title: Tcl
   scopeNote: This inventory now tracks Tcl's broader core command surface and standard ensembles first, excluding only host-specific extension ecosystems beyond core Tcl.
@@ -2046,7 +2113,6 @@ tcl:
       default:
         decision: skip_plain_value_mismatch
         note: Binary compression helpers generally do not fit Locutus' current plain-value model.
-
 lua:
   title: Lua
   scopeNote: This inventory now tracks Lua's core plain-value libraries plus the environment-facing standard tables, not the full host runtime.
@@ -2169,7 +2235,6 @@ lua:
       default:
         decision: skip_security
         note: Debug introspection APIs are security-sensitive and runtime-bound rather than plain values.
-
 perl:
   title: Perl
   scopeNote: This inventory now tracks a broader official Perl core-module slice, excluding the wider CPAN ecosystem.
@@ -2256,7 +2321,6 @@ perl:
       default:
         decision: wanted
         note: Unicode normalization helpers are strong plain-value string targets.
-
 powershell:
   title: PowerShell
   scopeNote: This inventory now tracks a broader slice of official .NET core surfaces that are idiomatic in PowerShell, using docs-backed catalogs and excluding the wider .NET ecosystem.
@@ -2337,6 +2401,9 @@ powershell:
           note: Exact string-to-date parsing is a useful portability target.
     uri:
       title: System.Uri static and instance methods
+      default:
+        decision: skip_runtime_model
+        note: Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.
       decisions:
         CheckHostName:
           decision: wanted
@@ -2358,6 +2425,9 @@ powershell:
           note: URL unescaping is a strong plain-value portability target.
     guid:
       title: System.Guid static and instance methods
+      default:
+        decision: skip_runtime_model
+        note: Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.
       decisions:
         Empty:
           decision: skip_runtime_model
@@ -2415,10 +2485,9 @@ powershell:
         ParseExact:
           decision: wanted
           note: Exact duration parsing has a clean plain-value contract.
-
 elixir:
   title: Elixir
-  scopeNote: This inventory now tracks a broader official Elixir core/stdlib slice, excluding the wider OTP and Erlang ecosystem.
+  scopeNote: This inventory now tracks Elixir's official `:elixir` app module surface, excluding tooling apps like Mix and IEx from the parity target scope.
   namespaces:
     Base:
       title: Base module
@@ -2492,7 +2561,7 @@ elixir:
         decision: skip_runtime_model
         note: Much of Elixir Kernel is syntax sugar, runtime introspection, or process management rather than plain values.
       rules:
-        - match: 'is_*'
+        - match: is_*
           decision: wanted
           note: Type-predicate helpers have a clean plain-value contract.
       decisions:
@@ -2617,10 +2686,10 @@ elixir:
         decision: skip_runtime_model
         note: URI structs do not fit Locutus' current plain-value model by default.
       rules:
-        - match: 'decode*'
+        - match: decode*
           decision: wanted
           note: String-based encode/decode helpers have a clean plain-value contract.
-        - match: 'encode*'
+        - match: encode*
           decision: wanted
           note: String-based encode/decode helpers have a clean plain-value contract.
     Version:
@@ -2628,7 +2697,10 @@ elixir:
       default:
         decision: wanted
         note: Semantic-version parsing and comparison helpers have a clean plain-value contract.
-
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Elixir modules default conservative until their plain-value portability story is explicitly reviewed.
 clojure:
   title: Clojure
   scopeNote: This inventory now tracks a broader official Clojure core slice, adding the most relevant standard namespaces while still excluding the broader JVM ecosystem.
@@ -2812,10 +2884,9 @@ clojure:
       default:
         decision: wanted
         note: java.lang.Math helpers map cleanly to JS numbers.
-
 r:
   title: R
-  scopeNote: This inventory now tracks R's broader official base and recommended-package surface, excluding the wider CRAN ecosystem.
+  scopeNote: This inventory now tracks R's full official base and recommended-package surface from the parity target, with new packages defaulting conservative until reviewed.
   namespaces:
     base:
       title: base package
@@ -3081,7 +3152,10 @@ r:
       default:
         decision: skip_environment
         note: tools mixes package metadata, filesystem, and build-time helpers too broadly for one direct Locutus wishlist.
-
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked R base/recommended packages default conservative until their plain-value portability story is explicitly reviewed.
 rust:
   title: Rust
   scopeNote: This inventory now tracks a broader slice of Rust core/std primitives and slice helpers first, excluding the wider crate ecosystem.
@@ -3226,7 +3300,6 @@ rust:
       default:
         decision: wanted
         note: Pointer-sized integer helpers are strong Rust portability targets.
-
 swift:
   title: Swift
   scopeNote: This inventory now tracks a broader Swift standard-library slice via docs-backed catalogs, excluding the wider Foundation ecosystem.
@@ -3276,6 +3349,22 @@ swift:
       default:
         decision: wanted
         note: Swift String helpers are strong plain-value portability targets.
+      decisions:
+        componentsSeparatedBy:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though it is not a Swift.String member.
+        padding:
+          decision: keep_locutus_only
+          note: Locutus keeps this NSString-style alias even though native Swift uses padding(toLength:withPad:startingAt:).
+        rangeOf:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though native Swift.String uses range(of:).
+        replacingOccurrences:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though native Swift.String uses replacingOccurrences(of:with:).
+        trimmingCharacters:
+          decision: keep_locutus_only
+          note: Locutus keeps this Foundation-style alias even though native Swift.String uses trimmingCharacters(in:).
     Optional:
       title: Swift.Optional
       default:

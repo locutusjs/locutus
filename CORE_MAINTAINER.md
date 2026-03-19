@@ -20,7 +20,16 @@ Note that for any task, it's important to first get ample context. Search past i
 2. Use `gh` to check on pending PRs. First run `gh auth status` to understand what our GitHub identity is. Make sure all PRs have reviews by other people than our identity (fixable only when PRs are submitted by others), that PRs pass (fixable only if they were submitted by US), fix what can be fixed, then re-check next iteration. If all is green, merge. LLMs should refrain from commenting on PRs, but deep reviews on PRs by others are allowed.
 3. Triage issues. Confirm repro, decide scope, and say no when needed to protect project goals (see `## Vision`, `README.md`, `CHANGELOG.md`, and `website/source/about.md`). LLMs should refrain from commenting on Issues.
 4. To continuously modernize the project, revise the Backlog/Roadmap in `CHANGELOG.md`. Don't forget about the website, which lives in this repo and is deployed via GHA. Check off items and/or move them into releases as appropriate.
-5. Decide an issue to work on. **Before starting, check:** What areas have received attention in the last 5 iterations? Prioritize neglected areas. Balance time across: verification (all languages), modernization, TypeScript, website, dependencies.
+5. Before any new product work, audit upstream discovery and tracked scope. The flow is:
+   - run `corepack yarn discover:upstream-surface <language>` to materialize the raw canonical catalog from runtime/docs/source
+   - inspect the raw diff and fix discovery first if it over- or under-shoots
+   - run `corepack yarn fold:upstream-surface <language>` when the discovered catalog looks right and you want to accept it into the tracked snapshot YAML
+   - run `corepack yarn audit:upstream-scope <language>` to compare tracked scope against raw canonical discovery
+   - use `docs/upstream-surface-scope.yml` as the explicit audit/planning contract for tracked scope, not as a discovery input
+   - if official namespaces are missing from tracked scope, broaden scope first
+   - if a namespace is too broad, either narrow/exclude it at the source layer or keep it with a broad inventory default after folding
+   - only resume product work once raw discovery is trustworthy and the tracked target surface for the chosen area is explicit and sane
+6. Decide an issue to work on. **Before starting, check:** What areas have received attention in the last 5 iterations? Prioritize neglected areas. Balance time across: verification (all languages), modernization, TypeScript, website, dependencies.
 
     It could come from:
     - a security concern
@@ -31,14 +40,14 @@ Note that for any task, it's important to first get ample context. Search past i
     - unfinished business
 
     Do what is most important and impactful first. First search what is already available, and what we can already re-use, even if it takes a little refactoring. Define what a successful outcome looks like and how you'll validate it (tests, browser checks, screenshots for design changes, or a working migration). This is imperative: no changes without validation. Anything that can't be validated should not be PR'ed or merged.
-6. **NEVER commit directly to `main`.** Always create or re-use a goal-oriented branch:
+7. **NEVER commit directly to `main`.** Always create or re-use a goal-oriented branch:
     ```bash
     git checkout [-]b feat/descriptive-goal  # or fix/, chore/, docs/
     ```
     Exceptions: `CORE_MAINTAINER.md`, `CHANGELOG.md`, and `docs/prompts/LOG.md` can be pushed directly to main.
-7. Log the plan in `docs/prompts/LOG.md`. Work can span multiple iterations on the same branch.
-8. Start implementing. Make incremental commits as you go.
-9. **Create a PR only when you've made significant progress** (not after each small change):
+8. Log the plan in `docs/prompts/LOG.md`. Work can span multiple iterations on the same branch.
+9. Start implementing. Make incremental commits as you go.
+10. **Create a PR only when you've made significant progress** (not after each small change):
     - **Expansion**: ~10-15% coverage increase or ~10+ functions
     - **Verification/Refactoring**: 10+ functions fixed or complete a coherent unit
     - **Bug fixes/security**: Individual PRs are fine for discrete issues
@@ -49,11 +58,11 @@ Note that for any task, it's important to first get ample context. Search past i
     - Update documentation if needed
     - **For new functions**: Check if semantic equivalents exist in other languages and update `src/rosetta.yml`
     - **For website changes**: After merge, verify the live site at https://locutus.io using Playwright MCP
-10. Release recently merged PRs that contain new/changed functions (not just build tools, tests, or docs).
+11. Release recently merged PRs that contain new/changed functions (not just build tools, tests, or docs).
     - Before tagging, classify the release using `CONTRIBUTING.md#versioning` and include a one-line rationale in
       `CHANGELOG.md`.
-11. Log iteration results in `docs/prompts/LOG.md`.
-12. → Back to step 1
+12. Log iteration results in `docs/prompts/LOG.md`.
+13. → Back to step 1
 
 ## Quality Standards
 

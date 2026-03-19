@@ -8,7 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, type JsObjectProperty, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const CLOJURE_SKIP_LIST = new Set<string>([
@@ -17,54 +17,95 @@ export const CLOJURE_SKIP_LIST = new Set<string>([
 ])
 
 const CLOJURE_DOCKER_IMAGE = 'clojure:temurin-21-tools-deps'
+const CLOJURE_NAMESPACE_CATALOG_TARGET = 'Clojure 1.12'
+const CLOJURE_NAMESPACE_CATALOG_SOURCE_REF = 'https://clojure.github.io/clojure/'
 
-function discoverClojureUpstreamSurface() {
-  const discoverNamespace = (namespace: string, form: string) => {
-    const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', form])
-    if (!result.success) {
-      throw new Error(result.error || `Unable to discover Clojure upstream surface for ${namespace}`)
+function normalizeClojureNamespace(namespace: string): string {
+  return namespace.startsWith('clojure.') ? namespace.slice('clojure.'.length) : namespace
+}
+
+function catalogClojureNamespace(namespace: string): string {
+  return namespace === 'Math' ? namespace : `clojure.${namespace}`
+}
+
+async function discoverClojureUpstreamNamespaces() {
+  const html = await fetch(CLOJURE_NAMESPACE_CATALOG_SOURCE_REF).then(async (response) => {
+    if (!response.ok) {
+      throw new Error(`Unable to discover Clojure upstream namespaces: ${response.status} ${response.statusText}`)
     }
+    return await response.text()
+  })
 
-    const entries = result.output
+  const docNamespaces = [...new Set([...html.matchAll(/href="([a-z0-9.]+)-api\.html"/g)].map((match) => match[1]))]
+    .filter((namespace): namespace is string => !!namespace)
+    .map((namespace) => normalizeClojureNamespace(namespace))
+    .sort((left, right) => left.localeCompare(right))
+
+  return [...docNamespaces, 'Math'].sort((left, right) => left.localeCompare(right))
+}
+
+async function discoverClojureUpstreamNamespaceCatalog() {
+  return {
+    target: CLOJURE_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'source_manifest' as const,
+    sourceRef: CLOJURE_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: await discoverClojureUpstreamNamespaces(),
+  }
+}
+
+async function discoverClojureUpstreamSurface() {
+  const catalog = await discoverClojureUpstreamNamespaceCatalog()
+  const script = `
+(do
+  (require 'clojure.string)
+  (let [namespaces ${JSON.stringify(catalog.namespaces)}]
+    (doseq [namespace namespaces]
+      (if (= namespace "Math")
+        (->> (.getDeclaredMethods java.lang.Math)
+             (map #(.getName %))
+             sort
+             distinct
+             (clojure.string/join "\\u001f")
+             (str namespace "\\t")
+             println)
+        (let [symbol (symbol (str "clojure." namespace))]
+          (require symbol)
+          (->> (ns-publics symbol)
+               keys
+               (map name)
+               sort
+               (clojure.string/join "\\u001f")
+               (str namespace "\\t")
+               println))))))
+  `.trim()
+
+  const result = runInDocker(CLOJURE_DOCKER_IMAGE, ['clojure', '-M', '-e', script], { timeout: 120000 })
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Clojure upstream surface')
+  }
+
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'clojure',
+    catalog,
+    namespaces: result.output
       .trim()
       .split('\n')
       .map((line) => line.trim())
       .filter(Boolean)
-      .sort()
-
-    return {
-      namespace,
-      entries,
-    }
-  }
-
-  return buildScopedUpstreamSurfaceSnapshot('clojure', [
-    discoverNamespace('core', '(doseq [s (sort (map name (keys (ns-publics (quote clojure.core)))))] (println s))'),
-    discoverNamespace(
-      'edn',
-      "(require '[clojure.edn]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.edn)))))] (println s))",
-    ),
-    discoverNamespace(
-      'set',
-      "(require '[clojure.set]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.set)))))] (println s))",
-    ),
-    discoverNamespace(
-      'string',
-      "(require '[clojure.string]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.string)))))] (println s))",
-    ),
-    discoverNamespace(
-      'walk',
-      "(require '[clojure.walk]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.walk)))))] (println s))",
-    ),
-    discoverNamespace(
-      'zip',
-      "(require '[clojure.zip]) (doseq [s (sort (map name (keys (ns-publics (quote clojure.zip)))))] (println s))",
-    ),
-    discoverNamespace(
-      'Math',
-      '(doseq [s (sort (map #(.getName %) (filter #(java.lang.reflect.Modifier/isStatic (.getModifiers %)) (.getMethods java.lang.Math))))] (println s))',
-    ),
-  ])
+      .map((line) => {
+        const [namespace, encodedEntries = ''] = line.split('\t')
+        if (!namespace) {
+          throw new Error('Unable to parse Clojure upstream surface row')
+        }
+        const catalogNamespace = catalogClojureNamespace(namespace)
+        return {
+          namespace,
+          title: namespace === 'Math' ? 'java.lang.Math' : catalogNamespace,
+          sourceRef: CLOJURE_DOCKER_IMAGE,
+          entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
+        }
+      }),
+  })
 }
 
 const CLOJURE_PARITY_PRELUDE = `
@@ -571,6 +612,7 @@ export const clojureHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverClojureUpstreamSurface,
+    discoverNamespaceCatalog: discoverClojureUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => {
       const translated = func.category === 'string' && func.name === 'blank' ? 'blank?' : func.name.replaceAll('_', '-')
       return {

@@ -12,11 +12,26 @@ import { join } from 'node:path'
 import YAML from 'js-yaml'
 import { z } from 'zod'
 
-import type { LanguageHandler, UpstreamSurfaceScope, UpstreamSurfaceSnapshot } from './types.ts'
+import type {
+  DiscoveredUpstreamSurfaceNamespaceCatalog,
+  LanguageHandler,
+  UpstreamSurfaceScope,
+  UpstreamSurfaceSnapshot,
+} from './types.ts'
+import { loadRepoUpstreamSurfaceSnapshot } from './upstream-surface-snapshots.ts'
 
 const upstreamSurfaceNamespaceScopeSchema = z
   .object({
     title: z.string().min(1).optional(),
+    catalogNamespace: z.string().min(1).optional(),
+    target: z.string().min(1),
+    sourceKind: z.enum(['runtime', 'source_manifest', 'manual']),
+    sourceRef: z.string().min(1),
+  })
+  .strict()
+
+const upstreamSurfaceLanguageNamespaceCatalogSchema = z
+  .object({
     target: z.string().min(1),
     sourceKind: z.enum(['runtime', 'source_manifest', 'manual']),
     sourceRef: z.string().min(1),
@@ -25,6 +40,7 @@ const upstreamSurfaceNamespaceScopeSchema = z
 
 const upstreamSurfaceLanguageScopeSchema = z
   .object({
+    namespaceCatalog: upstreamSurfaceLanguageNamespaceCatalogSchema.optional(),
     namespaces: z.record(z.string(), upstreamSurfaceNamespaceScopeSchema),
   })
   .strict()
@@ -37,10 +53,12 @@ export interface DiscoveredUpstreamSurfaceNamespace {
 }
 
 interface InventoryOnlyLanguageHandlerConfig {
+  language: string
   dockerImage: string
   displayName: string
   version: string
   skipList: Set<string>
+  upstreamSurface?: LanguageHandler['upstreamSurface']
 }
 
 let cachedRepoScope:
@@ -100,6 +118,52 @@ export function buildScopedUpstreamSurfaceSnapshot(
   }
 }
 
+export function getUpstreamSurfaceLanguageScope(
+  language: string,
+  rootDir = process.cwd(),
+): UpstreamSurfaceScope[string] {
+  const scope = loadRepoUpstreamSurfaceScope(rootDir)
+  const languageScope = scope[language]
+  if (!languageScope) {
+    throw new Error(`No canonical upstream surface scope is defined for ${language}.`)
+  }
+  return languageScope
+}
+
+export function getUpstreamSurfaceScopeNamespaceNames(language: string, rootDir = process.cwd()): string[] {
+  return Object.keys(getUpstreamSurfaceLanguageScope(language, rootDir).namespaces).sort()
+}
+
+export function getUpstreamSurfaceNamespaceScope(language: string, namespace: string, rootDir = process.cwd()) {
+  const languageScope = getUpstreamSurfaceLanguageScope(language, rootDir)
+  const namespaceScope = languageScope.namespaces[namespace]
+  if (!namespaceScope) {
+    throw new Error(`No canonical upstream surface scope is defined for ${language}/${namespace}.`)
+  }
+  return namespaceScope
+}
+
+export function discoverUpstreamSurfaceNamespaceCatalogFromScope(
+  language: string,
+  rootDir = process.cwd(),
+): DiscoveredUpstreamSurfaceNamespaceCatalog {
+  const languageScope = getUpstreamSurfaceLanguageScope(language, rootDir)
+  if (!languageScope.namespaceCatalog) {
+    throw new Error(`No canonical namespace catalog is defined for ${language}.`)
+  }
+
+  return {
+    ...languageScope.namespaceCatalog,
+    namespaces: [
+      ...new Set(
+        Object.entries(languageScope.namespaces).map(
+          ([namespace, namespaceScope]) => namespaceScope.catalogNamespace ?? namespace,
+        ),
+      ),
+    ].sort(),
+  }
+}
+
 export function createInventoryOnlyLanguageHandler(config: InventoryOnlyLanguageHandlerConfig): LanguageHandler {
   return {
     parityEnabled: false,
@@ -114,7 +178,10 @@ export function createInventoryOnlyLanguageHandler(config: InventoryOnlyLanguage
     },
     dockerCmd: () => ['sh', '-lc', 'exit 1'],
     mountRepo: false,
-    upstreamSurface: {
+    upstreamSurface: config.upstreamSurface ?? {
+      discover: () => loadRepoUpstreamSurfaceSnapshot(config.language),
+      discoverMode: 'snapshot',
+      discoverNamespaceCatalog: () => discoverUpstreamSurfaceNamespaceCatalogFromScope(config.language),
       getLocutusEntry: (func) => ({
         namespace: func.category,
         name: func.name,

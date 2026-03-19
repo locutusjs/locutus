@@ -4,6 +4,7 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverAwkUpstreamNamespaceCatalog, discoverAwkUpstreamSurface } from '../upstream-surface-canonical.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const AWK_SKIP_LIST = new Set<string>([
@@ -137,6 +138,10 @@ export const awkHandler: LanguageHandler = {
   dockerCmd: (code: string) => ['awk', code, '/dev/null'],
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverAwkUpstreamSurface,
+    discoverMode: 'live',
+    discoverUsesDocker: true,
+    discoverNamespaceCatalog: discoverAwkUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

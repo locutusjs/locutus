@@ -5,7 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const LUA_SKIP_LIST = new Set<string>([
@@ -13,6 +13,8 @@ export const LUA_SKIP_LIST = new Set<string>([
 ])
 
 const LUA_DOCKER_IMAGE = 'nickblah/lua:5.4-alpine'
+const LUA_NAMESPACE_CATALOG_TARGET = 'Lua 5.4'
+const LUA_NAMESPACE_CATALOG_SOURCE_REF = 'lua:5.4:_G-and-library-tables'
 
 const LUA_PARITY_PRELUDE = `
 local function locutus_escape_json_string(value)
@@ -88,11 +90,68 @@ function normalizeLuaJsonValue(value: unknown, expected: unknown): unknown {
   return value
 }
 
+function discoverLuaUpstreamNamespaces() {
+  const script = `
+local names = {}
+local hasCore = false
+
+for key, value in pairs(_G) do
+  if type(value) == "function" then
+    hasCore = true
+  elseif type(value) == "table" and key:match("^[A-Za-z_][A-Za-z0-9_]*$") then
+    local hasFunction = false
+    for _, member in pairs(value) do
+      if type(member) == "function" then
+        hasFunction = true
+        break
+      end
+    end
+    if hasFunction then
+      names[key] = true
+    end
+  end
+end
+
+if hasCore then
+  names["core"] = true
+end
+
+for name, _ in pairs(names) do
+  print(name)
+end
+`.trim()
+  const result = runInDocker(LUA_DOCKER_IMAGE, ['lua', '-e', script])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Lua upstream namespaces')
+  }
+
+  return [
+    ...new Set(
+      result.output
+        .trim()
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    ),
+  ].sort()
+}
+
+function discoverLuaUpstreamNamespaceCatalog() {
+  return {
+    target: LUA_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'runtime' as const,
+    sourceRef: LUA_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: discoverLuaUpstreamNamespaces(),
+  }
+}
+
 function discoverLuaUpstreamSurface() {
-  const discoverNamespace = (
-    namespace: 'math' | 'string' | 'table' | 'utf8' | 'os' | 'io' | 'coroutine' | 'package' | 'debug',
-  ) => {
-    const script = `for key, value in pairs(${namespace}) do if type(value) == "function" then print(key) end end`
+  const catalog = discoverLuaUpstreamNamespaceCatalog()
+  const discoverNamespace = (namespace: string) => {
+    const script =
+      namespace === 'core'
+        ? 'for key, value in pairs(_G) do if type(value) == "function" then print(key) end end'
+        : `for key, value in pairs(${namespace}) do if type(value) == "function" then print(key) end end`
     const result = runInDocker(LUA_DOCKER_IMAGE, ['lua', '-e', script])
     if (!result.success) {
       throw new Error(result.error || `Unable to discover Lua upstream surface for ${namespace}`)
@@ -111,17 +170,15 @@ function discoverLuaUpstreamSurface() {
     }
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('lua', [
-    discoverNamespace('math'),
-    discoverNamespace('string'),
-    discoverNamespace('table'),
-    discoverNamespace('utf8'),
-    discoverNamespace('os'),
-    discoverNamespace('io'),
-    discoverNamespace('coroutine'),
-    discoverNamespace('package'),
-    discoverNamespace('debug'),
-  ])
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'lua',
+    catalog,
+    namespaces: catalog.namespaces.map((namespace) => ({
+      ...discoverNamespace(namespace),
+      title: namespace,
+      sourceRef: `${LUA_DOCKER_IMAGE}:${namespace}`,
+    })),
+  })
 }
 
 /**
@@ -300,6 +357,7 @@ export const luaHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverLuaUpstreamSurface,
+    discoverNamespaceCatalog: discoverLuaUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

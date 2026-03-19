@@ -4,6 +4,7 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverPerlUpstreamNamespaceCatalog, discoverPerlUpstreamSurface } from '../upstream-surface-canonical.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const PERL_SKIP_LIST = new Set<string>([
@@ -172,6 +173,10 @@ export const perlHandler: LanguageHandler = {
   dockerCmd: (code: string) => ['perl', '-e', code],
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverPerlUpstreamSurface,
+    discoverMode: 'live',
+    discoverUsesDocker: false,
+    discoverNamespaceCatalog: discoverPerlUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,
