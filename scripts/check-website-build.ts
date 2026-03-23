@@ -148,7 +148,14 @@ function main(): void {
     {
       path: 'tcl/index.html',
       title: 'Tcl commands  in TypeScript | Locutus',
-      includes: ['Upstream Surface Inventory', 'Explicit non-goals', 'Intentional extras', 'dict ensemble'],
+      includes: [
+        'Upstream Surface Inventory',
+        'Explicit non-goals',
+        'Intentional extras',
+        'Tracked namespaces',
+        'data-namespace="dict"',
+        'data-namespace="core"',
+      ],
       ogUrl: 'https://locutus.io/tcl/index.html',
     },
     {
