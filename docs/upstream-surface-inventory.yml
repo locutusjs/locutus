@@ -19,6 +19,10 @@ awk:
 haskell:
   title: Haskell
   scopeNote: This inventory now tracks a broader official `base` module slice for Haskell's core plain-value helpers, not the wider Hackage ecosystem.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Haskell base modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     char:
       title: Data.Char
@@ -100,6 +104,10 @@ haskell:
         note: Ordering helpers over plain values are strong Haskell portability targets.
 c:
   title: C
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked C headers default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     ctype:
       title: ctype.h
@@ -1040,6 +1048,10 @@ julia:
 kotlin:
   title: Kotlin
   scopeNote: This inventory now tracks a broader official Kotlin stdlib slice, using docs-backed catalogs for packages that do not introspect cleanly at runtime, not the wider JVM ecosystem.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Kotlin stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     arrays:
       title: kotlin.collections arrays
@@ -1096,7 +1108,7 @@ ruby:
   scopeNote: This inventory now tracks Ruby's full runtime-loaded core class/module surface, with selected stdlib-adjacent namespaces folded into the same review model.
   namespaces:
     Array:
-      title: Array instance methods
+      title: Array methods
       default:
         decision: wanted
         note: Most Ruby Array methods map naturally onto JS arrays and plain objects.
@@ -1118,7 +1130,7 @@ ruby:
           decision: skip_runtime_model
           note: Ruby Set values are not a stable plain-value target for Locutus.
     Enumerable:
-      title: Enumerable instance methods
+      title: Enumerable methods
       default:
         decision: wanted
         note: Most Enumerable transforms can be represented over arrays and plain values.
@@ -1140,7 +1152,7 @@ ruby:
           decision: skip_runtime_model
           note: Ruby Set values are not a stable plain-value target for Locutus.
     Hash:
-      title: Hash instance methods
+      title: Hash methods
       default:
         decision: wanted
         note: Hash readers and pure transforms often map cleanly onto JS objects and entry arrays.
@@ -1204,7 +1216,7 @@ ruby:
           decision: skip_runtime_model
           note: Ruby Set values are not a stable plain-value target for Locutus.
     String:
-      title: String instance methods
+      title: String methods
       default:
         decision: wanted
         note: Most Ruby String methods are strong plain-value portability targets.
@@ -1240,7 +1252,7 @@ ruby:
         decision: wanted
         note: Ruby Math helpers map cleanly to JS numbers.
     Integer:
-      title: Integer instance methods
+      title: Integer methods
       default:
         decision: wanted
         note: Ruby Integer helpers are strong scalar portability targets.
@@ -1258,7 +1270,7 @@ ruby:
           decision: skip_runtime_model
           note: Enumerator-style integer iteration does not fit Locutus' plain-value model.
     Float:
-      title: Float instance methods
+      title: Float methods
       default:
         decision: wanted
         note: Ruby Float helpers are strong scalar portability targets.
@@ -1267,12 +1279,12 @@ ruby:
           decision: skip_plain_value_mismatch
           note: Rational values do not fit Locutus' current plain-value model.
     Comparable:
-      title: Comparable instance methods
+      title: Comparable methods
       default:
         decision: wanted
         note: Comparable predicates over scalar values are strong Ruby portability targets.
     Range:
-      title: Range instance methods
+      title: Range methods
       default:
         decision: skip_runtime_model
         note: Range iteration and object semantics do not map cleanly to plain JS values by default.
@@ -1308,7 +1320,7 @@ ruby:
           decision: wanted
           note: Size helpers have a clean plain-value contract.
     Regexp:
-      title: Regexp instance methods
+      title: Regexp methods
       default:
         decision: skip_runtime_model
         note: Match-data- and engine-oriented regex object APIs are not direct plain-value targets.
@@ -1317,12 +1329,12 @@ ruby:
           decision: wanted
           note: Pattern-source readers have a clean plain-value contract.
     Symbol:
-      title: Symbol instance methods
+      title: Symbol methods
       default:
         decision: skip_plain_value_mismatch
         note: Ruby symbol identity does not map cleanly onto JS plain strings.
     Time:
-      title: Time instance methods
+      title: Time methods
       default:
         decision: skip_runtime_model
         note: Timezone-aware time objects do not fit Locutus' current plain-value model by default.
@@ -1381,7 +1393,7 @@ ruby:
           decision: wanted
           note: Path composition has a clean plain-string contract.
     MatchData:
-      title: MatchData instance methods
+      title: MatchData methods
       default:
         decision: skip_runtime_model
         note: Match objects depend on richer regex-engine state than one stable plain-value contract.
@@ -1420,7 +1432,7 @@ ruby:
           decision: wanted
           note: Capture materialization has a clean plain-value contract.
     Numeric:
-      title: Numeric instance methods
+      title: Numeric methods
       default:
         decision: wanted
         note: Scalar numeric helpers are strong Ruby portability targets.
@@ -2116,6 +2128,10 @@ tcl:
 lua:
   title: Lua
   scopeNote: This inventory now tracks Lua's core plain-value libraries plus the environment-facing standard tables, not the full host runtime.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Lua standard-library tables default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     math:
       title: math library
@@ -2238,6 +2254,10 @@ lua:
 perl:
   title: Perl
   scopeNote: This inventory now tracks a broader official Perl core-module slice, excluding the wider CPAN ecosystem.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Perl core modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     POSIX:
       title: POSIX module
@@ -2331,7 +2351,7 @@ powershell:
         decision: wanted
         note: Most System.String methods are strong plain-value portability targets.
       decisions:
-        Clone:
+        clone:
           decision: skip_low_value
           note: Clone adds little value for immutable JS strings.
     math:
@@ -2345,10 +2365,10 @@ powershell:
         decision: wanted
         note: Character classification and case helpers are strong plain-value portability targets.
       decisions:
-        GetNumericValue:
+        getnumericvalue:
           decision: wanted
           note: Numeric codepoint classification has a clean plain-value contract.
-        GetUnicodeCategory:
+        getunicodecategory:
           decision: skip_runtime_model
           note: .NET enum return values do not map cleanly onto one stable Locutus contract yet.
     convert:
@@ -2357,10 +2377,10 @@ powershell:
         decision: wanted
         note: Scalar conversion helpers are strong PowerShell portability targets.
       decisions:
-        ChangeType:
+        changetype:
           decision: skip_runtime_model
           note: Type-descriptor-driven conversion depends on host runtime type metadata.
-        GetTypeCode:
+        gettypecode:
           decision: skip_runtime_model
           note: Enum-style runtime type codes are not a stable plain-value portability target.
     array:
@@ -2369,13 +2389,13 @@ powershell:
         decision: skip_runtime_model
         note: Array reflection and mutable runtime-array helpers do not map cleanly to Locutus' value-only model.
       decisions:
-        BinarySearch:
+        binarysearch:
           decision: wanted
           note: Search helpers over plain arrays have a clean plain-value contract.
-        IndexOf:
+        indexof:
           decision: wanted
           note: Search helpers over plain arrays have a clean plain-value contract.
-        LastIndexOf:
+        lastindexof:
           decision: wanted
           note: Search helpers over plain arrays have a clean plain-value contract.
     datetime:
@@ -2384,19 +2404,19 @@ powershell:
         decision: skip_runtime_model
         note: Timezone-aware date objects do not fit Locutus' current plain-value model by default.
       decisions:
-        Compare:
+        compare:
           decision: wanted
           note: Date ordering has a clean plain-value contract.
-        DaysInMonth:
+        daysinmonth:
           decision: wanted
           note: Calendar math has a clean plain-value contract.
-        IsLeapYear:
+        isleapyear:
           decision: wanted
           note: Leap-year checks have a clean plain-value contract.
-        Parse:
+        parse:
           decision: wanted
           note: String-to-date parsing is a useful portability target.
-        ParseExact:
+        parseexact:
           decision: wanted
           note: Exact string-to-date parsing is a useful portability target.
     uri:
@@ -2405,22 +2425,22 @@ powershell:
         decision: skip_runtime_model
         note: Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.
       decisions:
-        CheckHostName:
+        checkhostname:
           decision: wanted
           note: URI classification helpers have a clean plain-value contract.
-        EscapeDataString:
+        escapedatastring:
           decision: wanted
           note: URL escaping is a strong plain-value portability target.
-        EscapeUriString:
+        escapeuristring:
           decision: wanted
           note: URL escaping is a strong plain-value portability target.
-        IsHexDigit:
+        ishexdigit:
           decision: wanted
           note: URI character predicates have a clean plain-value contract.
-        IsHexEncoding:
+        ishexencoding:
           decision: wanted
           note: URI encoding predicates have a clean plain-value contract.
-        UnescapeDataString:
+        unescapedatastring:
           decision: wanted
           note: URL unescaping is a strong plain-value portability target.
     guid:
@@ -2429,25 +2449,25 @@ powershell:
         decision: skip_runtime_model
         note: Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.
       decisions:
-        Empty:
+        empty:
           decision: skip_runtime_model
           note: Struct constants are not plain-value portability targets.
-        NewGuid:
+        newguid:
           decision: skip_low_value
           note: Random GUID generation is lower-value than deterministic portability work.
-        Parse:
+        parse:
           decision: wanted
           note: GUID parsing from strings has a clean plain-value contract.
-        ParseExact:
+        parseexact:
           decision: wanted
           note: Exact GUID parsing has a clean plain-value contract.
-        TryParse:
+        tryparse:
           decision: wanted
           note: Guarded GUID parsing has a clean plain-value contract.
-        TryParseExact:
+        tryparseexact:
           decision: wanted
           note: Guarded GUID parsing has a clean plain-value contract.
-        ToString:
+        tostring:
           decision: wanted
           note: GUID formatting has a clean plain-string contract.
     version:
@@ -2461,28 +2481,28 @@ powershell:
         decision: skip_runtime_model
         note: TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.
       decisions:
-        Compare:
+        compare:
           decision: wanted
           note: Duration comparison has a clean plain-value contract.
-        FromDays:
+        fromdays:
           decision: wanted
           note: Duration construction from scalars has a clean plain-value contract.
-        FromHours:
+        fromhours:
           decision: wanted
           note: Duration construction from scalars has a clean plain-value contract.
-        FromMilliseconds:
+        frommilliseconds:
           decision: wanted
           note: Duration construction from scalars has a clean plain-value contract.
-        FromMinutes:
+        fromminutes:
           decision: wanted
           note: Duration construction from scalars has a clean plain-value contract.
-        FromSeconds:
+        fromseconds:
           decision: wanted
           note: Duration construction from scalars has a clean plain-value contract.
-        Parse:
+        parse:
           decision: wanted
           note: Duration parsing has a clean plain-value contract.
-        ParseExact:
+        parseexact:
           decision: wanted
           note: Exact duration parsing has a clean plain-value contract.
 elixir:
@@ -2704,6 +2724,10 @@ elixir:
 clojure:
   title: Clojure
   scopeNote: This inventory now tracks a broader official Clojure core slice, adding the most relevant standard namespaces while still excluding the broader JVM ecosystem.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Clojure namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     core:
       title: clojure.core
@@ -3159,6 +3183,10 @@ r:
 rust:
   title: Rust
   scopeNote: This inventory now tracks a broader slice of Rust core/std primitives and slice helpers first, excluding the wider crate ecosystem.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     bool:
       title: bool primitive methods
@@ -3303,6 +3331,10 @@ rust:
 swift:
   title: Swift
   scopeNote: This inventory now tracks a broader Swift standard-library slice via docs-backed catalogs, excluding the wider Foundation ecosystem.
+  defaultNamespace:
+    default:
+      decision: skip_runtime_model
+      note: Newly tracked Swift standard-library namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Array:
       title: Swift.Array

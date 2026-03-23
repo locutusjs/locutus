@@ -1056,7 +1056,7 @@ describe('upstream surface inventory', () => {
     expect(unittestEntries).toContain('main')
   })
 
-  it('stores only Ruby methods owned by the target namespace in the checked-in snapshot', () => {
+  it('stores Ruby callable surface for both value-like classes and namespace-style classes in the checked-in snapshot', () => {
     const snapshot = loadUpstreamSurfaceSnapshot(join(process.cwd(), 'test/parity/fixtures/upstream-surface/ruby.yml'))
     const arrayEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'Array')?.entries ?? []
     const dirEntries = snapshot.namespaces.find((namespace) => namespace.namespace === 'Dir')?.entries ?? []
@@ -1064,12 +1064,12 @@ describe('upstream surface inventory', () => {
 
     expect(arrayEntries).toContain('bsearch')
     expect(arrayEntries).toContain('group_by')
+    expect(arrayEntries).toContain('new')
+    expect(arrayEntries).toContain('try_convert')
     expect(arrayEntries).not.toContain('class')
     expect(arrayEntries).not.toContain('dup')
-    expect(arrayEntries).not.toContain('new')
-    expect(arrayEntries).not.toContain('try_convert')
     expect(dirEntries).toContain('pwd')
-    expect(dirEntries).not.toContain('close')
+    expect(dirEntries).toContain('close')
     expect(stringEntries).toContain('downcase')
     expect(stringEntries).not.toContain('clone')
   })
@@ -1169,7 +1169,7 @@ describe('upstream surface inventory', () => {
             namespaces: [
               {
                 namespace: 'Array',
-                title: 'Array instance methods',
+                title: 'Array methods',
                 target: 'Ruby 3.4',
                 sourceKind: 'runtime',
                 sourceRef: 'ruby:3.4',

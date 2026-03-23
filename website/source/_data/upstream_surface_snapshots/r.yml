@@ -1,489 +1,86 @@
 language: r
+catalog:
+  target: R 4.4
+  sourceKind: runtime
+  sourceRef: r-base:4.4.2:priority-base-recommended-packages
 namespaces:
-  - namespace: KernSmooth
-    title: KernSmooth package
-    target: R 4.4
-    sourceKind: runtime
-    sourceRef: r-base:4.4.2:KernSmooth
-    entries:
-      - bkde
-      - bkde2D
-      - bkfe
-      - blkest
-      - cpblock
-      - dpih
-      - dpik
-      - dpill
-      - linbin
-      - linbin2D
-      - locpoly
-      - rlbin
-      - sdiag
-      - sstdiag
-  - namespace: MASS
-    title: MASS package
-    target: R 4.4
-    sourceKind: runtime
-    sourceRef: r-base:4.4.2:MASS
-    entries:
-      - Math.fractions
-      - 'Null'
-      - Ops.fractions
-      - Shepard
-      - Summary.fractions
-      - '[.fractions'
-      - '[<-.fractions'
-      - addterm
-      - addterm.default
-      - addterm.glm
-      - addterm.lm
-      - addterm.mlm
-      - addterm.negbin
-      - addterm.survreg
-      - anova.glmmPQL
-      - anova.loglm
-      - anova.negbin
-      - anova.polr
-      - area
-      - as.character.fractions
-      - as.fractions
-      - bandwidth.nrd
-      - bcv
-      - biplot.correspondence
-      - biplotBDR
-      - boxcox
-      - boxcox.default
-      - boxcox.formula
-      - boxcox.lm
-      - coef.fitdistr
-      - coef.lda
-      - coef.loglm
-      - coef.ridgelm
-      - con2tr
-      - confint.polr
-      - confint.profile.polr
-      - contr.sdif
-      - corresp
-      - corresp.data.frame
-      - corresp.default
-      - corresp.factor
-      - corresp.formula
-      - corresp.matrix
-      - corresp.xtabs
-      - cov.mcd
-      - cov.mve
-      - cov.rob
-      - cov.trob
-      - dGumbel
-      - denumerate
-      - denumerate.formula
-      - dgumbel
-      - dose.p
-      - dropterm
-      - dropterm.default
-      - dropterm.glm
-      - dropterm.lm
-      - dropterm.mlm
-      - dropterm.negbin
-      - dropterm.survreg
-      - enlist
-      - eqscplot
-      - extractAIC.loglm
-      - extractAIC.polr
-      - family.negbin
-      - fbeta
-      - fitdistr
-      - fitted.loglm
-      - formula.glmmPQL
-      - fractions
-      - frequency.polygon
-      - gamma.dispersion
-      - gamma.shape
-      - gamma.shape.glm
-      - ginv
-      - glm.convert
-      - glm.nb
-      - glmmPQL
-      - hist.FD
-      - hist.scott
-      - huber
-      - hubers
-      - is.fractions
-      - isoMDS
-      - kde2d
-      - lda
-      - lda.data.frame
-      - lda.default
-      - lda.formula
-      - lda.matrix
-      - ldahist
-      - lm.gls
-      - lm.ridge
-      - lmsreg
-      - lmwork
-      - logLik.fitdistr
-      - logLik.glmmPQL
-      - logLik.negbin
-      - logLik.polr
-      - loglm
-      - loglm1
-      - loglm1.data.frame
-      - loglm1.default
-      - loglm1.xtabs
-      - logtrans
-      - logtrans.default
-      - logtrans.formula
-      - logtrans.lm
-      - lqs
-      - lqs.default
-      - lqs.formula
-      - ltsreg
-      - mca
-      - model.frame.lda
-      - model.frame.polr
-      - model.frame.qda
-      - mvrnorm
-      - nclass.freq
-      - neg.bin
-      - negative.binomial
-      - negexp.SSival
-      - nobs.loglm
-      - nobs.polr
-      - pGumbel
-      - pairs.lda
-      - parcoord
-      - pgumbel
-      - plot.correspondence
-      - plot.lda
-      - plot.mca
-      - plot.ridgelm
-      - polr
-      - polr.fit
-      - predict.glmmPQL
-      - predict.lda
-      - predict.lqs
-      - predict.mca
-      - predict.polr
-      - predict.qda
-      - predict.rlm
-      - print.Anova
-      - print.abbrev
-      - print.anova.loglm
-      - print.correspondence
-      - print.fitdistr
-      - print.fractions
-      - print.gamma.shape
-      - print.glm.dose
-      - print.lda
-      - print.loglm
-      - print.lqs
-      - print.mca
-      - print.polr
-      - print.qda
-      - print.ridgelm
-      - print.rlm
-      - print.rms.curv
-      - print.summary.loglm
-      - print.summary.negbin
-      - print.summary.polr
-      - print.summary.rlm
-      - profile.polr
-      - psi.bisquare
-      - psi.hampel
-      - psi.huber
-      - qda
-      - qda.data.frame
-      - qda.default
-      - qda.formula
-      - qda.matrix
-      - rational
-      - renumerate
-      - renumerate.formula
-      - residuals.loglm
-      - rlm
-      - rlm.default
-      - rlm.formula
-      - rms.curv
-      - rnegbin
-      - safe_pchisq
-      - safe_pf
-      - sammon
-      - se.contrast.rlm
-      - select
-      - select.ridgelm
-      - simulate.negbin
-      - simulate.polr
-      - stdres
-      - stepAIC
-      - studres
-      - summary.loglm
-      - summary.negbin
-      - summary.polr
-      - summary.rlm
-      - t.fractions
-      - theta.md
-      - theta.ml
-      - theta.mm
-      - truehist
-      - ucv
-      - update.loglm
-      - vcov.fitdistr
-      - vcov.negbin
-      - vcov.polr
-      - vcov.rlm
-      - width.SJ
-      - write.matrix
-  - namespace: Matrix
-    title: Matrix package
-    target: R 4.4
-    sourceKind: runtime
-    sourceRef: r-base:4.4.2:Matrix
-    entries:
-      - '%&%'
-      - BunchKaufman
-      - Cholesky
-      - Diagonal
-      - Hilbert
-      - KhatriRao
-      - Logic.lCMat
-      - Matrix
-      - Matrix.DeprecatedCoerce
-      - Matrix.Version
-      - Matrix.message
-      - Matrix.verbose
-      - Matrix.warn
-      - MatrixClass
-      - Schur
-      - T2graph
-      - WhichintersectInd
-      - abI2num
-      - abIindDiag
-      - abIindTri
-      - abIseq
-      - abIseq1
-      - aggregateT
-      - all.equal
-      - all.equal.abI
-      - all0
-      - allFalse
-      - allTrue
-      - any0
-      - anyDuplicatedT
-      - anyFalse
-      - as.array
-      - as.array.Matrix
-      - as.array.sparseVector
-      - as.matrix
-      - as.matrix.Matrix
-      - as.matrix.sparseVector
-      - as0
-      - as1
-      - asCspN
-      - asPerm
-      - asUniqueT
-      - as_CspClass
-      - as_denseClass
-      - band
-      - bandSparse
-      - bdiag
-      - c.Matrix
-      - c.abIndex
-      - c.sparseVector
-      - cBind
-      - cbind.Matrix
-      - chol
-      - chol2inv
-      - class2
-      - colMeans
-      - colScale
-      - colSums
-      - combine_rleD
-      - complementInd
-      - condest
-      - copyClass
-      - cov2cor
-      - decodeInd
-      - deparse2
-      - det
-      - determinant
-      - diag
-      - diag<-
-      - diagN2U
-      - diagU2N
-      - diff
-      - dimScale
-      - dmperm
-      - drop
-      - drop0
-      - emptyColnames
-      - ends.rleD
-      - expand
-      - expand1
-      - expand2
-      - expm
-      - extends1of
-      - fac2Sparse
-      - fac2sparse
-      - facmul
-      - fixupDN
-      - fixupDN.if.valid
-      - forceDiagonal
-      - forceSymmetric
-      - format
-      - formatSpMatrix
-      - formatSparseM
-      - graph.has.weights
-      - graph.non.1.weights
-      - graph.wgtMatrix
-      - graph2T
-      - head
-      - image
-      - indDiag
-      - indTri
-      - int2i
-      - intI
-      - intIv
-      - invPerm
-      - invertPerm
-      - is.null.DN
-      - is0
-      - is1
-      - isDiagonal
-      - isLDL
-      - isN0
-      - isN1
-      - isPerm
-      - isSymmetric
-      - isSymmetricDN
-      - isTriangular
-      - isUniqueT
-      - kroneckerDN
-      - lu
-      - mat2triplet
-      - matmultDN
-      - matmultDim
-      - mean
-      - model.spmatrix
-      - nearPD
-      - newSpV
-      - newSpVec
-      - nnzero
-      - non0.i
-      - non0ind
-      - norm
-      - onenormest
-      - pack
-      - prDiag
-      - prMatrix
-      - prSpVector
-      - prTriang
-      - print
-      - print.diagSummary
-      - print.sparseSummary
-      - printSpMatrix
-      - printSpMatrix2
-      - qr
-      - qr.Q
-      - qr.R
-      - qr.X
-      - qr.coef
-      - qr.fitted
-      - qr.qty
-      - qr.qy
-      - qr.resid
-      - qr2rankMatrix
-      - qrR
-      - rBind
-      - rankMatrix
-      - rbind.Matrix
-      - rcond
-      - readHB
-      - readMM
-      - readmany
-      - readone
-      - rep2abI
-      - replCmat4
-      - replDiag
-      - replSPvec
-      - replTmat
-      - rleCollapse
-      - rleMaybe
-      - rowMeans
-      - rowScale
-      - rowSums
-      - rsparsematrix
-      - signPerm
-      - skewpart
-      - solve
-      - sp2vec
-      - spMatrix
-      - spV2M
-      - sparse.model.matrix
-      - sparseDefault
-      - sparseMatrix
-      - sparseVector
-      - summary
-      - symDN
-      - symmetrizeDN
-      - symmpart
-      - t
-      - tail
-      - toeplitz
-      - tril
-      - triu
-      - uniqTsparse
-      - unname
-      - unpack
-      - update
-      - updown
-      - validDN
-      - validDim
-      - validDimGetsValue
-      - vec2abI
-      - which
-      - writeMM
-      - zapsmall
   - namespace: base
-    title: base package
+    title: base
     target: R 4.4
     sourceKind: runtime
-    sourceRef: r-base:4.4.2
+    sourceRef: r-base:4.4.2:base
     entries:
+      - '-'
+      - '-.Date'
+      - '-.POSIXt'
+      - ':'
+      - '::'
+      - ':::'
       - '!'
       - '!.hexmode'
       - '!.octmode'
       - '!='
-      - $
-      - $.DLLInfo
-      - $.package_version
-      - $<-
-      - $<-.POSIXlt
-      - $<-.data.frame
-      - '%%'
+      - (
+      - '['
+      - '[.AsIs'
+      - '[.data.frame'
+      - '[.Date'
+      - '[.difftime'
+      - '[.Dlist'
+      - '[.DLLInfoList'
+      - '[.factor'
+      - '[.hexmode'
+      - '[.listof'
+      - '[.noquote'
+      - '[.numeric_version'
+      - '[.octmode'
+      - '[.POSIXct'
+      - '[.POSIXlt'
+      - '[.simple.list'
+      - '[.table'
+      - '[.warnings'
+      - '[['
+      - '[[.data.frame'
+      - '[[.Date'
+      - '[[.factor'
+      - '[[.numeric_version'
+      - '[[.POSIXct'
+      - '[[.POSIXlt'
+      - '[[<-'
+      - '[[<-.data.frame'
+      - '[[<-.factor'
+      - '[[<-.numeric_version'
+      - '[[<-.POSIXlt'
+      - '[<-'
+      - '[<-.data.frame'
+      - '[<-.Date'
+      - '[<-.difftime'
+      - '[<-.factor'
+      - '[<-.numeric_version'
+      - '[<-.POSIXct'
+      - '[<-.POSIXlt'
+      - '{'
+      - '@'
+      - '@<-'
+      - '*'
+      - '*.difftime'
+      - /
+      - /.difftime
+      - '&'
+      - '&.hexmode'
+      - '&.octmode'
+      - '&&'
       - '%*%'
       - '%/%'
+      - '%%'
+      - '%||%'
       - '%in%'
       - '%o%'
       - '%x%'
-      - '%||%'
-      - '&'
-      - '&&'
-      - '&.hexmode'
-      - '&.octmode'
-      - (
-      - '*'
-      - '*.difftime'
+      - ^
       - +
       - +.Date
       - +.POSIXt
-      - '-'
-      - '-.Date'
-      - '-.POSIXt'
-      - /
-      - /.difftime
-      - ':'
-      - '::'
-      - ':::'
       - <
       - <-
       - <<-
@@ -492,121 +89,17 @@ namespaces:
       - '=='
       - '>'
       - '>='
-      - '@'
-      - '@<-'
-      - Arg
-      - Conj
-      - Cstack_info
-      - Encoding
-      - Encoding<-
-      - Exec
-      - Filter
-      - Find
-      - I
-      - ISOdate
-      - ISOdatetime
-      - Im
-      - La.svd
-      - La_library
-      - La_version
-      - Map
-      - Math.Date
-      - Math.POSIXt
-      - Math.data.frame
-      - Math.difftime
-      - Math.factor
-      - Mod
-      - NCOL
-      - NROW
-      - Negate
-      - NextMethod
-      - OlsonNames
-      - Ops.Date
-      - Ops.POSIXt
-      - Ops.data.frame
-      - Ops.difftime
-      - Ops.factor
-      - Ops.numeric_version
-      - Ops.ordered
-      - Position
-      - R.Version
-      - R.home
-      - RNGkind
-      - RNGversion
-      - R_compiled_by
-      - R_system_version
-      - Re
-      - Recall
-      - Reduce
-      - Summary.Date
-      - Summary.POSIXct
-      - Summary.POSIXlt
-      - Summary.data.frame
-      - Summary.difftime
-      - Summary.factor
-      - Summary.numeric_version
-      - Summary.ordered
-      - Sys.Date
-      - Sys.chmod
-      - Sys.getenv
-      - Sys.getlocale
-      - Sys.getpid
-      - Sys.glob
-      - Sys.info
-      - Sys.localeconv
-      - Sys.readlink
-      - Sys.setFileTime
-      - Sys.setLanguage
-      - Sys.setenv
-      - Sys.setlocale
-      - Sys.sleep
-      - Sys.time
-      - Sys.timezone
-      - Sys.umask
-      - Sys.unsetenv
-      - Sys.which
-      - Tailcall
-      - UseMethod
-      - Vectorize
-      - '['
-      - '[.AsIs'
-      - '[.DLLInfoList'
-      - '[.Date'
-      - '[.Dlist'
-      - '[.POSIXct'
-      - '[.POSIXlt'
-      - '[.data.frame'
-      - '[.difftime'
-      - '[.factor'
-      - '[.hexmode'
-      - '[.listof'
-      - '[.noquote'
-      - '[.numeric_version'
-      - '[.octmode'
-      - '[.simple.list'
-      - '[.table'
-      - '[.warnings'
-      - '[<-'
-      - '[<-.Date'
-      - '[<-.POSIXct'
-      - '[<-.POSIXlt'
-      - '[<-.data.frame'
-      - '[<-.difftime'
-      - '[<-.factor'
-      - '[<-.numeric_version'
-      - '[['
-      - '[[.Date'
-      - '[[.POSIXct'
-      - '[[.POSIXlt'
-      - '[[.data.frame'
-      - '[[.factor'
-      - '[[.numeric_version'
-      - '[[<-'
-      - '[[<-.POSIXlt'
-      - '[[<-.data.frame'
-      - '[[<-.factor'
-      - '[[<-.numeric_version'
-      - ^
+      - '|'
+      - '|.hexmode'
+      - '|.octmode'
+      - '||'
+      - '~'
+      - $
+      - $.DLLInfo
+      - $.package_version
+      - $<-
+      - $<-.data.frame
+      - $<-.POSIXlt
       - abbreviate
       - abs
       - acos
@@ -619,17 +112,17 @@ namespaces:
       - alist
       - all
       - all.equal
-      - all.equal.POSIXt
       - all.equal.character
       - all.equal.default
-      - all.equal.envRefClass
       - all.equal.environment
+      - all.equal.envRefClass
       - all.equal.factor
       - all.equal.formula
       - all.equal.function
       - all.equal.language
       - all.equal.list
       - all.equal.numeric
+      - all.equal.POSIXt
       - all.equal.raw
       - all.names
       - all.vars
@@ -641,61 +134,41 @@ namespaces:
       - anyDuplicated.default
       - anyDuplicated.matrix
       - anyNA
-      - anyNA.POSIXlt
       - anyNA.data.frame
       - anyNA.numeric_version
+      - anyNA.POSIXlt
       - aperm
       - aperm.default
       - aperm.table
       - append
       - apply
+      - Arg
       - args
       - array
       - array2DF
       - arrayInd
-      - as.Date
-      - as.Date.POSIXct
-      - as.Date.POSIXlt
-      - as.Date.character
-      - as.Date.default
-      - as.Date.factor
-      - as.Date.numeric
-      - as.POSIXct
-      - as.POSIXct.Date
-      - as.POSIXct.POSIXlt
-      - as.POSIXct.default
-      - as.POSIXct.numeric
-      - as.POSIXlt
-      - as.POSIXlt.Date
-      - as.POSIXlt.POSIXct
-      - as.POSIXlt.character
-      - as.POSIXlt.default
-      - as.POSIXlt.factor
-      - as.POSIXlt.numeric
       - as.array
       - as.array.default
       - as.call
       - as.character
-      - as.character.Date
-      - as.character.POSIXt
       - as.character.condition
+      - as.character.Date
       - as.character.default
       - as.character.error
       - as.character.factor
       - as.character.hexmode
       - as.character.numeric_version
       - as.character.octmode
+      - as.character.POSIXt
       - as.character.srcref
       - as.complex
       - as.data.frame
-      - as.data.frame.AsIs
-      - as.data.frame.Date
-      - as.data.frame.POSIXct
-      - as.data.frame.POSIXlt
       - as.data.frame.array
+      - as.data.frame.AsIs
       - as.data.frame.character
       - as.data.frame.complex
       - as.data.frame.data.frame
+      - as.data.frame.Date
       - as.data.frame.default
       - as.data.frame.difftime
       - as.data.frame.factor
@@ -708,14 +181,23 @@ namespaces:
       - as.data.frame.numeric
       - as.data.frame.numeric_version
       - as.data.frame.ordered
+      - as.data.frame.POSIXct
+      - as.data.frame.POSIXlt
       - as.data.frame.raw
       - as.data.frame.table
       - as.data.frame.ts
       - as.data.frame.vector
+      - as.Date
+      - as.Date.character
+      - as.Date.default
+      - as.Date.factor
+      - as.Date.numeric
+      - as.Date.POSIXct
+      - as.Date.POSIXlt
       - as.difftime
       - as.double
-      - as.double.POSIXlt
       - as.double.difftime
+      - as.double.POSIXlt
       - as.environment
       - as.expression
       - as.expression.default
@@ -725,23 +207,23 @@ namespaces:
       - as.hexmode
       - as.integer
       - as.list
-      - as.list.Date
-      - as.list.POSIXct
-      - as.list.POSIXlt
       - as.list.data.frame
+      - as.list.Date
       - as.list.default
       - as.list.difftime
       - as.list.environment
       - as.list.factor
       - as.list.function
       - as.list.numeric_version
+      - as.list.POSIXct
+      - as.list.POSIXlt
       - as.logical
       - as.logical.factor
       - as.matrix
-      - as.matrix.POSIXlt
       - as.matrix.data.frame
       - as.matrix.default
       - as.matrix.noquote
+      - as.matrix.POSIXlt
       - as.name
       - as.null
       - as.null.default
@@ -751,6 +233,18 @@ namespaces:
       - as.ordered
       - as.package_version
       - as.pairlist
+      - as.POSIXct
+      - as.POSIXct.Date
+      - as.POSIXct.default
+      - as.POSIXct.numeric
+      - as.POSIXct.POSIXlt
+      - as.POSIXlt
+      - as.POSIXlt.character
+      - as.POSIXlt.Date
+      - as.POSIXlt.default
+      - as.POSIXlt.factor
+      - as.POSIXlt.numeric
+      - as.POSIXlt.POSIXct
       - as.qr
       - as.raw
       - as.single
@@ -759,15 +253,15 @@ namespaces:
       - as.table
       - as.table.default
       - as.vector
-      - as.vector.POSIXlt
       - as.vector.data.frame
       - as.vector.factor
-      - asNamespace
-      - asS3
-      - asS4
+      - as.vector.POSIXlt
       - asin
       - asinh
+      - asNamespace
       - asplit
+      - asS3
+      - asS4
       - assign
       - atan
       - atan2
@@ -814,12 +308,12 @@ namespaces:
       - bzfile
       - c
       - c.Date
-      - c.POSIXct
-      - c.POSIXlt
       - c.difftime
       - c.factor
       - c.noquote
       - c.numeric_version
+      - c.POSIXct
+      - c.POSIXlt
       - c.warnings
       - call
       - callCC
@@ -830,9 +324,9 @@ namespaces:
       - cbind.data.frame
       - ceiling
       - char.expand
-      - charToRaw
       - character
       - charmatch
+      - charToRaw
       - chartr
       - chkDots
       - chol
@@ -851,9 +345,9 @@ namespaces:
       - closeAllConnections
       - col
       - colMeans
-      - colSums
       - colnames
       - colnames<-
+      - colSums
       - commandArgs
       - comment
       - comment<-
@@ -865,11 +359,13 @@ namespaces:
       - conditionMessage.condition
       - conflictRules
       - conflicts
+      - Conj
       - contributors
       - cos
       - cosh
       - cospi
       - crossprod
+      - Cstack_info
       - cummax
       - cummin
       - cumprod
@@ -877,9 +373,8 @@ namespaces:
       - curlGetHeaders
       - cut
       - cut.Date
-      - cut.POSIXt
       - cut.default
-      - dQuote
+      - cut.POSIXt
       - data.class
       - data.frame
       - data.matrix
@@ -901,9 +396,9 @@ namespaces:
       - diag<-
       - diff
       - diff.Date
-      - diff.POSIXt
       - diff.default
       - diff.difftime
+      - diff.POSIXt
       - difftime
       - digamma
       - dim
@@ -921,18 +416,19 @@ namespaces:
       - dontCheck
       - double
       - dput
+      - dQuote
       - drop
       - droplevels
       - droplevels.data.frame
       - droplevels.factor
       - dump
       - duplicated
-      - duplicated.POSIXlt
       - duplicated.array
       - duplicated.data.frame
       - duplicated.default
       - duplicated.matrix
       - duplicated.numeric_version
+      - duplicated.POSIXlt
       - duplicated.warnings
       - dyn.load
       - dyn.unload
@@ -943,6 +439,8 @@ namespaces:
       - enc2native
       - enc2utf8
       - encodeString
+      - Encoding
+      - Encoding<-
       - endsWith
       - enquote
       - env.profile
@@ -954,6 +452,7 @@ namespaces:
       - eval
       - eval.parent
       - evalq
+      - Exec
       - exists
       - exp
       - expand.grid
@@ -980,6 +479,8 @@ namespaces:
       - file.show
       - file.size
       - file.symlink
+      - Filter
+      - Find
       - find.package
       - findInterval
       - findPackageEnv
@@ -994,10 +495,8 @@ namespaces:
       - formals<-
       - format
       - format.AsIs
-      - format.Date
-      - format.POSIXct
-      - format.POSIXlt
       - format.data.frame
+      - format.Date
       - format.default
       - format.difftime
       - format.factor
@@ -1007,6 +506,8 @@ namespaces:
       - format.numeric_version
       - format.octmode
       - format.packageInfo
+      - format.POSIXct
+      - format.POSIXlt
       - format.pval
       - format.summaryDefault
       - formatC
@@ -1026,9 +527,10 @@ namespaces:
       - getCallingDLLe
       - getConnection
       - getDLLRegisteredRoutines
-      - getDLLRegisteredRoutines.DLLInfo
       - getDLLRegisteredRoutines.character
+      - getDLLRegisteredRoutines.DLLInfo
       - getElement
+      - geterrmessage
       - getExportedValue
       - getHook
       - getLoadedDLLs
@@ -1044,7 +546,6 @@ namespaces:
       - getRversion
       - getSrcLines
       - getTaskCallbackNames
-      - geterrmessage
       - gettext
       - gettextf
       - getwd
@@ -1054,12 +555,13 @@ namespaces:
       - gregexec
       - gregexpr
       - grep
-      - grepRaw
       - grepl
+      - grepRaw
       - grouping
       - gsub
       - gzcon
       - gzfile
+      - I
       - iconv
       - iconvlist
       - icuGetCollate
@@ -1068,20 +570,20 @@ namespaces:
       - identity
       - if
       - ifelse
+      - Im
       - importIntoEnv
       - infoRDS
       - inherits
-      - intToBits
-      - intToUtf8
       - integer
       - interaction
       - interactive
       - intersect
+      - intToBits
+      - intToUtf8
       - inverse.rle
       - invisible
       - invokeRestart
       - invokeRestartInteractively
-      - is.R
       - is.array
       - is.atomic
       - is.call
@@ -1105,9 +607,9 @@ namespaces:
       - is.logical
       - is.matrix
       - is.na
-      - is.na.POSIXlt
       - is.na.data.frame
       - is.na.numeric_version
+      - is.na.POSIXlt
       - is.na<-
       - is.na<-.default
       - is.na<-.factor
@@ -1117,16 +619,17 @@ namespaces:
       - is.nan.POSIXlt
       - is.null
       - is.numeric
-      - is.numeric.Date
-      - is.numeric.POSIXt
-      - is.numeric.difftime
       - is.numeric_version
+      - is.numeric.Date
+      - is.numeric.difftime
+      - is.numeric.POSIXt
       - is.object
       - is.ordered
       - is.package_version
       - is.pairlist
       - is.primitive
       - is.qr
+      - is.R
       - is.raw
       - is.recursive
       - is.single
@@ -1134,11 +637,16 @@ namespaces:
       - is.table
       - is.unsorted
       - is.vector
+      - isa
+      - isatty
       - isBaseNamespace
+      - isdebugged
       - isFALSE
       - isIncomplete
       - isNamespace
       - isNamespaceLoaded
+      - ISOdate
+      - ISOdatetime
       - isOpen
       - isRestart
       - isS4
@@ -1146,9 +654,6 @@ namespaces:
       - isSymmetric
       - isSymmetric.matrix
       - isTRUE
-      - isa
-      - isatty
-      - isdebugged
       - jitter
       - julian
       - julian.Date
@@ -1159,6 +664,9 @@ namespaces:
       - kappa.qr
       - kronecker
       - l10n_info
+      - La_library
+      - La_version
+      - La.svd
       - labels
       - labels.default
       - lapply
@@ -1171,10 +679,10 @@ namespaces:
       - length.POSIXlt
       - length<-
       - length<-.Date
-      - length<-.POSIXct
-      - length<-.POSIXlt
       - length<-.difftime
       - length<-.factor
+      - length<-.POSIXct
+      - length<-.POSIXlt
       - lengths
       - levels
       - levels.default
@@ -1194,9 +702,9 @@ namespaces:
       - list2DF
       - list2env
       - load
-      - loadNamespace
       - loadedNamespaces
       - loadingNamespaceInfo
+      - loadNamespace
       - local
       - lockBinding
       - lockEnvironment
@@ -1211,6 +719,7 @@ namespaces:
       - make.names
       - make.unique
       - makeActiveBinding
+      - Map
       - mapply
       - margin.table
       - marginSums
@@ -1219,15 +728,20 @@ namespaces:
       - match.arg
       - match.call
       - match.fun
+      - Math.data.frame
+      - Math.Date
+      - Math.difftime
+      - Math.factor
+      - Math.POSIXt
       - matrix
       - max
       - max.col
       - mean
       - mean.Date
-      - mean.POSIXct
-      - mean.POSIXlt
       - mean.default
       - mean.difftime
+      - mean.POSIXct
+      - mean.POSIXlt
       - mem.maxNSize
       - mem.maxVSize
       - memCompress
@@ -1240,6 +754,7 @@ namespaces:
       - mget
       - min
       - missing
+      - Mod
       - mode
       - mode<-
       - months
@@ -1247,9 +762,9 @@ namespaces:
       - months.POSIXt
       - mostattributes<-
       - mtfrm
+      - mtfrm.default
       - mtfrm.POSIXct
       - mtfrm.POSIXlt
-      - mtfrm.default
       - nameOfClass
       - nameOfClass.default
       - names
@@ -1264,39 +779,51 @@ namespaces:
       - nargs
       - nchar
       - ncol
+      - NCOL
+      - Negate
       - new.env
       - next
+      - NextMethod
       - ngettext
       - nlevels
       - noquote
       - norm
       - normalizePath
       - nrow
+      - NROW
       - nullfile
-      - numToBits
-      - numToInts
       - numeric
       - numeric_version
+      - numToBits
+      - numToInts
       - nzchar
       - objects
       - oldClass
       - oldClass<-
+      - OlsonNames
       - on.exit
       - open
       - open.connection
       - open.srcfile
       - open.srcfilealias
       - open.srcfilecopy
+      - Ops.data.frame
+      - Ops.Date
+      - Ops.difftime
+      - Ops.factor
+      - Ops.numeric_version
+      - Ops.ordered
+      - Ops.POSIXt
       - options
       - order
       - ordered
       - outer
-      - packBits
+      - package_version
       - packageEvent
       - packageHasNamespace
       - packageNotFoundError
       - packageStartupMessage
-      - package_version
+      - packBits
       - pairlist
       - parent.env
       - parent.env<-
@@ -1317,35 +844,36 @@ namespaces:
       - pmin.int
       - polyroot
       - pos.to.env
+      - Position
       - pretty
       - pretty.default
       - prettyNum
       - print
       - print.AsIs
-      - print.DLLInfo
-      - print.DLLInfoList
-      - print.DLLRegisteredRoutines
-      - print.Date
-      - print.Dlist
-      - print.NativeRoutineList
-      - print.POSIXct
-      - print.POSIXlt
       - print.by
       - print.condition
       - print.connection
       - print.data.frame
+      - print.Date
       - print.default
       - print.difftime
+      - print.Dlist
+      - print.DLLInfo
+      - print.DLLInfoList
+      - print.DLLRegisteredRoutines
       - print.eigen
       - print.factor
       - print.function
       - print.hexmode
       - print.libraryIQR
       - print.listof
+      - print.NativeRoutineList
       - print.noquote
       - print.numeric_version
       - print.octmode
       - print.packageInfo
+      - print.POSIXct
+      - print.POSIXlt
       - print.proc_time
       - print.restart
       - print.rle
@@ -1368,25 +896,29 @@ namespaces:
       - pushBackLength
       - q
       - qr
-      - qr.Q
-      - qr.R
-      - qr.X
       - qr.coef
       - qr.default
       - qr.fitted
+      - qr.Q
       - qr.qty
       - qr.qy
+      - qr.R
       - qr.resid
       - qr.solve
+      - qr.X
       - quarters
       - quarters.Date
       - quarters.POSIXt
       - quit
       - quote
+      - R_compiled_by
+      - R_system_version
+      - R.home
+      - R.Version
       - range
       - range.Date
-      - range.POSIXct
       - range.default
+      - range.POSIXct
       - rank
       - rapply
       - raw
@@ -1398,13 +930,16 @@ namespaces:
       - rbind
       - rbind.data.frame
       - rcond
+      - Re
       - read.dcf
       - readBin
       - readChar
+      - readline
       - readLines
       - readRDS
       - readRenviron
-      - readline
+      - Recall
+      - Reduce
       - reg.finalizer
       - regexec
       - regexpr
@@ -1415,14 +950,14 @@ namespaces:
       - remove
       - removeTaskCallback
       - rep
+      - rep_len
       - rep.Date
-      - rep.POSIXct
-      - rep.POSIXlt
       - rep.difftime
       - rep.factor
       - rep.int
       - rep.numeric_version
-      - rep_len
+      - rep.POSIXct
+      - rep.POSIXlt
       - repeat
       - replace
       - replicate
@@ -1437,6 +972,8 @@ namespaces:
       - rev.default
       - rle
       - rm
+      - RNGkind
+      - RNGversion
       - round
       - round.Date
       - round.POSIXt
@@ -1448,13 +985,12 @@ namespaces:
       - row.names<-.data.frame
       - row.names<-.default
       - rowMeans
-      - rowSums
       - rownames
       - rownames<-
       - rowsum
       - rowsum.data.frame
       - rowsum.default
-      - sQuote
+      - rowSums
       - sample
       - sample.int
       - sapply
@@ -1469,26 +1005,26 @@ namespaces:
       - seek
       - seek.connection
       - seq
-      - seq.Date
-      - seq.POSIXt
-      - seq.default
-      - seq.int
       - seq_along
       - seq_len
+      - seq.Date
+      - seq.default
+      - seq.int
+      - seq.POSIXt
       - sequence
       - sequence.default
       - serialize
       - serverSocket
       - set.seed
+      - setdiff
+      - setequal
       - setHook
       - setNamespaceInfo
       - setSessionTimeLimit
       - setTimeLimit
-      - setdiff
-      - setequal
       - setwd
-      - shQuote
       - showConnections
+      - shQuote
       - sign
       - signalCondition
       - signif
@@ -1512,24 +1048,25 @@ namespaces:
       - solve.default
       - solve.qr
       - sort
-      - sort.POSIXlt
-      - sort.default
-      - sort.int
-      - sort.list
       - sort_by
       - sort_by.data.frame
       - sort_by.default
+      - sort.default
+      - sort.int
+      - sort.list
+      - sort.POSIXlt
       - source
       - split
-      - split.Date
-      - split.POSIXct
       - split.data.frame
+      - split.Date
       - split.default
+      - split.POSIXct
       - split<-
       - split<-.data.frame
       - split<-.default
       - sprintf
       - sqrt
+      - sQuote
       - srcfile
       - srcfilealias
       - srcfilecopy
@@ -1565,14 +1102,22 @@ namespaces:
       - substring<-
       - sum
       - summary
-      - summary.Date
-      - summary.POSIXct
-      - summary.POSIXlt
       - summary.connection
       - summary.data.frame
+      - Summary.data.frame
+      - summary.Date
+      - Summary.Date
       - summary.default
+      - Summary.difftime
       - summary.factor
+      - Summary.factor
       - summary.matrix
+      - Summary.numeric_version
+      - Summary.ordered
+      - summary.POSIXct
+      - Summary.POSIXct
+      - summary.POSIXlt
+      - Summary.POSIXlt
       - summary.proc_time
       - summary.srcfile
       - summary.srcref
@@ -1587,17 +1132,36 @@ namespaces:
       - switch
       - sys.call
       - sys.calls
+      - Sys.chmod
+      - Sys.Date
       - sys.frame
       - sys.frames
       - sys.function
+      - Sys.getenv
+      - Sys.getlocale
+      - Sys.getpid
+      - Sys.glob
+      - Sys.info
       - sys.load.image
+      - Sys.localeconv
       - sys.nframe
       - sys.on.exit
       - sys.parent
       - sys.parents
+      - Sys.readlink
       - sys.save.image
+      - Sys.setenv
+      - Sys.setFileTime
+      - Sys.setLanguage
+      - Sys.setlocale
+      - Sys.sleep
       - sys.source
       - sys.status
+      - Sys.time
+      - Sys.timezone
+      - Sys.umask
+      - Sys.unsetenv
+      - Sys.which
       - system
       - system.file
       - system.time
@@ -1607,6 +1171,7 @@ namespaces:
       - t.default
       - table
       - tabulate
+      - Tailcall
       - tan
       - tanh
       - tanpi
@@ -1617,10 +1182,10 @@ namespaces:
       - tempfile
       - textConnection
       - textConnectionValue
-      - toString
-      - toString.default
       - tolower
       - topenv
+      - toString
+      - toString.default
       - toupper
       - trace
       - traceback
@@ -1645,12 +1210,12 @@ namespaces:
       - undebug
       - union
       - unique
-      - unique.POSIXlt
       - unique.array
       - unique.data.frame
       - unique.default
       - unique.matrix
       - unique.numeric_version
+      - unique.POSIXlt
       - unique.warnings
       - units
       - units.difftime
@@ -1670,11 +1235,13 @@ namespaces:
       - upper.tri
       - url
       - use
+      - UseMethod
       - utf8ToInt
       - validEnc
       - validUTF8
       - vapply
       - vector
+      - Vectorize
       - warning
       - warningCondition
       - warnings
@@ -1689,11 +1256,11 @@ namespaces:
       - with.default
       - withAutoprint
       - withCallingHandlers
-      - withRestarts
-      - withVisible
       - within
       - within.data.frame
       - within.list
+      - withRestarts
+      - withVisible
       - write
       - write.dcf
       - writeBin
@@ -1703,30 +1270,22 @@ namespaces:
       - xpdrows.data.frame
       - xtfrm
       - xtfrm.AsIs
-      - xtfrm.Date
-      - xtfrm.POSIXct
-      - xtfrm.POSIXlt
       - xtfrm.data.frame
+      - xtfrm.Date
       - xtfrm.default
       - xtfrm.difftime
       - xtfrm.factor
       - xtfrm.numeric_version
+      - xtfrm.POSIXct
+      - xtfrm.POSIXlt
       - xzfile
       - zapsmall
-      - '{'
-      - '|'
-      - '|.hexmode'
-      - '|.octmode'
-      - '||'
-      - '~'
   - namespace: boot
-    title: boot package
+    title: boot
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:boot
     entries:
-      - EEF.profile
-      - EL.profile
       - abc.ci
       - anti.arr
       - antithetic.array
@@ -1749,6 +1308,8 @@ namespaces:
       - corr
       - cum3
       - cv.glm
+      - EEF.profile
+      - EL.profile
       - empinf
       - empinf.reg
       - envelope
@@ -1807,12 +1368,11 @@ namespaces:
       - var.linear
       - zero
   - namespace: class
-    title: class package
+    title: class
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:class
     entries:
-      - SOM
       - batchSOM
       - condense
       - knn
@@ -1828,9 +1388,10 @@ namespaces:
       - plot.SOM
       - plot.somgrid
       - reduce.nn
+      - SOM
       - somgrid
   - namespace: cluster
-    title: cluster package
+    title: cluster
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:cluster
@@ -1853,8 +1414,8 @@ namespaces:
       - daisy
       - diana
       - doExtras
-      - ellipsoidPoints
       - ellipsoidhull
+      - ellipsoidPoints
       - fanny
       - lower.to.upper.tri.inds
       - maxSE
@@ -1909,7 +1470,7 @@ namespaces:
       - volume
       - volume.ellipsoid
   - namespace: codetools
-    title: codetools package
+    title: codetools
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:codetools
@@ -1993,7 +1554,7 @@ namespaces:
       - walkCode
       - warning0
   - namespace: compiler
-    title: compiler package
+    title: compiler
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:compiler
@@ -2026,11 +1587,15 @@ namespaces:
       - cmpConstArg
       - cmpDispatch
       - cmpDotInternalCall
+      - cmpfile
       - cmpForBody
+      - cmpframe
+      - cmpfun
       - cmpGetterCall
       - cmpGetterDispatch
       - cmpIndices
       - cmpIs
+      - cmplib
       - cmpMath1
       - cmpMultiColon
       - cmpPrim1
@@ -2047,10 +1612,6 @@ namespaces:
       - cmpSymbolAssign
       - cmpTag
       - cmpWhileBody
-      - cmpfile
-      - cmpframe
-      - cmpfun
-      - cmplib
       - codeBufCode
       - compile
       - compilePKGS
@@ -2065,18 +1626,18 @@ namespaces:
       - findCenvVar
       - findFunDef
       - findHomeNS
-      - findLocVar
       - findLocals
       - findLocals1
       - findLocalsList
       - findLocalsList1
+      - findLocVar
       - findVar
       - flattenPlace
       - frameTypes
       - funEnv
       - genCode
-      - getAssignFun
       - getAssignedVar
+      - getAssignFun
       - getBlockSrcref
       - getCompilerOption
       - getExprSrcref
@@ -2098,8 +1659,8 @@ namespaces:
       - make.codeBuf
       - make.functionContext
       - make.loopContext
-      - make.noValueContext
       - make.nonTailCallContext
+      - make.noValueContext
       - make.promiseContext
       - make.toplevelContext
       - makeCenv
@@ -2137,31 +1698,31 @@ namespaces:
       - tryInline
       - trySetterInline
   - namespace: datasets
-    title: datasets package
+    title: datasets
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:datasets
     entries: []
   - namespace: foreign
-    title: foreign package
+    title: foreign
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:foreign
     entries:
-      - ISO_8601_to_POSIX_datetime_format
       - adQuote
       - data.restore
+      - ISO_8601_to_POSIX_datetime_format
       - lookup.xport
       - make.SAS.formats
       - make.SAS.names
       - nam.or.i
-      - read.S
       - read.arff
       - read.dbf
       - read.dta
       - read.epiinfo
       - read.mtp
       - read.octave
+      - read.S
       - read.spss
       - read.ssd
       - read.systat
@@ -2173,221 +1734,24 @@ namespaces:
       - writeForeignSAS
       - writeForeignSPSS
       - writeForeignStata
-  - namespace: grDevices
-    title: grDevices package
-    target: R 4.4
-    sourceKind: runtime
-    sourceRef: r-base:4.4.2:grDevices
-    entries:
-      - '%^%'
-      - CIDFont
-      - Ops.raster
-      - RGBcolorConverter
-      - Type1Font
-      - X11
-      - X11.options
-      - X11Font
-      - X11FontError
-      - X11Fonts
-      - '[.raster'
-      - '[<-.raster'
-      - adjustcolor
-      - anyNA.raster
-      - as.graphicsAnnot
-      - as.matrix.raster
-      - as.raster
-      - as.raster.array
-      - as.raster.character
-      - as.raster.logical
-      - as.raster.matrix
-      - as.raster.numeric
-      - as.raster.raster
-      - as.raster.raw
-      - axisTicks
-      - bitmap
-      - bmp
-      - boxplot.stats
-      - c2to3
-      - cairoFT
-      - cairoSymbolFont
-      - cairoVersion
-      - cairo_pdf
-      - cairo_ps
-      - check.options
-      - checkFont
-      - checkFont.CIDFont
-      - checkFont.Type1Font
-      - checkFont.default
-      - checkFontInUse
-      - checkIntFormat
-      - checkQuartzFont
-      - checkSymbolFont
-      - checkX11Font
-      - check_gs_type
-      - chromaticAdaptation
-      - chull
-      - cm
-      - cm.colors
-      - col2rgb
-      - colorConverter
-      - colorRamp
-      - colorRampPalette
-      - colors
-      - colours
-      - comparePangoVersion
-      - contourLines
-      - convertColor
-      - densCols
-      - dev.capabilities
-      - dev.capture
-      - dev.control
-      - dev.copy
-      - dev.copy2eps
-      - dev.copy2pdf
-      - dev.cur
-      - dev.displaylist
-      - dev.flush
-      - dev.hold
-      - dev.interactive
-      - dev.list
-      - dev.new
-      - dev.next
-      - dev.off
-      - dev.prev
-      - dev.print
-      - dev.set
-      - dev.size
-      - dev2bitmap
-      - devAskNewPage
-      - deviceIsInteractive
-      - embedFonts
-      - embedGlyphs
-      - extendrange
-      - getGraphicsEvent
-      - getGraphicsEventEnv
-      - glyphAnchor
-      - glyphFont
-      - glyphFontList
-      - glyphHeight
-      - glyphHeightBottom
-      - glyphInfo
-      - glyphJust
-      - glyphJust.GlyphJust
-      - glyphJust.character
-      - glyphJust.numeric
-      - glyphWidth
-      - glyphWidthLeft
-      - grSoftVersion
-      - graphics.off
-      - gray
-      - gray.colors
-      - grey
-      - grey.colors
-      - guessEncoding
-      - hcl
-      - hcl.colors
-      - hcl.pals
-      - heat.colors
-      - hsv
-      - initPSandPDFfonts
-      - invertStyle
-      - is.na.raster
-      - is.raster
-      - isPDF
-      - jpeg
-      - make.rgb
-      - mapCharWeight
-      - mapStyle
-      - mapWeight
-      - matchEncoding
-      - matchEncoding.CIDFont
-      - matchEncoding.Type1Font
-      - matchFont
-      - n2mfrow
-      - nclass.FD
-      - nclass.Sturges
-      - nclass.scott
-      - optionSymbolFont
-      - palette
-      - palette.colors
-      - palette.match
-      - palette.pals
-      - pangoVersion
-      - pattern
-      - pdf
-      - pdf.options
-      - pdfFonts
-      - pictex
-      - png
-      - postscript
-      - postscriptFonts
-      - pow3
-      - prettyDate
-      - print.RGBcolorConverter
-      - print.RGlyphFont
-      - print.colorConverter
-      - print.raster
-      - print.recordedplot
-      - printFont
-      - printFont.CIDFont
-      - printFont.Type1Font
-      - printFonts
-      - ps.options
-      - quartz
-      - quartz.options
-      - quartz.save
-      - quartzFont
-      - quartzFonts
-      - rainbow
-      - recordGraphics
-      - recordPalette
-      - recordPlot
-      - replayPlot
-      - restoreRecordedPlot
-      - rgb
-      - rgb2hsv
-      - savePlot
-      - seqDtime
-      - setEPS
-      - setFonts
-      - setGraphicsEventEnv
-      - setGraphicsEventHandlers
-      - setPS
-      - setQuartzFonts
-      - setX11Fonts
-      - svg
-      - symbolType1support
-      - symbolfamilyDefault
-      - terrain.colors
-      - tiff
-      - topo.colors
-      - trans3d
-      - trunc_POSIXt
-      - vectorizeConverter
-      - warnLogCoords
-      - x11
-      - xfig
-      - xy.coords
-      - xyTable
-      - xyz.coords
   - namespace: graphics
-    title: graphics package
+    title: graphics
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:graphics
     entries:
-      - Axis
-      - Axis.Date
-      - Axis.POSIXt
-      - Axis.default
-      - Axis.table
       - abline
       - arrows
       - assocplot
-      - axTicks
       - axis
+      - Axis
       - axis.Date
+      - Axis.Date
+      - Axis.default
       - axis.POSIXct
+      - Axis.POSIXt
+      - Axis.table
+      - axTicks
       - barplot
       - barplot.default
       - barplot.formula
@@ -2418,8 +1782,8 @@ namespaces:
       - grid
       - hist
       - hist.Date
-      - hist.POSIXt
       - hist.default
+      - hist.POSIXt
       - identify
       - identify.default
       - image
@@ -2498,33 +1862,226 @@ namespaces:
       - xspline
       - xyinch
       - yinch
+  - namespace: grDevices
+    title: grDevices
+    target: R 4.4
+    sourceKind: runtime
+    sourceRef: r-base:4.4.2:grDevices
+    entries:
+      - '[.raster'
+      - '[<-.raster'
+      - '%^%'
+      - adjustcolor
+      - anyNA.raster
+      - as.graphicsAnnot
+      - as.matrix.raster
+      - as.raster
+      - as.raster.array
+      - as.raster.character
+      - as.raster.logical
+      - as.raster.matrix
+      - as.raster.numeric
+      - as.raster.raster
+      - as.raster.raw
+      - axisTicks
+      - bitmap
+      - bmp
+      - boxplot.stats
+      - c2to3
+      - cairo_pdf
+      - cairo_ps
+      - cairoFT
+      - cairoSymbolFont
+      - cairoVersion
+      - check_gs_type
+      - check.options
+      - checkFont
+      - checkFont.CIDFont
+      - checkFont.default
+      - checkFont.Type1Font
+      - checkFontInUse
+      - checkIntFormat
+      - checkQuartzFont
+      - checkSymbolFont
+      - checkX11Font
+      - chromaticAdaptation
+      - chull
+      - CIDFont
+      - cm
+      - cm.colors
+      - col2rgb
+      - colorConverter
+      - colorRamp
+      - colorRampPalette
+      - colors
+      - colours
+      - comparePangoVersion
+      - contourLines
+      - convertColor
+      - densCols
+      - dev.capabilities
+      - dev.capture
+      - dev.control
+      - dev.copy
+      - dev.copy2eps
+      - dev.copy2pdf
+      - dev.cur
+      - dev.displaylist
+      - dev.flush
+      - dev.hold
+      - dev.interactive
+      - dev.list
+      - dev.new
+      - dev.next
+      - dev.off
+      - dev.prev
+      - dev.print
+      - dev.set
+      - dev.size
+      - dev2bitmap
+      - devAskNewPage
+      - deviceIsInteractive
+      - embedFonts
+      - embedGlyphs
+      - extendrange
+      - getGraphicsEvent
+      - getGraphicsEventEnv
+      - glyphAnchor
+      - glyphFont
+      - glyphFontList
+      - glyphHeight
+      - glyphHeightBottom
+      - glyphInfo
+      - glyphJust
+      - glyphJust.character
+      - glyphJust.GlyphJust
+      - glyphJust.numeric
+      - glyphWidth
+      - glyphWidthLeft
+      - graphics.off
+      - gray
+      - gray.colors
+      - grey
+      - grey.colors
+      - grSoftVersion
+      - guessEncoding
+      - hcl
+      - hcl.colors
+      - hcl.pals
+      - heat.colors
+      - hsv
+      - initPSandPDFfonts
+      - invertStyle
+      - is.na.raster
+      - is.raster
+      - isPDF
+      - jpeg
+      - make.rgb
+      - mapCharWeight
+      - mapStyle
+      - mapWeight
+      - matchEncoding
+      - matchEncoding.CIDFont
+      - matchEncoding.Type1Font
+      - matchFont
+      - n2mfrow
+      - nclass.FD
+      - nclass.scott
+      - nclass.Sturges
+      - Ops.raster
+      - optionSymbolFont
+      - palette
+      - palette.colors
+      - palette.match
+      - palette.pals
+      - pangoVersion
+      - pattern
+      - pdf
+      - pdf.options
+      - pdfFonts
+      - pictex
+      - png
+      - postscript
+      - postscriptFonts
+      - pow3
+      - prettyDate
+      - print.colorConverter
+      - print.raster
+      - print.recordedplot
+      - print.RGBcolorConverter
+      - print.RGlyphFont
+      - printFont
+      - printFont.CIDFont
+      - printFont.Type1Font
+      - printFonts
+      - ps.options
+      - quartz
+      - quartz.options
+      - quartz.save
+      - quartzFont
+      - quartzFonts
+      - rainbow
+      - recordGraphics
+      - recordPalette
+      - recordPlot
+      - replayPlot
+      - restoreRecordedPlot
+      - rgb
+      - rgb2hsv
+      - RGBcolorConverter
+      - savePlot
+      - seqDtime
+      - setEPS
+      - setFonts
+      - setGraphicsEventEnv
+      - setGraphicsEventHandlers
+      - setPS
+      - setQuartzFonts
+      - setX11Fonts
+      - svg
+      - symbolfamilyDefault
+      - symbolType1support
+      - terrain.colors
+      - tiff
+      - topo.colors
+      - trans3d
+      - trunc_POSIXt
+      - Type1Font
+      - vectorizeConverter
+      - warnLogCoords
+      - x11
+      - X11
+      - X11.options
+      - X11Font
+      - X11FontError
+      - X11Fonts
+      - xfig
+      - xy.coords
+      - xyTable
+      - xyz.coords
   - namespace: grid
-    title: grid package
+    title: grid
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:grid
     entries:
-      - OLDflatListing.vpTreeListing
-      - Ops.unit
-      - STATE
-      - Summary.unit
       - '[.arrow'
       - '[.gList'
       - '[.gpar'
       - '[.unit'
       - '[.vpPath'
-      - '[<-.unit'
       - '[[.unit'
       - '[[<-.unit'
+      - '[<-.unit'
       - absolute.size
       - absolute.units
       - addDLfromGPath
-      - addGTree
       - addGrob
       - addGrobFromGPath
       - addGrobFromGPath.default
-      - addGrobFromGPath.gTree
       - addGrobFromGPath.grob
+      - addGrobFromGPath.gTree
+      - addGTree
       - addToGList
       - addToGList.default
       - addToGList.gList
@@ -2566,8 +2123,8 @@ namespaces:
       - cbDiagram
       - cellGrob
       - cellViewport
-      - checkNameSlot
       - checkgpSlot
+      - checkNameSlot
       - checkvpSlot
       - child.exists
       - child.list
@@ -2623,16 +2180,16 @@ namespaces:
       - draw.all
       - draw.details
       - drawDetails
+      - drawDetails.arrows
+      - drawDetails.circle
+      - drawDetails.clip
+      - drawDetails.glyphgrob
       - drawDetails.GridDefine
       - drawDetails.GridFill
       - drawDetails.GridFillStroke
       - drawDetails.GridGroup
       - drawDetails.GridStroke
       - drawDetails.GridUse
-      - drawDetails.arrows
-      - drawDetails.circle
-      - drawDetails.clip
-      - drawDetails.glyphgrob
       - drawDetails.grob
       - drawDetails.groblabel
       - drawDetails.line.to
@@ -2650,8 +2207,8 @@ namespaces:
       - drawDetails.text
       - drawDetails.xspline
       - drawGList
-      - drawGTree
       - drawGrob
+      - drawGTree
       - drawPath
       - drawVP
       - drawVP.viewport
@@ -2659,22 +2216,22 @@ namespaces:
       - drawVP.vpPath
       - drawVP.vpStack
       - drawVP.vpTree
-      - editDLfromGPath
       - editDetails
       - editDetails.default
       - editDetails.gTree
       - editDetails.xaxis
       - editDetails.yaxis
-      - editGTree
+      - editDLfromGPath
       - editGrob
       - editGrobFromGPath
       - editGrobFromGPath.default
-      - editGrobFromGPath.gTree
       - editGrobFromGPath.grob
+      - editGrobFromGPath.gTree
+      - editGTree
       - editThisGrob
       - editViewport
-      - emptyGTreeCoords
       - emptyGrobCoords
+      - emptyGTreeCoords
       - engine.display.list
       - explode
       - explode.character
@@ -2686,59 +2243,56 @@ namespaces:
       - fillStrokeGrob.GridPath
       - fillStrokeGrob.grob
       - finaliseGroup
-      - findGrobinChildren
-      - findGrobinDL
       - findgrob
       - findgrob.default
       - findgrob.grob
+      - findGrobinChildren
+      - findGrobinDL
       - flatListing
-      - flatListing.gTreeListing
-      - flatListing.gridListListing
       - flatListing.gridListing
+      - flatListing.gridListListing
+      - flatListing.gTreeListing
       - flatListing.vpNameTreeListing
       - flatListing.vpTreeListing
       - flattenCoords
-      - flattenCoords.GridGTreeCoords
       - flattenCoords.GridGrobCoords
+      - flattenCoords.GridGTreeCoords
       - flattenListing
       - forceGrob
       - forceGrob.default
-      - forceGrob.gTree
       - forceGrob.grob
+      - forceGrob.gTree
       - format.unit
       - frameDim
       - frameGrob
       - fromDevice
       - fromDevice.GridCoords
-      - fromDevice.GridGTreeCoords
       - fromDevice.GridGrobCoords
+      - fromDevice.GridGTreeCoords
       - fullPathMatch
       - functionGrob
       - gEdit
       - gEditList
-      - gList
-      - gPath
-      - gPathFromVector
-      - gTree
       - genXY
       - get.gpar
       - getDLfromGPath
-      - getGTree
       - getGrob
       - getGrobFromGPath
       - getGrobFromGPath.default
-      - getGrobFromGPath.gTree
       - getGrobFromGPath.grob
+      - getGrobFromGPath.gTree
+      - getGTree
       - getName
       - getNames
       - getX
       - getX.GridCoords
-      - getX.GridGTreeCoords
       - getX.GridGrobCoords
+      - getX.GridGTreeCoords
       - getY
       - getY.GridCoords
-      - getY.GridGTreeCoords
       - getY.GridGrobCoords
+      - getY.GridGTreeCoords
+      - gList
       - glyphGrob
       - glyphHJust
       - glyphHOffset
@@ -2746,14 +2300,15 @@ namespaces:
       - glyphVJust
       - glyphVOffset
       - gpar
+      - gPath
+      - gPathFromVector
       - grabDL
-      - grid.Call
-      - grid.Call.graphics
-      - grid.DLapply
       - grid.abline
       - grid.add
       - grid.arrows
       - grid.bezier
+      - grid.Call
+      - grid.Call.graphics
       - grid.cap
       - grid.circle
       - grid.clip
@@ -2768,10 +2323,11 @@ namespaces:
       - grid.define
       - grid.delay
       - grid.display.list
+      - grid.DLapply
       - grid.draw
       - grid.draw.gList
-      - grid.draw.gTree
       - grid.draw.grob
+      - grid.draw.gTree
       - grid.draw.pop
       - grid.draw.up
       - grid.draw.viewport
@@ -2842,13 +2398,13 @@ namespaces:
       - grid.xspline
       - grid.yaxis
       - gridCoords
-      - gridGTreeCoords
       - gridGrobCoords
+      - gridGTreeCoords
       - gridList
       - gridList.default
       - gridList.gList
-      - gridList.gTree
       - gridList.grob
+      - gridList.gTree
       - gridList.pop
       - gridList.up
       - gridList.viewport
@@ -2865,6 +2421,7 @@ namespaces:
       - grobAscent.grob
       - grobAutoName
       - grobCoords
+      - grobCoords.gList
       - grobCoords.GridDefine
       - grobCoords.GridDefineChild
       - grobCoords.GridFill
@@ -2873,9 +2430,8 @@ namespaces:
       - grobCoords.GridStroke
       - grobCoords.GridUse
       - grobCoords.GridUseChild
-      - grobCoords.gList
-      - grobCoords.gTree
       - grobCoords.grob
+      - grobCoords.gTree
       - grobDescent
       - grobDescent.default
       - grobDescent.gList
@@ -2890,18 +2446,18 @@ namespaces:
       - grobName
       - grobPathListing
       - grobPoints
+      - grobPoints.circle
+      - grobPoints.clip
+      - grobPoints.gList
+      - grobPoints.glyphgrob
       - grobPoints.GridDefine
       - grobPoints.GridFill
       - grobPoints.GridFillStroke
       - grobPoints.GridGroup
       - grobPoints.GridStroke
       - grobPoints.GridUse
-      - grobPoints.circle
-      - grobPoints.clip
-      - grobPoints.gList
-      - grobPoints.gTree
-      - grobPoints.glyphgrob
       - grobPoints.grob
+      - grobPoints.gTree
       - grobPoints.line.to
       - grobPoints.lines
       - grobPoints.move.to
@@ -2943,6 +2499,7 @@ namespaces:
       - growResult.default
       - growResult.gList
       - growResult.grob
+      - gTree
       - height
       - height.details.viewport
       - heightDetails
@@ -3003,12 +2560,12 @@ namespaces:
       - isClosedTRUE
       - isEmptyCoords
       - isEmptyCoords.GridCoords
-      - isEmptyCoords.GridGTreeCoords
       - isEmptyCoords.GridGrobCoords
+      - isEmptyCoords.GridGTreeCoords
       - isMask
       - labelGrob
-      - labelGrob.gTree
       - labelGrob.grob
+      - labelGrob.gTree
       - labelVP
       - layout.heights
       - layout.ncol
@@ -3025,9 +2582,9 @@ namespaces:
       - leafPaths.vpTree
       - legendGrob
       - length.arrow
-      - lineToGrob
       - linearGradient
       - linesGrob
+      - lineToGrob
       - listvpListElement
       - lookupGroup
       - make.xaxis.labels
@@ -3066,11 +2623,12 @@ namespaces:
       - num.row.specs
       - offscreen
       - okGListelt
+      - OLDflatListing.vpTreeListing
+      - Ops.unit
       - origin.bottom
       - origin.left
       - origin.right
       - origin.top
-      - pSummary
       - packGrob
       - partialPathMatch
       - pathGrob
@@ -3083,29 +2641,30 @@ namespaces:
       - polygonGrob
       - polylineGrob
       - pop.viewport
-      - popViewport
       - popgrobvp
       - popgrobvp.viewport
       - popgrobvp.vpPath
+      - popViewport
       - postDraw
       - postDraw.grob
       - postDrawDetails
       - postDrawDetails.grob
       - preDraw
-      - preDraw.gTree
       - preDraw.grob
+      - preDraw.gTree
       - preDrawDetails
       - preDrawDetails.grob
-      - print.GridCoords
-      - print.GridGTreeCoords
-      - print.GridGrobCoords
       - print.flatGridListing
       - print.gList
       - print.gpar
+      - print.GridCoords
+      - print.GridGrobCoords
+      - print.GridGTreeCoords
       - print.grob
       - print.path
       - print.unit
       - print.viewport
+      - pSummary
       - push.viewport
       - push.vp
       - push.vp.default
@@ -3114,11 +2673,11 @@ namespaces:
       - push.vp.vpPath
       - push.vp.vpStack
       - push.vp.vpTree
-      - pushViewport
       - pushedvp
       - pushgrobvp
       - pushgrobvp.viewport
       - pushgrobvp.vpPath
+      - pushViewport
       - pushvpgp
       - radialGradient
       - rasterGrob
@@ -3127,37 +2686,44 @@ namespaces:
       - record.grob
       - record.viewport
       - record.vpPath
-      - recordGTreeForPatternResolution
       - recordGrob
       - recordGrobForPatternResolution
       - recordGroup
+      - recordGTreeForPatternResolution
       - rectGrob
       - removeDLFromGPath
       - removeFromGTree
-      - removeGTree
       - removeGrob
       - removeGrobFromGPath
       - removeGrobFromGPath.default
-      - removeGrobFromGPath.gTree
       - removeGrobFromGPath.grob
+      - removeGrobFromGPath.gTree
       - removeGrobFromName
-      - removeGrobFromName.gTree
       - removeGrobFromName.grob
+      - removeGrobFromName.gTree
+      - removeGTree
       - removeName
       - removeNameFromDL
       - reorderGrob
       - rep.arrow
       - rep.unit
       - resolveClipPath
+      - resolvedClipPath
+      - resolvedClipPath.GridClipPath
+      - resolvedClipPath.GridResolvedClipPath
+      - resolvedMask
+      - resolvedMask.GridMask
+      - resolvedMask.GridResolvedMask
+      - resolvedPattern
       - resolveFill
-      - resolveFill.GridGTreePattern
-      - resolveFill.GridGTreePatternList
+      - resolveFill.default
       - resolveFill.GridGrobPattern
       - resolveFill.GridGrobPatternList
+      - resolveFill.GridGTreePattern
+      - resolveFill.GridGTreePatternList
       - resolveFill.GridPattern
       - resolveFill.GridPatternList
       - resolveFill.GridResolvedPattern
-      - resolveFill.default
       - resolveGTreeFill
       - resolveHJust
       - resolveMask
@@ -3169,13 +2735,6 @@ namespaces:
       - resolvePattern.GridTilingPattern
       - resolveRasterSize
       - resolveVJust
-      - resolvedClipPath
-      - resolvedClipPath.GridClipPath
-      - resolvedClipPath.GridResolvedClipPath
-      - resolvedMask
-      - resolvedMask.GridMask
-      - resolvedMask.GridResolvedMask
-      - resolvedPattern
       - revert
       - revert.default
       - revert.forcedgrob
@@ -3190,24 +2749,25 @@ namespaces:
       - set.gpar
       - setChildren
       - setDLfromGPath
-      - setGTree
       - setGrob
       - setGrobFromGPath
       - setGrobFromGPath.default
-      - setGrobFromGPath.gTree
       - setGrobFromGPath.grob
+      - setGrobFromGPath.gTree
+      - setGTree
       - setvpgpar
       - setvpgpar.viewport
       - setvpgpar.vpList
       - setvpgpar.vpStack
       - setvpgpar.vpTree
       - showGrob
+      - showViewport
       - showVP
       - showVPmatrix
-      - showViewport
       - single_unit
-      - splinePoints
       - splinegrob
+      - splinePoints
+      - STATE
       - str.arrow
       - str.unit
       - straightCurve
@@ -3218,18 +2778,19 @@ namespaces:
       - strokeGrob
       - strokeGrob.GridPath
       - strokeGrob.grob
+      - Summary.unit
       - swap.origin.horizontal
       - swap.origin.vertical
       - tests
       - textGrob
       - toDevice
       - toDevice.GridCoords
-      - toDevice.GridGTreeCoords
       - toDevice.GridGrobCoords
+      - toDevice.GridGTreeCoords
       - transformCoords
       - transformCoords.GridCoords
-      - transformCoords.GridGTreeCoords
       - transformCoords.GridGrobCoords
+      - transformCoords.GridGTreeCoords
       - unit
       - unit.c
       - unit.length
@@ -3243,15 +2804,14 @@ namespaces:
       - unresolveClipPath.GridClipPath
       - unresolveClipPath.GridResolvedClipPath
       - unresolveFill
-      - unresolveFill.GridPattern
       - unresolveFill.default
+      - unresolveFill.GridPattern
       - unresolveMask
       - unresolveMask.GridMask
       - unresolveMask.GridResolvedMask
       - unresolvePattern
       - unresolvePattern.GridPattern
       - unresolvePattern.GridResolvedPattern
-      - upViewport
       - updateCol
       - updateGDepth
       - updateGDepth.default
@@ -3260,16 +2820,16 @@ namespaces:
       - updateRow
       - updateVPDepth
       - updateVPDepth.default
-      - updateVPDepth.vpListListing
       - updateVPDepth.vpListing
+      - updateVPDepth.vpListListing
       - updateVPDepth.vpNameListing
       - updateVPDepth.vpPopListing
       - updateVPDepth.vpTreeListing
       - updateVPDepth.vpUpListing
       - updateVPPath
       - updateVPPath.default
-      - updateVPPath.vpListListing
       - updateVPPath.vpListing
+      - updateVPPath.vpListListing
       - updateVPPath.vpNameListing
       - updateVPPath.vpPopListing
       - updateVPPath.vpTreeListing
@@ -3281,6 +2841,7 @@ namespaces:
       - upgradeUnit.unit
       - upgradeUnit.unit.arithmetic
       - upgradeUnit.unit.list
+      - upViewport
       - useGrob
       - usePoints
       - useRotate
@@ -3320,19 +2881,19 @@ namespaces:
       - validDetails.text
       - validDetails.xspline
       - validGP
-      - validGTreeCoords
       - validGrob
-      - validGrob.gTree
       - validGrob.grob
+      - validGrob.gTree
       - validGrobCoords
+      - validGTreeCoords
       - viewport
       - viewport.layout
       - viewport.transform
+      - viewportorpath
       - viewportRotate
       - viewportScale
       - viewportTransform
       - viewportTranslate
-      - viewportorpath
       - vpAutoName
       - vpDepth
       - vpExists
@@ -3382,6 +2943,7 @@ namespaces:
       - wrap.up
       - wrap.viewport
       - wrap.vpPath
+      - xaxisGrob
       - xDetails
       - xDetails.beziergrob
       - xDetails.circle
@@ -3401,11 +2963,11 @@ namespaces:
       - xDetails.segments
       - xDetails.text
       - xDetails.xspline
-      - xaxisGrob
       - xsplineGrob
       - xsplineIndex
       - xsplinePoints
       - xyListFromMatrix
+      - yaxisGrob
       - yDetails
       - yDetails.beziergrob
       - yDetails.circle
@@ -3425,17 +2987,32 @@ namespaces:
       - yDetails.segments
       - yDetails.text
       - yDetails.xspline
-      - yaxisGrob
+  - namespace: KernSmooth
+    title: KernSmooth
+    target: R 4.4
+    sourceKind: runtime
+    sourceRef: r-base:4.4.2:KernSmooth
+    entries:
+      - bkde
+      - bkde2D
+      - bkfe
+      - blkest
+      - cpblock
+      - dpih
+      - dpik
+      - dpill
+      - linbin
+      - linbin2D
+      - locpoly
+      - rlbin
+      - sdiag
+      - sstdiag
   - namespace: lattice
-    title: lattice package
+    title: lattice
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:lattice
     entries:
-      - FindCutPoints
-      - FindPolygonVertices
-      - OLD_formattedTicksAndLabels.times
-      - Rows
       - '[.shingle'
       - '[.trellis'
       - as.character.shingleLevel
@@ -3515,15 +3092,17 @@ namespaces:
       - experimentalOptions
       - extend.limits
       - filledContour
+      - FindCutPoints
+      - FindPolygonVertices
       - formattedTicksAndLabels
-      - formattedTicksAndLabels.Date
-      - formattedTicksAndLabels.POSIXct
       - formattedTicksAndLabels.character
       - formattedTicksAndLabels.chron
       - formattedTicksAndLabels.date
+      - formattedTicksAndLabels.Date
       - formattedTicksAndLabels.dates
       - formattedTicksAndLabels.default
       - formattedTicksAndLabels.expression
+      - formattedTicksAndLabels.POSIXct
       - formattedTicksAndLabels.times
       - getFunctionOrName
       - getLabelList
@@ -3583,6 +3162,7 @@ namespaces:
       - make.par.list
       - makeShadePalette
       - needAutoKey
+      - OLD_formattedTicksAndLabels.times
       - oneway
       - packet.number
       - packet.panel.default
@@ -3684,16 +3264,17 @@ namespaces:
       - qqmath.numeric
       - rearrangeUnit
       - rfs
+      - Rows
       - scale_limits
       - shingle
       - show.settings
       - simpleKey
       - simpleTheme
       - splom
+      - splom_linkPoint
       - splom.data.frame
       - splom.formula
       - splom.matrix
-      - splom_linkPoint
       - stackedRange
       - standard.theme
       - strip.custom
@@ -3737,32 +3318,438 @@ namespaces:
       - xyplot.formula
       - xyplot.ts
       - yscale.components.default
+  - namespace: MASS
+    title: MASS
+    target: R 4.4
+    sourceKind: runtime
+    sourceRef: r-base:4.4.2:MASS
+    entries:
+      - '[.fractions'
+      - '[<-.fractions'
+      - addterm
+      - addterm.default
+      - addterm.glm
+      - addterm.lm
+      - addterm.mlm
+      - addterm.negbin
+      - addterm.survreg
+      - anova.glmmPQL
+      - anova.loglm
+      - anova.negbin
+      - anova.polr
+      - area
+      - as.character.fractions
+      - as.fractions
+      - bandwidth.nrd
+      - bcv
+      - biplot.correspondence
+      - biplotBDR
+      - boxcox
+      - boxcox.default
+      - boxcox.formula
+      - boxcox.lm
+      - coef.fitdistr
+      - coef.lda
+      - coef.loglm
+      - coef.ridgelm
+      - con2tr
+      - confint.polr
+      - confint.profile.polr
+      - contr.sdif
+      - corresp
+      - corresp.data.frame
+      - corresp.default
+      - corresp.factor
+      - corresp.formula
+      - corresp.matrix
+      - corresp.xtabs
+      - cov.mcd
+      - cov.mve
+      - cov.rob
+      - cov.trob
+      - denumerate
+      - denumerate.formula
+      - dgumbel
+      - dGumbel
+      - dose.p
+      - dropterm
+      - dropterm.default
+      - dropterm.glm
+      - dropterm.lm
+      - dropterm.mlm
+      - dropterm.negbin
+      - dropterm.survreg
+      - enlist
+      - eqscplot
+      - extractAIC.loglm
+      - extractAIC.polr
+      - family.negbin
+      - fbeta
+      - fitdistr
+      - fitted.loglm
+      - formula.glmmPQL
+      - fractions
+      - frequency.polygon
+      - gamma.dispersion
+      - gamma.shape
+      - gamma.shape.glm
+      - ginv
+      - glm.convert
+      - glm.nb
+      - glmmPQL
+      - hist.FD
+      - hist.scott
+      - huber
+      - hubers
+      - is.fractions
+      - isoMDS
+      - kde2d
+      - lda
+      - lda.data.frame
+      - lda.default
+      - lda.formula
+      - lda.matrix
+      - ldahist
+      - lm.gls
+      - lm.ridge
+      - lmsreg
+      - lmwork
+      - logLik.fitdistr
+      - logLik.glmmPQL
+      - logLik.negbin
+      - logLik.polr
+      - loglm
+      - loglm1
+      - loglm1.data.frame
+      - loglm1.default
+      - loglm1.xtabs
+      - logtrans
+      - logtrans.default
+      - logtrans.formula
+      - logtrans.lm
+      - lqs
+      - lqs.default
+      - lqs.formula
+      - ltsreg
+      - Math.fractions
+      - mca
+      - model.frame.lda
+      - model.frame.polr
+      - model.frame.qda
+      - mvrnorm
+      - nclass.freq
+      - neg.bin
+      - negative.binomial
+      - negexp.SSival
+      - nobs.loglm
+      - nobs.polr
+      - 'Null'
+      - Ops.fractions
+      - pairs.lda
+      - parcoord
+      - pgumbel
+      - pGumbel
+      - plot.correspondence
+      - plot.lda
+      - plot.mca
+      - plot.ridgelm
+      - polr
+      - polr.fit
+      - predict.glmmPQL
+      - predict.lda
+      - predict.lqs
+      - predict.mca
+      - predict.polr
+      - predict.qda
+      - predict.rlm
+      - print.abbrev
+      - print.Anova
+      - print.anova.loglm
+      - print.correspondence
+      - print.fitdistr
+      - print.fractions
+      - print.gamma.shape
+      - print.glm.dose
+      - print.lda
+      - print.loglm
+      - print.lqs
+      - print.mca
+      - print.polr
+      - print.qda
+      - print.ridgelm
+      - print.rlm
+      - print.rms.curv
+      - print.summary.loglm
+      - print.summary.negbin
+      - print.summary.polr
+      - print.summary.rlm
+      - profile.polr
+      - psi.bisquare
+      - psi.hampel
+      - psi.huber
+      - qda
+      - qda.data.frame
+      - qda.default
+      - qda.formula
+      - qda.matrix
+      - rational
+      - renumerate
+      - renumerate.formula
+      - residuals.loglm
+      - rlm
+      - rlm.default
+      - rlm.formula
+      - rms.curv
+      - rnegbin
+      - safe_pchisq
+      - safe_pf
+      - sammon
+      - se.contrast.rlm
+      - select
+      - select.ridgelm
+      - Shepard
+      - simulate.negbin
+      - simulate.polr
+      - stdres
+      - stepAIC
+      - studres
+      - Summary.fractions
+      - summary.loglm
+      - summary.negbin
+      - summary.polr
+      - summary.rlm
+      - t.fractions
+      - theta.md
+      - theta.ml
+      - theta.mm
+      - truehist
+      - ucv
+      - update.loglm
+      - vcov.fitdistr
+      - vcov.negbin
+      - vcov.polr
+      - vcov.rlm
+      - width.SJ
+      - write.matrix
+  - namespace: Matrix
+    title: Matrix
+    target: R 4.4
+    sourceKind: runtime
+    sourceRef: r-base:4.4.2:Matrix
+    entries:
+      - '%&%'
+      - abI2num
+      - abIindDiag
+      - abIindTri
+      - abIseq
+      - abIseq1
+      - aggregateT
+      - all.equal
+      - all.equal.abI
+      - all0
+      - allFalse
+      - allTrue
+      - any0
+      - anyDuplicatedT
+      - anyFalse
+      - as_CspClass
+      - as_denseClass
+      - as.array
+      - as.array.Matrix
+      - as.array.sparseVector
+      - as.matrix
+      - as.matrix.Matrix
+      - as.matrix.sparseVector
+      - as0
+      - as1
+      - asCspN
+      - asPerm
+      - asUniqueT
+      - band
+      - bandSparse
+      - bdiag
+      - BunchKaufman
+      - c.abIndex
+      - c.Matrix
+      - c.sparseVector
+      - cBind
+      - cbind.Matrix
+      - chol
+      - chol2inv
+      - Cholesky
+      - class2
+      - colMeans
+      - colScale
+      - colSums
+      - combine_rleD
+      - complementInd
+      - condest
+      - copyClass
+      - cov2cor
+      - decodeInd
+      - deparse2
+      - det
+      - determinant
+      - diag
+      - diag<-
+      - diagN2U
+      - Diagonal
+      - diagU2N
+      - diff
+      - dimScale
+      - dmperm
+      - drop
+      - drop0
+      - emptyColnames
+      - ends.rleD
+      - expand
+      - expand1
+      - expand2
+      - expm
+      - extends1of
+      - fac2sparse
+      - fac2Sparse
+      - facmul
+      - fixupDN
+      - fixupDN.if.valid
+      - forceDiagonal
+      - forceSymmetric
+      - format
+      - formatSparseM
+      - formatSpMatrix
+      - graph.has.weights
+      - graph.non.1.weights
+      - graph.wgtMatrix
+      - graph2T
+      - head
+      - Hilbert
+      - image
+      - indDiag
+      - indTri
+      - int2i
+      - intI
+      - intIv
+      - invertPerm
+      - invPerm
+      - is.null.DN
+      - is0
+      - is1
+      - isDiagonal
+      - isLDL
+      - isN0
+      - isN1
+      - isPerm
+      - isSymmetric
+      - isSymmetricDN
+      - isTriangular
+      - isUniqueT
+      - KhatriRao
+      - kroneckerDN
+      - Logic.lCMat
+      - lu
+      - mat2triplet
+      - matmultDim
+      - matmultDN
+      - Matrix
+      - Matrix.DeprecatedCoerce
+      - Matrix.message
+      - Matrix.verbose
+      - Matrix.Version
+      - Matrix.warn
+      - MatrixClass
+      - mean
+      - model.spmatrix
+      - nearPD
+      - newSpV
+      - newSpVec
+      - nnzero
+      - non0.i
+      - non0ind
+      - norm
+      - onenormest
+      - pack
+      - prDiag
+      - print
+      - print.diagSummary
+      - print.sparseSummary
+      - printSpMatrix
+      - printSpMatrix2
+      - prMatrix
+      - prSpVector
+      - prTriang
+      - qr
+      - qr.coef
+      - qr.fitted
+      - qr.Q
+      - qr.qty
+      - qr.qy
+      - qr.R
+      - qr.resid
+      - qr.X
+      - qr2rankMatrix
+      - qrR
+      - rankMatrix
+      - rBind
+      - rbind.Matrix
+      - rcond
+      - readHB
+      - readmany
+      - readMM
+      - readone
+      - rep2abI
+      - replCmat4
+      - replDiag
+      - replSPvec
+      - replTmat
+      - rleCollapse
+      - rleMaybe
+      - rowMeans
+      - rowScale
+      - rowSums
+      - rsparsematrix
+      - Schur
+      - signPerm
+      - skewpart
+      - solve
+      - sp2vec
+      - sparse.model.matrix
+      - sparseDefault
+      - sparseMatrix
+      - sparseVector
+      - spMatrix
+      - spV2M
+      - summary
+      - symDN
+      - symmetrizeDN
+      - symmpart
+      - t
+      - T2graph
+      - tail
+      - toeplitz
+      - tril
+      - triu
+      - uniqTsparse
+      - unname
+      - unpack
+      - update
+      - updown
+      - validDim
+      - validDimGetsValue
+      - validDN
+      - vec2abI
+      - which
+      - WhichintersectInd
+      - writeMM
+      - zapsmall
   - namespace: methods
-    title: methods package
+    title: methods
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:methods
     entries:
-      - Arith
-      - Compare
-      - Complex
-      - Logic
-      - Math
-      - Math2
-      - MethodAddCoerce
-      - MethodsList
-      - MethodsListSelect
-      - Ops
-      - Quote
-      - S3Class
-      - S3Class<-
-      - S3Part
-      - S3Part<-
-      - S3forS4Methods
-      - SignatureMethod
-      - Summary
       - addNextMethod
       - allNames
+      - Arith
       - as
       - as<-
       - asMethodDefinition
@@ -3782,16 +3769,18 @@ namespaces:
       - cbind2
       - checkAtAssignment
       - checkSlotAssignment
+      - classesToAM
       - classGeneratorFunction
       - classLabel
       - classMetaName
       - className
-      - classesToAM
       - coerce
       - coerce<-
+      - Compare
       - completeClassDefinition
       - completeExtends
       - completeSubclasses
+      - Complex
       - conformMethod
       - defaultDumpName
       - defaultPrototype
@@ -3808,8 +3797,8 @@ namespaces:
       - envRefInferField
       - envRefSetField
       - evalOnLoad
-      - evalSource
       - evalqOnLoad
+      - evalSource
       - existsFunction
       - existsMethod
       - extends
@@ -3818,8 +3807,8 @@ namespaces:
       - findClass
       - findFunction
       - findMethod
-      - findMethodSignatures
       - findMethods
+      - findMethodSignatures
       - findUnique
       - fixPre1.8
       - formalArgs
@@ -3860,9 +3849,9 @@ namespaces:
       - inheritedSlotNames
       - inheritedSubMethodLists
       - initFieldArgs
+      - initialize
       - initMethodDispatch
       - initRefFields
-      - initialize
       - insertClassMethods
       - insertFields<-
       - insertMethod
@@ -3891,6 +3880,7 @@ namespaces:
       - listFromMethods
       - listFromMlist
       - loadMethod
+      - Logic
       - makeClassMethod
       - makeClassRepresentation
       - makeEnvRefMethods
@@ -3901,10 +3891,15 @@ namespaces:
       - makeStandardGeneric
       - matchDefaults
       - matchSignature
+      - Math
+      - Math2
       - mergeMethods
       - metaNameUndo
       - method.skeleton
+      - MethodAddCoerce
       - methodSignatureMatrix
+      - MethodsList
+      - MethodsListSelect
       - methodsPackageMetaName
       - missingArg
       - multipleClasses
@@ -3912,6 +3907,7 @@ namespaces:
       - newBasic
       - newClassRepresentation
       - newEmptyObject
+      - Ops
       - outerLabels
       - packageSlot
       - packageSlot<-
@@ -3923,6 +3919,7 @@ namespaces:
       - promptClass
       - promptMethods
       - prototype
+      - Quote
       - rbind
       - rbind2
       - reconcilePropertiesAndPrototype
@@ -3941,6 +3938,11 @@ namespaces:
       - requireMethods
       - resetClass
       - resetGeneric
+      - S3Class
+      - S3Class<-
+      - S3forS4Methods
+      - S3Part
+      - S3Part<-
       - sealClass
       - selectMethod
       - selectSuperClasses
@@ -3973,14 +3975,16 @@ namespaces:
       - showMethods
       - showMlist
       - showRefClassDef
-      - sigToEnv
       - signature
+      - SignatureMethod
+      - sigToEnv
       - slot
       - slot<-
       - slotNames
       - slotsFromS3
       - substituteDirect
       - substituteFunctionArgs
+      - Summary
       - superClassDepth
       - superClassMethodName
       - tableNames
@@ -3992,85 +3996,26 @@ namespaces:
       - validObject
       - validSlotNames
   - namespace: mgcv
-    title: mgcv package
+    title: mgcv
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:mgcv
     entries:
       - '%.%'
-      - AR.resid
       - Acomp
       - AddBVB
-      - BC
-      - D2
-      - Dim.pdIdnot
-      - DuchonE
-      - DuchonT
-      - ExtractData
-      - FFdes
-      - Predict.matrix
-      - Predict.matrix.Bspline.smooth
-      - Predict.matrix.cpspline.smooth
-      - Predict.matrix.cr.smooth
-      - Predict.matrix.cs.smooth
-      - Predict.matrix.cyclic.smooth
-      - Predict.matrix.duchon.spline
-      - Predict.matrix.fs.interaction
-      - Predict.matrix.gp.smooth
-      - Predict.matrix.mrf.smooth
-      - Predict.matrix.pspline.smooth
-      - Predict.matrix.random.effect
-      - Predict.matrix.sf
-      - Predict.matrix.soap.film
-      - Predict.matrix.sos.smooth
-      - Predict.matrix.sw
-      - Predict.matrix.sz.interaction
-      - Predict.matrix.t2.smooth
-      - Predict.matrix.tensor.smooth
-      - Predict.matrix.tprs.smooth
-      - Predict.matrix.ts.smooth
-      - Predict.matrix2
-      - Predict.matrix3
-      - PredictMat
-      - Rrank
-      - Rsolve
-      - Sl.Sb
-      - Sl.Xprep
-      - Sl.addS
-      - Sl.addS0
-      - Sl.drop
-      - Sl.fit
-      - Sl.fitChol
-      - Sl.ift
-      - Sl.iftChol
-      - Sl.inirep
-      - Sl.initial.repara
-      - Sl.mult
-      - Sl.postproc
-      - Sl.rSb
-      - Sl.repa
-      - Sl.repara
-      - Sl.setup
-      - Sl.termMult
-      - Tweedie
-      - Vb.corr
-      - XWXd
-      - XWyd
-      - XZKr
-      - Xbd
-      - Zb
-      - Ztb
       - all_vars1
       - am.fit
       - anova.gam
       - apply.spline
       - ar.qr_up
+      - AR.resid
       - augment.smX
-      - bSb
       - bam
       - bam.fit
       - bam.update
       - bandchol
+      - BC
       - betar
       - bfgs
       - bgam.fit
@@ -4078,7 +4023,7 @@ namespaces:
       - blas.thread.test
       - block.reorder
       - bnd2C
-      - cSplineDes
+      - bSb
       - check.term
       - chol2qr
       - choldrop
@@ -4092,25 +4037,30 @@ namespaces:
       - compress.iseq
       - concurvity
       - cooks.distance.gam
+      - corb
       - corBC
       - corMatrix.pdIdnot
-      - corb
       - cox.ph
       - crunch.knots
+      - cSplineDes
       - cwrap
       - d.detXXS
       - d.mvt
-      - dDeta
+      - D2
       - dchol
+      - dDeta
       - deriv.check
       - deriv.check5
       - devg
       - dg
       - diagXVXd
+      - Dim.pdIdnot
       - discrete.mf
       - dmvn
       - dmvt
       - dpnorm
+      - DuchonE
+      - DuchonT
       - efsud
       - efsudr
       - eigen.approx
@@ -4120,8 +4070,10 @@ namespaces:
       - expand.t2.smooths
       - extract.lme.cov
       - extract.lme.cov2
+      - ExtractData
       - fast.REML.fit
       - fetad.test
+      - FFdes
       - find.null.dev
       - fix.family
       - fix.family.link
@@ -4135,8 +4087,8 @@ namespaces:
       - fixDependence
       - flogf
       - fmud.test
-      - formXtViX
       - formula.gam
+      - formXtViX
       - fs.boundary
       - fs.test
       - full.score
@@ -4160,14 +4112,14 @@ namespaces:
       - gam2derivative
       - gam2objective
       - gam4objective
-      - gamSim
       - gamlss.etamu
       - gamlss.gH
       - gamlss.ncv
       - gamm
       - gamm.setup
-      - gammPQL
       - gammals
+      - gammPQL
+      - gamSim
       - gaulss
       - get.na.action
       - get.null.coef
@@ -4183,11 +4135,11 @@ namespaces:
       - gumbls
       - ident.test
       - in.out
-      - inSide
       - influence.gam
       - iniStrans
       - initial.sp
       - initial.spg
+      - inSide
       - interpret.gam
       - interpret.gam0
       - isa
@@ -4201,20 +4153,20 @@ namespaces:
       - l1ee
       - lanczos
       - lb.linkfun
-      - ldTweedie
-      - ldTweedie0
       - lde
       - ldetS
       - ldetSblock
       - ldetSt
       - ldg
+      - ldTweedie
+      - ldTweedie0
       - lee1
       - lind
       - liu2
       - logDet.pdIdnot
-      - logLik.gam
       - logf
       - logid
+      - logLik.gam
       - lolaxy
       - lpi.contract
       - lpi.expand
@@ -4253,7 +4205,6 @@ namespaces:
       - null.space.dimension
       - ocat
       - olid
-      - pRRt
       - pabapr
       - packing.ind
       - parametricPenalty
@@ -4263,14 +4214,14 @@ namespaces:
       - pcrossprod
       - pdConstruct.pdIdnot
       - pdConstruct.pdTens
+      - pdef
+      - pdev
       - pdFactor.pdIdnot
       - pdFactor.pdTens
       - pdIdnot
       - pdMatrix.pdIdnot
       - pdMatrix.pdTens
       - pdTens
-      - pdef
-      - pdev
       - pen.edf
       - pen.reg
       - pforwardsolve
@@ -4291,35 +4242,62 @@ namespaces:
       - poly2
       - polys.plot
       - pqr
-      - pqr.R
       - pqr.qy
+      - pqr.R
       - pqr2
       - predict.bam
       - predict.bamd
       - predict.gam
       - predict.jam
+      - Predict.matrix
+      - Predict.matrix.Bspline.smooth
+      - Predict.matrix.cpspline.smooth
+      - Predict.matrix.cr.smooth
+      - Predict.matrix.cs.smooth
+      - Predict.matrix.cyclic.smooth
+      - Predict.matrix.duchon.spline
+      - Predict.matrix.fs.interaction
+      - Predict.matrix.gp.smooth
+      - Predict.matrix.mrf.smooth
+      - Predict.matrix.pspline.smooth
+      - Predict.matrix.random.effect
+      - Predict.matrix.sf
+      - Predict.matrix.soap.film
+      - Predict.matrix.sos.smooth
+      - Predict.matrix.sw
+      - Predict.matrix.sz.interaction
+      - Predict.matrix.t2.smooth
+      - Predict.matrix.tensor.smooth
+      - Predict.matrix.tprs.smooth
+      - Predict.matrix.ts.smooth
+      - Predict.matrix2
+      - Predict.matrix3
+      - PredictMat
       - print.anova.gam
       - print.gam
       - print.jam
       - print.mgcv.version
       - print.summary.gam
       - process.boundary
+      - pRRt
       - psum.chisq
       - qq.gam
       - qr_up
       - qr_update
       - r.mvt
-      - rTweedie
-      - reTest
       - recov
       - regular.Sb
       - repole
       - residuals.gam
+      - reTest
       - rig
       - rmvn
       - rmvt
+      - Rrank
+      - Rsolve
       - rt
       - rti
+      - rTweedie
       - rwMatrix
       - s
       - scat
@@ -4335,6 +4313,24 @@ namespaces:
       - simplyFit
       - single.sp
       - singleStrans
+      - Sl.addS
+      - Sl.addS0
+      - Sl.drop
+      - Sl.fit
+      - Sl.fitChol
+      - Sl.ift
+      - Sl.iftChol
+      - Sl.inirep
+      - Sl.initial.repara
+      - Sl.mult
+      - Sl.postproc
+      - Sl.repa
+      - Sl.repara
+      - Sl.rSb
+      - Sl.Sb
+      - Sl.setup
+      - Sl.termMult
+      - Sl.Xprep
       - slanczos
       - smooth.construct
       - smooth.construct.ad.smooth.spec
@@ -4412,98 +4408,43 @@ namespaces:
       - trind.generator
       - tw
       - tw.null.fit
+      - Tweedie
       - twlss
       - unconstrain
       - uniquecombs
       - uniquecombs0
-      - varWeights.dfo
       - variable.summary
+      - varWeights.dfo
+      - Vb.corr
       - vcorr
       - vcov.gam
       - vcov.jam
       - vis.gam
       - write.jagslp
+      - Xbd
+      - XWXd
+      - XWyd
+      - XZKr
+      - Zb
       - ziP
       - zipll
       - ziplss
+      - Ztb
   - namespace: nlme
-    title: nlme package
+    title: nlme
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:nlme
     entries:
-      - '%||%'
-      - ACF
-      - ACF.gls
-      - ACF.lme
-      - Dim
-      - Dim.corSpatial
-      - Dim.corStruct
-      - Dim.default
-      - Dim.pdCompSymm
-      - Dim.pdDiag
-      - Dim.pdIdent
-      - Dim.pdMat
-      - Dim.pdNatural
-      - Dim.pdSymm
-      - Initialize
-      - Initialize.corAR1
-      - Initialize.corARMA
-      - Initialize.corCAR1
-      - Initialize.corCompSymm
-      - Initialize.corIdent
-      - Initialize.corLin
-      - Initialize.corNatural
-      - Initialize.corSpatial
-      - Initialize.corSpher
-      - Initialize.corStruct
-      - Initialize.corSymm
-      - Initialize.glsStruct
-      - Initialize.gnlsStruct
-      - Initialize.lmeStruct
-      - Initialize.reStruct
-      - Initialize.varComb
-      - Initialize.varConstPower
-      - Initialize.varConstProp
-      - Initialize.varExp
-      - Initialize.varFixed
-      - Initialize.varFunc
-      - Initialize.varIdent
-      - Initialize.varPower
-      - LDEsysMat
-      - MEEM
-      - MEdecomp
-      - MEdims
-      - MEestimate
-      - Names
-      - Names.formula
-      - Names.listForm
-      - Names.pdBlocked
-      - Names.pdMat
-      - Names.reStruct
-      - Names<-
-      - Names<-.pdBlocked
-      - Names<-.pdMat
-      - Names<-.reStruct
-      - VarCorr
-      - VarCorr.lme
-      - VarCorr.pdBlocked
-      - VarCorr.pdMat
-      - Variogram
-      - Variogram.corExp
-      - Variogram.corGaus
-      - Variogram.corLin
-      - Variogram.corRatio
-      - Variogram.corSpatial
-      - Variogram.corSpher
-      - Variogram.default
-      - Variogram.gls
-      - Variogram.lme
       - '[.groupedData'
       - '[.pdBlocked'
       - '[.pdMat'
       - '[.reStruct'
       - '[<-.pdMat'
+      - '%||%'
+      - ACF
+      - ACF.gls
+      - ACF.lme
       - allCoef
       - allVarsRec
       - anova.gls
@@ -4517,8 +4458,8 @@ namespaces:
       - asTable.groupedData
       - augPred
       - augPred.gls
-      - augPred.lmList
       - augPred.lme
+      - augPred.lmList
       - balancedGrouped
       - c_deparse
       - coef.corAR1
@@ -4534,8 +4475,8 @@ namespaces:
       - coef.corSymm
       - coef.gls
       - coef.gnls
-      - coef.lmList
       - coef.lme
+      - coef.lmList
       - coef.modelStruct
       - coef.pdBlocked
       - coef.pdCompSymm
@@ -4581,10 +4522,10 @@ namespaces:
       - compareFits
       - comparePred
       - comparePred.gls
-      - comparePred.lmList
       - comparePred.lme
-      - confint.lmList
+      - comparePred.lmList
       - confint.lme
+      - confint.lmList
       - confint.nlsList
       - corAR1
       - corARMA
@@ -4629,6 +4570,16 @@ namespaces:
       - createConLin
       - deviance.gls
       - deviance.lme
+      - Dim
+      - Dim.corSpatial
+      - Dim.corStruct
+      - Dim.default
+      - Dim.pdCompSymm
+      - Dim.pdDiag
+      - Dim.pdIdent
+      - Dim.pdMat
+      - Dim.pdNatural
+      - Dim.pdSymm
       - doExtras
       - extractAIC.gls
       - extractAIC.lme
@@ -4637,20 +4588,20 @@ namespaces:
       - fitted.glsStruct
       - fitted.gnls
       - fitted.gnlsStruct
-      - fitted.lmList
       - fitted.lme
       - fitted.lmeStruct
+      - fitted.lmList
       - fitted.nlmeStruct
       - fixed.effects
       - fixef
-      - fixef.lmList
       - fixef.lme
+      - fixef.lmList
       - formula.corStruct
       - formula.gls
       - formula.gnls
       - formula.groupedData
-      - formula.lmList
       - formula.lme
+      - formula.lmList
       - formula.modelStruct
       - formula.nlme
       - formula.nlsList
@@ -4660,18 +4611,18 @@ namespaces:
       - formula.varComb
       - formula.varFunc
       - gapply
-      - getCTable
       - getCovariate
       - getCovariate.corSpatial
       - getCovariate.corStruct
       - getCovariate.data.frame
       - getCovariate.varFunc
       - getCovariateFormula
+      - getCTable
       - getData
       - getData.gls
       - getData.gnls
-      - getData.lmList
       - getData.lme
+      - getData.lmList
       - getData.nlme
       - getData.nls
       - getFixDF
@@ -4679,22 +4630,22 @@ namespaces:
       - getGroups.corStruct
       - getGroups.data.frame
       - getGroups.gls
-      - getGroups.lmList
       - getGroups.lme
+      - getGroups.lmList
       - getGroups.varFunc
       - getGroupsFormula
       - getGroupsFormula.default
       - getGroupsFormula.gls
-      - getGroupsFormula.lmList
       - getGroupsFormula.lme
+      - getGroupsFormula.lmList
       - getGroupsFormula.reStruct
       - getParsGnls
       - getParsNlme
       - getResponse
       - getResponse.data.frame
       - getResponse.gls
-      - getResponse.lmList
       - getResponse.lme
+      - getResponse.lmList
       - getResponseFormula
       - getVarCov
       - getVarCov.gls
@@ -4711,19 +4662,41 @@ namespaces:
       - gnlsStruct
       - groupedData
       - gsummary
+      - Initialize
+      - Initialize.corAR1
+      - Initialize.corARMA
+      - Initialize.corCAR1
+      - Initialize.corCompSymm
+      - Initialize.corIdent
+      - Initialize.corLin
+      - Initialize.corNatural
+      - Initialize.corSpatial
+      - Initialize.corSpher
+      - Initialize.corStruct
+      - Initialize.corSymm
+      - Initialize.glsStruct
+      - Initialize.gnlsStruct
+      - Initialize.lmeStruct
+      - Initialize.reStruct
+      - Initialize.varComb
+      - Initialize.varConstPower
+      - Initialize.varConstProp
+      - Initialize.varExp
+      - Initialize.varFixed
+      - Initialize.varFunc
+      - Initialize.varIdent
+      - Initialize.varPower
       - intervals
       - intervals.gls
-      - intervals.lmList
       - intervals.lme
+      - intervals.lmList
       - isBalanced
       - isBalanced.groupedData
       - isInitialized
       - isInitialized.pdBlocked
       - isInitialized.pdMat
       - isInitialized.reStruct
-      - lmList
-      - lmList.formula
-      - lmList.groupedData
+      - LDEsysMat
       - lme
       - lme.formula
       - lme.groupedData
@@ -4732,6 +4705,9 @@ namespaces:
       - lmeApVar.fullLmeLogLik
       - lmeControl
       - lmeStruct
+      - lmList
+      - lmList.formula
+      - lmList.groupedData
       - logDet
       - logDet.corIdent
       - logDet.corStruct
@@ -4748,10 +4724,10 @@ namespaces:
       - logLik.glsStruct
       - logLik.gnls
       - logLik.gnlsStruct
-      - logLik.lmList
       - logLik.lme
       - logLik.lmeStruct
       - logLik.lmeStructInt
+      - logLik.lmList
       - logLik.reStruct
       - logLik.varComb
       - logLik.varFunc
@@ -4759,7 +4735,21 @@ namespaces:
       - matrix<-.pdBlocked
       - matrix<-.pdMat
       - matrix<-.reStruct
+      - MEdecomp
+      - MEdims
+      - MEEM
+      - MEestimate
       - model.matrix.reStruct
+      - Names
+      - Names.formula
+      - Names.listForm
+      - Names.pdBlocked
+      - Names.pdMat
+      - Names.reStruct
+      - Names<-
+      - Names<-.pdBlocked
+      - Names<-.pdMat
+      - Names<-.reStruct
       - needUpdate
       - needUpdate.corStruct
       - needUpdate.default
@@ -4782,8 +4772,8 @@ namespaces:
       - nobs.lme
       - nonlinModel
       - pairs.compareFits
-      - pairs.lmList
       - pairs.lme
+      - pairs.lmList
       - pdBlocked
       - pdCompSymm
       - pdConstruct
@@ -4822,43 +4812,41 @@ namespaces:
       - pdSymm
       - phenoModel
       - plot.ACF
-      - plot.Variogram
       - plot.augPred
       - plot.compareFits
       - plot.gls
       - plot.intervals.lmList
-      - plot.lmList
       - plot.lme
+      - plot.lmList
       - plot.nffGroupedData
       - plot.nfnGroupedData
       - plot.nls
       - plot.nmGroupedData
       - plot.pdMat
-      - plot.ranef.lmList
       - plot.ranef.lme
+      - plot.ranef.lmList
       - plot.simulate.lme
+      - plot.Variogram
       - pooledSD
       - predict.gls
       - predict.gnls
-      - predict.lmList
       - predict.lme
+      - predict.lmList
       - predict.nlme
-      - print.VarCorr.lme
-      - print.VarCov
       - print.anova.lme
       - print.compareFits
       - print.corCompSymm
       - print.corNatural
+      - print.correlation
       - print.corStruct
       - print.corSymm
-      - print.correlation
       - print.gls
       - print.groupedData
       - print.intervals.gls
-      - print.intervals.lmList
       - print.intervals.lme
-      - print.lmList
+      - print.intervals.lmList
       - print.lme
+      - print.lmList
       - print.modelStruct
       - print.pdMat
       - print.ranef.lme
@@ -4869,26 +4857,27 @@ namespaces:
       - print.summary.corStruct
       - print.summary.corSymm
       - print.summary.gls
-      - print.summary.lmList
       - print.summary.lme
+      - print.summary.lmList
       - print.summary.modelStruct
       - print.summary.pdMat
       - print.summary.varComb
       - print.summary.varFixed
       - print.summary.varFunc
       - print.varComb
+      - print.VarCorr.lme
+      - print.VarCov
       - print.varFunc
       - qqnorm.gls
       - qqnorm.lm
-      - qqnorm.lmList
       - qqnorm.lme
+      - qqnorm.lmList
       - qqnorm.nls
       - quinModel
       - random.effects
       - ranef
-      - ranef.lmList
       - ranef.lme
-      - reStruct
+      - ranef.lmList
       - recalc
       - recalc.corAR1
       - recalc.corARMA
@@ -4907,13 +4896,14 @@ namespaces:
       - residuals.glsStruct
       - residuals.gnls
       - residuals.gnlsStruct
-      - residuals.lmList
       - residuals.lme
       - residuals.lmeStruct
+      - residuals.lmList
       - residuals.nlmeStruct
+      - reStruct
       - sigma.gls
-      - sigma.lmList
       - sigma.lme
+      - sigma.lmList
       - simulate.lme
       - solve.pdBlocked
       - solve.pdDiag
@@ -4939,8 +4929,8 @@ namespaces:
       - summary.corStruct
       - summary.corSymm
       - summary.gls
-      - summary.lmList
       - summary.lme
+      - summary.lmList
       - summary.modelStruct
       - summary.nlsList
       - summary.pdBlocked
@@ -4965,8 +4955,8 @@ namespaces:
       - update.gls
       - update.gnls
       - update.groupedData
-      - update.lmList
       - update.lme
+      - update.lmList
       - update.modelStruct
       - update.nlme
       - update.nlsList
@@ -4980,10 +4970,24 @@ namespaces:
       - varComb
       - varConstPower
       - varConstProp
+      - VarCorr
+      - VarCorr.lme
+      - VarCorr.pdBlocked
+      - VarCorr.pdMat
       - varExp
       - varFixed
       - varFunc
       - varIdent
+      - Variogram
+      - Variogram.corExp
+      - Variogram.corGaus
+      - Variogram.corLin
+      - Variogram.corRatio
+      - Variogram.corSpatial
+      - Variogram.corSpher
+      - Variogram.default
+      - Variogram.gls
+      - Variogram.lme
       - varPower
       - varWeights
       - varWeights.glsStruct
@@ -4993,7 +4997,7 @@ namespaces:
       - vcov.gls
       - vcov.lme
   - namespace: nnet
-    title: nnet package
+    title: nnet
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:nnet
@@ -5028,7 +5032,7 @@ namespaces:
       - vcov.multinom
       - which.is.max
   - namespace: parallel
-    title: parallel package
+    title: parallel
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:parallel
@@ -5044,9 +5048,9 @@ namespaces:
       - closeAll
       - closeFD
       - closeNode
+      - closeNode.default
       - closeNode.SOCK0node
       - closeNode.SOCKnode
-      - closeNode.default
       - closeStderr
       - closeStdout
       - clusterApply
@@ -5073,7 +5077,6 @@ namespaces:
       - mc.advance.stream
       - mc.reset.stream
       - mc.set.stream
-      - mcMap
       - mcaffinity
       - mccollect
       - mcexit
@@ -5081,6 +5084,7 @@ namespaces:
       - mcinteractive
       - mckill
       - mclapply
+      - mcMap
       - mcmapply
       - mcparallel
       - newForkNode
@@ -5131,15 +5135,15 @@ namespaces:
       - staticClusterApply
       - staticNChunks
       - stopCluster
-      - stopCluster.MPIcluster
       - stopCluster.default
+      - stopCluster.MPIcluster
       - stopCluster.spawnedMPIcluster
       - stopNode
       - workCommand
-      - workLoop
       - workerCommand
+      - workLoop
   - namespace: rpart
-    title: rpart package
+    title: rpart
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:rpart
@@ -5185,17 +5189,11 @@ namespaces:
       - tree.depth
       - xpred.rpart
   - namespace: spatial
-    title: spatial package
+    title: spatial
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:spatial
     entries:
-      - Kaver
-      - Kenvl
-      - Kfn
-      - Psim
-      - SSI
-      - Strauss
       - anova.trls
       - anovalist.trls
       - correlogram
@@ -5205,6 +5203,9 @@ namespaces:
       - extractAIC.trls
       - fitted.trls
       - gaucov
+      - Kaver
+      - Kenvl
+      - Kfn
       - plot.trls
       - ppgetregion
       - ppinit
@@ -5212,9 +5213,12 @@ namespaces:
       - ppregion
       - predict.trls
       - prmat
+      - Psim
       - residuals.trls
       - semat
       - sphercov
+      - SSI
+      - Strauss
       - summary.trls
       - surf.gls
       - surf.ls
@@ -5222,7 +5226,7 @@ namespaces:
       - trmat
       - variogram
   - namespace: splines
-    title: splines package
+    title: splines
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:splines
@@ -5251,8 +5255,8 @@ namespaces:
       - polySpline.nbSpline
       - polySpline.pbSpline
       - polySpline.polySpline
-      - predict.bSpline
       - predict.bs
+      - predict.bSpline
       - predict.nbSpline
       - predict.npolySpline
       - predict.ns
@@ -5271,72 +5275,18 @@ namespaces:
       - splineOrder.polySpline
       - xyVector
   - namespace: stats
-    title: stats package
+    title: stats
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:stats
     entries:
-      - AIC
-      - AIC.default
-      - AIC.logLik
-      - ARMAacf
-      - ARMAtoMA
-      - BIC
-      - BIC.default
-      - BIC.logLik
-      - Box.test
-      - C
-      - D
-      - DF2formula
-      - Gamma
-      - HL
-      - HoltWinters
-      - IQR
-      - KalmanForecast
-      - KalmanLike
-      - KalmanRun
-      - KalmanSmooth
-      - NLSstAsymptotic
-      - NLSstAsymptotic.sortedXyData
-      - NLSstClosestX
-      - NLSstClosestX.sortedXyData
-      - NLSstLfAsymptote
-      - NLSstLfAsymptote.sortedXyData
-      - NLSstRtAsymptote
-      - NLSstRtAsymptote.sortedXyData
-      - Ops.ts
-      - PP.test
-      - Pair
-      - Pillai
-      - Proj
-      - Rank
-      - Roy
-      - SSD
-      - SSD.mlm
-      - SSasymp
-      - SSasympOff
-      - SSasympOrig
-      - SSbiexp
-      - SSfol
-      - SSfpl
-      - SSgompertz
-      - SSlogis
-      - SSmicmen
-      - SSweibull
-      - StructTS
-      - Thin.col
-      - Thin.row
-      - Tr
-      - TukeyHSD
-      - TukeyHSD.aov
-      - Wilks
       - '[.acf'
       - '[.formula'
       - '[.terms'
       - '[.ts'
       - '[.tskernel'
-      - '[<-.ts'
       - '[[.dendrogram'
+      - '[<-.ts'
       - acf
       - acf2AR
       - add.scope
@@ -5351,6 +5301,9 @@ namespaces:
       - aggregate.default
       - aggregate.formula
       - aggregate.ts
+      - AIC
+      - AIC.default
+      - AIC.logLik
       - alias
       - alias.formula
       - alias.lm
@@ -5383,6 +5336,8 @@ namespaces:
       - arima.sim
       - arima0
       - arima0.diag
+      - ARMAacf
+      - ARMAtoMA
       - as.data.frame.aovproj
       - as.data.frame.ftable
       - as.data.frame.logLik
@@ -5411,19 +5366,24 @@ namespaces:
       - bartlett.test
       - bartlett.test.default
       - bartlett.test.formula
+      - BIC
+      - BIC.default
+      - BIC.logLik
       - binom.test
-      - binomInitialize
       - binomial
+      - binomInitialize
       - biplot
       - biplot.default
       - biplot.prcomp
       - biplot.princomp
-      - bw.SJ
+      - Box.test
+      - bw_pair_cnts
       - bw.bcv
       - bw.nrd
       - bw.nrd0
+      - bw.SJ
       - bw.ucv
-      - bw_pair_cnts
+      - C
       - cancor
       - case.names
       - case.names.default
@@ -5434,8 +5394,8 @@ namespaces:
       - chisq.test
       - cmdscale
       - coef
-      - coef.Arima
       - coef.aov
+      - coef.Arima
       - coef.default
       - coef.listof
       - coef.maov
@@ -5450,9 +5410,9 @@ namespaces:
       - confint.profile.glm
       - confint.profile.nls
       - constrOptim
-      - contr.SAS
       - contr.helmert
       - contr.poly
+      - contr.SAS
       - contr.sum
       - contr.treatment
       - contrasts
@@ -5478,6 +5438,7 @@ namespaces:
       - cycle
       - cycle.default
       - cycle.ts
+      - D
       - dbeta
       - dbinom
       - dcauchy
@@ -5508,6 +5469,7 @@ namespaces:
       - df.residual
       - df.residual.default
       - df.residual.nls
+      - DF2formula
       - dfbeta
       - dfbeta.lm
       - dfbetas
@@ -5552,8 +5514,8 @@ namespaces:
       - end
       - end.default
       - estVar
-      - estVar.SSD
       - estVar.mlm
+      - estVar.SSD
       - expand.model.frame
       - extractAIC
       - extractAIC.aov
@@ -5582,9 +5544,9 @@ namespaces:
       - fligner.test
       - fligner.test.default
       - fligner.test.formula
+      - format_perc
       - format.dist
       - format.ftable
-      - format_perc
       - formula
       - formula.character
       - formula.data.frame
@@ -5602,14 +5564,15 @@ namespaces:
       - ftable
       - ftable.default
       - ftable.formula
+      - Gamma
       - gaussian
+      - get_all_vars
       - getCall
       - getCall.default
       - getInitial
       - getInitial.default
       - getInitial.formula
       - getInitial.selfStart
-      - get_all_vars
       - glm
       - glm.control
       - glm.fit
@@ -5620,6 +5583,8 @@ namespaces:
       - hatvalues.smooth.spline
       - hclust
       - heatmap
+      - HL
+      - HoltWinters
       - hyman_filter
       - identify.hclust
       - influence
@@ -5629,6 +5594,7 @@ namespaces:
       - integrate
       - interaction.plot
       - inverse.gaussian
+      - IQR
       - is.empty.model
       - is.leaf
       - is.mts
@@ -5636,6 +5602,10 @@ namespaces:
       - is.ts
       - is.tskernel
       - isoreg
+      - KalmanForecast
+      - KalmanLike
+      - KalmanRun
+      - KalmanSmooth
       - kernapply
       - kernapply.default
       - kernapply.ts
@@ -5694,8 +5664,8 @@ namespaces:
       - manova
       - mantelhaen.test
       - mauchly.test
-      - mauchly.test.SSD
       - mauchly.test.mlm
+      - mauchly.test.SSD
       - mcnemar.test
       - median
       - median.default
@@ -5718,9 +5688,9 @@ namespaces:
       - model.tables.aovlist
       - model.weights
       - monthplot
-      - monthplot.StructTS
       - monthplot.default
       - monthplot.stl
+      - monthplot.StructTS
       - monthplot.ts
       - mood.test
       - mood.test.default
@@ -5755,10 +5725,18 @@ namespaces:
       - nlm
       - nlminb
       - nls
+      - nls_port_fit
       - nls.control
       - nlsModel
       - nlsModel.plinear
-      - nls_port_fit
+      - NLSstAsymptotic
+      - NLSstAsymptotic.sortedXyData
+      - NLSstClosestX
+      - NLSstClosestX.sortedXyData
+      - NLSstLfAsymptote
+      - NLSstLfAsymptote.sortedXyData
+      - NLSstRtAsymptote
+      - NLSstRtAsymptote.sortedXyData
       - nobs
       - nobs.default
       - nobs.dendrogram
@@ -5769,6 +5747,7 @@ namespaces:
       - numericDeriv
       - offset
       - oneway.test
+      - Ops.ts
       - optim
       - optimHess
       - optimise
@@ -5777,6 +5756,7 @@ namespaces:
       - p.adjust
       - pacf
       - pacf.default
+      - Pair
       - pairs.profile
       - pairwise.prop.test
       - pairwise.t.test
@@ -5792,6 +5772,7 @@ namespaces:
       - pgamma
       - pgeom
       - phyper
+      - Pillai
       - pkolmogorov
       - pkolmogorov_one_asymp
       - pkolmogorov_one_exact
@@ -5800,14 +5781,13 @@ namespaces:
       - plclust
       - plnorm
       - plogis
-      - plot.HoltWinters
-      - plot.TukeyHSD
       - plot.acf
       - plot.decomposed.ts
       - plot.dendrogram
       - plot.density
       - plot.ecdf
       - plot.hclust
+      - plot.HoltWinters
       - plot.isoreg
       - plot.lm
       - plot.medpolish
@@ -5824,6 +5804,7 @@ namespaces:
       - plot.stl
       - plot.ts
       - plot.tskernel
+      - plot.TukeyHSD
       - plotNode
       - plotNodeLimit
       - pnbinom
@@ -5839,6 +5820,7 @@ namespaces:
       - power.anova.test
       - power.prop.test
       - power.t.test
+      - PP.test
       - ppoints
       - ppois
       - ppr
@@ -5847,14 +5829,12 @@ namespaces:
       - prcomp
       - prcomp.default
       - prcomp.formula
-      - predLoess
       - predict
-      - predict.Arima
-      - predict.HoltWinters
-      - predict.StructTS
       - predict.ar
+      - predict.Arima
       - predict.arima0
       - predict.glm
+      - predict.HoltWinters
       - predict.lm
       - predict.loess
       - predict.mlm
@@ -5865,19 +5845,18 @@ namespaces:
       - predict.princomp
       - predict.smooth.spline
       - predict.smooth.spline.fit
+      - predict.StructTS
+      - predLoess
       - preplot
       - princomp
       - princomp.default
       - princomp.formula
-      - print.Arima
-      - print.HoltWinters
-      - print.StructTS
-      - print.TukeyHSD
       - print.acf
       - print.anova
       - print.aov
       - print.aovlist
       - print.ar
+      - print.Arima
       - print.arima0
       - print.dendrogram
       - print.density
@@ -5891,6 +5870,7 @@ namespaces:
       - print.ftable
       - print.glm
       - print.hclust
+      - print.HoltWinters
       - print.htest
       - print.infl
       - print.integrate
@@ -5911,6 +5891,7 @@ namespaces:
       - print.smooth.spline
       - print.stepfun
       - print.stl
+      - print.StructTS
       - print.summary.aov
       - print.summary.aovlist
       - print.summary.ecdf
@@ -5926,6 +5907,7 @@ namespaces:
       - print.terms
       - print.ts
       - print.tskernel
+      - print.TukeyHSD
       - print.tukeyline
       - print.tukeysmooth
       - print.xtabs
@@ -5936,6 +5918,7 @@ namespaces:
       - profiler
       - profiler.nls
       - proj
+      - Proj
       - proj.aov
       - proj.aovlist
       - proj.default
@@ -5981,9 +5964,9 @@ namespaces:
       - quade.test.default
       - quade.test.formula
       - quantile
-      - quantile.POSIXt
       - quantile.default
       - quantile.ecdf
+      - quantile.POSIXt
       - quasi
       - quasibinomial
       - quasipoisson
@@ -5991,7 +5974,7 @@ namespaces:
       - qweibull
       - qwilcox
       - r2dtable
-      - rWishart
+      - Rank
       - rbeta
       - rbinom
       - rcauchy
@@ -6011,9 +5994,9 @@ namespaces:
       - reshape
       - resid
       - residuals
-      - residuals.HoltWinters
       - residuals.default
       - residuals.glm
+      - residuals.HoltWinters
       - residuals.isoreg
       - residuals.lm
       - residuals.nls
@@ -6030,6 +6013,7 @@ namespaces:
       - rmultinom
       - rnbinom
       - rnorm
+      - Roy
       - rpois
       - rsignrank
       - rsmirnov
@@ -6044,6 +6028,7 @@ namespaces:
       - runmed
       - rweibull
       - rwilcox
+      - rWishart
       - safe_pchisq
       - safe_pf
       - scatter.smooth
@@ -6082,6 +6067,18 @@ namespaces:
       - splinefun
       - splinefunH
       - splinefunH0
+      - SSasymp
+      - SSasympOff
+      - SSasympOrig
+      - SSbiexp
+      - SSD
+      - SSD.mlm
+      - SSfol
+      - SSfpl
+      - SSgompertz
+      - SSlogis
+      - SSmicmen
+      - SSweibull
       - start
       - start.default
       - stat.anova
@@ -6090,6 +6087,7 @@ namespaces:
       - stl
       - str.dendrogram
       - str.logLik
+      - StructTS
       - summary.aov
       - summary.aovlist
       - summary.ecdf
@@ -6118,23 +6116,28 @@ namespaces:
       - terms.default
       - terms.formula
       - terms.terms
+      - Thin.col
+      - Thin.row
       - time
       - time.default
       - time.ts
       - toeplitz
       - toeplitz2
+      - Tr
       - ts
       - ts.intersect
       - ts.plot
       - ts.union
-      - tsSmooth
-      - tsSmooth.StructTS
       - tsdiag
       - tsdiag.Arima
-      - tsdiag.StructTS
       - tsdiag.arima0
+      - tsdiag.StructTS
       - tsp
       - tsp<-
+      - tsSmooth
+      - tsSmooth.StructTS
+      - TukeyHSD
+      - TukeyHSD.aov
       - uniroot
       - update
       - update.default
@@ -6149,8 +6152,8 @@ namespaces:
       - variable.names.lm
       - varimax
       - vcov
-      - vcov.Arima
       - vcov.aov
+      - vcov.Arima
       - vcov.glm
       - vcov.lm
       - vcov.mlm
@@ -6159,10 +6162,10 @@ namespaces:
       - vcov.summary.lm
       - weighted.mean
       - weighted.mean.Date
-      - weighted.mean.POSIXct
-      - weighted.mean.POSIXlt
       - weighted.mean.default
       - weighted.mean.difftime
+      - weighted.mean.POSIXct
+      - weighted.mean.POSIXlt
       - weighted.residuals
       - weights
       - weights.default
@@ -6171,6 +6174,7 @@ namespaces:
       - wilcox.test
       - wilcox.test.default
       - wilcox.test.formula
+      - Wilks
       - window
       - window.default
       - window.ts
@@ -6179,7 +6183,7 @@ namespaces:
       - write.ftable
       - xtabs
   - namespace: stats4
-    title: stats4 package
+    title: stats4
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:stats4
@@ -6197,34 +6201,18 @@ namespaces:
       - update
       - vcov
   - namespace: survival
-    title: survival package
+    title: survival
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:survival
     entries:
-      - I.Borgan
-      - II.Borgan
-      - LinYing
-      - Math.Surv
-      - Math.Surv2
-      - Math.ratetable
-      - Ops.Surv
-      - Ops.Surv2
-      - Ops.ratetable
-      - Prentice
-      - SelfPrentice
-      - Summary.Surv
-      - Summary.Surv2
-      - Surv
-      - Surv2
-      - Surv2data
-      - '[.Surv'
-      - '[.Surv2'
       - '[.aareg'
       - '[.cox.zph'
       - '[.coxph.penalty'
       - '[.ratetable'
       - '[.ratetable2'
+      - '[.Surv'
+      - '[.Surv2'
       - '[.survfit'
       - '[.survfitms'
       - '[.tcut'
@@ -6251,10 +6239,10 @@ namespaces:
       - as.data.frame.Surv2
       - as.logical.Surv
       - as.logical.Surv2
-      - as.matrix.Surv
-      - as.matrix.Surv2
       - as.matrix.pspline
       - as.matrix.ratetable
+      - as.matrix.Surv
+      - as.matrix.Surv2
       - attrassign
       - attrassign.default
       - attrassign.lm
@@ -6331,37 +6319,43 @@ namespaces:
       - head.Surv2
       - hist.Surv
       - hist.Surv2
+      - I.Borgan
       - identify.Surv
       - identify.Surv2
+      - II.Borgan
       - image.Surv
       - image.Surv2
       - innerterms
-      - is.Surv
-      - is.Surv2
-      - is.na.Surv
-      - is.na.Surv2
       - is.na.coxph.penalty
       - is.na.ratetable
       - is.na.ratetable2
+      - is.na.Surv
+      - is.na.Surv2
       - is.ratetable
+      - is.Surv
+      - is.Surv2
       - labels.survreg
       - length.Surv
       - length.Surv2
       - levels.Surv
       - levels.Surv2
       - levels.tcut
+      - lines.aareg
       - lines.Surv
       - lines.Surv2
-      - lines.aareg
       - lines.survexp
       - lines.survfit
       - lines.survfit.coxph
+      - LinYing
       - logLik.coxph
       - logLik.coxph.null
       - logLik.survreg
       - makepredictcall.nsk
       - makepredictcall.pspline
       - match.ratetable
+      - Math.ratetable
+      - Math.Surv
+      - Math.Surv2
       - mean.Surv
       - mean.Surv2
       - median.Surv
@@ -6383,6 +6377,9 @@ namespaces:
       - nobs.survreg
       - normalizetime
       - nsk
+      - Ops.ratetable
+      - Ops.Surv
+      - Ops.Surv2
       - pade
       - pairs.Surv
       - pairs.Surv2
@@ -6392,10 +6389,10 @@ namespaces:
       - parsecovar3
       - pformat
       - phi
-      - plot.Surv
-      - plot.Surv2
       - plot.aareg
       - plot.cox.zph
+      - plot.Surv
+      - plot.Surv2
       - plot.survfit
       - points.Surv
       - points.Surv2
@@ -6406,8 +6403,7 @@ namespaces:
       - predict.pspline
       - predict.survreg
       - predict.survreg.penal
-      - print.Surv
-      - print.Surv2
+      - Prentice
       - print.aareg
       - print.cch
       - print.clogit
@@ -6426,8 +6422,10 @@ namespaces:
       - print.summary.survfit
       - print.summary.survfitms
       - print.summary.survreg
-      - print.survConcordance
+      - print.Surv
+      - print.Surv2
       - print.survcheck
+      - print.survConcordance
       - print.survdiff
       - print.survexp
       - print.survfit
@@ -6451,20 +6449,20 @@ namespaces:
       - quantile.survfitms
       - ratetable
       - ratetableDate
-      - ratetableDate.Date
-      - ratetableDate.POSIXt
       - ratetableDate.chron
       - ratetableDate.date
+      - ratetableDate.Date
       - ratetableDate.dates
       - ratetableDate.default
       - ratetableDate.integer
+      - ratetableDate.POSIXt
       - removeDoubleColonSurv
-      - rep.Surv
-      - rep.Surv2
-      - rep.int.Surv
-      - rep.int.Surv2
       - rep_len.Surv
       - rep_len.Surv2
+      - rep.int.Surv
+      - rep.int.Surv2
+      - rep.Surv
+      - rep.Surv2
       - residuals.coxph
       - residuals.coxph.null
       - residuals.coxph.penal
@@ -6483,6 +6481,7 @@ namespaces:
       - rtfun
       - rttright
       - rttright2
+      - SelfPrentice
       - stacker
       - statefig
       - statefigx
@@ -6495,18 +6494,22 @@ namespaces:
       - summary.coxph.penal
       - summary.pyears
       - summary.ratetable
+      - Summary.Surv
+      - Summary.Surv2
       - summary.survcheck
       - summary.survexp
       - summary.survfit
       - summary.survfitms
       - summary.survreg
       - summary.tmerge
+      - Surv
+      - Surv2
       - surv2data
-      - survConcordance
-      - survConcordance.fit
-      - survSplit
+      - Surv2data
       - survcheck
       - survcheck2
+      - survConcordance
+      - survConcordance.fit
       - survcondense
       - survdiff
       - survdiff.fit
@@ -6516,18 +6519,18 @@ namespaces:
       - survexpm
       - survexpmsetup
       - survfit
-      - survfit.Surv
+      - survfit_confint
       - survfit.clogit
       - survfit.coxph
       - survfit.coxphms
       - survfit.formula
       - survfit.matrix
+      - survfit.Surv
       - survfit0
       - survfitAJ
+      - survfitcoxph.fit
       - survfitKM
       - survfitTurnbull
-      - survfit_confint
-      - survfitcoxph.fit
       - survflag
       - survmean
       - survmean2
@@ -6537,6 +6540,7 @@ namespaces:
       - survreg.control
       - survreg.fit
       - survregDtest
+      - survSplit
       - t.Surv
       - t.Surv2
       - tail.Surv
@@ -6568,15 +6572,15 @@ namespaces:
       - yates_setup.glm
       - yates_xmat
   - namespace: tcltk
-    title: tcltk package
+    title: tcltk
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:tcltk
     entries:
-      - $.tclArray
-      - $<-.tclArray
       - '[[.tclArray'
       - '[[<-.tclArray'
+      - $.tclArray
+      - $<-.tclArray
       - addTclPath
       - as.character.tclObj
       - as.character.tclVar
@@ -6597,20 +6601,18 @@ namespaces:
       - setTkProgressBar
       - tcl
       - tclArray
+      - tclclose
+      - tclfile.dir
+      - tclfile.tail
       - tclObj
       - tclObj.tclVar
       - tclObj<-
       - tclObj<-.tclVar
-      - tclRequire
-      - tclServiceMode
-      - tclVar
-      - tclVersion
-      - tclclose
-      - tclfile.dir
-      - tclfile.tail
       - tclopen
       - tclputs
       - tclread
+      - tclRequire
+      - tclServiceMode
       - tclvalue
       - tclvalue.default
       - tclvalue.tclObj
@@ -6618,12 +6620,8 @@ namespaces:
       - tclvalue<-
       - tclvalue<-.default
       - tclvalue<-.tclVar
-      - tkProgressBar
-      - tkStartGUI
-      - tkXselection.clear
-      - tkXselection.get
-      - tkXselection.handle
-      - tkXselection.own
+      - tclVar
+      - tclVersion
       - tk_choose.dir
       - tk_choose.files
       - tk_messageBox
@@ -6751,6 +6749,7 @@ namespaces:
       - tkpost
       - tkpostcascade
       - tkpostscript
+      - tkProgressBar
       - tkradiobutton
       - tkraise
       - tkscale
@@ -6771,6 +6770,7 @@ namespaces:
       - tkselection.to
       - tkset
       - tksize
+      - tkStartGUI
       - tktag.add
       - tktag.bind
       - tktag.cget
@@ -6826,6 +6826,10 @@ namespaces:
       - tkwm.title
       - tkwm.transient
       - tkwm.withdraw
+      - tkXselection.clear
+      - tkXselection.get
+      - tkXselection.handle
+      - tkXselection.own
       - tkxview
       - tkxview.moveto
       - tkxview.scroll
@@ -6852,117 +6856,40 @@ namespaces:
       - ttkspinbox
       - ttktreeview
   - namespace: tools
-    title: tools package
+    title: tools
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:tools
     entries:
+      - '[.check_details_changes'
       - '%notin%'
       - '%w/o%'
-      - BioC_package_db
-      - CRAN_Rd_xref_available_target_ids
-      - CRAN_Rd_xref_db_with_expansions
-      - CRAN_Rd_xref_problems
-      - CRAN_Rd_xref_reverse_dependencies
-      - CRAN_aliases_db
-      - CRAN_archive_db
-      - CRAN_baseurl_for_src_area
-      - CRAN_baseurl_for_web_area
-      - CRAN_check_details
-      - CRAN_check_issues
-      - CRAN_check_results
-      - CRAN_current_db
-      - CRAN_mirror_maintainers_info
-      - CRAN_mirror_mirmon_status
-      - CRAN_package_URL
-      - CRAN_package_check_URL
-      - CRAN_package_db
-      - CRAN_package_dependencies_with_dates
-      - CRAN_package_maintainers_db
-      - CRAN_package_maintainers_info
-      - CRAN_package_reverse_dependencies_and_views
-      - CRAN_package_reverse_dependencies_with_maintainers
-      - CRAN_packages_with_maintainer_matching
-      - CRAN_rdxrefs_db
-      - HTMLcomponents
-      - HTMLheader
-      - R
-      - R_check_outdirs
-      - R_license_db
-      - R_license_db_labels
-      - R_license_db_refresh_cache
-      - R_license_db_vars
-      - R_runR
-      - R_user_dir
-      - Rcmd
-      - Rd2HTML
-      - Rd2HTML_NEWS_in_Rd
-      - Rd2ex
-      - Rd2latex
-      - Rd2pdf_NEWS_in_Rd
-      - Rd2txt
-      - Rd2txt_NEWS_in_Rd
-      - Rd2txt_options
-      - RdTags
-      - RdTextFilter
-      - Rd_aliases
-      - Rd_contents
-      - Rd_db
-      - Rd_escape_specials
-      - Rd_expr_PR
-      - Rd_expr_doi
-      - Rd_info
-      - Rd_macros_package_dir
-      - Rd_package_DESCRIPTION
-      - Rd_package_author
-      - Rd_package_description
-      - Rd_package_indices
-      - Rd_package_maintainer
-      - Rd_package_title
-      - Rdiff
-      - Rdindex
-      - RweaveRdOptions
-      - SweaveTeXFilter
-      - Sys.setenv1
-      - '[.check_details_changes'
       - activeConcordance
-      - addConcordance
       - add_datalist
       - add_dummies
+      - addConcordance
       - analyze_check_log
       - analyze_license
       - analyze_licenses
       - analyze_licenses_in_license_db
       - analyze_licenses_in_repository
-      - as.Rconcordance
-      - as.Rconcordance.default
       - as.alist.call
       - as.alist.symbol
       - as.character.Rconcordance
       - as.character.Rd
       - as.matrix.check_url_db
+      - as.Rconcordance
+      - as.Rconcordance.default
       - assertCondition
       - assertError
       - assertWarning
       - bibstyle
+      - BioC_package_db
+      - build_license_db
       - buildVignette
       - buildVignettes
-      - build_license_db
-      - checkDocFiles
-      - checkDocStyle
-      - checkFF
-      - checkMD5sums
-      - checkPoFile
-      - checkPoFiles
-      - checkRd
-      - checkRdContents
-      - checkRdaFiles
-      - checkReplaceFuns
-      - checkS3methods
-      - checkTnF
-      - checkVignettes
-      - check_CRAN_mirrors
       - check_compiled_code
+      - check_CRAN_mirrors
       - check_details_changes
       - check_doi_db
       - check_math_rendering_in_Rd_db
@@ -6973,10 +6900,23 @@ namespaces:
       - check_packages_in_dir_results_summary
       - check_so_symbols
       - check_url_db
+      - checkDocFiles
+      - checkDocStyle
+      - checkFF
       - checkingLog
+      - checkMD5sums
+      - checkPoFile
+      - checkPoFiles
+      - checkRd
+      - checkRdaFiles
+      - checkRdContents
+      - checkReplaceFuns
+      - checkS3methods
+      - checkTnF
+      - checkVignettes
       - cleanupLatex
-      - closeLog
       - close_virtual_X11_db
+      - closeLog
       - code2LazyLoadDB
       - codoc
       - codocClasses
@@ -6984,6 +6924,30 @@ namespaces:
       - compactPDF
       - compatibilityEnv
       - config_val_to_logical
+      - CRAN_aliases_db
+      - CRAN_archive_db
+      - CRAN_baseurl_for_src_area
+      - CRAN_baseurl_for_web_area
+      - CRAN_check_details
+      - CRAN_check_issues
+      - CRAN_check_results
+      - CRAN_current_db
+      - CRAN_mirror_maintainers_info
+      - CRAN_mirror_mirmon_status
+      - CRAN_package_check_URL
+      - CRAN_package_db
+      - CRAN_package_dependencies_with_dates
+      - CRAN_package_maintainers_db
+      - CRAN_package_maintainers_info
+      - CRAN_package_reverse_dependencies_and_views
+      - CRAN_package_reverse_dependencies_with_maintainers
+      - CRAN_package_URL
+      - CRAN_packages_with_maintainer_matching
+      - CRAN_Rd_xref_available_target_ids
+      - CRAN_Rd_xref_db_with_expansions
+      - CRAN_Rd_xref_problems
+      - CRAN_Rd_xref_reverse_dependencies
+      - CRAN_rdxrefs_db
       - createRedirects
       - creatingLog
       - data2LazyLoadDB
@@ -6995,9 +6959,9 @@ namespaces:
       - detachPackages
       - doi_db
       - doi_db_from_installed_packages
-      - doi_db_from_package_Rd_db
       - doi_db_from_package_citation
       - doi_db_from_package_metadata
+      - doi_db_from_package_Rd_db
       - doi_db_from_package_sources
       - dynamicHelpURL
       - en_quote
@@ -7008,8 +6972,8 @@ namespaces:
       - escapeAmpersand
       - evalWithOpt
       - example2html
-      - expandDynamicFlags
       - expand_license_spec_component_from_db
+      - expandDynamicFlags
       - fetchRdDB
       - file_ext
       - file_path_as_absolute
@@ -7017,29 +6981,15 @@ namespaces:
       - file_path_sans_ext
       - file_test
       - filtergrep
-      - findHTMLlinks
       - find_gs_cmd
       - find_missing_required_BibTeX_fields
       - find_vignette_product
       - find_wide_Rd_lines_in_Rd_db
       - find_wide_Rd_lines_in_Rd_object
+      - findHTMLlinks
       - fixWindowsConcordancePaths
       - followConcordance
-      - format.CRAN_package_reverse_dependencies_and_views
-      - format.checkDocFiles
-      - format.checkDocStyle
-      - format.checkFF
-      - format.checkRdContents
-      - format.checkReplaceFuns
-      - format.checkS3methods
-      - format.checkTnF
-      - format.checkVignettes
-      - format.check_Rd_line_widths
-      - format.check_Rd_metadata
-      - format.check_Rd_xrefs
-      - format.check_RegSym_calls
-      - format.check_S3_methods_needing_delayed_registration
-      - format.check_T_and_F
+      - format_native_routine_registration_db_for_skeleton
       - format.check_bogus_return
       - format.check_code_usage_in_package
       - format.check_compiled_code
@@ -7050,32 +7000,55 @@ namespaces:
       - format.check_dotInternal
       - format.check_make_vars
       - format.check_nonAPI_calls
-      - format.check_package_CRAN_incoming
       - format.check_package_code_assign_to_globalenv
       - format.check_package_code_attach
       - format.check_package_code_data_into_globalenv
       - format.check_package_code_startup_functions
       - format.check_package_code_unload_functions
+      - format.check_package_CRAN_incoming
       - format.check_package_datalist
       - format.check_package_datasets
       - format.check_package_depends
       - format.check_package_description
-      - format.check_package_description2
       - format.check_package_description_encoding
+      - format.check_package_description2
       - format.check_package_license
       - format.check_packages_used
+      - format.check_Rd_line_widths
+      - format.check_Rd_metadata
+      - format.check_Rd_xrefs
+      - format.check_RegSym_calls
+      - format.check_S3_methods_needing_delayed_registration
       - format.check_so_symbols
+      - format.check_T_and_F
       - format.check_url_db
+      - format.checkDocFiles
+      - format.checkDocStyle
+      - format.checkFF
+      - format.checkRdContents
+      - format.checkReplaceFuns
+      - format.checkS3methods
+      - format.checkTnF
+      - format.checkVignettes
       - format.codocClasses
       - format.codocData
       - format.compactPDF
+      - format.CRAN_package_reverse_dependencies_and_views
       - format.news_db_from_md
       - format.subdir_tests
       - format.summarize_CRAN_check_status
       - format.undoc
-      - format_native_routine_registration_db_for_skeleton
       - fsub
       - fsub1
+      - get_CITATION_entry_fields
+      - get_exclude_patterns
+      - get_IANA_character_sets
+      - get_IANA_HTTP_status_code_db
+      - get_IANA_URI_scheme_db
+      - get_link
+      - get_S4_generics_with_methods
+      - get_serialization_version
+      - get_timeout
       - getBibstyle
       - getDepList
       - getDynamicFlags
@@ -7083,28 +7056,21 @@ namespaces:
       - getVignetteEncoding
       - getVignetteEngine
       - getVignetteInfo
-      - get_CITATION_entry_fields
-      - get_IANA_HTTP_status_code_db
-      - get_IANA_URI_scheme_db
-      - get_IANA_character_sets
-      - get_S4_generics_with_methods
-      - get_exclude_patterns
-      - get_link
-      - get_serialization_version
-      - get_timeout
+      - HTMLcomponents
+      - HTMLheader
       - htmlify
       - httpd
       - httpdPort
       - imports_for_undefined_globals
-      - inRbuildignore
       - initialRdMacros
+      - inRbuildignore
       - installFoundDepends
+      - is_data_for_dataset
       - isBlankLineRd
       - isBlankRd
-      - is_data_for_dataset
-      - latexToUtf8
       - latex_canonical_encoding
       - latex_tag
+      - latexToUtf8
       - lines2str
       - list_code_files_in_package
       - list_data_in_pkg
@@ -7113,17 +7079,17 @@ namespaces:
       - loadPkgRdMacros
       - loadRdMacros
       - loadVignetteBuilder
+      - make_sysdata_rda
+      - make_translations_pkg
       - makeDemoTable
       - makeHelpTable
       - makeJSS
       - makeLatexTable
       - makeLazyLoadDB
       - makeLazyLoading
-      - makeVignetteTable
-      - make_sysdata_rda
-      - make_translations_pkg
       - makevars_site
       - makevars_user
+      - makeVignetteTable
       - massageExamples
       - matchConcordance
       - md5sum
@@ -7136,42 +7102,42 @@ namespaces:
       - news2Rd
       - nonS3methods
       - noteLog
-      - package.dependencies
       - package_dependencies
       - package_ff_call_db
       - package_native_routine_registration_db
       - package_native_routine_registration_skeleton
-      - parseLatex
+      - package.dependencies
       - parse_Rd
       - parse_URI_reference
+      - parseLatex
       - path_and_libPath
       - permissify
       - pkg2HTML
       - pkgDepends
       - pkgVignettes
+      - prepare_Rd
       - prepare2_Rd
       - prepare3_Rd
-      - prepare_Rd
-      - print.CRAN_package_reverse_dependencies_and_views
-      - print.LaTeX
-      - print.Rconcordance
-      - print.Rd
       - print.activeConcordance
-      - print.checkRd
       - print.check_demo_index
       - print.check_details
       - print.check_details_changes
       - print.check_doi_db
-      - print.check_package_CRAN_incoming
       - print.check_package_code_syntax
       - print.check_package_compact_datasets
+      - print.check_package_CRAN_incoming
       - print.check_package_description
       - print.check_packages_in_dir
       - print.check_po_files
       - print.check_pragmas
       - print.check_url_db
       - print.check_vignette_index
+      - print.checkRd
       - print.codoc
+      - print.CRAN_package_reverse_dependencies_and_views
+      - print.LaTeX
+      - print.Rconcordance
+      - print.Rd
       - print.summarize_CRAN_check_status
       - print.xgettext
       - print.xngettext
@@ -7184,44 +7150,82 @@ namespaces:
       - psnice
       - psub
       - psub1
+      - R
+      - R_check_outdirs
+      - R_license_db
+      - R_license_db_labels
+      - R_license_db_refresh_cache
+      - R_license_db_vars
+      - R_runR
+      - R_user_dir
+      - Rcmd
+      - Rd_aliases
+      - Rd_contents
+      - Rd_db
+      - Rd_escape_specials
+      - Rd_expr_doi
+      - Rd_expr_PR
+      - Rd_info
+      - Rd_macros_package_dir
+      - Rd_package_author
+      - Rd_package_description
+      - Rd_package_DESCRIPTION
+      - Rd_package_indices
+      - Rd_package_maintainer
+      - Rd_package_title
+      - Rd2ex
+      - Rd2HTML
+      - Rd2HTML_NEWS_in_Rd
+      - Rd2latex
+      - Rd2pdf_NEWS_in_Rd
+      - Rd2txt
+      - Rd2txt_NEWS_in_Rd
+      - Rd2txt_options
       - rdfragment2text
-      - reQuote
+      - Rdiff
+      - Rdindex
+      - RdTags
+      - RdTextFilter
       - re_anchor
       - re_group
       - re_or
-      - read.00Index
-      - read_CRAN_object
       - read_check_log
+      - read_CRAN_object
       - read_debian_copyright_file
       - read_symbols_from_object_file
+      - read.00Index
       - replaceRdSrcrefs
       - report_timeout
+      - reQuote
       - resaveRdaFiles
       - resultLog
       - revert_install_time_patches
       - run_Rcmd
+      - RweaveRdOptions
       - setDynamicFlags
       - setRlibs
       - showNonASCII
       - showNonASCIIfile
       - shtmlify
       - standard_package_names
-      - startDynamicHelp
       - start_virtual_X11_fb
+      - startDynamicHelp
       - stopRd
       - str_parse
       - str_parse_logic
       - string2id
       - stringToConcordance
       - stripPathTo
-      - summarize_CRAN_check_status
-      - summarize_CRAN_check_status_according_to_maintainer
       - summarize_check_packages_in_dir_depends
       - summarize_check_packages_in_dir_results
       - summarize_check_packages_in_dir_timings
+      - summarize_CRAN_check_status
+      - summarize_CRAN_check_status_according_to_maintainer
       - summarize_license_db
       - summary.check_packages_in_dir
       - summaryLog
+      - SweaveTeXFilter
+      - Sys.setenv1
       - sysdata2LazyLoadDB
       - tabExpand
       - tag2id
@@ -7233,102 +7237,66 @@ namespaces:
       - texi2dvi
       - texi2pdf
       - tidy_validate
-      - tidy_validate_R_httpd_path
       - tidy_validate_db
       - tidy_validate_files
       - tidy_validate_package_Rd_files
       - tidy_validate_package_Rd_files_from_dir
+      - tidy_validate_R_httpd_path
       - tidy_validate_urls
       - toHTML
       - toHTML.citation
       - toHTML.news_db
       - toHTML.news_db_from_md
       - toHTML.packageIQR
-      - toRd
-      - toRd.bibentry
-      - toRd.default
-      - toTitleCase
       - topic2filename
       - topic2href
       - topic2id
       - topic2url
+      - toRd
+      - toRd.bibentry
+      - toRd.default
+      - toTitleCase
       - transformMethod
       - undoc
       - update_PACKAGES
-      - update_RGui_po
       - update_pkg_po
+      - update_RGui_po
       - url_db
       - url_db_from_HTML_files
-      - url_db_from_PDF_files
       - url_db_from_installed_packages
-      - url_db_from_package_HTML_files
-      - url_db_from_package_NEWS_md
-      - url_db_from_package_README_md
-      - url_db_from_package_Rd_db
       - url_db_from_package_citation
+      - url_db_from_package_HTML_files
       - url_db_from_package_metadata
       - url_db_from_package_news
+      - url_db_from_package_NEWS_md
+      - url_db_from_package_Rd_db
+      - url_db_from_package_README_md
       - url_db_from_package_sources
+      - url_db_from_PDF_files
       - urlify
       - urlify_doi
       - urlify_email_address
       - vhtmlify
+      - vignette_is_tex
+      - vignette_type
       - vignetteDepends
       - vignetteEngine
       - vignetteInfo
-      - vignette_is_tex
-      - vignette_type
-      - warnRd
       - warningLog
-      - writeDefaultNamespace
+      - warnRd
       - write_PACKAGES
       - write_texts_to_dir
+      - writeDefaultNamespace
       - xgettext
       - xgettext2pot
       - xngettext
   - namespace: utils
-    title: utils package
+    title: utils
     target: R 4.4
     sourceKind: runtime
     sourceRef: r-base:4.4.2:utils
     entries:
-      - $.bibentry
-      - $.person
-      - $<-.bibentry
-      - $<-.citation
-      - $<-.person
       - '?'
-      - Ops.roman
-      - RShowDoc
-      - RSiteSearch
-      - Rprof
-      - Rprof_memory_summary
-      - Rprofmem
-      - Rtangle
-      - RtangleFinish
-      - RtangleRuncode
-      - RtangleSetup
-      - RtangleWritedoc
-      - RweaveChunkPrefix
-      - RweaveEvalWithOpt
-      - RweaveLatex
-      - RweaveLatexFinish
-      - RweaveLatexOptions
-      - RweaveLatexRuncode
-      - RweaveLatexSetup
-      - RweaveLatexWritedoc
-      - RweaveTryStop
-      - Stangle
-      - Summary.roman
-      - Sweave
-      - SweaveGetSyntax
-      - SweaveHooks
-      - SweaveParseOptions
-      - SweaveReadFile
-      - SweaveSyntConv
-      - URLdecode
-      - URLencode
-      - View
       - '[.bibentry'
       - '[.getAnywhere'
       - '[.news_db'
@@ -7338,6 +7306,11 @@ namespaces:
       - '[[.hashtab'
       - '[[.person'
       - '[[<-.hashtab'
+      - $.bibentry
+      - $.person
+      - $<-.bibentry
+      - $<-.citation
+      - $<-.person
       - adist
       - alarm
       - apropos
@@ -7362,11 +7335,6 @@ namespaces:
       - asDateBuilt
       - askYesNo
       - aspell
-      - aspell_R_C_files
-      - aspell_R_R_files
-      - aspell_R_Rd_files
-      - aspell_R_manuals
-      - aspell_R_vignettes
       - aspell_filter_LaTeX_commands_from_Aspell_tex_filter_info
       - aspell_filter_LaTeX_worker
       - aspell_find_dictionaries
@@ -7374,12 +7342,17 @@ namespaces:
       - aspell_inspect_context
       - aspell_package
       - aspell_package_C_files
-      - aspell_package_R_files
-      - aspell_package_Rd_files
       - aspell_package_description
       - aspell_package_pot_files
+      - aspell_package_R_files
+      - aspell_package_Rd_files
       - aspell_package_vignettes
       - aspell_query_wiktionary_categories
+      - aspell_R_C_files
+      - aspell_R_manuals
+      - aspell_R_R_files
+      - aspell_R_Rd_files
+      - aspell_R_vignettes
       - aspell_update_dictionary
       - aspell_write_personal_dictionary_file
       - assignInMyNamespace
@@ -7400,18 +7373,18 @@ namespaces:
       - capture.output
       - changedFiles
       - charClass
-      - checkCRAN
-      - checkHT
       - check_for_XQuartz
       - check_screen_device
+      - checkCRAN
+      - checkHT
       - chooseBioCmirror
       - chooseCRANmirror
-      - citEntry
-      - citFooter
-      - citHeader
       - citation
       - cite
       - citeNatbib
+      - citEntry
+      - citFooter
+      - citHeader
       - close.socket
       - close.txtProgressBar
       - clrhash
@@ -7444,30 +7417,30 @@ namespaces:
       - emacs
       - example
       - expr2token
+      - file_test
       - file.edit
       - fileCompletionPreferred
       - fileCompletions
       - fileSnapshot
-      - file_test
       - filter_packages_by_depends_predicates
       - find
+      - find_files_in_directories
       - findCRANmirror
       - findExactMatches
       - findFuzzyMatches
       - findGeneric
       - findLineNum
       - findMatches
-      - find_files_in_directories
       - fix
       - fixInNamespace
       - flush.console
       - fnLineNum
-      - format.MethodsFunction
       - format.aspell
       - format.aspell_inspect_context
       - format.bibentry
       - format.citation
       - format.hashtab
+      - format.MethodsFunction
       - format.news_db
       - format.object_size
       - format.person
@@ -7476,10 +7449,12 @@ namespaces:
       - formatUL
       - functionArgs
       - fuzzyApropos
+      - get_parse_data_for_message_strings
       - getAnywhere
       - getCRANmirrors
       - getDependencies
       - getFromNamespace
+      - gethash
       - getIsFirstArg
       - getKnownS3generics
       - getParseData
@@ -7489,17 +7464,15 @@ namespaces:
       - getS3method
       - getSrcByte
       - getSrcDirectory
+      - getSrcfile
       - getSrcFilename
       - getSrcLocation
-      - getSrcfile
       - getSrcref
       - getTxtProgressBar
-      - get_parse_data_for_message_strings
-      - gethash
       - glob2rx
       - globalVariables
-      - hasName
       - hashtab
+      - hasName
       - head
       - head.array
       - head.default
@@ -7515,8 +7488,8 @@ namespaces:
       - hsearch_db
       - hsearch_db_concepts
       - hsearch_db_keywords
-      - inFunction
       - index.search
+      - inFunction
       - install.packages
       - installed.packages
       - is.hashtab
@@ -7535,12 +7508,12 @@ namespaces:
       - lsf.str
       - macDynLoads
       - maintainer
+      - make_sysdata_rda
       - make.packages.html
       - make.socket
       - makeRegexpSafe
       - makeRweaveLatexCodeRunner
       - makeUserAgent
-      - make_sysdata_rda
       - maphash
       - matchAvailableTopics
       - memory.limit
@@ -7559,6 +7532,7 @@ namespaces:
       - object.size
       - offline_help_helper
       - old.packages
+      - Ops.roman
       - package.skeleton
       - packageDate
       - packageDescription
@@ -7569,12 +7543,10 @@ namespaces:
       - person
       - personList
       - pico
-      - print.Bibtex
-      - print.Latex
-      - print.MethodsFunction
       - print.aspell
       - print.aspell_inspect_context
       - print.bibentry
+      - print.Bibtex
       - print.browseVignettes
       - print.changedFiles
       - print.citation
@@ -7585,7 +7557,9 @@ namespaces:
       - print.help_files_with_topic
       - print.hsearch
       - print.hsearch_db
+      - print.Latex
       - print.ls_str
+      - print.MethodsFunction
       - print.news_db
       - print.object_size
       - print.packageDescription
@@ -7609,11 +7583,11 @@ namespaces:
       - rc.options
       - rc.settings
       - rc.status
-      - read.DIF
       - read.csv
       - read.csv2
       - read.delim
       - read.delim2
+      - read.DIF
       - read.fortran
       - read.fwf
       - read.socket
@@ -7633,16 +7607,35 @@ namespaces:
       - rep.bibentry
       - rep.roman
       - resolvePkgType
+      - Rprof
+      - Rprof_memory_summary
+      - Rprofmem
+      - RShowDoc
+      - RSiteSearch
       - rtags
       - rtags.file
+      - Rtangle
+      - RtangleFinish
+      - RtangleRuncode
+      - RtangleSetup
+      - RtangleWritedoc
+      - RweaveChunkPrefix
+      - RweaveEvalWithOpt
+      - RweaveLatex
+      - RweaveLatexFinish
+      - RweaveLatexOptions
+      - RweaveLatexRuncode
+      - RweaveLatexSetup
+      - RweaveLatexWritedoc
+      - RweaveTryStop
       - savehistory
       - select.list
       - sessionInfo
       - setBreakpoint
+      - sethash
       - setIsFirstArg
       - setRepositories
       - setTxtProgressBar
-      - sethash
       - shorten.to.string
       - simplifyRepos
       - sort.bibentry
@@ -7653,23 +7646,31 @@ namespaces:
       - stack
       - stack.data.frame
       - stack.default
+      - Stangle
       - str
-      - str.Date
-      - str.POSIXt
       - str.data.frame
+      - str.Date
       - str.default
       - str.hashtab
+      - str.POSIXt
       - str2logical
-      - strOptions
       - strcapture
       - strextract
+      - strOptions
       - strslice
       - subset.news_db
       - substr_with_tabs
       - summary.aspell
       - summary.packageStatus
+      - Summary.roman
       - summaryRprof
       - suppressForeignCheck
+      - Sweave
+      - SweaveGetSyntax
+      - SweaveHooks
+      - SweaveParseOptions
+      - SweaveReadFile
+      - SweaveSyntConv
       - tail
       - tail.array
       - tail.default
@@ -7701,12 +7702,15 @@ namespaces:
       - untar
       - untar2
       - unzip
-      - update.packageStatus
       - update.packages
+      - update.packageStatus
       - upgrade
       - upgrade.packageStatus
       - url.show
+      - URLdecode
+      - URLencode
       - vi
+      - View
       - vignette
       - warnErrList
       - write.csv

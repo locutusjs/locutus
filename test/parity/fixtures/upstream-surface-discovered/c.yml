@@ -174,7 +174,70 @@ namespaces:
     target: C23
     sourceKind: source_manifest
     sourceRef: https://en.cppreference.com/w/c/header/math
-    entries: []
+    entries:
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atan2
+      - atanh
+      - cbrt
+      - ceil
+      - copysign
+      - cos
+      - cosh
+      - erf
+      - erfc
+      - exp
+      - exp2
+      - expm1
+      - fabs
+      - fdim
+      - floor
+      - fma
+      - fmax
+      - fmin
+      - fmod
+      - fpclassify
+      - frexp
+      - hypot
+      - ilogb
+      - isfinite
+      - isgreater
+      - isgreaterequal
+      - isinf
+      - isless
+      - islessequal
+      - islessgreater
+      - isnan
+      - isnormal
+      - isunordered
+      - ldexp
+      - lgamma
+      - log
+      - log10
+      - log1p
+      - log2
+      - logb
+      - modf
+      - nan
+      - nearbyint
+      - nextafter
+      - pow
+      - remainder
+      - remquo
+      - rint
+      - round
+      - scalbn
+      - signbit
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+      - tgamma
+      - trunc
   - namespace: setjmp
     title: setjmp.h
     target: C23
@@ -214,11 +277,15 @@ namespaces:
     sourceRef: https://en.cppreference.com/w/c/header/stdatomic
     entries:
       - atomic_compare_exchange_strong
+      - atomic_compare_exchange_strong_explicit
       - atomic_compare_exchange_weak
+      - atomic_compare_exchange_weak_explicit
       - atomic_exchange
       - atomic_exchange_explicit
       - atomic_flag_clear
+      - atomic_flag_clear_explicit
       - atomic_flag_test_and_set
+      - atomic_flag_test_and_set_explicit
       - atomic_init
       - atomic_is_lock_free
       - atomic_load
@@ -288,15 +355,20 @@ namespaces:
       - fgetpos
       - fgets
       - fopen
+      - fopen_s
       - fprintf
       - fprintf_s
       - fputc
       - fputs
+      - fread
+      - freopen
+      - freopen_s
       - fscanf
       - fscanf_s
       - fseek
       - fsetpos
       - ftell
+      - fwrite
       - getc
       - getchar
       - gets_s
@@ -354,16 +426,19 @@ namespaces:
       - atoi
       - atol
       - atoll
+      - bsearch
+      - bsearch_s
       - call_once
       - calloc
+      - defined
       - div
       - exit
       - free
       - free_aligned_sized
       - free_sized
       - getenv
+      - getenv_s
       - ignore_handler_s
-      - int
       - labs
       - ldiv
       - llabs
@@ -371,12 +446,14 @@ namespaces:
       - malloc
       - mblen
       - mbstowcs
+      - mbstowcs_s
       - mbtowc
       - memalignment
+      - qsort
+      - qsort_s
       - quick_exit
       - rand
       - realloc
-      - set_constraint_handler_s
       - srand
       - strfromd
       - strfromd128
@@ -393,15 +470,68 @@ namespaces:
       - strtold
       - strtoll
       - strtoul
+      - strtoull
       - system
       - wcstombs
+      - wcstombs_s
       - wctomb
+      - wctomb_s
   - namespace: stdmchar
     title: stdmchar.h
     target: C23
     sourceKind: source_manifest
     sourceRef: https://en.cppreference.com/w/c/header/stdmchar
-    entries: []
+    entries:
+      - stdc_c16nrtoc16n
+      - stdc_c16nrtoc32n
+      - stdc_c16nrtoc8n
+      - stdc_c16nrtomcn
+      - stdc_c16nrtomwcn
+      - stdc_c16snrtoc16sn
+      - stdc_c16snrtoc32sn
+      - stdc_c16snrtoc8sn
+      - stdc_c16snrtomcsn
+      - stdc_c16snrtomwcsn
+      - stdc_c32nrtoc16n
+      - stdc_c32nrtoc32n
+      - stdc_c32nrtoc8n
+      - stdc_c32nrtomcn
+      - stdc_c32nrtomwcn
+      - stdc_c32snrtoc16sn
+      - stdc_c32snrtoc32sn
+      - stdc_c32snrtoc8sn
+      - stdc_c32snrtomcsn
+      - stdc_c32snrtomwcsn
+      - stdc_c8nrtoc16n
+      - stdc_c8nrtoc32n
+      - stdc_c8nrtoc8n
+      - stdc_c8nrtomcn
+      - stdc_c8nrtomwcn
+      - stdc_c8snrtoc16sn
+      - stdc_c8snrtoc32sn
+      - stdc_c8snrtoc8sn
+      - stdc_c8snrtomcsn
+      - stdc_c8snrtomwcsn
+      - stdc_mcnrtoc16n
+      - stdc_mcnrtoc32n
+      - stdc_mcnrtoc8n
+      - stdc_mcnrtomcn
+      - stdc_mcnrtomwcn
+      - stdc_mcsnrtoc16sn
+      - stdc_mcsnrtoc32sn
+      - stdc_mcsnrtoc8sn
+      - stdc_mcsnrtomcsn
+      - stdc_mcsnrtomwcsn
+      - stdc_mwcnrtoc16n
+      - stdc_mwcnrtoc32n
+      - stdc_mwcnrtoc8n
+      - stdc_mwcnrtomcn
+      - stdc_mwcnrtomwcn
+      - stdc_mwcsnrtoc16sn
+      - stdc_mwcsnrtoc32sn
+      - stdc_mwcsnrtoc8sn
+      - stdc_mwcsnrtomcsn
+      - stdc_mwcsnrtomwcsn
   - namespace: stdnoreturn
     title: stdnoreturn.h
     target: C23
@@ -423,6 +553,7 @@ namespaces:
       - memmove_s
       - memset
       - memset_explicit
+      - memset_s
       - strcat
       - strcat_s
       - strchr
@@ -433,7 +564,6 @@ namespaces:
       - strcspn
       - strdup
       - strerror
-      - strerror_s
       - strerrorlen_s
       - strlen
       - strncat
@@ -449,6 +579,7 @@ namespaces:
       - strspn
       - strstr
       - strtok
+      - strtok_s
       - strxfrm
   - namespace: tgmath
     title: tgmath.h
@@ -467,6 +598,7 @@ namespaces:
       - cnd_destroy
       - cnd_init
       - cnd_signal
+      - cnd_timedwait
       - cnd_wait
       - mtx_destroy
       - mtx_init
@@ -505,6 +637,7 @@ namespaces:
       - localtime_r
       - localtime_s
       - mktime
+      - strftime
       - time
       - timegm
       - timespec_get
@@ -518,6 +651,9 @@ namespaces:
       - c16rtomb
       - c32rtomb
       - c8rtomb
+      - mbrtoc16
+      - mbrtoc32
+      - mbrtoc8
   - namespace: wchar
     title: wchar.h
     target: C23
@@ -537,7 +673,10 @@ namespaces:
       - getwc
       - getwchar
       - mbrlen
+      - mbrtowc
       - mbsinit
+      - mbsrtowcs
+      - mbsrtowcs_s
       - putwc
       - putwchar
       - snwprintf_s
@@ -550,6 +689,9 @@ namespaces:
       - vfwprintf_s
       - vfwscanf
       - vfwscanf_s
+      - vsnwprintf_s
+      - vswprintf
+      - vswprintf_s
       - vswscanf
       - vswscanf_s
       - vwprintf
@@ -557,6 +699,7 @@ namespaces:
       - vwscanf
       - vwscanf_s
       - wcrtomb
+      - wcrtomb_s
       - wcscat
       - wcscat_s
       - wcschr
@@ -565,14 +708,19 @@ namespaces:
       - wcscpy
       - wcscpy_s
       - wcscspn
+      - wcsftime
       - wcslen
       - wcsncat
+      - wcsncat_s
       - wcsncmp
       - wcsncpy
+      - wcsncpy_s
       - wcsnlen
       - wcsnlen_s
       - wcspbrk
       - wcsrchr
+      - wcsrtombs
+      - wcsrtombs_s
       - wcsspn
       - wcsstr
       - wcstod
@@ -580,14 +728,19 @@ namespaces:
       - wcstod32
       - wcstod64
       - wcstof
+      - wcstok
+      - wcstok_s
       - wcstol
       - wcstold
       - wcstoll
+      - wcstoul
+      - wcstoull
       - wcsxfrm
       - wctob
       - wmemchr
       - wmemcmp
       - wmemcpy
+      - wmemcpy_s
       - wmemmove
       - wmemmove_s
       - wmemset

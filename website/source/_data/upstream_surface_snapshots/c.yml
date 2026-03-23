@@ -1,10 +1,92 @@
 language: c
+catalog:
+  target: C23
+  sourceKind: source_manifest
+  sourceRef: https://en.cppreference.com/w/c/header
 namespaces:
+  - namespace: assert
+    title: assert.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/assert
+    entries: []
+  - namespace: complex
+    title: complex.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/complex
+    entries:
+      - cabs
+      - cabsf
+      - cabsl
+      - cacos
+      - cacosf
+      - cacosh
+      - cacoshf
+      - cacoshl
+      - cacosl
+      - carg
+      - cargf
+      - cargl
+      - casin
+      - casinf
+      - casinh
+      - casinhf
+      - casinhl
+      - casinl
+      - catan
+      - catanf
+      - catanh
+      - catanhf
+      - catanhl
+      - catanl
+      - ccos
+      - ccosf
+      - ccosh
+      - ccoshf
+      - ccoshl
+      - ccosl
+      - cexp
+      - cexpf
+      - cexpl
+      - cimag
+      - cimagf
+      - cimagl
+      - clog
+      - clogf
+      - clogl
+      - conj
+      - conjf
+      - conjl
+      - cpow
+      - cpowf
+      - cpowl
+      - cproj
+      - cprojf
+      - cprojl
+      - creal
+      - crealf
+      - creall
+      - csin
+      - csinf
+      - csinh
+      - csinhf
+      - csinhl
+      - csinl
+      - csqrt
+      - csqrtf
+      - csqrtl
+      - ctan
+      - ctanf
+      - ctanh
+      - ctanhf
+      - ctanhl
+      - ctanl
   - namespace: ctype
     title: ctype.h
     target: C23
-    sourceKind: manual
-    sourceRef: https://en.cppreference.com/w/c/string/byte
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/ctype
     entries:
       - isalnum
       - isalpha
@@ -20,11 +102,78 @@ namespaces:
       - isxdigit
       - tolower
       - toupper
+  - namespace: errno
+    title: errno.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/errno
+    entries: []
+  - namespace: fenv
+    title: fenv.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/fenv
+    entries:
+      - fe_dec_getround
+      - fe_dec_setround
+      - feclearexcept
+      - fegetenv
+      - fegetexceptflag
+      - fegetmode
+      - fegetround
+      - feholdexcept
+      - feraiseexcept
+      - fesetenv
+      - fesetexcept
+      - fesetexceptflag
+      - fesetmode
+      - fesetround
+      - fetestexcept
+      - fetestexceptflag
+      - feupdateenv
+  - namespace: float
+    title: float.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/float
+    entries: []
+  - namespace: inttypes
+    title: inttypes.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/inttypes
+    entries:
+      - imaxabs
+      - imaxdiv
+      - strtoimax
+      - strtoumax
+      - wcstoimax
+      - wcstoumax
+  - namespace: iso646
+    title: iso646.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/iso646
+    entries: []
+  - namespace: limits
+    title: limits.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/limits
+    entries: []
+  - namespace: locale
+    title: locale.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/locale
+    entries:
+      - localeconv
+      - setlocale
   - namespace: math
     title: math.h
     target: C23
-    sourceKind: manual
-    sourceRef: https://en.cppreference.com/w/c/numeric/math
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/math
     entries:
       - acos
       - acosh
@@ -38,8 +187,6 @@ namespaces:
       - copysign
       - cos
       - cosh
-      - cospi
-      - div
       - erf
       - erfc
       - exp
@@ -82,22 +229,122 @@ namespaces:
       - remquo
       - rint
       - round
-      - roundeven
       - scalbn
       - signbit
       - sin
       - sinh
-      - sinpi
       - sqrt
       - tan
       - tanh
       - tgamma
       - trunc
+  - namespace: setjmp
+    title: setjmp.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/setjmp
+    entries:
+      - longjmp
+      - setjmp
+  - namespace: signal
+    title: signal.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/signal
+    entries:
+      - raise
+      - void
+  - namespace: stdalign
+    title: stdalign.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdalign
+    entries: []
+  - namespace: stdarg
+    title: stdarg.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdarg
+    entries:
+      - va_arg
+      - va_copy
+      - va_end
+      - va_start
+  - namespace: stdatomic
+    title: stdatomic.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdatomic
+    entries:
+      - atomic_compare_exchange_strong
+      - atomic_compare_exchange_strong_explicit
+      - atomic_compare_exchange_weak
+      - atomic_compare_exchange_weak_explicit
+      - atomic_exchange
+      - atomic_exchange_explicit
+      - atomic_flag_clear
+      - atomic_flag_clear_explicit
+      - atomic_flag_test_and_set
+      - atomic_flag_test_and_set_explicit
+      - atomic_init
+      - atomic_is_lock_free
+      - atomic_load
+      - atomic_load_explicit
+      - atomic_signal_fence
+      - atomic_store
+      - atomic_store_explicit
+      - atomic_thread_fence
+      - kill_dependency
+  - namespace: stdbit
+    title: stdbit.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdbit
+    entries:
+      - stdc_rotate_left
+      - stdc_rotate_left_uc
+      - stdc_rotate_left_ui
+      - stdc_rotate_left_ul
+      - stdc_rotate_left_ull
+      - stdc_rotate_left_us
+      - stdc_rotate_right
+      - stdc_rotate_right_uc
+      - stdc_rotate_right_ui
+      - stdc_rotate_right_ul
+      - stdc_rotate_right_ull
+      - stdc_rotate_right_us
+  - namespace: stdbool
+    title: stdbool.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdbool
+    entries: []
+  - namespace: stdckdint
+    title: stdckdint.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdckdint
+    entries:
+      - ckd_add
+      - ckd_mul
+      - ckd_sub
+  - namespace: stddef
+    title: stddef.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stddef
+    entries: []
+  - namespace: stdint
+    title: stdint.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdint
+    entries: []
   - namespace: stdio
     title: stdio.h
     target: C23
-    sourceKind: manual
-    sourceRef: https://en.cppreference.com/w/c/io
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdio
     entries:
       - clearerr
       - fclose
@@ -107,66 +354,73 @@ namespaces:
       - fgetc
       - fgetpos
       - fgets
-      - fgetwc
-      - fgetws
       - fopen
+      - fopen_s
       - fprintf
       - fprintf_s
       - fputc
       - fputs
-      - fputwc
-      - fputws
       - fread
       - freopen
+      - freopen_s
       - fscanf
+      - fscanf_s
       - fseek
       - fsetpos
       - ftell
-      - fwide
-      - fwprintf
       - fwrite
-      - fwscanf
+      - getc
       - getchar
-      - gets
-      - getwchar
+      - gets_s
       - perror
       - printf
       - printf_s
+      - putc
       - putchar
       - puts
-      - putwchar
       - remove
       - rename
       - rewind
+      - scanf
+      - scanf_s
       - setbuf
       - setvbuf
       - snprintf
       - snprintf_s
       - sprintf
       - sprintf_s
+      - sscanf
+      - sscanf_s
       - tmpfile
+      - tmpfile_s
       - tmpnam
+      - tmpnam_s
       - ungetc
-      - ungetwc
       - vfprintf
       - vfprintf_s
       - vfscanf
-      - vfwprintf
-      - vfwscanf
+      - vfscanf_s
       - vprintf
       - vprintf_s
+      - vscanf
+      - vscanf_s
       - vsnprintf
       - vsnprintf_s
       - vsprintf
       - vsprintf_s
+      - vsscanf
+      - vsscanf_s
   - namespace: stdlib
     title: stdlib.h
     target: C23
-    sourceKind: manual
-    sourceRef: https://en.cppreference.com/w/c/program
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdlib
     entries:
       - abort
+      - abort_handler_s
       - abs
+      - aligned_alloc
+      - at_quick_exit
       - atexit
       - atof
       - atoi
@@ -174,60 +428,347 @@ namespaces:
       - atoll
       - bsearch
       - bsearch_s
+      - call_once
+      - calloc
+      - defined
+      - div
       - exit
+      - free
+      - free_aligned_sized
+      - free_sized
       - getenv
       - getenv_s
-      - longjmp
+      - ignore_handler_s
+      - labs
+      - ldiv
+      - llabs
+      - lldiv
+      - malloc
+      - mblen
+      - mbstowcs
+      - mbstowcs_s
+      - mbtowc
       - memalignment
       - qsort
       - qsort_s
-      - raise
+      - quick_exit
       - rand
-      - setjmp
-      - signal
+      - realloc
       - srand
+      - strfromd
+      - strfromd128
+      - strfromd32
+      - strfromd64
+      - strfromf
+      - strfroml
       - strtod
+      - strtod128
+      - strtod32
+      - strtod64
       - strtof
       - strtol
       - strtold
       - strtoll
+      - strtoul
+      - strtoull
       - system
-      - unreachable
+      - wcstombs
+      - wcstombs_s
+      - wctomb
+      - wctomb_s
+  - namespace: stdmchar
+    title: stdmchar.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdmchar
+    entries:
+      - stdc_c16nrtoc16n
+      - stdc_c16nrtoc32n
+      - stdc_c16nrtoc8n
+      - stdc_c16nrtomcn
+      - stdc_c16nrtomwcn
+      - stdc_c16snrtoc16sn
+      - stdc_c16snrtoc32sn
+      - stdc_c16snrtoc8sn
+      - stdc_c16snrtomcsn
+      - stdc_c16snrtomwcsn
+      - stdc_c32nrtoc16n
+      - stdc_c32nrtoc32n
+      - stdc_c32nrtoc8n
+      - stdc_c32nrtomcn
+      - stdc_c32nrtomwcn
+      - stdc_c32snrtoc16sn
+      - stdc_c32snrtoc32sn
+      - stdc_c32snrtoc8sn
+      - stdc_c32snrtomcsn
+      - stdc_c32snrtomwcsn
+      - stdc_c8nrtoc16n
+      - stdc_c8nrtoc32n
+      - stdc_c8nrtoc8n
+      - stdc_c8nrtomcn
+      - stdc_c8nrtomwcn
+      - stdc_c8snrtoc16sn
+      - stdc_c8snrtoc32sn
+      - stdc_c8snrtoc8sn
+      - stdc_c8snrtomcsn
+      - stdc_c8snrtomwcsn
+      - stdc_mcnrtoc16n
+      - stdc_mcnrtoc32n
+      - stdc_mcnrtoc8n
+      - stdc_mcnrtomcn
+      - stdc_mcnrtomwcn
+      - stdc_mcsnrtoc16sn
+      - stdc_mcsnrtoc32sn
+      - stdc_mcsnrtoc8sn
+      - stdc_mcsnrtomcsn
+      - stdc_mcsnrtomwcsn
+      - stdc_mwcnrtoc16n
+      - stdc_mwcnrtoc32n
+      - stdc_mwcnrtoc8n
+      - stdc_mwcnrtomcn
+      - stdc_mwcnrtomwcn
+      - stdc_mwcsnrtoc16sn
+      - stdc_mwcsnrtoc32sn
+      - stdc_mwcsnrtoc8sn
+      - stdc_mwcsnrtomcsn
+      - stdc_mwcsnrtomwcsn
+  - namespace: stdnoreturn
+    title: stdnoreturn.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/stdnoreturn
+    entries: []
   - namespace: string
     title: string.h
     target: C23
-    sourceKind: manual
-    sourceRef: https://en.cppreference.com/w/c/string/byte
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/string
     entries:
-      - atof
-      - atoi
       - memccpy
       - memchr
       - memcmp
       - memcpy
+      - memcpy_s
       - memmove
+      - memmove_s
       - memset
+      - memset_explicit
+      - memset_s
       - strcat
+      - strcat_s
       - strchr
       - strcmp
       - strcoll
       - strcpy
+      - strcpy_s
       - strcspn
       - strdup
       - strerror
-      - strfromf
+      - strerrorlen_s
       - strlen
       - strncat
+      - strncat_s
       - strncmp
       - strncpy
+      - strncpy_s
       - strndup
+      - strnlen
+      - strnlen_s
       - strpbrk
       - strrchr
       - strspn
       - strstr
-      - strtof
-      - strtoimax
       - strtok
-      - strtol
-      - strtoul
+      - strtok_s
       - strxfrm
+  - namespace: tgmath
+    title: tgmath.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/tgmath
+    entries: []
+  - namespace: threads
+    title: threads.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/threads
+    entries:
+      - call_once
+      - cnd_broadcast
+      - cnd_destroy
+      - cnd_init
+      - cnd_signal
+      - cnd_timedwait
+      - cnd_wait
+      - mtx_destroy
+      - mtx_init
+      - mtx_lock
+      - mtx_timedlock
+      - mtx_trylock
+      - mtx_unlock
+      - thrd_create
+      - thrd_current
+      - thrd_detach
+      - thrd_equal
+      - thrd_exit
+      - thrd_join
+      - thrd_sleep
+      - thrd_yield
+      - tss_create
+      - tss_delete
+      - tss_get
+      - tss_set
+  - namespace: time
+    title: time.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/time
+    entries:
+      - asctime
+      - asctime_s
+      - clock
+      - ctime
+      - ctime_s
+      - difftime
+      - gmtime
+      - gmtime_r
+      - gmtime_s
+      - localtime
+      - localtime_r
+      - localtime_s
+      - mktime
+      - strftime
+      - time
+      - timegm
+      - timespec_get
+      - timespec_getres
+  - namespace: uchar
+    title: uchar.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/uchar
+    entries:
+      - c16rtomb
+      - c32rtomb
+      - c8rtomb
+      - mbrtoc16
+      - mbrtoc32
+      - mbrtoc8
+  - namespace: wchar
+    title: wchar.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/wchar
+    entries:
+      - btowc
+      - fgetwc
+      - fgetws
+      - fputwc
+      - fputws
+      - fwide
+      - fwprintf
+      - fwprintf_s
+      - fwscanf
+      - fwscanf_s
+      - getwc
+      - getwchar
+      - mbrlen
+      - mbrtowc
+      - mbsinit
+      - mbsrtowcs
+      - mbsrtowcs_s
+      - putwc
+      - putwchar
+      - snwprintf_s
+      - swprintf
+      - swprintf_s
+      - swscanf
+      - swscanf_s
+      - ungetwc
+      - vfwprintf
+      - vfwprintf_s
+      - vfwscanf
+      - vfwscanf_s
+      - vsnwprintf_s
+      - vswprintf
+      - vswprintf_s
+      - vswscanf
+      - vswscanf_s
+      - vwprintf
+      - vwprintf_s
+      - vwscanf
+      - vwscanf_s
+      - wcrtomb
+      - wcrtomb_s
+      - wcscat
+      - wcscat_s
+      - wcschr
+      - wcscmp
+      - wcscoll
+      - wcscpy
+      - wcscpy_s
+      - wcscspn
+      - wcsftime
+      - wcslen
+      - wcsncat
+      - wcsncat_s
+      - wcsncmp
+      - wcsncpy
+      - wcsncpy_s
+      - wcsnlen
+      - wcsnlen_s
+      - wcspbrk
+      - wcsrchr
+      - wcsrtombs
+      - wcsrtombs_s
+      - wcsspn
+      - wcsstr
+      - wcstod
+      - wcstod128
+      - wcstod32
+      - wcstod64
+      - wcstof
+      - wcstok
+      - wcstok_s
+      - wcstol
+      - wcstold
+      - wcstoll
+      - wcstoul
+      - wcstoull
+      - wcsxfrm
+      - wctob
+      - wmemchr
+      - wmemcmp
+      - wmemcpy
+      - wmemcpy_s
+      - wmemmove
+      - wmemmove_s
+      - wmemset
+      - wprintf
+      - wprintf_s
+      - wscanf
+      - wscanf_s
+  - namespace: wctype
+    title: wctype.h
+    target: C23
+    sourceKind: source_manifest
+    sourceRef: https://en.cppreference.com/w/c/header/wctype
+    entries:
+      - iswalnum
+      - iswalpha
+      - iswblank
+      - iswcntrl
+      - iswctype
+      - iswdigit
+      - iswgraph
+      - iswlower
+      - iswprint
+      - iswpunct
+      - iswspace
+      - iswupper
+      - iswxdigit
+      - towctrans
+      - towlower
+      - towupper
+      - wctrans
+      - wctype

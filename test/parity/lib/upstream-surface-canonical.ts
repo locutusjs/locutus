@@ -125,6 +125,33 @@ function normalizeKotlinDocIdentifier(segment: string): string | null {
   return normalizeKotlinName(normalized)
 }
 
+function extractKotlinEntryNamesFromSegments(segments: string[]): string[] {
+  const entrySegments: string[] = []
+
+  for (const segment of segments) {
+    if (segment === '.' || segment === '..') {
+      return []
+    }
+
+    if (segment.endsWith('.html')) {
+      const normalized = normalizeKotlinDocIdentifier(segment)
+      if (normalized && segment !== 'index.html') {
+        entrySegments.push(normalized)
+      }
+      continue
+    }
+
+    if (segment.startsWith('-')) {
+      const normalized = normalizeKotlinDocIdentifier(segment)
+      if (normalized) {
+        entrySegments.push(normalized)
+      }
+    }
+  }
+
+  return entrySegments
+}
+
 function normalizeHaskellName(name: string): string | null {
   const cleaned = stripHtml(name).trim()
   if (!/^[A-Za-z_][A-Za-z0-9_']*$/.test(cleaned)) {
@@ -139,6 +166,17 @@ function normalizeCFunctionName(name: string): string | null {
     return null
   }
   return cleaned
+}
+
+function normalizeSwiftEntryName(name: string): string | null {
+  const cleaned = stripHtml(name).trim()
+  if (!cleaned) {
+    return null
+  }
+
+  const parenIndex = cleaned.indexOf('(')
+  const normalized = (parenIndex >= 0 ? cleaned.slice(0, parenIndex) : cleaned).trim()
+  return normalized || null
 }
 
 const AWK_CATALOG_TARGET = 'GNU AWK 5.3'
@@ -249,6 +287,10 @@ function cHeaderSourceRef(namespace: string): string {
 }
 
 function discoverCHeaderEntries(namespace: string, html: string): string[] {
+  if (namespace === 'math') {
+    return extractMatches(html, /title="c\/numeric\/math\/([a-z_0-9]+)"/g, normalizeCFunctionName)
+  }
+
   const synopsisMatch = html.match(
     /<span class="mw-headline" id="Synopsis">Synopsis<\/span><\/h3>([\s\S]*?)(?:<!--|<h[23])/,
   )
@@ -258,16 +300,9 @@ function discoverCHeaderEntries(namespace: string, html: string): string[] {
 
   const synopsis = decodeHtmlEntities(synopsisMatch[1]).replace(/<[^>]+>/g, '')
   return uniqueSorted(
-    synopsis
-      .split('\n')
-      .map((line) => line.trim())
-      .filter(Boolean)
-      .filter((line) => !line.startsWith('#'))
-      .flatMap((line) => {
-        const match = line.match(/([A-Za-z_][A-Za-z0-9_]*)\s*\([^;]*\)\s*;/)
-        const name = match?.[1]
-        return name && normalizeCFunctionName(name) ? [name] : []
-      }),
+    [...synopsis.matchAll(/\b([A-Za-z_][A-Za-z0-9_]*)\s*\([^;]*?\)\s*;/gs)]
+      .map((match) => match[1] ?? '')
+      .filter((name): name is string => !!normalizeCFunctionName(name)),
   )
 }
 
@@ -616,7 +651,6 @@ export function discoverKotlinUpstreamSurface(): Promise<UpstreamSurfaceSnapshot
       }
 
       const packageSegments: string[] = []
-      const entrySegments: string[] = []
       let isInvalidPath = false
 
       for (const segment of segments) {
@@ -625,20 +659,8 @@ export function discoverKotlinUpstreamSurface(): Promise<UpstreamSurfaceSnapshot
           break
         }
 
-        if (segment.endsWith('.html')) {
-          const normalized = normalizeKotlinDocIdentifier(segment)
-          if (normalized && segment !== 'index.html') {
-            entrySegments.push(normalized)
-          }
-          continue
-        }
-
-        if (segment.startsWith('-')) {
-          const normalized = normalizeKotlinDocIdentifier(segment)
-          if (normalized) {
-            entrySegments.push(normalized)
-          }
-          continue
+        if (segment.endsWith('.html') || segment.startsWith('-')) {
+          break
         }
 
         packageSegments.push(segment)
@@ -651,26 +673,63 @@ export function discoverKotlinUpstreamSurface(): Promise<UpstreamSurfaceSnapshot
       const namespace = packageSegments.join('.')
       const packagePath = packageSegments.join('/')
       const namespaceData = namespaces.get(namespace) ?? { entries: new Set<string>(), packagePath }
-      for (const entry of entrySegments) {
+      for (const entry of extractKotlinEntryNamesFromSegments(segments.slice(packageSegments.length))) {
         namespaceData.entries.add(entry)
       }
       namespaces.set(namespace, namespaceData)
     }
 
-    return buildDiscoveredUpstreamSurfaceSnapshot({
-      language: 'kotlin',
-      catalog: {
-        target: KOTLIN_CATALOG_TARGET,
-        sourceKind: 'source_manifest',
-        sourceRef: KOTLIN_CATALOG_SOURCE_REF,
-      },
-      namespaces: [...namespaces.entries()].map(([namespace, data]) => ({
-        namespace,
-        title: namespace,
-        sourceRef: `https://kotlinlang.org/api/core/kotlin-stdlib/${data.packagePath}/`,
-        entries: [...data.entries],
-      })),
-    })
+    return Promise.all(
+      [...namespaces.entries()].map(async ([namespace, data]) => {
+        const namespaceUrl = `https://kotlinlang.org/api/core/kotlin-stdlib/${data.packagePath}/`
+        const namespaceHtml = await fetchText(namespaceUrl)
+        const namespaceBaseUrl = new URL(namespaceUrl)
+        const namespacePathPrefix = `${catalogPathPrefix}${data.packagePath}/`
+
+        for (const href of extractMatches(
+          namespaceHtml,
+          /href="([^"]+)"/g,
+          (value) => stripHtml(value).trim() || null,
+        )) {
+          let url: URL
+          try {
+            url = new URL(href, namespaceUrl)
+          } catch {
+            continue
+          }
+
+          if (url.origin !== catalogBaseUrl.origin || !url.pathname.startsWith(namespacePathPrefix)) {
+            continue
+          }
+
+          const relativePath = url.pathname.slice(namespacePathPrefix.length)
+          if (!relativePath || relativePath.startsWith('../')) {
+            continue
+          }
+
+          for (const entry of extractKotlinEntryNamesFromSegments(relativePath.split('/').filter(Boolean))) {
+            data.entries.add(entry)
+          }
+        }
+
+        return {
+          namespace,
+          title: namespace,
+          sourceRef: namespaceBaseUrl.toString(),
+          entries: [...data.entries],
+        }
+      }),
+    ).then((discoveredNamespaces) =>
+      buildDiscoveredUpstreamSurfaceSnapshot({
+        language: 'kotlin',
+        catalog: {
+          target: KOTLIN_CATALOG_TARGET,
+          sourceKind: 'source_manifest',
+          sourceRef: KOTLIN_CATALOG_SOURCE_REF,
+        },
+        namespaces: discoveredNamespaces,
+      }),
+    )
   })
 }
 
@@ -746,7 +805,14 @@ swift "$tmp/reduce.swift" "$tmp/Swift.symbols.json"`,
             namespace,
             title: namespace,
             sourceRef: `${SWIFT_DOCKER_IMAGE}:${namespace}`,
-            entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
+            entries: encodedEntries
+              ? uniqueSorted(
+                  encodedEntries
+                    .split('\u001f')
+                    .map((entry) => normalizeSwiftEntryName(entry))
+                    .filter((entry): entry is string => !!entry),
+                )
+              : [],
           }
         }),
     }),
@@ -805,6 +871,7 @@ export interface InventoryOnlyDiscovererConfig {
   discoverNamespaceCatalog?: () =>
     | Promise<DiscoveredUpstreamSurfaceNamespaceCatalog>
     | DiscoveredUpstreamSurfaceNamespaceCatalog
+  getLocutusEntry?: (func: { category: string; name: string }) => { namespace: string; name: string } | null
 }
 
 export function buildInventoryOnlyUpstreamSurface(config: InventoryOnlyDiscovererConfig) {
@@ -827,9 +894,11 @@ export function buildInventoryOnlyUpstreamSurface(config: InventoryOnlyDiscovere
           namespaces: snapshot.namespaces.map((namespace) => namespace.namespace).sort((a, b) => a.localeCompare(b)),
         }
       }),
-    getLocutusEntry: (func: { category: string; name: string }) => ({
-      namespace: func.category,
-      name: func.name,
-    }),
+    getLocutusEntry:
+      config.getLocutusEntry ??
+      ((func: { category: string; name: string }) => ({
+        namespace: func.category,
+        name: func.name,
+      })),
   }
 }

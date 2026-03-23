@@ -1,11 +1,27 @@
 language: clojure
+catalog:
+  target: Clojure 1.12
+  sourceKind: source_manifest
+  sourceRef: https://clojure.github.io/clojure/
 namespaces:
   - namespace: core
     title: clojure.core
     target: Clojure 1.12
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: clojure:temurin-21-tools-deps
     entries:
+      - '-'
+      - '-'''
+      - '->'
+      - '->>'
+      - '->ArrayChunk'
+      - '->Eduction'
+      - '->Vec'
+      - '->VecNode'
+      - '->VecSeq'
+      - '-cache-protocol-fn'
+      - '-reset-methods'
+      - ..
       - '*'
       - '*'''
       - '*1'
@@ -45,33 +61,15 @@ namespaces:
       - '*use-context-classloader*'
       - '*verbose-defrecords*'
       - '*warn-on-reflection*'
+      - /
       - +
       - +'
-      - '-'
-      - '-'''
-      - '->'
-      - '->>'
-      - '->ArrayChunk'
-      - '->Eduction'
-      - '->Vec'
-      - '->VecNode'
-      - '->VecSeq'
-      - '-cache-protocol-fn'
-      - '-reset-methods'
-      - ..
-      - /
       - <
       - <=
       - '='
       - '=='
       - '>'
       - '>='
-      - EMPTY-NODE
-      - Inst
-      - NaN?
-      - PrintWriter-on
-      - StackTraceElement->vec
-      - Throwable->map
       - abs
       - accessor
       - aclone
@@ -107,8 +105,8 @@ namespaces:
       - aset-short
       - assert
       - assoc
-      - assoc!
       - assoc-in
+      - assoc!
       - associative?
       - atom
       - await
@@ -238,6 +236,7 @@ namespaces:
       - drop-while
       - eduction
       - empty
+      - EMPTY-NODE
       - empty?
       - ensure
       - ensure-reduced
@@ -320,6 +319,7 @@ namespaces:
       - indexed?
       - infinite?
       - init-proxy
+      - Inst
       - inst-ms
       - inst-ms*
       - inst?
@@ -353,8 +353,8 @@ namespaces:
       - letfn
       - line-seq
       - list
-      - list*
       - list?
+      - list*
       - load
       - load-file
       - load-reader
@@ -392,6 +392,7 @@ namespaces:
       - name
       - namespace
       - namespace-munge
+      - NaN?
       - nat-int?
       - neg-int?
       - neg?
@@ -441,8 +442,8 @@ namespaces:
       - persistent!
       - pmap
       - pop
-      - pop!
       - pop-thread-bindings
+      - pop!
       - pos-int?
       - pos?
       - pr
@@ -459,6 +460,7 @@ namespaces:
       - printf
       - println
       - println-str
+      - PrintWriter-on
       - prn
       - prn-str
       - promise
@@ -489,9 +491,9 @@ namespaces:
       - re-pattern
       - re-seq
       - read
-      - read+string
       - read-line
       - read-string
+      - read+string
       - reader-conditional
       - reader-conditional?
       - realized?
@@ -523,9 +525,9 @@ namespaces:
       - replicate
       - require
       - requiring-resolve
-      - reset!
       - reset-meta!
       - reset-vals!
+      - reset!
       - resolve
       - rest
       - restart-agent
@@ -581,6 +583,7 @@ namespaces:
       - split-at
       - split-with
       - splitv-at
+      - StackTraceElement->vec
       - str
       - stream-into!
       - stream-reduce!
@@ -593,8 +596,8 @@ namespaces:
       - subseq
       - subvec
       - supers
-      - swap!
       - swap-vals!
+      - swap!
       - symbol
       - symbol?
       - sync
@@ -608,6 +611,7 @@ namespaces:
       - test
       - the-ns
       - thread-bound?
+      - Throwable->map
       - time
       - to-array
       - to-array-2d
@@ -685,18 +689,365 @@ namespaces:
       - xml-seq
       - zero?
       - zipmap
+  - namespace: data
+    title: clojure.data
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - diff
+      - Diff
+      - diff-similar
+      - equality-partition
+      - EqualityPartition
+  - namespace: datafy
+    title: clojure.datafy
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - datafy
+      - nav
   - namespace: edn
     title: clojure.edn
     target: Clojure 1.12
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: clojure:temurin-21-tools-deps
     entries:
       - read
       - read-string
+  - namespace: inspector
+    title: clojure.inspector
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - atom?
+      - collection-tag
+      - get-child
+      - get-child-count
+      - inspect
+      - inspect-table
+      - inspect-tree
+      - is-leaf
+      - list-model
+      - list-provider
+      - old-table-model
+      - table-model
+      - tree-model
+  - namespace: instant
+    title: clojure.instant
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - parse-timestamp
+      - read-instant-calendar
+      - read-instant-date
+      - read-instant-timestamp
+      - validated
+  - namespace: java.basis
+    title: clojure.java.basis
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - current-basis
+      - initial-basis
+  - namespace: java.browse
+    title: clojure.java.browse
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - '*open-url-script*'
+      - browse-url
+  - namespace: java.io
+    title: clojure.java.io
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - as-file
+      - as-relative-path
+      - as-url
+      - Coercions
+      - copy
+      - default-streams-impl
+      - delete-file
+      - file
+      - input-stream
+      - IOFactory
+      - make-input-stream
+      - make-output-stream
+      - make-parents
+      - make-reader
+      - make-writer
+      - output-stream
+      - reader
+      - resource
+      - writer
+  - namespace: java.javadoc
+    title: clojure.java.javadoc
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - '*core-java-api*'
+      - '*feeling-lucky-url*'
+      - '*feeling-lucky*'
+      - '*local-javadocs*'
+      - '*remote-javadocs*'
+      - add-local-javadoc
+      - add-remote-javadoc
+      - javadoc
+  - namespace: java.process
+    title: clojure.java.process
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - exec
+      - exit-ref
+      - from-file
+      - io-task
+      - start
+      - stderr
+      - stdin
+      - stdout
+      - to-file
+  - namespace: java.shell
+    title: clojure.java.shell
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - '*sh-dir*'
+      - '*sh-env*'
+      - sh
+      - with-sh-dir
+      - with-sh-env
+  - namespace: main
+    title: clojure.main
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - demunge
+      - err->msg
+      - ex-str
+      - ex-triage
+      - load-script
+      - main
+      - renumbering-read
+      - repl
+      - repl-caught
+      - repl-exception
+      - repl-prompt
+      - repl-read
+      - repl-requires
+      - report-error
+      - root-cause
+      - skip-if-eol
+      - skip-whitespace
+      - stack-element-str
+      - with-bindings
+      - with-read-known
+  - namespace: math
+    title: clojure.math
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - acos
+      - add-exact
+      - asin
+      - atan
+      - atan2
+      - cbrt
+      - ceil
+      - copy-sign
+      - cos
+      - cosh
+      - decrement-exact
+      - E
+      - exp
+      - expm1
+      - floor
+      - floor-div
+      - floor-mod
+      - get-exponent
+      - hypot
+      - IEEE-remainder
+      - increment-exact
+      - log
+      - log10
+      - log1p
+      - multiply-exact
+      - negate-exact
+      - next-after
+      - next-down
+      - next-up
+      - PI
+      - pow
+      - random
+      - rint
+      - round
+      - scalb
+      - signum
+      - sin
+      - sinh
+      - sqrt
+      - subtract-exact
+      - tan
+      - tanh
+      - to-degrees
+      - to-radians
+      - ulp
+  - namespace: Math
+    title: java.lang.Math
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - abs
+      - absExact
+      - acos
+      - addExact
+      - asin
+      - atan
+      - atan2
+      - cbrt
+      - ceil
+      - ceilDiv
+      - ceilDivExact
+      - ceilMod
+      - clamp
+      - copySign
+      - cos
+      - cosh
+      - decrementExact
+      - divideExact
+      - exp
+      - expm1
+      - floor
+      - floorDiv
+      - floorDivExact
+      - floorMod
+      - fma
+      - getExponent
+      - hypot
+      - IEEEremainder
+      - incrementExact
+      - log
+      - log10
+      - log1p
+      - max
+      - min
+      - multiplyExact
+      - multiplyFull
+      - multiplyHigh
+      - negateExact
+      - nextAfter
+      - nextDown
+      - nextUp
+      - pow
+      - powerOfTwoD
+      - powerOfTwoF
+      - random
+      - rint
+      - round
+      - scalb
+      - signum
+      - sin
+      - sinh
+      - sqrt
+      - subtractExact
+      - tan
+      - tanh
+      - toDegrees
+      - toIntExact
+      - toRadians
+      - ulp
+      - unsignedMultiplyHigh
+  - namespace: pprint
+    title: clojure.pprint
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - '*print-base*'
+      - '*print-miser-width*'
+      - '*print-pprint-dispatch*'
+      - '*print-pretty*'
+      - '*print-radix*'
+      - '*print-right-margin*'
+      - '*print-suppress-namespaces*'
+      - cl-format
+      - code-dispatch
+      - formatter
+      - formatter-out
+      - fresh-line
+      - get-pretty-writer
+      - pp
+      - pprint
+      - pprint-indent
+      - pprint-logical-block
+      - pprint-newline
+      - pprint-tab
+      - print-length-loop
+      - print-table
+      - set-pprint-dispatch
+      - simple-dispatch
+      - with-pprint-dispatch
+      - write
+      - write-out
+  - namespace: reflect
+    title: clojure.reflect
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - '->AsmReflector'
+      - '->Constructor'
+      - '->Field'
+      - '->JavaReflector'
+      - '->Method'
+      - ClassResolver
+      - do-reflect
+      - flag-descriptors
+      - map->Constructor
+      - map->Field
+      - map->Method
+      - reflect
+      - Reflector
+      - resolve-class
+      - type-reflect
+      - typename
+      - TypeReference
+  - namespace: repl
+    title: clojure.repl
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - apropos
+      - demunge
+      - dir
+      - dir-fn
+      - doc
+      - find-doc
+      - pst
+      - root-cause
+      - set-break-handler!
+      - source
+      - source-fn
+      - stack-element-str
+      - thread-stopper
   - namespace: set
     title: clojure.set
     target: Clojure 1.12
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: clojure:temurin-21-tools-deps
     entries:
       - difference
@@ -711,10 +1062,22 @@ namespaces:
       - subset?
       - superset?
       - union
+  - namespace: stacktrace
+    title: clojure.stacktrace
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - e
+      - print-cause-trace
+      - print-stack-trace
+      - print-throwable
+      - print-trace-element
+      - root-cause
   - namespace: string
     title: clojure.string
     target: Clojure 1.12
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: clojure:temurin-21-tools-deps
     entries:
       - blank?
@@ -738,10 +1101,70 @@ namespaces:
       - triml
       - trimr
       - upper-case
+  - namespace: template
+    title: clojure.template
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - apply-template
+      - do-template
+  - namespace: test
+    title: clojure.test
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - '*initial-report-counters*'
+      - '*load-tests*'
+      - '*report-counters*'
+      - '*stack-trace-depth*'
+      - '*test-out*'
+      - '*testing-contexts*'
+      - '*testing-vars*'
+      - are
+      - assert-any
+      - assert-expr
+      - assert-predicate
+      - compose-fixtures
+      - deftest
+      - deftest-
+      - do-report
+      - file-position
+      - function?
+      - get-possibly-unbound-var
+      - inc-report-counter
+      - is
+      - join-fixtures
+      - report
+      - run-all-tests
+      - run-test
+      - run-test-var
+      - run-tests
+      - set-test
+      - successful?
+      - test-all-vars
+      - test-ns
+      - test-var
+      - test-vars
+      - testing
+      - testing-contexts-str
+      - testing-vars-str
+      - try-expr
+      - use-fixtures
+      - with-test
+      - with-test-out
+  - namespace: tools.deps.interop
+    title: clojure.tools.deps.interop
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - invoke-tool
   - namespace: walk
     title: clojure.walk
     target: Clojure 1.12
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: clojure:temurin-21-tools-deps
     entries:
       - keywordize-keys
@@ -754,10 +1177,32 @@ namespaces:
       - prewalk-replace
       - stringify-keys
       - walk
+  - namespace: xml
+    title: clojure.xml
+    target: Clojure 1.12
+    sourceKind: source_manifest
+    sourceRef: clojure:temurin-21-tools-deps
+    entries:
+      - '*current*'
+      - '*sb*'
+      - '*stack*'
+      - '*state*'
+      - attrs
+      - content
+      - content-handler
+      - disable-external-entities
+      - element
+      - emit
+      - emit-element
+      - parse
+      - sax-parser
+      - startparse-sax
+      - startparse-sax-safe
+      - tag
   - namespace: zip
     title: clojure.zip
     target: Clojure 1.12
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: clojure:temurin-21-tools-deps
     entries:
       - append-child
@@ -788,67 +1233,3 @@ namespaces:
       - vector-zip
       - xml-zip
       - zipper
-  - namespace: Math
-    title: java.lang.Math
-    target: Clojure 1.12
-    sourceKind: runtime
-    sourceRef: clojure:temurin-21-tools-deps
-    entries:
-      - IEEEremainder
-      - abs
-      - absExact
-      - acos
-      - addExact
-      - asin
-      - atan
-      - atan2
-      - cbrt
-      - ceil
-      - ceilDiv
-      - ceilDivExact
-      - ceilMod
-      - clamp
-      - copySign
-      - cos
-      - cosh
-      - decrementExact
-      - divideExact
-      - exp
-      - expm1
-      - floor
-      - floorDiv
-      - floorDivExact
-      - floorMod
-      - fma
-      - getExponent
-      - hypot
-      - incrementExact
-      - log
-      - log10
-      - log1p
-      - max
-      - min
-      - multiplyExact
-      - multiplyFull
-      - multiplyHigh
-      - negateExact
-      - nextAfter
-      - nextDown
-      - nextUp
-      - pow
-      - random
-      - rint
-      - round
-      - scalb
-      - signum
-      - sin
-      - sinh
-      - sqrt
-      - subtractExact
-      - tan
-      - tanh
-      - toDegrees
-      - toIntExact
-      - toRadians
-      - ulp
-      - unsignedMultiplyHigh

@@ -10,41 +10,66 @@ namespaces:
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/
     entries:
+      - addSuppressed
+      - also
+      - and
       - Annotation
       - Any
+      - apply
       - ArithmeticException
       - Array
       - ArrayIndexOutOfBoundsException
       - arrayOf
       - arrayOfNulls
+      - assert
       - AssertionError
       - AutoCloseable
       - Boolean
       - BooleanArray
+      - booleanArrayOf
       - BuilderInference
       - Byte
       - ByteArray
+      - byteArrayOf
       - callRecursive
       - Char
       - CharArray
+      - charArrayOf
       - CharSequence
+      - check
+      - checkNotNull
       - ClassCastException
+      - close
+      - code
+      - Companion
       - Comparable
       - Comparator
+      - compareTo
       - ConcurrentModificationException
       - ConsistentCopyVisibility
+      - context
       - ContextFunctionTypeParams
+      - contextOf
+      - countLeadingZeroBits
+      - countOneBits
+      - countTrailingZeroBits
+      - dec
       - DeepRecursiveFunction
       - DeepRecursiveScope
       - Deprecated
       - DeprecatedSinceKotlin
       - DeprecationLevel
+      - div
       - Double
       - DoubleArray
+      - doubleArrayOf
       - DslMarker
       - EagerInitialization
       - emptyArray
       - Enum
+      - enumValueOf
+      - enumValues
+      - error
       - Error
       - ERROR
       - Exception
@@ -58,24 +83,52 @@ namespaces:
       - ExtensionFunctionType
       - Float
       - FloatArray
+      - floatArrayOf
+      - floorDiv
+      - fold
+      - fromBits
       - Function
+      - getOrDefault
+      - getOrElse
+      - getOrThrow
+      - getValue
+      - hashCode
       - HIDDEN
       - IgnorableReturnValue
       - IllegalArgumentException
       - IllegalStateException
+      - inc
       - IndexOutOfBoundsException
       - Int
       - IntArray
+      - intArrayOf
       - IntroducedAt
+      - inv
       - invoke
+      - isFailure
+      - isFinite
+      - isInfinite
+      - isInitialized
+      - isNaN
+      - isSuccess
       - JsFun
       - KotlinVersion
+      - lazy
       - Lazy
+      - lazyOf
       - LazyThreadSafetyMode
+      - let
+      - Level
       - Long
       - LongArray
+      - longArrayOf
+      - map
+      - mapCatching
       - Metadata
+      - minus
+      - mod
       - MustUseReturnValues
+      - navigation
       - NoSuchElementException
       - Nothing
       - NotImplementedError
@@ -83,50 +136,102 @@ namespaces:
       - NullPointerException
       - Number
       - NumberFormatException
+      - onFailure
+      - onSuccess
       - OptIn
       - OptionalExpectation
+      - or
       - ordinal
       - OutOfMemoryError
       - OverloadResolutionByLambdaReturnType
       - Pair
       - ParameterName
+      - plus
+      - printStackTrace
       - PublishedApi
+      - recover
+      - recoverCatching
+      - rem
+      - repeat
       - ReplaceWith
+      - require
+      - requireNotNull
       - RequiresOptIn
       - Result
       - Root
+      - rotateLeft
+      - rotateRight
+      - run
+      - runCatching
       - RuntimeException
+      - setValue
+      - shl
       - Short
       - ShortArray
+      - shortArrayOf
+      - shr
       - SinceKotlin
+      - stackTrace
+      - stackTraceToString
       - String
       - SubclassOptInRequired
       - Suppress
+      - suppressedExceptions
+      - suspend
+      - synchronized
+      - SYNCHRONIZED
+      - takeHighestOneBit
+      - takeIf
+      - takeLowestOneBit
+      - takeUnless
       - Throwable
       - Throws
+      - times
+      - to
+      - toBigDecimal
+      - toBigInteger
+      - toBits
+      - TODO
+      - toList
+      - toRawBits
+      - toString
+      - toUByte
+      - toUInt
+      - toULong
+      - toUShort
       - Triple
       - UByte
       - UByteArray
+      - ubyteArrayOf
       - UInt
       - UIntArray
+      - uintArrayOf
       - ULong
       - ULongArray
+      - ulongArrayOf
+      - unaryMinus
       - UninitializedPropertyAccessException
       - Unit
       - UnsafeVariance
       - UnsupportedOperationException
+      - use
       - UShort
       - UShortArray
+      - ushortArrayOf
       - WARNING
+      - with
+      - xor
   - namespace: kotlin.annotation
     title: kotlin.annotation
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.annotation/
     entries:
+      - ANNOTATION_CLASS
       - AnnotationRetention
       - AnnotationTarget
       - MustBeDocumented
+      - navigation
       - Repeatable
       - Retention
       - Target
@@ -145,40 +250,319 @@ namespaces:
       - AbstractMutableMap
       - AbstractMutableSet
       - AbstractSet
+      - addAll
+      - aggregate
+      - aggregateTo
+      - all
+      - any
       - ArrayDeque
       - ArrayList
+      - arrayListOf
+      - asByteArray
+      - asIntArray
+      - asIterable
+      - asList
+      - asLongArray
+      - asReversed
+      - asSequence
+      - asShortArray
+      - associate
+      - associateBy
+      - associateByTo
+      - associateTo
+      - associateWith
+      - associateWithTo
+      - asUByteArray
+      - asUIntArray
+      - asULongArray
+      - asUShortArray
+      - average
+      - binarySearch
+      - binarySearchBy
       - BooleanIterator
+      - buildList
+      - buildMap
+      - buildSet
       - ByteIterator
       - CharIterator
+      - chunked
       - Collection
+      - component1
+      - component2
+      - component3
+      - component4
+      - component5
       - computeNext
+      - contains
+      - containsAll
+      - containsKey
+      - containsValue
+      - contentDeepEquals
+      - contentDeepHashCode
+      - contentDeepToString
+      - contentEquals
+      - contentHashCode
+      - contentToString
+      - copy
+      - copyInto
+      - copyOf
+      - copyOfRange
+      - count
+      - distinct
+      - distinctBy
       - done
       - DoubleIterator
+      - drop
+      - dropLast
+      - dropLastWhile
+      - dropWhile
+      - eachCount
+      - eachCountTo
+      - elementAt
+      - elementAtOrElse
+      - elementAtOrNull
+      - emptyList
+      - emptyMap
+      - emptySet
+      - Entry
+      - fill
+      - filter
+      - filterIndexed
+      - filterIndexedTo
+      - filterIsInstance
+      - filterIsInstanceTo
+      - filterKeys
+      - filterNot
+      - filterNotNull
+      - filterNotNullTo
+      - filterNotTo
+      - filterTo
+      - filterValues
+      - find
+      - findLast
+      - first
+      - firstNotNullOf
+      - firstNotNullOfOrNull
+      - firstOrNull
+      - flatMap
+      - flatMapIndexed
+      - flatMapIndexedTo
+      - flatMapTo
+      - flatten
       - FloatIterator
+      - fold
+      - foldIndexed
+      - foldRight
+      - foldRightIndexed
+      - foldTo
+      - forEach
+      - forEachIndexed
+      - get
+      - getOrDefault
+      - getOrElse
+      - getOrNull
+      - getOrPut
+      - getValue
+      - groupBy
+      - groupByTo
       - Grouping
+      - groupingBy
       - HashMap
+      - hashMapOf
       - HashSet
+      - hashSetOf
+      - ifEmpty
       - IndexedValue
+      - indexOf
+      - indexOfFirst
+      - indexOfLast
+      - indices
+      - intersect
       - IntIterator
+      - isEmpty
+      - isNotEmpty
+      - isNullOrEmpty
       - Iterable
+      - iterator
       - Iterator
+      - joinTo
+      - joinToString
       - keyOf
+      - last
+      - lastIndex
+      - lastIndexOf
+      - lastOrNull
       - LinkedHashMap
       - LinkedHashSet
+      - linkedMapOf
+      - linkedSetOf
+      - linkedStringMapOf
+      - linkedStringSetOf
       - List
       - ListIterator
+      - listOf
+      - listOfNotNull
       - LongIterator
+      - map
       - Map
+      - mapIndexed
+      - mapIndexedNotNull
+      - mapIndexedNotNullTo
+      - mapIndexedTo
+      - mapKeys
+      - mapKeysTo
+      - mapNotNull
+      - mapNotNullTo
+      - mapOf
+      - mapTo
+      - mapValues
+      - mapValuesTo
+      - max
+      - maxBy
+      - maxByOrNull
+      - maxOf
+      - maxOfOrNull
+      - maxOfWith
+      - maxOfWithOrNull
+      - maxOrNull
+      - maxWith
+      - maxWithOrNull
+      - min
+      - minBy
+      - minByOrNull
+      - minOf
+      - minOfOrNull
+      - minOfWith
+      - minOfWithOrNull
+      - minOrNull
+      - minus
+      - minusAssign
+      - minusElement
+      - minWith
+      - minWithOrNull
       - MutableCollection
+      - MutableEntry
       - MutableIterable
       - MutableIterator
       - MutableList
       - MutableListIterator
+      - mutableListOf
       - MutableMap
+      - mutableMapOf
       - MutableSet
+      - mutableSetOf
+      - navigation
+      - none
+      - onEach
+      - onEachIndexed
+      - orEmpty
+      - partition
+      - plus
+      - plusAssign
+      - plusElement
+      - putAll
+      - random
       - RandomAccess
+      - randomOrNull
+      - reduce
+      - reduceIndexed
+      - reduceIndexedOrNull
+      - reduceOrNull
+      - reduceRight
+      - reduceRightIndexed
+      - reduceRightIndexedOrNull
+      - reduceRightOrNull
+      - reduceTo
+      - remove
+      - removeAll
+      - removeAt
+      - removeFirst
+      - removeFirstOrNull
+      - removeLast
+      - removeLastOrNull
+      - replaceAll
+      - requireNoNulls
+      - retainAll
+      - reverse
+      - reversed
+      - reversedArray
+      - runningFold
+      - runningFoldIndexed
+      - runningReduce
+      - runningReduceIndexed
+      - scan
+      - scanIndexed
+      - set
       - Set
+      - setOf
+      - setOfNotNull
+      - setValue
       - ShortIterator
+      - shuffle
+      - shuffled
+      - single
+      - singleOrNull
+      - slice
+      - sliceArray
+      - sort
+      - sortBy
+      - sortByDescending
+      - sortDescending
+      - sorted
+      - sortedArray
+      - sortedArrayDescending
+      - sortedArrayWith
+      - sortedBy
+      - sortedByDescending
+      - sortedDescending
+      - sortedMapOf
+      - sortedSetOf
+      - sortedWith
+      - sortWith
+      - stringMapOf
+      - stringSetOf
+      - subtract
+      - sum
+      - sumBy
+      - sumByDouble
+      - sumOf
+      - take
+      - takeLast
+      - takeLastWhile
+      - takeWhile
+      - toBooleanArray
+      - toByteArray
+      - toCharArray
+      - toCollection
+      - toDoubleArray
+      - toFloatArray
+      - toHashSet
+      - toIntArray
+      - toList
+      - toLongArray
+      - toMap
+      - toMutableList
+      - toMutableMap
+      - toMutableSet
+      - toPair
+      - toProperties
+      - toSet
+      - toShortArray
+      - toSortedMap
+      - toSortedSet
+      - toString
+      - toTypedArray
+      - toUByteArray
+      - toUIntArray
+      - toULongArray
+      - toUShortArray
+      - union
+      - unzip
+      - windowed
+      - withDefault
+      - withIndex
+      - zip
+      - zipWithNext
   - namespace: kotlin.concurrent
     title: kotlin.concurrent
     target: Kotlin 2.2 stdlib
@@ -192,14 +576,30 @@ namespaces:
       - AtomicLongArray
       - AtomicNativePtr
       - AtomicReference
+      - fixedRateTimer
+      - getOrSet
+      - navigation
+      - read
+      - schedule
+      - scheduleAtFixedRate
+      - thread
+      - timer
+      - timerTask
       - Volatile
+      - withLock
+      - write
   - namespace: kotlin.concurrent.atomics
     title: kotlin.concurrent.atomics
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.concurrent.atomics/
     entries:
+      - asJavaAtomic
+      - asJavaAtomicArray
+      - asKotlinAtomic
+      - asKotlinAtomicArray
       - AtomicArray
+      - atomicArrayOfNulls
       - AtomicBoolean
       - AtomicInt
       - AtomicIntArray
@@ -207,7 +607,24 @@ namespaces:
       - AtomicLongArray
       - AtomicNativePtr
       - AtomicReference
+      - decrementAndFetch
+      - decrementAndFetchAt
       - ExperimentalAtomicApi
+      - fetchAndDecrement
+      - fetchAndDecrementAt
+      - fetchAndIncrement
+      - fetchAndIncrementAt
+      - fetchAndUpdate
+      - fetchAndUpdateAt
+      - incrementAndFetch
+      - incrementAndFetchAt
+      - minusAssign
+      - navigation
+      - plusAssign
+      - update
+      - updateAndFetch
+      - updateAndFetchAt
+      - updateAt
   - namespace: kotlin.contracts
     title: kotlin.contracts
     target: Kotlin 2.2 stdlib
@@ -217,12 +634,14 @@ namespaces:
       - callsInPlace
       - CallsInPlace
       - ConditionalEffect
+      - contract
       - ContractBuilder
       - Effect
       - ExperimentalContracts
       - ExperimentalExtendedContracts
       - HoldsIn
       - InvocationKind
+      - navigation
       - returns
       - Returns
       - ReturnsNotNull
@@ -237,16 +656,24 @@ namespaces:
       - AbstractCoroutineContextKey
       - Continuation
       - ContinuationInterceptor
+      - coroutineContext
       - CoroutineContext
+      - createCoroutine
       - Element
       - EmptyCoroutineContext
       - get
       - getPolymorphicElement
       - interceptContinuation
+      - key
       - Key
       - minusKey
       - minusPolymorphicKey
+      - navigation
       - RestrictsSuspension
+      - resume
+      - resumeWithException
+      - startCoroutine
+      - suspendCoroutine
       - SuspendFunction
   - namespace: kotlin.coroutines.cancellation
     title: kotlin.coroutines.cancellation
@@ -255,25 +682,33 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.coroutines.cancellation/
     entries:
       - CancellationException
+      - navigation
   - namespace: kotlin.enums
     title: kotlin.enums
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.enums/
     entries:
+      - enumEntries
       - EnumEntries
+      - navigation
   - namespace: kotlin.experimental
     title: kotlin.experimental
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.experimental/
     entries:
+      - and
       - ExpectRefinement
       - ExperimentalNativeApi
       - ExperimentalObjCEnum
       - ExperimentalObjCName
       - ExperimentalObjCRefinement
       - ExperimentalTypeInference
+      - inv
+      - navigation
+      - or
+      - xor
   - namespace: kotlin.io
     title: kotlin.io
     target: Kotlin 2.2 stdlib
@@ -281,12 +716,62 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.io/
     entries:
       - AccessDeniedException
+      - appendBytes
+      - appendText
+      - buffered
+      - bufferedReader
+      - bufferedWriter
+      - byteInputStream
+      - copyRecursively
+      - copyTo
+      - createTempDir
+      - createTempFile
+      - DEFAULT_BUFFER_SIZE
+      - deleteRecursively
+      - endsWith
+      - extension
       - FileAlreadyExistsException
       - FileSystemException
       - FileTreeWalk
       - FileWalkDirection
+      - forEachBlock
+      - forEachLine
+      - inputStream
+      - invariantSeparatorsPath
+      - isRooted
+      - iterator
+      - lineSequence
+      - nameWithoutExtension
+      - navigation
+      - normalize
       - NoSuchFileException
       - OnErrorAction
+      - outputStream
+      - print
+      - println
+      - printWriter
+      - readBytes
+      - reader
+      - readLine
+      - readLines
+      - readln
+      - readlnOrNull
+      - readText
+      - relativeTo
+      - relativeToOrNull
+      - relativeToOrSelf
+      - resolve
+      - resolveSibling
+      - startsWith
+      - toRelativeString
+      - use
+      - useLines
+      - walk
+      - walkBottomUp
+      - walkTopDown
+      - writeBytes
+      - writer
+      - writeText
   - namespace: kotlin.io.encoding
     title: kotlin.io.encoding
     target: Kotlin 2.2 stdlib
@@ -294,32 +779,116 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.io.encoding/
     entries:
       - Base64
+      - decodingWith
+      - encodingWith
       - ExperimentalEncodingApi
+      - navigation
   - namespace: kotlin.io.path
     title: kotlin.io.path
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.io.path/
     entries:
+      - absolute
+      - absolutePathString
+      - appendBytes
+      - appendLines
+      - appendText
+      - bufferedReader
+      - bufferedWriter
       - CopyActionContext
       - CopyActionResult
+      - copyTo
       - copyToRecursively
+      - createDirectories
+      - createDirectory
+      - createFile
+      - createLinkPointingTo
+      - createParentDirectories
+      - createSymbolicLinkPointingTo
+      - createTempDirectory
+      - createTempFile
+      - deleteExisting
+      - deleteIfExists
+      - deleteRecursively
+      - div
+      - exists
       - ExperimentalPathApi
+      - extension
+      - fileAttributesView
+      - fileAttributesViewOrNull
+      - fileSize
+      - fileStore
       - fileVisitor
       - FileVisitorBuilder
+      - forEachDirectoryEntry
+      - forEachLine
+      - getAttribute
+      - getLastModifiedTime
+      - getOwner
+      - getPosixFilePermissions
+      - inputStream
+      - invariantSeparatorsPath
+      - invariantSeparatorsPathString
+      - isDirectory
+      - isExecutable
+      - isHidden
+      - isReadable
+      - isRegularFile
+      - isSameFileAs
+      - isSymbolicLink
+      - isWritable
+      - listDirectoryEntries
+      - moveTo
+      - name
+      - nameWithoutExtension
+      - navigation
+      - notExists
       - OnErrorResult
+      - outputStream
+      - Path
+      - pathString
       - PathWalkOption
+      - readAttributes
+      - readBytes
+      - reader
+      - readLines
+      - readSymbolicLink
+      - readText
+      - relativeTo
+      - relativeToOrNull
+      - relativeToOrSelf
+      - setAttribute
+      - setLastModifiedTime
+      - setOwner
+      - setPosixFilePermissions
+      - toPath
+      - useDirectoryEntries
+      - useLines
+      - visitFileTree
       - walk
+      - writeBytes
+      - writeLines
+      - writer
+      - writeText
   - namespace: kotlin.js
     title: kotlin.js
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/
     entries:
+      - add
+      - asArray
+      - asDynamic
+      - asJsException
+      - console
       - Console
       - Date
+      - dateLocaleOptions
+      - definedExternally
       - Dynamic
       - EagerInitialization
+      - eval
       - exec
       - ExperimentalJsCollectionsApi
       - ExperimentalJsExport
@@ -327,6 +896,9 @@ namespaces:
       - ExperimentalJsReflectionCreateInstance
       - ExperimentalJsStatic
       - ExperimentalWasmJsInterop
+      - get
+      - iterator
+      - js
       - JsAny
       - JsArray
       - JsBigInt
@@ -341,6 +913,7 @@ namespaces:
       - JsName
       - JsNonModule
       - JsNumber
+      - json
       - Json
       - JSON
       - JsPromiseError
@@ -349,9 +922,36 @@ namespaces:
       - JsStatic
       - JsString
       - JsSymbol
+      - jsTypeOf
+      - kotlin
+      - length
+      - LocaleOptions
+      - navigation
+      - parseFloat
+      - parseInt
       - Promise
       - RegExp
       - RegExpMatch
+      - reset
+      - set
+      - test
+      - then
+      - thrownValue
+      - toArray
+      - toBoolean
+      - toDouble
+      - toInt
+      - toJsArray
+      - toJsBigInt
+      - toJsBoolean
+      - toJsNumber
+      - toJsReference
+      - toJsString
+      - toList
+      - toLong
+      - toThrowableOrNull
+      - undefined
+      - unsafeCast
   - namespace: kotlin.js.collections
     title: kotlin.js.collections
     target: Kotlin 2.2 stdlib
@@ -364,31 +964,48 @@ namespaces:
       - JsReadonlyMap
       - JsReadonlySet
       - JsSet
+      - navigation
+      - toList
+      - toMap
+      - toMutableList
+      - toMutableMap
+      - toMutableSet
+      - toSet
   - namespace: kotlin.js.native-getter
     title: kotlin.js.native-getter
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/native-getter/
-    entries: []
+    entries:
+      - navigation
   - namespace: kotlin.js.native-invoke
     title: kotlin.js.native-invoke
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/native-invoke/
-    entries: []
+    entries:
+      - navigation
   - namespace: kotlin.js.native-setter
     title: kotlin.js.native-setter
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.js/native-setter/
-    entries: []
+    entries:
+      - navigation
   - namespace: kotlin.jvm
     title: kotlin.jvm
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/
     entries:
+      - annotationClass
+      - declaringJavaClass
       - ImplicitlyActualizedByJvmDeclaration
+      - isArrayOf
+      - java
+      - javaClass
+      - javaObjectType
+      - javaPrimitiveType
       - JvmDefaultWithCompatibility
       - JvmDefaultWithoutCompatibility
       - JvmExposeBoxed
@@ -404,6 +1021,8 @@ namespaces:
       - JvmSuppressWildcards
       - JvmSynthetic
       - JvmWildcard
+      - kotlin
+      - navigation
       - PurelyImplements
       - Strictfp
       - Synchronized
@@ -416,27 +1035,62 @@ namespaces:
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native/
     entries:
+      - asCPointer
+      - asUCPointer
       - BitSet
       - CName
       - CpuArchitecture
       - EagerInitialization
       - FreezingIsDeprecated
+      - getCharAt
+      - getDoubleAt
+      - getFloatAt
+      - getIntAt
+      - getLongAt
+      - getShortAt
+      - getStackTraceAddresses
+      - getUByteAt
+      - getUIntAt
+      - getULongAt
+      - getUnhandledExceptionHook
+      - getUShortAt
       - HiddenFromObjC
       - HidesFromObjC
+      - identityHashCode
       - ImmutableBlob
+      - immutableBlobOf
       - IncorrectDereferenceException
+      - initRuntimeIfNeeded
+      - isExperimentalMM
       - MemoryModel
+      - navigation
       - NoInline
       - ObjCEnum
       - ObjCName
       - ObsoleteNativeApi
       - OsFamily
       - Platform
+      - processUnhandledException
       - RefinesInSwift
       - ReportUnhandledExceptionHook
+      - setCharAt
+      - setDoubleAt
+      - setFloatAt
+      - setIntAt
+      - setLongAt
+      - setShortAt
+      - setUByteAt
+      - setUIntAt
+      - setULongAt
+      - setUnhandledExceptionHook
+      - setUShortAt
       - ShouldRefineInSwift
       - SymbolName
+      - terminateWithUnhandledException
+      - toByteArray
+      - toUByteArray
       - Vector128
+      - vectorOf
   - namespace: kotlin.native.concurrent
     title: kotlin.native.concurrent
     target: Kotlin 2.2 stdlib
@@ -444,24 +1098,37 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native.concurrent/
     entries:
       - AtomicInt
+      - atomicLazy
       - AtomicLong
       - AtomicNativePtr
       - AtomicReference
       - attach
+      - callContinuation0
+      - callContinuation1
+      - callContinuation2
+      - COMPUTED
       - Continuation0
       - Continuation1
       - Continuation2
       - DetachedObjectGraph
+      - ensureNeverFrozen
       - FreezableAtomicReference
+      - freeze
       - FreezingException
       - Future
       - FutureState
       - InvalidMutabilityException
+      - isFrozen
       - MutableData
+      - navigation
       - ObsoleteWorkersApi
       - SharedImmutable
+      - stable
       - ThreadLocal
       - TransferMode
+      - waitForMultipleFutures
+      - waitWorkerTermination
+      - withWorker
       - Worker
       - WorkerBoundReference
   - namespace: kotlin.native.ref
@@ -471,6 +1138,8 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.native.ref/
     entries:
       - Cleaner
+      - createCleaner
+      - navigation
       - WeakReference
   - namespace: kotlin.native.runtime
     title: kotlin.native.runtime
@@ -483,6 +1152,7 @@ namespaces:
       - GCInfo
       - MemoryUsage
       - NativeRuntimeApi
+      - navigation
       - RootSetStatistics
       - SweepStatistics
   - namespace: kotlin.properties
@@ -492,6 +1162,7 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.properties/
     entries:
       - Delegates
+      - navigation
       - ObservableProperty
       - PropertyDelegateProvider
       - ReadOnlyProperty
@@ -502,6 +1173,14 @@ namespaces:
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.random/
     entries:
+      - asJavaRandom
+      - asKotlinRandom
+      - navigation
+      - nextInt
+      - nextLong
+      - nextUBytes
+      - nextUInt
+      - nextULong
       - Random
   - namespace: kotlin.ranges
     title: kotlin.ranges
@@ -513,16 +1192,33 @@ namespaces:
       - CharRange
       - ClosedFloatingPointRange
       - ClosedRange
+      - coerceAtLeast
+      - coerceAtMost
+      - coerceIn
+      - contains
+      - downTo
+      - first
+      - firstOrNull
       - IntProgression
       - IntRange
+      - last
+      - lastOrNull
       - lessThanOrEquals
       - LongProgression
       - LongRange
+      - navigation
       - OpenEndRange
+      - random
+      - randomOrNull
+      - rangeTo
+      - rangeUntil
+      - reversed
+      - step
       - UIntProgression
       - UIntRange
       - ULongProgression
       - ULongRange
+      - until
   - namespace: kotlin.reflect
     title: kotlin.reflect
     target: Kotlin 2.2 stdlib
@@ -530,7 +1226,11 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/
     entries:
       - AssociatedObjectKey
+      - cast
+      - createInstance
       - ExperimentalAssociatedObjects
+      - findAssociatedObject
+      - javaType
       - KAnnotatedElement
       - KCallable
       - KClass
@@ -551,36 +1251,472 @@ namespaces:
       - KTypeProjection
       - KVariance
       - KVisibility
+      - navigation
+      - safeCast
+      - typeOf
   - namespace: kotlin.sequences
     title: kotlin.sequences
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.sequences/
     entries:
+      - all
+      - any
+      - asIterable
+      - asSequence
+      - associate
+      - associateBy
+      - associateByTo
+      - associateTo
+      - associateWith
+      - associateWithTo
+      - average
+      - chunked
+      - constrainOnce
+      - contains
+      - count
+      - distinct
+      - distinctBy
+      - drop
+      - dropWhile
+      - elementAt
+      - elementAtOrElse
+      - elementAtOrNull
+      - emptySequence
+      - filter
+      - filterIndexed
+      - filterIndexedTo
+      - filterIsInstance
+      - filterIsInstanceTo
+      - filterNot
+      - filterNotNull
+      - filterNotNullTo
+      - filterNotTo
+      - filterTo
+      - find
+      - findLast
+      - first
+      - firstNotNullOf
+      - firstNotNullOfOrNull
+      - firstOrNull
+      - flatMap
+      - flatMapIndexed
+      - flatMapIndexedTo
+      - flatMapTo
+      - flatten
+      - fold
+      - foldIndexed
+      - forEach
+      - forEachIndexed
+      - generateSequence
+      - groupBy
+      - groupByTo
+      - groupingBy
+      - ifEmpty
+      - indexOf
+      - indexOfFirst
+      - indexOfLast
+      - iterator
+      - joinTo
+      - joinToString
+      - last
+      - lastIndexOf
+      - lastOrNull
+      - map
+      - mapIndexed
+      - mapIndexedNotNull
+      - mapIndexedNotNullTo
+      - mapIndexedTo
+      - mapNotNull
+      - mapNotNullTo
+      - mapTo
+      - max
+      - maxBy
+      - maxByOrNull
+      - maxOf
+      - maxOfOrNull
+      - maxOfWith
+      - maxOfWithOrNull
+      - maxOrNull
+      - maxWith
+      - maxWithOrNull
+      - min
+      - minBy
+      - minByOrNull
+      - minOf
+      - minOfOrNull
+      - minOfWith
+      - minOfWithOrNull
+      - minOrNull
+      - minus
+      - minusElement
+      - minWith
+      - minWithOrNull
+      - navigation
+      - none
+      - onEach
+      - onEachIndexed
+      - orEmpty
+      - partition
+      - plus
+      - plusElement
+      - reduce
+      - reduceIndexed
+      - reduceIndexedOrNull
+      - reduceOrNull
+      - requireNoNulls
+      - runningFold
+      - runningFoldIndexed
+      - runningReduce
+      - runningReduceIndexed
+      - scan
+      - scanIndexed
+      - sequence
       - Sequence
+      - sequenceOf
       - SequenceScope
+      - shuffled
+      - single
+      - singleOrNull
+      - sorted
+      - sortedBy
+      - sortedByDescending
+      - sortedDescending
+      - sortedWith
+      - sum
+      - sumBy
+      - sumByDouble
+      - sumOf
+      - take
+      - takeWhile
+      - toCollection
+      - toHashSet
+      - toList
+      - toMutableList
+      - toMutableSet
+      - toSet
+      - toSortedSet
+      - unzip
+      - windowed
+      - withIndex
       - yield
       - yieldAll
+      - zip
+      - zipWithNext
   - namespace: kotlin.text
     title: kotlin.text
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/
     entries:
+      - all
+      - any
+      - append
       - Appendable
+      - appendLine
+      - appendln
+      - appendRange
+      - asIterable
+      - asSequence
+      - associate
+      - associateBy
+      - associateByTo
+      - associateTo
+      - associateWith
+      - associateWithTo
+      - Builder
+      - buildString
+      - capitalize
+      - CASE_INSENSITIVE_ORDER
+      - category
       - CharacterCodingException
       - CharCategory
       - CharDirectionality
+      - charset
       - Charsets
+      - chunked
+      - chunkedSequence
+      - clear
+      - codePointAt
+      - codePointBefore
+      - codePointCount
+      - commonPrefixWith
+      - commonSuffixWith
+      - compareTo
+      - concat
+      - concatToString
+      - contains
+      - contentEquals
+      - count
+      - decapitalize
+      - decodeToString
+      - deleteAt
+      - deleteCharAt
+      - deleteRange
+      - digitToChar
+      - digitToInt
+      - digitToIntOrNull
+      - directionality
+      - drop
+      - dropLast
+      - dropLastWhile
+      - dropWhile
+      - elementAt
+      - elementAtOrElse
+      - elementAtOrNull
+      - encodeToByteArray
+      - endsWith
+      - equals
+      - filter
+      - filterIndexed
+      - filterIndexedTo
+      - filterNot
+      - filterNotTo
+      - filterTo
+      - find
+      - findAnyOf
+      - findLast
+      - findLastAnyOf
+      - first
+      - firstNotNullOf
+      - firstNotNullOfOrNull
+      - firstOrNull
+      - FlagEnum
+      - flatMap
+      - flatMapIndexed
+      - flatMapIndexedTo
+      - flatMapTo
+      - fold
+      - foldIndexed
+      - foldRight
+      - foldRightIndexed
+      - forEach
+      - forEachIndexed
+      - format
+      - get
+      - getOrElse
+      - getOrNull
+      - groupBy
+      - groupByTo
+      - groupingBy
+      - hasSurrogatePairAt
       - HexFormat
+      - hexToByte
+      - hexToByteArray
+      - hexToInt
+      - hexToLong
+      - hexToShort
+      - hexToUByte
+      - hexToUByteArray
+      - hexToUInt
+      - hexToULong
+      - hexToUShort
+      - ifBlank
+      - ifEmpty
+      - indexOf
+      - indexOfAny
+      - indexOfFirst
+      - indexOfLast
+      - indices
+      - insert
+      - insertRange
+      - intern
+      - isBlank
+      - isDefined
+      - isDigit
+      - isEmpty
+      - isHighSurrogate
+      - isIdentifierIgnorable
+      - isISOControl
+      - isJavaIdentifierPart
+      - isJavaIdentifierStart
+      - isLetter
+      - isLetterOrDigit
+      - isLowerCase
+      - isLowSurrogate
+      - isNotBlank
+      - isNotEmpty
+      - isNullOrBlank
+      - isNullOrEmpty
+      - isSupplementaryCodePoint
+      - isSurrogate
+      - isSurrogatePair
+      - isTitleCase
+      - isUpperCase
+      - isWhitespace
+      - iterator
+      - last
+      - lastIndex
+      - lastIndexOf
+      - lastIndexOfAny
+      - lastOrNull
+      - lines
+      - lineSequence
+      - lowercase
+      - lowercaseChar
+      - map
+      - mapIndexed
+      - mapIndexedNotNull
+      - mapIndexedNotNullTo
+      - mapIndexedTo
+      - mapNotNull
+      - mapNotNullTo
+      - mapTo
+      - match
+      - matches
       - MatchGroup
       - MatchGroupCollection
       - MatchNamedGroupCollection
       - MatchResult
+      - max
+      - maxBy
+      - maxByOrNull
+      - maxOf
+      - maxOfOrNull
+      - maxOfWith
+      - maxOfWithOrNull
+      - maxOrNull
+      - maxWith
+      - maxWithOrNull
+      - min
+      - minBy
+      - minByOrNull
+      - minOf
+      - minOfOrNull
+      - minOfWith
+      - minOfWithOrNull
+      - minOrNull
+      - minWith
+      - minWithOrNull
+      - navigation
+      - none
+      - offsetByCodePoints
+      - onEach
+      - onEachIndexed
+      - orEmpty
+      - padEnd
+      - padStart
+      - partition
+      - plus
+      - prependIndent
+      - random
+      - randomOrNull
+      - reduce
+      - reduceIndexed
+      - reduceIndexedOrNull
+      - reduceOrNull
+      - reduceRight
+      - reduceRightIndexed
+      - reduceRightIndexedOrNull
+      - reduceRightOrNull
       - Regex
       - RegexOption
+      - regionMatches
+      - removePrefix
+      - removeRange
+      - removeSuffix
+      - removeSurrounding
+      - repeat
+      - replace
+      - replaceAfter
+      - replaceAfterLast
+      - replaceBefore
+      - replaceBeforeLast
+      - replaceFirst
+      - replaceFirstChar
+      - replaceIndent
+      - replaceIndentByMargin
+      - replaceRange
+      - reversed
+      - runningFold
+      - runningFoldIndexed
+      - runningReduce
+      - runningReduceIndexed
+      - scan
+      - scanIndexed
+      - set
+      - setCharAt
+      - setRange
+      - single
+      - singleOrNull
+      - slice
+      - split
+      - splitToSequence
+      - startsWith
+      - String
       - StringBuilder
+      - subSequence
+      - substring
+      - substringAfter
+      - substringAfterLast
+      - substringBefore
+      - substringBeforeLast
+      - sumBy
+      - sumByDouble
+      - sumOf
+      - take
+      - takeLast
+      - takeLastWhile
+      - takeWhile
+      - titlecase
+      - titlecaseChar
+      - toBigDecimal
+      - toBigDecimalOrNull
+      - toBigInteger
+      - toBigIntegerOrNull
+      - toBoolean
+      - toBooleanStrict
+      - toBooleanStrictOrNull
+      - toByte
+      - toByteArray
+      - toByteOrNull
+      - toCharArray
+      - toChars
+      - toCodePoint
+      - toCollection
+      - toDouble
+      - toDoubleOrNull
+      - toFloat
+      - toFloatOrNull
+      - toHashSet
+      - toHexString
+      - toInt
+      - toIntOrNull
+      - toList
+      - toLong
+      - toLongOrNull
+      - toLowerCase
+      - toMutableList
+      - toPattern
+      - toRegex
+      - toSet
+      - toShort
+      - toShortOrNull
+      - toSortedSet
+      - toString
+      - toTitleCase
+      - toUByte
+      - toUByteOrNull
+      - toUInt
+      - toUIntOrNull
+      - toULong
+      - toULongOrNull
+      - toUpperCase
+      - toUShort
+      - toUShortOrNull
+      - trim
+      - trimEnd
+      - trimIndent
+      - trimMargin
+      - trimStart
       - Typography
+      - uppercase
+      - uppercaseChar
+      - windowed
+      - windowedSequence
+      - withIndex
+      - zip
+      - zipWithNext
   - namespace: kotlin.time
     title: kotlin.time
     target: Kotlin 2.2 stdlib
@@ -589,18 +1725,39 @@ namespaces:
     entries:
       - AbstractDoubleTimeSource
       - AbstractLongTimeSource
+      - asClock
       - Clock
+      - Companion
       - ComparableTimeMark
+      - DISTANT_FUTURE
+      - DISTANT_PAST
       - Duration
       - DurationUnit
       - elapsedNow
       - ExperimentalTime
       - Instant
+      - isDistantFuture
+      - isDistantPast
+      - markNow
+      - measureTime
+      - measureTimedValue
+      - Monotonic
+      - navigation
+      - now
       - Root
       - TestTimeSource
       - TimedValue
       - TimeMark
+      - times
       - TimeSource
+      - toDuration
+      - toDurationUnit
+      - toJavaDuration
+      - toJavaInstant
+      - toJSDate
+      - toKotlinDuration
+      - toKotlinInstant
+      - toTimeUnit
       - WithComparableMarks
   - namespace: kotlin.uuid
     title: kotlin.uuid
@@ -609,6 +1766,11 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.uuid/
     entries:
       - ExperimentalUuidApi
+      - getUuid
+      - navigation
+      - putUuid
+      - toJavaUuid
+      - toKotlinUuid
       - Uuid
   - namespace: kotlin.wasm
     title: kotlin.wasm
@@ -617,6 +1779,7 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.wasm/
     entries:
       - ExperimentalWasmInterop
+      - navigation
       - Root
       - WasmExport
       - WasmImport
@@ -627,19 +1790,33 @@ namespaces:
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.wasm.unsafe/
     entries:
       - MemoryAllocator
+      - navigation
       - Pointer
       - UnsafeWasmMemoryApi
+      - withScopedMemoryAllocator
   - namespace: kotlinx.cinterop
     title: kotlinx.cinterop
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/
     entries:
+      - addressOf
+      - alignOf
+      - alloc
+      - allocArray
+      - allocArrayOf
+      - allocArrayOfPointersTo
+      - allocPointerTo
       - Arena
       - ArenaBase
+      - arrayMemberAt
       - asCPointer
+      - asStableRef
       - AutofreeScope
+      - autoreleasepool
       - BetaInteropApi
+      - bitsToDouble
+      - bitsToFloat
       - BooleanVar
       - BooleanVarOf
       - ByteVar
@@ -649,17 +1826,24 @@ namespaces:
       - CEnum
       - CEnumVar
       - CFunction
+      - convert
       - COpaque
       - COpaquePointer
       - COpaquePointerVar
+      - copy
       - CPointed
       - CPointer
       - CPointerVar
       - CPointerVarOf
       - CPrimitiveVar
+      - createKotlinObjectHolder
+      - createValues
+      - cstr
       - CStructVar
+      - cValue
       - CValue
       - CValues
+      - cValuesOf
       - CValuesRef
       - CVariable
       - DeferScope
@@ -671,16 +1855,41 @@ namespaces:
       - FloatVar
       - FloatVarOf
       - ForeignException
+      - free
+      - get
+      - getBytes
+      - getOriginalKotlinClass
+      - getRawPointer
+      - getRawValue
+      - initBy
       - InteropStubs
+      - interpretCPointer
+      - interpretNullableOpaquePointed
+      - interpretNullablePointed
+      - interpretObjCPointer
+      - interpretObjCPointerOrNull
+      - interpretOpaquePointed
+      - interpretPointed
       - IntVar
       - IntVarOf
+      - invoke
       - LongVar
       - LongVarOf
+      - memberAt
       - MemScope
+      - memScoped
+      - narrow
       - NativeFreeablePlacement
+      - nativeNullPtr
       - NativePlacement
       - NativePointed
       - NativePtr
+      - navigation
+      - objc_autoreleasePoolPop
+      - objc_autoreleasePoolPush
+      - objc_release
+      - objc_retain
+      - objc_retainAutoreleaseReturnValue
       - ObjCAction
       - ObjCBlockVar
       - ObjCClass
@@ -697,12 +1906,43 @@ namespaces:
       - ObjCObjectVar
       - ObjCOutlet
       - ObjCProtocol
+      - objcPtr
       - ObjCSignatureOverride
       - ObjCStringVarOf
+      - optional
+      - pin
       - Pinned
+      - placeTo
+      - plus
+      - pointed
+      - ptr
+      - rawPtr
+      - rawValue
+      - readBits
+      - readBytes
+      - readValue
+      - readValues
+      - refTo
+      - reinterpret
+      - set
       - ShortVar
       - ShortVarOf
+      - signExtend
+      - sizeOf
       - StableRef
+      - staticCFunction
+      - toBoolean
+      - toByte
+      - toCPointer
+      - toCStringArray
+      - toCValues
+      - toKString
+      - toKStringFromUtf16
+      - toKStringFromUtf32
+      - toKStringFromUtf8
+      - toLong
+      - Type
+      - typeOf
       - UByteVar
       - UByteVarOf
       - UIntVar
@@ -710,11 +1950,23 @@ namespaces:
       - ULongVar
       - ULongVarOf
       - UnsafeNumber
+      - unwrapKotlinObjectHolder
+      - useContents
+      - usePinned
       - UShortVar
       - UShortVarOf
+      - utf16
+      - utf32
+      - utf8
+      - value
       - Vector128
       - Vector128Var
       - Vector128VarOf
+      - vectorOf
+      - wcstr
+      - write
+      - writeBits
+      - zeroValue
   - namespace: kotlinx.cinterop.internal
     title: kotlinx.cinterop.internal
     target: Kotlin 2.2 stdlib
@@ -726,17 +1978,25 @@ namespaces:
       - CEnumVarTypeSize
       - CGlobalAccess
       - ConstantValue
+      - convertBlockPtrToKotlinFunction
       - CStruct
+      - detachObjCObject
+      - navigation
   - namespace: kotlinx.cinterop.native-heap
     title: kotlinx.cinterop.native-heap
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/kotlinx.cinterop/native-heap/
-    entries: []
+    entries:
+      - alloc
+      - free
+      - navigation
   - namespace: org.w3c.dom
     title: org.w3c.dom
     target: Kotlin 2.2 stdlib
     sourceKind: source_manifest
     sourceRef: https://kotlinlang.org/api/core/kotlin-stdlib/org.w3c.dom/
     entries:
+      - asList
       - ItemArrayLike
+      - navigation
