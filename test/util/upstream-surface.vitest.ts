@@ -2288,15 +2288,15 @@ describe('upstream surface inventory', () => {
         note: 'MIME header codec internals mix stream/runtime plumbing rather than direct text conversion.',
       },
     ])
-    expect(perlFamilyResult.namespaces.find((namespace) => namespace.namespace === 'MIME::Base64')?.wantedEntries).toEqual(
-      [
-        {
-          name: 'encode_base64',
-          decision: 'wanted',
-          note: 'Base64 codec helpers are strong plain-value portability targets.',
-        },
-      ],
-    )
+    expect(
+      perlFamilyResult.namespaces.find((namespace) => namespace.namespace === 'MIME::Base64')?.wantedEntries,
+    ).toEqual([
+      {
+        name: 'encode_base64',
+        decision: 'wanted',
+        note: 'Base64 codec helpers are strong plain-value portability targets.',
+      },
+    ])
     expect(
       perlFamilyResult.namespaces.find((namespace) => namespace.namespace === 'MIME::Base64')?.skippedEntries,
     ).toEqual([
@@ -2307,7 +2307,8 @@ describe('upstream surface inventory', () => {
       },
     ])
     expect(
-      perlFamilyResult.namespaces.find((namespace) => namespace.namespace === 'Unicode::Collate::Locale')?.wantedEntries,
+      perlFamilyResult.namespaces.find((namespace) => namespace.namespace === 'Unicode::Collate::Locale')
+        ?.wantedEntries,
     ).toEqual([])
     expect(
       perlFamilyResult.namespaces.find((namespace) => namespace.namespace === 'Unicode::Collate::Locale')
@@ -2347,20 +2348,20 @@ describe('upstream surface inventory', () => {
     expect(swiftFloat16Result.namespaces.find((namespace) => namespace.namespace === 'Float16')?.wantedEntries).toEqual(
       [],
     )
-    expect(swiftFloat16Result.namespaces.find((namespace) => namespace.namespace === 'Float16')?.skippedEntries).toEqual(
-      [
-        {
-          name: 'encode',
-          decision: 'skip_runtime_model',
-          note: 'Float16 mixes scalar math with runtime-model, SIMD, and protocol surfaces too broadly for one stable plain-value contract by default.',
-        },
-        {
-          name: 'SIMD16Storage',
-          decision: 'skip_runtime_model',
-          note: 'Float16 mixes scalar math with runtime-model, SIMD, and protocol surfaces too broadly for one stable plain-value contract by default.',
-        },
-      ],
-    )
+    expect(
+      swiftFloat16Result.namespaces.find((namespace) => namespace.namespace === 'Float16')?.skippedEntries,
+    ).toEqual([
+      {
+        name: 'encode',
+        decision: 'skip_runtime_model',
+        note: 'Float16 mixes scalar math with runtime-model, SIMD, and protocol surfaces too broadly for one stable plain-value contract by default.',
+      },
+      {
+        name: 'SIMD16Storage',
+        decision: 'skip_runtime_model',
+        note: 'Float16 mixes scalar math with runtime-model, SIMD, and protocol surfaces too broadly for one stable plain-value contract by default.',
+      },
+    ])
 
     const haskellNumericResult = compareUpstreamSurface(
       [],
@@ -2381,7 +2382,9 @@ describe('upstream surface inventory', () => {
       inventory.haskell ?? {},
     )
 
-    expect(haskellNumericResult.namespaces.find((namespace) => namespace.namespace === 'Numeric')?.wantedEntries).toEqual([
+    expect(
+      haskellNumericResult.namespaces.find((namespace) => namespace.namespace === 'Numeric')?.wantedEntries,
+    ).toEqual([
       {
         name: 'acos',
         decision: 'wanted',
