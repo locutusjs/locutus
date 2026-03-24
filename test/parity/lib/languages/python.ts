@@ -5,6 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { fetchText } from '../upstream-surface-canonical.ts'
 import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // String module constants (called without parentheses in Python)
@@ -27,8 +28,10 @@ export const PYTHON_SKIP_LIST = new Set<string>([
 
 const PYTHON_DOCKER_IMAGE = 'python:3.12'
 const PYTHON_NAMESPACE_CATALOG_TARGET = 'Python 3.12'
-const PYTHON_NAMESPACE_CATALOG_SOURCE_REF = 'python:3.12:pkgutil-stdlib-modules'
+const PYTHON_NAMESPACE_CATALOG_SOURCE_REF =
+  'https://docs.python.org/3.12/py-modindex.html ∩ python:3.12:importable-documented-modules'
 const PYTHON_NAMESPACE_EXCLUDES = new Set(['antigravity'])
+const PYTHON_MODULE_INDEX_URL = 'https://docs.python.org/3.12/py-modindex.html'
 
 const PYTHON_NAMESPACE_CONFIG: Record<
   string,
@@ -48,8 +51,8 @@ const PYTHON_NAMESPACE_CONFIG: Record<
   'urllib.parse': { importName: 'urllib.parse', allowedModules: ['urllib.parse'] },
 }
 
-function discoverPythonUpstreamSurface() {
-  const catalog = discoverPythonUpstreamNamespaceCatalog()
+async function discoverPythonUpstreamSurface() {
+  const catalog = await discoverPythonUpstreamNamespaceCatalog()
   const namespaces = catalog.namespaces
   const namespaceConfigs = namespaces.map((namespace) => {
     const config = PYTHON_NAMESPACE_CONFIG[namespace] ?? {}
@@ -143,30 +146,37 @@ print(json.dumps({"language": "python", "namespaces": snapshots}))
   })
 }
 
-function discoverPythonUpstreamNamespaces() {
-  const script = `
-import json
-import os
-import pkgutil
-import sys
-import sysconfig
+async function fetchPythonDocumentedNamespaces(): Promise<string[]> {
+  const html = await fetchText(PYTHON_MODULE_INDEX_URL)
+  const documented = [...html.matchAll(/<code class="xref">([^<]+)<\/code>/g)]
+    .map((match) => match[1]?.trim() ?? '')
+    .filter((entry) => entry && !entry.startsWith('_') && !entry.startsWith('xx'))
 
-stdlib_path = sysconfig.get_path("stdlib")
-dynload_path = os.path.join(stdlib_path, "lib-dynload")
-search_paths = [path for path in [stdlib_path, dynload_path] if path and os.path.isdir(path)]
-builtin_namespaces = {
-  name
-  for name in sys.builtin_module_names
-  if name and not name.startswith("_") and not name.startswith("xx")
+  return [...new Set(documented.concat('builtins'))].filter((entry) => !PYTHON_NAMESPACE_EXCLUDES.has(entry)).sort()
 }
 
-namespaces = sorted({
-  name
-  for _, name, _ in pkgutil.iter_modules(search_paths)
-  if not name.startswith("_") and not name.startswith("xx") and "." not in name
-} | builtin_namespaces | {"builtins"})
+function discoverImportablePythonNamespaces(documentedNamespaces: string[]): string[] {
+  const script = `
+import contextlib
+import importlib
+import io
+import json
 
-print(json.dumps(namespaces))
+documented_namespaces = ${JSON.stringify(documentedNamespaces)}
+importable_namespaces = []
+
+for namespace in documented_namespaces:
+  if namespace == "builtins":
+    importable_namespaces.append(namespace)
+    continue
+  try:
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+      importlib.import_module(namespace)
+  except Exception:
+    continue
+  importable_namespaces.append(namespace)
+
+print(json.dumps(sorted(set(importable_namespaces))))
 `.trim()
   const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script], {
     timeout: 120000,
@@ -174,7 +184,7 @@ print(json.dumps(namespaces))
   })
 
   if (!result.success) {
-    throw new Error(result.error || 'Unable to discover Python upstream namespaces')
+    throw new Error(result.error || 'Unable to determine importable Python upstream namespaces')
   }
 
   const parsed = JSON.parse(result.output) as unknown
@@ -188,12 +198,17 @@ print(json.dumps(namespaces))
     .sort()
 }
 
-function discoverPythonUpstreamNamespaceCatalog() {
+async function discoverPythonUpstreamNamespaces(): Promise<string[]> {
+  const documentedNamespaces = await fetchPythonDocumentedNamespaces()
+  return discoverImportablePythonNamespaces(documentedNamespaces)
+}
+
+async function discoverPythonUpstreamNamespaceCatalog() {
   return {
     target: PYTHON_NAMESPACE_CATALOG_TARGET,
-    sourceKind: 'runtime' as const,
+    sourceKind: 'source_manifest' as const,
     sourceRef: PYTHON_NAMESPACE_CATALOG_SOURCE_REF,
-    namespaces: discoverPythonUpstreamNamespaces(),
+    namespaces: await discoverPythonUpstreamNamespaces(),
   }
 }
 

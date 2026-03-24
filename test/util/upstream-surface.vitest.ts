@@ -84,6 +84,10 @@ describe('upstream surface inventory', () => {
         namespaces: {
           __global: {
             decisions: {
+              array_values: {
+                decision: 'wanted',
+                note: 'shipped upstream entries should not consume exact decisions',
+              },
               money_format: {
                 decision: 'keep_legacy',
                 note: 'removed upstream but intentionally retained',
@@ -290,8 +294,8 @@ describe('upstream surface inventory', () => {
           'python',
           {
             target: 'Python 3.12',
-            sourceKind: 'runtime',
-            sourceRef: 'python:3.12:pkgutil-stdlib-modules',
+            sourceKind: 'source_manifest',
+            sourceRef: 'https://docs.python.org/3.12/py-modindex.html ∩ python:3.12:importable-documented-modules',
             namespaces: ['builtins', 'datetime', 'math', 'urllib'],
           },
         ],
@@ -336,9 +340,13 @@ describe('upstream surface inventory', () => {
         missingLanguageCatalog: false,
         missingNamespaces: ['datetime'],
         unexpectedNamespaces: ['random'],
+        sourceKindMismatch: {
+          expected: 'runtime',
+          actual: 'source_manifest',
+        },
         sourceRefMismatch: {
           expected: 'python:3.12:sys.stdlib_module_names',
-          actual: 'python:3.12:pkgutil-stdlib-modules',
+          actual: 'https://docs.python.org/3.12/py-modindex.html ∩ python:3.12:importable-documented-modules',
         },
       },
     ])
@@ -351,8 +359,8 @@ describe('upstream surface inventory', () => {
           'python',
           {
             target: 'Python 3.12',
-            sourceKind: 'runtime',
-            sourceRef: 'python:3.12:pkgutil-stdlib-modules',
+            sourceKind: 'source_manifest',
+            sourceRef: 'https://docs.python.org/3.12/py-modindex.html ∩ python:3.12:importable-documented-modules',
             namespaces: ['urllib'],
           },
         ],
@@ -361,8 +369,8 @@ describe('upstream surface inventory', () => {
         python: {
           namespaceCatalog: {
             target: 'Python 3.12',
-            sourceKind: 'runtime',
-            sourceRef: 'python:3.12:pkgutil-stdlib-modules',
+            sourceKind: 'source_manifest',
+            sourceRef: 'https://docs.python.org/3.12/py-modindex.html ∩ python:3.12:importable-documented-modules',
           },
           namespaces: {
             'urllib.parse': {
@@ -566,7 +574,9 @@ describe('upstream surface inventory', () => {
 
     expect(loaded.php?.namespaces?.__global?.sourceKind).toBe('runtime')
     expect(loaded.python?.namespaces?.math?.sourceRef).toBe('python:3.12:math')
-    expect(loaded.python?.namespaceCatalog?.sourceRef).toBe('python:3.12:pkgutil-stdlib-modules')
+    expect(loaded.python?.namespaceCatalog?.sourceRef).toBe(
+      'https://docs.python.org/3.12/py-modindex.html ∩ python:3.12:importable-documented-modules',
+    )
     expect(loaded.python?.namespaces?.urllib?.sourceRef).toBe('python:3.12:urllib')
     expect(loaded.swift?.namespaces?.String?.sourceKind).toBe('runtime')
   })
@@ -798,6 +808,10 @@ describe('upstream surface inventory', () => {
         namespaces: {
           __global: {
             decisions: {
+              array_values: {
+                decision: 'wanted',
+                note: 'shipped upstream entries should not consume exact decisions',
+              },
               money_format: {
                 decision: 'keep_legacy',
                 note: 'removed upstream but intentionally retained',
@@ -825,6 +839,11 @@ describe('upstream surface inventory', () => {
         name: 'array_is_list',
         decision: 'wanted',
         note: 'stale todo should be reported',
+      },
+      {
+        name: 'array_values',
+        decision: 'wanted',
+        note: 'shipped upstream entries should not consume exact decisions',
       },
       {
         name: 'create_function',

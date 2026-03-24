@@ -1,13 +1,38 @@
 language: ruby
 catalog:
   target: Ruby 3.3
-  sourceKind: runtime
-  sourceRef: ruby:3.3:objectspace-top-level-modules
+  sourceKind: source_manifest
+  sourceRef: https://docs.ruby-lang.org/en/3.3/table_of_contents.html
 namespaces:
+  - namespace: Abbrev
+    title: Abbrev
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Abbrev
+    entries:
+      - abbrev
+  - namespace: ACL
+    title: ACL
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:ACL
+    entries: []
+  - namespace: Addrinfo
+    title: Addrinfo
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Addrinfo
+    entries: []
+  - namespace: ARGF
+    title: ARGF
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:ARGF
+    entries: []
   - namespace: ArgumentError
     title: ArgumentError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ArgumentError
     entries:
       - backtrace
@@ -21,7 +46,7 @@ namespaces:
   - namespace: Array
     title: Array
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Array
     entries:
       - '-'
@@ -32,6 +57,7 @@ namespaces:
       - +
       - '<<'
       - '|'
+      - abbrev
       - all?
       - any?
       - append
@@ -160,16 +186,141 @@ namespaces:
       - unshift
       - values_at
       - zip
+  - namespace: Base64
+    title: Base64
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Base64
+    entries:
+      - decode64
+      - encode64
+      - strict_decode64
+      - strict_encode64
+      - urlsafe_decode64
+      - urlsafe_encode64
   - namespace: BasicObject
     title: BasicObject
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:BasicObject
     entries: []
+  - namespace: BasicSocket
+    title: BasicSocket
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:BasicSocket
+    entries: []
+  - namespace: Benchmark
+    title: Benchmark
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Benchmark
+    entries:
+      - benchmark
+      - bm
+      - bmbm
+      - measure
+      - realtime
+  - namespace: BigDecimal
+    title: BigDecimal
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:BigDecimal
+    entries:
+      - _dump
+      - _load
+      - '-'
+      - '-@'
+      - '*'
+      - '**'
+      - /
+      - '%'
+      - +
+      - +@
+      - <
+      - <=
+      - '>'
+      - '>='
+      - abs
+      - abs2
+      - add
+      - angle
+      - arg
+      - between?
+      - ceil
+      - clamp
+      - coerce
+      - conj
+      - conjugate
+      - denominator
+      - div
+      - divmod
+      - double_fig
+      - exponent
+      - fdiv
+      - finite?
+      - fix
+      - floor
+      - frac
+      - i
+      - imag
+      - imaginary
+      - infinite?
+      - integer?
+      - interpret_loosely
+      - limit
+      - magnitude
+      - mode
+      - modulo
+      - mult
+      - n_significant_digits
+      - nan?
+      - negative?
+      - nonzero?
+      - numerator
+      - phase
+      - polar
+      - positive?
+      - power
+      - precision
+      - precision_scale
+      - precs
+      - quo
+      - real
+      - real?
+      - rect
+      - rectangular
+      - remainder
+      - round
+      - save_exception_mode
+      - save_limit
+      - save_rounding_mode
+      - scale
+      - sign
+      - singleton_method_added
+      - split
+      - sqrt
+      - step
+      - sub
+      - to_c
+      - to_f
+      - to_i
+      - to_int
+      - to_r
+      - truncate
+      - zero?
+  - namespace: BigMath
+    title: BigMath
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:BigMath
+    entries:
+      - exp
+      - log
   - namespace: Binding
     title: Binding
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Binding
     entries:
       - eval
@@ -180,10 +331,116 @@ namespaces:
       - local_variables
       - receiver
       - source_location
+  - namespace: Bundler
+    title: Bundler
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Bundler
+    entries:
+      - app_cache
+      - app_config_path
+      - auto_install
+      - auto_switch
+      - bin_path
+      - bundle_path
+      - bundler_major_version
+      - clean_env
+      - clean_exec
+      - clean_system
+      - clear_gemspec_cache
+      - configure
+      - configure_gem_home_and_path
+      - configured_bundle_path
+      - create_bundle_path
+      - current_ruby
+      - default_bundle_dir
+      - default_gemfile
+      - default_lockfile
+      - definition
+      - environment
+      - feature_flag
+      - frozen_bundle?
+      - gem_version
+      - git_present?
+      - home
+      - install_path
+      - load
+      - load_gemspec
+      - load_gemspec_uncached
+      - local_platform
+      - locked_gems
+      - mkdir_p
+      - most_specific_locked_platform?
+      - original_env
+      - original_exec
+      - original_system
+      - preferred_gemfile_name
+      - read_file
+      - require
+      - reset_paths!
+      - reset_rubygems!
+      - reset_settings_and_root!
+      - reset!
+      - rm_rf
+      - root
+      - ruby_scope
+      - rubygems
+      - safe_load_marshal
+      - self_manager
+      - settings
+      - setup
+      - specs_path
+      - system_bindir
+      - tmp
+      - ui
+      - ui=
+      - unbundle_env!
+      - unbundled_env
+      - unbundled_exec
+      - unbundled_system
+      - use_system_gems?
+      - user_bundle_path
+      - user_cache
+      - user_home
+      - which
+      - with_clean_env
+      - with_original_env
+      - with_unbundled_env
+  - namespace: CGI
+    title: CGI
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:CGI
+    entries:
+      - accept_charset
+      - accept_charset=
+      - escape
+      - escape_element
+      - escape_html
+      - escape_uri_component
+      - escapeElement
+      - escapeHTML
+      - escapeURIComponent
+      - h
+      - header
+      - http_header
+      - nph?
+      - out
+      - parse
+      - pretty
+      - print
+      - rfc1123_date
+      - unescape
+      - unescape_element
+      - unescape_html
+      - unescape_uri_component
+      - unescapeElement
+      - unescapeHTML
+      - unescapeURIComponent
   - namespace: Class
     title: Class
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Class
     entries:
       - <
@@ -248,7 +505,7 @@ namespaces:
   - namespace: ClosedQueueError
     title: ClosedQueueError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ClosedQueueError
     entries:
       - backtrace
@@ -263,7 +520,7 @@ namespaces:
   - namespace: Comparable
     title: Comparable
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Comparable
     entries:
       - <
@@ -276,7 +533,7 @@ namespaces:
   - namespace: Complex
     title: Complex
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Complex
     entries:
       - '-'
@@ -318,10 +575,191 @@ namespaces:
       - to_int
       - to_r
       - zero?
+  - namespace: Continuation
+    title: Continuation
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Continuation
+    entries:
+      - '[]'
+      - call
+  - namespace: COPYING
+    title: COPYING
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:COPYING
+    entries: []
+  - namespace: COPYING_ja
+    title: COPYING_ja
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:COPYING_ja
+    entries: []
+  - namespace: CoreExtensions
+    title: CoreExtensions
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:CoreExtensions
+    entries: []
+  - namespace: Coverage
+    title: Coverage
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Coverage
+    entries:
+      - line_stub
+      - peek_result
+      - result
+      - resume
+      - running?
+      - setup
+      - start
+      - state
+      - supported?
+      - suspend
+  - namespace: CSV
+    title: CSV
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:CSV
+    entries:
+      - '<<'
+      - add_row
+      - all?
+      - any?
+      - binmode
+      - binmode?
+      - chain
+      - chunk
+      - chunk_while
+      - close
+      - close_read
+      - close_write
+      - closed?
+      - col_sep
+      - collect
+      - collect_concat
+      - compact
+      - convert
+      - converters
+      - count
+      - cycle
+      - detect
+      - drop
+      - drop_while
+      - each
+      - each_cons
+      - each_entry
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - encoding
+      - entries
+      - eof
+      - eof?
+      - external_encoding
+      - fcntl
+      - field_size_limit
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flock
+      - flush
+      - force_quotes?
+      - foreach
+      - fsync
+      - generate
+      - generate_line
+      - generate_lines
+      - gets
+      - grep
+      - grep_v
+      - group_by
+      - header_convert
+      - header_converters
+      - header_row?
+      - headers
+      - include?
+      - inject
+      - instance
+      - internal_encoding
+      - ioctl
+      - isatty
+      - lazy
+      - liberal_parsing?
+      - line
+      - lineno
+      - map
+      - max
+      - max_by
+      - max_field_size
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - one?
+      - open
+      - parse
+      - parse_line
+      - partition
+      - path
+      - pid
+      - pos
+      - pos=
+      - puts
+      - quote_char
+      - read
+      - readline
+      - readlines
+      - reduce
+      - reject
+      - reopen
+      - return_headers?
+      - reverse_each
+      - rewind
+      - row_sep
+      - seek
+      - select
+      - shift
+      - skip_blanks?
+      - skip_lines
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - string
+      - sum
+      - sync
+      - sync=
+      - table
+      - take
+      - take_while
+      - tally
+      - tell
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_set
+      - truncate
+      - tty?
+      - unconverted_fields?
+      - uniq
+      - write_headers?
+      - zip
   - namespace: Data
     title: Data
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Data
     entries:
       - deconstruct
@@ -330,20 +768,227 @@ namespaces:
       - members
       - to_h
       - with
+  - namespace: Date
+    title: Date
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Date
+    entries:
+      - _httpdate
+      - _iso8601
+      - _jisx0301
+      - _load
+      - _parse
+      - _rfc2822
+      - _rfc3339
+      - _rfc822
+      - _strptime
+      - _xmlschema
+      - '-'
+      - +
+      - <
+      - '<<'
+      - <=
+      - '>'
+      - '>='
+      - '>>'
+      - ajd
+      - amjd
+      - asctime
+      - between?
+      - civil
+      - clamp
+      - commercial
+      - ctime
+      - cwday
+      - cweek
+      - cwyear
+      - day
+      - day_fraction
+      - deconstruct_keys
+      - downto
+      - england
+      - friday?
+      - gregorian
+      - gregorian_leap?
+      - gregorian?
+      - httpdate
+      - infinite?
+      - iso8601
+      - italy
+      - jd
+      - jisx0301
+      - julian
+      - julian_leap?
+      - julian?
+      - ld
+      - leap?
+      - marshal_dump
+      - marshal_load
+      - mday
+      - mjd
+      - mon
+      - monday?
+      - month
+      - new_start
+      - next
+      - next_day
+      - next_month
+      - next_year
+      - ordinal
+      - parse
+      - prev_day
+      - prev_month
+      - prev_year
+      - rfc2822
+      - rfc3339
+      - rfc822
+      - saturday?
+      - start
+      - step
+      - strftime
+      - strptime
+      - succ
+      - sunday?
+      - thursday?
+      - to_date
+      - to_datetime
+      - to_time
+      - today
+      - tuesday?
+      - upto
+      - valid_civil?
+      - valid_commercial?
+      - valid_date?
+      - valid_jd?
+      - valid_ordinal?
+      - wday
+      - wednesday?
+      - xmlschema
+      - yday
+      - year
+  - namespace: DateTime
+    title: DateTime
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:DateTime
+    entries:
+      - _strptime
+      - '-'
+      - +
+      - <
+      - '<<'
+      - <=
+      - '>'
+      - '>='
+      - '>>'
+      - ajd
+      - amjd
+      - asctime
+      - between?
+      - civil
+      - clamp
+      - commercial
+      - ctime
+      - cwday
+      - cweek
+      - cwyear
+      - day
+      - day_fraction
+      - deconstruct_keys
+      - downto
+      - england
+      - friday?
+      - gregorian
+      - gregorian?
+      - hour
+      - httpdate
+      - infinite?
+      - iso8601
+      - italy
+      - jd
+      - jisx0301
+      - julian
+      - julian?
+      - ld
+      - leap?
+      - marshal_dump
+      - marshal_load
+      - mday
+      - min
+      - minute
+      - mjd
+      - mon
+      - monday?
+      - month
+      - new
+      - new_offset
+      - new_start
+      - next
+      - next_day
+      - next_month
+      - next_year
+      - now
+      - offset
+      - ordinal
+      - parse
+      - prev_day
+      - prev_month
+      - prev_year
+      - rfc2822
+      - rfc3339
+      - rfc822
+      - saturday?
+      - sec
+      - sec_fraction
+      - second
+      - second_fraction
+      - start
+      - step
+      - strftime
+      - strptime
+      - succ
+      - sunday?
+      - thursday?
+      - to_date
+      - to_datetime
+      - to_time
+      - tuesday?
+      - upto
+      - wday
+      - wednesday?
+      - xmlschema
+      - yday
+      - year
+      - zone
+  - namespace: Delegator
+    title: Delegator
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Delegator
+    entries: []
   - namespace: DidYouMean
     title: DidYouMean
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:DidYouMean
     entries:
       - correct_error
       - formatter
       - formatter=
       - spell_checkers
+  - namespace: Digest
+    title: Digest
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Digest
+    entries:
+      - const_missing
+      - hexencode
   - namespace: Dir
     title: Dir
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Dir
     entries:
       - '[]'
@@ -437,10 +1082,34 @@ namespaces:
       - uniq
       - unlink
       - zip
+  - namespace: DRb
+    title: DRb
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:DRb
+    entries:
+      - config
+      - current_server
+      - fetch_server
+      - front
+      - here?
+      - install_acl
+      - install_id_conv
+      - mutex
+      - primary_server
+      - primary_server=
+      - regist_server
+      - remove_server
+      - start_service
+      - stop_service
+      - thread
+      - to_id
+      - to_obj
+      - uri
   - namespace: Encoding
     title: Encoding
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Encoding
     entries:
       - _dump
@@ -462,7 +1131,7 @@ namespaces:
   - namespace: EncodingError
     title: EncodingError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:EncodingError
     entries:
       - backtrace
@@ -473,10 +1142,16 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: English
+    title: English
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:English
+    entries: []
   - namespace: Enumerable
     title: Enumerable
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Enumerable
     entries:
       - all?
@@ -543,7 +1218,7 @@ namespaces:
   - namespace: Enumerator
     title: Enumerator
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Enumerator
     entries:
       - +
@@ -620,10 +1295,65 @@ namespaces:
       - with_index
       - with_object
       - zip
+  - namespace: ENV
+    title: ENV
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:ENV
+    entries:
+      - '[]'
+      - '[]='
+      - assoc
+      - clear
+      - clone
+      - delete
+      - delete_if
+      - dup
+      - each
+      - each_key
+      - each_pair
+      - each_value
+      - empty?
+      - except
+      - fetch
+      - filter
+      - filter!
+      - freeze
+      - has_key?
+      - has_value?
+      - include?
+      - inspect
+      - invert
+      - keep_if
+      - key
+      - key?
+      - keys
+      - length
+      - member?
+      - merge!
+      - rassoc
+      - rehash
+      - reject
+      - reject!
+      - replace
+      - select
+      - select!
+      - shift
+      - size
+      - slice
+      - store
+      - to_a
+      - to_h
+      - to_hash
+      - to_s
+      - update
+      - value?
+      - values
+      - values_at
   - namespace: EOFError
     title: EOFError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:EOFError
     entries:
       - backtrace
@@ -634,25 +1364,72 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: ERB
+    title: ERB
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:ERB
+    entries:
+      - def_class
+      - def_method
+      - def_module
+      - encoding
+      - filename
+      - filename=
+      - lineno
+      - lineno=
+      - location=
+      - make_compiler
+      - result
+      - result_with_hash
+      - run
+      - set_eoutvar
+      - src
+      - version
   - namespace: Errno
     title: Errno
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Errno
     entries: []
   - namespace: ErrorHighlight
     title: ErrorHighlight
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ErrorHighlight
     entries:
       - formatter
       - formatter=
       - spot
+  - namespace: Etc
+    title: Etc
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Etc
+    entries:
+      - confstr
+      - endgrent
+      - endpwent
+      - getgrent
+      - getgrgid
+      - getgrnam
+      - getlogin
+      - getpwent
+      - getpwnam
+      - getpwuid
+      - group
+      - nprocessors
+      - passwd
+      - setgrent
+      - setpwent
+      - sysconf
+      - sysconfdir
+      - systmpdir
+      - uname
   - namespace: Exception
     title: Exception
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Exception
     entries:
       - backtrace
@@ -667,16 +1444,22 @@ namespaces:
   - namespace: FalseClass
     title: FalseClass
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:FalseClass
     entries:
       - '&'
       - ^
       - '|'
+  - namespace: Fcntl
+    title: Fcntl
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Fcntl
+    entries: []
   - namespace: Fiber
     title: Fiber
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Fiber
     entries:
       - '[]'
@@ -701,7 +1484,7 @@ namespaces:
   - namespace: FiberError
     title: FiberError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:FiberError
     entries:
       - backtrace
@@ -712,10 +1495,24 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: Fiddle
+    title: Fiddle
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Fiddle
+    entries:
+      - dlopen
+      - dlunwrap
+      - dlwrap
+      - free
+      - last_error
+      - last_error=
+      - malloc
+      - realloc
   - namespace: File
     title: File
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:File
     entries:
       - '<<'
@@ -826,10 +1623,12 @@ namespaces:
       - mkfifo
       - mtime
       - none?
+      - nread
       - one?
       - owned?
       - partition
       - path
+      - pathconf
       - pid
       - pipe?
       - pos
@@ -850,6 +1649,7 @@ namespaces:
       - readlines
       - readlink
       - readpartial
+      - ready?
       - realdirpath
       - realpath
       - reduce
@@ -918,7 +1718,7 @@ namespaces:
   - namespace: FileTest
     title: FileTest
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:FileTest
     entries:
       - blockdev?
@@ -947,10 +1747,77 @@ namespaces:
       - writable_real?
       - writable?
       - zero?
+  - namespace: FileUtils
+    title: FileUtils
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:FileUtils
+    entries:
+      - cd
+      - chdir
+      - chmod
+      - chmod_R
+      - chown
+      - chown_R
+      - cmp
+      - collect_method
+      - commands
+      - compare_file
+      - compare_stream
+      - copy
+      - copy_entry
+      - copy_file
+      - copy_stream
+      - cp
+      - cp_lr
+      - cp_r
+      - getwd
+      - have_option?
+      - identical?
+      - install
+      - link
+      - link_entry
+      - ln
+      - ln_s
+      - ln_sf
+      - ln_sr
+      - makedirs
+      - mkdir
+      - mkdir_p
+      - mkpath
+      - move
+      - mv
+      - options
+      - options_of
+      - private_module_function
+      - pwd
+      - remove
+      - remove_dir
+      - remove_entry
+      - remove_entry_secure
+      - remove_file
+      - rm
+      - rm_f
+      - rm_r
+      - rm_rf
+      - rmdir
+      - rmtree
+      - safe_unlink
+      - symlink
+      - touch
+      - uptodate?
+  - namespace: Find
+    title: Find
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Find
+    entries:
+      - find
+      - prune
   - namespace: Float
     title: Float
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Float
     entries:
       - '-'
@@ -1017,7 +1884,7 @@ namespaces:
   - namespace: FloatDomainError
     title: FloatDomainError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:FloatDomainError
     entries:
       - backtrace
@@ -1028,10 +1895,27 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: Forwardable
+    title: Forwardable
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Forwardable
+    entries:
+      - _compile_method
+      - _delegator_method
+      - _valid_method?
+      - debug
+      - debug=
+      - def_delegator
+      - def_delegators
+      - def_instance_delegator
+      - def_instance_delegators
+      - delegate
+      - instance_delegate
   - namespace: FrozenError
     title: FrozenError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:FrozenError
     entries:
       - backtrace
@@ -1046,7 +1930,7 @@ namespaces:
   - namespace: GC
     title: GC
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:GC
     entries:
       - auto_compact
@@ -1068,141 +1952,31 @@ namespaces:
       - total_time
       - verify_compaction_references
       - verify_internal_consistency
-  - namespace: Gem
-    title: Gem
+  - namespace: GetoptLong
+    title: GetoptLong
     target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3:Gem
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:GetoptLong
     entries:
-      - activate_bin_path
-      - activated_gem_paths
-      - add_to_load_path
-      - bin_path
-      - binary_mode
-      - bindir
-      - cache_home
-      - clear_default_specs
-      - clear_paths
-      - config_file
-      - config_home
-      - configuration
-      - configuration=
-      - data_home
-      - default_bindir
-      - default_cert_path
-      - default_dir
-      - default_exec_format
-      - default_ext_dir_for
-      - default_key_path
-      - default_path
-      - default_rubygems_dirs
-      - default_sources
-      - default_spec_cache_dir
-      - default_specifications_dir
-      - default_user_install
-      - deflate
-      - dir
-      - disable_system_update_message
-      - disable_system_update_message=
-      - discover_gems_on_require
-      - discover_gems_on_require=
-      - done_installing
-      - done_installing_hooks
-      - dynamic_library_suffixes
-      - ensure_default_gem_subdirectories
-      - ensure_gem_subdirectories
-      - ensure_subdirectories
-      - env_requirement
-      - extension_api_version
-      - find_config_file
-      - find_default_spec
-      - find_files
-      - find_files_from_load_path
-      - find_latest_files
-      - find_unresolved_default_spec
-      - finish_resolve
-      - freebsd_platform?
-      - gemdeps
-      - host
-      - host=
-      - install
-      - install_extension_in_lib
-      - java_platform?
-      - latest_rubygems_version
-      - latest_spec_for
-      - latest_version_for
-      - load_env_plugins
-      - load_path_insert_index
-      - load_plugin_files
-      - load_plugins
-      - load_safe_marshal
-      - load_yaml
-      - loaded_specs
-      - location_of_caller
-      - marshal_version
-      - needs
-      - open_file
-      - open_file_with_flock
-      - open_file_with_lock
-      - operating_system_defaults
-      - path
-      - path_separator
-      - paths
-      - paths=
-      - platform_defaults
-      - platforms
-      - platforms=
-      - plugin_suffix_pattern
-      - plugin_suffix_regexp
-      - plugindir
-      - post_build
-      - post_build_hooks
-      - post_install
-      - post_install_hooks
-      - post_reset
-      - post_reset_hooks
-      - post_uninstall
-      - post_uninstall_hooks
-      - pre_install
-      - pre_install_hooks
-      - pre_reset
-      - pre_reset_hooks
-      - pre_uninstall
-      - pre_uninstall_hooks
-      - prefix
-      - read_binary
-      - refresh
-      - register_default_spec
-      - ruby
-      - ruby_api_version
-      - ruby_engine
-      - ruby_version
-      - rubygems_version
-      - solaris_platform?
-      - source_date_epoch
-      - source_date_epoch_string
-      - sources
-      - sources=
-      - spec_cache_dir
-      - state_file
-      - state_home
-      - suffix_pattern
-      - suffix_regexp
-      - suffixes
-      - time
-      - try_activate
-      - ui
-      - use_gemdeps
-      - use_paths
-      - user_dir
-      - user_home
-      - vendor_dir
-      - win_platform?
-      - write_binary
+      - each
+      - each_option
+      - error
+      - error_message
+      - error?
+      - get
+      - get_option
+      - ordering
+      - ordering=
+      - quiet
+      - quiet?
+      - quiet=
+      - set_options
+      - terminate
+      - terminated?
   - namespace: Hash
     title: Hash
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Hash
     entries:
       - '[]'
@@ -1330,7 +2104,7 @@ namespaces:
   - namespace: IndexError
     title: IndexError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:IndexError
     entries:
       - backtrace
@@ -1344,7 +2118,7 @@ namespaces:
   - namespace: Integer
     title: Integer
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Integer
     entries:
       - '-'
@@ -1438,7 +2212,7 @@ namespaces:
   - namespace: Interrupt
     title: Interrupt
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Interrupt
     entries:
       - backtrace
@@ -1454,7 +2228,7 @@ namespaces:
   - namespace: IO
     title: IO
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:IO
     entries:
       - '<<'
@@ -1537,10 +2311,12 @@ namespaces:
       - minmax_by
       - new
       - none?
+      - nread
       - one?
       - open
       - partition
       - path
+      - pathconf
       - pid
       - pipe
       - popen
@@ -1559,6 +2335,7 @@ namespaces:
       - readline
       - readlines
       - readpartial
+      - ready?
       - reduce
       - reject
       - reopen
@@ -1608,7 +2385,7 @@ namespaces:
   - namespace: IOError
     title: IOError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:IOError
     entries:
       - backtrace
@@ -1619,10 +2396,307 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: IPAddr
+    title: IPAddr
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:IPAddr
+    entries:
+      - '&'
+      - <
+      - '<<'
+      - <=
+      - '>'
+      - '>='
+      - '>>'
+      - '|'
+      - '~'
+      - between?
+      - clamp
+      - family
+      - hton
+      - include?
+      - ip6_arpa
+      - ip6_int
+      - ipv4_compat
+      - ipv4_compat?
+      - ipv4_mapped
+      - ipv4_mapped?
+      - ipv4?
+      - ipv6?
+      - link_local?
+      - loopback?
+      - mask
+      - native
+      - netmask
+      - new_ntoh
+      - ntop
+      - prefix
+      - prefix=
+      - private?
+      - reverse
+      - succ
+      - to_i
+      - to_range
+      - to_string
+      - zone_id
+      - zone_id=
+  - namespace: IPSocket
+    title: IPSocket
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:IPSocket
+    entries:
+      - '<<'
+      - addr
+      - advise
+      - all?
+      - any?
+      - autoclose?
+      - autoclose=
+      - binmode
+      - binmode?
+      - chain
+      - chunk
+      - chunk_while
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - connect_address
+      - count
+      - cycle
+      - detect
+      - do_not_reverse_lookup
+      - do_not_reverse_lookup=
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - entries
+      - eof
+      - eof?
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getaddress
+      - getbyte
+      - getc
+      - getpeername
+      - gets
+      - getsockname
+      - getsockopt
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - local_address
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - nread
+      - one?
+      - partition
+      - path
+      - pathconf
+      - peeraddr
+      - pid
+      - pos
+      - pos=
+      - pread
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - recv
+      - recv_nonblock
+      - recvfrom
+      - recvmsg
+      - recvmsg_nonblock
+      - reduce
+      - reject
+      - remote_address
+      - reopen
+      - reverse_each
+      - rewind
+      - seek
+      - select
+      - sendmsg
+      - sendmsg_nonblock
+      - set_encoding
+      - set_encoding_by_bom
+      - setsockopt
+      - shutdown
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - write
+      - write_nonblock
+      - zip
+  - namespace: IRB
+    title: IRB
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:IRB
+    entries:
+      - conf
+      - CurrentContext
+      - init_config
+      - init_error
+      - initialized?
+      - Inspector
+      - irb_abort
+      - irb_exit
+      - irbrc_files
+      - load_modules
+      - parse_opts
+      - rc_file
+      - run_config
+      - set_measure_callback
+      - setup
+      - start
+      - unset_measure_callback
+      - version
+  - namespace: Jacobian
+    title: Jacobian
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Jacobian
+    entries: []
+  - namespace: JSON
+    title: JSON
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:JSON
+    entries:
+      - '[]'
+      - create_fast_state
+      - create_id
+      - create_id=
+      - create_pretty_state
+      - deep_const_get
+      - dump
+      - dump_default_options
+      - dump_default_options=
+      - fast_generate
+      - fast_unparse
+      - generate
+      - generator
+      - generator=
+      - iconv
+      - load
+      - load_default_options
+      - load_default_options=
+      - load_file
+      - load_file!
+      - parse
+      - parse!
+      - parser
+      - parser=
+      - pretty_generate
+      - pretty_unparse
+      - recurse_proc
+      - restore
+      - state
+      - state=
+      - unparse
+  - namespace: Kconv
+    title: Kconv
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Kconv
+    entries:
+      - guess
+      - iseuc
+      - isjis
+      - issjis
+      - isutf8
+      - kconv
+      - toeuc
+      - tojis
+      - tolocale
+      - tosjis
+      - toutf16
+      - toutf32
+      - toutf8
   - namespace: Kernel
     title: Kernel
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Kernel
     entries:
       - __callee__
@@ -1637,8 +2711,10 @@ namespaces:
       - at_exit
       - autoload
       - autoload?
+      - BigDecimal
       - binding
       - block_given?
+      - callcc
       - caller
       - caller_locations
       - catch
@@ -1686,6 +2762,7 @@ namespaces:
       - object_id
       - open
       - p
+      - Pathname
       - print
       - printf
       - private_methods
@@ -1732,7 +2809,7 @@ namespaces:
   - namespace: KeyError
     title: KeyError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:KeyError
     entries:
       - backtrace
@@ -1748,28 +2825,16 @@ namespaces:
       - receiver
       - set_backtrace
       - spell_checker
-  - namespace: LoadError
-    title: LoadError
+  - namespace: LEGAL
+    title: LEGAL
     target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3:LoadError
-    entries:
-      - backtrace
-      - backtrace_locations
-      - cause
-      - corrections
-      - detailed_message
-      - exception
-      - full_message
-      - message
-      - original_message
-      - path
-      - set_backtrace
-      - spell_checker
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:LEGAL
+    entries: []
   - namespace: LocalJumpError
     title: LocalJumpError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:LocalJumpError
     entries:
       - backtrace
@@ -1782,10 +2847,60 @@ namespaces:
       - message
       - reason
       - set_backtrace
+  - namespace: Logger
+    title: Logger
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Logger
+    entries:
+      - '<<'
+      - add
+      - close
+      - datetime_format
+      - datetime_format=
+      - debug
+      - debug!
+      - debug?
+      - error
+      - error!
+      - error?
+      - fatal
+      - fatal!
+      - fatal?
+      - formatter
+      - formatter=
+      - info
+      - info!
+      - info?
+      - level
+      - level=
+      - log
+      - progname
+      - progname=
+      - reopen
+      - sev_threshold
+      - sev_threshold=
+      - unknown
+      - warn
+      - warn!
+      - warn?
+      - with_level
+  - namespace: LUSolve
+    title: LUSolve
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:LUSolve
+    entries: []
+  - namespace: MakeMakefile
+    title: MakeMakefile
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:MakeMakefile
+    entries: []
   - namespace: Marshal
     title: Marshal
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Marshal
     entries:
       - dump
@@ -1794,7 +2909,7 @@ namespaces:
   - namespace: MatchData
     title: MatchData
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:MatchData
     entries:
       - '[]'
@@ -1820,7 +2935,7 @@ namespaces:
   - namespace: Math
     title: Math
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Math
     entries:
       - acos
@@ -1852,7 +2967,7 @@ namespaces:
   - namespace: Method
     title: Method
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Method
     entries:
       - '[]'
@@ -1873,7 +2988,7 @@ namespaces:
   - namespace: Module
     title: Module
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Module
     entries:
       - <
@@ -1936,7 +3051,7 @@ namespaces:
   - namespace: Monitor
     title: Monitor
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Monitor
     entries:
       - enter
@@ -1956,7 +3071,7 @@ namespaces:
   - namespace: MonitorMixin
     title: MonitorMixin
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:MonitorMixin
     entries:
       - extend_object
@@ -1969,10 +3084,26 @@ namespaces:
       - new_cond
       - synchronize
       - try_mon_enter
+  - namespace: Mutex_m
+    title: Mutex_m
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Mutex_m
+    entries:
+      - append_features
+      - define_aliases
+      - extend_object
+      - mu_extended
+      - mu_lock
+      - mu_locked?
+      - mu_synchronize
+      - mu_try_lock
+      - mu_unlock
+      - sleep
   - namespace: NameError
     title: NameError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:NameError
     entries:
       - backtrace
@@ -1989,10 +3120,28 @@ namespaces:
       - receiver
       - set_backtrace
       - spell_checker
+  - namespace: Net
+    title: Net
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Net
+    entries: []
+  - namespace: NEWS_md
+    title: NEWS_md
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:NEWS_md
+    entries: []
+  - namespace: Newton
+    title: Newton
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Newton
+    entries: []
   - namespace: NilClass
     title: NilClass
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:NilClass
     entries:
       - '&'
@@ -2006,10 +3155,18 @@ namespaces:
       - to_h
       - to_i
       - to_r
+  - namespace: NKF
+    title: NKF
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:NKF
+    entries:
+      - guess
+      - nkf
   - namespace: NoMatchingPatternError
     title: NoMatchingPatternError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:NoMatchingPatternError
     entries:
       - backtrace
@@ -2023,7 +3180,7 @@ namespaces:
   - namespace: NoMatchingPatternKeyError
     title: NoMatchingPatternKeyError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:NoMatchingPatternKeyError
     entries:
       - backtrace
@@ -2042,7 +3199,7 @@ namespaces:
   - namespace: NoMemoryError
     title: NoMemoryError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:NoMemoryError
     entries:
       - backtrace
@@ -2056,7 +3213,7 @@ namespaces:
   - namespace: NoMethodError
     title: NoMethodError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:NoMethodError
     entries:
       - args
@@ -2078,7 +3235,7 @@ namespaces:
   - namespace: NotImplementedError
     title: NotImplementedError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:NotImplementedError
     entries:
       - backtrace
@@ -2092,7 +3249,7 @@ namespaces:
   - namespace: Numeric
     title: Numeric
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Numeric
     entries:
       - '-@'
@@ -2147,13 +3304,13 @@ namespaces:
   - namespace: Object
     title: Object
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Object
     entries: []
   - namespace: ObjectSpace
     title: ObjectSpace
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ObjectSpace
     entries:
       - _id2ref
@@ -2162,10 +3319,313 @@ namespaces:
       - each_object
       - garbage_collect
       - undefine_finalizer
+  - namespace: Observable
+    title: Observable
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Observable
+    entries: []
+  - namespace: OLEProperty
+    title: OLEProperty
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:OLEProperty
+    entries: []
+  - namespace: Open3
+    title: Open3
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Open3
+    entries:
+      - capture2
+      - capture2e
+      - capture3
+      - pipeline
+      - pipeline_r
+      - pipeline_rw
+      - pipeline_start
+      - pipeline_w
+      - popen2
+      - popen2e
+      - popen3
+  - namespace: OpenSSL
+    title: OpenSSL
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:OpenSSL
+    entries:
+      - debug
+      - debug=
+      - Digest
+      - errors
+      - fips_mode
+      - fips_mode=
+      - fixed_length_secure_compare
+      - secure_compare
+  - namespace: OpenStruct
+    title: OpenStruct
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:OpenStruct
+    entries: []
+  - namespace: OpenURI
+    title: OpenURI
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:OpenURI
+    entries: []
+  - namespace: OptionParser
+    title: OptionParser
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:OptionParser
+    entries:
+      - abort
+      - accept
+      - add_officious
+      - additional_message
+      - banner
+      - banner=
+      - base
+      - candidate
+      - compsys
+      - def_head_option
+      - def_option
+      - def_tail_option
+      - default_argv
+      - default_argv=
+      - define
+      - define_head
+      - define_tail
+      - environment
+      - getopts
+      - help
+      - inc
+      - load
+      - make_switch
+      - new
+      - 'on'
+      - on_head
+      - on_tail
+      - order
+      - order!
+      - parse
+      - parse!
+      - permute
+      - permute!
+      - pretty_print
+      - program_name
+      - program_name=
+      - raise_unknown
+      - raise_unknown=
+      - reject
+      - release
+      - release=
+      - remove
+      - require_exact
+      - require_exact=
+      - separator
+      - set_banner
+      - set_program_name
+      - set_summary_indent
+      - set_summary_width
+      - summarize
+      - summary_indent
+      - summary_indent=
+      - summary_width
+      - summary_width=
+      - terminate
+      - to_a
+      - top
+      - ver
+      - version
+      - version=
+      - warn
+      - with
+  - namespace: Pathname
+    title: Pathname
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Pathname
+    entries:
+      - /
+      - +
+      - absolute?
+      - ascend
+      - atime
+      - basename
+      - binread
+      - binwrite
+      - birthtime
+      - blockdev?
+      - chardev?
+      - children
+      - chmod
+      - chown
+      - cleanpath
+      - ctime
+      - delete
+      - descend
+      - directory?
+      - dirname
+      - each_child
+      - each_entry
+      - each_filename
+      - each_line
+      - empty?
+      - entries
+      - executable_real?
+      - executable?
+      - exist?
+      - expand_path
+      - extname
+      - file?
+      - find
+      - fnmatch
+      - fnmatch?
+      - ftype
+      - getwd
+      - glob
+      - grpowned?
+      - join
+      - lchmod
+      - lchown
+      - lstat
+      - lutime
+      - make_link
+      - make_symlink
+      - mkdir
+      - mkpath
+      - mountpoint?
+      - mtime
+      - open
+      - opendir
+      - owned?
+      - parent
+      - pipe?
+      - pwd
+      - read
+      - readable_real?
+      - readable?
+      - readlines
+      - readlink
+      - realdirpath
+      - realpath
+      - relative_path_from
+      - relative?
+      - rename
+      - rmdir
+      - rmtree
+      - root?
+      - setgid?
+      - setuid?
+      - size
+      - size?
+      - socket?
+      - split
+      - stat
+      - sticky?
+      - sub
+      - sub_ext
+      - symlink?
+      - sysopen
+      - to_path
+      - truncate
+      - unlink
+      - utime
+      - world_readable?
+      - world_writable?
+      - writable_real?
+      - writable?
+      - write
+      - zero?
+  - namespace: PP
+    title: PP
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:PP
+    entries:
+      - break_outmost_groups
+      - breakable
+      - check_inspect_key
+      - comma_breakable
+      - current_group
+      - fill_breakable
+      - flush
+      - genspace
+      - group
+      - group_queue
+      - group_sub
+      - guard_inspect_key
+      - indent
+      - maxwidth
+      - mcall
+      - nest
+      - newline
+      - object_address_group
+      - object_group
+      - output
+      - pop_inspect_key
+      - pp
+      - pp_hash
+      - pp_object
+      - push_inspect_key
+      - seplist
+      - sharing_detection
+      - sharing_detection=
+      - singleline_pp
+      - text
+      - width_for
+  - namespace: PrettyPrint
+    title: PrettyPrint
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:PrettyPrint
+    entries:
+      - break_outmost_groups
+      - breakable
+      - current_group
+      - fill_breakable
+      - flush
+      - format
+      - genspace
+      - group
+      - group_queue
+      - group_sub
+      - indent
+      - maxwidth
+      - nest
+      - newline
+      - output
+      - singleline_format
+      - text
+  - namespace: Prism
+    title: Prism
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Prism
+    entries:
+      - dump
+      - dump_file
+      - lex
+      - lex_compat
+      - lex_file
+      - lex_ripper
+      - load
+      - parse
+      - parse_comments
+      - parse_failure?
+      - parse_file
+      - parse_file_comments
+      - parse_file_failure?
+      - parse_file_success?
+      - parse_lex
+      - parse_lex_file
+      - parse_success?
   - namespace: Proc
     title: Proc
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Proc
     entries:
       - '[]'
@@ -2185,7 +3645,7 @@ namespaces:
   - namespace: Process
     title: Process
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Process
     entries:
       - _fork
@@ -2235,10 +3695,73 @@ namespaces:
       - waitpid
       - waitpid2
       - warmup
+  - namespace: PStore
+    title: PStore
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:PStore
+    entries:
+      - '[]'
+      - '[]='
+      - abort
+      - commit
+      - delete
+      - fetch
+      - key?
+      - keys
+      - path
+      - root?
+      - roots
+      - transaction
+      - ultra_safe
+      - ultra_safe=
+  - namespace: Psych
+    title: Psych
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Psych
+    entries:
+      - add_builtin_type
+      - add_domain_type
+      - add_tag
+      - config
+      - domain_types
+      - domain_types=
+      - dump
+      - dump_stream
+      - dump_tags
+      - dump_tags=
+      - libyaml_version
+      - load
+      - load_file
+      - load_stream
+      - load_tags
+      - load_tags=
+      - parse
+      - parse_file
+      - parse_stream
+      - parser
+      - remove_type
+      - safe_dump
+      - safe_load
+      - safe_load_file
+      - to_json
+      - unsafe_load
+      - unsafe_load_file
+  - namespace: PTY
+    title: PTY
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:PTY
+    entries:
+      - check
+      - getpty
+      - open
+      - spawn
   - namespace: Ractor
     title: Ractor
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Ractor
     entries:
       - '[]'
@@ -2262,7 +3785,7 @@ namespaces:
   - namespace: Random
     title: Random
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Random
     entries:
       - bytes
@@ -2275,7 +3798,7 @@ namespaces:
   - namespace: Range
     title: Range
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Range
     entries:
       - '%'
@@ -2353,7 +3876,7 @@ namespaces:
   - namespace: RangeError
     title: RangeError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:RangeError
     entries:
       - backtrace
@@ -2367,7 +3890,7 @@ namespaces:
   - namespace: Rational
     title: Rational
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Rational
     entries:
       - '-'
@@ -2431,16 +3954,98 @@ namespaces:
   - namespace: RbConfig
     title: RbConfig
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:RbConfig
     entries:
       - expand
       - fire_update!
       - ruby
+  - namespace: RDoc
+    title: RDoc
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:RDoc
+    entries:
+      - home
+      - load_yaml
+  - namespace: Readline
+    title: Readline
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Readline
+    entries:
+      - add_dialog_proc
+      - ambiguous_width
+      - auto_indent_proc
+      - auto_indent_proc=
+      - autocompletion
+      - autocompletion=
+      - basic_quote_characters
+      - basic_quote_characters=
+      - basic_word_break_characters
+      - basic_word_break_characters=
+      - completer_quote_characters
+      - completer_quote_characters=
+      - completer_word_break_characters
+      - completer_word_break_characters=
+      - completion_append_character
+      - completion_append_character=
+      - completion_case_fold
+      - completion_case_fold=
+      - completion_proc
+      - completion_proc=
+      - completion_quote_character
+      - core
+      - delete_text
+      - dialog_proc
+      - dig_perfect_match_proc
+      - dig_perfect_match_proc=
+      - emacs_editing_mode
+      - emacs_editing_mode?
+      - encoding_system_needs
+      - eof?
+      - filename_quote_characters
+      - filename_quote_characters=
+      - get_screen_size
+      - input=
+      - insert_text
+      - last_incremental_search
+      - last_incremental_search=
+      - line_buffer
+      - line_editor
+      - output_modifier_proc
+      - output_modifier_proc=
+      - output=
+      - point
+      - point=
+      - pre_input_hook
+      - pre_input_hook=
+      - prompt_proc
+      - prompt_proc=
+      - readline
+      - readmultiline
+      - redisplay
+      - special_prefixes
+      - special_prefixes=
+      - ungetc
+      - vi_editing_mode
+      - vi_editing_mode?
+  - namespace: README_ja_md
+    title: README_ja_md
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:README_ja_md
+    entries: []
+  - namespace: README_md
+    title: README_md
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:README_md
+    entries: []
   - namespace: Refinement
     title: Refinement
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Refinement
     entries:
       - <
@@ -2502,7 +4107,7 @@ namespaces:
   - namespace: Regexp
     title: Regexp
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Regexp
     entries:
       - '=~'
@@ -2528,7 +4133,7 @@ namespaces:
   - namespace: RegexpError
     title: RegexpError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:RegexpError
     entries:
       - backtrace
@@ -2539,10 +4144,117 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: Reline
+    title: Reline
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Reline
+    entries:
+      - add_dialog_proc
+      - ambiguous_width
+      - auto_indent_proc
+      - auto_indent_proc=
+      - autocompletion
+      - autocompletion=
+      - basic_quote_characters
+      - basic_quote_characters=
+      - basic_word_break_characters
+      - basic_word_break_characters=
+      - completer_quote_characters
+      - completer_quote_characters=
+      - completer_word_break_characters
+      - completer_word_break_characters=
+      - completion_append_character
+      - completion_append_character=
+      - completion_case_fold
+      - completion_case_fold=
+      - completion_proc
+      - completion_proc=
+      - completion_quote_character
+      - core
+      - delete_text
+      - dialog_proc
+      - dig_perfect_match_proc
+      - dig_perfect_match_proc=
+      - emacs_editing_mode
+      - emacs_editing_mode?
+      - encoding_system_needs
+      - eof?
+      - filename_quote_characters
+      - filename_quote_characters=
+      - get_screen_size
+      - input=
+      - insert_text
+      - last_incremental_search
+      - last_incremental_search=
+      - line_buffer
+      - line_editor
+      - output_modifier_proc
+      - output_modifier_proc=
+      - output=
+      - point
+      - point=
+      - pre_input_hook
+      - pre_input_hook=
+      - prompt_proc
+      - prompt_proc=
+      - readline
+      - readmultiline
+      - redisplay
+      - special_prefixes
+      - special_prefixes=
+      - ungetc
+      - vi_editing_mode
+      - vi_editing_mode?
+  - namespace: Resolv
+    title: Resolv
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Resolv
+    entries:
+      - each_address
+      - each_name
+      - getaddress
+      - getaddresses
+      - getname
+      - getnames
+  - namespace: Rinda
+    title: Rinda
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Rinda
+    entries: []
+  - namespace: Ripper
+    title: Ripper
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Ripper
+    entries:
+      - column
+      - debug_output
+      - debug_output=
+      - dedent_string
+      - encoding
+      - end_seen?
+      - error?
+      - filename
+      - lex
+      - lex_state_name
+      - lineno
+      - parse
+      - sexp
+      - sexp_raw
+      - slice
+      - state
+      - token
+      - token_match
+      - tokenize
+      - yydebug
+      - yydebug=
   - namespace: RubyVM
     title: RubyVM
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:RubyVM
     entries:
       - keep_script_lines
@@ -2551,7 +4263,7 @@ namespaces:
   - namespace: RuntimeError
     title: RuntimeError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:RuntimeError
     entries:
       - backtrace
@@ -2565,7 +4277,7 @@ namespaces:
   - namespace: ScriptError
     title: ScriptError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ScriptError
     entries:
       - backtrace
@@ -2576,10 +4288,18 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: SecureRandom
+    title: SecureRandom
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:SecureRandom
+    entries:
+      - bytes
+      - gen_random
   - namespace: SecurityError
     title: SecurityError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:SecurityError
     entries:
       - backtrace
@@ -2590,10 +4310,137 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: Set
+    title: Set
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Set
+    entries:
+      - '-'
+      - '[]'
+      - '&'
+      - ^
+      - +
+      - <
+      - '<<'
+      - <=
+      - '>'
+      - '>='
+      - '|'
+      - add
+      - add?
+      - all?
+      - any?
+      - chain
+      - chunk
+      - chunk_while
+      - classify
+      - clear
+      - collect
+      - collect_concat
+      - collect!
+      - compact
+      - compare_by_identity
+      - compare_by_identity?
+      - count
+      - cycle
+      - delete
+      - delete_if
+      - delete?
+      - detect
+      - difference
+      - disjoint?
+      - divide
+      - drop
+      - drop_while
+      - each
+      - each_cons
+      - each_entry
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - empty?
+      - entries
+      - filter
+      - filter_map
+      - filter!
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flatten
+      - flatten!
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - intersect?
+      - intersection
+      - join
+      - keep_if
+      - lazy
+      - length
+      - map
+      - map!
+      - max
+      - max_by
+      - member?
+      - merge
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - none?
+      - one?
+      - partition
+      - proper_subset?
+      - proper_superset?
+      - reduce
+      - reject
+      - reject!
+      - replace
+      - reset
+      - reverse_each
+      - select
+      - select!
+      - size
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - subset?
+      - subtract
+      - sum
+      - superset?
+      - take
+      - take_while
+      - tally
+      - to_a
+      - to_h
+      - to_set
+      - union
+      - uniq
+      - zip
+  - namespace: Shellwords
+    title: Shellwords
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Shellwords
+    entries:
+      - escape
+      - join
+      - shellescape
+      - shelljoin
+      - shellsplit
+      - shellwords
+      - split
   - namespace: Signal
     title: Signal
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Signal
     entries:
       - list
@@ -2602,7 +4449,7 @@ namespaces:
   - namespace: SignalException
     title: SignalException
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:SignalException
     entries:
       - backtrace
@@ -2615,10 +4462,299 @@ namespaces:
       - set_backtrace
       - signm
       - signo
+  - namespace: SimpleDelegator
+    title: SimpleDelegator
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:SimpleDelegator
+    entries:
+      - __getobj__
+      - __setobj__
+      - marshal_dump
+      - marshal_load
+      - method_missing
+  - namespace: SingleForwardable
+    title: SingleForwardable
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:SingleForwardable
+    entries:
+      - def_delegator
+      - def_delegators
+      - def_single_delegator
+      - def_single_delegators
+      - delegate
+      - single_delegate
+  - namespace: Singleton
+    title: Singleton
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Singleton
+    entries:
+      - __init__
+      - _dump
+      - clone
+      - dup
+  - namespace: Socket
+    title: Socket
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Socket
+    entries:
+      - '<<'
+      - accept
+      - accept_loop
+      - accept_nonblock
+      - advise
+      - all?
+      - any?
+      - autoclose?
+      - autoclose=
+      - beep
+      - bind
+      - binmode
+      - binmode?
+      - chain
+      - check_winsize_changed
+      - chunk
+      - chunk_while
+      - clear_screen
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - connect
+      - connect_address
+      - connect_nonblock
+      - console_mode
+      - console_mode=
+      - cooked
+      - cooked!
+      - count
+      - cursor
+      - cursor_down
+      - cursor_left
+      - cursor_right
+      - cursor_up
+      - cursor=
+      - cycle
+      - detect
+      - do_not_reverse_lookup
+      - do_not_reverse_lookup=
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - echo?
+      - echo=
+      - entries
+      - eof
+      - eof?
+      - erase_line
+      - erase_screen
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getaddrinfo
+      - getbyte
+      - getc
+      - getch
+      - gethostbyaddr
+      - gethostbyname
+      - gethostname
+      - getifaddrs
+      - getnameinfo
+      - getpass
+      - getpeereid
+      - getpeername
+      - gets
+      - getservbyname
+      - getservbyport
+      - getsockname
+      - getsockopt
+      - goto
+      - goto_column
+      - grep
+      - grep_v
+      - group_by
+      - iflush
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - ioflush
+      - ip_address_list
+      - ipv6only!
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - listen
+      - local_address
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - noecho
+      - nonblock
+      - nonblock?
+      - nonblock=
+      - none?
+      - nread
+      - oflush
+      - one?
+      - pack_sockaddr_in
+      - pack_sockaddr_un
+      - pair
+      - partition
+      - path
+      - pathconf
+      - pid
+      - pos
+      - pos=
+      - pread
+      - pressed?
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - raw
+      - raw!
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - recv
+      - recv_nonblock
+      - recvfrom
+      - recvfrom_nonblock
+      - recvmsg
+      - recvmsg_nonblock
+      - reduce
+      - reject
+      - remote_address
+      - reopen
+      - reverse_each
+      - rewind
+      - scroll_backward
+      - scroll_forward
+      - seek
+      - select
+      - sendmsg
+      - sendmsg_nonblock
+      - set_encoding
+      - set_encoding_by_bom
+      - setsockopt
+      - shutdown
+      - slice_after
+      - slice_before
+      - slice_when
+      - sockaddr_in
+      - sockaddr_un
+      - socketpair
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysaccept
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tcp
+      - tcp_server_loop
+      - tcp_server_sockets
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - udp_server_loop
+      - udp_server_loop_on
+      - udp_server_recv
+      - udp_server_sockets
+      - ungetbyte
+      - ungetc
+      - uniq
+      - unix
+      - unix_server_loop
+      - unix_server_socket
+      - unpack_sockaddr_in
+      - unpack_sockaddr_un
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - winsize
+      - winsize=
+      - write
+      - write_nonblock
+      - zip
+  - namespace: SocketError
+    title: SocketError
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:SocketError
+    entries:
+      - backtrace
+      - backtrace_locations
+      - cause
+      - detailed_message
+      - exception
+      - full_message
+      - message
+      - set_backtrace
+  - namespace: SOCKSSocket
+    title: SOCKSSocket
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:SOCKSSocket
+    entries: []
   - namespace: StandardError
     title: StandardError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:StandardError
     entries:
       - backtrace
@@ -2632,7 +4768,7 @@ namespaces:
   - namespace: StopIteration
     title: StopIteration
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:StopIteration
     entries:
       - backtrace
@@ -2647,7 +4783,7 @@ namespaces:
   - namespace: String
     title: String
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:String
     entries:
       - '-@'
@@ -2719,6 +4855,11 @@ namespaces:
       - index
       - insert
       - intern
+      - iseuc
+      - isjis
+      - issjis
+      - isutf8
+      - kconv
       - length
       - lines
       - ljust
@@ -2731,6 +4872,7 @@ namespaces:
       - next!
       - oct
       - ord
+      - parse_csv
       - partition
       - prepend
       - replace
@@ -2745,6 +4887,8 @@ namespaces:
       - scrub
       - scrub!
       - setbyte
+      - shellescape
+      - shellsplit
       - size
       - slice
       - slice!
@@ -2764,9 +4908,18 @@ namespaces:
       - to_c
       - to_f
       - to_i
+      - to_json_raw
+      - to_json_raw_object
       - to_r
       - to_str
       - to_sym
+      - toeuc
+      - tojis
+      - tolocale
+      - tosjis
+      - toutf16
+      - toutf32
+      - toutf8
       - tr
       - tr_s
       - tr_s!
@@ -2782,10 +4935,197 @@ namespaces:
       - upcase!
       - upto
       - valid_encoding?
+  - namespace: StringIO
+    title: StringIO
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:StringIO
+    entries:
+      - '<<'
+      - all?
+      - any?
+      - binmode
+      - chain
+      - chunk
+      - chunk_while
+      - close
+      - close_read
+      - close_write
+      - closed_read?
+      - closed_write?
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - count
+      - cycle
+      - detect
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - entries
+      - eof
+      - eof?
+      - external_encoding
+      - fcntl
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - getch
+      - getpass
+      - gets
+      - grep
+      - grep_v
+      - group_by
+      - include?
+      - inject
+      - internal_encoding
+      - isatty
+      - lazy
+      - length
+      - lineno
+      - lineno=
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - new
+      - none?
+      - one?
+      - open
+      - partition
+      - pid
+      - pos
+      - pos=
+      - pread
+      - print
+      - printf
+      - putc
+      - puts
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - reduce
+      - reject
+      - reopen
+      - reverse_each
+      - rewind
+      - seek
+      - select
+      - set_encoding
+      - set_encoding_by_bom
+      - size
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - string
+      - string=
+      - sum
+      - sync
+      - sync=
+      - sysread
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - to_a
+      - to_h
+      - to_set
+      - truncate
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - write
+      - write_nonblock
+      - zip
+  - namespace: StringScanner
+    title: StringScanner
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:StringScanner
+    entries:
+      - '[]'
+      - '<<'
+      - beginning_of_line?
+      - bol?
+      - captures
+      - charpos
+      - check
+      - check_until
+      - clear
+      - concat
+      - empty?
+      - eos?
+      - exist?
+      - fixed_anchor?
+      - get_byte
+      - getbyte
+      - getch
+      - match?
+      - matched
+      - matched_size
+      - matched?
+      - must_C_version
+      - named_captures
+      - peek
+      - peep
+      - pointer
+      - pointer=
+      - pos
+      - pos=
+      - post_match
+      - pre_match
+      - reset
+      - rest
+      - rest_size
+      - rest?
+      - restsize
+      - scan
+      - scan_full
+      - scan_until
+      - search_full
+      - size
+      - skip
+      - skip_until
+      - string
+      - string=
+      - terminate
+      - unscan
+      - values_at
   - namespace: Struct
     title: Struct
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Struct
     entries:
       - '[]'
@@ -2865,7 +5205,7 @@ namespaces:
   - namespace: Symbol
     title: Symbol
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Symbol
     entries:
       - '[]'
@@ -2902,7 +5242,7 @@ namespaces:
   - namespace: SyntaxError
     title: SyntaxError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:SyntaxError
     entries:
       - backtrace
@@ -2917,14 +5257,41 @@ namespaces:
   - namespace: SyntaxSuggest
     title: SyntaxSuggest
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:SyntaxSuggest
     entries:
       - module_for_detailed_message
+  - namespace: Syslog
+    title: Syslog
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Syslog
+    entries:
+      - alert
+      - close
+      - crit
+      - debug
+      - emerg
+      - err
+      - facility
+      - ident
+      - info
+      - inspect
+      - instance
+      - log
+      - mask
+      - mask=
+      - notice
+      - open
+      - open!
+      - opened?
+      - options
+      - reopen
+      - warning
   - namespace: SystemCallError
     title: SystemCallError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:SystemCallError
     entries:
       - '==='
@@ -2940,7 +5307,7 @@ namespaces:
   - namespace: SystemExit
     title: SystemExit
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:SystemExit
     entries:
       - backtrace
@@ -2956,7 +5323,7 @@ namespaces:
   - namespace: SystemStackError
     title: SystemStackError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:SystemStackError
     entries:
       - backtrace
@@ -2967,10 +5334,617 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: TCPServer
+    title: TCPServer
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:TCPServer
+    entries:
+      - '<<'
+      - accept
+      - accept_nonblock
+      - addr
+      - advise
+      - all?
+      - any?
+      - autoclose?
+      - autoclose=
+      - beep
+      - binmode
+      - binmode?
+      - chain
+      - check_winsize_changed
+      - chunk
+      - chunk_while
+      - clear_screen
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - connect_address
+      - console_mode
+      - console_mode=
+      - cooked
+      - cooked!
+      - count
+      - cursor
+      - cursor_down
+      - cursor_left
+      - cursor_right
+      - cursor_up
+      - cursor=
+      - cycle
+      - detect
+      - do_not_reverse_lookup
+      - do_not_reverse_lookup=
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - echo?
+      - echo=
+      - entries
+      - eof
+      - eof?
+      - erase_line
+      - erase_screen
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - getch
+      - getpass
+      - getpeername
+      - gets
+      - getsockname
+      - getsockopt
+      - goto
+      - goto_column
+      - grep
+      - grep_v
+      - group_by
+      - iflush
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - ioflush
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - listen
+      - local_address
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - noecho
+      - nonblock
+      - nonblock?
+      - nonblock=
+      - none?
+      - nread
+      - oflush
+      - one?
+      - partition
+      - path
+      - pathconf
+      - peeraddr
+      - pid
+      - pos
+      - pos=
+      - pread
+      - pressed?
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - raw
+      - raw!
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - recv
+      - recv_nonblock
+      - recvfrom
+      - recvmsg
+      - recvmsg_nonblock
+      - reduce
+      - reject
+      - remote_address
+      - reopen
+      - reverse_each
+      - rewind
+      - scroll_backward
+      - scroll_forward
+      - seek
+      - select
+      - sendmsg
+      - sendmsg_nonblock
+      - set_encoding
+      - set_encoding_by_bom
+      - setsockopt
+      - shutdown
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysaccept
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - winsize
+      - winsize=
+      - write
+      - write_nonblock
+      - zip
+  - namespace: TCPSocket
+    title: TCPSocket
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:TCPSocket
+    entries:
+      - '<<'
+      - addr
+      - advise
+      - all?
+      - any?
+      - autoclose?
+      - autoclose=
+      - beep
+      - binmode
+      - binmode?
+      - chain
+      - check_winsize_changed
+      - chunk
+      - chunk_while
+      - clear_screen
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - connect_address
+      - console_mode
+      - console_mode=
+      - cooked
+      - cooked!
+      - count
+      - cursor
+      - cursor_down
+      - cursor_left
+      - cursor_right
+      - cursor_up
+      - cursor=
+      - cycle
+      - detect
+      - do_not_reverse_lookup
+      - do_not_reverse_lookup=
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - echo?
+      - echo=
+      - entries
+      - eof
+      - eof?
+      - erase_line
+      - erase_screen
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - getch
+      - gethostbyname
+      - getpass
+      - getpeername
+      - gets
+      - getsockname
+      - getsockopt
+      - goto
+      - goto_column
+      - grep
+      - grep_v
+      - group_by
+      - iflush
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - ioflush
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - local_address
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - noecho
+      - nonblock
+      - nonblock?
+      - nonblock=
+      - none?
+      - nread
+      - oflush
+      - one?
+      - partition
+      - path
+      - pathconf
+      - peeraddr
+      - pid
+      - pos
+      - pos=
+      - pread
+      - pressed?
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - raw
+      - raw!
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - recv
+      - recv_nonblock
+      - recvfrom
+      - recvmsg
+      - recvmsg_nonblock
+      - reduce
+      - reject
+      - remote_address
+      - reopen
+      - reverse_each
+      - rewind
+      - scroll_backward
+      - scroll_forward
+      - seek
+      - select
+      - sendmsg
+      - sendmsg_nonblock
+      - set_encoding
+      - set_encoding_by_bom
+      - setsockopt
+      - shutdown
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - winsize
+      - winsize=
+      - write
+      - write_nonblock
+      - zip
+  - namespace: Tempfile
+    title: Tempfile
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Tempfile
+    entries:
+      - __getobj__
+      - __setobj__
+      - '<<'
+      - advise
+      - all?
+      - any?
+      - atime
+      - autoclose?
+      - autoclose=
+      - beep
+      - binmode
+      - binmode?
+      - birthtime
+      - chain
+      - check_winsize_changed
+      - chmod
+      - chown
+      - chunk
+      - chunk_while
+      - clear_screen
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - close!
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - console_mode
+      - console_mode=
+      - cooked
+      - cooked!
+      - count
+      - create
+      - ctime
+      - cursor
+      - cursor_down
+      - cursor_left
+      - cursor_right
+      - cursor_up
+      - cursor=
+      - cycle
+      - delete
+      - detect
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - echo?
+      - echo=
+      - entries
+      - eof
+      - eof?
+      - erase_line
+      - erase_screen
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flock
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - getch
+      - getpass
+      - gets
+      - goto
+      - goto_column
+      - grep
+      - grep_v
+      - group_by
+      - iflush
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - ioflush
+      - isatty
+      - lazy
+      - length
+      - lineno
+      - lineno=
+      - lstat
+      - map
+      - marshal_dump
+      - marshal_load
+      - max
+      - max_by
+      - member?
+      - method_missing
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - mtime
+      - noecho
+      - nonblock
+      - nonblock?
+      - nonblock=
+      - none?
+      - nread
+      - oflush
+      - one?
+      - open
+      - partition
+      - path
+      - pathconf
+      - pid
+      - pos
+      - pos=
+      - pread
+      - pressed?
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - raw
+      - raw!
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - reduce
+      - reject
+      - reopen
+      - reverse_each
+      - rewind
+      - scroll_backward
+      - scroll_forward
+      - seek
+      - select
+      - set_encoding
+      - set_encoding_by_bom
+      - size
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - truncate
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - unlink
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - winsize
+      - winsize=
+      - write
+      - write_nonblock
+      - zip
   - namespace: Thread
     title: Thread
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Thread
     entries:
       - '[]'
@@ -3023,7 +5997,7 @@ namespaces:
   - namespace: ThreadError
     title: ThreadError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ThreadError
     entries:
       - backtrace
@@ -3037,7 +6011,7 @@ namespaces:
   - namespace: ThreadGroup
     title: ThreadGroup
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ThreadGroup
     entries:
       - add
@@ -3047,7 +6021,7 @@ namespaces:
   - namespace: Time
     title: Time
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Time
     entries:
       - '-'
@@ -3095,9 +6069,12 @@ namespaces:
       - sunday?
       - thursday?
       - to_a
+      - to_date
+      - to_datetime
       - to_f
       - to_i
       - to_r
+      - to_time
       - tuesday?
       - tv_nsec
       - tv_sec
@@ -3111,10 +6088,18 @@ namespaces:
       - yday
       - year
       - zone
+  - namespace: Timeout
+    title: Timeout
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Timeout
+    entries:
+      - ensure_timeout_thread_created
+      - timeout
   - namespace: TracePoint
     title: TracePoint
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:TracePoint
     entries:
       - allow_reentry
@@ -3140,16 +6125,29 @@ namespaces:
   - namespace: TrueClass
     title: TrueClass
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:TrueClass
     entries:
       - '&'
       - ^
       - '|'
+  - namespace: TSort
+    title: TSort
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:TSort
+    entries:
+      - each_strongly_connected_component
+      - each_strongly_connected_component_from
+      - strongly_connected_components
+      - tsort
+      - tsort_each
+      - tsort_each_child
+      - tsort_each_node
   - namespace: TypeError
     title: TypeError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:TypeError
     entries:
       - backtrace
@@ -3160,10 +6158,213 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: UDPSocket
+    title: UDPSocket
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:UDPSocket
+    entries:
+      - '<<'
+      - addr
+      - advise
+      - all?
+      - any?
+      - autoclose?
+      - autoclose=
+      - beep
+      - bind
+      - binmode
+      - binmode?
+      - chain
+      - check_winsize_changed
+      - chunk
+      - chunk_while
+      - clear_screen
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - connect
+      - connect_address
+      - console_mode
+      - console_mode=
+      - cooked
+      - cooked!
+      - count
+      - cursor
+      - cursor_down
+      - cursor_left
+      - cursor_right
+      - cursor_up
+      - cursor=
+      - cycle
+      - detect
+      - do_not_reverse_lookup
+      - do_not_reverse_lookup=
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - echo?
+      - echo=
+      - entries
+      - eof
+      - eof?
+      - erase_line
+      - erase_screen
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - getch
+      - getpass
+      - getpeername
+      - gets
+      - getsockname
+      - getsockopt
+      - goto
+      - goto_column
+      - grep
+      - grep_v
+      - group_by
+      - iflush
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - ioflush
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - local_address
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - noecho
+      - nonblock
+      - nonblock?
+      - nonblock=
+      - none?
+      - nread
+      - oflush
+      - one?
+      - partition
+      - path
+      - pathconf
+      - peeraddr
+      - pid
+      - pos
+      - pos=
+      - pread
+      - pressed?
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - raw
+      - raw!
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - recv
+      - recv_nonblock
+      - recvfrom
+      - recvfrom_nonblock
+      - recvmsg
+      - recvmsg_nonblock
+      - reduce
+      - reject
+      - remote_address
+      - reopen
+      - reverse_each
+      - rewind
+      - scroll_backward
+      - scroll_forward
+      - seek
+      - select
+      - sendmsg
+      - sendmsg_nonblock
+      - set_encoding
+      - set_encoding_by_bom
+      - setsockopt
+      - shutdown
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - winsize
+      - winsize=
+      - write
+      - write_nonblock
+      - zip
   - namespace: UnboundMethod
     title: UnboundMethod
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:UnboundMethod
     entries:
       - arity
@@ -3178,7 +6379,7 @@ namespaces:
   - namespace: UncaughtThrowError
     title: UncaughtThrowError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:UncaughtThrowError
     entries:
       - backtrace
@@ -3191,25 +6392,527 @@ namespaces:
       - set_backtrace
       - tag
       - value
-  - namespace: UnicodeNormalize
-    title: UnicodeNormalize
+  - namespace: UNIXServer
+    title: UNIXServer
     target: Ruby 3.3
-    sourceKind: runtime
-    sourceRef: ruby:3.3:UnicodeNormalize
-    entries: []
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:UNIXServer
+    entries:
+      - '<<'
+      - accept
+      - accept_nonblock
+      - addr
+      - advise
+      - all?
+      - any?
+      - autoclose?
+      - autoclose=
+      - beep
+      - binmode
+      - binmode?
+      - chain
+      - check_winsize_changed
+      - chunk
+      - chunk_while
+      - clear_screen
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - connect_address
+      - console_mode
+      - console_mode=
+      - cooked
+      - cooked!
+      - count
+      - cursor
+      - cursor_down
+      - cursor_left
+      - cursor_right
+      - cursor_up
+      - cursor=
+      - cycle
+      - detect
+      - do_not_reverse_lookup
+      - do_not_reverse_lookup=
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - echo?
+      - echo=
+      - entries
+      - eof
+      - eof?
+      - erase_line
+      - erase_screen
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - getch
+      - getpass
+      - getpeereid
+      - getpeername
+      - gets
+      - getsockname
+      - getsockopt
+      - goto
+      - goto_column
+      - grep
+      - grep_v
+      - group_by
+      - iflush
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - ioflush
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - listen
+      - local_address
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - noecho
+      - nonblock
+      - nonblock?
+      - nonblock=
+      - none?
+      - nread
+      - oflush
+      - one?
+      - partition
+      - path
+      - pathconf
+      - peeraddr
+      - pid
+      - pos
+      - pos=
+      - pread
+      - pressed?
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - raw
+      - raw!
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - recv
+      - recv_io
+      - recv_nonblock
+      - recvfrom
+      - recvmsg
+      - recvmsg_nonblock
+      - reduce
+      - reject
+      - remote_address
+      - reopen
+      - reverse_each
+      - rewind
+      - scroll_backward
+      - scroll_forward
+      - seek
+      - select
+      - send_io
+      - sendmsg
+      - sendmsg_nonblock
+      - set_encoding
+      - set_encoding_by_bom
+      - setsockopt
+      - shutdown
+      - slice_after
+      - slice_before
+      - slice_when
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysaccept
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - winsize
+      - winsize=
+      - write
+      - write_nonblock
+      - zip
+  - namespace: UNIXSocket
+    title: UNIXSocket
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:UNIXSocket
+    entries:
+      - '<<'
+      - addr
+      - advise
+      - all?
+      - any?
+      - autoclose?
+      - autoclose=
+      - beep
+      - binmode
+      - binmode?
+      - chain
+      - check_winsize_changed
+      - chunk
+      - chunk_while
+      - clear_screen
+      - close
+      - close_on_exec?
+      - close_on_exec=
+      - close_read
+      - close_write
+      - closed?
+      - collect
+      - collect_concat
+      - compact
+      - connect_address
+      - console_mode
+      - console_mode=
+      - cooked
+      - cooked!
+      - count
+      - cursor
+      - cursor_down
+      - cursor_left
+      - cursor_right
+      - cursor_up
+      - cursor=
+      - cycle
+      - detect
+      - do_not_reverse_lookup
+      - do_not_reverse_lookup=
+      - drop
+      - drop_while
+      - each
+      - each_byte
+      - each_char
+      - each_codepoint
+      - each_cons
+      - each_entry
+      - each_line
+      - each_slice
+      - each_with_index
+      - each_with_object
+      - echo?
+      - echo=
+      - entries
+      - eof
+      - eof?
+      - erase_line
+      - erase_screen
+      - external_encoding
+      - fcntl
+      - fdatasync
+      - fileno
+      - filter
+      - filter_map
+      - find
+      - find_all
+      - find_index
+      - first
+      - flat_map
+      - flush
+      - fsync
+      - getbyte
+      - getc
+      - getch
+      - getpass
+      - getpeereid
+      - getpeername
+      - gets
+      - getsockname
+      - getsockopt
+      - goto
+      - goto_column
+      - grep
+      - grep_v
+      - group_by
+      - iflush
+      - include?
+      - inject
+      - internal_encoding
+      - ioctl
+      - ioflush
+      - isatty
+      - lazy
+      - lineno
+      - lineno=
+      - local_address
+      - map
+      - max
+      - max_by
+      - member?
+      - min
+      - min_by
+      - minmax
+      - minmax_by
+      - noecho
+      - nonblock
+      - nonblock?
+      - nonblock=
+      - none?
+      - nread
+      - oflush
+      - one?
+      - pair
+      - partition
+      - path
+      - pathconf
+      - peeraddr
+      - pid
+      - pos
+      - pos=
+      - pread
+      - pressed?
+      - print
+      - printf
+      - putc
+      - puts
+      - pwrite
+      - raw
+      - raw!
+      - read
+      - read_nonblock
+      - readbyte
+      - readchar
+      - readline
+      - readlines
+      - readpartial
+      - ready?
+      - recv
+      - recv_io
+      - recv_nonblock
+      - recvfrom
+      - recvmsg
+      - recvmsg_nonblock
+      - reduce
+      - reject
+      - remote_address
+      - reopen
+      - reverse_each
+      - rewind
+      - scroll_backward
+      - scroll_forward
+      - seek
+      - select
+      - send_io
+      - sendmsg
+      - sendmsg_nonblock
+      - set_encoding
+      - set_encoding_by_bom
+      - setsockopt
+      - shutdown
+      - slice_after
+      - slice_before
+      - slice_when
+      - socketpair
+      - sort
+      - sort_by
+      - stat
+      - sum
+      - sync
+      - sync=
+      - sysread
+      - sysseek
+      - syswrite
+      - take
+      - take_while
+      - tally
+      - tell
+      - timeout
+      - timeout=
+      - to_a
+      - to_h
+      - to_i
+      - to_io
+      - to_path
+      - to_set
+      - tty?
+      - ungetbyte
+      - ungetc
+      - uniq
+      - wait
+      - wait_priority
+      - wait_readable
+      - wait_writable
+      - winsize
+      - winsize=
+      - write
+      - write_nonblock
+      - zip
+  - namespace: URI
+    title: URI
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:URI
+    entries:
+      - decode_uri_component
+      - decode_www_form
+      - decode_www_form_component
+      - encode_uri_component
+      - encode_www_form
+      - encode_www_form_component
+      - extract
+      - for
+      - get_encoding
+      - join
+      - parse
+      - regexp
+      - register_scheme
+      - scheme_list
+      - split
   - namespace: Warning
     title: Warning
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:Warning
     entries:
       - '[]'
       - '[]='
       - warn
+  - namespace: WeakRef
+    title: WeakRef
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:WeakRef
+    entries:
+      - __getobj__
+      - __setobj__
+      - marshal_dump
+      - marshal_load
+      - method_missing
+      - weakref_alive?
+  - namespace: Win32
+    title: Win32
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Win32
+    entries: []
+  - namespace: WIN32OLE
+    title: WIN32OLE
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:WIN32OLE
+    entries: []
+  - namespace: WIN32OLEQueryInterfaceError
+    title: WIN32OLEQueryInterfaceError
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:WIN32OLEQueryInterfaceError
+    entries: []
+  - namespace: WIN32OLERuntimeError
+    title: WIN32OLERuntimeError
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:WIN32OLERuntimeError
+    entries: []
+  - namespace: XMP
+    title: XMP
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:XMP
+    entries: []
+  - namespace: YAML
+    title: YAML
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:YAML
+    entries:
+      - add_builtin_type
+      - add_domain_type
+      - add_tag
+      - config
+      - domain_types
+      - domain_types=
+      - dump
+      - dump_stream
+      - dump_tags
+      - dump_tags=
+      - libyaml_version
+      - load
+      - load_file
+      - load_stream
+      - load_tags
+      - load_tags=
+      - parse
+      - parse_file
+      - parse_stream
+      - parser
+      - remove_type
+      - safe_dump
+      - safe_load
+      - safe_load_file
+      - to_json
+      - unsafe_load
+      - unsafe_load_file
   - namespace: ZeroDivisionError
     title: ZeroDivisionError
     target: Ruby 3.3
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: ruby:3.3:ZeroDivisionError
     entries:
       - backtrace
@@ -3220,3 +6923,19 @@ namespaces:
       - full_message
       - message
       - set_backtrace
+  - namespace: Zlib
+    title: Zlib
+    target: Ruby 3.3
+    sourceKind: source_manifest
+    sourceRef: ruby:3.3:Zlib
+    entries:
+      - adler32
+      - adler32_combine
+      - crc_table
+      - crc32
+      - crc32_combine
+      - deflate
+      - gunzip
+      - gzip
+      - inflate
+      - zlib_version

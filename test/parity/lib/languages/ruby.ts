@@ -8,6 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { fetchText } from '../upstream-surface-canonical.ts'
 import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Ruby method mapping: JS function name → Ruby method name and category
@@ -63,55 +64,67 @@ export const RUBY_SKIP_LIST = new Set<string>([
 
 const RUBY_DOCKER_IMAGE = 'ruby:3.3'
 const RUBY_NAMESPACE_CATALOG_TARGET = 'Ruby 3.3'
-const RUBY_NAMESPACE_CATALOG_SOURCE_REF = 'ruby:3.3:objectspace-top-level-modules'
+const RUBY_NAMESPACE_CATALOG_SOURCE_REF = 'https://docs.ruby-lang.org/en/3.3/table_of_contents.html'
 
-function discoverRubyUpstreamNamespaces() {
-  const script = `
-names =
-  ObjectSpace.each_object(Module)
-    .map(&:name)
-    .compact
-    .select { |name| !name.empty? && name.match?(/\\A[A-Z]/) && !name.include?("::") && !name.include?(".") }
-    .uniq
-    .sort
-
-puts names
-`.trim()
-
-  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script], {
-    timeout: 120000,
-    maxBuffer: 8 * 1024 * 1024,
-  })
-  if (!result.success) {
-    throw new Error(result.error || 'Unable to discover Ruby upstream namespaces')
-  }
+async function discoverRubyUpstreamNamespaces() {
+  const html = await fetchText(RUBY_NAMESPACE_CATALOG_SOURCE_REF)
 
   return [
     ...new Set(
-      result.output
-        .trim()
-        .split('\n')
-        .map((line) => line.trim())
-        .filter(Boolean),
+      [...html.matchAll(/href="([A-Z][A-Za-z0-9_]+)\.html"/g)].map((match) => match[1]?.trim() ?? '').filter(Boolean),
     ),
   ].sort()
 }
 
-function discoverRubyUpstreamNamespaceCatalog() {
+async function discoverRubyUpstreamNamespaceCatalog() {
   return {
     target: RUBY_NAMESPACE_CATALOG_TARGET,
-    sourceKind: 'runtime' as const,
+    sourceKind: 'source_manifest' as const,
     sourceRef: RUBY_NAMESPACE_CATALOG_SOURCE_REF,
-    namespaces: discoverRubyUpstreamNamespaces(),
+    namespaces: await discoverRubyUpstreamNamespaces(),
   }
 }
 
-function discoverRubyUpstreamSurface() {
-  const catalog = discoverRubyUpstreamNamespaceCatalog()
+async function discoverRubyUpstreamSurface() {
+  const catalog = await discoverRubyUpstreamNamespaceCatalog()
   const namespaceConfigs = catalog.namespaces.map((namespace) => ({
     namespace,
   }))
   const script = `
+Warning[:deprecated] = false if defined?(Warning) && Warning.respond_to?(:[]=)
+
+def require_candidates(name)
+  snake = name
+    .gsub(/([A-Z]+)([A-Z][a-z])/, '\\1_\\2')
+    .gsub(/([a-z\\d])([A-Z])/, '\\1_\\2')
+    .downcase
+
+  [snake, snake.delete("_")].uniq
+end
+
+def resolve_object(name)
+  begin
+    Object.const_get(name)
+  rescue NameError
+    autoload_path = Object.autoload?(name.to_sym)
+    require autoload_path if autoload_path
+
+    require_candidates(name).each do |candidate|
+      begin
+        require candidate
+        break
+      rescue LoadError
+      end
+    end
+
+    begin
+      Object.const_get(name)
+    rescue NameError
+      nil
+    end
+  end
+end
+
 def owned_instance_entries(klass)
   generic = (
     BasicObject.public_instance_methods(true) +
@@ -127,7 +140,8 @@ def owned_instance_entries(klass)
 end
 
 def discover_entries(name)
-  object = Object.const_get(name)
+  object = resolve_object(name)
+  return [] unless object
   entries = []
 
   entries.concat(owned_instance_entries(object)) if object.is_a?(Class)
@@ -150,10 +164,14 @@ require 'json'
 puts JSON.generate({ language: 'ruby', namespaces: snapshots })
 `.trim()
 
-  const result = runInDocker(RUBY_DOCKER_IMAGE, ['ruby', '-e', script], {
-    timeout: 120000,
-    maxBuffer: 32 * 1024 * 1024,
-  })
+  const result = runInDocker(
+    RUBY_DOCKER_IMAGE,
+    ['sh', '-lc', `cat <<'__LOCUTUS_RUBY__' | ruby 2>/dev/null\n${script}\n__LOCUTUS_RUBY__`],
+    {
+      timeout: 120000,
+      maxBuffer: 32 * 1024 * 1024,
+    },
+  )
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Ruby upstream surface')
   }

@@ -3,6 +3,36 @@ import type { DiscoveredUpstreamSurfaceNamespaceCatalog, UpstreamSurfaceSnapshot
 import { buildDiscoveredUpstreamSurfaceSnapshot, uniqueSorted } from './upstream-surface-discovery.ts'
 
 const textCache = new Map<string, Promise<string>>()
+const FETCH_RETRY_DELAYS_MS = [250, 750, 1500]
+const DISCOVERY_CONCURRENCY = 12
+const FETCH_TIMEOUT_MS = 20000
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+async function mapWithConcurrency<T, R>(
+  values: T[],
+  limit: number,
+  mapper: (value: T, index: number) => Promise<R>,
+): Promise<R[]> {
+  const results = new Array<R>(values.length)
+  let nextIndex = 0
+
+  async function worker() {
+    while (nextIndex < values.length) {
+      const currentIndex = nextIndex++
+      const value = values[currentIndex]
+      if (value === undefined) {
+        continue
+      }
+      results[currentIndex] = await mapper(value, currentIndex)
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(limit, values.length) }, () => worker()))
+  return results
+}
 
 function decodeHtmlEntities(value: string): string {
   return value
@@ -22,15 +52,37 @@ function stripHtml(value: string): string {
   return decodeHtmlEntities(value.replace(/<[^>]+>/g, ''))
 }
 
-async function fetchText(url: string): Promise<string> {
+export async function fetchText(url: string): Promise<string> {
   if (!textCache.has(url)) {
     textCache.set(
       url,
-      fetch(url).then((response) => {
-        if (!response.ok) {
-          throw new Error(`Unable to fetch ${url}: ${response.status} ${response.statusText}`)
+      (async () => {
+        let lastError: unknown
+
+        for (let attempt = 0; attempt <= FETCH_RETRY_DELAYS_MS.length; attempt++) {
+          const controller = new AbortController()
+          const timeout = setTimeout(() => controller.abort(new Error(`Timed out fetching ${url}`)), FETCH_TIMEOUT_MS)
+          try {
+            const response = await fetch(url, { signal: controller.signal })
+            if (!response.ok) {
+              throw new Error(`Unable to fetch ${url}: ${response.status} ${response.statusText}`)
+            }
+            return await response.text()
+          } catch (error) {
+            lastError = error
+            if (attempt === FETCH_RETRY_DELAYS_MS.length) {
+              throw error
+            }
+            await sleep(FETCH_RETRY_DELAYS_MS[attempt] ?? 250)
+          } finally {
+            clearTimeout(timeout)
+          }
         }
-        return response.text()
+
+        throw lastError instanceof Error ? lastError : new Error(`Unable to fetch ${url}`)
+      })().catch((error) => {
+        textCache.delete(url)
+        throw error
       }),
     )
   }
@@ -48,18 +100,16 @@ async function discoverNamespacesFromCatalog(input: {
   titleForNamespace?: (namespace: string) => string | undefined
   discoverEntries: (namespace: string, sourceRef: string) => Promise<string[]>
 }): Promise<UpstreamSurfaceSnapshot> {
-  const namespaces = await Promise.all(
-    input.catalog.namespaces.map(async (namespace) => {
-      const sourceRef = input.sourceRefForNamespace(namespace)
-      const entries = await input.discoverEntries(namespace, sourceRef)
-      return {
-        namespace,
-        title: input.titleForNamespace?.(namespace),
-        sourceRef,
-        entries,
-      }
-    }),
-  )
+  const namespaces = await mapWithConcurrency(input.catalog.namespaces, DISCOVERY_CONCURRENCY, async (namespace) => {
+    const sourceRef = input.sourceRefForNamespace(namespace)
+    const entries = await input.discoverEntries(namespace, sourceRef)
+    return {
+      namespace,
+      title: input.titleForNamespace?.(namespace),
+      sourceRef,
+      entries,
+    }
+  })
 
   return buildDiscoveredUpstreamSurfaceSnapshot({
     language: input.language,
@@ -89,14 +139,6 @@ function normalizeRustName(name: string): string | null {
     return null
   }
   return cleaned
-}
-
-function normalizePerlFunctionName(name: string): string | null {
-  const decoded = decodeURIComponent(name)
-  if (!/^[A-Za-z_][A-Za-z0-9_:]*$/.test(decoded)) {
-    return null
-  }
-  return decoded
 }
 
 function normalizeKotlinName(name: string): string | null {
@@ -185,8 +227,8 @@ const AWK_CATALOG_SOURCE_REF = 'https://www.gnu.org/software/gawk/manual/'
 const C_CATALOG_TARGET = 'C23'
 const C_CATALOG_SOURCE_REF = 'https://en.cppreference.com/w/c/header'
 const PERL_CATALOG_TARGET = 'Perl 5.40'
-const PERL_CATALOG_SOURCE_REF = 'https://perldoc.perl.org/modules'
-const PERL_FUNCTIONS_SOURCE_REF = 'https://perldoc.perl.org/functions'
+const PERL_DOCKER_IMAGE = 'perl:5.40'
+const PERL_CATALOG_SOURCE_REF = 'perl:5.40:core-runtime-modules'
 const RUST_CATALOG_TARGET = 'Rust 1.85'
 const RUST_CATALOG_SOURCE_REF = 'https://doc.rust-lang.org/std/index.html'
 const HASKELL_DOCKER_IMAGE = 'haskell:9.10'
@@ -306,29 +348,72 @@ function discoverCHeaderEntries(namespace: string, html: string): string[] {
   )
 }
 
-export function discoverPerlUpstreamNamespaceCatalog(): Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> {
-  return fetchText(PERL_CATALOG_SOURCE_REF).then((html) => ({
+function discoverPerlRuntimeModuleCatalog(): {
+  target: string
+  sourceKind: 'runtime'
+  sourceRef: string
+  namespaces: string[]
+} {
+  const script = `
+use Config;
+use File::Find;
+use JSON::PP;
+
+my @roots = sort { length($b) <=> length($a) } grep { defined($_) && -d $_ } ($Config{privlibexp}, $Config{archlibexp});
+my %modules = (core => 1);
+
+find(
+  {
+    wanted => sub {
+      return unless -f $_ && /\\.(?:pm|pod)\\z/;
+      my $path = $File::Find::name;
+      for my $root (@roots) {
+        next unless index($path, "$root/") == 0;
+        my $relative = substr($path, length($root) + 1);
+        my $module = $relative;
+        $module =~ s{/}{::}g;
+        $module =~ s{\\\\}{::}g;
+        $module =~ s/\\.(?:pm|pod)\\z//;
+        return if !$module || $module eq 'CORE';
+        $modules{$module} = 1;
+        last;
+      }
+    },
+    no_chdir => 1,
+  },
+  @roots,
+);
+
+print encode_json([sort keys %modules]);
+`.trim()
+  const result = runInDocker(PERL_DOCKER_IMAGE, ['perl', '-e', script], {
+    timeout: 120000,
+    maxBuffer: 32 * 1024 * 1024,
+  })
+
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Perl core runtime modules')
+  }
+
+  const parsed = JSON.parse(result.output) as unknown
+  if (!Array.isArray(parsed)) {
+    throw new Error('Perl runtime namespace catalog output was not an array')
+  }
+
+  return {
     target: PERL_CATALOG_TARGET,
-    sourceKind: 'source_manifest' as const,
+    sourceKind: 'runtime',
     sourceRef: PERL_CATALOG_SOURCE_REF,
-    namespaces: uniqueSorted([
-      'core',
-      ...extractMatches(html, /href="\/([A-Za-z0-9_:]+)"/g, (name) => {
-        const cleaned = stripHtml(name).trim()
-        if (cleaned === 'core' || cleaned.startsWith('5.') || cleaned.startsWith('perl')) {
-          return null
-        }
-        if (!cleaned.includes('::') && !['POSIX', 'Encode'].includes(cleaned)) {
-          return null
-        }
-        return normalizePerlFunctionName(cleaned)
-      }),
-    ]),
-  }))
+    namespaces: parsed.filter((entry): entry is string => typeof entry === 'string').sort(),
+  }
+}
+
+export function discoverPerlUpstreamNamespaceCatalog(): Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> {
+  return Promise.resolve(discoverPerlRuntimeModuleCatalog())
 }
 
 function perlNamespaceSourceRef(namespace: string): string {
-  return namespace === 'core' ? PERL_FUNCTIONS_SOURCE_REF : `https://perldoc.perl.org/${namespace}`
+  return `${PERL_DOCKER_IMAGE}:${namespace}`
 }
 
 export function discoverRustUpstreamNamespaceCatalog(): Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> {
@@ -382,7 +467,7 @@ function discoverHaskellUpstreamSurfaceRuntime(): UpstreamSurfaceSnapshot {
   const modulesResult = runInDocker(HASKELL_DOCKER_IMAGE, [
     'sh',
     '-lc',
-    "/opt/ghc/9.10.3/bin/ghc-pkg field base exposed-modules | sed '1s/^exposed-modules: //' | tr ',' '\\n' | sed 's/^ *//' | sed '/^$/d' | sort",
+    "HASKELL_GHC_PKG=$(find /opt/ghc -path '*/bin/ghc-pkg' 2>/dev/null | sort | head -n1); test -n \"$HASKELL_GHC_PKG\"; \"$HASKELL_GHC_PKG\" field base exposed-modules | sed '1s/^exposed-modules: //' | tr ',' '\\n' | sed 's/^ *//' | sed '/^$/d' | sort",
   ])
   if (!modulesResult.success) {
     throw new Error(modulesResult.error || 'Unable to discover Haskell base modules')
@@ -411,7 +496,7 @@ function discoverHaskellUpstreamSurfaceRuntime(): UpstreamSurfaceSnapshot {
     [
       'sh',
       '-lc',
-      `cat <<'__LOCUTUS_GHCI__' | /opt/ghc/9.10.3/bin/ghci -ignore-dot-ghci 2>/dev/null\n${ghciScript}\n__LOCUTUS_GHCI__`,
+      `HASKELL_GHCI=$(find /opt/ghc -path '*/bin/ghci' 2>/dev/null | sort | head -n1); test -n "$HASKELL_GHCI"; cat <<'__LOCUTUS_GHCI__' | "$HASKELL_GHCI" -ignore-dot-ghci 2>/dev/null\n${ghciScript}\n__LOCUTUS_GHCI__`,
     ],
     { timeout: 120000, maxBuffer: 64 * 1024 * 1024 },
   )
@@ -541,61 +626,96 @@ export function discoverCUpstreamSurface(): Promise<UpstreamSurfaceSnapshot> {
 }
 
 export function discoverPerlUpstreamSurface(): Promise<UpstreamSurfaceSnapshot> {
-  return discoverPerlUpstreamNamespaceCatalog().then((catalog) =>
-    discoverNamespacesFromCatalog({
+  const catalog = discoverPerlRuntimeModuleCatalog()
+  const beginMarker = '__LOCUTUS_PERL_JSON_BEGIN__'
+  const endMarker = '__LOCUTUS_PERL_JSON_END__'
+  const script = `
+use JSON::PP;
+use Pod::Functions;
+
+my @modules = @{decode_json($ARGV[0])};
+my @namespaces;
+
+my @core_entries = sort grep {
+  $_ !~ /^__/
+    && $_ !~ m{/}
+    && $_ ne 'import'
+    && $_ ne 'unimport'
+} keys %Pod::Functions::Type;
+
+push @namespaces, {
+  namespace => 'core',
+  entries => \\@core_entries,
+};
+
+for my $module (@modules) {
+  next if $module eq 'core';
+
+  my %entries;
+  my $loaded;
+  {
+    local $SIG{__WARN__} = sub { };
+    local *STDOUT;
+    local *STDERR;
+    open STDOUT, '>', \\my $stdout;
+    open STDERR, '>', \\my $stderr;
+    $loaded = eval "require $module; 1";
+  }
+  if ($loaded) {
+    no strict 'refs';
+    my $stash = \\%{"\${module}::"};
+    for my $name (keys %{$stash}) {
+      next if $name =~ /^_/;
+      next if $name =~ /::$/;
+      next unless defined &{"\${module}::\${name}"};
+      $entries{$name} = 1;
+    }
+  }
+
+  push @namespaces, {
+    namespace => $module,
+    entries => [sort keys %entries],
+  };
+}
+
+print "${beginMarker}\\n";
+print encode_json({
+  language => 'perl',
+  namespaces => \\@namespaces,
+});
+print "\\n${endMarker}\\n";
+`.trim()
+  const result = runInDocker(PERL_DOCKER_IMAGE, ['perl', '-e', script, JSON.stringify(catalog.namespaces)], {
+    timeout: 120000,
+    maxBuffer: 64 * 1024 * 1024,
+  })
+
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Perl upstream surface')
+  }
+
+  const beginIndex = result.output.indexOf(`${beginMarker}\n`)
+  const endIndex = result.output.lastIndexOf(`\n${endMarker}`)
+  if (beginIndex < 0 || endIndex < 0 || endIndex <= beginIndex) {
+    throw new Error('Perl upstream surface output did not contain a marked JSON payload')
+  }
+
+  const json = result.output.slice(beginIndex + beginMarker.length + 1, endIndex)
+  const parsed = JSON.parse(json) as {
+    language: string
+    namespaces: Array<{ namespace: string; entries: string[] }>
+  }
+
+  return Promise.resolve(
+    buildDiscoveredUpstreamSurfaceSnapshot({
       language: 'perl',
       catalog,
-      sourceRefForNamespace: perlNamespaceSourceRef,
-      titleForNamespace: (namespace) => namespace,
-      discoverEntries: async (namespace, sourceRef) => {
-        const html = await fetchText(sourceRef)
-
-        if (namespace === 'core') {
-          return extractMatches(html, /href="\/(?:5\.\d+\.\d+\/)?functions\/([^"]+)"/g, normalizePerlFunctionName)
-        }
-
-        if (namespace === 'POSIX' || namespace === 'Math::Trig') {
-          return extractMatches(html, /<dt id="([A-Za-z_][A-Za-z0-9_:]*)"/g, normalizePerlFunctionName)
-        }
-
-        if (namespace === 'Math::Complex') {
-          return uniqueSorted(
-            extractMatches(
-              html,
-              /\b(Re|Im|abs|acos|asin|atan2|cplx|cos|exp|log|pi|rho|sin|sqrt|tan|theta)\b/g,
-              normalizePerlFunctionName,
-            ),
-          )
-        }
-
-        if (namespace === 'Unicode::Normalize') {
-          return extractMatches(
-            html,
-            /<code>\$?[A-Za-z0-9_,\s()=-]*?([A-Za-z_][A-Za-z0-9_]*)\(/g,
-            normalizePerlFunctionName,
-          )
-        }
-
-        if (namespace === 'Encode') {
-          return extractMatches(html, /<h3 id="([A-Za-z_][A-Za-z0-9_]*)"/g, normalizePerlFunctionName)
-        }
-
-        if (namespace === 'Text::ParseWords') {
-          return uniqueSorted(
-            extractMatches(
-              html,
-              /\b(nested_quotewords|old_parse_line|old_shellwords|parse_line|quotewords|shellwords)\b/g,
-              normalizePerlFunctionName,
-            ),
-          )
-        }
-
-        if (namespace === 'Text::Tabs' || namespace === 'File::Basename') {
-          return extractMatches(html, /<dt id="([^"]+)"/g, normalizePerlFunctionName)
-        }
-
-        return extractMatches(html, /<h2 id="([A-Za-z_][A-Za-z0-9_:]*)"/g, normalizePerlFunctionName)
-      },
+      namespaces: parsed.namespaces.map((namespace) => ({
+        namespace: namespace.namespace,
+        title: namespace.namespace,
+        sourceRef: perlNamespaceSourceRef(namespace.namespace),
+        entries: namespace.entries,
+      })),
     }),
   )
 }

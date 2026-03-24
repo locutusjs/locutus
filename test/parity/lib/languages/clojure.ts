@@ -8,6 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, type JsObjectProperty, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { fetchText } from '../upstream-surface-canonical.ts'
 import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
@@ -29,12 +30,7 @@ function catalogClojureNamespace(namespace: string): string {
 }
 
 async function discoverClojureUpstreamNamespaces() {
-  const html = await fetch(CLOJURE_NAMESPACE_CATALOG_SOURCE_REF).then(async (response) => {
-    if (!response.ok) {
-      throw new Error(`Unable to discover Clojure upstream namespaces: ${response.status} ${response.statusText}`)
-    }
-    return await response.text()
-  })
+  const html = await fetchText(CLOJURE_NAMESPACE_CATALOG_SOURCE_REF)
 
   const docNamespaces = [...new Set([...html.matchAll(/href="([a-z0-9.]+)-api\.html"/g)].map((match) => match[1]))]
     .filter((namespace): namespace is string => !!namespace)

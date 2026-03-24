@@ -1682,10 +1682,6 @@ golang:
       default:
         decision: skip_runtime_model
         note: Much of Go time depends on locations, timers, and rich time values beyond JS plain values.
-      rules:
-        - match: Unix*
-          decision: wanted
-          note: Unix timestamp conversion has a clean plain-value contract.
       decisions:
         AfterFunc:
           decision: skip_side_effects
@@ -1702,39 +1698,12 @@ golang:
         decision: skip_runtime_model
         note: Many time.Time methods revolve around rich time values, locations, or serialization details beyond one stable plain-value contract.
       decisions:
-        Add:
-          decision: wanted
-          note: Time arithmetic over plain instants has a clean portability contract.
-        AddDate:
-          decision: wanted
-          note: Calendar arithmetic over plain instants has a useful portability contract.
-        After:
-          decision: wanted
-          note: Time comparison has a clean plain-value contract.
-        Before:
-          decision: wanted
-          note: Time comparison has a clean plain-value contract.
         Compare:
           decision: wanted
           note: Time comparison has a clean plain-value contract.
-        Equal:
-          decision: wanted
-          note: Time comparison has a clean plain-value contract.
-        Format:
-          decision: wanted
-          note: Deterministic layout formatting is a strong portability target.
         IsZero:
           decision: wanted
           note: Zero-time checks have a clean plain-value contract.
-        Round:
-          decision: wanted
-          note: Time rounding over plain instants has a clean portability contract.
-        Sub:
-          decision: wanted
-          note: Duration differences map cleanly to scalar results.
-        Truncate:
-          decision: wanted
-          note: Time truncation over plain instants has a clean portability contract.
     filepath:
       title: path/filepath package
       default:
@@ -1847,18 +1816,12 @@ golang:
         RequestURI:
           decision: wanted
           note: Request-URI formatting is a useful plain-value helper.
-        ResolveReference:
-          decision: wanted
-          note: URL reference resolution has a useful plain-value contract.
     url.Values:
       title: net/url Values methods
       default:
         decision: skip_runtime_model
         note: URL values methods revolve around mutable multi-value maps rather than one plain-value contract.
       decisions:
-        Encode:
-          decision: wanted
-          note: Canonical query-string encoding has a clean plain-value contract.
         Get:
           decision: wanted
           note: Query-value lookup has a useful plain-value contract.

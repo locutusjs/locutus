@@ -369,16 +369,6 @@ function compareNamespace(
   const untriagedEntries: string[] = []
   for (const entry of shipped) {
     if (catalogSet.has(entry)) {
-      const match = findCatalogDecision(entry, decisions, rules, defaultDecision)
-      if (match?.matchedRuleIndex !== undefined) {
-        seenRuleIndexes.add(match.matchedRuleIndex)
-      }
-      if (match?.usedDefault) {
-        usedDefaultDecision = true
-      }
-      if (Object.prototype.hasOwnProperty.call(decisions, entry)) {
-        seenDecisionNames.add(entry)
-      }
       continue
     }
 

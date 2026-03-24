@@ -1,13 +1,13 @@
 language: elixir
 catalog:
   target: Elixir 1.18
-  sourceKind: runtime
-  sourceRef: elixir:1.18:application-modules
+  sourceKind: source_manifest
+  sourceRef: https://hexdocs.pm/elixir/1.18/Kernel.html
 namespaces:
   - namespace: Access
     title: Access
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Access
     entries:
       - all
@@ -27,7 +27,7 @@ namespaces:
   - namespace: Agent
     title: Agent
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Agent
     entries:
       - cast
@@ -38,23 +38,10 @@ namespaces:
       - start_link
       - stop
       - update
-  - namespace: Agent.Server
-    title: Agent.Server
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Agent.Server
-    entries:
-      - child_spec
-      - code_change
-      - handle_call
-      - handle_cast
-      - handle_info
-      - init
-      - terminate
   - namespace: Application
     title: Application
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Application
     entries:
       - app_dir
@@ -82,7 +69,7 @@ namespaces:
   - namespace: ArgumentError
     title: ArgumentError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:ArgumentError
     entries:
       - __struct__
@@ -91,7 +78,7 @@ namespaces:
   - namespace: ArithmeticError
     title: ArithmeticError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:ArithmeticError
     entries:
       - __struct__
@@ -101,7 +88,7 @@ namespaces:
   - namespace: Atom
     title: Atom
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Atom
     entries:
       - to_char_list
@@ -110,7 +97,7 @@ namespaces:
   - namespace: BadArityError
     title: BadArityError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:BadArityError
     entries:
       - __struct__
@@ -119,7 +106,7 @@ namespaces:
   - namespace: BadBooleanError
     title: BadBooleanError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:BadBooleanError
     entries:
       - __struct__
@@ -128,7 +115,7 @@ namespaces:
   - namespace: BadFunctionError
     title: BadFunctionError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:BadFunctionError
     entries:
       - __struct__
@@ -137,7 +124,7 @@ namespaces:
   - namespace: BadMapError
     title: BadMapError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:BadMapError
     entries:
       - __struct__
@@ -146,7 +133,7 @@ namespaces:
   - namespace: BadStructError
     title: BadStructError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:BadStructError
     entries:
       - __struct__
@@ -155,7 +142,7 @@ namespaces:
   - namespace: Base
     title: Base
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Base
     entries:
       - decode16
@@ -176,13 +163,13 @@ namespaces:
   - namespace: Behaviour
     title: Behaviour
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Behaviour
     entries: []
   - namespace: Bitwise
     title: Bitwise
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Bitwise
     entries:
       - '&&&'
@@ -200,7 +187,7 @@ namespaces:
   - namespace: Calendar
     title: Calendar
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Calendar
     entries:
       - compatible_calendars?
@@ -211,7 +198,7 @@ namespaces:
   - namespace: Calendar.ISO
     title: Calendar.ISO
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Calendar.ISO
     entries:
       - add_day_fraction_to_iso_days
@@ -257,13 +244,13 @@ namespaces:
   - namespace: Calendar.TimeZoneDatabase
     title: Calendar.TimeZoneDatabase
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Calendar.TimeZoneDatabase
     entries: []
   - namespace: Calendar.UTCOnlyTimeZoneDatabase
     title: Calendar.UTCOnlyTimeZoneDatabase
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Calendar.UTCOnlyTimeZoneDatabase
     entries:
       - time_zone_period_from_utc_iso_days
@@ -271,7 +258,7 @@ namespaces:
   - namespace: CaseClauseError
     title: CaseClauseError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:CaseClauseError
     entries:
       - __struct__
@@ -280,7 +267,7 @@ namespaces:
   - namespace: Code
     title: Code
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Code
     entries:
       - append_path
@@ -330,139 +317,38 @@ namespaces:
       - unload_files
       - unrequire_files
       - with_diagnostics
-  - namespace: Code.Formatter
-    title: Code.Formatter
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Code.Formatter
-    entries:
-      - local_without_parens?
-      - locals_without_parens
-      - to_algebra
   - namespace: Code.Fragment
     title: Code.Fragment
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Code.Fragment
     entries:
       - container_cursor_to_quoted
       - cursor_context
       - surround_context
-  - namespace: Code.Identifier
-    title: Code.Identifier
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Code.Identifier
-    entries:
-      - binary_op
-      - escape
-      - extract_anonymous_fun_parent
-      - unary_op
   - namespace: Code.LoadError
     title: Code.LoadError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Code.LoadError
     entries:
       - __struct__
       - exception
       - message
-  - namespace: Code.Normalizer
-    title: Code.Normalizer
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Code.Normalizer
-    entries:
-      - normalize
-  - namespace: Code.Typespec
-    title: Code.Typespec
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Code.Typespec
-    entries:
-      - fetch_callbacks
-      - fetch_specs
-      - fetch_types
-      - spec_to_quoted
-      - type_to_quoted
   - namespace: Collectable
     title: Collectable
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Collectable
     entries:
       - __protocol__
       - impl_for
       - impl_for!
       - into
-  - namespace: Collectable.BitString
-    title: Collectable.BitString
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.BitString
-    entries:
-      - __impl__
-      - into
-  - namespace: Collectable.File.Stream
-    title: Collectable.File.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.File.Stream
-    entries:
-      - __impl__
-      - into
-  - namespace: Collectable.HashDict
-    title: Collectable.HashDict
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.HashDict
-    entries:
-      - __impl__
-      - into
-  - namespace: Collectable.HashSet
-    title: Collectable.HashSet
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.HashSet
-    entries:
-      - __impl__
-      - into
-  - namespace: Collectable.IO.Stream
-    title: Collectable.IO.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.IO.Stream
-    entries:
-      - __impl__
-      - into
-  - namespace: Collectable.List
-    title: Collectable.List
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.List
-    entries:
-      - __impl__
-      - into
-  - namespace: Collectable.Map
-    title: Collectable.Map
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.Map
-    entries:
-      - __impl__
-      - into
-  - namespace: Collectable.MapSet
-    title: Collectable.MapSet
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Collectable.MapSet
-    entries:
-      - __impl__
-      - into
   - namespace: CompileError
     title: CompileError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:CompileError
     entries:
       - __struct__
@@ -471,7 +357,7 @@ namespaces:
   - namespace: CondClauseError
     title: CondClauseError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:CondClauseError
     entries:
       - __struct__
@@ -480,7 +366,7 @@ namespaces:
   - namespace: Config
     title: Config
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Config
     entries:
       - __env__!
@@ -493,7 +379,7 @@ namespaces:
   - namespace: Config.Provider
     title: Config.Provider
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Config.Provider
     entries:
       - __struct__
@@ -506,7 +392,7 @@ namespaces:
   - namespace: Config.Reader
     title: Config.Reader
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Config.Reader
     entries:
       - eval!
@@ -518,7 +404,7 @@ namespaces:
   - namespace: Date
     title: Date
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Date
     entries:
       - __duration__!
@@ -560,14 +446,14 @@ namespaces:
   - namespace: Date.Range
     title: Date.Range
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Date.Range
     entries:
       - __struct__
   - namespace: DateTime
     title: DateTime
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:DateTime
     entries:
       - __duration__!
@@ -604,7 +490,7 @@ namespaces:
   - namespace: Dict
     title: Dict
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Dict
     entries:
       - delete
@@ -634,7 +520,7 @@ namespaces:
   - namespace: Duration
     title: Duration
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Duration
     entries:
       - __struct__
@@ -650,7 +536,7 @@ namespaces:
   - namespace: DynamicSupervisor
     title: DynamicSupervisor
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:DynamicSupervisor
     entries:
       - __struct__
@@ -671,7 +557,7 @@ namespaces:
   - namespace: Enum
     title: Enum
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Enum
     entries:
       - all?
@@ -753,7 +639,7 @@ namespaces:
   - namespace: Enum.EmptyError
     title: Enum.EmptyError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Enum.EmptyError
     entries:
       - __struct__
@@ -762,7 +648,7 @@ namespaces:
   - namespace: Enum.OutOfBoundsError
     title: Enum.OutOfBoundsError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Enum.OutOfBoundsError
     entries:
       - __struct__
@@ -771,7 +657,7 @@ namespaces:
   - namespace: Enumerable
     title: Enumerable
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Enumerable
     entries:
       - __protocol__
@@ -781,143 +667,10 @@ namespaces:
       - member?
       - reduce
       - slice
-  - namespace: Enumerable.Date.Range
-    title: Enumerable.Date.Range
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.Date.Range
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.File.Stream
-    title: Enumerable.File.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.File.Stream
-    entries:
-      - __impl__
-      - count
-      - get_read_offset
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.Function
-    title: Enumerable.Function
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.Function
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.GenEvent.Stream
-    title: Enumerable.GenEvent.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.GenEvent.Stream
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.HashDict
-    title: Enumerable.HashDict
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.HashDict
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.HashSet
-    title: Enumerable.HashSet
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.HashSet
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.IO.Stream
-    title: Enumerable.IO.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.IO.Stream
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.List
-    title: Enumerable.List
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.List
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.Map
-    title: Enumerable.Map
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.Map
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.MapSet
-    title: Enumerable.MapSet
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.MapSet
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.Range
-    title: Enumerable.Range
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.Range
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
-  - namespace: Enumerable.Stream
-    title: Enumerable.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Enumerable.Stream
-    entries:
-      - __impl__
-      - count
-      - member?
-      - reduce
-      - slice
   - namespace: ErlangError
     title: ErlangError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:ErlangError
     entries:
       - __struct__
@@ -927,7 +680,7 @@ namespaces:
   - namespace: Exception
     title: Exception
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Exception
     entries:
       - blame
@@ -950,7 +703,7 @@ namespaces:
   - namespace: File
     title: File
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:File
     entries:
       - cd
@@ -1011,7 +764,7 @@ namespaces:
   - namespace: File.CopyError
     title: File.CopyError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:File.CopyError
     entries:
       - __struct__
@@ -1020,7 +773,7 @@ namespaces:
   - namespace: File.Error
     title: File.Error
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:File.Error
     entries:
       - __struct__
@@ -1029,7 +782,7 @@ namespaces:
   - namespace: File.LinkError
     title: File.LinkError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:File.LinkError
     entries:
       - __struct__
@@ -1038,7 +791,7 @@ namespaces:
   - namespace: File.RenameError
     title: File.RenameError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:File.RenameError
     entries:
       - __struct__
@@ -1047,7 +800,7 @@ namespaces:
   - namespace: File.Stat
     title: File.Stat
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:File.Stat
     entries:
       - __struct__
@@ -1056,7 +809,7 @@ namespaces:
   - namespace: File.Stream
     title: File.Stream
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:File.Stream
     entries:
       - __build__
@@ -1065,7 +818,7 @@ namespaces:
   - namespace: Float
     title: Float
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Float
     entries:
       - ceil
@@ -1082,7 +835,7 @@ namespaces:
   - namespace: Function
     title: Function
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Function
     entries:
       - capture
@@ -1091,7 +844,7 @@ namespaces:
   - namespace: FunctionClauseError
     title: FunctionClauseError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:FunctionClauseError
     entries:
       - __struct__
@@ -1101,7 +854,7 @@ namespaces:
   - namespace: GenEvent
     title: GenEvent
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:GenEvent
     entries:
       - ack_notify
@@ -1126,23 +879,10 @@ namespaces:
       - system_replace_state
       - system_terminate
       - which_handlers
-  - namespace: GenEvent.Stream
-    title: GenEvent.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:GenEvent.Stream
-    entries:
-      - __struct__
-      - code_change
-      - handle_call
-      - handle_event
-      - handle_info
-      - init
-      - terminate
   - namespace: GenServer
     title: GenServer
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:GenServer
     entries:
       - abcast
@@ -1158,7 +898,7 @@ namespaces:
   - namespace: HashDict
     title: HashDict
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:HashDict
     entries:
       - __struct__
@@ -1191,7 +931,7 @@ namespaces:
   - namespace: HashSet
     title: HashSet
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:HashSet
     entries:
       - __struct__
@@ -1211,7 +951,7 @@ namespaces:
   - namespace: Inspect
     title: Inspect
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Inspect
     entries:
       - __protocol__
@@ -1221,7 +961,7 @@ namespaces:
   - namespace: Inspect.Algebra
     title: Inspect.Algebra
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Inspect.Algebra
     entries:
       - break
@@ -1248,263 +988,29 @@ namespaces:
       - surround
       - surround_many
       - to_doc
-  - namespace: Inspect.Any
-    title: Inspect.Any
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Any
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Atom
-    title: Inspect.Atom
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Atom
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.BitString
-    title: Inspect.BitString
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.BitString
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Date
-    title: Inspect.Date
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Date
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Date.Range
-    title: Inspect.Date.Range
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Date.Range
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.DateTime
-    title: Inspect.DateTime
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.DateTime
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Duration
-    title: Inspect.Duration
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Duration
-    entries:
-      - __impl__
-      - inspect
   - namespace: Inspect.Error
     title: Inspect.Error
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Inspect.Error
     entries:
       - __struct__
       - exception
       - message
       - pad
-  - namespace: Inspect.Float
-    title: Inspect.Float
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Float
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Function
-    title: Inspect.Function
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Function
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.HashDict
-    title: Inspect.HashDict
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.HashDict
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.HashSet
-    title: Inspect.HashSet
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.HashSet
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Inspect.Error
-    title: Inspect.Inspect.Error
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Inspect.Error
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Integer
-    title: Inspect.Integer
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Integer
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.List
-    title: Inspect.List
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.List
-    entries:
-      - __impl__
-      - inspect
-      - keyword
-      - keyword?
-  - namespace: Inspect.Macro.Env
-    title: Inspect.Macro.Env
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Macro.Env
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Map
-    title: Inspect.Map
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Map
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.MapSet
-    title: Inspect.MapSet
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.MapSet
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.NaiveDateTime
-    title: Inspect.NaiveDateTime
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.NaiveDateTime
-    entries:
-      - __impl__
-      - inspect
   - namespace: Inspect.Opts
     title: Inspect.Opts
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Inspect.Opts
     entries:
       - __struct__
       - default_inspect_fun
       - new
-  - namespace: Inspect.PID
-    title: Inspect.PID
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.PID
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Port
-    title: Inspect.Port
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Port
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Range
-    title: Inspect.Range
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Range
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Reference
-    title: Inspect.Reference
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Reference
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Regex
-    title: Inspect.Regex
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Regex
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Stream
-    title: Inspect.Stream
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Stream
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Time
-    title: Inspect.Time
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Time
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Tuple
-    title: Inspect.Tuple
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Tuple
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.URI
-    title: Inspect.URI
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.URI
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Version
-    title: Inspect.Version
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Version
-    entries:
-      - __impl__
-      - inspect
-  - namespace: Inspect.Version.Requirement
-    title: Inspect.Version.Requirement
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Inspect.Version.Requirement
-    entries:
-      - __impl__
-      - inspect
   - namespace: Integer
     title: Integer
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Integer
     entries:
       - digits
@@ -1521,7 +1027,7 @@ namespaces:
   - namespace: IO
     title: IO
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:IO
     entries:
       - binread
@@ -1544,7 +1050,7 @@ namespaces:
   - namespace: IO.ANSI
     title: IO.ANSI
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:IO.ANSI
     entries:
       - black
@@ -1627,27 +1133,10 @@ namespaces:
       - white_background
       - yellow
       - yellow_background
-  - namespace: IO.ANSI.Docs
-    title: IO.ANSI.Docs
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:IO.ANSI.Docs
-    entries:
-      - default_options
-      - print
-      - print_headings
-      - print_markdown
-      - print_metadata
-  - namespace: IO.ANSI.Sequence
-    title: IO.ANSI.Sequence
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:IO.ANSI.Sequence
-    entries: []
   - namespace: IO.Stream
     title: IO.Stream
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:IO.Stream
     entries:
       - __build__
@@ -1655,7 +1144,7 @@ namespaces:
   - namespace: IO.StreamError
     title: IO.StreamError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:IO.StreamError
     entries:
       - __struct__
@@ -1664,7 +1153,7 @@ namespaces:
   - namespace: JSON
     title: JSON
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:JSON
     entries:
       - decode
@@ -1675,7 +1164,7 @@ namespaces:
   - namespace: JSON.DecodeError
     title: JSON.DecodeError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:JSON.DecodeError
     entries:
       - __struct__
@@ -1684,105 +1173,17 @@ namespaces:
   - namespace: JSON.Encoder
     title: JSON.Encoder
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:JSON.Encoder
     entries:
       - __protocol__
       - encode
       - impl_for
       - impl_for!
-  - namespace: JSON.Encoder.Atom
-    title: JSON.Encoder.Atom
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.Atom
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.BitString
-    title: JSON.Encoder.BitString
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.BitString
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.Date
-    title: JSON.Encoder.Date
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.Date
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.DateTime
-    title: JSON.Encoder.DateTime
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.DateTime
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.Duration
-    title: JSON.Encoder.Duration
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.Duration
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.Float
-    title: JSON.Encoder.Float
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.Float
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.Integer
-    title: JSON.Encoder.Integer
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.Integer
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.List
-    title: JSON.Encoder.List
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.List
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.Map
-    title: JSON.Encoder.Map
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.Map
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.NaiveDateTime
-    title: JSON.Encoder.NaiveDateTime
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.NaiveDateTime
-    entries:
-      - __impl__
-      - encode
-  - namespace: JSON.Encoder.Time
-    title: JSON.Encoder.Time
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:JSON.Encoder.Time
-    entries:
-      - __impl__
-      - encode
   - namespace: Kernel
     title: Kernel
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Kernel
     entries:
       - '-'
@@ -1858,62 +1259,10 @@ namespaces:
       - trunc
       - tuple_size
       - update_in
-  - namespace: Kernel.CLI
-    title: Kernel.CLI
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Kernel.CLI
-    entries:
-      - format_error
-      - main
-      - parse_argv
-      - process_commands
-      - rpc_eval
-      - run
-  - namespace: Kernel.ErrorHandler
-    title: Kernel.ErrorHandler
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Kernel.ErrorHandler
-    entries:
-      - ensure_compiled
-      - ensure_loaded
-      - undefined_function
-      - undefined_lambda
-  - namespace: Kernel.LexicalTracker
-    title: Kernel.LexicalTracker
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Kernel.LexicalTracker
-    entries:
-      - add_compile_env
-      - add_export
-      - add_import
-      - alias_dispatch
-      - code_change
-      - collect_unused_aliases
-      - collect_unused_imports
-      - handle_call
-      - handle_cast
-      - handle_info
-      - import_dispatch
-      - import_quoted
-      - init
-      - read_cache
-      - references
-      - remote_dispatch
-      - reset_file
-      - set_file
-      - start_link
-      - stop
-      - terminate
-      - warn_alias
-      - warn_import
-      - write_cache
   - namespace: Kernel.ParallelCompiler
     title: Kernel.ParallelCompiler
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Kernel.ParallelCompiler
     entries:
       - async
@@ -1924,61 +1273,25 @@ namespaces:
       - pmap
       - print_warning
       - require
-  - namespace: Kernel.ParallelRequire
-    title: Kernel.ParallelRequire
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Kernel.ParallelRequire
-    entries:
-      - files
   - namespace: Kernel.SpecialForms
     title: Kernel.SpecialForms
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Kernel.SpecialForms
     entries: []
-  - namespace: Kernel.Typespec
-    title: Kernel.Typespec
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Kernel.Typespec
-    entries:
-      - beam_callbacks
-      - beam_specs
-      - beam_typedocs
-      - beam_types
-      - defines_type?
-      - deftypespec
-      - spec_to_ast
-      - spec_to_callback
-      - translate_typespecs_for_module
-      - type_to_ast
   - namespace: Kernel.TypespecError
     title: Kernel.TypespecError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Kernel.TypespecError
     entries:
       - __struct__
       - exception
       - message
-  - namespace: Kernel.Utils
-    title: Kernel.Utils
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Kernel.Utils
-    entries:
-      - announce_struct
-      - defdelegate_all
-      - defdelegate_each
-      - defguard
-      - defstruct
-      - destructure
-      - raise
   - namespace: KeyError
     title: KeyError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:KeyError
     entries:
       - __struct__
@@ -1988,7 +1301,7 @@ namespaces:
   - namespace: Keyword
     title: Keyword
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Keyword
     entries:
       - delete
@@ -2036,7 +1349,7 @@ namespaces:
   - namespace: List
     title: List
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:List
     entries:
       - ascii_printable?
@@ -2076,7 +1389,7 @@ namespaces:
   - namespace: List.Chars
     title: List.Chars
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:List.Chars
     entries:
       - __protocol__
@@ -2084,50 +1397,10 @@ namespaces:
       - impl_for!
       - to_char_list
       - to_charlist
-  - namespace: List.Chars.Atom
-    title: List.Chars.Atom
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:List.Chars.Atom
-    entries:
-      - __impl__
-      - to_charlist
-  - namespace: List.Chars.BitString
-    title: List.Chars.BitString
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:List.Chars.BitString
-    entries:
-      - __impl__
-      - to_charlist
-  - namespace: List.Chars.Float
-    title: List.Chars.Float
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:List.Chars.Float
-    entries:
-      - __impl__
-      - to_charlist
-  - namespace: List.Chars.Integer
-    title: List.Chars.Integer
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:List.Chars.Integer
-    entries:
-      - __impl__
-      - to_charlist
-  - namespace: List.Chars.List
-    title: List.Chars.List
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:List.Chars.List
-    entries:
-      - __impl__
-      - to_charlist
   - namespace: Macro
     title: Macro
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Macro
     entries:
       - __dbg__
@@ -2168,7 +1441,7 @@ namespaces:
   - namespace: Macro.Env
     title: Macro.Env
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Macro.Env
     entries:
       - __struct__
@@ -2196,7 +1469,7 @@ namespaces:
   - namespace: Map
     title: Map
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Map
     entries:
       - delete
@@ -2238,7 +1511,7 @@ namespaces:
   - namespace: MapSet
     title: MapSet
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:MapSet
     entries:
       - __struct__
@@ -2261,7 +1534,7 @@ namespaces:
   - namespace: MatchError
     title: MatchError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:MatchError
     entries:
       - __struct__
@@ -2270,7 +1543,7 @@ namespaces:
   - namespace: MismatchedDelimiterError
     title: MismatchedDelimiterError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:MismatchedDelimiterError
     entries:
       - __struct__
@@ -2279,7 +1552,7 @@ namespaces:
   - namespace: MissingApplicationsError
     title: MissingApplicationsError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:MissingApplicationsError
     entries:
       - __struct__
@@ -2288,7 +1561,7 @@ namespaces:
   - namespace: Module
     title: Module
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Module
     entries:
       - __check_attributes__
@@ -2319,182 +1592,10 @@ namespaces:
       - safe_concat
       - spec_to_callback
       - split
-  - namespace: Module.Behaviour
-    title: Module.Behaviour
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Behaviour
-    entries:
-      - callbacks
-      - check_behaviours_and_impls
-      - format_diagnostic
-  - namespace: Module.ParallelChecker
-    title: Module.ParallelChecker
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.ParallelChecker
-    entries:
-      - fetch_export
-      - get
-      - handle_call
-      - handle_cast
-      - handle_info
-      - init
-      - put
-      - spawn
-      - start_link
-      - stop
-      - test_cache
-      - verify
-  - namespace: Module.Types
-    title: Module.Types
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Types
-    entries:
-      - context
-      - format_diagnostic
-      - format_error
-      - infer
-      - stack
-      - warnings
-  - namespace: Module.Types.Apply
-    title: Module.Types.Apply
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Types.Apply
-    entries:
-      - format_diagnostic
-      - local
-      - local_capture
-      - remote
-      - remote_capture
-      - signature
-  - namespace: Module.Types.Descr
-    title: Module.Types.Descr
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Types.Descr
-    entries:
-      - atom
-      - atom_fetch
-      - atom_type?
-      - binary
-      - binary_type?
-      - boolean
-      - closed_map
-      - compatible?
-      - difference
-      - disjoint?
-      - dynamic
-      - empty_list
-      - empty_list_type?
-      - empty_map
-      - empty?
-      - equal?
-      - float
-      - float_type?
-      - fun
-      - fun_fetch
-      - gradual?
-      - if_set
-      - integer
-      - integer_type?
-      - intersection
-      - list
-      - list_hd
-      - list_tl
-      - map_delete
-      - map_fetch
-      - map_fetch_and_put
-      - map_literal_to_quoted
-      - map_put
-      - map_take
-      - negation
-      - non_empty_list
-      - none
-      - not_set
-      - number_type?
-      - only_gradual?
-      - open_map
-      - open_tuple
-      - pid
-      - port
-      - reference
-      - subtype?
-      - term
-      - term_type?
-      - to_quoted
-      - to_quoted_string
-      - truthness
-      - tuple
-      - tuple_delete_at
-      - tuple_fetch
-      - tuple_insert_at
-      - tuple_values
-      - union
-  - namespace: Module.Types.Expr
-    title: Module.Types.Expr
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Types.Expr
-    entries:
-      - format_diagnostic
-      - of_expr
-  - namespace: Module.Types.Helpers
-    title: Module.Types.Helpers
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Types.Helpers
-    entries:
-      - collect_traces
-      - error
-      - error_type
-      - expr_to_string
-      - format_hints
-      - format_traces
-      - format_var
-      - get_meta
-      - indent
-      - unpack_list
-      - unpack_match
-      - warn
-      - with_span
-  - namespace: Module.Types.Of
-    title: Module.Types.Of
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Types.Of
-    entries:
-      - binary
-      - closed_map
-      - error_var
-      - format_diagnostic
-      - incompatible_error
-      - intersect
-      - map_fetch
-      - modules
-      - permutate_map
-      - refine_var
-      - struct_info
-      - struct_instance
-      - struct_type
-      - var
-  - namespace: Module.Types.Pattern
-    title: Module.Types.Pattern
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Module.Types.Pattern
-    entries:
-      - format_diagnostic
-      - of_guard
-      - of_head
-      - of_match
-      - of_match_var
   - namespace: NaiveDateTime
     title: NaiveDateTime
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:NaiveDateTime
     entries:
       - __duration__!
@@ -2528,7 +1629,7 @@ namespaces:
   - namespace: Node
     title: Node
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Node
     entries:
       - alive?
@@ -2548,7 +1649,7 @@ namespaces:
   - namespace: OptionParser
     title: OptionParser
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:OptionParser
     entries:
       - next
@@ -2561,7 +1662,7 @@ namespaces:
   - namespace: OptionParser.ParseError
     title: OptionParser.ParseError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:OptionParser.ParseError
     entries:
       - __struct__
@@ -2570,7 +1671,7 @@ namespaces:
   - namespace: PartitionSupervisor
     title: PartitionSupervisor
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:PartitionSupervisor
     entries:
       - child_spec
@@ -2589,7 +1690,7 @@ namespaces:
   - namespace: Path
     title: Path
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Path
     entries:
       - absname
@@ -2607,19 +1708,10 @@ namespaces:
       - split
       - type
       - wildcard
-  - namespace: Path.Wildcard
-    title: Path.Wildcard
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Path.Wildcard
-    entries:
-      - list_dir
-      - read_file_info
-      - read_link_info
   - namespace: Port
     title: Port
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Port
     entries:
       - close
@@ -2633,7 +1725,7 @@ namespaces:
   - namespace: Process
     title: Process
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Process
     entries:
       - alias
@@ -2667,7 +1759,7 @@ namespaces:
   - namespace: Protocol
     title: Protocol
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Protocol
     entries:
       - __before_compile__
@@ -2686,7 +1778,7 @@ namespaces:
   - namespace: Protocol.UndefinedError
     title: Protocol.UndefinedError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Protocol.UndefinedError
     entries:
       - __struct__
@@ -2695,7 +1787,7 @@ namespaces:
   - namespace: Range
     title: Range
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Range
     entries:
       - __struct__
@@ -2709,7 +1801,7 @@ namespaces:
   - namespace: Record
     title: Record
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Record
     entries:
       - __access__
@@ -2717,18 +1809,10 @@ namespaces:
       - __record__
       - extract
       - extract_all
-  - namespace: Record.Extractor
-    title: Record.Extractor
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Record.Extractor
-    entries:
-      - extract
-      - extract_all
   - namespace: Regex
     title: Regex
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Regex
     entries:
       - __struct__
@@ -2752,7 +1836,7 @@ namespaces:
   - namespace: Regex.CompileError
     title: Regex.CompileError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Regex.CompileError
     entries:
       - __struct__
@@ -2761,7 +1845,7 @@ namespaces:
   - namespace: Registry
     title: Registry
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Registry
     entries:
       - __unregister__
@@ -2788,36 +1872,10 @@ namespaces:
       - update_value
       - values
       - whereis_name
-  - namespace: Registry.Partition
-    title: Registry.Partition
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Registry.Partition
-    entries:
-      - child_spec
-      - code_change
-      - handle_call
-      - handle_cast
-      - handle_info
-      - init
-      - key_name
-      - lock
-      - pid_name
-      - start_link
-      - terminate
-  - namespace: Registry.Supervisor
-    title: Registry.Supervisor
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Registry.Supervisor
-    entries:
-      - child_spec
-      - init
-      - start_link
   - namespace: RuntimeError
     title: RuntimeError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:RuntimeError
     entries:
       - __struct__
@@ -2826,7 +1884,7 @@ namespaces:
   - namespace: Set
     title: Set
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Set
     entries:
       - delete
@@ -2844,7 +1902,7 @@ namespaces:
   - namespace: Stream
     title: Stream
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Stream
     entries:
       - __struct__
@@ -2887,19 +1945,10 @@ namespaces:
       - with_index
       - zip
       - zip_with
-  - namespace: Stream.Reducers
-    title: Stream.Reducers
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Stream.Reducers
-    entries:
-      - chunk_by
-      - chunk_every
-      - zip_with
   - namespace: String
     title: String
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:String
     entries:
       - at
@@ -2956,164 +2005,20 @@ namespaces:
       - upcase
       - valid_character?
       - valid?
-  - namespace: String.Break
-    title: String.Break
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Break
-    entries:
-      - decompose
-      - do_trim_leading
-      - split
-      - trim_leading
-      - trim_trailing
   - namespace: String.Chars
     title: String.Chars
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:String.Chars
     entries:
       - __protocol__
       - impl_for
       - impl_for!
       - to_string
-  - namespace: String.Chars.Atom
-    title: String.Chars.Atom
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.Atom
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.BitString
-    title: String.Chars.BitString
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.BitString
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.Date
-    title: String.Chars.Date
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.Date
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.DateTime
-    title: String.Chars.DateTime
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.DateTime
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.Float
-    title: String.Chars.Float
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.Float
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.Integer
-    title: String.Chars.Integer
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.Integer
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.List
-    title: String.Chars.List
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.List
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.NaiveDateTime
-    title: String.Chars.NaiveDateTime
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.NaiveDateTime
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.Time
-    title: String.Chars.Time
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.Time
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.URI
-    title: String.Chars.URI
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.URI
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.Version
-    title: String.Chars.Version
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.Version
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Chars.Version.Requirement
-    title: String.Chars.Version.Requirement
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Chars.Version.Requirement
-    entries:
-      - __impl__
-      - to_string
-  - namespace: String.Tokenizer
-    title: String.Tokenizer
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Tokenizer
-    entries:
-      - dir
-      - tokenize
-  - namespace: String.Tokenizer.ScriptSet
-    title: String.Tokenizer.ScriptSet
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Tokenizer.ScriptSet
-    entries:
-      - from_index
-      - lattices
-      - to_indexes
-      - union
-  - namespace: String.Tokenizer.Security
-    title: String.Tokenizer.Security
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Tokenizer.Security
-    entries:
-      - bidi_skeleton
-      - confusable_skeleton
-      - unbidify
-      - unicode_lint_warnings
-  - namespace: String.Unicode
-    title: String.Unicode
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:String.Unicode
-    entries:
-      - downcase
-      - upcase
-      - version
   - namespace: StringIO
     title: StringIO
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:StringIO
     entries:
       - close
@@ -3126,7 +2031,7 @@ namespaces:
   - namespace: Supervisor
     title: Supervisor
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Supervisor
     entries:
       - child_spec
@@ -3139,17 +2044,10 @@ namespaces:
       - stop
       - terminate_child
       - which_children
-  - namespace: Supervisor.Default
-    title: Supervisor.Default
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Supervisor.Default
-    entries:
-      - init
   - namespace: Supervisor.Spec
     title: Supervisor.Spec
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Supervisor.Spec
     entries:
       - supervise
@@ -3158,7 +2056,7 @@ namespaces:
   - namespace: SyntaxError
     title: SyntaxError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:SyntaxError
     entries:
       - __struct__
@@ -3167,7 +2065,7 @@ namespaces:
   - namespace: System
     title: System
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:System
     entries:
       - argv
@@ -3211,26 +2109,16 @@ namespaces:
   - namespace: System.EnvError
     title: System.EnvError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:System.EnvError
     entries:
       - __struct__
       - exception
       - message
-  - namespace: System.SignalHandler
-    title: System.SignalHandler
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:System.SignalHandler
-    entries:
-      - handle_call
-      - handle_event
-      - handle_info
-      - init
   - namespace: SystemLimitError
     title: SystemLimitError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:SystemLimitError
     entries:
       - __struct__
@@ -3239,7 +2127,7 @@ namespaces:
   - namespace: Task
     title: Task
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Task
     entries:
       - __recv_opt_info__
@@ -3257,23 +2145,10 @@ namespaces:
       - start_link
       - yield
       - yield_many
-  - namespace: Task.Supervised
-    title: Task.Supervised
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Task.Supervised
-    entries:
-      - format_report
-      - noreply
-      - reply
-      - start
-      - start_link
-      - stream
-      - validate_stream_options
   - namespace: Task.Supervisor
     title: Task.Supervisor
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Task.Supervisor
     entries:
       - async
@@ -3289,7 +2164,7 @@ namespaces:
   - namespace: Time
     title: Time
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Time
     entries:
       - __duration__!
@@ -3318,7 +2193,7 @@ namespaces:
   - namespace: TokenMissingError
     title: TokenMissingError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:TokenMissingError
     entries:
       - __struct__
@@ -3327,7 +2202,7 @@ namespaces:
   - namespace: TryClauseError
     title: TryClauseError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:TryClauseError
     entries:
       - __struct__
@@ -3336,7 +2211,7 @@ namespaces:
   - namespace: Tuple
     title: Tuple
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Tuple
     entries:
       - append
@@ -3349,7 +2224,7 @@ namespaces:
   - namespace: UndefinedFunctionError
     title: UndefinedFunctionError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:UndefinedFunctionError
     entries:
       - __struct__
@@ -3361,7 +2236,7 @@ namespaces:
   - namespace: UnicodeConversionError
     title: UnicodeConversionError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:UnicodeConversionError
     entries:
       - __struct__
@@ -3370,7 +2245,7 @@ namespaces:
   - namespace: URI
     title: URI
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:URI
     entries:
       - __struct__
@@ -3395,7 +2270,7 @@ namespaces:
   - namespace: URI.Error
     title: URI.Error
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:URI.Error
     entries:
       - __struct__
@@ -3404,7 +2279,7 @@ namespaces:
   - namespace: Version
     title: Version
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Version
     entries:
       - __struct__
@@ -3419,7 +2294,7 @@ namespaces:
   - namespace: Version.InvalidRequirementError
     title: Version.InvalidRequirementError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Version.InvalidRequirementError
     entries:
       - __struct__
@@ -3428,25 +2303,16 @@ namespaces:
   - namespace: Version.InvalidVersionError
     title: Version.InvalidVersionError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Version.InvalidVersionError
     entries:
       - __struct__
       - exception
       - message
-  - namespace: Version.Parser
-    title: Version.Parser
-    target: Elixir 1.18
-    sourceKind: runtime
-    sourceRef: elixir:1.18:Version.Parser
-    entries:
-      - lexer
-      - parse_requirement
-      - parse_version
   - namespace: Version.Requirement
     title: Version.Requirement
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:Version.Requirement
     entries:
       - __struct__
@@ -3456,7 +2322,7 @@ namespaces:
   - namespace: WithClauseError
     title: WithClauseError
     target: Elixir 1.18
-    sourceKind: runtime
+    sourceKind: source_manifest
     sourceRef: elixir:1.18:WithClauseError
     entries:
       - __struct__

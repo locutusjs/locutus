@@ -8,6 +8,7 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { fetchText } from '../upstream-surface-canonical.ts'
 import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
@@ -15,52 +16,42 @@ export const ELIXIR_SKIP_LIST = new Set<string>([])
 
 const ELIXIR_DOCKER_IMAGE = 'elixir:1.18'
 const ELIXIR_NAMESPACE_CATALOG_TARGET = 'Elixir 1.18'
-const ELIXIR_NAMESPACE_CATALOG_SOURCE_REF = 'elixir:1.18:application-modules'
+const ELIXIR_NAMESPACE_CATALOG_SOURCE_REF = 'https://hexdocs.pm/elixir/1.18/Kernel.html'
 
-function discoverElixirUpstreamNamespaces() {
-  const code = [
-    'modules =',
-    '  (:elixir |> Application.spec(:modules) |> Kernel.||([]))',
-    '  |> Enum.map(&Atom.to_string/1)',
-    '  |> Enum.filter(&String.starts_with?(&1, "Elixir."))',
-    '  |> Enum.reject(&String.starts_with?(&1, "Elixir.Mix"))',
-    '  |> Enum.reject(&String.starts_with?(&1, "Elixir.IEx"))',
-    '  |> Enum.map(&String.replace_prefix(&1, "Elixir.", ""))',
-    '  |> Enum.uniq()',
-    '  |> Enum.sort()',
-    'IO.puts(Enum.join(modules, "\\n"))',
-  ].join('\n')
+async function discoverElixirUpstreamNamespaces() {
+  const pageHtml = await fetchText(ELIXIR_NAMESPACE_CATALOG_SOURCE_REF)
+  const sidebarPath = pageHtml.match(/dist\/sidebar_items-[A-Z0-9]+\.js/)?.[0]
+  if (!sidebarPath) {
+    throw new Error('Unable to locate Elixir sidebar items manifest')
+  }
 
-  const result = runInDocker(ELIXIR_DOCKER_IMAGE, ['elixir', '-e', code], {
-    timeout: 120000,
-    maxBuffer: 8 * 1024 * 1024,
-  })
-  if (!result.success) {
-    throw new Error(result.error || 'Unable to discover Elixir upstream namespaces')
+  const sidebarUrl = new URL(sidebarPath, ELIXIR_NAMESPACE_CATALOG_SOURCE_REF).toString()
+  const sidebarText = await fetchText(sidebarUrl)
+  const encodedSidebar = sidebarText.replace(/^sidebarNodes=/, '').replace(/;\s*$/, '')
+  const parsed = JSON.parse(encodedSidebar) as {
+    modules?: Array<{
+      id?: unknown
+    }>
   }
 
   return [
     ...new Set(
-      result.output
-        .trim()
-        .split('\n')
-        .map((line) => line.trim())
-        .filter(Boolean),
+      (parsed.modules ?? []).map((module) => (typeof module.id === 'string' ? module.id.trim() : '')).filter(Boolean),
     ),
   ].sort()
 }
 
-function discoverElixirUpstreamNamespaceCatalog() {
+async function discoverElixirUpstreamNamespaceCatalog() {
   return {
     target: ELIXIR_NAMESPACE_CATALOG_TARGET,
-    sourceKind: 'runtime' as const,
+    sourceKind: 'source_manifest' as const,
     sourceRef: ELIXIR_NAMESPACE_CATALOG_SOURCE_REF,
-    namespaces: discoverElixirUpstreamNamespaces(),
+    namespaces: await discoverElixirUpstreamNamespaces(),
   }
 }
 
-function discoverElixirUpstreamSurface() {
-  const catalog = discoverElixirUpstreamNamespaceCatalog()
+async function discoverElixirUpstreamSurface() {
+  const catalog = await discoverElixirUpstreamNamespaceCatalog()
   const namespaces = catalog.namespaces
   const code = `
 modules = ${JSON.stringify(namespaces)}
