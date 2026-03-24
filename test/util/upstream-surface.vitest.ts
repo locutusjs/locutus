@@ -220,6 +220,90 @@ describe('upstream surface inventory', () => {
     expect(issues).toEqual([])
   })
 
+  it('allows missing namespace inventory entries when a language-level namespace rule matches them', () => {
+    const issues = findUpstreamSurfaceInventoryCoverageIssues(
+      new Map([
+        [
+          'python',
+          {
+            language: 'python',
+            namespaces: [
+              {
+                namespace: 'http.client',
+                title: 'http.client module',
+                target: 'Python 3.12',
+                sourceKind: 'source_manifest',
+                sourceRef: 'python:3.12:http.client',
+                entries: ['HTTPConnection'],
+              },
+            ],
+          },
+        ],
+      ]),
+      {
+        python: {
+          namespaceRules: [
+            {
+              match: 'http*',
+              default: {
+                decision: 'skip_environment',
+                note: 'HTTP modules depend on host network behavior',
+              },
+            },
+          ],
+        },
+      },
+    )
+
+    expect(issues).toEqual([])
+  })
+
+  it('applies language-level namespace rules before falling back to the language default namespace policy', () => {
+    const result = compareUpstreamSurface(
+      [],
+      handler,
+      {
+        language: 'python',
+        namespaces: [
+          {
+            namespace: 'http.client',
+            title: 'http.client module',
+            target: 'Python 3.12',
+            sourceKind: 'source_manifest',
+            sourceRef: 'python:3.12:http.client',
+            entries: ['HTTPConnection'],
+          },
+        ],
+      },
+      {
+        namespaceRules: [
+          {
+            match: 'http*',
+            default: {
+              decision: 'skip_environment',
+              note: 'HTTP modules depend on host network behavior',
+            },
+          },
+        ],
+        defaultNamespace: {
+          default: {
+            decision: 'skip_runtime_model',
+            note: 'generic conservative fallback',
+          },
+        },
+      },
+    )
+
+    expect(result.namespaces[0]?.skippedEntries).toEqual([
+      {
+        name: 'HTTPConnection',
+        decision: 'skip_environment',
+        note: 'HTTP modules depend on host network behavior',
+      },
+    ])
+    expect(result.namespaces[0]?.staleDecisions).toEqual([])
+  })
+
   it('lets explicit decisions override broader namespace rules', () => {
     const result = compareUpstreamSurface(
       [makeFunction('php/array/array_values', 'array_values')],

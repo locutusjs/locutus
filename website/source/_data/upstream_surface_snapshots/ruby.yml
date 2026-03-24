@@ -583,18 +583,6 @@ namespaces:
     entries:
       - '[]'
       - call
-  - namespace: COPYING
-    title: COPYING
-    target: Ruby 3.3
-    sourceKind: source_manifest
-    sourceRef: ruby:3.3:COPYING
-    entries: []
-  - namespace: COPYING_ja
-    title: COPYING_ja
-    target: Ruby 3.3
-    sourceKind: source_manifest
-    sourceRef: ruby:3.3:COPYING_ja
-    entries: []
   - namespace: CoreExtensions
     title: CoreExtensions
     target: Ruby 3.3
@@ -2825,12 +2813,6 @@ namespaces:
       - receiver
       - set_backtrace
       - spell_checker
-  - namespace: LEGAL
-    title: LEGAL
-    target: Ruby 3.3
-    sourceKind: source_manifest
-    sourceRef: ruby:3.3:LEGAL
-    entries: []
   - namespace: LocalJumpError
     title: LocalJumpError
     target: Ruby 3.3
@@ -3125,12 +3107,6 @@ namespaces:
     target: Ruby 3.3
     sourceKind: source_manifest
     sourceRef: ruby:3.3:Net
-    entries: []
-  - namespace: NEWS_md
-    title: NEWS_md
-    target: Ruby 3.3
-    sourceKind: source_manifest
-    sourceRef: ruby:3.3:NEWS_md
     entries: []
   - namespace: Newton
     title: Newton
@@ -4030,18 +4006,6 @@ namespaces:
       - ungetc
       - vi_editing_mode
       - vi_editing_mode?
-  - namespace: README_ja_md
-    title: README_ja_md
-    target: Ruby 3.3
-    sourceKind: source_manifest
-    sourceRef: ruby:3.3:README_ja_md
-    entries: []
-  - namespace: README_md
-    title: README_md
-    target: Ruby 3.3
-    sourceKind: source_manifest
-    sourceRef: ruby:3.3:README_md
-    entries: []
   - namespace: Refinement
     title: Refinement
     target: Ruby 3.3

@@ -426,6 +426,107 @@ php:
 python:
   title: Python
   scopeNote: This inventory now targets Python's broad official stdlib module surface first, using runtime discovery where possible, rather than the full Python object model or third-party ecosystem.
+  namespaceRules:
+    - match: asyncio*
+      default:
+        decision: skip_runtime_model
+        note: Event-loop and coroutine orchestration APIs revolve around runtime scheduling rather than plain values.
+    - match: concurrent*
+      default:
+        decision: skip_runtime_model
+        note: Executor and future APIs revolve around runtime scheduling rather than plain values.
+    - match: multiprocessing*
+      default:
+        decision: skip_environment
+        note: Process orchestration depends on host runtime and OS resources.
+    - match: tkinter*
+      default:
+        decision: skip_environment
+        note: UI toolkit modules depend on host display resources and event loops.
+    - match: email*
+      default:
+        decision: skip_runtime_model
+        note: Message object and policy-heavy email modules do not fit one stable plain-value contract by default.
+    - match: http*
+      default:
+        decision: skip_environment
+        note: HTTP client and server helpers depend on host network behavior.
+    - match: urllib*
+      default:
+        decision: skip_environment
+        note: Most urllib modules depend on network or response object behavior; parse helpers stay explicitly reviewed.
+    - match: wsgiref*
+      default:
+        decision: skip_environment
+        note: WSGI server helpers depend on network and host process behavior.
+    - match: xml*
+      default:
+        decision: skip_runtime_model
+        note: XML parser and DOM-style modules revolve around richer structured objects than one stable plain-value contract.
+    - match: importlib*
+      default:
+        decision: skip_runtime_model
+        note: Import-system modules revolve around loaders, specs, and runtime module state.
+    - match: unittest*
+      default:
+        decision: skip_runtime_model
+        note: Test framework modules revolve around classes, fixtures, and runner state rather than plain values.
+    - match: dbm*
+      default:
+        decision: skip_environment
+        note: DBM-backed key-value stores depend on host filesystem state.
+    - match: curses*
+      default:
+        decision: skip_environment
+        note: Terminal-control modules depend on host terminal capabilities and state.
+    - match: os*
+      default:
+        decision: skip_environment
+        note: OS helpers often depend on filesystem, processes, or host environment state.
+    - match: socket*
+      default:
+        decision: skip_environment
+        note: Socket APIs depend on host network behavior.
+    - match: ssl
+      default:
+        decision: skip_environment
+        note: TLS context and socket APIs depend on host network and certificate state.
+    - match: subprocess
+      default:
+        decision: skip_environment
+        note: Process execution depends on host environment and side effects.
+    - match: ctypes
+      default:
+        decision: skip_plain_value_mismatch
+        note: C interop and raw memory surfaces do not fit Locutus' current plain-value model.
+    - match: datetime
+      default:
+        decision: skip_runtime_model
+        note: Rich datetime objects do not fit one stable plain-value contract by default.
+    - match: pathlib
+      default:
+        decision: skip_runtime_model
+        note: Path object APIs revolve around richer path objects than plain strings by default.
+    - match: encodings*
+      default:
+        decision: skip_low_value
+        note: Codec registration modules are lower-value than direct text helper portability work.
+    - match: ensurepip
+      default:
+        decision: skip_low_value
+        note: Installer bootstrap tooling is outside Locutus' portability focus.
+    - match: idlelib
+      default:
+        decision: skip_low_value
+        note: IDE tooling is outside Locutus' portability focus.
+    - match: turtledemo
+      default:
+        decision: skip_low_value
+        note: Demo packages are outside Locutus' portability focus.
+    - match: venv
+      default:
+        decision: skip_environment
+        note: Virtual-environment tooling depends on host filesystem and interpreter state.
   namespaces:
     builtins:
       title: builtins module
@@ -1106,6 +1207,119 @@ kotlin:
 ruby:
   title: Ruby
   scopeNote: This inventory now tracks Ruby's full runtime-loaded core class/module surface, with selected stdlib-adjacent namespaces folded into the same review model.
+  namespaceRules:
+    - match: "*Error"
+      default:
+        decision: skip_runtime_model
+        note: Exception classes are not plain-value portability targets.
+    - match: "*Exception"
+      default:
+        decision: skip_runtime_model
+        note: Exception classes are not plain-value portability targets.
+    - match: "*Socket"
+      default:
+        decision: skip_environment
+        note: Socket classes depend on host network behavior.
+    - match: "*Server"
+      default:
+        decision: skip_environment
+        note: Server classes depend on host network behavior.
+    - match: Addrinfo
+      default:
+        decision: skip_environment
+        note: Address-resolution helpers depend on host network configuration.
+    - match: BasicSocket
+      default:
+        decision: skip_environment
+        note: Socket primitives depend on host network behavior.
+    - match: Dir
+      default:
+        decision: skip_environment
+        note: Directory helpers depend on host filesystem state.
+    - match: File*
+      default:
+        decision: skip_environment
+        note: File and filesystem helpers depend on host filesystem state.
+    - match: Find
+      default:
+        decision: skip_environment
+        note: Filesystem traversal depends on host filesystem state.
+    - match: Open3
+      default:
+        decision: skip_environment
+        note: Process I/O helpers depend on host process state.
+    - match: OpenURI
+      default:
+        decision: skip_environment
+        note: URL fetch helpers depend on host network behavior.
+    - match: PTY
+      default:
+        decision: skip_environment
+        note: Pseudo-terminal helpers depend on host terminal resources.
+    - match: Pathname
+      default:
+        decision: wanted
+        note: Path manipulation helpers are strong plain-string portability targets.
+    - match: Base64
+      default:
+        decision: wanted
+        note: Base64 helpers are strong plain-value portability targets.
+    - match: CSV
+      default:
+        decision: wanted
+        note: CSV parsing and generation are high-value portability targets.
+    - match: JSON
+      default:
+        decision: wanted
+        note: JSON parsing and generation are high-value portability targets.
+    - match: Date
+      default:
+        decision: skip_runtime_model
+        note: Rich date objects do not fit one stable plain-value contract by default.
+    - match: DateTime
+      default:
+        decision: skip_runtime_model
+        note: Rich datetime objects do not fit one stable plain-value contract by default.
+    - match: GC
+      default:
+        decision: skip_runtime_model
+        note: Garbage-collector controls depend on host runtime state.
+    - match: ObjectSpace
+      default:
+        decision: skip_runtime_model
+        note: Object-space introspection depends on host runtime state.
+    - match: Process
+      default:
+        decision: skip_environment
+        note: Process helpers depend on host environment and process state.
+    - match: TracePoint
+      default:
+        decision: skip_runtime_model
+        note: Trace hooks depend on host runtime execution state.
+    - match: Binding
+      default:
+        decision: skip_runtime_model
+        note: Bindings expose runtime execution scope rather than plain values.
+    - match: Fiber*
+      default:
+        decision: skip_runtime_model
+        note: Fiber APIs revolve around runtime scheduling rather than plain values.
+    - match: Thread*
+      default:
+        decision: skip_runtime_model
+        note: Thread APIs revolve around runtime scheduling rather than plain values.
+    - match: Ractor
+      default:
+        decision: skip_runtime_model
+        note: Actor-style concurrency primitives do not fit Locutus' plain-value model.
+    - match: Monitor*
+      default:
+        decision: skip_runtime_model
+        note: Synchronization helpers revolve around runtime locking state.
+    - match: Mutex_m
+      default:
+        decision: skip_runtime_model
+        note: Synchronization helpers revolve around runtime locking state.
   namespaces:
     Array:
       title: Array methods
@@ -1443,6 +1657,75 @@ ruby:
 golang:
   title: Go
   scopeNote: This inventory now tracks Go's full public stdlib package surface, using `go list std` for package discovery and `go doc -all` for callable entry discovery.
+  namespaceRules:
+    - match: "*.*"
+      default:
+        decision: skip_runtime_model
+        note: Receiver-type and struct-method namespaces default conservative until their plain-value contract is explicitly reviewed.
+    - match: crypto*
+      default:
+        decision: skip_security
+        note: Cryptographic packages are security-sensitive and often revolve around stateful objects.
+    - match: net*
+      default:
+        decision: skip_environment
+        note: Network packages depend on sockets, DNS, or host network state.
+    - match: os*
+      default:
+        decision: skip_environment
+        note: OS helpers depend on filesystem, process, or host environment state.
+    - match: database/sql*
+      default:
+        decision: skip_environment
+        note: Database helpers depend on external services and driver state.
+    - match: debug/*
+      default:
+        decision: skip_low_value
+        note: Debug-format parsers are lower-value than direct portability targets.
+    - match: go/*
+      default:
+        decision: skip_runtime_model
+        note: Go toolchain and AST/typechecker packages revolve around compiler data structures rather than plain values.
+    - match: testing*
+      default:
+        decision: skip_runtime_model
+        note: Test framework APIs revolve around harness state rather than plain values.
+    - match: plugin
+      default:
+        decision: skip_environment
+        note: Dynamic plugin loading depends on host runtime and filesystem behavior.
+    - match: syscall
+      default:
+        decision: skip_environment
+        note: Syscall wrappers depend on OS-specific host behavior.
+    - match: archive/*
+      default:
+        decision: skip_runtime_model
+        note: Archive readers and writers revolve around stream and header objects rather than one stable plain-value contract.
+    - match: bufio*
+      default:
+        decision: skip_runtime_model
+        note: Buffered I/O packages revolve around reader and writer state rather than plain values.
+    - match: compress/*
+      default:
+        decision: skip_runtime_model
+        note: Compression packages revolve around reader and writer state rather than plain values.
+    - match: hash*
+      default:
+        decision: skip_runtime_model
+        note: Hash packages predominantly expose stateful digest objects rather than plain values.
+    - match: image*
+      default:
+        decision: skip_plain_value_mismatch
+        note: Image and color types do not fit Locutus' current plain-value model.
+    - match: io*
+      default:
+        decision: skip_runtime_model
+        note: I/O packages revolve around readers, writers, and host resources rather than plain values.
+    - match: math/rand*
+      default:
+        decision: skip_low_value
+        note: Stateful random helpers are lower-value than deterministic portability work.
   namespaces:
     base64:
       title: encoding/base64 package
@@ -2471,6 +2754,99 @@ powershell:
 elixir:
   title: Elixir
   scopeNote: This inventory now tracks Elixir's official `:elixir` app module surface, excluding tooling apps like Mix and IEx from the parity target scope.
+  namespaceRules:
+    - match: "*Error"
+      default:
+        decision: skip_runtime_model
+        note: Exception structs are not plain-value portability targets.
+    - match: "*Exception"
+      default:
+        decision: skip_runtime_model
+        note: Exception structs are not plain-value portability targets.
+    - match: IO*
+      default:
+        decision: skip_environment
+        note: I/O helpers depend on host streams, terminals, or process state.
+    - match: File*
+      default:
+        decision: skip_environment
+        note: Filesystem helpers depend on host filesystem state.
+    - match: System*
+      default:
+        decision: skip_environment
+        note: System helpers depend on host environment and runtime state.
+    - match: Task*
+      default:
+        decision: skip_side_effects
+        note: Task orchestration depends on process scheduling and runtime side effects.
+    - match: Gen*
+      default:
+        decision: skip_side_effects
+        note: OTP process helpers revolve around runtime concurrency and message passing.
+    - match: Supervisor*
+      default:
+        decision: skip_side_effects
+        note: Supervision APIs revolve around runtime process orchestration.
+    - match: Code*
+      default:
+        decision: skip_runtime_model
+        note: Code loading and compilation helpers revolve around runtime module state.
+    - match: Macro*
+      default:
+        decision: skip_runtime_model
+        note: Macro helpers revolve around AST and compile-time metadata rather than plain values.
+    - match: Inspect*
+      default:
+        decision: skip_runtime_model
+        note: Inspect protocol helpers revolve around richer formatting state than plain values.
+    - match: Protocol*
+      default:
+        decision: skip_runtime_model
+        note: Protocol dispatch helpers revolve around runtime protocol metadata.
+    - match: Path
+      default:
+        decision: wanted
+        note: Path manipulation helpers are strong plain-string portability targets.
+    - match: OptionParser*
+      default:
+        decision: wanted
+        note: Argument parsing helpers have a useful plain-value portability contract.
+    - match: Stream
+      default:
+        decision: skip_runtime_model
+        note: Lazy stream pipelines do not fit Locutus' plain-value model.
+    - match: Application
+      default:
+        decision: skip_environment
+        note: Application lifecycle helpers depend on runtime and deployment state.
+    - match: Node
+      default:
+        decision: skip_environment
+        note: Distributed-node helpers depend on runtime networking state.
+    - match: Port
+      default:
+        decision: skip_environment
+        note: Port helpers depend on host external process resources.
+    - match: Process
+      default:
+        decision: skip_side_effects
+        note: Process mailbox and lifecycle helpers revolve around runtime side effects.
+    - match: Registry
+      default:
+        decision: skip_side_effects
+        note: Registry helpers revolve around runtime process registration state.
+    - match: Agent
+      default:
+        decision: skip_side_effects
+        note: Agent helpers revolve around runtime stateful processes.
+    - match: DynamicSupervisor
+      default:
+        decision: skip_side_effects
+        note: Dynamic supervision revolves around runtime process orchestration.
+    - match: PartitionSupervisor
+      default:
+        decision: skip_side_effects
+        note: Partitioned supervision revolves around runtime process orchestration.
   namespaces:
     Base:
       title: Base module

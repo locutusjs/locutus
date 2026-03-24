@@ -13447,16 +13447,6 @@ ruby:
       target: Ruby 3.3
       sourceKind: source_manifest
       sourceRef: ruby:3.3:Continuation
-    COPYING:
-      title: COPYING
-      target: Ruby 3.3
-      sourceKind: source_manifest
-      sourceRef: ruby:3.3:COPYING
-    COPYING_ja:
-      title: COPYING_ja
-      target: Ruby 3.3
-      sourceKind: source_manifest
-      sourceRef: ruby:3.3:COPYING_ja
     CoreExtensions:
       title: CoreExtensions
       target: Ruby 3.3
@@ -13717,11 +13707,6 @@ ruby:
       sourceKind: source_manifest
       sourceRef: ruby:3.3:KeyError
       title: KeyError
-    LEGAL:
-      title: LEGAL
-      target: Ruby 3.3
-      sourceKind: source_manifest
-      sourceRef: ruby:3.3:LEGAL
     LocalJumpError:
       target: Ruby 3.3
       sourceKind: source_manifest
@@ -13792,11 +13777,6 @@ ruby:
       target: Ruby 3.3
       sourceKind: source_manifest
       sourceRef: ruby:3.3:Net
-    NEWS_md:
-      title: NEWS_md
-      target: Ruby 3.3
-      sourceKind: source_manifest
-      sourceRef: ruby:3.3:NEWS_md
     Newton:
       title: Newton
       target: Ruby 3.3
@@ -13972,16 +13952,6 @@ ruby:
       target: Ruby 3.3
       sourceKind: source_manifest
       sourceRef: ruby:3.3:Readline
-    README_ja_md:
-      title: README_ja_md
-      target: Ruby 3.3
-      sourceKind: source_manifest
-      sourceRef: ruby:3.3:README_ja_md
-    README_md:
-      title: README_md
-      target: Ruby 3.3
-      sourceKind: source_manifest
-      sourceRef: ruby:3.3:README_md
     Refinement:
       target: Ruby 3.3
       sourceKind: source_manifest
