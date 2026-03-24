@@ -1,133 +1,4002 @@
 language: haskell
+catalog:
+  target: Haskell 9.10 base
+  sourceKind: runtime
+  sourceRef: haskell:9.10:base-exposed-modules
 namespaces:
-  - namespace: char
-    title: Data.Char module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Char.html
+  - namespace: Control.Applicative
+    title: Control.Applicative
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Applicative
     entries:
+      - Alternative
+      - Applicative
+      - asum
+      - class
+      - Const
+      - empty
+      - getConst
+      - getZipList
+      - liftA
+      - liftA2
+      - liftA3
+      - many
+      - newtype
+      - optional
+      - pure
+      - role
+      - some
+      - unwrapArrow
+      - unwrapMonad
+      - WrapArrow
+      - WrapMonad
+      - WrappedArrow
+      - WrappedMonad
+      - ZipList
+  - namespace: Control.Arrow
+    title: Control.Arrow
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Arrow
+    entries:
+      - app
+      - arr
+      - Arrow
+      - ArrowApply
+      - ArrowChoice
+      - ArrowLoop
+      - ArrowMonad
+      - ArrowPlus
+      - ArrowZero
+      - cat
+      - class
+      - first
+      - forall
+      - Kleisli
+      - left
+      - leftApp
+      - loop
+      - newtype
+      - returnA
+      - right
+      - role
+      - runKleisli
+      - second
+      - zeroArrow
+  - namespace: Control.Category
+    title: Control.Category
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Category
+    entries:
+      - cat
+      - Category
+      - class
+      - forall
+  - namespace: Control.Concurrent
+    title: Control.Concurrent
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Concurrent
+    entries:
+      - addMVarFinalizer
+      - Chan
+      - dupChan
+      - forkFinally
+      - forkIO
+      - forkIOWithUnmask
+      - forkOn
+      - forkOnWithUnmask
+      - forkOS
+      - forkOSWithUnmask
+      - getChanContents
+      - getNumCapabilities
+      - Int
+      - IO
+      - isCurrentThreadBound
+      - isEmptyMVar
+      - killThread
+      - mkWeakMVar
+      - mkWeakThreadId
+      - modifyMVar
+      - modifyMVar_
+      - modifyMVarMasked
+      - modifyMVarMasked_
+      - MVar
+      - myThreadId
+      - newChan
+      - newEmptyMVar
+      - newMVar
+      - newQSem
+      - newQSemN
+      - newtype
+      - putMVar
+      - QSem
+      - QSemN
+      - readChan
+      - readMVar
+      - rtsSupportsBoundThreads
+      - runInBoundThread
+      - runInUnboundThread
+      - setNumCapabilities
+      - signalQSem
+      - signalQSemN
+      - swapMVar
+      - takeMVar
+      - threadCapability
+      - threadDelay
+      - ThreadId
+      - threadWaitRead
+      - threadWaitReadSTM
+      - threadWaitWrite
+      - threadWaitWriteSTM
+      - throwTo
+      - tryPutMVar
+      - tryReadMVar
+      - tryTakeMVar
+      - waitQSem
+      - waitQSemN
+      - withMVar
+      - withMVarMasked
+      - writeChan
+      - writeList2Chan
+      - yield
+  - namespace: Control.Concurrent.Chan
+    title: Control.Concurrent.Chan
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Concurrent.Chan
+    entries:
+      - Chan
+      - dupChan
+      - getChanContents
+      - newChan
+      - readChan
+      - writeChan
+      - writeList2Chan
+  - namespace: Control.Concurrent.MVar
+    title: Control.Concurrent.MVar
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Concurrent.MVar
+    entries:
+      - addMVarFinalizer
+      - isEmptyMVar
+      - mkWeakMVar
+      - modifyMVar
+      - modifyMVar_
+      - modifyMVarMasked
+      - modifyMVarMasked_
+      - MVar
+      - newEmptyMVar
+      - newMVar
+      - putMVar
+      - readMVar
+      - swapMVar
+      - takeMVar
+      - tryPutMVar
+      - tryReadMVar
+      - tryTakeMVar
+      - withMVar
+      - withMVarMasked
+  - namespace: Control.Concurrent.QSem
+    title: Control.Concurrent.QSem
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Concurrent.QSem
+    entries:
+      - newQSem
+      - newtype
+      - QSem
+      - signalQSem
+      - waitQSem
+  - namespace: Control.Concurrent.QSemN
+    title: Control.Concurrent.QSemN
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Concurrent.QSemN
+    entries:
+      - newQSemN
+      - QSemN
+      - signalQSemN
+      - waitQSemN
+  - namespace: Control.Exception
+    title: Control.Exception
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Exception
+    entries:
+      - a
+      - addExceptionContext
+      - AllocationLimitExceeded
+      - allowInterrupt
+      - annotateIO
+      - ArithException
+      - ArrayException
+      - assert
+      - AssertionFailed
+      - AsyncException
+      - asyncExceptionFromException
+      - asyncExceptionToException
+      - backtraceDesired
+      - BlockedIndefinitelyOnMVar
+      - BlockedIndefinitelyOnSTM
+      - bracket
+      - bracket_
+      - bracketOnError
+      - catch
+      - catches
+      - catchJust
+      - class
+      - CompactionFailed
+      - Deadlock
+      - Denormal
+      - displayException
+      - DivideByZero
+      - e
+      - ErrorCall
+      - ErrorCallWithLocation
+      - evaluate
+      - Exception
+      - ExceptionWithContext
+      - finally
+      - fromException
+      - getMaskingState
+      - handle
+      - handleJust
+      - Handler
+      - HeapOverflow
+      - IndexOutOfBounds
+      - interruptible
+      - ioError
+      - IOException
+      - LossOfPrecision
+      - mapException
+      - mask
+      - mask_
+      - MaskedInterruptible
+      - MaskedUninterruptible
+      - MaskingState
+      - NestedAtomically
+      - newtype
+      - NoMethodError
+      - NonTermination
+      - onException
+      - Overflow
+      - pattern
+      - PatternMatchFail
+      - RatioZeroDenominator
+      - RecConError
+      - RecSelError
+      - RecUpdError
+      - Show
+      - SomeAsyncException
+      - SomeException
+      - someExceptionContext
+      - StackOverflow
+      - ThreadKilled
+      - throw
+      - throwIO
+      - throwTo
+      - toException
+      - try
+      - tryJust
+      - TypeError
+      - UndefinedElement
+      - Underflow
+      - uninterruptibleMask
+      - uninterruptibleMask_
+      - Unmasked
+      - UserInterrupt
+  - namespace: Control.Exception.Annotation
+    title: Control.Exception.Annotation
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Exception.Annotation
+    entries:
+      - a
+      - class
+      - displayExceptionAnnotation
+      - ExceptionAnnotation
+      - SomeExceptionAnnotation
+  - namespace: Control.Exception.Backtrace
+    title: Control.Exception.Backtrace
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Exception.Backtrace
+    entries:
+      - BacktraceMechanism
+      - Backtraces
+      - collectBacktraces
+      - CostCentreBacktrace
+      - displayBacktraces
+      - ExecutionBacktrace
+      - getBacktraceMechanismState
+      - HasCallStackBacktrace
+      - IPEBacktrace
+      - setBacktraceMechanismState
+  - namespace: Control.Exception.Base
+    title: Control.Exception.Base
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Exception.Base
+    entries:
+      - AllocationLimitExceeded
+      - ArithException
+      - ArrayException
+      - assert
+      - AssertionFailed
+      - AsyncException
+      - asyncExceptionFromException
+      - asyncExceptionToException
+      - backtraceDesired
+      - BlockedIndefinitelyOnMVar
+      - BlockedIndefinitelyOnSTM
+      - bracket
+      - bracket_
+      - bracketOnError
+      - catch
+      - catchJust
+      - class
+      - CompactionFailed
+      - Deadlock
+      - Denormal
+      - displayException
+      - DivideByZero
+      - e
+      - ErrorCall
+      - ErrorCallWithLocation
+      - evaluate
+      - Exception
+      - finally
+      - FixIOException
+      - fromException
+      - getMaskingState
+      - handle
+      - handleJust
+      - HeapOverflow
+      - impossibleConstraintError
+      - impossibleError
+      - IndexOutOfBounds
+      - ioError
+      - IOException
+      - LossOfPrecision
+      - mapException
+      - mask
+      - mask_
+      - MaskedInterruptible
+      - MaskedUninterruptible
+      - MaskingState
+      - nestedAtomically
+      - NestedAtomically
+      - newtype
+      - noMatchingContinuationPrompt
+      - NoMatchingContinuationPrompt
+      - noMethodBindingError
+      - NoMethodError
+      - nonExhaustiveGuardsError
+      - nonTermination
+      - NonTermination
+      - onException
+      - Overflow
+      - patError
+      - pattern
+      - PatternMatchFail
+      - RatioZeroDenominator
+      - recConError
+      - RecConError
+      - recSelError
+      - RecSelError
+      - RecUpdError
+      - Show
+      - SomeAsyncException
+      - SomeException
+      - StackOverflow
+      - ThreadKilled
+      - throw
+      - throwIO
+      - throwTo
+      - toException
+      - try
+      - tryJust
+      - typeError
+      - TypeError
+      - UndefinedElement
+      - Underflow
+      - uninterruptibleMask
+      - uninterruptibleMask_
+      - Unmasked
+      - UserInterrupt
+  - namespace: Control.Exception.Context
+    title: Control.Exception.Context
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Exception.Context
+    entries:
+      - addExceptionAnnotation
+      - displayExceptionContext
+      - emptyExceptionContext
+      - ExceptionAnnotation
+      - ExceptionContext
+      - getAllExceptionAnnotations
+      - getExceptionAnnotations
+  - namespace: Control.Monad
+    title: Control.Monad
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad
+    entries:
+      - ap
+      - Applicative
+      - class
+      - fail
+      - filterM
+      - fmap
+      - foldM
+      - foldM_
+      - forever
+      - forM
+      - forM_
+      - Functor
+      - guard
+      - join
+      - liftM
+      - liftM2
+      - liftM3
+      - liftM4
+      - liftM5
+      - mapAndUnzipM
+      - mapM
+      - mapM_
+      - mfilter
+      - Monad
+      - MonadFail
+      - MonadPlus
+      - mplus
+      - msum
+      - mzero
+      - replicateM
+      - replicateM_
+      - return
+      - sequence
+      - sequence_
+      - unless
+      - void
+      - when
+      - zipWithM
+      - zipWithM_
+  - namespace: Control.Monad.Fail
+    title: Control.Monad.Fail
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.Fail
+    entries:
+      - class
+      - fail
+      - MonadFail
+  - namespace: Control.Monad.Fix
+    title: Control.Monad.Fix
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.Fix
+    entries:
+      - class
+      - fix
+      - mfix
+      - MonadFix
+  - namespace: Control.Monad.Instances
+    title: Control.Monad.Instances
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.Instances
+    entries:
+      - class
+      - fmap
+      - Functor
+      - Monad
+      - return
+  - namespace: Control.Monad.IO.Class
+    title: Control.Monad.IO.Class
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.IO.Class
+    entries:
+      - class
+      - liftIO
+      - MonadIO
+  - namespace: Control.Monad.ST
+    title: Control.Monad.ST
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.ST
+    entries:
+      - fixST
+      - newtype
+      - RealWorld
+      - role
+      - runST
+      - ST
+      - stToIO
+  - namespace: Control.Monad.ST.Lazy
+    title: Control.Monad.ST.Lazy
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.ST.Lazy
+    entries:
+      - lazyToStrictST
+      - newtype
+      - RealWorld
+      - role
+      - strictToLazyST
+  - namespace: Control.Monad.ST.Lazy.Safe
+    title: Control.Monad.ST.Lazy.Safe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.ST.Lazy.Safe
+    entries:
+      - lazyToStrictST
+      - newtype
+      - RealWorld
+      - role
+      - strictToLazyST
+  - namespace: Control.Monad.ST.Lazy.Unsafe
+    title: Control.Monad.ST.Lazy.Unsafe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.ST.Lazy.Unsafe
+    entries:
+      - unsafeInterleaveST
+      - unsafeIOToST
+  - namespace: Control.Monad.ST.Safe
+    title: Control.Monad.ST.Safe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.ST.Safe
+    entries:
+      - newtype
+      - RealWorld
+      - role
+  - namespace: Control.Monad.ST.Strict
+    title: Control.Monad.ST.Strict
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.ST.Strict
+    entries:
+      - newtype
+      - RealWorld
+      - role
+  - namespace: Control.Monad.ST.Unsafe
+    title: Control.Monad.ST.Unsafe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.ST.Unsafe
+    entries:
+      - IO
+      - unsafeDupableInterleaveST
+      - unsafeSTToIO
+  - namespace: Control.Monad.Zip
+    title: Control.Monad.Zip
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Control.Monad.Zip
+    entries:
+      - class
+      - MonadZip
+      - munzip
+      - mzip
+      - mzipWith
+  - namespace: Data.Array.Byte
+    title: Data.Array.Byte
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Array.Byte
+    entries:
+      - ByteArray
+      - MutableByteArray
+      - role
+  - namespace: Data.Bifoldable
+    title: Data.Bifoldable
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Bifoldable
+    entries:
+      - biall
+      - biand
+      - biany
+      - biasum
+      - biconcat
+      - biconcatMap
+      - bielem
+      - bifind
+      - bifold
+      - Bifoldable
+      - bifoldl
+      - bifoldl'
+      - bifoldl1
+      - bifoldlM
+      - bifoldMap
+      - bifoldr
+      - bifoldr'
+      - bifoldr1
+      - bifoldrM
+      - bifor_
+      - biforM_
+      - bilength
+      - biList
+      - bimapM_
+      - bimaximum
+      - bimaximumBy
+      - biminimum
+      - biminimumBy
+      - bimsum
+      - binotElem
+      - binull
+      - bior
+      - biproduct
+      - bisequence_
+      - bisequenceA_
+      - bisum
+      - bitraverse_
+      - class
+      - t
+  - namespace: Data.Bifoldable1
+    title: Data.Bifoldable1
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Bifoldable1
+    entries:
+      - bifold1
+      - Bifoldable1
+      - bifoldMap1
+      - class
+  - namespace: Data.Bifunctor
+    title: Data.Bifunctor
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Bifunctor
+    entries:
+      - Bifunctor
+      - bimap
+      - class
+  - namespace: Data.Bitraversable
+    title: Data.Bitraversable
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Bitraversable
+    entries:
+      - bifoldMapDefault
+      - bifor
+      - biforM
+      - bimapAccumL
+      - bimapAccumR
+      - bimapDefault
+      - bimapM
+      - bisequence
+      - bisequenceA
+      - Bitraversable
+      - bitraverse
+      - class
+      - t
+  - namespace: Data.Bits
+    title: Data.Bits
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Bits
+    entries:
+      - And
+      - bit
+      - bitDefault
+      - Bits
+      - bitSize
+      - bitSizeMaybe
+      - class
+      - clearBit
+      - complement
+      - complementBit
+      - countLeadingZeros
+      - countTrailingZeros
+      - FiniteBits
+      - finiteBitSize
+      - getAnd
+      - getIff
+      - getIor
+      - getXor
+      - Iff
+      - Ior
+      - isSigned
+      - newtype
+      - oneBits
+      - popCount
+      - popCountDefault
+      - rotate
+      - rotateL
+      - rotateR
+      - setBit
+      - shift
+      - shiftL
+      - shiftR
+      - testBit
+      - testBitDefault
+      - toIntegralSized
+      - unsafeShiftL
+      - unsafeShiftR
+      - xor
+      - Xor
+      - zeroBits
+  - namespace: Data.Bool
+    title: Data.Bool
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Bool
+    entries:
+      - bool
+      - Bool
+      - 'False'
+      - not
+      - otherwise
+      - 'True'
+  - namespace: Data.Char
+    title: Data.Char
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Char
+    entries:
+      - Char
       - chr
+      - ClosePunctuation
+      - ConnectorPunctuation
+      - Control
+      - CurrencySymbol
+      - DashPunctuation
+      - DecimalNumber
       - digitToInt
+      - EnclosingMark
+      - FinalQuote
+      - Format
+      - generalCategory
+      - GeneralCategory
+      - InitialQuote
       - intToDigit
       - isAlpha
       - isAlphaNum
       - isAscii
+      - isAsciiLower
+      - isAsciiUpper
       - isControl
       - isDigit
       - isHexDigit
+      - isLatin1
       - isLetter
       - isLower
+      - isLowerCase
+      - isMark
       - isNumber
+      - isOctDigit
       - isPrint
       - isPunctuation
       - isSeparator
       - isSpace
+      - isSymbol
       - isUpper
+      - isUpperCase
+      - LetterNumber
+      - lexLitChar
+      - LineSeparator
+      - LowercaseLetter
+      - MathSymbol
+      - ModifierLetter
+      - ModifierSymbol
+      - NonSpacingMark
+      - NotAssigned
+      - OpenPunctuation
       - ord
+      - OtherLetter
+      - OtherNumber
+      - OtherPunctuation
+      - OtherSymbol
+      - ParagraphSeparator
+      - PrivateUse
+      - readLitChar
+      - showLitChar
+      - Space
+      - SpacingCombiningMark
+      - Surrogate
+      - TitlecaseLetter
       - toLower
+      - toTitle
       - toUpper
-  - namespace: either
-    title: Data.Either module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Either.html
+      - UppercaseLetter
+  - namespace: Data.Coerce
+    title: Data.Coerce
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Coerce
+    entries:
+      - class
+      - coerce
+      - Coercible
+      - role
+  - namespace: Data.Complex
+    title: Data.Complex
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Complex
+    entries:
+      - cis
+      - Complex
+      - conjugate
+      - imagPart
+      - magnitude
+      - mkPolar
+      - phase
+      - polar
+      - realPart
+  - namespace: Data.Data
+    title: Data.Data
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Data
+    entries:
+      - AlgConstr
+      - AlgRep
+      - c
+      - cast
+      - CharConstr
+      - CharRep
+      - class
+      - ConIndex
+      - Constr
+      - constrFields
+      - constrFixity
+      - constrIndex
+      - constrRep
+      - ConstrRep
+      - constrType
+      - Data
+      - dataCast1
+      - dataCast2
+      - DataRep
+      - DataType
+      - dataTypeConstrs
+      - dataTypeName
+      - dataTypeOf
+      - dataTypeRep
+      - decT
+      - Either
+      - eqT
+      - Fixity
+      - FloatConstr
+      - FloatRep
+      - forall
+      - fromConstr
+      - fromConstrB
+      - fromConstrM
+      - funResultTy
+      - gcast
+      - gcast1
+      - gcast2
+      - gfoldl
+      - gmapM
+      - gmapMo
+      - gmapMp
+      - gmapQ
+      - gmapQi
+      - gmapQl
+      - gmapQr
+      - gmapT
+      - gunfold
+      - hdecT
+      - heqT
+      - HRefl
+      - indexConstr
+      - Infix
+      - IntConstr
+      - IntRep
+      - isAlgType
+      - isNorepType
+      - maxConstrIndex
+      - Maybe
+      - mkCharConstr
+      - mkCharType
+      - mkConstr
+      - mkConstrTag
+      - mkDataType
+      - mkFloatType
+      - mkFunTy
+      - mkIntegralConstr
+      - mkIntType
+      - mkNoRepType
+      - mkRealConstr
+      - NoRep
+      - Prefix
+      - proxy
+      - Proxy
+      - readConstr
+      - Refl
+      - repConstr
+      - rnfTyCon
+      - rnfTypeRep
+      - role
+      - showConstr
+      - showsTypeRep
+      - splitTyConApp
+      - toConstr
+      - trLiftedRep
+      - TyCon
+      - tyConFingerprint
+      - tyconModule
+      - tyConModule
+      - tyConName
+      - tyConPackage
+      - tyconUQname
+      - Typeable
+      - typeOf
+      - typeOf1
+      - typeOf2
+      - typeOf3
+      - typeOf4
+      - typeOf5
+      - typeOf6
+      - typeOf7
+      - typeRep
+      - TypeRep
+      - typeRepArgs
+      - typeRepFingerprint
+      - typeRepTyCon
+  - namespace: Data.Dynamic
+    title: Data.Dynamic
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Dynamic
+    entries:
+      - class
+      - Dynamic
+      - dynApp
+      - dynApply
+      - dynTypeRep
+      - fromDyn
+      - fromDynamic
+      - toDyn
+      - Typeable
+  - namespace: Data.Either
+    title: Data.Either
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Either
     entries:
       - either
+      - Either
+      - fromLeft
+      - fromRight
       - isLeft
       - isRight
+      - Left
       - lefts
       - partitionEithers
+      - Right
       - rights
-  - namespace: list
-    title: Data.List module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-List.html
+  - namespace: Data.Enum
+    title: Data.Enum
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Enum
     entries:
+      - Bounded
+      - class
+      - Enum
+      - enumFrom
+      - enumFromThen
+      - enumFromThenTo
+      - enumFromTo
+      - fromEnum
+      - maxBound
+      - minBound
+      - pred
+      - succ
+      - toEnum
+  - namespace: Data.Eq
+    title: Data.Eq
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Eq
+    entries:
+      - class
+      - Eq
+  - namespace: Data.Fixed
+    title: Data.Fixed
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Fixed
+    entries:
+      - Centi
+      - class
+      - Deci
+      - div'
+      - divMod'
+      - E0
+      - E1
+      - E12
+      - E2
+      - E3
+      - E6
+      - E9
+      - Fixed
+      - forall
+      - HasResolution
+      - Micro
+      - Milli
+      - MkFixed
+      - mod'
+      - Nano
+      - newtype
+      - Pico
+      - resolution
+      - role
+      - showFixed
+      - Uni
+  - namespace: Data.Foldable
+    title: Data.Foldable
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Foldable
+    entries:
+      - all
+      - and
+      - any
+      - asum
+      - class
+      - concat
+      - concatMap
+      - elem
+      - find
+      - fold
+      - Foldable
+      - foldl
+      - foldl'
+      - foldl1
+      - foldlM
+      - foldMap
+      - foldMap'
+      - foldr
+      - foldr'
+      - foldr1
+      - foldrM
+      - for_
+      - forM_
+      - length
+      - mapM_
+      - maximum
+      - maximumBy
+      - minimum
+      - minimumBy
+      - msum
+      - notElem
+      - 'null'
+      - or
+      - product
+      - sequence_
+      - sequenceA_
+      - sum
+      - toList
+      - traverse_
+  - namespace: Data.Foldable1
+    title: Data.Foldable1
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Foldable1
+    entries:
+      - class
+      - fold1
+      - Foldable1
+      - foldl1'
+      - foldlM1
+      - foldlMap1
+      - foldlMap1'
+      - foldlMapM1
+      - foldMap1
+      - foldMap1'
+      - foldr1'
+      - foldrM1
+      - foldrMap1
+      - foldrMap1'
+      - foldrMapM1
+      - intercalate1
+      - toNonEmpty
+  - namespace: Data.Function
+    title: Data.Function
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Function
+    entries:
+      - applyWhen
+      - const
+      - fix
+      - flip
+      - 'on'
+  - namespace: Data.Functor
+    title: Data.Functor
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor
+    entries:
+      - class
+      - fmap
+      - Functor
+      - void
+  - namespace: Data.Functor.Classes
+    title: Data.Functor.Classes
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor.Classes
+    entries:
+      - class
+      - compare1
+      - compare2
+      - eq1
+      - Eq1
+      - eq2
+      - Eq2
+      - liftCompare
+      - liftCompare2
+      - liftEq
+      - liftEq2
+      - liftReadList
+      - liftReadList2
+      - liftReadList2Default
+      - liftReadListDefault
+      - liftReadListPrec
+      - liftReadListPrec2
+      - liftReadListPrec2Default
+      - liftReadListPrecDefault
+      - liftReadPrec
+      - liftReadPrec2
+      - liftReadsPrec
+      - liftReadsPrec2
+      - liftShowList
+      - liftShowList2
+      - liftShowsPrec
+      - liftShowsPrec2
+      - Ord1
+      - Ord2
+      - Read1
+      - Read2
+      - readBinaryWith
+      - readData
+      - readPrec1
+      - readPrec2
+      - readsBinary1
+      - readsBinaryWith
+      - readsData
+      - readsPrec1
+      - readsPrec2
+      - readsUnary
+      - readsUnary1
+      - readsUnaryWith
+      - readUnaryWith
+      - Show1
+      - Show2
+      - showsBinary1
+      - showsBinaryWith
+      - showsPrec1
+      - showsPrec2
+      - showsUnary
+      - showsUnary1
+      - showsUnaryWith
+      - String
+  - namespace: Data.Functor.Compose
+    title: Data.Functor.Compose
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor.Compose
+    entries:
+      - Compose
+      - f
+      - forall
+      - getCompose
+      - newtype
+      - role
+  - namespace: Data.Functor.Const
+    title: Data.Functor.Const
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor.Const
+    entries:
+      - Const
+      - getConst
+      - newtype
+      - role
+  - namespace: Data.Functor.Contravariant
+    title: Data.Functor.Contravariant
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor.Contravariant
+    entries:
+      - class
+      - Comparison
+      - comparisonEquivalence
+      - contramap
+      - Contravariant
+      - defaultComparison
+      - defaultEquivalence
+      - Equivalence
+      - getComparison
+      - getEquivalence
+      - getOp
+      - getPredicate
+      - newtype
+      - Op
+      - phantom
+      - Predicate
+  - namespace: Data.Functor.Identity
+    title: Data.Functor.Identity
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor.Identity
+    entries:
+      - Identity
+      - newtype
+      - runIdentity
+  - namespace: Data.Functor.Product
+    title: Data.Functor.Product
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor.Product
+    entries:
+      - f
+      - forall
+      - Pair
+      - Product
+      - role
+  - namespace: Data.Functor.Sum
+    title: Data.Functor.Sum
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Functor.Sum
+    entries:
+      - forall
+      - InL
+      - InR
+      - role
+      - Sum
+  - namespace: Data.Int
+    title: Data.Int
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Int
+    entries:
+      - Int
+      - Int16
+      - Int32
+      - Int64
+      - Int8
+  - namespace: Data.IORef
+    title: Data.IORef
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.IORef
+    entries:
+      - atomicModifyIORef
+      - atomicModifyIORef'
+      - atomicWriteIORef
+      - IORef
+      - mkWeakIORef
+      - modifyIORef
+      - modifyIORef'
+      - newIORef
+      - newtype
+      - readIORef
+      - writeIORef
+  - namespace: Data.Ix
+    title: Data.Ix
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Ix
+    entries:
+      - class
+      - index
+      - inRange
+      - Ix
+      - range
+      - rangeSize
+  - namespace: Data.Kind
+    title: Data.Kind
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Kind
+    entries:
+      - Constraint
+      - FUN
+      - role
+      - Type
+  - namespace: Data.List
+    title: Data.List
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.List
+    entries:
+      - all
+      - and
+      - any
+      - break
+      - concat
+      - concatMap
+      - cycle
+      - delete
+      - deleteBy
+      - deleteFirstsBy
+      - drop
+      - dropWhile
+      - dropWhileEnd
+      - elem
+      - elemIndex
+      - elemIndices
+      - filter
+      - find
+      - findIndex
+      - findIndices
+      - Foldable
+      - foldl
+      - foldl'
+      - foldr
+      - genericDrop
+      - genericIndex
+      - genericLength
+      - genericReplicate
+      - genericSplitAt
+      - genericTake
       - group
       - groupBy
+      - init
       - inits
+      - insert
+      - insertBy
       - intercalate
+      - intersect
+      - intersectBy
       - intersperse
       - isInfixOf
       - isPrefixOf
       - isSubsequenceOf
       - isSuffixOf
+      - iterate
+      - iterate'
+      - length
+      - lines
+      - List
+      - lookup
+      - map
+      - mapAccumL
+      - mapAccumR
+      - notElem
       - nub
       - nubBy
+      - 'null'
+      - or
+      - partition
       - permutations
+      - product
+      - repeat
+      - replicate
+      - reverse
+      - scanl
+      - scanl'
+      - scanl1
+      - scanr
+      - scanr1
+      - singleton
       - sort
       - sortBy
+      - sortOn
+      - span
+      - splitAt
+      - stripPrefix
       - subsequences
+      - sum
+      - tail
       - tails
+      - take
+      - takeWhile
       - transpose
+      - Traversable
+      - uncons
+      - unfoldr
       - union
       - unionBy
-  - namespace: maybe
-    title: Data.Maybe module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Maybe.html
+      - unlines
+      - unsnoc
+      - unwords
+      - unzip3
+      - unzip4
+      - unzip5
+      - unzip6
+      - unzip7
+      - words
+      - zip
+      - zip3
+      - zip4
+      - zip5
+      - zip6
+      - zip7
+      - zipWith
+      - zipWith3
+      - zipWith4
+      - zipWith5
+      - zipWith6
+      - zipWith7
+  - namespace: Data.List.NonEmpty
+    title: Data.List.NonEmpty
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.List.NonEmpty
+    entries:
+      - append
+      - appendList
+      - cons
+      - Eq
+      - Foldable
+      - fromList
+      - group1
+      - groupAllWith
+      - groupAllWith1
+      - groupBy1
+      - groupWith
+      - groupWith1
+      - inits1
+      - nonEmpty
+      - NonEmpty
+      - Ord
+      - permutations1
+      - prependList
+      - some1
+      - sortWith
+      - tails1
+      - unfold
+  - namespace: Data.Maybe
+    title: Data.Maybe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Maybe
     entries:
       - catMaybes
       - fromJust
       - fromMaybe
       - isJust
       - isNothing
+      - Just
       - listToMaybe
       - mapMaybe
       - maybe
+      - Maybe
       - maybeToList
-  - namespace: numeric
-    title: Numeric module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Numeric.html
+      - Nothing
+  - namespace: Data.Monoid
+    title: Data.Monoid
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Monoid
     entries:
+      - All
+      - Alt
+      - Any
+      - Ap
+      - appEndo
+      - class
+      - Dual
+      - Endo
+      - First
+      - getAll
+      - getAlt
+      - getAny
+      - getAp
+      - getDual
+      - getFirst
+      - getLast
+      - getProduct
+      - getSum
+      - Last
+      - mappend
+      - mconcat
+      - mempty
+      - Monoid
+      - newtype
+      - Product
+      - role
+      - Sum
+  - namespace: Data.Ord
+    title: Data.Ord
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Ord
+    entries:
+      - clamp
+      - class
+      - compare
+      - comparing
+      - Down
+      - EQ
+      - getDown
+      - GT
+      - LT
+      - max
+      - min
+      - newtype
+      - Ord
+      - Ordering
+  - namespace: Data.Proxy
+    title: Data.Proxy
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Proxy
+    entries:
+      - asProxyTypeOf
+      - KProxy
+      - Proxy
+      - role
+  - namespace: Data.Ratio
+    title: Data.Ratio
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Ratio
+    entries:
+      - approxRational
+      - denominator
+      - numerator
+      - Ratio
+      - Rational
+  - namespace: Data.Semigroup
+    title: Data.Semigroup
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Semigroup
+    entries:
+      - All
+      - Any
+      - appEndo
+      - Arg
+      - ArgMax
+      - ArgMin
+      - class
+      - cycle1
+      - diff
+      - Dual
+      - Endo
+      - getAll
+      - getAny
+      - getDual
+      - getMax
+      - getMin
+      - getProduct
+      - getSum
+      - Max
+      - Min
+      - mtimesDefault
+      - newtype
+      - Product
+      - sconcat
+      - Semigroup
+      - stimes
+      - stimesIdempotent
+      - stimesIdempotentMonoid
+      - stimesMonoid
+      - Sum
+      - unwrapMonoid
+      - WrapMonoid
+      - WrappedMonoid
+  - namespace: Data.STRef
+    title: Data.STRef
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.STRef
+    entries:
+      - modifySTRef
+      - modifySTRef'
+      - newSTRef
+      - readSTRef
+      - role
+      - STRef
+      - writeSTRef
+  - namespace: Data.STRef.Lazy
+    title: Data.STRef.Lazy
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.STRef.Lazy
+    entries:
+      - a
+      - role
+      - STRef
+  - namespace: Data.STRef.Strict
+    title: Data.STRef.Strict
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.STRef.Strict
+    entries:
+      - modifySTRef'
+      - role
+      - STRef
+  - namespace: Data.String
+    title: Data.String
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.String
+    entries:
+      - class
+      - fromString
+      - IsString
+      - lines
+      - String
+      - unlines
+      - unwords
+      - words
+  - namespace: Data.Traversable
+    title: Data.Traversable
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Traversable
+    entries:
+      - class
+      - fmapDefault
+      - foldMapDefault
+      - for
+      - forAccumM
+      - forM
+      - mapAccumL
+      - mapAccumM
+      - mapAccumR
+      - mapM
+      - s
+      - sequence
+      - sequenceA
+      - Traversable
+      - traverse
+  - namespace: Data.Tuple
+    title: Data.Tuple
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Tuple
+    entries:
+      - curry
+      - fst
+      - getSolo
+      - MkSolo
+      - pattern
+      - snd
+      - Solo
+      - swap
+      - uncurry
+  - namespace: Data.Type.Bool
+    title: Data.Type.Bool
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Type.Bool
+    entries:
+      - family
+      - If
+      - Not
+  - namespace: Data.Type.Coercion
+    title: Data.Type.Coercion
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Type.Coercion
+    entries:
+      - class
+      - coerceWith
+      - Coercion
+      - f
+      - forall
+      - gcoerceWith
+      - repr
+      - sym
+      - testCoercion
+      - TestCoercion
+      - trans
+  - namespace: Data.Type.Equality
+    title: Data.Type.Equality
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Type.Equality
+    entries:
+      - apply
+      - castWith
+      - class
+      - f
+      - family
+      - forall
+      - gcastWith
+      - HRefl
+      - inner
+      - outer
+      - Refl
+      - role
+      - testEquality
+      - TestEquality
+  - namespace: Data.Type.Ord
+    title: Data.Type.Ord
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Type.Ord
+    entries:
+      - Compare
+      - EQI
+      - family
+      - forall
+      - GTI
+      - LTI
+      - OrdCond
+      - OrderingI
+      - role
+  - namespace: Data.Typeable
+    title: Data.Typeable
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Typeable
+    entries:
+      - c
+      - cast
+      - class
+      - decT
+      - Either
+      - eqT
+      - forall
+      - funResultTy
+      - gcast
+      - gcast1
+      - gcast2
+      - hdecT
+      - heqT
+      - HRefl
+      - Maybe
+      - mkFunTy
+      - proxy
+      - Proxy
+      - Refl
+      - rnfTyCon
+      - rnfTypeRep
+      - role
+      - showsTypeRep
+      - splitTyConApp
+      - trLiftedRep
+      - TyCon
+      - tyConFingerprint
+      - tyConModule
+      - tyConName
+      - tyConPackage
+      - Typeable
+      - typeOf
+      - typeOf1
+      - typeOf2
+      - typeOf3
+      - typeOf4
+      - typeOf5
+      - typeOf6
+      - typeOf7
+      - typeRep
+      - TypeRep
+      - typeRepArgs
+      - typeRepFingerprint
+      - typeRepTyCon
+  - namespace: Data.Unique
+    title: Data.Unique
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Unique
+    entries:
+      - hashUnique
+      - newtype
+      - newUnique
+      - Unique
+  - namespace: Data.Version
+    title: Data.Version
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Version
+    entries:
+      - makeVersion
+      - parseVersion
+      - showVersion
+      - Version
+      - versionBranch
+      - versionTags
+  - namespace: Data.Void
+    title: Data.Void
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Void
+    entries:
+      - absurd
+      - vacuous
+      - Void
+  - namespace: Data.Word
+    title: Data.Word
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Data.Word
+    entries:
+      - bitReverse16
+      - bitReverse32
+      - bitReverse64
+      - bitReverse8
+      - byteSwap16
+      - byteSwap32
+      - byteSwap64
+      - Word
+      - Word16
+      - Word32
+      - Word64
+      - Word8
+  - namespace: Debug.Trace
+    title: Debug.Trace
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Debug.Trace
+    entries:
+      - flushEventLog
+      - putTraceMsg
+      - trace
+      - traceEvent
+      - traceEventIO
+      - traceEventWith
+      - traceId
+      - traceIO
+      - traceM
+      - traceMarker
+      - traceMarkerIO
+      - traceShow
+      - traceShowId
+      - traceShowM
+      - traceShowWith
+      - traceStack
+      - traceWith
+  - namespace: Foreign
+    title: Foreign
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign
+    entries:
+      - addForeignPtrFinalizer
+      - addForeignPtrFinalizerEnv
+      - advancePtr
+      - alignment
+      - alignPtr
+      - alloca
+      - allocaArray
+      - allocaArray0
+      - allocaBytes
+      - allocaBytesAligned
+      - And
+      - bit
+      - bitDefault
+      - bitReverse16
+      - bitReverse32
+      - bitReverse64
+      - bitReverse8
+      - Bits
+      - bitSize
+      - bitSizeMaybe
+      - byteSwap16
+      - byteSwap32
+      - byteSwap64
+      - calloc
+      - callocArray
+      - callocArray0
+      - callocBytes
+      - castForeignPtr
+      - castFunPtr
+      - castFunPtrToPtr
+      - castPtr
+      - castPtrToFunPtr
+      - castPtrToStablePtr
+      - castStablePtrToPtr
+      - class
+      - clearBit
+      - complement
+      - complementBit
+      - copyArray
+      - copyBytes
+      - countLeadingZeros
+      - countTrailingZeros
+      - deRefStablePtr
+      - fillBytes
+      - finalizeForeignPtr
+      - FinalizerEnvPtr
+      - finalizerFree
+      - FinalizerPtr
+      - FiniteBits
+      - finiteBitSize
+      - ForeignPtr
+      - free
+      - freeHaskellFunPtr
+      - freePool
+      - freeStablePtr
+      - fromBool
+      - FunPtr
+      - getAnd
+      - getIff
+      - getIor
+      - getXor
+      - Iff
+      - Int
+      - Int16
+      - Int32
+      - Int64
+      - Int8
+      - IntPtr
+      - intPtrToPtr
+      - Ior
+      - isSigned
+      - lengthArray0
+      - malloc
+      - mallocArray
+      - mallocArray0
+      - mallocBytes
+      - mallocForeignPtr
+      - mallocForeignPtrArray
+      - mallocForeignPtrArray0
+      - mallocForeignPtrBytes
+      - maybeNew
+      - maybePeek
+      - maybeWith
+      - minusPtr
+      - moveArray
+      - moveBytes
+      - new
+      - newArray
+      - newArray0
+      - newForeignPtr
+      - newForeignPtr_
+      - newForeignPtrEnv
+      - newPool
+      - newStablePtr
+      - newtype
+      - nullFunPtr
+      - nullPtr
+      - oneBits
+      - peek
+      - peekArray
+      - peekArray0
+      - peekByteOff
+      - peekElemOff
+      - plusForeignPtr
+      - plusPtr
+      - poke
+      - pokeArray
+      - pokeArray0
+      - pokeByteOff
+      - pokeElemOff
+      - Pool
+      - pooledMalloc
+      - pooledMallocArray
+      - pooledMallocArray0
+      - pooledMallocBytes
+      - pooledNew
+      - pooledNewArray
+      - pooledNewArray0
+      - pooledRealloc
+      - pooledReallocArray
+      - pooledReallocArray0
+      - pooledReallocBytes
+      - popCount
+      - popCountDefault
+      - Ptr
+      - ptrToIntPtr
+      - ptrToWordPtr
+      - realloc
+      - reallocArray
+      - reallocArray0
+      - reallocBytes
+      - role
+      - rotate
+      - rotateL
+      - rotateR
+      - setBit
+      - shift
+      - shiftL
+      - shiftR
+      - sizeOf
+      - StablePtr
+      - Storable
+      - testBit
+      - testBitDefault
+      - throwIf
+      - throwIf_
+      - throwIfNeg
+      - throwIfNeg_
+      - throwIfNull
+      - toBool
+      - toIntegralSized
+      - touchForeignPtr
+      - unsafeShiftL
+      - unsafeShiftR
+      - with
+      - withArray
+      - withArray0
+      - withArrayLen
+      - withArrayLen0
+      - withForeignPtr
+      - withMany
+      - withPool
+      - Word
+      - Word16
+      - Word32
+      - Word64
+      - Word8
+      - WordPtr
+      - wordPtrToPtr
+      - Xor
+      - zeroBits
+  - namespace: Foreign.C
+    title: Foreign.C
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.C
+    entries:
+      - castCCharToChar
+      - castCharToCChar
+      - castCharToCSChar
+      - castCharToCUChar
+      - castCSCharToChar
+      - castCUCharToChar
+      - CBool
+      - CChar
+      - CClock
+      - CDouble
+      - CFile
+      - CFloat
+      - CFpos
+      - charIsRepresentable
+      - CInt
+      - CIntMax
+      - CIntPtr
+      - CJmpBuf
+      - CLLong
+      - CLong
+      - CPtrdiff
+      - CSChar
+      - CShort
+      - CSigAtomic
+      - CSize
+      - CString
+      - CStringLen
+      - CSUSeconds
+      - CTime
+      - CUChar
+      - CUInt
+      - CUIntMax
+      - CUIntPtr
+      - CULLong
+      - CULong
+      - CUSeconds
+      - CUShort
+      - CWchar
+      - CWString
+      - CWStringLen
+      - e2BIG
+      - eACCES
+      - eADDRINUSE
+      - eADDRNOTAVAIL
+      - eADV
+      - eAFNOSUPPORT
+      - eAGAIN
+      - eALREADY
+      - eBADF
+      - eBADMSG
+      - eBADRPC
+      - eBUSY
+      - eCHILD
+      - eCOMM
+      - eCONNABORTED
+      - eCONNREFUSED
+      - eCONNRESET
+      - eDEADLK
+      - eDESTADDRREQ
+      - eDIRTY
+      - eDOM
+      - eDQUOT
+      - eEXIST
+      - eFAULT
+      - eFBIG
+      - eFTYPE
+      - eHOSTDOWN
+      - eHOSTUNREACH
+      - eIDRM
+      - eILSEQ
+      - eINPROGRESS
+      - eINTR
+      - eINVAL
+      - eIO
+      - eISCONN
+      - eISDIR
+      - eLOOP
+      - eMFILE
+      - eMLINK
+      - eMSGSIZE
+      - eMULTIHOP
+      - eNAMETOOLONG
+      - eNETDOWN
+      - eNETRESET
+      - eNETUNREACH
+      - eNFILE
+      - eNOBUFS
+      - eNODATA
+      - eNODEV
+      - eNOENT
+      - eNOEXEC
+      - eNOLCK
+      - eNOLINK
+      - eNOMEM
+      - eNOMSG
+      - eNONET
+      - eNOPROTOOPT
+      - eNOSPC
+      - eNOSR
+      - eNOSTR
+      - eNOSYS
+      - eNOTBLK
+      - eNOTCONN
+      - eNOTDIR
+      - eNOTEMPTY
+      - eNOTSOCK
+      - eNOTSUP
+      - eNOTTY
+      - eNXIO
+      - eOK
+      - eOPNOTSUPP
+      - ePERM
+      - ePFNOSUPPORT
+      - ePIPE
+      - ePROCLIM
+      - ePROCUNAVAIL
+      - ePROGMISMATCH
+      - ePROGUNAVAIL
+      - ePROTO
+      - ePROTONOSUPPORT
+      - ePROTOTYPE
+      - eRANGE
+      - eREMCHG
+      - eREMOTE
+      - eROFS
+      - eRPCMISMATCH
+      - eRREMOTE
+      - Errno
+      - errnoToIOError
+      - eSHUTDOWN
+      - eSOCKTNOSUPPORT
+      - eSPIPE
+      - eSRCH
+      - eSRMNT
+      - eSTALE
+      - eTIME
+      - eTIMEDOUT
+      - eTOOMANYREFS
+      - eTXTBSY
+      - eUSERS
+      - eWOULDBLOCK
+      - eXDEV
+      - getErrno
+      - isValidErrno
+      - newCAString
+      - newCAStringLen
+      - newCString
+      - newCStringLen
+      - newCWString
+      - newCWStringLen
+      - newtype
+      - peekCAString
+      - peekCAStringLen
+      - peekCString
+      - peekCStringLen
+      - peekCWString
+      - peekCWStringLen
+      - resetErrno
+      - String
+      - throwErrno
+      - throwErrnoIf
+      - throwErrnoIf_
+      - throwErrnoIfMinus1
+      - throwErrnoIfMinus1_
+      - throwErrnoIfMinus1Retry
+      - throwErrnoIfMinus1Retry_
+      - throwErrnoIfMinus1RetryMayBlock
+      - throwErrnoIfMinus1RetryMayBlock_
+      - throwErrnoIfNull
+      - throwErrnoIfNullRetry
+      - throwErrnoIfNullRetryMayBlock
+      - throwErrnoIfRetry
+      - throwErrnoIfRetry_
+      - throwErrnoIfRetryMayBlock
+      - throwErrnoIfRetryMayBlock_
+      - throwErrnoPath
+      - throwErrnoPathIf
+      - throwErrnoPathIf_
+      - throwErrnoPathIfMinus1
+      - throwErrnoPathIfMinus1_
+      - throwErrnoPathIfNull
+      - withCAString
+      - withCAStringLen
+      - withCString
+      - withCStringLen
+      - withCWString
+      - withCWStringLen
+  - namespace: Foreign.C.ConstPtr
+    title: Foreign.C.ConstPtr
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.C.ConstPtr
+    entries:
+      - ConstPtr
+      - newtype
+      - role
+      - unConstPtr
+  - namespace: Foreign.C.Error
+    title: Foreign.C.Error
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.C.Error
+    entries:
+      - e2BIG
+      - eACCES
+      - eADDRINUSE
+      - eADDRNOTAVAIL
+      - eADV
+      - eAFNOSUPPORT
+      - eAGAIN
+      - eALREADY
+      - eBADF
+      - eBADMSG
+      - eBADRPC
+      - eBUSY
+      - eCHILD
+      - eCOMM
+      - eCONNABORTED
+      - eCONNREFUSED
+      - eCONNRESET
+      - eDEADLK
+      - eDESTADDRREQ
+      - eDIRTY
+      - eDOM
+      - eDQUOT
+      - eEXIST
+      - eFAULT
+      - eFBIG
+      - eFTYPE
+      - eHOSTDOWN
+      - eHOSTUNREACH
+      - eIDRM
+      - eILSEQ
+      - eINPROGRESS
+      - eINTR
+      - eINVAL
+      - eIO
+      - eISCONN
+      - eISDIR
+      - eLOOP
+      - eMFILE
+      - eMLINK
+      - eMSGSIZE
+      - eMULTIHOP
+      - eNAMETOOLONG
+      - eNETDOWN
+      - eNETRESET
+      - eNETUNREACH
+      - eNFILE
+      - eNOBUFS
+      - eNODATA
+      - eNODEV
+      - eNOENT
+      - eNOEXEC
+      - eNOLCK
+      - eNOLINK
+      - eNOMEM
+      - eNOMSG
+      - eNONET
+      - eNOPROTOOPT
+      - eNOSPC
+      - eNOSR
+      - eNOSTR
+      - eNOSYS
+      - eNOTBLK
+      - eNOTCONN
+      - eNOTDIR
+      - eNOTEMPTY
+      - eNOTSOCK
+      - eNOTSUP
+      - eNOTTY
+      - eNXIO
+      - eOK
+      - eOPNOTSUPP
+      - ePERM
+      - ePFNOSUPPORT
+      - ePIPE
+      - ePROCLIM
+      - ePROCUNAVAIL
+      - ePROGMISMATCH
+      - ePROGUNAVAIL
+      - ePROTO
+      - ePROTONOSUPPORT
+      - ePROTOTYPE
+      - eRANGE
+      - eREMCHG
+      - eREMOTE
+      - eROFS
+      - eRPCMISMATCH
+      - eRREMOTE
+      - Errno
+      - errnoToIOError
+      - eSHUTDOWN
+      - eSOCKTNOSUPPORT
+      - eSPIPE
+      - eSRCH
+      - eSRMNT
+      - eSTALE
+      - eTIME
+      - eTIMEDOUT
+      - eTOOMANYREFS
+      - eTXTBSY
+      - eUSERS
+      - eWOULDBLOCK
+      - eXDEV
+      - getErrno
+      - isValidErrno
+      - newtype
+      - resetErrno
+      - String
+      - throwErrno
+      - throwErrnoIf
+      - throwErrnoIf_
+      - throwErrnoIfMinus1
+      - throwErrnoIfMinus1_
+      - throwErrnoIfMinus1Retry
+      - throwErrnoIfMinus1Retry_
+      - throwErrnoIfMinus1RetryMayBlock
+      - throwErrnoIfMinus1RetryMayBlock_
+      - throwErrnoIfNull
+      - throwErrnoIfNullRetry
+      - throwErrnoIfNullRetryMayBlock
+      - throwErrnoIfRetry
+      - throwErrnoIfRetry_
+      - throwErrnoIfRetryMayBlock
+      - throwErrnoIfRetryMayBlock_
+      - throwErrnoPath
+      - throwErrnoPathIf
+      - throwErrnoPathIf_
+      - throwErrnoPathIfMinus1
+      - throwErrnoPathIfMinus1_
+      - throwErrnoPathIfNull
+  - namespace: Foreign.C.String
+    title: Foreign.C.String
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.C.String
+    entries:
+      - castCCharToChar
+      - castCharToCChar
+      - castCharToCSChar
+      - castCharToCUChar
+      - castCSCharToChar
+      - castCUCharToChar
+      - charIsRepresentable
+      - CString
+      - CStringLen
+      - CWString
+      - CWStringLen
+      - newCAString
+      - newCAStringLen
+      - newCString
+      - newCStringLen
+      - newCWString
+      - newCWStringLen
+      - peekCAString
+      - peekCAStringLen
+      - peekCString
+      - peekCStringLen
+      - peekCWString
+      - peekCWStringLen
+      - withCAString
+      - withCAStringLen
+      - withCString
+      - withCStringLen
+      - withCWString
+      - withCWStringLen
+  - namespace: Foreign.C.Types
+    title: Foreign.C.Types
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.C.Types
+    entries:
+      - CBool
+      - CChar
+      - CClock
+      - CDouble
+      - CFile
+      - CFloat
+      - CFpos
+      - CInt
+      - CIntMax
+      - CIntPtr
+      - CJmpBuf
+      - CLLong
+      - CLong
+      - CPtrdiff
+      - CSChar
+      - CShort
+      - CSigAtomic
+      - CSize
+      - CSUSeconds
+      - CTime
+      - CUChar
+      - CUInt
+      - CUIntMax
+      - CUIntPtr
+      - CULLong
+      - CULong
+      - CUSeconds
+      - CUShort
+      - CWchar
+      - newtype
+  - namespace: Foreign.Concurrent
+    title: Foreign.Concurrent
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Concurrent
+    entries:
+      - ForeignPtr
+      - Ptr
+  - namespace: Foreign.ForeignPtr
+    title: Foreign.ForeignPtr
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.ForeignPtr
+    entries:
+      - addForeignPtrFinalizerEnv
+      - castForeignPtr
+      - finalizeForeignPtr
+      - FinalizerEnvPtr
+      - FinalizerPtr
+      - ForeignPtr
+      - mallocForeignPtr
+      - mallocForeignPtrArray
+      - mallocForeignPtrArray0
+      - mallocForeignPtrBytes
+      - newForeignPtr_
+      - newForeignPtrEnv
+      - plusForeignPtr
+      - role
+      - touchForeignPtr
+      - withForeignPtr
+  - namespace: Foreign.ForeignPtr.Safe
+    title: Foreign.ForeignPtr.Safe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.ForeignPtr.Safe
+    entries:
+      - addForeignPtrFinalizerEnv
+      - castForeignPtr
+      - finalizeForeignPtr
+      - FinalizerEnvPtr
+      - FinalizerPtr
+      - ForeignPtr
+      - mallocForeignPtr
+      - mallocForeignPtrArray
+      - mallocForeignPtrArray0
+      - mallocForeignPtrBytes
+      - newForeignPtr_
+      - newForeignPtrEnv
+      - role
+      - touchForeignPtr
+      - withForeignPtr
+  - namespace: Foreign.ForeignPtr.Unsafe
+    title: Foreign.ForeignPtr.Unsafe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.ForeignPtr.Unsafe
+    entries:
+      - unsafeForeignPtrToPtr
+  - namespace: Foreign.Marshal
+    title: Foreign.Marshal
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal
+    entries:
+      - advancePtr
+      - alloca
+      - allocaArray
+      - allocaArray0
+      - allocaBytes
+      - allocaBytesAligned
+      - calloc
+      - callocArray
+      - callocArray0
+      - callocBytes
+      - copyArray
+      - copyBytes
+      - fillBytes
+      - finalizerFree
+      - free
+      - freePool
+      - fromBool
+      - lengthArray0
+      - malloc
+      - mallocArray
+      - mallocArray0
+      - mallocBytes
+      - maybeNew
+      - maybePeek
+      - maybeWith
+      - moveArray
+      - moveBytes
+      - new
+      - newArray
+      - newArray0
+      - newPool
+      - newtype
+      - peekArray
+      - peekArray0
+      - pokeArray
+      - pokeArray0
+      - Pool
+      - pooledMalloc
+      - pooledMallocArray
+      - pooledMallocArray0
+      - pooledMallocBytes
+      - pooledNew
+      - pooledNewArray
+      - pooledNewArray0
+      - pooledRealloc
+      - pooledReallocArray
+      - pooledReallocArray0
+      - pooledReallocBytes
+      - realloc
+      - reallocArray
+      - reallocArray0
+      - reallocBytes
+      - Storable
+      - throwIf
+      - throwIf_
+      - throwIfNeg
+      - throwIfNeg_
+      - throwIfNull
+      - toBool
+      - with
+      - withArray
+      - withArray0
+      - withArrayLen
+      - withArrayLen0
+      - withMany
+      - withPool
+  - namespace: Foreign.Marshal.Alloc
+    title: Foreign.Marshal.Alloc
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal.Alloc
+    entries:
+      - alloca
+      - allocaBytes
+      - allocaBytesAligned
+      - calloc
+      - callocBytes
+      - finalizerFree
+      - free
+      - malloc
+      - mallocBytes
+      - realloc
+      - reallocBytes
+  - namespace: Foreign.Marshal.Array
+    title: Foreign.Marshal.Array
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal.Array
+    entries:
+      - advancePtr
+      - allocaArray
+      - allocaArray0
+      - callocArray
+      - callocArray0
+      - copyArray
+      - lengthArray0
+      - mallocArray
+      - mallocArray0
+      - moveArray
+      - newArray
+      - newArray0
+      - peekArray
+      - peekArray0
+      - pokeArray
+      - pokeArray0
+      - reallocArray
+      - reallocArray0
+      - Storable
+      - withArray
+      - withArray0
+      - withArrayLen
+      - withArrayLen0
+  - namespace: Foreign.Marshal.Error
+    title: Foreign.Marshal.Error
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal.Error
+    entries:
+      - throwIf
+      - throwIf_
+      - throwIfNeg
+      - throwIfNeg_
+      - throwIfNull
+  - namespace: Foreign.Marshal.Pool
+    title: Foreign.Marshal.Pool
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal.Pool
+    entries:
+      - freePool
+      - newPool
+      - newtype
+      - Pool
+      - pooledMalloc
+      - pooledMallocArray
+      - pooledMallocArray0
+      - pooledMallocBytes
+      - pooledNew
+      - pooledNewArray
+      - pooledNewArray0
+      - pooledRealloc
+      - pooledReallocArray
+      - pooledReallocArray0
+      - pooledReallocBytes
+      - Storable
+      - withPool
+  - namespace: Foreign.Marshal.Safe
+    title: Foreign.Marshal.Safe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal.Safe
+    entries:
+      - advancePtr
+      - alloca
+      - allocaArray
+      - allocaArray0
+      - allocaBytes
+      - allocaBytesAligned
+      - calloc
+      - callocArray
+      - callocArray0
+      - callocBytes
+      - copyArray
+      - copyBytes
+      - fillBytes
+      - finalizerFree
+      - free
+      - freePool
+      - fromBool
+      - lengthArray0
+      - malloc
+      - mallocArray
+      - mallocArray0
+      - mallocBytes
+      - maybeNew
+      - maybePeek
+      - maybeWith
+      - moveArray
+      - moveBytes
+      - new
+      - newArray
+      - newArray0
+      - newPool
+      - newtype
+      - peekArray
+      - peekArray0
+      - pokeArray
+      - pokeArray0
+      - Pool
+      - pooledMalloc
+      - pooledMallocArray
+      - pooledMallocArray0
+      - pooledMallocBytes
+      - pooledNew
+      - pooledNewArray
+      - pooledNewArray0
+      - pooledRealloc
+      - pooledReallocArray
+      - pooledReallocArray0
+      - pooledReallocBytes
+      - realloc
+      - reallocArray
+      - reallocArray0
+      - reallocBytes
+      - Storable
+      - throwIf
+      - throwIf_
+      - throwIfNeg
+      - throwIfNeg_
+      - throwIfNull
+      - toBool
+      - with
+      - withArray
+      - withArray0
+      - withArrayLen
+      - withArrayLen0
+      - withMany
+      - withPool
+  - namespace: Foreign.Marshal.Unsafe
+    title: Foreign.Marshal.Unsafe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal.Unsafe
+    entries:
+      - unsafeLocalState
+  - namespace: Foreign.Marshal.Utils
+    title: Foreign.Marshal.Utils
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Marshal.Utils
+    entries:
+      - copyBytes
+      - fillBytes
+      - fromBool
+      - maybeNew
+      - maybePeek
+      - maybeWith
+      - moveBytes
+      - new
+      - toBool
+      - with
+      - withMany
+  - namespace: Foreign.Ptr
+    title: Foreign.Ptr
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Ptr
+    entries:
+      - alignPtr
+      - castFunPtr
+      - castFunPtrToPtr
+      - castPtr
+      - castPtrToFunPtr
+      - freeHaskellFunPtr
+      - FunPtr
+      - IntPtr
+      - intPtrToPtr
+      - minusPtr
+      - newtype
+      - nullFunPtr
+      - nullPtr
+      - plusPtr
+      - Ptr
+      - ptrToIntPtr
+      - ptrToWordPtr
+      - role
+      - WordPtr
+      - wordPtrToPtr
+  - namespace: Foreign.Safe
+    title: Foreign.Safe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Safe
+    entries:
+      - addForeignPtrFinalizerEnv
+      - advancePtr
+      - alignment
+      - alignPtr
+      - alloca
+      - allocaArray
+      - allocaArray0
+      - allocaBytes
+      - allocaBytesAligned
+      - And
+      - bit
+      - bitDefault
+      - bitReverse16
+      - bitReverse32
+      - bitReverse64
+      - bitReverse8
+      - Bits
+      - bitSize
+      - bitSizeMaybe
+      - byteSwap16
+      - byteSwap32
+      - byteSwap64
+      - calloc
+      - callocArray
+      - callocArray0
+      - callocBytes
+      - castForeignPtr
+      - castFunPtr
+      - castFunPtrToPtr
+      - castPtr
+      - castPtrToFunPtr
+      - castPtrToStablePtr
+      - castStablePtrToPtr
+      - class
+      - clearBit
+      - complement
+      - complementBit
+      - copyArray
+      - copyBytes
+      - countLeadingZeros
+      - countTrailingZeros
+      - deRefStablePtr
+      - fillBytes
+      - finalizeForeignPtr
+      - FinalizerEnvPtr
+      - finalizerFree
+      - FinalizerPtr
+      - FiniteBits
+      - finiteBitSize
+      - ForeignPtr
+      - free
+      - freeHaskellFunPtr
+      - freePool
+      - freeStablePtr
+      - fromBool
+      - FunPtr
+      - getAnd
+      - getIff
+      - getIor
+      - getXor
+      - Iff
+      - Int
+      - Int16
+      - Int32
+      - Int64
+      - Int8
+      - IntPtr
+      - intPtrToPtr
+      - Ior
+      - isSigned
+      - lengthArray0
+      - malloc
+      - mallocArray
+      - mallocArray0
+      - mallocBytes
+      - mallocForeignPtr
+      - mallocForeignPtrArray
+      - mallocForeignPtrArray0
+      - mallocForeignPtrBytes
+      - maybeNew
+      - maybePeek
+      - maybeWith
+      - minusPtr
+      - moveArray
+      - moveBytes
+      - new
+      - newArray
+      - newArray0
+      - newForeignPtr_
+      - newForeignPtrEnv
+      - newPool
+      - newStablePtr
+      - newtype
+      - nullFunPtr
+      - nullPtr
+      - oneBits
+      - peek
+      - peekArray
+      - peekArray0
+      - peekByteOff
+      - peekElemOff
+      - plusForeignPtr
+      - plusPtr
+      - poke
+      - pokeArray
+      - pokeArray0
+      - pokeByteOff
+      - pokeElemOff
+      - Pool
+      - pooledMalloc
+      - pooledMallocArray
+      - pooledMallocArray0
+      - pooledMallocBytes
+      - pooledNew
+      - pooledNewArray
+      - pooledNewArray0
+      - pooledRealloc
+      - pooledReallocArray
+      - pooledReallocArray0
+      - pooledReallocBytes
+      - popCount
+      - popCountDefault
+      - Ptr
+      - ptrToIntPtr
+      - ptrToWordPtr
+      - realloc
+      - reallocArray
+      - reallocArray0
+      - reallocBytes
+      - role
+      - rotate
+      - rotateL
+      - rotateR
+      - setBit
+      - shift
+      - shiftL
+      - shiftR
+      - sizeOf
+      - StablePtr
+      - Storable
+      - testBit
+      - testBitDefault
+      - throwIf
+      - throwIf_
+      - throwIfNeg
+      - throwIfNeg_
+      - throwIfNull
+      - toBool
+      - toIntegralSized
+      - touchForeignPtr
+      - unsafeShiftL
+      - unsafeShiftR
+      - with
+      - withArray
+      - withArray0
+      - withArrayLen
+      - withArrayLen0
+      - withForeignPtr
+      - withMany
+      - withPool
+      - Word
+      - Word16
+      - Word32
+      - Word64
+      - Word8
+      - WordPtr
+      - wordPtrToPtr
+      - Xor
+      - zeroBits
+  - namespace: Foreign.StablePtr
+    title: Foreign.StablePtr
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.StablePtr
+    entries:
+      - castPtrToStablePtr
+      - castStablePtrToPtr
+      - deRefStablePtr
+      - freeStablePtr
+      - newStablePtr
+      - StablePtr
+  - namespace: Foreign.Storable
+    title: Foreign.Storable
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Foreign.Storable
+    entries:
+      - alignment
+      - class
+      - peek
+      - peekByteOff
+      - peekElemOff
+      - poke
+      - pokeByteOff
+      - pokeElemOff
+      - sizeOf
+      - Storable
+  - namespace: Numeric
+    title: Numeric
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Numeric
+    entries:
+      - acos
+      - acosh
+      - asin
+      - asinh
+      - atan
+      - atanh
+      - class
+      - cos
+      - cosh
+      - exp
+      - expm1
+      - Floating
       - floatToDigits
+      - fromRat
+      - lexDigits
+      - log
+      - log1mexp
+      - log1p
+      - log1pexp
+      - logBase
+      - pi
+      - readBin
       - readDec
       - readFloat
       - readHex
       - readInt
+      - readOct
+      - readSigned
+      - showBin
       - showEFloat
       - showFFloat
+      - showFFloatAlt
       - showFloat
       - showGFloat
+      - showGFloatAlt
       - showHex
+      - showHFloat
+      - showInt
       - showIntAtBase
       - showOct
-  - namespace: bool
-    title: Data.Bool module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Bool.html
+      - showSigned
+      - sin
+      - sinh
+      - sqrt
+      - tan
+      - tanh
+  - namespace: Numeric.Natural
+    title: Numeric.Natural
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Numeric.Natural
     entries:
-      - bool
-  - namespace: function
-    title: Data.Function module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Function.html
+      - minusNaturalMaybe
+      - Natural
+  - namespace: Prelude
+    title: Prelude
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Prelude
     entries:
-      - fix
-      - on
-  - namespace: ord
-    title: Data.Ord module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Ord.html
-    entries:
-      - comparing
-      - max
-      - min
-  - namespace: tuple
-    title: Data.Tuple module
-    target: GHC base-4.21
-    sourceKind: manual
-    sourceRef: https://hackage.haskell.org/package/base/docs/Data-Tuple.html
-    entries:
+      - abs
+      - acos
+      - acosh
+      - all
+      - and
+      - any
+      - appendFile
+      - Applicative
+      - asin
+      - asinh
+      - asTypeOf
+      - atan
+      - atan2
+      - atanh
+      - Bool
+      - Bounded
+      - ceiling
+      - Char
+      - class
+      - compare
+      - concat
+      - concatMap
+      - const
+      - cos
+      - cosh
       - curry
+      - decodeFloat
+      - div
+      - divMod
+      - Double
+      - either
+      - Either
+      - elem
+      - encodeFloat
+      - Enum
+      - enumFrom
+      - enumFromThen
+      - enumFromThenTo
+      - enumFromTo
+      - Eq
+      - EQ
+      - error
+      - errorWithoutStackTrace
+      - even
+      - exp
+      - exponent
+      - fail
+      - 'False'
+      - FilePath
+      - flip
+      - Float
+      - floatDigits
+      - Floating
+      - floatRadix
+      - floatRange
+      - floor
+      - fmap
+      - Foldable
+      - foldl
+      - foldl'
+      - foldMap
+      - foldr
+      - Fractional
+      - fromEnum
+      - fromInteger
+      - fromIntegral
+      - fromRational
       - fst
+      - Functor
+      - gcd
+      - getChar
+      - getContents
+      - getLine
+      - GT
+      - Int
+      - Integer
+      - Integral
+      - interact
+      - IO
+      - ioError
+      - IOError
+      - isDenormalized
+      - isIEEE
+      - isInfinite
+      - isNaN
+      - isNegativeZero
+      - Just
+      - lcm
+      - Left
+      - lex
+      - liftA2
+      - lines
+      - log
+      - logBase
+      - lookup
+      - LT
+      - mapM
+      - mapM_
+      - mappend
+      - max
+      - maxBound
+      - maybe
+      - Maybe
+      - mconcat
+      - mempty
+      - min
+      - minBound
+      - mod
+      - Monad
+      - MonadFail
+      - Monoid
+      - negate
+      - newtype
+      - not
+      - notElem
+      - Nothing
+      - 'null'
+      - Num
+      - odd
+      - or
+      - Ord
+      - Ordering
+      - otherwise
+      - pi
+      - pred
+      - print
+      - product
+      - properFraction
+      - pure
+      - putChar
+      - putStr
+      - putStrLn
+      - quot
+      - quotRem
+      - Rational
+      - read
+      - Read
+      - readFile
+      - readIO
+      - readList
+      - readLn
+      - readParen
+      - reads
+      - ReadS
+      - readsPrec
+      - Real
+      - RealFloat
+      - RealFrac
+      - realToFrac
+      - recip
+      - rem
+      - replicate
+      - return
+      - Right
+      - round
+      - scaleFloat
+      - Semigroup
+      - seq
+      - sequence
+      - sequence_
+      - sequenceA
+      - show
+      - Show
+      - showChar
+      - showList
+      - showParen
+      - shows
+      - ShowS
+      - showsPrec
+      - showString
+      - significand
+      - signum
+      - sin
+      - sinh
       - snd
-      - swap
+      - sqrt
+      - String
+      - subtract
+      - succ
+      - sum
+      - tan
+      - tanh
+      - toEnum
+      - toInteger
+      - toRational
+      - Traversable
+      - traverse
+      - 'True'
+      - truncate
       - uncurry
+      - undefined
+      - unlines
+      - until
+      - unwords
+      - unzip3
+      - userError
+      - Word
+      - words
+      - writeFile
+      - zip3
+      - zipWith3
+  - namespace: System.Console.GetOpt
+    title: System.Console.GetOpt
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Console.GetOpt
+    entries:
+      - ArgDescr
+      - ArgOrder
+      - getOpt
+      - getOpt'
+      - NoArg
+      - OptArg
+      - OptDescr
+      - Option
+      - Permute
+      - ReqArg
+      - RequireOrder
+      - ReturnInOrder
+      - usageInfo
+  - namespace: System.CPUTime
+    title: System.CPUTime
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.CPUTime
+    entries:
+      - cpuTimePrecision
+      - getCPUTime
+  - namespace: System.Environment
+    title: System.Environment
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Environment
+    entries:
+      - executablePath
+      - getArgs
+      - getEnv
+      - getEnvironment
+      - getExecutablePath
+      - getProgName
+      - lookupEnv
+      - setEnv
+      - unsetEnv
+      - withArgs
+      - withProgName
+  - namespace: System.Environment.Blank
+    title: System.Environment.Blank
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Environment.Blank
+    entries:
+      - getArgs
+      - getEnvDefault
+      - getEnvironment
+      - getExecutablePath
+      - getProgName
+      - String
+      - withArgs
+      - withProgName
+  - namespace: System.Exit
+    title: System.Exit
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Exit
+    entries:
+      - die
+      - ExitCode
+      - exitFailure
+      - ExitFailure
+      - exitSuccess
+      - ExitSuccess
+      - exitWith
+  - namespace: System.Info
+    title: System.Info
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Info
+    entries:
+      - arch
+      - compilerName
+      - compilerVersion
+      - fullCompilerVersion
+      - os
+  - namespace: System.IO
+    title: System.IO
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.IO
+    entries:
+      - AbsoluteSeek
+      - appendFile
+      - AppendMode
+      - BlockBuffering
+      - BufferMode
+      - char8
+      - CRLF
+      - FilePath
+      - fixIO
+      - getChar
+      - getContents
+      - getContents'
+      - getLine
+      - Handle
+      - HandlePosn
+      - hClose
+      - hFileSize
+      - hFlush
+      - hGetBuf
+      - hGetBuffering
+      - hGetBufNonBlocking
+      - hGetBufSome
+      - hGetChar
+      - hGetContents
+      - hGetContents'
+      - hGetEcho
+      - hGetEncoding
+      - hGetLine
+      - hGetPosn
+      - hIsClosed
+      - hIsEOF
+      - hIsOpen
+      - hIsReadable
+      - hIsSeekable
+      - hIsTerminalDevice
+      - hIsWritable
+      - hLookAhead
+      - hPrint
+      - hPutBuf
+      - hPutBufNonBlocking
+      - hPutChar
+      - hPutStr
+      - hPutStrLn
+      - hReady
+      - hSeek
+      - hSetBinaryMode
+      - hSetBuffering
+      - hSetEcho
+      - hSetEncoding
+      - hSetFileSize
+      - hSetNewlineMode
+      - hSetPosn
+      - hShow
+      - hTell
+      - hWaitForInput
+      - inputNL
+      - interact
+      - IO
+      - IOMode
+      - isEOF
+      - latin1
+      - LF
+      - LineBuffering
+      - localeEncoding
+      - mkTextEncoding
+      - nativeNewline
+      - nativeNewlineMode
+      - Newline
+      - NewlineMode
+      - newtype
+      - NoBuffering
+      - noNewlineTranslation
+      - openBinaryFile
+      - openBinaryTempFile
+      - openBinaryTempFileWithDefaultPermissions
+      - openFile
+      - openTempFile
+      - openTempFileWithDefaultPermissions
+      - outputNL
+      - print
+      - putChar
+      - putStr
+      - putStrLn
+      - readFile
+      - readFile'
+      - readIO
+      - readLn
+      - ReadMode
+      - ReadWriteMode
+      - RelativeSeek
+      - SeekFromEnd
+      - SeekMode
+      - stderr
+      - stdin
+      - stdout
+      - TextEncoding
+      - universalNewlineMode
+      - utf16
+      - utf16be
+      - utf16le
+      - utf32
+      - utf32be
+      - utf32le
+      - utf8
+      - utf8_bom
+      - withBinaryFile
+      - withFile
+      - writeFile
+      - WriteMode
+  - namespace: System.IO.Error
+    title: System.IO.Error
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.IO.Error
+    entries:
+      - alreadyExistsErrorType
+      - alreadyInUseErrorType
+      - annotateIOError
+      - catchIOError
+      - doesNotExistErrorType
+      - eofErrorType
+      - fullErrorType
+      - illegalOperationErrorType
+      - ioeGetErrorString
+      - ioeGetErrorType
+      - ioeGetFileName
+      - ioeGetHandle
+      - ioeGetLocation
+      - ioError
+      - IOError
+      - IOErrorType
+      - ioeSetErrorString
+      - ioeSetErrorType
+      - ioeSetFileName
+      - ioeSetHandle
+      - ioeSetLocation
+      - isAlreadyExistsError
+      - isAlreadyExistsErrorType
+      - isAlreadyInUseError
+      - isAlreadyInUseErrorType
+      - isDoesNotExistError
+      - isDoesNotExistErrorType
+      - isEOFError
+      - isEOFErrorType
+      - isFullError
+      - isFullErrorType
+      - isIllegalOperation
+      - isIllegalOperationErrorType
+      - isPermissionError
+      - isPermissionErrorType
+      - isResourceVanishedError
+      - isResourceVanishedErrorType
+      - isUserError
+      - isUserErrorType
+      - mkIOError
+      - modifyIOError
+      - permissionErrorType
+      - resourceVanishedErrorType
+      - tryIOError
+      - userError
+      - userErrorType
+  - namespace: System.IO.Unsafe
+    title: System.IO.Unsafe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.IO.Unsafe
+    entries:
+      - unsafeDupablePerformIO
+      - unsafeFixIO
+      - unsafeInterleaveIO
+      - unsafePerformIO
+  - namespace: System.Mem
+    title: System.Mem
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Mem
+    entries:
+      - disableAllocationLimit
+      - enableAllocationLimit
+      - getAllocationCounter
+      - performBlockingMajorGC
+      - performGC
+      - performMajorGC
+      - performMinorGC
+      - setAllocationCounter
+  - namespace: System.Mem.StableName
+    title: System.Mem.StableName
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Mem.StableName
+    entries:
+      - eqStableName
+      - hashStableName
+      - makeStableName
+      - role
+      - StableName
+  - namespace: System.Mem.Weak
+    title: System.Mem.Weak
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Mem.Weak
+    entries:
+      - addFinalizer
+      - deRefWeak
+      - finalize
+      - getFinalizerExceptionHandler
+      - Handle
+      - mkWeak
+      - mkWeakPair
+      - mkWeakPtr
+      - printToHandleFinalizerExceptionHandler
+      - setFinalizerExceptionHandler
+      - Weak
+  - namespace: System.Posix.Internals
+    title: System.Posix.Internals
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Posix.Internals
+    entries:
+      - c_access
+      - c_chmod
+      - c_close
+      - c_creat
+      - c_dup
+      - c_dup2
+      - c_fcntl_lock
+      - c_fcntl_read
+      - c_fcntl_write
+      - c_fork
+      - c_fstat
+      - c_ftruncate
+      - c_getpid
+      - c_interruptible_open
+      - c_interruptible_open_
+      - c_isatty
+      - c_lflag
+      - c_link
+      - c_lseek
+      - c_mkfifo
+      - c_open
+      - c_pipe
+      - c_read
+      - c_s_isblk
+      - c_s_ischr
+      - c_s_isdir
+      - c_s_isfifo
+      - c_s_isreg
+      - c_s_issock
+      - c_safe_open
+      - c_safe_open_
+      - c_safe_read
+      - c_safe_write
+      - c_sigaddset
+      - c_sigemptyset
+      - c_sigprocmask
+      - c_stat
+      - c_tcgetattr
+      - c_tcsetattr
+      - c_umask
+      - c_unlink
+      - c_utime
+      - c_waitpid
+      - c_write
+      - CFilePath
+      - CFLock
+      - CGroup
+      - checkForInteriorNuls
+      - CInt
+      - CLconv
+      - const_echo
+      - const_f_getfl
+      - const_f_setfd
+      - const_f_setfl
+      - const_fd_cloexec
+      - const_icanon
+      - const_sig_block
+      - const_sig_setmask
+      - const_sigttou
+      - const_tcsanow
+      - const_vmin
+      - const_vtime
+      - CPasswd
+      - CSigaction
+      - CSigset
+      - CStat
+      - CString
+      - CTermios
+      - CTm
+      - CTms
+      - CUtimbuf
+      - CUtsname
+      - dEFAULT_BUFFER_SIZE
+      - FD
+      - fdFileSize
+      - fdGetMode
+      - fdStat
+      - fdType
+      - fileType
+      - get_saved_termios
+      - getEcho
+      - hostIsThreaded
+      - ioe_unknownfiletype
+      - lstat
+      - newFilePath
+      - o_APPEND
+      - o_BINARY
+      - o_CREAT
+      - o_EXCL
+      - o_NOCTTY
+      - o_NONBLOCK
+      - o_RDONLY
+      - o_RDWR
+      - o_TRUNC
+      - o_WRONLY
+      - peekFilePath
+      - peekFilePathLen
+      - poke_c_lflag
+      - Ptr
+      - ptr_c_cc
+      - puts
+      - rtsIsThreaded_
+      - s_isblk
+      - s_ischr
+      - s_isdir
+      - s_isfifo
+      - s_isreg
+      - s_issock
+      - sEEK_CUR
+      - sEEK_END
+      - sEEK_SET
+      - set_saved_termios
+      - setCloseOnExec
+      - setCooked
+      - setEcho
+      - setNonBlockingFD
+      - sizeof_sigset_t
+      - sizeof_stat
+      - sizeof_termios
+      - st_dev
+      - st_ino
+      - st_mode
+      - st_mtime
+      - st_size
+      - statGetType
+      - statGetType_maybe
+      - tcSetAttr
+      - throwInternalNulError
+      - withFilePath
+  - namespace: System.Posix.Types
+    title: System.Posix.Types
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Posix.Types
+    entries:
+      - ByteCount
+      - CBlkCnt
+      - CBlkSize
+      - CCc
+      - CClockId
+      - CDev
+      - CFsBlkCnt
+      - CFsFilCnt
+      - CGid
+      - CId
+      - CIno
+      - CKey
+      - ClockTick
+      - CMode
+      - CNfds
+      - CNlink
+      - COff
+      - CPid
+      - CRLim
+      - CSocklen
+      - CSpeed
+      - CSsize
+      - CTcflag
+      - CTimer
+      - CUid
+      - DeviceID
+      - EpochTime
+      - Fd
+      - FileID
+      - FileMode
+      - FileOffset
+      - GroupID
+      - Limit
+      - LinkCount
+      - newtype
+      - ProcessGroupID
+      - ProcessID
+      - UserID
+  - namespace: System.Timeout
+    title: System.Timeout
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:System.Timeout
+    entries:
+      - newtype
+      - timeout
+      - Timeout
+  - namespace: Text.ParserCombinators.ReadP
+    title: Text.ParserCombinators.ReadP
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Text.ParserCombinators.ReadP
+    entries:
+      - between
+      - chainl
+      - chainl1
+      - chainr
+      - chainr1
+      - char
+      - choice
+      - count
+      - endBy
+      - endBy1
+      - eof
+      - gather
+      - get
+      - look
+      - many1
+      - manyTill
+      - munch
+      - munch1
+      - newtype
+      - option
+      - pfail
+      - ReadP
+      - readP_to_S
+      - ReadS
+      - readS_to_P
+      - satisfy
+      - sepBy
+      - sepBy1
+      - skipMany
+      - skipMany1
+      - skipSpaces
+      - string
+  - namespace: Text.ParserCombinators.ReadPrec
+    title: Text.ParserCombinators.ReadPrec
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Text.ParserCombinators.ReadPrec
+    entries:
+      - lift
+      - minPrec
+      - newtype
+      - prec
+      - Prec
+      - readP_to_Prec
+      - ReadPrec
+      - readPrec_to_P
+      - readPrec_to_S
+      - readS_to_Prec
+      - reset
+      - step
+  - namespace: Text.Printf
+    title: Text.Printf
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Text.Printf
+    entries:
+      - class
+      - errorBadArgument
+      - errorBadFormat
+      - errorMissingArgument
+      - errorShortFormat
+      - FieldFormat
+      - FieldFormatter
+      - fmtAdjust
+      - fmtAlternate
+      - fmtChar
+      - fmtModifiers
+      - fmtPrecision
+      - fmtSign
+      - fmtWidth
+      - FormatAdjustment
+      - formatArg
+      - formatChar
+      - formatInt
+      - formatInteger
+      - FormatParse
+      - formatRealFloat
+      - FormatSign
+      - formatString
+      - fpChar
+      - fpModifiers
+      - fpRest
+      - fromChar
+      - hPrintf
+      - HPrintfType
+      - IsChar
+      - LeftAdjust
+      - Maybe
+      - ModifierParser
+      - parseFormat
+      - perror
+      - printf
+      - PrintfArg
+      - PrintfType
+      - SignPlus
+      - SignSpace
+      - toChar
+      - vFmt
+      - ZeroPad
+  - namespace: Text.Read
+    title: Text.Read
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Text.Read
+    entries:
+      - Char
+      - class
+      - EOF
+      - Ident
+      - lex
+      - Lexeme
+      - lexP
+      - lift
+      - minPrec
+      - newtype
+      - Number
+      - parens
+      - prec
+      - Prec
+      - Punc
+      - read
+      - Read
+      - readEither
+      - readList
+      - readListDefault
+      - readListPrec
+      - readListPrecDefault
+      - readMaybe
+      - readP_to_Prec
+      - readParen
+      - readPrec
+      - ReadPrec
+      - readPrec_to_P
+      - readPrec_to_S
+      - reads
+      - ReadS
+      - readS_to_Prec
+      - readsPrec
+      - reset
+      - step
+      - String
+      - Symbol
+  - namespace: Text.Read.Lex
+    title: Text.Read.Lex
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Text.Read.Lex
+    entries:
+      - Char
+      - EOF
+      - expect
+      - hsLex
+      - Ident
+      - isSymbolChar
+      - lexChar
+      - Lexeme
+      - Num
+      - Number
+      - numberToFixed
+      - numberToInteger
+      - numberToRangedRational
+      - numberToRational
+      - Punc
+      - readBinP
+      - readDecP
+      - readHexP
+      - readIntP
+      - readOctP
+      - String
+      - Symbol
+  - namespace: Text.Show
+    title: Text.Show
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Text.Show
+    entries:
+      - class
+      - show
+      - Show
+      - showChar
+      - showList
+      - showListWith
+      - showParen
+      - shows
+      - ShowS
+      - showsPrec
+      - showString
+  - namespace: Text.Show.Functions
+    title: Text.Show.Functions
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Text.Show.Functions
+    entries: []
+  - namespace: Type.Reflection
+    title: Type.Reflection
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Type.Reflection
+    entries:
+      - a
+      - class
+      - decTypeRep
+      - eqTypeRep
+      - forall
+      - HRefl
+      - Module
+      - moduleName
+      - modulePackage
+      - pattern
+      - proxy
+      - Refl
+      - rnfModule
+      - rnfSomeTypeRep
+      - rnfTyCon
+      - role
+      - someTypeRep
+      - SomeTypeRep
+      - someTypeRepTyCon
+      - splitApps
+      - TyCon
+      - tyConModule
+      - tyConName
+      - tyConPackage
+      - Typeable
+      - typeRepKind
+      - withTypeable
+  - namespace: Type.Reflection.Unsafe
+    title: Type.Reflection.Unsafe
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Type.Reflection.Unsafe
+    entries:
+      - forall
+      - KindRep
+      - KindRepApp
+      - KindRepFun
+      - KindRepTyConApp
+      - KindRepTYPE
+      - KindRepTypeLitD
+      - KindRepTypeLitS
+      - KindRepVar
+      - mkTrApp
+      - mkTrCon
+      - mkTyCon
+      - pattern
+      - role
+      - SomeTypeRep
+      - someTypeRepFingerprint
+      - TyCon
+      - tyConFingerprint
+      - tyConKindArgs
+      - tyConKindRep
+      - TypeLitChar
+      - TypeLitNat
+      - TypeLitSort
+      - TypeLitSymbol
+  - namespace: Unsafe.Coerce
+    title: Unsafe.Coerce
+    target: Haskell 9.10 base
+    sourceKind: runtime
+    sourceRef: haskell:9.10:Unsafe.Coerce
+    entries:
+      - forall
+      - role
+      - unsafeCoerce
+      - unsafeCoerceAddr
+      - unsafeCoerceUnlifted
+      - UnsafeEquality
+      - unsafeEqualityProof
+      - UnsafeRefl

@@ -5,15 +5,67 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 export const TCL_SKIP_LIST = new Set<string>([
   // None currently
 ])
 
 const TCL_DOCKER_IMAGE = 'python:3.12'
+const TCL_NAMESPACE_CATALOG_TARGET = 'Tcl 8.6'
+const TCL_NAMESPACE_CATALOG_SOURCE_REF = 'python:3.12:tclsh-info-commands'
+
+function discoverTclUpstreamNamespaces() {
+  const code = [
+    'set namespaces [list core]',
+    'foreach command [lsort [info commands]] {',
+    '  if {[string first "::" $command] != -1} {',
+    '    continue',
+    '  }',
+    '  if {$command eq "package" || $command eq "zlib"} {',
+    '    lappend namespaces $command',
+    '  } elseif {[namespace ensemble exists $command]} {',
+    '    lappend namespaces $command',
+    '  }',
+    '}',
+    'puts [join [lsort -unique $namespaces] "\\n"]',
+  ].join('\n')
+  const result = runInDocker(TCL_DOCKER_IMAGE, [
+    'sh',
+    '-lc',
+    `cat <<'__LOCUTUS_TCL__' | tclsh\n${code}\n__LOCUTUS_TCL__`,
+  ])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Tcl upstream namespaces')
+  }
+
+  return [
+    ...new Set(
+      result.output
+        .trim()
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean),
+    ),
+  ].sort()
+}
+
+function discoverTclUpstreamNamespaceCatalog() {
+  return {
+    target: TCL_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'runtime' as const,
+    sourceRef: TCL_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: discoverTclUpstreamNamespaces(),
+  }
+}
 
 function discoverTclUpstreamSurface() {
+  const catalog = discoverTclUpstreamNamespaceCatalog()
+  type TclDiscoveredNamespace = {
+    namespace: string
+    entries: string[]
+    sourceRef?: string
+  }
   const discoverNamespace = (namespace: string) => {
     const code = [
       `set map [namespace ensemble configure ${namespace} -map]`,
@@ -73,7 +125,7 @@ function discoverTclUpstreamSurface() {
     return { namespace: 'core', entries }
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('tcl', [
+  const namespaces: TclDiscoveredNamespace[] = [
     discoverCoreCommands(),
     discoverNamespace('array'),
     discoverNamespace('binary'),
@@ -86,6 +138,7 @@ function discoverTclUpstreamSurface() {
     discoverNamespace('namespace'),
     {
       namespace: 'package',
+      sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm',
       entries: [
         'forget',
         'ifneeded',
@@ -102,9 +155,20 @@ function discoverTclUpstreamSurface() {
     discoverNamespace('string'),
     {
       namespace: 'zlib',
+      sourceRef: 'https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm',
       entries: ['adler32', 'compress', 'crc32', 'decompress', 'deflate', 'gunzip', 'gzip', 'inflate', 'push'],
     },
-  ])
+  ]
+
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'tcl',
+    catalog,
+    namespaces: namespaces.map((namespace) => ({
+      ...namespace,
+      title: namespace.namespace,
+      sourceRef: namespace.sourceRef ?? `${TCL_DOCKER_IMAGE}:${namespace.namespace}`,
+    })),
+  })
 }
 
 function stripTrailingComment(code: string): string {
@@ -404,6 +468,7 @@ export const tclHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverTclUpstreamSurface,
+    discoverNamespaceCatalog: discoverTclUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

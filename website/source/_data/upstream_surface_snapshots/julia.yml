@@ -1,41 +1,53 @@
 language: julia
+catalog:
+  target: Julia 1.11
+  sourceKind: runtime
+  sourceRef: julia:1.11:stdlib-modules
 namespaces:
-  - namespace: Base
-    title: Base module
+  - namespace: ArgTools
+    title: ArgTools
     target: Julia 1.11
     sourceKind: runtime
-    sourceRef: julia:1.11
+    sourceRef: julia:1.11:ArgTools
     entries:
+      - '@arg_test'
+      - arg_isdir
+      - arg_mkdir
+      - arg_read
+      - arg_readers
+      - arg_write
+      - arg_writers
+  - namespace: Artifacts
+    title: Artifacts
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Artifacts
+    entries:
+      - '@artifact_str'
+      - artifact_exists
+      - artifact_hash
+      - artifact_meta
+      - artifact_path
+      - find_artifacts_toml
+      - select_downloadable_artifacts
+  - namespace: Base
+    title: Base
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Base
+    entries:
+      - __precompile__
+      - '-'
+      - ':'
       - '!'
       - '!='
       - '!=='
-      - '%'
-      - '&'
       - ''''
-      - '*'
-      - +
-      - '-'
-      - /
-      - //
-      - ':'
-      - <
-      - '<:'
-      - '<<'
-      - <=
-      - '=='
-      - '>'
-      - '>:'
-      - '>='
-      - '>>'
-      - '>>>'
-      - '@Kwargs'
-      - '@MIME_str'
-      - '@NamedTuple'
       - '@__DIR__'
+      - '@__dot__'
       - '@__FILE__'
       - '@__LINE__'
       - '@__MODULE__'
-      - '@__dot__'
       - '@allocated'
       - '@allocations'
       - '@assert'
@@ -73,6 +85,7 @@ namespaces:
       - '@invoke'
       - '@invokelatest'
       - '@isdefined'
+      - '@Kwargs'
       - '@kwdef'
       - '@label'
       - '@lazy_str'
@@ -82,6 +95,8 @@ namespaces:
       - '@macroexpand'
       - '@macroexpand1'
       - '@main'
+      - '@MIME_str'
+      - '@NamedTuple'
       - '@noinline'
       - '@nospecialize'
       - '@polly'
@@ -107,10 +122,54 @@ namespaces:
       - '@view'
       - '@views'
       - '@warn'
-      - PipeBuffer
+      - '*'
+      - /
+      - //
       - \
+      - '&'
+      - '%'
       - ^
-      - __precompile__
+      - ∈
+      - ∉
+      - ∋
+      - ∌
+      - +
+      - ÷
+      - <
+      - '<:'
+      - '<<'
+      - <=
+      - ≠
+      - '=='
+      - '>'
+      - '>:'
+      - '>='
+      - '>>'
+      - '>>>'
+      - '|'
+      - '|>'
+      - '~'
+      - ∘
+      - √
+      - ∛
+      - ∜
+      - ∩
+      - ∪
+      - ≈
+      - ≉
+      - ≡
+      - ≢
+      - ≤
+      - ≥
+      - ⊆
+      - ⊈
+      - ⊇
+      - ⊉
+      - ⊊
+      - ⊋
+      - ⊻
+      - ⊼
+      - ⊽
       - abs
       - abs2
       - abspath
@@ -222,9 +281,9 @@ namespaces:
       - cotd
       - coth
       - count
-      - count!
       - count_ones
       - count_zeros
+      - count!
       - countlines
       - cp
       - csc
@@ -342,9 +401,9 @@ namespaces:
       - gcdx
       - gensym
       - get
-      - get!
       - get_extension
       - get_zero_subnormals
+      - get!
       - gethostname
       - getindex
       - getkey
@@ -582,6 +641,7 @@ namespaces:
       - permute!
       - permutedims
       - permutedims!
+      - PipeBuffer
       - pipeline
       - pkgdir
       - pkgversion
@@ -830,38 +890,24 @@ namespaces:
       - zero
       - zeros
       - zip
-      - '|'
-      - '|>'
-      - '~'
-      - ÷
-      - ∈
-      - ∉
-      - ∋
-      - ∌
-      - ∘
-      - √
-      - ∛
-      - ∜
-      - ∩
-      - ∪
-      - ≈
-      - ≉
-      - ≠
-      - ≡
-      - ≢
-      - ≤
-      - ≥
-      - ⊆
-      - ⊇
-      - ⊈
-      - ⊉
-      - ⊊
-      - ⊋
-      - ⊻
-      - ⊼
-      - ⊽
+  - namespace: Base64
+    title: Base64
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Base64
+    entries:
+      - base64decode
+      - base64encode
+      - stringmime
+  - namespace: CRC32c
+    title: CRC32c
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:CRC32c
+    entries:
+      - crc32c
   - namespace: Dates
-    title: Dates module
+    title: Dates
     target: Julia 1.11
     sourceKind: runtime
     sourceRef: julia:1.11:Dates
@@ -917,21 +963,222 @@ namespaces:
       - yearmonth
       - yearmonthday
   - namespace: DelimitedFiles
-    title: DelimitedFiles module
+    title: DelimitedFiles
     target: Julia 1.11
     sourceKind: runtime
     sourceRef: julia:1.11:DelimitedFiles
     entries:
       - readdlm
       - writedlm
+  - namespace: Distributed
+    title: Distributed
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Distributed
+    entries:
+      - '@distributed'
+      - '@everywhere'
+      - '@fetch'
+      - '@fetchfrom'
+      - '@spawn'
+      - '@spawnat'
+      - addprocs
+      - channel_from_id
+      - check_same_host
+      - clear!
+      - cluster_cookie
+      - default_worker_pool
+      - init_worker
+      - interrupt
+      - launch
+      - manage
+      - myid
+      - nprocs
+      - nworkers
+      - pmap
+      - process_messages
+      - procs
+      - remote
+      - remote_do
+      - remotecall
+      - remotecall_fetch
+      - remotecall_wait
+      - remoteref_id
+      - rmprocs
+      - start_worker
+      - worker_id_from_socket
+      - workers
+  - namespace: Downloads
+    title: Downloads
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Downloads
+    entries:
+      - default_downloader!
+      - download
+      - request
+  - namespace: FileWatching
+    title: FileWatching
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:FileWatching
+    entries:
+      - mkpidlock
+      - poll_fd
+      - poll_file
+      - trymkpidlock
+      - unwatch_folder
+      - watch_file
+      - watch_folder
+  - namespace: Future
+    title: Future
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Future
+    entries: []
+  - namespace: InteractiveUtils
+    title: InteractiveUtils
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:InteractiveUtils
+    entries:
+      - '@code_llvm'
+      - '@code_lowered'
+      - '@code_native'
+      - '@code_typed'
+      - '@code_warntype'
+      - '@edit'
+      - '@functionloc'
+      - '@less'
+      - '@time_imports'
+      - '@which'
+      - apropos
+      - clipboard
+      - code_llvm
+      - code_native
+      - code_warntype
+      - edit
+      - less
+      - methodswith
+      - peakflops
+      - subtypes
+      - supertypes
+      - varinfo
+      - versioninfo
+  - namespace: LazyArtifacts
+    title: LazyArtifacts
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:LazyArtifacts
+    entries:
+      - '@artifact_str'
+      - artifact_exists
+      - artifact_hash
+      - artifact_meta
+      - artifact_path
+      - find_artifacts_toml
+      - select_downloadable_artifacts
+  - namespace: LibCURL
+    title: LibCURL
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:LibCURL
+    entries:
+      - curl_easy_cleanup
+      - curl_easy_duphandle
+      - curl_easy_escape
+      - curl_easy_getinfo
+      - curl_easy_init
+      - curl_easy_pause
+      - curl_easy_perform
+      - curl_easy_recv
+      - curl_easy_reset
+      - curl_easy_send
+      - curl_easy_setopt
+      - curl_easy_strerror
+      - curl_easy_unescape
+      - curl_escape
+      - curl_formfree
+      - curl_formget
+      - curl_free
+      - curl_getdate
+      - curl_getenv
+      - curl_global_cleanup
+      - curl_global_init
+      - curl_global_init_mem
+      - curl_global_sslset
+      - curl_mime_addpart
+      - curl_mime_data
+      - curl_mime_data_cb
+      - curl_mime_encoder
+      - curl_mime_filedata
+      - curl_mime_filename
+      - curl_mime_free
+      - curl_mime_headers
+      - curl_mime_init
+      - curl_mime_name
+      - curl_mime_subparts
+      - curl_mime_type
+      - curl_multi_add_handle
+      - curl_multi_assign
+      - curl_multi_cleanup
+      - curl_multi_fdset
+      - curl_multi_info_read
+      - curl_multi_init
+      - curl_multi_perform
+      - curl_multi_remove_handle
+      - curl_multi_setopt
+      - curl_multi_socket
+      - curl_multi_socket_action
+      - curl_multi_socket_all
+      - curl_multi_strerror
+      - curl_multi_timeout
+      - curl_multi_wait
+      - curl_pushheader_byname
+      - curl_pushheader_bynum
+      - curl_share_cleanup
+      - curl_share_init
+      - curl_share_setopt
+      - curl_share_strerror
+      - curl_slist_append
+      - curl_slist_free_all
+      - curl_strequal
+      - curl_strnequal
+      - curl_unescape
+      - curl_version
+      - curl_version_info
+  - namespace: Libdl
+    title: Libdl
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Libdl
+    entries:
+      - BundledLazyLibraryPath
+      - dlclose
+      - dllist
+      - dlopen
+      - dlopen_e
+      - dlpath
+      - dlsym
+      - dlsym_e
+      - find_library
+  - namespace: LibGit2
+    title: LibGit2
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:LibGit2
+    entries:
+      - with
   - namespace: LinearAlgebra
-    title: LinearAlgebra module
+    title: LinearAlgebra
     target: Julia 1.11
     sourceKind: runtime
     sourceRef: julia:1.11:LinearAlgebra
     entries:
       - /
       - \
+      - ×
+      - ⋅
       - adjoint
       - adjoint!
       - axpby!
@@ -1029,10 +1276,91 @@ namespaces:
       - tril!
       - triu
       - triu!
-      - ×
-      - ⋅
+  - namespace: Logging
+    title: Logging
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Logging
+    entries:
+      - '@debug'
+      - '@error'
+      - '@info'
+      - '@logmsg'
+      - '@warn'
+      - current_logger
+      - disable_logging
+      - global_logger
+      - with_logger
+  - namespace: Markdown
+    title: Markdown
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Markdown
+    entries:
+      - '@doc_str'
+      - '@md_str'
+      - html
+      - latex
+  - namespace: Mmap
+    title: Mmap
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Mmap
+    entries:
+      - mmap
+  - namespace: NetworkOptions
+    title: NetworkOptions
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:NetworkOptions
+    entries:
+      - ca_roots
+      - ca_roots_path
+      - ssh_dir
+      - ssh_key_name
+      - ssh_key_pass
+      - ssh_key_path
+      - ssh_known_hosts_file
+      - ssh_known_hosts_files
+      - ssh_pub_key_path
+      - verify_host
+  - namespace: Pkg
+    title: Pkg
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Pkg
+    entries:
+      - '@pkg_str'
+      - activate
+      - add
+      - build
+      - compat
+      - develop
+      - free
+      - gc
+      - generate
+      - instantiate
+      - pin
+      - precompile
+      - redo
+      - resolve
+      - rm
+      - status
+      - test
+      - undo
+      - update
+      - why
+  - namespace: Printf
+    title: Printf
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Printf
+    entries:
+      - '@printf'
+      - '@sprintf'
+      - format
   - namespace: Random
-    title: Random module
+    title: Random
     target: Julia 1.11
     sourceKind: runtime
     sourceRef: julia:1.11:Random
@@ -1053,17 +1381,103 @@ namespaces:
       - seed!
       - shuffle
       - shuffle!
-  - namespace: Printf
-    title: Printf module
+  - namespace: Serialization
+    title: Serialization
     target: Julia 1.11
     sourceKind: runtime
-    sourceRef: julia:1.11:Printf
+    sourceRef: julia:1.11:Serialization
     entries:
-      - '@printf'
-      - '@sprintf'
-      - format
+      - deserialize
+      - serialize
+  - namespace: SHA
+    title: SHA
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:SHA
+    entries:
+      - digest!
+      - hmac_sha1
+      - hmac_sha2_224
+      - hmac_sha2_256
+      - hmac_sha2_384
+      - hmac_sha2_512
+      - hmac_sha224
+      - hmac_sha256
+      - hmac_sha3_224
+      - hmac_sha3_256
+      - hmac_sha3_384
+      - hmac_sha3_512
+      - hmac_sha384
+      - hmac_sha512
+      - sha1
+      - sha2_224
+      - sha2_256
+      - sha2_384
+      - sha2_512
+      - sha224
+      - sha256
+      - sha3_224
+      - sha3_256
+      - sha3_384
+      - sha3_512
+      - sha384
+      - sha512
+      - update!
+  - namespace: Sockets
+    title: Sockets
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Sockets
+    entries:
+      - '@ip_str'
+      - accept
+      - bind
+      - connect
+      - getaddrinfo
+      - getalladdrinfo
+      - getipaddr
+      - getipaddrs
+      - getnameinfo
+      - getpeername
+      - getsockname
+      - islinklocaladdr
+      - join_multicast_group
+      - leave_multicast_group
+      - listen
+      - listenany
+      - recv
+      - recvfrom
+      - send
+  - namespace: SparseArrays
+    title: SparseArrays
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:SparseArrays
+    entries:
+      - blockdiag
+      - droptol!
+      - dropzeros
+      - dropzeros!
+      - findnz
+      - fkeep!
+      - ftranspose!
+      - issparse
+      - nnz
+      - nonzeros
+      - nzrange
+      - permute
+      - rowvals
+      - sparse
+      - sparse_hcat
+      - sparse_hvcat
+      - sparse_vcat
+      - sparsevec
+      - spdiagm
+      - sprand
+      - sprandn
+      - spzeros
   - namespace: Statistics
-    title: Statistics module
+    title: Statistics
     target: Julia 1.11
     sourceKind: runtime
     sourceRef: julia:1.11:Statistics
@@ -1081,11 +1495,57 @@ namespaces:
       - stdm
       - var
       - varm
+  - namespace: StyledStrings
+    title: StyledStrings
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:StyledStrings
+    entries:
+      - '@styled_str'
+      - addface!
+      - annotate!
+      - annotatedstring
+      - annotations
+      - styled
+      - withfaces
+  - namespace: SuiteSparse
+    title: SuiteSparse
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:SuiteSparse
+    entries: []
+  - namespace: Tar
+    title: Tar
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:Tar
+    entries: []
+  - namespace: TOML
+    title: TOML
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:TOML
+    entries:
+      - parse
+      - parsefile
+      - print
+      - tryparse
+      - tryparsefile
   - namespace: Unicode
-    title: Unicode module
+    title: Unicode
     target: Julia 1.11
     sourceKind: runtime
     sourceRef: julia:1.11:Unicode
     entries:
       - graphemes
       - isequal_normalized
+  - namespace: UUIDs
+    title: UUIDs
+    target: Julia 1.11
+    sourceKind: runtime
+    sourceRef: julia:1.11:UUIDs
+    entries:
+      - uuid_version
+      - uuid1
+      - uuid4
+      - uuid5

@@ -1,10 +1,80 @@
 language: tcl
+catalog:
+  target: Tcl 8.6
+  sourceKind: runtime
+  sourceRef: python:3.12:tclsh-info-commands
 namespaces:
-  - namespace: core
-    title: standalone core commands
+  - namespace: array
+    title: array
     target: Tcl 8.6
     sourceKind: runtime
-    sourceRef: python:3.12
+    sourceRef: python:3.12:array
+    entries:
+      - anymore
+      - donesearch
+      - exists
+      - get
+      - names
+      - nextelement
+      - set
+      - size
+      - startsearch
+      - statistics
+      - unset
+  - namespace: binary
+    title: binary
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:binary
+    entries:
+      - decode
+      - encode
+      - format
+      - scan
+  - namespace: chan
+    title: chan
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:chan
+    entries:
+      - blocked
+      - close
+      - configure
+      - copy
+      - create
+      - eof
+      - event
+      - flush
+      - gets
+      - names
+      - pending
+      - pipe
+      - pop
+      - postevent
+      - push
+      - puts
+      - read
+      - seek
+      - tell
+      - truncate
+  - namespace: clock
+    title: clock
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:clock
+    entries:
+      - add
+      - clicks
+      - format
+      - microseconds
+      - milliseconds
+      - scan
+      - seconds
+  - namespace: core
+    title: core
+    target: Tcl 8.6
+    sourceKind: runtime
+    sourceRef: python:3.12:core
     entries:
       - after
       - append
@@ -95,77 +165,11 @@ namespaces:
       - while
       - yield
       - yieldto
-  - namespace: array
-    title: array ensemble
-    target: Tcl 8.6
-    sourceKind: runtime
-    sourceRef: python:3.12
-    entries:
-      - anymore
-      - donesearch
-      - exists
-      - get
-      - names
-      - nextelement
-      - set
-      - size
-      - startsearch
-      - statistics
-      - unset
-  - namespace: binary
-    title: binary ensemble
-    target: Tcl 8.6
-    sourceKind: runtime
-    sourceRef: python:3.12
-    entries:
-      - decode
-      - encode
-      - format
-      - scan
-  - namespace: chan
-    title: chan ensemble
-    target: Tcl 8.6
-    sourceKind: runtime
-    sourceRef: python:3.12
-    entries:
-      - blocked
-      - close
-      - configure
-      - copy
-      - create
-      - eof
-      - event
-      - flush
-      - gets
-      - names
-      - pending
-      - pipe
-      - pop
-      - postevent
-      - push
-      - puts
-      - read
-      - seek
-      - tell
-      - truncate
-  - namespace: clock
-    title: clock ensemble
-    target: Tcl 8.6
-    sourceKind: runtime
-    sourceRef: python:3.12
-    entries:
-      - add
-      - clicks
-      - format
-      - microseconds
-      - milliseconds
-      - scan
-      - seconds
   - namespace: dict
-    title: dict ensemble
+    title: dict
     target: Tcl 8.6
     sourceKind: runtime
-    sourceRef: python:3.12
+    sourceRef: python:3.12:dict
     entries:
       - append
       - create
@@ -188,10 +192,10 @@ namespaces:
       - values
       - with
   - namespace: encoding
-    title: encoding ensemble
+    title: encoding
     target: Tcl 8.6
     sourceKind: runtime
-    sourceRef: python:3.12
+    sourceRef: python:3.12:encoding
     entries:
       - convertfrom
       - convertto
@@ -199,10 +203,10 @@ namespaces:
       - names
       - system
   - namespace: file
-    title: file ensemble
+    title: file
     target: Tcl 8.6
     sourceKind: runtime
-    sourceRef: python:3.12
+    sourceRef: python:3.12:file
     entries:
       - atime
       - attributes
@@ -239,10 +243,10 @@ namespaces:
       - volumes
       - writable
   - namespace: info
-    title: info ensemble
+    title: info
     target: Tcl 8.6
     sourceKind: runtime
-    sourceRef: python:3.12
+    sourceRef: python:3.12:info
     entries:
       - args
       - body
@@ -271,10 +275,10 @@ namespaces:
       - tclversion
       - vars
   - namespace: namespace
-    title: namespace ensemble
+    title: namespace
     target: Tcl 8.6
     sourceKind: runtime
-    sourceRef: python:3.12
+    sourceRef: python:3.12:namespace
     entries:
       - children
       - code
@@ -296,9 +300,9 @@ namespaces:
       - upvar
       - which
   - namespace: package
-    title: package command family
+    title: package
     target: Tcl 8.6
-    sourceKind: manual
+    sourceKind: runtime
     sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/package.htm
     entries:
       - forget
@@ -312,10 +316,10 @@ namespaces:
       - versions
       - vsatisfies
   - namespace: string
-    title: string ensemble
+    title: string
     target: Tcl 8.6
     sourceKind: runtime
-    sourceRef: python:3.12
+    sourceRef: python:3.12:string
     entries:
       - bytelength
       - cat
@@ -341,9 +345,9 @@ namespaces:
       - wordend
       - wordstart
   - namespace: zlib
-    title: zlib command family
+    title: zlib
     target: Tcl 8.6
-    sourceKind: manual
+    sourceKind: runtime
     sourceRef: https://www.tcl-lang.org/man/tcl8.6/TclCmd/zlib.htm
     entries:
       - adler32

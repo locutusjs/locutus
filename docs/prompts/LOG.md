@@ -2577,3 +2577,207 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - “Tracked scope is complete” and “discovery is complete” are different guarantees; we now need both.
   - The right canonical layer is namespace/source metadata, not more decisions in the triage file.
+
+### Iteration 129
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Stop product work until target-surface discovery is exhaustive and sane for the next language areas we want to expand.
+  - Make `docs/upstream-surface-scope.yml` the explicit planning source for future expansion work, not just a passive validation file.
+  - Add a canonical namespace-audit layer so we can prove when a language scope is missing official core/stdlib namespaces before we debate implementation.
+- Progress:
+  - Added language-level namespace-catalog metadata to the upstream-scope model and a new `audit:upstream-scope` command for languages that can discover their official namespace list directly.
+  - Added language-level `defaultNamespace` support to the inventory so broad scope expansions can stay sane without one handwritten namespace block per module.
+  - Refactored Python upstream discovery to derive its tracked namespace list from `docs/upstream-surface-scope.yml` instead of a hardcoded module table, keeping only a small config map for import-path/module-owner quirks.
+  - Tightened Python canonical namespace discovery from raw `sys.stdlib_module_names` to `importable-stdlib-modules` in the parity target container, which avoids platform-specific false positives like `msilib` on Linux.
+  - Backfilled Python scope from that canonical runtime source, which brought in a broad stdlib module surface including long-missing namespaces such as `datetime`, while keeping `urllib.parse` as an explicitly tracked submodule.
+  - Regenerated the checked-in Python upstream snapshot from the broadened scope and confirmed the full Python upstream-surface check stays green under the new language-level default.
+  - Updated `CORE_MAINTAINER.md` so maintainers are now supposed to audit `docs/upstream-surface-scope.yml` before resuming product work, and updated the upstream-surface docs with the new scope-audit step.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn audit:upstream-scope python`
+  - `corepack yarn enumerate:upstream-surface python`
+  - `corepack yarn test:upstream-surface python`
+  - `corepack yarn lint:ts`
+- Key learnings:
+  - The missing piece was not better per-function discovery inside already tracked namespaces; it was a first-class audit over official namespace catalogs.
+  - Language-level namespace defaults are the practical tool that makes “track everything, then triage sanely” feasible without turning the inventory into pure clerical work.
+
+### Iteration 130
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Make canonical namespace discovery self-describing and enforce its provenance, not just the discovered names.
+  - Remove unsafe runtime side effects from discovery itself so “canonical” does not mean “import arbitrary modules and hope”.
+  - Fix the remaining performance bottlenecks in batched discovery so broad core/stdlib audits stay practical.
+- Progress:
+  - Reworked canonical namespace discovery to use an explicit namespace-catalog contract rather than a bare string list, so audit now validates the discovered `target`, `sourceKind`, and `sourceRef` alongside namespace names.
+  - Updated the runtime-backed catalog adapters for Python, Go, Julia, R, Elixir, Ruby, PHP, and Tcl to expose that richer namespace-catalog metadata directly instead of relying on the scope file alone.
+  - Removed Python `antigravity` from canonical scope and runtime namespace discovery so upstream enumeration stays side-effect-safe instead of importing a module that can open a browser during catalog generation.
+  - Batched Go upstream surface discovery into one container run and raised the generic Docker output buffer, eliminating the old “one container per namespace” cost and the new `ENOBUFS` failure mode for large package sets.
+  - Added canonical namespace catalogs for PHP and Tcl as well, bringing more of the already-shipped/runtime-backed languages under the same `audit:upstream-scope` discipline.
+  - Re-enumerated the runtime-backed snapshots for Python, Go, Julia, R, Elixir, Ruby, PHP, and Tcl, then re-injected the mirrored website data so the checked-in artifacts match the new canonical discovery layer again.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn lint:ts`
+  - `corepack yarn audit:upstream-scope python golang julia r elixir ruby php tcl`
+  - `corepack yarn enumerate:upstream-surface python golang julia r elixir ruby php tcl`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - “Deterministic discovery” needs three properties at once: canonical source, side-effect-safe enumeration, and provenance checks; any one missing weakens the whole claim.
+  - Broad runtime-backed catalog work becomes tractable once the expensive languages batch inside a single container session instead of paying container startup per namespace.
+
+### Iteration 131
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Remove the last split-brain in the discovery flow so every supported language has both a canonical namespace catalog and a deterministic `discover()` path.
+  - Keep `enumerate:upstream-surface` unified across runtime-backed and snapshot-backed languages without breaking the stricter live-only meaning of `refresh:upstream-surface`.
+- Progress:
+  - Added language-level `namespaceCatalog` metadata for every remaining supported language in `docs/upstream-surface-scope.yml`, so scope audit is now all-language rather than runtime-language-only.
+  - Added a shared `loadRepoUpstreamSurfaceSnapshot()` helper and wired snapshot-backed languages through real `upstreamSurface.discover()` implementations instead of the old snapshot bypass in the enumeration script.
+  - Added explicit `discoverMode` metadata so `enumerate:upstream-surface` can stay unified while `refresh:upstream-surface` still means live source refresh only.
+  - Extended unit coverage to require both `discoverNamespaceCatalog` and `discover` for every supported language.
+  - Re-ran full `enumerate:upstream-surface` successfully across all supported languages, proving the all-language discovery path now works end-to-end.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn audit:upstream-scope`
+  - `corepack yarn enumerate:upstream-surface`
+  - `corepack yarn test:upstream-surface`
+- Key learnings:
+  - A discovery system is not really deterministic if part of the language set still uses a hidden fallback path.
+  - Unifying the enumeration entrypoint matters more than whether a given language refreshes live from Docker or deterministically from a version-tagged canonical snapshot.
+
+### Iteration 132
+
+2026-03-18
+
+- **Area: Exhaustive upstream-scope overhaul**
+- Plan:
+  - Remove the last fake-discovery layer so snapshot-backed languages also extract their members from canonical upstream sources instead of reloading checked-in snapshot files.
+  - Keep snapshots as checked-in artifacts only, not as the source of truth for discovery.
+- Progress:
+  - Added a shared canonical-source extraction layer for the previously snapshot-backed languages in `test/parity/lib/upstream-surface-canonical.ts`.
+  - Switched AWK, C, Perl, PowerShell, Rust, Haskell, Kotlin, and Swift upstream discovery over to real canonical extraction from runtime, official docs, or official source-backed JSON instead of repo snapshot reuse.
+  - Added `discoverUsesDocker` metadata so all-language enumeration can stay unified without forcing Docker for docs/source-backed discovery.
+  - Re-enumerated the affected upstream-surface snapshots from canonical sources and re-injected the mirrored website data.
+  - Tightened the C extractor so `abs` only lives under `stdlib`, matching our catalog mapping and comparison rules.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn audit:upstream-scope`
+  - `corepack yarn enumerate:upstream-surface`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:build`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - “Deterministic discovery” is only honest when canonical extraction is real for every supported language, not just for the runtime-backed ones.
+  - Checked-in snapshots are valuable build artifacts, but they must be the output of discovery, never its hidden input.
+
+### Iteration 133
+
+2026-03-18
+
+- **Area: Raw discover -> fold split**
+- Plan:
+  - Remove the last architectural mistake where saved scope still constrained raw discovery.
+  - Make `discover:upstream-surface` materialize raw canonical catalogs directly from runtime/docs/source, then keep `fold:upstream-surface` as the explicit step that updates tracked snapshots.
+- Progress:
+  - Added a raw discovery builder in `test/parity/lib/upstream-surface-discovery.ts` and an explicit fold command in `scripts/fold-upstream-surface.ts`.
+  - Reworked `scripts/upstream-surface-enumeration.ts` so raw discovery writes into `test/parity/fixtures/upstream-surface-discovered` without reading tracked scope.
+  - Removed saved-scope namespace dependence from the remaining canonical extractors and handlers:
+    - `awk`, `c`, `perl`, `rust`, `powershell`
+    - `clojure`, `haskell`, `swift`
+    - `kotlin` now derives a broad raw stdlib catalog from the official Kotlin all-types index
+  - Switched Clojure namespace discovery to actual `ns` declarations from the official jar instead of path guessing.
+  - Switched Haskell discovery to one batched `ghci` session and Swift discovery to an in-container symbolgraph reduction step, so raw discovery stays deterministic without turning into a timeout or `ENOBUFS` problem.
+  - Updated `docs/upstream-surface-inventory.md` and `CORE_MAINTAINER.md` so `docs/upstream-surface-scope.yml` is now explicitly the tracked fold layer, not the thing that defines what raw discovery is allowed to see.
+- Validation:
+  - `corepack yarn lint:ts`
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn discover:upstream-surface awk c clojure`
+  - `corepack yarn discover:upstream-surface haskell swift`
+  - `corepack yarn discover:upstream-surface kotlin`
+  - `corepack yarn discover:upstream-surface perl powershell rust`
+
+### Iteration 134
+
+2026-03-18
+
+- **Area: Post-discovery contract cleanup**
+- Plan:
+  - Run council refactor ideas against the new raw discover -> fold architecture.
+  - Accept only the refactors that tighten the contract instead of pulling the design back toward scope-guided discovery.
+- Progress:
+  - Kept the inventory-only provenance fix: `buildInventoryOnlyUpstreamSurface()` now derives namespace-catalog metadata from the top-level discovered snapshot instead of fabricating language-level provenance from the first namespace entry.
+  - Rejected the suggestion to make `fold:upstream-surface` mechanically apply tracked scope, because under the new design fold is intentionally just the “accept this raw catalog into tracked snapshot YAML” step; tracked scope remains an audit/planning layer, not a discovery or fold filter.
+  - Updated `CORE_MAINTAINER.md` and `docs/upstream-surface-inventory.md` to reflect that contract more precisely.
+- Validation:
+  - `~/code/dotfiles/bin/council.ts refactor`
+  - `corepack yarn check`
+- Key learnings:
+  - The reliable shape is `discover -> inspect/fix -> fold -> triage`; any saved list earlier than fold weakens the whole claim.
+  - Broad raw discovery becomes workable once heavy languages reduce inside the container instead of streaming giant canonical artifacts back to Node.
+
+### Iteration 135
+
+2026-03-24
+
+- **Area: Exhaustive canonical raw discovery**
+- Plan:
+  - Prove that `discover:upstream-surface` can materialize a full raw catalog for every supported language from canonical runtime/docs/source without being guided by saved scope.
+  - Make `fold` the explicit acceptance step, then bring the saved scope metadata back into sync with the accepted raw catalogs.
+- Progress:
+  - Broadened Python namespace discovery from top-level-only runtime modules to the official Python 3.12 module index intersected with importable modules on `python:3.12`, which surfaced nested stdlib namespaces like `collections.abc`, `urllib.parse`, and `email.mime.text`.
+  - Hardened canonical fetches with retries and failure eviction, then throttled docs/source-backed namespace extraction centrally so all-language discovery no longer hammers official docs sites with unbounded parallel fetches.
+  - Replaced Perl's flaky `perldoc.perl.org` dependency with runtime-backed discovery from `perl:5.40`, using the installed core module tree plus local builtins/module inspection.
+  - Made Perl raw discovery robust against noisy module loads by isolating stdout/stderr and parsing a marked JSON payload instead of trusting the whole process stream.
+  - Changed Perl surface discovery to keep canonically discovered namespaces even when a module does not load cleanly, so raw namespace coverage stays exhaustive instead of silently shrinking to “only loadable modules”.
+  - Folded the newly discovered Python and Perl catalogs into the tracked snapshots and regenerated their saved scope sections from the accepted folded YAMLs.
+  - Restored the missing `php` and `powershell` scope sections from tracked snapshots after a bad section splice, then re-injected website upstream-surface data.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn discover:upstream-surface`
+  - `corepack yarn fold:upstream-surface`
+  - `corepack yarn audit:upstream-scope python perl`
+  - `corepack yarn test:upstream-surface python perl`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+- Key learnings:
+  - The saved scope manifest must trail raw discovery, not define it; when discovery broadens, the right response is to fold and regenerate scope, not to trim discovery back down.
+  - For docs-heavy languages, deterministic discovery depends as much on disciplined fetch orchestration as on picking the right canonical source in the first place.
+
+### Iteration 136
+
+2026-03-24
+
+- **Area: Exhaustive canonical raw discovery**
+- Plan:
+  - Remove the remaining runtime-noise and stale-decision blind spots from the raw discovery pipeline so `discover -> fold -> triage` holds cleanly for Ruby and Elixir too.
+  - Make the all-language checks strict enough that normal enumeration, scope audit, website data, and stale decision reporting all agree on the same accepted raw catalog.
+- Progress:
+  - Switched Ruby namespace discovery from loaded runtime constants to the official Ruby 3.3 docs table of contents, then kept per-namespace member discovery runtime-backed so lazy stdlib modules like `CSV`, `JSON`, and `Set` can still resolve into callable surfaces without the namespace universe shrinking to “what happened to be loaded”.
+  - Switched Elixir namespace discovery from `Application.spec(:modules)` to the official Elixir 1.18 docs sidebar manifest, which removed internal runtime-only modules from raw discovery and aligned the accepted namespace set with the actual public stdlib surface.
+  - Centralized canonical fetch timeouts/retries and Haskell tool path resolution so docs/source-backed discovery stays deterministic under network jitter and versioned toolchain paths.
+  - Fixed stale-decision accounting so shipped functions that also exist upstream no longer mark exact decisions, wildcard rules, or defaults as “used”, which surfaced and allowed cleanup of stale Go `wanted` decisions.
+  - Folded the newly accepted Ruby and Elixir raw catalogs into tracked snapshots, regenerated their saved scope entries from the folded YAML, and re-injected the mirrored website upstream-surface data.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn discover:upstream-surface ruby elixir`
+  - `corepack yarn fold:upstream-surface ruby elixir`
+  - `corepack yarn audit:upstream-scope`
+  - `corepack yarn test:upstream-surface`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:verify`
+  - `corepack yarn check`
+- Key learnings:
+  - Raw discovery needs canonical namespace catalogs for public surface area and runtime/docs extraction only for members; using runtime-loaded namespaces directly reintroduces hidden under-discovery.
+  - A triage inventory is only trustworthy if stale decisions are measured against both accepted upstream entries and shipped entries, not just against what remains unimplemented.

@@ -14,6 +14,7 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverCUpstreamNamespaceCatalog, discoverCUpstreamSurface } from '../upstream-surface-canonical.ts'
 
 type ReturnType = 'bool' | 'int' | 'double' | 'string' | 'char'
 
@@ -368,6 +369,10 @@ export const cHandler: LanguageHandler = {
   },
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverCUpstreamSurface,
+    discoverMode: 'live',
+    discoverUsesDocker: false,
+    discoverNamespaceCatalog: discoverCUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.name === 'abs' ? 'stdlib' : func.category,
       name: func.name,

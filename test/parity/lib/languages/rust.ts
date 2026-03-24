@@ -4,10 +4,26 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import { discoverRustUpstreamNamespaceCatalog, discoverRustUpstreamSurface } from '../upstream-surface-canonical.ts'
 
 export const RUST_SKIP_LIST = new Set<string>([
   // None currently
 ])
+
+const RUST_NAMESPACE_MAP: Record<string, string> = {
+  bool: 'primitive:bool',
+  char: 'module:char',
+  cmp: 'module:cmp',
+  f32: 'primitive:f32',
+  f64: 'primitive:f64',
+  i32: 'primitive:i32',
+  option: 'enum:Option:option',
+  result: 'enum:Result:result',
+  slice: 'primitive:slice',
+  str: 'primitive:str',
+  u32: 'primitive:u32',
+  usize: 'primitive:usize',
+}
 
 function stripTrailingComment(code: string): string {
   let inString: string | null = null
@@ -404,8 +420,12 @@ export const rustHandler: LanguageHandler = {
   ],
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverRustUpstreamSurface,
+    discoverMode: 'live',
+    discoverUsesDocker: false,
+    discoverNamespaceCatalog: discoverRustUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
-      namespace: func.category,
+      namespace: RUST_NAMESPACE_MAP[func.category] ?? func.category,
       name: func.name,
     }),
   },

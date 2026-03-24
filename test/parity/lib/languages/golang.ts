@@ -5,7 +5,7 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Go package mapping: function name → Go package
 const GO_PACKAGES: Record<string, string> = {
@@ -99,105 +99,195 @@ const GO_PACKAGES: Record<string, string> = {
 }
 
 const GO_DOCKER_IMAGE = 'golang:1.23'
-const GO_NAMESPACE_PACKAGES: Record<string, { packagePath: string; title: string }> = {
-  base64: { packagePath: 'encoding/base64', title: 'encoding/base64 package' },
-  bytes: { packagePath: 'bytes', title: 'bytes package' },
-  bits: { packagePath: 'math/bits', title: 'math/bits package' },
-  cmp: { packagePath: 'cmp', title: 'cmp package' },
-  hex: { packagePath: 'encoding/hex', title: 'encoding/hex package' },
-  filepath: { packagePath: 'path/filepath', title: 'path/filepath package' },
-  maps: { packagePath: 'maps', title: 'maps package' },
-  math: { packagePath: 'math', title: 'math package' },
-  net: { packagePath: 'net', title: 'net package' },
-  path: { packagePath: 'path', title: 'path package' },
-  slices: { packagePath: 'slices', title: 'slices package' },
-  sort: { packagePath: 'sort', title: 'sort package' },
-  strconv: { packagePath: 'strconv', title: 'strconv package' },
-  strings: { packagePath: 'strings', title: 'strings package' },
-  subtle: { packagePath: 'crypto/subtle', title: 'crypto/subtle package' },
-  time: { packagePath: 'time', title: 'time package' },
-  unicode: { packagePath: 'unicode', title: 'unicode package' },
-  utf8: { packagePath: 'unicode/utf8', title: 'unicode/utf8 package' },
-  url: { packagePath: 'net/url', title: 'net/url package' },
+const GO_NAMESPACE_CATALOG_TARGET = 'Go 1.23'
+const GO_NAMESPACE_CATALOG_SOURCE_REF = 'golang:1.23:go-list-std'
+const GO_NAMESPACE_ALIASES: Record<string, string> = {
+  'crypto/subtle': 'subtle',
+  'encoding/base64': 'base64',
+  'encoding/hex': 'hex',
+  'math/bits': 'bits',
+  'net/url': 'url',
+  'path/filepath': 'filepath',
+  'unicode/utf8': 'utf8',
 }
 
-function parseGoDocFunctions(output: string): string[] {
-  return output
-    .split('\n')
-    .map((line) => line.trim())
-    .filter((line) => line.startsWith('func '))
-    .map(
-      (line) =>
-        line
-          .replace(/^func\s+/, '')
-          .split(/[[(]/)[0]
-          ?.trim() ?? '',
-    )
-    .filter(Boolean)
-    .sort()
+// Keep packages whose canonical stdlib path ends in `/internal`; exclude only
+// top-level `internal/*` and nested subpackages below an internal package.
+const GO_PACKAGE_FILTERS = [/^cmd\//, /^internal\//, /^vendor\//, /\/internal\//]
+
+function normalizeGoNamespace(packagePath: string): string {
+  return GO_NAMESPACE_ALIASES[packagePath] ?? packagePath
 }
 
-function parseGoDocMethods(output: string): string[] {
-  return output
-    .split('\n')
-    .map((line) => line.trim())
-    .filter((line) => line.startsWith('func ('))
-    .map(
-      (line) =>
-        line
-          .replace(/^func\s+\([^)]*\)\s+/, '')
-          .split('(')[0]
-          ?.trim() ?? '',
-    )
-    .filter(Boolean)
-    .sort()
+function goPackagePathFromNamespace(namespace: string): string {
+  const aliasEntry = Object.entries(GO_NAMESPACE_ALIASES).find(([, alias]) => alias === namespace)
+  return aliasEntry?.[0] ?? namespace
 }
+
+function discoverGoUpstreamNamespaces() {
+  const result = runInDocker(GO_DOCKER_IMAGE, ['go', 'list', 'std'])
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Go upstream namespaces')
+  }
+
+  return [
+    ...new Set(
+      result.output
+        .trim()
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .filter((packagePath) => packagePath !== 'unsafe')
+        .filter((packagePath) => !GO_PACKAGE_FILTERS.some((pattern) => pattern.test(packagePath)))
+        .map((packagePath) => normalizeGoNamespace(packagePath)),
+    ),
+  ].sort()
+}
+
+function discoverGoUpstreamNamespaceCatalog() {
+  return {
+    target: GO_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'runtime' as const,
+    sourceRef: GO_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: discoverGoUpstreamNamespaces(),
+  }
+}
+
+function shellQuote(value: string): string {
+  return `'${value.replace(/'/g, `'\"'\"'`)}'`
+}
+
+function parseGoReceiverType(receiver: string): string | null {
+  const token = receiver.trim().split(/\s+/).pop()?.replace(/^\*+/, '').replace(/\[.*$/, '').trim()
+
+  return token && /^[A-Z][A-Za-z0-9_]*$/.test(token) ? token : null
+}
+
+function parseGoDocSurface(namespace: string, output: string): Array<{ namespace: string; entries: string[] }> {
+  const packageEntries = new Set<string>()
+  const typeEntries = new Map<string, Set<string>>()
+
+  for (const rawLine of output.split('\n')) {
+    const line = rawLine.trim()
+    if (!line) {
+      continue
+    }
+
+    const methodMatch = line.match(/^func\s+\(([^)]*)\)\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/)
+    if (methodMatch?.[1] && methodMatch?.[2]) {
+      const receiverType = parseGoReceiverType(methodMatch[1])
+      if (receiverType) {
+        const typeNamespace = `${namespace}.${receiverType}`
+        const entries = typeEntries.get(typeNamespace) ?? new Set<string>()
+        entries.add(methodMatch[2])
+        typeEntries.set(typeNamespace, entries)
+      }
+      continue
+    }
+
+    const functionMatch = line.match(/^func\s+([A-Za-z_][A-Za-z0-9_]*)\s*(?:\[|\()/)
+    if (functionMatch?.[1]) {
+      packageEntries.add(functionMatch[1])
+    }
+  }
+
+  return [
+    {
+      namespace,
+      entries: [...packageEntries].sort(),
+    },
+    ...[...typeEntries.entries()]
+      .map(([typeNamespace, entries]) => ({
+        namespace: typeNamespace,
+        entries: [...entries].sort(),
+      }))
+      .sort((left, right) => left.namespace.localeCompare(right.namespace)),
+  ]
+}
+
+let cachedGoUpstreamSurface: ReturnType<typeof buildDiscoveredUpstreamSurfaceSnapshot> | null = null
 
 function discoverGoUpstreamSurface() {
-  const namespaces = Object.entries(GO_NAMESPACE_PACKAGES).map(([namespace, config]) => {
-    const result = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', config.packagePath])
-    if (!result.success) {
-      throw new Error(result.error || `Unable to discover Go upstream surface for ${config.packagePath}`)
-    }
+  if (cachedGoUpstreamSurface) {
+    return cachedGoUpstreamSurface
+  }
 
-    const entries = parseGoDocFunctions(result.output)
-
-    if (namespace === 'time') {
-      const methodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'time.Time'])
-      if (!methodResult.success) {
-        throw new Error(methodResult.error || 'Unable to discover Go time.Time methods')
-      }
-      entries.push(...parseGoDocMethods(methodResult.output))
-    }
-
-    if (namespace === 'url') {
-      const urlMethodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'net/url.URL'])
-      if (!urlMethodResult.success) {
-        throw new Error(urlMethodResult.error || 'Unable to discover Go net/url.URL methods')
-      }
-      const valuesMethodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'net/url.Values'])
-      if (!valuesMethodResult.success) {
-        throw new Error(valuesMethodResult.error || 'Unable to discover Go net/url.Values methods')
-      }
-      entries.push(...parseGoDocMethods(urlMethodResult.output))
-      entries.push(...parseGoDocMethods(valuesMethodResult.output))
-    }
-
-    if (namespace === 'base64') {
-      const encodingMethodResult = runInDocker(GO_DOCKER_IMAGE, ['go', 'doc', 'encoding/base64.Encoding'])
-      if (!encodingMethodResult.success) {
-        throw new Error(encodingMethodResult.error || 'Unable to discover Go encoding/base64.Encoding methods')
-      }
-      entries.push(...parseGoDocMethods(encodingMethodResult.output))
-    }
-
+  const packageNamespaces = discoverGoUpstreamNamespaces()
+  const namespaceConfigs = packageNamespaces.map((namespace) => {
+    const docTarget = goPackagePathFromNamespace(namespace)
     return {
       namespace,
-      entries: [...new Set(entries)].sort(),
+      docTarget,
     }
   })
+  const beginMarker = '__LOCUTUS_NAMESPACE__ '
+  const endMarker = '__LOCUTUS_END__'
+  const script = [
+    'set -eu',
+    ...namespaceConfigs.flatMap(({ namespace, docTarget }) => [
+      `printf '%s\\n' ${shellQuote(`${beginMarker}${namespace}`)}`,
+      `go doc -all ${shellQuote(docTarget)}`,
+      `printf '%s\\n' ${shellQuote(endMarker)}`,
+    ]),
+  ].join('\n')
+  const result = runInDocker(GO_DOCKER_IMAGE, ['sh', '-c', script], { timeout: 120000 })
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Go upstream surface')
+  }
 
-  return buildScopedUpstreamSurfaceSnapshot('golang', namespaces)
+  const namespaces: Array<{ namespace: string; entries: string[] }> = []
+  let currentNamespace: string | undefined
+  let currentOutput: string[] = []
+
+  for (const line of result.output.split('\n')) {
+    if (line.startsWith(beginMarker)) {
+      currentNamespace = line.slice(beginMarker.length)
+      currentOutput = []
+      continue
+    }
+
+    if (line === endMarker) {
+      if (!currentNamespace) {
+        throw new Error('Malformed Go upstream surface output: end marker without namespace')
+      }
+
+      const namespaceConfig = namespaceConfigs.find((namespace) => namespace.namespace === currentNamespace)
+      if (!namespaceConfig) {
+        throw new Error(`Malformed Go upstream surface output: unknown namespace ${currentNamespace}`)
+      }
+
+      namespaces.push(...parseGoDocSurface(currentNamespace, currentOutput.join('\n')))
+      currentNamespace = undefined
+      currentOutput = []
+      continue
+    }
+
+    if (currentNamespace) {
+      currentOutput.push(line)
+    }
+  }
+
+  if (currentNamespace) {
+    throw new Error(`Malformed Go upstream surface output: missing end marker for ${currentNamespace}`)
+  }
+
+  cachedGoUpstreamSurface = buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'golang',
+    catalog: {
+      target: GO_NAMESPACE_CATALOG_TARGET,
+      sourceKind: 'runtime',
+      sourceRef: GO_NAMESPACE_CATALOG_SOURCE_REF,
+    },
+    namespaces: namespaces.map((namespace) => ({
+      ...namespace,
+      title: namespace.namespace,
+      sourceRef: `${GO_DOCKER_IMAGE}:${goPackagePathFromNamespace(namespace.namespace.split('.')[0] ?? namespace.namespace)}${
+        namespace.namespace.includes('.') ? `.${namespace.namespace.split('.').slice(1).join('.')}` : ''
+      }`,
+    })),
+  })
+
+  return cachedGoUpstreamSurface
 }
 
 const GO_PACKAGE_OVERRIDES: Record<string, string> = {
@@ -1702,9 +1792,36 @@ export const golangHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverGoUpstreamSurface,
-    getLocutusEntry: (func) => ({
-      namespace: func.category,
-      name: func.name === 'Index2' ? 'Index' : func.name === 'EncodeQuery' ? 'Encode' : func.name,
-    }),
+    discoverNamespaceCatalog: discoverGoUpstreamNamespaceCatalog,
+    getLocutusEntry: (func) => {
+      if (
+        func.category === 'time' &&
+        ['Add', 'AddDate', 'After', 'Before', 'Equal', 'Format', 'Round', 'Sub', 'Truncate'].includes(func.name)
+      ) {
+        return {
+          namespace: 'time.Time',
+          name: func.name,
+        }
+      }
+
+      if (func.category === 'url' && func.name === 'ResolveReference') {
+        return {
+          namespace: 'url.URL',
+          name: func.name,
+        }
+      }
+
+      if (func.category === 'url' && func.name === 'EncodeQuery') {
+        return {
+          namespace: 'url.Values',
+          name: 'Encode',
+        }
+      }
+
+      return {
+        namespace: func.category,
+        name: func.name === 'Index2' ? 'Index' : func.name,
+      }
+    },
   },
 }

@@ -5,7 +5,8 @@
 import { runInDocker } from '../docker.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { fetchText } from '../upstream-surface-canonical.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // String module constants (called without parentheses in Python)
 const STRING_CONSTANTS = new Set([
@@ -26,66 +27,62 @@ export const PYTHON_SKIP_LIST = new Set<string>([
 ])
 
 const PYTHON_DOCKER_IMAGE = 'python:3.12'
-function discoverPythonUpstreamSurface() {
-  const script = `
-import builtins
-import base64
-import csv
-import calendar
-import difflib
-import bisect
-import cmath
-import collections
-import decimal
-import functools
-import heapq
-import hashlib
-import hmac
-import html
-import inspect
-import itertools
-import json
-import math
-import operator
-import random
-import re
-import statistics
-import string
-import textwrap
-import unicodedata
-import urllib.parse as urllib_parse
+const PYTHON_NAMESPACE_CATALOG_TARGET = 'Python 3.12'
+const PYTHON_NAMESPACE_CATALOG_SOURCE_REF =
+  'https://docs.python.org/3.12/py-modindex.html ∩ python:3.12:importable-documented-modules'
+const PYTHON_NAMESPACE_EXCLUDES = new Set(['antigravity'])
+const PYTHON_MODULE_INDEX_URL = 'https://docs.python.org/3.12/py-modindex.html'
 
-modules = {
-  "builtins": {"module": builtins, "allowedModules": ["builtins", "io"]},
-  "base64": {"module": base64, "allowedModules": ["base64"]},
-  "bisect": {"module": bisect, "allowedModules": ["bisect", "_bisect"]},
-  "calendar": {"module": calendar, "allowedModules": ["calendar"]},
-  "cmath": {"module": cmath, "allowedModules": ["cmath"]},
-  "collections": {"module": collections, "allowedModules": ["collections"]},
-  "csv": {"module": csv, "allowedModules": ["csv", "_csv"]},
-  "decimal": {"module": decimal, "allowedModules": ["decimal"]},
-  "functools": {"module": functools, "allowedModules": ["functools", "_functools"]},
-  "heapq": {"module": heapq, "allowedModules": ["heapq", "_heapq"]},
-  "hashlib": {"module": hashlib, "allowedModules": ["hashlib", "_hashlib"]},
-  "hmac": {"module": hmac, "allowedModules": ["hmac"]},
-  "html": {"module": html, "allowedModules": ["html"]},
-  "itertools": {"module": itertools, "allowedModules": ["itertools"]},
-  "json": {"module": json, "allowedModules": ["json"]},
-  "math": {"module": math, "allowedModules": ["math"]},
-  "operator": {"module": operator, "allowedModules": ["operator", "_operator"]},
-  "random": {"module": random, "allowedModules": ["random", "_random"]},
-  "re": {"module": re, "allowedModules": ["re"]},
-  "statistics": {"module": statistics, "allowedModules": ["statistics"]},
-  "string": {"module": string, "allowedModules": ["string"]},
-  "textwrap": {"module": textwrap, "allowedModules": ["textwrap"]},
-  "unicodedata": {"module": unicodedata, "allowedModules": ["unicodedata"]},
-  "urllib.parse": {"module": urllib_parse, "allowedModules": ["urllib.parse"]},
-  "difflib": {"module": difflib, "allowedModules": ["difflib"]},
+const PYTHON_NAMESPACE_CONFIG: Record<
+  string,
+  {
+    importName?: string
+    allowedModules?: string[]
+  }
+> = {
+  bisect: { allowedModules: ['bisect', '_bisect'] },
+  builtins: { allowedModules: ['builtins', 'io'] },
+  csv: { allowedModules: ['csv', '_csv'] },
+  functools: { allowedModules: ['functools', '_functools'] },
+  hashlib: { allowedModules: ['hashlib', '_hashlib'] },
+  heapq: { allowedModules: ['heapq', '_heapq'] },
+  operator: { allowedModules: ['operator', '_operator'] },
+  random: { allowedModules: ['random', '_random'] },
+  'urllib.parse': { importName: 'urllib.parse', allowedModules: ['urllib.parse'] },
 }
 
+async function discoverPythonUpstreamSurface() {
+  const catalog = await discoverPythonUpstreamNamespaceCatalog()
+  const namespaces = catalog.namespaces
+  const namespaceConfigs = namespaces.map((namespace) => {
+    const config = PYTHON_NAMESPACE_CONFIG[namespace] ?? {}
+    return {
+      namespace,
+      importName: config.importName ?? namespace,
+      allowedModules: [...new Set(config.allowedModules ?? [config.importName ?? namespace])].sort(),
+    }
+  })
+  const script = `
+import builtins
+import contextlib
+import io
+import importlib
+import inspect
+import json
+import string
+
+modules = ${JSON.stringify(namespaceConfigs)}
+
 snapshots = []
-for namespace, config in modules.items():
-  module = config["module"]
+for config in modules:
+  namespace = config["namespace"]
+  if namespace == "builtins":
+    module = builtins
+    is_package = False
+  else:
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+      module = importlib.import_module(config["importName"])
+    is_package = hasattr(module, "__path__")
   allowed_modules = set(config["allowedModules"])
   entries = sorted(
     name
@@ -96,7 +93,12 @@ for namespace, config in modules.items():
       or (
         callable(getattr(module, name))
         and not name[:1].isupper()
-        and getattr(getattr(module, name), "__module__", namespace) in allowed_modules
+        and (
+          getattr(getattr(module, name), "__module__", namespace) in allowed_modules
+          or (
+            is_package and getattr(getattr(module, name), "__module__", namespace).startswith(namespace + ".")
+          )
+        )
       )
     )
   )
@@ -107,7 +109,10 @@ for namespace, config in modules.items():
 
 print(json.dumps({"language": "python", "namespaces": snapshots}))
 `.trim()
-  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script])
+  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script], {
+    timeout: 120000,
+    maxBuffer: 32 * 1024 * 1024,
+  })
 
   if (!result.success) {
     throw new Error(result.error || 'Unable to discover Python upstream surface')
@@ -126,7 +131,85 @@ print(json.dumps({"language": "python", "namespaces": snapshots}))
     }>
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('python', scoped.namespaces)
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'python',
+    catalog,
+    namespaces: scoped.namespaces.map((namespace) => {
+      const config = PYTHON_NAMESPACE_CONFIG[namespace.namespace] ?? {}
+      return {
+        namespace: namespace.namespace,
+        title: namespace.namespace,
+        sourceRef: `${PYTHON_DOCKER_IMAGE}:${config.importName ?? namespace.namespace}`,
+        entries: namespace.entries,
+      }
+    }),
+  })
+}
+
+async function fetchPythonDocumentedNamespaces(): Promise<string[]> {
+  const html = await fetchText(PYTHON_MODULE_INDEX_URL)
+  const documented = [...html.matchAll(/<code class="xref">([^<]+)<\/code>/g)]
+    .map((match) => match[1]?.trim() ?? '')
+    .filter((entry) => entry && !entry.startsWith('_') && !entry.startsWith('xx'))
+
+  return [...new Set(documented.concat('builtins'))].filter((entry) => !PYTHON_NAMESPACE_EXCLUDES.has(entry)).sort()
+}
+
+function discoverImportablePythonNamespaces(documentedNamespaces: string[]): string[] {
+  const script = `
+import contextlib
+import importlib
+import io
+import json
+
+documented_namespaces = ${JSON.stringify(documentedNamespaces)}
+importable_namespaces = []
+
+for namespace in documented_namespaces:
+  if namespace == "builtins":
+    importable_namespaces.append(namespace)
+    continue
+  try:
+    with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+      importlib.import_module(namespace)
+  except Exception:
+    continue
+  importable_namespaces.append(namespace)
+
+print(json.dumps(sorted(set(importable_namespaces))))
+`.trim()
+  const result = runInDocker(PYTHON_DOCKER_IMAGE, ['python3', '-c', script], {
+    timeout: 120000,
+    maxBuffer: 8 * 1024 * 1024,
+  })
+
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to determine importable Python upstream namespaces')
+  }
+
+  const parsed = JSON.parse(result.output) as unknown
+  if (!Array.isArray(parsed)) {
+    throw new Error('Python upstream namespace output was not an array')
+  }
+
+  return parsed
+    .filter((entry): entry is string => typeof entry === 'string')
+    .filter((entry) => !PYTHON_NAMESPACE_EXCLUDES.has(entry))
+    .sort()
+}
+
+async function discoverPythonUpstreamNamespaces(): Promise<string[]> {
+  const documentedNamespaces = await fetchPythonDocumentedNamespaces()
+  return discoverImportablePythonNamespaces(documentedNamespaces)
+}
+
+async function discoverPythonUpstreamNamespaceCatalog() {
+  return {
+    target: PYTHON_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'source_manifest' as const,
+    sourceRef: PYTHON_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: await discoverPythonUpstreamNamespaces(),
+  }
 }
 
 function splitArgs(argsText: string): string[] {
@@ -442,6 +525,7 @@ export const pythonHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverPythonUpstreamSurface,
+    discoverNamespaceCatalog: discoverPythonUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

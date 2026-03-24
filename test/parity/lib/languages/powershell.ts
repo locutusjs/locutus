@@ -4,6 +4,10 @@
 
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
+import {
+  discoverPowerShellUpstreamNamespaceCatalog,
+  discoverPowerShellUpstreamSurface,
+} from '../upstream-surface-canonical.ts'
 
 export const POWERSHELL_SKIP_LIST = new Set<string>([
   // None currently
@@ -11,24 +15,24 @@ export const POWERSHELL_SKIP_LIST = new Set<string>([
 
 const POWERSHELL_DOCKER_IMAGE = 'mcr.microsoft.com/powershell:7.4-ubuntu-22.04'
 const POWERSHELL_MEMBER_NAMES: Record<string, string> = {
-  contains: 'Contains',
-  endswith: 'EndsWith',
-  indexof: 'IndexOf',
-  insert: 'Insert',
-  lastindexof: 'LastIndexOf',
-  length: 'Length',
-  padleft: 'PadLeft',
-  padright: 'PadRight',
-  remove: 'Remove',
-  replace: 'Replace',
-  split: 'Split',
-  startswith: 'StartsWith',
-  substring: 'Substring',
-  tolower: 'ToLower',
-  toupper: 'ToUpper',
-  trim: 'Trim',
-  trimend: 'TrimEnd',
-  trimstart: 'TrimStart',
+  contains: 'contains',
+  endswith: 'endswith',
+  indexof: 'indexof',
+  insert: 'insert',
+  lastindexof: 'lastindexof',
+  length: 'length',
+  padleft: 'padleft',
+  padright: 'padright',
+  remove: 'remove',
+  replace: 'replace',
+  split: 'split',
+  startswith: 'startswith',
+  substring: 'substring',
+  tolower: 'tolower',
+  toupper: 'toupper',
+  trim: 'trim',
+  trimend: 'trimend',
+  trimstart: 'trimstart',
 }
 
 function stripTrailingComment(code: string): string {
@@ -416,9 +420,13 @@ export const powershellHandler: LanguageHandler = {
   dockerCmd: (code: string) => ['pwsh', '-NoLogo', '-NoProfile', '-Command', code],
   mountRepo: false,
   upstreamSurface: {
+    discover: discoverPowerShellUpstreamSurface,
+    discoverMode: 'live',
+    discoverUsesDocker: false,
+    discoverNamespaceCatalog: discoverPowerShellUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
-      name: POWERSHELL_MEMBER_NAMES[func.name] ?? func.name,
+      name: (POWERSHELL_MEMBER_NAMES[func.name] ?? func.name).toLowerCase(),
     }),
   },
 }

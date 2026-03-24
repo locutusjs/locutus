@@ -1,10 +1,128 @@
 language: lua
+catalog:
+  target: Lua 5.4
+  sourceKind: runtime
+  sourceRef: lua:5.4:_G-and-library-tables
 namespaces:
-  - namespace: math
-    title: math library
+  - namespace: _G
+    title: _G
     target: Lua 5.4
     sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
+    sourceRef: nickblah/lua:5.4-alpine:_G
+    entries:
+      - assert
+      - collectgarbage
+      - dofile
+      - error
+      - getmetatable
+      - ipairs
+      - load
+      - loadfile
+      - next
+      - pairs
+      - pcall
+      - print
+      - rawequal
+      - rawget
+      - rawlen
+      - rawset
+      - require
+      - select
+      - setmetatable
+      - tonumber
+      - tostring
+      - type
+      - warn
+      - xpcall
+  - namespace: core
+    title: core
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:core
+    entries:
+      - assert
+      - collectgarbage
+      - dofile
+      - error
+      - getmetatable
+      - ipairs
+      - load
+      - loadfile
+      - next
+      - pairs
+      - pcall
+      - print
+      - rawequal
+      - rawget
+      - rawlen
+      - rawset
+      - require
+      - select
+      - setmetatable
+      - tonumber
+      - tostring
+      - type
+      - warn
+      - xpcall
+  - namespace: coroutine
+    title: coroutine
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:coroutine
+    entries:
+      - close
+      - create
+      - isyieldable
+      - resume
+      - running
+      - status
+      - wrap
+      - yield
+  - namespace: debug
+    title: debug
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:debug
+    entries:
+      - debug
+      - gethook
+      - getinfo
+      - getlocal
+      - getmetatable
+      - getregistry
+      - getupvalue
+      - getuservalue
+      - setcstacklimit
+      - sethook
+      - setlocal
+      - setmetatable
+      - setupvalue
+      - setuservalue
+      - traceback
+      - upvalueid
+      - upvaluejoin
+  - namespace: io
+    title: io
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:io
+    entries:
+      - close
+      - flush
+      - input
+      - lines
+      - open
+      - output
+      - popen
+      - read
+      - tmpfile
+      - type
+      - write
+  - namespace: math
+    title: math
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:math
     entries:
       - abs
       - acos
@@ -37,11 +155,36 @@ namespaces:
       - tointeger
       - type
       - ult
-  - namespace: string
-    title: string library
+  - namespace: os
+    title: os
     target: Lua 5.4
     sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
+    sourceRef: nickblah/lua:5.4-alpine:os
+    entries:
+      - clock
+      - date
+      - difftime
+      - execute
+      - exit
+      - getenv
+      - remove
+      - rename
+      - setlocale
+      - time
+      - tmpname
+  - namespace: package
+    title: package
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:package
+    entries:
+      - loadlib
+      - searchpath
+  - namespace: string
+    title: string
+    target: Lua 5.4
+    sourceKind: runtime
+    sourceRef: nickblah/lua:5.4-alpine:string
     entries:
       - byte
       - char
@@ -61,10 +204,10 @@ namespaces:
       - unpack
       - upper
   - namespace: table
-    title: table library
+    title: table
     target: Lua 5.4
     sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
+    sourceRef: nickblah/lua:5.4-alpine:table
     entries:
       - concat
       - insert
@@ -74,92 +217,13 @@ namespaces:
       - sort
       - unpack
   - namespace: utf8
-    title: utf8 library
+    title: utf8
     target: Lua 5.4
     sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
+    sourceRef: nickblah/lua:5.4-alpine:utf8
     entries:
       - char
       - codepoint
       - codes
       - len
       - offset
-  - namespace: os
-    title: os library
-    target: Lua 5.4
-    sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
-    entries:
-      - clock
-      - date
-      - difftime
-      - execute
-      - exit
-      - getenv
-      - remove
-      - rename
-      - setlocale
-      - time
-      - tmpname
-  - namespace: io
-    title: io library
-    target: Lua 5.4
-    sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
-    entries:
-      - close
-      - flush
-      - input
-      - lines
-      - open
-      - output
-      - popen
-      - read
-      - tmpfile
-      - type
-      - write
-  - namespace: coroutine
-    title: coroutine library
-    target: Lua 5.4
-    sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
-    entries:
-      - close
-      - create
-      - isyieldable
-      - resume
-      - running
-      - status
-      - wrap
-      - yield
-  - namespace: package
-    title: package library
-    target: Lua 5.4
-    sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
-    entries:
-      - loadlib
-      - searchpath
-  - namespace: debug
-    title: debug library
-    target: Lua 5.4
-    sourceKind: runtime
-    sourceRef: nickblah/lua:5.4-alpine
-    entries:
-      - debug
-      - gethook
-      - getinfo
-      - getlocal
-      - getmetatable
-      - getregistry
-      - getupvalue
-      - getuservalue
-      - setcstacklimit
-      - sethook
-      - setlocal
-      - setmetatable
-      - setupvalue
-      - setuservalue
-      - traceback
-      - upvalueid
-      - upvaluejoin

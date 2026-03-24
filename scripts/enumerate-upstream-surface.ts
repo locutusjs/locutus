@@ -4,7 +4,7 @@
  * Enumerate the full tracked upstream catalog across all language sources.
  *
  * - runtime-discovered languages refresh from their parity target
- * - docs/source/manual languages validate and reuse their checked-in snapshots
+ * - docs/source/manual languages refresh from their canonical upstream sources
  *
  * This is the "full vision" command for inspecting tracked scope before
  * deciding whether to narrow discovery or apply broader inventory defaults.

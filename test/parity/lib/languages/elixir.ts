@@ -8,56 +8,102 @@ import { runInDocker } from '../docker.ts'
 import { type JsExpression, parseJsArrowFunction, parseJsExpression } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
-import { buildScopedUpstreamSurfaceSnapshot } from '../upstream-surface-scope.ts'
+import { fetchText } from '../upstream-surface-canonical.ts'
+import { buildDiscoveredUpstreamSurfaceSnapshot } from '../upstream-surface-discovery.ts'
 
 // Functions to skip (implementation differences, etc.)
 export const ELIXIR_SKIP_LIST = new Set<string>([])
 
 const ELIXIR_DOCKER_IMAGE = 'elixir:1.18'
+const ELIXIR_NAMESPACE_CATALOG_TARGET = 'Elixir 1.18'
+const ELIXIR_NAMESPACE_CATALOG_SOURCE_REF = 'https://hexdocs.pm/elixir/1.18/Kernel.html'
 
-function discoverElixirUpstreamSurface() {
-  const discoverModule = (namespace: string) => {
-    const code = `Enum.each(Enum.sort(${namespace}.__info__(:functions)), fn {name, _arity} -> IO.puts(Atom.to_string(name)) end)`
-    const result = runInDocker(ELIXIR_DOCKER_IMAGE, ['elixir', '-e', code])
-    if (!result.success) {
-      throw new Error(result.error || `Unable to discover Elixir upstream surface for ${namespace}`)
-    }
-
-    const entries = [
-      ...new Set(
-        result.output
-          .trim()
-          .split('\n')
-          .map((line) => line.trim())
-          .filter(Boolean),
-      ),
-    ].sort()
-    return {
-      namespace,
-      entries,
-    }
+async function discoverElixirUpstreamNamespaces() {
+  const pageHtml = await fetchText(ELIXIR_NAMESPACE_CATALOG_SOURCE_REF)
+  const sidebarPath = pageHtml.match(/dist\/sidebar_items-[A-Z0-9]+\.js/)?.[0]
+  if (!sidebarPath) {
+    throw new Error('Unable to locate Elixir sidebar items manifest')
   }
 
-  return buildScopedUpstreamSurfaceSnapshot('elixir', [
-    discoverModule('Base'),
-    discoverModule('Date'),
-    discoverModule('DateTime'),
-    discoverModule('Enum'),
-    discoverModule('Float'),
-    discoverModule('Integer'),
-    discoverModule('Kernel'),
-    discoverModule('Keyword'),
-    discoverModule('List'),
-    discoverModule('Map'),
-    discoverModule('MapSet'),
-    discoverModule('NaiveDateTime'),
-    discoverModule('Regex'),
-    discoverModule('String'),
-    discoverModule('Time'),
-    discoverModule('Tuple'),
-    discoverModule('URI'),
-    discoverModule('Version'),
-  ])
+  const sidebarUrl = new URL(sidebarPath, ELIXIR_NAMESPACE_CATALOG_SOURCE_REF).toString()
+  const sidebarText = await fetchText(sidebarUrl)
+  const encodedSidebar = sidebarText.replace(/^sidebarNodes=/, '').replace(/;\s*$/, '')
+  const parsed = JSON.parse(encodedSidebar) as {
+    modules?: Array<{
+      id?: unknown
+    }>
+  }
+
+  return [
+    ...new Set(
+      (parsed.modules ?? []).map((module) => (typeof module.id === 'string' ? module.id.trim() : '')).filter(Boolean),
+    ),
+  ].sort()
+}
+
+async function discoverElixirUpstreamNamespaceCatalog() {
+  return {
+    target: ELIXIR_NAMESPACE_CATALOG_TARGET,
+    sourceKind: 'source_manifest' as const,
+    sourceRef: ELIXIR_NAMESPACE_CATALOG_SOURCE_REF,
+    namespaces: await discoverElixirUpstreamNamespaces(),
+  }
+}
+
+async function discoverElixirUpstreamSurface() {
+  const catalog = await discoverElixirUpstreamNamespaceCatalog()
+  const namespaces = catalog.namespaces
+  const code = `
+modules = ${JSON.stringify(namespaces)}
+
+resolve_module = fn namespace ->
+  namespace
+  |> String.split(".")
+  |> Enum.map(&String.to_atom/1)
+  |> then(fn parts -> Module.concat([Elixir | parts]) end)
+end
+
+Enum.each(modules, fn namespace ->
+  module = resolve_module.(namespace)
+
+  entries =
+    module.__info__(:functions)
+    |> Enum.map(fn {name, _arity} -> Atom.to_string(name) end)
+    |> Enum.uniq()
+    |> Enum.sort()
+
+  IO.puts(namespace <> "\\t" <> Enum.join(entries, "\\u001f"))
+end)
+`.trim()
+
+  const result = runInDocker(ELIXIR_DOCKER_IMAGE, ['elixir', '-e', code], {
+    timeout: 120000,
+  })
+  if (!result.success) {
+    throw new Error(result.error || 'Unable to discover Elixir upstream surface')
+  }
+
+  return buildDiscoveredUpstreamSurfaceSnapshot({
+    language: 'elixir',
+    catalog,
+    namespaces: result.output
+      .trim()
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => {
+        const [namespace, encodedEntries = ''] = line.split('\t')
+        if (!namespace) {
+          throw new Error('Unable to parse Elixir upstream surface row')
+        }
+        return {
+          namespace,
+          title: namespace,
+          sourceRef: `${ELIXIR_DOCKER_IMAGE}:${namespace}`,
+          entries: encodedEntries ? encodedEntries.split('\u001f').filter(Boolean).sort() : [],
+        }
+      }),
+  })
 }
 
 const ELIXIR_PARITY_MODULE = `
@@ -452,6 +498,7 @@ export const elixirHandler: LanguageHandler = {
   mountRepo: false,
   upstreamSurface: {
     discover: discoverElixirUpstreamSurface,
+    discoverNamespaceCatalog: discoverElixirUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
       name: func.name,

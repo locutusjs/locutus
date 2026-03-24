@@ -3,8 +3,8 @@
 /**
  * Refresh only the live-discoverable upstream surface snapshots.
  *
- * For a full tracked-catalog enumeration across runtime, docs/source, and
- * manual snapshots, use `scripts/enumerate-upstream-surface.ts` instead.
+ * For a full tracked-catalog enumeration across runtime and canonical
+ * docs/source discovery, use `scripts/enumerate-upstream-surface.ts` instead.
  */
 
 import { dirname, join } from 'node:path'
