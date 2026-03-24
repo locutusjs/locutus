@@ -68,10 +68,13 @@ const RUBY_NAMESPACE_CATALOG_SOURCE_REF = 'https://docs.ruby-lang.org/en/3.3/tab
 
 async function discoverRubyUpstreamNamespaces() {
   const html = await fetchText(RUBY_NAMESPACE_CATALOG_SOURCE_REF)
+  const excludedDocsPages = new Set(['COPYING', 'COPYING_ja', 'LEGAL', 'NEWS_md', 'README_ja_md', 'README_md'])
 
   return [
     ...new Set(
-      [...html.matchAll(/href="([A-Z][A-Za-z0-9_]+)\.html"/g)].map((match) => match[1]?.trim() ?? '').filter(Boolean),
+      [...html.matchAll(/href="([A-Z][A-Za-z0-9_]+)\.html"/g)]
+        .map((match) => match[1]?.trim() ?? '')
+        .filter((entry) => !!entry && !excludedDocsPages.has(entry)),
     ),
   ].sort()
 }

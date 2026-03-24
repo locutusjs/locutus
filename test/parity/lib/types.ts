@@ -88,9 +88,14 @@ export interface UpstreamSurfaceNamespaceInventory {
   decisions?: Record<string, UpstreamSurfaceDecisionEntry> | undefined
 }
 
+export interface UpstreamSurfaceNamespaceInventoryRule extends UpstreamSurfaceNamespaceInventory {
+  match: string
+}
+
 export interface UpstreamSurfaceLanguageInventory {
   title?: string | undefined
   scopeNote?: string | undefined
+  namespaceRules?: UpstreamSurfaceNamespaceInventoryRule[] | undefined
   defaultNamespace?: UpstreamSurfaceNamespaceInventory | undefined
   namespaces?: Record<string, UpstreamSurfaceNamespaceInventory> | undefined
 }

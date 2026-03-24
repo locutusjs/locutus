@@ -2781,3 +2781,33 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Raw discovery needs canonical namespace catalogs for public surface area and runtime/docs extraction only for members; using runtime-loaded namespaces directly reintroduces hidden under-discovery.
   - A triage inventory is only trustworthy if stale decisions are measured against both accepted upstream entries and shipped entries, not just against what remains unimplemented.
+
+### Iteration 137
+
+2026-03-24
+
+- **Area: Core/stdlib triage**
+- Plan:
+  - Start using the new discovery/fold foundation to make the accepted target saner before any more product work.
+  - Reduce reliance on broad language-level fallback by classifying whole namespace families explicitly in the highest-volume languages first.
+- Progress:
+  - Added language-level `namespaceRules` support to the inventory schema and comparison engine so broad families of namespaces can be triaged explicitly without constraining raw discovery or forcing hundreds of one-off namespace stubs.
+  - Applied the first dense namespace-family triage pass to `python`, `ruby`, `golang`, and `elixir`, covering broad groups like Python network/UI/runtime modules, Ruby exception and environment-heavy stdlib classes, Go receiver-type and host-bound packages, and Elixir exception/runtime/process families.
+  - Tightened Ruby discovery to drop obvious documentation pages (`COPYING`, `README*`, `LEGAL`, `NEWS*`) from the canonical namespace catalog instead of “triaging” them after the fact.
+  - Re-folded the accepted Ruby snapshot, repaired tracked scope, and re-injected website upstream-surface data on top of the new namespace-rule semantics.
+  - Measured the first-pass reduction in language-default fallback across the four priority languages:
+    - `python`: `25 explicit / 110 rule / 148 fallback`
+    - `ruby`: `16 explicit / 69 rule / 99 fallback`
+    - `golang`: `22 explicit / 726 rule / 54 fallback`
+    - `elixir`: `18 explicit / 75 rule / 31 fallback`
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn discover:upstream-surface ruby`
+  - `corepack yarn fold:upstream-surface ruby`
+  - `corepack yarn audit:upstream-scope ruby python golang elixir`
+  - `corepack yarn test:upstream-surface ruby python golang elixir`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - The efficient way to triage a broadened official surface is not to enumerate less, but to add explicit namespace-family policy above the function layer.
+  - Discovery overreach should still be fixed at the source when it is clearly documentation noise; inventory policy is for real namespaces, not for compensating broken catalogs.

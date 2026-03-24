@@ -290,6 +290,14 @@ Do not invalidate the entire inventory on target bumps. The workflow should be:
 
 Language-level `defaultNamespace` exists to keep broad scope expansions sane: new namespaces can enter under one conservative default, and only the real exceptions need explicit namespace sections.
 
+When a language starts surfacing hundreds of new namespaces at once, prefer `namespaceRules` before adding hundreds of one-off namespace stubs. `namespaceRules` match namespace names (for example `http*`, `crypto*`, or `*Error`) and let maintainers classify whole namespace families explicitly without constraining raw discovery.
+
+The intended precedence is:
+
+1. explicit namespace entry in `namespaces`
+2. first matching language-level `namespaceRules` entry
+3. `defaultNamespace`
+
 ## Canonical Scope
 
 `docs/upstream-surface-scope.yml` is the contract for tracked scope, not the thing that constrains raw discovery.

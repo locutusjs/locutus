@@ -73,10 +73,17 @@ const upstreamSurfaceNamespaceInventorySchema = z
   })
   .strict()
 
+const upstreamSurfaceNamespaceInventoryRuleSchema = upstreamSurfaceNamespaceInventorySchema
+  .extend({
+    match: z.string().min(1),
+  })
+  .strict()
+
 const upstreamSurfaceLanguageInventorySchema = z
   .object({
     title: z.string().min(1).optional(),
     scopeNote: z.string().min(1).optional(),
+    namespaceRules: optionalSection(z.array(upstreamSurfaceNamespaceInventoryRuleSchema)),
     defaultNamespace: optionalSection(upstreamSurfaceNamespaceInventorySchema),
     namespaces: optionalSection(z.record(z.string(), upstreamSurfaceNamespaceInventorySchema)),
   })

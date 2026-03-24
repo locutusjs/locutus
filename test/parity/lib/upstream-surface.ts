@@ -17,6 +17,7 @@ import type {
   UpstreamSurfaceLanguageInventory,
   UpstreamSurfaceLanguageScope,
   UpstreamSurfaceNamespaceInventory,
+  UpstreamSurfaceNamespaceInventoryRule,
   UpstreamSurfaceNamespaceScope,
   UpstreamSurfaceNamespaceSnapshot,
   UpstreamSurfaceScope,
@@ -185,6 +186,11 @@ interface CatalogDecisionMatch {
   usedDefault?: boolean
 }
 
+interface NamespaceInventoryMatch {
+  inventory: UpstreamSurfaceNamespaceInventory | undefined
+  suppressDefaultStale: boolean
+}
+
 function findCatalogDecision(
   name: string,
   decisions: Record<string, UpstreamSurfaceDecisionEntry>,
@@ -220,6 +226,43 @@ function findCatalogDecision(
   return {
     entry: defaultDecision,
     usedDefault: true,
+  }
+}
+
+function buildNamespaceInventoryFromRule(
+  rule: UpstreamSurfaceNamespaceInventoryRule,
+): UpstreamSurfaceNamespaceInventory {
+  return {
+    ...(rule.title ? { title: rule.title } : {}),
+    ...(rule.default ? { default: rule.default } : {}),
+    ...(rule.rules ? { rules: rule.rules } : {}),
+    ...(rule.decisions ? { decisions: rule.decisions } : {}),
+  }
+}
+
+function resolveNamespaceInventory(
+  inventory: UpstreamSurfaceLanguageInventory,
+  namespace: string,
+): NamespaceInventoryMatch {
+  if (inventory.namespaces && Object.prototype.hasOwnProperty.call(inventory.namespaces, namespace)) {
+    return {
+      inventory: inventory.namespaces[namespace],
+      suppressDefaultStale: false,
+    }
+  }
+
+  for (const rule of inventory.namespaceRules ?? []) {
+    if (compileInventoryRulePattern(rule.match).test(namespace)) {
+      return {
+        inventory: buildNamespaceInventoryFromRule(rule),
+        suppressDefaultStale: true,
+      }
+    }
+  }
+
+  return {
+    inventory: inventory.defaultNamespace,
+    suppressDefaultStale: !!inventory.defaultNamespace,
   }
 }
 
@@ -350,7 +393,7 @@ function compareNamespace(
   namespaceSnapshot: UpstreamSurfaceNamespaceSnapshot,
   shippedEntries: NamespaceEntryCollection | undefined,
   namespaceInventory: UpstreamSurfaceNamespaceInventory | undefined,
-  inheritedLanguageDefault = false,
+  suppressDefaultStale = false,
 ): UpstreamSurfaceNamespaceResult {
   const catalogEntries = [...new Set(namespaceSnapshot.entries)].sort()
   const catalogSet = new Set(catalogEntries)
@@ -431,7 +474,7 @@ function compareNamespace(
     }
   }
 
-  if (defaultDecision && !usedDefaultDecision && !inheritedLanguageDefault) {
+  if (defaultDecision && !usedDefaultDecision && !suppressDefaultStale) {
     staleDecisions.push({
       name: 'default',
       decision: defaultDecision.decision,
@@ -481,21 +524,17 @@ export function compareUpstreamSurface(
   snapshot: UpstreamSurfaceSnapshot,
   inventory: UpstreamSurfaceLanguageInventory = {},
 ): UpstreamSurfaceCheckResult {
-  const hasExplicitNamespaceInventory = (namespace: string) =>
-    !!inventory.namespaces && Object.prototype.hasOwnProperty.call(inventory.namespaces, namespace)
-  const resolveNamespaceInventory = (namespace: string): UpstreamSurfaceNamespaceInventory | undefined =>
-    (hasExplicitNamespaceInventory(namespace) ? inventory.namespaces?.[namespace] : undefined) ??
-    inventory.defaultNamespace
   const locutusEntries = collectLocutusNamespaceEntries(functions, handler)
   const namespaces = snapshot.namespaces
-    .map((namespaceSnapshot) =>
-      compareNamespace(
+    .map((namespaceSnapshot) => {
+      const inventoryMatch = resolveNamespaceInventory(inventory, namespaceSnapshot.namespace)
+      return compareNamespace(
         namespaceSnapshot,
         locutusEntries.get(namespaceSnapshot.namespace),
-        resolveNamespaceInventory(namespaceSnapshot.namespace),
-        !hasExplicitNamespaceInventory(namespaceSnapshot.namespace) && !!inventory.defaultNamespace,
-      ),
-    )
+        inventoryMatch.inventory,
+        inventoryMatch.suppressDefaultStale,
+      )
+    })
     .sort((left, right) => left.namespace.localeCompare(right.namespace))
 
   const remainingNamespaces = [...locutusEntries.keys()]
@@ -511,12 +550,15 @@ export function compareUpstreamSurface(
     }
 
     namespaces.push(
-      compareNamespace(
-        createLocutusOnlyNamespaceSnapshot(namespace, resolveNamespaceInventory(namespace)),
-        shippedEntries,
-        resolveNamespaceInventory(namespace),
-        !hasExplicitNamespaceInventory(namespace) && !!inventory.defaultNamespace,
-      ),
+      (() => {
+        const inventoryMatch = resolveNamespaceInventory(inventory, namespace)
+        return compareNamespace(
+          createLocutusOnlyNamespaceSnapshot(namespace, inventoryMatch.inventory),
+          shippedEntries,
+          inventoryMatch.inventory,
+          inventoryMatch.suppressDefaultStale,
+        )
+      })(),
     )
   }
 
@@ -534,12 +576,15 @@ export function findUpstreamSurfaceInventoryCoverageIssues(
 
   for (const [language, snapshot] of snapshots.entries()) {
     const languageInventory = inventory[language]
+    const hasNamespaceRule = (namespace: string) =>
+      !!languageInventory?.namespaceRules?.some((rule) => compileInventoryRulePattern(rule.match).test(namespace))
     const missingNamespaces = snapshot.namespaces
       .map((namespace) => namespace.namespace)
       .filter(
         (namespace) =>
           (!languageInventory?.namespaces ||
             !Object.prototype.hasOwnProperty.call(languageInventory.namespaces, namespace)) &&
+          !hasNamespaceRule(namespace) &&
           !languageInventory?.defaultNamespace,
       )
       .sort()
