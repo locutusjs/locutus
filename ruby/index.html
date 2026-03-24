@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-24T15:10:17.308Z">
-<meta property="article:modified_time" content="2026-03-24T15:10:17.308Z">
+<meta property="article:published_time" content="2026-03-24T16:35:03.133Z">
+<meta property="article:modified_time" content="2026-03-24T16:35:03.133Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -378,7 +378,7 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         44/5795 shipped
-         &middot; 606 next
+         &middot; 867 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -386,10 +386,10 @@ ga('send', 'pageview');
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.8%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 10.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 15%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 88.8%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 84.3%"></span>
             
             
           
@@ -403,7 +403,7 @@ ga('send', 'pageview');
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks 190 upstream namespaces for
+          Locutus tracks 184 upstream namespaces for
           Ruby and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
@@ -421,10 +421,10 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.8%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 10.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 15%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 88.8%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 84.3%"></span>
         
         
       
@@ -495,6 +495,44 @@ ga('send', 'pageview');
               })(this)">
           <span class="surface-minimap__name">Array</span>
           <span class="surface-minimap__pct">10%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="CSV: 0% shipped"
+              data-ns="CSV"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">CSV</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="Pathname: 0% shipped"
+              data-ns="Pathname"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Pathname</span>
+          <span class="surface-minimap__pct">0%</span>
         </span>
       
         
@@ -594,6 +632,25 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="JSON: 0% shipped"
+              data-ns="JSON"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">JSON</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
               title="MatchData: 0% shipped"
               data-ns="MatchData"
               onclick="(function(el){
@@ -646,6 +703,25 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">Comparable</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="Base64: 0% shipped"
+              data-ns="Base64"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Base64</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -779,25 +855,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">ArgumentError</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="Base64: 0% shipped"
-              data-ns="Base64"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">Base64</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -1031,44 +1088,6 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="COPYING: 0% shipped"
-              data-ns="COPYING"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">COPYING</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="COPYING_ja: 0% shipped"
-              data-ns="COPYING_ja"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">COPYING_ja</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="CoreExtensions: 0% shipped"
               data-ns="CoreExtensions"
               onclick="(function(el){
@@ -1102,25 +1121,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">Coverage</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="CSV: 0% shipped"
-              data-ns="CSV"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">CSV</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -1886,25 +1886,6 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="JSON: 0% shipped"
-              data-ns="JSON"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">JSON</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="Kconv: 0% shipped"
               data-ns="Kconv"
               onclick="(function(el){
@@ -1957,25 +1938,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">KeyError</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="LEGAL: 0% shipped"
-              data-ns="LEGAL"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">LEGAL</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -2204,25 +2166,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">Net</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="NEWS_md: 0% shipped"
-              data-ns="NEWS_md"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">NEWS_md</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -2551,25 +2494,6 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="Pathname: 0% shipped"
-              data-ns="Pathname"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">Pathname</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="PP: 0% shipped"
               data-ns="PP"
               onclick="(function(el){
@@ -2850,44 +2774,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">Readline</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="README_ja_md: 0% shipped"
-              data-ns="README_ja_md"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">README_ja_md</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="README_md: 0% shipped"
-              data-ns="README_md"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">README_md</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -4055,7 +3941,7 @@ ga('send', 'pageview');
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
-        <strong class="surface-kpi__value">190</strong>
+        <strong class="surface-kpi__value">184</strong>
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
@@ -4064,14 +3950,14 @@ ga('send', 'pageview');
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">606</strong>
+          <strong class="surface-kpi__value">867</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">5145</strong>
+          <strong class="surface-kpi__value">4884</strong>
         </article>
       
       
@@ -5438,6 +5324,604 @@ ga('send', 'pageview');
 
       
     </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="CSV">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          CSV
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Ruby 3.3</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>ruby:3.3:CSV</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/133</strong> shipped</span>
+    <span><strong>133</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">CSV parsing and generation are high-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>&lt;&lt;</code></li>
+              
+                <li><code>add_row</code></li>
+              
+                <li><code>all?</code></li>
+              
+                <li><code>any?</code></li>
+              
+                <li><code>binmode</code></li>
+              
+                <li><code>binmode?</code></li>
+              
+                <li><code>chain</code></li>
+              
+                <li><code>chunk</code></li>
+              
+                <li><code>chunk_while</code></li>
+              
+                <li><code>close</code></li>
+              
+                <li><code>close_read</code></li>
+              
+                <li><code>close_write</code></li>
+              
+                <li><code>closed?</code></li>
+              
+                <li><code>col_sep</code></li>
+              
+                <li><code>collect</code></li>
+              
+                <li><code>collect_concat</code></li>
+              
+                <li><code>compact</code></li>
+              
+                <li><code>convert</code></li>
+              
+                <li><code>converters</code></li>
+              
+                <li><code>count</code></li>
+              
+                <li><code>cycle</code></li>
+              
+                <li><code>detect</code></li>
+              
+                <li><code>drop</code></li>
+              
+                <li><code>drop_while</code></li>
+              
+                <li><code>each</code></li>
+              
+                <li><code>each_cons</code></li>
+              
+                <li><code>each_entry</code></li>
+              
+                <li><code>each_slice</code></li>
+              
+                <li><code>each_with_index</code></li>
+              
+                <li><code>each_with_object</code></li>
+              
+                <li><code>encoding</code></li>
+              
+                <li><code>entries</code></li>
+              
+                <li><code>eof</code></li>
+              
+                <li><code>eof?</code></li>
+              
+                <li><code>external_encoding</code></li>
+              
+                <li><code>fcntl</code></li>
+              
+                <li><code>field_size_limit</code></li>
+              
+                <li><code>fileno</code></li>
+              
+                <li><code>filter</code></li>
+              
+                <li><code>filter_map</code></li>
+              
+                <li><code>find</code></li>
+              
+                <li><code>find_all</code></li>
+              
+                <li><code>find_index</code></li>
+              
+                <li><code>first</code></li>
+              
+                <li><code>flat_map</code></li>
+              
+                <li><code>flock</code></li>
+              
+                <li><code>flush</code></li>
+              
+                <li><code>force_quotes?</code></li>
+              
+                <li><code>foreach</code></li>
+              
+                <li><code>fsync</code></li>
+              
+                <li><code>generate</code></li>
+              
+                <li><code>generate_line</code></li>
+              
+                <li><code>generate_lines</code></li>
+              
+                <li><code>gets</code></li>
+              
+                <li><code>grep</code></li>
+              
+                <li><code>grep_v</code></li>
+              
+                <li><code>group_by</code></li>
+              
+                <li><code>header_convert</code></li>
+              
+                <li><code>header_converters</code></li>
+              
+                <li><code>header_row?</code></li>
+              
+                <li><code>headers</code></li>
+              
+                <li><code>include?</code></li>
+              
+                <li><code>inject</code></li>
+              
+                <li><code>instance</code></li>
+              
+                <li><code>internal_encoding</code></li>
+              
+                <li><code>ioctl</code></li>
+              
+                <li><code>isatty</code></li>
+              
+                <li><code>lazy</code></li>
+              
+                <li><code>liberal_parsing?</code></li>
+              
+                <li><code>line</code></li>
+              
+                <li><code>lineno</code></li>
+              
+                <li><code>map</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>max_by</code></li>
+              
+                <li><code>max_field_size</code></li>
+              
+                <li><code>member?</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>min_by</code></li>
+              
+                <li><code>minmax</code></li>
+              
+                <li><code>minmax_by</code></li>
+              
+                <li><code>none?</code></li>
+              
+                <li><code>one?</code></li>
+              
+                <li><code>open</code></li>
+              
+                <li><code>parse</code></li>
+              
+                <li><code>parse_line</code></li>
+              
+                <li><code>partition</code></li>
+              
+                <li><code>path</code></li>
+              
+                <li><code>pid</code></li>
+              
+                <li><code>pos</code></li>
+              
+                <li><code>pos=</code></li>
+              
+                <li><code>puts</code></li>
+              
+                <li><code>quote_char</code></li>
+              
+                <li><code>read</code></li>
+              
+                <li><code>readline</code></li>
+              
+                <li><code>readlines</code></li>
+              
+                <li><code>reduce</code></li>
+              
+                <li><code>reject</code></li>
+              
+                <li><code>reopen</code></li>
+              
+                <li><code>return_headers?</code></li>
+              
+                <li><code>reverse_each</code></li>
+              
+                <li><code>rewind</code></li>
+              
+                <li><code>row_sep</code></li>
+              
+                <li><code>seek</code></li>
+              
+                <li><code>select</code></li>
+              
+                <li><code>shift</code></li>
+              
+                <li><code>skip_blanks?</code></li>
+              
+                <li><code>skip_lines</code></li>
+              
+                <li><code>slice_after</code></li>
+              
+                <li><code>slice_before</code></li>
+              
+                <li><code>slice_when</code></li>
+              
+                <li><code>sort</code></li>
+              
+                <li><code>sort_by</code></li>
+              
+                <li><code>stat</code></li>
+              
+                <li><code>string</code></li>
+              
+                <li><code>sum</code></li>
+              
+                <li><code>sync</code></li>
+              
+                <li><code>sync=</code></li>
+              
+                <li><code>table</code></li>
+              
+                <li><code>take</code></li>
+              
+                <li><code>take_while</code></li>
+              
+                <li><code>tally</code></li>
+              
+                <li><code>tell</code></li>
+              
+                <li><code>to_a</code></li>
+              
+                <li><code>to_h</code></li>
+              
+                <li><code>to_i</code></li>
+              
+                <li><code>to_io</code></li>
+              
+                <li><code>to_set</code></li>
+              
+                <li><code>truncate</code></li>
+              
+                <li><code>tty?</code></li>
+              
+                <li><code>unconverted_fields?</code></li>
+              
+                <li><code>uniq</code></li>
+              
+                <li><code>write_headers?</code></li>
+              
+                <li><code>zip</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="Pathname">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Pathname
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Ruby 3.3</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>ruby:3.3:Pathname</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/91</strong> shipped</span>
+    <span><strong>91</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Path manipulation helpers are strong plain-string portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>/</code></li>
+              
+                <li><code>+</code></li>
+              
+                <li><code>absolute?</code></li>
+              
+                <li><code>ascend</code></li>
+              
+                <li><code>atime</code></li>
+              
+                <li><code>basename</code></li>
+              
+                <li><code>binread</code></li>
+              
+                <li><code>binwrite</code></li>
+              
+                <li><code>birthtime</code></li>
+              
+                <li><code>blockdev?</code></li>
+              
+                <li><code>chardev?</code></li>
+              
+                <li><code>children</code></li>
+              
+                <li><code>chmod</code></li>
+              
+                <li><code>chown</code></li>
+              
+                <li><code>cleanpath</code></li>
+              
+                <li><code>ctime</code></li>
+              
+                <li><code>delete</code></li>
+              
+                <li><code>descend</code></li>
+              
+                <li><code>directory?</code></li>
+              
+                <li><code>dirname</code></li>
+              
+                <li><code>each_child</code></li>
+              
+                <li><code>each_entry</code></li>
+              
+                <li><code>each_filename</code></li>
+              
+                <li><code>each_line</code></li>
+              
+                <li><code>empty?</code></li>
+              
+                <li><code>entries</code></li>
+              
+                <li><code>executable_real?</code></li>
+              
+                <li><code>executable?</code></li>
+              
+                <li><code>exist?</code></li>
+              
+                <li><code>expand_path</code></li>
+              
+                <li><code>extname</code></li>
+              
+                <li><code>file?</code></li>
+              
+                <li><code>find</code></li>
+              
+                <li><code>fnmatch</code></li>
+              
+                <li><code>fnmatch?</code></li>
+              
+                <li><code>ftype</code></li>
+              
+                <li><code>getwd</code></li>
+              
+                <li><code>glob</code></li>
+              
+                <li><code>grpowned?</code></li>
+              
+                <li><code>join</code></li>
+              
+                <li><code>lchmod</code></li>
+              
+                <li><code>lchown</code></li>
+              
+                <li><code>lstat</code></li>
+              
+                <li><code>lutime</code></li>
+              
+                <li><code>make_link</code></li>
+              
+                <li><code>make_symlink</code></li>
+              
+                <li><code>mkdir</code></li>
+              
+                <li><code>mkpath</code></li>
+              
+                <li><code>mountpoint?</code></li>
+              
+                <li><code>mtime</code></li>
+              
+                <li><code>open</code></li>
+              
+                <li><code>opendir</code></li>
+              
+                <li><code>owned?</code></li>
+              
+                <li><code>parent</code></li>
+              
+                <li><code>pipe?</code></li>
+              
+                <li><code>pwd</code></li>
+              
+                <li><code>read</code></li>
+              
+                <li><code>readable_real?</code></li>
+              
+                <li><code>readable?</code></li>
+              
+                <li><code>readlines</code></li>
+              
+                <li><code>readlink</code></li>
+              
+                <li><code>realdirpath</code></li>
+              
+                <li><code>realpath</code></li>
+              
+                <li><code>relative_path_from</code></li>
+              
+                <li><code>relative?</code></li>
+              
+                <li><code>rename</code></li>
+              
+                <li><code>rmdir</code></li>
+              
+                <li><code>rmtree</code></li>
+              
+                <li><code>root?</code></li>
+              
+                <li><code>setgid?</code></li>
+              
+                <li><code>setuid?</code></li>
+              
+                <li><code>size</code></li>
+              
+                <li><code>size?</code></li>
+              
+                <li><code>socket?</code></li>
+              
+                <li><code>split</code></li>
+              
+                <li><code>stat</code></li>
+              
+                <li><code>sticky?</code></li>
+              
+                <li><code>sub</code></li>
+              
+                <li><code>sub_ext</code></li>
+              
+                <li><code>symlink?</code></li>
+              
+                <li><code>sysopen</code></li>
+              
+                <li><code>to_path</code></li>
+              
+                <li><code>truncate</code></li>
+              
+                <li><code>unlink</code></li>
+              
+                <li><code>utime</code></li>
+              
+                <li><code>world_readable?</code></li>
+              
+                <li><code>world_writable?</code></li>
+              
+                <li><code>writable_real?</code></li>
+              
+                <li><code>writable?</code></li>
+              
+                <li><code>write</code></li>
+              
+                <li><code>zero?</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
   
 </article>
 
@@ -6966,6 +7450,143 @@ ga('send', 'pageview');
 
 
 
+<article class="surface-card" data-namespace="JSON">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          JSON
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Ruby 3.3</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>ruby:3.3:JSON</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/31</strong> shipped</span>
+    <span><strong>31</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">JSON parsing and generation are high-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>[]</code></li>
+              
+                <li><code>create_fast_state</code></li>
+              
+                <li><code>create_id</code></li>
+              
+                <li><code>create_id=</code></li>
+              
+                <li><code>create_pretty_state</code></li>
+              
+                <li><code>deep_const_get</code></li>
+              
+                <li><code>dump</code></li>
+              
+                <li><code>dump_default_options</code></li>
+              
+                <li><code>dump_default_options=</code></li>
+              
+                <li><code>fast_generate</code></li>
+              
+                <li><code>fast_unparse</code></li>
+              
+                <li><code>generate</code></li>
+              
+                <li><code>generator</code></li>
+              
+                <li><code>generator=</code></li>
+              
+                <li><code>iconv</code></li>
+              
+                <li><code>load</code></li>
+              
+                <li><code>load_default_options</code></li>
+              
+                <li><code>load_default_options=</code></li>
+              
+                <li><code>load_file</code></li>
+              
+                <li><code>load_file!</code></li>
+              
+                <li><code>parse</code></li>
+              
+                <li><code>parse!</code></li>
+              
+                <li><code>parser</code></li>
+              
+                <li><code>parser=</code></li>
+              
+                <li><code>pretty_generate</code></li>
+              
+                <li><code>pretty_unparse</code></li>
+              
+                <li><code>recurse_proc</code></li>
+              
+                <li><code>restore</code></li>
+              
+                <li><code>state</code></li>
+              
+                <li><code>state=</code></li>
+              
+                <li><code>unparse</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
 <article class="surface-card" data-namespace="MatchData">
   <div class="surface-card__header">
     <div>
@@ -7969,6 +8590,93 @@ ga('send', 'pageview');
                 <li><code>between?</code></li>
               
                 <li><code>clamp</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="Base64">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Base64
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Ruby 3.3</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>ruby:3.3:Base64</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/6</strong> shipped</span>
+    <span><strong>6</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Base64 helpers are strong plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>decode64</code></li>
+              
+                <li><code>encode64</code></li>
+              
+                <li><code>strict_decode64</code></li>
+              
+                <li><code>strict_encode64</code></li>
+              
+                <li><code>urlsafe_decode64</code></li>
+              
+                <li><code>urlsafe_encode64</code></li>
               
             </ul>
           
@@ -10191,39 +10899,6 @@ ga('send', 'pageview');
 
 
   
-  <div class="surface-compact-row" data-namespace="Base64">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          Base64
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">6 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
   <div class="surface-compact-row" data-namespace="Benchmark">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
@@ -10577,39 +11252,6 @@ ga('send', 'pageview');
     <span class="surface-compact-row__stats">
       <strong>0/0</strong>
       <span class="surface-compact-row__skip">10 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="CSV">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          CSV
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">133 skipped</span>
     </span>
   </div>
 
@@ -11775,39 +12417,6 @@ ga('send', 'pageview');
 
 
   
-  <div class="surface-compact-row" data-namespace="JSON">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          JSON
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">31 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
   <div class="surface-compact-row" data-namespace="Kconv">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
@@ -12557,39 +13166,6 @@ ga('send', 'pageview');
     <span class="surface-compact-row__stats">
       <strong>0/0</strong>
       <span class="surface-compact-row__skip">62 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="Pathname">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          Pathname
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">91 skipped</span>
     </span>
   </div>
 
@@ -15021,60 +15597,6 @@ ga('send', 'pageview');
 
 
   
-  <div class="surface-compact-row" data-namespace="COPYING">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          COPYING
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="COPYING_ja">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          COPYING_ja
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
   <div class="surface-compact-row" data-namespace="CoreExtensions">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
@@ -15237,33 +15759,6 @@ ga('send', 'pageview');
 
 
   
-  <div class="surface-compact-row" data-namespace="LEGAL">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          LEGAL
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
   <div class="surface-compact-row" data-namespace="LUSolve">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
@@ -15323,33 +15818,6 @@ ga('send', 'pageview');
       <strong class="surface-compact-row__name">
         
           Net
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="NEWS_md">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          NEWS_md
         
       </strong>
       <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
@@ -15512,60 +15980,6 @@ ga('send', 'pageview');
       <strong class="surface-compact-row__name">
         
           OpenURI
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="README_ja_md">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          README_ja_md
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="README_md">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          README_md
         
       </strong>
       <span class="surface-compact-row__meta"><code>Ruby 3.3</code></span>

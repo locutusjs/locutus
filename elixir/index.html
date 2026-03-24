@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-24T15:10:17.214Z">
-<meta property="article:modified_time" content="2026-03-24T15:10:17.214Z">
+<meta property="article:published_time" content="2026-03-24T16:35:03.040Z">
+<meta property="article:modified_time" content="2026-03-24T16:35:03.040Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -323,7 +323,7 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         14/1580 shipped
-         &middot; 310 next
+         &middot; 332 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -331,10 +331,10 @@ ga('send', 'pageview');
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.9%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 19.6%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 21%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 79.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 78.1%"></span>
             
             
           
@@ -366,10 +366,10 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.9%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 19.6%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 21%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 79.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 78.1%"></span>
         
         
       
@@ -539,6 +539,25 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="Path: 0% shipped"
+              data-ns="Path"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Path</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
               title="Integer: 0% shipped"
               data-ns="Integer"
               onclick="(function(el){
@@ -572,6 +591,25 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">Version</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="OptionParser: 0% shipped"
+              data-ns="OptionParser"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">OptionParser</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -2078,25 +2116,6 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="OptionParser: 0% shipped"
-              data-ns="OptionParser"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">OptionParser</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="OptionParser.ParseError: 0% shipped"
               data-ns="OptionParser.ParseError"
               onclick="(function(el){
@@ -2130,25 +2149,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">PartitionSupervisor</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="Path: 0% shipped"
-              data-ns="Path"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">Path</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -2755,14 +2755,14 @@ ga('send', 'pageview');
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">310</strong>
+          <strong class="surface-kpi__value">332</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">1256</strong>
+          <strong class="surface-kpi__value">1234</strong>
         </article>
       
       
@@ -4676,6 +4676,111 @@ ga('send', 'pageview');
 
 
 
+<article class="surface-card" data-namespace="Path">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          Path
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>elixir:1.18:Path</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/15</strong> shipped</span>
+    <span><strong>15</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Path manipulation helpers are strong plain-string portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>absname</code></li>
+              
+                <li><code>basename</code></li>
+              
+                <li><code>dirname</code></li>
+              
+                <li><code>expand</code></li>
+              
+                <li><code>extname</code></li>
+              
+                <li><code>join</code></li>
+              
+                <li><code>relative</code></li>
+              
+                <li><code>relative_to</code></li>
+              
+                <li><code>relative_to_cwd</code></li>
+              
+                <li><code>rootname</code></li>
+              
+                <li><code>safe_relative</code></li>
+              
+                <li><code>safe_relative_to</code></li>
+              
+                <li><code>split</code></li>
+              
+                <li><code>type</code></li>
+              
+                <li><code>wildcard</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
 <article class="surface-card" data-namespace="Integer">
   <div class="surface-card__header">
     <div>
@@ -4873,6 +4978,95 @@ ga('send', 'pageview');
                 <li><code>parse!</code></li>
               
                 <li><code>to_string</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="OptionParser">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          OptionParser
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Elixir 1.18</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>elixir:1.18:OptionParser</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/7</strong> shipped</span>
+    <span><strong>7</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Argument parsing helpers have a useful plain-value portability contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>next</code></li>
+              
+                <li><code>parse</code></li>
+              
+                <li><code>parse_head</code></li>
+              
+                <li><code>parse_head!</code></li>
+              
+                <li><code>parse!</code></li>
+              
+                <li><code>split</code></li>
+              
+                <li><code>to_argv</code></li>
               
             </ul>
           
@@ -7859,39 +8053,6 @@ ga('send', 'pageview');
 
 
   
-  <div class="surface-compact-row" data-namespace="OptionParser">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          OptionParser
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Elixir 1.18</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">7 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
   <div class="surface-compact-row" data-namespace="OptionParser.ParseError">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
@@ -7948,39 +8109,6 @@ ga('send', 'pageview');
     <span class="surface-compact-row__stats">
       <strong>0/0</strong>
       <span class="surface-compact-row__skip">13 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="Path">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          Path
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Elixir 1.18</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">15 skipped</span>
     </span>
   </div>
 
