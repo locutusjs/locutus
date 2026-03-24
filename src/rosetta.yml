@@ -315,6 +315,9 @@ string_substring:
 # MATH OPERATIONS
 # =============================================================================
 
+math_frexp:
+  - c/math/frexp
+
 math_sqrt:
   - php/math/sqrt
   - python/math/sqrt
