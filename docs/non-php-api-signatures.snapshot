@@ -28,7 +28,7 @@ src/c/ctype/isupper.ts :: export function isupper(c: string): boolean
 src/c/ctype/tolower.ts :: export function tolower(c: string): string
 src/c/ctype/toupper.ts :: export function toupper(c: string): string
 src/c/math/abs.ts :: export function abs(mixedNumber: number): number
-src/c/math/frexp.ts :: export function frexp(arg: number): [number, number]
+src/c/math/frexp.ts :: export function frexp(arg: number): [fraction: number, exponent: number]
 src/c/stdio/sprintf.ts :: export function sprintf(format: string, ...args: unknown[]): string
 src/c/stdlib/atof.ts :: export function atof(str: string): number
 src/c/stdlib/atoi.ts :: export function atoi(str: string): number
