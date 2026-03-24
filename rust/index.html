@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-24T16:35:03.140Z">
-<meta property="article:modified_time" content="2026-03-24T16:35:03.140Z">
+<meta property="article:published_time" content="2026-03-24T22:07:05.238Z">
+<meta property="article:modified_time" content="2026-03-24T22:07:05.238Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -326,7 +326,7 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         23/5276 shipped
-        
+         &middot; 587 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -334,8 +334,10 @@ ga('send', 'pageview');
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.4%"></span>
             
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 11.1%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 99.6%"></span>
+            
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 88.4%"></span>
             
             
           
@@ -367,8 +369,10 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.4%"></span>
         
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 11.1%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 99.6%"></span>
+        
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 88.4%"></span>
         
         
       
@@ -376,7 +380,7 @@ ga('send', 'pageview');
 
     <div class="surface-legend">
       <span><i class="surface-legend__swatch surface-legend__swatch--shipped"></i>Shipped</span>
-      
+      <span><i class="surface-legend__swatch surface-legend__swatch--wanted"></i>Next</span>
       <span><i class="surface-legend__swatch surface-legend__swatch--skipped"></i>Explicit non-goals</span>
       
     </div>
@@ -401,6 +405,120 @@ ga('send', 'pageview');
               })(this)">
           <span class="surface-minimap__name">primitive:str</span>
           <span class="surface-minimap__pct">18%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="primitive:f32: 0% shipped"
+              data-ns="primitive:f32"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">primitive:f32</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="primitive:f64: 0% shipped"
+              data-ns="primitive:f64"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">primitive:f64</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="primitive:f16: 0% shipped"
+              data-ns="primitive:f16"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">primitive:f16</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="primitive:f128: 0% shipped"
+              data-ns="primitive:f128"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">primitive:f128</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="primitive:char: 0% shipped"
+              data-ns="primitive:char"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">primitive:char</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="primitive:bool: 0% shipped"
+              data-ns="primitive:bool"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">primitive:bool</span>
+          <span class="surface-minimap__pct">0%</span>
         </span>
       
         
@@ -1963,120 +2081,6 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="primitive:bool: 0% shipped"
-              data-ns="primitive:bool"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">primitive:bool</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="primitive:char: 0% shipped"
-              data-ns="primitive:char"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">primitive:char</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="primitive:f128: 0% shipped"
-              data-ns="primitive:f128"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">primitive:f128</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="primitive:f16: 0% shipped"
-              data-ns="primitive:f16"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">primitive:f16</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="primitive:f32: 0% shipped"
-              data-ns="primitive:f32"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">primitive:f32</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="primitive:f64: 0% shipped"
-              data-ns="primitive:f64"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">primitive:f64</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="primitive:fn: 0% shipped"
               data-ns="primitive:fn"
               onclick="(function(el){
@@ -2752,11 +2756,16 @@ ga('send', 'pageview');
         <strong class="surface-kpi__value">23/5276</strong>
       </article>
       
+        <article class="surface-kpi">
+          <span class="surface-kpi__label">Next to port</span>
+          <strong class="surface-kpi__value">587</strong>
+        </article>
+      
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">5253</strong>
+          <strong class="surface-kpi__value">4666</strong>
         </article>
       
       
@@ -3025,7 +3034,7 @@ ga('send', 'pageview');
                   <code>add</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3034,7 +3043,7 @@ ga('send', 'pageview');
                   <code>add_assign</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3043,7 +3052,7 @@ ga('send', 'pageview');
                   <code>as_ascii</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3052,7 +3061,7 @@ ga('send', 'pageview');
                   <code>as_ascii_unchecked</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3061,7 +3070,7 @@ ga('send', 'pageview');
                   <code>as_bytes</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3070,7 +3079,7 @@ ga('send', 'pageview');
                   <code>as_bytes_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3079,7 +3088,7 @@ ga('send', 'pageview');
                   <code>as_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3088,7 +3097,7 @@ ga('send', 'pageview');
                   <code>as_mut_ptr</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3097,7 +3106,7 @@ ga('send', 'pageview');
                   <code>as_ptr</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3106,7 +3115,7 @@ ga('send', 'pageview');
                   <code>as_ref</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3115,7 +3124,7 @@ ga('send', 'pageview');
                   <code>as_str</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3124,7 +3133,7 @@ ga('send', 'pageview');
                   <code>as_utf8_pattern</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3133,7 +3142,7 @@ ga('send', 'pageview');
                   <code>borrow</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3142,7 +3151,7 @@ ga('send', 'pageview');
                   <code>borrow_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3151,7 +3160,7 @@ ga('send', 'pageview');
                   <code>bytes</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3160,7 +3169,7 @@ ga('send', 'pageview');
                   <code>ceil_char_boundary</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3169,7 +3178,7 @@ ga('send', 'pageview');
                   <code>char_indices</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3178,7 +3187,7 @@ ga('send', 'pageview');
                   <code>chars</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3187,7 +3196,7 @@ ga('send', 'pageview');
                   <code>clone</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3196,7 +3205,7 @@ ga('send', 'pageview');
                   <code>clone_from</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3205,7 +3214,7 @@ ga('send', 'pageview');
                   <code>clone_into</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3214,7 +3223,7 @@ ga('send', 'pageview');
                   <code>clone_to_uninit</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3223,7 +3232,7 @@ ga('send', 'pageview');
                   <code>cmp</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3232,7 +3241,7 @@ ga('send', 'pageview');
                   <code>concat</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3241,7 +3250,7 @@ ga('send', 'pageview');
                   <code>default</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3250,7 +3259,7 @@ ga('send', 'pageview');
                   <code>encode_utf16</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3259,7 +3268,7 @@ ga('send', 'pageview');
                   <code>eq</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3268,7 +3277,7 @@ ga('send', 'pageview');
                   <code>eq_ignore_ascii_case</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3277,7 +3286,7 @@ ga('send', 'pageview');
                   <code>escape_debug</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3286,7 +3295,7 @@ ga('send', 'pageview');
                   <code>escape_default</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3295,7 +3304,7 @@ ga('send', 'pageview');
                   <code>escape_unicode</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3304,7 +3313,7 @@ ga('send', 'pageview');
                   <code>extend</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3313,7 +3322,7 @@ ga('send', 'pageview');
                   <code>extend_one</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3322,7 +3331,7 @@ ga('send', 'pageview');
                   <code>extend_reserve</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3331,7 +3340,7 @@ ga('send', 'pageview');
                   <code>floor_char_boundary</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3340,7 +3349,7 @@ ga('send', 'pageview');
                   <code>fmt</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3349,7 +3358,7 @@ ga('send', 'pageview');
                   <code>from</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3358,7 +3367,7 @@ ga('send', 'pageview');
                   <code>from_iter</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3367,7 +3376,7 @@ ga('send', 'pageview');
                   <code>from_utf8</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3376,7 +3385,7 @@ ga('send', 'pageview');
                   <code>from_utf8_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3385,7 +3394,7 @@ ga('send', 'pageview');
                   <code>from_utf8_unchecked</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3394,7 +3403,7 @@ ga('send', 'pageview');
                   <code>from_utf8_unchecked_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3403,7 +3412,7 @@ ga('send', 'pageview');
                   <code>ge</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3412,7 +3421,7 @@ ga('send', 'pageview');
                   <code>get</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3421,7 +3430,7 @@ ga('send', 'pageview');
                   <code>get_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3430,7 +3439,7 @@ ga('send', 'pageview');
                   <code>get_unchecked</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3439,7 +3448,7 @@ ga('send', 'pageview');
                   <code>get_unchecked_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3448,7 +3457,7 @@ ga('send', 'pageview');
                   <code>gt</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3457,7 +3466,7 @@ ga('send', 'pageview');
                   <code>hash</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3466,7 +3475,7 @@ ga('send', 'pageview');
                   <code>index</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3475,7 +3484,7 @@ ga('send', 'pageview');
                   <code>index_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3484,7 +3493,7 @@ ga('send', 'pageview');
                   <code>into_boxed_bytes</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3493,7 +3502,7 @@ ga('send', 'pageview');
                   <code>into_searcher</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3502,7 +3511,7 @@ ga('send', 'pageview');
                   <code>into_string</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3511,7 +3520,7 @@ ga('send', 'pageview');
                   <code>is_ascii</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3520,7 +3529,7 @@ ga('send', 'pageview');
                   <code>is_char_boundary</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3529,7 +3538,7 @@ ga('send', 'pageview');
                   <code>is_contained_in</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3538,7 +3547,7 @@ ga('send', 'pageview');
                   <code>is_empty</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3547,7 +3556,7 @@ ga('send', 'pageview');
                   <code>is_prefix_of</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3556,7 +3565,7 @@ ga('send', 'pageview');
                   <code>is_suffix_of</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3565,7 +3574,7 @@ ga('send', 'pageview');
                   <code>join</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3574,7 +3583,7 @@ ga('send', 'pageview');
                   <code>le</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3583,7 +3592,7 @@ ga('send', 'pageview');
                   <code>lines_any</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3592,7 +3601,7 @@ ga('send', 'pageview');
                   <code>lt</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3601,7 +3610,7 @@ ga('send', 'pageview');
                   <code>make_ascii_lowercase</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3610,7 +3619,7 @@ ga('send', 'pageview');
                   <code>make_ascii_uppercase</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3619,7 +3628,7 @@ ga('send', 'pageview');
                   <code>matches</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3628,7 +3637,7 @@ ga('send', 'pageview');
                   <code>ne</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3637,7 +3646,7 @@ ga('send', 'pageview');
                   <code>parse</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3646,7 +3655,7 @@ ga('send', 'pageview');
                   <code>partial_cmp</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3655,7 +3664,7 @@ ga('send', 'pageview');
                   <code>repeat</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3664,7 +3673,7 @@ ga('send', 'pageview');
                   <code>replacen</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3673,7 +3682,7 @@ ga('send', 'pageview');
                   <code>rmatch_indices</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3682,7 +3691,7 @@ ga('send', 'pageview');
                   <code>rmatches</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3691,7 +3700,7 @@ ga('send', 'pageview');
                   <code>rsplit</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3700,7 +3709,7 @@ ga('send', 'pageview');
                   <code>slice_mut_unchecked</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3709,7 +3718,7 @@ ga('send', 'pageview');
                   <code>slice_unchecked</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3718,7 +3727,7 @@ ga('send', 'pageview');
                   <code>split</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3727,7 +3736,7 @@ ga('send', 'pageview');
                   <code>split_ascii_whitespace</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3736,7 +3745,7 @@ ga('send', 'pageview');
                   <code>split_at</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3745,7 +3754,7 @@ ga('send', 'pageview');
                   <code>split_at_checked</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3754,7 +3763,7 @@ ga('send', 'pageview');
                   <code>split_at_mut</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3763,7 +3772,7 @@ ga('send', 'pageview');
                   <code>split_at_mut_checked</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3772,7 +3781,7 @@ ga('send', 'pageview');
                   <code>split_whitespace</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3781,7 +3790,7 @@ ga('send', 'pageview');
                   <code>strip_circumfix</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3790,7 +3799,7 @@ ga('send', 'pageview');
                   <code>strip_prefix_of</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3799,7 +3808,7 @@ ga('send', 'pageview');
                   <code>strip_suffix_of</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3808,7 +3817,7 @@ ga('send', 'pageview');
                   <code>substr_range</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3817,7 +3826,7 @@ ga('send', 'pageview');
                   <code>to_ascii_lowercase</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3826,7 +3835,7 @@ ga('send', 'pageview');
                   <code>to_ascii_uppercase</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3835,7 +3844,7 @@ ga('send', 'pageview');
                   <code>to_owned</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3844,7 +3853,7 @@ ga('send', 'pageview');
                   <code>to_socket_addrs</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3853,7 +3862,7 @@ ga('send', 'pageview');
                   <code>to_string</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3862,7 +3871,7 @@ ga('send', 'pageview');
                   <code>trim_ascii</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3871,7 +3880,7 @@ ga('send', 'pageview');
                   <code>trim_ascii_end</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3880,7 +3889,7 @@ ga('send', 'pageview');
                   <code>trim_ascii_start</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3889,7 +3898,7 @@ ga('send', 'pageview');
                   <code>trim_end_matches</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3898,7 +3907,7 @@ ga('send', 'pageview');
                   <code>trim_left</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3907,7 +3916,7 @@ ga('send', 'pageview');
                   <code>trim_left_matches</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3916,7 +3925,7 @@ ga('send', 'pageview');
                   <code>trim_matches</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3925,7 +3934,7 @@ ga('send', 'pageview');
                   <code>trim_prefix</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3934,7 +3943,7 @@ ga('send', 'pageview');
                   <code>trim_right</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3943,7 +3952,7 @@ ga('send', 'pageview');
                   <code>trim_right_matches</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3952,7 +3961,7 @@ ga('send', 'pageview');
                   <code>trim_start_matches</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3961,7 +3970,7 @@ ga('send', 'pageview');
                   <code>trim_suffix</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3970,7 +3979,7 @@ ga('send', 'pageview');
                   <code>try_from</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
               
@@ -3979,7 +3988,7 @@ ga('send', 'pageview');
                   <code>type_id</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
-                <span>Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.</span>
+                <span>Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.</span>
               </li>
             
           </ul>
@@ -3997,6 +4006,1637 @@ ga('send', 'pageview');
       </div>
     
 
+    
+      <div class="surface-ns-group">
+        
+          <h3 class="surface-ns-group__title">In progress</h3>
+        
+        
+          
+
+
+
+<article class="surface-card" data-namespace="primitive:f32">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          f32
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Rust 1.85</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://doc.rust-lang.org/std/primitive.f32.html</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/115</strong> shipped</span>
+    <span><strong>115</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Floating-point primitive helpers are strong Rust portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>abs</code></li>
+              
+                <li><code>abs_sub</code></li>
+              
+                <li><code>acos</code></li>
+              
+                <li><code>acosh</code></li>
+              
+                <li><code>add</code></li>
+              
+                <li><code>add_assign</code></li>
+              
+                <li><code>algebraic_add</code></li>
+              
+                <li><code>algebraic_div</code></li>
+              
+                <li><code>algebraic_mul</code></li>
+              
+                <li><code>algebraic_rem</code></li>
+              
+                <li><code>algebraic_sub</code></li>
+              
+                <li><code>asin</code></li>
+              
+                <li><code>asinh</code></li>
+              
+                <li><code>atan</code></li>
+              
+                <li><code>atan2</code></li>
+              
+                <li><code>atanh</code></li>
+              
+                <li><code>borrow</code></li>
+              
+                <li><code>borrow_mut</code></li>
+              
+                <li><code>cbrt</code></li>
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>clamp</code></li>
+              
+                <li><code>clamp_magnitude</code></li>
+              
+                <li><code>classify</code></li>
+              
+                <li><code>clone</code></li>
+              
+                <li><code>clone_from</code></li>
+              
+                <li><code>clone_into</code></li>
+              
+                <li><code>clone_to_uninit</code></li>
+              
+                <li><code>copysign</code></li>
+              
+                <li><code>cos</code></li>
+              
+                <li><code>cosh</code></li>
+              
+                <li><code>default</code></li>
+              
+                <li><code>div</code></li>
+              
+                <li><code>div_assign</code></li>
+              
+                <li><code>div_euclid</code></li>
+              
+                <li><code>eq</code></li>
+              
+                <li><code>erf</code></li>
+              
+                <li><code>erfc</code></li>
+              
+                <li><code>exp</code></li>
+              
+                <li><code>exp_m1</code></li>
+              
+                <li><code>exp2</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>fmt</code></li>
+              
+                <li><code>fract</code></li>
+              
+                <li><code>from</code></li>
+              
+                <li><code>from_be_bytes</code></li>
+              
+                <li><code>from_bits</code></li>
+              
+                <li><code>from_le_bytes</code></li>
+              
+                <li><code>from_ne_bytes</code></li>
+              
+                <li><code>from_str</code></li>
+              
+                <li><code>gamma</code></li>
+              
+                <li><code>ge</code></li>
+              
+                <li><code>gt</code></li>
+              
+                <li><code>hypot</code></li>
+              
+                <li><code>into</code></li>
+              
+                <li><code>is_finite</code></li>
+              
+                <li><code>is_infinite</code></li>
+              
+                <li><code>is_nan</code></li>
+              
+                <li><code>is_normal</code></li>
+              
+                <li><code>is_sign_negative</code></li>
+              
+                <li><code>is_sign_positive</code></li>
+              
+                <li><code>is_subnormal</code></li>
+              
+                <li><code>le</code></li>
+              
+                <li><code>ln</code></li>
+              
+                <li><code>ln_1p</code></li>
+              
+                <li><code>ln_gamma</code></li>
+              
+                <li><code>log</code></li>
+              
+                <li><code>log10</code></li>
+              
+                <li><code>log2</code></li>
+              
+                <li><code>lt</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>maximum</code></li>
+              
+                <li><code>midpoint</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>minimum</code></li>
+              
+                <li><code>mul</code></li>
+              
+                <li><code>mul_add</code></li>
+              
+                <li><code>mul_assign</code></li>
+              
+                <li><code>ne</code></li>
+              
+                <li><code>neg</code></li>
+              
+                <li><code>next_down</code></li>
+              
+                <li><code>next_up</code></li>
+              
+                <li><code>partial_cmp</code></li>
+              
+                <li><code>powf</code></li>
+              
+                <li><code>powi</code></li>
+              
+                <li><code>product</code></li>
+              
+                <li><code>recip</code></li>
+              
+                <li><code>rem</code></li>
+              
+                <li><code>rem_assign</code></li>
+              
+                <li><code>rem_euclid</code></li>
+              
+                <li><code>round</code></li>
+              
+                <li><code>round_ties_even</code></li>
+              
+                <li><code>signum</code></li>
+              
+                <li><code>sin</code></li>
+              
+                <li><code>sin_cos</code></li>
+              
+                <li><code>sinh</code></li>
+              
+                <li><code>sqrt</code></li>
+              
+                <li><code>sub</code></li>
+              
+                <li><code>sub_assign</code></li>
+              
+                <li><code>sum</code></li>
+              
+                <li><code>tan</code></li>
+              
+                <li><code>tanh</code></li>
+              
+                <li><code>to_be_bytes</code></li>
+              
+                <li><code>to_bits</code></li>
+              
+                <li><code>to_degrees</code></li>
+              
+                <li><code>to_int_unchecked</code></li>
+              
+                <li><code>to_le_bytes</code></li>
+              
+                <li><code>to_ne_bytes</code></li>
+              
+                <li><code>to_owned</code></li>
+              
+                <li><code>to_radians</code></li>
+              
+                <li><code>to_string</code></li>
+              
+                <li><code>total_cmp</code></li>
+              
+                <li><code>trunc</code></li>
+              
+                <li><code>try_from</code></li>
+              
+                <li><code>try_into</code></li>
+              
+                <li><code>type_id</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="primitive:f64">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          f64
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Rust 1.85</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://doc.rust-lang.org/std/primitive.f64.html</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/115</strong> shipped</span>
+    <span><strong>115</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Floating-point primitive helpers are strong Rust portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>abs</code></li>
+              
+                <li><code>abs_sub</code></li>
+              
+                <li><code>acos</code></li>
+              
+                <li><code>acosh</code></li>
+              
+                <li><code>add</code></li>
+              
+                <li><code>add_assign</code></li>
+              
+                <li><code>algebraic_add</code></li>
+              
+                <li><code>algebraic_div</code></li>
+              
+                <li><code>algebraic_mul</code></li>
+              
+                <li><code>algebraic_rem</code></li>
+              
+                <li><code>algebraic_sub</code></li>
+              
+                <li><code>asin</code></li>
+              
+                <li><code>asinh</code></li>
+              
+                <li><code>atan</code></li>
+              
+                <li><code>atan2</code></li>
+              
+                <li><code>atanh</code></li>
+              
+                <li><code>borrow</code></li>
+              
+                <li><code>borrow_mut</code></li>
+              
+                <li><code>cbrt</code></li>
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>clamp</code></li>
+              
+                <li><code>clamp_magnitude</code></li>
+              
+                <li><code>classify</code></li>
+              
+                <li><code>clone</code></li>
+              
+                <li><code>clone_from</code></li>
+              
+                <li><code>clone_into</code></li>
+              
+                <li><code>clone_to_uninit</code></li>
+              
+                <li><code>copysign</code></li>
+              
+                <li><code>cos</code></li>
+              
+                <li><code>cosh</code></li>
+              
+                <li><code>default</code></li>
+              
+                <li><code>div</code></li>
+              
+                <li><code>div_assign</code></li>
+              
+                <li><code>div_euclid</code></li>
+              
+                <li><code>eq</code></li>
+              
+                <li><code>erf</code></li>
+              
+                <li><code>erfc</code></li>
+              
+                <li><code>exp</code></li>
+              
+                <li><code>exp_m1</code></li>
+              
+                <li><code>exp2</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>fmt</code></li>
+              
+                <li><code>fract</code></li>
+              
+                <li><code>from</code></li>
+              
+                <li><code>from_be_bytes</code></li>
+              
+                <li><code>from_bits</code></li>
+              
+                <li><code>from_le_bytes</code></li>
+              
+                <li><code>from_ne_bytes</code></li>
+              
+                <li><code>from_str</code></li>
+              
+                <li><code>gamma</code></li>
+              
+                <li><code>ge</code></li>
+              
+                <li><code>gt</code></li>
+              
+                <li><code>hypot</code></li>
+              
+                <li><code>into</code></li>
+              
+                <li><code>is_finite</code></li>
+              
+                <li><code>is_infinite</code></li>
+              
+                <li><code>is_nan</code></li>
+              
+                <li><code>is_normal</code></li>
+              
+                <li><code>is_sign_negative</code></li>
+              
+                <li><code>is_sign_positive</code></li>
+              
+                <li><code>is_subnormal</code></li>
+              
+                <li><code>le</code></li>
+              
+                <li><code>ln</code></li>
+              
+                <li><code>ln_1p</code></li>
+              
+                <li><code>ln_gamma</code></li>
+              
+                <li><code>log</code></li>
+              
+                <li><code>log10</code></li>
+              
+                <li><code>log2</code></li>
+              
+                <li><code>lt</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>maximum</code></li>
+              
+                <li><code>midpoint</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>minimum</code></li>
+              
+                <li><code>mul</code></li>
+              
+                <li><code>mul_add</code></li>
+              
+                <li><code>mul_assign</code></li>
+              
+                <li><code>ne</code></li>
+              
+                <li><code>neg</code></li>
+              
+                <li><code>next_down</code></li>
+              
+                <li><code>next_up</code></li>
+              
+                <li><code>partial_cmp</code></li>
+              
+                <li><code>powf</code></li>
+              
+                <li><code>powi</code></li>
+              
+                <li><code>product</code></li>
+              
+                <li><code>recip</code></li>
+              
+                <li><code>rem</code></li>
+              
+                <li><code>rem_assign</code></li>
+              
+                <li><code>rem_euclid</code></li>
+              
+                <li><code>round</code></li>
+              
+                <li><code>round_ties_even</code></li>
+              
+                <li><code>signum</code></li>
+              
+                <li><code>sin</code></li>
+              
+                <li><code>sin_cos</code></li>
+              
+                <li><code>sinh</code></li>
+              
+                <li><code>sqrt</code></li>
+              
+                <li><code>sub</code></li>
+              
+                <li><code>sub_assign</code></li>
+              
+                <li><code>sum</code></li>
+              
+                <li><code>tan</code></li>
+              
+                <li><code>tanh</code></li>
+              
+                <li><code>to_be_bytes</code></li>
+              
+                <li><code>to_bits</code></li>
+              
+                <li><code>to_degrees</code></li>
+              
+                <li><code>to_int_unchecked</code></li>
+              
+                <li><code>to_le_bytes</code></li>
+              
+                <li><code>to_ne_bytes</code></li>
+              
+                <li><code>to_owned</code></li>
+              
+                <li><code>to_radians</code></li>
+              
+                <li><code>to_string</code></li>
+              
+                <li><code>total_cmp</code></li>
+              
+                <li><code>trunc</code></li>
+              
+                <li><code>try_from</code></li>
+              
+                <li><code>try_into</code></li>
+              
+                <li><code>type_id</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="primitive:f16">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          f16
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Rust 1.85</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://doc.rust-lang.org/std/primitive.f16.html</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/114</strong> shipped</span>
+    <span><strong>114</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Floating-point primitive helpers are strong Rust portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>abs</code></li>
+              
+                <li><code>acos</code></li>
+              
+                <li><code>acosh</code></li>
+              
+                <li><code>add</code></li>
+              
+                <li><code>add_assign</code></li>
+              
+                <li><code>algebraic_add</code></li>
+              
+                <li><code>algebraic_div</code></li>
+              
+                <li><code>algebraic_mul</code></li>
+              
+                <li><code>algebraic_rem</code></li>
+              
+                <li><code>algebraic_sub</code></li>
+              
+                <li><code>asin</code></li>
+              
+                <li><code>asinh</code></li>
+              
+                <li><code>atan</code></li>
+              
+                <li><code>atan2</code></li>
+              
+                <li><code>atanh</code></li>
+              
+                <li><code>borrow</code></li>
+              
+                <li><code>borrow_mut</code></li>
+              
+                <li><code>cbrt</code></li>
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>clamp</code></li>
+              
+                <li><code>clamp_magnitude</code></li>
+              
+                <li><code>classify</code></li>
+              
+                <li><code>clone</code></li>
+              
+                <li><code>clone_from</code></li>
+              
+                <li><code>clone_into</code></li>
+              
+                <li><code>clone_to_uninit</code></li>
+              
+                <li><code>copysign</code></li>
+              
+                <li><code>cos</code></li>
+              
+                <li><code>cosh</code></li>
+              
+                <li><code>default</code></li>
+              
+                <li><code>div</code></li>
+              
+                <li><code>div_assign</code></li>
+              
+                <li><code>div_euclid</code></li>
+              
+                <li><code>eq</code></li>
+              
+                <li><code>erf</code></li>
+              
+                <li><code>erfc</code></li>
+              
+                <li><code>exp</code></li>
+              
+                <li><code>exp_m1</code></li>
+              
+                <li><code>exp2</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>fmt</code></li>
+              
+                <li><code>fract</code></li>
+              
+                <li><code>from</code></li>
+              
+                <li><code>from_be_bytes</code></li>
+              
+                <li><code>from_bits</code></li>
+              
+                <li><code>from_le_bytes</code></li>
+              
+                <li><code>from_ne_bytes</code></li>
+              
+                <li><code>from_str</code></li>
+              
+                <li><code>gamma</code></li>
+              
+                <li><code>ge</code></li>
+              
+                <li><code>gt</code></li>
+              
+                <li><code>hypot</code></li>
+              
+                <li><code>into</code></li>
+              
+                <li><code>is_finite</code></li>
+              
+                <li><code>is_infinite</code></li>
+              
+                <li><code>is_nan</code></li>
+              
+                <li><code>is_normal</code></li>
+              
+                <li><code>is_sign_negative</code></li>
+              
+                <li><code>is_sign_positive</code></li>
+              
+                <li><code>is_subnormal</code></li>
+              
+                <li><code>le</code></li>
+              
+                <li><code>ln</code></li>
+              
+                <li><code>ln_1p</code></li>
+              
+                <li><code>ln_gamma</code></li>
+              
+                <li><code>log</code></li>
+              
+                <li><code>log10</code></li>
+              
+                <li><code>log2</code></li>
+              
+                <li><code>lt</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>maximum</code></li>
+              
+                <li><code>midpoint</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>minimum</code></li>
+              
+                <li><code>mul</code></li>
+              
+                <li><code>mul_add</code></li>
+              
+                <li><code>mul_assign</code></li>
+              
+                <li><code>ne</code></li>
+              
+                <li><code>neg</code></li>
+              
+                <li><code>next_down</code></li>
+              
+                <li><code>next_up</code></li>
+              
+                <li><code>partial_cmp</code></li>
+              
+                <li><code>powf</code></li>
+              
+                <li><code>powi</code></li>
+              
+                <li><code>product</code></li>
+              
+                <li><code>recip</code></li>
+              
+                <li><code>rem</code></li>
+              
+                <li><code>rem_assign</code></li>
+              
+                <li><code>rem_euclid</code></li>
+              
+                <li><code>round</code></li>
+              
+                <li><code>round_ties_even</code></li>
+              
+                <li><code>signum</code></li>
+              
+                <li><code>sin</code></li>
+              
+                <li><code>sin_cos</code></li>
+              
+                <li><code>sinh</code></li>
+              
+                <li><code>sqrt</code></li>
+              
+                <li><code>sub</code></li>
+              
+                <li><code>sub_assign</code></li>
+              
+                <li><code>sum</code></li>
+              
+                <li><code>tan</code></li>
+              
+                <li><code>tanh</code></li>
+              
+                <li><code>to_be_bytes</code></li>
+              
+                <li><code>to_bits</code></li>
+              
+                <li><code>to_degrees</code></li>
+              
+                <li><code>to_int_unchecked</code></li>
+              
+                <li><code>to_le_bytes</code></li>
+              
+                <li><code>to_ne_bytes</code></li>
+              
+                <li><code>to_owned</code></li>
+              
+                <li><code>to_radians</code></li>
+              
+                <li><code>to_string</code></li>
+              
+                <li><code>total_cmp</code></li>
+              
+                <li><code>trunc</code></li>
+              
+                <li><code>try_from</code></li>
+              
+                <li><code>try_into</code></li>
+              
+                <li><code>type_id</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="primitive:f128">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          f128
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Rust 1.85</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://doc.rust-lang.org/std/primitive.f128.html</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/112</strong> shipped</span>
+    <span><strong>112</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Floating-point primitive helpers are strong Rust portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>abs</code></li>
+              
+                <li><code>acos</code></li>
+              
+                <li><code>acosh</code></li>
+              
+                <li><code>add</code></li>
+              
+                <li><code>add_assign</code></li>
+              
+                <li><code>algebraic_add</code></li>
+              
+                <li><code>algebraic_div</code></li>
+              
+                <li><code>algebraic_mul</code></li>
+              
+                <li><code>algebraic_rem</code></li>
+              
+                <li><code>algebraic_sub</code></li>
+              
+                <li><code>asin</code></li>
+              
+                <li><code>asinh</code></li>
+              
+                <li><code>atan</code></li>
+              
+                <li><code>atan2</code></li>
+              
+                <li><code>atanh</code></li>
+              
+                <li><code>borrow</code></li>
+              
+                <li><code>borrow_mut</code></li>
+              
+                <li><code>cbrt</code></li>
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>clamp</code></li>
+              
+                <li><code>clamp_magnitude</code></li>
+              
+                <li><code>classify</code></li>
+              
+                <li><code>clone</code></li>
+              
+                <li><code>clone_from</code></li>
+              
+                <li><code>clone_into</code></li>
+              
+                <li><code>clone_to_uninit</code></li>
+              
+                <li><code>copysign</code></li>
+              
+                <li><code>cos</code></li>
+              
+                <li><code>cosh</code></li>
+              
+                <li><code>default</code></li>
+              
+                <li><code>div</code></li>
+              
+                <li><code>div_assign</code></li>
+              
+                <li><code>div_euclid</code></li>
+              
+                <li><code>eq</code></li>
+              
+                <li><code>erf</code></li>
+              
+                <li><code>erfc</code></li>
+              
+                <li><code>exp</code></li>
+              
+                <li><code>exp_m1</code></li>
+              
+                <li><code>exp2</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>fmt</code></li>
+              
+                <li><code>fract</code></li>
+              
+                <li><code>from</code></li>
+              
+                <li><code>from_be_bytes</code></li>
+              
+                <li><code>from_bits</code></li>
+              
+                <li><code>from_le_bytes</code></li>
+              
+                <li><code>from_ne_bytes</code></li>
+              
+                <li><code>gamma</code></li>
+              
+                <li><code>ge</code></li>
+              
+                <li><code>gt</code></li>
+              
+                <li><code>hypot</code></li>
+              
+                <li><code>into</code></li>
+              
+                <li><code>is_finite</code></li>
+              
+                <li><code>is_infinite</code></li>
+              
+                <li><code>is_nan</code></li>
+              
+                <li><code>is_normal</code></li>
+              
+                <li><code>is_sign_negative</code></li>
+              
+                <li><code>is_sign_positive</code></li>
+              
+                <li><code>is_subnormal</code></li>
+              
+                <li><code>le</code></li>
+              
+                <li><code>ln</code></li>
+              
+                <li><code>ln_1p</code></li>
+              
+                <li><code>ln_gamma</code></li>
+              
+                <li><code>log</code></li>
+              
+                <li><code>log10</code></li>
+              
+                <li><code>log2</code></li>
+              
+                <li><code>lt</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>maximum</code></li>
+              
+                <li><code>midpoint</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>minimum</code></li>
+              
+                <li><code>mul</code></li>
+              
+                <li><code>mul_add</code></li>
+              
+                <li><code>mul_assign</code></li>
+              
+                <li><code>ne</code></li>
+              
+                <li><code>neg</code></li>
+              
+                <li><code>next_down</code></li>
+              
+                <li><code>next_up</code></li>
+              
+                <li><code>partial_cmp</code></li>
+              
+                <li><code>powf</code></li>
+              
+                <li><code>powi</code></li>
+              
+                <li><code>product</code></li>
+              
+                <li><code>recip</code></li>
+              
+                <li><code>rem</code></li>
+              
+                <li><code>rem_assign</code></li>
+              
+                <li><code>rem_euclid</code></li>
+              
+                <li><code>round</code></li>
+              
+                <li><code>round_ties_even</code></li>
+              
+                <li><code>signum</code></li>
+              
+                <li><code>sin</code></li>
+              
+                <li><code>sin_cos</code></li>
+              
+                <li><code>sinh</code></li>
+              
+                <li><code>sqrt</code></li>
+              
+                <li><code>sub</code></li>
+              
+                <li><code>sub_assign</code></li>
+              
+                <li><code>sum</code></li>
+              
+                <li><code>tan</code></li>
+              
+                <li><code>tanh</code></li>
+              
+                <li><code>to_be_bytes</code></li>
+              
+                <li><code>to_bits</code></li>
+              
+                <li><code>to_degrees</code></li>
+              
+                <li><code>to_int_unchecked</code></li>
+              
+                <li><code>to_le_bytes</code></li>
+              
+                <li><code>to_ne_bytes</code></li>
+              
+                <li><code>to_owned</code></li>
+              
+                <li><code>to_radians</code></li>
+              
+                <li><code>total_cmp</code></li>
+              
+                <li><code>trunc</code></li>
+              
+                <li><code>try_from</code></li>
+              
+                <li><code>try_into</code></li>
+              
+                <li><code>type_id</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="primitive:char">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          char
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Rust 1.85</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://doc.rust-lang.org/std/primitive.char.html</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/89</strong> shipped</span>
+    <span><strong>89</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Character primitive helpers are strong plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>as_ascii</code></li>
+              
+                <li><code>as_ascii_unchecked</code></li>
+              
+                <li><code>as_utf8_pattern</code></li>
+              
+                <li><code>backward</code></li>
+              
+                <li><code>backward_checked</code></li>
+              
+                <li><code>backward_unchecked</code></li>
+              
+                <li><code>borrow</code></li>
+              
+                <li><code>borrow_mut</code></li>
+              
+                <li><code>clamp</code></li>
+              
+                <li><code>clone</code></li>
+              
+                <li><code>clone_from</code></li>
+              
+                <li><code>clone_into</code></li>
+              
+                <li><code>clone_to_uninit</code></li>
+              
+                <li><code>cmp</code></li>
+              
+                <li><code>decode_utf16</code></li>
+              
+                <li><code>default</code></li>
+              
+                <li><code>encode_utf16</code></li>
+              
+                <li><code>encode_utf8</code></li>
+              
+                <li><code>eq</code></li>
+              
+                <li><code>eq_ignore_ascii_case</code></li>
+              
+                <li><code>escape_debug</code></li>
+              
+                <li><code>escape_default</code></li>
+              
+                <li><code>escape_unicode</code></li>
+              
+                <li><code>extend</code></li>
+              
+                <li><code>extend_one</code></li>
+              
+                <li><code>extend_reserve</code></li>
+              
+                <li><code>fmt</code></li>
+              
+                <li><code>forward</code></li>
+              
+                <li><code>forward_checked</code></li>
+              
+                <li><code>forward_unchecked</code></li>
+              
+                <li><code>from</code></li>
+              
+                <li><code>from_digit</code></li>
+              
+                <li><code>from_iter</code></li>
+              
+                <li><code>from_str</code></li>
+              
+                <li><code>from_u32</code></li>
+              
+                <li><code>from_u32_unchecked</code></li>
+              
+                <li><code>ge</code></li>
+              
+                <li><code>gt</code></li>
+              
+                <li><code>hash</code></li>
+              
+                <li><code>hash_slice</code></li>
+              
+                <li><code>into</code></li>
+              
+                <li><code>into_searcher</code></li>
+              
+                <li><code>is_alphabetic</code></li>
+              
+                <li><code>is_alphanumeric</code></li>
+              
+                <li><code>is_ascii</code></li>
+              
+                <li><code>is_ascii_alphabetic</code></li>
+              
+                <li><code>is_ascii_alphanumeric</code></li>
+              
+                <li><code>is_ascii_control</code></li>
+              
+                <li><code>is_ascii_digit</code></li>
+              
+                <li><code>is_ascii_graphic</code></li>
+              
+                <li><code>is_ascii_hexdigit</code></li>
+              
+                <li><code>is_ascii_lowercase</code></li>
+              
+                <li><code>is_ascii_octdigit</code></li>
+              
+                <li><code>is_ascii_punctuation</code></li>
+              
+                <li><code>is_ascii_uppercase</code></li>
+              
+                <li><code>is_ascii_whitespace</code></li>
+              
+                <li><code>is_contained_in</code></li>
+              
+                <li><code>is_control</code></li>
+              
+                <li><code>is_digit</code></li>
+              
+                <li><code>is_lowercase</code></li>
+              
+                <li><code>is_numeric</code></li>
+              
+                <li><code>is_prefix_of</code></li>
+              
+                <li><code>is_suffix_of</code></li>
+              
+                <li><code>is_uppercase</code></li>
+              
+                <li><code>is_whitespace</code></li>
+              
+                <li><code>le</code></li>
+              
+                <li><code>len_utf16</code></li>
+              
+                <li><code>len_utf8</code></li>
+              
+                <li><code>lt</code></li>
+              
+                <li><code>make_ascii_lowercase</code></li>
+              
+                <li><code>make_ascii_uppercase</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>ne</code></li>
+              
+                <li><code>partial_cmp</code></li>
+              
+                <li><code>steps_between</code></li>
+              
+                <li><code>strip_prefix_of</code></li>
+              
+                <li><code>strip_suffix_of</code></li>
+              
+                <li><code>sub_one</code></li>
+              
+                <li><code>to_ascii_lowercase</code></li>
+              
+                <li><code>to_ascii_uppercase</code></li>
+              
+                <li><code>to_digit</code></li>
+              
+                <li><code>to_lowercase</code></li>
+              
+                <li><code>to_owned</code></li>
+              
+                <li><code>to_string</code></li>
+              
+                <li><code>to_uppercase</code></li>
+              
+                <li><code>try_from</code></li>
+              
+                <li><code>try_into</code></li>
+              
+                <li><code>type_id</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="primitive:bool">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          bool
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Rust 1.85</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://doc.rust-lang.org/std/primitive.bool.html</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/42</strong> shipped</span>
+    <span><strong>42</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Boolean primitive helpers have a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>bitand</code></li>
+              
+                <li><code>bitand_assign</code></li>
+              
+                <li><code>bitor</code></li>
+              
+                <li><code>bitor_assign</code></li>
+              
+                <li><code>bitxor</code></li>
+              
+                <li><code>bitxor_assign</code></li>
+              
+                <li><code>borrow</code></li>
+              
+                <li><code>borrow_mut</code></li>
+              
+                <li><code>clamp</code></li>
+              
+                <li><code>clone</code></li>
+              
+                <li><code>clone_from</code></li>
+              
+                <li><code>clone_into</code></li>
+              
+                <li><code>clone_to_uninit</code></li>
+              
+                <li><code>cmp</code></li>
+              
+                <li><code>default</code></li>
+              
+                <li><code>disjoint_bitor</code></li>
+              
+                <li><code>eq</code></li>
+              
+                <li><code>fmt</code></li>
+              
+                <li><code>from</code></li>
+              
+                <li><code>from_str</code></li>
+              
+                <li><code>ge</code></li>
+              
+                <li><code>gt</code></li>
+              
+                <li><code>hash</code></li>
+              
+                <li><code>hash_slice</code></li>
+              
+                <li><code>into</code></li>
+              
+                <li><code>le</code></li>
+              
+                <li><code>lt</code></li>
+              
+                <li><code>max</code></li>
+              
+                <li><code>min</code></li>
+              
+                <li><code>ne</code></li>
+              
+                <li><code>not</code></li>
+              
+                <li><code>ok_or</code></li>
+              
+                <li><code>ok_or_else</code></li>
+              
+                <li><code>partial_cmp</code></li>
+              
+                <li><code>sample</code></li>
+              
+                <li><code>then</code></li>
+              
+                <li><code>then_some</code></li>
+              
+                <li><code>to_owned</code></li>
+              
+                <li><code>to_string</code></li>
+              
+                <li><code>try_from</code></li>
+              
+                <li><code>try_into</code></li>
+              
+                <li><code>type_id</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+      </div>
     
 
     
@@ -5153,204 +6793,6 @@ ga('send', 'pageview');
     <span class="surface-compact-row__stats">
       <strong>0/0</strong>
       <span class="surface-compact-row__skip">52 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="primitive:bool">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          bool
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Rust 1.85</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">42 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="primitive:char">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          char
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Rust 1.85</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">89 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="primitive:f128">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          f128
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Rust 1.85</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">112 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="primitive:f16">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          f16
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Rust 1.85</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">114 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="primitive:f32">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          f32
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Rust 1.85</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">115 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="primitive:f64">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          f64
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Rust 1.85</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">115 skipped</span>
     </span>
   </div>
 

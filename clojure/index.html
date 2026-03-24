@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-24T16:35:03.038Z">
-<meta property="article:modified_time" content="2026-03-24T16:35:03.038Z">
+<meta property="article:published_time" content="2026-03-24T22:07:05.148Z">
+<meta property="article:modified_time" content="2026-03-24T22:07:05.148Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -322,7 +322,7 @@ ga('send', 'pageview');
       <strong>Upstream Surface Inventory</strong>
       <span>
         16/1067 shipped
-         &middot; 129 next
+         &middot; 179 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -330,10 +330,10 @@ ga('send', 'pageview');
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.5%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 12.1%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 16.8%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 86.4%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 81.7%"></span>
             
             
           
@@ -365,10 +365,10 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.5%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 12.1%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 16.8%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 86.4%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 81.7%"></span>
         
         
       
@@ -443,6 +443,25 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="math: 0% shipped"
+              data-ns="math"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">math</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
               title="walk: 0% shipped"
               data-ns="walk"
               onclick="(function(el){
@@ -481,8 +500,8 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--wanted"
-              title="edn: 0% shipped"
-              data-ns="edn"
+              title="instant: 0% shipped"
+              data-ns="instant"
               onclick="(function(el){
                 var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
                 if (!input) return;
@@ -494,12 +513,12 @@ ga('send', 'pageview');
                 }
                 input.dispatchEvent(new Event('input'));
               })(this)">
-          <span class="surface-minimap__name">edn</span>
+          <span class="surface-minimap__name">instant</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
         
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
               title="data: 0% shipped"
               data-ns="data"
               onclick="(function(el){
@@ -514,6 +533,25 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">data</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="edn: 0% shipped"
+              data-ns="edn"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">edn</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -552,25 +590,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">inspector</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="instant: 0% shipped"
-              data-ns="instant"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">instant</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -704,25 +723,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">main</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--empty"
-              title="math: 0% shipped"
-              data-ns="math"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">math</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -911,14 +911,14 @@ ga('send', 'pageview');
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">129</strong>
+          <strong class="surface-kpi__value">179</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">922</strong>
+          <strong class="surface-kpi__value">872</strong>
         </article>
       
       
@@ -7483,6 +7483,191 @@ ga('send', 'pageview');
 
 
 
+<article class="surface-card" data-namespace="math">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          clojure.math
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Clojure 1.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/44</strong> shipped</span>
+    <span><strong>44</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Scalar math helpers are strong plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>acos</code></li>
+              
+                <li><code>add-exact</code></li>
+              
+                <li><code>asin</code></li>
+              
+                <li><code>atan</code></li>
+              
+                <li><code>atan2</code></li>
+              
+                <li><code>cbrt</code></li>
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>copy-sign</code></li>
+              
+                <li><code>cos</code></li>
+              
+                <li><code>cosh</code></li>
+              
+                <li><code>decrement-exact</code></li>
+              
+                <li><code>E</code></li>
+              
+                <li><code>exp</code></li>
+              
+                <li><code>expm1</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>floor-div</code></li>
+              
+                <li><code>floor-mod</code></li>
+              
+                <li><code>get-exponent</code></li>
+              
+                <li><code>hypot</code></li>
+              
+                <li><code>IEEE-remainder</code></li>
+              
+                <li><code>increment-exact</code></li>
+              
+                <li><code>log</code></li>
+              
+                <li><code>log10</code></li>
+              
+                <li><code>log1p</code></li>
+              
+                <li><code>multiply-exact</code></li>
+              
+                <li><code>negate-exact</code></li>
+              
+                <li><code>next-after</code></li>
+              
+                <li><code>next-down</code></li>
+              
+                <li><code>next-up</code></li>
+              
+                <li><code>PI</code></li>
+              
+                <li><code>pow</code></li>
+              
+                <li><code>rint</code></li>
+              
+                <li><code>round</code></li>
+              
+                <li><code>scalb</code></li>
+              
+                <li><code>signum</code></li>
+              
+                <li><code>sin</code></li>
+              
+                <li><code>sinh</code></li>
+              
+                <li><code>sqrt</code></li>
+              
+                <li><code>subtract-exact</code></li>
+              
+                <li><code>tan</code></li>
+              
+                <li><code>tanh</code></li>
+              
+                <li><code>to-degrees</code></li>
+              
+                <li><code>to-radians</code></li>
+              
+                <li><code>ulp</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/random" target="_blank" rel="noopener noreferrer"><code>random</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Pseudorandom helpers are lower-priority than deterministic scalar portability targets.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
 <article class="surface-card" data-namespace="walk">
   <div class="surface-card__header">
     <div>
@@ -7767,6 +7952,237 @@ ga('send', 'pageview');
 
 
 
+<article class="surface-card" data-namespace="instant">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          clojure.instant
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Clojure 1.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/4</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Instant parsing and formatting helpers have a useful plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>parse-timestamp</code></li>
+              
+                <li><code>read-instant-calendar</code></li>
+              
+                <li><code>read-instant-date</code></li>
+              
+                <li><code>read-instant-timestamp</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/validated" target="_blank" rel="noopener noreferrer"><code>validated</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Validator constructors and wrappers are runtime plumbing rather than direct plain-value helpers.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="data">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          clojure.data
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Clojure 1.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/2</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Structural diffing over plain nested values is a strong portability target.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>diff</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Equality partitioning has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>equality-partition</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/Diff" target="_blank" rel="noopener noreferrer"><code>Diff</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>clojure.data mixes structural result wrappers with richer data-model helpers beyond one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/diff-similar" target="_blank" rel="noopener noreferrer"><code>diff-similar</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>clojure.data mixes structural result wrappers with richer data-model helpers beyond one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/EqualityPartition" target="_blank" rel="noopener noreferrer"><code>EqualityPartition</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>clojure.data mixes structural result wrappers with richer data-model helpers beyond one stable plain-value contract by default.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
 <article class="surface-card" data-namespace="edn">
   <div class="surface-card__header">
     <div>
@@ -7874,39 +8290,6 @@ ga('send', 'pageview');
 
 
   
-  <div class="surface-compact-row" data-namespace="data">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          clojure.data
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">5 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
   <div class="surface-compact-row" data-namespace="datafy">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
@@ -7963,39 +8346,6 @@ ga('send', 'pageview');
     <span class="surface-compact-row__stats">
       <strong>0/0</strong>
       <span class="surface-compact-row__skip">13 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="instant">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          clojure.instant
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">5 skipped</span>
     </span>
   </div>
 
@@ -8227,39 +8577,6 @@ ga('send', 'pageview');
     <span class="surface-compact-row__stats">
       <strong>0/0</strong>
       <span class="surface-compact-row__skip">20 skipped</span>
-    </span>
-  </div>
-
-
-
-          
-            
-
-
-  
-  <div class="surface-compact-row" data-namespace="math">
-    <div class="surface-compact-row__info">
-      <strong class="surface-compact-row__name">
-        
-          clojure.math
-        
-      </strong>
-      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
-    </div>
-    <div class="surface-compact-row__bar">
-      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-        
-          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-          
-          
-            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
-          
-        
-      </div>
-    </div>
-    <span class="surface-compact-row__stats">
-      <strong>0/0</strong>
-      <span class="surface-compact-row__skip">45 skipped</span>
     </span>
   </div>
 
