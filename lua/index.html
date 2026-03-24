@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-18T11:14:21.926Z">
-<meta property="article:modified_time" content="2026-03-18T11:14:21.926Z">
+<meta property="article:published_time" content="2026-03-24T15:10:17.235Z">
+<meta property="article:modified_time" content="2026-03-24T15:10:17.235Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -316,33 +316,33 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        16/109 shipped
+        16/157 shipped
          &middot; 36 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 14.7%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 10.2%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 33%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.9%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 52.3%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 66.9%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">15%</span>
+    <span class="surface-panel__summary-badge">10%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks 9 upstream namespaces for
+          Locutus tracks 11 upstream namespaces for
           Lua and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
@@ -351,19 +351,19 @@ ga('send', 'pageview');
         
       </div>
       <div class="surface-coverage-badge">
-        <strong>15%</strong>
+        <strong>10%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 14.7%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 10.2%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 33%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.9%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 52.3%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 66.9%"></span>
         
         
       
@@ -476,6 +476,44 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="_G: 0% shipped"
+              data-ns="_G"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">_G</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="core: 0% shipped"
+              data-ns="core"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">core</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="coroutine: 0% shipped"
               data-ns="coroutine"
               onclick="(function(el){
@@ -555,11 +593,11 @@ ga('send', 'pageview');
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
-        <strong class="surface-kpi__value">9</strong>
+        <strong class="surface-kpi__value">11</strong>
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">16/109</strong>
+        <strong class="surface-kpi__value">16/157</strong>
       </article>
       
         <article class="surface-kpi">
@@ -571,7 +609,7 @@ ga('send', 'pageview');
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">57</strong>
+          <strong class="surface-kpi__value">105</strong>
         </article>
       
       
@@ -616,13 +654,13 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          <a href="/lua/string/">string library</a>
+          <a href="/lua/string/">string</a>
         
       </h3>
       <p class="surface-card__meta">
         <code>Lua 5.4</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine:string</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -821,13 +859,13 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          <a href="/lua/math/">math library</a>
+          <a href="/lua/math/">math</a>
         
       </h3>
       <p class="surface-card__meta">
         <code>Lua 5.4</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine:math</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1036,13 +1074,13 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          utf8 library
+          utf8
         
       </h3>
       <p class="surface-card__meta">
         <code>Lua 5.4</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine:utf8</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1141,13 +1179,13 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          os library
+          os
         
       </h3>
       <p class="surface-card__meta">
         <code>Lua 5.4</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine:os</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1321,13 +1359,13 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          table library
+          table
         
       </h3>
       <p class="surface-card__meta">
         <code>Lua 5.4</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine</code></span>
+        <span>Catalog source: live runtime snapshot <code>nickblah/lua:5.4-alpine:table</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1468,11 +1506,77 @@ ga('send', 'pageview');
 
 
   
+  <div class="surface-compact-row" data-namespace="_G">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          _G
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Lua 5.4</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">24 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="core">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          core
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Lua 5.4</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">24 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
   <div class="surface-compact-row" data-namespace="coroutine">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          coroutine library
+          coroutine
         
       </strong>
       <span class="surface-compact-row__meta"><code>Lua 5.4</code></span>
@@ -1505,7 +1609,7 @@ ga('send', 'pageview');
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          debug library
+          debug
         
       </strong>
       <span class="surface-compact-row__meta"><code>Lua 5.4</code></span>
@@ -1538,7 +1642,7 @@ ga('send', 'pageview');
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          io library
+          io
         
       </strong>
       <span class="surface-compact-row__meta"><code>Lua 5.4</code></span>
@@ -1571,7 +1675,7 @@ ga('send', 'pageview');
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          package library
+          package
         
       </strong>
       <span class="surface-compact-row__meta"><code>Lua 5.4</code></span>

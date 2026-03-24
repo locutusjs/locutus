@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-18T11:14:21.923Z">
-<meta property="article:modified_time" content="2026-03-18T11:14:21.923Z">
+<meta property="article:published_time" content="2026-03-24T15:10:17.231Z">
+<meta property="article:modified_time" content="2026-03-24T15:10:17.231Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -301,19 +301,19 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        11/1041 shipped
+        11/1335 shipped
          &middot; 20 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.1%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.8%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 1.9%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 1.5%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 97%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 97.7%"></span>
             
             
           
@@ -327,12 +327,12 @@ ga('send', 'pageview');
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks 8 upstream namespaces for
+          Locutus tracks 35 upstream namespaces for
           Julia and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
         
-          <p class="surface-summary">This inventory now tracks a broader official Julia stdlib/core slice, using runtime discovery for standard modules while excluding the wider package ecosystem.</p>
+          <p class="surface-summary">This inventory now tracks Julia&#39;s sane official stdlib/core module surface, excluding binary wrapper modules and tooling-only modules that are not realistic Locutus targets.</p>
         
       </div>
       <div class="surface-coverage-badge">
@@ -343,12 +343,12 @@ ga('send', 'pageview');
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0.8%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 1.9%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 1.5%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 97%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 97.7%"></span>
         
         
       
@@ -423,6 +423,82 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="ArgTools: 0% shipped"
+              data-ns="ArgTools"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">ArgTools</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Artifacts: 0% shipped"
+              data-ns="Artifacts"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Artifacts</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Base64: 0% shipped"
+              data-ns="Base64"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Base64</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="CRC32c: 0% shipped"
+              data-ns="CRC32c"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">CRC32c</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="Dates: 0% shipped"
               data-ns="Dates"
               onclick="(function(el){
@@ -461,6 +537,177 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Distributed: 0% shipped"
+              data-ns="Distributed"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Distributed</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Downloads: 0% shipped"
+              data-ns="Downloads"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Downloads</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="FileWatching: 0% shipped"
+              data-ns="FileWatching"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">FileWatching</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Future: 0% shipped"
+              data-ns="Future"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Future</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="InteractiveUtils: 0% shipped"
+              data-ns="InteractiveUtils"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">InteractiveUtils</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="LazyArtifacts: 0% shipped"
+              data-ns="LazyArtifacts"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">LazyArtifacts</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="LibCURL: 0% shipped"
+              data-ns="LibCURL"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">LibCURL</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Libdl: 0% shipped"
+              data-ns="Libdl"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Libdl</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="LibGit2: 0% shipped"
+              data-ns="LibGit2"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">LibGit2</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="LinearAlgebra: 0% shipped"
               data-ns="LinearAlgebra"
               onclick="(function(el){
@@ -475,6 +722,101 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">LinearAlgebra</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Logging: 0% shipped"
+              data-ns="Logging"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Logging</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Markdown: 0% shipped"
+              data-ns="Markdown"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Markdown</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Mmap: 0% shipped"
+              data-ns="Mmap"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Mmap</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="NetworkOptions: 0% shipped"
+              data-ns="NetworkOptions"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">NetworkOptions</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Pkg: 0% shipped"
+              data-ns="Pkg"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Pkg</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -499,6 +841,158 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Serialization: 0% shipped"
+              data-ns="Serialization"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Serialization</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="SHA: 0% shipped"
+              data-ns="SHA"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">SHA</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Sockets: 0% shipped"
+              data-ns="Sockets"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Sockets</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="SparseArrays: 0% shipped"
+              data-ns="SparseArrays"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">SparseArrays</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="StyledStrings: 0% shipped"
+              data-ns="StyledStrings"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">StyledStrings</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="SuiteSparse: 0% shipped"
+              data-ns="SuiteSparse"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">SuiteSparse</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="Tar: 0% shipped"
+              data-ns="Tar"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">Tar</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="TOML: 0% shipped"
+              data-ns="TOML"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">TOML</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="Unicode: 0% shipped"
               data-ns="Unicode"
               onclick="(function(el){
@@ -516,16 +1010,35 @@ ga('send', 'pageview');
           <span class="surface-minimap__pct">0%</span>
         </span>
       
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="UUIDs: 0% shipped"
+              data-ns="UUIDs"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">UUIDs</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
     </div>
 
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
-        <strong class="surface-kpi__value">8</strong>
+        <strong class="surface-kpi__value">35</strong>
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">11/1041</strong>
+        <strong class="surface-kpi__value">11/1335</strong>
       </article>
       
         <article class="surface-kpi">
@@ -537,7 +1050,7 @@ ga('send', 'pageview');
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">1010</strong>
+          <strong class="surface-kpi__value">1304</strong>
         </article>
       
       
@@ -582,13 +1095,13 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          <a href="/julia/Base/">Base module</a>
+          <a href="/julia/Base/">Base</a>
         
       </h3>
       <p class="surface-card__meta">
         <code>Julia 1.11</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>julia:1.11</code></span>
+        <span>Catalog source: live runtime snapshot <code>julia:1.11:Base</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -8340,7 +8853,7 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          Statistics module
+          Statistics
         
       </h3>
       <p class="surface-card__meta">
@@ -8475,7 +8988,7 @@ ga('send', 'pageview');
     <div>
       <h3 class="surface-card__title">
         
-          Printf module
+          Printf
         
       </h3>
       <p class="surface-card__meta">
@@ -8559,11 +9072,143 @@ ga('send', 'pageview');
 
 
   
+  <div class="surface-compact-row" data-namespace="ArgTools">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          ArgTools
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">7 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Artifacts">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Artifacts
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">7 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Base64">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Base64
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">3 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="CRC32c">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          CRC32c
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">1 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
   <div class="surface-compact-row" data-namespace="Dates">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          Dates module
+          Dates
         
       </strong>
       <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
@@ -8596,7 +9241,7 @@ ga('send', 'pageview');
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          DelimitedFiles module
+          DelimitedFiles
         
       </strong>
       <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
@@ -8625,11 +9270,275 @@ ga('send', 'pageview');
 
 
   
+  <div class="surface-compact-row" data-namespace="Distributed">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Distributed
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">32 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Downloads">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Downloads
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">3 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="FileWatching">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          FileWatching
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">7 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="InteractiveUtils">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          InteractiveUtils
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">23 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="LazyArtifacts">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          LazyArtifacts
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">7 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="LibCURL">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          LibCURL
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">63 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Libdl">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Libdl
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">9 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="LibGit2">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          LibGit2
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">1 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
   <div class="surface-compact-row" data-namespace="LinearAlgebra">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          LinearAlgebra module
+          LinearAlgebra
         
       </strong>
       <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
@@ -8658,11 +9567,176 @@ ga('send', 'pageview');
 
 
   
+  <div class="surface-compact-row" data-namespace="Logging">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Logging
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">9 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Markdown">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Markdown
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">4 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Mmap">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Mmap
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">1 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="NetworkOptions">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          NetworkOptions
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">10 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Pkg">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Pkg
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">20 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
   <div class="surface-compact-row" data-namespace="Random">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          Random module
+          Random
         
       </strong>
       <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
@@ -8691,11 +9765,11 @@ ga('send', 'pageview');
 
 
   
-  <div class="surface-compact-row" data-namespace="Unicode">
+  <div class="surface-compact-row" data-namespace="Serialization">
     <div class="surface-compact-row__info">
       <strong class="surface-compact-row__name">
         
-          Unicode module
+          Serialization
         
       </strong>
       <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
@@ -8720,10 +9794,329 @@ ga('send', 'pageview');
 
 
           
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="SHA">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          SHA
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">28 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Sockets">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Sockets
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">19 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="SparseArrays">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          SparseArrays
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">22 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="StyledStrings">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          StyledStrings
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">7 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="TOML">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          TOML
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">5 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Unicode">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Unicode
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="UUIDs">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          UUIDs
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">4 skipped</span>
+    </span>
+  </div>
+
+
+
+          
         </div>
       </div>
     
 
+    
+      <div class="surface-ns-group">
+        <h3 class="surface-ns-group__title">Not yet triaged</h3>
+        <div class="surface-compact-list">
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Future">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Future
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="SuiteSparse">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          SuiteSparse
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="Tar">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          Tar
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Julia 1.11</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+        </div>
+      </div>
     
   </div>
 </details>

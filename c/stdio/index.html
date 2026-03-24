@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-18T11:14:21.905Z">
-<meta property="article:modified_time" content="2026-03-18T11:14:21.905Z">
+<meta property="article:published_time" content="2026-03-24T15:10:17.210Z">
+<meta property="article:modified_time" content="2026-03-24T15:10:17.210Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -275,26 +275,26 @@ ga('send', 'pageview');
             <span class="surface-panel__summary-copy">
               <strong>Upstream Surface Inventory</strong>
               <span>
-                1/11 shipped
+                1/64 shipped
                  • 3 next
                 
               </span>
               <span class="surface-panel__summary-stack">
                 <span class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
                   
-                    <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 9.1%"></span>
+                    <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.6%"></span>
                     
-                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 27.3%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 4.7%"></span>
                     
                     
-                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 63.6%"></span>
+                      <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 93.8%"></span>
                     
                     
                   
                 </span>
               </span>
             </span>
-            <span class="surface-panel__summary-badge">9%</span>
+            <span class="surface-panel__summary-badge">2%</span>
           </summary>
           <div class="surface-panel__content">
             <p class="surface-summary">
@@ -316,7 +316,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>C23</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/io</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://en.cppreference.com/w/c/header/stdio</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -338,7 +338,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>1/4</strong> shipped</span>
     <span><strong>3</strong> next</span>
-    <span><strong>7</strong> explicit non-goals</span>
+    <span><strong>60</strong> explicit non-goals</span>
     
     
   </div>
@@ -407,13 +407,121 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (7)</summary>
+          <summary>Explicit non-goals (60)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
               <li>
                 
+                  <code>clearerr</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fclose</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>feof</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ferror</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fflush</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fgetc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fgetpos</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fgets</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fopen</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fopen_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>fprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fputc</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
@@ -431,7 +539,142 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>fread</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>freopen</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>freopen_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fseek</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fsetpos</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ftell</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fwrite</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getchar</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gets_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>perror</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>printf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>printf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>putc</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
@@ -458,6 +701,150 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>remove</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>rename</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>rewind</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>scanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>scanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>setbuf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>setvbuf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>snprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>sprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>sscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>sscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpfile</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpfile_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpnam</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpnam_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ungetc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>vfprintf</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
@@ -467,7 +854,97 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>vfprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vfscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vfscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>vprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsnprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsscanf_s</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>

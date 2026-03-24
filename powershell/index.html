@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-18T11:14:21.979Z">
-<meta property="article:modified_time" content="2026-03-18T11:14:21.979Z">
+<meta property="article:published_time" content="2026-03-24T15:10:17.294Z">
+<meta property="article:modified_time" content="2026-03-24T15:10:17.294Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -315,26 +315,26 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        18/152 shipped
-         &middot; 100 next
+        18/485 shipped
+         &middot; 199 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 11.8%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.7%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 65.8%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 22.4%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 55.3%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">12%</span>
+    <span class="surface-panel__summary-badge">4%</span>
   </summary>
 
   <div class="surface-panel__content">
@@ -350,19 +350,19 @@ ga('send', 'pageview');
         
       </div>
       <div class="surface-coverage-badge">
-        <strong>12%</strong>
+        <strong>4%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 11.8%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.7%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 65.8%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 41%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 22.4%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 55.3%"></span>
         
         
       
@@ -379,8 +379,8 @@ ga('send', 'pageview');
     <div class="surface-minimap">
       
         
-        <span class="surface-minimap__tile surface-minimap__tile--high"
-              title="string: 78% shipped"
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="string: 33% shipped"
               data-ns="string"
               onclick="(function(el){
                 var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
@@ -394,7 +394,7 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">string</span>
-          <span class="surface-minimap__pct">78%</span>
+          <span class="surface-minimap__pct">33%</span>
         </span>
       
         
@@ -413,6 +413,25 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">math</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--wanted"
+              title="char: 0% shipped"
+              data-ns="char"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">char</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -437,8 +456,8 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--wanted"
-              title="char: 0% shipped"
-              data-ns="char"
+              title="version: 0% shipped"
+              data-ns="version"
               onclick="(function(el){
                 var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
                 if (!input) return;
@@ -450,7 +469,7 @@ ga('send', 'pageview');
                 }
                 input.dispatchEvent(new Event('input'));
               })(this)">
-          <span class="surface-minimap__name">char</span>
+          <span class="surface-minimap__name">version</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -532,25 +551,6 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--wanted"
-              title="version: 0% shipped"
-              data-ns="version"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">version</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--wanted"
               title="array: 0% shipped"
               data-ns="array"
               onclick="(function(el){
@@ -577,19 +577,19 @@ ga('send', 'pageview');
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">18/152</strong>
+        <strong class="surface-kpi__value">18/485</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">100</strong>
+          <strong class="surface-kpi__value">199</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">34</strong>
+          <strong class="surface-kpi__value">268</strong>
         </article>
       
       
@@ -638,11 +638,11 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.string</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.string</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
-      <strong>82%</strong>
+      <strong>34%</strong>
       <span>shipped</span>
     </div>
   </div>
@@ -650,16 +650,16 @@ ga('send', 'pageview');
   
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 81.8%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 34%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 18.2%"></span>
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 66%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>18/22</strong> shipped</span>
-    <span><strong>4</strong> next</span>
+    <span><strong>18/53</strong> shipped</span>
+    <span><strong>35</strong> next</span>
     <span><strong>1</strong> explicit non-goals</span>
     
     
@@ -682,126 +682,126 @@ ga('send', 'pageview');
           
           <li>
             
-              <code>Contains</code>
+              <a class="surface-entry-link" href="/powershell/string/contains/"><code>contains</code></a>
             
           </li>
         
           
           <li>
             
-              <code>EndsWith</code>
+              <a class="surface-entry-link" href="/powershell/string/endswith/"><code>endswith</code></a>
             
           </li>
         
           
           <li>
             
-              <code>IndexOf</code>
+              <a class="surface-entry-link" href="/powershell/string/indexof/"><code>indexof</code></a>
             
           </li>
         
           
           <li>
             
-              <code>Insert</code>
+              <a class="surface-entry-link" href="/powershell/string/insert/"><code>insert</code></a>
             
           </li>
         
           
           <li>
             
-              <code>LastIndexOf</code>
+              <a class="surface-entry-link" href="/powershell/string/lastindexof/"><code>lastindexof</code></a>
             
           </li>
         
           
           <li>
             
-              <code>Length</code>
+              <a class="surface-entry-link" href="/powershell/string/length/"><code>length</code></a>
             
           </li>
         
           
           <li>
             
-              <code>PadLeft</code>
+              <a class="surface-entry-link" href="/powershell/string/padleft/"><code>padleft</code></a>
             
           </li>
         
           
           <li>
             
-              <code>PadRight</code>
+              <a class="surface-entry-link" href="/powershell/string/padright/"><code>padright</code></a>
             
           </li>
         
           
           <li>
             
-              <code>Remove</code>
+              <a class="surface-entry-link" href="/powershell/string/remove/"><code>remove</code></a>
             
           </li>
         
           
           <li>
             
-              <code>Replace</code>
+              <a class="surface-entry-link" href="/powershell/string/replace/"><code>replace</code></a>
             
           </li>
         
           
           <li>
             
-              <code>Split</code>
+              <a class="surface-entry-link" href="/powershell/string/split/"><code>split</code></a>
             
           </li>
         
           
           <li>
             
-              <code>StartsWith</code>
+              <a class="surface-entry-link" href="/powershell/string/startswith/"><code>startswith</code></a>
             
           </li>
         
           
           <li>
             
-              <code>Substring</code>
+              <a class="surface-entry-link" href="/powershell/string/substring/"><code>substring</code></a>
             
           </li>
         
           
           <li>
             
-              <code>ToLower</code>
+              <a class="surface-entry-link" href="/powershell/string/tolower/"><code>tolower</code></a>
             
           </li>
         
           
           <li>
             
-              <code>ToUpper</code>
+              <a class="surface-entry-link" href="/powershell/string/toupper/"><code>toupper</code></a>
             
           </li>
         
           
           <li>
             
-              <code>Trim</code>
+              <a class="surface-entry-link" href="/powershell/string/trim/"><code>trim</code></a>
             
           </li>
         
           
           <li>
             
-              <code>TrimEnd</code>
+              <a class="surface-entry-link" href="/powershell/string/trimend/"><code>trimend</code></a>
             
           </li>
         
           
           <li>
             
-              <code>TrimStart</code>
+              <a class="surface-entry-link" href="/powershell/string/trimstart/"><code>trimstart</code></a>
             
           </li>
         
@@ -822,13 +822,75 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>CompareTo</code></li>
+                <li><code>chars</code></li>
               
-                <li><code>Equals</code></li>
+                <li><code>compare</code></li>
               
-                <li><code>ToLowerInvariant</code></li>
+                <li><code>compareordinal</code></li>
               
-                <li><code>ToUpperInvariant</code></li>
+                <li><code>compareto</code></li>
+              
+                <li><code>concat</code></li>
+              
+                <li><code>copy</code></li>
+              
+                <li><code>copyto</code></li>
+              
+                <li><code>create</code></li>
+              
+                <li><code>empty</code></li>
+              
+                <li><code>enumeraterunes</code></li>
+              
+                <li><code>equals</code></li>
+              
+                <li><code>format</code></li>
+              
+                <li><code>getenumerator</code></li>
+              
+                <li><code>gethashcode</code></li>
+              
+                <li><code>getpinnablereference</code></li>
+              
+                <li><code>gettypecode</code></li>
+              
+                <li><code>indexofany</code></li>
+              
+                <li><code>intern</code></li>
+              
+                <li><code>isinterned</code></li>
+              
+                <li><code>isnormalized</code></li>
+              
+                <li><code>isnullorempty</code></li>
+              
+                <li><code>isnullorwhitespace</code></li>
+              
+                <li><code>join</code></li>
+              
+                <li><code>lastindexofany</code></li>
+              
+                <li><code>normalize</code></li>
+              
+                <li><code>op_equality</code></li>
+              
+                <li><code>op_implicit</code></li>
+              
+                <li><code>op_inequality</code></li>
+              
+                <li><code>replacelineendings</code></li>
+              
+                <li><code>String</code></li>
+              
+                <li><code>tochararray</code></li>
+              
+                <li><code>tolowerinvariant</code></li>
+              
+                <li><code>tostring</code></li>
+              
+                <li><code>toupperinvariant</code></li>
+              
+                <li><code>trycopyto</code></li>
               
             </ul>
           
@@ -849,7 +911,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <a class="surface-entry-link surface-entry-link--external" href="https://learn.microsoft.com/en-us/dotnet/api/system.string.Clone?view=net-9.0" target="_blank" rel="noopener noreferrer"><code>Clone</code></a>
+                  <a class="surface-entry-link surface-entry-link--external" href="https://learn.microsoft.com/en-us/dotnet/api/system.string.clone?view=net-9.0" target="_blank" rel="noopener noreferrer"><code>clone</code></a>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Clone adds little value for immutable JS strings.</span>
@@ -882,7 +944,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.math</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.math</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -902,8 +964,8 @@ ga('send', 'pageview');
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>0/26</strong> shipped</span>
-    <span><strong>26</strong> next</span>
+    <span><strong>0/46</strong> shipped</span>
+    <span><strong>46</strong> next</span>
     
     
     
@@ -927,172 +989,97 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>Abs</code></li>
+                <li><code>abs</code></li>
               
-                <li><code>Acos</code></li>
+                <li><code>acos</code></li>
               
-                <li><code>Asin</code></li>
+                <li><code>acosh</code></li>
               
-                <li><code>Atan</code></li>
+                <li><code>asin</code></li>
               
-                <li><code>Atan2</code></li>
+                <li><code>asinh</code></li>
               
-                <li><code>Ceiling</code></li>
+                <li><code>atan</code></li>
               
-                <li><code>Clamp</code></li>
+                <li><code>atan2</code></li>
               
-                <li><code>CopySign</code></li>
+                <li><code>atanh</code></li>
               
-                <li><code>Cos</code></li>
+                <li><code>bigmul</code></li>
               
-                <li><code>Cosh</code></li>
+                <li><code>bitdecrement</code></li>
               
-                <li><code>Exp</code></li>
+                <li><code>bitincrement</code></li>
               
-                <li><code>Floor</code></li>
+                <li><code>cbrt</code></li>
               
-                <li><code>Log</code></li>
+                <li><code>ceiling</code></li>
               
-                <li><code>Log10</code></li>
+                <li><code>clamp</code></li>
               
-                <li><code>Log2</code></li>
+                <li><code>copysign</code></li>
               
-                <li><code>Max</code></li>
+                <li><code>cos</code></li>
               
-                <li><code>Min</code></li>
+                <li><code>cosh</code></li>
               
-                <li><code>Pow</code></li>
+                <li><code>divrem</code></li>
               
-                <li><code>Round</code></li>
+                <li><code>e</code></li>
               
-                <li><code>Sign</code></li>
+                <li><code>exp</code></li>
               
-                <li><code>Sin</code></li>
+                <li><code>floor</code></li>
               
-                <li><code>Sinh</code></li>
+                <li><code>fusedmultiplyadd</code></li>
               
-                <li><code>Sqrt</code></li>
+                <li><code>ieeeremainder</code></li>
               
-                <li><code>Tan</code></li>
+                <li><code>ilogb</code></li>
               
-                <li><code>Tanh</code></li>
+                <li><code>log</code></li>
               
-                <li><code>Truncate</code></li>
+                <li><code>log10</code></li>
               
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-</article>
-
-
-
-        
-          
-
-
-
-<article class="surface-card" data-namespace="convert">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          System.Convert static methods
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>PowerShell 7.4</code>
-        <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.convert</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/20</strong> shipped</span>
-    <span><strong>20</strong> next</span>
-    <span><strong>2</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Scalar conversion helpers are strong PowerShell portability targets.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
+                <li><code>log2</code></li>
               
-                <li><code>FromBase64CharArray</code></li>
+                <li><code>max</code></li>
               
-                <li><code>FromBase64String</code></li>
+                <li><code>maxmagnitude</code></li>
               
-                <li><code>FromHexString</code></li>
+                <li><code>min</code></li>
               
-                <li><code>ToBase64CharArray</code></li>
+                <li><code>minmagnitude</code></li>
               
-                <li><code>ToBase64String</code></li>
+                <li><code>pi</code></li>
               
-                <li><code>ToBoolean</code></li>
+                <li><code>pow</code></li>
               
-                <li><code>ToByte</code></li>
+                <li><code>reciprocalestimate</code></li>
               
-                <li><code>ToChar</code></li>
+                <li><code>reciprocalsqrtestimate</code></li>
               
-                <li><code>ToDecimal</code></li>
+                <li><code>round</code></li>
               
-                <li><code>ToDouble</code></li>
+                <li><code>scaleb</code></li>
               
-                <li><code>ToHexString</code></li>
+                <li><code>sign</code></li>
               
-                <li><code>ToInt16</code></li>
+                <li><code>sin</code></li>
               
-                <li><code>ToInt32</code></li>
+                <li><code>sincos</code></li>
               
-                <li><code>ToInt64</code></li>
+                <li><code>sinh</code></li>
               
-                <li><code>ToSByte</code></li>
+                <li><code>sqrt</code></li>
               
-                <li><code>ToSingle</code></li>
+                <li><code>tan</code></li>
               
-                <li><code>ToString</code></li>
+                <li><code>tanh</code></li>
               
-                <li><code>ToUInt16</code></li>
+                <li><code>tau</code></li>
               
-                <li><code>ToUInt32</code></li>
-              
-                <li><code>ToUInt64</code></li>
+                <li><code>truncate</code></li>
               
             </ul>
           
@@ -1103,37 +1090,6 @@ ga('send', 'pageview');
     </div>
   
 
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (2)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <code>ChangeType</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Type-descriptor-driven conversion depends on host runtime type metadata.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>GetTypeCode</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Enum-style runtime type codes are not a stable plain-value portability target.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
   
 </article>
 
@@ -1155,7 +1111,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.char</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.char</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1175,8 +1131,8 @@ ga('send', 'pageview');
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>0/18</strong> shipped</span>
-    <span><strong>18</strong> next</span>
+    <span><strong>0/41</strong> shipped</span>
+    <span><strong>41</strong> next</span>
     <span><strong>1</strong> explicit non-goals</span>
     
     
@@ -1200,39 +1156,85 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>ConvertFromUtf32</code></li>
+                <li><code>compareto</code></li>
               
-                <li><code>ConvertToUtf32</code></li>
+                <li><code>convertfromutf32</code></li>
               
-                <li><code>IsAscii</code></li>
+                <li><code>converttoutf32</code></li>
               
-                <li><code>IsControl</code></li>
+                <li><code>equals</code></li>
               
-                <li><code>IsDigit</code></li>
+                <li><code>gethashcode</code></li>
               
-                <li><code>IsLetter</code></li>
+                <li><code>gettypecode</code></li>
               
-                <li><code>IsLetterOrDigit</code></li>
+                <li><code>isascii</code></li>
               
-                <li><code>IsLower</code></li>
+                <li><code>isasciidigit</code></li>
               
-                <li><code>IsNumber</code></li>
+                <li><code>isasciihexdigit</code></li>
               
-                <li><code>IsPunctuation</code></li>
+                <li><code>isasciihexdigitlower</code></li>
               
-                <li><code>IsSeparator</code></li>
+                <li><code>isasciihexdigitupper</code></li>
               
-                <li><code>IsSymbol</code></li>
+                <li><code>isasciiletter</code></li>
               
-                <li><code>IsUpper</code></li>
+                <li><code>isasciiletterlower</code></li>
               
-                <li><code>IsWhiteSpace</code></li>
+                <li><code>isasciiletterordigit</code></li>
               
-                <li><code>Parse</code></li>
+                <li><code>isasciiletterupper</code></li>
               
-                <li><code>ToLower</code></li>
+                <li><code>isbetween</code></li>
               
-                <li><code>ToUpper</code></li>
+                <li><code>iscontrol</code></li>
+              
+                <li><code>isdigit</code></li>
+              
+                <li><code>ishighsurrogate</code></li>
+              
+                <li><code>isletter</code></li>
+              
+                <li><code>isletterordigit</code></li>
+              
+                <li><code>islower</code></li>
+              
+                <li><code>islowsurrogate</code></li>
+              
+                <li><code>isnumber</code></li>
+              
+                <li><code>ispunctuation</code></li>
+              
+                <li><code>isseparator</code></li>
+              
+                <li><code>issurrogate</code></li>
+              
+                <li><code>issurrogatepair</code></li>
+              
+                <li><code>issymbol</code></li>
+              
+                <li><code>isupper</code></li>
+              
+                <li><code>iswhitespace</code></li>
+              
+                <li><code>maxvalue</code></li>
+              
+                <li><code>minvalue</code></li>
+              
+                <li><code>parse</code></li>
+              
+                <li><code>tolower</code></li>
+              
+                <li><code>tolowerinvariant</code></li>
+              
+                <li><code>tostring</code></li>
+              
+                <li><code>toupper</code></li>
+              
+                <li><code>toupperinvariant</code></li>
+              
+                <li><code>tryparse</code></li>
               
             </ul>
           
@@ -1241,7 +1243,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>GetNumericValue</code></li>
+                <li><code>getnumericvalue</code></li>
               
             </ul>
           
@@ -1262,7 +1264,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>GetUnicodeCategory</code>
+                  <code>getunicodecategory</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>.NET enum return values do not map cleanly onto one stable Locutus contract yet.</span>
@@ -1284,6 +1286,287 @@ ga('send', 'pageview');
 
 
 
+<article class="surface-card" data-namespace="convert">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          System.Convert static methods
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>PowerShell 7.4</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.convert</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/29</strong> shipped</span>
+    <span><strong>29</strong> next</span>
+    <span><strong>2</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Scalar conversion helpers are strong PowerShell portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>dbnull</code></li>
+              
+                <li><code>frombase64chararray</code></li>
+              
+                <li><code>frombase64string</code></li>
+              
+                <li><code>fromhexstring</code></li>
+              
+                <li><code>isdbnull</code></li>
+              
+                <li><code>tobase64chararray</code></li>
+              
+                <li><code>tobase64string</code></li>
+              
+                <li><code>toboolean</code></li>
+              
+                <li><code>tobyte</code></li>
+              
+                <li><code>tochar</code></li>
+              
+                <li><code>todatetime</code></li>
+              
+                <li><code>todecimal</code></li>
+              
+                <li><code>todouble</code></li>
+              
+                <li><code>tohexstring</code></li>
+              
+                <li><code>tohexstringlower</code></li>
+              
+                <li><code>toint16</code></li>
+              
+                <li><code>toint32</code></li>
+              
+                <li><code>toint64</code></li>
+              
+                <li><code>tosbyte</code></li>
+              
+                <li><code>tosingle</code></li>
+              
+                <li><code>tostring</code></li>
+              
+                <li><code>touint16</code></li>
+              
+                <li><code>touint32</code></li>
+              
+                <li><code>touint64</code></li>
+              
+                <li><code>tryfrombase64chars</code></li>
+              
+                <li><code>tryfrombase64string</code></li>
+              
+                <li><code>trytobase64chars</code></li>
+              
+                <li><code>trytohexstring</code></li>
+              
+                <li><code>trytohexstringlower</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (2)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <code>changetype</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Type-descriptor-driven conversion depends on host runtime type metadata.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gettypecode</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Enum-style runtime type codes are not a stable plain-value portability target.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="version">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          System.Version static and instance methods
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>PowerShell 7.4</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.version</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>0%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>0/21</strong> shipped</span>
+    <span><strong>21</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+
+  
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Version parsing and comparison helpers are strong plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>build</code></li>
+              
+                <li><code>clone</code></li>
+              
+                <li><code>compareto</code></li>
+              
+                <li><code>equals</code></li>
+              
+                <li><code>gethashcode</code></li>
+              
+                <li><code>major</code></li>
+              
+                <li><code>majorrevision</code></li>
+              
+                <li><code>minor</code></li>
+              
+                <li><code>minorrevision</code></li>
+              
+                <li><code>op_equality</code></li>
+              
+                <li><code>op_greaterthan</code></li>
+              
+                <li><code>op_greaterthanorequal</code></li>
+              
+                <li><code>op_inequality</code></li>
+              
+                <li><code>op_lessthan</code></li>
+              
+                <li><code>op_lessthanorequal</code></li>
+              
+                <li><code>parse</code></li>
+              
+                <li><code>revision</code></li>
+              
+                <li><code>tostring</code></li>
+              
+                <li><code>tryformat</code></li>
+              
+                <li><code>tryparse</code></li>
+              
+                <li><code>Version</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+</article>
+
+
+
+        
+          
+
+
+
 <article class="surface-card" data-namespace="timespan">
   <div class="surface-card__header">
     <div>
@@ -1295,7 +1578,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.timespan</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.timespan</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1317,7 +1600,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>0/8</strong> shipped</span>
     <span><strong>8</strong> next</span>
-    <span><strong>1</strong> explicit non-goals</span>
+    <span><strong>68</strong> explicit non-goals</span>
     
     
   </div>
@@ -1340,7 +1623,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>Compare</code></li>
+                <li><code>compare</code></li>
               
             </ul>
           
@@ -1349,15 +1632,15 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>FromDays</code></li>
+                <li><code>fromdays</code></li>
               
-                <li><code>FromHours</code></li>
+                <li><code>fromhours</code></li>
               
-                <li><code>FromMilliseconds</code></li>
+                <li><code>frommilliseconds</code></li>
               
-                <li><code>FromMinutes</code></li>
+                <li><code>fromminutes</code></li>
               
-                <li><code>FromSeconds</code></li>
+                <li><code>fromseconds</code></li>
               
             </ul>
           
@@ -1366,7 +1649,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>Parse</code></li>
+                <li><code>parse</code></li>
               
             </ul>
           
@@ -1375,7 +1658,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>ParseExact</code></li>
+                <li><code>parseexact</code></li>
               
             </ul>
           
@@ -1390,13 +1673,616 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (1)</summary>
+          <summary>Explicit non-goals (68)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
               <li>
                 
-                  <code>ToString</code>
+                  <code>add</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>compareto</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>days</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>divide</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>duration</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>equals</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>frommicroseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fromticks</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gethashcode</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>hours</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>hoursperday</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>maxvalue</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>microseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>microsecondsperday</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>microsecondsperhour</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>microsecondspermillisecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>microsecondsperminute</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>microsecondspersecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>milliseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>millisecondsperday</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>millisecondsperhour</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>millisecondsperminute</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>millisecondspersecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>minutes</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>minutesperday</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>minutesperhour</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>minvalue</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>multiply</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>nanoseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>nanosecondspertick</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>negate</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_addition</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_division</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_equality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_greaterthan</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_greaterthanorequal</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_inequality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_lessthan</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_lessthanorequal</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_multiply</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_subtraction</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_unarynegation</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_unaryplus</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>seconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>secondsperday</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>secondsperhour</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>secondsperminute</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>subtract</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ticks</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ticksperday</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ticksperhour</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tickspermicrosecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tickspermillisecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ticksperminute</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tickspersecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>TimeSpan</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tostring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>totaldays</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>totalhours</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>totalmicroseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>totalmilliseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>totalminutes</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>totalnanoseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>totalseconds</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryformat</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryparse</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryparseexact</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>zero</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>TimeSpan struct APIs mix duration values with richer struct semantics than one stable plain-value contract by default.</span>
@@ -1429,7 +2315,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.uri</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.uri</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1451,7 +2337,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>0/6</strong> shipped</span>
     <span><strong>6</strong> next</span>
-    
+    <span><strong>72</strong> explicit non-goals</span>
     
     
   </div>
@@ -1474,7 +2360,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>CheckHostName</code></li>
+                <li><code>checkhostname</code></li>
               
             </ul>
           
@@ -1483,9 +2369,9 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>EscapeDataString</code></li>
+                <li><code>escapedatastring</code></li>
               
-                <li><code>EscapeUriString</code></li>
+                <li><code>escapeuristring</code></li>
               
             </ul>
           
@@ -1494,7 +2380,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>IsHexDigit</code></li>
+                <li><code>ishexdigit</code></li>
               
             </ul>
           
@@ -1503,7 +2389,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>IsHexEncoding</code></li>
+                <li><code>ishexencoding</code></li>
               
             </ul>
           
@@ -1512,7 +2398,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>UnescapeDataString</code></li>
+                <li><code>unescapedatastring</code></li>
               
             </ul>
           
@@ -1523,6 +2409,667 @@ ga('send', 'pageview');
     </div>
   
 
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (72)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <code>absolutepath</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>absoluteuri</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>authority</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>canonicalize</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>checkschemename</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>checksecurity</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>compare</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>dnssafehost</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>equals</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>escape</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>escapestring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fragment</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fromhex</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getcomponents</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gethashcode</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getleftpart</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getobjectdata</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>hexescape</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>hexunescape</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>host</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>hostnametype</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>idnhost</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isabsoluteuri</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isbadfilesystemcharacter</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isbaseof</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isdefaultport</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isexcludedcharacter</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isfile</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isloopback</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isreservedcharacter</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isunc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>iswellformedoriginalstring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>iswellformeduristring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>localpath</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>makerelative</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>makerelativeuri</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_equality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_inequality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>originalstring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>parse</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>pathandquery</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>port</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>query</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>scheme</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>schemedelimiter</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>segments</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tostring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>trycreate</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryescapedatastring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryformat</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryunescapedatastring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>unescape</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>Uri</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemedata</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemefile</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemeftp</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemeftps</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemegopher</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemehttp</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemehttps</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischememailto</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemenetpipe</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemenettcp</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemenews</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemenntp</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemesftp</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemessh</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemetelnet</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemews</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>urischemewss</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>userescaped</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>userinfo</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Uri APIs expose rich object/stateful semantics rather than one stable plain-value contract.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
   
 </article>
 
@@ -1544,7 +3091,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.datetime</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.datetime</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1566,7 +3113,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>0/5</strong> shipped</span>
     <span><strong>5</strong> next</span>
-    <span><strong>11</strong> explicit non-goals</span>
+    <span><strong>67</strong> explicit non-goals</span>
     
     
   </div>
@@ -1589,7 +3136,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>Compare</code></li>
+                <li><code>compare</code></li>
               
             </ul>
           
@@ -1598,7 +3145,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>DaysInMonth</code></li>
+                <li><code>daysinmonth</code></li>
               
             </ul>
           
@@ -1607,7 +3154,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>IsLeapYear</code></li>
+                <li><code>isleapyear</code></li>
               
             </ul>
           
@@ -1616,7 +3163,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>Parse</code></li>
+                <li><code>parse</code></li>
               
             </ul>
           
@@ -1625,7 +3172,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>ParseExact</code></li>
+                <li><code>parseexact</code></li>
               
             </ul>
           
@@ -1640,13 +3187,13 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (11)</summary>
+          <summary>Explicit non-goals (67)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
               <li>
                 
-                  <code>Add</code>
+                  <code>add</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1655,7 +3202,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>AddDays</code>
+                  <code>adddays</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1664,7 +3211,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>AddHours</code>
+                  <code>addhours</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1673,7 +3220,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>AddMilliseconds</code>
+                  <code>addmicroseconds</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1682,7 +3229,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>AddMinutes</code>
+                  <code>addmilliseconds</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1691,7 +3238,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>AddMonths</code>
+                  <code>addminutes</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1700,7 +3247,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>AddSeconds</code>
+                  <code>addmonths</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1709,7 +3256,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>AddYears</code>
+                  <code>addseconds</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1718,7 +3265,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Subtract</code>
+                  <code>addticks</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1727,7 +3274,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>ToLocalTime</code>
+                  <code>addyears</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1736,7 +3283,511 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>ToUniversalTime</code>
+                  <code>compareto</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>date</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>DateTime</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>day</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>dayofweek</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>dayofyear</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>deconstruct</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>equals</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>frombinary</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fromfiletime</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fromfiletimeutc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fromoadate</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getdatetimeformats</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gethashcode</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gettypecode</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>hour</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isdaylightsavingtime</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>kind</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>maxvalue</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>microsecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>millisecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>minute</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>minvalue</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>month</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>nanosecond</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>now</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_addition</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_equality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_greaterthan</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_greaterthanorequal</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_inequality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_lessthan</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_lessthanorequal</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_subtraction</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>second</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>specifykind</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>subtract</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ticks</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>timeofday</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tobinary</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>today</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tofiletime</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tofiletimeutc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tolocaltime</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tolongdatestring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tolongtimestring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tooadate</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>toshortdatestring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>toshorttimestring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tostring</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>touniversaltime</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryformat</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryparse</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryparseexact</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>unixepoch</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>utcnow</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>year</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Timezone-aware date objects do not fit Locutus&#39; current plain-value model by default.</span>
@@ -1769,7 +3820,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.guid</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.guid</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1791,7 +3842,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>0/5</strong> shipped</span>
     <span><strong>5</strong> next</span>
-    <span><strong>2</strong> explicit non-goals</span>
+    <span><strong>19</strong> explicit non-goals</span>
     
     
   </div>
@@ -1814,7 +3865,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>Parse</code></li>
+                <li><code>parse</code></li>
               
             </ul>
           
@@ -1823,7 +3874,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>ParseExact</code></li>
+                <li><code>parseexact</code></li>
               
             </ul>
           
@@ -1832,7 +3883,7 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>ToString</code></li>
+                <li><code>tostring</code></li>
               
             </ul>
           
@@ -1841,9 +3892,9 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>TryParse</code></li>
+                <li><code>tryparse</code></li>
               
-                <li><code>TryParseExact</code></li>
+                <li><code>tryparseexact</code></li>
               
             </ul>
           
@@ -1858,13 +3909,40 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (2)</summary>
+          <summary>Explicit non-goals (19)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
               <li>
                 
-                  <code>Empty</code>
+                  <code>allbitsset</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>compareto</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>createversion7</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>empty</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Struct constants are not plain-value portability targets.</span>
@@ -1873,10 +3951,136 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>NewGuid</code>
+                  <code>equals</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gethashcode</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>Guid</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>newguid</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Random GUID generation is lower-value than deterministic portability work.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_equality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_greaterthan</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_greaterthanorequal</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_inequality</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_lessthan</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>op_lessthanorequal</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tobytearray</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tryformat</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>trywritebytes</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>variant</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>version</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most Guid APIs expose struct/object semantics rather than one direct plain-value contract.</span>
               </li>
             
           </ul>
@@ -1885,91 +4089,6 @@ ga('send', 'pageview');
 
       
     </div>
-  
-</article>
-
-
-
-        
-          
-
-
-
-<article class="surface-card" data-namespace="version">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          System.Version static and instance methods
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>PowerShell 7.4</code>
-        <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.version</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/5</strong> shipped</span>
-    <span><strong>5</strong> next</span>
-    
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Version parsing and comparison helpers are strong plain-value portability targets.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>CompareTo</code></li>
-              
-                <li><code>Parse</code></li>
-              
-                <li><code>Revision</code></li>
-              
-                <li><code>ToString</code></li>
-              
-                <li><code>TryFormat</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
   
 </article>
 
@@ -1991,7 +4110,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>PowerShell 7.4</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://learn.microsoft.com/dotnet/api/system.array</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://learn.microsoft.com/dotnet/api/system.array</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -2013,7 +4132,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>0/3</strong> shipped</span>
     <span><strong>3</strong> next</span>
-    <span><strong>16</strong> explicit non-goals</span>
+    <span><strong>38</strong> explicit non-goals</span>
     
     
   </div>
@@ -2036,11 +4155,11 @@ ga('send', 'pageview');
             
             <ul class="surface-entry-list surface-entry-list--flow">
               
-                <li><code>BinarySearch</code></li>
+                <li><code>binarysearch</code></li>
               
-                <li><code>IndexOf</code></li>
+                <li><code>indexof</code></li>
               
-                <li><code>LastIndexOf</code></li>
+                <li><code>lastindexof</code></li>
               
             </ul>
           
@@ -2055,13 +4174,13 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (16)</summary>
+          <summary>Explicit non-goals (38)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
               <li>
                 
-                  <code>Clear</code>
+                  <code>asreadonly</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2070,7 +4189,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>ConstrainedCopy</code>
+                  <code>clear</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2079,7 +4198,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>ConvertAll</code>
+                  <code>clone</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2088,7 +4207,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Copy</code>
+                  <code>constrainedcopy</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2097,7 +4216,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Empty</code>
+                  <code>convertall</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2106,7 +4225,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Exists</code>
+                  <code>copy</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2115,7 +4234,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Fill</code>
+                  <code>copyto</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2124,7 +4243,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Find</code>
+                  <code>createinstance</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2133,7 +4252,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>FindAll</code>
+                  <code>createinstancefromarraytype</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2142,7 +4261,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>FindIndex</code>
+                  <code>empty</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2151,7 +4270,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>FindLast</code>
+                  <code>exists</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2160,7 +4279,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>FindLastIndex</code>
+                  <code>fill</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2169,7 +4288,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>ForEach</code>
+                  <code>find</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2178,7 +4297,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Reverse</code>
+                  <code>findall</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2187,7 +4306,7 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>Sort</code>
+                  <code>findindex</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
@@ -2196,7 +4315,205 @@ ga('send', 'pageview');
               
               <li>
                 
-                  <code>TrueForAll</code>
+                  <code>findlast</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>findlastindex</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>foreach</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getenumerator</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getlength</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getlonglength</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getlowerbound</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getupperbound</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getvalue</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>initialize</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isfixedsize</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>isreadonly</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>issynchronized</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>length</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>longlength</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>maxlength</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>rank</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>resize</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>reverse</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>setvalue</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>sort</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>syncroot</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>trueforall</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Array reflection and mutable runtime-array helpers do not map cleanly to Locutus&#39; value-only model.</span>

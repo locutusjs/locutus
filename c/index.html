@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-18T11:14:21.902Z">
-<meta property="article:modified_time" content="2026-03-18T11:14:21.902Z">
+<meta property="article:published_time" content="2026-03-24T15:10:17.207Z">
+<meta property="article:modified_time" content="2026-03-24T15:10:17.207Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -339,52 +339,52 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        20/83 shipped
-         &middot; 44 next
+        20/576 shipped
+         &middot; 128 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 24.1%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.5%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 53%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.2%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 22.9%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 74.3%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">24%</span>
+    <span class="surface-panel__summary-badge">3%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks 5 upstream namespaces for
+          Locutus tracks 32 upstream namespaces for
           C and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
         
       </div>
       <div class="surface-coverage-badge">
-        <strong>24%</strong>
+        <strong>3%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 24.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.5%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 53%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 22.2%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 22.9%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 74.3%"></span>
         
         
       
@@ -420,27 +420,8 @@ ga('send', 'pageview');
         </span>
       
         
-        <span class="surface-minimap__tile surface-minimap__tile--mid"
-              title="stdlib: 28% shipped"
-              data-ns="stdlib"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">stdlib</span>
-          <span class="surface-minimap__pct">28%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--mid"
-              title="string: 26% shipped"
+        <span class="surface-minimap__tile surface-minimap__tile--low"
+              title="string: 14% shipped"
               data-ns="string"
               onclick="(function(el){
                 var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
@@ -454,13 +435,13 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">string</span>
-          <span class="surface-minimap__pct">26%</span>
+          <span class="surface-minimap__pct">14%</span>
         </span>
       
         
         <span class="surface-minimap__tile surface-minimap__tile--low"
-              title="stdio: 9% shipped"
-              data-ns="stdio"
+              title="stdlib: 8% shipped"
+              data-ns="stdlib"
               onclick="(function(el){
                 var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
                 if (!input) return;
@@ -472,13 +453,13 @@ ga('send', 'pageview');
                 }
                 input.dispatchEvent(new Event('input'));
               })(this)">
-          <span class="surface-minimap__name">stdio</span>
-          <span class="surface-minimap__pct">9%</span>
+          <span class="surface-minimap__name">stdlib</span>
+          <span class="surface-minimap__pct">8%</span>
         </span>
       
         
         <span class="surface-minimap__tile surface-minimap__tile--low"
-              title="math: 5% shipped"
+              title="math: 2% shipped"
               data-ns="math"
               onclick="(function(el){
                 var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
@@ -492,7 +473,539 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">math</span>
-          <span class="surface-minimap__pct">5%</span>
+          <span class="surface-minimap__pct">2%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--low"
+              title="stdio: 2% shipped"
+              data-ns="stdio"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdio</span>
+          <span class="surface-minimap__pct">2%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="assert: 0% shipped"
+              data-ns="assert"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">assert</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="complex: 0% shipped"
+              data-ns="complex"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">complex</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="errno: 0% shipped"
+              data-ns="errno"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">errno</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="fenv: 0% shipped"
+              data-ns="fenv"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">fenv</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="float: 0% shipped"
+              data-ns="float"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">float</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="inttypes: 0% shipped"
+              data-ns="inttypes"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">inttypes</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="iso646: 0% shipped"
+              data-ns="iso646"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">iso646</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="limits: 0% shipped"
+              data-ns="limits"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">limits</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="locale: 0% shipped"
+              data-ns="locale"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">locale</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="setjmp: 0% shipped"
+              data-ns="setjmp"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">setjmp</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="signal: 0% shipped"
+              data-ns="signal"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">signal</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdalign: 0% shipped"
+              data-ns="stdalign"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdalign</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdarg: 0% shipped"
+              data-ns="stdarg"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdarg</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdatomic: 0% shipped"
+              data-ns="stdatomic"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdatomic</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdbit: 0% shipped"
+              data-ns="stdbit"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdbit</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdbool: 0% shipped"
+              data-ns="stdbool"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdbool</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdckdint: 0% shipped"
+              data-ns="stdckdint"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdckdint</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stddef: 0% shipped"
+              data-ns="stddef"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stddef</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdint: 0% shipped"
+              data-ns="stdint"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdint</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdmchar: 0% shipped"
+              data-ns="stdmchar"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdmchar</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stdnoreturn: 0% shipped"
+              data-ns="stdnoreturn"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stdnoreturn</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="tgmath: 0% shipped"
+              data-ns="tgmath"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">tgmath</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="threads: 0% shipped"
+              data-ns="threads"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">threads</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="time: 0% shipped"
+              data-ns="time"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">time</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="uchar: 0% shipped"
+              data-ns="uchar"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">uchar</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="wchar: 0% shipped"
+              data-ns="wchar"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">wchar</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="wctype: 0% shipped"
+              data-ns="wctype"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">wctype</span>
+          <span class="surface-minimap__pct">0%</span>
         </span>
       
     </div>
@@ -500,23 +1013,23 @@ ga('send', 'pageview');
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
-        <strong class="surface-kpi__value">5</strong>
+        <strong class="surface-kpi__value">32</strong>
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">20/83</strong>
+        <strong class="surface-kpi__value">20/576</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">44</strong>
+          <strong class="surface-kpi__value">128</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">19</strong>
+          <strong class="surface-kpi__value">428</strong>
         </article>
       
       
@@ -549,6 +1062,8 @@ ga('send', 'pageview');
     
       <div class="surface-ns-group">
         
+          <h3 class="surface-ns-group__title">In progress</h3>
+        
         
           
 
@@ -565,7 +1080,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>C23</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/string/byte</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://en.cppreference.com/w/c/header/ctype</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -710,191 +1225,6 @@ ga('send', 'pageview');
 
 
 
-<article class="surface-card" data-namespace="stdlib">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          stdlib.h
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>C23</code>
-        <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/program</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>33%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 33.3%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 66.7%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>5/15</strong> shipped</span>
-    <span><strong>10</strong> next</span>
-    <span><strong>3</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  
-    <div class="surface-chip-row">
-      
-        <a class="surface-chip surface-chip--link" href="/c/math/">math</a>
-      
-        <a class="surface-chip surface-chip--link" href="/c/stdlib/">stdlib</a>
-      
-    </div>
-  
-
-  
-  
-    <details class="surface-details surface-details--shipped">
-      <summary>Shipped (5)</summary>
-      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/c/math/abs/"><code>abs</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/c/stdlib/atof/"><code>atof</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/c/stdlib/atoi/"><code>atoi</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/c/stdlib/strtod/"><code>strtod</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/c/stdlib/strtol/"><code>strtol</code></a>
-            
-          </li>
-        
-      </ul>
-    </details>
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Scalar conversion and numeric helpers are good portability targets.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>atol</code></li>
-              
-                <li><code>atoll</code></li>
-              
-                <li><code>bsearch</code></li>
-              
-                <li><code>labs</code></li>
-              
-                <li><code>llabs</code></li>
-              
-                <li><code>rand</code></li>
-              
-                <li><code>strtof</code></li>
-              
-                <li><code>strtoll</code></li>
-              
-                <li><code>strtoul</code></li>
-              
-                <li><code>strtoull</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (3)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <code>getenv</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Process environment lookup depends on host state outside Locutus&#39; model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>qsort</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place comparator-driven sorting does not map cleanly to plain JS values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <code>srand</code>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Global RNG seeding mutates ambient runtime state.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-
-
-        
-          
-
-
-
 <article class="surface-card" data-namespace="string">
   <div class="surface-card__header">
     <div>
@@ -906,7 +1236,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>C23</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/string/byte</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://en.cppreference.com/w/c/header/string</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -928,7 +1258,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>5/10</strong> shipped</span>
     <span><strong>5</strong> next</span>
-    <span><strong>9</strong> explicit non-goals</span>
+    <span><strong>27</strong> explicit non-goals</span>
     
     
   </div>
@@ -1043,8 +1373,17 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (9)</summary>
+          <summary>Explicit non-goals (27)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <code>memccpy</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
             
               
               <li>
@@ -1076,7 +1415,25 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>memcpy_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>memmove</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>memmove_s</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
@@ -1094,7 +1451,79 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>memset_explicit</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>memset_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strcat_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strcoll</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>strcpy</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strcpy_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strdup</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strerror</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strerrorlen_s</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
@@ -1112,7 +1541,52 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>strncat_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>strncpy</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strncpy_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strndup</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strnlen</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strnlen_s</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
@@ -1127,12 +1601,518 @@ ga('send', 'pageview');
                 <span>Stateful tokenizer semantics do not fit Locutus&#39; plain-value model.</span>
               </li>
             
+              
+              <li>
+                
+                  <code>strtok_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>strxfrm</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>C buffer and pointer-oriented string APIs do not generally map cleanly to JS plain values.</span>
+              </li>
+            
           </ul>
         </details>
       
 
       
     </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="stdlib">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          stdlib.h
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>C23</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://en.cppreference.com/w/c/header/stdlib</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>9%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 8.8%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 91.2%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>5/57</strong> shipped</span>
+    <span><strong>52</strong> next</span>
+    <span><strong>3</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/c/math/">math</a>
+      
+        <a class="surface-chip surface-chip--link" href="/c/stdlib/">stdlib</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (5)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/math/abs/"><code>abs</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/atof/"><code>atof</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/atoi/"><code>atoi</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/strtod/"><code>strtod</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/stdlib/strtol/"><code>strtol</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Scalar conversion and numeric helpers are good portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>abort</code></li>
+              
+                <li><code>abort_handler_s</code></li>
+              
+                <li><code>aligned_alloc</code></li>
+              
+                <li><code>at_quick_exit</code></li>
+              
+                <li><code>atexit</code></li>
+              
+                <li><code>atol</code></li>
+              
+                <li><code>atoll</code></li>
+              
+                <li><code>bsearch</code></li>
+              
+                <li><code>bsearch_s</code></li>
+              
+                <li><code>call_once</code></li>
+              
+                <li><code>calloc</code></li>
+              
+                <li><code>defined</code></li>
+              
+                <li><code>div</code></li>
+              
+                <li><code>exit</code></li>
+              
+                <li><code>free</code></li>
+              
+                <li><code>free_aligned_sized</code></li>
+              
+                <li><code>free_sized</code></li>
+              
+                <li><code>getenv_s</code></li>
+              
+                <li><code>ignore_handler_s</code></li>
+              
+                <li><code>labs</code></li>
+              
+                <li><code>ldiv</code></li>
+              
+                <li><code>llabs</code></li>
+              
+                <li><code>lldiv</code></li>
+              
+                <li><code>malloc</code></li>
+              
+                <li><code>mblen</code></li>
+              
+                <li><code>mbstowcs</code></li>
+              
+                <li><code>mbstowcs_s</code></li>
+              
+                <li><code>mbtowc</code></li>
+              
+                <li><code>memalignment</code></li>
+              
+                <li><code>qsort_s</code></li>
+              
+                <li><code>quick_exit</code></li>
+              
+                <li><code>rand</code></li>
+              
+                <li><code>realloc</code></li>
+              
+                <li><code>strfromd</code></li>
+              
+                <li><code>strfromd128</code></li>
+              
+                <li><code>strfromd32</code></li>
+              
+                <li><code>strfromd64</code></li>
+              
+                <li><code>strfromf</code></li>
+              
+                <li><code>strfroml</code></li>
+              
+                <li><code>strtod128</code></li>
+              
+                <li><code>strtod32</code></li>
+              
+                <li><code>strtod64</code></li>
+              
+                <li><code>strtof</code></li>
+              
+                <li><code>strtold</code></li>
+              
+                <li><code>strtoll</code></li>
+              
+                <li><code>strtoul</code></li>
+              
+                <li><code>strtoull</code></li>
+              
+                <li><code>system</code></li>
+              
+                <li><code>wcstombs</code></li>
+              
+                <li><code>wcstombs_s</code></li>
+              
+                <li><code>wctomb</code></li>
+              
+                <li><code>wctomb_s</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (3)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <code>getenv</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Process environment lookup depends on host state outside Locutus&#39; model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>qsort</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place comparator-driven sorting does not map cleanly to plain JS values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>srand</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Global RNG seeding mutates ambient runtime state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="math">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/c/math/">math.h</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>C23</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>https://en.cppreference.com/w/c/header/math</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>2%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.6%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 98.4%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>1/63</strong> shipped</span>
+    <span><strong>62</strong> next</span>
+    
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/c/math/">math</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (1)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/c/math/frexp/"><code>frexp</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Scalar math helpers are strong plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>acos</code></li>
+              
+                <li><code>acosh</code></li>
+              
+                <li><code>asin</code></li>
+              
+                <li><code>asinh</code></li>
+              
+                <li><code>atan</code></li>
+              
+                <li><code>atan2</code></li>
+              
+                <li><code>atanh</code></li>
+              
+                <li><code>cbrt</code></li>
+              
+                <li><code>ceil</code></li>
+              
+                <li><code>copysign</code></li>
+              
+                <li><code>cos</code></li>
+              
+                <li><code>cosh</code></li>
+              
+                <li><code>erf</code></li>
+              
+                <li><code>erfc</code></li>
+              
+                <li><code>exp</code></li>
+              
+                <li><code>exp2</code></li>
+              
+                <li><code>expm1</code></li>
+              
+                <li><code>fabs</code></li>
+              
+                <li><code>fdim</code></li>
+              
+                <li><code>floor</code></li>
+              
+                <li><code>fma</code></li>
+              
+                <li><code>fmax</code></li>
+              
+                <li><code>fmin</code></li>
+              
+                <li><code>fmod</code></li>
+              
+                <li><code>fpclassify</code></li>
+              
+                <li><code>hypot</code></li>
+              
+                <li><code>ilogb</code></li>
+              
+                <li><code>isfinite</code></li>
+              
+                <li><code>isgreater</code></li>
+              
+                <li><code>isgreaterequal</code></li>
+              
+                <li><code>isinf</code></li>
+              
+                <li><code>isless</code></li>
+              
+                <li><code>islessequal</code></li>
+              
+                <li><code>islessgreater</code></li>
+              
+                <li><code>isnan</code></li>
+              
+                <li><code>isnormal</code></li>
+              
+                <li><code>isunordered</code></li>
+              
+                <li><code>ldexp</code></li>
+              
+                <li><code>lgamma</code></li>
+              
+                <li><code>log</code></li>
+              
+                <li><code>log10</code></li>
+              
+                <li><code>log1p</code></li>
+              
+                <li><code>log2</code></li>
+              
+                <li><code>logb</code></li>
+              
+                <li><code>modf</code></li>
+              
+                <li><code>nan</code></li>
+              
+                <li><code>nearbyint</code></li>
+              
+                <li><code>nextafter</code></li>
+              
+                <li><code>pow</code></li>
+              
+                <li><code>remainder</code></li>
+              
+                <li><code>remquo</code></li>
+              
+                <li><code>rint</code></li>
+              
+                <li><code>round</code></li>
+              
+                <li><code>scalbn</code></li>
+              
+                <li><code>signbit</code></li>
+              
+                <li><code>sin</code></li>
+              
+                <li><code>sinh</code></li>
+              
+                <li><code>sqrt</code></li>
+              
+                <li><code>tan</code></li>
+              
+                <li><code>tanh</code></li>
+              
+                <li><code>tgamma</code></li>
+              
+                <li><code>trunc</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
   
 </article>
 
@@ -1154,7 +2134,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>C23</code>
         <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/io</code></span>
+        <span>Catalog source: version-pinned source manifest <code>https://en.cppreference.com/w/c/header/stdio</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -1176,7 +2156,7 @@ ga('send', 'pageview');
   <div class="surface-card__stats">
     <span><strong>1/4</strong> shipped</span>
     <span><strong>3</strong> next</span>
-    <span><strong>7</strong> explicit non-goals</span>
+    <span><strong>60</strong> explicit non-goals</span>
     
     
   </div>
@@ -1245,13 +2225,121 @@ ga('send', 'pageview');
     <div class="surface-details-grid">
       
         <details class="surface-details">
-          <summary>Explicit non-goals (7)</summary>
+          <summary>Explicit non-goals (60)</summary>
           <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
             
               
               <li>
                 
+                  <code>clearerr</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fclose</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>feof</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ferror</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fflush</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fgetc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fgetpos</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fgets</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fopen</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fopen_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>fprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fputc</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
@@ -1269,7 +2357,142 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>fread</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>freopen</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>freopen_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fseek</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fsetpos</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ftell</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>fwrite</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>getchar</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>gets_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>perror</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>printf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>printf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>putc</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
@@ -1296,6 +2519,150 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>remove</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>rename</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>rewind</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>scanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>scanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>setbuf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>setvbuf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>snprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>sprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>sscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>sscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpfile</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpfile_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpnam</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>tmpnam_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>ungetc</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>vfprintf</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
@@ -1305,7 +2672,97 @@ ga('send', 'pageview');
               
               <li>
                 
+                  <code>vfprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vfscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vfscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
                   <code>vprintf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vscanf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsnprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsprintf_s</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsscanf</code>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <code>vsscanf_s</code>
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>stdio printing APIs are primarily output sinks rather than plain-value helpers.</span>
@@ -1323,146 +2780,850 @@ ga('send', 'pageview');
 
 
         
-          
-
-
-
-<article class="surface-card" data-namespace="math">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          <a href="/c/math/">math.h</a>
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>C23</code>
-        <span>&middot;</span>
-        <span>Catalog source: manual inventory <code>https://en.cppreference.com/w/c/numeric/math</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>5%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.8%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 95.2%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>1/21</strong> shipped</span>
-    <span><strong>20</strong> next</span>
-    
-    
-    
-  </div>
-
-  
-    <div class="surface-chip-row">
-      
-        <a class="surface-chip surface-chip--link" href="/c/math/">math</a>
-      
-    </div>
-  
-
-  
-  
-    <details class="surface-details surface-details--shipped">
-      <summary>Shipped (1)</summary>
-      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/c/math/frexp/"><code>frexp</code></a>
-            
-          </li>
-        
-      </ul>
-    </details>
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Scalar math helpers are strong plain-value portability targets.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>acos</code></li>
-              
-                <li><code>asin</code></li>
-              
-                <li><code>atan</code></li>
-              
-                <li><code>atan2</code></li>
-              
-                <li><code>ceil</code></li>
-              
-                <li><code>copysign</code></li>
-              
-                <li><code>cos</code></li>
-              
-                <li><code>exp</code></li>
-              
-                <li><code>fabs</code></li>
-              
-                <li><code>floor</code></li>
-              
-                <li><code>fmod</code></li>
-              
-                <li><code>hypot</code></li>
-              
-                <li><code>log</code></li>
-              
-                <li><code>log10</code></li>
-              
-                <li><code>modf</code></li>
-              
-                <li><code>pow</code></li>
-              
-                <li><code>sin</code></li>
-              
-                <li><code>sqrt</code></li>
-              
-                <li><code>tan</code></li>
-              
-                <li><code>trunc</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-</article>
-
-
-
-        
       </div>
     
 
     
+      <div class="surface-ns-group">
+        <h3 class="surface-ns-group__title">Triaged as out of scope</h3>
+        <div class="surface-compact-list">
+          
+            
 
+
+  
+  <div class="surface-compact-row" data-namespace="complex">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          complex.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">66 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="fenv">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          fenv.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">17 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="inttypes">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          inttypes.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">6 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="locale">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          locale.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="setjmp">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          setjmp.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="signal">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          signal.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdarg">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdarg.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">4 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdatomic">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdatomic.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">19 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdbit">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdbit.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">12 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdckdint">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdckdint.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">3 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdmchar">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdmchar.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">50 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="threads">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          threads.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">25 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="time">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          time.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">18 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="uchar">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          uchar.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">6 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="wchar">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          wchar.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">88 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="wctype">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          wctype.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">18 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+        </div>
+      </div>
+    
+
+    
+      <div class="surface-ns-group">
+        <h3 class="surface-ns-group__title">Not yet triaged</h3>
+        <div class="surface-compact-list">
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="assert">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          assert.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="errno">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          errno.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="float">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          float.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="iso646">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          iso646.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="limits">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          limits.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdalign">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdalign.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdbool">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdbool.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stddef">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stddef.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdint">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdint.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stdnoreturn">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          stdnoreturn.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="tgmath">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          tgmath.h
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>C23</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      
+    </span>
+  </div>
+
+
+
+          
+        </div>
+      </div>
     
   </div>
 </details>

@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-18T11:14:21.906Z">
-<meta property="article:modified_time" content="2026-03-18T11:14:21.906Z">
+<meta property="article:published_time" content="2026-03-24T15:10:17.212Z">
+<meta property="article:modified_time" content="2026-03-24T15:10:17.212Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -321,33 +321,33 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        16/810 shipped
-         &middot; 127 next
+        16/1067 shipped
+         &middot; 129 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.5%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 15.7%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 12.1%"></span>
             
             
-              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 82.3%"></span>
+              <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 86.4%"></span>
             
             
           
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">2%</span>
+    <span class="surface-panel__summary-badge">1%</span>
   </summary>
 
   <div class="surface-panel__content">
     <div class="surface-panel__intro">
       <div>
         <p>
-          Locutus tracks 7 upstream namespaces for
+          Locutus tracks 27 upstream namespaces for
           Clojure and sorts them into what is already shipped,
           what we still want, what we intentionally keep, and what still needs a decision.
         </p>
@@ -356,19 +356,19 @@ ga('send', 'pageview');
         
       </div>
       <div class="surface-coverage-badge">
-        <strong>2%</strong>
+        <strong>1%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 2%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 1.5%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 15.7%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 12.1%"></span>
         
         
-          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 82.3%"></span>
+          <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 86.4%"></span>
         
         
       
@@ -500,6 +500,386 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="data: 0% shipped"
+              data-ns="data"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">data</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="datafy: 0% shipped"
+              data-ns="datafy"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">datafy</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="inspector: 0% shipped"
+              data-ns="inspector"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">inspector</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="instant: 0% shipped"
+              data-ns="instant"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">instant</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="java.basis: 0% shipped"
+              data-ns="java.basis"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">java.basis</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="java.browse: 0% shipped"
+              data-ns="java.browse"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">java.browse</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="java.io: 0% shipped"
+              data-ns="java.io"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">java.io</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="java.javadoc: 0% shipped"
+              data-ns="java.javadoc"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">java.javadoc</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="java.process: 0% shipped"
+              data-ns="java.process"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">java.process</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="java.shell: 0% shipped"
+              data-ns="java.shell"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">java.shell</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="main: 0% shipped"
+              data-ns="main"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">main</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="math: 0% shipped"
+              data-ns="math"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">math</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="pprint: 0% shipped"
+              data-ns="pprint"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">pprint</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="reflect: 0% shipped"
+              data-ns="reflect"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">reflect</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="repl: 0% shipped"
+              data-ns="repl"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">repl</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="stacktrace: 0% shipped"
+              data-ns="stacktrace"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">stacktrace</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="template: 0% shipped"
+              data-ns="template"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">template</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="test: 0% shipped"
+              data-ns="test"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">test</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="tools.deps.interop: 0% shipped"
+              data-ns="tools.deps.interop"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">tools.deps.interop</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
+              title="xml: 0% shipped"
+              data-ns="xml"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">xml</span>
+          <span class="surface-minimap__pct">0%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--empty"
               title="zip: 0% shipped"
               data-ns="zip"
               onclick="(function(el){
@@ -522,23 +902,23 @@ ga('send', 'pageview');
     <div class="surface-kpis">
       <article class="surface-kpi">
         <span class="surface-kpi__label">Tracked namespaces</span>
-        <strong class="surface-kpi__value">7</strong>
+        <strong class="surface-kpi__value">27</strong>
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">16/810</strong>
+        <strong class="surface-kpi__value">16/1067</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">127</strong>
+          <strong class="surface-kpi__value">129</strong>
         </article>
       
       
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Explicit non-goals</span>
-          <strong class="surface-kpi__value">667</strong>
+          <strong class="surface-kpi__value">922</strong>
         </article>
       
       
@@ -589,7 +969,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>Clojure 1.12</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -744,7 +1124,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>Clojure 1.12</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -756,16 +1136,16 @@ ga('send', 'pageview');
   
   <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
     
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.2%"></span>
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5%"></span>
       
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 94.8%"></span>
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 95%"></span>
       
     
   </div>
 
   <div class="surface-card__stats">
-    <span><strong>3/58</strong> shipped</span>
-    <span><strong>55</strong> next</span>
+    <span><strong>3/60</strong> shipped</span>
+    <span><strong>57</strong> next</span>
     
     
     
@@ -901,6 +1281,10 @@ ga('send', 'pageview');
               
                 <li><code>pow</code></li>
               
+                <li><code>powerOfTwoD</code></li>
+              
+                <li><code>powerOfTwoF</code></li>
+              
                 <li><code>random</code></li>
               
                 <li><code>rint</code></li>
@@ -963,7 +1347,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>Clojure 1.12</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -7110,7 +7494,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>Clojure 1.12</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -7205,7 +7589,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>Clojure 1.12</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -7394,7 +7778,7 @@ ga('send', 'pageview');
       <p class="surface-card__meta">
         <code>Clojure 1.12</code>
         <span>&middot;</span>
-        <span>Catalog source: live runtime snapshot <code>clojure:temurin-21-tools-deps</code></span>
+        <span>Catalog source: version-pinned source manifest <code>clojure:temurin-21-tools-deps</code></span>
       </p>
     </div>
     <div class="surface-card__coverage">
@@ -7485,6 +7869,666 @@ ga('send', 'pageview');
       <div class="surface-ns-group">
         <h3 class="surface-ns-group__title">Triaged as out of scope</h3>
         <div class="surface-compact-list">
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="data">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.data
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">5 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="datafy">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.datafy
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="inspector">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.inspector
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">13 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="instant">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.instant
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">5 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="java.basis">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.java.basis
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="java.browse">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.java.browse
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="java.io">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.java.io
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">19 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="java.javadoc">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.java.javadoc
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">8 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="java.process">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.java.process
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">9 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="java.shell">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.java.shell
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">5 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="main">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.main
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">20 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="math">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.math
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">45 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="pprint">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.pprint
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">26 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="reflect">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.reflect
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">17 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="repl">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.repl
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">13 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="stacktrace">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.stacktrace
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">6 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="template">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.template
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">2 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="test">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.test
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">39 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="tools.deps.interop">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.tools.deps.interop
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">1 skipped</span>
+    </span>
+  </div>
+
+
+
+          
+            
+
+
+  
+  <div class="surface-compact-row" data-namespace="xml">
+    <div class="surface-compact-row__info">
+      <strong class="surface-compact-row__name">
+        
+          clojure.xml
+        
+      </strong>
+      <span class="surface-compact-row__meta"><code>Clojure 1.12</code></span>
+    </div>
+    <div class="surface-compact-row__bar">
+      <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+        
+          <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
+          
+          
+            <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 100%"></span>
+          
+        
+      </div>
+    </div>
+    <span class="surface-compact-row__stats">
+      <strong>0/0</strong>
+      <span class="surface-compact-row__skip">16 skipped</span>
+    </span>
+  </div>
+
+
+
           
             
 
