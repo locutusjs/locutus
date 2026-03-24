@@ -2811,3 +2811,32 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The efficient way to triage a broadened official surface is not to enumerate less, but to add explicit namespace-family policy above the function layer.
   - Discovery overreach should still be fixed at the source when it is clearly documentation noise; inventory policy is for real namespaces, not for compensating broken catalogs.
+
+### Iteration 138
+
+2026-03-24
+
+- **Area: Core/stdlib triage**
+- Plan:
+  - Finish the second dense namespace-family triage wave for the remaining languages so broad language-level fallback stops being the main classification path outside the already-triaged first wave.
+  - Keep raw discovery untouched, but make the accepted target much more explicit across the long-tail languages before any product work resumes.
+- Progress:
+  - Added namespace-family rules for the remaining languages with the biggest raw fallback surfaces: `haskell`, `julia`, `kotlin`, `lua`, `perl`, `clojure`, `r`, `rust`, and `swift`.
+  - Used those rules to classify whole official family slices without constraining discovery, such as Haskell `Control.*`/`System.*`, Julia stdlib environment and serialization modules, Kotlin top-level/runtime packages, Rust raw `primitive:*`/`module:*`/`trait:*`, Swift protocol/container/pointer families, and broad Perl core-module families and pragmas.
+  - Closed the small exact-namespace tails in `lua`, `r`, `haskell`, `julia`, `rust`, and `swift`, and drove the remaining long-tail Perl raw catalog down to zero fallback too.
+  - Measured the second-wave fallback reduction across the remaining languages:
+    - `clojure`: `7 explicit / 20 rule / 0 fallback`
+    - `julia`: `8 explicit / 27 rule / 0 fallback`
+    - `r`: `25 explicit / 4 rule / 0 fallback`
+    - `rust`: `0 explicit / 124 rule / 0 fallback`
+    - `swift`: `11 explicit / 167 rule / 0 fallback`
+    - `kotlin`: `0 explicit / 37 rule / 0 fallback`
+    - `perl`: `11 explicit / 991 rule / 0 fallback`
+    - `lua`: `9 explicit / 2 rule / 0 fallback`
+    - `haskell`: `0 explicit / 131 rule / 0 fallback`
+- Validation:
+  - `python3` coverage summaries against the folded upstream snapshots during editing
+  - full validation still pending after the policy edits
+- Key learnings:
+  - Once raw discovery is trustworthy, the fastest way to make the accepted target sane is broad namespace-family policy, not another round of scope narrowing.
+  - Raw namespaces and human-friendly inventory namespaces still diverge in some languages, so rule-based triage is currently the most efficient bridge until we later normalize more of those names.

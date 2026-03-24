@@ -19,17 +19,122 @@ awk:
 haskell:
   title: Haskell
   scopeNote: This inventory now tracks a broader official `base` module slice for Haskell's core plain-value helpers, not the wider Hackage ecosystem.
+  namespaceRules:
+    - match: Control.*
+      default:
+        decision: skip_runtime_model
+        note: Control.* modules are dominated by typeclass-heavy abstractions and higher-order runtime composition.
+    - match: Data.*
+      default:
+        decision: skip_runtime_model
+        note: Most Data.* modules revolve around algebraic data types and typeclass-heavy APIs beyond one stable plain-value contract.
+    - match: Debug.*
+      default:
+        decision: skip_runtime_model
+        note: Debugging helpers are not strong plain-value portability targets.
+    - match: Foreign.*
+      default:
+        decision: skip_environment
+        note: Foreign-function interfaces depend on native memory and host runtime behavior.
+    - match: GHC.*
+      default:
+        decision: skip_runtime_model
+        note: GHC-internal modules are compiler- and runtime-oriented rather than plain-value portability targets.
+    - match: Prelude
+      default:
+        decision: skip_runtime_model
+        note: Prelude mixes syntax, typeclasses, and runtime behavior too broadly for one direct Locutus wishlist.
+    - match: Foreign
+      default:
+        decision: skip_environment
+        note: Foreign interfaces depend on native memory and host runtime behavior.
+    - match: Numeric
+      default:
+        decision: wanted
+        note: Numeric formatting and base-conversion helpers are strong portability targets.
+    - match: Numeric.*
+      default:
+        decision: wanted
+        note: Numeric helper modules are strong scalar and formatting portability targets.
+    - match: System.*
+      default:
+        decision: skip_environment
+        note: System.* modules depend on host I/O, process, or filesystem state.
+    - match: Text.*
+      default:
+        decision: skip_runtime_model
+        note: Text parser and pretty-print families revolve around richer runtime models than one stable plain-value contract.
+    - match: Type.*
+      default:
+        decision: skip_runtime_model
+        note: Type-level helpers are not plain-value portability targets.
+    - match: Unsafe.*
+      default:
+        decision: skip_security
+        note: Unsafe runtime escape hatches are outside Locutus' security model.
   defaultNamespace:
     default:
       decision: skip_runtime_model
       note: Newly tracked Haskell base modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
-    char:
+    Data.Char:
       title: Data.Char
       default:
         decision: wanted
         note: Character classification and case helpers are strong Haskell plain-value portability targets.
-    either:
+      rules:
+        - match: C*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: D*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: E*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: F*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: G*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: I*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: L*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: M*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: N*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: O*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: P*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: S*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: T*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: U*
+          decision: skip_runtime_model
+          note: Type and category exports are runtime/model declarations rather than direct plain-value helpers.
+    Numeric.Natural:
+      title: Numeric.Natural
+      default:
+        decision: wanted
+        note: Numeric helper modules are strong scalar and formatting portability targets.
+      decisions:
+        Natural:
+          decision: skip_runtime_model
+          note: Type exports are runtime/model declarations rather than direct plain-value helpers.
+    Data.Either:
       title: Data.Either
       default:
         decision: skip_runtime_model
@@ -44,12 +149,12 @@ haskell:
         isRight:
           decision: wanted
           note: Sum-type predicates have a clean plain-value contract.
-    list:
+    Data.List:
       title: Data.List
       default:
         decision: wanted
         note: Pure list transforms and combinatorics helpers are strong plain-value portability targets.
-    maybe:
+    Data.Maybe:
       title: Data.Maybe
       default:
         decision: skip_runtime_model
@@ -73,22 +178,39 @@ haskell:
         maybe:
           decision: wanted
           note: Optional branching over plain values has a clean contract.
-    numeric:
+    Numeric:
       title: Numeric
       default:
         decision: wanted
         note: Base-conversion and numeric-format helpers are strong portability targets.
-    tuple:
+      decisions:
+        Floating:
+          decision: skip_runtime_model
+          note: Typeclass and declaration exports are runtime/model declarations rather than direct plain-value helpers.
+        class:
+          decision: skip_runtime_model
+          note: Typeclass and declaration exports are runtime/model declarations rather than direct plain-value helpers.
+    Data.Tuple:
       title: Data.Tuple
       default:
         decision: wanted
         note: Tuple projection and transformation helpers map cleanly to plain arrays.
-    bool:
+    Data.Bool:
       title: Data.Bool
       default:
         decision: wanted
         note: Boolean branching helpers have a clean plain-value contract.
-    function:
+      rules:
+        - match: B*
+          decision: skip_runtime_model
+          note: Type and constructor exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: F*
+          decision: skip_runtime_model
+          note: Type and constructor exports are runtime/model declarations rather than direct plain-value helpers.
+        - match: T*
+          decision: skip_runtime_model
+          note: Type and constructor exports are runtime/model declarations rather than direct plain-value helpers.
+    Data.Function:
       title: Data.Function
       default:
         decision: skip_runtime_model
@@ -97,7 +219,7 @@ haskell:
         on:
           decision: wanted
           note: Comparator and projection composition still has a useful plain-value portability contract.
-    ord:
+    Data.Ord:
       title: Data.Ord
       default:
         decision: wanted
@@ -1061,6 +1183,103 @@ python:
 julia:
   title: Julia
   scopeNote: This inventory now tracks Julia's sane official stdlib/core module surface, excluding binary wrapper modules and tooling-only modules that are not realistic Locutus targets.
+  namespaceRules:
+    - match: ArgTools
+      default:
+        decision: skip_environment
+        note: Argument-path helpers depend on host filesystem state.
+    - match: Artifacts
+      default:
+        decision: skip_environment
+        note: Artifact resolution depends on host filesystem and package state.
+    - match: Base64
+      default:
+        decision: wanted
+        note: Base64 encode and decode helpers are strong plain-value portability targets.
+    - match: CRC32c
+      default:
+        decision: wanted
+        note: Checksum helpers have a clean scalar plain-value contract.
+    - match: Distributed
+      default:
+        decision: skip_environment
+        note: Distributed-process orchestration depends on host runtime resources.
+    - match: Downloads
+      default:
+        decision: skip_environment
+        note: Download helpers depend on network and host I/O behavior.
+    - match: FileWatching
+      default:
+        decision: skip_environment
+        note: File-watching helpers depend on host filesystem events.
+    - match: Future
+      default:
+        decision: skip_runtime_model
+        note: Future-facing compatibility helpers are not strong plain-value portability targets.
+    - match: InteractiveUtils
+      default:
+        decision: skip_low_value
+        note: REPL and introspection utilities are lower-value than direct portability targets.
+    - match: LazyArtifacts
+      default:
+        decision: skip_environment
+        note: Lazy artifact resolution depends on host filesystem and package state.
+    - match: Lib*
+      default:
+        decision: skip_environment
+        note: Native-library integration modules depend on host runtime and external binaries.
+    - match: Logging
+      default:
+        decision: skip_side_effects
+        note: Logging helpers primarily emit side effects rather than return plain values.
+    - match: Markdown
+      default:
+        decision: skip_runtime_model
+        note: Markdown AST and rendering helpers do not fit one stable plain-value contract by default.
+    - match: Mmap
+      default:
+        decision: skip_environment
+        note: Memory-mapped I/O depends on host filesystem and OS behavior.
+    - match: NetworkOptions
+      default:
+        decision: skip_environment
+        note: Network-configuration helpers depend on host runtime state.
+    - match: Pkg
+      default:
+        decision: skip_environment
+        note: Package-management helpers depend on host filesystem and registry state.
+    - match: Serialization
+      default:
+        decision: skip_plain_value_mismatch
+        note: Binary serialization formats do not map cleanly to Locutus' current plain-value model.
+    - match: SHA
+      default:
+        decision: skip_security
+        note: Cryptographic hashing is security-sensitive and not a portability priority here.
+    - match: Sockets
+      default:
+        decision: skip_environment
+        note: Socket helpers depend on host network behavior.
+    - match: SparseArrays
+      default:
+        decision: skip_plain_value_mismatch
+        note: Sparse array types do not fit Locutus' current plain-value model.
+    - match: StyledStrings
+      default:
+        decision: skip_runtime_model
+        note: Styled string abstractions carry richer formatting state than plain values.
+    - match: SuiteSparse
+      default:
+        decision: skip_plain_value_mismatch
+        note: Sparse-matrix bindings do not fit Locutus' current plain-value model.
+    - match: TOML
+      default:
+        decision: wanted
+        note: TOML parsing and printing are useful plain-value portability targets.
+    - match: Tar
+      default:
+        decision: skip_environment
+        note: Archive helpers are primarily file-backed I/O rather than plain-value computation.
   namespaces:
     Base:
       title: Base module
@@ -1142,6 +1361,33 @@ julia:
       default:
         decision: skip_runtime_model
         note: Unicode iteration and normalization helpers span richer text models than one stable JS plain-value contract by default.
+    TOML:
+      title: TOML module
+      default:
+        decision: wanted
+        note: TOML parsing and printing are useful plain-value portability targets.
+      decisions:
+        parsefile:
+          decision: skip_environment
+          note: File-backed TOML entry points depend on host filesystem access.
+        tryparsefile:
+          decision: skip_environment
+          note: File-backed TOML entry points depend on host filesystem access.
+    UUIDs:
+      title: UUIDs module
+      decisions:
+        uuid1:
+          decision: skip_low_value
+          note: UUID generators are lower-priority than direct parsing and inspection helpers.
+        uuid4:
+          decision: skip_low_value
+          note: UUID generators are lower-priority than direct parsing and inspection helpers.
+        uuid5:
+          decision: skip_low_value
+          note: UUID generators are lower-priority than direct parsing and inspection helpers.
+        uuid_version:
+          decision: wanted
+          note: UUID inspection helpers have a clean plain-value contract.
   defaultNamespace:
     default:
       decision: skip_runtime_model
@@ -1149,6 +1395,23 @@ julia:
 kotlin:
   title: Kotlin
   scopeNote: This inventory now tracks a broader official Kotlin stdlib slice, using docs-backed catalogs for packages that do not introspect cleanly at runtime, not the wider JVM ecosystem.
+  namespaceRules:
+    - match: kotlin
+      default:
+        decision: skip_runtime_model
+        note: The top-level kotlin package mixes primitives, exceptions, and runtime helpers too broadly for one direct wishlist.
+    - match: kotlin.*
+      default:
+        decision: skip_runtime_model
+        note: Most broader Kotlin stdlib packages revolve around runtime, reflection, or object-heavy models unless explicitly reviewed.
+    - match: kotlinx.*
+      default:
+        decision: skip_runtime_model
+        note: kotlinx packages extend the runtime model beyond Locutus' plain-value portability focus.
+    - match: org.w3c.*
+      default:
+        decision: skip_environment
+        note: Browser DOM bindings depend on host runtime objects rather than plain values.
   defaultNamespace:
     default:
       decision: skip_runtime_model
@@ -2374,6 +2637,15 @@ tcl:
 lua:
   title: Lua
   scopeNote: This inventory now tracks Lua's core plain-value libraries plus the environment-facing standard tables, not the full host runtime.
+  namespaceRules:
+    - match: _G
+      default:
+        decision: skip_runtime_model
+        note: Global Lua builtins mix loading, iteration, metatables, and host runtime hooks too broadly for one direct wishlist.
+    - match: core
+      default:
+        decision: skip_runtime_model
+        note: Core runtime helpers mix loading and metatable semantics that do not fit one stable plain-value contract by default.
   defaultNamespace:
     default:
       decision: skip_runtime_model
@@ -2500,6 +2772,563 @@ lua:
 perl:
   title: Perl
   scopeNote: This inventory now tracks a broader official Perl core-module slice, excluding the wider CPAN ecosystem.
+  namespaceRules:
+    - match: _*
+      default:
+        decision: skip_runtime_model
+        note: Underscored internal Perl modules are runtime plumbing rather than portability targets.
+    - match: AnyDBM*
+      default:
+        decision: skip_environment
+        note: DBM-backed persistence helpers depend on host filesystem and native library behavior.
+    - match: App::*
+      default:
+        decision: skip_environment
+        note: App::* modules are command-oriented tooling rather than plain-value helpers.
+    - match: attributes
+      default:
+        decision: skip_runtime_model
+        note: Attribute pragmas revolve around Perl's runtime object model rather than plain values.
+    - match: Archive::*
+      default:
+        decision: skip_environment
+        note: Archive helpers are primarily file-backed I/O rather than plain-value computation.
+    - match: Attribute::*
+      default:
+        decision: skip_runtime_model
+        note: Attribute metaprogramming helpers revolve around Perl's runtime object model.
+    - match: CPAN*
+      default:
+        decision: skip_environment
+        note: CPAN tooling depends on network, package state, and host filesystem behavior.
+    - match: Compress::*
+      default:
+        decision: skip_environment
+        note: Compression helpers are primarily stream- or file-backed rather than plain-value computation.
+    - match: Config*
+      default:
+        decision: skip_environment
+        note: Runtime configuration helpers depend on host and build environment state.
+    - match: DB*
+      default:
+        decision: skip_environment
+        note: Database and DBM helpers depend on external services or host storage.
+    - match: Devel::*
+      default:
+        decision: skip_runtime_model
+        note: Devel::* modules expose runtime introspection rather than plain values.
+    - match: AutoLoader
+      default:
+        decision: skip_runtime_model
+        note: Deferred-loading helpers revolve around module runtime plumbing.
+    - match: AutoSplit
+      default:
+        decision: skip_runtime_model
+        note: AutoSplit tooling is build/runtime plumbing rather than a plain-value target.
+    - match: autodie*
+      default:
+        decision: skip_runtime_model
+        note: autodie wrappers revolve around Perl exception plumbing rather than plain values.
+    - match: autouse
+      default:
+        decision: skip_runtime_model
+        note: Lazy import helpers are runtime module plumbing rather than plain values.
+    - match: B
+      default:
+        decision: skip_runtime_model
+        note: Compiler backend introspection is not a plain-value portability target.
+    - match: B::*
+      default:
+        decision: skip_runtime_model
+        note: Compiler backend introspection is not a plain-value portability target.
+    - match: base
+      default:
+        decision: skip_runtime_model
+        note: Inheritance helpers revolve around Perl's object model rather than plain values.
+    - match: Benchmark
+      default:
+        decision: skip_low_value
+        note: Benchmark tooling is lower-value than direct portability targets.
+    - match: blib
+      default:
+        decision: skip_environment
+        note: Build-lib path helpers depend on local build and filesystem state.
+    - match: big*
+      default:
+        decision: skip_plain_value_mismatch
+        note: Arbitrary-precision number wrappers do not fit Locutus' current plain-value model.
+    - match: builtin
+      default:
+        decision: wanted
+        note: Core builtins are strong plain-value portability targets when they return scalars or strings.
+    - match: bytes
+      default:
+        decision: skip_plain_value_mismatch
+        note: Byte-oriented string semantics do not map cleanly to Locutus' current plain-value model.
+    - match: Carp
+      default:
+        decision: skip_runtime_model
+        note: Warning and exception emitters are runtime plumbing rather than plain-value helpers.
+    - match: Carp::*
+      default:
+        decision: skip_runtime_model
+        note: Warning and exception emitters are runtime plumbing rather than plain-value helpers.
+    - match: charnames
+      default:
+        decision: wanted
+        note: Character-name lookup helpers are useful plain-value string targets.
+    - match: Class::*
+      default:
+        decision: skip_runtime_model
+        note: Class metaprogramming helpers revolve around Perl's object model.
+    - match: constant
+      default:
+        decision: skip_runtime_model
+        note: Compile-time constant declarations are language-model features rather than plain values.
+    - match: Cwd
+      default:
+        decision: skip_environment
+        note: Working-directory resolution depends on host filesystem state.
+    - match: Data::*
+      default:
+        decision: skip_runtime_model
+        note: Data inspection and dumping helpers revolve around richer runtime structures than one stable plain-value contract.
+    - match: diagnostics
+      default:
+        decision: skip_runtime_model
+        note: Diagnostics tooling is runtime and developer-experience plumbing rather than plain values.
+    - match: deprecate
+      default:
+        decision: skip_low_value
+        note: Deprecation notices are developer tooling rather than portability targets.
+    - match: Digest::*
+      default:
+        decision: skip_security
+        note: Digest modules are security-sensitive and not a portability priority here.
+    - match: Digest
+      default:
+        decision: skip_security
+        note: Digest helpers are security-sensitive and not a portability priority here.
+    - match: DirHandle
+      default:
+        decision: skip_environment
+        note: Directory-handle objects depend on host filesystem state.
+    - match: Dumpvalue
+      default:
+        decision: skip_runtime_model
+        note: Value dumping is developer tooling rather than a plain-value portability target.
+    - match: DynaLoader
+      default:
+        decision: skip_environment
+        note: Dynamic native loading depends on host runtime and native libraries.
+    - match: encoding
+      default:
+        decision: skip_runtime_model
+        note: The `encoding` pragma controls Perl runtime string behavior rather than returning stable plain values.
+    - match: encoding::*
+      default:
+        decision: skip_runtime_model
+        note: Encoding warnings and runtime plumbing are not direct plain-value targets.
+    - match: English
+      default:
+        decision: skip_low_value
+        note: Alias variables add little portability value beyond direct JS equivalents.
+    - match: Env
+      default:
+        decision: skip_environment
+        note: Environment-variable bindings depend on host process state.
+    - match: Errno
+      default:
+        decision: skip_environment
+        note: OS errno exposure depends on host runtime state.
+    - match: experimental
+      default:
+        decision: skip_runtime_model
+        note: Experimental feature toggles are language-model plumbing rather than plain values.
+    - match: Fatal
+      default:
+        decision: skip_runtime_model
+        note: Fatalization wrappers revolve around exception plumbing rather than plain values.
+    - match: Fcntl
+      default:
+        decision: skip_environment
+        note: File-control constants and helpers depend on host OS behavior.
+    - match: feature
+      default:
+        decision: skip_runtime_model
+        note: Feature toggles are language-model plumbing rather than plain values.
+    - match: fields
+      default:
+        decision: skip_runtime_model
+        note: Field pragmas revolve around Perl's object model rather than plain values.
+    - match: FileHandle
+      default:
+        decision: skip_environment
+        note: File-handle objects depend on host filesystem state.
+    - match: filetest
+      default:
+        decision: skip_environment
+        note: File test operators depend on host filesystem state.
+    - match: FindBin
+      default:
+        decision: skip_environment
+        note: Script-path discovery depends on host filesystem state.
+    - match: GDBM_File
+      default:
+        decision: skip_environment
+        note: GDBM-backed persistence depends on host filesystem and native library behavior.
+    - match: Getopt::*
+      default:
+        decision: skip_runtime_model
+        note: Command-line parsing helpers revolve around process arguments and runtime state.
+    - match: HTTP::*
+      default:
+        decision: skip_environment
+        note: HTTP helpers depend on network and remote service behavior.
+    - match: Internals
+      default:
+        decision: skip_runtime_model
+        note: Internal runtime hooks are not plain-value portability targets.
+    - match: IO
+      default:
+        decision: skip_environment
+        note: Core IO handle helpers depend on host streams and filesystem state.
+    - match: Encode::Alias
+      default:
+        decision: skip_runtime_model
+        note: Encoding alias registration is module/runtime plumbing rather than direct text conversion.
+    - match: Encode::Config
+      default:
+        decision: skip_runtime_model
+        note: Encode config helpers expose module/runtime plumbing rather than direct text conversion.
+    - match: Encode::Guess
+      default:
+        decision: skip_runtime_model
+        note: Encoding guessers mix heuristics and module plumbing rather than direct codec transforms.
+    - match: Encode::Encoder
+      default:
+        decision: skip_runtime_model
+        note: Encoder wrapper helpers revolve around runtime wrapper state rather than plain values.
+    - match: Encode::Encoding
+      default:
+        decision: skip_runtime_model
+        note: Encoding base classes expose module/runtime plumbing rather than direct text conversion.
+    - match: Encode::PerlIO
+      default:
+        decision: skip_environment
+        note: PerlIO encoding integration depends on host stream/runtime behavior.
+    - match: Encode::Supported
+      default:
+        decision: skip_runtime_model
+        note: Supported-encoding registries are module/runtime metadata rather than direct conversion helpers.
+    - match: Encode::Byte
+      default:
+        decision: wanted
+        note: Concrete encoding codec modules expose real text encode/decode helpers with a plain-value contract.
+    - match: Encode::*
+      default:
+        decision: wanted
+        note: Concrete encoding codec modules expose real text encode/decode helpers with a plain-value contract.
+    - match: Exporter*
+      default:
+        decision: skip_runtime_model
+        note: Export mechanics are runtime module plumbing rather than plain-value helpers.
+    - match: ExtUtils::*
+      default:
+        decision: skip_environment
+        note: ExtUtils tooling depends on build-time environment and host filesystem state.
+    - match: File::*
+      default:
+        decision: skip_environment
+        note: Most File::* modules depend on host filesystem state; explicit pure helpers stay reviewed.
+    - match: FileCache
+      default:
+        decision: skip_environment
+        note: File-backed caching depends on host filesystem state.
+    - match: Filter::*
+      default:
+        decision: skip_runtime_model
+        note: Source filters revolve around compiler/runtime behavior rather than plain values.
+    - match: I18N::*
+      default:
+        decision: skip_runtime_model
+        note: Localization tables and language-tag plumbing are not strong plain-value portability targets by default.
+    - match: IO::*
+      default:
+        decision: skip_environment
+        note: I/O modules depend on host streams, sockets, or filesystem state.
+    - match: IPC::*
+      default:
+        decision: skip_environment
+        note: Inter-process helpers depend on host process and OS behavior.
+    - match: JSON::*
+      default:
+        decision: wanted
+        note: JSON parsing and encoding are strong plain-value portability targets.
+    - match: Hash::*
+      default:
+        decision: skip_runtime_model
+        note: Hash utility modules mostly revolve around Perl's runtime hash semantics rather than plain values.
+    - match: List::*
+      default:
+        decision: wanted
+        note: List module helpers are strong plain-value collection portability targets.
+    - match: Locale::*
+      default:
+        decision: skip_environment
+        note: Locale and collation helpers depend on host locale data.
+    - match: if
+      default:
+        decision: skip_runtime_model
+        note: Conditional loading is module/runtime plumbing rather than a plain-value helper.
+    - match: integer
+      default:
+        decision: skip_runtime_model
+        note: Integer pragmas alter arithmetic semantics rather than return plain values.
+    - match: less
+      default:
+        decision: skip_runtime_model
+        note: less pragma toggles runtime behavior rather than returning plain values.
+    - match: lib
+      default:
+        decision: skip_environment
+        note: Library path manipulation depends on host filesystem state.
+    - match: locale
+      default:
+        decision: skip_environment
+        note: Locale pragma depends on host locale data and runtime state.
+    - match: Math::*
+      default:
+        decision: wanted
+        note: Math module helpers are strong scalar portability targets unless explicitly noted otherwise.
+    - match: Module::*
+      default:
+        decision: skip_runtime_model
+        note: Module-loading and metadata helpers revolve around Perl runtime state.
+    - match: Memoize*
+      default:
+        decision: skip_runtime_model
+        note: Memoization wrappers revolve around callable/runtime behavior rather than plain values.
+    - match: meta_notation
+      default:
+        decision: skip_runtime_model
+        note: Meta-notation helpers are language/runtime plumbing rather than plain values.
+    - match: MIME::*
+      default:
+        decision: wanted
+        note: MIME text transforms are useful plain-value portability targets.
+    - match: mro
+      default:
+        decision: skip_runtime_model
+        note: Method-resolution order helpers revolve around Perl's object model.
+    - match: Net::*
+      default:
+        decision: skip_environment
+        note: Network helpers depend on sockets, DNS, or remote services.
+    - match: NEXT
+      default:
+        decision: skip_runtime_model
+        note: Dynamic superclass dispatch is runtime object-model plumbing.
+    - match: O
+      default:
+        decision: skip_runtime_model
+        note: Compiler option hooks are runtime tooling rather than plain-value helpers.
+    - match: ok
+      default:
+        decision: skip_runtime_model
+        note: Test-result helpers revolve around harness state rather than plain values.
+    - match: Opcode
+      default:
+        decision: skip_security
+        note: Opcode filtering is security-sensitive runtime plumbing.
+    - match: open
+      default:
+        decision: skip_side_effects
+        note: Global I/O layer configuration mutates ambient runtime behavior.
+    - match: ops
+      default:
+        decision: skip_runtime_model
+        note: Opcode-policy helpers are runtime plumbing rather than plain values.
+    - match: overload*
+      default:
+        decision: skip_runtime_model
+        note: Operator overloading hooks revolve around Perl's object model.
+    - match: Params::*
+      default:
+        decision: skip_runtime_model
+        note: Parameter-checking helpers revolve around runtime validation rather than portable plain values.
+    - match: parent
+      default:
+        decision: skip_runtime_model
+        note: Inheritance declarations are language-model plumbing rather than plain values.
+    - match: Parse::*
+      default:
+        decision: skip_runtime_model
+        note: Parse::* modules mostly revolve around package metadata and richer parser structures.
+    - match: Perl::*
+      default:
+        decision: skip_runtime_model
+        note: Perl::* modules primarily expose runtime and platform metadata rather than plain values.
+    - match: PerlIO*
+      default:
+        decision: skip_environment
+        note: PerlIO layers depend on host streams, encodings, and filesystem state.
+    - match: Pod::*
+      default:
+        decision: skip_low_value
+        note: Perl POD tooling is lower-value than direct portability targets.
+    - match: pod::*
+      default:
+        decision: skip_low_value
+        note: Perl POD tooling is lower-value than direct portability targets.
+    - match: perlfaq
+      default:
+        decision: skip_low_value
+        note: FAQ documentation modules are lower-value than direct portability targets.
+    - match: perllocal
+      default:
+        decision: skip_environment
+        note: Local installation metadata depends on host environment and filesystem state.
+    - match: re
+      default:
+        decision: skip_runtime_model
+        note: The `re` pragma mostly exposes regex runtime controls and introspection rather than plain-value helpers.
+    - match: Safe
+      default:
+        decision: skip_security
+        note: Sandboxing and opcode-control helpers are security-sensitive.
+    - match: Socket
+      default:
+        decision: skip_environment
+        note: Socket primitives depend on host network behavior.
+    - match: SDBM_File
+      default:
+        decision: skip_environment
+        note: SDBM-backed persistence depends on host filesystem and native library behavior.
+    - match: Search::*
+      default:
+        decision: skip_low_value
+        note: Search::* modules are lower-value than direct portability targets.
+    - match: SelectSaver
+      default:
+        decision: skip_side_effects
+        note: Output-handle swapping mutates ambient runtime state.
+    - match: SelfLoader
+      default:
+        decision: skip_runtime_model
+        note: Self-loading helpers are module runtime plumbing rather than plain values.
+    - match: sigtrap
+      default:
+        decision: skip_side_effects
+        note: Signal trap setup mutates ambient runtime behavior.
+    - match: sort
+      default:
+        decision: skip_runtime_model
+        note: Sort pragma controls compiler/runtime behavior rather than returning plain values.
+    - match: stable
+      default:
+        decision: skip_runtime_model
+        note: Feature gating for stable behavior is language/runtime plumbing.
+    - match: Storable
+      default:
+        decision: skip_plain_value_mismatch
+        note: Perl binary serialization does not map cleanly to Locutus' current plain-value model.
+    - match: strict
+      default:
+        decision: skip_runtime_model
+        note: Strictness pragmas are language-model controls rather than plain values.
+    - match: subs
+      default:
+        decision: skip_runtime_model
+        note: Subroutine declaration pragmas are language-model plumbing rather than plain values.
+    - match: Symbol
+      default:
+        decision: skip_runtime_model
+        note: Symbol-table helpers revolve around Perl's runtime object model.
+    - match: Sub::*
+      default:
+        decision: skip_runtime_model
+        note: Subroutine introspection helpers revolve around runtime callable metadata.
+    - match: Sys::*
+      default:
+        decision: skip_environment
+        note: System helpers depend on host OS behavior.
+    - match: TAP::*
+      default:
+        decision: skip_runtime_model
+        note: TAP parser and harness modules revolve around test-runner state rather than plain values.
+    - match: Term::*
+      default:
+        decision: skip_environment
+        note: Terminal-control helpers depend on host TTY behavior.
+    - match: Test*
+      default:
+        decision: skip_runtime_model
+        note: Test harness modules revolve around runner state rather than plain values.
+    - match: Text::*
+      default:
+        decision: wanted
+        note: Text tokenization and formatting helpers are strong plain-value portability targets.
+    - match: Thread*
+      default:
+        decision: skip_side_effects
+        note: Thread orchestration depends on runtime scheduling and side effects.
+    - match: threads
+      default:
+        decision: skip_side_effects
+        note: Thread APIs depend on runtime scheduling and shared mutable state.
+    - match: threads::shared
+      default:
+        decision: skip_side_effects
+        note: Shared-thread state helpers mutate ambient runtime behavior.
+    - match: Tie::*
+      default:
+        decision: skip_runtime_model
+        note: Tie interfaces expose Perl's runtime object model rather than plain values.
+    - match: Time::*
+      default:
+        decision: wanted
+        note: Time parsing and formatting helpers often have a clean scalar or string contract.
+    - match: unicore::*
+      default:
+        decision: skip_runtime_model
+        note: Unicode data tables are runtime data plumbing rather than standalone portability targets.
+    - match: Unicode::*
+      default:
+        decision: wanted
+        note: Unicode normalization and text helpers are strong plain-value targets.
+    - match: UNIVERSAL
+      default:
+        decision: skip_runtime_model
+        note: UNIVERSAL methods expose Perl's object model rather than plain values.
+    - match: User::*
+      default:
+        decision: skip_environment
+        note: User account helpers depend on host OS account data.
+    - match: utf8
+      default:
+        decision: wanted
+        note: UTF-8 string validation and shape helpers are useful plain-value targets.
+    - match: vars
+      default:
+        decision: skip_runtime_model
+        note: Variable declaration pragmas are language-model plumbing rather than plain values.
+    - match: version*
+      default:
+        decision: skip_runtime_model
+        note: Version object helpers revolve around Perl's package/runtime metadata.
+    - match: vmsish
+      default:
+        decision: skip_runtime_model
+        note: VMS-specific pragma controls are runtime plumbing rather than plain values.
+    - match: warnings*
+      default:
+        decision: skip_runtime_model
+        note: Warning controls are language-model plumbing rather than plain values.
+    - match: XSLoader
+      default:
+        decision: skip_environment
+        note: Native XS loading depends on host runtime and compiled extensions.
   defaultNamespace:
     default:
       decision: skip_runtime_model
@@ -2587,6 +3416,59 @@ perl:
       default:
         decision: wanted
         note: Unicode normalization helpers are strong plain-value string targets.
+    Encode::MIME::Header:
+      title: Encode::MIME::Header module
+      default:
+        decision: wanted
+        note: Concrete encoding codec modules expose real text encode/decode helpers with a plain-value contract.
+      decisions:
+        needs_lines:
+          decision: skip_runtime_model
+          note: MIME header codec internals mix stream/runtime plumbing rather than direct text conversion.
+        perlio_ok:
+          decision: skip_runtime_model
+          note: MIME header codec internals mix stream/runtime plumbing rather than direct text conversion.
+    Encode::MIME::Header::ISO_2022_JP:
+      title: Encode::MIME::Header::ISO_2022_JP module
+      default:
+        decision: wanted
+        note: Concrete encoding codec modules expose real text encode/decode helpers with a plain-value contract.
+      decisions:
+        HEAD:
+          decision: skip_runtime_model
+          note: MIME header codec internals mix stream/runtime plumbing rather than direct text conversion.
+        TAIL:
+          decision: skip_runtime_model
+          note: MIME header codec internals mix stream/runtime plumbing rather than direct text conversion.
+    MIME::Base64:
+      title: MIME::Base64 module
+      default:
+        decision: wanted
+        note: Base64 codec helpers are strong plain-value portability targets.
+      decisions:
+        bootstrap:
+          decision: skip_runtime_model
+          note: MIME codec bootstrap and module plumbing are not direct plain-value helpers.
+    Unicode::Collate::Locale:
+      title: Unicode::Collate::Locale module
+      default:
+        decision: skip_runtime_model
+        note: Unicode collation locale wrappers revolve around richer runtime objects than one stable plain-value contract.
+    utf8:
+      title: utf8 pragma
+      default:
+        decision: wanted
+        note: UTF-8 string validation and shape helpers are useful plain-value targets.
+      decisions:
+        AUTOLOAD:
+          decision: skip_runtime_model
+          note: utf8 pragma hooks and module plumbing are runtime mechanics rather than direct text helpers.
+        import:
+          decision: skip_runtime_model
+          note: utf8 pragma hooks and module plumbing are runtime mechanics rather than direct text helpers.
+        unimport:
+          decision: skip_runtime_model
+          note: utf8 pragma hooks and module plumbing are runtime mechanics rather than direct text helpers.
 powershell:
   title: PowerShell
   scopeNote: This inventory now tracks a broader slice of official .NET core surfaces that are idiomatic in PowerShell, using docs-backed catalogs and excluding the wider .NET ecosystem.
@@ -3063,6 +3945,67 @@ elixir:
 clojure:
   title: Clojure
   scopeNote: This inventory now tracks a broader official Clojure core slice, adding the most relevant standard namespaces while still excluding the broader JVM ecosystem.
+  namespaceRules:
+    - match: java.*
+      default:
+        decision: skip_environment
+        note: java.* namespaces primarily expose JVM and host-environment integration rather than plain values.
+    - match: data
+      default:
+        decision: skip_runtime_model
+        note: Data-oriented protocol helpers revolve around runtime extension points rather than plain values.
+    - match: datafy
+      default:
+        decision: skip_runtime_model
+        note: datafy helpers revolve around runtime protocols and navigation objects.
+    - match: inspector
+      default:
+        decision: skip_runtime_model
+        note: Object inspectors are not strong plain-value portability targets.
+    - match: instant
+      default:
+        decision: wanted
+        note: Instant parsing and formatting helpers have a useful plain-value contract.
+    - match: main
+      default:
+        decision: skip_environment
+        note: Program-entry helpers depend on host process state.
+    - match: math
+      default:
+        decision: wanted
+        note: Scalar math helpers are strong plain-value portability targets.
+    - match: pprint
+      default:
+        decision: skip_runtime_model
+        note: Pretty-printing helpers revolve around formatting state rather than stable plain values.
+    - match: reflect
+      default:
+        decision: skip_runtime_model
+        note: Reflection helpers expose JVM runtime metadata rather than plain values.
+    - match: repl
+      default:
+        decision: skip_runtime_model
+        note: REPL helpers revolve around interactive runtime state.
+    - match: stacktrace
+      default:
+        decision: skip_runtime_model
+        note: Stacktrace formatting is tied to runtime exception metadata.
+    - match: template
+      default:
+        decision: skip_runtime_model
+        note: Template macros are compile-time/runtime code-generation helpers rather than plain values.
+    - match: test
+      default:
+        decision: skip_runtime_model
+        note: Test framework helpers revolve around runner state rather than plain values.
+    - match: tools.*
+      default:
+        decision: skip_runtime_model
+        note: Tooling interop helpers revolve around build/runtime metadata rather than plain values.
+    - match: xml
+      default:
+        decision: skip_runtime_model
+        note: XML element trees and parser APIs do not fit one stable plain-value contract by default.
   defaultNamespace:
     default:
       decision: skip_runtime_model
@@ -3203,6 +4146,36 @@ clojure:
         read-string:
           decision: wanted
           note: Pure EDN parsing from strings has a clean plain-value contract.
+    data:
+      title: clojure.data
+      default:
+        decision: skip_runtime_model
+        note: clojure.data mixes structural result wrappers with richer data-model helpers beyond one stable plain-value contract by default.
+      decisions:
+        diff:
+          decision: wanted
+          note: Structural diffing over plain nested values is a strong portability target.
+        equality-partition:
+          decision: wanted
+          note: Equality partitioning has a clean plain-value contract.
+    instant:
+      title: clojure.instant
+      default:
+        decision: wanted
+        note: Instant parsing and formatting helpers have a useful plain-value contract.
+      decisions:
+        validated:
+          decision: skip_runtime_model
+          note: Validator constructors and wrappers are runtime plumbing rather than direct plain-value helpers.
+    math:
+      title: clojure.math
+      default:
+        decision: wanted
+        note: Scalar math helpers are strong plain-value portability targets.
+      decisions:
+        random:
+          decision: skip_low_value
+          note: Pseudorandom helpers are lower-priority than deterministic scalar portability targets.
     set:
       title: clojure.set
       default:
@@ -3250,6 +4223,23 @@ clojure:
 r:
   title: R
   scopeNote: This inventory now tracks R's full official base and recommended-package surface from the parity target, with new packages defaulting conservative until reviewed.
+  namespaceRules:
+    - match: boot
+      default:
+        decision: skip_runtime_model
+        note: Resampling and bootstrap helpers revolve around richer statistical outputs than one stable plain-value contract.
+    - match: codetools
+      default:
+        decision: skip_runtime_model
+        note: Static-analysis helpers operate on R language objects rather than plain values.
+    - match: datasets
+      default:
+        decision: skip_low_value
+        note: Built-in datasets add little portability value compared with functional helpers.
+    - match: tcltk
+      default:
+        decision: skip_environment
+        note: Tcl/Tk bindings depend on host UI resources and event loops.
   namespaces:
     base:
       title: base package
@@ -3522,6 +4512,127 @@ r:
 rust:
   title: Rust
   scopeNote: This inventory now tracks a broader slice of Rust core/std primitives and slice helpers first, excluding the wider crate ecosystem.
+  namespaceRules:
+    - match: primitive:array
+      default:
+        decision: skip_runtime_model
+        note: Array primitive helpers often revolve around iterator and ownership semantics rather than one stable plain-value contract.
+    - match: primitive:never
+      default:
+        decision: skip_runtime_model
+        note: The never type is a type-system construct rather than a plain-value portability target.
+    - match: primitive:pointer
+      default:
+        decision: skip_plain_value_mismatch
+        note: Raw pointer helpers do not fit Locutus' current plain-value model.
+    - match: primitive:reference
+      default:
+        decision: skip_runtime_model
+        note: Borrowed-reference helpers revolve around Rust ownership semantics rather than plain values.
+    - match: primitive:tuple
+      default:
+        decision: skip_runtime_model
+        note: Tuple helpers span ownership, borrowing, and trait-driven runtime semantics too broadly for one stable plain-value contract by default.
+    - match: enum:*
+      default:
+        decision: skip_runtime_model
+        note: Enum method families revolve around wrapper types rather than one stable plain-value contract by default.
+    - match: macro:*
+      default:
+        decision: skip_runtime_model
+        note: Macros are compile-time syntax facilities, not plain-value portability targets.
+    - match: module:*
+      default:
+        decision: skip_runtime_model
+        note: Raw std/core module surfaces mix traits, marker types, and runtime plumbing too broadly for one direct wishlist.
+    - match: primitive:bool
+      default:
+        decision: wanted
+        note: Boolean primitive helpers have a clean plain-value contract.
+    - match: primitive:char
+      default:
+        decision: wanted
+        note: Character primitive helpers are strong plain-value portability targets.
+    - match: primitive:f16
+      default:
+        decision: wanted
+        note: Floating-point primitive helpers are strong Rust portability targets.
+    - match: primitive:f32
+      default:
+        decision: wanted
+        note: Floating-point primitive helpers are strong Rust portability targets.
+    - match: primitive:f64
+      default:
+        decision: wanted
+        note: Floating-point primitive helpers are strong Rust portability targets.
+    - match: primitive:f128
+      default:
+        decision: wanted
+        note: Floating-point primitive helpers are strong Rust portability targets.
+    - match: primitive:i8
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:i16
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:i32
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:i64
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:i128
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:isize
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:str
+      default:
+        decision: skip_runtime_model
+        note: Raw string primitive methods mix iterators, unsafe accessors, and trait-driven runtime semantics too broadly for one direct wishlist.
+    - match: primitive:usize
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:u8
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:u16
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:u32
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:u64
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:u128
+      default:
+        decision: skip_runtime_model
+        note: Integer primitive namespaces mix scalar helpers with trait, randomness, and unsafe/runtime APIs too broadly for one stable plain-value contract by default.
+    - match: primitive:slice
+      default:
+        decision: skip_runtime_model
+        note: Slice primitive methods often revolve around iterator or mutability-heavy contracts.
+    - match: struct:*
+      default:
+        decision: skip_runtime_model
+        note: Struct-associated APIs often revolve around richer owned types rather than one stable plain-value contract.
+    - match: trait:*
+      default:
+        decision: skip_runtime_model
+        note: Traits are interface abstractions rather than direct plain-value portability targets.
   defaultNamespace:
     default:
       decision: skip_runtime_model
@@ -3670,6 +4781,331 @@ rust:
 swift:
   title: Swift
   scopeNote: This inventory now tracks a broader Swift standard-library slice via docs-backed catalogs, excluding the wider Foundation ecosystem.
+  namespaceRules:
+    - match: Any*
+      default:
+        decision: skip_runtime_model
+        note: Type-erased wrappers and existential helpers revolve around runtime abstraction rather than plain values.
+    - match: "*Collection"
+      default:
+        decision: skip_runtime_model
+        note: Collection protocols and wrappers revolve around iterator and index models rather than one stable plain-value contract.
+    - match: "*Sequence"
+      default:
+        decision: skip_runtime_model
+        note: Sequence protocols and wrappers revolve around iterator models rather than direct plain values.
+    - match: "*Protocol"
+      default:
+        decision: skip_runtime_model
+        note: Protocol surfaces describe capabilities rather than direct plain-value helpers.
+    - match: "*Container"
+      default:
+        decision: skip_runtime_model
+        note: Encoding and decoding containers revolve around serialization runtime state rather than plain values.
+    - match: "*Iterator"
+      default:
+        decision: skip_runtime_model
+        note: Iterator helpers do not fit Locutus' direct plain-value model.
+    - match: "*Error"
+      default:
+        decision: skip_runtime_model
+        note: Error wrapper types are not plain-value portability targets.
+    - match: "*Indices"
+      default:
+        decision: skip_runtime_model
+        note: Index collection wrappers revolve around iteration state rather than plain values.
+    - match: "*Integer"
+      default:
+        decision: skip_runtime_model
+        note: Integer protocols describe type capabilities rather than direct plain-value helpers.
+    - match: "*FloatingPoint"
+      default:
+        decision: skip_runtime_model
+        note: Floating-point protocols describe type capabilities rather than direct plain-value helpers.
+    - match: "*Convertible"
+      default:
+        decision: skip_runtime_model
+        note: Protocol-based conversions are not stable plain-value targets by default.
+    - match: Custom*
+      default:
+        decision: skip_runtime_model
+        note: Custom protocol hooks revolve around runtime formatting and reflection contracts.
+    - match: Collection*
+      default:
+        decision: skip_runtime_model
+        note: Collection wrapper and diff types do not fit one stable plain-value contract by default.
+    - match: Coding*
+      default:
+        decision: skip_runtime_model
+        note: Coding protocols and support types revolve around serialization runtime state.
+    - match: Decod*
+      default:
+        decision: skip_runtime_model
+        note: Decoding protocols and errors revolve around serialization runtime state.
+    - match: Encod*
+      default:
+        decision: skip_runtime_model
+        note: Encoding protocols and errors revolve around serialization runtime state.
+    - match: ExpressibleBy*
+      default:
+        decision: skip_runtime_model
+        note: Literal-conformance protocols are language-model constructs rather than plain-value targets.
+    - match: Lazy*
+      default:
+        decision: skip_runtime_model
+        note: Lazy wrapper protocols and collections revolve around deferred evaluation rather than direct plain values.
+    - match: Duration*
+      default:
+        decision: skip_runtime_model
+        note: Duration protocol and wrapper surfaces do not fit one stable plain-value contract by default.
+    - match: KeyPath*
+      default:
+        decision: skip_runtime_model
+        note: Key-path types are runtime access objects rather than direct plain values.
+    - match: PartialRange*
+      default:
+        decision: skip_runtime_model
+        note: Range wrapper types do not fit one stable plain-value contract.
+    - match: Range
+      default:
+        decision: skip_runtime_model
+        note: Range value types do not map directly to one stable plain-value contract by default.
+    - match: ClosedRange
+      default:
+        decision: skip_runtime_model
+        note: Range value types do not map directly to one stable plain-value contract by default.
+    - match: SIMD*
+      default:
+        decision: skip_plain_value_mismatch
+        note: SIMD vector types do not fit Locutus' current plain-value model.
+    - match: Stride*
+      default:
+        decision: skip_runtime_model
+        note: Striding types revolve around range iteration models rather than direct plain values.
+    - match: Static*
+      default:
+        decision: skip_runtime_model
+        note: Static literal wrapper types do not fit one stable plain-value contract by default.
+    - match: TextOutput*
+      default:
+        decision: skip_side_effects
+        note: Text output stream protocols revolve around side effects rather than pure values.
+    - match: UInt
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: UInt8
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: UInt16
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: UInt32
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: UInt64
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: Int
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: Int8
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: Int16
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: Int32
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: Int64
+      default:
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+    - match: Unicode
+      default:
+        decision: skip_runtime_model
+        note: Unicode namespace helpers mix parser and runtime-model abstractions too broadly for one stable plain-value contract by default.
+    - match: UnicodeCodec
+      default:
+        decision: skip_runtime_model
+        note: Unicode codec protocols are runtime/model abstractions rather than direct plain-value helpers.
+    - match: UnicodeDecodingResult
+      default:
+        decision: skip_runtime_model
+        note: Unicode decoding result enums are runtime/model abstractions rather than direct plain-value helpers.
+    - match: Unsafe*
+      default:
+        decision: skip_plain_value_mismatch
+        note: Unsafe pointer and buffer APIs do not fit Locutus' current plain-value model.
+    - match: AdditiveArithmetic
+      default:
+        decision: skip_runtime_model
+        note: Arithmetic protocols describe type capabilities rather than direct plain-value helpers.
+    - match: ArraySlice
+      default:
+        decision: skip_runtime_model
+        note: Slice wrapper types do not fit one stable plain-value contract by default.
+    - match: CaseIterable
+      default:
+        decision: skip_runtime_model
+        note: Enum case iteration protocols are type-model helpers rather than plain values.
+    - match: CommandLine
+      default:
+        decision: skip_environment
+        note: Command-line helpers depend on host process state.
+    - match: Comparable
+      default:
+        decision: skip_runtime_model
+        note: Comparable is a protocol, not a direct plain-value helper surface.
+    - match: ContiguousArray
+      default:
+        decision: skip_runtime_model
+        note: ContiguousArray mixes collection behavior with unsafe buffer access that does not fit one stable plain-value contract by default.
+    - match: CVaListPointer
+      default:
+        decision: skip_plain_value_mismatch
+        note: C varargs pointer wrappers do not fit Locutus' current plain-value model.
+    - match: DefaultStringInterpolation
+      default:
+        decision: skip_runtime_model
+        note: String interpolation builders revolve around formatting runtime state rather than plain values.
+    - match: DiscontiguousSlice
+      default:
+        decision: skip_runtime_model
+        note: Slice wrapper types do not fit one stable plain-value contract by default.
+    - match: Equatable
+      default:
+        decision: skip_runtime_model
+        note: Equatable is a protocol, not a direct plain-value helper surface.
+    - match: Float16
+      default:
+        decision: wanted
+        note: Scalar floating-point helpers are strong Swift portability targets.
+    - match: FloatingPointClassification
+      default:
+        decision: skip_runtime_model
+        note: Floating-point classification enums are type-model surfaces rather than direct plain-value helpers.
+    - match: FloatingPointRoundingRule
+      default:
+        decision: skip_runtime_model
+        note: Rounding rule enums are type-model surfaces rather than direct plain-value helpers.
+    - match: FloatingPointSign
+      default:
+        decision: skip_runtime_model
+        note: Floating-point sign enums are type-model surfaces rather than direct plain-value helpers.
+    - match: Hashable
+      default:
+        decision: skip_runtime_model
+        note: Hashable is a protocol, not a direct plain-value helper surface.
+    - match: Hasher
+      default:
+        decision: skip_security
+        note: Hash state helpers are security- and runtime-sensitive rather than portability targets.
+    - match: Identifiable
+      default:
+        decision: skip_runtime_model
+        note: Identity protocols are not direct plain-value portability targets.
+    - match: KeyValuePairs
+      default:
+        decision: skip_runtime_model
+        note: Pair-collection wrappers do not fit one stable plain-value contract by default.
+    - match: ManagedBuffer
+      default:
+        decision: skip_plain_value_mismatch
+        note: Managed buffer storage types do not fit Locutus' current plain-value model.
+    - match: ManagedBufferPointer
+      default:
+        decision: skip_plain_value_mismatch
+        note: Managed buffer pointer types do not fit Locutus' current plain-value model.
+    - match: MemoryLayout
+      default:
+        decision: skip_low_value
+        note: Memory layout introspection is lower-value than direct portability helpers.
+    - match: Mirror
+      default:
+        decision: skip_runtime_model
+        note: Reflection helpers expose runtime metadata rather than plain values.
+    - match: Never
+      default:
+        decision: skip_runtime_model
+        note: The uninhabited Never type is a type-system construct rather than a plain-value target.
+    - match: Numeric
+      default:
+        decision: skip_runtime_model
+        note: Numeric is a protocol, not a direct plain-value helper surface.
+    - match: ObjectIdentifier
+      default:
+        decision: skip_runtime_model
+        note: Object identity wrappers expose runtime reference identity rather than plain values.
+    - match: OpaquePointer
+      default:
+        decision: skip_plain_value_mismatch
+        note: Opaque native pointers do not fit Locutus' current plain-value model.
+    - match: OptionSet
+      default:
+        decision: skip_runtime_model
+        note: OptionSet is a protocol-like type model rather than a direct plain-value helper surface.
+    - match: RandomNumberGenerator
+      default:
+        decision: skip_low_value
+        note: Random generator protocols are lower-value than deterministic portability targets.
+    - match: RangeExpression
+      default:
+        decision: skip_runtime_model
+        note: Range expression protocols are type-model surfaces rather than direct plain-value helpers.
+    - match: RangeSet
+      default:
+        decision: skip_plain_value_mismatch
+        note: Range set semantics do not map cleanly onto Locutus' current plain-value model.
+    - match: RawRepresentable
+      default:
+        decision: skip_runtime_model
+        note: RawRepresentable is a protocol, not a direct plain-value helper surface.
+    - match: Repeated
+      default:
+        decision: skip_runtime_model
+        note: Repeated wrapper sequences do not fit one stable plain-value contract by default.
+    - match: Result
+      default:
+        decision: skip_runtime_model
+        note: Result wrappers do not map directly to one stable plain-value contract.
+    - match: SetAlgebra
+      default:
+        decision: skip_plain_value_mismatch
+        note: Set algebra protocols do not map cleanly onto Locutus' current plain-value model.
+    - match: SignedNumeric
+      default:
+        decision: skip_runtime_model
+        note: SignedNumeric is a protocol, not a direct plain-value helper surface.
+    - match: Slice
+      default:
+        decision: skip_runtime_model
+        note: Slice wrapper types do not fit one stable plain-value contract by default.
+    - match: Swift
+      default:
+        decision: skip_runtime_model
+        note: The top-level Swift namespace is too broad and language-model heavy to treat as one direct wishlist.
+    - match: SystemRandomNumberGenerator
+      default:
+        decision: skip_low_value
+        note: Stateful random generation is lower-value than deterministic portability targets.
+    - match: UnboundedRange_
+      default:
+        decision: skip_runtime_model
+        note: Range wrapper types do not fit one stable plain-value contract by default.
+    - match: Unmanaged
+      default:
+        decision: skip_plain_value_mismatch
+        note: Unmanaged reference wrappers do not fit Locutus' current plain-value model.
   defaultNamespace:
     default:
       decision: skip_runtime_model
@@ -3705,11 +5141,26 @@ swift:
       default:
         decision: wanted
         note: Scalar floating-point helpers are strong Swift portability targets.
+    Float16:
+      title: Swift.Float16
+      default:
+        decision: skip_runtime_model
+        note: Float16 mixes scalar math with runtime-model, SIMD, and protocol surfaces too broadly for one stable plain-value contract by default.
     Int:
       title: Swift.Int
       default:
-        decision: wanted
-        note: Integer scalar helpers are strong Swift portability targets.
+        decision: skip_runtime_model
+        note: Integer scalar namespaces mix protocol, collection, randomness, and reflection APIs too broadly for one stable plain-value contract by default.
+      decisions:
+        "+":
+          decision: wanted
+          note: Core integer arithmetic and comparison helpers are strong Swift portability targets.
+        "==":
+          decision: wanted
+          note: Core integer arithmetic and comparison helpers are strong Swift portability targets.
+        magnitude:
+          decision: wanted
+          note: Core integer arithmetic and comparison helpers are strong Swift portability targets.
     Set:
       title: Swift.Set
       default:
