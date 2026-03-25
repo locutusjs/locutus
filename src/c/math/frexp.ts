@@ -1,6 +1,6 @@
-export function frexp(arg: number): [number, number] {
+export function frexp(arg: number): [fraction: number, exponent: number] {
   //  discuss at: https://locutus.io/c/frexp/
-  // original by: Oskar Larsson Högfeldt (https://oskar-lh.name/)
+  // original by: Oskar Larsson Högfeldt (https://oskar.pm)
   //      note 1: Instead of
   //      note 1: double frexp( double arg, int* exp );
   //      note 1: this is built as
@@ -38,37 +38,29 @@ export function frexp(arg: number): [number, number] {
   // Math.abs(frexp(n)[0]) is >= 0.5 and < 1.0 for any other number-type value of n
   // See https://en.cppreference.com/w/c/numeric/math/frexp for a more detailed description
 
-  arg = Number(arg)
+  let fraction = Number(arg)
+  let exponent = 0
 
-  const result: [number, number] = [arg, 0]
-
-  if (arg !== 0 && Number.isFinite(arg)) {
-    const absArg = Math.abs(arg)
-    // Math.log2 was introduced in ES2015, use it when available
-    const log2 =
-      Math.log2 ||
-      function log2(n) {
-        return Math.log(n) * Math.LOG2E
-      }
-    let exp = Math.max(-1023, Math.floor(log2(absArg)) + 1)
-    let x = absArg * Math.pow(2, -exp)
+  if (fraction !== 0 && Number.isFinite(fraction)) {
+    const negative = fraction < 0
+    const absArg = Math.abs(fraction)
+    exponent = Math.max(-1023, Math.floor(Math.log2(absArg)) + 1)
+    fraction = absArg * Math.pow(2, -exponent)
 
     // These while loops compensate for rounding errors that sometimes occur because of ECMAScript's Math.log2's undefined precision
     // and also works around the issue of Math.pow(2, -exp) === Infinity when exp <= -1024
-    while (x < 0.5) {
-      x *= 2
-      exp--
+    while (fraction < 0.5) {
+      fraction *= 2
+      --exponent
     }
-    while (x >= 1) {
-      x *= 0.5
-      exp++
+    while (fraction >= 1) {
+      fraction *= 0.5
+      ++exponent
     }
 
-    if (arg < 0) {
-      x = -x
+    if (negative) {
+      fraction = -fraction
     }
-    result[0] = x
-    result[1] = exp
   }
-  return result
+  return [fraction, exponent]
 }

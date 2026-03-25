@@ -7,7 +7,7 @@ export function addslashes(str: string): string {
   //     improved by: Nate
   //     improved by: Onno Marsman (https://twitter.com/onnomarsman)
   //     improved by: Brett Zamir (https://brett-zamir.me)
-  //     improved by: Oskar Larsson Högfeldt (https://oskar-lh.name/)
+  //     improved by: Oskar Larsson Högfeldt (https://oskar.pm)
   //        input by: Denny Wardhana
   //       example 1: addslashes("kevin's birthday")
   //       returns 1: "kevin\\'s birthday"
