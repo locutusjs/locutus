@@ -38,7 +38,7 @@ export function frexp(arg: number): [fraction: number, exponent: number] {
   // Math.abs(frexp(n)[0]) is >= 0.5 and < 1.0 for any other number-type value of n
   // See https://en.cppreference.com/w/c/numeric/math/frexp for a more detailed description
 
-  let fraction = arg
+  let fraction = Number(arg)
   let exponent = 0
 
   if (arg !== 0 && Number.isFinite(arg)) {
