@@ -588,14 +588,11 @@ describe('upstream surface inventory', () => {
       [],
     )
     expect(result.namespaces.find((namespace) => namespace.namespace === 'IntegerLiteralType')?.skippedEntries).toEqual(
-      [
-        {
-          name: 'max',
-          decision: 'skip_runtime_model',
-          note: 'Newly tracked Swift standard-library namespaces default conservative until their plain-value portability story is explicitly reviewed.',
-        },
-      ],
+      [],
     )
+    expect(
+      result.namespaces.find((namespace) => namespace.namespace === 'IntegerLiteralType')?.untriagedEntries,
+    ).toEqual(['max'])
     expect(result.namespaces.find((namespace) => namespace.namespace === 'ContiguousArray')?.wantedEntries).toEqual([])
     expect(result.namespaces.find((namespace) => namespace.namespace === 'ContiguousArray')?.skippedEntries).toEqual([
       {
@@ -2103,13 +2100,10 @@ describe('upstream surface inventory', () => {
     ).toEqual([])
     expect(
       swiftResult.namespaces.find((namespace) => namespace.namespace === 'UIntLiteralType')?.skippedEntries,
-    ).toEqual([
-      {
-        name: 'max',
-        decision: 'skip_runtime_model',
-        note: 'Newly tracked Swift standard-library namespaces default conservative until their plain-value portability story is explicitly reviewed.',
-      },
-    ])
+    ).toEqual([])
+    expect(
+      swiftResult.namespaces.find((namespace) => namespace.namespace === 'UIntLiteralType')?.untriagedEntries,
+    ).toEqual(['max'])
     expect(swiftResult.namespaces.find((namespace) => namespace.namespace === 'Unicode')?.wantedEntries).toEqual([])
     expect(swiftResult.namespaces.find((namespace) => namespace.namespace === 'Unicode')?.skippedEntries).toEqual([
       {

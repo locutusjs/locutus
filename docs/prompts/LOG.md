@@ -2947,3 +2947,38 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `main` workflow `23541064515` completed `success`
 - Key learnings:
   - This was worth treating as a release, not just a triage clean-up, because it changes published runtime behavior for two real security-relevant sinks.
+
+### Iteration 145
+
+2026-03-25
+
+- **Area: Upstream surface triage closure**
+- Plan:
+  - Finish the last hidden target-definition fallback by removing broad `defaultNamespace` reliance from the remaining noisy languages without changing their current conservative decisions.
+  - Convert any namespace still implicitly inheriting the language default into an explicit namespace rule so discovery stays raw and triage becomes fully visible in inventory policy.
+- Progress:
+  - Measured the remaining hidden `defaultNamespace` fallback across the noisiest languages and confirmed only `python`, `ruby`, `rust`, and `swift` still had uncovered namespaces inheriting the language-wide default.
+  - Expanded those remaining namespaces into explicit `namespaceRules`, preserving the current conservative `skip_runtime_model` classification instead of silently widening scope semantics.
+  - Removed the now-unused `defaultNamespace` fallback from `perl`, `ruby`, `rust`, and `swift`, and also removed it from `python` once its fallback count hit zero.
+- Validation:
+  - `node` inventory audit for `python`, `ruby`, `perl`, `rust`, and `swift` showed `fallback=0`
+- Key learnings:
+  - The last meaningful distinction between “triaged” and “still partly implicit” was the hidden language-wide fallback, not `untriaged` entries.
+  - Converting that final fallback into explicit namespace policy is the closure move that makes the accepted target definition inspectable end-to-end.
+
+### Iteration 146
+
+2026-03-25
+
+- **Area: Upstream surface triage closure**
+- Plan:
+  - Fold the remaining language-level `defaultNamespace` fallbacks into the same closure PR so no supported language still relies on hidden fallback policy.
+- Progress:
+  - Replaced the remaining `defaultNamespace` fallback in `haskell`, `c`, `julia`, `kotlin`, `golang`, `lua`, `elixir`, `clojure`, and `r` with explicit catch-all `namespaceRules`, preserving the current conservative decisions while making them visible in policy.
+  - Confirmed that `docs/upstream-surface-inventory.yml` now contains no `defaultNamespace` blocks at all.
+- Validation:
+  - `corepack yarn test:upstream-surface c clojure elixir golang haskell julia kotlin lua r`
+  - `corepack yarn audit:upstream-scope c clojure elixir golang haskell julia kotlin lua r`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+- Key learnings:
+  - The real closure criterion was not just `untriaged: 0`, but eliminating hidden language-level fallback so every supported language family is inspectable through explicit rules.

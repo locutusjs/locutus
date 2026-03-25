@@ -72,10 +72,10 @@ haskell:
       default:
         decision: skip_security
         note: Unsafe runtime escape hatches are outside Locutus' security model.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Haskell base modules default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Haskell base modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Data.Char:
       title: Data.Char
@@ -226,10 +226,11 @@ haskell:
         note: Ordering helpers over plain values are strong Haskell portability targets.
 c:
   title: C
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked C headers default conservative until their plain-value portability story is explicitly reviewed.
+  namespaceRules:
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked C headers default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     ctype:
       title: ctype.h
@@ -649,6 +650,598 @@ python:
       default:
         decision: skip_environment
         note: Virtual-environment tooling depends on host filesystem and interpreter state.
+    - match: abc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: aifc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: argparse
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: array
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: ast
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: atexit
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: audioop
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: bdb
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: binascii
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: bz2
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: cProfile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: cgi
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: cgitb
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: chunk
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: cmd
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: code
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: codecs
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: codeop
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: collections.abc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: colorsys
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: compileall
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: configparser
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: contextlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: contextvars
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: copy
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: copyreg
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: crypt
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: dataclasses
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: dis
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: doctest
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: enum
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: errno
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: faulthandler
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: fcntl
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: filecmp
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: fileinput
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: fnmatch
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: fractions
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: ftplib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: gc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: getopt
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: getpass
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: gettext
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: glob
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: graphlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: grp
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: gzip
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: html.entities
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: html.parser
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: imaplib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: imghdr
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: inspect
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: io
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: ipaddress
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: json.tool
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: keyword
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: lib2to3
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: linecache
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: locale
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: logging
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: logging.config
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: logging.handlers
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: lzma
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: mailbox
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: mailcap
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: marshal
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: mimetypes
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: mmap
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: modulefinder
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: netrc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: nntplib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: numbers
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: optparse
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pdb
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pickle
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pickletools
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pipes
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pkgutil
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: platform
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: plistlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: poplib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: posix
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pprint
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: profile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pstats
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pty
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pwd
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: py_compile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pyclbr
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: pydoc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: queue
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: quopri
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: readline
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: reprlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: resource
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: rlcompleter
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: runpy
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: sched
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: secrets
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: select
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: selectors
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: shelve
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: shlex
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: shutil
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: signal
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: site
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: smtplib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: sndhdr
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: spwd
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: sqlite3
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: stat
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: stringprep
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: struct
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: sunau
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: symtable
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: sys
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: sysconfig
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: syslog
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: tabnanny
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: tarfile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: telnetlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: tempfile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: termios
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: threading
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: time
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: timeit
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: token
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: tokenize
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: tomllib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: trace
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: traceback
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: tracemalloc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: tty
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: turtle
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: types
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: typing
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: uu
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: uuid
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: warnings
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: wave
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: weakref
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: webbrowser
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: xdrlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: zipapp
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: zipfile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: zipimport
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: zlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: zoneinfo
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     builtins:
       title: builtins module
@@ -1176,10 +1769,6 @@ python:
         urljoin:
           decision: wanted
           note: URL joining has a clean plain-value portability contract.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Python stdlib namespaces default conservative until their plain-value portability story is explicitly reviewed.
 julia:
   title: Julia
   scopeNote: This inventory now tracks Julia's sane official stdlib/core module surface, excluding binary wrapper modules and tooling-only modules that are not realistic Locutus targets.
@@ -1280,6 +1869,10 @@ julia:
       default:
         decision: skip_environment
         note: Archive helpers are primarily file-backed I/O rather than plain-value computation.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Julia core/stdlib modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Base:
       title: Base module
@@ -1388,10 +1981,6 @@ julia:
         uuid_version:
           decision: wanted
           note: UUID inspection helpers have a clean plain-value contract.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Julia core/stdlib modules default conservative until their plain-value portability story is explicitly reviewed.
 kotlin:
   title: Kotlin
   scopeNote: This inventory now tracks a broader official Kotlin stdlib slice, using docs-backed catalogs for packages that do not introspect cleanly at runtime, not the wider JVM ecosystem.
@@ -1412,10 +2001,10 @@ kotlin:
       default:
         decision: skip_environment
         note: Browser DOM bindings depend on host runtime objects rather than plain values.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Kotlin stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Kotlin stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     arrays:
       title: kotlin.collections arrays
@@ -1583,6 +2172,402 @@ ruby:
       default:
         decision: skip_runtime_model
         note: Synchronization helpers revolve around runtime locking state.
+    - match: ACL
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: ARGF
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Abbrev
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: BasicObject
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Benchmark
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: BigDecimal
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: BigMath
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Bundler
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: CGI
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Class
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Complex
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Continuation
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: CoreExtensions
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Coverage
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: DRb
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Data
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Delegator
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: DidYouMean
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Digest
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: ENV
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: ERB
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Encoding
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: English
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Enumerator
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Errno
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: ErrorHighlight
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Etc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: FalseClass
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Fcntl
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Fiddle
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Forwardable
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: GetoptLong
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: IO
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: IPAddr
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: IRB
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Interrupt
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Jacobian
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Kconv
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Kernel
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: LUSolve
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Logger
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: MakeMakefile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Marshal
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Method
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Module
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: NKF
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Net
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Newton
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: NilClass
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: OLEProperty
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Object
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Observable
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: OpenSSL
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: OpenStruct
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: OptionParser
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: PP
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: PStore
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: PrettyPrint
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Prism
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Proc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Psych
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: RDoc
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Random
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Rational
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: RbConfig
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Readline
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Refinement
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Reline
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Resolv
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Rinda
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Ripper
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: RubyVM
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: SecureRandom
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Set
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Shellwords
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Signal
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: SimpleDelegator
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: SingleForwardable
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Singleton
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: StopIteration
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: StringIO
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: StringScanner
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Struct
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: SyntaxSuggest
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Syslog
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: SystemExit
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: TSort
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Tempfile
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Timeout
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: TrueClass
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: URI
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: UnboundMethod
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: WIN32OLE
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Warning
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: WeakRef
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Win32
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: XMP
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: YAML
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Zlib
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Array:
       title: Array methods
@@ -1913,10 +2898,6 @@ ruby:
       default:
         decision: wanted
         note: Scalar numeric helpers are strong Ruby portability targets.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Ruby namespaces default conservative until their plain-value portability story is explicitly reviewed.
 golang:
   title: Go
   scopeNote: This inventory now tracks Go's full public stdlib package surface, using `go list std` for package discovery and `go doc -all` for callable entry discovery.
@@ -1989,6 +2970,10 @@ golang:
       default:
         decision: skip_low_value
         note: Stateful random helpers are lower-value than deterministic portability work.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Go stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     base64:
       title: encoding/base64 package
@@ -2374,10 +3359,6 @@ golang:
         Has:
           decision: wanted
           note: Query-value membership checks have a useful plain-value contract.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Go stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
 tcl:
   title: Tcl
   scopeNote: This inventory now tracks Tcl's broader core command surface and standard ensembles first, excluding only host-specific extension ecosystems beyond core Tcl.
@@ -2646,10 +3627,10 @@ lua:
       default:
         decision: skip_runtime_model
         note: Core runtime helpers mix loading and metatable semantics that do not fit one stable plain-value contract by default.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Lua standard-library tables default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Lua standard-library tables default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     math:
       title: math library
@@ -3329,10 +4310,6 @@ perl:
       default:
         decision: skip_environment
         note: Native XS loading depends on host runtime and compiled extensions.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Perl core modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     POSIX:
       title: POSIX module
@@ -3729,6 +4706,10 @@ elixir:
       default:
         decision: skip_side_effects
         note: Partitioned supervision revolves around runtime process orchestration.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Elixir modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Base:
       title: Base module
@@ -3938,10 +4919,6 @@ elixir:
       default:
         decision: wanted
         note: Semantic-version parsing and comparison helpers have a clean plain-value contract.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Elixir modules default conservative until their plain-value portability story is explicitly reviewed.
 clojure:
   title: Clojure
   scopeNote: This inventory now tracks a broader official Clojure core slice, adding the most relevant standard namespaces while still excluding the broader JVM ecosystem.
@@ -4006,10 +4983,10 @@ clojure:
       default:
         decision: skip_runtime_model
         note: XML element trees and parser APIs do not fit one stable plain-value contract by default.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Clojure namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Clojure namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     core:
       title: clojure.core
@@ -4240,6 +5217,10 @@ r:
       default:
         decision: skip_environment
         note: Tcl/Tk bindings depend on host UI resources and event loops.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked R base/recommended packages default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     base:
       title: base package
@@ -4505,10 +5486,6 @@ r:
       default:
         decision: skip_environment
         note: tools mixes package metadata, filesystem, and build-time helpers too broadly for one direct Locutus wishlist.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked R base/recommended packages default conservative until their plain-value portability story is explicitly reviewed.
 rust:
   title: Rust
   scopeNote: This inventory now tracks a broader slice of Rust core/std primitives and slice helpers first, excluding the wider crate ecosystem.
@@ -4633,10 +5610,14 @@ rust:
       default:
         decision: skip_runtime_model
         note: Traits are interface abstractions rather than direct plain-value portability targets.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: primitive:fn
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: primitive:unit
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Rust core/std namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     bool:
       title: bool primitive methods
@@ -5106,10 +6087,14 @@ swift:
       default:
         decision: skip_plain_value_mismatch
         note: Unmanaged reference wrappers do not fit Locutus' current plain-value model.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Swift standard-library namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: Int128
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Swift standard-library namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: UInt128
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Swift standard-library namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Array:
       title: Swift.Array
