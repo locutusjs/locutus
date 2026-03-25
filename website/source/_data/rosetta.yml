@@ -251,6 +251,24 @@ statistics_population_variance:
 
 statistics_sample_variance:
   - python/statistics/variance
+
+statistics_geometric_mean:
+  - python/statistics/geometric_mean
+
+statistics_harmonic_mean:
+  - python/statistics/harmonic_mean
+
+statistics_grouped_median:
+  - python/statistics/median_grouped
+
+statistics_quantiles:
+  - python/statistics/quantiles
+
+statistics_covariance:
+  - python/statistics/covariance
+
+statistics_correlation:
+  - python/statistics/correlation
   - python/math/prod
 
 sequence_partition_by:
@@ -347,6 +365,9 @@ string_substring:
 # =============================================================================
 # MATH OPERATIONS
 # =============================================================================
+
+math_frexp:
+  - c/math/frexp
 
 math_sqrt:
   - php/math/sqrt

@@ -84,10 +84,42 @@ export function sumNumbers(values: number[]): number {
   return values.reduce((sum, value) => sum + value, 0)
 }
 
+export function sumProducts(left: number[], right: number[]): number {
+  let total = 0
+  for (let index = 0; index < left.length; index += 1) {
+    total += (left[index] ?? 0) * (right[index] ?? 0)
+  }
+  return total
+}
+
 export function isIntegralStatisticValue(value: unknown): boolean {
   return (
     typeof value === 'boolean' || typeof value === 'bigint' || (typeof value === 'number' && Number.isInteger(value))
   )
+}
+
+export function toFloatStatisticNumber(value: unknown, functionName: string): number {
+  if (typeof value === 'number') {
+    return value
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? 1 : 0
+  }
+
+  if (typeof value === 'bigint') {
+    return Number(value)
+  }
+
+  if (typeof value === 'string') {
+    const parsed = Number(value)
+    if (!Number.isNaN(parsed)) {
+      return parsed
+    }
+    throw new TypeError('Value cannot be converted to a float')
+  }
+
+  throw new TypeError(`${functionName}() data must contain only real numbers`)
 }
 
 function divideStatisticsValue(total: number, divisor: number, integral: boolean, preferFloat = false): number {

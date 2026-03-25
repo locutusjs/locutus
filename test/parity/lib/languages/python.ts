@@ -418,6 +418,40 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
     return py
   }
 
+  if (funcName === 'quantiles') {
+    py = py.replace(/\bquantiles\s*\(([\s\S]*)\)$/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      const data = args[0]
+      if (!data) {
+        return match
+      }
+      if (args.length === 1) {
+        return `${module}.quantiles(${data})`
+      }
+      if (args.length === 2) {
+        return `${module}.quantiles(${data}, n=${args[1]})`
+      }
+      return `${module}.quantiles(${data}, n=${args[1]}, method=${args[2]})`
+    })
+    return py
+  }
+
+  if (funcName === 'correlation') {
+    py = py.replace(/\bcorrelation\s*\(([\s\S]*)\)$/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      const left = args[0]
+      const right = args[1]
+      if (!left || !right) {
+        return match
+      }
+      if (args.length === 2) {
+        return `${module}.correlation(${left}, ${right})`
+      }
+      return `${module}.correlation(${left}, ${right}, method=${args[2]})`
+    })
+    return py
+  }
+
   if (funcName === 'finditer') {
     py = py.replace(/\bfinditer\s*\(([\s\S]*)\)$/g, (match, argsText) => {
       const args = splitArgs(argsText)
@@ -492,14 +526,53 @@ function jsToPython(jsCode: string[], funcName: string, category?: string): stri
 /**
  * Normalize Python output for comparison
  */
-function normalizePythonOutput(output: string, _expected?: string): string {
+function normalizePythonValue(value: unknown, expected: unknown): unknown {
+  if (typeof value === 'number' && typeof expected === 'number') {
+    if (Number.isFinite(value) && Number.isFinite(expected) && Math.abs(value - expected) < 1e-12) {
+      return expected
+    }
+    return value
+  }
+
+  if (Array.isArray(value) && Array.isArray(expected)) {
+    return value.map((entry, index) => normalizePythonValue(entry, expected[index]))
+  }
+
+  if (
+    value &&
+    expected &&
+    typeof value === 'object' &&
+    typeof expected === 'object' &&
+    !Array.isArray(value) &&
+    !Array.isArray(expected)
+  ) {
+    const normalized: Record<string, unknown> = {}
+    for (const [key, entry] of Object.entries(value)) {
+      normalized[key] = normalizePythonValue(entry, (expected as Record<string, unknown>)[key])
+    }
+    return normalized
+  }
+
+  return value
+}
+
+function normalizePythonOutput(output: string, expected?: string): string {
   let result = output.trim()
 
   // Python json.dumps includes spaces after commas/colons by default.
   // Canonicalize JSON-like output for stable string comparison.
   try {
     const parsed = JSON.parse(result)
-    result = JSON.stringify(parsed)
+    if (expected) {
+      try {
+        const parsedExpected = JSON.parse(expected)
+        result = JSON.stringify(normalizePythonValue(parsed, parsedExpected))
+      } catch {
+        result = JSON.stringify(parsed)
+      }
+    } else {
+      result = JSON.stringify(parsed)
+    }
   } catch {
     // Non-JSON output: keep original normalization behavior.
   }

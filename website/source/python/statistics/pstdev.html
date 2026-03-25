@@ -161,9 +161,7 @@ function toStatisticNumber(value: unknown, functionName: string): number {
 
 function isIntegralStatisticValue(value: unknown): boolean {
   return (
-    typeof value === 'boolean' ||
-    typeof value === 'bigint' ||
-    (typeof value === 'number' && Number.isInteger(value))
+    typeof value === 'boolean' || typeof value === 'bigint' || (typeof value === 'number' && Number.isInteger(value))
   )
 }
 
