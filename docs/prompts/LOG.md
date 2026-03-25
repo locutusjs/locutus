@@ -2932,3 +2932,18 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The `unserialize` report is a real own-object prototype injection issue, not just a duplicate of older `parse_str` history.
   - For `parse_str`, fixing the final assignment sink is more robust than trying to win a whack-a-mole game around individual prototype-based guard helpers.
+
+### Iteration 144
+
+2026-03-25
+
+- **Area: Release**
+- Plan:
+  - Ship the merged runtime security fixes as the next patch release once `main` clears its normal full-parity gate.
+- Progress:
+  - Confirmed that the `fix: harden php prototype pollution sinks` merge on `main` passed the full CI pipeline, including full parity and website deploy.
+  - Prepared `CHANGELOG.md` for `v3.0.25` so the automated tag workflow can publish from a stable release section instead of `## main`.
+- Validation:
+  - `main` workflow `23541064515` completed `success`
+- Key learnings:
+  - This was worth treating as a release, not just a triage clean-up, because it changes published runtime behavior for two real security-relevant sinks.
