@@ -45,6 +45,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...mai
 - Extended the same R breadth wave across the official recommended packages with `class`, `cluster`, `foreign`, `KernSmooth`, `lattice`, `MASS`, `Matrix`, `mgcv`, `nlme`, `nnet`, `rpart`, `spatial`, and `survival`, keeping the policy sparse through namespace defaults rather than per-function bookkeeping.
 - Tightened the discovery contract again so every supported language now exposes both a canonical namespace catalog and a deterministic `discover()` path, with `enumerate:upstream-surface` running one unified codepath across runtime-backed and snapshot-backed languages instead of silently bypassing the latter.
 - Replaced the last snapshot-reuse discovery paths with real canonical extraction for AWK, C, Perl, PowerShell, Rust, Haskell, Kotlin, and Swift, so checked-in upstream snapshots are now discovery artifacts rather than hidden inputs.
+- Patched the website build dependency tree against open `fast-xml-parser` advisories by overriding Hexo feed generation's transitive `fast-xml-parser` dependency to `5.5.9`, keeping the fix scoped to the website-only build surface.
 
 ## v3.0.24
 
