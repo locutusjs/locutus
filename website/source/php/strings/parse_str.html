@@ -81,6 +81,11 @@ alias:
 import { isPhpAssocObject, type PhpAssoc, type PhpInput } from '../_helpers/_phpTypes.ts'
 
 type ParseObject = PhpAssoc<PhpInput>
+const DANGEROUS_PARSE_STR_KEYS = new Set(['__proto__', 'constructor', 'prototype'])
+
+function isDangerousParseStrKey(key: string): boolean {
+  return DANGEROUS_PARSE_STR_KEYS.has(key)
+}
 
 export function parse_str(str: string, array?: ParseObject): void {
   //       discuss at: https://locutus.io/php/parse_str/
@@ -150,10 +155,6 @@ export function parse_str(str: string, array?: ParseObject): void {
     key = _fixStr(tmp[0] ?? '')
     value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
 
-    if (/__proto__|constructor|prototype/.test(key)) {
-      break
-    }
-
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
@@ -204,8 +205,22 @@ export function parse_str(str: string, array?: ParseObject): void {
       }
       keys[0] = primaryKey
 
+      let hasDangerousKey = false
+      for (const rawKey of keys) {
+        const normalizedKey = rawKey.replace(/^['"]/, '').replace(/['"]$/, '')
+        if (isDangerousParseStrKey(normalizedKey)) {
+          hasDangerousKey = true
+          break
+        }
+      }
+
+      if (hasDangerousKey) {
+        continue
+      }
+
       obj = target
 
+      let skipAssignment = false
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
@@ -223,6 +238,11 @@ export function parse_str(str: string, array?: ParseObject): void {
           key = String(ct + 1)
         }
 
+        if (isDangerousParseStrKey(key)) {
+          skipAssignment = true
+          break
+        }
+
         // if primitive value, replace with object
         const current = obj[key]
         if (!isPhpAssocObject(current)) {
@@ -236,6 +256,10 @@ export function parse_str(str: string, array?: ParseObject): void {
         obj = next
       }
 
+      if (skipAssignment || isDangerousParseStrKey(key)) {
+        continue
+      }
+
       lastObj[key] = value
     }
   }
@@ -245,6 +269,11 @@ export function parse_str(str: string, array?: ParseObject): void {
 <div class="code-tab-panel" data-lang="js" style="display:none">
 {% codeblock lang:javascript %}import { getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
 import { isPhpAssocObject } from '../_helpers/_phpTypes.ts'
+const DANGEROUS_PARSE_STR_KEYS = new Set(['__proto__', 'constructor', 'prototype'])
+
+function isDangerousParseStrKey(key) {
+  return DANGEROUS_PARSE_STR_KEYS.has(key)
+}
 
 export function parse_str(str, array) {
   //       discuss at: https://locutus.io/php/parse_str/
@@ -314,10 +343,6 @@ export function parse_str(str, array) {
     key = _fixStr(tmp[0] ?? '')
     value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
 
-    if (/__proto__|constructor|prototype/.test(key)) {
-      break
-    }
-
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
@@ -368,8 +393,22 @@ export function parse_str(str, array) {
       }
       keys[0] = primaryKey
 
+      let hasDangerousKey = false
+      for (const rawKey of keys) {
+        const normalizedKey = rawKey.replace(/^['"]/, '').replace(/['"]$/, '')
+        if (isDangerousParseStrKey(normalizedKey)) {
+          hasDangerousKey = true
+          break
+        }
+      }
+
+      if (hasDangerousKey) {
+        continue
+      }
+
       obj = target
 
+      let skipAssignment = false
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
@@ -387,6 +426,11 @@ export function parse_str(str, array) {
           key = String(ct + 1)
         }
 
+        if (isDangerousParseStrKey(key)) {
+          skipAssignment = true
+          break
+        }
+
         // if primitive value, replace with object
         const current = obj[key]
         if (!isPhpAssocObject(current)) {
@@ -398,6 +442,10 @@ export function parse_str(str, array) {
           break
         }
         obj = next
+      }
+
+      if (skipAssignment || isDangerousParseStrKey(key)) {
+        continue
       }
 
       lastObj[key] = value
@@ -448,6 +496,12 @@ function getPhpGlobalScope(): PhpAssoc<PhpInput> {
 
 // php/strings/parse_str (target function module)
 type ParseObject = PhpAssoc<PhpInput>
+
+const DANGEROUS_PARSE_STR_KEYS = new Set(['__proto__', 'constructor', 'prototype'])
+
+function isDangerousParseStrKey(key: string): boolean {
+  return DANGEROUS_PARSE_STR_KEYS.has(key)
+}
 
 function parse_str(str: string, array?: ParseObject): void {
   //       discuss at: https://locutus.io/php/parse_str/
@@ -517,10 +571,6 @@ function parse_str(str: string, array?: ParseObject): void {
     key = _fixStr(tmp[0] ?? '')
     value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
 
-    if (/__proto__|constructor|prototype/.test(key)) {
-      break
-    }
-
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
@@ -571,8 +621,22 @@ function parse_str(str: string, array?: ParseObject): void {
       }
       keys[0] = primaryKey
 
+      let hasDangerousKey = false
+      for (const rawKey of keys) {
+        const normalizedKey = rawKey.replace(/^['"]/, '').replace(/['"]$/, '')
+        if (isDangerousParseStrKey(normalizedKey)) {
+          hasDangerousKey = true
+          break
+        }
+      }
+
+      if (hasDangerousKey) {
+        continue
+      }
+
       obj = target
 
+      let skipAssignment = false
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
@@ -590,6 +654,11 @@ function parse_str(str: string, array?: ParseObject): void {
           key = String(ct + 1)
         }
 
+        if (isDangerousParseStrKey(key)) {
+          skipAssignment = true
+          break
+        }
+
         // if primitive value, replace with object
         const current = obj[key]
         if (!isPhpAssocObject(current)) {
@@ -601,6 +670,10 @@ function parse_str(str: string, array?: ParseObject): void {
           break
         }
         obj = next
+      }
+
+      if (skipAssignment || isDangerousParseStrKey(key)) {
+        continue
       }
 
       lastObj[key] = value
@@ -628,6 +701,8 @@ function getPhpGlobalScope() {
 }
 
 // php/strings/parse_str (target function module)
+const DANGEROUS_PARSE_STR_KEYS = new Set(['__proto__', 'constructor', 'prototype'])
+
 function parse_str(str, array) {
   //       discuss at: https://locutus.io/php/parse_str/
   //      original by: Cagri Ekin
@@ -696,10 +771,6 @@ function parse_str(str, array) {
     key = _fixStr(tmp[0] ?? '')
     value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
 
-    if (/__proto__|constructor|prototype/.test(key)) {
-      break
-    }
-
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
@@ -750,8 +821,22 @@ function parse_str(str, array) {
       }
       keys[0] = primaryKey
 
+      let hasDangerousKey = false
+      for (const rawKey of keys) {
+        const normalizedKey = rawKey.replace(/^['"]/, '').replace(/['"]$/, '')
+        if (DANGEROUS_PARSE_STR_KEYS.has(normalizedKey)) {
+          hasDangerousKey = true
+          break
+        }
+      }
+
+      if (hasDangerousKey) {
+        continue
+      }
+
       obj = target
 
+      let skipAssignment = false
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
@@ -769,6 +854,11 @@ function parse_str(str, array) {
           key = String(ct + 1)
         }
 
+        if (DANGEROUS_PARSE_STR_KEYS.has(key)) {
+          skipAssignment = true
+          break
+        }
+
         // if primitive value, replace with object
         const current = obj[key]
         if (!isPhpAssocObject(current)) {
@@ -780,6 +870,10 @@ function parse_str(str, array) {
           break
         }
         obj = next
+      }
+
+      if (skipAssignment || DANGEROUS_PARSE_STR_KEYS.has(key)) {
+        continue
       }
 
       lastObj[key] = value

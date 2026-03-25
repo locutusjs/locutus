@@ -27,6 +27,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.25...main).
 
+### Expansion
+
+- Added a first `python/statistics` harvest focused on plain-value aggregation helpers:
+  `fmean`, `mean`, `median`, `median_high`, `median_low`, `mode`, `multimode`, `pstdev`, `pvariance`, `stdev`, and `variance`.
+
 ### Inventory
 
 - Removed the remaining hidden `defaultNamespace` fallback from every supported upstream-surface language by expanding the last implicit namespaces into explicit policy rules, so accepted core/stdlib target definition is now inspectable end-to-end instead of partially inherited from a language-wide default.

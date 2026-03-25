@@ -1,0 +1,101 @@
+export function median(data: unknown): number | string | boolean | bigint {
+  //      discuss at: https://locutus.io/python/statistics/median/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the middle data point, averaging the two middle numeric points for even-length input.
+  //       example 1: median([1, 3, 5])
+  //       returns 1: 3
+  //       example 2: median([1, 2, 3, 4])
+  //       returns 2: 2.5
+  //       example 3: median(['b', 'a', 'c'])
+  //       returns 3: 'b'
+
+  const values = sortStatisticsValues(data, 'median')
+  if (values.length === 0) {
+    throw new Error('no median for empty data')
+  }
+
+  const middleIndex = Math.floor(values.length / 2)
+  if (values.length % 2 === 1) {
+    return values[middleIndex] as number | string | boolean | bigint
+  }
+
+  const left = values[middleIndex - 1]
+  const right = values[middleIndex]
+  if (typeof left === 'string' || typeof right === 'string') {
+    throw new TypeError("unsupported operand type(s) for /: 'str' and 'int'")
+  }
+
+  return (toStatisticNumber(left, 'median') + toStatisticNumber(right, 'median')) / 2
+}
+
+type StatisticsSortableInput = number | boolean | bigint | string
+
+function sortStatisticsValues(data: unknown, functionName: string): StatisticsSortableInput[] {
+  if (!Array.isArray(data)) {
+    throw new TypeError(`${functionName}() data must be an array`)
+  }
+
+  if (data.length === 0) {
+    return []
+  }
+
+  const values = data as StatisticsSortableInput[]
+  const firstKind = getStatisticsSortKind(values[0], functionName)
+  for (let index = 1; index < values.length; index += 1) {
+    if (getStatisticsSortKind(values[index], functionName) !== firstKind) {
+      throw new TypeError(`${functionName}() requires data values that can be ordered together`)
+    }
+  }
+
+  return [...values].sort((left, right) => compareStatisticsValues(left, right, firstKind))
+}
+
+function toStatisticNumber(value: unknown, functionName: string): number {
+  if (typeof value === 'number') {
+    return value
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? 1 : 0
+  }
+
+  if (typeof value === 'bigint') {
+    const numericValue = Number(value)
+    if (!Number.isSafeInteger(numericValue)) {
+      throw new RangeError(`${functionName}() bigint values must fit within JS safe integers`)
+    }
+
+    return numericValue
+  }
+
+  throw new TypeError(`${functionName}() data must contain only real numbers`)
+}
+
+function getStatisticsSortKind(value: unknown, functionName: string): 'number' | 'string' {
+  if (typeof value === 'string') {
+    return 'string'
+  }
+
+  if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'bigint') {
+    return 'number'
+  }
+
+  throw new TypeError(`${functionName}() requires sortable scalar values`)
+}
+
+function compareStatisticsValues(
+  left: StatisticsSortableInput,
+  right: StatisticsSortableInput,
+  kind: 'number' | 'string',
+): number {
+  if (kind === 'string') {
+    return String(left).localeCompare(String(right))
+  }
+
+  return toNumericSortValue(left) - toNumericSortValue(right)
+}
+
+function toNumericSortValue(value: StatisticsSortableInput): number {
+  return typeof value === 'boolean' ? (value ? 1 : 0) : Number(value)
+}

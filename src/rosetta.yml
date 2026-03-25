@@ -218,6 +218,39 @@ integer_square_root:
 
 numeric_product:
   - php/array/array_product
+
+statistics_mean:
+  - python/statistics/mean
+
+statistics_fmean:
+  - python/statistics/fmean
+
+statistics_median:
+  - python/statistics/median
+
+statistics_median_low:
+  - python/statistics/median_low
+
+statistics_median_high:
+  - python/statistics/median_high
+
+statistics_mode:
+  - python/statistics/mode
+
+statistics_multimode:
+  - python/statistics/multimode
+
+statistics_population_standard_deviation:
+  - python/statistics/pstdev
+
+statistics_sample_standard_deviation:
+  - python/statistics/stdev
+
+statistics_population_variance:
+  - python/statistics/pvariance
+
+statistics_sample_variance:
+  - python/statistics/variance
   - python/math/prod
 
 sequence_partition_by:

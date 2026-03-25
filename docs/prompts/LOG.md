@@ -2982,3 +2982,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
 - Key learnings:
   - The real closure criterion was not just `untriaged: 0`, but eliminating hidden language-level fallback so every supported language family is inspectable through explicit rules.
+
+### Iteration 147
+
+2026-03-25
+
+- **Area: Expansion (Python)**
+- Plan:
+  - Resume product work from the now-explicit target definition with a coherent first `python/statistics` batch.
+  - Start with the plain-value aggregation helpers that already sit under the `statistics` wishlist default, then validate them directly against Python 3.12 parity before refreshing generated artifacts.
+- Progress:
+  - Added a new `src/python/statistics` namespace with the first harvest: `fmean`, `mean`, `median`, `median_high`, `median_low`, `mode`, `multimode`, `pstdev`, `pvariance`, `stdev`, and `variance`.
+  - Kept the implementation cohesive by sharing numeric coercion, sortable median semantics, and variance helpers inside `src/python/statistics/_helpers.ts`.
+  - Updated both Rosetta mapping files so every new `python/statistics/*` function is represented in the semantic cross-language index from the same commit.
+- Validation:
+  - `corepack yarn exec vitest run test/util/python-statistics-harvest-1.vitest.ts`
+  - `corepack yarn test:parity python/statistics/mean python/statistics/fmean python/statistics/median python/statistics/median_low python/statistics/median_high python/statistics/mode python/statistics/multimode python/statistics/pstdev python/statistics/stdev python/statistics/pvariance python/statistics/variance --no-cache`
+- Key learnings:
+  - `statistics` is a good first post-triage harvest because the high-value functions sit behind one clean plain-value contract even though Python's exactness rules still differ per function.
+  - `mean` / `variance` benefit from preserving Python's exact integer results, while `fmean` and the standard-deviation family should stay explicitly float-oriented.

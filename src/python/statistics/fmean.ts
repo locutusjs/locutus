@@ -1,0 +1,83 @@
+export function fmean(data: unknown, weights?: unknown): number {
+  //      discuss at: https://locutus.io/python/statistics/fmean/
+  // parity verified: Python 3.12
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //          note 1: Returns the arithmetic mean as a float and supports optional numeric weights.
+  //       example 1: fmean([1, 2, 3])
+  //       returns 1: 2
+  //       example 2: fmean([1, 2, 3, 4])
+  //       returns 2: 2.5
+  //       example 3: fmean([3.5, 4, 5.25], [2, 3, 5])
+  //       returns 3: 4.525
+
+  const sequence = toNumericSequence(data, 'fmean')
+  if (sequence.values.length === 0) {
+    throw new Error('fmean requires at least one data point')
+  }
+
+  if (weights === undefined) {
+    return statisticsMeanFromSequence(sequence)
+  }
+
+  const weightValues = assertStatisticsArray(weights, 'fmean').map((value) => toStatisticNumber(value, 'fmean'))
+  if (weightValues.length !== sequence.values.length) {
+    throw new Error('fmean requires data and weights to be the same length')
+  }
+
+  let totalWeight = 0
+  let weightedSum = 0
+  for (let index = 0; index < sequence.values.length; index += 1) {
+    const weight = weightValues[index] ?? 0
+    totalWeight += weight
+    weightedSum += (sequence.values[index] ?? 0) * weight
+  }
+
+  if (totalWeight <= 0) {
+    throw new Error('fmean requires at least one positive weight')
+  }
+
+  return weightedSum / totalWeight
+}
+
+function toNumericSequence(data: unknown, functionName: string): { values: number[] } {
+  return {
+    values: assertStatisticsArray(data, functionName).map((value) => toStatisticNumber(value, functionName)),
+  }
+}
+
+function statisticsMeanFromSequence(sequence: { values: number[] }): number {
+  return sumNumbers(sequence.values) / sequence.values.length
+}
+
+function assertStatisticsArray(data: unknown, functionName: string): unknown[] {
+  if (!Array.isArray(data)) {
+    throw new TypeError(`${functionName}() data must be an array`)
+  }
+
+  return data
+}
+
+function toStatisticNumber(value: unknown, functionName: string): number {
+  if (typeof value === 'number') {
+    return value
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? 1 : 0
+  }
+
+  if (typeof value === 'bigint') {
+    const numericValue = Number(value)
+    if (!Number.isSafeInteger(numericValue)) {
+      throw new RangeError(`${functionName}() bigint values must fit within JS safe integers`)
+    }
+
+    return numericValue
+  }
+
+  throw new TypeError(`${functionName}() data must contain only real numbers`)
+}
+
+function sumNumbers(values: number[]): number {
+  return values.reduce((sum, value) => sum + value, 0)
+}
