@@ -1683,9 +1683,6 @@ python:
           note: File-backed JSON input depends on host I/O resources.
     statistics:
       title: statistics module
-      default:
-        decision: wanted
-        note: Aggregate statistics helpers are strong plain-value portability targets.
     heapq:
       title: heapq module
       default:

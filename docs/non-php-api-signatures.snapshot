@@ -321,6 +321,7 @@ src/python/statistics/covariance.ts :: export function covariance(x: unknown, y:
 src/python/statistics/fmean.ts :: export function fmean(data: unknown, weights?: unknown): number
 src/python/statistics/geometric_mean.ts :: export function geometric_mean(data: unknown): number
 src/python/statistics/harmonic_mean.ts :: export function harmonic_mean(data: unknown, weights?: unknown): number
+src/python/statistics/linear_regression.ts :: export function linear_regression(x: unknown, y: unknown, proportional = false): { slope: number; intercept: number }
 src/python/statistics/mean.ts :: export function mean(data: unknown): number
 src/python/statistics/median.ts :: export function median(data: unknown): number | string | boolean | bigint
 src/python/statistics/median_grouped.ts :: export function median_grouped(data: unknown, interval = 1): number

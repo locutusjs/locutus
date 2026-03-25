@@ -258,6 +258,9 @@ statistics_geometric_mean:
 statistics_harmonic_mean:
   - python/statistics/harmonic_mean
 
+statistics_linear_regression:
+  - python/statistics/linear_regression
+
 statistics_grouped_median:
   - python/statistics/median_grouped
 

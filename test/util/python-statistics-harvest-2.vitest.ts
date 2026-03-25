@@ -4,6 +4,7 @@ import { correlation } from '../../src/python/statistics/correlation.ts'
 import { covariance } from '../../src/python/statistics/covariance.ts'
 import { geometric_mean } from '../../src/python/statistics/geometric_mean.ts'
 import { harmonic_mean } from '../../src/python/statistics/harmonic_mean.ts'
+import { linear_regression } from '../../src/python/statistics/linear_regression.ts'
 import { median_grouped } from '../../src/python/statistics/median_grouped.ts'
 import { quantiles } from '../../src/python/statistics/quantiles.ts'
 
@@ -34,6 +35,13 @@ describe('python statistics harvest 2', () => {
     expect(correlation([1, 2, 3], [3, 2, 1], 'ranked')).toBe(-1)
   })
 
+  it('computes linear regression with and without a proportional intercept', () => {
+    expect(linear_regression([1, 2, 3], [2, 4, 6])).toEqual({ slope: 2, intercept: 0 })
+    expect(linear_regression([1, 2, 3], [1, 2, 2])).toEqual({ slope: 0.5, intercept: 0.6666666666666667 })
+    expect(linear_regression([1, 2, 3], [2, 4, 6], true)).toEqual({ slope: 2, intercept: 0 })
+    expect(linear_regression([true, false, true], [1, 2, 3])).toEqual({ slope: 0, intercept: 2 })
+  })
+
   it('raises Python-style statistics errors for invalid shapes', () => {
     expect(() => quantiles([1], 4)).toThrow('must have at least two data points')
     expect(() => covariance([1], [2])).toThrow('covariance requires at least two data points')
@@ -41,5 +49,6 @@ describe('python statistics harvest 2', () => {
     expect(() => correlation([1, 2], [1])).toThrow(
       'correlation requires that both inputs have same number of data points',
     )
+    expect(() => linear_regression([1, 1, 1], [1, 2, 3])).toThrow('x is constant')
   })
 })

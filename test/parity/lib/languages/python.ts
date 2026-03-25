@@ -452,6 +452,25 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
     return py
   }
 
+  if (funcName === 'linear_regression') {
+    py = py.replace(/\blinear_regression\s*\(([\s\S]*)\)$/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      const left = args[0]
+      const right = args[1]
+      if (!left || !right) {
+        return match
+      }
+
+      const call =
+        args.length >= 3
+          ? `${module}.linear_regression(${left}, ${right}, proportional=${args[2]})`
+          : `${module}.linear_regression(${left}, ${right})`
+
+      return `(lambda __lr: {"slope": __lr.slope, "intercept": __lr.intercept})(${call})`
+    })
+    return py
+  }
+
   if (funcName === 'finditer') {
     py = py.replace(/\bfinditer\s*\(([\s\S]*)\)$/g, (match, argsText) => {
       const args = splitArgs(argsText)
