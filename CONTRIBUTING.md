@@ -79,6 +79,14 @@ Policy boundary:
 - Historic exception: PHP compatibility may treat plain JS objects as associative arrays when `locutus.objectsAsArrays` is enabled.
 - Example: a Go date-formatting port should take a JavaScript `Date` and return a `string`, not a custom Go `time.Time`.
 
+Runtime coercion rule of thumb:
+
+- For scalar-style functions, prefer target-language-like coercion when it is clear and value-like.
+- For object/model-heavy surfaces, validate and fail fast instead of inventing deep JS-side coercion.
+- Preserve existing JS runtime behavior unless a change is intentional, documented, and tested.
+- Keep coercion narrow and obvious: `Number(x)`, `String(x)`, boolean/nullish normalization.
+- Preserve important scalar edge cases intentionally: `NaN`, `Infinity`, `-0`, empty string, and `null`.
+
 Worth porting:
 
 - Complex functions like `sprintf`, `strtotime`, `serialize`, `date`
