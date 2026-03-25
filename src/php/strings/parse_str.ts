@@ -2,6 +2,11 @@ import { getPhpGlobalScope } from '../_helpers/_phpRuntimeState.ts'
 import { isPhpAssocObject, type PhpAssoc, type PhpInput } from '../_helpers/_phpTypes.ts'
 
 type ParseObject = PhpAssoc<PhpInput>
+const DANGEROUS_PARSE_STR_KEYS = new Set(['__proto__', 'constructor', 'prototype'])
+
+function isDangerousParseStrKey(key: string): boolean {
+  return DANGEROUS_PARSE_STR_KEYS.has(key)
+}
 
 export function parse_str(str: string, array?: ParseObject): void {
   //       discuss at: https://locutus.io/php/parse_str/
@@ -71,10 +76,6 @@ export function parse_str(str: string, array?: ParseObject): void {
     key = _fixStr(tmp[0] ?? '')
     value = tmp.length < 2 ? '' : _fixStr(tmp[1] ?? '')
 
-    if (/__proto__|constructor|prototype/.test(key)) {
-      break
-    }
-
     while (key.charAt(0) === ' ') {
       key = key.slice(1)
     }
@@ -125,8 +126,22 @@ export function parse_str(str: string, array?: ParseObject): void {
       }
       keys[0] = primaryKey
 
+      let hasDangerousKey = false
+      for (const rawKey of keys) {
+        const normalizedKey = rawKey.replace(/^['"]/, '').replace(/['"]$/, '')
+        if (isDangerousParseStrKey(normalizedKey)) {
+          hasDangerousKey = true
+          break
+        }
+      }
+
+      if (hasDangerousKey) {
+        continue
+      }
+
       obj = target
 
+      let skipAssignment = false
       for (j = 0, keysLen = keys.length; j < keysLen; j++) {
         key = (keys[j] ?? '').replace(/^['"]/, '').replace(/['"]$/, '')
         lastObj = obj
@@ -144,6 +159,11 @@ export function parse_str(str: string, array?: ParseObject): void {
           key = String(ct + 1)
         }
 
+        if (isDangerousParseStrKey(key)) {
+          skipAssignment = true
+          break
+        }
+
         // if primitive value, replace with object
         const current = obj[key]
         if (!isPhpAssocObject(current)) {
@@ -155,6 +175,10 @@ export function parse_str(str: string, array?: ParseObject): void {
           break
         }
         obj = next
+      }
+
+      if (skipAssignment || isDangerousParseStrKey(key)) {
+        continue
       }
 
       lastObj[key] = value

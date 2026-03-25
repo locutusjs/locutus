@@ -7,6 +7,21 @@ type CacheEntry = [value: UnserializedValue, offset?: number]
 type CacheFn = (<T extends CacheEntry>(value: T) => T) & { get: (index: number) => UnserializedValue }
 type ErrorMode = 'throw' | 'log' | 'silent'
 type UnserializeInput = string | null | undefined
+const DANGEROUS_UNSERIALIZE_KEYS = new Set(['__proto__', 'constructor', 'prototype'])
+
+function setUnserializedProperty(target: UnserializedObject, key: string, value: UnserializedValue): void {
+  if (DANGEROUS_UNSERIALIZE_KEYS.has(key)) {
+    Object.defineProperty(target, key, {
+      value,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    })
+    return
+  }
+
+  target[key] = value
+}
 
 function initCache(): CacheFn {
   const store: UnserializedValue[] = []
@@ -275,7 +290,7 @@ function expectObject(str: string, cache: CacheFn): ParsedResult {
     str = str.substr(value[1])
     totalOffset += value[1]
 
-    obj[String(prop[0])] = value[0]
+    setUnserializedProperty(obj, String(prop[0]), value[0])
   }
 
   // strict parsing, expect } after object literal
@@ -355,7 +370,7 @@ function expectArrayItems(
     str = str.substr(item[1])
     totalOffset += item[1]
 
-    items[String(key[0])] = item[0]
+    setUnserializedProperty(items, String(key[0]), item[0])
   }
 
   if (hasContinousIndexes) {
