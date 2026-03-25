@@ -263,6 +263,8 @@ src/python/_helpers/_statistics.ts :: export function sortStatisticsValues(data:
 src/python/_helpers/_statistics.ts :: export function statisticsMeanFromSequence(sequence: NumericSequence, preferFloat = false): number
 src/python/_helpers/_statistics.ts :: export function statisticsVarianceFromSequence( sequence: NumericSequence, divisor: number, functionName: string, center?: StatisticsNumericInput, ): number
 src/python/_helpers/_statistics.ts :: export function sumNumbers(values: number[]): number
+src/python/_helpers/_statistics.ts :: export function sumProducts(left: number[], right: number[]): number
+src/python/_helpers/_statistics.ts :: export function toFloatStatisticNumber(value: unknown, functionName: string): number
 src/python/_helpers/_statistics.ts :: export function toNumericSequence(data: unknown, functionName: string): NumericSequence
 src/python/_helpers/_statistics.ts :: export function toStatisticNumber(value: unknown, functionName: string): number
 src/python/_helpers/_statistics.ts :: export type StatisticsNumericInput = number | boolean | bigint
@@ -314,15 +316,22 @@ src/python/re/finditer.ts :: export function finditer(pattern: string | RegExp, 
 src/python/re/finditer.ts :: export type FinditerMatch = { match: string index: number groups: string[] }
 src/python/re/sub.ts :: export function sub( pattern: string | RegExp, replacement: ReSubReplacement, source: string, count: number = 0, flags: ReSubFlags = 0, ): string
 src/python/re/subn.ts :: export function subn( pattern: string | RegExp, replacement: ReSubnReplacement, source: string, count: number = 0, flags: ReSubnFlags = 0, ): [string, number]
+src/python/statistics/correlation.ts :: export function correlation(x: unknown, y: unknown, method: 'linear' | 'ranked' = 'linear'): number
+src/python/statistics/covariance.ts :: export function covariance(x: unknown, y: unknown): number
 src/python/statistics/fmean.ts :: export function fmean(data: unknown, weights?: unknown): number
+src/python/statistics/geometric_mean.ts :: export function geometric_mean(data: unknown): number
+src/python/statistics/harmonic_mean.ts :: export function harmonic_mean(data: unknown, weights?: unknown): number
+src/python/statistics/linear_regression.ts :: export function linear_regression(x: unknown, y: unknown, proportional = false): { slope: number; intercept: number }
 src/python/statistics/mean.ts :: export function mean(data: unknown): number
 src/python/statistics/median.ts :: export function median(data: unknown): number | string | boolean | bigint
+src/python/statistics/median_grouped.ts :: export function median_grouped(data: unknown, interval = 1): number
 src/python/statistics/median_high.ts :: export function median_high(data: unknown): number | string | boolean | bigint
 src/python/statistics/median_low.ts :: export function median_low(data: unknown): number | string | boolean | bigint
 src/python/statistics/mode.ts :: export function mode<T>(data: T[] | unknown): T
 src/python/statistics/multimode.ts :: export function multimode<T>(data: T[] | unknown): T[]
 src/python/statistics/pstdev.ts :: export function pstdev(data: unknown, mu?: StatisticsNumericInput): number
 src/python/statistics/pvariance.ts :: export function pvariance(data: unknown, mu?: StatisticsNumericInput): number
+src/python/statistics/quantiles.ts :: export function quantiles(data: unknown, n = 4, method: 'exclusive' | 'inclusive' = 'exclusive'): number[]
 src/python/statistics/stdev.ts :: export function stdev(data: unknown, xbar?: StatisticsNumericInput): number
 src/python/statistics/variance.ts :: export function variance(data: unknown, xbar?: StatisticsNumericInput): number
 src/python/string/ascii_letters.ts :: export function ascii_letters(): 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'

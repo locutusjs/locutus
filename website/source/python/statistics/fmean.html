@@ -54,7 +54,7 @@ alias:
   }
 
   if (weights === undefined) {
-    return statisticsMeanFromSequence(sequence, true)
+    return statisticsMeanFromSequence(sequence)
   }
 
   const weightValues = assertStatisticsArray(weights, 'fmean').map((value) => toStatisticNumber(value, 'fmean'))
@@ -140,7 +140,7 @@ function sumNumbers(values: number[]): number {
   }
 
   if (weights === undefined) {
-    return statisticsMeanFromSequence(sequence, true)
+    return statisticsMeanFromSequence(sequence)
   }
 
   const weightValues = assertStatisticsArray(weights, 'fmean').map((value) => toStatisticNumber(value, 'fmean'))
