@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-25T18:42:24.746Z">
-<meta property="article:modified_time" content="2026-03-25T18:42:24.746Z">
+<meta property="article:published_time" content="2026-03-25T22:17:59.668Z">
+<meta property="article:modified_time" content="2026-03-25T22:17:59.668Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,7 +229,7 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 67 Python standard library functions across 5 modules.
+        TypeScript implementations of 74 Python standard library functions across 5 modules.
         Each function is individually importable and tree-shakeable.
       </p>
 
@@ -344,11 +344,23 @@ ga('send', 'pageview');
         <strong>statistics</strong>
         <ul>
           
+            <li><a href="/python/statistics/correlation/">correlation</a></li>
+          
+            <li><a href="/python/statistics/covariance/">covariance</a></li>
+          
             <li><a href="/python/statistics/fmean/">fmean</a></li>
+          
+            <li><a href="/python/statistics/geometric_mean/">geometric_mean</a></li>
+          
+            <li><a href="/python/statistics/harmonic_mean/">harmonic_mean</a></li>
+          
+            <li><a href="/python/statistics/linear_regression/">linear_regression</a></li>
           
             <li><a href="/python/statistics/mean/">mean</a></li>
           
             <li><a href="/python/statistics/median/">median</a></li>
+          
+            <li><a href="/python/statistics/median_grouped/">median_grouped</a></li>
           
             <li><a href="/python/statistics/median_high/">median_high</a></li>
           
@@ -361,6 +373,8 @@ ga('send', 'pageview');
             <li><a href="/python/statistics/pstdev/">pstdev</a></li>
           
             <li><a href="/python/statistics/pvariance/">pvariance</a></li>
+          
+            <li><a href="/python/statistics/quantiles/">quantiles</a></li>
           
             <li><a href="/python/statistics/stdev/">stdev</a></li>
           
@@ -433,16 +447,16 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        67/2184 shipped
-         &middot; 170 next
+        74/2184 shipped
+         &middot; 163 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.1%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.4%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.8%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.5%"></span>
             
             
               <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -475,9 +489,9 @@ ga('send', 'pageview');
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.1%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.4%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.8%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.5%"></span>
         
         
           <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -495,6 +509,25 @@ ga('send', 'pageview');
 
     
     <div class="surface-minimap">
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--high"
+              title="statistics: 100% shipped"
+              data-ns="statistics"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">statistics</span>
+          <span class="surface-minimap__pct">100%</span>
+        </span>
       
         
         <span class="surface-minimap__tile surface-minimap__tile--high"
@@ -532,25 +565,6 @@ ga('send', 'pageview');
               })(this)">
           <span class="surface-minimap__name">math</span>
           <span class="surface-minimap__pct">71%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--mid"
-              title="statistics: 61% shipped"
-              data-ns="statistics"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">statistics</span>
-          <span class="surface-minimap__pct">61%</span>
         </span>
       
         
@@ -5882,12 +5896,12 @@ ga('send', 'pageview');
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">67/2184</strong>
+        <strong class="surface-kpi__value">74/2184</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">170</strong>
+          <strong class="surface-kpi__value">163</strong>
         </article>
       
       
@@ -5927,6 +5941,199 @@ ga('send', 'pageview');
         
           <h3 class="surface-ns-group__title">Complete</h3>
         
+        
+          
+
+
+
+<article class="surface-card" data-namespace="statistics">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/python/statistics/">statistics</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>python:3.12:statistics</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>100%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>18/18</strong> shipped</span>
+    
+    
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/python/statistics/">statistics</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (18)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/correlation/"><code>correlation</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/covariance/"><code>covariance</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/fmean/"><code>fmean</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/geometric_mean/"><code>geometric_mean</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/harmonic_mean/"><code>harmonic_mean</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/linear_regression/"><code>linear_regression</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/mean/"><code>mean</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/median/"><code>median</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/median_grouped/"><code>median_grouped</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/median_high/"><code>median_high</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/median_low/"><code>median_low</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/mode/"><code>mode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/multimode/"><code>multimode</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/pstdev/"><code>pstdev</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/pvariance/"><code>pvariance</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/quantiles/"><code>quantiles</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/stdev/"><code>stdev</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/statistics/variance/"><code>variance</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+
+  
+</article>
+
+
+
         
           
 
@@ -6458,185 +6665,6 @@ ga('send', 'pageview');
                 <li><code>sumprod</code></li>
               
                 <li><code>ulp</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-</article>
-
-
-
-        
-          
-
-
-
-<article class="surface-card" data-namespace="statistics">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          <a href="/python/statistics/">statistics</a>
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Python 3.12</code>
-        <span>&middot;</span>
-        <span>Catalog source: version-pinned source manifest <code>python:3.12:statistics</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>61%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 61.1%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 38.9%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>11/18</strong> shipped</span>
-    <span><strong>7</strong> next</span>
-    
-    
-    
-  </div>
-
-  
-    <div class="surface-chip-row">
-      
-        <a class="surface-chip surface-chip--link" href="/python/statistics/">statistics</a>
-      
-    </div>
-  
-
-  
-  
-    <details class="surface-details surface-details--shipped">
-      <summary>Shipped (11)</summary>
-      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/fmean/"><code>fmean</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/mean/"><code>mean</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/median/"><code>median</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/median_high/"><code>median_high</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/median_low/"><code>median_low</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/mode/"><code>mode</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/multimode/"><code>multimode</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/pstdev/"><code>pstdev</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/pvariance/"><code>pvariance</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/stdev/"><code>stdev</code></a>
-            
-          </li>
-        
-          
-          <li>
-            
-              <a class="surface-entry-link" href="/python/statistics/variance/"><code>variance</code></a>
-            
-          </li>
-        
-      </ul>
-    </details>
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Aggregate statistics helpers are strong plain-value portability targets.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>correlation</code></li>
-              
-                <li><code>covariance</code></li>
-              
-                <li><code>geometric_mean</code></li>
-              
-                <li><code>harmonic_mean</code></li>
-              
-                <li><code>linear_regression</code></li>
-              
-                <li><code>median_grouped</code></li>
-              
-                <li><code>quantiles</code></li>
               
             </ul>
           
@@ -18077,7 +18105,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                727
+                734
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -18398,7 +18426,7 @@ ga('send', 'pageview');
       
         <li><a href="/python/">
           Python
-          (67)
+          (74)
         </a></li>
         
         <ul>
@@ -18425,7 +18453,7 @@ ga('send', 'pageview');
         <ul>
           <li><a href="/python/statistics/">
             statistics
-            (11)
+            (18)
           </a></li>
         </ul>
         
