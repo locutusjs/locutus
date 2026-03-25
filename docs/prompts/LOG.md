@@ -3001,3 +3001,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - `statistics` is a good first post-triage harvest because the high-value functions sit behind one clean plain-value contract even though Python's exactness rules still differ per function.
   - `mean` / `variance` benefit from preserving Python's exact integer results, while `fmean` and the standard-deviation family should stay explicitly float-oriented.
+
+### Iteration 148
+
+2026-03-25
+
+- **Area: Release**
+- Plan:
+  - Ship the first `python/statistics` harvest once the normal post-merge `main` run clears full parity and website deploy.
+  - Fold the preceding `frexp` maintainer merge and triage-closure work into the same patch release because all three changes are already on `main` and release-worthy together.
+- Progress:
+  - Confirmed the `feat: add python statistics harvest 1 (#599)` `main` run finished green, including full parity, website build, and website deploy.
+  - Prepared `CHANGELOG.md` for `v3.0.26`, carrying the new Python statistics expansion, the `c/math/frexp` coercion regression fix, and the explicit target-definition closure from the merged triage pass.
+- Validation:
+  - `main` workflow `23557757049` completed `success`
+- Key learnings:
+  - Once target-definition and security queues are clean, additive harvests become straightforward patch releases again instead of needing extra process work around them.
