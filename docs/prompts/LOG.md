@@ -2890,3 +2890,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Manual review of the updated maintainer instructions against the actual GitHub API commands already used successfully in this session.
 - Key learnings:
   - The public advisory page is not enough for maintainer work; the authoritative queue is the authenticated API view grouped by advisory state.
+
+### Iteration 142
+
+2026-03-25
+
+- **Area: Security advisory triage**
+- Plan:
+  - Work through the `triage` advisory queue cluster-by-cluster instead of as six unrelated items.
+  - Start with the likely-overlapping CI/header-comment reports before touching the prototype-pollution and regex items.
+- Progress:
+  - Opened a dedicated branch for the pass: `fix/security-advisory-triage-1`.
+  - Enumerated the open triage advisories through the authenticated maintainer API and grouped them into a few overlapping themes rather than treating them as independent package defects.
+  - Started with the CI/header-comment cluster and confirmed the highest-severity practical issue was not a published-package runtime sink but an over-privileged CI job: PR validation still ran with write-scoped GitHub and OIDC permissions.
+  - Split the workflow so the main `ci` job now runs read-only, while release and website deploy each moved into their own write-scoped jobs gated to tags or `main`.
+  - Hardened the release path further so the privileged release job now consumes only artifacts produced by the verified read-only `ci` job, instead of reinstalling dependencies or rebuilding under `contents: write` / `id-token: write`.
+- Validation:
+  - GitHub advisory state and list confirmed via authenticated `gh api` calls from the maintainer account.
+  - Workflow YAML parses successfully with Ruby's `YAML.load_file`.
+- Key learnings:
+  - The queue is small enough to handle manually, but only if we treat obviously overlapping reports as clusters rather than six independent “vulnerabilities.”
+  - For the CI/header cluster, least-privilege workflow separation removes the realistic secret-exfiltration and supply-chain pivot before we even decide whether the remaining reports deserve package-level advisory treatment.

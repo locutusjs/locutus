@@ -8,8 +8,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v6
         with:
@@ -105,29 +104,76 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           corepack yarn test:parity
-      - name: Release
+      - name: Upload release artifact
         if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          if-no-files-found: error
+      - name: Prepare release notes artifact
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          node scripts/extract-release-notes.ts --version "${GITHUB_REF_NAME}" > release-notes.md
+      - name: Upload release notes artifact
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: release-notes.md
+          if-no-files-found: error
+      - name: Website Build
+        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+        run: |
+          corepack yarn website:ci
+      - name: Upload website artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-public
+          path: website/public
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+          registry-url: 'https://registry.npmjs.org'
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-notes
+          path: .
+      - name: Publish package and create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
-          PACKAGE_NAME=$(node -p "require('./package.json').name")
-          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          PACKAGE_NAME=$(node -p "require('./dist/package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./dist/package.json').version")
           EXPECTED_TAG="v${PACKAGE_VERSION}"
           if [ "$EXPECTED_TAG" != "${GITHUB_REF_NAME}" ]; then
-            echo "Tag/version mismatch: expected $EXPECTED_TAG from package.json, got ${GITHUB_REF_NAME}" >&2
+            echo "Tag/version mismatch: expected $EXPECTED_TAG from dist/package.json, got ${GITHUB_REF_NAME}" >&2
             exit 1
           fi
 
           npm install -g npm@^11.5.1
 
           SHOULD_CREATE_GITHUB_RELEASE=0
-          NOTES_FILE=
           if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
             echo "GitHub release already exists: ${GITHUB_REF_NAME}"
           else
             SHOULD_CREATE_GITHUB_RELEASE=1
-            NOTES_FILE=$(mktemp)
-            node scripts/extract-release-notes.ts --version "${GITHUB_REF_NAME}" > "$NOTES_FILE"
           fi
 
           if npm view "${PACKAGE_NAME}@${PACKAGE_VERSION}" version >/dev/null 2>&1; then
@@ -139,13 +185,23 @@ jobs:
           fi
 
           if [ "$SHOULD_CREATE_GITHUB_RELEASE" = "1" ]; then
-            gh release create "${GITHUB_REF_NAME}" --title "${GITHUB_REF_NAME}" --notes-file "$NOTES_FILE"
+            gh release create "${GITHUB_REF_NAME}" --title "${GITHUB_REF_NAME}" --notes-file release-notes.md
           fi
-      - name: Website Build
-        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
-        run: |
-          corepack yarn website:ci
+
+  website-deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: website-public
+          path: website/public
       - name: Website Deploy 🚀
-        if: github.ref == 'refs/heads/main'
         run: |
           ./scripts/deploy-gh-pages.sh
