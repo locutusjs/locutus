@@ -27,6 +27,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.27...main).
 
+### Expansion
+
+- Added a first `python/operator` harvest focused on plain-value operator helpers:
+  `abs`, `add`, `and_`, `concat`, `contains`, `countOf`, `eq`, `floordiv`, `ge`, `getitem`, `gt`, `indexOf`, `inv`, `invert`, `is_`, `is_not`, `le`, `lshift`, `lt`, `mod`, `mul`, `ne`, `neg`, `not_`, `or_`, `pos`, `pow`, `rshift`, `sub`, `truediv`, `truth`, and `xor`.
+
 ## v3.0.27
 
 Released: 2026-03-25. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.26...v3.0.27).

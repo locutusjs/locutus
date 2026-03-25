@@ -3033,3 +3033,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `gh run list --branch main --limit 5 --json databaseId,displayTitle,headSha,status,conclusion,event`
 - Key learnings:
   - Once a harvest PR is already green, the remaining release work is mostly bookkeeping and workflow latency rather than product uncertainty.
+
+### Iteration 150
+
+2026-03-26
+
+- **Area: Expansion (Python)**
+- Plan:
+  - Start a first `python/operator` harvest with the plain-value helpers that already fit the parity harness cleanly.
+  - Leave mutation-heavy and callable-constructor helpers like `attrgetter`, `itemgetter`, `methodcaller`, and the in-place ops for a later pass.
+- Progress:
+  - Added a new `src/python/operator` namespace with the first plain-value batch:
+    `abs`, `add`, `and_`, `concat`, `contains`, `countOf`, `eq`, `floordiv`, `ge`, `getitem`, `gt`, `indexOf`, `inv`, `invert`, `is_`, `is_not`, `le`, `lshift`, `lt`, `mod`, `mul`, `ne`, `neg`, `not_`, `or_`, `pos`, `pow`, `rshift`, `sub`, `truediv`, `truth`, and `xor`.
+  - Introduced shared semantics in `src/python/_helpers/_operator.ts` for Python-style arithmetic, comparison, bitwise, sequence, and truthiness behavior.
+  - Tightened the helper after fail-first review findings so zero-division, negative shifts, bigint equality, NaN ordering, string operand rules, and cross-realm object truthiness now match Python 3.12 much more closely.
+  - Updated both Rosetta mapping files and refreshed generated tests plus website pages for the new operator namespace.
+- Validation:
+  - `corepack yarn exec vitest run test/util/python-operator-harvest-1.vitest.ts`
+  - `corepack yarn test:parity python/operator/abs python/operator/add python/operator/and_ python/operator/concat python/operator/contains python/operator/countOf python/operator/eq python/operator/floordiv python/operator/ge python/operator/getitem python/operator/gt python/operator/indexOf python/operator/inv python/operator/invert python/operator/is_ python/operator/is_not python/operator/le python/operator/lshift python/operator/lt python/operator/mod python/operator/mul python/operator/ne python/operator/neg python/operator/not_ python/operator/or_ python/operator/pos python/operator/pow python/operator/rshift python/operator/sub python/operator/truediv python/operator/truth python/operator/xor --no-cache`
+  - `corepack yarn exec vitest run test/generated/python/operator/*.vitest.ts`
+- Key learnings:
+  - Cross-realm plain objects from the parity VM runner need realm-safe detection; `Object.prototype.toString.call(value) === '[object Object]'` is the right bar here, not strict `Object.prototype` identity.
+  - `operator` is a strong Locutus fit because the plain-value half stays deterministic and parity-friendly, while the mutation/callable helpers can be deferred without blocking the useful core.

@@ -535,6 +535,7 @@ math_fabs:
 math_pow:
   - php/math/pow
   - python/math/pow
+  - python/operator/pow
 
 math_cbrt:
   - ruby/Math/cbrt
@@ -634,6 +635,96 @@ format_bool:
 string_regex_escape:
   - php/strings/quotemeta
   - perl/core/quotemeta
+
+# =============================================================================
+# OPERATORS
+# =============================================================================
+
+arithmetic_add:
+  - python/operator/add
+
+arithmetic_subtract:
+  - python/operator/sub
+
+arithmetic_multiply:
+  - python/operator/mul
+
+arithmetic_true_divide:
+  - python/operator/truediv
+
+arithmetic_floor_divide:
+  - python/operator/floordiv
+
+arithmetic_modulo:
+  - python/operator/mod
+
+sequence_concat:
+  - python/operator/concat
+
+collection_contains:
+  - python/operator/contains
+
+collection_count_of:
+  - python/operator/countOf
+
+collection_index_of:
+  - python/operator/indexOf
+
+collection_getitem:
+  - python/operator/getitem
+
+comparison_equal:
+  - python/operator/eq
+
+comparison_not_equal:
+  - python/operator/ne
+
+comparison_greater_than:
+  - python/operator/gt
+
+comparison_greater_equal:
+  - python/operator/ge
+
+comparison_less_than:
+  - python/operator/lt
+
+comparison_less_equal:
+  - python/operator/le
+
+identity_is:
+  - python/operator/is_
+
+identity_is_not:
+  - python/operator/is_not
+
+bitwise_and:
+  - python/operator/and_
+
+bitwise_or:
+  - python/operator/or_
+
+bitwise_xor:
+  - python/operator/xor
+
+bitwise_not:
+  - python/operator/inv
+  - python/operator/invert
+
+bitwise_left_shift:
+  - python/operator/lshift
+
+bitwise_right_shift:
+  - python/operator/rshift
+
+unary_positive:
+  - python/operator/pos
+
+unary_negative:
+  - python/operator/neg
+
+truthiness:
+  - python/operator/truth
+  - python/operator/not_
 
 # =============================================================================
 # ARRAY/COLLECTION OPERATIONS
