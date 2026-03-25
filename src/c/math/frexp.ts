@@ -41,8 +41,9 @@ export function frexp(arg: number): [fraction: number, exponent: number] {
   let fraction = Number(arg)
   let exponent = 0
 
-  if (arg !== 0 && Number.isFinite(arg)) {
-    const absArg = Math.abs(arg)
+  if (fraction !== 0 && Number.isFinite(fraction)) {
+    const negative = fraction < 0
+    const absArg = Math.abs(fraction)
     exponent = Math.max(-1023, Math.floor(Math.log2(absArg)) + 1)
     fraction = absArg * Math.pow(2, -exponent)
 
@@ -57,7 +58,7 @@ export function frexp(arg: number): [fraction: number, exponent: number] {
       ++exponent
     }
 
-    if (arg < 0) {
+    if (negative) {
       fraction = -fraction
     }
   }
