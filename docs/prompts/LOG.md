@@ -2874,3 +2874,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Manual review of the GitHub security page and the maintainer cycle document after the edit.
 - Key learnings:
   - Security needs its own explicit loop in maintainer workflow; otherwise historical advisories and automated alerts are too easy to overlook or overreact to.
+
+### Iteration 141
+
+2026-03-25
+
+- **Area: Maintainer process / security triage**
+- Plan:
+  - Make the security-maintenance step operational by embedding the exact `gh` commands needed to inspect advisory state and open dependency alerts.
+  - Then start a dedicated advisory-triage pass on the still-open `triage` advisories.
+- Progress:
+  - Verified that the repo currently has `3` published advisories, `6` advisories still in `triage`, and `0` open dependency alerts.
+  - Added the exact `gh api` and GraphQL commands to `CORE_MAINTAINER.md` so maintainers can query security state reproducibly instead of relying on the public page or memory.
+- Validation:
+  - Manual review of the updated maintainer instructions against the actual GitHub API commands already used successfully in this session.
+- Key learnings:
+  - The public advisory page is not enough for maintainer work; the authoritative queue is the authenticated API view grouped by advisory state.

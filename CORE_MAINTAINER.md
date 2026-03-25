@@ -20,6 +20,13 @@ Note that for any task, it's important to first get ample context. Search past i
 2. Use `gh` to check on pending PRs. First run `gh auth status` to understand what our GitHub identity is. Make sure all PRs have reviews by other people than our identity (fixable only when PRs are submitted by others), that PRs pass (fixable only if they were submitted by US), fix what can be fixed, then re-check next iteration. If all is green, merge. LLMs should refrain from commenting on PRs, but deep reviews on PRs by others are allowed.
 3. Check GitHub Security separately from issues/PRs:
    - inspect repository security advisories and dependency/vulnerability alerts
+   - use concrete commands, not memory:
+     ```bash
+     gh auth status
+     gh api repos/locutusjs/locutus/security-advisories --paginate --jq 'map(.state) | group_by(.) | map({state: .[0], count: length})'
+     gh api repos/locutusjs/locutus/security-advisories --paginate --jq 'map(select(.state=="triage")) | map({ghsa_id, summary, severity, created_at})'
+     gh api graphql -f query='query { repository(owner:"locutusjs", name:"locutus") { vulnerabilityAlerts(first: 100, states: OPEN) { nodes { number createdAt securityVulnerability { package { name ecosystem } advisory { ghsaId summary severity } vulnerableVersionRange } } } } }'
+     ```
    - distinguish between:
      - published historical advisories (record/history)
      - open advisory triage work
