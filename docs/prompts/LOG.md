@@ -2840,3 +2840,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Once raw discovery is trustworthy, the fastest way to make the accepted target sane is broad namespace-family policy, not another round of scope narrowing.
   - Raw namespaces and human-friendly inventory namespaces still diverge in some languages, so rule-based triage is currently the most efficient bridge until we later normalize more of those names.
+
+### Iteration 139
+
+2026-03-25
+
+- **Area: Security maintenance**
+- Plan:
+  - Evaluate the current automated security signal with a bias toward actionable fixes, not raw alert count.
+  - Prefer scoped dependency remediation when the affected package sits in a build-only subtree rather than the published runtime package.
+- Progress:
+  - Audited the open GitHub vulnerability alerts and traced both current alerts to the website build tree, specifically `hexo-generator-feed -> feedsmith@2.9.0 -> fast-xml-parser@5.5.1`.
+  - Confirmed the root runtime package does not depend on `fast-xml-parser`, so the signal is about the Hexo feed-generation path rather than the published Locutus library.
+  - Chose the narrowest safe remediation: keep the Hexo stack stable and override the vulnerable transitive `fast-xml-parser` range to `5.5.9` in `website/package.json`.
+- Validation:
+  - Validation pending after lockfile refresh and website/build checks.
+- Key learnings:
+  - Automated security reports are worth acting on when they are concrete, current, and reachable in our own dependency tree, but the correct response can still be a narrow build-surface fix rather than broader product churn.
