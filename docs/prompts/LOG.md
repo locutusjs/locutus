@@ -3017,3 +3017,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `main` workflow `23557757049` completed `success`
 - Key learnings:
   - Once target-definition and security queues are clean, additive harvests become straightforward patch releases again instead of needing extra process work around them.
+
+### Iteration 149
+
+2026-03-25 22:55:09 CET
+
+- **Area: Release**
+- Plan:
+  - Cut `v3.0.27` immediately after merging `python/statistics-harvest-2`, without waiting for the still-running post-merge `main` run, because the user explicitly chose to go straight to release step 2.
+  - Keep the release narrowly scoped to the second `python/statistics` harvest so the changelog and version rationale stay clean.
+- Progress:
+  - Prepared `CHANGELOG.md` for `v3.0.27`, moving the completed advanced `python/statistics` batch out of `main` into a new released section.
+  - Bumped `package.json` from `3.0.26` to `3.0.27`.
+- Validation:
+  - `gh run list --branch main --limit 5 --json databaseId,displayTitle,headSha,status,conclusion,event`
+- Key learnings:
+  - Once a harvest PR is already green, the remaining release work is mostly bookkeeping and workflow latency rather than product uncertainty.

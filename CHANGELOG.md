@@ -25,20 +25,17 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.25...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.27...main).
 
-### Fixes
+## v3.0.27
 
-- Restored the long-standing JS numeric coercion in `c/math/frexp` while keeping the cleaner labeled tuple return type, so plain JS callers like `frexp("1")` and `frexp(true)` keep working instead of regressing to non-numeric fraction output.
+Released: 2026-03-25. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.26...v3.0.27).
+Version rationale: `patch` for additive Python runtime expansion without import-model or runtime floor changes.
 
 ### Expansion
 
-- Added a first `python/statistics` harvest focused on plain-value aggregation helpers:
-  `fmean`, `mean`, `median`, `median_high`, `median_low`, `mode`, `multimode`, `pstdev`, `pvariance`, `stdev`, and `variance`.
-
-### Inventory
-
-- Removed the remaining hidden `defaultNamespace` fallback from every supported upstream-surface language by expanding the last implicit namespaces into explicit policy rules, so accepted core/stdlib target definition is now inspectable end-to-end instead of partially inherited from a language-wide default.
+- Completed the tracked `python/statistics` module with a second harvest focused on advanced statistical helpers:
+  `correlation`, `covariance`, `geometric_mean`, `harmonic_mean`, `linear_regression`, `median_grouped`, and `quantiles`.
 
 ## v3.0.26
 
