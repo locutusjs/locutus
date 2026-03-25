@@ -29,7 +29,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.25...mai
 
 ### Inventory
 
-- Removed the remaining hidden `defaultNamespace` fallback from the noisiest upstream-surface languages by expanding their last implicit namespaces into explicit policy rules, so accepted core/stdlib target definition is now inspectable end-to-end instead of partially inherited from a language-wide default.
+- Removed the remaining hidden `defaultNamespace` fallback from every supported upstream-surface language by expanding the last implicit namespaces into explicit policy rules, so accepted core/stdlib target definition is now inspectable end-to-end instead of partially inherited from a language-wide default.
 
 ## v3.0.25
 

@@ -590,9 +590,9 @@ describe('upstream surface inventory', () => {
     expect(result.namespaces.find((namespace) => namespace.namespace === 'IntegerLiteralType')?.skippedEntries).toEqual(
       [],
     )
-    expect(result.namespaces.find((namespace) => namespace.namespace === 'IntegerLiteralType')?.untriagedEntries).toEqual(
-      ['max'],
-    )
+    expect(
+      result.namespaces.find((namespace) => namespace.namespace === 'IntegerLiteralType')?.untriagedEntries,
+    ).toEqual(['max'])
     expect(result.namespaces.find((namespace) => namespace.namespace === 'ContiguousArray')?.wantedEntries).toEqual([])
     expect(result.namespaces.find((namespace) => namespace.namespace === 'ContiguousArray')?.skippedEntries).toEqual([
       {

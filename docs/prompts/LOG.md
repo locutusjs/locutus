@@ -2965,3 +2965,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The last meaningful distinction between “triaged” and “still partly implicit” was the hidden language-wide fallback, not `untriaged` entries.
   - Converting that final fallback into explicit namespace policy is the closure move that makes the accepted target definition inspectable end-to-end.
+
+### Iteration 146
+
+2026-03-25
+
+- **Area: Upstream surface triage closure**
+- Plan:
+  - Fold the remaining language-level `defaultNamespace` fallbacks into the same closure PR so no supported language still relies on hidden fallback policy.
+- Progress:
+  - Replaced the remaining `defaultNamespace` fallback in `haskell`, `c`, `julia`, `kotlin`, `golang`, `lua`, `elixir`, `clojure`, and `r` with explicit catch-all `namespaceRules`, preserving the current conservative decisions while making them visible in policy.
+  - Confirmed that `docs/upstream-surface-inventory.yml` now contains no `defaultNamespace` blocks at all.
+- Validation:
+  - `corepack yarn test:upstream-surface c clojure elixir golang haskell julia kotlin lua r`
+  - `corepack yarn audit:upstream-scope c clojure elixir golang haskell julia kotlin lua r`
+  - `corepack yarn exec tsx src/_util/cli.ts injectupstreamsurface`
+- Key learnings:
+  - The real closure criterion was not just `untriaged: 0`, but eliminating hidden language-level fallback so every supported language family is inspectable through explicit rules.

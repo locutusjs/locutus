@@ -72,10 +72,10 @@ haskell:
       default:
         decision: skip_security
         note: Unsafe runtime escape hatches are outside Locutus' security model.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Haskell base modules default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Haskell base modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Data.Char:
       title: Data.Char
@@ -226,10 +226,11 @@ haskell:
         note: Ordering helpers over plain values are strong Haskell portability targets.
 c:
   title: C
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked C headers default conservative until their plain-value portability story is explicitly reviewed.
+  namespaceRules:
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked C headers default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     ctype:
       title: ctype.h
@@ -1868,6 +1869,10 @@ julia:
       default:
         decision: skip_environment
         note: Archive helpers are primarily file-backed I/O rather than plain-value computation.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Julia core/stdlib modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Base:
       title: Base module
@@ -1976,10 +1981,6 @@ julia:
         uuid_version:
           decision: wanted
           note: UUID inspection helpers have a clean plain-value contract.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Julia core/stdlib modules default conservative until their plain-value portability story is explicitly reviewed.
 kotlin:
   title: Kotlin
   scopeNote: This inventory now tracks a broader official Kotlin stdlib slice, using docs-backed catalogs for packages that do not introspect cleanly at runtime, not the wider JVM ecosystem.
@@ -2000,10 +2001,10 @@ kotlin:
       default:
         decision: skip_environment
         note: Browser DOM bindings depend on host runtime objects rather than plain values.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Kotlin stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Kotlin stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     arrays:
       title: kotlin.collections arrays
@@ -2969,6 +2970,10 @@ golang:
       default:
         decision: skip_low_value
         note: Stateful random helpers are lower-value than deterministic portability work.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Go stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     base64:
       title: encoding/base64 package
@@ -3354,10 +3359,6 @@ golang:
         Has:
           decision: wanted
           note: Query-value membership checks have a useful plain-value contract.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Go stdlib packages default conservative until their plain-value portability story is explicitly reviewed.
 tcl:
   title: Tcl
   scopeNote: This inventory now tracks Tcl's broader core command surface and standard ensembles first, excluding only host-specific extension ecosystems beyond core Tcl.
@@ -3626,10 +3627,10 @@ lua:
       default:
         decision: skip_runtime_model
         note: Core runtime helpers mix loading and metatable semantics that do not fit one stable plain-value contract by default.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Lua standard-library tables default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Lua standard-library tables default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     math:
       title: math library
@@ -4705,6 +4706,10 @@ elixir:
       default:
         decision: skip_side_effects
         note: Partitioned supervision revolves around runtime process orchestration.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Elixir modules default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     Base:
       title: Base module
@@ -4914,10 +4919,6 @@ elixir:
       default:
         decision: wanted
         note: Semantic-version parsing and comparison helpers have a clean plain-value contract.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Elixir modules default conservative until their plain-value portability story is explicitly reviewed.
 clojure:
   title: Clojure
   scopeNote: This inventory now tracks a broader official Clojure core slice, adding the most relevant standard namespaces while still excluding the broader JVM ecosystem.
@@ -4982,10 +4983,10 @@ clojure:
       default:
         decision: skip_runtime_model
         note: XML element trees and parser APIs do not fit one stable plain-value contract by default.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked Clojure namespaces default conservative until their plain-value portability story is explicitly reviewed.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked Clojure namespaces default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     core:
       title: clojure.core
@@ -5216,6 +5217,10 @@ r:
       default:
         decision: skip_environment
         note: Tcl/Tk bindings depend on host UI resources and event loops.
+    - match: '*'
+      default:
+        decision: skip_runtime_model
+        note: Newly tracked R base/recommended packages default conservative until their plain-value portability story is explicitly reviewed.
   namespaces:
     base:
       title: base package
@@ -5481,10 +5486,6 @@ r:
       default:
         decision: skip_environment
         note: tools mixes package metadata, filesystem, and build-time helpers too broadly for one direct Locutus wishlist.
-  defaultNamespace:
-    default:
-      decision: skip_runtime_model
-      note: Newly tracked R base/recommended packages default conservative until their plain-value portability story is explicitly reviewed.
 rust:
   title: Rust
   scopeNote: This inventory now tracks a broader slice of Rust core/std primitives and slice helpers first, excluding the wider crate ecosystem.
