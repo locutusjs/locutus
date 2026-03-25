@@ -2911,3 +2911,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The queue is small enough to handle manually, but only if we treat obviously overlapping reports as clusters rather than six independent “vulnerabilities.”
   - For the CI/header cluster, least-privilege workflow separation removes the realistic secret-exfiltration and supply-chain pivot before we even decide whether the remaining reports deserve package-level advisory treatment.
+
+### Iteration 143
+
+2026-03-25
+
+- **Area: Security advisory triage**
+- Plan:
+  - Triage the prototype-pollution cluster next by validating whether `unserialize` and the `parse_str` follow-up are both still real on current `main`.
+  - If they are, fix the runtime sinks directly before deciding final advisory disposition.
+- Progress:
+  - Reproduced that `php/var/unserialize` still lets a serialized `__proto__` key replace the returned object's prototype, causing hidden property injection on the deserialized value.
+  - Reproduced that `php/strings/parse_str` can still be driven into global prototype pollution when the guard path is neutralized, so the follow-up report is not just queue noise.
+  - Hardened `unserialize` by routing dangerous keys through `Object.defineProperty`, preserving them as plain own properties rather than prototype setters.
+  - Hardened `parse_str` by skipping dangerous key paths during assignment instead of trusting a regex-prototype guard.
+  - Added focused regressions for both functions so the prototype-pollution cluster now has code-level coverage instead of only advisory text.
+- Validation:
+  - `corepack yarn exec vitest run test/custom/parse_str-prototype-pollution.vitest.ts test/custom/unserialize-prototype-pollution.vitest.ts`
+  - direct `tsx` repro scripts for both `unserialize` and `parse_str`
+- Key learnings:
+  - The `unserialize` report is a real own-object prototype injection issue, not just a duplicate of older `parse_str` history.
+  - For `parse_str`, fixing the final assignment sink is more robust than trying to win a whack-a-mole game around individual prototype-based guard helpers.

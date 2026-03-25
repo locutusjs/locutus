@@ -27,6 +27,11 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.24...main).
 
+### Security
+
+- Hardened `php/var/unserialize` against `__proto__` / `constructor` / `prototype` key injection by defining those keys as plain own properties instead of letting them mutate the returned object's prototype.
+- Hardened `php/strings/parse_str` against dangerous key-path prototype pollution without relying on `RegExp.prototype.test`, so `__proto__` and `constructor[prototype]` payloads are skipped even if regex guards are tampered with earlier in the process.
+
 ### Inventory
 
 - Added a separate canonical upstream-surface scope manifest and made enumeration/checking fail on missing expected namespaces, unexpected namespaces, and source-ref drift before triage policy is applied.

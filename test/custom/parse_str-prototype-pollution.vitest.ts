@@ -1,6 +1,6 @@
 /**
  * Tests that parse_str resists prototype pollution even when
- * String.prototype.includes has been tampered with.
+ * the regex guard path has been tampered with.
  *
  * See: https://github.com/locutusjs/locutus/issues/...
  */
@@ -9,25 +9,25 @@ import { afterEach, describe, expect, it } from 'vitest'
 import { parse_str } from '../../src/php/strings/parse_str.ts'
 
 describe('parse_str prototype pollution resistance', () => {
-  const originalIncludes = String.prototype.includes
+  const originalTest = RegExp.prototype.test
 
   afterEach(() => {
-    // Restore includes so other tests aren't affected
-    String.prototype.includes = originalIncludes
+    // Restore RegExp.prototype.test so other tests aren't affected
+    RegExp.prototype.test = originalTest
     // Clean up any pollution that occurred
     // @ts-expect-error - cleaning up pollution
     delete Object.prototype.polluted
   })
 
-  it('should block __proto__ pollution even when String.prototype.includes is overridden', () => {
-    String.prototype.includes = () => false
+  it('should block __proto__ pollution even when RegExp.prototype.test is overridden', () => {
+    RegExp.prototype.test = () => false
     const arr = {} as Record<string, unknown>
     parse_str('__proto__[polluted]=yes', arr)
     expect(({} as Record<string, unknown>).polluted).toBeUndefined()
   })
 
-  it('should block constructor.prototype pollution even when String.prototype.includes is overridden', () => {
-    String.prototype.includes = () => false
+  it('should block constructor.prototype pollution even when RegExp.prototype.test is overridden', () => {
+    RegExp.prototype.test = () => false
     const arr = {} as Record<string, unknown>
     parse_str('constructor[prototype][polluted]=yes', arr)
     expect(({} as Record<string, unknown>).polluted).toBeUndefined()
