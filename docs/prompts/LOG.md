@@ -2857,3 +2857,20 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - Validation pending after lockfile refresh and website/build checks.
 - Key learnings:
   - Automated security reports are worth acting on when they are concrete, current, and reachable in our own dependency tree, but the correct response can still be a narrow build-surface fix rather than broader product churn.
+
+### Iteration 140
+
+2026-03-25
+
+- **Area: Maintainer process**
+- Plan:
+  - Tighten the maintainer cycle so security advisories and automated dependency alerts are checked explicitly rather than being implicitly lumped into issues/PRs.
+  - Preserve a high-quality bar for security work by forcing explicit reachability and surface-area triage.
+- Progress:
+  - Confirmed the repo security page still contains published historical advisories, which means “security is handled” cannot mean “the security area is empty.”
+  - Updated `CORE_MAINTAINER.md` to add a dedicated security-check step covering repository advisories, advisory triage, and automated dependency alerts separately from issues/PRs.
+  - Made the workflow explicit about validating dependency path, published-runtime impact vs build-only impact, realistic reachability, and whether a narrow remediation exists before deciding to fix, dismiss, or publish.
+- Validation:
+  - Manual review of the GitHub security page and the maintainer cycle document after the edit.
+- Key learnings:
+  - Security needs its own explicit loop in maintainer workflow; otherwise historical advisories and automated alerts are too easy to overlook or overreact to.
