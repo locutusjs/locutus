@@ -23,6 +23,10 @@ function loadCiWorkflow(): WorkflowDefinition {
   return yaml.load(readFileSync('.github/workflows/ci.yml', 'utf8')) as WorkflowDefinition
 }
 
+function loadNightlyParityWorkflow(): WorkflowDefinition {
+  return yaml.load(readFileSync('.github/workflows/nightly-parity.yml', 'utf8')) as WorkflowDefinition
+}
+
 function findStep(job: WorkflowJob, name: string): WorkflowStep | undefined {
   return job.steps?.find((step) => step.name === name)
 }
@@ -84,5 +88,17 @@ describe('ci workflow security hardening', () => {
       name: 'website-public',
       path: 'website/public',
     })
+  })
+
+  it('uses Corepack when resolving the Yarn cache directory in CI and nightly workflows', () => {
+    const ciWorkflow = loadCiWorkflow()
+    const nightlyWorkflow = loadNightlyParityWorkflow()
+
+    expect(findStep(ciWorkflow.jobs?.ci as WorkflowJob, 'Get yarn cache directory path')?.run).toContain(
+      'corepack yarn config get cacheFolder',
+    )
+    expect(findStep(nightlyWorkflow.jobs?.parity as WorkflowJob, 'Get yarn cache directory path')?.run).toContain(
+      'corepack yarn config get cacheFolder',
+    )
   })
 })
