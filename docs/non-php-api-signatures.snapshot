@@ -257,6 +257,37 @@ src/powershell/string/toupper.ts :: export function toupper(str: string): string
 src/powershell/string/trim.ts :: export function trim(str: string): string
 src/powershell/string/trimend.ts :: export function trimend(str: string, chars?: string): string
 src/powershell/string/trimstart.ts :: export function trimstart(str: string, chars?: string): string
+src/python/_helpers/_operator.ts :: export function fromPythonInteger(value: bigint, functionName: string): number
+src/python/_helpers/_operator.ts :: export function isNumericLike(value: unknown): value is NumericLike
+src/python/_helpers/_operator.ts :: export function pythonAbs(value: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonAdd(left: unknown, right: unknown, functionName: string): number | string | unknown[]
+src/python/_helpers/_operator.ts :: export function pythonBitAnd(left: unknown, right: unknown, functionName: string): boolean | number
+src/python/_helpers/_operator.ts :: export function pythonBitOr(left: unknown, right: unknown, functionName: string): boolean | number
+src/python/_helpers/_operator.ts :: export function pythonBitXor(left: unknown, right: unknown, functionName: string): boolean | number
+src/python/_helpers/_operator.ts :: export function pythonCompare(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonConcat(left: unknown, right: unknown): string | unknown[]
+src/python/_helpers/_operator.ts :: export function pythonContains(container: unknown, item: unknown): boolean
+src/python/_helpers/_operator.ts :: export function pythonCountOf(sequence: unknown, item: unknown): number
+src/python/_helpers/_operator.ts :: export function pythonEqual(left: unknown, right: unknown): boolean
+src/python/_helpers/_operator.ts :: export function pythonFloorDiv(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonGetItem(target: unknown, key: unknown): unknown
+src/python/_helpers/_operator.ts :: export function pythonIdentity(left: unknown, right: unknown): boolean
+src/python/_helpers/_operator.ts :: export function pythonIndex(value: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonIndexOf(sequence: unknown, item: unknown): number
+src/python/_helpers/_operator.ts :: export function pythonInvert(value: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonLShift(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonMod(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonMul(left: unknown, right: unknown, functionName: string): number | string | unknown[]
+src/python/_helpers/_operator.ts :: export function pythonNeg(value: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonNot(value: unknown): boolean
+src/python/_helpers/_operator.ts :: export function pythonPos(value: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonPow(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonRShift(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonSub(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonTrueDiv(left: unknown, right: unknown, functionName: string): number
+src/python/_helpers/_operator.ts :: export function pythonTruth(value: unknown): boolean
+src/python/_helpers/_operator.ts :: export function toPythonInteger(value: unknown, functionName: string): bigint
+src/python/_helpers/_operator.ts :: export function toPythonNumber(value: unknown, functionName: string): number
 src/python/_helpers/_statistics.ts :: export function assertStatisticsArray(data: unknown, functionName: string): unknown[]
 src/python/_helpers/_statistics.ts :: export function isIntegralStatisticValue(value: unknown): boolean
 src/python/_helpers/_statistics.ts :: export function sortStatisticsValues(data: unknown, functionName: string): StatisticsSortableInput[]
@@ -311,6 +342,38 @@ src/python/math/sqrt.ts :: export function sqrt(x: number): number
 src/python/math/tan.ts :: export function tan(x: number): number
 src/python/math/tanh.ts :: export function tanh(x: number): number
 src/python/math/trunc.ts :: export function trunc(x: number): number
+src/python/operator/abs.ts :: export function abs(a: unknown): number
+src/python/operator/add.ts :: export function add(a: unknown, b: unknown): number | string | unknown[]
+src/python/operator/and_.ts :: export function and_(a: unknown, b: unknown): boolean | number
+src/python/operator/concat.ts :: export function concat(a: unknown, b: unknown): string | unknown[]
+src/python/operator/contains.ts :: export function contains(a: unknown, b: unknown): boolean
+src/python/operator/countOf.ts :: export function countOf(a: unknown, b: unknown): number
+src/python/operator/eq.ts :: export function eq(a: unknown, b: unknown): boolean
+src/python/operator/floordiv.ts :: export function floordiv(a: unknown, b: unknown): number
+src/python/operator/ge.ts :: export function ge(a: unknown, b: unknown): boolean
+src/python/operator/getitem.ts :: export function getitem(a: unknown, b: unknown): unknown
+src/python/operator/gt.ts :: export function gt(a: unknown, b: unknown): boolean
+src/python/operator/indexOf.ts :: export function indexOf(a: unknown, b: unknown): number
+src/python/operator/inv.ts :: export function inv(a: unknown): number
+src/python/operator/invert.ts :: export function invert(a: unknown): number
+src/python/operator/is_.ts :: export function is_(a: unknown, b: unknown): boolean
+src/python/operator/is_not.ts :: export function is_not(a: unknown, b: unknown): boolean
+src/python/operator/le.ts :: export function le(a: unknown, b: unknown): boolean
+src/python/operator/lshift.ts :: export function lshift(a: unknown, b: unknown): number
+src/python/operator/lt.ts :: export function lt(a: unknown, b: unknown): boolean
+src/python/operator/mod.ts :: export function mod(a: unknown, b: unknown): number
+src/python/operator/mul.ts :: export function mul(a: unknown, b: unknown): number | string | unknown[]
+src/python/operator/ne.ts :: export function ne(a: unknown, b: unknown): boolean
+src/python/operator/neg.ts :: export function neg(a: unknown): number
+src/python/operator/not_.ts :: export function not_(a: unknown): boolean
+src/python/operator/or_.ts :: export function or_(a: unknown, b: unknown): boolean | number
+src/python/operator/pos.ts :: export function pos(a: unknown): number
+src/python/operator/pow.ts :: export function pow(a: unknown, b: unknown): number
+src/python/operator/rshift.ts :: export function rshift(a: unknown, b: unknown): number
+src/python/operator/sub.ts :: export function sub(a: unknown, b: unknown): number
+src/python/operator/truediv.ts :: export function truediv(a: unknown, b: unknown): number
+src/python/operator/truth.ts :: export function truth(a: unknown): boolean
+src/python/operator/xor.ts :: export function xor(a: unknown, b: unknown): boolean | number
 src/python/re/findall.ts :: export function findall(pattern: string | RegExp, source: string, flags: ReFindallFlags = 0): Array<string | string[]>
 src/python/re/finditer.ts :: export function finditer(pattern: string | RegExp, source: string, flags: ReFinditerFlags = 0): FinditerMatch[]
 src/python/re/finditer.ts :: export type FinditerMatch = { match: string index: number groups: string[] }
