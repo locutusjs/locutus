@@ -3055,3 +3055,19 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Cross-realm plain objects from the parity VM runner need realm-safe detection; `Object.prototype.toString.call(value) === '[object Object]'` is the right bar here, not strict `Object.prototype` identity.
   - `operator` is a strong Locutus fit because the plain-value half stays deterministic and parity-friendly, while the mutation/callable helpers can be deferred without blocking the useful core.
+
+### Iteration 151
+
+2026-03-26
+
+- **Area: Maintenance**
+- Plan:
+  - Investigate the failed nightly parity run before starting the next harvest, so product work does not resume on top of a silently broken maintenance signal.
+- Progress:
+  - Traced the nightly failure to the workflow asking the global Yarn 1 binary for `cacheFolder` before Corepack had activated the repo's pinned Yarn 4.
+  - Fixed both `.github/workflows/nightly-parity.yml` and `.github/workflows/ci.yml` to resolve the cache path via `corepack yarn config get cacheFolder` instead.
+  - Added a regression assertion in `test/util/ci-workflow.vitest.ts` covering both workflows so the pre-Corepack lookup cannot creep back in unnoticed.
+- Validation:
+  - `corepack yarn exec vitest run test/util/ci-workflow.vitest.ts`
+- Key learnings:
+  - The repo's `packageManager` pin makes even innocuous workflow calls like `yarn config get ...` depend on Corepack; using bare `yarn` before that handoff is a latent CI trap.
