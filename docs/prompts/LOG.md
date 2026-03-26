@@ -3115,3 +3115,27 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - `calendar.calendar` is easy to get almost-right but still subtly wrong; the only reliable path was to mirror the real `TextCalendar.formatyear` structure instead of hand-waving month-column spacing.
   - Generated standalone JS tests are still valuable as a backstop for helper-extraction edge cases; they caught the `formatstring` helper aliasing issue that the direct parity run did not.
+
+### Iteration 154
+
+2026-03-26
+
+- **Area: Fixes (PHP)**
+- Plan:
+  - Triage the concrete runtime parity claims from issue `#602` instead of treating the whole thread as one patch.
+  - Fix only the two real shipped behavior gaps: numeric `strtotime()` coercion and `bcmath` default-scale semantics around `bcscale()`/`bcadd()`.
+- Progress:
+  - Reproduced that Locutus handled `strtotime(20260301)` differently from PHP 8.3 because the parser consumed a number directly instead of the string form PHP uses internally.
+  - Updated `src/php/datetime/strtotime.ts` to coerce the first argument to string before parsing, bringing numeric and string input onto the same path.
+  - Modernized `src/php/bc/bcscale.ts` to the PHP 8 getter/setter contract: omitted or `null` returns the current scale, setting a scale returns the previous scale, and invalid scales still fail conservatively.
+  - Changed `src/php/_helpers/_bc.ts` to reuse one runtime-scoped `bcmath` library instance, so `bcscale()` actually affects later `bcadd()`/`bcsub()`/`bcdiv()`/`bcmul()` calls in the same PHP runtime.
+  - Added focused regression coverage in `test/util/php-issue-602.vitest.ts` and regenerated the affected `php/bc` and `php/datetime` generated tests plus API/type snapshots.
+- Validation:
+  - `corepack yarn exec vitest run test/util/php-issue-602.vitest.ts`
+  - `corepack yarn exec vitest run test/generated/php/bc/bcscale.vitest.ts test/generated/php/bc/bcadd.vitest.ts test/generated/php/datetime/strtotime.vitest.ts`
+  - `corepack yarn exec vitest run test/generated/php/bc/bccomp.vitest.ts test/generated/php/bc/bcdiv.vitest.ts test/generated/php/bc/bcmul.vitest.ts test/generated/php/bc/bcround.vitest.ts test/generated/php/bc/bcsub.vitest.ts test/generated/php/datetime/date_parse.vitest.ts`
+  - `corepack yarn website:verify`
+  - `corepack yarn check`
+- Key learnings:
+  - The real `bcmath` bug was mostly in our integration layer, not the vendored LGPL math engine itself: recreating the library on every call discarded the shared default scale that PHP exposes through `bcscale()`.
+  - For parser-style ports like `strtotime()`, explicit scalar coercion at the boundary is often the parity fix; otherwise JS runtime typing can send valid PHP inputs down a completely different code path.

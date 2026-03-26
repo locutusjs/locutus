@@ -201,7 +201,7 @@ src/php/bc/bccomp.ts :: export function bccomp(leftOperand: string | number, rig
 src/php/bc/bcdiv.ts :: export function bcdiv(leftOperand: string | number, rightOperand: string | number, scale?: number): string
 src/php/bc/bcmul.ts :: export function bcmul(leftOperand: string, rightOperand: string, scale?: number): string
 src/php/bc/bcround.ts :: export function bcround(val: number, precision: number): string
-src/php/bc/bcscale.ts :: export function bcscale(scale: number | string): boolean
+src/php/bc/bcscale.ts :: export function bcscale(scale?: number | string | null): false | number
 src/php/bc/bcsub.ts :: export function bcsub(leftOperand: string, rightOperand: string, scale?: number): string
 src/php/ctype/ctype_alnum.ts :: export function ctype_alnum(text: string): boolean
 src/php/ctype/ctype_alpha.ts :: export function ctype_alpha(text: string): boolean

@@ -1,3 +1,4 @@
+import { getPhpRuntimeEntry, setPhpRuntimeEntry } from './_phpRuntimeState.ts'
 import type { PhpInput } from './_phpTypes.ts'
 // SPDX-License-Identifier: LGPL-2.1-or-later
 // NOTE: This file is LGPL licensed, not MIT like the rest of locutus.
@@ -1337,8 +1338,19 @@ function createBcLibrary() {
   return Libbcmath
 }
 
+function isBcLibrary(value: PhpInput): value is ReturnType<typeof createBcLibrary> {
+  return typeof value === 'object' && value !== null && 'bc_add' in value && 'scale' in value
+}
+
 export function _bc(): ReturnType<typeof createBcLibrary> {
   // original by: lmeyrick (https://sourceforge.net/projects/bcmath-js/)
   // improved by: Brett Zamir (https://brett-zamir.me)
-  return createBcLibrary()
+  const existing = getPhpRuntimeEntry('bcMathLib')
+  if (isBcLibrary(existing)) {
+    return existing
+  }
+
+  const library = createBcLibrary()
+  setPhpRuntimeEntry('bcMathLib', library)
+  return library
 }
