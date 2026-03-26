@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-25T22:26:15.412Z">
-<meta property="article:modified_time" content="2026-03-25T22:26:15.412Z">
+<meta property="article:published_time" content="2026-03-26T08:45:01.970Z">
+<meta property="article:modified_time" content="2026-03-26T08:45:01.970Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,7 +229,7 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 74 Python standard library functions across 5 modules.
+        TypeScript implementations of 106 Python standard library functions across 6 modules.
         Each function is individually importable and tree-shakeable.
       </p>
 
@@ -325,6 +325,75 @@ ga('send', 'pageview');
             <li><a href="/python/math/tanh/">tanh</a></li>
           
             <li><a href="/python/math/trunc/">trunc</a></li>
+          
+        </ul>
+      
+        <strong>operator</strong>
+        <ul>
+          
+            <li><a href="/python/operator/abs/">abs</a></li>
+          
+            <li><a href="/python/operator/add/">add</a></li>
+          
+            <li><a href="/python/operator/and_/">and_</a></li>
+          
+            <li><a href="/python/operator/concat/">concat</a></li>
+          
+            <li><a href="/python/operator/contains/">contains</a></li>
+          
+            <li><a href="/python/operator/countOf/">countOf</a></li>
+          
+            <li><a href="/python/operator/eq/">eq</a></li>
+          
+            <li><a href="/python/operator/floordiv/">floordiv</a></li>
+          
+            <li><a href="/python/operator/ge/">ge</a></li>
+          
+            <li><a href="/python/operator/getitem/">getitem</a></li>
+          
+            <li><a href="/python/operator/gt/">gt</a></li>
+          
+            <li><a href="/python/operator/indexOf/">indexOf</a></li>
+          
+            <li><a href="/python/operator/inv/">inv</a></li>
+          
+            <li><a href="/python/operator/invert/">invert</a></li>
+          
+            <li><a href="/python/operator/is_/">is_</a></li>
+          
+            <li><a href="/python/operator/is_not/">is_not</a></li>
+          
+            <li><a href="/python/operator/le/">le</a></li>
+          
+            <li><a href="/python/operator/lshift/">lshift</a></li>
+          
+            <li><a href="/python/operator/lt/">lt</a></li>
+          
+            <li><a href="/python/operator/mod/">mod</a></li>
+          
+            <li><a href="/python/operator/mul/">mul</a></li>
+          
+            <li><a href="/python/operator/ne/">ne</a></li>
+          
+            <li><a href="/python/operator/neg/">neg</a></li>
+          
+            <li><a href="/python/operator/not_/">not_</a></li>
+          
+            <li><a href="/python/operator/or_/">or_</a></li>
+          
+            <li><a href="/python/operator/pos/">pos</a></li>
+          
+            <li><a href="/python/operator/pow/">pow</a></li>
+          
+            <li><a href="/python/operator/rshift/">rshift</a></li>
+          
+            <li><a href="/python/operator/sub/">sub</a></li>
+          
+            <li><a href="/python/operator/truediv/">truediv</a></li>
+          
+            <li><a href="/python/operator/truth/">truth</a></li>
+          
+            <li><a href="/python/operator/xor/">xor</a></li>
           
         </ul>
       
@@ -447,16 +516,16 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        74/2184 shipped
-         &middot; 163 next
+        106/2184 shipped
+         &middot; 131 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.4%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.9%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 6%"></span>
             
             
               <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -466,7 +535,7 @@ ga('send', 'pageview');
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">3%</span>
+    <span class="surface-panel__summary-badge">5%</span>
   </summary>
 
   <div class="surface-panel__content">
@@ -482,16 +551,16 @@ ga('send', 'pageview');
         
       </div>
       <div class="surface-coverage-badge">
-        <strong>3%</strong>
+        <strong>5%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 3.4%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.9%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 7.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 6%"></span>
         
         
           <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -569,6 +638,25 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="operator: 58% shipped"
+              data-ns="operator"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">operator</span>
+          <span class="surface-minimap__pct">58%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
               title="difflib: 33% shipped"
               data-ns="difflib"
               onclick="(function(el){
@@ -603,25 +691,6 @@ ga('send', 'pageview');
               })(this)">
           <span class="surface-minimap__name">re</span>
           <span class="surface-minimap__pct">31%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--wanted"
-              title="operator: 0% shipped"
-              data-ns="operator"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">operator</span>
-          <span class="surface-minimap__pct">0%</span>
         </span>
       
         
@@ -5896,12 +5965,12 @@ ga('send', 'pageview');
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">74/2184</strong>
+        <strong class="surface-kpi__value">106/2184</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">163</strong>
+          <strong class="surface-kpi__value">131</strong>
         </article>
       
       
@@ -6557,7 +6626,7 @@ ga('send', 'pageview');
           
           <li>
             
-              <a class="surface-entry-link" href="/python/math/pow/"><code>pow</code></a>
+              <a class="surface-entry-link" href="/python/operator/pow/"><code>pow</code></a>
             
           </li>
         
@@ -6675,6 +6744,524 @@ ga('send', 'pageview');
     </div>
   
 
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="operator">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/python/operator/">operator</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>python:3.12:operator</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>94%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 94.1%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5.9%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>32/34</strong> shipped</span>
+    <span><strong>2</strong> next</span>
+    <span><strong>21</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/python/operator/">operator</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (32)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/abs/"><code>abs</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/add/"><code>add</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/and_/"><code>and_</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/concat/"><code>concat</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/contains/"><code>contains</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/countOf/"><code>countOf</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/eq/"><code>eq</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/floordiv/"><code>floordiv</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/ge/"><code>ge</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/getitem/"><code>getitem</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/gt/"><code>gt</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/indexOf/"><code>indexOf</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/inv/"><code>inv</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/invert/"><code>invert</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/is_/"><code>is_</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/is_not/"><code>is_not</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/le/"><code>le</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/lshift/"><code>lshift</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/lt/"><code>lt</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/mod/"><code>mod</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/mul/"><code>mul</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/ne/"><code>ne</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/neg/"><code>neg</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/not_/"><code>not_</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/or_/"><code>or_</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/pos/"><code>pos</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/pow/"><code>pow</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/rshift/"><code>rshift</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/sub/"><code>sub</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/truediv/"><code>truediv</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/truth/"><code>truth</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/operator/xor/"><code>xor</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">First-class operator helpers are strong plain-value portability targets.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>index</code></li>
+              
+                <li><code>matmul</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (21)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.attrgetter" target="_blank" rel="noopener noreferrer"><code>attrgetter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Getter factories return callable objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.call" target="_blank" rel="noopener noreferrer"><code>call</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Indirect call wrappers add little value beyond direct JS invocation.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.delitem" target="_blank" rel="noopener noreferrer"><code>delitem</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Container mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iadd" target="_blank" rel="noopener noreferrer"><code>iadd</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iand" target="_blank" rel="noopener noreferrer"><code>iand</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iconcat" target="_blank" rel="noopener noreferrer"><code>iconcat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ifloordiv" target="_blank" rel="noopener noreferrer"><code>ifloordiv</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ilshift" target="_blank" rel="noopener noreferrer"><code>ilshift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imatmul" target="_blank" rel="noopener noreferrer"><code>imatmul</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imod" target="_blank" rel="noopener noreferrer"><code>imod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imul" target="_blank" rel="noopener noreferrer"><code>imul</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ior" target="_blank" rel="noopener noreferrer"><code>ior</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ipow" target="_blank" rel="noopener noreferrer"><code>ipow</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.irshift" target="_blank" rel="noopener noreferrer"><code>irshift</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.isub" target="_blank" rel="noopener noreferrer"><code>isub</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.itemgetter" target="_blank" rel="noopener noreferrer"><code>itemgetter</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Getter factories return callable objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.itruediv" target="_blank" rel="noopener noreferrer"><code>itruediv</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ixor" target="_blank" rel="noopener noreferrer"><code>ixor</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>In-place operator wrappers imply mutation semantics.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.length_hint" target="_blank" rel="noopener noreferrer"><code>length_hint</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Size-hint probing adds little value beyond direct JS length checks.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.methodcaller" target="_blank" rel="noopener noreferrer"><code>methodcaller</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Method-caller factories return callable objects rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.setitem" target="_blank" rel="noopener noreferrer"><code>setitem</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Container mutation is outside Locutus&#39; value-only model.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
   
 </article>
 
@@ -6884,7 +7471,7 @@ ga('send', 'pageview');
           
           <li>
             
-              <a class="surface-entry-link" href="/python/re/sub/"><code>sub</code></a>
+              <a class="surface-entry-link" href="/python/operator/sub/"><code>sub</code></a>
             
           </li>
         
@@ -6972,351 +7559,6 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Template pattern objects are not a stable plain-value target.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-
-
-        
-          
-
-
-
-<article class="surface-card" data-namespace="operator">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          operator
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Python 3.12</code>
-        <span>&middot;</span>
-        <span>Catalog source: version-pinned source manifest <code>python:3.12:operator</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/34</strong> shipped</span>
-    <span><strong>34</strong> next</span>
-    <span><strong>21</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">First-class operator helpers are strong plain-value portability targets.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>abs</code></li>
-              
-                <li><code>add</code></li>
-              
-                <li><code>and_</code></li>
-              
-                <li><code>concat</code></li>
-              
-                <li><code>contains</code></li>
-              
-                <li><code>countOf</code></li>
-              
-                <li><code>eq</code></li>
-              
-                <li><code>floordiv</code></li>
-              
-                <li><code>ge</code></li>
-              
-                <li><code>getitem</code></li>
-              
-                <li><code>gt</code></li>
-              
-                <li><code>index</code></li>
-              
-                <li><code>indexOf</code></li>
-              
-                <li><code>inv</code></li>
-              
-                <li><code>invert</code></li>
-              
-                <li><code>is_</code></li>
-              
-                <li><code>is_not</code></li>
-              
-                <li><code>le</code></li>
-              
-                <li><code>lshift</code></li>
-              
-                <li><code>lt</code></li>
-              
-                <li><code>matmul</code></li>
-              
-                <li><code>mod</code></li>
-              
-                <li><code>mul</code></li>
-              
-                <li><code>ne</code></li>
-              
-                <li><code>neg</code></li>
-              
-                <li><code>not_</code></li>
-              
-                <li><code>or_</code></li>
-              
-                <li><code>pos</code></li>
-              
-                <li><code>pow</code></li>
-              
-                <li><code>rshift</code></li>
-              
-                <li><code>sub</code></li>
-              
-                <li><code>truediv</code></li>
-              
-                <li><code>truth</code></li>
-              
-                <li><code>xor</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (21)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.attrgetter" target="_blank" rel="noopener noreferrer"><code>attrgetter</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Getter factories return callable objects rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.call" target="_blank" rel="noopener noreferrer"><code>call</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Indirect call wrappers add little value beyond direct JS invocation.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.delitem" target="_blank" rel="noopener noreferrer"><code>delitem</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Container mutation is outside Locutus&#39; value-only model.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iadd" target="_blank" rel="noopener noreferrer"><code>iadd</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iand" target="_blank" rel="noopener noreferrer"><code>iand</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.iconcat" target="_blank" rel="noopener noreferrer"><code>iconcat</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ifloordiv" target="_blank" rel="noopener noreferrer"><code>ifloordiv</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ilshift" target="_blank" rel="noopener noreferrer"><code>ilshift</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imatmul" target="_blank" rel="noopener noreferrer"><code>imatmul</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imod" target="_blank" rel="noopener noreferrer"><code>imod</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.imul" target="_blank" rel="noopener noreferrer"><code>imul</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ior" target="_blank" rel="noopener noreferrer"><code>ior</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ipow" target="_blank" rel="noopener noreferrer"><code>ipow</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.irshift" target="_blank" rel="noopener noreferrer"><code>irshift</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.isub" target="_blank" rel="noopener noreferrer"><code>isub</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.itemgetter" target="_blank" rel="noopener noreferrer"><code>itemgetter</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Getter factories return callable objects rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.itruediv" target="_blank" rel="noopener noreferrer"><code>itruediv</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.ixor" target="_blank" rel="noopener noreferrer"><code>ixor</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>In-place operator wrappers imply mutation semantics.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.length_hint" target="_blank" rel="noopener noreferrer"><code>length_hint</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Size-hint probing adds little value beyond direct JS length checks.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.methodcaller" target="_blank" rel="noopener noreferrer"><code>methodcaller</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Method-caller factories return callable objects rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/operator.html#operator.setitem" target="_blank" rel="noopener noreferrer"><code>setitem</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Container mutation is outside Locutus&#39; value-only model.</span>
               </li>
             
           </ul>
@@ -18105,7 +18347,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                734
+                766
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -18426,7 +18668,7 @@ ga('send', 'pageview');
       
         <li><a href="/python/">
           Python
-          (74)
+          (106)
         </a></li>
         
         <ul>
@@ -18440,6 +18682,13 @@ ga('send', 'pageview');
           <li><a href="/python/math/">
             math
             (40)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/operator/">
+            operator
+            (32)
           </a></li>
         </ul>
         
