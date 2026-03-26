@@ -257,6 +257,19 @@ src/powershell/string/toupper.ts :: export function toupper(str: string): string
 src/powershell/string/trim.ts :: export function trim(str: string): string
 src/powershell/string/trimend.ts :: export function trimend(str: string, chars?: string): string
 src/powershell/string/trimstart.ts :: export function trimstart(str: string, chars?: string): string
+src/python/_helpers/_calendar.ts :: export function buildMonthCalendar(year: number, month: number): number[][]
+src/python/_helpers/_calendar.ts :: export function buildWeekHeader(width: number): string
+src/python/_helpers/_calendar.ts :: export function countLeapYearsBetween(startYear: number, endYear: number): number
+src/python/_helpers/_calendar.ts :: export function daysInMonth(year: number, month: number): number
+src/python/_helpers/_calendar.ts :: export function isLeapYear(year: number): boolean
+src/python/_helpers/_calendar.ts :: export function normalizeCalendarDay(year: number, month: number, value: unknown, functionName: string): number
+src/python/_helpers/_calendar.ts :: export function normalizeCalendarMonth(value: unknown, functionName: string): number
+src/python/_helpers/_calendar.ts :: export function normalizeCalendarYear(value: unknown, functionName: string): number
+src/python/_helpers/_calendar.ts :: export function normalizeTimeTuple( value: unknown, functionName: string, ): [number, number, number, number, number, number]
+src/python/_helpers/_calendar.ts :: export function normalizeWeekWidth(value: unknown, functionName: string): number
+src/python/_helpers/_calendar.ts :: export function pythonWeekday(year: number, month: number, day: number): number
+src/python/_helpers/_calendar.ts :: export function timeTupleToUnixSeconds( year: number, month: number, day: number, hour: number, minute: number, second: number, ): number
+src/python/_helpers/_calendar.ts :: export function toCalendarInteger(value: unknown, functionName: string): number
 src/python/_helpers/_operator.ts :: export function fromPythonInteger(value: bigint, functionName: string): number
 src/python/_helpers/_operator.ts :: export function isNumericLike(value: unknown): value is NumericLike
 src/python/_helpers/_operator.ts :: export function pythonAbs(value: unknown, functionName: string): number
@@ -300,6 +313,13 @@ src/python/_helpers/_statistics.ts :: export function toNumericSequence(data: un
 src/python/_helpers/_statistics.ts :: export function toStatisticNumber(value: unknown, functionName: string): number
 src/python/_helpers/_statistics.ts :: export type StatisticsNumericInput = number | boolean | bigint
 src/python/_helpers/_statistics.ts :: export type StatisticsSortableInput = StatisticsNumericInput | string
+src/python/calendar/isleap.ts :: export function isleap(year: unknown): boolean
+src/python/calendar/leapdays.ts :: export function leapdays(y1: unknown, y2: unknown): number
+src/python/calendar/monthcalendar.ts :: export function monthcalendar(year: unknown, month: unknown): number[][]
+src/python/calendar/monthrange.ts :: export function monthrange(year: unknown, month: unknown): [number, number]
+src/python/calendar/timegm.ts :: export function timegm(tuple: unknown): number
+src/python/calendar/weekday.ts :: export function weekday(year: unknown, month: unknown, day: unknown): number
+src/python/calendar/weekheader.ts :: export function weekheader(width: unknown): string
 src/python/difflib/get_close_matches.ts :: export function get_close_matches( word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6, ): string[]
 src/python/difflib/ndiff.ts :: export function ndiff( a: string[] | unknown, b: string[] | unknown, linejunk: LineJunkPredicate = null, charjunk: CharJunkPredicate = isCharacterJunk, ): string[]
 src/python/math/acos.ts :: export function acos(x: number): number

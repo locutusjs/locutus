@@ -213,6 +213,27 @@ path_is_abs:
   - golang/path/IsAbs
   - golang/filepath/IsAbs
 
+calendar_is_leap_year:
+  - python/calendar/isleap
+
+calendar_leapdays:
+  - python/calendar/leapdays
+
+calendar_month_range:
+  - python/calendar/monthrange
+
+calendar_weekday:
+  - python/calendar/weekday
+
+calendar_week_header:
+  - python/calendar/weekheader
+
+calendar_month_matrix:
+  - python/calendar/monthcalendar
+
+calendar_timegm:
+  - python/calendar/timegm
+
 integer_square_root:
   - python/math/isqrt
 

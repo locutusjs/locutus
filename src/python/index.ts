@@ -1,3 +1,4 @@
+export * as calendar from './calendar/index.ts'
 export * as difflib from './difflib/index.ts'
 export * as math from './math/index.ts'
 export * as operator from './operator/index.ts'
