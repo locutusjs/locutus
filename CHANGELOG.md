@@ -25,7 +25,12 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.29...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.30...main).
+
+## v3.0.30
+
+Released: 2026-03-26. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.29...v3.0.30).
+Version rationale: `patch` for additive Python runtime expansion plus workflow reliability hardening, without import-model or runtime floor changes.
 
 ### Maintenance
 
