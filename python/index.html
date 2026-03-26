@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-26T12:49:13.966Z">
-<meta property="article:modified_time" content="2026-03-26T12:49:13.966Z">
+<meta property="article:published_time" content="2026-03-26T13:23:08.382Z">
+<meta property="article:modified_time" content="2026-03-26T13:23:08.382Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,10 +229,29 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 106 Python standard library functions across 6 modules.
+        TypeScript implementations of 113 Python standard library functions across 7 modules.
         Each function is individually importable and tree-shakeable.
       </p>
 
+      
+        <strong>calendar</strong>
+        <ul>
+          
+            <li><a href="/python/calendar/isleap/">isleap</a></li>
+          
+            <li><a href="/python/calendar/leapdays/">leapdays</a></li>
+          
+            <li><a href="/python/calendar/monthcalendar/">monthcalendar</a></li>
+          
+            <li><a href="/python/calendar/monthrange/">monthrange</a></li>
+          
+            <li><a href="/python/calendar/timegm/">timegm</a></li>
+          
+            <li><a href="/python/calendar/weekday/">weekday</a></li>
+          
+            <li><a href="/python/calendar/weekheader/">weekheader</a></li>
+          
+        </ul>
       
         <strong>difflib</strong>
         <ul>
@@ -516,16 +535,16 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        106/2184 shipped
-         &middot; 131 next
+        113/2184 shipped
+         &middot; 124 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.9%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.2%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 6%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5.7%"></span>
             
             
               <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -558,9 +577,9 @@ ga('send', 'pageview');
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 4.9%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.2%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 6%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5.7%"></span>
         
         
           <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -657,6 +676,25 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="calendar: 37% shipped"
+              data-ns="calendar"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">calendar</span>
+          <span class="surface-minimap__pct">37%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
               title="difflib: 33% shipped"
               data-ns="difflib"
               onclick="(function(el){
@@ -709,25 +747,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">builtins</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--wanted"
-              title="calendar: 0% shipped"
-              data-ns="calendar"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">calendar</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -5965,12 +5984,12 @@ ga('send', 'pageview');
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">106/2184</strong>
+        <strong class="surface-kpi__value">113/2184</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">131</strong>
+          <strong class="surface-kpi__value">124</strong>
         </article>
       
       
@@ -7005,7 +7024,7 @@ ga('send', 'pageview');
           
           <li>
             
-              <a class="surface-entry-link" href="/python/operator/sub/"><code>sub</code></a>
+              <a class="surface-entry-link" href="/python/re/sub/"><code>sub</code></a>
             
           </li>
         
@@ -7272,6 +7291,187 @@ ga('send', 'pageview');
 
 
 
+<article class="surface-card" data-namespace="calendar">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/python/calendar/">calendar</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>python:3.12:calendar</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>39%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 38.9%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 61.1%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>7/18</strong> shipped</span>
+    <span><strong>11</strong> next</span>
+    <span><strong>1</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/python/calendar/">calendar</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (7)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/calendar/isleap/"><code>isleap</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/calendar/leapdays/"><code>leapdays</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/calendar/monthcalendar/"><code>monthcalendar</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/calendar/monthrange/"><code>monthrange</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/calendar/timegm/"><code>timegm</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/calendar/weekday/"><code>weekday</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/calendar/weekheader/"><code>weekheader</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>calendar</code></li>
+              
+                <li><code>different_locale</code></li>
+              
+                <li><code>firstweekday</code></li>
+              
+                <li><code>format</code></li>
+              
+                <li><code>formatstring</code></li>
+              
+                <li><code>main</code></li>
+              
+                <li><code>month</code></li>
+              
+                <li><code>prcal</code></li>
+              
+                <li><code>prmonth</code></li>
+              
+                <li><code>prweek</code></li>
+              
+                <li><code>week</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (1)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/calendar.html#calendar.setfirstweekday" target="_blank" rel="noopener noreferrer"><code>setfirstweekday</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Global calendar configuration mutates ambient runtime state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
 <article class="surface-card" data-namespace="difflib">
   <div class="surface-card__header">
     <div>
@@ -7471,7 +7671,7 @@ ga('send', 'pageview');
           
           <li>
             
-              <a class="surface-entry-link" href="/python/operator/sub/"><code>sub</code></a>
+              <a class="surface-entry-link" href="/python/re/sub/"><code>sub</code></a>
             
           </li>
         
@@ -8217,139 +8417,6 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Runtime namespace introspection is outside Locutus&#39; portability scope.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-
-
-        
-          
-
-
-
-<article class="surface-card" data-namespace="calendar">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          calendar
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Python 3.12</code>
-        <span>&middot;</span>
-        <span>Catalog source: version-pinned source manifest <code>python:3.12:calendar</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/18</strong> shipped</span>
-    <span><strong>18</strong> next</span>
-    <span><strong>1</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Calendar helpers mostly return scalars, strings, or plain arrays with a useful portability contract.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>calendar</code></li>
-              
-                <li><code>different_locale</code></li>
-              
-                <li><code>firstweekday</code></li>
-              
-                <li><code>format</code></li>
-              
-                <li><code>formatstring</code></li>
-              
-                <li><code>isleap</code></li>
-              
-                <li><code>leapdays</code></li>
-              
-                <li><code>main</code></li>
-              
-                <li><code>month</code></li>
-              
-                <li><code>monthcalendar</code></li>
-              
-                <li><code>monthrange</code></li>
-              
-                <li><code>prcal</code></li>
-              
-                <li><code>prmonth</code></li>
-              
-                <li><code>prweek</code></li>
-              
-                <li><code>timegm</code></li>
-              
-                <li><code>week</code></li>
-              
-                <li><code>weekday</code></li>
-              
-                <li><code>weekheader</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (1)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/calendar.html#calendar.setfirstweekday" target="_blank" rel="noopener noreferrer"><code>setfirstweekday</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Global calendar configuration mutates ambient runtime state.</span>
               </li>
             
           </ul>
@@ -18347,7 +18414,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                766
+                773
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -18668,8 +18735,15 @@ ga('send', 'pageview');
       
         <li><a href="/python/">
           Python
-          (106)
+          (113)
         </a></li>
+        
+        <ul>
+          <li><a href="/python/calendar/">
+            calendar
+            (7)
+          </a></li>
+        </ul>
         
         <ul>
           <li><a href="/python/difflib/">
