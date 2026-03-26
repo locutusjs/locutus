@@ -234,6 +234,18 @@ calendar_month_matrix:
 calendar_timegm:
   - python/calendar/timegm
 
+calendar_format_week:
+  - python/calendar/week
+
+calendar_format_month:
+  - python/calendar/month
+
+calendar_format_year:
+  - python/calendar/calendar
+
+calendar_format_string:
+  - python/calendar/formatstring
+
 integer_square_root:
   - python/math/isqrt
 
