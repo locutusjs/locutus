@@ -3093,3 +3093,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - `calendar.timegm` is looser than the rest of the module: it validates the month, but intentionally allows day/hour/minute/second overflow and simply folds extra tuple tail values away.
   - `calendar.weekheader` in Python 3.12 has no default width and its negative-width behavior still matters for parity, so it is worth modeling directly rather than papering over with a non-negative JS convenience API.
+
+### Iteration 153
+
+2026-03-26
+
+- **Area: Expansion (Python)**
+- Plan:
+  - Finish the useful pure-output remainder of `python/calendar` while the module context is still warm, without touching the ambient-state or print-oriented leftovers.
+  - Keep the implementation strictly parity-driven around Python 3.12's formatting rules, especially for `calendar`, `month`, `week`, and `formatstring`.
+- Progress:
+  - Added a second `src/python/calendar` batch:
+    `calendar`, `formatstring`, `month`, and `week`.
+  - Extended `src/python/_helpers/_calendar.ts` with Python-style text-calendar formatting semantics, including `%2i`-based day formatting, module-level `formatstring` spacing, month/year block layout, and the year-view row composition used by `TextCalendar.formatyear`.
+  - Updated both Rosetta mapping files and regenerated the new `python/calendar` generated tests.
+- Validation:
+  - `corepack yarn exec vitest run test/util/python-calendar-harvest-2.vitest.ts`
+  - `corepack yarn test:parity python/calendar/week python/calendar/formatstring python/calendar/month python/calendar/calendar --no-cache`
+  - `corepack yarn exec vitest run test/generated/python/calendar/*.vitest.ts`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - `calendar.calendar` is easy to get almost-right but still subtly wrong; the only reliable path was to mirror the real `TextCalendar.formatyear` structure instead of hand-waving month-column spacing.
+  - Generated standalone JS tests are still valuable as a backstop for helper-extraction edge cases; they caught the `formatstring` helper aliasing issue that the direct parity run did not.
