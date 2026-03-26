@@ -3071,3 +3071,25 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
   - `corepack yarn exec vitest run test/util/ci-workflow.vitest.ts`
 - Key learnings:
   - The repo's `packageManager` pin makes even innocuous workflow calls like `yarn config get ...` depend on Corepack; using bare `yarn` before that handoff is a latent CI trap.
+
+### Iteration 152
+
+2026-03-26
+
+- **Area: Expansion (Python)**
+- Plan:
+  - Pivot from a second `python/operator` batch to `python/calendar`, because `operator` is effectively complete apart from explicitly skipped or awkward leftovers like `attrgetter`, `methodcaller`, and the barrel-name conflict around `index`.
+  - Land one parity-friendly first harvest that keeps to plain-value helpers and the module's default `wanted` policy.
+- Progress:
+  - Added a new `src/python/calendar` namespace with the first batch:
+    `isleap`, `leapdays`, `monthcalendar`, `monthrange`, `timegm`, `weekday`, and `weekheader`.
+  - Introduced shared calendar semantics in `src/python/_helpers/_calendar.ts`, including proleptic Gregorian weekday arithmetic, month-matrix building, leap-year counting, Python-style week-header formatting, and `timegm` tuple normalization without relying on JS `Date` quirks.
+  - Updated both Rosetta mapping files and regenerated the calendar generated tests, API snapshots, and type-contract snapshot for the new namespace.
+- Validation:
+  - `corepack yarn exec vitest run test/util/python-calendar-harvest-1.vitest.ts`
+  - `corepack yarn test:parity python/calendar/isleap python/calendar/leapdays python/calendar/monthrange python/calendar/weekday python/calendar/weekheader python/calendar/monthcalendar python/calendar/timegm --no-cache`
+  - `corepack yarn exec vitest run test/generated/python/calendar/*.vitest.ts`
+  - `corepack yarn website:verify`
+- Key learnings:
+  - `calendar.timegm` is looser than the rest of the module: it validates the month, but intentionally allows day/hour/minute/second overflow and simply folds extra tuple tail values away.
+  - `calendar.weekheader` in Python 3.12 has no default width and its negative-width behavior still matters for parity, so it is worth modeling directly rather than papering over with a non-negative JS convenience API.

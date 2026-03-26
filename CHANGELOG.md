@@ -31,6 +31,11 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.28...mai
 
 - Fixed the CI/nightly Yarn cache-directory lookup to use `corepack yarn config get cacheFolder`, so GitHub Actions no longer trips over the global Yarn 1 binary before Corepack activates Yarn 4.
 
+### Expansion
+
+- Added a first `python/calendar` harvest focused on plain-value calendar helpers:
+  `isleap`, `leapdays`, `monthcalendar`, `monthrange`, `timegm`, `weekday`, and `weekheader`.
+
 ## v3.0.28
 
 Released: 2026-03-26. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.27...v3.0.28).
