@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-27T12:56:21.853Z">
-<meta property="article:modified_time" content="2026-03-27T12:56:21.853Z">
+<meta property="article:published_time" content="2026-03-27T15:42:37.849Z">
+<meta property="article:modified_time" content="2026-03-27T15:42:37.849Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,7 +229,7 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 117 Python standard library functions across 7 modules.
+        TypeScript implementations of 128 Python standard library functions across 8 modules.
         Each function is individually importable and tree-shakeable.
       </p>
 
@@ -267,6 +267,33 @@ ga('send', 'pageview');
             <li><a href="/python/difflib/get_close_matches/">get_close_matches</a></li>
           
             <li><a href="/python/difflib/ndiff/">ndiff</a></li>
+          
+        </ul>
+      
+        <strong>itertools</strong>
+        <ul>
+          
+            <li><a href="/python/itertools/accumulate/">accumulate</a></li>
+          
+            <li><a href="/python/itertools/batched/">batched</a></li>
+          
+            <li><a href="/python/itertools/chain/">chain</a></li>
+          
+            <li><a href="/python/itertools/combinations/">combinations</a></li>
+          
+            <li><a href="/python/itertools/combinations_with_replacement/">combinations_with_replacement</a></li>
+          
+            <li><a href="/python/itertools/compress/">compress</a></li>
+          
+            <li><a href="/python/itertools/islice/">islice</a></li>
+          
+            <li><a href="/python/itertools/pairwise/">pairwise</a></li>
+          
+            <li><a href="/python/itertools/permutations/">permutations</a></li>
+          
+            <li><a href="/python/itertools/product/">product</a></li>
+          
+            <li><a href="/python/itertools/zip_longest/">zip_longest</a></li>
           
         </ul>
       
@@ -543,16 +570,16 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        117/2184 shipped
-         &middot; 120 next
+        128/2184 shipped
+         &middot; 109 next
         
       </span>
       <span class="surface-panel__summary-stack">
         <span class="surface-stack surface-stack--compact" aria-label="Upstream surface coverage">
           
-            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.4%"></span>
+            <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.9%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5.5%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5%"></span>
             
             
               <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -562,7 +589,7 @@ ga('send', 'pageview');
         </span>
       </span>
     </span>
-    <span class="surface-panel__summary-badge">5%</span>
+    <span class="surface-panel__summary-badge">6%</span>
   </summary>
 
   <div class="surface-panel__content">
@@ -578,16 +605,16 @@ ga('send', 'pageview');
         
       </div>
       <div class="surface-coverage-badge">
-        <strong>5%</strong>
+        <strong>6%</strong>
         <span>catalog shipped</span>
       </div>
     </div>
 
     <div class="surface-stack" aria-label="Upstream surface coverage">
       
-        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.4%"></span>
+        <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 5.9%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5.5%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 5%"></span>
         
         
           <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -703,6 +730,25 @@ ga('send', 'pageview');
       
         
         <span class="surface-minimap__tile surface-minimap__tile--mid"
+              title="itertools: 55% shipped"
+              data-ns="itertools"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">itertools</span>
+          <span class="surface-minimap__pct">55%</span>
+        </span>
+      
+        
+        <span class="surface-minimap__tile surface-minimap__tile--mid"
               title="difflib: 33% shipped"
               data-ns="difflib"
               onclick="(function(el){
@@ -755,25 +801,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">builtins</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--wanted"
-              title="itertools: 0% shipped"
-              data-ns="itertools"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">itertools</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -5992,12 +6019,12 @@ ga('send', 'pageview');
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">117/2184</strong>
+        <strong class="surface-kpi__value">128/2184</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">120</strong>
+          <strong class="surface-kpi__value">109</strong>
         </article>
       
       
@@ -7233,7 +7260,7 @@ ga('send', 'pageview');
           
           <li>
             
-              <a class="surface-entry-link" href="/python/operator/sub/"><code>sub</code></a>
+              <a class="surface-entry-link" href="/python/re/sub/"><code>sub</code></a>
             
           </li>
         
@@ -7500,6 +7527,251 @@ ga('send', 'pageview');
 
 
 
+<article class="surface-card" data-namespace="itertools">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/python/itertools/">itertools</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>python:3.12:itertools</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>73%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 73.3%"></span>
+      
+        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 26.7%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>11/15</strong> shipped</span>
+    <span><strong>4</strong> next</span>
+    <span><strong>5</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/python/itertools/">itertools</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (11)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/accumulate/"><code>accumulate</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/batched/"><code>batched</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/chain/"><code>chain</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/combinations/"><code>combinations</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/combinations_with_replacement/"><code>combinations_with_replacement</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/compress/"><code>compress</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/islice/"><code>islice</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/pairwise/"><code>pairwise</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/permutations/"><code>permutations</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/product/"><code>product</code></a>
+            
+          </li>
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/itertools/zip_longest/"><code>zip_longest</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+    <div class="surface-buckets">
+      
+        <section class="surface-bucket surface-bucket--next">
+          <h4>Next</h4>
+          
+          
+            
+              <p class="surface-bucket__group-note">Predicate-based slicing has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>dropwhile</code></li>
+              
+                <li><code>takewhile</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Predicate-based filtering has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>filterfalse</code></li>
+              
+            </ul>
+          
+            
+              <p class="surface-bucket__group-note">Spread-argument mapping still has a clean plain-value contract.</p>
+            
+            <ul class="surface-entry-list surface-entry-list--flow">
+              
+                <li><code>starmap</code></li>
+              
+            </ul>
+          
+        </section>
+      
+
+      
+    </div>
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (5)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.count" target="_blank" rel="noopener noreferrer"><code>count</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.cycle" target="_blank" rel="noopener noreferrer"><code>cycle</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.groupby" target="_blank" rel="noopener noreferrer"><code>groupby</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.repeat" target="_blank" rel="noopener noreferrer"><code>repeat</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.tee" target="_blank" rel="noopener noreferrer"><code>tee</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
 <article class="surface-card" data-namespace="difflib">
   <div class="surface-card__header">
     <div>
@@ -7699,7 +7971,7 @@ ga('send', 'pageview');
           
           <li>
             
-              <a class="surface-entry-link" href="/python/operator/sub/"><code>sub</code></a>
+              <a class="surface-entry-link" href="/python/re/sub/"><code>sub</code></a>
             
           </li>
         
@@ -8445,246 +8717,6 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Runtime namespace introspection is outside Locutus&#39; portability scope.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-
-
-        
-          
-
-
-
-<article class="surface-card" data-namespace="itertools">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          itertools
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Python 3.12</code>
-        <span>&middot;</span>
-        <span>Catalog source: version-pinned source manifest <code>python:3.12:itertools</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/15</strong> shipped</span>
-    <span><strong>15</strong> next</span>
-    <span><strong>5</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Accumulation over plain iterables can be represented as arrays of intermediate results.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>accumulate</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Fixed-size chunking is a strong plain-value portability target.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>batched</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Sequence concatenation maps naturally onto arrays.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>chain</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Finite combinatorics helpers can be represented as arrays of tuples.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>combinations</code></li>
-              
-                <li><code>combinations_with_replacement</code></li>
-              
-                <li><code>permutations</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Mask-based filtering has a clean plain-value contract.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>compress</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Predicate-based slicing has a clean plain-value contract.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>dropwhile</code></li>
-              
-                <li><code>takewhile</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Predicate-based filtering has a clean plain-value contract.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>filterfalse</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Iterator slicing maps naturally onto array slicing semantics.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>islice</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Adjacent-pair grouping can be represented as arrays of tuples.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>pairwise</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Cartesian products can be represented as arrays of tuples.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>product</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Spread-argument mapping still has a clean plain-value contract.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>starmap</code></li>
-              
-            </ul>
-          
-            
-              <p class="surface-bucket__group-note">Sequence zipping has a strong plain-value contract.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>zip_longest</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (5)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.count" target="_blank" rel="noopener noreferrer"><code>count</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.cycle" target="_blank" rel="noopener noreferrer"><code>cycle</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.groupby" target="_blank" rel="noopener noreferrer"><code>groupby</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.repeat" target="_blank" rel="noopener noreferrer"><code>repeat</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/itertools.html#itertools.tee" target="_blank" rel="noopener noreferrer"><code>tee</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.</span>
               </li>
             
           </ul>
@@ -18442,7 +18474,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                777
+                788
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -18763,7 +18795,7 @@ ga('send', 'pageview');
       
         <li><a href="/python/">
           Python
-          (117)
+          (128)
         </a></li>
         
         <ul>
@@ -18777,6 +18809,13 @@ ga('send', 'pageview');
           <li><a href="/python/difflib/">
             difflib
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/itertools/">
+            itertools
+            (11)
           </a></li>
         </ul>
         
