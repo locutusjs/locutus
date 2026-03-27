@@ -2411,6 +2411,7 @@ type _TypeContract_0336_Param1_RejectsString = ExpectFalse<IsAssignable<'__LOCUT
 type _TypeContract_0336_Param1_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_17bru98.bcround>[1]>>
 type _TypeContract_0337_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_skvmi8.bcscale>>>
 type _TypeContract_0337_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_skvmi8.bcscale>[0]>>
+type _TypeContract_0337_Param0_OptionalAcceptsUndefined = ExpectTrue<IsAssignable<undefined, Parameters<typeof m_skvmi8.bcscale>[0]>>
 type _TypeContract_0337_Param0_RejectsBoolean = ExpectFalse<IsAssignable<true, Parameters<typeof m_skvmi8.bcscale>[0]>>
 type _TypeContract_0338_ReturnNotAny = ExpectFalse<IsAny<ReturnType<typeof m_4vxb96.bcsub>>>
 type _TypeContract_0338_Param0_NotAny = ExpectFalse<IsAny<Parameters<typeof m_4vxb96.bcsub>[0]>>

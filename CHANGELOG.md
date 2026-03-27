@@ -27,6 +27,10 @@ Ideas that will be planned and find their way into a release at one point
 
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.30...main).
 
+### Fixes
+
+- Restored PHP-style scalar coercion for `strtotime()` numeric input and aligned `bcscale()` with modern PHP getter/setter semantics, including shared default `bcmath` scale across `bc*` helpers.
+
 ## v3.0.30
 
 Released: 2026-03-26. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.29...v3.0.30).

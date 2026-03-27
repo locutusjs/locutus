@@ -1376,6 +1376,7 @@ export function strtotime(str: string, now?: number): false | number {
   //        returns 7: 1499644800
 
   const nowSeconds = now == null ? Math.floor(Date.now() / 1000) : now
+  str = String(str)
 
   // the rule order is important
   // if multiple rules match, the longest match wins
