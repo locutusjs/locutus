@@ -23,9 +23,23 @@ Ideas that will be planned and find their way into a release at one point
   - [ ] Java
   - [ ] Haskell
 
+## v3.0.32
+
+Released: 2026-03-27. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.31...v3.0.32).
+Version rationale: `patch` for additive Python runtime expansion without import-model or runtime floor changes.
+
+### Maintenance
+
+- Stopped publishing website pages for internal `src/*/_helpers/*` implementation details.
+
+### Expansion
+
+- Added a first `python/itertools` harvest focused on parity-friendly iterable combinatorics:
+  `accumulate`, `batched`, `chain`, `combinations`, `combinations_with_replacement`, `compress`, `islice`, `pairwise`, `permutations`, `product`, and `zip_longest`.
+
 ## main
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.31...main).
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.32...main).
 
 ### Fixes
 
