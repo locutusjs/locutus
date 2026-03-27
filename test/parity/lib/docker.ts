@@ -92,9 +92,16 @@ export function getDockerDigest(image: string): string {
 export function runInDocker(
   image: string,
   cmd: string[],
-  options: { mountRepo?: boolean; repoPath?: string; timeout?: number; maxBuffer?: number; platform?: string } = {},
+  options: {
+    mountRepo?: boolean
+    repoPath?: string
+    timeout?: number
+    maxBuffer?: number
+    platform?: string
+    input?: string
+  } = {},
 ): DockerRunResult {
-  const { mountRepo = false, repoPath, timeout = 10000, maxBuffer = 16 * 1024 * 1024, platform } = options
+  const { mountRepo = false, repoPath, timeout = 10000, maxBuffer = 16 * 1024 * 1024, platform, input } = options
 
   try {
     const dockerArgs = ['run', '--rm', '-i']
@@ -109,6 +116,7 @@ export function runInDocker(
       encoding: 'utf8',
       timeout,
       maxBuffer,
+      input,
     })
 
     if (result.error) {
@@ -116,10 +124,11 @@ export function runInDocker(
     }
 
     if (result.status !== 0 || (result.stderr && result.stderr.trim())) {
+      const stderr = result.stderr?.trim()
       return {
         success: false,
         output: result.stdout || '',
-        error: result.stderr?.trim() || 'Unknown error',
+        error: stderr || `Docker exited with status ${result.status ?? 'unknown'}`,
       }
     }
 
