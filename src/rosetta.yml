@@ -246,6 +246,36 @@ calendar_format_year:
 calendar_format_string:
   - python/calendar/formatstring
 
+iterable_accumulate:
+  - python/itertools/accumulate
+
+iterable_batch:
+  - python/itertools/batched
+
+iterable_chain:
+  - python/itertools/chain
+
+iterable_combinations:
+  - python/itertools/combinations
+
+iterable_combinations_with_replacement:
+  - python/itertools/combinations_with_replacement
+
+iterable_compress:
+  - python/itertools/compress
+
+iterable_slice:
+  - python/itertools/islice
+
+iterable_pairwise:
+  - python/itertools/pairwise
+
+iterable_product:
+  - python/itertools/product
+
+iterable_zip_longest:
+  - python/itertools/zip_longest
+
 integer_square_root:
   - python/math/isqrt
 
@@ -333,6 +363,7 @@ numeric_type:
   - lua/math/type
 
 list_permutations:
+  - python/itertools/permutations
   - ruby/Array/permutation
   - haskell/list/permutations
 

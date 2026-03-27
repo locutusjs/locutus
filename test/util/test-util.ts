@@ -61,6 +61,20 @@ describe('util', function () {
 
       expect(() => util._verifyInjectwebPaths()).toThrow(/case-insensitive path collision/)
     })
+
+    it('should skip publishing helper pages', async function () {
+      const util = new Util()
+      const params = await util._load('python/_helpers/_calendar.ts', {})
+      expect(params).not.toBeNull()
+      if (!params) {
+        return
+      }
+
+      util._injectwebBuffer = {}
+      await util._injectwebOne(params)
+
+      expect(util._injectwebBuffer).toEqual({})
+    })
   })
 
   describe('_extractDependencies', function () {

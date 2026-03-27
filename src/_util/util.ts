@@ -549,6 +549,10 @@ class Util {
   }
 
   async _injectwebOne(params: ParsedParams): Promise<void> {
+    if (params.category === '_helpers') {
+      return
+    }
+
     const authors: Record<string, string[]> = {}
     this.authorKeys.forEach((key) => {
       if (params.headKeys[key]) {
