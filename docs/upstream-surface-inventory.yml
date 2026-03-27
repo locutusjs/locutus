@@ -1500,51 +1500,18 @@ python:
         decision: skip_runtime_model
         note: Many itertools helpers are lazy or stateful iterator factories rather than direct plain values.
       decisions:
-        accumulate:
-          decision: wanted
-          note: Accumulation over plain iterables can be represented as arrays of intermediate results.
-        batched:
-          decision: wanted
-          note: Fixed-size chunking is a strong plain-value portability target.
-        chain:
-          decision: wanted
-          note: Sequence concatenation maps naturally onto arrays.
-        combinations:
-          decision: wanted
-          note: Finite combinatorics helpers can be represented as arrays of tuples.
-        combinations_with_replacement:
-          decision: wanted
-          note: Finite combinatorics helpers can be represented as arrays of tuples.
-        compress:
-          decision: wanted
-          note: Mask-based filtering has a clean plain-value contract.
         dropwhile:
           decision: wanted
           note: Predicate-based slicing has a clean plain-value contract.
         filterfalse:
           decision: wanted
           note: Predicate-based filtering has a clean plain-value contract.
-        islice:
-          decision: wanted
-          note: Iterator slicing maps naturally onto array slicing semantics.
-        pairwise:
-          decision: wanted
-          note: Adjacent-pair grouping can be represented as arrays of tuples.
-        permutations:
-          decision: wanted
-          note: Finite combinatorics helpers can be represented as arrays of tuples.
-        product:
-          decision: wanted
-          note: Cartesian products can be represented as arrays of tuples.
         starmap:
           decision: wanted
           note: Spread-argument mapping still has a clean plain-value contract.
         takewhile:
           decision: wanted
           note: Predicate-based slicing has a clean plain-value contract.
-        zip_longest:
-          decision: wanted
-          note: Sequence zipping has a strong plain-value contract.
     math:
       title: math module
       default:
