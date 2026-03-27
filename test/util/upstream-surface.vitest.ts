@@ -947,6 +947,62 @@ describe('upstream surface inventory', () => {
     }
   })
 
+  it('feeds Perl namespace catalogs through stdin instead of a giant argv payload', async () => {
+    const runInDocker = vi
+      .fn()
+      .mockReturnValueOnce({
+        success: true,
+        output: '["core","List::Util"]',
+      })
+      .mockReturnValueOnce({
+        success: true,
+        output: [
+          '__LOCUTUS_PERL_JSON_BEGIN__',
+          '{"language":"perl","namespaces":[{"namespace":"core","entries":["abs"]},{"namespace":"List::Util","entries":["first"]}]}',
+          '__LOCUTUS_PERL_JSON_END__',
+          '',
+        ].join('\n'),
+      })
+
+    try {
+      vi.resetModules()
+      vi.doMock('../parity/lib/docker.ts', async () => {
+        const actual = await vi.importActual<typeof import('../parity/lib/docker.ts')>('../parity/lib/docker.ts')
+        return {
+          ...actual,
+          runInDocker,
+        }
+      })
+
+      const { discoverPerlUpstreamSurface } = await import('../parity/lib/upstream-surface-canonical.ts')
+      const snapshot = await discoverPerlUpstreamSurface()
+
+      expect(runInDocker).toHaveBeenNthCalledWith(
+        1,
+        'perl:5.40',
+        expect.any(Array),
+        expect.objectContaining({ timeout: 120000, maxBuffer: 32 * 1024 * 1024 }),
+      )
+      expect(runInDocker).toHaveBeenNthCalledWith(
+        2,
+        'perl:5.40',
+        ['perl', '-e', expect.any(String)],
+        expect.objectContaining({
+          timeout: 120000,
+          maxBuffer: 64 * 1024 * 1024,
+          input: JSON.stringify(['List::Util', 'core']),
+        }),
+      )
+      expect(snapshot.namespaces).toEqual([
+        expect.objectContaining({ namespace: 'core', entries: ['abs'] }),
+        expect.objectContaining({ namespace: 'List::Util', entries: ['first'] }),
+      ])
+    } finally {
+      vi.doUnmock('../parity/lib/docker.ts')
+      vi.resetModules()
+    }
+  })
+
   it('keeps inventory-only languages out of parity support even while tracking their upstream surface', () => {
     expect(getParitySupportedLanguages()).toContain('php')
     expect(getParitySupportedLanguages()).not.toContain('swift')

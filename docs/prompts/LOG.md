@@ -3139,3 +3139,24 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The real `bcmath` bug was mostly in our integration layer, not the vendored LGPL math engine itself: recreating the library on every call discarded the shared default scale that PHP exposes through `bcscale()`.
   - For parser-style ports like `strtotime()`, explicit scalar coercion at the boundary is often the parity fix; otherwise JS runtime typing can send valid PHP inputs down a completely different code path.
+
+### Iteration 155
+
+2026-03-27
+
+- **Area: Maintenance (Nightly parity)**
+- Plan:
+  - Fix the still-red `Nightly Parity` workflow before starting another harvest, focusing on the Perl live upstream refresh that dies immediately after the `perl:5.40` pull on GitHub runners.
+  - Prefer a targeted hardening of the Perl discovery path over weakening the generic Docker stderr handling.
+- Progress:
+  - Confirmed from the failed GitHub nightly log that `Refresh live upstream snapshots` dies immediately after pulling `perl:5.40`, before a Perl snapshot is written.
+  - Changed `test/parity/lib/upstream-surface-canonical.ts` so `discoverPerlUpstreamSurface()` no longer passes the full discovered namespace catalog as one giant argv JSON blob to `perl -e`; it now streams that payload through Docker stdin and decodes it inside Perl.
+  - Hardened `test/parity/lib/docker.ts` so `runInDocker()` can accept explicit stdin input and reports a non-zero exit status even when stderr is empty, which makes future nightly failures much easier to diagnose.
+  - Added a regression test in `test/util/upstream-surface.vitest.ts` that locks in the new Perl stdin path.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts test/util/ci-workflow.vitest.ts`
+  - `corepack yarn refresh:upstream-surface perl`
+  - `corepack yarn test:upstream-surface perl`
+- Key learnings:
+  - The nightly failure signature matched a transport problem, not a catalog or triage problem: local Perl discovery still worked, but the GitHub runner path was too dependent on a huge `argv` payload surviving unchanged.
+  - Tightening error messages in shared infra is worth doing while fixing one concrete workflow; otherwise the next runner-only failure again collapses into an unhelpful `exit code 1`.

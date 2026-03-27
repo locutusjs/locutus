@@ -629,11 +629,13 @@ export function discoverPerlUpstreamSurface(): Promise<UpstreamSurfaceSnapshot> 
   const catalog = discoverPerlRuntimeModuleCatalog()
   const beginMarker = '__LOCUTUS_PERL_JSON_BEGIN__'
   const endMarker = '__LOCUTUS_PERL_JSON_END__'
+  const namespacePayload = JSON.stringify(catalog.namespaces)
   const script = `
 use JSON::PP;
 use Pod::Functions;
 
-my @modules = @{decode_json($ARGV[0])};
+my $payload = do { local $/; <STDIN> };
+my @modules = @{decode_json($payload)};
 my @namespaces;
 
 my @core_entries = sort grep {
@@ -685,9 +687,10 @@ print encode_json({
 });
 print "\\n${endMarker}\\n";
 `.trim()
-  const result = runInDocker(PERL_DOCKER_IMAGE, ['perl', '-e', script, JSON.stringify(catalog.namespaces)], {
+  const result = runInDocker(PERL_DOCKER_IMAGE, ['perl', '-e', script], {
     timeout: 120000,
     maxBuffer: 64 * 1024 * 1024,
+    input: namespacePayload,
   })
 
   if (!result.success) {
