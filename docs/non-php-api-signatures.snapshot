@@ -280,6 +280,20 @@ src/python/_helpers/_calendar.ts :: export function normalizeWeekWidth(value: un
 src/python/_helpers/_calendar.ts :: export function pythonWeekday(year: number, month: number, day: number): number
 src/python/_helpers/_calendar.ts :: export function timeTupleToUnixSeconds( year: number, month: number, day: number, hour: number, minute: number, second: number, ): number
 src/python/_helpers/_calendar.ts :: export function toCalendarInteger(value: unknown, functionName: string): number
+src/python/_helpers/_itertools.ts :: export function itertoolsAccumulate( iterable: unknown, func: ((accumulator: unknown, value: unknown) => unknown) | undefined, ): unknown[]
+src/python/_helpers/_itertools.ts :: export function itertoolsBatched(iterable: unknown, n: unknown): unknown[][]
+src/python/_helpers/_itertools.ts :: export function itertoolsChain(iterables: unknown[]): unknown[]
+src/python/_helpers/_itertools.ts :: export function itertoolsCombinations(iterable: unknown, r: unknown): unknown[][]
+src/python/_helpers/_itertools.ts :: export function itertoolsCombinationsWithReplacement(iterable: unknown, r: unknown): unknown[][]
+src/python/_helpers/_itertools.ts :: export function itertoolsCompress(data: unknown, selectors: unknown): unknown[]
+src/python/_helpers/_itertools.ts :: export function itertoolsIslice(iterable: unknown, args: unknown[]): unknown[]
+src/python/_helpers/_itertools.ts :: export function itertoolsPairwise(iterable: unknown): unknown[][]
+src/python/_helpers/_itertools.ts :: export function itertoolsPermutations(iterable: unknown, r?: unknown): unknown[][]
+src/python/_helpers/_itertools.ts :: export function itertoolsProduct(args: unknown[]): unknown[][]
+src/python/_helpers/_itertools.ts :: export function itertoolsZipLongest(args: unknown[]): unknown[][]
+src/python/_helpers/_itertools.ts :: export function parseProductArgs(args: unknown[]): { iterables: unknown[]; repeat: number }
+src/python/_helpers/_itertools.ts :: export function parseZipLongestArgs(args: unknown[]): { iterables: unknown[]; fillvalue: unknown }
+src/python/_helpers/_itertools.ts :: export function toIterableArray(iterable: unknown, functionName: string): unknown[]
 src/python/_helpers/_operator.ts :: export function fromPythonInteger(value: bigint, functionName: string): number
 src/python/_helpers/_operator.ts :: export function isNumericLike(value: unknown): value is NumericLike
 src/python/_helpers/_operator.ts :: export function pythonAbs(value: unknown, functionName: string): number
@@ -336,6 +350,17 @@ src/python/calendar/weekday.ts :: export function weekday(year: unknown, month: 
 src/python/calendar/weekheader.ts :: export function weekheader(width: unknown): string
 src/python/difflib/get_close_matches.ts :: export function get_close_matches( word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6, ): string[]
 src/python/difflib/ndiff.ts :: export function ndiff( a: string[] | unknown, b: string[] | unknown, linejunk: LineJunkPredicate = null, charjunk: CharJunkPredicate = isCharacterJunk, ): string[]
+src/python/itertools/accumulate.ts :: export function accumulate(iterable: unknown, func?: (accumulator: unknown, value: unknown) => unknown): unknown[]
+src/python/itertools/batched.ts :: export function batched(iterable: unknown, n: unknown): unknown[][]
+src/python/itertools/chain.ts :: export function chain(...iterables: unknown[]): unknown[]
+src/python/itertools/combinations.ts :: export function combinations(iterable: unknown, r: unknown): unknown[][]
+src/python/itertools/combinations_with_replacement.ts :: export function combinations_with_replacement(iterable: unknown, r: unknown): unknown[][]
+src/python/itertools/compress.ts :: export function compress(data: unknown, selectors: unknown): unknown[]
+src/python/itertools/islice.ts :: export function islice(iterable: unknown, ...args: unknown[]): unknown[]
+src/python/itertools/pairwise.ts :: export function pairwise(iterable: unknown): unknown[][]
+src/python/itertools/permutations.ts :: export function permutations(iterable: unknown, r?: unknown): unknown[][]
+src/python/itertools/product.ts :: export function product(...args: unknown[]): unknown[][]
+src/python/itertools/zip_longest.ts :: export function zip_longest(...args: unknown[]): unknown[][]
 src/python/math/acos.ts :: export function acos(x: number): number
 src/python/math/acosh.ts :: export function acosh(x: number): number
 src/python/math/asin.ts :: export function asin(x: number): number

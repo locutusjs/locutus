@@ -21,6 +21,20 @@ const STRING_CONSTANTS = new Set([
   'whitespace',
 ])
 
+const PYTHON_LISTIFY_OUTPUT_FUNCTIONS = new Set([
+  'accumulate',
+  'batched',
+  'chain',
+  'combinations',
+  'combinations_with_replacement',
+  'compress',
+  'islice',
+  'pairwise',
+  'permutations',
+  'product',
+  'zip_longest',
+])
+
 // Functions to skip (implementation differences, etc.)
 export const PYTHON_SKIP_LIST = new Set<string>([
   // None currently - all Python functions should be testable
@@ -528,15 +542,18 @@ function jsToPython(jsCode: string[], funcName: string, category?: string): stri
 
   const originalLastLine = jsCode[jsCode.length - 1]
   const assignedVar = extractAssignedVar(originalLastLine)
+  const shouldListifyOutput = module === 'itertools' && PYTHON_LISTIFY_OUTPUT_FUNCTIONS.has(funcName)
 
   let result: string
   if (assignedVar) {
-    result = `${imports}${lines.join('\n')}\nprint(json.dumps(${assignedVar}))`
+    const outputExpr = shouldListifyOutput ? `list(${assignedVar})` : assignedVar
+    result = `${imports}${lines.join('\n')}\nprint(json.dumps(${outputExpr}))`
   } else {
     const setup = lines.slice(0, -1)
     const lastExpr = lines[lines.length - 1]
     const prefix = setup.length ? `${setup.join('\n')}\n` : ''
-    result = `${imports}${prefix}print(json.dumps(${lastExpr}))`
+    const outputExpr = shouldListifyOutput ? `list(${lastExpr})` : lastExpr
+    result = `${imports}${prefix}print(json.dumps(${outputExpr}))`
   }
 
   return result
