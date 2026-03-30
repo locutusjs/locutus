@@ -47,6 +47,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.32...mai
 - Hardened nightly Perl upstream-surface refresh by feeding the discovered namespace catalog through Docker stdin instead of a giant `perl -e` argv payload, and improved `runInDocker()` diagnostics when a container exits non-zero without stderr.
 - Marked Perl upstream-surface discovery as Docker-backed so refresh/enumeration pre-pulls `perl:5.40` instead of letting the first `docker run` fail on implicit pull output in nightly CI.
 - Enabled arm64 emulation in `Nightly Parity` so Swift upstream-surface refresh can execute the `swift:6.0` arm64 symbolgraph extraction path on GitHub’s x64 runners.
+- Made upstream-surface Docker prewarming platform-aware, so Swift refresh now pre-pulls `swift:6.0` for `linux/arm64` instead of warming the host-arch image and forcing a failing implicit repull at `docker run` time.
 
 ## v3.0.31
 

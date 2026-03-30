@@ -80,10 +80,13 @@ export async function enumerateUpstreamSurfaceSnapshots({
     const snapshotPath = getUpstreamSurfaceSnapshotPath(snapshotDir, language)
 
     if (handler?.upstreamSurface?.discover) {
+      const dockerOptions = handler.upstreamSurface.discoverDockerPlatform
+        ? { platform: handler.upstreamSurface.discoverDockerPlatform }
+        : undefined
       if (
         handler.upstreamSurface.discoverMode !== 'snapshot' &&
         (handler.upstreamSurface.discoverUsesDocker ?? true) &&
-        !ensureDockerImage(handler.dockerImage)
+        !ensureDockerImage(handler.dockerImage, dockerOptions)
       ) {
         logger.error(`Unable to pull Docker image for ${language}: ${handler.dockerImage}`)
         process.exit(1)

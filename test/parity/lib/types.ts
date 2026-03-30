@@ -165,6 +165,8 @@ export interface UpstreamSurfaceAdapter {
   discoverMode?: 'live' | 'snapshot' | undefined
   /** Whether live discovery requires Docker rather than direct network/source fetches. */
   discoverUsesDocker?: boolean | undefined
+  /** Optional Docker platform to pre-pull and run discovery under. */
+  discoverDockerPlatform?: string | undefined
   /** Discover the canonical official namespace list for one language. */
   discoverNamespaceCatalog?:
     | (() => Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> | DiscoveredUpstreamSurfaceNamespaceCatalog)

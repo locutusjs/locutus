@@ -3200,3 +3200,22 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The nightly queue is now flushing blockers in sequence: once Perl was fixed, Swift immediately surfaced as the next hidden arm64/runtime assumption.
   - For inventory-only runtimes like Swift, preserving the canonical discovery contract is usually better than weakening the source; CI should adapt to the runtime when the runtime choice is intentional and stable.
+
+### Iteration 158
+
+2026-03-30
+
+- **Area: Maintenance (Nightly parity follow-up)**
+- Plan:
+  - Verify whether the QEMU-enabled nightly fix actually clears Swift, and if not, identify whether the remaining issue lives in the workflow, the Docker prewarm layer, or Swift discovery itself.
+  - Keep the fix as small and infrastructural as possible.
+- Progress:
+  - Re-ran nightly on the post-`#610` head and confirmed the workflow now executes `docker/setup-qemu-action@v3` successfully before refresh.
+  - Pulled the failed nightly log and found the next concrete mismatch: `ensureDockerImage()` still pre-pulled the default host-arch `swift:6.0` image, while the actual Swift discovery path runs with `--platform linux/arm64`.
+  - Added `discoverDockerPlatform` metadata to upstream-surface adapters and inventory-only builders, set Swift to `linux/arm64`, and updated `scripts/upstream-surface-enumeration.ts` plus `test/parity/lib/docker.ts` so image prewarming is platform-aware.
+  - Extended `test/util/upstream-surface.vitest.ts` so enumeration now asserts that Swift prewarming happens with the same `linux/arm64` platform the discovery run uses.
+- Validation:
+  - `corepack yarn exec vitest run test/util/ci-workflow.vitest.ts test/util/upstream-surface.vitest.ts`
+- Key learnings:
+  - QEMU was necessary but not sufficient: prewarming and runtime execution must agree on platform, otherwise Docker silently falls back to an implicit second pull at execution time.
+  - `discoverUsesDocker` and `discoverDockerPlatform` together are now part of the discovery contract for platform-specific runtimes like Swift.
