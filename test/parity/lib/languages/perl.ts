@@ -175,7 +175,7 @@ export const perlHandler: LanguageHandler = {
   upstreamSurface: {
     discover: discoverPerlUpstreamSurface,
     discoverMode: 'live',
-    discoverUsesDocker: false,
+    discoverUsesDocker: true,
     discoverNamespaceCatalog: discoverPerlUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,

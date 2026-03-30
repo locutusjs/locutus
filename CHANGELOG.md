@@ -45,6 +45,7 @@ Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.32...mai
 
 - Restored PHP-style scalar coercion for `strtotime()` numeric input and aligned `bcscale()` with modern PHP getter/setter semantics, including shared default `bcmath` scale across `bc*` helpers.
 - Hardened nightly Perl upstream-surface refresh by feeding the discovered namespace catalog through Docker stdin instead of a giant `perl -e` argv payload, and improved `runInDocker()` diagnostics when a container exits non-zero without stderr.
+- Marked Perl upstream-surface discovery as Docker-backed so refresh/enumeration pre-pulls `perl:5.40` instead of letting the first `docker run` fail on implicit pull output in nightly CI.
 
 ## v3.0.31
 

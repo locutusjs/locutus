@@ -1012,6 +1012,12 @@ describe('upstream surface inventory', () => {
     expect(isLanguageSupported('swift')).toBe(false)
   })
 
+  it('marks Perl upstream-surface discovery as Docker-backed so enumeration pre-pulls the runtime image', async () => {
+    const { perlHandler } = await import('../parity/lib/languages/perl.ts')
+
+    expect(perlHandler.upstreamSurface?.discoverUsesDocker).toBe(true)
+  })
+
   it('includes source functions even when they do not define examples', () => {
     const root = mkdtempSync(join(tmpdir(), 'locutus-upstream-surface-'))
     const srcDir = join(root, 'src')

@@ -3160,3 +3160,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The nightly failure signature matched a transport problem, not a catalog or triage problem: local Perl discovery still worked, but the GitHub runner path was too dependent on a huge `argv` payload surviving unchanged.
   - Tightening error messages in shared infra is worth doing while fixing one concrete workflow; otherwise the next runner-only failure again collapses into an unhelpful `exit code 1`.
+
+### Iteration 156
+
+2026-03-28
+
+- **Area: Maintenance (Nightly parity follow-up)**
+- Plan:
+  - Verify whether the Perl stdin hardening actually fixed the nightly failure, and if not, isolate the remaining runner-only difference instead of guessing.
+  - Prefer a minimal follow-up once the real root cause is visible.
+- Progress:
+  - Re-ran `Nightly Parity` manually on the post-merge head and confirmed it still failed inside `Refresh live upstream snapshots`.
+  - Pulled the failed log and identified the real root cause: `scripts/upstream-surface-enumeration.ts` only pre-pulls Docker images for languages whose handlers set `discoverUsesDocker`, and `test/parity/lib/languages/perl.ts` incorrectly declared `discoverUsesDocker: false`.
+  - Updated the Perl handler to `discoverUsesDocker: true`, so refresh/enumeration now pre-pulls `perl:5.40` through `ensureDockerImage()` instead of letting the first `docker run` emit implicit pull output on stderr.
+  - Added a regression assertion in `test/util/upstream-surface.vitest.ts` to keep Perl marked as Docker-backed for upstream-surface discovery.
+- Validation:
+  - `corepack yarn exec vitest run test/util/upstream-surface.vitest.ts`
+  - `corepack yarn refresh:upstream-surface perl`
+- Key learnings:
+  - The stdin hardening was still worth keeping, but it solved the wrong layer first; the actual nightly break was the handler metadata that opted Perl out of image prewarming.
+  - For runtime-discovered languages, `discoverUsesDocker` is effectively part of the CI contract, not just optional metadata.
