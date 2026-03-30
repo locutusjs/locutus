@@ -20,5 +20,6 @@ export const swiftHandler = createInventoryOnlyLanguageHandler({
     language: 'swift',
     discover: discoverSwiftUpstreamSurface,
     discoverUsesDocker: true,
+    discoverDockerPlatform: 'linux/arm64',
   }),
 })

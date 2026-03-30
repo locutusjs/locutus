@@ -991,6 +991,7 @@ export interface InventoryOnlyDiscovererConfig {
   language: string
   discover: () => Promise<UpstreamSurfaceSnapshot> | UpstreamSurfaceSnapshot
   discoverUsesDocker?: boolean
+  discoverDockerPlatform?: string
   discoverNamespaceCatalog?: () =>
     | Promise<DiscoveredUpstreamSurfaceNamespaceCatalog>
     | DiscoveredUpstreamSurfaceNamespaceCatalog
@@ -1002,6 +1003,7 @@ export function buildInventoryOnlyUpstreamSurface(config: InventoryOnlyDiscovere
     discover: config.discover,
     discoverMode: 'live' as const,
     discoverUsesDocker: config.discoverUsesDocker ?? false,
+    discoverDockerPlatform: config.discoverDockerPlatform,
     discoverNamespaceCatalog:
       config.discoverNamespaceCatalog ??
       (async () => {

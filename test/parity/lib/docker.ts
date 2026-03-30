@@ -7,25 +7,33 @@ import { execSync, spawnSync } from 'node:child_process'
 // Track which images have been pulled this session
 const pulledImages = new Set<string>()
 
+function dockerImageKey(image: string, platform?: string): string {
+  return platform ? `${image}@@${platform}` : image
+}
+
 /**
  * Ensure Docker image is available and up-to-date
  * Only pulls once per session - subsequent calls just verify image exists
  */
-export function ensureDockerImage(image: string, options: { quiet?: boolean } = {}): boolean {
+export function ensureDockerImage(image: string, options: { quiet?: boolean; platform?: string } = {}): boolean {
+  const { quiet = false, platform } = options
+  const imageKey = dockerImageKey(image, platform)
   // Already pulled this session, skip
-  if (pulledImages.has(image)) {
+  if (pulledImages.has(imageKey)) {
     return true
   }
 
-  if (!options.quiet) {
-    console.log(`  Pulling ${image}...`)
+  if (!quiet) {
+    const platformNote = platform ? ` (${platform})` : ''
+    console.log(`  Pulling ${image}${platformNote}...`)
   }
 
   try {
-    execSync(`docker pull ${image}`, { stdio: 'pipe' })
-    pulledImages.add(image)
+    const platformArgs = platform ? ` --platform ${platform}` : ''
+    execSync(`docker pull${platformArgs} ${image}`, { stdio: 'pipe' })
+    pulledImages.add(imageKey)
     // Log the actual image digest for debugging
-    if (!options.quiet) {
+    if (!quiet) {
       try {
         const digest = execSync(`docker inspect ${image} --format '{{index .RepoDigests 0}}'`, {
           encoding: 'utf8',
@@ -40,9 +48,10 @@ export function ensureDockerImage(image: string, options: { quiet?: boolean } = 
   } catch {
     // Pull failed, check if we have a local copy as fallback
     try {
-      execSync(`docker image inspect ${image}`, { stdio: 'pipe' })
-      pulledImages.add(image)
-      if (!options.quiet) {
+      const inspectPlatformArgs = platform ? ` --platform ${platform}` : ''
+      execSync(`docker image inspect${inspectPlatformArgs} ${image}`, { stdio: 'pipe' })
+      pulledImages.add(imageKey)
+      if (!quiet) {
         console.log(`    (using cached image)`)
       }
       return true

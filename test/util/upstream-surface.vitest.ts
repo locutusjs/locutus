@@ -836,6 +836,7 @@ describe('upstream surface inventory', () => {
     const snapshotDir = join(root, 'snapshots')
     const logger = { log: vi.fn(), error: vi.fn() }
     const auditUpstreamSurfaceScope = vi.fn().mockResolvedValue(undefined)
+    const ensureDockerImage = vi.fn().mockReturnValue(true)
 
     try {
       vi.resetModules()
@@ -861,7 +862,8 @@ describe('upstream surface inventory', () => {
               ],
             }),
             discoverMode: 'live',
-            discoverUsesDocker: false,
+            discoverUsesDocker: true,
+            discoverDockerPlatform: 'linux/arm64',
           },
         }),
       }))
@@ -883,7 +885,7 @@ describe('upstream surface inventory', () => {
         return {
           ...actual,
           checkDockerAvailable: () => true,
-          ensureDockerImage: () => true,
+          ensureDockerImage,
         }
       })
 
@@ -900,6 +902,9 @@ describe('upstream surface inventory', () => {
         logger,
         rootDir: root,
         selectedLanguages: ['swift'],
+      })
+      expect(ensureDockerImage).toHaveBeenCalledWith('swift:6.0', {
+        platform: 'linux/arm64',
       })
     } finally {
       vi.doUnmock('../../scripts/upstream-surface-scope-audit.ts')
