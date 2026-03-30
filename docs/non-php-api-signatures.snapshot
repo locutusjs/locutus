@@ -257,6 +257,9 @@ src/powershell/string/toupper.ts :: export function toupper(str: string): string
 src/powershell/string/trim.ts :: export function trim(str: string): string
 src/powershell/string/trimend.ts :: export function trimend(str: string, chars?: string): string
 src/powershell/string/trimstart.ts :: export function trimstart(str: string, chars?: string): string
+src/python/_helpers/_bisect.ts :: export function pythonBisect(sequence: unknown, item: unknown, lo?: unknown, hi?: unknown): number
+src/python/_helpers/_bisect.ts :: export function pythonBisectLeft(sequence: unknown, item: unknown, lo?: unknown, hi?: unknown): number
+src/python/_helpers/_bisect.ts :: export function pythonBisectRight(sequence: unknown, item: unknown, lo?: unknown, hi?: unknown): number
 src/python/_helpers/_calendar.ts :: export function buildMonthCalendar(year: number, month: number): number[][]
 src/python/_helpers/_calendar.ts :: export function buildWeekHeader(width: number): string
 src/python/_helpers/_calendar.ts :: export function countLeapYearsBetween(startYear: number, endYear: number): number
@@ -337,6 +340,9 @@ src/python/_helpers/_statistics.ts :: export function toNumericSequence(data: un
 src/python/_helpers/_statistics.ts :: export function toStatisticNumber(value: unknown, functionName: string): number
 src/python/_helpers/_statistics.ts :: export type StatisticsNumericInput = number | boolean | bigint
 src/python/_helpers/_statistics.ts :: export type StatisticsSortableInput = StatisticsNumericInput | string
+src/python/bisect/bisect.ts :: export function bisect(a: unknown, x: unknown, lo?: unknown, hi?: unknown): number
+src/python/bisect/bisect_left.ts :: export function bisect_left(a: unknown, x: unknown, lo?: unknown, hi?: unknown): number
+src/python/bisect/bisect_right.ts :: export function bisect_right(a: unknown, x: unknown, lo?: unknown, hi?: unknown): number
 src/python/calendar/calendar.ts :: export function calendar(theyear: unknown, w = 2, l = 1, c = 6, m = 3): string
 src/python/calendar/formatstring.ts :: export function formatstring(items: unknown, cols = 20, spacing = 6): string
 src/python/calendar/isleap.ts :: export function isleap(year: unknown): boolean

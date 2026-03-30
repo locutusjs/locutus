@@ -1454,9 +1454,6 @@ python:
         note: Most base64 helpers traffic in bytes rather than plain JS string values.
     bisect:
       title: bisect module
-      default:
-        decision: wanted
-        note: Binary-search helpers are strong plain-value portability targets.
       decisions:
         insort:
           decision: skip_side_effects

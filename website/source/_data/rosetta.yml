@@ -178,6 +178,13 @@ array_binary_search:
 array_binary_search_index:
   - ruby/Array/bsearch_index
 
+array_bisect_left:
+  - python/bisect/bisect_left
+
+array_bisect_right:
+  - python/bisect/bisect
+  - python/bisect/bisect_right
+
 array_filter_map:
   - ruby/Array/filter_map
 

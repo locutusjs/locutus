@@ -3219,3 +3219,28 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - QEMU was necessary but not sufficient: prewarming and runtime execution must agree on platform, otherwise Docker silently falls back to an implicit second pull at execution time.
   - `discoverUsesDocker` and `discoverDockerPlatform` together are now part of the discovery contract for platform-specific runtimes like Swift.
+
+### Iteration 159
+
+2026-03-30
+
+- **Area: Product (Python bisect harvest 1)**
+- Plan:
+  - Harvest the parity-friendly `python/bisect` surface now that nightly maintenance is green again.
+  - Keep the scope to the non-mutating search helpers and avoid `insort*` side effects.
+- Progress:
+  - Added `src/python/bisect` with `bisect`, `bisect_left`, and `bisect_right`, backed by a shared `_bisect` helper that mirrors Python 3.12 insertion-point semantics for arrays and strings.
+  - Preserved key parity edges around duplicate ranges, `lo`/`hi` bounds, `hi=None`, NaN ordering behavior, and Python-style incomparable-type errors.
+  - Updated `src/python/index.ts`, both Rosetta maps, generated bisect tests, website pages, non-PHP API signatures, and type-contract snapshots.
+- Validation:
+  - `corepack yarn exec vitest run test/util/python-bisect-harvest-1.vitest.ts`
+  - `corepack yarn test:parity python/bisect/bisect python/bisect/bisect_left python/bisect/bisect_right --no-cache`
+  - `node scripts/rmrf.ts test/generated && corepack yarn build:tests`
+  - `corepack yarn exec vitest run test/generated/python/bisect/*.vitest.ts`
+  - `corepack yarn injectweb && corepack yarn website:verify`
+  - `corepack yarn fix:api:snapshot:nonphp`
+  - `corepack yarn fix:type:contracts`
+  - `corepack yarn check`
+- Key learnings:
+  - The generated standalone test path will expose symbol collisions that the source/module variants can miss, so alias-like function names need helper internals with distinct names.
+  - `bisect` is a good example of a small Python module where strict target-definition work pays off: once the inventory and wishlist are explicit, the harvest becomes a narrow parity exercise rather than guesswork.
