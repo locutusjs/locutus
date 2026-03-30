@@ -23,6 +23,23 @@ Ideas that will be planned and find their way into a release at one point
   - [ ] Java
   - [ ] Haskell
 
+## v3.0.33
+
+Released: 2026-03-30. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.32...v3.0.33).
+Version rationale: `patch` for additive Python runtime expansion plus nightly refresh reliability hardening, without import-model or runtime floor changes.
+
+### Expansion
+
+- Added a first `python/bisect` harvest covering `bisect`, `bisect_left`, and `bisect_right`.
+
+### Fixes
+
+- Restored PHP-style scalar coercion for `strtotime()` numeric input and aligned `bcscale()` with modern PHP getter/setter semantics, including shared default `bcmath` scale across `bc*` helpers.
+- Hardened nightly Perl upstream-surface refresh by feeding the discovered namespace catalog through Docker stdin instead of a giant `perl -e` argv payload, and improved `runInDocker()` diagnostics when a container exits non-zero without stderr.
+- Marked Perl upstream-surface discovery as Docker-backed so refresh/enumeration pre-pulls `perl:5.40` instead of letting the first `docker run` fail on implicit pull output in nightly CI.
+- Enabled arm64 emulation in `Nightly Parity` so Swift upstream-surface refresh can execute the `swift:6.0` arm64 symbolgraph extraction path on GitHub’s x64 runners.
+- Made upstream-surface Docker prewarming platform-aware, so Swift refresh now pre-pulls `swift:6.0` for `linux/arm64` instead of warming the host-arch image and forcing a failing implicit repull at `docker run` time.
+
 ## v3.0.32
 
 Released: 2026-03-27. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.31...v3.0.32).
@@ -39,19 +56,7 @@ Version rationale: `patch` for additive Python runtime expansion without import-
 
 ## main
 
-### Expansion
-
-- Added a first `python/bisect` harvest covering `bisect`, `bisect_left`, and `bisect_right`.
-
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.32...main).
-
-### Fixes
-
-- Restored PHP-style scalar coercion for `strtotime()` numeric input and aligned `bcscale()` with modern PHP getter/setter semantics, including shared default `bcmath` scale across `bc*` helpers.
-- Hardened nightly Perl upstream-surface refresh by feeding the discovered namespace catalog through Docker stdin instead of a giant `perl -e` argv payload, and improved `runInDocker()` diagnostics when a container exits non-zero without stderr.
-- Marked Perl upstream-surface discovery as Docker-backed so refresh/enumeration pre-pulls `perl:5.40` instead of letting the first `docker run` fail on implicit pull output in nightly CI.
-- Enabled arm64 emulation in `Nightly Parity` so Swift upstream-surface refresh can execute the `swift:6.0` arm64 symbolgraph extraction path on GitHub’s x64 runners.
-- Made upstream-surface Docker prewarming platform-aware, so Swift refresh now pre-pulls `swift:6.0` for `linux/arm64` instead of warming the host-arch image and forcing a failing implicit repull at `docker run` time.
+Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.33...main).
 
 ## v3.0.31
 
