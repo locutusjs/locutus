@@ -58,9 +58,14 @@ Version rationale: `patch` for additive Python runtime expansion without import-
 - Added a first `python/itertools` harvest focused on parity-friendly iterable combinatorics:
   `accumulate`, `batched`, `chain`, `combinations`, `combinations_with_replacement`, `compress`, `islice`, `pairwise`, `permutations`, `product`, and `zip_longest`.
 
-## main
+## v3.0.34
 
-Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.33...main).
+Released: 2026-03-30. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.33...v3.0.34).
+Version rationale: `patch` for additive Python runtime expansion without import-model or runtime floor changes.
+
+### Expansion
+
+- Added a first `python/functools` harvest covering `reduce`.
 
 ## v3.0.31
 
