@@ -1487,10 +1487,6 @@ python:
       default:
         decision: skip_runtime_model
         note: Most functools exports are decorators, wrappers, or callable factories rather than plain values.
-      decisions:
-        reduce:
-          decision: wanted
-          note: Left-folding over plain iterables is a strong portability target.
     itertools:
       title: itertools module
       default:

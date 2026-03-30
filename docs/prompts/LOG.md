@@ -3244,3 +3244,29 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The generated standalone test path will expose symbol collisions that the source/module variants can miss, so alias-like function names need helper internals with distinct names.
   - `bisect` is a good example of a small Python module where strict target-definition work pays off: once the inventory and wishlist are explicit, the harvest becomes a narrow parity exercise rather than guesswork.
+
+### Iteration 160
+
+2026-03-30
+
+- **Area: Product (Python functools harvest 1)**
+- Plan:
+  - Ship the smallest high-value `functools` addition first, centered on `reduce`.
+  - Keep parity strict by teaching the Python translator only the narrow callback form this harvest actually needs.
+- Progress:
+  - Added `src/python/functools/reduce.ts` plus a shared `_functools` helper that preserves Python-style omitted-initializer semantics, including the empty-sequence error path.
+  - Added `src/python/functools/index.ts`, updated `src/python/index.ts`, and wired both Rosetta maps so the new function is part of the public surface.
+  - Extended `test/parity/lib/languages/python.ts` with a focused `reduce` callback translation path, allowing simple JS arrow reducers like `(a, b) => a + b` to execute as native Python lambdas during parity.
+  - Added focused util coverage, generated tests, website pages, and removed the stale `functools/reduce` wishlist entry from the upstream-surface inventory now that it is shipped.
+- Validation:
+  - `corepack yarn exec vitest run test/util/python-functools-harvest-1.vitest.ts`
+  - `corepack yarn test:parity python/functools/reduce --no-cache`
+  - `node scripts/rmrf.ts test/generated && corepack yarn build:tests`
+  - `corepack yarn exec vitest run test/generated/python/functools/*.vitest.ts`
+  - `corepack yarn injectweb && corepack yarn website:verify`
+  - `corepack yarn fix:api:snapshot:nonphp`
+  - `corepack yarn fix:type:contracts`
+  - `corepack yarn check`
+- Key learnings:
+  - Higher-order APIs need parity-safe examples or translator support; `reduce` is a good case where a tiny callback bridge is cleaner than contorting the docs.
+  - For shipped backlog items, the upstream-surface inventory needs the corresponding `wanted` decision removed immediately or CI will correctly flag stale policy drift.

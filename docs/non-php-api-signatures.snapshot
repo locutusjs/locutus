@@ -283,6 +283,7 @@ src/python/_helpers/_calendar.ts :: export function normalizeWeekWidth(value: un
 src/python/_helpers/_calendar.ts :: export function pythonWeekday(year: number, month: number, day: number): number
 src/python/_helpers/_calendar.ts :: export function timeTupleToUnixSeconds( year: number, month: number, day: number, hour: number, minute: number, second: number, ): number
 src/python/_helpers/_calendar.ts :: export function toCalendarInteger(value: unknown, functionName: string): number
+src/python/_helpers/_functools.ts :: export function pythonReduce( func: (accumulator: unknown, value: unknown) => unknown, iterable: unknown, initializer: unknown = noInitializer, ): unknown
 src/python/_helpers/_itertools.ts :: export function itertoolsAccumulate( iterable: unknown, func: ((accumulator: unknown, value: unknown) => unknown) | undefined, ): unknown[]
 src/python/_helpers/_itertools.ts :: export function itertoolsBatched(iterable: unknown, n: unknown): unknown[][]
 src/python/_helpers/_itertools.ts :: export function itertoolsChain(iterables: unknown[]): unknown[]
@@ -356,6 +357,7 @@ src/python/calendar/weekday.ts :: export function weekday(year: unknown, month: 
 src/python/calendar/weekheader.ts :: export function weekheader(width: unknown): string
 src/python/difflib/get_close_matches.ts :: export function get_close_matches( word: string, possibilities: string[] | unknown, n: number = 3, cutoff: number = 0.6, ): string[]
 src/python/difflib/ndiff.ts :: export function ndiff( a: string[] | unknown, b: string[] | unknown, linejunk: LineJunkPredicate = null, charjunk: CharJunkPredicate = isCharacterJunk, ): string[]
+src/python/functools/reduce.ts :: export function reduce( func: (accumulator: unknown, value: unknown) => unknown, iterable: unknown, initializer?: unknown, ): unknown
 src/python/itertools/accumulate.ts :: export function accumulate(iterable: unknown, func?: (accumulator: unknown, value: unknown) => unknown): unknown[]
 src/python/itertools/batched.ts :: export function batched(iterable: unknown, n: unknown): unknown[][]
 src/python/itertools/chain.ts :: export function chain(...iterables: unknown[]): unknown[]
