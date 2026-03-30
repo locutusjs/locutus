@@ -3180,3 +3180,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - The stdin hardening was still worth keeping, but it solved the wrong layer first; the actual nightly break was the handler metadata that opted Perl out of image prewarming.
   - For runtime-discovered languages, `discoverUsesDocker` is effectively part of the CI contract, not just optional metadata.
+
+### Iteration 157
+
+2026-03-30
+
+- **Area: Maintenance (Nightly parity follow-up)**
+- Plan:
+  - Re-run nightly on the post-Perl-fix head and only react to the next concrete blocker, instead of assuming Perl was the whole story.
+  - Preserve deterministic Swift discovery if possible rather than backing down to checked-in snapshots.
+- Progress:
+  - Re-ran `Nightly Parity` on the post-`#609` head and confirmed Perl now refreshes successfully, including the explicit `Pulling perl:5.40...` helper path and a written `perl.yml`.
+  - Pulled the live nightly log and found the next blocker: Swift refresh reaches the arm64 symbolgraph extraction path and then dies on GitHub's x64 runner with `exec /usr/bin/sh: exec format error`.
+  - Rejected the naive `x86_64-unknown-linux-gnu` target swap after local validation showed the Swift 6 image only ships the `aarch64-unknown-linux-gnu` standard-library module graph.
+  - Added `docker/setup-qemu-action@v3` with `platforms: arm64` to `.github/workflows/nightly-parity.yml`, so nightly can execute the existing arm64 Swift discovery path under emulation instead of changing the discovery contract.
+  - Added a workflow regression test in `test/util/ci-workflow.vitest.ts` to keep the arm64 emulation step in place ahead of `Refresh live upstream snapshots`.
+- Validation:
+  - `corepack yarn exec vitest run test/util/ci-workflow.vitest.ts test/util/upstream-surface.vitest.ts`
+- Key learnings:
+  - The nightly queue is now flushing blockers in sequence: once Perl was fixed, Swift immediately surfaced as the next hidden arm64/runtime assumption.
+  - For inventory-only runtimes like Swift, preserving the canonical discovery contract is usually better than weakening the source; CI should adapt to the runtime when the runtime choice is intentional and stable.

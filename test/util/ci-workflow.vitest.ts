@@ -101,4 +101,15 @@ describe('ci workflow security hardening', () => {
       'corepack yarn config get cacheFolder',
     )
   })
+
+  it('enables arm64 emulation in nightly parity before refreshing upstream snapshots', () => {
+    const nightlyWorkflow = loadNightlyParityWorkflow()
+    const parityJob = nightlyWorkflow.jobs?.parity as WorkflowJob
+    const qemuStepIndex = parityJob.steps?.findIndex((step) => step.uses === 'docker/setup-qemu-action@v3') ?? -1
+    const refreshStepIndex = parityJob.steps?.findIndex((step) => step.name === 'Refresh live upstream snapshots') ?? -1
+
+    expect(qemuStepIndex).toBeGreaterThanOrEqual(0)
+    expect(parityJob.steps?.[qemuStepIndex]?.with).toMatchObject({ platforms: 'arm64' })
+    expect(refreshStepIndex).toBeGreaterThan(qemuStepIndex)
+  })
 })
