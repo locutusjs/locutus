@@ -1,3 +1,4 @@
+export * as bisect from './bisect/index.ts'
 export * as calendar from './calendar/index.ts'
 export * as difflib from './difflib/index.ts'
 export * as itertools from './itertools/index.ts'

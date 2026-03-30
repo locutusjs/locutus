@@ -39,6 +39,10 @@ Version rationale: `patch` for additive Python runtime expansion without import-
 
 ## main
 
+### Expansion
+
+- Added a first `python/bisect` harvest covering `bisect`, `bisect_left`, and `bisect_right`.
+
 Released: TBA. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.32...main).
 
 ### Fixes
