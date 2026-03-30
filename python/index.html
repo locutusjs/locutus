@@ -12,8 +12,8 @@
 <meta property="og:site_name" content="Locutus">
 <meta property="og:description" content="All your standard libraries will be assimilated into our TypeScript collective. Resistance is futile.">
 <meta property="og:locale">
-<meta property="article:published_time" content="2026-03-30T15:24:07.445Z">
-<meta property="article:modified_time" content="2026-03-30T15:24:07.445Z">
+<meta property="article:published_time" content="2026-03-30T18:47:40.410Z">
+<meta property="article:modified_time" content="2026-03-30T18:47:40.410Z">
 <meta property="article:author" content="Kevin van Zonneveld">
 <meta name="twitter:card" content="summary">
     
@@ -229,7 +229,7 @@ ga('send', 'pageview');
     <div class="article-entry">
       
       <p>
-        TypeScript implementations of 131 Python standard library functions across 9 modules.
+        TypeScript implementations of 132 Python standard library functions across 10 modules.
         Each function is individually importable and tree-shakeable.
       </p>
 
@@ -278,6 +278,13 @@ ga('send', 'pageview');
             <li><a href="/python/difflib/get_close_matches/">get_close_matches</a></li>
           
             <li><a href="/python/difflib/ndiff/">ndiff</a></li>
+          
+        </ul>
+      
+        <strong>functools</strong>
+        <ul>
+          
+            <li><a href="/python/functools/reduce/">reduce</a></li>
           
         </ul>
       
@@ -581,8 +588,8 @@ ga('send', 'pageview');
     <span class="surface-panel__summary-copy">
       <strong>Upstream Surface Inventory</strong>
       <span>
-        131/2184 shipped
-         &middot; 106 next
+        132/2184 shipped
+         &middot; 105 next
         
       </span>
       <span class="surface-panel__summary-stack">
@@ -590,7 +597,7 @@ ga('send', 'pageview');
           
             <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6%"></span>
             
-              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 4.9%"></span>
+              <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 4.8%"></span>
             
             
               <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -625,7 +632,7 @@ ga('send', 'pageview');
       
         <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 6%"></span>
         
-          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 4.9%"></span>
+          <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 4.8%"></span>
         
         
           <span class="surface-stack__segment surface-stack__segment--skipped" style="width: 89.1%"></span>
@@ -816,6 +823,25 @@ ga('send', 'pageview');
         </span>
       
         
+        <span class="surface-minimap__tile surface-minimap__tile--low"
+              title="functools: 8% shipped"
+              data-ns="functools"
+              onclick="(function(el){
+                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
+                if (!input) return;
+                var ns = el.getAttribute('data-ns');
+                if (input.value === ns) {
+                  input.value = '';
+                } else {
+                  input.value = ns;
+                }
+                input.dispatchEvent(new Event('input'));
+              })(this)">
+          <span class="surface-minimap__name">functools</span>
+          <span class="surface-minimap__pct">8%</span>
+        </span>
+      
+        
         <span class="surface-minimap__tile surface-minimap__tile--wanted"
               title="builtins: 0% shipped"
               data-ns="builtins"
@@ -964,25 +990,6 @@ ga('send', 'pageview');
                 input.dispatchEvent(new Event('input'));
               })(this)">
           <span class="surface-minimap__name">csv</span>
-          <span class="surface-minimap__pct">0%</span>
-        </span>
-      
-        
-        <span class="surface-minimap__tile surface-minimap__tile--wanted"
-              title="functools: 0% shipped"
-              data-ns="functools"
-              onclick="(function(el){
-                var input = el.closest('.surface-panel__content').querySelector('.surface-filter__input');
-                if (!input) return;
-                var ns = el.getAttribute('data-ns');
-                if (input.value === ns) {
-                  input.value = '';
-                } else {
-                  input.value = ns;
-                }
-                input.dispatchEvent(new Event('input'));
-              })(this)">
-          <span class="surface-minimap__name">functools</span>
           <span class="surface-minimap__pct">0%</span>
         </span>
       
@@ -6030,12 +6037,12 @@ ga('send', 'pageview');
       </article>
       <article class="surface-kpi">
         <span class="surface-kpi__label">Shipped</span>
-        <strong class="surface-kpi__value">131/2184</strong>
+        <strong class="surface-kpi__value">132/2184</strong>
       </article>
       
         <article class="surface-kpi">
           <span class="surface-kpi__label">Next to port</span>
-          <strong class="surface-kpi__value">106</strong>
+          <strong class="surface-kpi__value">105</strong>
         </article>
       
       
@@ -6520,6 +6527,192 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>In-place list insertion mutates caller-owned state.</span>
+              </li>
+            
+          </ul>
+        </details>
+      
+
+      
+    </div>
+  
+</article>
+
+
+
+        
+          
+
+
+
+<article class="surface-card" data-namespace="functools">
+  <div class="surface-card__header">
+    <div>
+      <h3 class="surface-card__title">
+        
+          <a href="/python/functools/">functools</a>
+        
+      </h3>
+      <p class="surface-card__meta">
+        <code>Python 3.12</code>
+        <span>&middot;</span>
+        <span>Catalog source: version-pinned source manifest <code>python:3.12:functools</code></span>
+      </p>
+    </div>
+    <div class="surface-card__coverage">
+      <strong>100%</strong>
+      <span>shipped</span>
+    </div>
+  </div>
+
+  
+  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
+    
+      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 100%"></span>
+      
+    
+  </div>
+
+  <div class="surface-card__stats">
+    <span><strong>1/1</strong> shipped</span>
+    
+    <span><strong>11</strong> explicit non-goals</span>
+    
+    
+  </div>
+
+  
+    <div class="surface-chip-row">
+      
+        <a class="surface-chip surface-chip--link" href="/python/functools/">functools</a>
+      
+    </div>
+  
+
+  
+  
+    <details class="surface-details surface-details--shipped">
+      <summary>Shipped (1)</summary>
+      <ul class="surface-entry-list surface-entry-list--flow surface-entry-list--scroll">
+        
+          
+          <li>
+            
+              <a class="surface-entry-link" href="/python/functools/reduce/"><code>reduce</code></a>
+            
+          </li>
+        
+      </ul>
+    </details>
+  
+
+  
+  
+
+  
+    <div class="surface-details-grid">
+      
+        <details class="surface-details">
+          <summary>Explicit non-goals (11)</summary>
+          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cache" target="_blank" rel="noopener noreferrer"><code>cache</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cached_property" target="_blank" rel="noopener noreferrer"><code>cached_property</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cmp_to_key" target="_blank" rel="noopener noreferrer"><code>cmp_to_key</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.lru_cache" target="_blank" rel="noopener noreferrer"><code>lru_cache</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.partial" target="_blank" rel="noopener noreferrer"><code>partial</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.partialmethod" target="_blank" rel="noopener noreferrer"><code>partialmethod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.singledispatch" target="_blank" rel="noopener noreferrer"><code>singledispatch</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.singledispatchmethod" target="_blank" rel="noopener noreferrer"><code>singledispatchmethod</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.total_ordering" target="_blank" rel="noopener noreferrer"><code>total_ordering</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.update_wrapper" target="_blank" rel="noopener noreferrer"><code>update_wrapper</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
+              </li>
+            
+              
+              <li>
+                
+                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.wraps" target="_blank" rel="noopener noreferrer"><code>wraps</code></a>
+                
+                <span class="surface-entry-list__meta">Skip</span>
+                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
               </li>
             
           </ul>
@@ -9862,195 +10055,6 @@ ga('send', 'pageview');
                 
                 <span class="surface-entry-list__meta">Skip</span>
                 <span>Reader and writer objects are stream-oriented and do not fit one stable plain-value contract by default.</span>
-              </li>
-            
-          </ul>
-        </details>
-      
-
-      
-    </div>
-  
-</article>
-
-
-
-        
-          
-
-
-
-<article class="surface-card" data-namespace="functools">
-  <div class="surface-card__header">
-    <div>
-      <h3 class="surface-card__title">
-        
-          functools
-        
-      </h3>
-      <p class="surface-card__meta">
-        <code>Python 3.12</code>
-        <span>&middot;</span>
-        <span>Catalog source: version-pinned source manifest <code>python:3.12:functools</code></span>
-      </p>
-    </div>
-    <div class="surface-card__coverage">
-      <strong>0%</strong>
-      <span>shipped</span>
-    </div>
-  </div>
-
-  
-  <div class="surface-stack surface-stack--compact" aria-label="Namespace coverage">
-    
-      <span class="surface-stack__segment surface-stack__segment--shipped" style="width: 0%"></span>
-      
-        <span class="surface-stack__segment surface-stack__segment--wanted" style="width: 100%"></span>
-      
-    
-  </div>
-
-  <div class="surface-card__stats">
-    <span><strong>0/1</strong> shipped</span>
-    <span><strong>1</strong> next</span>
-    <span><strong>11</strong> explicit non-goals</span>
-    
-    
-  </div>
-
-  
-
-  
-  
-
-  
-  
-    <div class="surface-buckets">
-      
-        <section class="surface-bucket surface-bucket--next">
-          <h4>Next</h4>
-          
-          
-            
-              <p class="surface-bucket__group-note">Left-folding over plain iterables is a strong portability target.</p>
-            
-            <ul class="surface-entry-list surface-entry-list--flow">
-              
-                <li><code>reduce</code></li>
-              
-            </ul>
-          
-        </section>
-      
-
-      
-    </div>
-  
-
-  
-    <div class="surface-details-grid">
-      
-        <details class="surface-details">
-          <summary>Explicit non-goals (11)</summary>
-          <ul class="surface-entry-list surface-entry-list--spaced surface-entry-list--scroll">
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cache" target="_blank" rel="noopener noreferrer"><code>cache</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cached_property" target="_blank" rel="noopener noreferrer"><code>cached_property</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.cmp_to_key" target="_blank" rel="noopener noreferrer"><code>cmp_to_key</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.lru_cache" target="_blank" rel="noopener noreferrer"><code>lru_cache</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.partial" target="_blank" rel="noopener noreferrer"><code>partial</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.partialmethod" target="_blank" rel="noopener noreferrer"><code>partialmethod</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.singledispatch" target="_blank" rel="noopener noreferrer"><code>singledispatch</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.singledispatchmethod" target="_blank" rel="noopener noreferrer"><code>singledispatchmethod</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.total_ordering" target="_blank" rel="noopener noreferrer"><code>total_ordering</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.update_wrapper" target="_blank" rel="noopener noreferrer"><code>update_wrapper</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
-              </li>
-            
-              
-              <li>
-                
-                  <a class="surface-entry-link surface-entry-link--external" href="https://docs.python.org/3/library/functools.html#functools.wraps" target="_blank" rel="noopener noreferrer"><code>wraps</code></a>
-                
-                <span class="surface-entry-list__meta">Skip</span>
-                <span>Most functools exports are decorators, wrappers, or callable factories rather than plain values.</span>
               </li>
             
           </ul>
@@ -18492,7 +18496,7 @@ ga('send', 'pageview');
               <span>languages marked</span>
             </div>
             <div class="article-info-block">
-                791
+                792
                 <span>functions assimilated</span>
             </div>
         </div>
@@ -18813,7 +18817,7 @@ ga('send', 'pageview');
       
         <li><a href="/python/">
           Python
-          (131)
+          (132)
         </a></li>
         
         <ul>
@@ -18834,6 +18838,13 @@ ga('send', 'pageview');
           <li><a href="/python/difflib/">
             difflib
             (2)
+          </a></li>
+        </ul>
+        
+        <ul>
+          <li><a href="/python/functools/">
+            functools
+            (1)
           </a></li>
         </ul>
         
