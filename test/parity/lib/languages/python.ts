@@ -3,6 +3,7 @@
  */
 
 import { runInDocker } from '../docker.ts'
+import { type JsExpression, parseJsArrowFunction } from '../jsCallbackAst.ts'
 import { extractAssignedVar } from '../runner.ts'
 import type { LanguageHandler } from '../types.ts'
 import { fetchText } from '../upstream-surface-canonical.ts'
@@ -352,6 +353,58 @@ function stripTrailingComment(code: string): string {
   return code
 }
 
+function emitPythonCallbackExpression(expression: JsExpression): string {
+  switch (expression.kind) {
+    case 'identifier':
+      return expression.name
+    case 'number':
+      return expression.value
+    case 'string':
+      return JSON.stringify(expression.value)
+    case 'boolean':
+      return expression.value ? 'True' : 'False'
+    case 'null':
+      return 'None'
+    case 'array':
+      return `[${expression.elements.map(emitPythonCallbackExpression).join(', ')}]`
+    case 'property':
+      return `${emitPythonCallbackExpression(expression.object)}.${expression.property}`
+    case 'index':
+      return `${emitPythonCallbackExpression(expression.object)}[${emitPythonCallbackExpression(expression.index)}]`
+    case 'unary':
+      if (expression.operator === '!') {
+        return `not (${emitPythonCallbackExpression(expression.argument)})`
+      }
+      return `${expression.operator}(${emitPythonCallbackExpression(expression.argument)})`
+    case 'binary': {
+      if (expression.operator === '===') {
+        return `(${emitPythonCallbackExpression(expression.left)} == ${emitPythonCallbackExpression(expression.right)})`
+      }
+      if (expression.operator === '!==') {
+        return `(${emitPythonCallbackExpression(expression.left)} != ${emitPythonCallbackExpression(expression.right)})`
+      }
+      if (expression.operator === '&&') {
+        return `(${emitPythonCallbackExpression(expression.left)} and ${emitPythonCallbackExpression(expression.right)})`
+      }
+      if (expression.operator === '||') {
+        return `(${emitPythonCallbackExpression(expression.left)} or ${emitPythonCallbackExpression(expression.right)})`
+      }
+      return `(${emitPythonCallbackExpression(expression.left)} ${expression.operator} ${emitPythonCallbackExpression(expression.right)})`
+    }
+    case 'conditional':
+      return `(${emitPythonCallbackExpression(expression.consequent)} if ${emitPythonCallbackExpression(expression.test)} else ${emitPythonCallbackExpression(expression.alternate)})`
+    case 'call':
+      throw new Error('Python reduce parity does not support callback call expressions yet')
+    case 'object':
+      throw new Error('Python reduce parity does not support object-literal callbacks')
+  }
+}
+
+function emitPythonArrow(sourceText: string): string {
+  const callback = parseJsArrowFunction(sourceText)
+  return `lambda ${callback.params.join(', ')}: ${emitPythonCallbackExpression(callback.body)}`
+}
+
 /**
  * Convert a single JS line to Python
  * @param line - The JS line to convert
@@ -481,6 +534,25 @@ function convertJsLineToPython(line: string, funcName: string, module: string): 
           : `${module}.linear_regression(${left}, ${right})`
 
       return `(lambda __lr: {"slope": __lr.slope, "intercept": __lr.intercept})(${call})`
+    })
+    return py
+  }
+
+  if (funcName === 'reduce') {
+    py = py.replace(/\breduce\s*\(([\s\S]*)\)$/g, (match, argsText) => {
+      const args = splitArgs(argsText)
+      const callback = args[0]
+      const iterable = args[1]
+      if (!callback || !iterable) {
+        return match
+      }
+
+      // Keep higher-order Python parity narrow: current shipped docs only rely on simple expression-bodied reducers.
+      const callbackExpr = callback.includes('=>') ? emitPythonArrow(callback) : callback
+      if (args.length >= 3) {
+        return `${module}.reduce(${callbackExpr}, ${iterable}, ${args[2]})`
+      }
+      return `${module}.reduce(${callbackExpr}, ${iterable})`
     })
     return py
   }

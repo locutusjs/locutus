@@ -23,6 +23,10 @@ Ideas that will be planned and find their way into a release at one point
   - [ ] Java
   - [ ] Haskell
 
+## main
+
+- Added a first `python/functools` harvest covering `reduce`.
+
 ## v3.0.33
 
 Released: 2026-03-30. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.32...v3.0.33).

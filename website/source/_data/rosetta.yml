@@ -353,6 +353,9 @@ sequence_interpose:
 enumerable_reduce_while:
   - elixir/Enum/reduce_while
 
+enumerable_reduce:
+  - python/functools/reduce
+
 enumerable_zip:
   - ruby/Array/zip
   - elixir/Enum/zip
