@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
         run: |
-          corepack yarn
+          corepack yarn install --immutable
       - name: Refresh live upstream snapshots
         run: |
           corepack yarn refresh:upstream-surface

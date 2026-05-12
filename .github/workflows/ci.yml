@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install Dependencies
         run: |
-          corepack yarn
+          corepack yarn install --immutable
       - name: Install Browser Runtime
         run: |
           corepack yarn browser:install
