@@ -1,6 +1,11 @@
 name: Locutus CI
 on:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      release_ref:
+        description: Existing tag or ref to publish, for example v3.0.35
+        required: true
   push:
     branches: [main]
     tags: ['*']
@@ -13,6 +18,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.release_ref || github.ref }}
       - uses: actions/setup-node@v6
         with:
           node-version: 22.x
@@ -107,29 +113,31 @@ jobs:
         run: |
           corepack yarn test:parity
       - name: Upload release artifact
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist
           if-no-files-found: error
       - name: Prepare release notes artifact
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
+        env:
+          RELEASE_REF_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.release_ref || github.ref_name }}
         run: |
-          node scripts/extract-release-notes.ts --version "${GITHUB_REF_NAME}" > release-notes.md
+          node scripts/extract-release-notes.ts --version "${RELEASE_REF_NAME}" > release-notes.md
       - name: Upload release notes artifact
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v4
         with:
           name: release-notes
           path: release-notes.md
           if-no-files-found: error
       - name: Website Build
-        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+        if: github.event_name == 'pull_request' || (github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch')
         run: |
           corepack yarn website:ci
       - name: Upload website artifact
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
           name: website-public
@@ -137,7 +145,7 @@ jobs:
           if-no-files-found: error
 
   release:
-    if: startsWith(github.ref, 'refs/tags/')
+    if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
     needs: ci
     runs-on: ubuntu-latest
     permissions:
@@ -146,7 +154,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v6
         with:
-          node-version: 22.x
+          node-version: 24.x
           registry-url: 'https://registry.npmjs.org'
       - uses: actions/download-artifact@v4
         with:
@@ -160,20 +168,22 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
+          RELEASE_REF_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.release_ref || github.ref_name }}
         run: |
           PACKAGE_NAME=$(node -p "require('./dist/package.json').name")
           PACKAGE_VERSION=$(node -p "require('./dist/package.json').version")
           EXPECTED_TAG="v${PACKAGE_VERSION}"
-          if [ "$EXPECTED_TAG" != "${GITHUB_REF_NAME}" ]; then
-            echo "Tag/version mismatch: expected $EXPECTED_TAG from dist/package.json, got ${GITHUB_REF_NAME}" >&2
+          if [ "$EXPECTED_TAG" != "${RELEASE_REF_NAME}" ]; then
+            echo "Tag/version mismatch: expected $EXPECTED_TAG from dist/package.json, got ${RELEASE_REF_NAME}" >&2
             exit 1
           fi
 
-          npm install -g npm@^11.5.1
+          NPM_VERSION=$(npm --version)
+          node -e "const [major, minor] = process.argv[1].split('.').map(Number); if (major < 11 || (major === 11 && minor < 5)) { console.error('npm >=11.5.1 is required for trusted publishing, got ' + process.argv[1]); process.exit(1) }" "$NPM_VERSION"
 
           SHOULD_CREATE_GITHUB_RELEASE=0
-          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
-            echo "GitHub release already exists: ${GITHUB_REF_NAME}"
+          if gh release view "${RELEASE_REF_NAME}" >/dev/null 2>&1; then
+            echo "GitHub release already exists: ${RELEASE_REF_NAME}"
           else
             SHOULD_CREATE_GITHUB_RELEASE=1
           fi
@@ -187,7 +197,7 @@ jobs:
           fi
 
           if [ "$SHOULD_CREATE_GITHUB_RELEASE" = "1" ]; then
-            gh release create "${GITHUB_REF_NAME}" --title "${GITHUB_REF_NAME}" --notes-file release-notes.md
+            gh release create "${RELEASE_REF_NAME}" --title "${RELEASE_REF_NAME}" --notes-file release-notes.md
           fi
 
   website-deploy:
