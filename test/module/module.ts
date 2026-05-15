@@ -51,6 +51,7 @@ strings.echo(php.datetime.strtotime('2 januari 2012, 11:12:13 GMT'))
 
 // Smoke-test published CommonJS shape from dist
 const distLocutus = require('../../dist/index.js')
+const distPackageJson = require('../../dist/package.json') as { sideEffects?: unknown }
 const distPhpStrings = require('../../dist/php/strings/index.js')
 const distGolangStrings = require('../../dist/golang/strings/index.js')
 const distSprintf = require('../../dist/php/strings/sprintf.js') as { sprintf?: (...args: unknown[]) => unknown }
@@ -99,6 +100,9 @@ if (typeof distEsmLocutus.php?.strings?.sprintf !== 'function') {
 }
 if (typeof distEsmSprintf.sprintf !== 'function') {
   throw new Error('dist/esm/php/strings/sprintf.js should export named function property "sprintf"')
+}
+if (distPackageJson.sideEffects !== false) {
+  throw new Error('dist/package.json should preserve sideEffects: false for bundlers')
 }
 
 // Smoke-test installed package behavior via exports map (import + require)

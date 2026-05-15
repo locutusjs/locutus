@@ -3270,3 +3270,23 @@ LLMs log key learnings, progress, and next steps in one `### Iteration ${increme
 - Key learnings:
   - Higher-order APIs need parity-safe examples or translator support; `reduce` is a good case where a tiny callback bridge is cleaner than contorting the docs.
   - For shipped backlog items, the upstream-surface inventory needs the corresponding `wanted` decision removed immediately or CI will correctly flag stale policy drift.
+
+### Iteration 161
+
+2026-05-15
+
+- **Area: Maintenance (Bundler hygiene / json_decode)**
+- Plan:
+  - Respond to the Rolldown bundle-size/security discussion with concrete package changes instead of only explanation.
+  - Remove legacy unsafe JSON parsing behavior that no longer matches Locutus' runtime target.
+- Progress:
+  - Removed the old `eval` fallback from `php/json/json_decode`; the function now relies on the host `JSON.parse` implementation and reports `JSON_ERROR_SYNTAX` if parsing is unavailable or invalid.
+  - Added a regression test covering the `JSON.parse` unavailable path.
+  - Added `sideEffects: false` to package metadata and extended the dist module smoke test so the published `dist/package.json` preserves that bundler hint.
+  - Corrected the stale changelog state by moving the already shipped `python/functools/reduce` note into a `v3.0.34` section before preparing the next release.
+- Validation:
+  - `corepack yarn exec vitest run test/util/php-json-last-error.vitest.ts`
+  - `corepack yarn exec vitest run test/generated/php/json/json_decode.vitest.ts`
+  - `corepack yarn check`
+- Key learnings:
+  - `sprintf` does not depend on JSON directly; the practical fix for the reported bundle shape is package-level tree-shaking metadata plus avoiding legacy unsafe code in modules that bundlers may conservatively traverse.
