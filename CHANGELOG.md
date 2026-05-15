@@ -25,6 +25,11 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
+## v3.0.35
+
+Released: 2026-05-15. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.34...v3.0.35).
+Version rationale: `patch` for removing a legacy unsafe JSON parser fallback and adding bundler metadata, without import-model or runtime floor changes.
+
 ### Fixes
 
 - Removed the legacy `eval` fallback from `php/json/json_decode`; Locutus now relies on the host `JSON.parse`
