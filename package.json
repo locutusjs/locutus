@@ -20,6 +20,7 @@
     "url": "https://github.com/locutusjs/locutus.git"
   },
   "type": "module",
+  "sideEffects": false,
   "license": "MIT",
   "author": "Kevin van Zonneveld <kevin@vanzonneveld.net>",
   "browser": {

@@ -25,6 +25,19 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
+### Fixes
+
+- Removed the legacy `eval` fallback from `php/json/json_decode`; Locutus now relies on the host `JSON.parse`
+  implementation required by its runtime target.
+- Marked the package as side-effect free so bundlers can more aggressively drop unrelated barrel exports.
+
+## v3.0.34
+
+Released: 2026-03-30. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.33...v3.0.34).
+Version rationale: `patch` for additive Python runtime expansion without import-model or runtime floor changes.
+
+### Expansion
+
 - Added a first `python/functools` harvest covering `reduce`.
 
 ## v3.0.33

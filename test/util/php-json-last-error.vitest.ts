@@ -72,4 +72,17 @@ describe('php json last_error state', () => {
       JSON.stringify = originalStringify
     }
   })
+
+  it('reports JSON_ERROR_SYNTAX when JSON.parse is unavailable', () => {
+    const originalParse = JSON.parse
+
+    JSON.parse = undefined as unknown as typeof JSON.parse
+
+    try {
+      expect(json_decode('[1]')).toBeNull()
+      expect(json_last_error()).toBe(4)
+    } finally {
+      JSON.parse = originalParse
+    }
+  })
 })
