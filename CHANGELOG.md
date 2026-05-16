@@ -25,6 +25,16 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
+## v3.0.36
+
+Released: 2026-05-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.35...v3.0.36).
+Version rationale: `patch` for additive R runtime expansion without import-model or runtime floor changes.
+
+### Expansion
+
+- Added a first `r/stats` harvest covering `cor`, `cov`, `fivenum`, `mad`, `median`, `quantile`, `sd`, `variance`,
+  and `weighted_mean`.
+
 ## v3.0.35
 
 Released: 2026-05-15. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.34...v3.0.35).
