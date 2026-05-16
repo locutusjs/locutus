@@ -474,6 +474,12 @@ src/python/string/octdigits.ts :: export function octdigits(): '01234567'
 src/python/string/printable.ts :: export function printable(): '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'
 src/python/string/punctuation.ts :: export function punctuation(): '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 src/python/string/whitespace.ts :: export function whitespace(): ' \t\n\r\x0b\x0c'
+src/r/_helpers/_stats.ts :: export function medianOfSorted(values: number[], low = false, high = false): number
+src/r/_helpers/_stats.ts :: export function sampleCovariance(left: number[], right: number[], functionName: string): number
+src/r/_helpers/_stats.ts :: export function sampleVariance(values: number[]): number
+src/r/_helpers/_stats.ts :: export function sortedRNumbers(data: unknown, functionName: string): number[]
+src/r/_helpers/_stats.ts :: export function toRNumber(value: unknown, functionName: string): number
+src/r/_helpers/_stats.ts :: export function toRNumericArray(data: unknown, functionName: string): number[]
 src/r/base/abs.ts :: export function abs(x: number): number
 src/r/base/ceiling.ts :: export function ceiling(x: number): number
 src/r/base/floor.ts :: export function floor(x: number): number
@@ -487,6 +493,15 @@ src/r/base/sign.ts :: export function sign(x: number): number
 src/r/base/sqrt.ts :: export function sqrt(x: number): number
 src/r/base/tolower.ts :: export function tolower(x: string): string
 src/r/base/toupper.ts :: export function toupper(x: string): string
+src/r/stats/cor.ts :: export function cor(x: unknown, y: unknown): number
+src/r/stats/cov.ts :: export function cov(x: unknown, y: unknown): number
+src/r/stats/fivenum.ts :: export function fivenum(x: unknown): number[]
+src/r/stats/mad.ts :: export function mad(x: unknown, center?: number, constant = 1.4826, low = false, high = false): number
+src/r/stats/median.ts :: export function median(x: unknown): number
+src/r/stats/quantile.ts :: export function quantile(x: unknown, probs: number | number[] = [0, 0.25, 0.5, 0.75, 1]): number[]
+src/r/stats/sd.ts :: export function sd(x: unknown): number
+src/r/stats/variance.ts :: export function variance(x: unknown): number
+src/r/stats/weighted_mean.ts :: export function weighted_mean(x: unknown, w?: unknown): number
 src/ruby/Array/bsearch.ts :: export function bsearch<T>(values: T[] | unknown, callback: BsearchCallback<T>): T | null
 src/ruby/Array/bsearch_index.ts :: export function bsearch_index<T>(values: T[] | unknown, callback: BsearchIndexCallback<T>): number | null
 src/ruby/Array/compact.ts :: export function compact<T>(arr: Array<T | null | undefined> | unknown): T[]
