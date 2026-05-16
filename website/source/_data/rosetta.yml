@@ -294,9 +294,11 @@ statistics_mean:
 
 statistics_fmean:
   - python/statistics/fmean
+  - r/stats/weighted_mean
 
 statistics_median:
   - python/statistics/median
+  - r/stats/median
 
 statistics_median_low:
   - python/statistics/median_low
@@ -315,12 +317,14 @@ statistics_population_standard_deviation:
 
 statistics_sample_standard_deviation:
   - python/statistics/stdev
+  - r/stats/sd
 
 statistics_population_variance:
   - python/statistics/pvariance
 
 statistics_sample_variance:
   - python/statistics/variance
+  - r/stats/variance
 
 statistics_geometric_mean:
   - python/statistics/geometric_mean
@@ -336,12 +340,21 @@ statistics_grouped_median:
 
 statistics_quantiles:
   - python/statistics/quantiles
+  - r/stats/quantile
+
+statistics_five_number_summary:
+  - r/stats/fivenum
+
+statistics_median_absolute_deviation:
+  - r/stats/mad
 
 statistics_covariance:
   - python/statistics/covariance
+  - r/stats/cov
 
 statistics_correlation:
   - python/statistics/correlation
+  - r/stats/cor
   - python/math/prod
 
 sequence_partition_by:

@@ -1,4 +1,4 @@
-generatedAt: '2026-03-30T17:27:54.170Z'
+generatedAt: '2026-05-16T07:29:02.624Z'
 languages:
   awk:
     language: awk
@@ -200122,12 +200122,12 @@ languages:
       This inventory now tracks R's full official base and recommended-package surface from the parity target, with new
       packages defaulting conservative until reviewed.
     namespaceCount: 29
-    shippedCount: 13
+    shippedCount: 22
     catalogCount: 7545
-    catalogShippedCount: 13
+    catalogShippedCount: 22
     keptExtraCount: 0
     unexpectedExtraCount: 0
-    wantedCount: 44
+    wantedCount: 35
     skippedCount: 7488
     untriagedCount: 0
     coveragePercent: 0
@@ -225121,39 +225121,21 @@ languages:
           - window<-.ts
           - write.ftable
           - xtabs
-        shippedEntries: []
+        shippedEntries:
+          - cor
+          - cov
+          - fivenum
+          - mad
+          - median
+          - quantile
+          - sd
+          - var
+          - weighted.mean
         ignoredLocutusFunctions: []
         duplicateLocutusEntries: []
         keptExtras: []
         unexpectedExtras: []
-        wantedEntries:
-          - name: cor
-            decision: wanted
-            note: Correlation helpers are strong plain-value statistical targets.
-          - name: cov
-            decision: wanted
-            note: Covariance helpers are strong plain-value statistical targets.
-          - name: fivenum
-            decision: wanted
-            note: Five-number summaries produce a clean numeric-array result.
-          - name: mad
-            decision: wanted
-            note: Robust scalar statistics are useful plain-value targets.
-          - name: median
-            decision: wanted
-            note: Aggregate statistics helpers are strong plain-value portability targets.
-          - name: quantile
-            decision: wanted
-            note: Quantile helpers return a clean numeric summary result.
-          - name: sd
-            decision: wanted
-            note: Aggregate statistics helpers are strong plain-value portability targets.
-          - name: var
-            decision: wanted
-            note: Aggregate statistics helpers are strong plain-value portability targets.
-          - name: weighted.mean
-            decision: wanted
-            note: Weighted aggregation has a clean plain-value contract.
+        wantedEntries: []
         skippedEntries:
           - name: '[.acf'
             decision: skip_runtime_model
@@ -229622,9 +229604,10 @@ languages:
               Locutus wishlist.
         untriagedEntries: []
         staleDecisions: []
-        categories: []
-        catalogShippedCount: 0
-        coveragePercent: 0
+        categories:
+          - stats
+        catalogShippedCount: 9
+        coveragePercent: 1
       - namespace: stats4
         title: stats4
         target: R 4.4

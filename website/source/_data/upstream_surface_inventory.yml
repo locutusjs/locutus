@@ -5265,34 +5265,6 @@ r:
       default:
         decision: skip_runtime_model
         note: R stats mixes model objects, time-series structures, and formula-driven APIs too broadly for one direct Locutus wishlist.
-      decisions:
-        cor:
-          decision: wanted
-          note: Correlation helpers are strong plain-value statistical targets.
-        cov:
-          decision: wanted
-          note: Covariance helpers are strong plain-value statistical targets.
-        fivenum:
-          decision: wanted
-          note: Five-number summaries produce a clean numeric-array result.
-        mad:
-          decision: wanted
-          note: Robust scalar statistics are useful plain-value targets.
-        median:
-          decision: wanted
-          note: Aggregate statistics helpers are strong plain-value portability targets.
-        quantile:
-          decision: wanted
-          note: Quantile helpers return a clean numeric summary result.
-        sd:
-          decision: wanted
-          note: Aggregate statistics helpers are strong plain-value portability targets.
-        var:
-          decision: wanted
-          note: Aggregate statistics helpers are strong plain-value portability targets.
-        weighted.mean:
-          decision: wanted
-          note: Weighted aggregation has a clean plain-value contract.
     utils:
       title: utils package
       default:

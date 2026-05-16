@@ -153,6 +153,34 @@ function stripTrailingComment(code: string): string {
   return code
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function getRRuntimeFunctionName(funcName: string): string {
+  if (funcName === 'variance') {
+    return 'var'
+  }
+
+  if (funcName === 'weighted_mean') {
+    return 'weighted.mean'
+  }
+
+  return funcName
+}
+
+function convertArrayLiteralsToR(code: string): string {
+  let output = code
+  let previous: string
+
+  do {
+    previous = output
+    output = output.replace(/\[([^[\]]*)\]/g, (_match, inner: string) => `c(${inner.trim()})`)
+  } while (output !== previous)
+
+  return output
+}
+
 /**
  * Convert a single JS line to R
  */
@@ -171,6 +199,12 @@ function convertJsLineToR(line: string, funcName: string): string {
 
   // Convert single-quoted strings to double-quoted (R uses double quotes for strings)
   r = r.replace(/'([^'\\]*(\\.[^'\\]*)*)'/g, '"$1"')
+  r = convertArrayLiteralsToR(r)
+
+  const runtimeFunctionName = getRRuntimeFunctionName(funcName)
+  if (runtimeFunctionName !== funcName) {
+    r = r.replace(new RegExp(`\\b${escapeRegExp(funcName)}\\s*\\(`, 'g'), `${runtimeFunctionName}(`)
+  }
 
   // JS → R conversions
   r = r.replace(/\btrue\b/g, 'TRUE')
@@ -220,6 +254,15 @@ function normalizeROutput(output: string, expected?: string): string {
   let result = output.trim()
   // R sometimes outputs "[1] value" format - strip the prefix
   result = result.replace(/^\[\d+\]\s*/, '')
+
+  if (expected === 'null' && /^(NA|NaN)$/.test(result)) {
+    return 'null'
+  }
+
+  if (expected?.startsWith('[') && !result.startsWith('[')) {
+    return JSON.stringify(result.split(/\s+/).filter(Boolean).map(parseRToken))
+  }
+
   // Strip trailing .0 from floats for integer comparison
   if (/^-?\d+\.?0*$/.test(result)) {
     result = result.replace(/\.0*$/, '')
@@ -242,6 +285,23 @@ function normalizeROutput(output: string, expected?: string): string {
   return result
 }
 
+function parseRToken(token: string): boolean | number | string | null {
+  if (token === 'NA' || token === 'NaN') {
+    return null
+  }
+
+  if (token === 'TRUE') {
+    return true
+  }
+
+  if (token === 'FALSE') {
+    return false
+  }
+
+  const numeric = Number(token)
+  return Number.isNaN(numeric) ? token : numeric
+}
+
 export const rHandler: LanguageHandler = {
   translate: jsToR,
   normalize: normalizeROutput,
@@ -259,7 +319,12 @@ export const rHandler: LanguageHandler = {
     discoverNamespaceCatalog: discoverRUpstreamNamespaceCatalog,
     getLocutusEntry: (func) => ({
       namespace: func.category,
-      name: func.name,
+      name:
+        func.category === 'stats' && func.name === 'weighted_mean'
+          ? 'weighted.mean'
+          : func.category === 'stats' && func.name === 'variance'
+            ? 'var'
+            : func.name,
     }),
   },
 }
