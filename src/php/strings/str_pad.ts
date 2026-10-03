@@ -1,15 +1,16 @@
 export function str_pad(input: string, padLength: number, padString: string, padType: string): string {
-  //  discuss at: https://locutus.io/php/str_pad/
-  // original by: Kevin van Zonneveld (https://kvz.io)
-  // improved by: Michael White (https://getsprink.com)
-  //    input by: Marco van Oort
-  // bugfixed by: Brett Zamir (https://brett-zamir.me)
-  //   example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT')
-  //   returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
-  //   example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH')
-  //   returns 2: '------Kevin van Zonneveld-----'
+  //      discuss at: https://locutus.io/php/str_pad/
+  // parity verified: PHP 8.3
+  //     original by: Kevin van Zonneveld (https://kvz.io)
+  //     improved by: Michael White (https://getsprink.com)
+  //        input by: Marco van Oort
+  //     bugfixed by: Brett Zamir (https://brett-zamir.me)
+  //     bugfixed by: Afonso Januário (https://github.com/afonsojanu)
+  //       example 1: str_pad('Kevin van Zonneveld', 30, '-=', 'STR_PAD_LEFT')
+  //       returns 1: '-=-=-=-=-=-Kevin van Zonneveld'
+  //       example 2: str_pad('Kevin van Zonneveld', 30, '-', 'STR_PAD_BOTH')
+  //       returns 2: '-----Kevin van Zonneveld------'
 
-  let half = ''
   let padToGo
 
   const _strPadRepeater = function (s: string, len: number): string {
@@ -35,9 +36,9 @@ export function str_pad(input: string, padLength: number, padString: string, pad
     } else if (padType === 'STR_PAD_RIGHT') {
       input = input + _strPadRepeater(padString, padToGo)
     } else if (padType === 'STR_PAD_BOTH') {
-      half = _strPadRepeater(padString, Math.ceil(padToGo / 2))
-      input = half + input + half
-      input = input.substr(0, padLength)
+      const leftToGo = Math.floor(padToGo / 2)
+      const rightToGo = padToGo - leftToGo
+      input = _strPadRepeater(padString, leftToGo) + input + _strPadRepeater(padString, rightToGo)
     }
   }
 
