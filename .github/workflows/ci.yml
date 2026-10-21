@@ -11,6 +11,10 @@ on:
     tags: ['*']
 jobs:
   ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['^22.23.4', '^24.22.1', '^26.12.1']
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,10 +24,16 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event_name == 'workflow_dispatch' && inputs.release_ref || github.ref }}
       - uses: actions/setup-node@v6
+        id: node
         with:
-          node-version: '^22.23.4'
+          node-version: ${{ matrix.node }}
           check-latest: true
           registry-url: 'https://registry.npmjs.org'
+      # Corepack is no longer bundled with Node.js 25 and later.
+      - name: Install Corepack
+        run: |
+          npm install --global corepack@0.36.0
+          corepack enable
       - name: Engine bump guardrail
         run: |
           node scripts/check-engine-bump.ts
@@ -31,6 +41,7 @@ jobs:
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         id: yarn-cache-dir-path
         run: echo "dir=$(corepack yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      # Parity cache hits skip execution; isolate results by the resolved Node version.
       - uses: actions/cache@v5
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
@@ -41,9 +52,9 @@ jobs:
             website/.yarn
             dist/.yarn
             .cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-node-${{ steps.node.outputs.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-node-${{ steps.node.outputs.node-version }}-yarn-
       - name: Install Dependencies
         run: |
           corepack yarn install --immutable
@@ -114,7 +125,7 @@ jobs:
         run: |
           corepack yarn test:parity
       - name: Upload release artifact
-        if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
+        if: ${{ matrix.node == '^26.12.1' && (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') }}
         uses: actions/upload-artifact@v4
         with:
           name: dist
@@ -127,7 +138,7 @@ jobs:
         run: |
           node scripts/extract-release-notes.ts --version "${RELEASE_REF_NAME}" > release-notes.md
       - name: Upload release notes artifact
-        if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
+        if: ${{ matrix.node == '^26.12.1' && (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') }}
         uses: actions/upload-artifact@v4
         with:
           name: release-notes
@@ -138,16 +149,29 @@ jobs:
         run: |
           corepack yarn website:ci
       - name: Upload website artifact
-        if: github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch'
+        if: matrix.node == '^26.12.1' && github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
           name: website-public
           path: website/public
           if-no-files-found: error
 
+  # Preserve branch protection's required check while every runtime must pass.
+  ci-status:
+    name: ci
+    if: always()
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Require every Node runtime to pass
+        env:
+          MATRIX_RESULT: ${{ needs.ci.result }}
+        run: test "$MATRIX_RESULT" = success
+
   release:
     if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
-    needs: ci
+    needs: ci-status
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -155,7 +179,7 @@ jobs:
     steps:
       - uses: actions/setup-node@v6
         with:
-          node-version: '^24.22.1'
+          node-version: '^26.12.1'
           check-latest: true
           registry-url: 'https://registry.npmjs.org'
       - uses: actions/download-artifact@v4
@@ -204,7 +228,7 @@ jobs:
 
   website-deploy:
     if: github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch'
-    needs: ci
+    needs: ci-status
     runs-on: ubuntu-latest
     permissions:
       contents: write
