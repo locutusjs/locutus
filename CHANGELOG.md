@@ -25,6 +25,11 @@ Ideas that will be planned and find their way into a release at one point
 
 ## main
 
+### Security
+
+- Require patched Node.js 22.23.4+ for CI and nightly parity, and 24.22.1+ for releases within their existing major lines.
+- Pin the PHP parity runtime to PHP 8.3.36 so cached Docker images cannot select an older patch.
+
 ## v3.0.36
 
 Released: 2026-05-16. [Diff](https://github.com/locutusjs/locutus/compare/v3.0.35...v3.0.36).
