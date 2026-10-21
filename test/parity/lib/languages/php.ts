@@ -8,9 +8,11 @@ import type { LanguageHandler } from '../types.ts'
 
 const PHP_DISPLAY_NAME = 'PHP'
 const PHP_VERSION = '8.3'
-const PHP_DOCKER_IMAGE = 'php:8.3-cli'
+const PHP_DOCKER_IMAGE = 'php:8.3.36-cli'
 const PHP_PARITY_TARGET = `${PHP_DISPLAY_NAME} ${PHP_VERSION}`
-const PHP_NAMESPACE_CATALOG_SOURCE_REF = 'php:8.3-cli:get_defined_functions'
+// Snapshot references describe the PHP 8.3 target independently of the execution image's patch.
+const PHP_RUNTIME_SOURCE_REF = 'php:8.3-cli'
+const PHP_NAMESPACE_CATALOG_SOURCE_REF = `${PHP_RUNTIME_SOURCE_REF}:get_defined_functions`
 
 // Functions removed, deprecated, or unavailable in PHP 8.3 Docker image
 export const PHP_SKIP_LIST = new Set([
@@ -60,7 +62,7 @@ function discoverPhpRuntimeSurface() {
         title: 'Global functions',
         target: PHP_PARITY_TARGET,
         sourceKind: 'runtime' as const,
-        sourceRef: PHP_DOCKER_IMAGE,
+        sourceRef: PHP_RUNTIME_SOURCE_REF,
         entries: functions,
       },
     ],

@@ -77,7 +77,7 @@ export const PARITY_LANGUAGES: ParityLanguageConfig[] = [
     id: 'php',
     displayName: 'PHP',
     version: '8.3',
-    dockerImage: 'php:8.3-cli',
+    dockerImage: 'php:8.3.36-cli',
   },
   {
     id: 'python',
