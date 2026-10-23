@@ -68,7 +68,11 @@ describe('live C reference discovery', () => {
   it.each([
     ['HTTP denial', () => new Response('Forbidden', { status: 403 }), /403/],
     ['API maxlag', () => Response.json({ error: { code: 'maxlag', info: 'Waiting for replication' } }), /maxlag/],
-    ['invalid JSON', () => new Response('<html>challenge</html>'), /JSON|Unexpected token/],
+    [
+      'invalid JSON',
+      () => new Response('<html>challenge</html>'),
+      /Invalid cppreference API JSON for c\/header at https:\/\/cppreference\.com\/api\.php/,
+    ],
     [
       'missing page',
       () => Response.json({ error: { code: 'missingtitle', info: 'Page does not exist' } }),

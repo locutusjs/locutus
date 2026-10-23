@@ -353,7 +353,13 @@ function fetchCppreferencePage(page: string): Promise<string> {
     if (!response.ok) {
       throw new Error(`Unable to fetch ${url}: ${response.status} ${response.statusText}`)
     }
-    const result = cppreferenceResponseSchema.safeParse(await response.json())
+    let payload: unknown
+    try {
+      payload = await response.json()
+    } catch (error) {
+      throw new Error(`Invalid cppreference API JSON for ${page} at ${url}`, { cause: error })
+    }
+    const result = cppreferenceResponseSchema.safeParse(payload)
     if (!result.success) {
       throw new Error(`Invalid cppreference API response for ${page} at ${url}`)
     }
