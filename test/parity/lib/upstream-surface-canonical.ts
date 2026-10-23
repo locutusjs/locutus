@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 import { runInDocker } from './docker.ts'
 import type { DiscoveredUpstreamSurfaceNamespaceCatalog, UpstreamSurfaceSnapshot } from './types.ts'
 import { buildDiscoveredUpstreamSurfaceSnapshot, uniqueSorted } from './upstream-surface-discovery.ts'
@@ -99,17 +101,22 @@ async function discoverNamespacesFromCatalog(input: {
   sourceRefForNamespace: (namespace: string) => string
   titleForNamespace?: (namespace: string) => string | undefined
   discoverEntries: (namespace: string, sourceRef: string) => Promise<string[]>
+  concurrency?: number
 }): Promise<UpstreamSurfaceSnapshot> {
-  const namespaces = await mapWithConcurrency(input.catalog.namespaces, DISCOVERY_CONCURRENCY, async (namespace) => {
-    const sourceRef = input.sourceRefForNamespace(namespace)
-    const entries = await input.discoverEntries(namespace, sourceRef)
-    return {
-      namespace,
-      title: input.titleForNamespace?.(namespace),
-      sourceRef,
-      entries,
-    }
-  })
+  const namespaces = await mapWithConcurrency(
+    input.catalog.namespaces,
+    input.concurrency ?? DISCOVERY_CONCURRENCY,
+    async (namespace) => {
+      const sourceRef = input.sourceRefForNamespace(namespace)
+      const entries = await input.discoverEntries(namespace, sourceRef)
+      return {
+        namespace,
+        title: input.titleForNamespace?.(namespace),
+        sourceRef,
+        entries,
+      }
+    },
+  )
 
   return buildDiscoveredUpstreamSurfaceSnapshot({
     language: input.language,
@@ -226,6 +233,13 @@ const AWK_CATALOG_SOURCE_REF = 'https://www.gnu.org/software/gawk/manual/'
 
 const C_CATALOG_TARGET = 'C23'
 const C_CATALOG_SOURCE_REF = 'https://en.cppreference.com/w/c/header'
+const C_API_USER_AGENT =
+  'Locutus-upstream-surface/1.0 (+https://github.com/locutusjs/locutus; https://github.com/locutusjs/locutus/issues)'
+const cppreferenceTextCache = new Map<string, Promise<string>>()
+const cppreferenceResponseSchema = z.object({
+  error: z.object({ code: z.string(), info: z.string().optional() }).optional(),
+  parse: z.object({ title: z.string(), revid: z.number().int().positive(), text: z.string().min(1) }).optional(),
+})
 const PERL_CATALOG_TARGET = 'Perl 5.40'
 const PERL_DOCKER_IMAGE = 'perl:5.40'
 const PERL_CATALOG_SOURCE_REF = 'perl:5.40:core-runtime-modules'
@@ -313,15 +327,72 @@ export function discoverAwkUpstreamNamespaceCatalog(): DiscoveredUpstreamSurface
   }
 }
 
+function fetchCppreferencePage(page: string): Promise<string> {
+  const cached = cppreferenceTextCache.get(page)
+  if (cached) {
+    return cached
+  }
+
+  const request = (async () => {
+    // The wiki advertises this API; identify the tool and respect replication load.
+    // https://www.mediawiki.org/wiki/API:Etiquette
+    const url = new URL('https://cppreference.com/api.php')
+    url.search = new URLSearchParams({
+      action: 'parse',
+      page,
+      prop: 'text|revid',
+      format: 'json',
+      formatversion: '2',
+      disableeditsection: '1',
+      maxlag: '5',
+    }).toString()
+    const response = await fetch(url, {
+      headers: { 'User-Agent': C_API_USER_AGENT },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    })
+    if (!response.ok) {
+      throw new Error(`Unable to fetch ${url}: ${response.status} ${response.statusText}`)
+    }
+    let payload: unknown
+    try {
+      payload = await response.json()
+    } catch (error) {
+      throw new Error(`Invalid cppreference API JSON for ${page} at ${url}`, { cause: error })
+    }
+    const result = cppreferenceResponseSchema.safeParse(payload)
+    if (!result.success) {
+      throw new Error(`Invalid cppreference API response for ${page} at ${url}`)
+    }
+    if (result.data.error) {
+      throw new Error(`cppreference API ${result.data.error.code} for ${page}: ${result.data.error.info ?? ''}`)
+    }
+    if (!result.data.parse || result.data.parse.title !== page) {
+      throw new Error(`Invalid cppreference API article for ${page} at ${url}`)
+    }
+    return result.data.parse.text
+  })().catch((error) => {
+    cppreferenceTextCache.delete(page)
+    throw error
+  })
+  cppreferenceTextCache.set(page, request)
+  return request
+}
+
 export function discoverCUpstreamNamespaceCatalog(): Promise<DiscoveredUpstreamSurfaceNamespaceCatalog> {
-  return fetchText(C_CATALOG_SOURCE_REF).then((html) => ({
-    target: C_CATALOG_TARGET,
-    sourceKind: 'source_manifest' as const,
-    sourceRef: C_CATALOG_SOURCE_REF,
-    namespaces: uniqueSorted(
+  return fetchCppreferencePage('c/header').then((html) => {
+    const namespaces = uniqueSorted(
       extractMatches(html, /title="c\/header\/([^"]+)"/g, (value) => stripHtml(value).trim() || null),
-    ),
-  }))
+    )
+    if (!namespaces.length) {
+      throw new Error('Invalid cppreference C header catalog: no namespaces discovered')
+    }
+    return {
+      target: C_CATALOG_TARGET,
+      sourceKind: 'source_manifest' as const,
+      sourceRef: C_CATALOG_SOURCE_REF,
+      namespaces,
+    }
+  })
 }
 
 function cHeaderSourceRef(namespace: string): string {
@@ -620,7 +691,9 @@ export function discoverCUpstreamSurface(): Promise<UpstreamSurfaceSnapshot> {
       catalog,
       sourceRefForNamespace: cHeaderSourceRef,
       titleForNamespace: (namespace) => `${namespace}.h`,
-      discoverEntries: async (namespace, sourceRef) => discoverCHeaderEntries(namespace, await fetchText(sourceRef)),
+      discoverEntries: async (namespace) =>
+        discoverCHeaderEntries(namespace, await fetchCppreferencePage(`c/header/${namespace}`)),
+      concurrency: 1,
     }),
   )
 }
