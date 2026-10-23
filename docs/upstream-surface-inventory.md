@@ -275,6 +275,20 @@ Notes:
 - `refresh:upstream-surface` is the live-only tracked-snapshot refresh helper
 - on a parity-target bump, discover first, inspect the raw diff, fold the accepted catalog, then review new `wanted` / `skip_*` / `keep_*` decisions
 
+For C, discovery reads the current English cppreference wiki through its advertised
+MediaWiki API (`https://cppreference.com/api.php`), using `action=parse` with
+`prop=text|revid`. The returned article title, revision, and content are validated
+before the existing header and synopsis parsers run. The saved `sourceRef` values
+still identify the same wiki articles; the API is their transport, not a separate
+reference edition or mirror. No archive or checked-in snapshot substitutes for a
+failed live request.
+
+C API requests run in series, identify Locutus with its repository/contact URL,
+and use `maxlag=5`, following the [MediaWiki API etiquette](https://www.mediawiki.org/wiki/API:Etiquette).
+HTTP errors, API errors (including replication lag), invalid JSON, and unexpected
+articles fail discovery immediately without automatic retries. Successful pages
+are shared within the process so the catalog audit does not fetch them again.
+
 When a freshly enumerated namespace feels like it is going overboard, prefer one of these two responses:
 
 - exclude or narrow that namespace at the discovery/source layer, then rerun enumeration
